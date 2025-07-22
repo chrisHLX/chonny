@@ -1,0 +1,376 @@
+[
+  {
+    "name": "Baneling",
+    "race": "Zerg",
+    "type": "Suicide Ground",
+    "description": "Explodes on contact to deal splash damage.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "30" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Fast" },
+      { "attribute_name": "Cost", "value": "50 minerals" },
+      { "attribute_name": "Supply Cost", "value": "0.5" }
+    ],
+    "abilities": [
+      { "name": "Explode", "description": "Deals massive damage to light units." }
+    ],
+    "counters": [
+      { "counter_unit": "Marauder", "effectiveness": "High", "notes": "Can tank Baneling hits." }
+    ]
+  },
+  {
+    "name": "Brood Lord",
+    "race": "Zerg",
+    "type": "Air Siege",
+    "description": "Long-range siege air unit spawning Broodlings.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "225" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Slow" },
+      { "attribute_name": "Range", "value": "10" },
+      { "attribute_name": "Cost", "value": "300 minerals, 200 gas" },
+      { "attribute_name": "Supply Cost", "value": "4" }
+    ],
+    "abilities": [
+      { "name": "Spawn Broodling", "description": "Launches broodlings on impact." }
+    ],
+    "counters": [
+      { "counter_unit": "Viking", "effectiveness": "High", "notes": "Long range counters slow Brood Lords." }
+    ]
+  },
+  {
+    "name": "Changeling",
+    "race": "Zerg",
+    "type": "Scout",
+    "description": "Disguised scouting unit spawned by Overseer.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "30" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Fast" },
+      { "attribute_name": "Cost", "value": "Spawned (no cost)" },
+      { "attribute_name": "Supply Cost", "value": "0" }
+    ],
+    "abilities": [
+      { "name": "Disguise", "description": "Transforms to mimic enemy units." }
+    ],
+    "counters": [
+      { "counter_unit": "Any Detector", "effectiveness": "High", "notes": "Easily revealed and killed." }
+    ]
+  },
+  {
+    "name": "Corruptor",
+    "race": "Zerg",
+    "type": "Air",
+    "description": "Air superiority unit that counters large air threats.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "200" },
+      { "attribute_name": "Armor", "value": "2" },
+      { "attribute_name": "Speed", "value": "Fast" },
+      { "attribute_name": "Range", "value": "6" },
+      { "attribute_name": "Cost", "value": "150 minerals, 100 gas" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Corruption", "description": "Increases damage taken by the target." }
+    ],
+    "counters": [
+      { "counter_unit": "Viking", "effectiveness": "High", "notes": "Outranges and bonus damage to air." }
+    ]
+  },
+  {
+    "name": "Drone",
+    "race": "Zerg",
+    "type": "Worker",
+    "description": "Basic worker unit for harvesting and constructing structures.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "40" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Fast" },
+      { "attribute_name": "Cost", "value": "50 minerals" },
+      { "attribute_name": "Supply Cost", "value": "1" }
+    ],
+    "abilities": [],
+    "counters": []
+  },
+  {
+    "name": "Hydralisk",
+    "race": "Zerg",
+    "type": "Ground Ranged",
+    "description": "Versatile ranged attacker.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "90" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Normal" },
+      { "attribute_name": "Range", "value": "5 (6 with Grooved Spines)" },
+      { "attribute_name": "Cost", "value": "100 minerals, 50 gas" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Grooved Spines", "description": "Increases attack range." },
+      { "name": "Muscular Augments", "description": "Increases movement speed." }
+    ],
+    "counters": [
+      { "counter_unit": "Colossus", "effectiveness": "High", "notes": "Long-range attacks decimate Hydralisks." }
+    ]
+  },
+  {
+    "name": "Infestor",
+    "race": "Zerg",
+    "type": "Spellcaster",
+    "description": "Casts spells to disable and control enemies.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "90" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Slow" },
+      { "attribute_name": "Range", "value": "9 (Fungal Growth)" },
+      { "attribute_name": "Cost", "value": "100 minerals, 150 gas" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Fungal Growth", "description": "Roots enemies and deals damage over time." },
+      { "name": "Neural Parasite", "description": "Temporarily controls enemy unit." }
+    ],
+    "counters": [
+      { "counter_unit": "Ghost", "effectiveness": "High", "notes": "EMP drains energy." }
+    ]
+  },
+  {
+    "name": "Larva",
+    "race": "Zerg",
+    "type": "Morph",
+    "description": "Base unit that morphs into all other Zerg units.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "25" },
+      { "attribute_name": "Armor", "value": "10" },
+      { "attribute_name": "Speed", "value": "Immobile" },
+      { "attribute_name": "Cost", "value": "Spawned (no cost)" },
+      { "attribute_name": "Supply Cost", "value": "0" }
+    ],
+    "abilities": [
+      { "name": "Morph", "description": "Can morph into any basic Zerg unit." }
+    ],
+    "counters": [
+      { "counter_unit": "Any", "effectiveness": "High", "notes": "Defenseless and immobile." }
+    ]
+  },
+  {
+    "name": "Lurker",
+    "race": "Zerg",
+    "type": "Ground Siege",
+    "description": "Burrows to attack with spines in a line.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "200" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Slow" },
+      { "attribute_name": "Range", "value": "9" },
+      { "attribute_name": "Cost", "value": "150 minerals, 125 gas" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Burrow Attack", "description": "Fires spines when burrowed." }
+    ],
+    "counters": [
+      { "counter_unit": "Air Units", "effectiveness": "High", "notes": "Cannot attack air." }
+    ]
+  },
+  {
+    "name": "Mutalisk",
+    "race": "Zerg",
+    "type": "Air",
+    "description": "Fast flying harassment unit.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "120" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Fast" },
+      { "attribute_name": "Range", "value": "3" },
+      { "attribute_name": "Cost", "value": "100 minerals, 100 gas" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Glaive Wurm", "description": "Attacks bounce to multiple targets." }
+    ],
+    "counters": [
+      { "counter_unit": "Phoenix", "effectiveness": "High", "notes": "Superior mobility and anti-air." }
+    ]
+  },
+  {
+    "name": "Overlord",
+    "race": "Zerg",
+    "type": "Air Support",
+    "description": "Provides supply and detection when upgraded.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "200" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Slow (Fast with Pneumatized Carapace)" },
+      { "attribute_name": "Cost", "value": "100 minerals" },
+      { "attribute_name": "Supply Cost", "value": "0" }
+    ],
+    "abilities": [
+      { "name": "Generate Creep", "description": "Spreads creep on the ground." }
+    ],
+    "counters": [
+      { "counter_unit": "Phoenix", "effectiveness": "High", "notes": "Quickly picks off Overlords." }
+    ]
+  },
+  {
+    "name": "Overseer",
+    "race": "Zerg",
+    "type": "Detector Air",
+    "description": "Detector unit evolved from Overlord.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "200" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Fast" },
+      { "attribute_name": "Cost", "value": "50 minerals, 100 gas" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Detection", "description": "Reveals cloaked and burrowed units." },
+      { "name": "Spawn Changeling", "description": "Deploys a Changeling for scouting." }
+    ],
+    "counters": [
+      { "counter_unit": "Phoenix", "effectiveness": "High", "notes": "Quickly picks off Overseers." }
+    ]
+  },
+  {
+    "name": "Queen",
+    "race": "Zerg",
+    "type": "Support Ground",
+    "description": "Defensive support unit with healing and anti-air.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "175" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Slow (Fast on Creep)" },
+      { "attribute_name": "Range", "value": "5" },
+      { "attribute_name": "Cost", "value": "150 minerals" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Transfusion", "description": "Heals friendly biological units." },
+      { "name": "Spawn Larva", "description": "Increases larva production at Hatchery." },
+      { "name": "Creep Tumor", "description": "Spreads creep for vision and speed." }
+    ],
+    "counters": [
+      { "counter_unit": "Hellion", "effectiveness": "High", "notes": "Outranges and burns Queens off creep." }
+    ]
+  },
+  {
+    "name": "Ravager",
+    "race": "Zerg",
+    "type": "Ground Ranged",
+    "description": "Evolved from Roach, has long-range corrosive bile.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "120" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Normal" },
+      { "attribute_name": "Range", "value": "6 (Corrosive Bile: 9)" },
+      { "attribute_name": "Cost", "value": "100 minerals, 100 gas" },
+      { "attribute_name": "Supply Cost", "value": "3" }
+    ],
+    "abilities": [
+      { "name": "Corrosive Bile", "description": "Fires a projectile that damages all units in an area." }
+    ],
+    "counters": [
+      { "counter_unit": "Blink Stalker", "effectiveness": "High", "notes": "Can dodge Corrosive Bile." }
+    ]
+  },
+  {
+    "name": "Roach",
+    "race": "Zerg",
+    "type": "Ground Ranged",
+    "description": "Tough armored ranged attacker.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "145" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Normal" },
+      { "attribute_name": "Range", "value": "4" },
+      { "attribute_name": "Cost", "value": "75 minerals, 25 gas" },
+      { "attribute_name": "Supply Cost", "value": "2" }
+    ],
+    "abilities": [
+      { "name": "Burrow", "description": "Allows the unit to hide underground." },
+      { "name": "Tunneling Claws", "description": "Allows burrowed movement." }
+    ],
+    "counters": [
+      { "counter_unit": "Immortal", "effectiveness": "High", "notes": "Deals bonus damage to armored units." }
+    ]
+  },
+  {
+    "name": "Swarm Host",
+    "race": "Zerg",
+    "type": "Ground Siege",
+    "description": "Spawns Locusts to harass enemies.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "145" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Slow" },
+      { "attribute_name": "Cost", "value": "100 minerals, 75 gas" },
+      { "attribute_name": "Supply Cost", "value": "3" }
+    ],
+    "abilities": [
+      { "name": "Spawn Locusts", "description": "Launches temporary units to attack." }
+    ],
+    "counters": [
+      { "counter_unit": "Air Units", "effectiveness": "High", "notes": "Swarm Hosts cannot attack air." }
+    ]
+  },
+  {
+    "name": "Ultralisk",
+    "race": "Zerg",
+    "type": "Ground Melee",
+    "description": "Massive armored melee beast.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "500" },
+      { "attribute_name": "Armor", "value": "2" },
+      { "attribute_name": "Speed", "value": "Normal" },
+      { "attribute_name": "Cost", "value": "300 minerals, 200 gas" },
+      { "attribute_name": "Supply Cost", "value": "6" }
+    ],
+    "abilities": [
+      { "name": "Burrow Charge", "description": "Burrow and charge toward enemies." }
+    ],
+    "counters": [
+      { "counter_unit": "Void Ray", "effectiveness": "High", "notes": "Deals bonus damage to armored." }
+    ]
+  },
+  {
+    "name": "Viper",
+    "race": "Zerg",
+    "type": "Spellcaster Air",
+    "description": "Disables enemies and manipulates positioning.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "150" },
+      { "attribute_name": "Armor", "value": "1" },
+      { "attribute_name": "Speed", "value": "Fast" },
+      { "attribute_name": "Range", "value": "9 (Abduct)" },
+      { "attribute_name": "Cost", "value": "100 minerals, 200 gas" },
+      { "attribute_name": "Supply Cost", "value": "3" }
+    ],
+    "abilities": [
+      { "name": "Blinding Cloud", "description": "Reduces enemy attack range." },
+      { "name": "Abduct", "description": "Pulls enemy unit to Viper." }
+    ],
+    "counters": [
+      { "counter_unit": "Ghost", "effectiveness": "High", "notes": "EMP removes energy." }
+    ]
+  },
+  {
+    "name": "Zergling",
+    "race": "Zerg",
+    "type": "Ground Melee",
+    "description": "Fast melee attacker that excels at swarming.",
+    "attributes": [
+      { "attribute_name": "Health", "value": "35" },
+      { "attribute_name": "Armor", "value": "0" },
+      { "attribute_name": "Speed", "value": "Very Fast (with Metabolic Boost)" },
+      { "attribute_name": "Cost", "value": "50 minerals (for 2)" },
+      { "attribute_name": "Supply Cost", "value": "0.5" }
+    ],
+    "abilities": [
+      { "name": "Metabolic Boost", "description": "Increases movement speed." }
+    ],
+    "counters": [
+      { "counter_unit": "Hellion", "effectiveness": "High", "notes": "Area damage destroys groups." }
+    ]
+  }
+]

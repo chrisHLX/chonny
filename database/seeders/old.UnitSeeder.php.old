@@ -1,0 +1,93 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Unit;
+use App\Models\UnitAttribute;
+use App\Models\Ability;
+use App\Models\Counter;
+
+class UnitSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // 🪱 Zergling
+        $zergling = Unit::create([
+            'name' => 'Zergling',
+            'race' => 'Zerg',
+            'type' => 'Ground Light',
+            'description' => 'Fast melee swarm unit.'
+        ]);
+
+        // Zergling Attributes
+        UnitAttribute::insert([
+            ['unit_id' => $zergling->id, 'attribute_name' => 'HP', 'value' => '35'],
+            ['unit_id' => $zergling->id, 'attribute_name' => 'Armor', 'value' => '0'],
+            ['unit_id' => $zergling->id, 'attribute_name' => 'Range', 'value' => 'Melee'],
+            ['unit_id' => $zergling->id, 'attribute_name' => 'Speed', 'value' => 'Very Fast'],
+        ]);
+
+        // Zergling Abilities
+        Ability::create([
+            'unit_id' => $zergling->id,
+            'name' => 'Metabolic Boost',
+            'description' => 'Increases movement speed after research.'
+        ]);
+
+        // Zergling Counters
+        // Example: Hellion counters Zergling
+        $hellion = Unit::create([
+            'name' => 'Hellion',
+            'race' => 'Terran',
+            'type' => 'Ground Light',
+            'description' => 'Fast ranged unit with splash damage.'
+        ]);
+
+        Counter::create([
+            'unit_id' => $zergling->id,
+            'counter_unit_id' => $hellion->id,
+            'effectiveness' => 'High',
+            'notes' => 'Splash damage burns clumped Zerglings.'
+        ]);
+
+
+        // 🟢 Mutalisk
+        $mutalisk = Unit::create([
+            'name' => 'Mutalisk',
+            'race' => 'Zerg',
+            'type' => 'Air',
+            'description' => 'Mobile harassment flying unit.'
+        ]);
+
+        // Mutalisk Attributes
+        UnitAttribute::insert([
+            ['unit_id' => $mutalisk->id, 'attribute_name' => 'HP', 'value' => '120'],
+            ['unit_id' => $mutalisk->id, 'attribute_name' => 'Armor', 'value' => '0'],
+            ['unit_id' => $mutalisk->id, 'attribute_name' => 'Range', 'value' => 'Air'],
+            ['unit_id' => $mutalisk->id, 'attribute_name' => 'Speed', 'value' => 'Fast'],
+        ]);
+
+        // Mutalisk Abilities
+        Ability::create([
+            'unit_id' => $mutalisk->id,
+            'name' => 'Glaive Wurm',
+            'description' => 'Attacks bounce to nearby targets.'
+        ]);
+
+        // Mutalisk Counters
+        $phoenix = Unit::create([
+            'name' => 'Phoenix',
+            'race' => 'Protoss',
+            'type' => 'Air',
+            'description' => 'Fast anti-air fighter.'
+        ]);
+
+        Counter::create([
+            'unit_id' => $mutalisk->id,
+            'counter_unit_id' => $phoenix->id,
+            'effectiveness' => 'High',
+            'notes' => 'Phoenix outrange and counter Mutalisks in the air.'
+        ]);
+    }
+}

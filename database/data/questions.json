@@ -1,0 +1,98 @@
+[
+  {
+    "question": "What is the supply cost of a Drone?",
+    "type": "mcq",
+    "answer": {
+      "correct": "1",
+      "options": ["0", "1", "2", "3"]
+    },
+    "difficulty": "easy",
+    "units": ["Drone"],
+    "concepts": ["Economy"]
+  },
+  {
+    "question": "True or False: A Drone can be used to cancel a building and regain resources.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": ["Drone"],
+    "concepts": ["Build Cancel"]
+  },
+  {
+    "question": "Describe how the extractor trick works.",
+    "type": "open",
+    "answer": {
+      "correct_keywords": ["extractor", "cancel", "drone", "supply"],
+      "ideal_answer": "Build an extractor to temporarily go over supply cap, then cancel it to keep the drone."
+    },
+    "difficulty": "hard",
+    "units": ["Drone"],
+    "concepts": ["Supply Management"]
+  },
+  {
+    "question": "What is the maximum number of Drones you can have on a single mineral patch?",
+    "type": "mcq",
+    "answer": {
+      "correct": "3",
+      "options": ["1", "2", "3", "4"]
+    },
+    "difficulty": "easy",
+    "units": ["Drone"],
+    "concepts": ["Resource Gathering"]
+  },
+  {
+    "question": "True or False: Drones can be used to build structures.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": ["Drone"],
+    "concepts": ["Building"]
+  },
+  {
+    "question": "What is the primary role of a Drone in StarCraft?",
+    "type": "open",
+    "answer": {
+      "correct_keywords": ["gather", "resources", "build"],
+      "ideal_answer": "Drones gather resources and can build structures."
+    },
+    "difficulty": "easy",
+    "units": ["Drone"],
+    "concepts": ["Unit Role"]
+  },
+  {
+    "question": "How many minerals does a Drone gather per trip?",
+    "type": "mcq",
+    "answer": {
+      "correct": "5",
+      "options": ["2", "5", "10", "15"]
+    },
+    "difficulty": "easy",
+    "units": ["Drone"],
+    "concepts": ["Resource Gathering"]
+  },
+  {
+    "question": "True or False: Drones can attack enemy units.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": ["Drone"],
+    "concepts": ["Combat"]
+  },
+  {
+    "question": "What is the build time for a Drone?",
+    "type": "mcq",
+    "answer": {
+      "correct": "12",
+      "options": ["8", "10", "12", "14"]
+    },
+    "difficulty": "easy",
+    "units": ["Drone"],
+    "concepts": ["Production"]
+  } 
+]

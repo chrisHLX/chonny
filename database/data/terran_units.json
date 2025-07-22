@@ -1,0 +1,341 @@
+[
+    {
+        "name": "Banshee",
+        "race": "Terran",
+        "type": "Air",
+        "description": "Stealth air-to-ground attacker.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "140"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Cost", "value": "150 minerals, 100 gas"},
+            {"attribute_name": "Supply Cost", "value": "3"}
+        ],
+        "abilities": [
+            {"name": "Cloak", "description": "Renders the Banshee invisible while active."}
+        ],
+        "counters": [
+            {"counter_unit": "Phoenix", "effectiveness": "High", "notes": "Can chase and kill Banshees."},
+            {"counter_unit": "Spore Crawler", "effectiveness": "High", "notes": "Provides detection and anti-air."}
+        ]
+    },
+    {
+        "name": "Battlecruiser",
+        "race": "Terran",
+        "type": "Air",
+        "description": "Capital ship with heavy firepower and tactical teleport.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "550"},
+            {"attribute_name": "Armor", "value": "3 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Slow"},
+            {"attribute_name": "Cost", "value": "400 minerals, 300 gas"},
+            {"attribute_name": "Supply Cost", "value": "6"}
+        ],
+        "abilities": [
+            {"name": "Yamato Cannon", "description": "Deals massive damage to a single target."},
+            {"name": "Tactical Jump", "description": "Instantly teleports to any visible location."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Outranges and kites Battlecruisers."},
+            {"counter_unit": "Corruptor", "effectiveness": "High", "notes": "Deals bonus damage to massive air units."}
+        ]
+    },
+    {
+        "name": "Cyclone",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Mobile anti-armor vehicle with lock-on ability.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "120"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6 (normal), 10 (lock-on)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Cost", "value": "150 minerals, 100 gas"},
+            {"attribute_name": "Supply Cost", "value": "3"}
+        ],
+        "abilities": [
+            {"name": "Lock-On", "description": "Attacks a target from long range while moving."}
+        ],
+        "counters": [
+            {"counter_unit": "Zergling", "effectiveness": "High", "notes": "Can swarm and surround Cyclones."},
+            {"counter_unit": "Stalker", "effectiveness": "Moderate", "notes": "Can blink on top of Cyclones."}
+        ]
+    },
+    {
+        "name": "Ghost",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Stealth unit with EMP and nuclear strike capabilities.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "100"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Cost", "value": "150 minerals, 125 gas"},
+            {"attribute_name": "Supply Cost", "value": "2"}
+        ],
+        "abilities": [
+            {"name": "Cloak", "description": "Renders the Ghost invisible while active."},
+            {"name": "EMP Round", "description": "Drains shields and energy in a target area."},
+            {"name": "Nuclear Strike", "description": "Calls down a devastating nuke after a short delay."}
+        ],
+        "counters": [
+            {"counter_unit": "Observer", "effectiveness": "High", "notes": "Provides detection to break cloak."},
+            {"counter_unit": "Zealot", "effectiveness": "Moderate", "notes": "Closes distance quickly once detected."}
+        ]
+    },
+    {
+        "name": "Hellion",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Fast light vehicle that deals splash damage to light units.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "90"},
+            {"attribute_name": "Armor", "value": "0"},
+            {"attribute_name": "Range", "value": "5"},
+            {"attribute_name": "Speed", "value": "Very Fast"},
+            {"attribute_name": "Cost", "value": "100 minerals"},
+            {"attribute_name": "Supply Cost", "value": "2"}
+        ],
+        "abilities": [
+            {"name": "Transformation", "description": "Can transform into Hellbat for close-range combat."}
+        ],
+        "counters": [
+            {"counter_unit": "Roach", "effectiveness": "High", "notes": "Roaches shrug off Hellion attacks."},
+            {"counter_unit": "Stalker", "effectiveness": "Moderate", "notes": "Stalkers can kite Hellions effectively."}
+        ]
+    },
+    {
+        "name": "Liberator",
+        "race": "Terran",
+        "type": "Air",
+        "description": "Versatile air unit with anti-ground siege mode.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "180"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "5 (anti-air), 10 (siege anti-ground)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Cost", "value": "150 minerals, 150 gas"},
+            {"attribute_name": "Supply Cost", "value": "4"}
+        ],
+        "abilities": [
+            {"name": "Defender Mode", "description": "Deploys to attack ground units in a target area."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Outranges Liberators in the air."},
+            {"counter_unit": "Stalker", "effectiveness": "High", "notes": "Can blink under and attack."}
+        ]
+    },
+    {
+        "name": "Marauder",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Armored assault unit effective against structures and armored units.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "125"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Cost", "value": "100 minerals, 25 gas"},
+            {"attribute_name": "Supply Cost", "value": "2"}
+        ],
+        "abilities": [
+            {"name": "Concussive Shells", "description": "Slows enemy movement on attack."}
+        ],
+        "counters": [
+            {"counter_unit": "Immortal", "effectiveness": "High", "notes": "Immortals negate much of the damage."},
+            {"counter_unit": "Zergling", "effectiveness": "Moderate", "notes": "Mass Zerglings can overwhelm."}
+        ]
+    },
+    {
+        "name": "Marine",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Versatile ranged infantry unit with Stimpack ability.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "45"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "5"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Cost", "value": "50 minerals"},
+            {"attribute_name": "Supply Cost", "value": "1"}
+        ],
+        "abilities": [
+            {"name": "Stimpack", "description": "Temporarily increases attack and movement speed at the cost of health."}
+        ],
+        "counters": [
+            {"counter_unit": "Baneling", "effectiveness": "High", "notes": "Banelings obliterate groups of Marines."},
+            {"counter_unit": "Colossus", "effectiveness": "High", "notes": "Long range splash damage decimates Marines."}
+        ]
+    },
+    {
+        "name": "Medivac",
+        "race": "Terran",
+        "type": "Air",
+        "description": "Flying transport that heals biological units.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "150"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "Healing: 6"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Cost", "value": "100 minerals, 100 gas"},
+            {"attribute_name": "Supply Cost", "value": "2"}
+        ],
+        "abilities": [
+            {"name": "Heal", "description": "Restores health to biological units."},
+            {"name": "Ignite Afterburners", "description": "Temporarily increases movement speed."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Can shoot down Medivacs from range."},
+            {"counter_unit": "Phoenix", "effectiveness": "High", "notes": "Can Graviton Beam Medivacs."}
+        ]
+    },
+    {
+        "name": "Raven",
+        "race": "Terran",
+        "type": "Air",
+        "description": "Support air unit with detection and utility abilities.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "140"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "Abilities: 9"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Cost", "value": "100 minerals, 150 gas"},
+            {"attribute_name": "Supply Cost", "value": "2"}
+        ],
+        "abilities": [
+            {"name": "Auto Turret", "description": "Deploys a temporary turret."},
+            {"name": "Anti-Armor Missile", "description": "Reduces armor of affected units."},
+            {"name": "Interference Matrix", "description": "Disables enemy abilities temporarily."},
+            {"name": "Detection", "description": "Reveals cloaked and burrowed units."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Can shoot down Ravens from range."},
+            {"counter_unit": "Infestor", "effectiveness": "Moderate", "notes": "Can Fungal Growth to prevent escape."}
+        ]
+    },
+    {
+        "name": "Reaper",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Fast harassment unit capable of jumping cliffs.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "60"},
+            {"attribute_name": "Armor", "value": "0"},
+            {"attribute_name": "Range", "value": "5"},
+            {"attribute_name": "Speed", "value": "Very Fast"},
+            {"attribute_name": "Cost", "value": "50 minerals, 50 gas"},
+            {"attribute_name": "Supply Cost", "value": "1"}
+        ],
+        "abilities": [
+            {"name": "KD8 Charge", "description": "Throws an explosive charge that knocks back enemies."}
+        ],
+        "counters": [
+            {"counter_unit": "Stalker", "effectiveness": "High", "notes": "Stalkers outrange and kill Reapers easily."},
+            {"counter_unit": "Queen", "effectiveness": "High", "notes": "Queens defend mineral lines effectively."}
+        ]
+    },
+    {
+        "name": "SCV",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Terran worker unit for constructing buildings and gathering resources.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "45"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Supply Cost", "value": "1"},
+            {"attribute_name": "Cost", "value": "50 minerals"}
+        ],
+        "abilities": [
+            {"name": "Repair", "description": "Repairs mechanical units and buildings."}
+        ],
+        "counters": []
+    },
+    {
+        "name": "Siege Tank",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Long-range artillery unit with Siege Mode.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "175"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "13 (Siege Mode)"},
+            {"attribute_name": "Speed", "value": "Slow"},
+            {"attribute_name": "Cost", "value": "150 minerals, 125 gas"},
+            {"attribute_name": "Supply Cost", "value": "3"}
+        ],
+        "abilities": [
+            {"name": "Siege Mode", "description": "Greatly increases range and damage but immobilizes the tank."}
+        ],
+        "counters": [
+            {"counter_unit": "Immortal", "effectiveness": "High", "notes": "Immortals can close distance and absorb damage."},
+            {"counter_unit": "Zergling", "effectiveness": "Moderate", "notes": "Mass Zerglings can surround unsieged tanks."}
+        ]
+    },
+    {
+        "name": "Thor",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Massive siege walker with powerful anti-air and anti-ground attacks.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "400"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "7 (anti-ground), 10 (anti-air)"},
+            {"attribute_name": "Speed", "value": "Slow"},
+            {"attribute_name": "Cost", "value": "300 minerals, 200 gas"},
+            {"attribute_name": "Supply Cost", "value": "6"}
+        ],
+        "abilities": [
+            {"name": "High Impact Payload", "description": "Switches to high damage single-target air attack."}
+        ],
+        "counters": [
+            {"counter_unit": "Immortal", "effectiveness": "High", "notes": "Deals bonus damage to armored units."},
+            {"counter_unit": "Brood Lord", "effectiveness": "High", "notes": "Outranges and wears down Thors with Broodlings."}
+        ]
+    },
+    {
+        "name": "Viking",
+        "race": "Terran",
+        "type": "Air/Ground",
+        "description": "Transforming unit effective against air targets.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "135"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "9 (air)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Cost", "value": "150 minerals, 75 gas"},
+            {"attribute_name": "Supply Cost", "value": "2"}
+        ],
+        "abilities": [
+            {"name": "Transform", "description": "Switch between Fighter Mode and Assault Mode."}
+        ],
+        "counters": [
+            {"counter_unit": "Mutalisk", "effectiveness": "High", "notes": "Vikings easily outrange Mutalisks in the air."},
+            {"counter_unit": "Phoenix", "effectiveness": "Moderate", "notes": "Phoenix can lift Vikings in Assault Mode."}
+        ]
+    },
+    {
+        "name": "Widow Mine",
+        "race": "Terran",
+        "type": "Ground",
+        "description": "Burrowing unit that launches powerful splash attacks when triggered.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "90"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Cost", "value": "75 minerals, 25 gas"},
+            {"attribute_name": "Supply Cost", "value": "2"}
+        ],
+        "abilities": [
+            {"name": "Burrow", "description": "Hides underground, ready to fire."},
+            {"name": "Spider Mine", "description": "Automatically attacks nearby enemy units when burrowed."}
+        ],
+        "counters": [
+            {"counter_unit": "Observer", "effectiveness": "High", "notes": "Provides detection to reveal mines."},
+            {"counter_unit": "Overseer", "effectiveness": "High", "notes": "Allows detection and safe clearing."}
+        ]
+    }
+]

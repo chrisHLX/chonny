@@ -1,0 +1,399 @@
+[
+    {
+        "name": "Archon",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Powerful psionic unit formed by merging two High Templar or Dark Templar. Deals splash damage.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "10"},
+            {"attribute_name": "Shields", "value": "350"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "3"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Supply Cost", "value": "4"},
+            {"attribute_name": "Cost", "value": "2 High Templar or 2 Dark Templar"}
+        ],
+        "abilities": [
+            {"name": "Splash Damage", "description": "Deals area damage to all nearby enemies."}
+        ],
+        "counters": [
+            {"counter_unit": "Ghost", "effectiveness": "High", "notes": "EMP removes shields."},
+            {"counter_unit": "Immortal", "effectiveness": "Moderate", "notes": "Immortals can tank Archon attacks."}
+        ]
+    },
+    {
+        "name": "Carrier",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Capital ship that launches interceptors to attack targets.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "300"},
+            {"attribute_name": "Shields", "value": "150"},
+            {"attribute_name": "Armor", "value": "2 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "8 (interceptors)"},
+            {"attribute_name": "Speed", "value": "Slow"},
+            {"attribute_name": "Supply Cost", "value": "6"},
+            {"attribute_name": "Cost", "value": "350 minerals, 250 gas"}
+        ],
+        "abilities": [
+            {"name": "Launch Interceptors", "description": "Deploys interceptors to attack enemies."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Vikings outrange and destroy Carriers."},
+            {"counter_unit": "Corruptor", "effectiveness": "High", "notes": "Corruptors deal bonus damage to massive air units."}
+        ]
+    },
+    {
+        "name": "Colossus",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Massive unit that deals area damage in a line.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "200"},
+            {"attribute_name": "Shields", "value": "150"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "9"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Supply Cost", "value": "6"},
+            {"attribute_name": "Cost", "value": "300 minerals, 200 gas"}
+        ],
+        "abilities": [
+            {"name": "Thermal Lance", "description": "Attacks in a straight line, damaging multiple units."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Vikings outrange and destroy Colossi."},
+            {"counter_unit": "Corruptor", "effectiveness": "High", "notes": "Anti-air attacks kill Colossi quickly."}
+        ]
+    },
+    {
+        "name": "Dark Templar",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Stealthy melee assassin that is permanently cloaked.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "40"},
+            {"attribute_name": "Shields", "value": "80"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Supply Cost", "value": "2"},
+            {"attribute_name": "Cost", "value": "125 minerals, 125 gas"}
+        ],
+        "abilities": [
+            {"name": "Permanent Cloak", "description": "Invisible unless detected."}
+        ],
+        "counters": [
+            {"counter_unit": "Raven", "effectiveness": "High", "notes": "Detection reveals Dark Templar."},
+            {"counter_unit": "Spore Crawler", "effectiveness": "High", "notes": "Provides detection and attacks."}
+        ]
+    },
+    {
+        "name": "Disruptor",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Robotic unit that fires a powerful area-of-effect blast.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "100"},
+            {"attribute_name": "Shields", "value": "100"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Supply Cost", "value": "3"},
+            {"attribute_name": "Cost", "value": "150 minerals, 150 gas"}
+        ],
+        "abilities": [
+            {"name": "Purification Nova", "description": "Launches a controllable energy ball that explodes for massive damage."}
+        ],
+        "counters": [
+            {"counter_unit": "Cyclone", "effectiveness": "High", "notes": "Can kite Disruptors."},
+            {"counter_unit": "Zergling", "effectiveness": "Moderate", "notes": "Can dodge Nova with good micro."}
+        ]
+    },
+    {
+        "name": "High Templar",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Spellcaster with powerful psionic abilities.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "40"},
+            {"attribute_name": "Shields", "value": "40"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Slow"},
+            {"attribute_name": "Supply Cost", "value": "2"},
+            {"attribute_name": "Cost", "value": "50 minerals, 150 gas"}
+        ],
+        "abilities": [
+            {"name": "Psionic Storm", "description": "Deals area-of-effect damage."},
+            {"name": "Feedback", "description": "Damages enemy spellcasters based on energy."}
+        ],
+        "counters": [
+            {"counter_unit": "Ghost", "effectiveness": "High", "notes": "EMP and Snipe eliminate High Templar."},
+            {"counter_unit": "Viking", "effectiveness": "Moderate", "notes": "Can snipe from range."}
+        ]
+    },
+    {
+        "name": "Immortal",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Armored assault unit with strong anti-armor attacks.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "200"},
+            {"attribute_name": "Shields", "value": "100"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Supply Cost", "value": "4"},
+            {"attribute_name": "Cost", "value": "250 minerals, 100 gas"}
+        ],
+        "abilities": [
+            {"name": "Barrier", "description": "Temporarily absorbs incoming damage."}
+        ],
+        "counters": [
+            {"counter_unit": "Zergling", "effectiveness": "High", "notes": "Zerglings can surround and overwhelm."},
+            {"counter_unit": "Banshee", "effectiveness": "High", "notes": "Air units can hit Immortals freely."}
+        ]
+    },
+    {
+        "name": "Mothership",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Massive support ship with powerful abilities.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "350"},
+            {"attribute_name": "Shields", "value": "350"},
+            {"attribute_name": "Armor", "value": "2 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Very Slow"},
+            {"attribute_name": "Supply Cost", "value": "8"},
+            {"attribute_name": "Cost", "value": "400 minerals, 400 gas"}
+        ],
+        "abilities": [
+            {"name": "Mass Recall", "description": "Teleports nearby units to a Nexus."},
+            {"name": "Time Warp", "description": "Slows enemy units in an area."},
+            {"name": "Cloaking Field", "description": "Cloaks nearby friendly units."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Vikings outrange and focus down Mothership."},
+            {"counter_unit": "Ghost", "effectiveness": "High", "notes": "EMP disables cloaking and shields."}
+        ]
+    },
+    {
+        "name": "Observer",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Small, permanently cloaked scout unit.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "20"},
+            {"attribute_name": "Shields", "value": "40"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Supply Cost", "value": "1"},
+            {"attribute_name": "Cost", "value": "25 minerals, 75 gas"}
+        ],
+        "abilities": [
+            {"name": "Permanent Cloak", "description": "Invisible unless detected."}
+        ],
+        "counters": [
+            {"counter_unit": "Raven", "effectiveness": "High", "notes": "Detection reveals Observers."},
+            {"counter_unit": "Spore Crawler", "effectiveness": "High", "notes": "Provides detection and attacks."}
+        ]
+    },
+    {
+        "name": "Oracle",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Fast air spellcaster with detection and harassment abilities.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "60"},
+            {"attribute_name": "Shields", "value": "100"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "4"},
+            {"attribute_name": "Speed", "value": "Very Fast"},
+            {"attribute_name": "Supply Cost", "value": "3"},
+            {"attribute_name": "Cost", "value": "150 minerals, 150 gas"}
+        ],
+        "abilities": [
+            {"name": "Revelation", "description": "Reveals enemy units and structures."},
+            {"name": "Stasis Ward", "description": "Traps and disables enemy units."},
+            {"name": "Pulsar Beam", "description": "Deals rapid damage to ground units."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Vikings can chase and destroy Oracles."},
+            {"counter_unit": "Mutalisk", "effectiveness": "High", "notes": "Mutalisks can catch and kill Oracles."}
+        ]
+    },
+    {
+        "name": "Phoenix",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Fast air unit that can lift enemy ground units.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "60"},
+            {"attribute_name": "Shields", "value": "120"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "5"},
+            {"attribute_name": "Speed", "value": "Very Fast"},
+            {"attribute_name": "Supply Cost", "value": "2"},
+            {"attribute_name": "Cost", "value": "150 minerals, 100 gas"}
+        ],
+        "abilities": [
+            {"name": "Graviton Beam", "description": "Lifts an enemy ground unit into the air temporarily."}
+        ],
+        "counters": [
+            {"counter_unit": "Mutalisk", "effectiveness": "High", "notes": "Mutalisks can chase down Phoenixes."},
+            {"counter_unit": "Viking", "effectiveness": "Moderate", "notes": "Vikings can attack from long range."}
+        ]
+    },
+    {
+        "name": "Probe",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Worker unit that gathers resources and constructs buildings.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "20"},
+            {"attribute_name": "Shields", "value": "20"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Supply Cost", "value": "1"},
+            {"attribute_name": "Cost", "value": "50 minerals"}
+        ],
+        "abilities": [
+            {"name": "Warp In Structure", "description": "Can warp in Protoss buildings."}
+        ],
+        "counters": [
+            {"counter_unit": "Reaper", "effectiveness": "High", "notes": "Reapers can harass and kill Probes easily."},
+            {"counter_unit": "Zergling", "effectiveness": "High", "notes": "Fast and effective at killing workers."}
+        ]
+    },
+    {
+        "name": "Sentry",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Support spellcaster with defensive abilities.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "40"},
+            {"attribute_name": "Shields", "value": "40"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "5"},
+            {"attribute_name": "Speed", "value": "Slow"},
+            {"attribute_name": "Supply Cost", "value": "2"},
+            {"attribute_name": "Cost", "value": "50 minerals, 100 gas"}
+        ],
+        "abilities": [
+            {"name": "Force Field", "description": "Blocks movement with a temporary barrier."},
+            {"name": "Guardian Shield", "description": "Reduces incoming ranged damage."},
+            {"name": "Hallucination", "description": "Creates fake units to confuse the enemy."}
+        ],
+        "counters": [
+            {"counter_unit": "Ravager", "effectiveness": "High", "notes": "Corrosive Bile destroys Force Fields."},
+            {"counter_unit": "Ghost", "effectiveness": "Moderate", "notes": "EMP removes Sentry shields and energy."}
+        ]
+    },
+    {
+        "name": "Stalker",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Ranged unit with mobility and anti-air capability.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "80"},
+            {"attribute_name": "Shields", "value": "80"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Normal"},
+            {"attribute_name": "Supply Cost", "value": "2"},
+            {"attribute_name": "Cost", "value": "125 minerals, 50 gas"}
+        ],
+        "abilities": [
+            {"name": "Blink", "description": "Teleports to a nearby location."}
+        ],
+        "counters": [
+            {"counter_unit": "Marauder", "effectiveness": "High", "notes": "Marauders deal bonus damage to armored units."},
+            {"counter_unit": "Roach", "effectiveness": "Moderate", "notes": "Roaches are tanky and can trade well."}
+        ]
+    },
+    {
+        "name": "Tempest",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Long-range capital ship effective against large targets.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "150"},
+            {"attribute_name": "Shields", "value": "150"},
+            {"attribute_name": "Armor", "value": "2 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "15"},
+            {"attribute_name": "Speed", "value": "Slow"},
+            {"attribute_name": "Supply Cost", "value": "5"},
+            {"attribute_name": "Cost", "value": "250 minerals, 175 gas"}
+        ],
+        "abilities": [
+            {"name": "Disruption Blast", "description": "Deals bonus damage to massive units."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Vikings can kite and destroy Tempests."},
+            {"counter_unit": "Corruptor", "effectiveness": "High", "notes": "Corruptors deal bonus damage to air."}
+        ]
+    },
+    {
+        "name": "Void Ray",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Air unit that ramps up damage over time.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "150"},
+            {"attribute_name": "Shields", "value": "100"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Range", "value": "6"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Supply Cost", "value": "4"},
+            {"attribute_name": "Cost", "value": "250 minerals, 150 gas"}
+        ],
+        "abilities": [
+            {"name": "Prismatic Alignment", "description": "Increases damage vs armored targets temporarily."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Vikings outrange Void Rays easily."},
+            {"counter_unit": "Corruptor", "effectiveness": "High", "notes": "Corruptors deal bonus damage to air."}
+        ]
+    },
+    {
+        "name": "Warp Prism",
+        "race": "Protoss",
+        "type": "Air",
+        "description": "Transport unit that can deploy to warp in units.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "100"},
+            {"attribute_name": "Shields", "value": "60"},
+            {"attribute_name": "Armor", "value": "0 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Supply Cost", "value": "2"},
+            {"attribute_name": "Cost", "value": "200 minerals"}
+        ],
+        "abilities": [
+            {"name": "Phasing Mode", "description": "Deploys to allow warping in units."},
+            {"name": "Transport", "description": "Can carry ground units."}
+        ],
+        "counters": [
+            {"counter_unit": "Viking", "effectiveness": "High", "notes": "Vikings can snipe Warp Prisms from range."},
+            {"counter_unit": "Mutalisk", "effectiveness": "High", "notes": "Mutalisks can chase and kill Warp Prisms."}
+        ]
+    },
+    {
+        "name": "Zealot",
+        "race": "Protoss",
+        "type": "Ground",
+        "description": "Basic melee unit effective early game.",
+        "attributes": [
+            {"attribute_name": "Health", "value": "100"},
+            {"attribute_name": "Shields", "value": "50"},
+            {"attribute_name": "Armor", "value": "1 (+1 per upgrade)"},
+            {"attribute_name": "Speed", "value": "Fast"},
+            {"attribute_name": "Supply Cost", "value": "2"},
+            {"attribute_name": "Cost", "value": "100 minerals"}
+        ],
+        "abilities": [
+            {"name": "Charge", "description": "Quickly closes distance with enemy targets."}
+        ],
+        "counters": [
+            {"counter_unit": "Hellion", "effectiveness": "High", "notes": "Splash damage decimates Zealots."},
+            {"counter_unit": "Baneling", "effectiveness": "High", "notes": "Explodes and does massive damage to melee units."}
+        ]
+    }
+]
