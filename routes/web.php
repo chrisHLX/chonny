@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Unit;
 use App\Models\Concept;
 use App\Models\Question;
+use App\Models\Module;
+use App\Models\user;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\QuestionController;
 
@@ -13,7 +15,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = auth()->user();
+    $modules = $user->modules()->get();
+    return view('dashboard', compact('user', 'modules'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -38,7 +42,7 @@ Route::get('/concepts', function () {
 })->name('concepts.index');
 
 Route::get('modules', function () {
-    $modules = \App\Models\Module::with('users', 'questions')->get();
+    $modules = Module::with('users', 'questions')->get();
     return view('modules.index', compact('modules'));
 })->name('modules.index');
 
