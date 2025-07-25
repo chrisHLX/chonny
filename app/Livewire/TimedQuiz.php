@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Question;
 use App\Models\Module;
+use App\models\User;
 class TimedQuiz extends Component
 {
     public $modules;
@@ -63,11 +64,37 @@ class TimedQuiz extends Component
         $this->feedback = $correct ? "✅ Correct! Time: {$this->elapsed}s" : "❌ Incorrect. Time: {$this->elapsed}s";
         if ($correct) $this->score++;
 
-        // Store the time taken for this question
         $this->questionTimes[] = $this->elapsed;
+
+        // ✅ TRACK PROGRESS
+        if (auth()->check()) {
+            $user = auth()->user();
+            $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
+
+            if ($existing) {
+                $user->answeredQuestions()->updateExistingPivot($question->id, [
+                    'attempts' => $existing->pivot->attempts + 1,
+                    'correct_count' => $existing->pivot->correct_count + ($correct ? 1 : 0),
+                    'last_answered_at' => now(),
+                    'last_time_spent' => $this->elapsed,
+                    'total_time_spent' => $existing->pivot->total_time_spent + $this->elapsed,
+                    'last_answer' => $this->answer,
+                ]);
+            } else {
+                $user->answeredQuestions()->attach($question->id, [
+                    'attempts' => 1,
+                    'correct_count' => $correct ? 1 : 0,
+                    'last_answered_at' => now(),
+                    'last_time_spent' => $this->elapsed,
+                    'total_time_spent' => $this->elapsed,
+                    'last_answer' => $this->answer,
+                ]);
+            }
+        }
 
         $this->nextQuestion();
     }
+
 
     public function getTotalTimeProperty()
     {
@@ -80,9 +107,25 @@ class TimedQuiz extends Component
         $this->feedback = '';
         $this->elapsed = 0;
         $this->currentIndex++;
-
+     
+        // Update the user module info
         if ($this->currentIndex >= $this->questions->count()) {
             $this->completed = true;
+
+            // Update module_user pivot table
+            $user = auth()->user();
+            $moduleId = $this->selectedModule;
+
+                if ($user && $moduleId) {
+                    $user->modules()->syncWithoutDetaching([
+                        $moduleId => [
+                            'score' => $this->score / $this->questions->count() * 100,
+                            'status' => 'completed',
+                            'last_activity_at' => now(),
+                            'completed_at' => now()
+                        ]
+                    ]);
+                }
         }
     }
 

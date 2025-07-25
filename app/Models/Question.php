@@ -35,4 +35,19 @@ class Question extends Model
         return $this->belongsToMany(Module::class)->withTimestamps();
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->withPivot([
+                'attempts',
+                'correct_count',
+                'last_answered_at',
+                'total_time_spent',
+                'last_time_spent',
+                'last_answer'
+            ])
+            ->withTimestamps();
+    }
+
+
 }

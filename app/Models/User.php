@@ -51,4 +51,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Module::class)->withPivot(['status', 'score', 'current_difficulty', 'last_activity_at', 'completed_at'])->withTimestamps();
     }
 
+    public function answeredQuestions()
+    {
+        return $this->belongsToMany(Question::class)
+            ->withPivot([
+                'attempts',
+                'correct_count',
+                'last_answered_at',
+                'total_time_spent',
+                'last_time_spent',
+                'last_answer'
+            ])
+            ->withTimestamps();
+    }
+
+
 }

@@ -20,6 +20,16 @@
         <h2 class="text-2xl font-bold mb-4">Quiz Complete!</h2>
         <p class="text-xl">Your Score: {{ $score }} / {{ $questions->count() }}</p>
         <p class="text-lg text-gray-600">Total Time: {{ $this->totalTime }}s</p>    
+        <h2 class="text-2xl font-bold mb-4">Quiz Complete!</h2>
+        <p class="text-xl">Your Score: {{ $score }} / {{ $questions->count() }}</p>
+        <p class="text-lg text-gray-600">Total Time: {{ $this->totalTime }}s</p>
+
+        <h3 class="mt-4 font-semibold text-lg">Per-Question Times:</h3>
+        <ul class="list-disc pl-6">
+            @foreach ($questionTimes as $i => $time)
+                <li>Q{{ $i + 1 }}: {{ $time }}s</li>
+            @endforeach
+        </ul>
     @else
         @php $question = $questions[$currentIndex]; @endphp
 

@@ -6,19 +6,26 @@ use App\Models\Unit;
 use App\Models\Concept;
 use App\Models\Question;
 use App\Models\Module;
-use App\Models\user;
+use App\Models\User;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserProgressController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Dashboard
 Route::get('/dashboard', function () {
     $user = auth()->user();
     $modules = $user->modules()->get();
     return view('dashboard', compact('user', 'modules'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard/progress', [UserProgressController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('dashboard.progress');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
