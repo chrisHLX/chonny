@@ -14,29 +14,6 @@ return new class extends Migration
         Schema::create('concepts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', [
-                'strategy',
-                'tactic',
-                'economic',
-                'composition',
-                'micro',
-                'map control',
-                'timing',
-                'transition',
-                'defensive',
-                'harassment',
-                'offensive',
-                'scouting',
-                'unit control',
-                'resource management',
-                'positioning',
-                'build order',
-                'macro',
-                'adaptation',
-                'psychological',
-                'meta',
-                'other'
-            ]);
             $table->text('description')->nullable();
             $table->timestamps();
         });

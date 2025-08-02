@@ -9,15 +9,13 @@ class ConceptController extends Controller
 {
     public function create()
     {
-        $types = Concept::getTypeOptions(); // We'll add this to the model
-        return view('concepts.create', compact('types'));
+        return view('concepts.create');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|unique:concepts,name',
-            'type' => 'required|string|in:' . implode(',', Concept::getTypeOptions()),
             'description' => 'nullable|string',
         ]);
 

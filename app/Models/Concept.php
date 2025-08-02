@@ -12,7 +12,6 @@ class Concept extends Model
 
     protected $fillable = [
         'name',
-        'type',
         'description',
     ];
 
@@ -32,34 +31,5 @@ class Concept extends Model
     {
         return $this->belongsToMany(Question::class);
     }
-
-    // Add enum access
-    public static function getTypeOptions(): array
-    {
-        return [
-            'strategy',
-            'tactic',
-            'economic',
-            'composition',
-            'micro',
-            'map control',
-            'timing',
-            'transition',
-            'defensive',
-            'harassment',
-            'offensive',
-            'scouting',
-            'unit control',
-            'resource management',
-            'positioning',
-            'build order',
-            'macro',
-            'adaptation',
-            'psychological',
-            'meta',
-            'other'
-        ];
-    }
-
 
 }

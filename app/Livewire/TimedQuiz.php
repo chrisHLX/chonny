@@ -24,7 +24,15 @@ class TimedQuiz extends Component
     public function startQuiz()
     {
         if (!$this->selectedModule) return;
-        $module = $this->modules->find($this->selectedModule);
+
+        $module = auth()->user()->modules()->with('questions')->find($this->selectedModule);
+
+
+        if (!$module) {
+            session()->flash('error', 'Module not found or not assigned to you.');
+            return;
+        }
+
         $this->questions = $module->questions->shuffle()->take(5)->values(); // Take 5 random
         $this->started = true;
         $this->completed = false;
@@ -43,8 +51,11 @@ class TimedQuiz extends Component
 
     public function mount()
     {
-        $this->modules = Module::with('questions')->get();
+        // Loads only modules linked to the user, with pivot fields and no questions yet
+        $this->modules = auth()->user()->modules()->get();
     }
+
+
 
     public function submit()
     {

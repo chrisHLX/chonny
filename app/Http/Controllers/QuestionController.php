@@ -19,6 +19,28 @@ class QuestionController extends Controller
         return view('questions.quiz.index', compact('questions'));
     }
 
+// app/Http/Controllers/QuestionController.php
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'question_text' => 'required|string|max:255',
+            'answer' => 'required|string|max:255',
+            'module_id' => 'required|exists:modules,id',
+        ]);
+
+        $question = Question::create([
+            'question_text' => $request->question_text,
+            'answer' => $request->answer,
+        ]);
+
+        // Attach it to the module
+        $question->modules()->attach($request->module_id);
+
+        return redirect()->route('modules.edit', $request->module_id)->with('success', 'Question added.');
+    }
+
+
     public function submitAll(Request $request)
     {
         $answers = $request->input('answers', []);

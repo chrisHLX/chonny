@@ -18,7 +18,7 @@
     },
     "difficulty": "medium",
     "units": ["Drone"],
-    "concepts": ["Build Cancel"]
+    "concepts": ["Economy", "Mechanics"]
   },
   {
     "question": "Describe how the extractor trick works.",
@@ -29,7 +29,7 @@
     },
     "difficulty": "hard",
     "units": ["Drone"],
-    "concepts": ["Supply Management"]
+    "concepts": ["Mechanics", "Economy"]
   },
   {
     "question": "What is the maximum number of Drones you can have on a single mineral patch?",
@@ -40,7 +40,7 @@
     },
     "difficulty": "easy",
     "units": ["Drone"],
-    "concepts": ["Resource Gathering"]
+    "concepts": ["Economy"]
   },
   {
     "question": "True or False: Drones can be used to build structures.",
@@ -50,7 +50,7 @@
     },
     "difficulty": "medium",
     "units": ["Drone"],
-    "concepts": ["Building"]
+    "concepts": ["Economy", "Mechanics"]
   },
   {
     "question": "What is the primary role of a Drone in StarCraft?",
@@ -61,7 +61,7 @@
     },
     "difficulty": "easy",
     "units": ["Drone"],
-    "concepts": ["Unit Role"]
+    "concepts": ["Economy"]
   },
   {
     "question": "How many minerals does a Drone gather per trip?",
@@ -72,7 +72,7 @@
     },
     "difficulty": "easy",
     "units": ["Drone"],
-    "concepts": ["Resource Gathering"]
+    "concepts": ["Economy"]
   },
   {
     "question": "True or False: Drones can attack enemy units.",
@@ -82,7 +82,7 @@
     },
     "difficulty": "medium",
     "units": ["Drone"],
-    "concepts": ["Combat"]
+    "concepts": ["Army"]
   },
   {
     "question": "What is the build time for a Drone?",
@@ -93,7 +93,7 @@
     },
     "difficulty": "easy",
     "units": ["Drone"],
-    "concepts": ["Production"]
+    "concepts": ["Economy", "Mechanics"]
   },
   {
     "question": "What is the build time for a Terran Barracks?",
@@ -104,7 +104,7 @@
     },
     "difficulty": "easy",
     "units": ["Barracks"],
-    "concepts": ["Production", "Build Timings"]
+    "concepts": ["Build Orders", "Mechanics"]
   },
   {
     "question": "At what supply is a common Reaper Expand timing started in a Terran build?",
@@ -115,7 +115,7 @@
     },
     "difficulty": "easy",
     "units": ["Reaper", "Command Center"],
-    "concepts": ["Build Orders", "Expansion Timing"]
+    "concepts": ["Build Orders", "Strategy"]
   },
   {
     "question": "Which Terran unit is commonly used in a 1-1-1 6-minute timing push?",
@@ -126,7 +126,7 @@
     },
     "difficulty": "medium",
     "units": ["Cyclone"],
-    "concepts": ["Timing Attacks", "1-1-1 Build"]
+    "concepts": ["Build Orders", "Army", "Strategy"]
   },
   {
     "question": "What upgrade is usually completed in time for a 7:00 Terran Stim timing push?",
@@ -137,7 +137,7 @@
     },
     "difficulty": "medium",
     "units": ["Marine", "Barracks Tech Lab"],
-    "concepts": ["Upgrades", "Timing Attacks"]
+    "concepts": ["Build Orders", "Army"]
   },
   {
     "question": "In a 2-1-1 Marine-Medivac timing, how many Medivacs are typically produced for the initial drop?",
@@ -148,6 +148,6 @@
     },
     "difficulty": "easy",
     "units": ["Medivac", "Marine"],
-    "concepts": ["Drop Play", "Timing Attacks"]
+    "concepts": ["Tactics", "Build Orders"]
   }
 ]

@@ -16,10 +16,7 @@ class ConceptsSeeder extends Seeder
         foreach ($concepts as $data) {
             Concept::firstOrCreate(
                 ['name' => $data['name']],
-                [
-                    'type' => $data['type'],
-                    'description' => $data['description'] ?? null,
-                ]
+                ['description' => $data['description'] ?? null,]
             );
         }
 

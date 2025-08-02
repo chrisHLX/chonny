@@ -12,7 +12,6 @@
                     <thead class="bg-gray-100">
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
                         </tr>
                     </thead>
@@ -20,7 +19,6 @@
                         @foreach ($concepts as $concept)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $concept->name }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ ucfirst($concept->type) }}</td>
                                 <td class="px-6 py-4 whitespace-pre-line">{{ $concept->description ?? '—' }}</td>
                             </tr>
                         @endforeach

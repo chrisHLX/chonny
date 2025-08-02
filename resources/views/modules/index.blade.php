@@ -8,19 +8,39 @@
                 <div class="p-4 bg-white shadow rounded">
                     <h2 class="text-xl font-semibold">{{ $module->name }}</h2>
                     <p class="text-gray-600">{{ $module->description }}</p>
+
+                    {{-- Display Users and Scores --}}
                     @foreach ($module->users as $user)
-                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">{{ $user->name }}: {{ $user->pivot->score }}%</span>  
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                            {{ $user->name }}: {{ $user->pivot->score }}%
+                        </span>  
                     @endforeach
 
+                    {{-- Add Button if user doesn't already have this module --}}
+                    @if (! $module->users->contains(Auth::user()))
+                        <form action="{{ route('modules.assign', $module->id) }}" method="POST" class="mt-4">
+                            @csrf
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                                Add Module
+                            </button>
+                            @if ($module->created_by === Auth::id())
+                                <button class="bg-gray-600 text-white px-4 py-2 rounded">Delete</button>
+                            @endif
+                            
+                        </form>
+                    @endif
+
+                    {{-- Questions --}}
                     @if ($module->questions)
                         @foreach ($module->questions as $question)
                             <div class="mt-2">
                                 <h3 class="text-lg font-medium">{{ $question->question }}</h3>
-                                    <p class="text-gray-700">{{ json_encode($question->answer, JSON_PRETTY_PRINT) }}</p>
+                                <p class="text-gray-700">{{ json_encode($question->answer, JSON_PRETTY_PRINT) }}</p>
                             </div>
                         @endforeach
                     @endif
                 </div>
             @endforeach
         </div>
+    </div>
 </x-app-layout>
