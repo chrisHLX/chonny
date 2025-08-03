@@ -13,6 +13,7 @@
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                            <td class="px-6 py-4 whitespace-pre-line">Questions</td>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -20,6 +21,22 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $concept->name }}</td>
                                 <td class="px-6 py-4 whitespace-pre-line">{{ $concept->description ?? '—' }}</td>
+
+                                @if ($concept->questions)
+                                    <td class="px-6 py-4 whitespace-nowrap"> 
+                                        @if ($concept->questions->isNotEmpty())
+                                            <ul>
+                                                @foreach ($concept->questions as $question)
+                                                    <li>{{ $question->question }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <p>No questions tagged for this concept yet.</p>
+                                        @endif                  
+                                    </td>
+                                @else
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-500">No question attached</td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

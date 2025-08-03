@@ -1,22 +1,45 @@
 <?php
 
-namespace App\Services;
+namespace App\Http\Services;
+
+use GuzzleHttp\Client;
+use App\Models\AiRequest;
+use Illuminate\Support\Facades\Log; 
 
 use Illuminate\Support\Facades\Http;
 
+
 class AiService
 {
+    protected Client $client;
+    protected string $apiKey;
+
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+        $this->apiKey = env('OPENAI_API_KEY'); // Or inject via config if you prefer
+    }
+
     public function tagConcepts(string $questionText, string $answerText = ''): array
     {
         $prompt = <<<EOT
-        You are a StarCraft 2 coach. Analyze the following question and answer. Select 1–3 core gameplay concepts from the list that apply. Return in JSON: {"concepts": [...]}
+        You are a StarCraft 2 coach. Analyze the following question and answer. Select 1–3 core gameplay concepts from the list that apply.
 
-        Concepts: ['economy', 'build orders', 'scouting', 'strategy', 'map control', 'tactics', 'mechanics']
+        Return only raw JSON. Do not include markdown or formatting. Just return: {"concepts": [...]}
+
+        Concepts: ['economy', 'build orders', 'scouting', 'strategy', 'map control', 'tactics', 'mechanics', 'other']
         Question: {$questionText}
         Answer: {$answerText}
         EOT;
 
-        return $this->callOpenAi($prompt)['concepts'] ?? [];
+
+        $response = $this->callOpenAi($prompt);
+        $concepts = $response['concepts'] ?? [];
+
+        \Log::info('This is the custom LOG', ['response' => $concepts]);
+
+        return $concepts;
+
     }
 
     public function tagUnits(string $questionText, string $answerText = ''): array
@@ -33,6 +56,8 @@ class AiService
 
     private function callOpenAi(string $prompt): array
     {
+        Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
+
         $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
             'model' => 'gpt-3.5-turbo',
             'messages' => [
@@ -43,6 +68,18 @@ class AiService
         ]);
 
         $json = $response->json();
-        return json_decode($json['choices'][0]['message']['content'] ?? '{}', true);
+        $content = $json['choices'][0]['message']['content'] ?? '{}';
+
+        // 🔥 Strip Markdown code block (if present)
+        $content = trim($content);
+        $content = preg_replace('/^```json|```$/i', '', $content); // Remove ```json and ```
+        $content = trim($content);
+
+        Log::debug('Cleaned OpenAI content', ['content' => $content]);
+
+        $decoded = json_decode($content, true);
+
+        return is_array($decoded) ? $decoded : [];
     }
+
 }

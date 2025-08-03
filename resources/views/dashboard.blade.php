@@ -32,7 +32,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @if ($createdModules->isEmpty())
-                        <p>You have not created any modules.</p>
+                        <p class="mb-4">You have not created any modules.</p>
+                        <a href="{{ route('modules.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">Create Module</a>
                     @else
                         <h1 class="text-lg font-semibold mb-4">Created Modules</h1>
                             @foreach($createdModules as $module)
