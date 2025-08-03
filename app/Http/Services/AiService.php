@@ -38,6 +38,18 @@ class AiService
 
         \Log::info('This is the custom LOG', ['response' => $concepts]);
 
+        // add the response to the database
+        AiRequest::create([
+            'user_id' => auth()->id(),
+            'purpose' => 'tag_concepts',
+            'prompt' => $prompt,
+            'response' => $concepts,
+            'metadata' => [
+                'question_text' => $questionText,
+                'answer_text' => $answerText,
+            ],
+        ]);
+
         return $concepts;
 
     }
@@ -81,5 +93,7 @@ class AiService
 
         return is_array($decoded) ? $decoded : [];
     }
+
+    
 
 }

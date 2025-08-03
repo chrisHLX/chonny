@@ -44,7 +44,7 @@ class ModuleController extends Controller
             'created_by' => auth()->id(),
         ]);
 
-        return redirect()->route('modules.index'); // Or a success view      
+        return redirect()->route('modules.edit', $module); // Or a success view      
     }
 
     public function destroy(Module $module)

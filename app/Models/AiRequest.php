@@ -14,4 +14,10 @@ class AiRequest extends Model
         'response',
         'metadata',
     ];
+
+    protected $casts = [
+        'response' => 'array',
+        'metadata' => 'array',
+    ];
+
 }

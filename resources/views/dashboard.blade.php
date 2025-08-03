@@ -37,7 +37,10 @@
                     @else
                         <h1 class="text-lg font-semibold mb-4">Created Modules</h1>
                             @foreach($createdModules as $module)
+                            <div class="inline-block mb-2">
                                     {{ $module->name }} - {{ $module->description }}
+                            </div>
+                            <div class="mt-2 flex items-center space-x-2">
                                     <form action="{{ route('modules.destroy', $module) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')
@@ -48,6 +51,7 @@
                                         Edit
                                     </a>
                             @endforeach
+                        </div>
                     @endif
                 </div>  
             </div>
