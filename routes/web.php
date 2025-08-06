@@ -12,6 +12,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserProgressController;
 use App\Http\Controllers\ModuleQuizController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\AiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -82,6 +83,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->name('modules.assign');
+
+// Ai Requests Page
+Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
 
 
 // use this command to create a controller:

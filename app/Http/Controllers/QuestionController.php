@@ -79,7 +79,7 @@ class QuestionController extends Controller
             $answerText = json_encode($request->input('answer.correct'));
 
             // Use injected service instead of static calls
-            $conceptNames = $this->aiService->tagConcepts($questionText, $answerText);
+            $conceptNames = $this->aiService->tagConcepts($questionText, $answerText, $request->module_id);
             $conceptIds = collect($conceptNames)->map(fn($name) =>
                 Concept::firstOrCreate(['name' => $name])->id
             );
