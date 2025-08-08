@@ -12,13 +12,6 @@
 
     <form action="{{ route('modules.generateLandingPage', $module->id) }}" method="POST" class="space-y-6">
         @csrf
-
-        <div>
-            <x-input-label for="title" :value="'Guide Title'" />
-            <x-text-input type="text" name="title" id="title" class="block mt-1 w-full" required />
-            <x-input-error :messages="$errors->get('title')" class="mt-2" />
-        </div>
-
         <div>
             <x-input-label for="description" :value="'Guide Summary / Prompt for AI'" />
             <textarea name="description" id="description" rows="5"

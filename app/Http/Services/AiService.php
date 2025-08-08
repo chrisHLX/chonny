@@ -4,7 +4,10 @@ namespace App\Http\Services;
 
 use GuzzleHttp\Client;
 use App\Models\AiRequest;
+use App\Models\Module;
+use App\Models\Question;
 use Illuminate\Support\Facades\Log; 
+use App\Models\ModulePage;
 
 use Illuminate\Support\Facades\Http;
 
@@ -68,13 +71,66 @@ class AiService
         return $this->callOpenAi($prompt)['units'] ?? [];
     }
 
+    public function generateLandingPage(Module $module) 
+    {
+        $questions = $module->questions()->with('concepts')->get();
+        $prompt = <<<EOT
+        Could you create a guide for the following user-created module. The aim is to help people understand key concepts.
+
+        Module Name: {$module->name}
+        Module Description: {$module->description}
+
+        These quiz questions were created by the user to help test their knowledge of this module, they might provide insight on what to include in the module.
+        EOT;
+
+            foreach ($questions as $question) {
+                $prompt .= "\n- User Created Quiz Question: {$question->question}";
+            }
+
+            $prompt .= <<<EOT
+
+        Please format the guide using raw HTML with Tailwind CSS utility classes only.
+        Do not include <html>, <head>, or <body> tags.
+        Use <div>, <h2>, <p>, <ul>, <li>, etc. for layout. 
+        Avoid wrapping in markdown code blocks.
+
+        EOT;
+
+            \Log::debug('Generating landing page with prompt', ['prompt' => $prompt]);
+
+            $response = $this->callOpenAiHTML($prompt);
+
+            AiRequest::create([
+                'user_id' => auth()->id(),
+                'purpose' => 'generate_landing_page',
+                'prompt' => $prompt,
+                'response' => $response,
+                'metadata' => [
+                    'module_id' => $module->id,
+                    'model' => 'gpt-4o-mini',
+                ],
+            ]);
+
+            ModulePage::create([
+                'module_id'   => $module->id,
+                'title'       => $module->name,
+                'content'     => $response,
+                'page_number' => 1, // landing page
+                'created_by'  => auth()->id(),
+                'updated_by'  => auth()->id(),
+            ]);
+            
+            return $response;
+        }
+
+
     private function callOpenAi(string $prompt): array
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
 
         $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
             //'model' => 'gpt-3.5-turbo',
-            'model' => 'gpt-4.1-mini', // Use gpt-4 for better performance
+            'model' => 'gpt-4o-mini', // Use gpt-4 for better performance, its the same cost as gpt-3.5-turbo
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $prompt],
@@ -95,6 +151,44 @@ class AiService
         $decoded = json_decode($content, true);
 
         return is_array($decoded) ? $decoded : [];
+    }
+
+    private function callOpenAiHTML(string $prompt): string
+    {
+        Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
+
+        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+                ['role' => 'user', 'content' => $prompt],
+            ],
+            'temperature' => 0.2,
+        ]);
+
+        $json = $response->json();
+        $content = $json['choices'][0]['message']['content'] ?? '';
+
+        // 🔥 Strip Markdown code block (e.g. ```html)
+        $content = trim($content);
+        $content = preg_replace('/^```html|```$/i', '', $content);
+        $content = trim($content);
+
+        Log::debug('Cleaned OpenAI content', ['content' => $content]);
+
+        return $content;
+    }
+
+    private function storeGeneratedPage($moduleId, $title, $content, $userId)
+    {
+        return ModulePage::create([
+            'module_id'   => $moduleId,
+            'title'       => $title,
+            'content'     => $content,
+            'page_number' => 1, // landing page
+            'created_by'  => $userId,
+            'updated_by'  => $userId,
+        ]);
     }
 
     

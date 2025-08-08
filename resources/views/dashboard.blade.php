@@ -52,6 +52,9 @@
                                     </a>
                             @endforeach
                         </div>
+                        <div class="mt-4">
+                            <a href="{{ route('modules.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">Create Module</a>
+                        </div>
                     @endif
                 </div>  
             </div>

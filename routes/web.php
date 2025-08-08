@@ -86,6 +86,8 @@ Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->na
 
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
+Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage');
+
 
 
 // use this command to create a controller:

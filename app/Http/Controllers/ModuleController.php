@@ -6,9 +6,18 @@ use App\Models\Module;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Services\AiService;
 
 class ModuleController extends Controller
 {
+
+    protected AiService $aiService;
+
+    public function __construct(AiService $aiService)
+    {
+        $this->aiService = $aiService;
+    }
+
     public function assign(Module $module)
     {
         $user = Auth::user();
@@ -88,4 +97,13 @@ class ModuleController extends Controller
         return redirect()->route('modules.index')->with('success', 'Module updated.');
     }
 
+    public function generateLandingPage(Module $module)
+    {
+        // This method can be used to generate a landing page for the module
+        // You can implement the logic to render a view or return data as needed
+        $content = $this->aiService->generateLandingPage($module);
+
+
+        return view('modules.landing', compact('content'));
+    }
 }

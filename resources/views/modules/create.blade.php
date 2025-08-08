@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="max-w-4xl mx-auto p-4">
+        <x-input-error :messages="$errors->get('name')" />
         <form method="POST" action="{{ route('modules.store') }}">
             @csrf
    

@@ -13,7 +13,11 @@
 
             {{-- Create Question --}}
             <x-modules.create-question-form :module="$module" />
+            
+            {{-- Generate Landing Page --}}
+            <x-modules.generate-landing-page :module="$module" :allQuestions="$allQuestions" />
 
+            
 
         </div>
     </div>
