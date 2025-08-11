@@ -193,6 +193,40 @@ class AiService
         ]);
     }
 
+    public function getKeywords($input)
+    {
+        // Example prompt for OpenAI
+        $prompt = "
+            Extract the most important keywords from the following text that I can then compare against a users answer.
+            Respond ONLY with a JSON array of strings. 
+            Text: \"$input\"
+        ";
+
+        // Call OpenAI API (replace with your own client implementation)
+        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+                ['role' => 'user', 'content' => $prompt],
+            ],
+            'temperature' => 0.2,
+        ]);
+
+        // Get the text output from OpenAI
+        $output = $response['choices'][0]['message']['content'] ?? '[]';
+
+        // Decode into an array
+        $keywords = json_decode($output, true);
+
+        // Make sure it's always an array
+        if (!is_array($keywords)) {
+            $keywords = [];
+        }
+
+        return $keywords;
+    }
+
+
     
 
 }

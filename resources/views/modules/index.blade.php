@@ -8,6 +8,7 @@
                 <div class="p-4 bg-white shadow rounded">
                     <h2 class="text-xl font-semibold">{{ $module->name }}</h2>
                     <p class="text-gray-600">{{ $module->description }}</p>
+                    
 
                     {{-- Display Users and Scores --}}
                     @foreach ($module->users as $user)

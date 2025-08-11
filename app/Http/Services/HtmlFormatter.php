@@ -27,27 +27,44 @@ class HtmlFormatter
     {
         $dom = new DOMDocument();
         libxml_use_internal_errors(true);
-
-        // Ensure UTF-8 handling
         $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
-        // Apply classes
-        foreach ($this->classMap as $tag => $classes) {
-            $elements = $dom->getElementsByTagName($tag);
+        $body = $dom->getElementsByTagName('body')->item(0);
+        $desiredClasses = 'container example-class'; // replace with your desired wrapper classes
 
-            /** @var \DOMElement $el */
-            foreach ($elements as $index => $el) {
-                $existingClasses = $el->getAttribute('class');
-
-                // Special case: first <div> gets container class
-                if ($tag === 'div' && $index === 0 && $el->parentNode instanceof \DOMDocument) {
-                    $el->setAttribute('class', trim($classes . ' ' . $existingClasses));
-                } else {
-                    $el->setAttribute('class', trim($existingClasses . ' ' . $classes));
+        if ($body) {
+            // Get body child nodes
+            $children = [];
+            foreach ($body->childNodes as $child) {
+                if ($child->nodeType === XML_ELEMENT_NODE || $child->nodeType === XML_TEXT_NODE) {
+                    $children[] = $child;
                 }
+            }
+
+            // Check if it's already a single div wrapper with the desired classes
+            if (
+                count($children) === 1 &&
+                $children[0] instanceof DOMElement &&
+                $children[0]->tagName === 'div' &&
+                strpos($children[0]->getAttribute('class'), 'container') !== false
+            ) {
+                // Ensure correct classes
+                $children[0]->setAttribute('class', $desiredClasses);
+            } else {
+                // Create new wrapper div
+                $wrapper = $dom->createElement('div');
+                $wrapper->setAttribute('class', $desiredClasses);
+
+                // Move all children into new wrapper
+                while ($body->firstChild) {
+                    $wrapper->appendChild($body->firstChild);
+                }
+
+                $body->appendChild($wrapper);
             }
         }
 
         return $dom->saveHTML();
     }
+
 }

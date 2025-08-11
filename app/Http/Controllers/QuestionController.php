@@ -57,7 +57,8 @@ class QuestionController extends Controller
             ],
 
             'open' => [
-                'text' => $request->input('answer.text'),
+                'ideal_answer' => $request->input('answer.text'),
+                'correct_keywords' => $this->aiService->getKeywords($request->input('answer.text')),
             ],
         };
 
