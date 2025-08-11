@@ -5,6 +5,7 @@
 @endphp
 
 <div class="bg-white shadow-sm sm:rounded-lg p-6">
+    <h3 class="text-lg font-semibold mb-4">Edit Module</h3>
     <form method="POST" action="{{ route('modules.update', $module) }}" class="space-y-6">
         @csrf
         @method('PUT')

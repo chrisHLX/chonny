@@ -8,19 +8,22 @@ use App\Models\Module;
 use App\Models\Question;
 use Illuminate\Support\Facades\Log; 
 use App\Models\ModulePage;
+use App\Http\Services\HtmlFormatter;
 
 use Illuminate\Support\Facades\Http;
 
 
 class AiService
 {
+    protected HtmlFormatter $formatter;
     protected Client $client;
     protected string $apiKey;
 
-    public function __construct(Client $client)
+    public function __construct(Client $client, HtmlFormatter $formatter)
     {
         $this->client = $client;
-        $this->apiKey = env('OPENAI_API_KEY'); // Or inject via config if you prefer
+        $this->formatter = $formatter;
+        $this->apiKey = env('OPENAI_API_KEY'); // or config('services.openai.key')
     }
 
     public function tagConcepts(string $questionText, string $answerText = '', $module_id): array
@@ -71,34 +74,33 @@ class AiService
         return $this->callOpenAi($prompt)['units'] ?? [];
     }
 
-    public function generateLandingPage(Module $module) 
+    public function generateLandingPage(Module $module, string $userPrompt = '') 
     {
         $questions = $module->questions()->with('concepts')->get();
         $prompt = <<<EOT
-        Could you create a guide for the following user-created module. The aim is to help people understand key concepts.
+        Could you create a guide for the following user-created module. The aim is to help people understand key concepts in sc2.
 
         Module Name: {$module->name}
         Module Description: {$module->description}
-
-        These quiz questions were created by the user to help test their knowledge of this module, they might provide insight on what to include in the module.
+        Additional Context: {$userPrompt}
         EOT;
-
-            foreach ($questions as $question) {
-                $prompt .= "\n- User Created Quiz Question: {$question->question}";
-            }
 
             $prompt .= <<<EOT
 
-        Please format the guide using raw HTML with Tailwind CSS utility classes only.
+        Please format the guide using raw well structured HTML with no classes. 
+        Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
+        and use <p>, <ul>, <ol>, and <li> for content details.
+
         Do not include <html>, <head>, or <body> tags.
-        Use <div>, <h2>, <p>, <ul>, <li>, etc. for layout. 
-        Avoid wrapping in markdown code blocks.
 
         EOT;
 
             \Log::debug('Generating landing page with prompt', ['prompt' => $prompt]);
 
             $response = $this->callOpenAiHTML($prompt);
+
+            $formattedResponse = $this->formatter->format($response);
+
 
             AiRequest::create([
                 'user_id' => auth()->id(),
@@ -114,7 +116,7 @@ class AiService
             ModulePage::create([
                 'module_id'   => $module->id,
                 'title'       => $module->name,
-                'content'     => $response,
+                'content'     => $formattedResponse,
                 'page_number' => 1, // landing page
                 'created_by'  => auth()->id(),
                 'updated_by'  => auth()->id(),

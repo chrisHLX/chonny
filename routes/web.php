@@ -23,7 +23,8 @@ Route::get('/dashboard', function () {
     $user = auth()->user();
     $modules = $user->modules()->get();
     $createdModules = Module::where('created_by', $user->id)->get();
-    return view('dashboard', compact('user', 'modules', 'createdModules'));
+    $concepts = Concept::with('questions')->get();
+    return view('dashboard', compact('user', 'modules', 'createdModules', 'concepts'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard/progress', [UserProgressController::class, 'index'])
@@ -87,7 +88,7 @@ Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->na
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
 Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage');
-
+Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
 
 
 // use this command to create a controller:

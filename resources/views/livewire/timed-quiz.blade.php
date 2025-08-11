@@ -30,6 +30,8 @@
                 <li>Q{{ $i + 1 }}: {{ $time }}s</li>
             @endforeach
         </ul>
+
+
     @else
         @php $question = $questions[$currentIndex]; @endphp
 

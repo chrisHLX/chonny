@@ -7,6 +7,7 @@ use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Services\AiService;
+use App\Models\ModulePage;
 
 class ModuleController extends Controller
 {
@@ -74,7 +75,10 @@ class ModuleController extends Controller
     public function edit(Module $module)
     {
         $allQuestions = Question::all(); // for attaching existing ones
-        return view('modules.edit', compact('module', 'allQuestions'));
+        $modulePages = ModulePage::where('module_id', $module->id)
+                   ->orderBy('page_number')
+                   ->get();
+        return view('modules.edit', compact('module', 'allQuestions', 'modulePages'));
     }
 
     public function update(Request $request, Module $module)
@@ -97,13 +101,41 @@ class ModuleController extends Controller
         return redirect()->route('modules.index')->with('success', 'Module updated.');
     }
 
-    public function generateLandingPage(Module $module)
+    public function generateLandingPage(Module $module, Request $request)
     {
-        // This method can be used to generate a landing page for the module
-        // You can implement the logic to render a view or return data as needed
-        $content = $this->aiService->generateLandingPage($module);
+        
+        if ($userPrompt = $request->input('description') === null) {
+            $userPrompt = 'No additional context provided.';
+        } else {
+            $userPrompt = $request->input('description');
+        };
 
+        
+        
+        // Call the AI service to generate the landing page content
+        $content = $this->aiService->generateLandingPage($module, $userPrompt);
 
-        return view('modules.landing', compact('content'));
+        // Log the AI request
+        \Log::info('Landing page generated for module', [
+            'module_id' => $module->id,
+            'user_id' => auth()->id(),
+            'content_length' => strlen($content),
+        ]);
+
+        // Return the generated content or redirect to a view
+        return view('modules.landing', [
+            'module' => $module,
+            'content' => $content,
+        ]);
+    }
+    
+
+    public function page(Module $module)
+    {
+        $pages = ModulePage::where('module_id', $module->id)
+                   ->orderBy('page_number')
+                   ->get();
+
+        return view('modules.page', ['pages' => $pages]);
     }
 }
