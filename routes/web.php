@@ -13,19 +13,25 @@ use App\Http\Controllers\UserProgressController;
 use App\Http\Controllers\ModuleQuizController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AiController;
+use App\Http\Controllers\ReplayController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard
 Route::get('/dashboard', function () {
     $user = auth()->user();
+
     $modules = $user->modules()->get();
     $createdModules = Module::where('created_by', $user->id)->get();
-    $concepts = Concept::with('questions')->get();
+
+    $concepts = Concept::with([
+        'questions.users' => fn ($q) => $q->where('user_id', $user->id)
+    ])->get();
+
     return view('dashboard', compact('user', 'modules', 'createdModules', 'concepts'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::get('/dashboard/progress', [UserProgressController::class, 'index'])
     ->middleware(['auth'])
@@ -89,6 +95,15 @@ Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->na
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
 Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage');
 Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
+
+// replay routes
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/replays/upload', [ReplayController::class, 'create'])->name('replays.create');
+    Route::post('/replays/upload', [ReplayController::class, 'store'])->name('replays.store');
+
+    Route::get('/replays/{replay}', [ReplayController::class, 'show'])->name('replays.show');
+});
 
 
 // use this command to create a controller:

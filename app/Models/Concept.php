@@ -1,5 +1,5 @@
 <?php
-
+// Concept.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,55 +8,44 @@ use Illuminate\Support\Facades\Auth;
 
 class Concept extends Model
 {
-    //
     use HasFactory; 
 
-    protected $fillable = [
-        'name',
-        'description',
-    ];
+    protected $fillable = ['name', 'description'];
 
     protected $appends = ['mastery_for_user'];
 
-    // Unit.php
     public function units()
     {
         return $this->belongsToMany(Unit::class)->withTimestamps();
     }
 
-    // Concept.php
     public function concepts()
     {
         return $this->belongsToMany(Concept::class)->withTimestamps();
     }
-    // Question.php
+
     public function questions()
     {
         return $this->belongsToMany(Question::class);
     }
 
-    // Accessor: mastery_for_user
     public function getMasteryForUserAttribute()
     {
         $user = Auth::user();
         if (! $user) {
-            return 0; // guest users have no mastery
+            return 0;
         }
 
-        // Load related questions with pivot data for this user
-        $questions = $this->questions()->with(['users' => function ($q) use ($user) {
-            $q->where('user_id', $user->id);
-        }])->get();
+        // If users relationship is already loaded, no extra queries happen
+        $questions = $this->questions->loadMissing([
+            'users' => fn ($q) => $q->where('user_id', $user->id)
+        ]);
 
         $totalQuestions = $questions->count();
-        $correctAnswers = 0;
-
-        foreach ($questions as $question) {
+        $correctAnswers = $questions->filter(function ($question) {
             $pivot = $question->users->first()?->pivot;
-            if ($pivot && $pivot->correct_count > 0) {
-                $correctAnswers++;
-            }
-        }
+            return $pivot && $pivot->correct_count > 0;
+        })->count();
 
         return $totalQuestions > 0 
             ? round(($correctAnswers / $totalQuestions) * 100) 
