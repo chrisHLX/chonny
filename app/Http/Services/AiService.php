@@ -272,11 +272,13 @@ class AiService
 
     public function followUpQuestions(array $questions)
     {
-        // Build the numbered list
+        // Filter out questions that were answered correctly
         $questionList = "";
-        foreach ($questions as $index => $question) {
-            $questionList .= ($index + 1) . ". " . $question . "\n";
+
+        foreach ($questions as $index => $q) {
+            $questionList .= ($index + 1) . ". " . $q['question'] . " — " . $q['answer'] . "\n";
         }
+
 
         // Create the prompt
         $prompt = "The user struggles to answer the following questions correctly:\n" .
@@ -305,6 +307,17 @@ class AiService
         $data = $response->json();
 
         $content = $data['choices'][0]['message']['content'] ?? '';
+
+        AiRequest::create([
+                'user_id' => auth()->id(),
+                'purpose' => 'generate_landing_page',
+                'prompt' => $prompt,
+                'response' => $content,
+                'metadata' => [
+                    'module_id' => "N/A",
+                    'model' => 'gpt-4o-mini',
+                ],
+            ]);
 
         return $content;
     }

@@ -34,23 +34,28 @@ class QuestionController extends Controller
         $user = auth()->user();
         $questions = Question::whereHas('users', function ($query) use ($user) {
             $query->where('user_id', $user->id)
-                ->whereColumn('attempts', '>', 'correct_count');
+                ->whereRaw('(attempts - correct_count) / attempts >= 0.5'); // at least 50% wrong
         })
         ->with(['users' => function ($query) use ($user) {
             $query->where('user_id', $user->id);
         }])
         ->get();
 
-        
+        // Create an array to store questions and their correct answers
         $wrongQuestions = [];
 
-        // Loop through each question and add the name to the array
         foreach ($questions as $question) {
             if ($question->users->isNotEmpty()) {
-                $wrongQuestions[] = $question->question;
+                // Access the 'correct' field from the JSON 'answer' column
+                $correctAnswer = $question->answer['correct'] ?? 'N/A'; // Fallback if 'correct' is missing
+                $wrongQuestions[] = [
+                    'question' => $question->question,
+                    'answer' => $correctAnswer
+                ];
             }
         }
 
+        
         $aiSummary = $this->aiService->followUpQuestions($wrongQuestions);
 
         return view('questions.problematic', compact('questions', 'aiSummary'));
