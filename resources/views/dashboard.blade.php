@@ -40,7 +40,21 @@
             </div>
         </div>
     </div>
-
+    <!-- New Section: Problematic Questions -->
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Questions You struggle with</h3>
+                    <p class="mb-4">View Questions Which Give you Strife</p>
+                    <a href="{{ route('questions.problematic') }}" 
+                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow mb-4">
+                        View Problematic Questions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- New Section: Your Modules -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

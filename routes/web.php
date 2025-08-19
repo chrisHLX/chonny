@@ -69,6 +69,9 @@ Route::post('/quiz/submit-all', [QuestionController::class, 'submitAll'])->name(
 Route::post('/questions/{question}/answer', [QuestionController::class, 'submit'])->name('questions.answer');
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 
+//get problematic questions
+Route::get('/questions/problematic', [QuestionController::class, 'problematic'])->name('questions.problematic')->middleware('auth');
+
 //create and store modules
 
 Route::get('modules', function () {
@@ -82,6 +85,13 @@ Route::delete('/modules/{module}', [ModuleController::class, 'destroy'])->name('
 Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit')->middleware('auth');
 Route::put('/modules/{module}', [ModuleController::class, 'update'])->name('modules.update')->middleware('auth');
 
+//Routes can be very temperamental, so we need to create unique routes for each action for example
+//Dont use the same route for both destroy and destroyPage, even if they are similar 
+//Thats why we changed the destroyPage route to be more specific
+//Module Pages
+Route::delete('/module-page/{modulePage}', [ModuleController::class, 'destroyPage'])
+    ->name('module-page.destroyPage')
+    ->middleware('auth');
 
 
 Route::middleware('auth')->group(function () {

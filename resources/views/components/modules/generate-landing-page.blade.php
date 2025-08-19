@@ -22,7 +22,7 @@
 
         <button type="submit"
             class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200 transition duration-150 ease-in-out">
-            Generate Landing Page
+            Create Landing Page
         </button>
     </form>
 </div>

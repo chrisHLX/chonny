@@ -32,10 +32,10 @@
     "concepts": ["Mechanics", "Economy"]
   },
   {
-    "question": "What is the maximum number of Drones you can have on a single mineral patch?",
+    "question": "What is the optimal number of Drones mining a single mineral patch?",
     "type": "mcq",
     "answer": {
-      "correct": "3",
+      "correct": "2",
       "options": ["1", "2", "3", "4"]
     },
     "difficulty": "easy",
@@ -75,16 +75,6 @@
     "concepts": ["Economy"]
   },
   {
-    "question": "True or False: Drones can attack enemy units.",
-    "type": "true_false",
-    "answer": {
-      "correct": true
-    },
-    "difficulty": "medium",
-    "units": ["Drone"],
-    "concepts": ["Army"]
-  },
-  {
     "question": "What is the build time for a Drone?",
     "type": "mcq",
     "answer": {
@@ -99,8 +89,8 @@
     "question": "What is the build time for a Terran Barracks?",
     "type": "mcq",
     "answer": {
-      "correct": "46",
-      "options": ["42", "44", "46", "48"]
+      "correct": "65",
+      "options": ["54", "44", "65", "48"]
     },
     "difficulty": "easy",
     "units": ["Barracks"],
@@ -116,17 +106,6 @@
     "difficulty": "easy",
     "units": ["Reaper", "Command Center"],
     "concepts": ["Build Orders", "Strategy"]
-  },
-  {
-    "question": "Which Terran unit is commonly used in a 1-1-1 6-minute timing push?",
-    "type": "mcq",
-    "answer": {
-      "correct": "Cyclone",
-      "options": ["Hellion", "Cyclone", "Ghost", "Marauder"]
-    },
-    "difficulty": "medium",
-    "units": ["Cyclone"],
-    "concepts": ["Build Orders", "Army", "Strategy"]
   },
   {
     "question": "What upgrade is usually completed in time for a 7:00 Terran Stim timing push?",
@@ -150,4 +129,5 @@
     "units": ["Medivac", "Marine"],
     "concepts": ["Tactics", "Build Orders"]
   }
+
 ]

@@ -74,6 +74,50 @@ class AiService
         return $this->callOpenAi($prompt)['units'] ?? [];
     }
 
+    public function createLandingPage(Module $module, string $userPrompt = '')
+    {
+    $prompt = <<<EOT
+    Please take the following user-provided content and format it into raw, well-structured HTML with no classes. 
+    Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
+    and use <p>, <ul>, <ol>, and <li> for content details.
+
+    Do not include <html>, <head>, or <body> tags.
+
+    Module Name: {$module->name}
+    Module Description: {$module->description}
+
+    User Content:
+    {$userPrompt}
+    EOT;
+
+        $response = $this->callOpenAiHTML($prompt);
+
+        $formattedResponse = $this->formatter->format($response);
+
+        AiRequest::create([
+            'user_id' => auth()->id(),
+            'purpose' => 'generate_landing_page',
+            'prompt' => $prompt,
+            'response' => $response,
+            'metadata' => [
+                'module_id' => $module->id,
+                'model' => 'gpt-4o-mini',
+            ],
+        ]);
+
+        ModulePage::create([
+            'module_id'   => $module->id,
+            'title'       => $module->name,
+            'content'     => $formattedResponse,
+            'page_number' => 1, // landing page
+            'created_by'  => auth()->id(),
+            'updated_by'  => auth()->id(),
+        ]);
+
+        return $response;
+    }
+
+
     public function generateLandingPage(Module $module, string $userPrompt = '') 
     {
         $questions = $module->questions()->with('concepts')->get();
@@ -160,7 +204,7 @@ class AiService
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
 
         $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o-mini',
+            'model' => 'gpt-4.1-nano',
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $prompt],
@@ -224,6 +268,45 @@ class AiService
         }
 
         return $keywords;
+    }
+
+    public function followUpQuestions(array $questions)
+    {
+        // Build the numbered list
+        $questionList = "";
+        foreach ($questions as $index => $question) {
+            $questionList .= ($index + 1) . ". " . $question . "\n";
+        }
+
+        // Create the prompt
+        $prompt = "The user struggles to answer the following questions correctly:\n" .
+                $questionList .
+                "\nProvide a short summary that will help them understand the concepts better (try word it differently).
+                
+                Provide the response in this format:
+                Summary: [Your summary here]
+                
+                ";
+
+        // Call OpenAI API
+        $response = Http::withToken(env('OPENAI_API_KEY'))->post(
+            'https://api.openai.com/v1/chat/completions',
+            [
+                'model' => 'gpt-4.1-nano',
+                'messages' => [
+                    ['role' => 'system', 'content' => 'You are helpful starcraft 2 coach.'],
+                    ['role' => 'user', 'content' => $prompt],
+                ],
+                'temperature' => 0.2,
+            ]
+        );
+
+        // Parse and return
+        $data = $response->json();
+
+        $content = $data['choices'][0]['message']['content'] ?? '';
+
+        return $content;
     }
 
 

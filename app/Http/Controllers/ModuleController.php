@@ -71,6 +71,14 @@ class ModuleController extends Controller
         return redirect()->route('dashboard')->with('success', 'Module deleted successfully.');
     }
 
+    public function destroyPage(ModulePage $modulePage)
+    {
+        $modulePage->delete();
+
+        return back()->with('success', 'Module page deleted successfully.');
+    }
+
+
     
     public function edit(Module $module)
     {
@@ -113,7 +121,7 @@ class ModuleController extends Controller
         
         
         // Call the AI service to generate the landing page content
-        $content = $this->aiService->generateLandingPage($module, $userPrompt);
+        $content = $this->aiService->createLandingPage($module, $userPrompt);
 
         // Log the AI request
         \Log::info('Landing page generated for module', [

@@ -29,6 +29,33 @@ class QuestionController extends Controller
         return view('questions.quiz.index', compact('questions'));
     }
 
+    public function problematic()
+    {
+        $user = auth()->user();
+        $questions = Question::whereHas('users', function ($query) use ($user) {
+            $query->where('user_id', $user->id)
+                ->whereColumn('attempts', '>', 'correct_count');
+        })
+        ->with(['users' => function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        }])
+        ->get();
+
+        
+        $wrongQuestions = [];
+
+        // Loop through each question and add the name to the array
+        foreach ($questions as $question) {
+            if ($question->users->isNotEmpty()) {
+                $wrongQuestions[] = $question->question;
+            }
+        }
+
+        $aiSummary = $this->aiService->followUpQuestions($wrongQuestions);
+
+        return view('questions.problematic', compact('questions', 'aiSummary'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

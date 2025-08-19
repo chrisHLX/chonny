@@ -23,48 +23,55 @@ class HtmlFormatter
         'em'     => 'italic',
     ];
 
-    public function format(string $html): string
+   public function format(string $html): string
     {
         $dom = new DOMDocument();
         libxml_use_internal_errors(true);
-        $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
+        $dom->loadHTML(
+            '<?xml encoding="utf-8" ?>' . $html,
+            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+        );
+
+        // Normalize: ensure there’s always a body
         $body = $dom->getElementsByTagName('body')->item(0);
-        $desiredClasses = 'container example-class'; // replace with your desired wrapper classes
+        if (!$body) {
+            $body = $dom->createElement('body');
 
-        if ($body) {
-            // Get body child nodes
-            $children = [];
-            foreach ($body->childNodes as $child) {
-                if ($child->nodeType === XML_ELEMENT_NODE || $child->nodeType === XML_TEXT_NODE) {
-                    $children[] = $child;
-                }
+            // Move everything into body
+            while ($dom->firstChild) {
+                $body->appendChild($dom->firstChild);
             }
-
-            // Check if it's already a single div wrapper with the desired classes
-            if (
-                count($children) === 1 &&
-                $children[0] instanceof DOMElement &&
-                $children[0]->tagName === 'div' &&
-                strpos($children[0]->getAttribute('class'), 'container') !== false
-            ) {
-                // Ensure correct classes
-                $children[0]->setAttribute('class', $desiredClasses);
-            } else {
-                // Create new wrapper div
-                $wrapper = $dom->createElement('div');
-                $wrapper->setAttribute('class', $desiredClasses);
-
-                // Move all children into new wrapper
-                while ($body->firstChild) {
-                    $wrapper->appendChild($body->firstChild);
-                }
-
-                $body->appendChild($wrapper);
-            }
+            $dom->appendChild($body);
         }
 
+        // Ensure wrapper container
+        $desiredClasses = 'container example-class';
+        $wrapper = $dom->createElement('div');
+        $wrapper->setAttribute('class', $desiredClasses);
+
+        while ($body->firstChild) {
+            $wrapper->appendChild($body->firstChild);
+        }
+        $body->appendChild($wrapper);
+
+        // Apply classes to tags in classMap
+        $this->applyClasses($dom);
+
         return $dom->saveHTML();
+    }
+
+    protected function applyClasses(DOMDocument $dom): void
+    {
+        foreach ($this->classMap as $tag => $classes) {
+            $elements = $dom->getElementsByTagName($tag);
+            foreach ($elements as $el) {
+                /** @var \DOMElement $el */
+                $existing = $el->getAttribute('class');
+                $merged = trim($existing . ' ' . $classes);
+                $el->setAttribute('class', $merged);
+            }
+        }
     }
 
 }
