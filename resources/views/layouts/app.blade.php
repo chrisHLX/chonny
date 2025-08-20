@@ -54,6 +54,7 @@
                 document.getElementById('global-loading-spinner').classList.remove('hidden');
             });
         </script>
-
+        
+        
     </body>
 </html>

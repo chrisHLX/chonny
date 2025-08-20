@@ -40,7 +40,7 @@ class TimedQuiz extends Component
         $this->elapsed = 0;
         $this->totalTime = 0;
         $this->currentIndex = 0;
-        $this->answer = null;
+        $this->answer = [];
         $this->feedback = null;
 
     }
@@ -62,15 +62,51 @@ class TimedQuiz extends Component
         $question = $this->questions[$this->currentIndex];
         $correct = false;
 
-        if ($question->type === 'mcq') {
+        switch ($question->type) {
+        case 'mcq':
             $correct = $this->answer === $question->answer['correct'];
-        } elseif ($question->type === 'true_false') {
+            break;
+
+        case 'true_false':
             $correct = filter_var($this->answer, FILTER_VALIDATE_BOOLEAN) === $question->answer['correct'];
-        } elseif ($question->type === 'open') {
+            break;
+
+        case 'open':
             $keywords = $question->answer['correct_keywords'] ?? [];
             $matched = collect($keywords)->filter(fn($k) => str_contains(strtolower($this->answer), strtolower($k)));
             $correct = $matched->count() >= ceil(count($keywords) / 2);
-        }
+            break;
+
+        case 'matching_pairs':
+            $correctPairs = $question->answer['correct'] ?? [];
+            $userPairs = $this->answer ?? [];
+            $correct = collect($correctPairs)->every(fn($v, $k) => isset($userPairs[$k]) && $userPairs[$k] === $v);
+            break;
+
+        case 'ordering':
+            $correctOrder = $question->answer['steps'];
+
+            // Livewire gives us $this->answer — if it's JSON from hidden input, decode it
+            $userOrder = $this->answer;
+
+            if (is_string($userOrder)) {
+                $decoded = json_decode($userOrder, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $userOrder = $decoded;
+                }
+            }
+
+            // Ensure it's an array
+            if (!is_array($userOrder)) {
+                $userOrder = [];
+            }
+
+            $correct = $userOrder === $correctOrder;
+            break;
+
+     }
+
+
 
         $this->feedback = $correct ? "✅ Correct! Time: {$this->elapsed}s" : "❌ Incorrect. Time: {$this->elapsed}s";
         if ($correct) $this->score++;
@@ -89,7 +125,7 @@ class TimedQuiz extends Component
                     'last_answered_at' => now(),
                     'last_time_spent' => $this->elapsed,
                     'total_time_spent' => $existing->pivot->total_time_spent + $this->elapsed,
-                    'last_answer' => $this->answer,
+                    'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
                 ]);
             } else {
                 $user->answeredQuestions()->attach($question->id, [
@@ -98,7 +134,7 @@ class TimedQuiz extends Component
                     'last_answered_at' => now(),
                     'last_time_spent' => $this->elapsed,
                     'total_time_spent' => $this->elapsed,
-                    'last_answer' => $this->answer,
+                    'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
                 ]);
             }
         }
@@ -114,7 +150,7 @@ class TimedQuiz extends Component
 
     public function nextQuestion()
     {
-        $this->answer = '';
+        $this->answer = [];
         $this->feedback = '';
         $this->elapsed = 0;
         $this->currentIndex++;

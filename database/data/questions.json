@@ -32,6 +32,40 @@
     "concepts": ["Mechanics", "Economy"]
   },
   {
+    "question": "Match the Zerg unit to its primary role.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+      "Zergling": "Basic attacker",
+      "Overlord": "Scouting",
+      "Hydralisk": "Anti-air",
+      "Drone": "Worker"
+    },
+      "pairs": {
+      "keys": ["Zergling", "Overlord", "Hydralisk", "Drone"],
+      "values": ["Worker", "Anti-air", "Scouting", "Basic attacker"]
+    }
+    },
+    "difficulty": "easy",
+    "units": ["Drone", "Zergling", "Overlord", "Hydralisk"],
+    "concepts": ["Army"]
+  },
+  {
+    "question": "Put the following build steps in the correct order.",
+    "type": "ordering",
+    "answer": {
+      "steps": [
+        "Train Drone",
+        "Build Overlord",
+        "Build Spawning Pool",
+        "Build Hatchery"
+      ]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Build Order"]
+  },
+  {
     "question": "What is the optimal number of Drones mining a single mineral patch?",
     "type": "mcq",
     "answer": {

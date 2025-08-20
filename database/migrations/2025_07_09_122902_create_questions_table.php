@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('question');                      // The actual question text
             $table->json('answer');                          // Correct answer(s), can be text or structured
-            $table->enum('type', ['mcq', 'true_false', 'match', 'open']);
+            $table->enum('type', ['mcq', 'true_false', 'matching_pairs', 'ordering' ,'open']);
             $table->enum('difficulty', ['easy', 'medium', 'hard'])->default('easy');
             $table->string('created_by')->nullable();        // "system", "admin", or user id string if needed
             $table->timestamps();
