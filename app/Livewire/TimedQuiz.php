@@ -151,10 +151,23 @@ class TimedQuiz extends Component
         $this->feedback = '';
         $this->elapsed = 0; // reset per question
         $this->currentIndex++;
-
+        // Update the pivot table for showing user module progress
         if ($this->currentIndex >= $this->questions->count()) {
             $this->completed = true;
-            // save completion...
+             // Update module_user pivot table
+            $user = auth()->user();
+            $moduleId = $this->selectedModule;
+
+                if ($user && $moduleId) {
+                    $user->modules()->syncWithoutDetaching([
+                        $moduleId => [
+                            'score' => $this->score / $this->questions->count() * 100,
+                            'status' => 'completed',
+                            'last_activity_at' => now(),
+                            'completed_at' => now()
+                        ]
+                    ]);
+                }
         }
     }
 
