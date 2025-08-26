@@ -16,6 +16,7 @@ class Question extends Model
         'created_by',
     ];
 
+    // This allows automatic casting of the 'answer' JSON column to an array which means you can access it like a normal array in PHP
     protected $casts = [
         'answer' => 'array',
     ];

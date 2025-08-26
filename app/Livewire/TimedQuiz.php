@@ -5,7 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Question;
 use App\Models\Module;
-use App\models\User;
+use App\Models\User;
+
 class TimedQuiz extends Component
 {
     public $modules;
@@ -14,12 +15,21 @@ class TimedQuiz extends Component
     public $currentIndex = 0;
     public $answer;
     public $feedback;
-    public $elapsed = 0; // seconds per question
+    public $elapsed = 0; // now always synced from Alpine
     public $questionTimes = [];
     public $score = 0;
     public $completed = false;
     public $started = false;
 
+    public function mount()
+    {
+        $this->modules = auth()->user()->modules()->get();
+    }
+
+    public function incrementElapsed()
+    {
+        $this->elapsed++;
+    }
 
     public function startQuiz()
     {
@@ -27,41 +37,28 @@ class TimedQuiz extends Component
 
         $module = auth()->user()->modules()->with('questions')->find($this->selectedModule);
 
-
         if (!$module) {
             session()->flash('error', 'Module not found or not assigned to you.');
             return;
         }
 
-        $this->questions = $module->questions->shuffle()->take(5)->values(); // Take 5 random
+        $this->questions = $module->questions->shuffle()->take(5)->values();
         $this->started = true;
         $this->completed = false;
         $this->score = 0;
         $this->elapsed = 0;
-        $this->totalTime = 0;
+        $this->questionTimes = [];
         $this->currentIndex = 0;
         $this->answer = [];
         $this->feedback = null;
-
     }
 
-    protected $rules = [
-        'answer' => 'required'
-    ];
-
-    public function mount()
-    {
-        // Loads only modules linked to the user, with pivot fields and no questions yet
-        $this->modules = auth()->user()->modules()->get();
-    }
-
-
-
-    public function submit()
+    public function submit($params = [])
     {
         $question = $this->questions[$this->currentIndex];
         $correct = false;
-
+        $this->elapsed = isset($params['elapsed']) ? (int) $params['elapsed'] : 0;
+        
         switch ($question->type) {
         case 'mcq':
             $correct = $this->answer === $question->answer['correct'];
@@ -85,7 +82,8 @@ class TimedQuiz extends Component
 
         case 'ordering':
             $correctOrder = $question->answer['steps'];
-
+                // Debug raw
+                logger()->info('Raw Livewire answer', ['answer' => $this->answer]);
             // Livewire gives us $this->answer — if it's JSON from hidden input, decode it
             $userOrder = $this->answer;
 
@@ -112,7 +110,7 @@ class TimedQuiz extends Component
         if ($correct) $this->score++;
 
         $this->questionTimes[] = $this->elapsed;
-
+        \Log::info("Estimated time: {$this->elapsed}s");
         // ✅ TRACK PROGRESS
         if (auth()->check()) {
             $user = auth()->user();
@@ -142,7 +140,6 @@ class TimedQuiz extends Component
         $this->nextQuestion();
     }
 
-
     public function getTotalTimeProperty()
     {
         return array_sum($this->questionTimes);
@@ -152,35 +149,13 @@ class TimedQuiz extends Component
     {
         $this->answer = [];
         $this->feedback = '';
-        $this->elapsed = 0;
+        $this->elapsed = 0; // reset per question
         $this->currentIndex++;
-     
-        // Update the user module info
+
         if ($this->currentIndex >= $this->questions->count()) {
             $this->completed = true;
-
-            // Update module_user pivot table
-            $user = auth()->user();
-            $moduleId = $this->selectedModule;
-
-                if ($user && $moduleId) {
-                    $user->modules()->syncWithoutDetaching([
-                        $moduleId => [
-                            'score' => $this->score / $this->questions->count() * 100,
-                            'status' => 'completed',
-                            'last_activity_at' => now(),
-                            'completed_at' => now()
-                        ]
-                    ]);
-                }
+            // save completion...
         }
-    }
-
-    public function incrementElapsed()
-    {
-        if (!$this->completed) {
-            $this->elapsed++;
-        }   
     }
 
     public function render()

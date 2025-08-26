@@ -46,11 +46,10 @@ class QuestionController extends Controller
 
         foreach ($questions as $question) {
             if ($question->users->isNotEmpty()) {
-                // Access the 'correct' field from the JSON 'answer' column
-                $correctAnswer = $question->answer['correct'] ?? 'N/A'; // Fallback if 'correct' is missing
                 $wrongQuestions[] = [
                     'question' => $question->question,
-                    'answer' => $correctAnswer
+                    'type'     => $question->type,    // <-- include type
+                    'answer'   => $question->answer,  // <-- include full raw answer (array)
                 ];
             }
         }

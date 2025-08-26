@@ -270,13 +270,103 @@ class AiService
         return $keywords;
     }
 
+    private function formatAnswer(array $q): string
+    {
+        $type   = $q['type']   ?? null;
+        $answer = $q['answer'] ?? null;
+
+        // If $answer is a JSON string, try to decode it
+        if (is_string($answer)) {
+            $decoded = json_decode($answer, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $answer = $decoded;
+            }
+        }
+
+        switch ($type) {
+            case 'ordering': {
+                // Typical shape: ['steps' => [...]]
+                $steps = [];
+                if (is_array($answer)) {
+                    if (isset($answer['steps']) && is_array($answer['steps'])) {
+                        $steps = $answer['steps'];
+                    } else {
+                        // fallback if someone stored just an array of steps
+                        $steps = array_values($answer);
+                    }
+                }
+                return $steps ? implode(' → ', $steps) : 'N/A';
+            }
+
+            case 'matching_pairs': {
+                // Typical shape: ['correct' => ['Key' => 'Value', ...]]
+                $pairs = [];
+                if (is_array($answer)) {
+                    $map = $answer['correct'] ?? $answer['pairs'] ?? null;
+                    if (is_array($map)) {
+                        foreach ($map as $k => $v) {
+                            $pairs[] = "{$k} = {$v}";
+                        }
+                    }
+                }
+                return $pairs ? implode(', ', $pairs) : 'N/A';
+            }
+
+            case 'open': {
+                // Typical shape: ['ideal_answer' => '...', 'correct_keywords' => [...]]
+                if (is_array($answer) && !empty($answer['ideal_answer'])) {
+                    return $answer['ideal_answer'];
+                }
+                if (is_array($answer) && !empty($answer['correct_keywords'])) {
+                    return 'Keywords: ' . implode(', ', (array)$answer['correct_keywords']);
+                }
+                return 'N/A';
+            }
+
+            case 'true_false': {
+                // Typical shape: ['correct' => true/false]
+                if (is_array($answer) && array_key_exists('correct', $answer)) {
+                    return $answer['correct'] ? 'True' : 'False';
+                }
+                if (is_bool($answer)) {
+                    return $answer ? 'True' : 'False';
+                }
+                return 'N/A';
+            }
+
+            case 'mcq':
+            case 'multiple_choice': {
+                // Typical shape: ['options' => [...], 'correct' => '...']
+                if (is_array($answer) && isset($answer['correct'])) {
+                    return (string) $answer['correct'];
+                }
+                return is_scalar($answer) ? (string)$answer : 'N/A';
+            }
+
+            default: {
+                // Generic fallback: try to stringify scalars; encode arrays
+                if (is_array($answer)) {
+                    return json_encode($answer);
+                }
+                if ($answer === null || $answer === '') {
+                    return 'N/A';
+                }
+                return (string)$answer;
+            }
+        }
+    }
+
+    
+
     public function followUpQuestions(array $questions)
     {
         // Filter out questions that were answered correctly
         $questionList = "";
 
         foreach ($questions as $index => $q) {
-            $questionList .= ($index + 1) . ". " . $q['question'] . " — " . $q['answer'] . "\n";
+            $formattedAnswer = $this->formatAnswer($q); // We are fomatting the answer to handle different types like ordering, matching pairs (arrays not strings)
+            \logger()->info('Formatted answer for question', ['formattedAnswer' => $formattedAnswer]);
+            $questionList .= ($index + 1) . ". " . $q['question'] . " — " . $formattedAnswer . "\n";
         }
 
 
@@ -290,7 +380,8 @@ class AiService
                 
                 ";
 
-        // Call OpenAI API
+        // Call OpenAI API (CANCELLED AT THE MOMENT)
+        /*
         $response = Http::withToken(env('OPENAI_API_KEY'))->post(
             'https://api.openai.com/v1/chat/completions',
             [
@@ -320,6 +411,8 @@ class AiService
             ]);
 
         return $content;
+        */ 
+        return $prompt;
     }
 
 
