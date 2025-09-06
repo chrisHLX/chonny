@@ -15,15 +15,15 @@
         </div>
 
         {{-- Type --}}
-        <div>
-            <x-input-label for="type" :value="'Type'" />
-            <select name="type" id="type" x-model="type"
-                class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
-                <option value="mcq">Multiple Choice</option>
-                <option value="true_false">True / False</option>
-                <option value="open">Open Ended</option>
-            </select>
-        </div>
+        <select name="type" id="type" x-model="type"
+            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+            <option value="mcq">Multiple Choice</option>
+            <option value="true_false">True / False</option>
+            <option value="open">Open Ended</option>
+            <option value="matching_pairs">Matching Pairs</option>
+            <option value="ordering">Ordering</option>
+        </select>
+
 
         {{-- Difficulty --}}
         <div>
@@ -75,6 +75,36 @@
                     class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
             </div>
         </template>
+
+        {{-- Matching Pairs --}}
+        <div x-show="type === 'matching_pairs'" x-data="{ pairs: [ {}, {}, {}, {} ] }">
+            <template x-for="(pair, i) in pairs" :key="i">
+                <div class="flex space-x-2">
+                    <input type="text" :name="'answer[correct][' + i + '][key]'" placeholder="Key"
+                        class="w-1/2 border rounded p-2" />
+                    <input type="text" :name="'answer[correct][' + i + '][value]'" placeholder="Value"
+                        class="w-1/2 border rounded p-2" />
+                </div>
+            </template>
+
+            <button type="button" @click="pairs.push({})"
+                    class="mt-2 bg-gray-200 px-2 py-1 rounded">
+                + Add Pair
+            </button>
+        </div>
+
+
+
+        {{-- Ordering --}}
+        <template x-if="type === 'ordering'">
+            <div class="space-y-2">
+                <template x-for="i in 4" :key="i">
+                    <x-text-input type="text" :name="'answer[steps][]'" placeholder="Step" class="block w-full" />
+                </template>
+            </div>
+        </template>
+
+
 
         <x-primary-button class="mt-4">Create Question</x-primary-button>
     </form>

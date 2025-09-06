@@ -64,7 +64,7 @@ class QuestionController extends Controller
     {
         $request->validate([
             'question' => 'required|string|max:255',
-            'type' => 'required|in:mcq,true_false,open',
+            'type' => 'required|in:mcq,true_false,open,matching_pairs,ordering',
             'difficulty' => 'required|in:easy,medium,hard',
             'module_id' => 'required|exists:modules,id',
             'answer' => 'required|array',
@@ -91,6 +91,30 @@ class QuestionController extends Controller
                 'ideal_answer' => $request->input('answer.text'),
                 'correct_keywords' => $this->aiService->getKeywords($request->input('answer.text')),
             ],
+
+            'matching_pairs' => (function () use ($request) {
+                $correct = $request->input('answer.correct', []);
+
+                // Extract keys and values from the "key/value" objects
+                $keys = array_column($correct, 'key');     // ["Zergling", "Overlord", ...]
+                $values = array_column($correct, 'value'); // ["Worker", "Anti-air", ...]
+
+                // Build the "correct" map where each key maps to its value
+                $correctMap = array_combine($keys, $values);
+
+                return [
+                    'pairs' => [
+                        'keys' => $keys,
+                        'values' => $values,
+                    ],
+                    'correct' => $correctMap,
+                ];
+            })(),
+
+
+            'ordering' => [
+                'steps' => $request->input('answer.steps', []),
+            ],
         };
 
         // Create question
@@ -111,12 +135,29 @@ class QuestionController extends Controller
             $answerText = json_encode($request->input('answer.correct'));
 
             // Use injected service instead of static calls
-            $conceptNames = $this->aiService->tagConcepts($questionText, $answerText, $request->module_id);
-            $conceptIds = collect($conceptNames)->map(fn($name) =>
-                Concept::firstOrCreate(['name' => $name])->id
-            );
-            $question->concepts()->sync($conceptIds);
 
+            //Create a map of existing concepts for the module to avoid duplicates but also to send to the ai
+            $conceptMap = Concept::all()->pluck('id', 'name');
+            // Example: ['Scouting' => 1, 'Economy' => 2, ...]
+
+            
+
+            $conceptNames = $this->aiService->tagConcepts(
+                $questionText,
+                $answerText,
+                $request->module_id,
+                $conceptMap->keys()->toArray() // pass the "allowed concepts"
+            );
+
+            $conceptIds = collect($conceptNames)
+                ->map(fn($name) => $conceptMap[$name] ?? $conceptMap['Other'])
+                ->unique()
+                ->values();
+
+            $question->concepts()->sync($conceptIds);
+            
+            /* Disabled for now, units are too varied and the AI often suggests non-existent units
+             * Consider re-enabling if we have a more controlled vocabulary or better AI accuracy
             // Step 1: Get all existing unit names (lowercase => ID map)
             $unitMap = Unit::all()->mapWithKeys(function ($unit) {
                 return [strtolower($unit->name) => $unit->id];
@@ -137,7 +178,7 @@ class QuestionController extends Controller
 
             // Step 4: Sync only valid existing units
             $question->units()->sync($matchedUnitIds);
-
+            */
 
         } catch (\Exception $e) {
             \Log::warning("AI Tagging failed: " . $e->getMessage());
@@ -147,6 +188,23 @@ class QuestionController extends Controller
         return redirect()
             ->route('modules.edit', $request->module_id)
             ->with('success', 'Question created and tagged.');
+    }
+
+    public function destroy(Question $question)
+    {
+        // Authorization check (optional need to add the functionality )
+        
+
+        // Detach relationships
+        $question->modules()->detach();
+        $question->concepts()->detach();
+        $question->units()->detach();
+        $question->users()->detach();
+
+        // Delete the question
+        $question->delete();
+
+        return redirect()->route('questions.index')->with('success', 'Question deleted successfully.');
     }
 
     public function submitAll(Request $request)

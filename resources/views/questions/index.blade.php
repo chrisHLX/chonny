@@ -20,7 +20,16 @@
                 @if($question->concepts->count())
                     <p class="text-sm"><strong>Concepts:</strong> {{ $question->concepts->pluck('name')->join(', ') }}</p>
                 @endif
+                <!-- Delete Button -->
+                <form action="{{ route('questions.destroy', $question) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this question?');" class="mb-6">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4">
+                        Delete Question
+                    </button>
+                </form>
             </div>
+            
         @endforeach
     </div>
     

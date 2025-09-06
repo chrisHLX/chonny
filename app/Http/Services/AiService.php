@@ -26,14 +26,16 @@ class AiService
         $this->apiKey = env('OPENAI_API_KEY'); // or config('services.openai.key')
     }
 
-    public function tagConcepts(string $questionText, string $answerText = '', $module_id): array
+    public function tagConcepts(string $questionText, string $answerText = '', $module_id, $conceptMap): array
     {
+        $conceptMap = json_encode($conceptMap);
+
         $prompt = <<<EOT
         You are a StarCraft 2 coach. Analyze the following question and answer. Select 1–3 core gameplay concepts from the list that apply.
 
         Return only raw JSON. Do not include markdown or formatting. Just return: {"concepts": [...]}
 
-        Concepts: ['economy', 'build orders', 'scouting', 'strategy', 'map control', 'tactics', 'mechanics', 'other']
+        Concepts: {$conceptMap}
         Question: {$questionText}
         Answer: {$answerText}
         EOT;
