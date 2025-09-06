@@ -34,4 +34,9 @@ class Module extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function modulePages()
+    {
+        return $this->hasMany(ModulePage::class);
+    }
+
 }

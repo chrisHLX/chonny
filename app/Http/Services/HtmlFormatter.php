@@ -12,7 +12,7 @@ class HtmlFormatter
      */
     protected array $classMap = [
         'div'    => 'max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg',
-        'h1'     => 'text-3xl font-bold mb-4',
+        'h1'     => 'text-2xl font-bold mb-4',
         'h2'     => 'text-xl font-semibold mt-6 mb-2',
         'h3'     => 'text-lg font-semibold mt-4 mb-2',
         'p'      => 'mb-4 text-gray-700',
