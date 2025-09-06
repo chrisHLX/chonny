@@ -381,7 +381,7 @@ class AiService
                 ";
 
         // Call OpenAI API (CANCELLED AT THE MOMENT)
-        /*
+        
         $response = Http::withToken(env('OPENAI_API_KEY'))->post(
             'https://api.openai.com/v1/chat/completions',
             [
@@ -411,11 +411,47 @@ class AiService
             ]);
 
         return $content;
-        */ 
-        return $prompt;
+         
+       // return $prompt;
     }
 
 
-    
+    //The content will be with html tage, we should strip them out before adding to the prompt
+    public function generateQuestions(string $content)
+    {
+        $prompt = "
+        Generate 5 Multiple Choice Questions based on the following content: \n";
+        $prompt .= $content;
+        $prompt .= '\n Return the questions in JSON format like this ONLY:
+        [
+            {
+                "question": "What upgrade is usually completed in time for a 7:00 Terran Stim timing push?",
+                "type": "mcq",
+                "answer": {
+                "correct": "Stimpack",
+                "options": ["Combat Shield", "Stimpack", "Concussive Shells", "Armory"]
+                },
+                "difficulty": "medium",
+                "units": ["Marine", "Barracks Tech Lab"],
+                "concepts": ["Build Orders", "Army"]
+            }
+        ]
+        IMPORTANT: Ensure the JSON is properly formatted without markdown or extra text';
+        $questions = $this->callOpenAi($prompt); // returns decoded array of questions
+
+        foreach ($questions as $q) {
+            Question::create([
+                'question'   => $q['question'],
+                'answer'     => $q['answer'], // this is already an array, will be cast to JSON
+                'type'       => $q['type'] ?? 'mcq',
+                'difficulty' => $q['difficulty'] ?? 'medium',
+                'units' => ($q['concepts'] ?? null), // helper method maybe?
+                'concepts'    => ($q['units'] ?? null),
+                'created_by' => auth()->id(), // current logged-in user
+            ]);
+        }
+
+        return $questions;
+    }
 
 }

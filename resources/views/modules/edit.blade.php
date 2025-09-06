@@ -31,6 +31,9 @@
             <x-modules.create-question-form :module="$module" />
             
             {{-- Create Landing Page --}}
+            <x-modules.create-landing-page :module="$module" :allQuestions="$allQuestions" />
+
+            {{-- Generate Landing Page --}}
             <x-modules.generate-landing-page :module="$module" :allQuestions="$allQuestions" />
 
             

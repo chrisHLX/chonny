@@ -80,6 +80,7 @@ Route::get('modules', function () {
 })->name('modules.index');
 
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');
+Route::post('/modules-pagex/createLandingPage/{module}', [ModuleController::class, 'createLandingPage'])->name('modules-pagex.createLandingPage')->middleware('auth');
 Route::post('/modules', [ModuleController::class, 'store'])->name('modules.store')->middleware('auth');
 Route::delete('/modules/{module}', [ModuleController::class, 'destroy'])->name('modules.destroy')->middleware('auth');
 Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit')->middleware('auth');
@@ -103,8 +104,9 @@ Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->na
 
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
-Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage');
+Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateQuestions'])->name('modules.generateLandingPage');
 Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
+
 
 // replay routes
 
