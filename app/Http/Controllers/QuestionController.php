@@ -29,36 +29,43 @@ class QuestionController extends Controller
         return view('questions.quiz.index', compact('questions'));
     }
 
-    public function problematic()
+    //Still need to pass the module in the blade 
+    public function problematic(Module $module)
     {
         $user = auth()->user();
-        $questions = Question::whereHas('users', function ($query) use ($user) {
-            $query->where('user_id', $user->id)
-                ->whereRaw('(attempts - correct_count) / attempts >= 0.5'); // at least 50% wrong
-        })
-        ->with(['users' => function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        }])
-        ->get();
 
-        // Create an array to store questions and their correct answers
-        $wrongQuestions = [];
+        // Grab the top 5 most problematic questions for this module
+        $questions = Question::where('module_id', $module->id)
+            ->whereHas('users', function ($query) use ($user) {
+                $query->where('user_id', $user->id)
+                    ->whereRaw('(attempts - correct_count) / attempts >= 0.5'); // at least 50% wrong
+            })
+            ->with(['users' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }])
+            ->get()
+            ->sortByDesc(function ($question) use ($user) {
+                // Rank by total number wrong (attempts - correct_count)
+                $userPivot = $question->users->first();
+                return $userPivot ? ($userPivot->attempts - $userPivot->correct_count) : 0;
+            })
+            ->take(5);
 
-        foreach ($questions as $question) {
-            if ($question->users->isNotEmpty()) {
-                $wrongQuestions[] = [
-                    'question' => $question->question,
-                    'type'     => $question->type,    // <-- include type
-                    'answer'   => $question->answer,  // <-- include full raw answer (array)
-                ];
-            }
-        }
+        // Collect data for AI
+        $wrongQuestions = $questions->map(function ($question) {
+            return [
+                'question' => $question->question,
+                'type'     => $question->type,
+                'answer'   => $question->answer,
+            ];
+        })->toArray();
 
-        
-        $aiSummary = $this->aiService->followUpQuestions($wrongQuestions);
+        // Ask AI to create follow-up questions/content
+        $aiSummary = $this->aiService->followUpQuestions($module, $wrongQuestions);
 
-        return view('questions.problematic', compact('questions', 'aiSummary'));
+        return view('questions.problematic', compact('questions', 'aiSummary', 'module'));
     }
+
 
     public function store(Request $request)
     {

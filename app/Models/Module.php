@@ -39,4 +39,18 @@ class Module extends Model
         return $this->hasMany(ModulePage::class);
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(Module::class, 'parent_module_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Module::class, 'parent_module_id');
+    }
+
+    public function latestChild()
+    {
+        return $this->children()->orderByDesc('version')->first();
+    }
 }

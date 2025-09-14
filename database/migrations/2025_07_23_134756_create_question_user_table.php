@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // Storing question metadata, how many times the user got it right/wrong etc.
     public function up(): void
     {
         Schema::create('question_user', function (Blueprint $table) {

@@ -9,6 +9,7 @@ use App\Models\Question;
 use Illuminate\Support\Facades\Log; 
 use App\Models\ModulePage;
 use App\Http\Services\HtmlFormatter;
+use App\Services\VersioningService;
 
 use Illuminate\Support\Facades\Http;
 
@@ -359,8 +360,8 @@ class AiService
     }
 
     
-
-    public function followUpQuestions(array $questions)
+    // This is the functionality for helping users with problematic questions
+    public function followUpQuestions(Module $module, array $questions)
     {
         // Filter out questions that were answered correctly
         $questionList = "";
@@ -371,6 +372,7 @@ class AiService
             $questionList .= ($index + 1) . ". " . $q['question'] . " — " . $formattedAnswer . "\n";
         }
 
+        \logger()->info('Compiled question list for AI prompt', ['questionList' => $questionList]);
 
         // Create the prompt
         $prompt = "The user struggles to answer the following questions correctly:\n" .
@@ -401,9 +403,12 @@ class AiService
 
         $content = $data['choices'][0]['message']['content'] ?? '';
 
+        // Now send the newly created content back to ai to generate questions
+        $questions = $this->generateQuestions($content, $questionList); 
+
         AiRequest::create([
                 'user_id' => auth()->id(),
-                'purpose' => 'generate_landing_page',
+                'purpose' => 'follow_up_questions',
                 'prompt' => $prompt,
                 'response' => $content,
                 'metadata' => [
@@ -412,14 +417,62 @@ class AiService
                 ],
             ]);
 
+            
+        // Get the latest version number of this parent’s children
+        $latestVersion = Module::where('parent_module', $module->id)
+            ->max('version');
+
+        $parentVersion = $latestVersion; // e.g. "V1"
+        $latestChildVersion = Module::where('parent_module', $parentModule->id)
+            ->orderBy('created_at', 'desc')
+            ->value('version'); // e.g. "V3A1"
+
+        // If no children exist yet, start at 2 (since v1 is the parent itself)
+        $newVersion = VersioningService::next($parentVersion, $latestChildVersion);
+
+        $module = Module::create([
+            'name'          => "Follow-up on problematic questions " . now()->toDateTimeString(),
+            'description'   => "AI generated module to help user with problematic questions",
+            'version'       => $newVersion,
+            'parent_module' => $parentModule->id,
+            'created_by'    => auth()->id(),
+        ]);
+
+        $formattedContent = $this->formatter->format($content);
+
+        $module->modulePages()->create([
+            'title'       => $module->name,
+            'content'     => $formattedContent,
+            'page_number' => 1,
+            'created_by'  => auth()->id(),
+            'updated_by'  => auth()->id(),
+        ]);
+        $user = auth()->user();
+        
+
+        $user->modules()->attach($module->id, [
+            'status' => 'in_progress',
+            'score' => 0,
+            'current_difficulty' => 'beginner',
+            'last_activity_at' => now(),
+            'completed_at' => null
+        ]);
+
+        foreach ($questions as $q) {    
+            $q->modules()->attach($module->id); // attach to the new module
+        }
+
+        \logger()->info('Generated follow-up questions', ['questions' => $questions]);
+
         return $content;
+
          
        // return $prompt;
     }
 
 
-    //The content will be with html tage, we should strip them out before adding to the prompt
-    public function generateQuestions(string $content)
+    //The content will be with html tag, we should strip them out before adding to the prompt
+    public function generateQuestions(string $content, $questionList)
     {
         $prompt = "
         Generate 5 Multiple Choice Questions based on the following content: \n";
@@ -438,22 +491,29 @@ class AiService
                 "concepts": ["Build Orders", "Army"]
             }
         ]
-        IMPORTANT: Ensure the JSON is properly formatted without markdown or extra text';
-        $questions = $this->callOpenAi($prompt); // returns decoded array of questions
+        IMPORTANT: Ensure the JSON is properly formatted without markdown or extra text
+        IMPORTANT: list of usable "concepts": ["Army", "Build Orders", "Economy", "Map Control", "Mechanics", "Other", "Scouting", "Strategy", "Tactics"]'
+        ;
+        $prompt .= "\nThe questions have to be different to these\n" . $questionList;
+        $questionsData = $this->callOpenAi($prompt); // decoded array from AI
+        $questions = [];
 
-        foreach ($questions as $q) {
-            Question::create([
-                'question'   => $q['question'],
-                'answer'     => $q['answer'], // this is already an array, will be cast to JSON
-                'type'       => $q['type'] ?? 'mcq',
-                'difficulty' => $q['difficulty'] ?? 'medium',
-                'units' => ($q['concepts'] ?? null), // helper method maybe?
-                'concepts'    => ($q['units'] ?? null),
-                'created_by' => auth()->id(), // current logged-in user
+        foreach ($questionsData as $qData) {
+            $question = Question::create([
+                'question'   => $qData['question'],
+                'answer'     => $qData['answer'],
+                'type'       => $qData['type'] ?? 'mcq',
+                'difficulty' => $qData['difficulty'] ?? 'medium',
+                'units'      => $qData['units'] ?? null,
+                'concepts'   => $qData['concepts'] ?? null,
+                'created_by' => auth()->id(),
             ]);
+
+            $questions[] = $question;
         }
 
-        return $questions;
+        return $questions; // array of Question models
+
     }
 
 }

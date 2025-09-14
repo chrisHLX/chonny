@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    //This is for our pages, if we have to create one by the system we need to have a system user
     public function up(): void
     {
         Schema::create('module_pages', function (Blueprint $table) {
