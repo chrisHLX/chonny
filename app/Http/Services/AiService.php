@@ -359,6 +359,16 @@ class AiService
         }
     }
 
+    public function versionQ(array $IDs)
+    {
+        $Questions = Question::whereIn('id', $IDs)->get();
+
+        foreach ($Questions as $question) {
+            Log::info("AI VERSION STRINGS {$question->question}");
+        }
+        return "VersioningService::next('V1', null); // V2";
+    }
+
     
     // This is the functionality for helping users with problematic questions
     public function followUpQuestions(Module $module, array $questions)

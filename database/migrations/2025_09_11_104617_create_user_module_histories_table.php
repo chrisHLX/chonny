@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_module_history', function (Blueprint $table) {
+        Schema::create('user_module_histories', function (Blueprint $table) {
             $table->id();
 
             // Core relationships

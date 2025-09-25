@@ -65,7 +65,7 @@
                         @break
 
                     @case('open')
-                        <textarea wire:model="answer" class="w-full border rounded p-2" rows="3"></textarea>
+                        <textarea wire:model="answer" class="w-full border rounded p-2" rows="3" required></textarea>
                         @break
 
                     @case('matching_pairs')
@@ -142,5 +142,22 @@
     <style>
         .list-group { list-style: none; padding: 0; }
         .list-group-item { padding: 0.5rem 1rem; margin-bottom: 0.5rem; background-color: #fff; border: 1px solid #ccc; border-radius: 0.25rem; cursor: grab; user-select: none; }
+        /* Clickable controls (pointer) */
+        input[type="radio"],
+        input[type="checkbox"],
+        select,
+        button {
+            cursor: pointer;
+        }
+
+        /* Typing areas (text cursor) */
+        textarea,
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="password"] {
+            cursor: text;
+        }
+
     </style>
 </div>

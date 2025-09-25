@@ -3,9 +3,9 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Question;
+use App\Models\UserModuleHistory;
+use App\Events\ModuleAttempted;
 use App\Models\Module;
-use App\Models\User;
 
 class TimedQuiz extends Component
 {
@@ -15,11 +15,14 @@ class TimedQuiz extends Component
     public $currentIndex = 0;
     public $answer;
     public $feedback;
-    public $elapsed = 0; // now always synced from Alpine
+    public $elapsed = 0; 
     public $questionTimes = [];
     public $score = 0;
     public $completed = false;
     public $started = false;
+
+    // ✅ Track per-question correctness
+    public $questionResults = [];
 
     public function mount()
     {
@@ -42,76 +45,122 @@ class TimedQuiz extends Component
             return;
         }
 
-        $this->questions = $module->questions->shuffle()->take(5)->values();
+        // Select 5 random questions from the module & Shuffle the options so they are not in the same order each time
+        $this->answer = []; // cast answer to array
+        $this->questions = $module->questions
+        ->shuffle()
+        ->take(5)
+        ->values()
+        ->transform(function ($question) {
+            // need to save the answer to a variable before assigning the shuffled options 
+            // back due to how laravel casts creates a copy of the array 
+            // (which means you cant just do $question->answer['options'] = $options)
+            $answer = $question->answer;
+
+            if ($question->type === 'mcq') {
+                shuffle($answer['options']);
+                $question->answer = $answer;
+            }
+
+            if ($question->type === 'ordering') {
+                shuffle($answer['steps']);
+                $question->answer = $answer;
+            }
+
+            
+            if ($question->type === 'matching_pairs') {
+                shuffle($answer['pairs']['values']); // only shuffle right-hand side
+                $question->answer = $answer;
+            }
+            
+            return $question;
+        });
+
+
         $this->started = true;
         $this->completed = false;
         $this->score = 0;
         $this->elapsed = 0;
         $this->questionTimes = [];
         $this->currentIndex = 0;
-        $this->answer = [];
+        
         $this->feedback = null;
+        $this->questionResults = [];
     }
 
     public function submit($params = [])
     {
         $question = $this->questions[$this->currentIndex];
         $correct = false;
+
         $this->elapsed = isset($params['elapsed']) ? (int) $params['elapsed'] : 0;
-        
+
+        // ✅ Correctness logic
         switch ($question->type) {
-        case 'mcq':
-            $correct = $this->answer === $question->answer['correct'];
-            break;
+            case 'mcq':
+                $correct = $this->answer === $question->answer['correct'];
+                break;
 
-        case 'true_false':
-            $correct = filter_var($this->answer, FILTER_VALIDATE_BOOLEAN) === $question->answer['correct'];
-            break;
+            case 'true_false':
+                $correct = filter_var($this->answer, FILTER_VALIDATE_BOOLEAN) === $question->answer['correct'];
+                break;
 
-        case 'open':
-            $keywords = $question->answer['correct_keywords'] ?? [];
-            $matched = collect($keywords)->filter(fn($k) => str_contains(strtolower($this->answer), strtolower($k)));
-            $correct = $matched->count() >= ceil(count($keywords) / 2);
-            break;
+            case 'open':
+                $keywords = $question->answer['correct_keywords'] ?? [];
+                $matched = collect($keywords)->filter(fn($k) => str_contains(strtolower($this->answer), strtolower($k)));
+                $correct = $matched->count() >= ceil(count($keywords) / 2);
+                break;
 
-        case 'matching_pairs':
-            $correctPairs = $question->answer['correct'] ?? [];
-            $userPairs = $this->answer ?? [];
-            $correct = collect($correctPairs)->every(fn($v, $k) => isset($userPairs[$k]) && $userPairs[$k] === $v);
-            break;
+            case 'matching_pairs':
+                $correctPairs = $question->answer['correct'] ?? [];
+                $userPairs = $this->answer ?? [];
+                $correct = collect($correctPairs)->every(fn($v, $k) => isset($userPairs[$k]) && $userPairs[$k] === $v);
+                break;
 
-        case 'ordering':
-            $correctOrder = $question->answer['steps'];
-                // Debug raw
-                logger()->info('Raw Livewire answer', ['answer' => $this->answer]);
-            // Livewire gives us $this->answer — if it's JSON from hidden input, decode it
-            $userOrder = $this->answer;
+            //Suggested fix
+            case 'matching_pairs':
+                $correctPairs = $question->answer['correct'] ?? [];
+                $userPairs = $this->answer ?? [];
 
-            if (is_string($userOrder)) {
-                $decoded = json_decode($userOrder, true);
-                if (json_last_error() === JSON_ERROR_NONE) {
-                    $userOrder = $decoded;
+                // Normalize: does each chosen value match the truth?
+                $correct = collect($correctPairs)->every(
+                    fn($expectedValue, $key) => isset($userPairs[$key]) && $userPairs[$key] === $expectedValue
+                );
+                break;
+            
+
+            case 'ordering':
+                $correctOrder = $question->answer['steps'];
+                $userOrder = $this->answer;
+
+                if (is_string($userOrder)) {
+                    $decoded = json_decode($userOrder, true);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        $userOrder = $decoded;
+                    }
                 }
-            }
 
-            // Ensure it's an array
-            if (!is_array($userOrder)) {
-                $userOrder = [];
-            }
+                if (!is_array($userOrder)) {
+                    $userOrder = [];
+                }
 
-            $correct = $userOrder === $correctOrder;
-            break;
+                $correct = $userOrder === $correctOrder;
+                break;
+        }
 
-     }
+        // ✅ Save result
+        $this->questionResults[$question->id] = $correct;
 
+        $this->feedback = $correct 
+            ? "✅ Correct! Time: {$this->elapsed}s" 
+            : "❌ Incorrect. Time: {$this->elapsed}s";
 
-
-        $this->feedback = $correct ? "✅ Correct! Time: {$this->elapsed}s" : "❌ Incorrect. Time: {$this->elapsed}s";
         if ($correct) $this->score++;
 
         $this->questionTimes[] = $this->elapsed;
         \Log::info("Estimated time: {$this->elapsed}s");
-        // ✅ TRACK PROGRESS
+
+        // Track in pivot (answered_questions)
         if (auth()->check()) {
             $user = auth()->user();
             $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
@@ -149,25 +198,55 @@ class TimedQuiz extends Component
     {
         $this->answer = [];
         $this->feedback = '';
-        $this->elapsed = 0; // reset per question
+        $this->elapsed = 0;
         $this->currentIndex++;
-        // Update the pivot table for showing user module progress
+
         if ($this->currentIndex >= $this->questions->count()) {
+            // Quiz completed
             $this->completed = true;
-             // Update module_user pivot table
+
             $user = auth()->user();
             $moduleId = $this->selectedModule;
 
-                if ($user && $moduleId) {
-                    $user->modules()->syncWithoutDetaching([
-                        $moduleId => [
-                            'score' => $this->score / $this->questions->count() * 100,
-                            'status' => 'completed',
-                            'last_activity_at' => now(),
-                            'completed_at' => now()
-                        ]
-                    ]);
-                }
+            // ✅ Update pivot for module progress
+            if ($user && $moduleId) {
+                $user->modules()->syncWithoutDetaching([
+                    $moduleId => [
+                        'score' => $this->score / $this->questions->count() * 100,
+                        'status' => 'completed',
+                        'last_activity_at' => now(),
+                        'completed_at' => now(),
+                    ]
+                ]);
+            }
+
+            // ✅ Save one UserModuleHistory record
+            $lastAttempt = UserModuleHistory::where('user_id', $user->id)
+                ->where('module_id', $moduleId)
+                ->latest('created_at')
+                ->first();
+
+            $attemptNumber = $lastAttempt ? $lastAttempt->attempt_number + 1 : 1;
+
+            $wrongQuestions = array_keys(array_filter($this->questionResults, fn($correct) => !$correct));
+            $rightQuestions = array_keys(array_filter($this->questionResults, fn($correct) => $correct));
+
+            $moduleVersion = Module::find($moduleId)->version ?? 'V1';
+            $moduleVersion .= "ASD";
+
+            $history = UserModuleHistory::create([
+                'user_id' => $user->id,
+                'module_id' => $moduleId,
+                'attempt_number' => $attemptNumber,
+                'wrong_questions' => $wrongQuestions,
+                'right_questions' => $rightQuestions,
+                'module_version' => $moduleVersion,
+                'status' => 'completed',
+            ]);
+
+            
+
+            ModuleAttempted::dispatch($history);
         }
     }
 
