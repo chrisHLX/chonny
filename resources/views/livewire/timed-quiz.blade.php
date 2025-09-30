@@ -25,6 +25,30 @@
                 <li>Q{{ $i + 1 }}: {{ $time }}s</li>
             @endforeach
         </ul>
+        <div class="mt-6 flex space-x-4">
+        
+        <p class="mt-4 text-lg font-bold">
+            You scored {{ $score }} / {{ $questions->count() }}
+        </p>
+
+        @if ($score === $questions->count())
+            {{-- Perfect score: unlock harder/new module --}}
+            <button wire:click="unlockNewModule" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                🎉 Unlock Next Module
+            </button>
+         @elseif ($attemptNumber >= 5)
+            {{-- 3 attempts used: force revision module --}}
+            <button wire:click="generateRevisionModule" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                🔄 Generate Revision Module
+            </button>
+        @else
+            {{-- Retry same module --}}
+            <button wire:click="retryModule" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                🔁 Try Again
+            </button>
+        @endif
+    </div>
+
 
     @else
 

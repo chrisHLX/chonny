@@ -9,7 +9,7 @@ use App\Models\Question;
 use Illuminate\Support\Facades\Log; 
 use App\Models\ModulePage;
 use App\Http\Services\HtmlFormatter;
-use App\Services\VersioningService;
+use App\Http\Services\VersioningService;
 
 use Illuminate\Support\Facades\Http;
 
@@ -273,8 +273,17 @@ class AiService
         return $keywords;
     }
 
-    private function formatAnswer(array $q): string
+    private function formatAnswer($q): string
     {
+        // Normalize: if we got a model, turn it into array shape
+        if ($q instanceof \App\Models\Question) {
+            $q = [
+                'question' => $q->question,
+                'type'     => $q->type,
+                'answer'   => $q->answer,
+            ];
+        }
+
         $type   = $q['type']   ?? null;
         $answer = $q['answer'] ?? null;
 
@@ -288,46 +297,32 @@ class AiService
 
         switch ($type) {
             case 'ordering': {
-                // Typical shape: ['steps' => [...]]
-                $steps = [];
-                if (is_array($answer)) {
-                    if (isset($answer['steps']) && is_array($answer['steps'])) {
-                        $steps = $answer['steps'];
-                    } else {
-                        // fallback if someone stored just an array of steps
-                        $steps = array_values($answer);
-                    }
-                }
+                $steps = $answer['steps'] ?? array_values((array) $answer);
                 return $steps ? implode(' → ', $steps) : 'N/A';
             }
 
             case 'matching_pairs': {
-                // Typical shape: ['correct' => ['Key' => 'Value', ...]]
                 $pairs = [];
-                if (is_array($answer)) {
-                    $map = $answer['correct'] ?? $answer['pairs'] ?? null;
-                    if (is_array($map)) {
-                        foreach ($map as $k => $v) {
-                            $pairs[] = "{$k} = {$v}";
-                        }
+                $map = $answer['correct'] ?? $answer['pairs'] ?? null;
+                if (is_array($map)) {
+                    foreach ($map as $k => $v) {
+                        $pairs[] = "{$k} = {$v}";
                     }
                 }
                 return $pairs ? implode(', ', $pairs) : 'N/A';
             }
 
             case 'open': {
-                // Typical shape: ['ideal_answer' => '...', 'correct_keywords' => [...]]
-                if (is_array($answer) && !empty($answer['ideal_answer'])) {
+                if (!empty($answer['ideal_answer'])) {
                     return $answer['ideal_answer'];
                 }
-                if (is_array($answer) && !empty($answer['correct_keywords'])) {
+                if (!empty($answer['correct_keywords'])) {
                     return 'Keywords: ' . implode(', ', (array)$answer['correct_keywords']);
                 }
                 return 'N/A';
             }
 
             case 'true_false': {
-                // Typical shape: ['correct' => true/false]
                 if (is_array($answer) && array_key_exists('correct', $answer)) {
                     return $answer['correct'] ? 'True' : 'False';
                 }
@@ -339,42 +334,51 @@ class AiService
 
             case 'mcq':
             case 'multiple_choice': {
-                // Typical shape: ['options' => [...], 'correct' => '...']
-                if (is_array($answer) && isset($answer['correct'])) {
-                    return (string) $answer['correct'];
-                }
-                return is_scalar($answer) ? (string)$answer : 'N/A';
+                return $answer['correct'] ?? 'N/A';
             }
 
             default: {
-                // Generic fallback: try to stringify scalars; encode arrays
                 if (is_array($answer)) {
                     return json_encode($answer);
                 }
                 if ($answer === null || $answer === '') {
                     return 'N/A';
                 }
-                return (string)$answer;
+                return (string) $answer;
             }
         }
     }
 
-    public function versionQ(array $IDs)
-    {
-        $Questions = Question::whereIn('id', $IDs)->get();
 
-        foreach ($Questions as $question) {
-            Log::info("AI VERSION STRINGS {$question->question}");
-        }
-        return "VersioningService::next('V1', null); // V2";
+    // Questions the user gets wrong should be sufficient to generate a new module content.
+    public function generateNewModule($moduleID, array $IDs)
+    {
+        \Log::info("new mod generated");
+        $module = Module::find($moduleID); 
+        $module = $this->followUpQuestions($module, $IDs);
+        return $module;
     }
 
-    
+    // Questions the user gets wrong should be sufficient to generate a new module content.
+    public function generateHarderModule($moduleID, array $IDs)
+    {
+        \Log::info("harder mod generated");
+
+
+    }
+
     // This is the functionality for helping users with problematic questions
-    public function followUpQuestions(Module $module, array $questions)
+    private function followUpQuestions(Module $module, array $questionIds)
     {
         // Filter out questions that were answered correctly
         $questionList = "";
+        $ogModule = $module;
+
+        $questions = Question::whereIn('id', $questionIds)->get()->map(fn($q) => [
+            'question' => $q->question,
+            'type'     => $q->type,
+            'answer'   => $q->answer,
+        ])->toArray();
 
         foreach ($questions as $index => $q) {
             $formattedAnswer = $this->formatAnswer($q); // We are fomatting the answer to handle different types like ordering, matching pairs (arrays not strings)
@@ -429,13 +433,8 @@ class AiService
 
             
         // Get the latest version number of this parent’s children
-        $latestVersion = Module::where('parent_module', $module->id)
-            ->max('version');
-
-        $parentVersion = $latestVersion; // e.g. "V1"
-        $latestChildVersion = Module::where('parent_module', $parentModule->id)
-            ->orderBy('created_at', 'desc')
-            ->value('version'); // e.g. "V3A1"
+        $parentVersion = $ogModule->version;
+        $latestChildVersion = $ogModule->version;
 
         // If no children exist yet, start at 2 (since v1 is the parent itself)
         $newVersion = VersioningService::next($parentVersion, $latestChildVersion);
@@ -444,7 +443,7 @@ class AiService
             'name'          => "Follow-up on problematic questions " . now()->toDateTimeString(),
             'description'   => "AI generated module to help user with problematic questions",
             'version'       => $newVersion,
-            'parent_module' => $parentModule->id,
+            'parent_module' => $ogModule->id,
             'created_by'    => auth()->id(),
         ]);
 
@@ -474,10 +473,7 @@ class AiService
 
         \logger()->info('Generated follow-up questions', ['questions' => $questions]);
 
-        return $content;
-
-         
-       // return $prompt;
+        return $module;
     }
 
 
@@ -502,7 +498,8 @@ class AiService
             }
         ]
         IMPORTANT: Ensure the JSON is properly formatted without markdown or extra text
-        IMPORTANT: list of usable "concepts": ["Army", "Build Orders", "Economy", "Map Control", "Mechanics", "Other", "Scouting", "Strategy", "Tactics"]'
+        IMPORTANT: list of usable "concepts": ["Army", "Build Orders", "Economy", "Map Control", "Mechanics", "Other", "Scouting", "Strategy", "Tactics"]
+        IMPORTANT: Use language suitable for a player who would struggle with the content provided'
         ;
         $prompt .= "\nThe questions have to be different to these\n" . $questionList;
         $questionsData = $this->callOpenAi($prompt); // decoded array from AI
@@ -514,10 +511,21 @@ class AiService
                 'answer'     => $qData['answer'],
                 'type'       => $qData['type'] ?? 'mcq',
                 'difficulty' => $qData['difficulty'] ?? 'medium',
-                'units'      => $qData['units'] ?? null,
-                'concepts'   => $qData['concepts'] ?? null,
+                'units'      => $qData['units'] ?? null, // these dont exist but maybe we can attach them via the pivot table
+                'concepts'   => $qData['concepts'] ?? null, // these dont exist but maybe we can attach them
                 'created_by' => auth()->id(),
             ]);
+
+            //Create a map of existing concepts for the module to avoid duplicates but also to send to the ai
+            $conceptMap = Concept::all()->pluck('id', 'name');
+            // Example: ['Scouting' => 1, 'Economy' => 2, ...]
+            // logic to attach questions here nned to get concept IDS
+            $conceptIds = collect($qData['concepts'])
+                ->map(fn($name) => $conceptMap[$name] ?? $conceptMap['Other'])
+                ->unique()
+                ->values();
+
+            $question->concepts()->sync($conceptIds);
 
             $questions[] = $question;
         }

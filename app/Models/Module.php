@@ -15,6 +15,8 @@ class Module extends Model
         'difficulty',
         'published',
         'created_by',
+        'parent_module', 
+        'version',       
     ];
 
     public function questions()

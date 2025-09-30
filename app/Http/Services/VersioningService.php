@@ -3,6 +3,9 @@
 namespace App\Http\Services;
 
 // Service to handle versioning logic, e.g., generating next version strings
+// It basically just implements the Version String based on the parent and latest version
+// IMPORTANT the idea is that when a user fails the main module 3 times they need to complete a new version of the module
+// So we actually need some logic to prevent the user doing the same module again until the new version is completed
 
 class VersioningService
 {

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\UserModuleHistory;
 use App\Events\ModuleAttempted;
 use App\Models\Module;
+use App\Http\Services\AiService;
 
 class TimedQuiz extends Component
 {
@@ -20,13 +21,15 @@ class TimedQuiz extends Component
     public $score = 0;
     public $completed = false;
     public $started = false;
-
+    public $attemptNumber = 0; //default 
+    
     // ✅ Track per-question correctness
     public $questionResults = [];
-
+    
     public function mount()
     {
         $this->modules = auth()->user()->modules()->get();
+        
     }
 
     public function incrementElapsed()
@@ -109,12 +112,6 @@ class TimedQuiz extends Component
                 $keywords = $question->answer['correct_keywords'] ?? [];
                 $matched = collect($keywords)->filter(fn($k) => str_contains(strtolower($this->answer), strtolower($k)));
                 $correct = $matched->count() >= ceil(count($keywords) / 2);
-                break;
-
-            case 'matching_pairs':
-                $correctPairs = $question->answer['correct'] ?? [];
-                $userPairs = $this->answer ?? [];
-                $correct = collect($correctPairs)->every(fn($v, $k) => isset($userPairs[$k]) && $userPairs[$k] === $v);
                 break;
 
             //Suggested fix
@@ -225,14 +222,15 @@ class TimedQuiz extends Component
                 ->where('module_id', $moduleId)
                 ->latest('created_at')
                 ->first();
-
+            //Work out the new attempt number
             $attemptNumber = $lastAttempt ? $lastAttempt->attempt_number + 1 : 1;
+            $this->attemptNumber = $attemptNumber; // Store for potential use elsewhere
 
             $wrongQuestions = array_keys(array_filter($this->questionResults, fn($correct) => !$correct));
+            
             $rightQuestions = array_keys(array_filter($this->questionResults, fn($correct) => $correct));
 
             $moduleVersion = Module::find($moduleId)->version ?? 'V1';
-            $moduleVersion .= "ASD";
 
             $history = UserModuleHistory::create([
                 'user_id' => $user->id,
@@ -241,12 +239,13 @@ class TimedQuiz extends Component
                 'wrong_questions' => $wrongQuestions,
                 'right_questions' => $rightQuestions,
                 'module_version' => $moduleVersion,
-                'status' => 'completed',
+                'status' => !empty($wrongQuestions) ? 'failed' : 'completed', // If array is empty completed if not failed
+
             ]);
 
-            
-
             ModuleAttempted::dispatch($history);
+
+            $this->handleNextModule($history);
         }
     }
 
@@ -254,4 +253,64 @@ class TimedQuiz extends Component
     {
         return view('livewire.timed-quiz');
     }
+
+    // Resets the module
+    public function retryModule()
+    {
+        // Reset state and start over
+        $this->completed = false;
+        $this->score = 0;
+        $this->currentIndex = 0;
+        $this->answer = [];
+        $this->questionTimes = [];
+        $this->totalTime = 0;
+
+        $this->mount(); // or refetch questions the same way as mount
+    }
+
+    public function generateRevisionModule()
+    {
+        
+        \Log::info("Grabbing the lattest module");
+        // Now user should see new module in dropdown list and it should be selected
+        // is it possible to already have the new module selected?
+        $this->selectedModule = "5";
+        $this->started = false; // I think this brings you back to the select module part
+
+
+    }
+
+    public function unlockNewModule()
+    {
+        // Example: fetch a different module or next version
+        \Log::info("Unlocking new quiz for module {$this->selectedModule}");
+    }
+
+    protected function handleNextModule(UserModuleHistory $history)
+    {
+        $user = auth()->user();
+
+        // The actual model ID is saved in module ID
+        $moduleID = $this->selectedModule;
+
+        //resolve ai service
+        $aiService = app(AiService::class);
+        
+
+        // 1️⃣ Generate a revision module after 3 failed attempts
+        if ($history->status === 'failed' && $history->attempt_number >= 3) {
+            $newModule = $aiService->generateNewModule($moduleID, $history->wrong_questions);
+            // $user->modules()->attach($newModule->id); // DONE IN AI SERVICE
+            $this->selectedModule = $newModule->id;
+            \Log::info("revision done");
+        }
+
+        // 2️⃣ Generate a harder module if user passed
+        if ($history->status === 'completed') {
+            $newModule = $aiService->generateHarderModule($moduleID, $history->right_questions);
+            //$user->modules()->attach($newModule->id);
+            \Log::info("harder done");
+        }
+    }
+
 }
