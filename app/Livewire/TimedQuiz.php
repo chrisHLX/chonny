@@ -243,6 +243,7 @@ class TimedQuiz extends Component
 
             ]);
 
+            // We may no longer need this event.
             ModuleAttempted::dispatch($history);
 
             $this->handleNextModule($history);

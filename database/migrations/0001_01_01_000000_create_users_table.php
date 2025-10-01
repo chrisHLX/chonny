@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('credits')->default(0); // Adding credits for ai requests
             $table->rememberToken();
             $table->timestamps();
         });

@@ -141,6 +141,7 @@ class ModuleController extends Controller
         dd($formattedDescription);
     }
 
+    
     public function generateLandingPage(Module $module, Request $request)
     {
         

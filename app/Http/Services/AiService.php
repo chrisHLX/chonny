@@ -4,12 +4,14 @@ namespace App\Http\Services;
 
 use GuzzleHttp\Client;
 use App\Models\AiRequest;
+use App\Models\Concept;
 use App\Models\Module;
 use App\Models\Question;
 use Illuminate\Support\Facades\Log; 
 use App\Models\ModulePage;
 use App\Http\Services\HtmlFormatter;
 use App\Http\Services\VersioningService;
+
 
 use Illuminate\Support\Facades\Http;
 
@@ -27,152 +29,7 @@ class AiService
         $this->apiKey = env('OPENAI_API_KEY'); // or config('services.openai.key')
     }
 
-    public function tagConcepts(string $questionText, string $answerText = '', $module_id, $conceptMap): array
-    {
-        $conceptMap = json_encode($conceptMap);
-
-        $prompt = <<<EOT
-        You are a StarCraft 2 coach. Analyze the following question and answer. Select 1–3 core gameplay concepts from the list that apply.
-
-        Return only raw JSON. Do not include markdown or formatting. Just return: {"concepts": [...]}
-
-        Concepts: {$conceptMap}
-        Question: {$questionText}
-        Answer: {$answerText}
-        EOT;
-
-
-        $response = $this->callOpenAi($prompt);
-        $concepts = $response['concepts'] ?? [];
-
-        \Log::info('This is the custom LOG', ['response' => $concepts]);
-
-        // add the response to the database
-        AiRequest::create([
-            'user_id' => auth()->id(),
-            'purpose' => 'tag_concepts',
-            'prompt' => $prompt,
-            'response' => $concepts,
-            'metadata' => [
-                'question_text' => $questionText,
-                'answer_text' => $answerText,
-                'module_id' => $module_id, 
-                'model' => 'gpt-4.1-mini',
-            ],
-        ]);
-
-        return $concepts;
-
-    }
-
-    public function tagUnits(string $questionText, string $answerText = ''): array
-    {
-        $prompt = <<<EOT
-        You are a StarCraft 2 coach. Analyze the following question and answer. Identify 1–3 specific units mentioned or implied. Return in JSON: {"units": [...]}
-
-        Question: {$questionText}
-        Answer: {$answerText}
-        EOT;
-
-        return $this->callOpenAi($prompt)['units'] ?? [];
-    }
-
-    public function createLandingPage(Module $module, string $userPrompt = '')
-    {
-    $prompt = <<<EOT
-    Please take the following user-provided content and format it into raw, well-structured HTML with no classes. 
-    Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
-    and use <p>, <ul>, <ol>, and <li> for content details.
-
-    Do not include <html>, <head>, or <body> tags.
-
-    Module Name: {$module->name}
-    Module Description: {$module->description}
-
-    User Content:
-    {$userPrompt}
-    EOT;
-
-        $response = $this->callOpenAiHTML($prompt);
-
-        $formattedResponse = $this->formatter->format($response);
-
-        AiRequest::create([
-            'user_id' => auth()->id(),
-            'purpose' => 'generate_landing_page',
-            'prompt' => $prompt,
-            'response' => $response,
-            'metadata' => [
-                'module_id' => $module->id,
-                'model' => 'gpt-4o-mini',
-            ],
-        ]);
-
-        ModulePage::create([
-            'module_id'   => $module->id,
-            'title'       => $module->name,
-            'content'     => $formattedResponse,
-            'page_number' => 1, // landing page
-            'created_by'  => auth()->id(),
-            'updated_by'  => auth()->id(),
-        ]);
-
-        return $response;
-    }
-
-
-    public function generateLandingPage(Module $module, string $userPrompt = '') 
-    {
-        $questions = $module->questions()->with('concepts')->get();
-        $prompt = <<<EOT
-        Could you create a guide for the following user-created module. The aim is to help people understand key concepts in sc2.
-
-        Module Name: {$module->name}
-        Module Description: {$module->description}
-        Additional Context: {$userPrompt}
-        EOT;
-
-            $prompt .= <<<EOT
-
-        Please format the guide using raw well structured HTML with no classes. 
-        Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
-        and use <p>, <ul>, <ol>, and <li> for content details.
-
-        Do not include <html>, <head>, or <body> tags.
-
-        EOT;
-
-            \Log::debug('Generating landing page with prompt', ['prompt' => $prompt]);
-
-            $response = $this->callOpenAiHTML($prompt);
-
-            $formattedResponse = $this->formatter->format($response);
-
-
-            AiRequest::create([
-                'user_id' => auth()->id(),
-                'purpose' => 'generate_landing_page',
-                'prompt' => $prompt,
-                'response' => $response,
-                'metadata' => [
-                    'module_id' => $module->id,
-                    'model' => 'gpt-4o-mini',
-                ],
-            ]);
-
-            ModulePage::create([
-                'module_id'   => $module->id,
-                'title'       => $module->name,
-                'content'     => $formattedResponse,
-                'page_number' => 1, // landing page
-                'created_by'  => auth()->id(),
-                'updated_by'  => auth()->id(),
-            ]);
-            
-            return $response;
-        }
-
-
+    /* --------------------------------------------------------- OPENAI CALLS & HELPERS --------------------------------------------------------- */
     private function callOpenAi(string $prompt): array
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
@@ -228,51 +85,7 @@ class AiService
         return $content;
     }
 
-    private function storeGeneratedPage($moduleId, $title, $content, $userId)
-    {
-        return ModulePage::create([
-            'module_id'   => $moduleId,
-            'title'       => $title,
-            'content'     => $content,
-            'page_number' => 1, // landing page
-            'created_by'  => $userId,
-            'updated_by'  => $userId,
-        ]);
-    }
-
-    public function getKeywords($input)
-    {
-        // Example prompt for OpenAI
-        $prompt = "
-            Extract the most important keywords from the following text that I can then compare against a users answer.
-            Respond ONLY with a JSON array of strings. 
-            Text: \"$input\"
-        ";
-
-        // Call OpenAI API (replace with your own client implementation)
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o-mini',
-            'messages' => [
-                ['role' => 'system', 'content' => 'You are a helpful assistant.'],
-                ['role' => 'user', 'content' => $prompt],
-            ],
-            'temperature' => 0.2,
-        ]);
-
-        // Get the text output from OpenAI
-        $output = $response['choices'][0]['message']['content'] ?? '[]';
-
-        // Decode into an array
-        $keywords = json_decode($output, true);
-
-        // Make sure it's always an array
-        if (!is_array($keywords)) {
-            $keywords = [];
-        }
-
-        return $keywords;
-    }
-
+    // Format the answer based on its type for better readability in prompts important for generating questions
     private function formatAnswer($q): string
     {
         // Normalize: if we got a model, turn it into array shape
@@ -349,6 +162,142 @@ class AiService
         }
     }
 
+    /* --------------------------------------------------------- Question Controller --------------------------------------------------------- */
+
+    // This is used in the question controller when creating new questions
+    public function tagConcepts(string $questionText, string $answerText = '', $module_id, $conceptMap): array
+    {
+        $conceptMap = json_encode($conceptMap);
+
+        $prompt = <<<EOT
+        You are a StarCraft 2 coach. Analyze the following question and answer. Select 1–3 core gameplay concepts from the list that apply.
+
+        Return only raw JSON. Do not include markdown or formatting. Just return: {"concepts": [...]}
+
+        Concepts: {$conceptMap}
+        Question: {$questionText}
+        Answer: {$answerText}
+        EOT;
+
+
+        $response = $this->callOpenAi($prompt);
+        $concepts = $response['concepts'] ?? [];
+
+        \Log::info('This is the custom LOG', ['response' => $concepts]);
+
+        // add the response to the database
+        AiRequest::create([
+            'user_id' => auth()->id(),
+            'purpose' => 'tag_concepts',
+            'prompt' => $prompt,
+            'response' => $concepts,
+            'metadata' => [
+                'question_text' => $questionText,
+                'answer_text' => $answerText,
+                'module_id' => $module_id, 
+                'model' => 'gpt-4.1-mini',
+            ],
+        ]);
+
+        return $concepts;
+
+    }
+
+    // This was used in the question controller when creating new questions but we are not using it at the moment
+    // Keeping it here in case we want to use it later
+    public function tagUnits(string $questionText, string $answerText = ''): array
+    {
+        $prompt = <<<EOT
+        You are a StarCraft 2 coach. Analyze the following question and answer. Identify 1–3 specific units mentioned or implied. Return in JSON: {"units": [...]}
+
+        Question: {$questionText}
+        Answer: {$answerText}
+        EOT;
+
+        return $this->callOpenAi($prompt)['units'] ?? [];
+    }
+
+    // Used in the question controller in the store function for saving questions, automatically generating keywords for open questions
+    public function getKeywords($input)
+    {
+        // Example prompt for OpenAI
+        $prompt = "
+            Extract the most important keywords from the following text that I can then compare against a users answer.
+            Respond ONLY with a JSON array of strings. 
+            Text: \"$input\"
+        ";
+
+        // Call OpenAI API (replace with your own client implementation)
+        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+                ['role' => 'user', 'content' => $prompt],
+            ],
+            'temperature' => 0.2,
+        ]);
+
+        // Get the text output from OpenAI
+        $output = $response['choices'][0]['message']['content'] ?? '[]';
+
+        // Decode into an array
+        $keywords = json_decode($output, true);
+
+        // Make sure it's always an array
+        if (!is_array($keywords)) {
+            $keywords = [];
+        }
+
+        return $keywords;
+    }
+
+    /* --------------------------------------------------------- Module Controller --------------------------------------------------------- */
+
+    // Used in the module controller when creating landing pages
+    public function createLandingPage(Module $module, string $userPrompt = '')
+    {
+    $prompt = <<<EOT
+    Please take the following user-provided content and format it into raw, well-structured HTML with no classes. 
+    Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
+    and use <p>, <ul>, <ol>, and <li> for content details.
+
+    Do not include <html>, <head>, or <body> tags.
+
+    Module Name: {$module->name}
+    Module Description: {$module->description}
+
+    User Content:
+    {$userPrompt}
+    EOT;
+
+        $response = $this->callOpenAiHTML($prompt);
+
+        $formattedResponse = $this->formatter->format($response);
+
+        AiRequest::create([
+            'user_id' => auth()->id(),
+            'purpose' => 'generate_landing_page',
+            'prompt' => $prompt,
+            'response' => $response,
+            'metadata' => [
+                'module_id' => $module->id,
+                'model' => 'gpt-4o-mini',
+            ],
+        ]);
+
+        ModulePage::create([
+            'module_id'   => $module->id,
+            'title'       => $module->name,
+            'content'     => $formattedResponse,
+            'page_number' => 1, // landing page
+            'created_by'  => auth()->id(),
+            'updated_by'  => auth()->id(),
+        ]);
+
+        return $response;
+    }
+
+    /* --------------------------------------------------------- MODULE GENERATION --------------------------------------------------------- */
 
     // Questions the user gets wrong should be sufficient to generate a new module content.
     public function generateNewModule($moduleID, array $IDs)
@@ -363,8 +312,6 @@ class AiService
     public function generateHarderModule($moduleID, array $IDs)
     {
         \Log::info("harder mod generated");
-
-
     }
 
     // This is the functionality for helping users with problematic questions
@@ -480,6 +427,10 @@ class AiService
     //The content will be with html tag, we should strip them out before adding to the prompt
     public function generateQuestions(string $content, $questionList)
     {
+        //Create a map of existing concepts for the module to avoid duplicates
+        $conceptMap = Concept::all()->pluck('id', 'name');
+        $questions = [];
+
         $prompt = "
         Generate 5 Multiple Choice Questions based on the following content: \n";
         $prompt .= $content;
@@ -502,22 +453,21 @@ class AiService
         IMPORTANT: Use language suitable for a player who would struggle with the content provided'
         ;
         $prompt .= "\nThe questions have to be different to these\n" . $questionList;
-        $questionsData = $this->callOpenAi($prompt); // decoded array from AI
-        $questions = [];
 
+        $questionsData = $this->callOpenAi($prompt); // decoded array from AI
+        
+        /* units currently being returned by the AI but we havent created the logic to attach them yet
+        'units'      => $qData['units'] ?? null, // these dont exist but maybe we can attach them via the pivot table
+        */
+        // Loop through each question data and create a new question. then map concepts and attach concepts to the new questions
         foreach ($questionsData as $qData) {
             $question = Question::create([
                 'question'   => $qData['question'],
                 'answer'     => $qData['answer'],
                 'type'       => $qData['type'] ?? 'mcq',
                 'difficulty' => $qData['difficulty'] ?? 'medium',
-                'units'      => $qData['units'] ?? null, // these dont exist but maybe we can attach them via the pivot table
-                'concepts'   => $qData['concepts'] ?? null, // these dont exist but maybe we can attach them
                 'created_by' => auth()->id(),
-            ]);
-
-            //Create a map of existing concepts for the module to avoid duplicates but also to send to the ai
-            $conceptMap = Concept::all()->pluck('id', 'name');
+            ]); 
             // Example: ['Scouting' => 1, 'Economy' => 2, ...]
             // logic to attach questions here nned to get concept IDS
             $conceptIds = collect($qData['concepts'])
@@ -532,6 +482,60 @@ class AiService
 
         return $questions; // array of Question models
 
+    }
+
+    /* --------------------------------------------------------- Unused Functions --------------------------------------------------------- */
+
+    // currently not being used, was used for automatic landing page generation
+    public function generateLandingPage(Module $module, string $userPrompt = '') 
+    {
+        $questions = $module->questions()->with('concepts')->get();
+        $prompt = <<<EOT
+        Could you create a guide for the following user-created module. The aim is to help people understand key concepts in sc2.
+
+        Module Name: {$module->name}
+        Module Description: {$module->description}
+        Additional Context: {$userPrompt}
+        EOT;
+
+            $prompt .= <<<EOT
+
+        Please format the guide using raw well structured HTML with no classes. 
+        Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
+        and use <p>, <ul>, <ol>, and <li> for content details.
+
+        Do not include <html>, <head>, or <body> tags.
+
+        EOT;
+
+            \Log::debug('Generating landing page with prompt', ['prompt' => $prompt]);
+
+            $response = $this->callOpenAiHTML($prompt);
+
+            $formattedResponse = $this->formatter->format($response);
+
+
+            AiRequest::create([
+                'user_id' => auth()->id(),
+                'purpose' => 'generate_landing_page',
+                'prompt' => $prompt,
+                'response' => $response,
+                'metadata' => [
+                    'module_id' => $module->id,
+                    'model' => 'gpt-4o-mini',
+                ],
+            ]);
+
+            ModulePage::create([
+                'module_id'   => $module->id,
+                'title'       => $module->name,
+                'content'     => $formattedResponse,
+                'page_number' => 1, // landing page
+                'created_by'  => auth()->id(),
+                'updated_by'  => auth()->id(),
+            ]);
+            
+        return $response;
     }
 
 }
