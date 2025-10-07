@@ -1,140 +1,149 @@
+{{-- resources/views/dashboard.blade.php --}}
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>   
-
-    <!-- New Section: Welcome -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 text-lg">
-                    {{ __("Welcome, ") }} <span class="font-semibold">{{ $user->name }}</span>! {{ __("You're logged in.") }}
-                </div>
-            </div>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-2xl text-white leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+            <span class="text-gray-400 text-sm">
+                Last login: {{ $user->last_login_at?->diffForHumans() ?? 'N/A' }}
+            </span>
         </div>
-    </div>
+    </x-slot>
 
-    <!-- New Section: Concept Mastery -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold mb-4">Your Concept Mastery</h3>
-                    <p class="mb-4">Complete Modules to increase your mastery score.</p>
-                    @foreach($concepts as $concept)
-                        <div class="mb-4">
-                            <div class="flex justify-between mb-1">
-                                <span class="font-semibold">{{ $concept->name }}</span>
-                                <span>{{ $concept->mastery_for_user }}%</span>
+    <div class="bg-gray-900 text-gray-200 min-h-screen py-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-10">
+
+            <!-- Welcome Card -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl shadow-lg p-8 border border-blue-500/30">
+                <h1 class="text-3xl font-bold mb-2">Welcome back, {{ $user->name }} 👋</h1>
+                <p class="text-blue-100">
+                    Ready to keep improving your StarCraft 2 knowledge? Let’s dive in.
+                </p>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+                <!-- Concept Mastery -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                        📘 Your Concept Mastery
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Track your progress and identify key areas to improve.
+                    </p>
+                    @forelse($concepts as $concept)
+                        <div class="mb-5">
+                            <div class="flex justify-between mb-1 text-sm">
+                                <span class="font-medium text-gray-200">{{ $concept->name }}</span>
+                                <span class="text-gray-400">{{ $concept->mastery_for_user }}%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                                <div class="bg-green-500 h-4 rounded-full transition-all duration-500 ease-in-out" 
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-in-out" 
                                      style="width: {{ $concept->mastery_for_user }}%">
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-gray-500">No mastery data yet.</p>
+                    @endforelse
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- New Section: Problematic Questions -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold mb-4">Questions You struggle with</h3>
-                    <p class="mb-4">View Questions Which Give you Strife</p>
+
+                <!-- Problematic Questions -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                        ❓ Problematic Questions
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Revisit the questions that challenged you most.
+                    </p>
                     <a href="{{ route('questions.problematic') }}" 
-                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow mb-4">
-                        View Problematic Questions
+                       class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition">
+                        Review Problematic Questions
                     </a>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- New Section: Your Modules -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-lg font-semibold mb-4">Your Modules</h3>
+
+                <!-- User Modules -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                        🎯 Your Modules
+                    </h3>
                     @if($modules->isEmpty())
-                        <p class="mb-4">You have no modules assigned.</p>
+                        <p class="text-gray-400 text-sm mb-4">
+                            You have no active modules yet.
+                        </p>
                         <a href="{{ route('modules.index') }}" 
-                           class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">
-                            View Modules
+                           class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                            Browse Modules
                         </a>
                     @else
-                        <ul class="list-disc pl-5">
+                        <ul class="space-y-3">
                             @foreach($modules as $module)
-                                <li>
-                                    {{ $module->name }} Score: ({{ $module->pivot->score }}) Status: {{ $module->pivot->status }}
+                                <li class="bg-gray-700 p-3 rounded-lg flex justify-between items-center hover:bg-gray-600 transition">
+                                    <span class="font-medium text-gray-100">{{ $module->name }}</span>
+                                    <span class="text-sm text-gray-400">
+                                        Score: {{ $module->pivot->score }} | {{ ucfirst($module->pivot->status) }}
+                                    </span>
                                 </li>
                             @endforeach
                         </ul>
                     @endif
                 </div>
+
             </div>
-        </div>
-    </div>
 
-    <!-- New Section: Created Modules -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    @if ($createdModules->isEmpty())
-                        <h1 class="text-lg font-semibold mb-6">Create Modules</h1>
-                        <p class="mb-4">You have not created any modules.</p>
-                        <a href="{{ route('modules.create') }}" 
-                           class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">
-                            Create Module
-                        </a>
-                    @else
-                        <h1 class="text-lg font-semibold mb-6">Created Modules</h1>
-
-                        <!-- Grid layout for modules -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @foreach($createdModules as $module)
-                                <div class="border rounded-lg p-4 shadow-sm bg-gray-50 flex flex-col justify-between">
-                                    <div>
-                                        <h2 class="text-md font-bold text-gray-800">{{ $module->name }}</h2>
-                                        <p class="text-gray-600 text-sm mt-1">{{ $module->description }}</p>
-                                    </div>
-                                    <div class="mt-4 flex gap-2">
-                                        <!-- Delete Form -->
-                                        <form action="{{ route('modules.destroy', $module) }}" method="POST" 
-                                              onsubmit="return confirm('Are you sure?');" class="flex-1">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow">
-                                                Delete
-                                            </button>
-                                        </form>
-                                        <!-- Edit Button -->
-                                        <a href="{{ route('modules.edit', $module) }}" 
-                                           class="flex-1 text-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md shadow">
-                                            Edit
-                                        </a>
-                                    </div>
+            <!-- Created Modules -->
+            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                @if ($createdModules->isEmpty())
+                    <h3 class="text-lg font-semibold mb-3 text-white flex items-center gap-2">
+                        🧩 Create Your Own Modules
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Create custom learning modules to share or refine your skills.
+                    </p>
+                    <a href="{{ route('modules.create') }}" 
+                       class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+                        ➕ Create Module
+                    </a>
+                @else
+                    <h3 class="text-lg font-semibold mb-6 text-white flex items-center gap-2">
+                        🧠 Your Created Modules
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach($createdModules as $module)
+                            <div class="bg-gray-700 rounded-xl p-4 flex flex-col justify-between hover:bg-gray-600 transition">
+                                <div>
+                                    <h2 class="text-md font-bold text-white">{{ $module->name }}</h2>
+                                    <p class="text-gray-400 text-sm mt-1">{{ $module->description }}</p>
                                 </div>
-                            @endforeach
-                        </div>
+                                <div class="mt-4 flex gap-2">
+                                    <form action="{{ route('modules.destroy', $module) }}" method="POST" 
+                                          onsubmit="return confirm('Are you sure?');" class="flex-1">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="w-full bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md">
+                                            Delete
+                                        </button>
+                                    </form>
+                                    <a href="{{ route('modules.edit', $module) }}" 
+                                       class="flex-1 text-center bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-md">
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
 
-                        <!-- Create button at bottom -->
-                        <div class="mt-6">
-                            <a href="{{ route('modules.create') }}" 
-                               class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow">
-                                Create Module
-                            </a>
-                        </div>
-                    @endif
-                </div>
+                    <div class="mt-8 text-center">
+                        <a href="{{ route('modules.create') }}" 
+                           class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+                            ➕ Create Another Module
+                        </a>
+                    </div>
+                @endif
             </div>
+
         </div>
     </div>
-
 </x-app-layout>

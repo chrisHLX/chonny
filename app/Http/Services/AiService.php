@@ -2,13 +2,15 @@
 
 namespace App\Http\Services;
 
-use GuzzleHttp\Client;
 use App\Models\AiRequest;
 use App\Models\Concept;
 use App\Models\Module;
 use App\Models\Question;
-use Illuminate\Support\Facades\Log; 
 use App\Models\ModulePage;
+
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log; 
+
 use App\Http\Services\HtmlFormatter;
 use App\Http\Services\VersioningService;
 
@@ -317,9 +319,18 @@ class AiService
     // This is the functionality for helping users with problematic questions
     private function followUpQuestions(Module $module, array $questionIds)
     {
+        // Moved the variables up the top.
+        $user = auth()->user();
         // Filter out questions that were answered correctly
         $questionList = "";
         $ogModule = $module;
+        // Get the latest version number of this parent’s children
+        $parentVersion = $ogModule->version;
+        $latestChildVersion = $ogModule->version;
+        // Lets change the name of the module
+
+        // If no children exist yet, start at 2 (since v1 is the parent itself) need a latest child version
+        $newVersion = VersioningService::next($parentVersion, $latestChildVersion);
 
         $questions = Question::whereIn('id', $questionIds)->get()->map(fn($q) => [
             'question' => $q->question,
@@ -378,17 +389,9 @@ class AiService
                 ],
             ]);
 
-            
-        // Get the latest version number of this parent’s children
-        $parentVersion = $ogModule->version;
-        $latestChildVersion = $ogModule->version;
-
-        // If no children exist yet, start at 2 (since v1 is the parent itself)
-        $newVersion = VersioningService::next($parentVersion, $latestChildVersion);
-
         $module = Module::create([
-            'name'          => "Follow-up on problematic questions " . now()->toDateTimeString(),
-            'description'   => "AI generated module to help user with problematic questions",
+            'name'          => $ogModule->name . now()->toDateTimeString(),
+            'description'   => "AI generated module to help user with problematic questions:" . $questionList,
             'version'       => $newVersion,
             'parent_module' => $ogModule->id,
             'created_by'    => auth()->id(),
@@ -403,8 +406,6 @@ class AiService
             'created_by'  => auth()->id(),
             'updated_by'  => auth()->id(),
         ]);
-        $user = auth()->user();
-        
 
         $user->modules()->attach($module->id, [
             'status' => 'in_progress',

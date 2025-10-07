@@ -18,7 +18,7 @@
             </h1>
             <p class="text-lg sm:text-xl text-gray-300 mb-10">
                 Master your gameplay with AI-powered coaching.  
-                Get personalized feedback based on your matches,  
+                Get personalized feedback based on your quizes,  
                 improve your build orders, and climb the ladder faster.
             </p>
 
@@ -38,8 +38,8 @@
         <!-- Features Section -->
         <div class="mt-20 grid gap-10 sm:grid-cols-3 max-w-5xl text-center">
             <div>
-                <h3 class="text-xl font-semibold mb-3">🎯 Personalized Coaching</h3>
-                <p class="text-gray-400">AI analyses your replays and gives specific tips tailored to your playstyle.</p>
+                <h3 class="text-xl font-semibold mb-3">🎯 Personalised Coaching</h3>
+                <p class="text-gray-400">AI Analyzes your data to provide personalised insights</p>
             </div>
             <div>
                 <h3 class="text-xl font-semibold mb-3">📊 Progress Tracking</h3>

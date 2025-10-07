@@ -246,7 +246,7 @@ class TimedQuiz extends Component
             // We may no longer need this event.
             ModuleAttempted::dispatch($history);
 
-            $this->handleNextModule($history);
+           // $this->handleNextModule($history);
         }
     }
 
@@ -275,7 +275,7 @@ class TimedQuiz extends Component
         \Log::info("Grabbing the lattest module");
         // Now user should see new module in dropdown list and it should be selected
         // is it possible to already have the new module selected?
-        $this->selectedModule = "5";
+        
         $this->started = false; // I think this brings you back to the select module part
 
 
