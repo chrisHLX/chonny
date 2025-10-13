@@ -42,18 +42,48 @@
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                @if ($score === $questions->count() || $attemptNumber >= 3)
-                    <button wire:click="unlockNewModule"
-                        class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
-                        🎉 Next Module
-                    </button>
+                @if ($difficulty === 'review')
+                    @if ($score === $questions->count())
+                        <!-- All review questions correct -->
+                        <a href="{{ route('dashboard.progress') }}"
+                            class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
+                            🎉 View Progress
+                        </a>
+
+<!--
+                        <button wire:click="unlockNewModule"
+                            class="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 shadow">
+                            ➡️ Next Module
+                        </button>
+-->
+                    @else
+                        <!-- Review in progress -->
+                        <button wire:click="retryModule"
+                            class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
+                            🔁 Try Again
+                        </button>
+                    @endif
                 @else
-                    <button wire:click="retryModule"
-                        class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
-                        🔁 Try Again
-                    </button>
+                    @if ($score === $questions->count() || $attemptNumber >= 3)
+                        <!-- Normal module completed 
+                        <button wire:click="unlockNewModule"
+                            class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
+                            🎉 Next Module
+                        </button>                      
+-->
+                        <button wire:click="retryModule"
+                            class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
+                            🔁 Try Again
+                        </button>
+                    @else
+                        <button wire:click="retryModule"
+                            class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
+                            🔁 Try Again
+                        </button>
+                    @endif
                 @endif
             </div>
+
         </div>
 
     {{-- QUESTION SCREEN --}}

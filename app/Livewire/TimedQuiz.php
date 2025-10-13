@@ -243,14 +243,7 @@ class TimedQuiz extends Component
     public function retryModule()
     {
         // Reset state and start over
-        $this->completed = false;
-        $this->score = 0;
-        $this->currentIndex = 0;
-        $this->answer = [];
-        $this->questionTimes = [];
-        $this->totalTime = 0;
-
-        $this->mount(); // or refetch questions the same way as mount
+        $this->startQuiz();
     }
 
 
