@@ -14,6 +14,9 @@
         <!-- Hero Section -->
         <div class="text-center max-w-3xl">
             <h1 class="text-4xl sm:text-6xl font-bold mb-6">
+                LearnPlayAI
+            </h1>
+            <h2 class="text-4xl sm:text-6xl font-bold mb-6">
                 StarCraft 2 AI Coach
             </h1>
             <p class="text-lg sm:text-xl text-gray-300 mb-10">

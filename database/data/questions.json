@@ -21,17 +21,6 @@
     "concepts": ["Economy", "Mechanics"]
   },
   {
-    "question": "Describe how the extractor trick works.",
-    "type": "open",
-    "answer": {
-      "correct_keywords": ["extractor", "cancel", "drone", "supply"],
-      "ideal_answer": "Build an extractor to temporarily go over supply cap, then cancel it to keep the drone."
-    },
-    "difficulty": "hard",
-    "units": ["Drone"],
-    "concepts": ["Mechanics", "Economy"]
-  },
-  {
     "question": "Match the Zerg unit to its primary role.",
     "type": "matching_pairs",
     "answer": {
@@ -85,17 +74,6 @@
     "difficulty": "medium",
     "units": ["Drone"],
     "concepts": ["Economy", "Mechanics"]
-  },
-  {
-    "question": "What is the primary role of a Drone in StarCraft?",
-    "type": "open",
-    "answer": {
-      "correct_keywords": ["gather", "resources", "build"],
-      "ideal_answer": "Drones gather resources and can build structures."
-    },
-    "difficulty": "easy",
-    "units": ["Drone"],
-    "concepts": ["Economy"]
   },
   {
     "question": "How many minerals does a Drone gather per trip?",
@@ -162,6 +140,249 @@
     "difficulty": "easy",
     "units": ["Medivac", "Marine"],
     "concepts": ["Tactics", "Build Orders"]
+  },
+  {
+    "question": "What structure allows Zerg to produce Zerglings?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Spawning Pool",
+      "options": ["Spawning Pool", "Hatchery", "Evolution Chamber", "Baneling Nest"]
+    },
+    "difficulty": "easy",
+    "units": ["Zergling"],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "True or False: The Overlord provides supply for the Zerg army.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "units": ["Overlord"],
+    "concepts": ["Economy"]
+  },
+  {
+    "question": "Which Zerg structure is required before morphing a Lair?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Hatchery",
+      "options": ["Hatchery", "Evolution Chamber", "Baneling Nest", "Spire"]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "Match the Zerg structure to its primary function.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Spawning Pool": "Enables Zerglings",
+        "Evolution Chamber": "Upgrades ground units",
+        "Extractor": "Collects Vespene gas",
+        "Spire": "Allows Mutalisk production"
+      },
+      "pairs": {
+        "keys": ["Spawning Pool", "Evolution Chamber", "Extractor", "Spire"],
+        "values": ["Allows Mutalisk production", "Collects Vespene gas", "Upgrades ground units", "Enables Zerglings"]
+      }
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "Put these early-game steps in the correct order.",
+    "type": "ordering",
+    "answer": {
+      "steps": ["Train Drone", "Build Overlord", "Build Spawning Pool", "Train Zerglings"]
+    },
+    "difficulty": "easy",
+    "units": ["Drone", "Overlord", "Zergling"],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "True or False: Creep spread helps you move your army faster across the map.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Map Control"]
+  },
+  {
+    "question": "Which unit can create Creep Tumors to expand vision and map control?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Queen",
+      "options": ["Queen", "Overlord", "Drone", "Infestor"]
+    },
+    "difficulty": "easy",
+    "units": ["Queen"],
+    "concepts": ["Map Control"]
+  },
+  {
+    "question": "Match each Zerg unit to its movement type.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Zergling": "Ground",
+        "Mutalisk": "Air",
+        "Overseer": "Air",
+        "Roach": "Ground"
+      },
+      "pairs": {
+        "keys": ["Zergling", "Mutalisk", "Overseer", "Roach"],
+        "values": ["Air", "Ground"]
+      }
+    },
+    "difficulty": "easy",
+    "units": ["Zergling", "Mutalisk", "Overseer", "Roach"],
+    "concepts": ["Army"]
+  },
+  {
+    "question": "True or False: Queens can inject Larva to increase unit production.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": ["Queen"],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Which resource is required to build an Extractor?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Minerals",
+      "options": ["Minerals", "Gas", "Larva", "Supply"]
+    },
+    "difficulty": "easy",
+    "units": ["Extractor"],
+    "concepts": ["Economy"]
+  },
+  {
+    "question": "Match the upgrade to its effect.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Metabolic Boost": "Increases Zergling speed",
+        "Pneumatized Carapace": "Increases Overlord speed",
+        "Burrow": "Allows units to hide underground",
+        "Flyer Attacks": "Improves Mutalisk attack damage"
+      },
+      "pairs": {
+        "keys": ["Metabolic Boost", "Pneumatized Carapace", "Burrow", "Flyer Attacks"],
+        "values": ["Allows units to hide underground", "Improves Mutalisk attack damage", "Increases Zergling speed", "Increases Overlord speed"]
+      }
+    },
+    "difficulty": "hard",
+    "units": [],
+    "concepts": ["Army"]
+  },
+  {
+    "question": "Put the following structures in order of tech progression.",
+    "type": "ordering",
+    "answer": {
+      "steps": ["Spawning Pool", "Lair", "Hydralisk Den", "Hive"]
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "How many supply does a Zergling cost?",
+    "type": "mcq",
+    "answer": {
+      "correct": "0.5",
+      "options": ["0.5", "1", "2", "0"]
+    },
+    "difficulty": "easy",
+    "units": ["Zergling"],
+    "concepts": ["Economy"]
+  },
+  {
+    "question": "True or False: Roaches regenerate health faster when burrowed with the proper upgrade.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": ["Roach"],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Which unit is produced from the Baneling Nest?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Baneling",
+      "options": ["Baneling", "Roach", "Hydralisk", "Mutalisk"]
+    },
+    "difficulty": "easy",
+    "units": ["Baneling"],
+    "concepts": ["Army"]
+  },
+  {
+    "question": "Match each Queen ability to its function.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Inject Larva": "Increases Hatchery production",
+        "Creep Tumor": "Expands vision and mobility",
+        "Transfuse": "Heals units or buildings",
+        "Ensnare": "Slows enemy units"
+      },
+      "pairs": {
+        "keys": ["Inject Larva", "Creep Tumor", "Transfuse", "Ensnare"],
+        "values": ["Increases Hatchery production", "Expands vision and mobility", "Heals units or buildings", "Slows enemy units"]
+      }
+    },
+    "difficulty": "medium",
+    "units": ["Queen"],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Put the following early gas actions in order.",
+    "type": "ordering",
+    "answer": {
+      "steps": ["Build Extractor", "Assign Drones to gas", "Start Zergling Speed", "Build Baneling Nest"]
+    },
+    "difficulty": "medium",
+    "units": ["Drone", "Zergling"],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "True or False: Creep recedes when the Hatchery that created it is destroyed.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Match each scouting method to what information it reveals.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Overlord positioning": "Opponent's base layout and tech",
+        "Zergling run-by": "Army composition and expansion timing",
+        "Creep spread": "Vision control of potential attack paths",
+        "Drone scout": "Opening build order"
+      },
+      "pairs": {
+        "keys": ["Overlord positioning", "Zergling run-by", "Creep spread", "Drone scout"],
+        "values": ["Vision control of potential attack paths", "Opponent's base layout and tech", "Army composition and expansion timing", "Opening build order"]
+      }
+    },
+    "difficulty": "hard",
+    "units": ["Overlord", "Zergling", "Drone"],
+    "concepts": ["Scouting"]
   }
+
+
 
 ]

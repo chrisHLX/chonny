@@ -18,12 +18,6 @@
                     <x-nav-link :href="route('concepts.index')" :active="request()->routeIs('concepts.index')">
                         {{ __('Concepts') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('units.index')" :active="request()->routeIs('units.index')">
-                        {{ __('Units') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('units.table')" :active="request()->routeIs('units.table')">
-                        {{ __('Units Table') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('questions.quiz.index')" :active="request()->routeIs('questions.quiz.index')">
                         {{ __('Questions') }}
                     </x-nav-link>
@@ -90,12 +84,6 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('concepts.index')" :active="request()->routeIs('concepts.index')">
                 {{ __('Concepts') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('units.index')" :active="request()->routeIs('units.index')">
-                {{ __('Units') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('units.table')" :active="request()->routeIs('units.table')">
-                {{ __('Units Table') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('questions.quiz.index')" :active="request()->routeIs('questions.quiz.index')">
                 {{ __('Questions') }}

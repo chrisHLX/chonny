@@ -21,7 +21,7 @@
                 <p>You haven't started any modules yet.</p>
             @endforelse
         </div>
-
+        
         <!-- Answered Questions Stats -->
         <div class="bg-white shadow p-4 rounded">
             <h3 class="text-lg font-bold mb-2">Question History</h3>

@@ -5,9 +5,6 @@
             <h2 class="font-semibold text-2xl text-white leading-tight">
                 {{ __('Dashboard') }}
             </h2>
-            <span class="text-gray-400 text-sm">
-                Last login: {{ $user->last_login_at?->diffForHumans() ?? 'N/A' }}
-            </span>
         </div>
     </x-slot>
 
@@ -25,44 +22,71 @@
             <!-- Main Dashboard Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
-                <!-- Concept Mastery -->
-                <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
-                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                        📘 Your Concept Mastery
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Track your progress and identify key areas to improve.
-                    </p>
-                    @forelse($concepts as $concept)
-                        <div class="mb-5">
-                            <div class="flex justify-between mb-1 text-sm">
-                                <span class="font-medium text-gray-200">{{ $concept->name }}</span>
-                                <span class="text-gray-400">{{ $concept->mastery_for_user }}%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                                <div class="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-in-out" 
-                                     style="width: {{ $concept->mastery_for_user }}%">
-                                </div>
+            <!-- Concept Mastery -->
+            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                    📘 Your Concept Mastery
+                </h3>
+                <p class="text-gray-400 text-sm mb-6">
+                    Track your progress and identify key areas to improve.
+                </p>
+                @forelse($concepts as $concept)
+                    @php
+                        $mastery = $concept->userMastery?->mastery_percentage ?? 0;
+                        $totalQuestions = $concept->userMastery?->total_questions ?? $concept->questions->count();
+                    @endphp
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-1 text-sm">
+                            <span class="font-medium text-gray-200">{{ $concept->name }}</span>
+                            <span class="text-gray-400">{{ $mastery }}% ({{ $totalQuestions }} questions)</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                            <div class="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-in-out" 
+                                style="width: {{ $mastery }}%">
                             </div>
                         </div>
-                    @empty
-                        <p class="text-gray-500">No mastery data yet.</p>
-                    @endforelse
-                </div>
+                    </div>
+                @empty
+                    <p class="text-gray-500">No mastery data yet.</p>
+                @endforelse
+            </div>
 
-                <!-- Problematic Questions -->
-                <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
-                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                        ❓ Problematic Questions
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Revisit the questions that challenged you most.
-                    </p>
-                    <a href="{{ route('questions.problematic') }}" 
-                       class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition">
-                        Review Problematic Questions
-                    </a>
-                </div>
+
+            <!-- Leaderboard -->
+            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                    🏆 Leaderboard
+                </h3>
+                <p class="text-gray-400 text-sm mb-6">
+                    See who’s mastering the most concepts this week.
+                </p>
+
+                <ul class="divide-y divide-gray-700 mb-6">
+                    @foreach ($leaderboard as $index => $user)
+                        <li class="flex items-center justify-between py-3">
+                            <div class="flex items-center gap-3">
+                                <span class="text-gray-400 text-sm w-6 text-center">
+                                    {{ $index + 1 }}.
+                                </span>
+                                <span class="text-white font-medium">
+                                    {{ $user->name }}
+                                </span>
+                            </div>
+                            <span class="text-blue-400 font-semibold">
+                                {{ round($user->total_mastery) }}%
+                                <!-- {{ number_format($user->total_mastery, 1) }}% -->
+                            </span>
+                        </li>
+                    @endforeach
+                </ul>
+                <!--
+                <a href="{{ route('dashboard') }}" 
+                class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition">
+                    View Full Leaderboard
+                </a>
+-->
+            </div>
+
 
                 <!-- User Modules -->
                 <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">

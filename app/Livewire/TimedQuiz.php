@@ -7,6 +7,7 @@ use App\Models\UserModuleHistory;
 use App\Events\ModuleAttempted;
 use App\Models\Module;
 use App\Http\Services\AiService;
+use App\Http\Services\User;
 
 class TimedQuiz extends Component
 {
@@ -22,6 +23,7 @@ class TimedQuiz extends Component
     public $completed = false;
     public $started = false;
     public $attemptNumber = 0; //default 
+    public $difficulty; // easy, medium, hard, review
     
     // ✅ Track per-question correctness
     public $questionResults = [];
@@ -41,61 +43,37 @@ class TimedQuiz extends Component
     {
         if (!$this->selectedModule) return;
 
-        $module = auth()->user()->modules()->with('questions')->find($this->selectedModule);
+        $user = auth()->user();
+        $module = $user->modules()->with('questions')->find($this->selectedModule);
+        if (!$module) return;
 
-        if (!$module) {
-            session()->flash('error', 'Module not found or not assigned to you.');
+        $difficulty = $this->calculateNextDifficulty($module);
+        \Log::info("Next difficulty: " . ($difficulty ?? 'mastered'));
+
+        // Handle edge case where module is mastered, provide review questions
+        if (!$difficulty) {
+            $this->handleMasteryCompletion($module);
             return;
         }
 
-        // Select 5 random questions from the module & Shuffle the options so they are not in the same order each time
-        $this->answer = []; // cast answer to array
-        $this->questions = $module->questions
-        ->shuffle()
-        ->take(5)
-        ->values()
-        ->transform(function ($question) {
-            // need to save the answer to a variable before assigning the shuffled options 
-            // back due to how laravel casts creates a copy of the array 
-            // (which means you cant just do $question->answer['options'] = $options)
-            $answer = $question->answer;
+        // Select questions for this quiz
+        $allDifficultyQuestions = $this->getQuestionIdsForDifficulty($module, $difficulty);
+        $questionsToPractice   = $this->getTargetQuestions($allDifficultyQuestions, $user);
+        $selectedQuestions     = $this->chooseQuestions($module, $questionsToPractice, $difficulty)->get();
+        $this->answer = []; // cast answer to array needed for livewire binding
+        $this->questions       = $this->prepareQuestionsForQuiz($selectedQuestions);
 
-            if ($question->type === 'mcq') {
-                shuffle($answer['options']);
-                $question->answer = $answer;
-            }
-
-            if ($question->type === 'ordering') {
-                shuffle($answer['steps']);
-                $question->answer = $answer;
-            }
-
-            
-            if ($question->type === 'matching_pairs') {
-                shuffle($answer['pairs']['values']); // only shuffle right-hand side
-                $question->answer = $answer;
-            }
-            
-            return $question;
-        });
-
-
-        $this->started = true;
-        $this->completed = false;
-        $this->score = 0;
-        $this->elapsed = 0;
-        $this->questionTimes = [];
-        $this->currentIndex = 0;
-        
-        $this->feedback = null;
-        $this->questionResults = [];
+        $this->initializeQuizState($difficulty);
     }
+
+
 
     public function submit($params = [])
     {
         $question = $this->questions[$this->currentIndex];
         $correct = false;
 
+        // Time parameters
         $this->elapsed = isset($params['elapsed']) ? (int) $params['elapsed'] : 0;
 
         // ✅ Correctness logic
@@ -157,7 +135,7 @@ class TimedQuiz extends Component
         $this->questionTimes[] = $this->elapsed;
         \Log::info("Estimated time: {$this->elapsed}s");
 
-        // Track in pivot (answered_questions)
+        // Track in pivot (answered_questions) updating user stats
         if (auth()->check()) {
             $user = auth()->user();
             $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
@@ -170,6 +148,7 @@ class TimedQuiz extends Component
                     'last_time_spent' => $this->elapsed,
                     'total_time_spent' => $existing->pivot->total_time_spent + $this->elapsed,
                     'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
+                    'last_answer_correct' => $correct
                 ]);
             } else {
                 $user->answeredQuestions()->attach($question->id, [
@@ -179,9 +158,11 @@ class TimedQuiz extends Component
                     'last_time_spent' => $this->elapsed,
                     'total_time_spent' => $this->elapsed,
                     'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
+                    'last_answer_correct' => $correct
                 ]);
             }
         }
+        \App\Http\Services\MasteryService::updateMasteryForUserQuestions($user, $question);
 
         $this->nextQuestion();
     }
@@ -204,18 +185,21 @@ class TimedQuiz extends Component
 
             $user = auth()->user();
             $moduleId = $this->selectedModule;
+            // ✅ Calculate user's *overall* score for this module (including past and current)
+            $userScore = $this->userScore($moduleId);
 
             // ✅ Update pivot for module progress
             if ($user && $moduleId) {
                 $user->modules()->syncWithoutDetaching([
                     $moduleId => [
-                        'score' => $this->score / $this->questions->count() * 100,
+                        'score' => $userScore, // Use overall calculated score
                         'status' => 'completed',
                         'last_activity_at' => now(),
                         'completed_at' => now(),
                     ]
                 ]);
             }
+
 
             // ✅ Save one UserModuleHistory record
             $lastAttempt = UserModuleHistory::where('user_id', $user->id)
@@ -269,49 +253,251 @@ class TimedQuiz extends Component
         $this->mount(); // or refetch questions the same way as mount
     }
 
-    public function generateRevisionModule()
+
+    private function calculateNextDifficulty($module)
     {
-        
-        \Log::info("Grabbing the lattest module");
-        // Now user should see new module in dropdown list and it should be selected
-        // is it possible to already have the new module selected?
-        
-        $this->started = false; // I think this brings you back to the select module part
+        $difficulties = ['easy', 'medium', 'hard'];
+        $user = auth()->user();
+       
+        foreach ($difficulties as $level) {
+            $questions = $module->questions()->where('difficulty', $level)->pluck('questions.id');
 
+            if ($questions->isEmpty()) continue;
 
+            $correctCount = $user->answeredQuestions()
+                ->whereIn('questions.id', $questions)
+                ->wherePivot('last_answer_correct', true)
+                ->count();
+
+            $total = $questions->count();
+            $percentage = $total ? ($correctCount / $total) * 100 : 0;
+             
+            if ($percentage < 80) {
+                \Log::info("Current user level: $level");
+                \Log::info("questions: $total");
+                return $level;
+            }
+        }
+        
+
+        return null; // all mastered
     }
 
-    public function unlockNewModule()
+    private function handleMasteryCompletion($module)
     {
-        // Example: fetch a different module or next version
-        \Log::info("Unlocking new quiz for module {$this->selectedModule}");
+        $this->answer = []; // cast answer to array needed for livewire binding (otherwise matching pairs wont submit)
+        $user = auth()->user();
+        \Log::info("User has mastered this module and now we are trying to review the questions they got wrong.");
+
+        // Get all question IDs in this module
+        $moduleQuestionIds = $module->questions()->pluck('questions.id')->toArray();
+
+        // Get IDs of all questions the user has already answered
+        $answeredQuestionIds = $user->answeredQuestions()
+            ->whereIn('questions.id', $moduleQuestionIds)
+            ->pluck('questions.id')
+            ->toArray();
+
+        // Determine the unanswered questions
+        $unansweredQuestionIds = array_diff($moduleQuestionIds, $answeredQuestionIds);
+
+        if (empty($unansweredQuestionIds)) {
+            // All questions answered — show least accurate questions for review
+            \Log::info("User has answered all questions in this mastered module.");
+            $leastAccurate = $this->getLeastAccurateQuestions($user, 5, $module);
+
+            \Log::info('Least accurate questions:', $leastAccurate->pluck('id')->toArray());
+
+            $this->questions = $this->prepareQuestionsForQuiz($leastAccurate);
+            $this->initializeQuizState('review');
+            return; // 🔹 Important: stop execution here so the "otherwise" block doesn't overwrite questions
+        }
+
+        // Otherwise, serve only the unanswered questions
+        $questionsToServe = $module->questions()
+            ->whereIn('questions.id', $unansweredQuestionIds)
+            ->get();
+
+        $this->questions = $this->prepareQuestionsForQuiz($questionsToServe);
+        $this->initializeQuizState('review');
     }
+
+    /**
+     * Prepare a collection of questions for the quiz: shuffle answers/options depending on type
+     */
+    private function prepareQuestionsForQuiz($questions)
+    {
+        return $questions->map(function ($q) {
+            $answer = $q->answer;
+
+            if ($q->type === 'mcq') shuffle($answer['options']);
+            if ($q->type === 'ordering') shuffle($answer['steps']);
+            if ($q->type === 'matching_pairs') shuffle($answer['pairs']['values']);
+
+            $q->answer = $answer;
+            return $q;
+        });
+    }
+
+    private function getQuestionIdsForDifficulty($module, $difficulty)
+    {
+        return $module->questions()
+            ->where('difficulty', $difficulty)
+            ->pluck('questions.id')
+            ->toArray();
+    }
+
+    private function getLeastAccurateQuestions($user, $limit = 5, $module = null)
+    {
+        $query = $user->answeredQuestions()
+            ->withPivot(['attempts', 'correct_count']);
+
+        // Optional: filter by module if provided
+        if ($module) {
+            $query->whereHas('modules', fn($q) => $q->where('modules.id', $module->id));
+        }
+
+        return $query->get()
+            ->filter(fn($q) => $q->pivot->attempts > 0)
+            ->map(function ($q) {
+                $accuracy = $q->pivot->correct_count / $q->pivot->attempts;
+                $q->accuracy = round($accuracy * 100, 2);
+                return $q;
+            })
+            ->sortBy('accuracy') // least accurate first
+            ->take($limit)
+            ->values();
+    }
+
+    private function getTargetQuestions(array $moduleQuestionIds, $user)
+    {
+        $answered = $user->answeredQuestions()
+            ->whereIn('questions.id', $moduleQuestionIds)
+            ->pluck('questions.id')
+            ->toArray();
+
+        $wrong = $user->answeredQuestions()
+            ->whereIn('questions.id', $moduleQuestionIds)
+            ->wherePivot('last_answer_correct', false)
+            ->pluck('questions.id')
+            ->toArray();
+
+        $unanswered = array_diff($moduleQuestionIds, $answered);
+
+        return array_unique(array_merge($wrong, $unanswered));
+    }
+
+    private function chooseQuestions($module, array $targetQuestionIds, $difficulty)
+    {
+        if (!empty($targetQuestionIds)) {
+            return $module->questions()->whereIn('questions.id', $targetQuestionIds)->limit(5);
+        }
+
+        return $module->questions()->where('difficulty', $difficulty)->inRandomOrder()->limit(5);
+    }
+
+
+// --------------------------------- Module completion button --------------------------------- //
 
     protected function handleNextModule(UserModuleHistory $history)
     {
         $user = auth()->user();
 
-        // The actual model ID is saved in module ID
-        $moduleID = $this->selectedModule;
+        // Get the actual module instance (you were missing this line)
+        $module = Module::find($this->selectedModule);
+        if (!$module) {
+            \Log::error("Module not found for ID {$this->selectedModule}");
+            return;
+        }
 
-        //resolve ai service
+        // Resolve AI service
         $aiService = app(AiService::class);
-        
 
-        // 1️⃣ Generate a revision module after 3 failed attempts
+        // 1️⃣ Get all question IDs that belong to this module
+        $moduleQuestions = $module->questions()->pluck('questions.id')->toArray();
+
+        // 2️⃣ Get all question IDs this user has answered
+        $userQuestions = $user->answeredQuestions()->pluck('questions.id')->toArray();
+
+        // 3️⃣ Determine if user has answered *all* module questions
+        $unansweredQuestions = array_diff($moduleQuestions, $userQuestions);
+        $hasCompletedAllQuestions = empty($unansweredQuestions);
+
+        // 🔹 Case 1: Generate a revision module after 3 failed attempts
         if ($history->status === 'failed' && $history->attempt_number >= 3) {
-            $newModule = $aiService->generateNewModule($moduleID, $history->wrong_questions);
-            // $user->modules()->attach($newModule->id); // DONE IN AI SERVICE
+            $newModule = $aiService->generateNewModule($module->id, $history->wrong_questions);
             $this->selectedModule = $newModule->id;
             \Log::info("revision done");
+            return;
         }
 
-        // 2️⃣ Generate a harder module if user passed
-        if ($history->status === 'completed') {
-            $newModule = $aiService->generateHarderModule($moduleID, $history->right_questions);
-            //$user->modules()->attach($newModule->id);
+        // 🔹 Case 2: Generate a harder module only if user completed and answered all questions
+        if ($history->status === 'completed' && $hasCompletedAllQuestions) {
+            $newModule = $aiService->generateHarderModule($module->id, $history->right_questions);
             \Log::info("harder done");
+            return;
+        }
+
+        // 🔹 Case 3: User completed the quiz but not all questions in module
+        if ($history->status === 'completed' && !$hasCompletedAllQuestions) {
+            // Grab unanswered questions for this module
+            $remainingQuestions = Question::whereIn('id', $unansweredQuestions)->get();
+            // You can now use $remainingQuestions to show or assign them
+            \Log::info("User still has unanswered questions", ['remaining' => $remainingQuestions->pluck('id')->toArray()]);
         }
     }
+
+    // 🔄 Initialize or reset all quiz state variables for a new attempt, based on the selected difficulty
+    private function initializeQuizState($difficulty)
+    {
+        $this->difficulty = $difficulty;
+        $this->started = true;
+        $this->completed = false;
+        $this->score = 0;
+        $this->elapsed = 0;
+        $this->questionTimes = [];
+        $this->currentIndex = 0;
+        $this->feedback = null;
+        $this->questionResults = [];
+    }
+
+    /**
+     * Calculate the user's overall score for a given module.
+     * Combines all past answers (across all difficulties) into a single percentage.
+     */
+    private function userScore($moduleId)
+    {
+        $user = auth()->user();
+        $module = Module::find($moduleId); // ✅ convert ID → model
+
+        if (!$module) {
+            return 0; // Module not found
+        }
+
+        // 1️⃣ Get all question IDs that belong to this module
+        $moduleQuestionIds = $module->questions()->pluck('questions.id')->toArray();
+
+        if (empty($moduleQuestionIds)) {
+            return 0; // Avoid division by zero
+        }
+
+        // 2️⃣ Count how many questions the user has answered correctly
+        $correctCount = $user->answeredQuestions()
+            ->whereIn('questions.id', $moduleQuestionIds)
+            ->wherePivot('last_answer_correct', true)
+            ->count();
+
+        // 3️⃣ Calculate the percentage score
+        $total = count($moduleQuestionIds);
+        $percentage = ($correctCount / $total) * 100;
+
+        return round($percentage, 2);
+    }
+
+
+
+
+
+
 
 }

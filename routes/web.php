@@ -14,23 +14,15 @@ use App\Http\Controllers\ModuleQuizController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\ReplayController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $user = auth()->user();
-
-    $modules = $user->modules()->get();
-    $createdModules = Module::where('created_by', $user->id)->get();
-
-    $concepts = Concept::with([
-        'questions.users' => fn ($q) => $q->where('user_id', $user->id)
-    ])->get();
-
-    return view('dashboard', compact('user', 'modules', 'createdModules', 'concepts'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
 
 
 Route::get('/dashboard/progress', [UserProgressController::class, 'index'])

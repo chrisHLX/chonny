@@ -1,47 +1,44 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Concepts') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-2xl text-white leading-tight">
+                {{ __('Concepts') }}
+            </h2>
+        </div>
     </x-slot>
 
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                            <td class="px-6 py-4 whitespace-pre-line">Questions</td>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($concepts as $concept)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $concept->name }}</td>
-                                <td class="px-6 py-4 whitespace-pre-line">{{ $concept->description ?? '—' }}</td>
+    <div class="bg-gray-900 text-gray-200 min-h-screen py-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-6">
 
-                                @if ($concept->questions)
-                                    <td class="px-6 py-4 whitespace-nowrap"> 
-                                        @if ($concept->questions->isNotEmpty())
-                                            <ul>
-                                                @foreach ($concept->questions as $question)
-                                                    <li>{{ $question->question }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @else
-                                            <p>No questions tagged for this concept yet.</p>
-                                        @endif                  
-                                    </td>
-                                @else
-                                    <td class="px-6 py-4 whitespace-nowrap text-gray-500">No question attached</td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            @foreach($concepts as $concept)
+                <div class="bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-700/40">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">{{ $concept->name }}</h3>
+                        @if($concept->questions->isNotEmpty())
+                            <span class="text-blue-400 font-semibold text-sm">
+                                {{ $concept->questions->count() }} Questions
+                            </span>
+                        @endif
+                    </div>
+
+                    @if($concept->description)
+                        <p class="text-gray-400 mt-2">{{ $concept->description }}</p>
+                    @endif
+
+                    @if($concept->questions->isNotEmpty())
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            @foreach($concept->questions as $question)
+                                <span class="bg-blue-600 text-white text-sm px-3 py-1 rounded-full shadow-sm hover:bg-blue-500 transition">
+                                    {{ $question->question }}
+                                </span>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="mt-2 text-gray-500 italic">No questions tagged for this concept yet.</p>
+                    @endif
+                </div>
+            @endforeach
+
         </div>
     </div>
 </x-app-layout>

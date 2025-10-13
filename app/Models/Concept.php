@@ -31,24 +31,15 @@ class Concept extends Model
 
     public function getMasteryForUserAttribute()
     {
-        $user = Auth::user();
-        if (! $user) {
-            return 0;
-        }
-
-        // If users relationship is already loaded, no extra queries happen
-        $questions = $this->questions->loadMissing([
-            'users' => fn ($q) => $q->where('user_id', $user->id)
-        ]);
-
-        $totalQuestions = $questions->count();
-        $correctAnswers = $questions->filter(function ($question) {
-            $pivot = $question->users->first()?->pivot;
-            return $pivot && $pivot->correct_count > 0;
-        })->count();
-
-        return $totalQuestions > 0 
-            ? round(($correctAnswers / $totalQuestions) * 100) 
-            : 0;
+        return $this->userMastery?->mastery_percentage ?? 0;
     }
+
+
+    // Concept.php
+    public function userMastery()
+    {
+        return $this->hasOne(UserConceptMastery::class)
+                    ->where('user_id', Auth::id());
+    }
+
 }

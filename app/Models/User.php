@@ -65,5 +65,12 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    // User.php
+    public function conceptMastery()
+    {
+        return $this->hasMany(UserConceptMastery::class);
+    }
+
+
 
 }

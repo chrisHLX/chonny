@@ -42,15 +42,10 @@
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                @if ($score === $questions->count())
+                @if ($score === $questions->count() || $attemptNumber >= 3)
                     <button wire:click="unlockNewModule"
                         class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
-                        🎉 Unlock Next Module
-                    </button>
-                @elseif ($attemptNumber >= 5)
-                    <button wire:click="generateRevisionModule"
-                        class="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 shadow">
-                        🔄 Generate Revision Module
+                        🎉 Next Module
                     </button>
                 @else
                     <button wire:click="retryModule"
@@ -69,7 +64,7 @@
         <div class="mb-4">
             <div class="flex justify-between text-sm text-gray-600 mb-1">
                 <span>Question {{ $currentIndex + 1 }} / {{ $questions->count() }}</span>
-                <span>{{ $this->totalTime }}s total</span>
+                <span>Level: {{ $difficulty }}</span>
             </div>
             <div class="w-full bg-gray-200 rounded-full h-2.5">
                 <div class="bg-blue-600 h-2.5 rounded-full transition-all duration-500"
@@ -161,11 +156,20 @@
                         @break
                 @endswitch
 
-                <button type="submit"
-                    class="mt-5 w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 shadow disabled:opacity-50 disabled:cursor-not-allowed transition"
-                    :disabled="!$wire.answer">
-                    Submit Answer
-                </button>
+                <div class="flex flex-col gap-3 mt-5">
+                    <button type="submit"
+                        class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 shadow disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        :disabled="!$wire.answer">
+                        Submit Answer
+                    </button>
+
+                    <a href="{{ route('modules.page', $selectedModule) }}"
+                    class="w-full text-center py-3 bg-blue-500 text-white font-semibold rounded-lg shadow hover:bg-blue-600 transition">
+                    📘 Review Content (ends quiz)
+                    </a>
+                </div>
+
+
             </form>
 
             @if ($feedback)
