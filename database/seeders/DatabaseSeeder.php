@@ -44,11 +44,12 @@ class DatabaseSeeder extends Seeder
             ProtossUnitSeeder::class,
             CountersSeeder::class,
             ConceptsSeeder::class,
-            QuestionSeeder::class,
             ModuleSeeder::class,
             UserModuleSeeder::class,
             ModuleUserProg::class,
+            QuestionSeeder::class,
             ModuleQuestionSeeder::class,
+            QuestionConceptSeeder::class,
             // Add any other seeders here
         ]);
     

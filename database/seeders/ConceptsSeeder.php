@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\File;
-use App\Models\Concept;
 use App\Models\Subject;
+use App\Models\Concept;
+use Illuminate\Support\Facades\File;
 
 class ConceptsSeeder extends Seeder
 {

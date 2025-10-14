@@ -31,11 +31,7 @@ class QuestionSeeder extends Seeder
                 $question->units()->sync($unitIds);
             }
 
-            // Attach related concepts
-            if (!empty($item['concepts'])) {
-                $conceptIds = Concept::whereIn('name', $item['concepts'])->pluck('id');
-                $question->concepts()->sync($conceptIds);
-            }
+            
         }
     }
 }

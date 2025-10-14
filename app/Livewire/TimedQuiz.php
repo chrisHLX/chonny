@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Subject;
 use App\Models\UserModuleHistory;
 use App\Events\ModuleAttempted;
 use App\Models\Module;
@@ -12,6 +13,7 @@ use App\Http\Services\User;
 class TimedQuiz extends Component
 {
     public $modules;
+    public $subjects = [];
     public $selectedModule;
     public $questions;
     public $currentIndex = 0;
@@ -30,6 +32,8 @@ class TimedQuiz extends Component
     
     public function mount()
     {
+
+        $this->subjects = Subject::all();
         $this->modules = auth()->user()->modules()->get();
         
     }
