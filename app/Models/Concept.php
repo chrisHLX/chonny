@@ -10,7 +10,12 @@ class Concept extends Model
 {
     use HasFactory; 
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['subject_id', 'name', 'description'];
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 
     protected $appends = ['mastery_for_user'];
 

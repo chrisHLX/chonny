@@ -9,6 +9,7 @@ class Module extends Model
     //
 
     protected $fillable = [
+        'subject_id',
         'name',
         'description',
         'race',
@@ -18,6 +19,11 @@ class Module extends Model
         'parent_module', 
         'version',       
     ];
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 
     public function questions()
     {

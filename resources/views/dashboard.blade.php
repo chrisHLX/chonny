@@ -18,6 +18,19 @@
                     Ready to keep improving your StarCraft 2 knowledge? Let’s dive in.
                 </p>
             </div>
+            
+            <!-- Subject Selection -->
+            {{-- Subject Toggle --}}
+            <div class="flex flex-wrap gap-2 mb-8">
+                @foreach($subjects as $subject)
+                    <a href="{{ route('dashboard', ['subject_id' => $subject->id]) }}"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition
+                            {{ $subject->id == $currentSubjectId ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600' }}">
+                        {{ $subject->name }}
+                    </a>
+                @endforeach
+            </div>
+
 
             <!-- Main Dashboard Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">

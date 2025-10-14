@@ -2,20 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\Module;
-
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\File;
+use App\Models\Module;
+use App\Models\Subject;
 
 class ModuleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
         $jsonPath = database_path('data/modules.json');
 
         if (!File::exists($jsonPath)) {
@@ -23,17 +18,24 @@ class ModuleSeeder extends Seeder
             return;
         }
 
-        $data = json_decode(File::get($jsonPath), true);
+        $modules = json_decode(File::get($jsonPath), true);
 
-        foreach ($data as $moduleData) {
+        foreach ($modules as $data) {
+            $subject = Subject::where('name', $data['subject'])->first();
+
+            if (!$subject) {
+                $this->command->warn("Subject not found for module: {$data['name']}");
+                continue;
+            }
+
             Module::firstOrCreate(
+                ['name' => $data['name'], 'subject_id' => $subject->id],
                 [
-                    'name' => $moduleData['name'],
-                    'description' => $moduleData['description'] ?? null,
-                    'race' => $moduleData['race'] ?? null,
-                    'difficulty_level' => $moduleData['difficulty_level'] ?? null,
-                    'published' => $moduleData['published'] ?? false,
-                    'created_by' => $moduleData['created_by'] ?? null,
+                    'description' => $data['description'] ?? null,
+                    'race' => $data['race'] ?? null,
+                    'difficulty_level' => $data['difficulty_level'] ?? null,
+                    'published' => $data['published'] ?? false,
+                    'created_by' => $data['created_by'] ?? null,
                 ]
             );
         }

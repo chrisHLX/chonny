@@ -1,38 +1,93 @@
 [
   {
     "name": "Economy",
-    "description": "Managing resources by building workers, expanding to new bases, and scaling production while avoiding oversaturation or resource float."
+    "description": "Managing resources by building workers, expanding to new bases, and scaling production while avoiding oversaturation or resource float.",
+    "subject": "StarCraft 2"
   },
   {
     "name": "Army",
-    "description": "Creating the right units, managing their upgrades, and controlling them effectively in battle (micro and composition)."
+    "description": "Creating the right units, managing their upgrades, and controlling them effectively in battle (micro and composition).",
+    "subject": "StarCraft 2"
   },
   {
     "name": "Build Orders",
-    "description": "Executing a planned sequence of actions that reaches specific goals at specific timings, such as unit production, expansion, or tech."
+    "description": "Executing a planned sequence of actions that reaches specific goals at specific timings, such as unit production, expansion, or tech.",
+    "subject": "StarCraft 2"
   },
   {
     "name": "Scouting",
-    "description": "Gaining and denying information to assess the opponent’s strategy, predict timings, and adapt your own plan accordingly."
+    "description": "Gaining and denying information to assess the opponent’s strategy, predict timings, and adapt your own plan accordingly.",
+    "subject": "StarCraft 2"
   },
   {
     "name": "Strategy",
-    "description": "Long-term game planning and decision-making, including how to win given your opponent’s behavior, tech path, or map situation."
+    "description": "Long-term game planning and decision-making, including how to win given your opponent’s behavior, tech path, or map situation.",
+    "subject": "StarCraft 2"
   },
   {
     "name": "Tactics",
-    "description": "Short-term decisions involving positioning, engagements, harassment, and exploiting terrain to gain advantages in fights."
+    "description": "Short-term decisions involving positioning, engagements, harassment, and exploiting terrain to gain advantages in fights.",
+    "subject": "StarCraft 2"
   },
   {
     "name": "Map Control",
-    "description": "Maintaining vision, limiting the opponent’s movement, denying expansions, and safely controlling parts of the map for strategic advantage."
+    "description": "Maintaining vision, limiting the opponent’s movement, denying expansions, and safely controlling parts of the map for strategic advantage.",
+    "subject": "StarCraft 2"
   },
   {
     "name": "Mechanics",
-    "description": "Your execution ability: efficient APM, hotkey use, multitasking, avoiding supply blocks, and making fast, accurate inputs under pressure."
+    "description": "Your execution ability: efficient APM, hotkey use, multitasking, avoiding supply blocks, and making fast, accurate inputs under pressure.",
+    "subject": "StarCraft 2"
   },
   {
-    "name":"Other",
-    "description":"Anything that doesn't fit into the other categories, such as specific unit interactions, map-specific strategies, or unique game mechanics."
+    "name": "Other",
+    "description": "Anything that doesn't fit into the other categories, such as specific unit interactions, map-specific strategies, or unique game mechanics.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Economy",
+    "description": "Managing gold income through last-hitting minions, jungle farming, and taking objectives to efficiently scale your champion and team.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Champion Mechanics",
+    "description": "Mastering your champion's abilities, combos, and cooldown management for maximum effectiveness in fights and laning.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Map Awareness",
+    "description": "Keeping track of enemy movements, vision control, and rotations to make informed decisions and avoid ganks.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Objectives",
+    "description": "Understanding when and how to take or contest towers, dragons, barons, and other objectives to gain a strategic advantage.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Teamfighting",
+    "description": "Positioning, target priority, and coordination with teammates in fights to maximize damage output and minimize losses.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Strategy",
+    "description": "Long-term game planning including drafting, lane assignments, and win condition identification.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Tactics",
+    "description": "Short-term decisions like skirmishes, rotations, and exploiting enemy mistakes during the game.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Vision Control",
+    "description": "Placing and denying wards, using control wards and sweepers, and understanding vision advantages in fights.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Other",
+    "description": "Anything that doesn't fit into the other categories, such as unique champion interactions, patch-specific meta knowledge, or rare strategies.",
+    "subject": "League of Legends"
   }
+
 ]
