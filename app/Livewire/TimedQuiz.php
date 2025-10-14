@@ -256,10 +256,11 @@ class TimedQuiz extends Component
         $difficulties = ['easy', 'medium', 'hard'];
         $user = auth()->user();
        
+        // works out the levels of difficulty based on the the questions in the module and how many the user has got correct
         foreach ($difficulties as $level) {
             $questions = $module->questions()->where('difficulty', $level)->pluck('questions.id');
 
-            if ($questions->isEmpty()) continue;
+            if ($questions->isEmpty()) continue; 
 
             $correctCount = $user->answeredQuestions()
                 ->whereIn('questions.id', $questions)
@@ -276,7 +277,7 @@ class TimedQuiz extends Component
             }
         }
         
-
+        // this means the user has mastered all levels
         return null; // all mastered
     }
 

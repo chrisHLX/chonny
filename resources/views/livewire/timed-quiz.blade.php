@@ -82,7 +82,7 @@
                         </button>
                     @endif
                 @else
-                    @if ($score === $questions->count() || $attemptNumber >= 3)
+                    @if ($score === $questions->count())
                         <!-- Normal module completed 
                         <button wire:click="unlockNewModule"
                             class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
@@ -91,7 +91,12 @@
 -->
                         <button wire:click="retryModule"
                             class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
-                            🔁 Try Again
+                            🔁 Next Level
+                        </button>
+                    @elseif ($attempts >= 3)
+                        <button wire:click="retryModule"
+                            class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
+                            🔁 Lets Review
                         </button>
                     @else
                         <button wire:click="retryModule"
