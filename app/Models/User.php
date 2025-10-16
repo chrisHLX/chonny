@@ -60,7 +60,9 @@ class User extends Authenticatable
                 'last_answered_at',
                 'total_time_spent',
                 'last_time_spent',
-                'last_answer'
+                'last_answer',
+                'last_answer_correct',
+                'consecutive_fails'
             ])
             ->withTimestamps();
     }

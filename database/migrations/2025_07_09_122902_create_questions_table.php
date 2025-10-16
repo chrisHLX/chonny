@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question');                      // The actual question text
-            $table->json('answer');                          // Correct answer(s), can be text or structured
+            $table->string('question');                      
+            $table->json('answer');                          
             $table->enum('type', ['mcq', 'true_false', 'matching_pairs', 'ordering' ,'open']);
             $table->enum('difficulty', ['easy', 'medium', 'hard'])->default('easy');
-            $table->string('created_by')->nullable();        // "system", "admin", or user id string if needed
+            $table->unsignedBigInteger('parent_id')->nullable(); // New: link to parent question
+            $table->foreign('parent_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->string('created_by')->nullable();        
             $table->timestamps();
         });
+
     }
 
 

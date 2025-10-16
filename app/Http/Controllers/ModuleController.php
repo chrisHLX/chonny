@@ -10,6 +10,7 @@ use App\Http\Services\AiService;
 use App\Models\ModulePage;
 use Illuminate\Support\Facades\Log;
 use App\Http\Services\HtmlFormatter;
+use App\Models\Subject;
 
 class ModuleController extends Controller
 {
@@ -42,20 +43,23 @@ class ModuleController extends Controller
 
     public function create()
     {
-        return view('modules.create');
+        $subjects = Subject::all();
+        return view('modules.create', compact('subjects'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string'
+            'description' => 'required|string',
+            'subject_id' => 'required|exists:subjects,id',
         ]);
         
         $module = Module::create([
             'name' => $request->name,
             'description' => $request->description,
             'created_by' => auth()->id(),
+            'subject_id' => $request->subject_id,
         ]);
 
         return redirect()->route('modules.edit', $module); // Or a success view      

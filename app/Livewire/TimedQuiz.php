@@ -30,6 +30,15 @@ class TimedQuiz extends Component
     // ✅ Track per-question correctness
     public $questionResults = [];
     
+    public function updating($name, $value)
+    {
+        \Log::info("Updating {$name}", ['new' => $value]);
+    }
+
+    public function updated($name, $value)
+    {
+        \Log::info("Updated {$name}", ['new' => $value]);
+    }
     public function mount()
     {
 
@@ -54,7 +63,7 @@ class TimedQuiz extends Component
         $difficulty = $this->calculateNextDifficulty($module);
         \Log::info("Next difficulty: " . ($difficulty ?? 'mastered'));
 
-        // Handle edge case where module is mastered, provide review questions
+        // Handle edge case where module is mastered, provides review questions
         if (!$difficulty) {
             $this->handleMasteryCompletion($module);
             return;
@@ -66,7 +75,9 @@ class TimedQuiz extends Component
         $selectedQuestions     = $this->chooseQuestions($module, $questionsToPractice, $difficulty)->get();
         $this->answer = []; // cast answer to array needed for livewire binding
         $this->questions       = $this->prepareQuestionsForQuiz($selectedQuestions);
-
+        \Log::info("Final Selected questions:", $this->questions->pluck('id')->toArray());
+        
+        
         $this->initializeQuizState($difficulty);
     }
 
@@ -145,6 +156,11 @@ class TimedQuiz extends Component
             $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
 
             if ($existing) {
+
+                $newConsecutiveFails = $correct 
+                ? 0 
+                : ($existing->pivot->consecutive_fails ?? 0) + 1;
+
                 $user->answeredQuestions()->updateExistingPivot($question->id, [
                     'attempts' => $existing->pivot->attempts + 1,
                     'correct_count' => $existing->pivot->correct_count + ($correct ? 1 : 0),
@@ -152,7 +168,8 @@ class TimedQuiz extends Component
                     'last_time_spent' => $this->elapsed,
                     'total_time_spent' => $existing->pivot->total_time_spent + $this->elapsed,
                     'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
-                    'last_answer_correct' => $correct
+                    'last_answer_correct' => $correct,
+                    'consecutive_fails' => $newConsecutiveFails
                 ]);
             } else {
                 $user->answeredQuestions()->attach($question->id, [
@@ -162,7 +179,8 @@ class TimedQuiz extends Component
                     'last_time_spent' => $this->elapsed,
                     'total_time_spent' => $this->elapsed,
                     'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
-                    'last_answer_correct' => $correct
+                    'last_answer_correct' => $correct,
+                    'consecutive_fails' => $correct ? 0 : 1
                 ]);
             }
         }
@@ -182,7 +200,7 @@ class TimedQuiz extends Component
         $this->feedback = '';
         $this->elapsed = 0;
         $this->currentIndex++;
-
+        $this->shuffleCurrentQuestionAnswers();
         if ($this->currentIndex >= $this->questions->count()) {
             // Quiz completed
             $this->completed = true;
@@ -269,15 +287,32 @@ class TimedQuiz extends Component
 
             $total = $questions->count();
             $percentage = $total ? ($correctCount / $total) * 100 : 0;
-             
-            if ($percentage < 80) {
-                \Log::info("Current user level: $level");
-                \Log::info("questions: $total");
-                return $level;
+            
+            // If the user has answered 80% or more of the questions for the current level correctly, they move to the next level
+
+            // 🔹 Before progressing, check if user has weak questions in this level
+                if ($percentage >= 80) {
+                    $weakQuestions = $user->answeredQuestions()
+                        ->whereIn('questions.id', $questions)
+                        ->wherePivot('last_answer_correct', '=', false)
+                        ->get();
+
+                    if ($weakQuestions->isNotEmpty()) {
+                        \Log::info("User must review weak questions before progressing.");
+                        $this->questions = $this->prepareQuestionsForQuiz($weakQuestions);
+                        $this->initializeQuizState('Wrong Questions Review');
+                        return null; // stop progression here
+                    }
+                }
+
+                // 🔹 Only return this level if user hasn’t yet mastered it
+                if ($percentage < 80) {
+                    \Log::info("Current user level: $level");
+                    return $level;
+                }
             }
-        }
         
-        // this means the user has mastered all levels
+            // this means the user has mastered all levels
         return null; // all mastered
     }
 
@@ -319,31 +354,33 @@ class TimedQuiz extends Component
         $this->questions = $this->prepareQuestionsForQuiz($questionsToServe);
         $this->initializeQuizState('review');
     }
-
-    /**
-     * Prepare a collection of questions for the quiz: shuffle answers/options depending on type
-     */
-    private function prepareQuestionsForQuiz($questions)
-    {
-        return $questions->map(function ($q) {
-            $answer = $q->answer;
-
-            if ($q->type === 'mcq') shuffle($answer['options']);
-            if ($q->type === 'ordering') shuffle($answer['steps']);
-            if ($q->type === 'matching_pairs') shuffle($answer['pairs']['values']);
-
-            $q->answer = $answer;
-            return $q;
-        });
-    }
-
+    
     private function getQuestionIdsForDifficulty($module, $difficulty)
     {
         return $module->questions()
             ->where('difficulty', $difficulty)
             ->pluck('questions.id')
             ->toArray();
+
+        
     }
+
+    /**
+     * Prepare a collection of questions for the quiz: shuffle answers/options depending on type
+     */
+    private function prepareQuestionsForQuiz($questions)
+    {
+        return $questions->transform(function ($q) {
+            $q = clone $q; // detach from original model
+            $answer = array_merge([], $q->answer); // detach answer array
+            if ($q->type === 'mcq') shuffle($answer['options']);
+            if ($q->type === 'ordering') shuffle($answer['steps']);
+            if ($q->type === 'matching_pairs') shuffle($answer['pairs']['values']);
+            $q->answer = $answer;
+            return $q;
+        });
+    }
+
 
     private function getLeastAccurateQuestions($user, $limit = 5, $module = null)
     {
@@ -369,6 +406,8 @@ class TimedQuiz extends Component
 
     private function getTargetQuestions(array $moduleQuestionIds, $user)
     {
+        \Log::info("Questions for difficulty:", $moduleQuestionIds);
+
         $answered = $user->answeredQuestions()
             ->whereIn('questions.id', $moduleQuestionIds)
             ->pluck('questions.id')
@@ -381,7 +420,8 @@ class TimedQuiz extends Component
             ->toArray();
 
         $unanswered = array_diff($moduleQuestionIds, $answered);
-
+        \Log::info("Answered questions:", $answered);
+        \Log::info("Wrong questions:", $wrong);
         return array_unique(array_merge($wrong, $unanswered));
     }
 
@@ -492,6 +532,21 @@ class TimedQuiz extends Component
         return round($percentage, 2);
     }
 
+    private function shuffleCurrentQuestionAnswers()
+    {
+        $question = $this->questions[$this->currentIndex] ?? null;
+        if (!$question) return;
+
+        $q = clone $question; // detach reference
+        $answer = array_merge([], $q->answer); // detach array
+
+        if ($q->type === 'mcq') shuffle($answer['options']);
+        if ($q->type === 'ordering') shuffle($answer['steps']);
+        if ($q->type === 'matching_pairs') shuffle($answer['pairs']['values']);
+
+        $q->answer = $answer;
+        $this->questions[$this->currentIndex] = $q; // replace with shuffled
+    }
 
 
 

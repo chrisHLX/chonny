@@ -53,7 +53,7 @@ class MasteryService
         foreach ($question->concepts as $concept) {
             $totalQuestions = $concept->questions()->count();
 
-            // Count how many of this user's answers for this concept were correct
+            // Calculates mastery based on questions the user has answered correctly
             $correctAnswers = $concept->questions()
                 ->whereHas('users', function ($q) use ($user) {
                     $q->where('user_id', $user->id)
