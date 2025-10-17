@@ -36,7 +36,7 @@
                         @foreach ($module->questions as $question)
                             <div class="mt-2">
                                 <h3 class="text-lg font-medium">{{ $question->question }}</h3>
-                                <p class="text-gray-700">{{ json_encode($question->answer, JSON_PRETTY_PRINT) }}</p>
+                                <p class="text-gray-700">{{ $question->difficulty }}</p>
                             </div>
                         @endforeach
                     @endif

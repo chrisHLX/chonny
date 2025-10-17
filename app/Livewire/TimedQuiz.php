@@ -17,7 +17,7 @@ class TimedQuiz extends Component
     public $selectedModule;
     public $questions;
     public $currentIndex = 0;
-    public $answer;
+    public $answer = [];
     public $feedback;
     public $elapsed = 0; 
     public $questionTimes = [];
@@ -60,25 +60,34 @@ class TimedQuiz extends Component
         $module = $user->modules()->with('questions')->find($this->selectedModule);
         if (!$module) return;
 
-        $difficulty = $this->calculateNextDifficulty($module);
-        \Log::info("Next difficulty: " . ($difficulty ?? 'mastered'));
+        $result = $this->calculateNextDifficulty($module);
+        
 
         // Handle edge case where module is mastered, provides review questions
-        if (!$difficulty) {
+        if ($result['mode'] === 'completed') {
             $this->handleMasteryCompletion($module);
             return;
         }
 
-        // Select questions for this quiz
-        $allDifficultyQuestions = $this->getQuestionIdsForDifficulty($module, $difficulty);
-        $questionsToPractice   = $this->getTargetQuestions($allDifficultyQuestions, $user);
-        $selectedQuestions     = $this->chooseQuestions($module, $questionsToPractice, $difficulty)->get();
-        $this->answer = []; // cast answer to array needed for livewire binding
-        $this->questions       = $this->prepareQuestionsForQuiz($selectedQuestions);
-        \Log::info("Final Selected questions:", $this->questions->pluck('id')->toArray());
+        // Handle Normla quiz selection
+        if($result['mode'] === 'normal') {
+            $allDifficultyQuestions = $this->getQuestionIdsForDifficulty($module, $result['level']);
+            $questionsToPractice   = $this->getTargetQuestions($allDifficultyQuestions, $user);
+            $selectedQuestions     = $this->chooseQuestions($module, $questionsToPractice, $result['level'])->get();
+            
+            $this->questions       = $this->prepareQuestionsForQuiz($selectedQuestions);
+            \Log::info("Final Selected questions:", $this->questions->pluck('id')->toArray());
+            $this->initializeQuizState($result['level']);
+            return;
+        }
+
+        if ($result['mode'] === 'review') {
+            
+            $this->questions = $this->prepareQuestionsForQuiz($result['questions']);
+            $this->initializeQuizState($result['level']);
+            return;
+        }
         
-        
-        $this->initializeQuizState($difficulty);
     }
 
 
@@ -298,22 +307,26 @@ class TimedQuiz extends Component
                         ->get();
 
                     if ($weakQuestions->isNotEmpty()) {
-                        \Log::info("User must review weak questions before progressing.");
-                        $this->questions = $this->prepareQuestionsForQuiz($weakQuestions);
-                        $this->initializeQuizState('Wrong Questions Review');
-                        return null; // stop progression here
+                        return [
+                            'mode' => 'review',
+                            'questions' => $weakQuestions,
+                            'level' => $level
+                        ];
                     }
                 }
 
                 // 🔹 Only return this level if user hasn’t yet mastered it
                 if ($percentage < 80) {
                     \Log::info("Current user level: $level");
-                    return $level;
+                    return [
+                        'mode' => 'normal',
+                        'level' => $level
+                    ];
                 }
             }
         
             // this means the user has mastered all levels
-        return null; // all mastered
+        return ['mode' => 'completed']; // all mastered
     }
 
     private function handleMasteryCompletion($module)
@@ -497,6 +510,7 @@ class TimedQuiz extends Component
         $this->currentIndex = 0;
         $this->feedback = null;
         $this->questionResults = [];
+        \Log::info("questions after quiz state initialization" . $this->questions);
     }
 
     /**
