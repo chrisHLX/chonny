@@ -11,6 +11,7 @@ use App\Models\ModulePage;
 use Illuminate\Support\Facades\Log;
 use App\Http\Services\HtmlFormatter;
 use App\Models\Subject;
+use App\Models\Concept;
 
 class ModuleController extends Controller
 {
@@ -94,7 +95,11 @@ class ModuleController extends Controller
         $modulePages = ModulePage::where('module_id', $module->id)
                    ->orderBy('page_number')
                    ->get();
-        return view('modules.edit', compact('module', 'allQuestions', 'modulePages'));
+        $subjectID = $module->subject_id;
+        $conceptsList = Concept::where('subject_id', $subjectID)->get();
+        
+        \Log::info('Concepts List:', ['concepts' => $conceptsList]);
+        return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList'));
     }
 
     public function update(Request $request, Module $module)

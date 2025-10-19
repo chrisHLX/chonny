@@ -28,7 +28,7 @@
             <x-modules.update-form :module="$module" :all-questions="$allQuestions" />
 
             {{-- Create Question --}}
-            <x-modules.create-question-form :module="$module" />
+            <x-modules.create-question-form :module="$module" :conceptsList="$conceptsList"/>
             
             {{-- Create Landing Page --}}
             <x-modules.create-landing-page :module="$module" :allQuestions="$allQuestions" />

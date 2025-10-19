@@ -74,6 +74,8 @@ class QuestionController extends Controller
             'type' => 'required|in:mcq,true_false,open,matching_pairs,ordering',
             'difficulty' => 'required|in:easy,medium,hard',
             'module_id' => 'required|exists:modules,id',
+            'concepts' => 'required|array',
+            'concepts.*' => 'exists:concepts,id',
             'answer' => 'required|array',
         ]);
 
@@ -136,61 +138,41 @@ class QuestionController extends Controller
         // Attach question to module
         $question->modules()->attach($request->module_id);
 
-        // --- AI TAGGING ---
-        try {
-            $questionText = $request->question;
-            $answerText = json_encode($request->input('answer.correct'));
+        $question->concepts()->sync($request->concepts ?? []);
 
-            // Use injected service instead of static calls
+        // Only run AI tagging if no concepts were selected
+        if (empty($request->concepts)) {
+            try {
+                $questionText = $request->question;
+                $answerText = json_encode($request->input('answer.correct'));
 
-            //Create a map of existing concepts for the module to avoid duplicates but also to send to the ai
-            $conceptMap = Concept::all()->pluck('id', 'name');
-            // Example: ['Scouting' => 1, 'Economy' => 2, ...]
+                // Build a concept map to avoid duplicates and feed to AI
+                $conceptMap = Concept::all()->pluck('id', 'name');
 
-            
+                // Ask AI to suggest concept names
+                $conceptNames = $this->aiService->tagConcepts(
+                    $questionText,
+                    $answerText,
+                    $request->module_id,
+                    $conceptMap->keys()->toArray()
+                );
 
-            $conceptNames = $this->aiService->tagConcepts(
-                $questionText,
-                $answerText,
-                $request->module_id,
-                $conceptMap->keys()->toArray() // pass the "allowed concepts"
-            );
+                // Convert AI-named concepts into IDs, fallback to “Other”
+                $conceptIds = collect($conceptNames)
+                    ->map(fn($name) => $conceptMap[$name] ?? $conceptMap['Other'])
+                    ->unique()
+                    ->values();
 
-            $conceptIds = collect($conceptNames)
-                ->map(fn($name) => $conceptMap[$name] ?? $conceptMap['Other'])
-                ->unique()
-                ->values();
+                // Sync AI-tagged concepts
+                $question->concepts()->sync($conceptIds);
 
-            $question->concepts()->sync($conceptIds);
-            
-            /* Disabled for now, units are too varied and the AI often suggests non-existent units
-             * Consider re-enabling if we have a more controlled vocabulary or better AI accuracy
-            // Step 1: Get all existing unit names (lowercase => ID map)
-            $unitMap = Unit::all()->mapWithKeys(function ($unit) {
-                return [strtolower($unit->name) => $unit->id];
-            });
-
-            // Step 2: Get AI response
-            $unitNames = $this->aiService->tagUnits($questionText, $answerText);
-
-            // Step 3: Normalize and filter only existing units
-            $matchedUnitIds = collect($unitNames)
-                ->map(fn($name) => strtolower(trim($name)))
-                ->filter(fn($name) => isset($unitMap[$name]))
-                ->map(fn($name) => $unitMap[$name])
-                ->unique()
-                ->values(); // Ensure unique and reset keys
-
-            \Log::info('Matched unit IDs', ['matched' => $matchedUnitIds->toArray()]);
-
-            // Step 4: Sync only valid existing units
-            $question->units()->sync($matchedUnitIds);
-            */
-
-        } catch (\Exception $e) {
-            \Log::warning("AI Tagging failed: " . $e->getMessage());
-            // Optional: add flash message or silently skip tagging
+            } catch (\Exception $e) {
+                \Log::warning("AI Tagging failed: " . $e->getMessage());
+                // Optional: silently skip or flash a warning
+            }
         }
+
+        
 
         return redirect()
             ->route('modules.edit', $request->module_id)
@@ -214,33 +196,5 @@ class QuestionController extends Controller
         return redirect()->route('questions.index')->with('success', 'Question deleted successfully.');
     }
 
-    public function submitAll(Request $request)
-    {
-        $answers = $request->input('answers', []);
-        $questions = Question::whereIn('id', array_keys($answers))->get();
-
-        $results = [];
-
-        foreach ($questions as $question) {
-            $userAnswer = $answers[$question->id];
-            $correct = false;
-
-            if ($question->type === 'mcq') {
-                $correct = $userAnswer === $question->answer['correct'];
-            } elseif ($question->type === 'true_false') {
-                $correct = filter_var($userAnswer, FILTER_VALIDATE_BOOLEAN) === $question->answer['correct'];
-            } elseif ($question->type === 'open') {
-                $keywords = $question->answer['correct_keywords'] ?? [];
-                $matched = collect($keywords)->filter(fn($k) => str_contains(strtolower($userAnswer), strtolower($k)));
-                $correct = $matched->count() >= ceil(count($keywords) / 2);
-            }
-
-            $results[$question->id] = [
-                'correct' => $correct,
-                'message' => $correct ? '✅ Correct!' : '❌ Try again.',
-            ];
-        }
-
-        return back()->with('results', $results);
-    }
+    
 }

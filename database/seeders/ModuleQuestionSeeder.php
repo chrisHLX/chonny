@@ -13,6 +13,7 @@ class ModuleQuestionSeeder extends Seeder
     public function run()
     {
         $data = json_decode(file_get_contents(database_path('data/module_questions.json')), true);
+        
 
         foreach ($data as $entry) {
             $module = Module::where('name', $entry['module_name'])->first();

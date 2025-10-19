@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             ModuleUserProg::class,
             QuestionSeeder::class,
             ModuleQuestionSeeder::class,
+            LolSeeder::class,
             QuestionConceptSeeder::class,
             // Add any other seeders here
         ]);

@@ -71,7 +71,7 @@
                         <!-- Review in progress -->
                         <button wire:click="retryModule"
                             class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
-                            🔁 Try Again
+                            🔁 Next Level
                         </button>
                     @endif
                 @else
@@ -83,7 +83,7 @@
                     @else
                         <button wire:click="retryModule"
                             class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
-                            🔁 Try Again
+                            🔁 Next Level
                         </button>
                     @endif
                 @endif

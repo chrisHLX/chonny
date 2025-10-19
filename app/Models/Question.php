@@ -26,6 +26,12 @@ class Question extends Model
         return $this->belongsToMany(Concept::class);
     }
 
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class, 'content_question')->withTimestamps();
+    }
+
+
     public function units()
     {
         return $this->belongsToMany(Unit::class);

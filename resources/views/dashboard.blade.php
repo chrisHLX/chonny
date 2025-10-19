@@ -15,7 +15,7 @@
             <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl shadow-lg p-8 border border-blue-500/30">
                 <h1 class="text-3xl font-bold mb-2">Welcome back, {{ $user->name }} 👋</h1>
                 <p class="text-blue-100">
-                    Ready to keep improving your StarCraft 2 knowledge? Let’s dive in.
+                    Ready to keep improving your knowledge? Let’s dive in.
                 </p>
             </div>
             

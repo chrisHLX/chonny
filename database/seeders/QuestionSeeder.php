@@ -16,6 +16,10 @@ class QuestionSeeder extends Seeder
     public function run()
     {
         $data = json_decode(file_get_contents(database_path('data/questions.json')), true);
+        $moreData = json_decode(file_get_contents(database_path('data/lolquestions.json')), true);
+
+        $data = array_merge($data, $moreData);
+
 
         foreach ($data as $item) {
             $question = Question::create([
@@ -25,11 +29,7 @@ class QuestionSeeder extends Seeder
                 'answer'     => $item['answer'],
             ]);
 
-            // Attach related units
-            if (!empty($item['units'])) {
-                $unitIds = Unit::whereIn('name', $item['units'])->pluck('id');
-                $question->units()->sync($unitIds);
-            }
+            
 
             
         }

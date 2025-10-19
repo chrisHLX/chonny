@@ -58,7 +58,6 @@ Route::post('/concepts', [ConceptController::class, 'store'])->name('concepts.st
 Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
 Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy')->middleware('auth');
 Route::get('/questions/quiz', [QuestionController::class, 'quiz'])->name('questions.quiz.index')->middleware('auth');
-Route::post('/quiz/submit-all', [QuestionController::class, 'submitAll'])->name('quiz.submitAll');
 Route::post('/questions/{question}/answer', [QuestionController::class, 'submit'])->name('questions.answer');
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 

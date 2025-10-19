@@ -1,4 +1,4 @@
-@props(['module'])
+@props(['module', 'conceptsList'])
 
 <div class="bg-white shadow-sm sm:rounded-lg p-6">
     <h3 class="text-lg font-semibold mb-4">Add a New Question</h3>
@@ -19,10 +19,27 @@
             class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
             <option value="mcq">Multiple Choice</option>
             <option value="true_false">True / False</option>
-            <option value="open">Open Ended</option>
             <option value="matching_pairs">Matching Pairs</option>
             <option value="ordering">Ordering</option>
         </select>
+
+        {{-- Concepts --}}
+        <div class="mt-4">
+            <x-input-label for="concepts" :value="__('Concepts')" />
+            <select id="concepts" name="concepts[]" multiple
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 h-40">
+                @foreach($conceptsList as $concept)
+                    <option value="{{ $concept->id }}"
+                        {{ (collect(old('concepts'))->contains($concept->id)) ? 'selected' : '' }}>
+                        {{ $concept->name }}
+                    </option>
+                @endforeach
+            </select>
+            <p class="text-sm text-gray-500 mt-1">Hold Ctrl (Windows) or Command (Mac) to select multiple concepts.</p>
+            <x-input-error :messages="$errors->get('concepts')" class="mt-1" />
+        </div>
+
+
 
 
         {{-- Difficulty --}}
@@ -64,15 +81,6 @@
                     <option value="1">True</option>
                     <option value="0">False</option>
                 </select>
-            </div>
-        </template>
-
-        {{-- Open Ended --}}
-        <template x-if="type === 'open'">
-            <div>
-                <x-input-label :value="'Expected Answer'" />
-                <textarea name="answer[text]" rows="3"
-                    class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
             </div>
         </template>
 
