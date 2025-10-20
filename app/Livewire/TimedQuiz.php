@@ -9,6 +9,7 @@ use App\Events\ModuleAttempted;
 use App\Models\Module;
 use App\Http\Services\AiService;
 use App\Http\Services\User;
+use App\Http\Services\ReviewQuestionService;
 
 class TimedQuiz extends Component
 {
@@ -26,9 +27,11 @@ class TimedQuiz extends Component
     public $started = false;
     public $attemptNumber = 0; //default 
     public $difficulty; // easy, medium, hard, review
-    
+    public $contents = []; // For review contents
     // ✅ Track per-question correctness
     public $questionResults = [];
+
+
     
     public function updating($name, $value)
     {
@@ -74,7 +77,6 @@ class TimedQuiz extends Component
             $allDifficultyQuestions = $this->getQuestionIdsForDifficulty($module, $result['level']);
             $questionsToPractice   = $this->getTargetQuestions($allDifficultyQuestions, $user);
             $selectedQuestions     = $this->chooseQuestions($module, $questionsToPractice, $result['level'])->get();
-            
             $this->questions       = $this->prepareQuestionsForQuiz($selectedQuestions);
             \Log::info("Final Selected questions:", $this->questions->pluck('id')->toArray());
             $this->initializeQuizState($result['level']);
@@ -87,7 +89,23 @@ class TimedQuiz extends Component
             $this->initializeQuizState($result['level']);
             return;
         }
+
+        if ($result['mode'] === 'consecutive_fails') {
+            $this->feedback = "review needed";
+            $this->contents = $result['review_contents'];
+            
+            $this->questions = $this->prepareQuestionsForQuiz($result['questions']);
+            $this->started = true; 
+            return;
+        }
         
+    }
+
+    public function startReviewQuiz() // If they fail this quiz we need to reset the consecutive fails count and disable the quiz until they do the review module
+    {   
+        $this->feedback = '';
+        $this->initializeQuizState('review');
+        return;
     }
 
 
@@ -307,6 +325,33 @@ class TimedQuiz extends Component
                         ->get();
 
                     if ($weakQuestions->isNotEmpty()) {
+
+                        $consecutive_fails = $weakQuestions->filter(function ($q) {
+                            return $q->pivot->consecutive_fails >= 2;
+                        });
+                        
+                        if ($consecutive_fails->isNotEmpty()) {
+                            \Log::info("User has weak questions in level $level requiring review.");
+                            \Log::info("module name $module->name for " . $module->subject['name']);
+
+                        
+
+                            foreach ($consecutive_fails as $q) {
+                                \Log::info("Question ID {$q->id} has {$q->pivot->consecutive_fails} consecutive fails.");
+                            }
+                            
+                            $reviewService = app(ReviewQuestionService::class);
+                            $reviewContents = $reviewService->getReviewContentsForQuestions($consecutive_fails, $module);
+
+                            
+                            return [
+                                'mode' => 'consecutive_fails',
+                                'questions' => $consecutive_fails,
+                                'level' => $level,
+                                'review_contents' => $reviewContents
+                            ];
+                        }
+
                         return [
                             'mode' => 'review',
                             'questions' => $weakQuestions,
@@ -508,7 +553,7 @@ class TimedQuiz extends Component
         $this->elapsed = 0;
         $this->questionTimes = [];
         $this->currentIndex = 0;
-        $this->feedback = null;
+
         $this->questionResults = [];
         \Log::info("questions after quiz state initialization" . $this->questions);
     }
