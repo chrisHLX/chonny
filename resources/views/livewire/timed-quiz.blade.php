@@ -41,6 +41,25 @@
             </div>
         </div>
 
+    {{-- FEEDBACK SCREEN --}}    
+    @elseif (!empty($feedback))
+        <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-lg"
+             x-transition>
+            <h3 class="font-semibold mb-2">📝 Feedback:</h3>
+            @foreach ($contents as $content)
+                <p class="mb-2">- {{ $content['review_content'] }}</p>
+            @endforeach
+            <div class="mt-6">
+                <button
+                    wire:click="startReviewQuiz"
+                    class="w-full py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 shadow transition-transform hover:scale-105 disabled:opacity-50"
+                    @disabled(!$selectedModule)>
+                    ▶️ Start Quiz
+                </button>
+            </div>
+        </div>
+
+
 
 
     {{-- COMPLETION SCREEN --}}
@@ -206,15 +225,9 @@
 
 
             </form>
-
-            @if ($feedback)
-                <div class="mt-4 p-3 rounded text-center font-semibold
-                    {{ $feedback === 'Correct!' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
-                    {{ $feedback }}
-                </div>
-            @endif
         </div>
     @endif
+
 
     <style>
         .list-group { list-style: none; padding: 0; }

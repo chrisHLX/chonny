@@ -61,6 +61,44 @@ class AiService
         return is_array($decoded) ? $decoded : [];
     }
 
+    private function callOpenAiString(string $prompt): string
+    {
+        // Log the prompt for debugging
+        \Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
+
+        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4o-mini', // or gpt-3.5-turbo
+            'messages' => [
+                ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+                ['role' => 'user', 'content' => $prompt],
+            ],
+            'temperature' => 0.2,
+        ]);
+
+        $json = $response->json();
+
+        // Grab the content from the first choice
+        $content = $json['choices'][0]['message']['content'] ?? '';
+
+        // Strip any Markdown code blocks (like ```json ... ```)
+        $content = trim(preg_replace('/^```json|```$/i', '', $content));
+
+        // If OpenAI returned a JSON string, decode and try to extract 'content'
+        $decoded = json_decode($content, true);
+        if (is_array($decoded) && isset($decoded['content'])) {
+            $content = $decoded['content'];
+        }
+
+        // Final trim to clean up any leftover whitespace
+        $content = trim($content);
+
+        \Log::debug('Final OpenAI explanation', ['content' => $content]);
+
+        return $content;
+    }
+
+
+
     private function callOpenAiHTML(string $prompt): string
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
@@ -251,6 +289,30 @@ class AiService
         }
 
         return $keywords;
+    }
+
+    public function generateContentForQuestion(Question $question, $moduleInfo): string
+    {
+        $question = json_encode($question->answer, JSON_PRETTY_PRINT);
+        $prompt = <<<EOT
+        The user is has answered the following question wrong a consecutive number of times. Please provide a detailed explanation to help them understand the concept better.
+        
+        The question is related to the following module: {$moduleInfo}
+
+        Question: {$question}
+        
+        
+        Return only the explanation text without any additional formatting.
+        EOT;
+
+        \Log::info('Generating content for question with prompt', ['prompt' => $prompt]);
+
+        
+        $explanationString = $this->callOpenAiString($prompt);
+
+        \Log::info('Generated explanation $explanationString["content"]');
+
+        return $explanationString;
     }
 
     /* --------------------------------------------------------- Module Controller --------------------------------------------------------- */
