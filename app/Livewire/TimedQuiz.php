@@ -11,6 +11,9 @@ use App\Http\Services\AiService;
 use App\Http\Services\User;
 use App\Http\Services\ReviewQuestionService;
 
+use Illuminate\Support\Facades\Cache;
+
+
 class TimedQuiz extends Component
 {
     public $modules;
@@ -304,7 +307,6 @@ class TimedQuiz extends Component
         // works out the levels of difficulty based on the the questions in the module and how many the user has got correct
         foreach ($difficulties as $level) {
             $questions = $module->questions()->where('difficulty', $level)->pluck('questions.id');
-
             if ($questions->isEmpty()) continue; 
 
             $correctCount = $user->answeredQuestions()
@@ -323,7 +325,8 @@ class TimedQuiz extends Component
                         ->whereIn('questions.id', $questions)
                         ->wherePivot('last_answer_correct', '=', false)
                         ->get();
-
+                        
+                    // Generate review content for weak questions with consecutive fails
                     if ($weakQuestions->isNotEmpty()) {
 
                         $consecutive_fails = $weakQuestions->filter(function ($q) {
@@ -334,7 +337,7 @@ class TimedQuiz extends Component
                             \Log::info("User has weak questions in level $level requiring review.");
                             \Log::info("module name $module->name for " . $module->subject['name']);
 
-                        
+            // Note: if the user never has weak questions they will never have to generate review content in other words they will never use up credits
 
                             foreach ($consecutive_fails as $q) {
                                 \Log::info("Question ID {$q->id} has {$q->pivot->consecutive_fails} consecutive fails.");
