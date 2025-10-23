@@ -10,6 +10,8 @@ use App\Models\Module;
 use App\Http\Services\AiService;
 use App\Http\Services\User;
 use App\Http\Services\ReviewQuestionService;
+use App\Jobs\GenerateReviewContentJob;
+
 
 use Illuminate\Support\Facades\Cache;
 
@@ -95,7 +97,16 @@ class TimedQuiz extends Component
 
         if ($result['mode'] === 'consecutive_fails') {
             $this->feedback = "review needed";
-            $this->contents = $result['review_contents'];
+            $formattedContents = [];
+            foreach ($result['review_contents'] as $questionId => $content) {
+                $formattedContents[] = [
+                    'question_id' => $questionId,
+                    'review_content' => $content,
+                ];
+            }
+
+            $this->contents = $formattedContents;
+
             
             $this->questions = $this->prepareQuestionsForQuiz($result['questions']);
             $this->started = true; 
@@ -171,10 +182,6 @@ class TimedQuiz extends Component
         // ✅ Save result
         $this->questionResults[$question->id] = $correct;
 
-        $this->feedback = $correct 
-            ? "✅ Correct! Time: {$this->elapsed}s" 
-            : "❌ Incorrect. Time: {$this->elapsed}s";
-
         if ($correct) $this->score++;
 
         $this->questionTimes[] = $this->elapsed;
@@ -184,12 +191,17 @@ class TimedQuiz extends Component
         if (auth()->check()) {
             $user = auth()->user();
             $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
-
+            
             if ($existing) {
 
                 $newConsecutiveFails = $correct 
                 ? 0 
                 : ($existing->pivot->consecutive_fails ?? 0) + 1;
+                \Log::info("What existing pivot fails is {$existing->pivot->consecutive_fails}");
+
+                if ($existing->pivot->consecutive_fails >= 1) {
+                    GenerateReviewContentJob::dispatch($question, $user->modules()->find($this->selectedModule));
+                }
 
                 $user->answeredQuestions()->updateExistingPivot($question->id, [
                     'attempts' => $existing->pivot->attempts + 1,
@@ -303,11 +315,10 @@ class TimedQuiz extends Component
     {
         $difficulties = ['easy', 'medium', 'hard'];
         $user = auth()->user();
-       
-        // works out the levels of difficulty based on the the questions in the module and how many the user has got correct
+
         foreach ($difficulties as $level) {
             $questions = $module->questions()->where('difficulty', $level)->pluck('questions.id');
-            if ($questions->isEmpty()) continue; 
+            if ($questions->isEmpty()) continue;
 
             $correctCount = $user->answeredQuestions()
                 ->whereIn('questions.id', $questions)
@@ -316,65 +327,50 @@ class TimedQuiz extends Component
 
             $total = $questions->count();
             $percentage = $total ? ($correctCount / $total) * 100 : 0;
-            
-            // If the user has answered 80% or more of the questions for the current level correctly, they move to the next level
 
-            // 🔹 Before progressing, check if user has weak questions in this level
-                if ($percentage >= 80) {
-                    $weakQuestions = $user->answeredQuestions()
-                        ->whereIn('questions.id', $questions)
-                        ->wherePivot('last_answer_correct', '=', false)
-                        ->get();
-                        
-                    // Generate review content for weak questions with consecutive fails
-                    if ($weakQuestions->isNotEmpty()) {
+            // Get weak questions for review regardless of mastery
+            $weakQuestions = $user->answeredQuestions()
+                ->whereIn('questions.id', $questions)
+                ->wherePivot('last_answer_correct', false)
+                ->get();
 
-                        $consecutive_fails = $weakQuestions->filter(function ($q) {
-                            return $q->pivot->consecutive_fails >= 2;
-                        });
-                        
-                        if ($consecutive_fails->isNotEmpty()) {
-                            \Log::info("User has weak questions in level $level requiring review.");
-                            \Log::info("module name $module->name for " . $module->subject['name']);
+            // Check consecutive fails
+            $consecutiveFails = $weakQuestions->filter(fn($q) => $q->pivot->consecutive_fails >= 2);
 
-            // Note: if the user never has weak questions they will never have to generate review content in other words they will never use up credits
-
-                            foreach ($consecutive_fails as $q) {
-                                \Log::info("Question ID {$q->id} has {$q->pivot->consecutive_fails} consecutive fails.");
-                            }
-                            
-                            $reviewService = app(ReviewQuestionService::class);
-                            $reviewContents = $reviewService->getReviewContentsForQuestions($consecutive_fails, $module);
-
-                            
-                            return [
-                                'mode' => 'consecutive_fails',
-                                'questions' => $consecutive_fails,
-                                'level' => $level,
-                                'review_contents' => $reviewContents
-                            ];
-                        }
-
-                        return [
-                            'mode' => 'review',
-                            'questions' => $weakQuestions,
-                            'level' => $level
-                        ];
-                    }
+            if ($consecutiveFails->isNotEmpty()) {
+                $reviewContents = [];
+                foreach ($consecutiveFails as $q) {
+                    $reviewContents[$q->id] = Cache::get("review_content:{$q->id}");
                 }
 
-                // 🔹 Only return this level if user hasn’t yet mastered it
-                if ($percentage < 80) {
-                    \Log::info("Current user level: $level");
-                    return [
-                        'mode' => 'normal',
-                        'level' => $level
-                    ];
-                }
+                return [
+                    'mode' => 'consecutive_fails',
+                    'questions' => $consecutiveFails,
+                    'level' => $level,
+                    'review_contents' => $reviewContents
+                ];
             }
-        
-            // this means the user has mastered all levels
-        return ['mode' => 'completed']; // all mastered
+
+            // If there are weak questions but not consecutive fails
+            if ($weakQuestions->isNotEmpty()) {
+                return [
+                    'mode' => 'review',
+                    'questions' => $weakQuestions,
+                    'level' => $level
+                ];
+            }
+
+            // If user hasn't mastered the level
+            if ($percentage < 80) {
+                return [
+                    'mode' => 'normal',
+                    'level' => $level
+                ];
+            }
+        }
+
+        // All mastered
+        return ['mode' => 'completed'];
     }
 
     private function handleMasteryCompletion($module)

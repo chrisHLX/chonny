@@ -293,13 +293,14 @@ class AiService
 
     public function generateContentForQuestion(Question $question, $moduleInfo): string
     {
-        $question = json_encode($question->answer, JSON_PRETTY_PRINT);
+        $correct = $question->answer['correct'] ?? '';
         $prompt = <<<EOT
         The user is has answered the following question wrong a consecutive number of times. Please provide a detailed explanation to help them understand the concept better.
         
         The question is related to the following module: {$moduleInfo}
 
-        Question: {$question}
+        Question: {$question->question}
+        Correct Answer: {$correct}
         
         
         Return only the explanation text without any additional formatting.
