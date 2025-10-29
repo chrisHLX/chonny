@@ -11,6 +11,7 @@ class SubjectSeeder extends Seeder
         $subjects = [
             ['name' => 'StarCraft 2', 'description' => 'Learn and master SC2 strategies and mechanics.'],
             ['name' => 'League of Legends', 'description' => 'Learn LoL champions, tactics, and strategies.'],
+            ['name' => 'Medicine', 'description' => 'Study medicine and the structure of the human body and its systems.'],
         ];
 
         foreach ($subjects as $subjectData) {

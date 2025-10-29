@@ -43,20 +43,75 @@
 
     {{-- FEEDBACK SCREEN --}}    
     @elseif (!empty($feedback))
-        <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-lg"
-             x-transition>
-            <h3 class="font-semibold mb-2">📝 Feedback:</h3>
-            @foreach ($contents as $content)
-                <p class="mb-2">- {{ $content['review_content'] }}</p>
-            @endforeach
-            <div class="mt-6">
-                <button
-                    wire:click="startReviewQuiz"
-                    class="w-full py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 shadow transition-transform hover:scale-105 disabled:opacity-50"
-                    @disabled(!$selectedModule)>
-                    ▶️ Start Quiz
-                </button>
+            <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-lg"
+                x-transition>
+                @php
+                    $hasMissingContent = collect($contents)->contains(fn($c) => empty($c['review_content']));
+                @endphp
+                @if ($hasMissingContent)
+            <div 
+                wire:poll.10s="checkReviewContent"
+                x-data="{
+                    messages: [
+                        'Analyzing your mistakes...',
+                        'Reviewing similar questions...',
+                        'Finding learning patterns...',
+                        'Generating targeted review...',
+                        'Almost done...'
+                    ],
+                    index: 0,
+                    progress: 0,
+                    nextMessage() {
+                        this.index = (this.index + 1) % this.messages.length;
+                        this.progress = Math.min(100, this.progress + Math.random() * 10);
+                    },
+                    init() {
+                        setInterval(() => this.nextMessage(), 2500);
+                    }
+                }"
+                class="p-4 bg-blue-50 border border-blue-300 rounded-lg mt-4"
+            >
+                <p class="font-semibold text-blue-700 flex items-center">
+                    <span class="animate-pulse mr-2">🤖</span>
+                    <span x-text="messages[index]"></span>
+                </p>
+
+                <div class="w-full bg-blue-200 h-2 rounded mt-2 overflow-hidden">
+                    <div class="bg-blue-600 h-2 transition-all duration-700" 
+                        :style="{ width: progress + '%' }">
+                    </div>
+                </div>
+
+                <ul class="text-xs text-gray-600 mt-3 space-y-1">
+                    @foreach ($contents as $content)
+                        <li>
+                            Question {{ $content['question_id'] }}: 
+                            @if ($content['review_content'])
+                                <span class="text-green-600">✅ Ready</span>
+                            @else
+                                <span class="text-yellow-500 animate-pulse">⏳ Pending</span>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
             </div>
+
+                @else
+                    @foreach ($contents as $content)
+                        <p class="mb-2">- {{ $content['review_content'] }}</p>
+                    @endforeach
+                    <div class="mt-6">
+                        <button
+                            wire:click="startReviewQuiz"
+                            class="w-full py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 shadow transition-transform hover:scale-105 disabled:opacity-50"
+                            @disabled(!$selectedModule)>
+                            ▶️ Start Quiz
+                        </button>
+                    </div>
+                @endif
+
+            </div>
+            
         </div>
 
 

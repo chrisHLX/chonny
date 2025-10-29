@@ -35,6 +35,9 @@ class TimedQuiz extends Component
     public $contents = []; // For review contents
     // ✅ Track per-question correctness
     public $questionResults = [];
+    public $consecutiveFails = [];
+    public $review_contents = [];    
+    public $hasMissingContent = false;
 
 
     
@@ -114,15 +117,6 @@ class TimedQuiz extends Component
         }
         
     }
-
-    public function startReviewQuiz() // If they fail this quiz we need to reset the consecutive fails count and disable the quiz until they do the review module
-    {   
-        $this->feedback = '';
-        $this->initializeQuizState('review');
-        return;
-    }
-
-
 
     public function submit($params = [])
     {
@@ -335,20 +329,23 @@ class TimedQuiz extends Component
                 ->get();
 
             // Check consecutive fails
-            $consecutiveFails = $weakQuestions->filter(fn($q) => $q->pivot->consecutive_fails >= 2);
+            $this->consecutiveFails = $weakQuestions->filter(fn($q) => $q->pivot->consecutive_fails >= 2);
 
-            if ($consecutiveFails->isNotEmpty()) {
+            if ($this->consecutiveFails->isNotEmpty()) {
+
                 $reviewContents = [];
-                foreach ($consecutiveFails as $q) {
+                foreach ($this->consecutiveFails as $q) {
                     $reviewContents[$q->id] = Cache::get("review_content:{$q->id}");
                 }
 
+                // if review content is empty we just assume its being generated and send a message
                 return [
                     'mode' => 'consecutive_fails',
-                    'questions' => $consecutiveFails,
+                    'questions' => $this->consecutiveFails,
                     'level' => $level,
                     'review_contents' => $reviewContents
                 ];
+
             }
 
             // If there are weak questions but not consecutive fails
@@ -372,6 +369,33 @@ class TimedQuiz extends Component
         // All mastered
         return ['mode' => 'completed'];
     }
+
+    public function checkReviewContent()
+    {
+        $allReady = true;
+            
+        foreach ($this->consecutiveFails as $q) {
+            $content = Cache::get("review_content:{$q->id}");
+            $formattedContents[] = [
+                'question_id' => $q->id,
+                'review_content' => $content,
+            ];
+            \Log::info("Polled review content for Question ID {$q->id}: " . ($content ?? 'not ready'));
+
+            if (empty($content)) {
+                $allReady = false;
+            }
+        }
+        
+        // Once all review contents are ready, stop polling
+        if ($allReady) {
+            $this->hasMissingContent = false;
+            \Log::info('All review contents ready — stopping poll.');
+            $this->contents = $formattedContents;
+        }
+    }
+
+
 
     private function handleMasteryCompletion($module)
     {

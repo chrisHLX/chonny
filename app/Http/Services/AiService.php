@@ -126,6 +126,7 @@ class AiService
     }
 
     // Format the answer based on its type for better readability in prompts important for generating questions
+    // Must return a string?
     private function formatAnswer($q): string
     {
         // Normalize: if we got a model, turn it into array shape
@@ -293,17 +294,23 @@ class AiService
 
     public function generateContentForQuestion(Question $question, $moduleInfo): string
     {
-        $correct = $question->answer['correct'] ?? '';
+        $correct = $this->formatAnswer($question);
         $prompt = <<<EOT
-        The user is has answered the following question wrong a consecutive number of times. Please provide a detailed explanation to help them understand the concept better.
-        
-        The question is related to the following module: {$moduleInfo}
+        The user has repeatedly answered the following question incorrectly. 
+        Please write a clear, structured explanation to help them understand the underlying concept.
 
-        Question: {$question->question}
-        Correct Answer: {$correct}
-        
-        
-        Return only the explanation text without any additional formatting.
+        Focus on:
+        - Explaining *why* the correct answer is right.
+        - Clarifying *why* common wrong answers might be confusing. 
+        - Giving one short, memorable tip or analogy.
+
+        Context:
+        - Module: $moduleInfo
+        - Question: $question->question
+        - Correct Answer: $correct
+
+        Return only the plain text explanation — no lists, titles, or formatting.
+
         EOT;
 
         \Log::info('Generating content for question with prompt', ['prompt' => $prompt]);
@@ -315,6 +322,7 @@ class AiService
 
         return $explanationString;
     }
+    
 
     /* --------------------------------------------------------- Module Controller --------------------------------------------------------- */
 
