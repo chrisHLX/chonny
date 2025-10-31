@@ -1,13 +1,13 @@
 <x-app-layout>
     <div class="max-w-4xl mx-auto p-4">
         <h1 class="text-2xl font-bold">Modules</h1>
-        <p class="text-gray-600">Explore the available modules below.</p>
+        <p class="text-blue-100">Explore the available modules below.</p>
 
         <div class="mt-8 space-y-6">
             @foreach ($modules as $module)
-                <div class="p-4 bg-white shadow rounded">
+                <div class="p-4 bg-gray-800 shadow rounded">
                     <h2 class="text-xl font-semibold">{{ $module->name }}</h2>
-                    <p class="text-gray-600">{{ $module->description }}</p>
+                    <p class="text-gray-400">{{ $module->description }}</p>
                     
 
                     {{-- Display Users and Scores --}}
@@ -34,9 +34,9 @@
                     {{-- Questions --}}
                     @if ($module->questions)
                         @foreach ($module->questions as $question)
-                            <div class="mt-2">
+                            <div class="mt-2 text-gray-200">
                                 <h3 class="text-lg font-medium">{{ $question->question }}</h3>
-                                <p class="text-gray-700">{{ $question->difficulty }}</p>
+                                <p class="text-gray-400">{{ $question->difficulty }}</p>
                             </div>
                         @endforeach
                     @endif

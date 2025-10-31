@@ -1,4 +1,4 @@
-<div class="p-6 max-w-2xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100"
+<div class="p-6 max-w-2xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 text-gray-600"
      x-data="{ elapsed: 0, started: @entangle('started'), completed: @entangle('completed') }"
      x-init="if (started) setInterval(() => elapsed++, 1000)">
      
@@ -181,7 +181,8 @@
                 </div>
             </div>
         </div>
-
+        
+        
         {{-- Question Card --}}
         <div class="p-5 bg-gray-50 rounded-xl shadow-sm border border-gray-100"
              wire:key="question-{{ $question->id }}" x-transition>

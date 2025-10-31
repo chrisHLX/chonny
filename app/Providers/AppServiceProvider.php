@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        
     }
 
     /**
@@ -19,6 +23,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // make credits available in all views for navigation display
+        View::composer('*', function ($view) {
+            if (Auth::check()) {
+                $view->with('nav_ai_credits', Auth::user()->ai_credits);
+                $view->with('nav_learned_credits', Auth::user()->learned_credits);
+            }
+        });
+
+
     }
 }

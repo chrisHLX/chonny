@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Http\Services\HtmlFormatter;
 use App\Http\Services\VersioningService;
+use App\Http\Services\CreditService;
 
 
 use Illuminate\Support\Facades\Http;
@@ -21,14 +22,16 @@ use Illuminate\Support\Facades\Http;
 class AiService
 {
     protected HtmlFormatter $formatter;
+    protected CreditService $creditService;
     protected Client $client;
     protected string $apiKey;
 
-    public function __construct(Client $client, HtmlFormatter $formatter)
+    public function __construct(Client $client, HtmlFormatter $formatter, CreditService $creditService)
     {
         $this->client = $client;
         $this->formatter = $formatter;
         $this->apiKey = env('OPENAI_API_KEY'); // or config('services.openai.key')
+        $this->creditService = $creditService;
     }
 
     /* --------------------------------------------------------- OPENAI CALLS & HELPERS --------------------------------------------------------- */

@@ -16,7 +16,7 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-900 text-gray-200">
             @livewireScriptConfig
             @include('layouts.navigation')
 

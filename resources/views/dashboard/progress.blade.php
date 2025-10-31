@@ -3,7 +3,7 @@
         <h2 class="text-2xl font-bold text-gray-800">📊 Your Learning Progress</h2>
     </x-slot>
 
-    <div class="py-6 max-w-5xl mx-auto space-y-8">
+    <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
 
         <!-- Modules Overview -->
         <div class="bg-white shadow-lg p-6 rounded-lg">
@@ -33,7 +33,7 @@
         </div>
 
         <!-- Answered Questions Stats -->
-        <div class="bg-white shadow-lg p-6 rounded-lg">
+        <div class="bg-white shadow-lg text-gray-600 p-6 rounded-lg">
             <h3 class="text-xl font-bold mb-4 border-b pb-2">Question History</h3>
 
             @forelse ($answeredQuestions as $question)

@@ -37,9 +37,8 @@ class GenerateReviewContentJob implements ShouldQueue
         Log::info("🚀 Generating review content for {$this->question->question} question in module {$this->module->name}");
         \Log::info('Question dump', [$this->question->toArray()]);
 
-        // $reviewContent = $reviewQuestionService->getReviewContent($this->question, $this->module);
-        sleep(8); // Simulate time taken to generate content
-        $reviewContent = "This is a simulated review content for the question: {$this->question->question}";
+        $reviewContent = $reviewQuestionService->getReviewContent($this->question, $this->module);
+
         $cacheKey = "review_content:{$this->question->id}";
 
         // Cache each review content for 1 hour
