@@ -194,7 +194,7 @@ class TimedQuiz extends Component
                 \Log::info("What existing pivot fails is {$existing->pivot->consecutive_fails}");
 
                 if ($existing->pivot->consecutive_fails >= 1) {
-                    GenerateReviewContentJob::dispatch($question, $user->modules()->find($this->selectedModule));
+                    GenerateReviewContentJob::dispatch($question->id, $this->selectedModule, $user->id);
                 }
 
                 $user->answeredQuestions()->updateExistingPivot($question->id, [

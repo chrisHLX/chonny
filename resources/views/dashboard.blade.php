@@ -16,6 +16,14 @@
                 <h1 class="text-3xl font-bold mb-2">Welcome back, {{ $user->name }} 👋</h1>
                 <p class="text-blue-100">
                     Ready to keep improving your knowledge? Let’s dive in.
+                    <div class="mt-4 flex gap-2">
+                        <form action="{{ route('credit.test') }}" method="POST" class="flex-1">
+                            @csrf
+                            <button class="w-full bg-white hover:bg-white text-gray-600 px-3 py-2 rounded-md">
+                                Test
+                            </button>
+                        </form>
+                    </div>
                 </p>
             </div>
             

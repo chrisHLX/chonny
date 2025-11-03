@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->foreignId('parent_module')->nullable()->constrained('modules'); // Added a parent id so we can attach modules to parents
+            $table->string('content_source')->default('OPEN AI 4.0-mini'); // Added a parent id so we can attach modules to parents
             $table->text('description')->nullable();
             $table->string('race')->nullable(); // 'Zerg', 'Terran', 'Protoss', or null
             $table->string('difficulty_level')->default('beginner'); // beginner, intermediate, advanced

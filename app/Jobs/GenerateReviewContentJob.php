@@ -17,16 +17,18 @@ class GenerateReviewContentJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $question;
-    protected $module;
+    protected int $questionID;
+    protected int $moduleID;
+    protected int $userID;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(Question $question, Module $module)
+    public function __construct(int $questionID, int $moduleID, int $userID)
     {
-        $this->question = $question;
-        $this->module = $module;
+        $this->questionID = $questionID;
+        $this->moduleID = $moduleID;
+        $this->userID = $userID;
     }
 
     /**
@@ -34,16 +36,22 @@ class GenerateReviewContentJob implements ShouldQueue
      */
     public function handle(ReviewQuestionService $reviewQuestionService)
     {
-        Log::info("🚀 Generating review content for {$this->question->question} question in module {$this->module->name}");
-        \Log::info('Question dump', [$this->question->toArray()]);
+        $question = Question::find($this->questionID);
+        $module = Module::find($this->moduleID);
 
-        $reviewContent = $reviewQuestionService->getReviewContent($this->question, $this->module);
+        if (!$question || !$module) {
+            Log::warning("⚠️ Question or Module not found for job: QuestionID={$this->questionID}, ModuleID={$this->moduleID}");
+            return;
+        }
 
-        $cacheKey = "review_content:{$this->question->id}";
+        Log::info("🚀 Generating review content for '{$question->question}' in module '{$module->name}'");
 
-        // Cache each review content for 1 hour
+        $reviewContent = $reviewQuestionService->getReviewContent($question, $module, $this->userID);
+
+        $cacheKey = "review_content:{$question->id}";
+
         Cache::put($cacheKey, $reviewContent, now()->addHour());
 
-        Log::info("✅ Cached review content for Question ID {$this->question->id} The Content is: " . $reviewContent);
+        Log::info("✅ Cached review content for Question ID {$question->id}: {$reviewContent}");
     }
 }

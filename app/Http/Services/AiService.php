@@ -25,14 +25,29 @@ class AiService
     protected CreditService $creditService;
     protected Client $client;
     protected string $apiKey;
+    protected TokenService $tokenService;
 
-    public function __construct(Client $client, HtmlFormatter $formatter, CreditService $creditService)
+    public function __construct(Client $client, HtmlFormatter $formatter, CreditService $creditService, TokenService $tokenService)
     {
         $this->client = $client;
         $this->formatter = $formatter;
         $this->apiKey = env('OPENAI_API_KEY'); // or config('services.openai.key')
         $this->creditService = $creditService;
+        $this->tokenService = $tokenService;
     }
+
+    public function test()
+    {
+        $content = $this->callOpenAiString("Hello, could you provide me with a short history of StarCraft? Starcraft being the game with a timestamp so I know its fresh.");
+        dd($content);
+    }
+
+    private function estimateTokens(string $text): int
+    {
+        // Rough estimate: ~4 chars per token (English text)
+        return (int) ceil(strlen($text) / 4);
+    }
+
 
     /* --------------------------------------------------------- OPENAI CALLS & HELPERS --------------------------------------------------------- */
     private function callOpenAi(string $prompt): array
@@ -40,7 +55,6 @@ class AiService
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
 
         $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
-            //'model' => 'gpt-3.5-turbo',
             'model' => 'gpt-4o-mini', // Use gpt-4 for better performance, its the same cost as gpt-3.5-turbo
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
@@ -64,10 +78,18 @@ class AiService
         return is_array($decoded) ? $decoded : [];
     }
 
-    private function callOpenAiString(string $prompt): string
+    private function callOpenAiString(string $prompt, $userID): string
     {
+        $userID = $userID; // Need to pass the user ID for jobs
+        
         // Log the prompt for debugging
         \Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
+
+        /* --------- Token estimation logic ---------- */
+        $model = 'gpt-4o-mini';
+
+        // 1. Estimate input tokens
+        $inputTokens = $this->estimateTokens($prompt);
 
         $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
             'model' => 'gpt-4o-mini', // or gpt-3.5-turbo
@@ -79,7 +101,7 @@ class AiService
         ]);
 
         $json = $response->json();
-
+        
         // Grab the content from the first choice
         $content = $json['choices'][0]['message']['content'] ?? '';
 
@@ -91,6 +113,22 @@ class AiService
         if (is_array($decoded) && isset($decoded['content'])) {
             $content = $decoded['content'];
         }
+
+        // 3. Estimate output tokens
+        $outputTokens = $this->estimateTokens($content);
+
+        // 4. Calculate cost in credits
+        $creditCost = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+
+        // 5. Deduct credits from user
+        $this->creditService->spendAiCredits($userID, $creditCost);
+
+        // 6. Log debug info
+        \Log::info('AI token usage', [
+            'input_tokens' => $inputTokens,
+            'output_tokens' => $outputTokens,
+            'credit_cost' => $creditCost,
+        ]);
 
         // Final trim to clean up any leftover whitespace
         $content = trim($content);
@@ -247,20 +285,6 @@ class AiService
 
     }
 
-    // This was used in the question controller when creating new questions but we are not using it at the moment
-    // Keeping it here in case we want to use it later
-    public function tagUnits(string $questionText, string $answerText = ''): array
-    {
-        $prompt = <<<EOT
-        You are a StarCraft 2 coach. Analyze the following question and answer. Identify 1–3 specific units mentioned or implied. Return in JSON: {"units": [...]}
-
-        Question: {$questionText}
-        Answer: {$answerText}
-        EOT;
-
-        return $this->callOpenAi($prompt)['units'] ?? [];
-    }
-
     // Used in the question controller in the store function for saving questions, automatically generating keywords for open questions
     public function getKeywords($input)
     {
@@ -295,7 +319,7 @@ class AiService
         return $keywords;
     }
 
-    public function generateContentForQuestion(Question $question, $moduleInfo): string
+    public function generateContentForQuestion(Question $question, $moduleInfo, $userID): string
     {
         $correct = $this->formatAnswer($question);
         $prompt = <<<EOT
@@ -319,7 +343,7 @@ class AiService
         \Log::info('Generating content for question with prompt', ['prompt' => $prompt]);
 
         
-        $explanationString = $this->callOpenAiString($prompt);
+        $explanationString = $this->callOpenAiString($prompt, $userID);
 
         \Log::info('Generated explanation $explanationString["content"]');
 

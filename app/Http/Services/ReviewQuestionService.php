@@ -23,7 +23,7 @@ class ReviewQuestionService
      * @param Question $question
      * @return Content|string
      */
-    public function getReviewContent(Question $question, Module $module)
+    public function getReviewContent(Question $question, Module $module, $userID)
     {
         // Check if the question has an existing content block
         $content = $question->contents()->latest()->first();
@@ -38,7 +38,7 @@ class ReviewQuestionService
 
         // If no content exists, generate one using AI
         Log::info("Generating AI content for Question ID {$question->id}");
-        $generatedContent = $this->aiService->generateContentForQuestion($question, $moduleInfo);
+        $generatedContent = $this->aiService->generateContentForQuestion($question, $moduleInfo, $userID);
 
         // Optionally save AI-generated content for future use
         $newContent = Content::create([

@@ -24,6 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
+Route::post('/credits', [AiController::class, 'test'])->name('credit.test');
 
 Route::get('/dashboard/progress', [UserProgressController::class, 'index'])
     ->middleware(['auth'])

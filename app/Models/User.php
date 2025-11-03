@@ -73,6 +73,9 @@ class User extends Authenticatable
         return $this->hasMany(UserConceptMastery::class);
     }
 
-
+    public function credits()
+    {
+        return $this->hasOne(UserCredit::class);
+    }
 
 }
