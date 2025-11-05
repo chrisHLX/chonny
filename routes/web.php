@@ -70,7 +70,7 @@ Route::get('/questions/problematic', [QuestionController::class, 'problematic'])
 Route::get('modules', function () {
     $modules = Module::with('users', 'questions')->get();
     return view('modules.index', compact('modules'));
-})->name('modules.index');
+})->name('modules.index')->middleware('auth');
 
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');
 Route::post('/modules-pagex/createLandingPage/{module}', [ModuleController::class, 'createLandingPage'])->name('modules-pagex.createLandingPage')->middleware('auth');

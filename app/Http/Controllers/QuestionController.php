@@ -25,8 +25,7 @@ class QuestionController extends Controller
 
     public function quiz()
     {
-        $questions = Question::all();
-        return view('questions.quiz.index', compact('questions'));
+        return view('questions.quiz.index');
     }
 
     //Still need to pass the module in the blade 

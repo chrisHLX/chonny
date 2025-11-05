@@ -38,8 +38,9 @@ class AiService
 
     public function test()
     {
-        $content = $this->callOpenAiString("Hello, could you provide me with a short history of StarCraft? Starcraft being the game with a timestamp so I know its fresh.");
-        dd($content);
+        //$content = $this->callOpenAiString("Hello, could you provide me with a short history of StarCraft? Starcraft being the game with a timestamp so I know its fresh.");
+        //dd($content);
+        $this->creditService->addAiCredits(auth()->user()->id, 1000, "Test credit addition");
     }
 
     private function estimateTokens(string $text): int

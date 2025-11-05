@@ -38,6 +38,7 @@ class TimedQuiz extends Component
     public $consecutiveFails = [];
     public $review_contents = [];    
     public $hasMissingContent = false;
+    public $userCredits = null;
 
 
     
@@ -50,12 +51,11 @@ class TimedQuiz extends Component
     {
         \Log::info("Updated {$name}", ['new' => $value]);
     }
+
     public function mount()
     {
-
         $this->subjects = Subject::all();
         $this->modules = auth()->user()->modules()->get();
-        
     }
 
     public function incrementElapsed()
@@ -68,6 +68,11 @@ class TimedQuiz extends Component
         if (!$this->selectedModule) return;
 
         $user = auth()->user();
+        $this->userCredits = $user->credits()->firstOrCreate([]); // Ensure record exists
+        if ($this->userCredits->ai_credits <= 100) {
+            dd('Not enough AI credits to start the quiz. Please top up your credits.');
+        }
+
         $module = $user->modules()->with('questions')->find($this->selectedModule);
         if (!$module) return;
 
@@ -92,7 +97,6 @@ class TimedQuiz extends Component
         }
 
         if ($result['mode'] === 'review') {
-            
             $this->questions = $this->prepareQuestionsForQuiz($result['questions']);
             $this->initializeQuizState($result['level']);
             return;
@@ -109,13 +113,19 @@ class TimedQuiz extends Component
             }
 
             $this->contents = $formattedContents;
-
-            
-            $this->questions = $this->prepareQuestionsForQuiz($result['questions']);
             $this->started = true; 
             return;
         }
         
+    }
+
+    public function startReviewQuiz()
+    {
+
+        $this->feedback = NULL;
+        $this->questions = $this->prepareQuestionsForQuiz($this->consecutiveFails ?? collect());
+        $this->initializeQuizState('review');
+        return;
     }
 
     public function submit($params = [])
@@ -246,12 +256,19 @@ class TimedQuiz extends Component
             // ✅ Calculate user's *overall* score for this module (including past and current)
             $userScore = $this->userScore($moduleId);
 
+            if ($this->difficulty === 'final' && $this->score === $this->questions->count()) {
+                $status = 'completed';
+                // could do the logic to handle next module and later request etc
+            } else {
+                $status = 'in_progress';    
+            }
+            
             // ✅ Update pivot for module progress
             if ($user && $moduleId) {
                 $user->modules()->syncWithoutDetaching([
                     $moduleId => [
                         'score' => $userScore, // Use overall calculated score
-                        'status' => 'completed',
+                        'status' => $status,
                         'last_activity_at' => now(),
                         'completed_at' => now(),
                     ]
@@ -306,19 +323,23 @@ class TimedQuiz extends Component
 
 
     private function calculateNextDifficulty($module)
-    {
+    {   
         $difficulties = ['easy', 'medium', 'hard'];
         $user = auth()->user();
 
+
         foreach ($difficulties as $level) {
+            // Grab all the questions at this difficulty starting at easy
             $questions = $module->questions()->where('difficulty', $level)->pluck('questions.id');
             if ($questions->isEmpty()) continue;
 
+            // Count how many the user answered correctly
             $correctCount = $user->answeredQuestions()
                 ->whereIn('questions.id', $questions)
                 ->wherePivot('last_answer_correct', true)
                 ->count();
 
+            // Calculate the percentage
             $total = $questions->count();
             $percentage = $total ? ($correctCount / $total) * 100 : 0;
 
@@ -331,8 +352,10 @@ class TimedQuiz extends Component
             // Check consecutive fails
             $this->consecutiveFails = $weakQuestions->filter(fn($q) => $q->pivot->consecutive_fails >= 2);
 
+            // Execute this code block if there are consecutive fails before advancing
             if ($this->consecutiveFails->isNotEmpty()) {
 
+                // Grab review content from cache
                 $reviewContents = [];
                 foreach ($this->consecutiveFails as $q) {
                     $reviewContents[$q->id] = Cache::get("review_content:{$q->id}");
@@ -348,7 +371,7 @@ class TimedQuiz extends Component
 
             }
 
-            // If there are weak questions but not consecutive fails
+            // If there are weak questions but not consecutive fails before advancing
             if ($weakQuestions->isNotEmpty()) {
                 return [
                     'mode' => 'review',
@@ -357,7 +380,7 @@ class TimedQuiz extends Component
                 ];
             }
 
-            // If user hasn't mastered the level
+            // If user hasn't mastered the level keep grabbing questions until they have
             if ($percentage < 80) {
                 return [
                     'mode' => 'normal',
@@ -366,7 +389,7 @@ class TimedQuiz extends Component
             }
         }
 
-        // All mastered
+        // Once we have looped through all questions and the user has correctly answered them all the module === All mastered
         return ['mode' => 'completed'];
     }
 
@@ -375,7 +398,18 @@ class TimedQuiz extends Component
         $allReady = true;
             
         foreach ($this->consecutiveFails as $q) {
-            $content = Cache::get("review_content:{$q->id}");
+            $content = Cache::remember("review_content:{$q->id}", now()->addHours(2), function () use ($q) {
+                // 1. Try relationship (DB)
+                $contentModel = $q->contents()->first();
+
+                if ($contentModel) {
+                    return $contentModel->content; // ← assuming column is `content`
+                }
+
+                return null; // Default to null if not found
+            });
+
+
             $formattedContents[] = [
                 'question_id' => $q->id,
                 'review_content' => $content,
@@ -423,7 +457,7 @@ class TimedQuiz extends Component
             \Log::info('Least accurate questions:', $leastAccurate->pluck('id')->toArray());
 
             $this->questions = $this->prepareQuestionsForQuiz($leastAccurate);
-            $this->initializeQuizState('review');
+            $this->initializeQuizState('final');
             return; // 🔹 Important: stop execution here so the "otherwise" block doesn't overwrite questions
         }
 
@@ -576,7 +610,7 @@ class TimedQuiz extends Component
         $this->elapsed = 0;
         $this->questionTimes = [];
         $this->currentIndex = 0;
-
+        $this->questions = $this->questions ?? collect();
         $this->questionResults = [];
         \Log::info("questions after quiz state initialization" . $this->questions);
     }

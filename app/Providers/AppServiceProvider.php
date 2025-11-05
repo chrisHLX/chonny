@@ -25,14 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // make credits available in all views for navigation display
         View::composer('*', function ($view) {
-            if (Auth::check()) {
-                $view->with('nav_ai_credits', Auth::user()->credits()->firstOrcreate()->ai_credits);
-                $view->with('nav_learned_credits', Auth::user()->credits()->firstOrcreate()->learned_credits);
-            }
+            $credits = Auth::check() ? Auth::user()->credits : null;
+
+            $view->with([
+                'nav_ai_credits'     => $credits->ai_credits ?? 0,
+                'nav_learned_credits' => $credits->learned_credits ?? 0,
+            ]);
         });
-
-
     }
+
+
 }

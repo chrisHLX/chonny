@@ -35,7 +35,7 @@ class CreditService
             $credit->increment('ai_credits', $amount);
 
             CreditTransaction::create([
-                'user_id' => $user->id,
+                'user_id' => $user,
                 'amount' => $amount,
                 'credit_type' => 'ai',
                 'action' => 'purchase',

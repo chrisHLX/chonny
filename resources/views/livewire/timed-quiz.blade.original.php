@@ -49,52 +49,52 @@
                     $hasMissingContent = collect($contents)->contains(fn($c) => empty($c['review_content']));
                 @endphp
                 @if ($hasMissingContent)
-                <div 
-                    wire:poll.5s="checkReviewContent"
-                    x-data="{
-                        messages: [
-                            'Analyzing your mistakes...',
-                            'Reviewing similar questions...',
-                            'Finding learning patterns...',
-                            'Generating targeted review...',
-                            'Almost done...'
-                        ],
-                        index: 0,
-                        progress: 0,
-                        nextMessage() {
-                            this.index = (this.index + 1) % this.messages.length;
-                            this.progress = Math.min(100, this.progress + Math.random() * 10);
-                        },
-                        init() {
-                            setInterval(() => this.nextMessage(), 2500);
-                        }
-                    }"
-                    class="p-4 bg-blue-50 border border-blue-300 rounded-lg mt-4"
-                >
-                    <p class="font-semibold text-blue-700 flex items-center">
-                        <span class="animate-pulse mr-2">🤖</span>
-                        <span x-text="messages[index]"></span>
-                    </p>
+            <div 
+                wire:poll.10s="checkReviewContent"
+                x-data="{
+                    messages: [
+                        'Analyzing your mistakes...',
+                        'Reviewing similar questions...',
+                        'Finding learning patterns...',
+                        'Generating targeted review...',
+                        'Almost done...'
+                    ],
+                    index: 0,
+                    progress: 0,
+                    nextMessage() {
+                        this.index = (this.index + 1) % this.messages.length;
+                        this.progress = Math.min(100, this.progress + Math.random() * 10);
+                    },
+                    init() {
+                        setInterval(() => this.nextMessage(), 2500);
+                    }
+                }"
+                class="p-4 bg-blue-50 border border-blue-300 rounded-lg mt-4"
+            >
+                <p class="font-semibold text-blue-700 flex items-center">
+                    <span class="animate-pulse mr-2">🤖</span>
+                    <span x-text="messages[index]"></span>
+                </p>
 
-                    <div class="w-full bg-blue-200 h-2 rounded mt-2 overflow-hidden">
-                        <div class="bg-blue-600 h-2 transition-all duration-700" 
-                            :style="{ width: progress + '%' }">
-                        </div>
+                <div class="w-full bg-blue-200 h-2 rounded mt-2 overflow-hidden">
+                    <div class="bg-blue-600 h-2 transition-all duration-700" 
+                        :style="{ width: progress + '%' }">
                     </div>
-
-                    <ul class="text-xs text-gray-600 mt-3 space-y-1">
-                        @foreach ($contents as $content)
-                            <li>
-                                Question {{ $content['question_id'] }}: 
-                                @if ($content['review_content'])
-                                    <span class="text-green-600">✅ Ready</span>
-                                @else
-                                    <span class="text-yellow-500 animate-pulse">⏳ Pending</span>
-                                @endif
-                            </li>
-                        @endforeach
-                    </ul>
                 </div>
+
+                <ul class="text-xs text-gray-600 mt-3 space-y-1">
+                    @foreach ($contents as $content)
+                        <li>
+                            Question {{ $content['question_id'] }}: 
+                            @if ($content['review_content'])
+                                <span class="text-green-600">✅ Ready</span>
+                            @else
+                                <span class="text-yellow-500 animate-pulse">⏳ Pending</span>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
                 @else
                     @foreach ($contents as $content)
@@ -112,6 +112,10 @@
 
             </div>
             
+        </div>
+
+
+
 
     {{-- COMPLETION SCREEN --}}
     @elseif ($completed)
@@ -130,7 +134,7 @@
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                @if ($difficulty === 'final')
+                @if ($difficulty === 'review')
                     @if ($score === $questions->count())
                         <!-- All review questions correct -->
                         <a href="{{ route('dashboard.progress') }}"
@@ -164,7 +168,7 @@
     {{-- QUESTION SCREEN --}}
     @else
         @php $question = $questions[$currentIndex]; @endphp
-                    
+
         {{-- Progress Bar --}}
         <div class="mb-4">
             <div class="flex justify-between text-sm text-gray-600 mb-1">
@@ -178,6 +182,7 @@
             </div>
         </div>
         
+        
         {{-- Question Card --}}
         <div class="p-5 bg-gray-50 rounded-xl shadow-sm border border-gray-100"
              wire:key="question-{{ $question->id }}" x-transition>
@@ -185,6 +190,7 @@
                 <span class="text-blue-600 font-bold">Q{{ $currentIndex + 1 }}.</span>
                 {{ $question->question }}
             </h2>
+
             <form x-data="{ elapsed: 0 }"
                 x-init="setInterval(() => elapsed++, 1000)"
                 x-on:submit.prevent="$wire.submit({ elapsed })">
