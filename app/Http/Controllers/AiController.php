@@ -24,7 +24,8 @@ class AiController extends Controller
         return view('Ai/ai_requests', compact('ai_requests'));
     }
 
+    // Test function to call AiService test method on the home dashboard
     public function test(){
-        $this->aiService->test();
+        $this->aiService->testContent();
     }
 }

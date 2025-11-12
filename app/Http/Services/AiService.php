@@ -7,6 +7,7 @@ use App\Models\Concept;
 use App\Models\Module;
 use App\Models\Question;
 use App\Models\ModulePage;
+use App\Models\Subject;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log; 
@@ -15,7 +16,7 @@ use App\Http\Services\HtmlFormatter;
 use App\Http\Services\VersioningService;
 use App\Http\Services\CreditService;
 
-
+use App\Jobs\GenerateQuestions;
 use Illuminate\Support\Facades\Http;
 
 
@@ -38,9 +39,38 @@ class AiService
 
     public function test()
     {
-        //$content = $this->callOpenAiString("Hello, could you provide me with a short history of StarCraft? Starcraft being the game with a timestamp so I know its fresh.");
-        //dd($content);
+        $userID = auth()->id();
+        $modules = auth()->user()->modules()->wherePivot('status', 'completed')->get();
+        dd($modules);
+    }
+
+    public function createModule()
+    {
+        // Placeholder for module creation logic
+        $module = Module::create([
+            'name' => 'Basic Medical Module',
+            'description' => 'A module covering basic medical concepts.',
+            'created_by' => auth()->id(),
+            'subject_id' => 3,
+        ]);
+    }
+
+    public function addCredits()
+    {
         $this->creditService->addAiCredits(auth()->user()->id, 1000, "Test credit addition");
+    }
+
+    public function testContent()
+    { 
+        $newModule = Module::where('id', 4)->first(); // dummy module for testing
+         // dont forget to add parent module field instead of version potentially
+        
+        $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
+        $selectedType = 'mcq';
+
+       GenerateQuestions::dispatch($selectedType, $newModule);
+        
+        
     }
 
     private function estimateTokens(string $text): int
@@ -523,67 +553,201 @@ class AiService
         return $module;
     }
 
-
-    //The content will be with html tag, we should strip them out before adding to the prompt
-    public function generateQuestions(string $content, $questionList)
+    public function generateIdeas($content, $userData)
     {
-        //Create a map of existing concepts for the module to avoid duplicates
-        $conceptMap = Concept::all()->pluck('id', 'name');
-        $questions = [];
-
-        $prompt = "
-        Generate 5 Multiple Choice Questions based on the following content: \n";
-        $prompt .= $content;
-        $prompt .= '\n Return the questions in JSON format like this ONLY:
-        [
-            {
-                "question": "What upgrade is usually completed in time for a 7:00 Terran Stim timing push?",
-                "type": "mcq",
-                "answer": {
-                "correct": "Stimpack",
-                "options": ["Combat Shield", "Stimpack", "Concussive Shells", "Armory"]
+        $prompt = "the user just completed this module and would like a list of new modules to do";
+        $prompt .= "provide your list in the following JSON format ONLY";
+        $prompt .= '
+            [
+                {
+                    "module_name": "name here",
+                    "module_description": "description here"
                 },
-                "difficulty": "medium",
-                "units": ["Marine", "Barracks Tech Lab"],
-                "concepts": ["Build Orders", "Army"]
+            ]
+        ';
+        $prompt .= "the user is interested " . $userModuleList . "consider their completed modules when creating 3 options";
+
+        $options = $this->callOpenAiString($prompt);
+        return $options;
+        // send these options so we can show them in the view like foreach options as option option->name option->description. 
+        // then the user can select the difficulty they want and then that gets sent to the below function
+    }
+
+    // This is an example of the generate next module no this is all wrong the user will select the module they want instead create a name and description
+    // of the module let the user select the difficulty level from a dropdown list. let the user choose the primary concepts?
+    // User will pass these variables $name $description $difficulty.
+    public function generateModule($name, $description, $difficulty, $subject)
+    {
+        $prompt = <<<EOT
+        Generate the following Module in JSON format ONLY:
+        [    
+            {
+                "module_name": "A concise name for the module",
+                "module_description": "A brief description of what the module covers",
+                "difficulty_level": "The difficulty level of the module (easy, medium, hard)",
+                "subject": {$subject}
             }
         ]
-        IMPORTANT: Ensure the JSON is properly formatted without markdown or extra text
-        IMPORTANT: list of usable "concepts": ["Army", "Build Orders", "Economy", "Map Control", "Mechanics", "Other", "Scouting", "Strategy", "Tactics"]
-        IMPORTANT: Use language suitable for a player who would struggle with the content provided'
-        ;
-        $prompt .= "\nThe questions have to be different to these\n" . $questionList;
+        The module should focus on the subject of {$subject} and be suitable for a {$difficulty} level learner.
+EOT;
+        dd($prompt);
+        $newModule = $this->callOpenAi($prompt);
 
-        $questionsData = $this->callOpenAi($prompt); // decoded array from AI
+        // Create newModule then below create and attach questions to module
         
-        /* units currently being returned by the AI but we havent created the logic to attach them yet
-        'units'      => $qData['units'] ?? null, // these dont exist but maybe we can attach them via the pivot table
-        */
-        // Loop through each question data and create a new question. then map concepts and attach concepts to the new questions
+    }
+
+    //The content will be with html tag, we should strip them out before adding to the prompt
+    public function generateQuestions(string $type, string $content, $newModule)
+    {
+        // Fetch all concepts as [ 'name' => id ]
+        $conceptMap = Concept::where('subject_id', $newModule->subject_id)->pluck('id', 'name');
+        $questionsList = $newModule->questions()->pluck('question')->toArray();
+        $questionsList = $newModule->questions()->pluck('question')->implode("\n- ");
+
+        
+        
+        // Define example JSON structures for each type
+        $examples = [
+            'mcq' => '[
+                {
+                    "question": "Which unit can create Creep Tumors to expand vision and map control?",
+                    "type": "mcq",
+                    "answer": {
+                    "correct": "Queen",
+                    "options": ["Queen", "Overlord", "Drone", "Infestor"]
+                    },
+                    "difficulty": "easy",
+                    "concepts": ["Map Control"]
+                }
+            ]',
+            'true_false' => '[
+                {
+                    "question": "True or False: A Drone can be used to cancel a building and regain resources.",
+                    "type": "true_false",
+                    "answer": { "correct": true },
+                    "difficulty": "medium",
+                    "concepts": ["Economy", "Mechanics"]
+                }
+            ]',
+            'matching_pairs' => '[
+                {
+                    "question": "Match the Zerg unit to its primary role.",
+                    "type": "matching_pairs",
+                    "answer": {
+                        "correct": {
+                            "Zergling": "Basic attacker",
+                            "Overlord": "Scouting",
+                            "Hydralisk": "Anti-air",
+                            "Drone": "Worker"
+                        },
+                        "pairs": {
+                            "keys": ["Zergling", "Overlord", "Hydralisk", "Drone"],
+                            "values": ["Worker", "Anti-air", "Scouting", "Basic attacker"]
+                        }
+                    },
+                    "difficulty": "easy",
+                    "concepts": ["Army"]
+                }
+            ]',
+            'ordering' => '[
+                {
+                    "question": "Put the following build steps in the correct order.",
+                    "type": "ordering",
+                    "answer": {
+                        "steps": ["Train Drone", "Build Overlord", "Build Spawning Pool", "Build Hatchery"]
+                    },
+                    "difficulty": "easy",
+                    "concepts": ["Build Orders"]
+                }
+            ]',
+        ];
+
+        // Ensure valid type
+        if (!isset($examples[$type])) {
+            \Log::warning("Invalid question type provided: {$type}");
+            return [];
+        }
+
+        // Build the AI prompt (use HEREDOC for clarity)
+        $usableConcepts = $conceptMap->keys()->implode(', ');
+        $exampleJson = $examples[$type];
+
+        $prompt = <<<PROMPT
+    Generate 5 {$type} questions for our learning app based on the following content.
+
+    CONTENT:
+    {$content}
+
+    Existing Questions for this module:
+    {$questionsList}
+
+    REQUIREMENTS:
+    - 2 easy, 2 medium, and 1 hard question.
+    - Return JSON ONLY in this format:
+    {$exampleJson}
+    - Concepts must be chosen from this list (you can tag one or more): {$usableConcepts}
+    - Ensure JSON is valid, without markdown or commentary.
+    PROMPT;
+
+    
+        // Call the AI safely
+        try {
+            $questionsData = $this->callOpenAi($prompt);
+        } catch (\Throwable $e) {
+            \Log::error("OpenAI request failed for {$type}: " . $e->getMessage());
+            return [];
+        }
+
+        // Validate response
+        if (!is_array($questionsData) || empty($questionsData)) {
+            \Log::error("OpenAI returned invalid data for {$type}.", ['response' => $questionsData]);
+            return [];
+        }
+
+        $createdQuestions = [];
+
         foreach ($questionsData as $qData) {
+            // Skip malformed entries
+            if (!isset($qData['question'], $qData['answer'])) {
+                \Log::warning("Malformed question data skipped", ['data' => $qData]);
+                continue;
+            }
+
+            // Create the question
             $question = Question::create([
                 'question'   => $qData['question'],
                 'answer'     => $qData['answer'],
-                'type'       => $qData['type'] ?? 'mcq',
+                'type'       => $qData['type'] ?? $type,
                 'difficulty' => $qData['difficulty'] ?? 'medium',
-                'created_by' => auth()->id(),
-            ]); 
-            // Example: ['Scouting' => 1, 'Economy' => 2, ...]
-            // logic to attach questions here nned to get concept IDS
-            $conceptIds = collect($qData['concepts'])
-                ->map(fn($name) => $conceptMap[$name] ?? $conceptMap['Other'])
+                'created_by' => auth()->id() ?? 1,
+            ]);
+
+            // Map and attach concept IDs
+            $conceptIds = collect($qData['concepts'] ?? [])
+                ->map(fn($name) => $conceptMap[$name] ?? null)
+                ->filter()
                 ->unique()
                 ->values();
 
-            $question->concepts()->sync($conceptIds);
+            if ($conceptIds->isEmpty()) {
+                \Log::info("No valid concept IDs found for question: {$question->id}");
+            } else {
+                $question->concepts()->sync($conceptIds);
+            }
+            $newModule->questions()->syncWithoutDetaching($question->id);
 
-            $questions[] = $question;
+            $createdQuestions[] = $question;
         }
 
-        return $questions; // array of Question models
+        // sync selected questions
+        
 
+        return $createdQuestions;
     }
 
+
+    
     /* --------------------------------------------------------- Unused Functions --------------------------------------------------------- */
 
     // currently not being used, was used for automatic landing page generation
