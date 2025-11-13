@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             ModuleQuestionSeeder::class,
             LolSeeder::class,
             QuestionConceptSeeder::class,
+            ProficiencySeeder::class,
             // Add any other seeders here
         ]);
     

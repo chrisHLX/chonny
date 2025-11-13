@@ -47,11 +47,6 @@ class Module extends Model
         return $this->hasMany(ModulePage::class);
     }
 
-    public function parent()
-    {
-        return $this->belongsTo(Module::class, 'parent_module_id');
-    }
-
     public function children()
     {
         return $this->hasMany(Module::class, 'parent_module_id');
@@ -61,4 +56,15 @@ class Module extends Model
     {
         return $this->children()->orderByDesc('version')->first();
     }
+
+    public function proficiencies()
+    {
+        return $this->belongsToMany(Proficiency::class, 'module_proficiency');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Module::class, 'parent_module_id');
+    }
+
 }

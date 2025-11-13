@@ -8,7 +8,7 @@ use App\Models\Module;
 use App\Models\Question;
 use App\Models\ModulePage;
 use App\Models\Subject;
-
+use App\Models\Proficiency;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log; 
 
@@ -44,17 +44,23 @@ class AiService
         dd($modules);
     }
 
-    private function createModule()
+    public function createModule()
     {
         // Placeholder for module creation logic
+        $proficiencyId = Proficiency::where('name', 'Intermediate')->first()->id;
+
         $module = Module::create([
             'name' => 'Basic Medical Module',
             'description' => 'A module covering basic medical concepts.',
             'created_by' => auth()->id(),
             'subject_id' => 3,
         ]);
+        
+        $module->proficiencies()->attach($proficiencyId);
+    
+        
+        $this->testContent($module);
 
-        return $module;
     }
 
     public function addCredits()
@@ -62,11 +68,11 @@ class AiService
         $this->creditService->addAiCredits(auth()->user()->id, 1000, "Test credit addition");
     }
 
-    public function testContent()
+    public function testContent($module)
     { 
-        dd("Dont dispatch work yet, weve already used this model");
-        $newModule = Module::where('id', 4)->first(); // dummy module for testing
-            // dont forget to add parent module field instead of version potentially
+        $newModule = $module;
+        
+        // dont forget to add parent module field instead of version potentially
         
         $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
         foreach ($types as $selectedType) {
@@ -611,7 +617,9 @@ EOT;
         $conceptMap = Concept::where('subject_id', $newModule->subject_id)->pluck('id', 'name');
         $questionsList = $newModule->questions()->pluck('question')->toArray();
         $questionsList = $newModule->questions()->pluck('question')->implode("\n- ");
+        $prof = $newModule->proficiencies()->first()->name;
 
+        
         
         
         // Define example JSON structures for each type
@@ -685,6 +693,9 @@ EOT;
 
     CONTENT:
     {$content}
+
+    PROFICIENCY LEVEL: 
+    {$prof}
 
     Existing Questions for this module:
     {$questionsList}

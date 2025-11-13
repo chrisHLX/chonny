@@ -17,4 +17,10 @@ class Subject extends Model
     {
         return $this->hasMany(Module::class);
     }
+    
+    public function proficiencies()
+    {
+        return $this->belongsToMany(Proficiency::class, 'module_proficiency');
+    }
+    
 }

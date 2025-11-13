@@ -26,7 +26,8 @@ class AiController extends Controller
 
     // Test function to call AiService test method on the home dashboard
     public function test(){
-        $this->aiService->testContent();
+        //$this->aiService->testContent();
+        $this->aiService->createModule();
     }
 
     public function test2(){

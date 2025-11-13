@@ -78,4 +78,10 @@ class User extends Authenticatable
         return $this->hasOne(UserCredit::class);
     }
 
+    public function proficiencies()
+    {
+        return $this->belongsToMany(Proficiency::class, 'user_proficiency')->withPivot('progress');
+    }
+
+
 }
