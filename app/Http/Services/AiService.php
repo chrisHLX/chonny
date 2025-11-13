@@ -44,7 +44,7 @@ class AiService
         dd($modules);
     }
 
-    public function createModule()
+    private function createModule()
     {
         // Placeholder for module creation logic
         $module = Module::create([
@@ -53,6 +53,8 @@ class AiService
             'created_by' => auth()->id(),
             'subject_id' => 3,
         ]);
+
+        return $module;
     }
 
     public function addCredits()
@@ -62,14 +64,14 @@ class AiService
 
     public function testContent()
     { 
+        dd("Dont dispatch work yet, weve already used this model");
         $newModule = Module::where('id', 4)->first(); // dummy module for testing
-         // dont forget to add parent module field instead of version potentially
+            // dont forget to add parent module field instead of version potentially
         
         $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
-        $selectedType = 'mcq';
-
-       GenerateQuestions::dispatch($selectedType, $newModule);
-        
+        foreach ($types as $selectedType) {
+            GenerateQuestions::dispatch($selectedType, $newModule);
+        }
         
     }
 
@@ -357,6 +359,11 @@ class AiService
         The user has repeatedly answered the following question incorrectly. 
         Please write a clear, structured explanation to help them understand the underlying concept.
 
+        - Start by explaining the context or reasoning behind the concept.
+        - Include an example or analogy where appropriate.
+        - End with the correct answer as a natural conclusion, not at the beginning.
+        - Avoid listing or emphasizing the answer early (e.g. don’t say 'the correct order is' or 'the answer is').
+        
         Focus on:
         - Explaining *why* the correct answer is right.
         - Clarifying *why* common wrong answers might be confusing. 
@@ -370,7 +377,7 @@ class AiService
         Return only the plain text explanation — no lists, titles, or formatting.
 
         EOT;
-
+        
         \Log::info('Generating content for question with prompt', ['prompt' => $prompt]);
 
         
@@ -478,7 +485,7 @@ class AiService
         // Create the prompt
         $prompt = "The user struggles to answer the following questions correctly:\n" .
                 $questionList .
-                "\nProvide a short summary that will help them understand the concepts better (try word it differently).
+                "\nProvide a short summary that will help them understand the concepts better (try word it differently and).
                 
                 Provide the response in this format:
                 Summary: [Your summary here]

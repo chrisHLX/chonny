@@ -12,21 +12,61 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-10">
 
             <!-- Welcome Card -->
-            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl shadow-lg p-8 border border-blue-500/30">
+            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
                 <h1 class="text-3xl font-bold mb-2">Welcome back, {{ $user->name }} 👋</h1>
                 <p class="text-blue-100">
                     Ready to keep improving your knowledge? Let’s dive in.
+                </p>
+                <div class="mt-4 flex gap-2">
+                    <form action="{{ route('credit.test') }}" method="POST" class="flex-1">
+                        @csrf
+                        <button class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                            Test
+                        </button>
+                    </form>
+                </div>
+                <div class="mt-4 flex gap-2">
+                    <form action="{{ route('credit.test2') }}" method="POST" class="flex-1">
+                        @csrf
+                        <button class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                            Add Credits
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Stripe Add Credits Button Currently disabled till live
                     <div class="mt-4 flex gap-2">
-                        <form action="{{ route('credit.test') }}" method="POST" class="flex-1">
+                        <form id="checkout-form" action="{{ route('checkout.session') }}" method="POST" class="flex-1">
                             @csrf
                             <button class="w-full bg-white hover:bg-white text-gray-600 px-3 py-2 rounded-md">
-                                Test
+                                Add Credits
                             </button>
                         </form>
                     </div>
-                </p>
-            </div>
-            
+                    <script src="https://js.stripe.com/v3/"></script>
+                    <script>
+                        const stripe = Stripe("{{ config('services.stripe.key') }}"); // your public key
+
+                        document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+                            e.preventDefault();
+
+                            const response = await fetch("{{ route('checkout.session') }}", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                },
+                            });
+
+                            const data = await response.json();
+                            if (data.id) {
+                                await stripe.redirectToCheckout({ sessionId: data.id });
+                            } else {
+                                alert('Failed to start checkout');
+                            }
+                        });
+                    </script>
+                    -->
             <!-- Subject Selection -->
             {{-- Subject Toggle --}}
             <div class="flex flex-wrap gap-2 mb-8">
@@ -38,7 +78,7 @@
                     </a>
                 @endforeach
             </div>
-
+            
 
             <!-- Main Dashboard Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">

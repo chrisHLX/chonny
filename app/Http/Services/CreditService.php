@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class CreditService
 {
-    public function getUserCredits($user)
+    public function getUserCredits(int $user)
     {
         return DB::transaction(function () use ($user) {
             return UserCredit::firstOrCreate(['user_id' => $user]);
         });
     }
 
-    public function getBalances($user)
+    public function getBalances(int $user)
     {
         return DB::transaction(function () use ($user) {
             $credit = $this->getUserCredits($user);
@@ -28,7 +28,7 @@ class CreditService
     }
 
     // 🟣 Add AI Credits (e.g. after Stripe payment)
-    public function addAiCredits($user, int $amount, string $description = null)
+    public function addAiCredits(int $user, int $amount, string $description = null)
     {
         return DB::transaction(function () use ($user, $amount, $description) {
             $credit = $this->getUserCredits($user);
@@ -46,7 +46,7 @@ class CreditService
     }
 
     // 🟣 Deduct AI Credits (for AI generations)
-    public function spendAiCredits($user, int $amount, string $description = null)
+    public function spendAiCredits(int $user, int $amount, string $description = null)
     {
         return DB::transaction(function () use ($user, $amount, $description) {
             $credit = $this->getUserCredits($user);
@@ -68,7 +68,7 @@ class CreditService
     }
 
     // 🟢 Reward Learned Credits (for contributing/using AI)
-    public function rewardLearnedCredits($user, int $amount, string $description = null)
+    public function rewardLearnedCredits(int $user, int $amount, string $description = null)
     {
         return DB::transaction(function () use ($user, $amount, $description) {
             $credit = $this->getUserCredits($user);

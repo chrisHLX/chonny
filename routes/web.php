@@ -15,6 +15,11 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\ReplayController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StripeWebhookController;
+
+// STRIPE ROUTES
+Route::post('/create-checkout-session', [StripeController::class, 'createCheckoutSession'])->name('checkout.session');
+Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::post('/credits', [AiController::class, 'test'])->name('credit.test');
+Route::post('/creditsTest2', [AiController::class, 'test2'])->name('credit.test2');
 
 Route::get('/dashboard/progress', [UserProgressController::class, 'index'])
     ->middleware(['auth'])

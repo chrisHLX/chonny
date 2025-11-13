@@ -28,4 +28,8 @@ class AiController extends Controller
     public function test(){
         $this->aiService->testContent();
     }
+
+    public function test2(){
+        $this->aiService->addCredits();
+    }
 }
