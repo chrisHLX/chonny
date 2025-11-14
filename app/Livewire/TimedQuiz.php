@@ -497,27 +497,60 @@ class TimedQuiz extends Component
     }
 
 
-    private function getLeastAccurateQuestions($user, $limit = 5, $module = null)
+    private function getLeastAccurateQuestions($user, $limit = 3, $module = null)
     {
         $query = $user->answeredQuestions()
-            ->withPivot(['attempts', 'correct_count']);
+            ->withPivot([
+                'attempts',
+                'correct_count',
+                'last_answer_correct',
+                'total_time_spent',
+                'last_answered_at'
+            ]);
 
-        // Optional: filter by module if provided
+        // Filter by module if provided
         if ($module) {
-            $query->whereHas('modules', fn($q) => $q->where('modules.id', $module->id));
+            $query->whereHas('modules', fn($q) => 
+                $q->where('modules.id', $module->id)
+            );
         }
 
-        return $query->get()
+        $questions = $query->get()
             ->filter(fn($q) => $q->pivot->attempts > 0)
             ->map(function ($q) {
-                $accuracy = $q->pivot->correct_count / $q->pivot->attempts;
-                $q->accuracy = round($accuracy * 100, 2);
+                $q->accuracy = $q->pivot->correct_count / $q->pivot->attempts;
                 return $q;
-            })
-            ->sortBy('accuracy') // least accurate first
-            ->take($limit)
-            ->values();
+            });
+
+        // Now sort using a multi-metric system
+        $sorted = $questions->sort(function ($a, $b) {
+            // 1. Failed questions first
+            if ($a->pivot->last_answer_correct !== $b->pivot->last_answer_correct) {
+                return $a->pivot->last_answer_correct <=> $b->pivot->last_answer_correct;
+            }
+
+            // 2. Lower accuracy first
+            if ($a->accuracy !== $b->accuracy) {
+                return $a->accuracy <=> $b->accuracy;
+            }
+
+            // 3. Higher time spent first
+            if ($a->pivot->total_time_spent !== $b->pivot->total_time_spent) {
+                return $b->pivot->total_time_spent <=> $a->pivot->total_time_spent;
+            }
+
+            // 4. Older questions first
+            if ($a->pivot->last_answered_at !== $b->pivot->last_answered_at) {
+                return strtotime($a->pivot->last_answered_at) <=> strtotime($b->pivot->last_answered_at);
+            }
+
+            // 5. Finally random tie-breaker
+            return rand(-1, 1);
+        });
+
+        return $sorted->take($limit)->values();
     }
+
 
     private function getTargetQuestions(array $moduleQuestionIds, $user)
     {
