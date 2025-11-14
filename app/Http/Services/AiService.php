@@ -44,10 +44,11 @@ class AiService
         dd($modules);
     }
 
+    // Could be Unlock Module
     public function createModule()
     {
         // Placeholder for module creation logic
-        $proficiencyId = Proficiency::where('name', 'Intermediate')->first()->id;
+
 
         $module = Module::create([
             'name' => 'Basic Medical Module',
@@ -55,7 +56,10 @@ class AiService
             'created_by' => auth()->id(),
             'subject_id' => 3,
         ]);
-        
+        $subjectID = $module->subject_id;
+        \Log::info('Subject ID {$subjectID}');
+        $proficiencyId = Proficiency::where('subject_id', $subjectID)->orderBy('id', 'asc')->first();
+        \Log::info('Proficiency ID {$proficiencyId}');
         $module->proficiencies()->attach($proficiencyId);
     
         
@@ -89,12 +93,13 @@ class AiService
 
 
     /* --------------------------------------------------------- OPENAI CALLS & HELPERS --------------------------------------------------------- */
-    private function callOpenAi(string $prompt): array
+    private function callOpenAi(string $prompt, $model = 'gpt-4o-mini'): array
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
+        \Log::info("Using Model {$model}");
 
         $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o-mini', // Use gpt-4 for better performance, its the same cost as gpt-3.5-turbo
+            'model' => $model,     // use chosen model or default
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $prompt],
@@ -552,7 +557,6 @@ class AiService
         $user->modules()->attach($module->id, [
             'status' => 'in_progress',
             'score' => 0,
-            'current_difficulty' => 'beginner',
             'last_activity_at' => now(),
             'completed_at' => null
         ]);
@@ -618,8 +622,14 @@ EOT;
         $questionsList = $newModule->questions()->pluck('question')->toArray();
         $questionsList = $newModule->questions()->pluck('question')->implode("\n- ");
         $prof = $newModule->proficiencies()->first()->name;
+        $pDesc = $newModule->proficiencies()->first()->description;
 
-        
+        if ($type == 'ordering' || $type == 'matching_pairs') {
+            // Simplify content for complex question types
+            $model= 'gpt-4.1-mini';
+        } else {
+            $model= 'gpt-4o-mini';
+        }
         
         
         // Define example JSON structures for each type
@@ -694,8 +704,11 @@ EOT;
     CONTENT:
     {$content}
 
-    PROFICIENCY LEVEL: 
-    {$prof}
+    PROFICIENCY LEVEL: {$prof}.
+    {$prof} Level Description: {$pDesc}.
+
+    IMPORTANT NOTE: Proficiency represents the user's reading level (vocabulary) and prior knowledge. Use this to tailor question complexity and readability.
+    
 
     Existing Questions for this module:
     {$questionsList}
@@ -711,7 +724,7 @@ EOT;
     
         // Call the AI safely
         try {
-            $questionsData = $this->callOpenAi($prompt);
+            $questionsData = $this->callOpenAi($prompt, $model);
         } catch (\Throwable $e) {
             \Log::error("OpenAI request failed for {$type}: " . $e->getMessage());
             return [];

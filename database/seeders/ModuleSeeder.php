@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use App\Models\Module;
+use App\Models\Proficiency;
 use App\Models\Subject;
 
 class ModuleSeeder extends Seeder
@@ -28,17 +29,25 @@ class ModuleSeeder extends Seeder
                 continue;
             }
 
-            Module::firstOrCreate(
+            $newModule = Module::firstOrCreate(
                 ['name' => $data['name'], 'subject_id' => $subject->id],
                 [
                     'description' => $data['description'] ?? null,
                     'race' => $data['race'] ?? null,
-                    'difficulty_level' => $data['difficulty_level'] ?? null,
                     'published' => $data['published'] ?? false,
                     'created_by' => $data['created_by'] ?? null,
                 ]
             );
+
+            $newModule->proficiencies()->attach(
+                Proficiency::where('name', $data['proficiency'])
+                    ->where('subject_id', $subject->id)
+                    ->firstOrFail()->id
+            );
+
         }
+
+
 
         $this->command->info('✅ Modules seeded successfully!');
     }

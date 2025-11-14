@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('content_source')->default('OPEN AI 4.0-mini'); // Added a parent id so we can attach modules to parents
             $table->text('description')->nullable();
             $table->string('race')->nullable(); // 'Zerg', 'Terran', 'Protoss', or null
-            $table->string('difficulty_level')->default('beginner'); // beginner, intermediate, advanced
+            //$table->string('difficulty_level')->default('beginner'); // beginner, intermediate, advanced
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete(); // optional custom module
-            $table->string('version')->default("V1"); // module Versions (each version is a child of the parent module)
+            $table->foreignId('parent_id')->nullable()->constrained('modules')->nullOnDelete();
             $table->boolean('published')->default(false);
             $table->timestamps();
         });

@@ -39,6 +39,7 @@ class TimedQuiz extends Component
     public $review_contents = [];    
     public $hasMissingContent = false;
     public $userCredits = null;
+    public $proficiency;
 
 
     
@@ -72,8 +73,9 @@ class TimedQuiz extends Component
         if ($this->userCredits->ai_credits <= 100) {
             dd('Not enough AI credits to start the quiz. Please top up your credits.');
         }
-
         $module = $user->modules()->with('questions')->find($this->selectedModule);
+        $this->proficiency = $module->proficiencies()->first()->name;
+        
         if (!$module) return;
 
         $result = $this->calculateNextDifficulty($module);
@@ -476,8 +478,6 @@ class TimedQuiz extends Component
             ->where('difficulty', $difficulty)
             ->pluck('questions.id')
             ->toArray();
-
-        
     }
 
     /**

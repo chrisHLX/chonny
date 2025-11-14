@@ -1,0 +1,221 @@
+[
+    {
+        "question": "What is the basic unit of life in the human body?",
+        "type": "mcq",
+        "answer": {
+            "correct": "Cell",
+            "options": ["Tissue", "Organ", "Cell", "System"]
+        },
+        "difficulty": "easy",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "Which organ is primarily responsible for pumping blood throughout the body?",
+        "type": "mcq",
+        "answer": {
+            "correct": "Heart",
+            "options": ["Lung", "Liver", "Heart", "Kidney"]
+        },
+        "difficulty": "easy",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "What is the term for the body's response to injury or infection?",
+        "type": "mcq",
+        "answer": {
+            "correct": "Inflammation",
+            "options": ["Inflammation", "Infection", "Immunity", "Homeostasis"]
+        },
+        "difficulty": "medium",
+        "concepts": ["Pathophysiology", "Physiology"]
+    },
+    {
+        "question": "Which system in the body is responsible for transporting oxygen and nutrients to cells?",
+        "type": "mcq",
+        "answer": {
+            "correct": "Circulatory System",
+            "options": ["Nervous System", "Endocrine System", "Circulatory System", "Digestive System"]
+        },
+        "difficulty": "medium",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "What is the primary function of red blood cells?",
+        "type": "mcq",
+        "answer": {
+            "correct": "Transporting oxygen",
+            "options": ["Fighting infections", "Transporting oxygen", "Clotting blood", "Regulating temperature"]
+        },
+        "difficulty": "hard",
+        "concepts": ["Physiology", "Anatomy"]
+    },
+    {
+        "question": "True or False: The heart is the only organ responsible for pumping blood in the human body.",
+        "type": "true_false",
+        "answer": { "correct": false },
+        "difficulty": "easy",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "True or False: White blood cells play a crucial role in the body's immune response.",
+        "type": "true_false",
+        "answer": { "correct": true },
+        "difficulty": "easy",
+        "concepts": ["Physiology", "Pathophysiology"]
+    },
+    {
+        "question": "True or False: The respiratory system is responsible for the digestion of food.",
+        "type": "true_false",
+        "answer": { "correct": false },
+        "difficulty": "medium",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "True or False: The liver is involved in detoxifying harmful substances in the body.",
+        "type": "true_false",
+        "answer": { "correct": true },
+        "difficulty": "medium",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "True or False: The process of inflammation is a complex biological response to harmful stimuli and is essential for healing.",
+        "type": "true_false",
+        "answer": { "correct": true },
+        "difficulty": "hard",
+        "concepts": ["Pathophysiology", "Physiology"]
+    },
+    {
+        "question": "Match the organ to its primary function.",
+        "type": "matching_pairs",
+        "answer": {
+            "correct": {
+                "Heart": "Pumping blood",
+                "Lungs": "Gas exchange",
+                "Liver": "Detoxifying substances",
+                "Kidneys": "Filtering blood"
+            },
+            "pairs": {
+                "keys": ["Heart", "Lungs", "Liver", "Kidneys"],
+                "values": ["Filtering blood", "Pumping blood", "Gas exchange", "Detoxifying substances"]
+            }
+        },
+        "difficulty": "easy",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "Match the blood cell type to its main function.",
+        "type": "matching_pairs",
+        "answer": {
+            "correct": {
+                "Red blood cells": "Transport oxygen",
+                "White blood cells": "Fight infection",
+                "Platelets": "Help blood clotting"
+            },
+            "pairs": {
+                "keys": ["Red blood cells", "White blood cells", "Platelets"],
+                "values": ["Help blood clotting", "Transport oxygen", "Fight infection"]
+            }
+        },
+        "difficulty": "easy",
+        "concepts": ["Anatomy", "Physiology", "Microbiology & Immunology"]
+    },
+    {
+        "question": "Match the body system to its primary role.",
+        "type": "matching_pairs",
+        "answer": {
+            "correct": {
+                "Circulatory system": "Transport oxygen and nutrients",
+                "Respiratory system": "Exchange gases",
+                "Digestive system": "Break down food",
+                "Nervous system": "Control body functions"
+            },
+            "pairs": {
+                "keys": ["Circulatory system", "Respiratory system", "Digestive system", "Nervous system"],
+                "values": ["Control body functions", "Break down food", "Exchange gases", "Transport oxygen and nutrients"]
+            }
+        },
+        "difficulty": "medium",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "Match the medical term to its definition.",
+        "type": "matching_pairs",
+        "answer": {
+            "correct": {
+                "Inflammation": "Body's response to injury or infection",
+                "Pathogen": "Microorganism causing disease",
+                "Antibody": "Protein that fights infection",
+                "Homeostasis": "Maintaining stable internal environment"
+            },
+            "pairs": {
+                "keys": ["Inflammation", "Pathogen", "Antibody", "Homeostasis"],
+                "values": ["Protein that fights infection", "Maintaining stable internal environment", "Body's response to injury or infection", "Microorganism causing disease"]
+            }
+        },
+        "difficulty": "medium",
+        "concepts": ["Pathophysiology", "Microbiology & Immunology"]
+    },
+    {
+        "question": "Match the physiological process to its description.",
+        "type": "matching_pairs",
+        "answer": {
+            "correct": {
+                "Osmosis": "Movement of water across a membrane",
+                "Diffusion": "Movement of molecules from high to low concentration",
+                "Phagocytosis": "Cell engulfing particles",
+                "Negative feedback": "Process to maintain homeostasis"
+            },
+            "pairs": {
+                "keys": ["Osmosis", "Diffusion", "Phagocytosis", "Negative feedback"],
+                "values": ["Process to maintain homeostasis", "Movement of water across a membrane", "Cell engulfing particles", "Movement of molecules from high to low concentration"]
+            }
+        },
+        "difficulty": "hard",
+        "concepts": ["Physiology", "Pathophysiology"]
+    },
+    {
+        "question": "Put the following steps of blood flow through the heart in the correct order.",
+        "type": "ordering",
+        "answer": {
+            "steps": ["Right atrium", "Right ventricle", "Lungs", "Left atrium", "Left ventricle", "Body"]
+        },
+        "difficulty": "easy",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "Arrange the following parts of the digestive system in the order food passes through them.",
+        "type": "ordering",
+        "answer": {
+            "steps": ["Mouth", "Esophagus", "Stomach", "Small intestine", "Large intestine", "Rectum"]
+        },
+        "difficulty": "easy",
+        "concepts": ["Anatomy", "Physiology"]
+    },
+    {
+        "question": "Put the stages of the inflammatory response in the correct order.",
+        "type": "ordering",
+        "answer": {
+            "steps": ["Injury or infection", "Vasodilation", "Increased permeability", "White blood cell migration", "Tissue repair"]
+        },
+        "difficulty": "medium",
+        "concepts": ["Pathophysiology", "Microbiology & Immunology"]
+    },
+    {
+        "question": "Order the following steps in the process of oxygen transport from the lungs to body cells.",
+        "type": "ordering",
+        "answer": {
+            "steps": ["Oxygen enters alveoli", "Oxygen diffuses into blood", "Oxygen binds to hemoglobin", "Blood circulates to tissues", "Oxygen released to cells"]
+        },
+        "difficulty": "medium",
+        "concepts": ["Physiology", "Anatomy"]
+    },
+    {
+        "question": "Arrange the sequence of events in the cardiac cycle.",
+        "type": "ordering",
+        "answer": {
+            "steps": ["Atrial contraction", "Ventricular contraction", "Blood ejection", "Ventricular relaxation", "Heart filling"]
+        },
+        "difficulty": "hard",
+        "concepts": ["Physiology", "Anatomy"]
+    }
+]

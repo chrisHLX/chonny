@@ -33,6 +33,7 @@ class ProficiencySeeder extends Seeder
             ['subject_id' => 2, 'name' => 'Expert', 'description' => 'Competitive/stream-level strategic depth, understands meta and complex synergy.'],
 
             // Medicine
+            ['subject_id' => 3, 'name' => 'Elementary', 'description' => 'Very simple, child-friendly explanations of basic health and the human body. Uses everyday examples, no technical terms.'],
             ['subject_id' => 3, 'name' => 'High School', 'description' => 'Basic anatomy, physiology, and medical literacy. Easy-to-read content.'],
             ['subject_id' => 3, 'name' => 'College', 'description' => 'Pre-medical level understanding, introduces pathophysiology and pharmacology basics.'],
             ['subject_id' => 3, 'name' => 'Graduate', 'description' => 'Advanced knowledge, clinical reasoning, diagnosis, and therapeutics.'],

@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call([
             SubjectSeeder::class,
+            ProficiencySeeder::class,
             ZergUnitSeeder::class,
             TerranUnitSeeder::class,
             ProtossUnitSeeder::class,
@@ -50,8 +51,9 @@ class DatabaseSeeder extends Seeder
             QuestionSeeder::class,
             ModuleQuestionSeeder::class,
             LolSeeder::class,
+            MedicalSeeder::class,
             QuestionConceptSeeder::class,
-            ProficiencySeeder::class,
+            
             // Add any other seeders here
         ]);
     

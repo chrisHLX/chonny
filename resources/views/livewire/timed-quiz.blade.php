@@ -23,6 +23,7 @@
                                     class="cursor-pointer border rounded-xl p-4 text-left transition
                                         {{ $selectedModule == $module->id ? 'bg-green-100 border-green-400' : 'hover:bg-gray-50' }}">
                                     <h4 class="font-semibold text-gray-800">{{ $module->name }}</h4>
+                                    <p class="text-sm text-gray-600 mt-1">{{ $module->proficiencies()->first()->name ?? 'link proficiency' }}</p>
                                 </div>
                             @endforeach
                         </div>
@@ -166,7 +167,12 @@
         @php $question = $questions[$currentIndex]; @endphp
                     
         {{-- Progress Bar --}}
+        
         <div class="mb-4">
+            
+            <p class="w-full text-center py-3 text-gray-700 font-semibold">
+            Proficiency: {{ $proficiency ?? 'link proficiency' }}
+            </p>
             <div class="flex justify-between text-sm text-gray-600 mb-1">
                 <span>Question {{ $currentIndex + 1 }} / {{ $questions->count() }}</span>
                 <span>Level: {{ $difficulty }}</span>
@@ -266,11 +272,6 @@
                         :disabled="!$wire.answer">
                         Submit Answer
                     </button>
-
-                    <a href="{{ route('modules.page', $selectedModule) }}"
-                    class="w-full text-center py-3 bg-blue-500 text-white font-semibold rounded-lg shadow hover:bg-blue-600 transition">
-                    📘 Review Content (ends quiz)
-                    </a>
                 </div>
 
 

@@ -17,8 +17,9 @@ class QuestionSeeder extends Seeder
     {
         $data = json_decode(file_get_contents(database_path('data/questions.json')), true);
         $moreData = json_decode(file_get_contents(database_path('data/lolquestions.json')), true);
+        $data3 = json_decode(file_get_contents(database_path('data/medical_questions.json')), true);
 
-        $data = array_merge($data, $moreData);
+        $data = array_merge($data, $moreData, $data3);
 
 
         foreach ($data as $item) {
