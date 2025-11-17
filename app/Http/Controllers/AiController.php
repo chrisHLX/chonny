@@ -31,6 +31,9 @@ class AiController extends Controller
     }
 
     public function test2(){
-        $this->aiService->addCredits();
+        //$this->aiService->addCredits();
+        $user = auth()->user();
+        $module = 1;
+        $this->aiService->buildModuleUserStats($user, $module);
     }
 }

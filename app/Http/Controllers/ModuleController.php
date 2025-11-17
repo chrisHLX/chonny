@@ -55,7 +55,7 @@ class ModuleController extends Controller
             'description' => 'required|string',
             'subject_id' => 'required|exists:subjects,id',
         ]);
-        
+        // will add proficiency here to be attached as well once I figure out how to do that in the blade
         $module = Module::create([
             'name' => $request->name,
             'description' => $request->description,

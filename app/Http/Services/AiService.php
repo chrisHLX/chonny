@@ -37,6 +37,94 @@ class AiService
         $this->tokenService = $tokenService;
     }
 
+    // Creating a function for generating the nex module for the user 
+    // remember ai is somewhat deterministic depending on the prompt so We can Assume that by 
+    // restricting the ai output with our input we can produce a predictable response
+    // Because of this we will be able to use AI response to search our own Database relatively
+    // Accurately.... WHY? because if user A gets similar or the same questions wrong as user B on Module C then 
+    // AI will suggest (depending on if we use the same model) Module Names that match.
+    public function nextModule($user, $recentlyCompletedModule) 
+    {
+        // Grab all the data regarding the users quiz for the module
+
+        // we have to do something like $questions user->answeredQuestions->where(questionIDS are in $recentlyCompletedModule)
+        //then maybe create a table or something so AI can see how the user went
+
+        /*
+        it would have like a list of questions
+        question A, Correct Count, Attempts, total time spent... So that would show accuracy, should we show the concepts related to the questions?
+
+        we might have to do another join actually to show the question type. 
+        this is perhaps a bug in the system.. Users are going to spend more time on ordering or matching pairs question types
+        this is because those type of questions are a little harder in general they require more cognitive load and they just take
+        longer than basic multiple choice or true_false. So we may need to adjust or have a better way of comparing time spent 
+        depending on question type. But for now we could just move ahead without showing time spent.
+
+
+
+        */
+        //with user we should be able to 
+        $prompt = <<<EOT
+        {$user} Recently Completed the Module: {$recentlyCompletedModule}
+        Their question data
+        {$questionJoinTable}
+
+        based on this information suggest 3 modules but return it in json format only like this:
+        [
+            {
+                "name": "Module Name",
+                "description": "Description",
+            },
+            {
+                "name": "Module Name",
+                "description": "Description",
+            }
+        ]
+EOT;
+
+            //then we render a page with those modules for the user to pick 
+            //  do a db search for the one they pick if exists attach it to the user if not make one and attach it to the user
+            // just que a job and show a loading page
+            
+
+            
+    }
+
+    public function buildModuleUserStats($user, $module)
+    {
+        $module = Module::find($module);
+        $module = $user->modules()->with('questions')->find($module);
+
+        $questions = $module->questions()->pluck('questions.id');
+        $wrongQuestions = $user->answeredQuestions()
+                ->whereIn('questions.id', $questions)
+                ->get();
+        dd($wrongQuestions);
+
+        $wrongQuestions = $user->answeredQuestions()
+                ->whereIn('questions.id', $questions)
+                ->wherePivot('attemps', true) // I dont know how to do this part but basically a filter where attempts is > correct_count
+                ->get;
+
+        //now wrong questions is a list of the questions the user struggled with
+
+
+        $stats = <<<EOT
+        {
+            "module_name": "Laning Phase",
+            "proficiency": "beginner",
+            "accuracy": 0.90,
+            "weak_concepts": ["wave control", "freezing", "minion aggro"],
+            "question_stats": [
+                { "question": "whats the best way to freeze a wave", "concept": "wave control", "attempts": 4, "correct": 2 },
+                { "question": "Why is it a bad idea to trade when the wave is pushing into you", "concept": "minion aggro", "attempts": 2, "correct": 1 }
+            ]
+        }
+
+EOT;
+        return $stats;
+    }
+
     public function test()
     {
         $userID = auth()->id();
@@ -49,7 +137,7 @@ class AiService
     {
         // Placeholder for module creation logic
 
-
+        
         $module = Module::create([
             'name' => 'Basic Medical Module',
             'description' => 'A module covering basic medical concepts.',
