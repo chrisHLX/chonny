@@ -601,7 +601,6 @@ class AiService
             {
                 "module_name": "A concise name for the module",
                 "module_description": "A brief description of what the module covers",
-                "difficulty_level": "The difficulty level of the module (easy, medium, hard)",
                 "subject": {$subject}
             }
         ]
