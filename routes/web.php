@@ -16,6 +16,8 @@ use App\Http\Controllers\AiController;
 use App\Http\Controllers\ReplayController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\ProficiencyController;
 
 // STRIPE ROUTES
 Route::post('/create-checkout-session', [StripeController::class, 'createCheckoutSession'])->name('checkout.session');
@@ -115,6 +117,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/replays/{replay}', [ReplayController::class, 'show'])->name('replays.show');
 });
+
+Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class, 'bySubject']);
+
 
 
 // use this command to create a controller:

@@ -1,9 +1,9 @@
 <x-app-layout>
-<div class="bg-gray-900 text-gray-200 min-h-screen py-10">
+<div class="bg-gray-900 text-gray-700 min-h-screen py-10">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-10">
         <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
             <div class="max-w-4xl mx-auto p-4 space-y-6">
-                <h2 class="text-2xl font-semibold mb-4">Create New Module</h2>
+                <h2 class="text-2xl text-gray-200 font-semibold mb-4">Create New Module</h2>
 
                 <!-- Validation Errors -->
                 <x-input-error :messages="$errors->all()" class="mb-4" />
@@ -38,28 +38,45 @@
                         </select>
                         <x-input-error :messages="$errors->get('subject_id')" class="mt-1" />
                     </div>
-                    <!-- Need to add a field here that requires the subject_id selected above in order to show the right 
-                     proficiencies. Why? Because the proficiency changes depending on the subject the user wants to create 
-                     the module for. 
+                    <!-- Proficiency Selection -->
+                    <div>
+                        <x-input-label class="text-white" for="proficiency_id" :value="__('Proficiency')" />
 
-                     So I kind of want to do something like the following
-                    @if( $subject->id == 1 )  that means the subject is sc2
-                        {{ $items = proficiencies::where('subject_id', $subject->id }}
-                        foreach($items as item)
-                            {
-                                <select>$item</select>
+                        <select id="proficiency_id" name="proficiency_id"
+                            class="text-gray-700 block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                            <option value="">-- Select Subject First --</option>
+                        </select>
+
+                        <x-input-error :messages="$errors->get('proficiency_id')" class="mt-1" />
+                    </div>
+                    <script>
+                        document.getElementById('subject_id').addEventListener('change', function () {
+                            const subjectId = this.value;
+
+                            // Clear current proficiencies
+                            const proficiencySelect = document.getElementById('proficiency_id');
+                            proficiencySelect.innerHTML = '<option value="">Loading...</option>';
+
+                            if(!subjectId) {
+                                proficiencySelect.innerHTML = '<option value="">-- Select Subject First --</option>';
+                                return;
                             }
-                    @endif
 
-                    thats my psuedo code what is should produce is a selectable list of proficiencies
-                    beginner
-                    casual
-                    intermediate
-                    advanced
-                    expert
+                            fetch(`/proficiencies/by-subject/${subjectId}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    let options = '<option value="">-- Select Proficiency --</option>';
 
-                    then I will send that through witht the form data and attach proficiencies to the newly created module
-                    -->
+                                    data.forEach(item => {
+                                        options += `<option value="${item.id}">${item.name}</option>`;
+                                    });
+
+                                    proficiencySelect.innerHTML = options;
+                                });
+                        });
+                    </script>
+
+                  
                     <!-- Submit Button -->
                     <div class="pt-4">
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded shadow">

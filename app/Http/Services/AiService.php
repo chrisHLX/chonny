@@ -59,11 +59,13 @@ class AiService
         this is because those type of questions are a little harder in general they require more cognitive load and they just take
         longer than basic multiple choice or true_false. So we may need to adjust or have a better way of comparing time spent 
         depending on question type. But for now we could just move ahead without showing time spent.
-
+    
 
 
         */
         //with user we should be able to 
+        $module = Module::find($recentlyCompletedModule);
+        $proficiencyLevel = $module->proficiencies();
         $prompt = <<<EOT
         {$user} Recently Completed the Module: {$recentlyCompletedModule}
         Their question data
