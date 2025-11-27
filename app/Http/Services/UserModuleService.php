@@ -3,6 +3,7 @@ namespace App\Http\Services;
 
 use App\Models\User;
 use App\Models\Module;
+use App\Models\Proficiency;
 use App\Http\Services\AiService;
 use App\Http\Services\SuggestionsService;
 
@@ -31,12 +32,21 @@ class UserModuleService
 
         // 2. Reduce to only relevant info for AI
         $aiData = $this->prepareModuleStatsForAI($moduleStats);
-
+        
         // Use this later to see if we have a response in the system if not save one
-        $statsHash = hash('sha256', json_encode($moduleStats));
+        $hashkey = collect($aiData["struggled_questions"])->pluck('id')->toArray();
+        \Log::info('Hashkey questions: '.json_encode($hashkey));
+        $statsHash = hash('sha256', json_encode($hashkey));
 
         $usableData = json_encode($aiData, JSON_PRETTY_PRINT);
         // 3. Build the prompt JSON for AI
+        
+        
+        $availableProficiencies = Proficiency::where('subject_id', $module->subject_id)->get()->pluck('name')->toArray();
+        // turn array into a comma-separated list
+        $availableProficiencies = implode(", ", $availableProficiencies);
+        
+        
         $prompt = <<<EOT
     You are an adaptive learning engine that recommends the next learning modules
     for a user based on their performance. Use the following user data as context:
@@ -46,11 +56,12 @@ class UserModuleService
     Rules:
     - Recommend exactly 3 next modules.
     - Prioritize modules that address the user's struggled_concepts.
-    - Consider the user's proficiency level and suggest modules at the same or slightly higher difficulty.
+    - Consider the user's proficiency level and suggest modules at the same or slightly higher difficulty. 
+        (Available Proficiencies for this module: {$availableProficiencies})
+
     - Avoid modules that are too advanced unless the user scored above 85% with few struggles.
     - If the user struggled with certain question types, include modules that reinforce those types.
     - Output JSON ONLY with this exact structure:
-
     
     \"recommendations\": [
         {
@@ -78,6 +89,7 @@ EOT
     public function buildModuleUserStats(User $user, Module $module)
     {
         // Load module with questions and concepts
+        // This is loaded from the pivot table user_module_question which means it only works if the user is actually linked to the module!!! IMPORTANT
         $module = $user->modules()
             ->with(['questions.concepts', 'questions'])
             ->findOrFail($module->id);
@@ -164,7 +176,7 @@ EOT
             'id' => $module->id,
             'name' => $module->name,
             'subject' => $module->subject->name ?? null,
-            'proficiency' => $module->proficiency->name ?? null,
+            'proficiency' => $module->proficiencies()->first()->name ?? null,
             'score_percent' => $scorePercent,
             'num_questions' => $totalQuestions,
             'num_ever_correct' => $numEverCorrect,
@@ -227,34 +239,37 @@ EOT
     {
         // Pick module summary fields
         $moduleSummary = [
-            'id' => $moduleStats['module']['id'],
+            //'id' => $moduleStats['module']['id'],
             'name' => $moduleStats['module']['name'],
             'subject' => $moduleStats['module']['subject'],
             'proficiency' => $moduleStats['module']['proficiency'],
-            'score_percent' => $moduleStats['module']['score_percent'],
-            'num_questions' => $moduleStats['module']['num_questions'],
-            'num_struggled' => $moduleStats['module']['num_struggled'],
-            'total_wrong_attempts' => $moduleStats['module']['total_wrong_attempts'],
+            //'score_percent' => $moduleStats['module']['score_percent'],
+            //'num_questions' => $moduleStats['module']['num_questions'],
+            //'num_struggled' => $moduleStats['module']['num_struggled'],
+            //'total_wrong_attempts' => $moduleStats['module']['total_wrong_attempts'],
         ];
 
         // Pick patterns
         $patterns = [
             'struggled_concepts' => array_slice($moduleStats['patterns']['struggled_concepts'] ?? [], 0, 5),
             'struggled_types' => array_slice($moduleStats['patterns']['struggled_types'] ?? [], 0, 3),
-            'longest_time_topics' => array_slice($moduleStats['patterns']['longest_time_topics'] ?? [], 0, 3),
+            // 'longest_time_topics' => array_slice($moduleStats['patterns']['longest_time_topics'] ?? [], 0, 3),
         ];
 
         // Optional: include only questions that the user struggled with
         $struggledQuestions = collect($moduleStats['question_stats'] ?? [])
             ->filter(fn($q) => $q['struggled'] ?? false)
             ->map(fn($q) => [
+                'id' => $q['id'],
                 'question' => $q['text'],
                 'type' => $q['type'],
                 'concepts' => $q['concepts']
             ])
+            ->sortBy('id')    // ← THE IMPORTANT PART
             ->values()
             ->toArray();
 
+           
         return [
             'module' => $moduleSummary,
             'patterns' => $patterns,
@@ -262,17 +277,20 @@ EOT
         ];
     }
 
-    public function SearchSuggestions()
+    public function getHash($user, $module)
     {
-        // only problem with this code is that $moduleStats is inside the userModuleService but It feelslike this workflow
-        $statsHash = hash('sha256', json_encode($moduleStats));
-        $existing = $this->suggestionsService->getSuggestions($module, $statsHash);
-        if ($existing) {
-            // now we grab the suggestions .json and go straight to serving the modules
-        } else
-        {
-            //prompt ai services
-        }
+        
+        // 1. Build full user-module stats
+        $moduleStats = $this->buildModuleUserStats($user, $module);
+
+        // 2. Reduce to only relevant info for AI
+        $aiData = $this->prepareModuleStatsForAI($moduleStats);
+        
+        // Use this later to see if we have a response in the system if not save one
+        $hashkey = collect($aiData["struggled_questions"])->pluck('id')->toArray();
+        \Log::info('Hashkey questions: '.json_encode($hashkey));
+        $statsHash = hash('sha256', json_encode($hashkey));
+        return $statsHash;
     }
 
 }
