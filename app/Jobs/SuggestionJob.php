@@ -34,9 +34,14 @@ class SuggestionJob implements ShouldQueue // What is should que and what is imp
         //grab the models/collection instance
         $user = User::where('id', $this->userID)->first();
         $module = Module::where('id', $this->moduleID)->first();
-        
-        $response = $userModuleService->nextModuleResponse($user, $module);
-        
+        try {
+            $response = $userModuleService->nextModuleResponse($user, $module);
+        } catch (\Throwable $e) {
+            \Log::error("SuggestionJob failed inside nextModuleResponse(): ".$e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+            throw $e; // keep queue behaviour consistent
+        }
     }
 
    

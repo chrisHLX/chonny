@@ -11,6 +11,7 @@ use App\Http\Services\AiService;
 use App\Http\Services\User;
 use App\Http\Services\ReviewQuestionService;
 use App\Jobs\GenerateReviewContentJob;
+use App\Jobs\SuggestionJob;
 
 
 use Illuminate\Support\Facades\Cache;
@@ -261,6 +262,8 @@ class TimedQuiz extends Component
             if ($this->difficulty === 'final' && $this->score === $this->questions->count()) {
                 $status = 'completed';
                 // could do the logic to handle next module and later request etc
+                $userId = $user->id;
+                SuggestionJob::dispatch($moduleId, $userId);
             } else {
                 $status = 'in_progress';    
             }
