@@ -8,6 +8,7 @@ use App\Http\Services\AiService;
 use App\Http\Services\UserModuleService;
 use App\Models\Module;
 use App\Models\User;
+use App\Models\ModuleSuggestions;
 use App\Jobs\SuggestionJob;
 
 class AiController extends Controller
@@ -38,10 +39,17 @@ class AiController extends Controller
 
     public function test2() {
         $userID = auth()->user()->id;
-        $moduleID = 3;
+        $moduleID = 1;
         
+        $user = User::find($userID);
+        $module = Module::find($moduleID);
+        
+        $hash = $this->userModuleService->getHash($user, $module);
         // dispatch job stores the response in the DB for retrieval.
-        SuggestionJob::dispatch($moduleID, $userID);  
+        // SuggestionJob::dispatch($moduleID, $userID);  
+
+        $suggestion = ModuleSuggestions::where('stats_hash', $hash)->first()->suggestions_json;
+        dd($suggestion);
     }
 
     public function testOriginal(){

@@ -25,6 +25,12 @@ class ModuleController extends Controller
         $this->formatter = $formatter;
     }
 
+    public function index() 
+    {
+        $modules = Module::with('users', 'questions')->get();
+        return view('modules.index', compact('modules'));
+    }
+
     public function assign(Module $module)
     {
         $user = Auth::user();
@@ -86,7 +92,7 @@ class ModuleController extends Controller
 
         return back()->with('success', 'Module page deleted successfully.');
     }
-
+    
 
     
     public function edit(Module $module)

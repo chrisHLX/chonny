@@ -32,6 +32,22 @@
                         </form>
                     @endif
 
+                    {{-- lets try show something if the user has completed this module --}}
+                    @if ($module->users->contains(Auth::user()))
+                        @php
+                            $userModule = $module->users->where('id', Auth::id())->first();
+                            $status = $userModule->pivot->status;
+                        @endphp
+
+                        @if ($status === 'completed')
+                            <p class="mt-2 text-green-400 font-semibold">Module Completed!</p>
+                            <p class="mt-2 text-green-400 font-semibold">Suggested Next Modules</p>
+                            
+                        @elseif ($status === 'in_progress')
+                            <p class="mt-2 text-yellow-400 font-semibold">Module In Progress</p>
+                        @endif
+                    @endif
+                    
                     {{-- Pages --}}
                     @if ($module->modulePages && !$module->modulePages->isEmpty())
                         <form action="{{ route('modules.page', $module->id) }}" method="GET" class="mt-4">
