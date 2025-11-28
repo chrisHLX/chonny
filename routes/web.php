@@ -84,6 +84,9 @@ Route::delete('/modules/{module}', [ModuleController::class, 'destroy'])->name('
 Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit')->middleware('auth');
 Route::put('/modules/{module}', [ModuleController::class, 'update'])->name('modules.update')->middleware('auth');
 
+// Module Suggestions
+Route::get('/modules/next-module/{module}', [ModuleController::class, 'nextModule'])->name('modules.next-module')->middleware('auth');
+
 //Routes can be very temperamental, so we need to create unique routes for each action for example
 //Dont use the same route for both destroy and destroyPage, even if they are similar 
 //Thats why we changed the destroyPage route to be more specific

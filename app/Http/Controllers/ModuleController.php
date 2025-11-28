@@ -2,27 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Module;
-use App\Models\Question;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Services\AiService;
-use App\Models\ModulePage;
 use Illuminate\Support\Facades\Log;
-use App\Http\Services\HtmlFormatter;
+
+use App\Models\ModulePage;
+use App\Models\Module;
+use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Concept;
+
+use App\Http\Services\HtmlFormatter;
+use App\Http\Services\AiService;
+use App\Http\Services\UserModuleService;
+use App\Http\Services\SuggestionsService;
 
 class ModuleController extends Controller
 {
 
     protected AiService $aiService;
     protected HtmlFormatter $formatter;
+    protected UserModuleService $userModuleService;
+    protected SuggestionsService $suggestionsService;
 
-    public function __construct(AiService $aiService, HtmlFormatter $formatter)
+    public function __construct(AiService $aiService, HtmlFormatter $formatter, UserModuleService $userModuleService, SuggestionsService $suggestionsService)
     {
         $this->aiService = $aiService;
         $this->formatter = $formatter;
+        $this->userModuleService = $userModuleService;
+        $this->suggestionsService = $suggestionsService;
     }
 
     public function index() 
@@ -193,5 +202,17 @@ class ModuleController extends Controller
                    ->get();
 
         return view('modules.page', ['pages' => $pages]);
+    }
+
+    public function nextModule(int $moduleId)
+    {
+        $user = auth()->user();
+        $module = Module::find($moduleId);
+
+
+        $hashKey = $this->userModuleService->getHash($user, $module);
+        $suggestions = $this->suggestionsService->getSuggestionsDB($module, $hashKey);
+        
+        return view('modules.next-module', compact('suggestions')); 
     }
 }

@@ -42,7 +42,12 @@
                         @if ($status === 'completed')
                             <p class="mt-2 text-green-400 font-semibold">Module Completed!</p>
                             <p class="mt-2 text-green-400 font-semibold">Suggested Next Modules</p>
-                            
+                            <form action="{{ route('modules.next-module', $module->id) }}" method="GET" class="mt-4">
+                            @csrf
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                View Suggestions
+                            </button>
+                        </form>
                         @elseif ($status === 'in_progress')
                             <p class="mt-2 text-yellow-400 font-semibold">Module In Progress</p>
                         @endif

@@ -3,23 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\AiRequest;
-use App\Http\Services\AiService;
-use App\Http\Services\UserModuleService;
 use App\Models\Module;
 use App\Models\User;
 use App\Models\ModuleSuggestions;
+
 use App\Jobs\SuggestionJob;
+
+use App\Http\Services\AiService;
+use App\Http\Services\UserModuleService;
+use App\Http\Services\CreditService;
 
 class AiController extends Controller
 {
     protected AiService $aiService;
     protected UserModuleService $userModuleService;
+    protected CreditService $creditService;
 
-    public function __construct(AiService $aiService, UserModuleService $userModuleService)
+    public function __construct(AiService $aiService, UserModuleService $userModuleService, CreditService $creditService)
     {
         $this->aiService = $aiService;
         $this->userModuleService = $userModuleService;
+        $this->creditService = $creditService;
     }
 
     
@@ -35,9 +41,21 @@ class AiController extends Controller
     public function test(){
         //$this->aiService->testContent();
         //$this->aiService->createModule();
+        $user = auth()->user();
+        $module = Module::where('id', 4)->first();
+
+        
+        SuggestionJob::dispatch($module->id, $user->id);
+
     }
 
+    //add credits
     public function test2() {
+        $user = auth()->user()->id;
+        $this->creditService->addAiCredits($user, 100, "sign up credits");
+    }
+
+    public function test2original() {
         $userID = auth()->user()->id;
         $moduleID = 1;
         

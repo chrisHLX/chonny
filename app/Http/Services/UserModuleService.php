@@ -68,14 +68,14 @@ class UserModuleService
         \"name\": \"\",
         \"subject\": \"\",
         \"proficiency\": \"\",
-        \"reason\": \"\"
+        \"description\": \"\"
         }
     ]
 EOT
 ;
         
         $existing = $this->suggestionsService->getSuggestions($module, $statsHash);
-
+        
         if ($existing) {
             $response = $existing->getRecommendations();
         } else {

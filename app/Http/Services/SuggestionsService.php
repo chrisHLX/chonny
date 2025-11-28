@@ -13,6 +13,14 @@ class SuggestionsService
             ->first();
     }
 
+    public function getSuggestionsDB(Module $module, string $hash)
+    {
+        $response = ModuleSuggestions::where('module_id', $module->id)
+            ->where('stats_hash', $hash)
+            ->first()->suggestions_json;
+        return $response['recommendations'];
+    }
+
     public function storeSuggestions(Module $module, string $hash, array $data)
     {
         return ModuleSuggestions::create([
