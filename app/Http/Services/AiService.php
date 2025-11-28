@@ -395,6 +395,7 @@ class AiService
         - Correct Answer: $correct
 
         Return only the plain text explanation — no lists, titles, or formatting.
+        IMPORTANT! USE AS MINIMUM WORDS POSSIBLE BE CREATIVE
 
         EOT;
         

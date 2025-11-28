@@ -71,7 +71,7 @@ class TimedQuiz extends Component
 
         $user = auth()->user();
         $this->userCredits = $user->credits()->firstOrCreate([]); // Ensure record exists
-        if ($this->userCredits->ai_credits <= 100) {
+        if ($this->userCredits->ai_credits <= 5) {
             dd('Not enough AI credits to start the quiz. Please top up your credits.');
         }
         $module = $user->modules()->with('questions')->find($this->selectedModule);

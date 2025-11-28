@@ -19,7 +19,7 @@ class ModuleSuggestions extends Model
 
     public function getRecommendations()
     {
-        return $this->suggestions_json['recommendations'] ?? [];
+        return $this->suggestions_json ?? [];
     }
 
 
