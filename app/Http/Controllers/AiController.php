@@ -43,8 +43,6 @@ class AiController extends Controller
         //$this->aiService->createModule();
         $user = auth()->user();
         $module = Module::where('id', 4)->first();
-
-        
         SuggestionJob::dispatch($module->id, $user->id);
 
     }

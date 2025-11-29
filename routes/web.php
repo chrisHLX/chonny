@@ -102,6 +102,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->name('modules.assign');
+Route::post('/modules/create-suggested', [ModuleController::class, 'createSuggested'])->name('modules.create-suggested');
 
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');

@@ -39,13 +39,6 @@ class AiService
     }
 
 
-    public function test()
-    {
-        $userID = auth()->id();
-        $modules = auth()->user()->modules()->wherePivot('status', 'completed')->get();
-        dd($modules);
-    }
-
     // Could be Unlock Module
     public function createModule()
     {
@@ -67,12 +60,6 @@ class AiService
         
         $this->testContent($module);
 
-    }
-    
-
-    public function addCredits()
-    {
-        $this->creditService->addAiCredits(auth()->user()->id, 1000, "Test credit addition");
     }
 
     public function testContent($module)

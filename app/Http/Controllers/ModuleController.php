@@ -12,11 +12,14 @@ use App\Models\Module;
 use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Concept;
+use App\Models\Proficiency;
 
 use App\Http\Services\HtmlFormatter;
 use App\Http\Services\AiService;
 use App\Http\Services\UserModuleService;
 use App\Http\Services\SuggestionsService;
+
+use App\Jobs\GenerateQuestions;
 
 class ModuleController extends Controller
 {
@@ -77,6 +80,7 @@ class ModuleController extends Controller
             'created_by' => auth()->id(),
             'subject_id' => $request->subject_id,
         ]);
+        
 
         return redirect()->route('modules.edit', $module); // Or a success view      
     }
@@ -101,9 +105,7 @@ class ModuleController extends Controller
 
         return back()->with('success', 'Module page deleted successfully.');
     }
-    
 
-    
     public function edit(Module $module)
     {
         $allQuestions = Question::all(); // for attaching existing ones
@@ -207,12 +209,93 @@ class ModuleController extends Controller
     public function nextModule(int $moduleId)
     {
         $user = auth()->user();
-        $module = Module::find($moduleId);
+        $module = Module::findOrFail($moduleId);
 
-
+        // 1. Get hash & suggestions
         $hashKey = $this->userModuleService->getHash($user, $module);
-        $suggestions = $this->suggestionsService->getSuggestionsDB($module, $hashKey);
+        $response = $this->suggestionsService->getSuggestions($module, $hashKey);
+        $parent_id = $response->module_id;
+        $suggestions = $response->suggestions_json['recommendations'];
+
+        // 2. Find matching modules already in the DB
+        $existingModules = Module::whereIn('name', collect($suggestions)->pluck('name'))
+                                ->pluck('id', 'name'); // ['Module A' => 4, 'Module B' => 7]
+        // check if user has already assigned any modules 
+        $existingIds = $existingModules->values(); // [4,7,10,...]
+        $userAssignedIds = $user->modules()
+            ->whereIn('modules.id', $existingIds)
+            ->pluck('modules.id')
+            ->toArray();
+
+        // 3. Merge suggestions with existence info
+        $suggestions = collect($suggestions)->map(function ($s) use ($existingModules, $parent_id, $userAssignedIds) {
+
+            $moduleId = $existingModules[$s['name']] ?? null;
+
+            $s['parent_id'] = $parent_id;
+            $s['exists'] = $moduleId !== null;
+            $s['module_id'] = $moduleId;
+
+            // Only check among existing modules
+            $s['assigned'] = in_array($moduleId, $userAssignedIds);
+
+            return $s;
+        });
+
+
+
+        return view('modules.next-module', compact('suggestions'));
+    }
+
+    public function createSuggested(Request $request)
+    {
+        $data = $request->validate([
+            'suggestion' => 'required|string',
+        ]);
+
+        // Decode the JSON coming from the blade form
+        $suggestion = json_decode($data['suggestion'], true);
         
-        return view('modules.next-module', compact('suggestions')); 
+        if (! $suggestion) {
+            return back()->with('error', 'Invalid suggestion data.');
+        }
+        
+        // Prevent duplicate modules
+        $existing = Module::where('name', $suggestion['name'])->first();
+
+        if ($existing) {
+            // Module already exists → assign to user instead
+            auth()->user()->modules()->syncWithoutDetaching([
+                $existing->id => ['status' => 'not_started']
+            ]);
+
+            return redirect()
+                ->route('modules.index')
+                ->with('success', "Module '{$existing->name}' already existed and has been added to your list.");
+        }
+
+        $subjectID = Subject::where("name", $suggestion["subject"])->first()->id;
+
+        $proficiencyId = Proficiency::where('subject_id', $subjectID)
+                                    ->where('name', $suggestion["proficiency"])
+                                    ->first()
+                                    ->id;
+        
+        
+        // need to add all this to a create module job
+        $module = Module::create([
+            'name' => $suggestion["name"],
+            'description' => $suggestion["description"],
+            'parent_id' => $suggestion["parent_id"],
+            'subject_id' => $subjectID,
+            'published' => true,
+        ]);
+
+        $module->proficiencies()->attach($proficiencyId);
+
+        $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
+        foreach ($types as $selectedType) {
+            GenerateQuestions::dispatch($selectedType, $module);
+        }
     }
 }
