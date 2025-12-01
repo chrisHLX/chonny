@@ -69,15 +69,7 @@
                     -->
             <!-- Subject Selection -->
             {{-- Subject Toggle --}}
-            <div class="flex flex-wrap gap-2 mb-8">
-                @foreach($subjects as $subject)
-                    <a href="{{ route('dashboard', ['subject_id' => $subject->id]) }}"
-                    class="px-4 py-2 rounded-full text-sm font-medium transition
-                            {{ $subject->id == $currentSubjectId ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600' }}">
-                        {{ $subject->name }}
-                    </a>
-                @endforeach
-            </div>
+            <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
             
 
             <!-- Main Dashboard Grid -->
@@ -158,7 +150,7 @@
                         <p class="text-gray-400 text-sm mb-4">
                             You have no active modules yet.
                         </p>
-                        <a href="{{ route('modules.index') }}" 
+                        <a href="{{ route_with_context('modules.index') }}" 
                            class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
                             Browse Modules
                         </a>

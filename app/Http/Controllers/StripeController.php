@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use Illuminate\Http\Request;

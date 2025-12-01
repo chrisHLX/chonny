@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Module;
 use App\Models\Concept;
 use App\Models\Subject;
+use App\Models\Category;
 
 class DashboardController extends Controller
 {
@@ -15,15 +16,18 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        // Get all subjects for the toggle
-        $subjects = Subject::all();
+        $categoryId = $request->get('category_id');
 
-        // Determine the current subject (default to the first if none selected)
-        $currentSubjectId = $request->query('subject_id') ?? $subjects->first()?->id;
-
-        if (!$currentSubjectId) {
-            return redirect()->back()->with('error', 'No subjects found.');
+        // Default category if none selected
+        if (!$categoryId) {
+            $categoryId = Category::first()->id;
         }
+
+        $subjects = Subject::where('category_id', $categoryId)->get();
+
+        // Default subject
+        $currentSubjectId = $request->get('subject_id')
+            ?? $subjects->first()?->id;
 
         // User modules filtered by subject
         $modules = $user->modules()
@@ -57,6 +61,7 @@ class DashboardController extends Controller
         return view('dashboard', compact(
             'user',
             'subjects',
+            'categoryId',
             'currentSubjectId',
             'modules',
             'createdModules',

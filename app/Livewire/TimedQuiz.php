@@ -42,8 +42,11 @@ class TimedQuiz extends Component
     public $userCredits = null;
     public $proficiency;
 
+    // Trying filtering with context
+    public $selectedSubject = null; // Track which subject is selected
+    public $categrory;
 
-    
+
     public function updating($name, $value)
     {
         \Log::info("Updating {$name}", ['new' => $value]);
@@ -56,8 +59,43 @@ class TimedQuiz extends Component
 
     public function mount()
     {
-        $this->subjects = Subject::all();
-        $this->modules = auth()->user()->modules()->get();
+        $this->category_id = request()->query('category_id'); // get ?category_id=3
+
+        // Filter subjects by category if one is provided
+        $this->subjects = Subject::when($this->category_id, function($query, $category_id) {
+            $query->where('category_id', $category_id);
+        })->get();
+
+        // If only one subject exists, auto-select it
+        if ($this->subjects->count() === 1) {
+            $this->selectedSubject = $this->subjects->first()->id;
+        }
+
+        $this->updateModules();
+    }
+
+    /**
+     * Filter modules based on selected subject
+     */
+    public function updatedSelectedSubject($value)
+    {
+        $this->updateModules();
+    }
+
+    protected function updateModules()
+    {
+        $subjectIds = $this->subjects->pluck('id');
+
+        $query = auth()->user()->modules()
+            ->with('proficiencies')
+            ->whereIn('subject_id', $subjectIds);
+
+        // If a subject is selected, narrow modules to that subject
+        if ($this->selectedSubject) {
+            $query->where('subject_id', $this->selectedSubject);
+        }
+
+        $this->modules = $query->get();
     }
 
     public function incrementElapsed()

@@ -22,5 +22,10 @@ class Subject extends Model
     {
         return $this->hasMany(Proficiency::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     
 }

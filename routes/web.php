@@ -18,6 +18,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProficiencyController;
+use App\Http\Controllers\CategoryController;
 
 // STRIPE ROUTES
 Route::post('/create-checkout-session', [StripeController::class, 'createCheckoutSession'])->name('checkout.session');
@@ -55,10 +56,7 @@ Route::get('/units/table', function () {
     return view('units.table', compact('units'));
 })->name('units.table');
 
-Route::get('/concepts', function () {
-    $concepts = Concept::orderBy('name')->get();
-    return view('concepts.index', compact('concepts'));
-})->name('concepts.index');
+Route::get('/concepts', [ConceptController::class, 'index'])->name('concepts.index');
 
 Route::get('/concepts/create', [ConceptController::class, 'create'])->name('concepts.create');
 Route::post('/concepts', [ConceptController::class, 'store'])->name('concepts.store');
@@ -121,6 +119,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class, 'bySubject']);
 
+// Category routes
+// routes/web.php
 
 
 // use this command to create a controller:

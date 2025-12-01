@@ -2,6 +2,9 @@
     <div class="max-w-4xl mx-auto p-4">
         <h1 class="text-2xl font-bold">Modules</h1>
         <p class="text-blue-100">Explore the available modules below.</p>
+        
+        {{-- Subject Toggle Component --}}
+        <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
 
         <div class="mt-8 space-y-6">
             @foreach ($modules as $module)

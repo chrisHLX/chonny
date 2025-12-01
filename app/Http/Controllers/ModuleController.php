@@ -13,6 +13,7 @@ use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Concept;
 use App\Models\Proficiency;
+use App\Models\Category;
 
 use App\Http\Services\HtmlFormatter;
 use App\Http\Services\AiService;
@@ -37,11 +38,37 @@ class ModuleController extends Controller
         $this->suggestionsService = $suggestionsService;
     }
 
-    public function index() 
+    public function index()
     {
-        $modules = Module::with('users', 'questions')->get();
-        return view('modules.index', compact('modules'));
+        $categoryId = request('category_id');
+        $currentSubjectId = request('subject_id');
+
+        // Default category if none selected
+        if (!$categoryId) {
+            $categoryId = Category::first()->id;
+        }
+
+        // Load subjects for this category (for the toggle)
+        $subjects = Subject::where('category_id', $categoryId)->get();
+
+        // Default subject if none picked
+        if (!$currentSubjectId && $subjects->count()) {
+            $currentSubjectId = $subjects->first()->id;
+        }
+
+        // Filter modules by subject
+        $modules = Module::where('subject_id', $currentSubjectId)
+                        ->with(['users', 'questions'])
+                        ->get();
+        
+        return view('modules.index', compact(
+            'modules',
+            'subjects',
+            'currentSubjectId',
+            'categoryId'
+        ));
     }
+
 
     public function assign(Module $module)
     {

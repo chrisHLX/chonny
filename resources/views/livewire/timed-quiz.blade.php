@@ -8,28 +8,45 @@
             <h2 class="text-3xl font-bold text-gray-800">🧠 Ready to Test Your Knowledge?</h2>
             <p class="text-gray-600">Choose a module from your favorite game below.</p>
 
+            @if($subjects->count() > 1)
+                <div class="mb-4 flex space-x-2">
+                    @foreach($subjects as $subject)
+                        <button wire:click="$set('selectedSubject', {{ $subject->id }})"
+                                class="px-3 py-1 rounded
+                                    {{ $selectedSubject == $subject->id ? 'bg-blue-600 text-white' : 'bg-gray-200' }}">
+                            {{ $subject->name }}
+                        </button>
+                    @endforeach
+                </div>
+            @endif
+
             {{-- SUBJECTS & MODULES --}}
             <div class="mt-6 space-y-6">
                 @foreach ($subjects as $subject)
-                    <div class="border border-gray-200 rounded-2xl shadow-sm p-5 bg-white">
-                        <h3 class="text-2xl font-semibold text-indigo-700 mb-3">
-                            🎮 {{ $subject->name }}
-                        </h3>
+                    @if (!$selectedSubject || $selectedSubject == $subject->id)
+                        <div class="border border-gray-200 rounded-2xl shadow-sm p-5 bg-white">
+                            <h3 class="text-2xl font-semibold text-indigo-700 mb-3">
+                                🎮 {{ $subject->name }}
+                            </h3>
 
-                        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            @foreach ($modules->where('subject_id', $subject->id) as $module)
-                                <div
-                                    wire:click="$set('selectedModule', {{ $module->id }})"
-                                    class="cursor-pointer border rounded-xl p-4 text-left transition
-                                        {{ $selectedModule == $module->id ? 'bg-green-100 border-green-400' : 'hover:bg-gray-50' }}">
-                                    <h4 class="font-semibold text-gray-800">{{ $module->name }}</h4>
-                                    <p class="text-sm text-gray-600 mt-1">{{ $module->proficiencies()->first()->name ?? 'link proficiency' }}</p>
-                                </div>
-                            @endforeach
+                            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                @foreach ($modules->where('subject_id', $subject->id) as $module)
+                                    <div
+                                        wire:click="$set('selectedModule', {{ $module->id }})"
+                                        class="cursor-pointer border rounded-xl p-4 text-left transition
+                                            {{ $selectedModule == $module->id ? 'bg-green-100 border-green-400' : 'hover:bg-gray-50' }}">
+                                        <h4 class="font-semibold text-gray-800">{{ $module->name }}</h4>
+                                        <p class="text-sm text-gray-600 mt-1">
+                                            {{ $module->proficiencies->first()->name ?? 'link proficiency' }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
+
 
             {{-- START BUTTON --}}
             <div class="mt-6">

@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $this->call([
+            CategorySeeder::class,
             SubjectSeeder::class,
             ProficiencySeeder::class,
             ZergUnitSeeder::class,
