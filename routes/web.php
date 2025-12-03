@@ -19,6 +19,7 @@ use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CollectionController;
 
 // STRIPE ROUTES
 Route::post('/create-checkout-session', [StripeController::class, 'createCheckoutSession'])->name('checkout.session');
@@ -115,5 +116,8 @@ Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class,
 
 // use this command to create a controller:
 // php artisan make:controller QuestionController --model=Question
+
+// Collection routes
+Route::get('/collection', [CollectionController::class, 'index'])->name('collection.index');
 
 require __DIR__.'/auth.php';
