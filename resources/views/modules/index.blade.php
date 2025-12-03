@@ -14,6 +14,7 @@
                     <p class="text-gray-400">{{ $module->description }}</p>
                     
 
+
                     {{-- Display Users and Scores --}}
                     @foreach ($module->users as $user)
                         <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
@@ -22,7 +23,8 @@
                     @endforeach
 
                     {{-- Add Button if user doesn't already have this module --}}
-                    @if (! $module->users->contains(Auth::user()))
+                    @if (! $module->users()->where('user_id', Auth::id())->exists())
+
                         <form action="{{ route('modules.assign', $module->id) }}" method="POST" class="mt-4">
                             @csrf
                             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
@@ -36,21 +38,22 @@
                     @endif
 
                     {{-- lets try show something if the user has completed this module --}}
-                    @if ($module->users->contains(Auth::user()))
+                    @if ($module->users()->where('user_id', Auth::id())->exists())
                         @php
                             $userModule = $module->users->where('id', Auth::id())->first();
                             $status = $userModule->pivot->status;
                         @endphp
 
                         @if ($status === 'completed')
+                          
                             <p class="mt-2 text-green-400 font-semibold">Module Completed!</p>
                             <p class="mt-2 text-green-400 font-semibold">Suggested Next Modules</p>
-                            <form action="{{ route('modules.next-module', $module->id) }}" method="GET" class="mt-4">
-                            @csrf
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                View Suggestions
-                            </button>
-                        </form>
+                            <form action="{{ route('modules.next-module', ['moduleId' => $module->id]) }}" method="GET" class="mt-4">
+                                @csrf
+                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                    View Suggestions
+                                </button>
+                            </form>
                         @elseif ($status === 'in_progress')
                             <p class="mt-2 text-yellow-400 font-semibold">Module In Progress</p>
                         @endif

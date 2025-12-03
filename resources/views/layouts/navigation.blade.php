@@ -37,12 +37,13 @@
                     <div x-show="open" @click.away="open = false" 
                          x-transition class="absolute mt-2 w-56 bg-white border rounded shadow-lg z-50 max-h-64 overflow-y-auto">
                         @foreach($nav_categories as $cat)
-                            <a href="{{ route_with_context(request()->route()->getName(), ['category_id' => $cat->id, 'subject_id' => null]) }}"
-                               class="block px-4 py-2 text-sm transition
-                                      {{ request('category_id') == $cat->id ? 'bg-blue-600 text-white font-semibold' : 'text-gray-700 hover:bg-gray-100' }}">
+                            <a href="{{ route_with_context(request()->route()->getName(), ['category_id' => $cat->id]) }}"
+                            class="block px-4 py-2 text-sm transition
+                                    {{ request('category_id') == $cat->id ? 'bg-blue-600 text-white font-semibold' : 'text-gray-700 hover:bg-gray-100' }}">
                                 {{ $cat->name }}
                             </a>
                         @endforeach
+
                     </div>
                 </div>
             </div>
@@ -122,11 +123,13 @@
 
         <div x-show="catOpen" x-transition class="mt-1 space-y-1">
             @foreach($nav_categories as $cat)
-                <a href="{{ route_with_context(request()->route()->getName(), ['category_id' => $cat->id, 'subject_id' => null]) }}"
-                   class="block px-4 py-2 text-sm rounded-md {{ request('category_id') == $cat->id ? 'bg-blue-600 text-white font-semibold' : 'text-gray-700 hover:bg-gray-100' }}">
+                <a href="{{ route_with_context(request()->route()->getName(), ['category_id' => $cat->id]) }}"
+                class="block px-4 py-2 text-sm transition
+                        {{ request('category_id') == $cat->id ? 'bg-blue-600 text-white font-semibold' : 'text-gray-700 hover:bg-gray-100' }}">
                     {{ $cat->name }}
                 </a>
             @endforeach
+
         </div>
     </div>
 </div>

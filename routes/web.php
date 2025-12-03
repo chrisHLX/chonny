@@ -83,7 +83,7 @@ Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('m
 Route::put('/modules/{module}', [ModuleController::class, 'update'])->name('modules.update')->middleware('auth');
 
 // Module Suggestions
-Route::get('/modules/next-module/{module}', [ModuleController::class, 'nextModule'])->name('modules.next-module')->middleware('auth');
+Route::get('/modules/next-module/{moduleId}', [ModuleController::class, 'nextModule'])->name('modules.next-module')->middleware('auth');
 
 //Routes can be very temperamental, so we need to create unique routes for each action for example
 //Dont use the same route for both destroy and destroyPage, even if they are similar 
@@ -106,16 +106,6 @@ Route::post('/modules/create-suggested', [ModuleController::class, 'createSugges
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
 Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateQuestions'])->name('modules.generateLandingPage');
 Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
-
-
-// replay routes
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/replays/upload', [ReplayController::class, 'create'])->name('replays.create');
-    Route::post('/replays/upload', [ReplayController::class, 'store'])->name('replays.store');
-
-    Route::get('/replays/{replay}', [ReplayController::class, 'show'])->name('replays.show');
-});
 
 Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class, 'bySubject']);
 
