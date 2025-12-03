@@ -2,6 +2,16 @@
     <x-slot name="header">
         <h2 class="text-2xl font-bold text-gray-800">📊 Your Learning Progress</h2>
     </x-slot>
+    
+    <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
+        <div class="cards">
+            @forelse ($modules as $module)
+                <h1>{{$module->name}}</h1>
+            @empty
+                <p>no module available</p>
+            @endforelse
+        </div>
+    </div>
 
     <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
 
@@ -17,6 +27,7 @@
                             {{ $module->pivot->score >= 80 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                             {{ ucfirst($module->pivot->status) }}
                         </span>
+
                     </div>
                     <div class="text-sm text-gray-600 mb-2">{{ $module->description }}</div>
 

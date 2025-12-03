@@ -132,7 +132,7 @@
             
 
     {{-- COMPLETION SCREEN --}}
-    @elseif ($completed)
+    @elseif ($completed || $status == "completed")
         <div x-transition>
             <h2 class="text-3xl font-bold text-center mb-4 text-green-700">🎉 Quiz Complete!</h2>
 
@@ -149,18 +149,19 @@
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 @if ($difficulty === 'final')
-                    @if ($score === $questions->count())
+                    @if ($currentIndex === $questions->count())
                         <!-- All review questions correct -->
                         <a href="{{ route('dashboard.progress') }}"
                             class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
                             🎉 View Progress
                         </a>
                     @else
-                        <!-- Review in progress -->
-                        <button wire:click="retryModule"
-                            class="px-5 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 shadow">
-                            🔁 Next Level
-                        </button>
+                        <<!-- All review questions correct -->
+                        <p>You have already completed this module!</p>
+                        <a href="{{ route('dashboard.progress') }}"
+                            class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
+                            🎉 View Progress
+                        </a>
                     @endif
                 @else
                     @if ($score === $questions->count())

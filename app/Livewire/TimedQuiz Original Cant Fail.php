@@ -16,7 +16,9 @@ use App\Jobs\SuggestionJob;
 
 use Illuminate\Support\Facades\Cache;
 
-
+// Original timed quiz module where the user cant progress past a wrong question
+// If the user got a question wrong Ai generates feedback then user gets shown feedback and then served the question again
+// Until the user gets the questions correct.
 class TimedQuiz extends Component
 {
     public $modules;
@@ -41,7 +43,6 @@ class TimedQuiz extends Component
     public $hasMissingContent = false;
     public $userCredits = null;
     public $proficiency;
-    public $status;
 
     // Trying filtering with context
     public $selectedSubject = null; // Track which subject is selected
@@ -119,8 +120,8 @@ class TimedQuiz extends Component
         if (!$module) return;
 
         $result = $this->calculateNextDifficulty($module);
-        $this->status = $module->pivot->status;
         
+
         // Handle edge case where module is mastered, provides review questions
         if ($result['mode'] === 'completed') {
             $this->handleMasteryCompletion($module);
@@ -298,7 +299,7 @@ class TimedQuiz extends Component
             // ✅ Calculate user's *overall* score for this module (including past and current)
             $userScore = $this->userScore($moduleId);
 
-            if ($this->difficulty === 'final' && $this->currentIndex === $this->questions->count()) {
+            if ($this->difficulty === 'final' && $this->score === $this->questions->count()) {
                 $status = 'completed';
                 // could do the logic to handle next module and later request etc
                 $userId = $user->id;
@@ -380,11 +381,49 @@ class TimedQuiz extends Component
             // Count how many the user answered correctly
             $correctCount = $user->answeredQuestions()
                 ->whereIn('questions.id', $questions)
+                ->wherePivot('last_answer_correct', true)
                 ->count();
 
             // Calculate the percentage
             $total = $questions->count();
             $percentage = $total ? ($correctCount / $total) * 100 : 0;
+
+            // Get weak questions for review regardless of mastery
+            $weakQuestions = $user->answeredQuestions()
+                ->whereIn('questions.id', $questions)
+                ->wherePivot('last_answer_correct', false)
+                ->get();
+
+            // Check consecutive fails
+            $this->consecutiveFails = $weakQuestions->filter(fn($q) => $q->pivot->consecutive_fails >= 2);
+
+            // Execute this code block if there are consecutive fails before advancing
+            if ($this->consecutiveFails->isNotEmpty()) {
+
+                // Grab review content from cache
+                $reviewContents = [];
+                foreach ($this->consecutiveFails as $q) {
+                    $reviewContents[$q->id] = Cache::get("review_content:{$q->id}");
+                }
+
+                // if review content is empty we just assume its being generated and send a message
+                return [
+                    'mode' => 'consecutive_fails',
+                    'questions' => $this->consecutiveFails,
+                    'level' => $level,
+                    'review_contents' => $reviewContents
+                ];
+
+            }
+
+            // If there are weak questions but not consecutive fails before advancing
+            if ($weakQuestions->isNotEmpty()) {
+                return [
+                    'mode' => 'review',
+                    'questions' => $weakQuestions,
+                    'level' => $level
+                ];
+            }
 
             // If user hasn't mastered the level keep grabbing questions until they have
             if ($percentage < 80) {

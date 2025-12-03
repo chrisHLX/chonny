@@ -81,7 +81,7 @@
                     📘 Your Concept Mastery
                 </h3>
                 <p class="text-gray-400 text-sm mb-6">
-                    Track your progress and identify key areas to improve.
+                    Track your concepts. Complete more quizes to increase level.
                 </p>
                 @forelse($concepts as $concept)
                     @php
