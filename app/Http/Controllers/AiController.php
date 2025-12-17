@@ -14,6 +14,7 @@ use App\Jobs\SuggestionJob;
 use App\Http\Services\AiService;
 use App\Http\Services\UserModuleService;
 use App\Http\Services\CreditService;
+use App\Http\Services\CardGenerationService;
 
 class AiController extends Controller
 {
@@ -21,11 +22,12 @@ class AiController extends Controller
     protected UserModuleService $userModuleService;
     protected CreditService $creditService;
 
-    public function __construct(AiService $aiService, UserModuleService $userModuleService, CreditService $creditService)
+    public function __construct(AiService $aiService, UserModuleService $userModuleService, CreditService $creditService, CardGenerationService $cardGenerationService)
     {
         $this->aiService = $aiService;
         $this->userModuleService = $userModuleService;
         $this->creditService = $creditService;
+        $this->cardGenerationService = $cardGenerationService;
     }
 
     
@@ -41,9 +43,7 @@ class AiController extends Controller
     public function test(){
         //$this->aiService->testContent();
         //$this->aiService->createModule();
-        $user = auth()->user();
-        $module = Module::where('id', 4)->first();
-        SuggestionJob::dispatch($module->id, $user->id);
+       $this->cardGenerationService->generateFor(2, 2);
 
     }
 

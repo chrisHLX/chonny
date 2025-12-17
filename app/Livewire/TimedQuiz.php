@@ -12,6 +12,7 @@ use App\Http\Services\User;
 use App\Http\Services\ReviewQuestionService;
 use App\Jobs\GenerateReviewContentJob;
 use App\Jobs\SuggestionJob;
+use App\Jobs\GenerateCardJob;
 
 
 use Illuminate\Support\Facades\Cache;
@@ -303,6 +304,7 @@ class TimedQuiz extends Component
                 // could do the logic to handle next module and later request etc
                 $userId = $user->id;
                 SuggestionJob::dispatch($moduleId, $userId);
+                GenerateCardJob::dispatch($userId, $moduleId);
             } else {
                 $status = 'in_progress';    
             }
@@ -348,6 +350,7 @@ class TimedQuiz extends Component
 
             // We may no longer need this event.
             ModuleAttempted::dispatch($history);
+            
 
            // $this->handleNextModule($history);
         }

@@ -87,6 +87,36 @@ class AiService
         return (int) ceil(strlen($text) / 4);
     }
 
+    public function generateArtSpec(array $data): array
+    {
+        $prompt = "
+    Generate a compact JSON art specification for a collectible learning card.
+
+    Rules:
+    - Output JSON only
+    - Abstract, non-representational
+    - Works across games, science, medicine, engineering
+    - No text references
+
+    Module:
+    Name: {$data['module_name']}
+    Subject: {$data['subject']}
+    Difficulty: {$data['difficulty']}
+    Proficiency: {$data['proficiency']}
+
+    Include:
+    - seed (integer)
+    - 3–5 color hex palette
+    - shape types
+    - symmetry
+    - density
+    - accent
+    ";
+
+        return $this->callOpenAi($prompt, 'gpt-4o-mini');
+    }
+
+
 
     /* --------------------------------------------------------- OPENAI CALLS & HELPERS --------------------------------------------------------- */
     private function callOpenAi(string $prompt, $model = 'gpt-4o-mini'): array
@@ -158,17 +188,35 @@ class AiService
         $outputTokens = $this->estimateTokens($content);
 
         // 4. Calculate cost in credits
-        $creditCost = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+        $usage = $this->tokenService->calculateCreditCost(
+            $model,
+            $inputTokens,
+            $outputTokens
+        );
 
-        // 5. Deduct credits from user
-        $this->creditService->spendAiCredits($userID, $creditCost);
+        // Deduct credits from user
+        $this->creditService->spendAiCredits(
+            $userID,
+            $usage['credits']['charged'],
+            'AI explanation generation'
+        );
 
-        // 6. Log debug info
+
         \Log::info('AI token usage', [
-            'input_tokens' => $inputTokens,
-            'output_tokens' => $outputTokens,
-            'credit_cost' => $creditCost,
+            'model' => $usage['model'],
+            'input_tokens' => $usage['input_tokens'],
+            'output_tokens' => $usage['output_tokens'],
+
+            // Your actual OpenAI cost
+            'cost_usd' => $usage['cost']['total_usd'],
+            'input_usd' => $usage['cost']['input_usd'],
+            'output_usd' => $usage['cost']['output_usd'],
+
+            // What the user paid
+            'credits_charged' => $usage['credits']['charged'],
+            'credits_raw' => $usage['credits']['raw'],
         ]);
+
 
         // Final trim to clean up any leftover whitespace
         $content = trim($content);
@@ -176,6 +224,54 @@ class AiService
         \Log::debug('Final OpenAI explanation', ['content' => $content]);
 
         return $content;
+    }
+
+    public function generateCardArt(array $data): string
+    {
+        $prompt = $this->buildCardPrompt($data);
+
+        $response = Http::withToken(env('OPENAI_API_KEY'))->post(
+            'https://api.openai.com/v1/images/generations',
+            [
+                'model' => 'gpt-image-1',
+                'prompt' => $prompt,
+                'size' => '1024x1024',
+            ]
+        );
+
+        if (!$response->successful()) {
+            throw new \Exception("Image generation failed: " . $response->body());
+        }
+
+        $base64 = $response->json()['data'][0]['b64_json'];
+        $binary = base64_decode($base64);
+
+        $folder = "module_art/{$data['module_id']}";
+        $filename = \Str::slug($data['module_name']) . '-' . \Str::random(6) . '.png';
+
+        $path = "$folder/$filename";
+
+        Storage::disk('public')->put($path, $binary);
+
+        return "storage/$path";
+    }
+
+    private function buildCardPrompt(array $data): string
+    {
+        return "
+    Create a clean, stylized piece of artwork for a collectible learning card.
+
+    Module: {$data['module_name']}    
+    Proficiency Level: {$data['proficiency_name']}
+    Description: {$data['description']}
+
+    Guidelines:
+    - Clean digital art
+    - Soft lighting
+    - No text
+    - No borders (frontend adds borders)
+    - Visual theme representation only
+    ";
     }
 
 

@@ -14,6 +14,18 @@
     </div>
 
     <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
+        <!-- CARD -->
+        <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
+        <h2 class="text-2xl font-bold">Your cards</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @forelse($cards as $card)
+            <x-card :card="$card" />
+            @empty
+            <p class="text-gray-500">You haven't generated any cards yet. Complete a module to get one.</p>
+            @endforelse
+        </div>
+        </div>
 
         <!-- Modules Overview -->
         <div class="bg-white shadow-lg p-6 rounded-lg">

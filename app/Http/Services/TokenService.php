@@ -40,7 +40,7 @@ class TokenService
     /**
      * Calculate cost (USD) based on token usage.
      */
-    public function calculateCost(string $model, int $inputTokens, int $outputTokens, bool $cached = false): float
+    public function calculateCost(string $model, int $inputTokens, int $outputTokens, bool $cached = false): array
     {
         if (!isset($this->pricing[$model])) {
             throw new \Exception("Model pricing not defined for: {$model}");
@@ -51,28 +51,52 @@ class TokenService
             ? $priceData['cached_input']
             : $priceData['input'];
 
-        // Convert token counts to millions
-        $inputCost = ($inputTokens / 1_000_000) * $inputRate;
-        $outputCost = ($outputTokens / 1_000_000) * $priceData['output'];
+        // Convert token counts to millions USD
+        $inputUsd = ($inputTokens / 1_000_000) * $inputRate;
+        $outputUsd = ($outputTokens / 1_000_000) * $priceData['output'];
 
-        return $inputCost + $outputCost;
+        return [
+            'input_usd' => round($inputUsd, 6),
+            'output_usd' => round($outputUsd, 6),
+            'total_usd' => round($inputUsd + $outputUsd, 6),
+        ];
     }
 
     /**
      * Convert a USD cost into in-app credits.
      */
-    public function convertToCredits(float $usdCost): int
+    public function convertToCredits(float $usdCost): array
     {
         $usdPerCredit = 0.01; // e.g. 1 credit = $0.01
-        return ceil($usdCost / $usdPerCredit);
+        $rawCredits = $usdCost / $usdPerCredit;
+
+        return [
+            'raw' => $rawCredits,
+            'charged' => (int) ceil($rawCredits),
+            'usd_per_credit' => $usdPerCredit,
+        ];
     }
 
     /**
      * Combined helper: compute total credit cost.
      */
-    public function calculateCreditCost(string $model, int $inputTokens, int $outputTokens, bool $cached = false): int
+    public function calculateCreditCost(string $model, int $inputTokens, int $outputTokens, bool $cached = false): array
     {
-        $usdCost = $this->calculateCost($model, $inputTokens, $outputTokens, $cached);
-        return $this->convertToCredits($usdCost);
+        $cost = $this->calculateCost(
+            $model,
+            $inputTokens,
+            $outputTokens,
+            $cached
+        );
+
+        $credits = $this->convertToCredits($cost['total_usd']);
+
+        return [
+            'model' => $model,
+            'input_tokens' => $inputTokens,
+            'output_tokens' => $outputTokens,
+            'cost' => $cost,
+            'credits' => $credits,
+        ];
     }
 }
