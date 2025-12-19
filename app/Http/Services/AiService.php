@@ -226,56 +226,6 @@ class AiService
         return $content;
     }
 
-    public function generateCardArt(array $data): string
-    {
-        $prompt = $this->buildCardPrompt($data);
-
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post(
-            'https://api.openai.com/v1/images/generations',
-            [
-                'model' => 'gpt-image-1',
-                'prompt' => $prompt,
-                'size' => '1024x1024',
-            ]
-        );
-
-        if (!$response->successful()) {
-            throw new \Exception("Image generation failed: " . $response->body());
-        }
-
-        $base64 = $response->json()['data'][0]['b64_json'];
-        $binary = base64_decode($base64);
-
-        $folder = "module_art/{$data['module_id']}";
-        $filename = \Str::slug($data['module_name']) . '-' . \Str::random(6) . '.png';
-
-        $path = "$folder/$filename";
-
-        Storage::disk('public')->put($path, $binary);
-
-        return "storage/$path";
-    }
-
-    private function buildCardPrompt(array $data): string
-    {
-        return "
-    Create a clean, stylized piece of artwork for a collectible learning card.
-
-    Module: {$data['module_name']}    
-    Proficiency Level: {$data['proficiency_name']}
-    Description: {$data['description']}
-
-    Guidelines:
-    - Clean digital art
-    - Soft lighting
-    - No text
-    - No borders (frontend adds borders)
-    - Visual theme representation only
-    ";
-    }
-
-
-
     private function callOpenAiHTML(string $prompt): string
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
@@ -379,6 +329,36 @@ class AiService
             }
         }
     }
+
+    // CARD ART GENERATION
+    public function generateModuleArtSpec(Module $module): array
+    {
+        $prompt = <<<PROMPT
+        Generate a compact JSON art specification for a collectible learning card.
+
+        Rules:
+        - Output JSON only
+        - Abstract, non-representational
+        - No characters, objects, or text
+        - Deterministic-friendly
+
+        Module:
+        Name: {$module->name}
+        Subject: {$module->subject->name}
+        Difficulty: {$module->difficulty}
+
+        Include:
+        - seed (integer)
+        - palette (3–5 hex colors)
+        - shape_count (integer)
+        - shape_types (array)
+        - symmetry (none|vertical|radial)
+        - accent (none|glow|noise)
+        PROMPT;
+
+        return $this->callOpenAi($prompt);
+    }
+
 
     /* --------------------------------------------------------- Question Controller --------------------------------------------------------- */
 

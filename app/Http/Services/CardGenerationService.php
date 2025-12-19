@@ -70,12 +70,16 @@ class CardGenerationService
         // ---------------------------
         // 6) AI IMAGE GENERATION
         // ---------------------------
+        /* moved to module creation
         $artPath = $this->aiService->generateCardArt([
             'module_id' => $module->id,
             'module_name' => $module->name,
             'description' => $module->description,
             'proficiency_name' => $proficiency->name ?? 'Basic',
         ]);
+        */
+
+        $imagePath = $module->art_path ?? 'cards/default.svg';
 
         // ---------------------------
         // 7) PERSIST CARD
@@ -89,7 +93,7 @@ class CardGenerationService
             'attempts' => $totalAttempts,
             'mint_number' => $mint,
             'edition' => 'First Edition',
-            'image_path' => $artPath,
+            'image_path' => $imagePath,
         ];
 
         return DB::transaction(fn() => Card::create($cardData));
