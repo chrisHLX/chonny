@@ -290,71 +290,84 @@ class TimedQuiz extends Component
         $this->elapsed = 0;
         $this->currentIndex++;
         $this->shuffleCurrentQuestionAnswers();
-        if ($this->currentIndex >= $this->questions->count()) {
-            // Quiz completed
-            $this->completed = true;
 
-            $user = auth()->user();
-            $moduleId = $this->selectedModule;
-            // ✅ Calculate user's *overall* score for this module (including past and current)
-            $userScore = $this->userScore($moduleId);
+        if ($this->currentIndex < $this->questions->count()) {
+            return;
+        }
 
-            if ($this->difficulty === 'final' && $this->currentIndex === $this->questions->count()) {
-                $status = 'completed';
-                // could do the logic to handle next module and later request etc
-                $userId = $user->id;
-                SuggestionJob::dispatch($moduleId, $userId);
-                GenerateCardJob::dispatch($userId, $moduleId);
-            } else {
-                $status = 'in_progress';    
-            }
-            
-            // ✅ Update pivot for module progress
-            if ($user && $moduleId) {
-                $user->modules()->syncWithoutDetaching([
-                    $moduleId => [
-                        'score' => $userScore, // Use overall calculated score
-                        'status' => $status,
-                        'last_activity_at' => now(),
-                        'completed_at' => now(),
-                    ]
-                ]);
-            }
+        // ======================
+        // QUIZ COMPLETED
+        // ======================
 
+        $this->completed = true;
 
-            // ✅ Save one UserModuleHistory record
-            $lastAttempt = UserModuleHistory::where('user_id', $user->id)
-                ->where('module_id', $moduleId)
-                ->latest('created_at')
-                ->first();
-            //Work out the new attempt number
-            $attemptNumber = $lastAttempt ? $lastAttempt->attempt_number + 1 : 1;
-            $this->attemptNumber = $attemptNumber; // Store for potential use elsewhere
+        $user = auth()->user();
+        $moduleId = $this->selectedModule;
+        $userId = $user->id;
 
-            $wrongQuestions = array_keys(array_filter($this->questionResults, fn($correct) => !$correct));
-            
-            $rightQuestions = array_keys(array_filter($this->questionResults, fn($correct) => $correct));
+        $userScore = $this->userScore($moduleId);
 
-            $moduleVersion = Module::find($moduleId)->version ?? 'V1';
+        $status = (
+            $this->difficulty === 'final'
+            && $this->currentIndex === $this->questions->count()
+        ) ? 'completed' : 'in_progress';
 
-            $history = UserModuleHistory::create([
-                'user_id' => $user->id,
-                'module_id' => $moduleId,
-                'attempt_number' => $attemptNumber,
-                'wrong_questions' => $wrongQuestions,
-                'right_questions' => $rightQuestions,
-                'module_version' => $moduleVersion,
-                'status' => !empty($wrongQuestions) ? 'failed' : 'completed', // If array is empty completed if not failed
+        // ----------------------
+        // 1) UPDATE MODULE PIVOT
+        // ----------------------
+        $user->modules()->syncWithoutDetaching([
+            $moduleId => [
+                'score' => $userScore,
+                'status' => $status,
+                'last_activity_at' => now(),
+                'completed_at' => now(),
+            ]
+        ]);
 
-            ]);
+        // ----------------------
+        // 2) SAVE HISTORY
+        // ----------------------
+        $lastAttempt = UserModuleHistory::where('user_id', $userId)
+            ->where('module_id', $moduleId)
+            ->latest('created_at')
+            ->first();
 
-            // We may no longer need this event.
-            ModuleAttempted::dispatch($history);
-            
+        $attemptNumber = $lastAttempt ? $lastAttempt->attempt_number + 1 : 1;
+        $this->attemptNumber = $attemptNumber;
 
-           // $this->handleNextModule($history);
+        $wrongQuestions = array_keys(array_filter(
+            $this->questionResults,
+            fn($correct) => !$correct
+        ));
+
+        $rightQuestions = array_keys(array_filter(
+            $this->questionResults,
+            fn($correct) => $correct
+        ));
+
+        $moduleVersion = Module::find($moduleId)->version ?? 'V1';
+
+        $history = UserModuleHistory::create([
+            'user_id' => $userId,
+            'module_id' => $moduleId,
+            'attempt_number' => $attemptNumber,
+            'wrong_questions' => $wrongQuestions,
+            'right_questions' => $rightQuestions,
+            'module_version' => $moduleVersion,
+            'status' => empty($wrongQuestions) ? 'completed' : 'failed',
+        ]);
+
+        ModuleAttempted::dispatch($history);
+
+        // ----------------------
+        // 3) DISPATCH JOBS (LAST)
+        // ----------------------
+        if ($status === 'completed') {
+            SuggestionJob::dispatch($moduleId, $userId);
+            GenerateCardJob::dispatch($userId, $moduleId)->afterCommit();
         }
     }
+
 
     public function render()
     {

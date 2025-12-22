@@ -24,6 +24,15 @@ class CardGenerationService
     {
         $user = User::findOrFail($userId);
         $module = Module::findOrFail($moduleId);
+        
+        // Idempotency check
+        $existing = Card::where('user_id', $userId)
+            ->where('module_id', $moduleId)
+            ->first();
+
+        if ($existing) {
+            return $existing;
+        }
 
         // ---------------------------
         // 1) FETCH USER QUESTION DATA
