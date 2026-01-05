@@ -72,9 +72,9 @@ class CardGenerationService
         $proficiency = $module->proficiencies()->first();
 
         // ---------------------------
-        // 5) MINT NUMBER
+        // 5) MINT NUMBER -- min number is currently just adding all cards
         // ---------------------------
-        $mint = $this->nextMintNumber();
+        $mint = $this->nextMintNumberForModule($module->id);
 
         // ---------------------------
         // 6) AI IMAGE GENERATION
@@ -90,6 +90,12 @@ class CardGenerationService
 
         $imagePath = $module->art_path ?? 'cards/default.svg';
 
+        $edition = match (true) {
+            $mint === 1       => 'First Edition',
+            $mint < 10        => 'Limited',
+            default           => 'Common',
+        };
+
         // ---------------------------
         // 7) PERSIST CARD
         // ---------------------------
@@ -101,15 +107,17 @@ class CardGenerationService
             'accuracy' => $accuracy,
             'attempts' => $totalAttempts,
             'mint_number' => $mint,
-            'edition' => 'First Edition',
+            'edition' => $edition,
             'image_path' => $imagePath,
         ];
 
         return DB::transaction(fn() => Card::create($cardData));
     }
 
-    protected function nextMintNumber(): int
+    protected function nextMintNumberForModule(int $moduleId): int
     {
-        return (Card::max('mint_number') ?? 0) + 1;
+        // Deliberately allow for race conditions here; a duplicate mint number will be rarer
+        return (Card::where('module_id', $moduleId)->max('mint_number') ?? 0) + 1;
     }
+
 }

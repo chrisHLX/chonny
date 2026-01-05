@@ -274,6 +274,7 @@ class ModuleController extends Controller
         return view('modules.next-module', compact('suggestions'));
     }
 
+    // Create User Selected Module from the suggestions
     public function createSuggested(Request $request)
     {
         $data = $request->validate([
