@@ -8,7 +8,7 @@ use App\Models\UserModuleHistory;
 use App\Events\ModuleAttempted;
 use App\Models\Module;
 use App\Http\Services\AiService;
-use App\Http\Services\User;
+use App\Http\Services\User; // Doest exist?
 use App\Http\Services\ReviewQuestionService;
 use App\Jobs\GenerateReviewContentJob;
 use App\Jobs\SuggestionJob;
@@ -431,7 +431,7 @@ class TimedQuiz extends Component
                 return null; // Default to null if not found
             });
 
-
+            
             $formattedContents[] = [
                 'question_id' => $q->id,
                 'review_content' => $content,
