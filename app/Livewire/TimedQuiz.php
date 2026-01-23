@@ -3,12 +3,14 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Subject;
-use App\Models\UserModuleHistory;
+
 use App\Events\ModuleAttempted;
 use App\Models\Module;
+use App\Models\Pipeline;
+use App\Models\PipelineStep;
+use App\Models\Subject;
+use App\Models\UserModuleHistory;
 use App\Http\Services\AiService;
-use App\Http\Services\User; // Doest exist?
 use App\Http\Services\ReviewQuestionService;
 use App\Jobs\GenerateReviewContentJob;
 use App\Jobs\SuggestionJob;
@@ -47,7 +49,6 @@ class TimedQuiz extends Component
     // Trying filtering with context
     public $selectedSubject = null; // Track which subject is selected
     public $categrory;
-
 
     public function updating($name, $value)
     {
@@ -362,10 +363,44 @@ class TimedQuiz extends Component
         // ----------------------
         // 3) DISPATCH JOBS (LAST)
         // ----------------------
+
         if ($status === 'completed') {
-            SuggestionJob::dispatch($moduleId, $userId);
-            GenerateCardJob::dispatch($userId, $moduleId)->afterCommit();
+
+            $pipeline = Pipeline::create([
+                'user_id' => $userId,
+                'module_id' => $moduleId,
+                'type' => 'quiz_completion',
+                'status' => 'running',
+            ]);
+
+            $suggestionStep = PipelineStep::create([
+                'pipeline_id' => $pipeline->id,
+                'name' => 'Generate Suggestions',
+                'status' => 'pending',
+            ]);
+
+            $cardStep = PipelineStep::create([
+                'pipeline_id' => $pipeline->id,
+                'name' => 'Generate Card',
+                'status' => 'pending',
+            ]);
+
+            SuggestionJob::dispatch(
+                $moduleId,
+                $userId,
+                $suggestionStep->id
+            );
+
+            GenerateCardJob::dispatch(
+                $userId,
+                $moduleId,
+                $cardStep->id
+            )->afterCommit();
+
+            // Store pipeline id for frontend
+            session(['completion_pipeline_id' => $pipeline->id]);
         }
+
     }
 
 

@@ -13,6 +13,8 @@ use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Concept;
 use App\Models\Proficiency;
+use App\Models\Pipeline;
+use App\Models\PipelineStep;
 use App\Models\Category;
 
 use App\Http\Services\HtmlFormatter;
@@ -238,7 +240,19 @@ class ModuleController extends Controller
         $user = auth()->user();
         $module = Module::findOrFail($moduleId);
 
+        $pipeline = Pipeline::where('user_id', $user->id)
+                            ->where('module_id', $module->id)
+                            ->with('steps')
+                            ->first();
+        $pipelineStatus = $pipeline->steps->where('name', 'Generate Suggestions')->first()->status;
+        
+        if ($pipelineStatus !== 'completed') {
+            return view('modules.pending');
+        }
+
         // 1. Get hash & suggestions
+        // Generate hash key for user-module based on the users performance, allowing for quick retrieval of suggestions
+        // Unique hash keys are generated when a user completes a module quiz
         $hashKey = $this->userModuleService->getHash($user, $module);
         $response = $this->suggestionsService->getSuggestions($module, $hashKey);
         $parent_id = $response->module_id;
@@ -300,7 +314,7 @@ class ModuleController extends Controller
             return redirect()
                 ->route('modules.index')
                 ->with('success', "Module '{$existing->name}' already existed and has been added to your list.");
-        }
+            }
 
         $subjectID = Subject::where("name", $suggestion["subject"])->first()->id;
 
@@ -321,9 +335,25 @@ class ModuleController extends Controller
 
         $module->proficiencies()->attach($proficiencyId);
 
+        // Now start the pipeline to generate questions
+        $pipeline = Pipeline::create([
+            'user_id' => auth()->id(),
+            'module_id' => $module->id,
+            'type' => 'question_generation',
+            'status' => 'running',
+        ]);
+
         $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
         foreach ($types as $selectedType) {
-            GenerateQuestions::dispatch($selectedType, $module);
+            $pipelineStep = PipelineStep::create([
+                'pipeline_id' => $pipeline->id,
+                'name' => "Generate {$selectedType} Questions",
+                'status' => 'pending',
+            ]);
+            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id);
         }
+
+       return redirect()->route('pipelines.next-module', $pipeline);
+    
     }
 }

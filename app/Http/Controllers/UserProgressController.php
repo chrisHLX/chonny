@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Module;
 use App\Models\Card;
+use App\Models\Pipeline;
 
 
 class UserProgressController extends Controller
@@ -32,6 +33,14 @@ class UserProgressController extends Controller
     {
         $user = auth()->user();
 
+        $pipeline = $user->pipelines()->latest()->with('steps')->first();
+        \Log::info('User pipeline', ['pipeline' => $pipeline]);
+        $pipelineStatus = $pipeline->steps->where('name', 'Generate Card')->first();
+        
+
+        if ($pipelineStatus->status !== 'completed') {
+            return view('dashboard.pending');
+        }
         // modules user is enrolled in
         $modules = $user->modules()->with('questions')->get();
 

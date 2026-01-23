@@ -7,6 +7,7 @@ use App\Models\Concept;
 use App\Models\Question;
 use App\Models\Module;
 use App\Models\User;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserProgressController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\PipelineController;
 
 // STRIPE ROUTES
 Route::post('/create-checkout-session', [StripeController::class, 'createCheckoutSession'])->name('checkout.session');
@@ -35,6 +37,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::post('/credits', [AiController::class, 'test'])->name('credit.test');
 Route::post('/creditsTest2', [AiController::class, 'test2'])->name('credit.test2');
+
+// routes/web.php or api.php
+Route::get('/pipelines/{pipeline}', [PipelineController::class, 'status']);
+
+Route::get('/next-module/{pipeline}', [PipelineController::class, 'nextModule'])
+    ->name('pipelines.next-module');
+
+
 
 Route::get('/dashboard/progress', [UserProgressController::class, 'index'])
     ->middleware(['auth'])
@@ -119,5 +129,10 @@ Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class,
 
 // Collection routes
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection.index');
+
+// ------- Backend UI Dashboard ------- CURRENTLY DISABLED //
+// Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); // Displays all tables and relationships.
+
+
 
 require __DIR__.'/auth.php';

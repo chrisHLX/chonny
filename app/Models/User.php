@@ -83,5 +83,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Proficiency::class, 'user_proficiency')->withPivot('progress');
     }
 
+    public function pipelines()
+    {
+        return $this->hasMany(Pipeline::class);
+    }
+
 
 }

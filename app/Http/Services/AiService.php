@@ -252,7 +252,7 @@ class AiService
         return $content;
     }
 
-    // Format the answer based on its type for better readability in prompts important for generating questions
+    // Format the answer based on its type for better readability in prompts important for generating questions we send the correct answer to ai
     // Must return a string?
     private function formatAnswer($q): string
     {

@@ -10,38 +10,72 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Http\Services\AiService;
-use App\Models\Module;
 
-class GenerateQuestions implements ShouldQueue // What is should que and what is implements
+use App\Models\Module;
+use App\Models\Pipeline;
+use App\Models\PipelineStep;
+
+class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface that tells Laravel this job should be queued)
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     // this must be relating to the Illuminate uses above under namespace. 
     // How does this get called? dispatch::jobname?
     protected $type; // ['mcq', 'true_false', 'matching_pairs', 'ordering']
-    protected $newModule; // what does protected mean? why do they have to be protected
+    protected $newModuleID; // protected variable to hold the module model
+    protected $pipelineStepID;
 
-    public function __construct($type, $newModule)
+    public function __construct($type, $newModuleID, $pipelineStepID)
     {
         $this->type = $type;
-        $this->newModule = $newModule;
+        $this->newModuleID = $newModuleID;
+        $this->pipelineStepID = $pipelineStepID;
         
-    } // creates a new job instance? I noticed its within the class, is this 
-    // a feature of object oriented programming, using the construct method within a class to allow the use of internal variables?
+    }
 
     public function handle(AiService $AiService) // this must be a built in function in jobs to handle the request and we are going to use a function in the AiService
     {
-        //now we should have recieved the model that we are going to generate the questions for
-        $name = $this->newModule->name;
-        $description = $this->newModule->description;
-        $module = $this->newModule;
-        // we are going to send this info to the prompt builder
+        
+        $newModule = Module::find($this->newModuleID);
+
+        $name = $newModule->name;
+        $description = $newModule->description;
+        $module = $newModule;
+        $step = PipelineStep::find($this->pipelineStepID);
+
+        if (! $module || ! $step) {
+            return;
+        }
+
+        // mark step started
+        $step->update([
+            'status' => 'running',
+            'started_at' => now(),
+        ]);
+        
         $string = $this->PromptBuilder($name, $description);
         try {
             \Log::info("Generating questions for module: {$name} with type: {$this->type}");
-            $response = $AiService->generateQuestions($this->type, $string, $this->newModule);
-        } catch (\Exception $e) {
+            $response = $AiService->generateQuestions($this->type, $string, $newModule);
+
+            // mark step complete
+            $step->update([
+                'status' => 'completed',
+                'finished_at' => now(),
+            ]);
+
+            $this->checkPipelineCompletion($step->pipeline);
+
+        } catch (\Throwable $e) {
             Log::error("Error generating questions for module {$name}: {$e->getMessage()}");
+            $step->update([
+                'status' => 'failed',
+                'error_message' => $e->getMessage(),
+                'finished_at' => now(),
+            ]);
+            $this->checkPipelineCompletion($step->pipeline);
+
+            throw $e; // keep queue behaviour consistent
         }
 
 
@@ -54,6 +88,24 @@ class GenerateQuestions implements ShouldQueue // What is should que and what is
 EOT;
         return $prompt;
     }
+
+    protected function checkPipelineCompletion(Pipeline $pipeline): void
+    {
+        $hasFailed = $pipeline->steps()
+            ->where('status', 'failed')
+            ->exists();
+
+        $allDone = ! $pipeline->steps()
+            ->whereIn('status', ['pending', 'running'])
+            ->exists();
+
+        if ($allDone && ! $hasFailed) {
+            $pipeline->update(['status' => 'completed']);
+        } elseif ($hasFailed) {
+            $pipeline->update(['status' => 'failed']);
+        }
+    }
+
     
     
 }
