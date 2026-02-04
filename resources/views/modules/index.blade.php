@@ -10,7 +10,7 @@
             @foreach ($modules as $module)
                 <div class="p-4 bg-gray-800 shadow rounded">
                     <h2 class="text-xl font-semibold">{{ $module->name }} </h2>
-                    <h2 class="text-l font-semibold">Proficiency Level: {{ $module->proficiencies()->first()->name ?? 'None' }}</h2>
+                    <h2 class="text-l font-semibold">Proficiency Level: {{ $module->proficiencies->first()->name ?? 'None' }}</h2>
                     <p class="text-gray-400">{{ $module->description }}</p>
                     
 
@@ -23,7 +23,7 @@
                     @endforeach
 
                     {{-- Add Button if user doesn't already have this module --}}
-                    @if (! $module->users()->where('user_id', Auth::id())->exists())
+                    @if ($module->users->isEmpty())
 
                         <form action="{{ route('modules.assign', $module->id) }}" method="POST" class="mt-4">
                             @csrf
@@ -38,9 +38,9 @@
                     @endif
 
                     {{-- lets try show something if the user has completed this module --}}
-                    @if ($module->users()->where('user_id', Auth::id())->exists())
+                    @if ($module->users->isNotEmpty())
                         @php
-                            $userModule = $module->users->where('id', Auth::id())->first();
+                            $userModule = $module->users->first();
                             $status = $userModule->pivot->status;
                         @endphp
 

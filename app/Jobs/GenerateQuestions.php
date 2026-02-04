@@ -24,12 +24,14 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
     protected $type; // ['mcq', 'true_false', 'matching_pairs', 'ordering']
     protected $newModuleID; // protected variable to hold the module model
     protected $pipelineStepID;
+    protected $userID;
 
-    public function __construct($type, $newModuleID, $pipelineStepID)
+    public function __construct($type, $newModuleID, $pipelineStepID, $userID)
     {
         $this->type = $type;
         $this->newModuleID = $newModuleID;
         $this->pipelineStepID = $pipelineStepID;
+        $this->userID = $userID;
         
     }
 
@@ -38,6 +40,7 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
         
         $newModule = Module::find($this->newModuleID);
 
+        $userID = $this->userID;
         $name = $newModule->name;
         $description = $newModule->description;
         $module = $newModule;
@@ -56,7 +59,7 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
         $string = $this->PromptBuilder($name, $description);
         try {
             \Log::info("Generating questions for module: {$name} with type: {$this->type}");
-            $response = $AiService->generateQuestions($this->type, $string, $newModule);
+            $response = $AiService->generateQuestions($this->type, $string, $newModule, $userID);
 
             // mark step complete
             $step->update([

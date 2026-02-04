@@ -14,7 +14,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // for adding user credits to all requests
         $middleware->web(append: [
             \App\Http\Middleware\LoadUserCredits::class,
-        ]);     
+        ]); 
+        
+         $middleware->validateCsrfTokens(except: [
+            'webhook/stripe', // your webhook route
+        ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

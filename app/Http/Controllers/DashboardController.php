@@ -41,7 +41,10 @@ class DashboardController extends Controller
 
         // Concepts filtered by subject, with user-specific mastery for questions
         $concepts = Concept::where('subject_id', $currentSubjectId)
-            ->with(['questions.users' => fn($q) => $q->where('user_id', $user->id)])
+            ->with([
+                'questions.users' => fn($q) => $q->where('user_id', $user->id),
+                'userConceptMasteries' => fn($q) => $q->where('user_id', $user->id),
+                ])
             ->get();
 
         // Leaderboard: averages mastery across concepts for all users in this subject

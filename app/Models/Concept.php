@@ -36,15 +36,15 @@ class Concept extends Model
 
     public function getMasteryForUserAttribute()
     {
-        return $this->userMastery?->mastery_percentage ?? 0;
+        return $this->userConceptMasteries->first()?->mastery_percentage ?? 0;
     }
 
 
     // Concept.php
-    public function userMastery()
+    public function userConceptMasteries()
     {
-        return $this->hasOne(UserConceptMastery::class)
-                    ->where('user_id', Auth::id());
+        return $this->hasMany(UserConceptMastery::class);
+                    
     }
 
 }

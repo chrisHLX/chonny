@@ -2,40 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
-use Illuminate\Http\Request;
 
 class StripeController extends Controller
 {
-    public function createCheckoutSession(Request $request)
+    public function create(Request $request)
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $user = $request->user();
 
         $session = Session::create([
-            'payment_method_types' => ['card'],
+            'mode' => 'payment',
+
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'aud',
                     'product_data' => [
-                        'name' => 'AI Credits Package',
+                        'name' => 'AI Credits – 100 Pack',
                     ],
-                    'unit_amount' => 500, // $5.00 (amount in cents)
+                    'unit_amount' => 500, // $5.00
                 ],
                 'quantity' => 1,
             ]],
-            'mode' => 'payment',
+
             'success_url' => route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
-            // Important! Attach user info so webhook knows who paid
+
+            // ✅ Attach metadata HERE
             'metadata' => [
                 'user_id' => $user->id,
-                'credits' => 100, // Example: give 100 credits
+                'credits' => 100,
             ],
         ]);
 
-        return response()->json(['id' => $session->id]);
+        return response()->json([
+            'id' => $session->id,
+        ]);
     }
 }

@@ -22,6 +22,7 @@ class AiController extends Controller
     protected UserModuleService $userModuleService;
     protected CreditService $creditService;
 
+
     public function __construct(AiService $aiService, UserModuleService $userModuleService, CreditService $creditService, CardGenerationService $cardGenerationService)
     {
         $this->aiService = $aiService;
@@ -41,9 +42,7 @@ class AiController extends Controller
 
     // Test function to call AiService test method on the home dashboard
     public function test(){
-        //$this->aiService->testContent();
-        //$this->aiService->createModule();
-       $this->cardGenerationService->generateFor(2, 2);
+       $this->userModuleService->test();
 
     }
 

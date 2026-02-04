@@ -72,7 +72,7 @@ class CardGenerationService
         $proficiency = $module->proficiencies()->first();
 
         // ---------------------------
-        // 5) MINT NUMBER -- min number is currently just adding all cards
+        // 5) MINT NUMBER -- mint number is currently just adding all cards
         // ---------------------------
         $mint = $this->nextMintNumberForModule($module->id);
 
@@ -119,5 +119,5 @@ class CardGenerationService
         // Deliberately allow for race conditions here; a duplicate mint number will be rarer
         return (Card::where('module_id', $moduleId)->max('mint_number') ?? 0) + 1;
     }
-
+    
 }

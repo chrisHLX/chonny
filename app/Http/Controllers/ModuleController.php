@@ -60,7 +60,12 @@ class ModuleController extends Controller
 
         // Filter modules by subject
         $modules = Module::where('subject_id', $currentSubjectId)
-                        ->with(['users', 'questions'])
+                        ->with([
+                            'users' => fn ($q) => $q->where('user_id', Auth::id()),
+                            'questions',
+                            'proficiencies',
+                            'modulePages',
+                            ])
                         ->get();
         
         return view('modules.index', compact(
@@ -291,6 +296,8 @@ class ModuleController extends Controller
     // Create User Selected Module from the suggestions
     public function createSuggested(Request $request)
     {
+        $userID = Auth()->id();
+
         $data = $request->validate([
             'suggestion' => 'required|string',
         ]);
@@ -337,7 +344,7 @@ class ModuleController extends Controller
 
         // Now start the pipeline to generate questions
         $pipeline = Pipeline::create([
-            'user_id' => auth()->id(),
+            'user_id' => $userID,
             'module_id' => $module->id,
             'type' => 'question_generation',
             'status' => 'running',
@@ -350,7 +357,7 @@ class ModuleController extends Controller
                 'name' => "Generate {$selectedType} Questions",
                 'status' => 'pending',
             ]);
-            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id);
+            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id, $userID);
         }
 
        return redirect()->route('pipelines.next-module', $pipeline);

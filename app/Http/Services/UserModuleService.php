@@ -25,8 +25,12 @@ class UserModuleService
         $this->suggestionsService = $suggestionsService;
     }
 
-    public function nextModuleResponse(User $user, Module $module)
+    public function test()
     {
+        $user = User::find(2);
+        $module = Module::find(2);
+        
+
         // 1. Build full user-module stats
         $moduleStats = $this->buildModuleUserStats($user, $module);
 
@@ -40,46 +44,134 @@ class UserModuleService
 
         $usableData = json_encode($aiData, JSON_PRETTY_PRINT);
         // 3. Build the prompt JSON for AI
-        
+        $currentProficiency = $module->proficiencies()->first()->name ?? null;
         
         $availableProficiencies = Proficiency::where('subject_id', $module->subject_id)->get()->pluck('name')->toArray();
+
+        $nextlevel = $currentProficiency;
+        $previouslevel = $currentProficiency;
+
+        
+
+        
+        foreach ($availableProficiencies as $index => $proficiency) {
+            if ($proficiency === $currentProficiency) {
+                $nextlevel = $availableProficiencies[$index + 1] ?? $proficiency;
+                $previouslevel = $availableProficiencies[$index - 1] ?? $proficiency;
+                break;
+            }
+        }
+        $profDesc = Proficiency::where('name', $nextlevel)->first()->description ?? '';
+        dd("Current Proficiency: {$nextlevel} - {$profDesc}");
         // turn array into a comma-separated list
         $availableProficiencies = implode(", ", $availableProficiencies);
         
+        $score = $moduleStats['module']['score_percent'] ?? 0;
         
-        $prompt = <<<EOT
-    You are an adaptive learning engine that recommends the next learning modules
-    for a user based on their performance. Use the following user data as context:
-
-    {$usableData}
-
-    Rules:
-    - Recommend exactly 3 next modules.
-    - Prioritize modules that address the user's struggled_concepts.
-    - Consider the user's proficiency level and suggest modules at the same or slightly higher difficulty. 
-        (Available Proficiencies for this module: {$availableProficiencies})
-
-    - Avoid modules that are too advanced unless the user scored above 85% with few struggles.
-    - If the user struggled with certain question types, include modules that reinforce those types.
-    - Output JSON ONLY with this exact structure:
-    
-    \"recommendations\": [
-        {
-        \"name\": \"\",
-        \"subject\": \"\",
-        \"proficiency\": \"\",
-        \"description\": \"\"
+        if ($score >= 85) {
+            $nextlevel = "Increase proficiency level from {$currentProficiency} to {$nextlevel}";
+        } elseif ($score >= 60) {
+            $nextlevel = "Keep current proficiency level with questions focusing on struggled concepts";
+        } else {
+            $nextlevel = "make questions slightly easier. Proficiency: {$previouslevel}";
         }
-    ]
-EOT
-;
+
+        $prompt = <<<EOT
+        You are an adaptive learning engine that recommends the next learning modules
+        for a user based on their performance. 
+
+        Users Module Performance Data:
+        {$usableData}
+
+        Rules:
+        - Recommend exactly 3 next modules.
+        - {$nextlevel}
+        - Output JSON ONLY with this exact structure:
+
+        \"recommendations\": [
+            {
+            \"name\": \"\",
+            \"subject\": \"\",
+            \"proficiency\": \"\",
+            \"description\": \"\"
+            }
+        ]
+    EOT
+    ;
+        dd($prompt);
+    }
+
+    public function nextModuleResponse(User $user, Module $module)
+    {
+        // 1. Build full user-module stats
+        $moduleStats = $this->buildModuleUserStats($user, $module);
+
+        // 2. Reduce to only relevant info for AI
+        $aiData = $this->prepareModuleStatsForAI($moduleStats);
+        
+        // Use this later to see if we have a response in the system if not save one
+        $hashkey = collect($aiData["struggled_questions"])->pluck('id')->toArray(); 
+        $statsHash = hash('sha256', json_encode($hashkey));
+
+        $usableData = json_encode($aiData, JSON_PRETTY_PRINT);
+        // 3. Build the prompt JSON for AI
+        $currentProficiency = $module->proficiencies()->first()->name ?? null;
+        
+        $availableProficiencies = Proficiency::where('subject_id', $module->subject_id)->get()->pluck('name')->toArray();
+
+        $nextlevel = $currentProficiency;
+        $previouslevel = $currentProficiency;
+
+        foreach ($availableProficiencies as $index => $proficiency) {
+            if ($proficiency === $currentProficiency) {
+                $nextlevel = $availableProficiencies[$index + 1] ?? $proficiency;
+                $previouslevel = $availableProficiencies[$index - 1] ?? $proficiency;
+                break;
+            }
+        }
+
+        // turn array into a comma-separated list
+        $availableProficiencies = implode(", ", $availableProficiencies);
+        
+        $score = $moduleStats['module']['score_percent'] ?? 0;
+        
+        if ($score >= 85) {
+            $nextlevel = "Increase proficiency level from {$currentProficiency} to {$nextlevel}";
+        } elseif ($score >= 60) {
+            $nextlevel = "Keep current proficiency level with questions focusing on struggled concepts";
+        } else {
+            $nextlevel = "make questions slightly easier. Proficiency: {$previouslevel}";
+        }
+
+        $prompt = <<<EOT
+        You are an adaptive learning engine that recommends the next learning modules
+        for a user based on their performance. 
+
+        Users Module Performance Data:
+        {$usableData}
+
+        Rules:
+        - Recommend exactly 3 next modules.
+        - {$nextlevel}
+        - Output JSON ONLY with this exact structure:
+
+        \"recommendations\": [
+            {
+            \"name\": \"\",
+            \"subject\": \"\",
+            \"proficiency\": \"\",
+            \"description\": \"\"
+            }
+        ]
+    EOT
+    ;
         
         $existing = $this->suggestionsService->getSuggestions($module, $statsHash);
-        
+        $userID = $user->id; 
         if ($existing) {
             $response = $existing->getRecommendations();
         } else {
-            $response = $this->aiService->sendPromptToAi($prompt);
+            $response = $this->aiService->sendPromptToAi($prompt, 'gpt-4o-mini', $userID, 'Next Module Recommendations');
             $this->suggestionsService->storeSuggestions($module, $statsHash, $response);
         }
 
@@ -243,10 +335,10 @@ EOT
             'name' => $moduleStats['module']['name'],
             'subject' => $moduleStats['module']['subject'],
             'proficiency' => $moduleStats['module']['proficiency'],
-            //'score_percent' => $moduleStats['module']['score_percent'],
-            //'num_questions' => $moduleStats['module']['num_questions'],
-            //'num_struggled' => $moduleStats['module']['num_struggled'],
-            //'total_wrong_attempts' => $moduleStats['module']['total_wrong_attempts'],
+            'score_percent' => $moduleStats['module']['score_percent'],
+            'num_questions' => $moduleStats['module']['num_questions'],
+            'num_struggled' => $moduleStats['module']['num_struggled'],
+            'total_wrong_attempts' => $moduleStats['module']['total_wrong_attempts'],
         ];
 
         // Pick patterns

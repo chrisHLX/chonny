@@ -75,9 +75,9 @@ class AiService
         
     }
 
-    public function sendPromptToAi(string $prompt): array
+    public function sendPromptToAi(string $prompt, string $model, int $userID, string $description = 'undefined'): array
     {
-        $response = $this->callOpenAi($prompt);
+        $response = $this->callOpenAi($prompt, $model, $userID, $description);
         return $response;
     }
 
@@ -119,11 +119,13 @@ class AiService
 
 
     /* --------------------------------------------------------- OPENAI CALLS & HELPERS --------------------------------------------------------- */
-    private function callOpenAi(string $prompt, $model = 'gpt-4o-mini'): array
+    private function callOpenAi(string $prompt, $model = 'gpt-4o-mini', int $userID, string $description = 'undefined'): array
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
         \Log::info("Using Model {$model}");
 
+        // Estimate Input & Output Tokens
+        $inputTokens = $this->estimateTokens($prompt);
         $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
             'model' => $model,     // use chosen model or default
             'messages' => [
@@ -143,12 +145,47 @@ class AiService
 
         Log::debug('Cleaned OpenAI content', ['content' => $content]);
 
+        // Estimate Output Tokens
+        $outputTokens = $this->estimateTokens($content);
+
+        // Calculate Cost
+        // 4. Calculate cost in credits
+        $usage = $this->tokenService->calculateCreditCost(
+            $model,
+            $inputTokens,
+            $outputTokens
+        );
+
+        // Deduct credits from user
+        $this->creditService->spendAiCredits(
+            $userID,
+            $usage['credits']['charged'],
+            $description
+        );
+
+
+        \Log::info('AI token usage', [
+            'model' => $usage['model'],
+            'input_tokens' => $usage['input_tokens'],
+            'output_tokens' => $usage['output_tokens'],
+
+            // Your actual OpenAI cost
+            'cost_usd' => $usage['cost']['total_usd'],
+            'input_usd' => $usage['cost']['input_usd'],
+            'output_usd' => $usage['cost']['output_usd'],
+
+            // What the user paid
+            'credits_charged' => $usage['credits']['charged'],
+            'credits_raw' => $usage['credits']['raw'],
+        ]);
+
+
         $decoded = json_decode($content, true);
 
         return is_array($decoded) ? $decoded : [];
     }
 
-    private function callOpenAiString(string $prompt, $userID): string
+    private function callOpenAiString(string $prompt, $userID, string $description = 'undefined'): string
     {
         $userID = $userID; // Need to pass the user ID for jobs
         
@@ -198,7 +235,7 @@ class AiService
         $this->creditService->spendAiCredits(
             $userID,
             $usage['credits']['charged'],
-            'AI explanation generation'
+            $description
         );
 
 
@@ -464,8 +501,9 @@ class AiService
         
         \Log::info('Generating content for question with prompt', ['prompt' => $prompt]);
 
-        
-        $explanationString = $this->callOpenAiString($prompt, $userID);
+        $aiDescription = 'AI explanation generation';
+
+        $explanationString = $this->callOpenAiString($prompt, $userID, $aiDescription);
 
         \Log::info('Generated explanation $explanationString["content"]');
 
@@ -687,9 +725,10 @@ EOT;
     }
 
     //The content will be with html tag, we should strip them out before adding to the prompt
-    public function generateQuestions(string $type, string $content, $newModule)
+    public function generateQuestions(string $type, string $content, $newModule, int $userID)
     {
         // Fetch all concepts as [ 'name' => id ]
+        
         $conceptMap = Concept::where('subject_id', $newModule->subject_id)->pluck('id', 'name');
         $questionsList = $newModule->questions()->pluck('question')->toArray();
         $questionsList = $newModule->questions()->pluck('question')->implode("\n- ");
@@ -793,10 +832,12 @@ EOT;
     - Ensure JSON is valid, without markdown or commentary.
     PROMPT;
 
+    $aiDescription = "Generate {$type} questions for module {$newModule->id}";
+
     
         // Call the AI safely
         try {
-            $questionsData = $this->callOpenAi($prompt, $model);
+            $questionsData = $this->callOpenAi($prompt, $model, $userID, $aiDescription);
         } catch (\Throwable $e) {
             \Log::error("OpenAI request failed for {$type}: " . $e->getMessage());
             return [];

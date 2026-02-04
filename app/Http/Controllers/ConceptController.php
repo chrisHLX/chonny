@@ -47,7 +47,9 @@ class ConceptController extends Controller
         // Filter concepts by the selected subject
         $concepts = Concept::when($currentSubjectId, function ($query, $subjectId) {
             $query->where('subject_id', $subjectId);
-        })->orderBy('name')->get();
+        })
+        ->with(['questions'])
+        ->orderBy('name')->get();
 
         return view('concepts.index', compact('concepts', 'subjects', 'currentSubjectId', 'categoryId', 'user'));
     }

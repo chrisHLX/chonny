@@ -34,39 +34,27 @@
                     </form>
                 </div>
             </div>
-            <!-- Stripe Add Credits Button Currently disabled till live
-                    <div class="mt-4 flex gap-2">
-                        <form id="checkout-form" action="{{ route('checkout.session') }}" method="POST" class="flex-1">
-                            @csrf
-                            <button class="w-full bg-white hover:bg-white text-gray-600 px-3 py-2 rounded-md">
-                                Add Credits
-                            </button>
-                        </form>
-                    </div>
-                    <script src="https://js.stripe.com/v3/"></script>
-                    <script>
-                        const stripe = Stripe("{{ config('services.stripe.key') }}"); // your public key
+            <button id="buy-credits" class="bg-white px-3 py-2 rounded-md">
+                Add Credits Stripe
+            </button>
 
-                        document.getElementById('checkout-form').addEventListener('submit', async (e) => {
-                            e.preventDefault();
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+                const stripe = Stripe("{{ config('services.stripe.key') }}");
 
-                            const response = await fetch("{{ route('checkout.session') }}", {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                },
-                            });
+                document.getElementById('buy-credits').addEventListener('click', async () => {
+                    const res = await fetch("{{ route('checkout.session') }}", {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        }
+                    });
 
-                            const data = await response.json();
-                            if (data.id) {
-                                await stripe.redirectToCheckout({ sessionId: data.id });
-                            } else {
-                                alert('Failed to start checkout');
-                            }
-                        });
-                    </script>
-                    -->
+                    const data = await res.json();
+                    await stripe.redirectToCheckout({ sessionId: data.id });
+                });
+            </script>
+
             <!-- Subject Selection -->
             {{-- Subject Toggle --}}
             <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
@@ -85,8 +73,10 @@
                 </p>
                 @forelse($concepts as $concept)
                     @php
-                        $mastery = $concept->userMastery?->mastery_percentage ?? 0;
-                        $totalQuestions = $concept->userMastery?->total_questions ?? $concept->questions->count();
+                        $userMastery = $concept->userConceptMasteries->first();
+
+                        $mastery = $userMastery?->mastery_percentage ?? 0;
+                        $totalQuestions = $userMastery?->total_questions ?? $concept->questions->count();
                     @endphp
                     <div class="mb-5">
                         <div class="flex justify-between mb-1 text-sm">

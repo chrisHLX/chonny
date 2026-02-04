@@ -30,7 +30,8 @@ return new class extends Migration
             $table->integer('attempts')->default(1);
 
             // Card metadata
-            $table->integer('mint_number')->unique();
+            $table->unsignedInteger('mint_number');
+            $table->unique(['module_id', 'mint_number'], 'cards_module_mint_unique');
             $table->string('edition')->default('First Edition');
             $table->string('image_path')->nullable();
 

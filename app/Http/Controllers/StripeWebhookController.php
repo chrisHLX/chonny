@@ -4,74 +4,63 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Stripe\Webhook;
 use App\Http\Services\CreditService;
+use App\Models\ProcessedStripeEvent;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+
+
 
 class StripeWebhookController extends Controller
 {
     public function handle(Request $request)
     {
         $payload = $request->getContent();
-        $event = json_decode($payload);
+        $sigHeader = $request->header('Stripe-Signature');
 
-        if (!$event) {
-            return response()->json(['error' => 'Invalid payload'], 400);
+        try {
+            $event = Webhook::constructEvent(
+                $payload,
+                $sigHeader,
+                config('services.stripe.webhook_secret')
+            );
+        } catch (\Throwable $e) {
+            Log::warning('❌ Stripe webhook signature failed');
+            return response()->json(['error' => 'Invalid signature'], 400);
         }
 
-        Log::info("📡 Stripe Webhook received: {$event->type}");
+        Log::info("📡 Stripe event: {$event->type}");
 
-        switch ($event->type) {
-            case 'payment_intent.succeeded':
-                $intent = $event->data->object;
+        if ($event->type !== 'checkout.session.completed') {
+            return response()->json(['status' => 'ignored']);
+        }
 
-                // Assuming you add metadata when creating the payment
-                $userId = $intent->metadata->user_id ?? null;
+        $session = $event->data->object;
 
-                if ($userId) {
-                    app(CreditService::class)->addAiCredits(
-                        (object)['id' => $userId],
-                        100,
-                        'Purchased 100 AI Credits via Stripe'
-                    );
-                    Log::info("✅ Added credits to user #{$userId}");
-                }
-                break;
+        // ✅ Idempotency guard
+        if (ProcessedStripeEvent::where('stripe_id', $session->id)->exists()) {
+            return response()->json(['status' => 'duplicate']);
+        }
 
-            default:
-                Log::info("ℹ️ Unhandled event: {$event->type}");
-                break;
+        $userId  = $session->metadata->user_id ?? null;
+        $credits = (int) ($session->metadata->credits ?? 0);
+
+        if ($userId && $credits > 0) {
+            app(CreditService::class)->addAiCredits(
+                $userId,
+                $credits,
+                'Stripe purchase'
+            );
+
+            ProcessedStripeEvent::create([
+                'stripe_id' => $session->id,
+                'type' => $event->type,
+            ]);
+
+            Log::info("✅ Added {$credits} credits to user {$userId}");
         }
 
         return response()->json(['status' => 'success']);
-    }
-
-    public function createCheckoutSession(Request $request)
-    {
-        Stripe::setApiKey(config('services.stripe.secret'));
-
-        $user = $request->user();
-
-        $session = Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'aud',
-                    'product_data' => [
-                        'name' => 'AI Credits Package',
-                    ],
-                    'unit_amount' => 500, // $5.00 (amount in cents)
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => route('checkout.success'),
-            'cancel_url' => route('checkout.cancel'),
-            // Important! Attach user info so webhook knows who paid
-            'metadata' => [
-                'user_id' => $user->id,
-                'credits' => 100, // Example: give 100 credits
-            ],
-        ]);
-
-        return response()->json(['id' => $session->id]);
     }
 }

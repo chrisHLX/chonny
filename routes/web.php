@@ -23,9 +23,17 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
-// STRIPE ROUTES
-Route::post('/create-checkout-session', [StripeController::class, 'createCheckoutSession'])->name('checkout.session');
+// STRIPE
+Route::post('/checkout/session', [StripeController::class, 'create'])
+    ->middleware('auth')
+    ->name('checkout.session');
+
 Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle']);
+
+// Optional redirect pages
+Route::get('/checkout/success', fn () => view('checkout.success'))->name('checkout.success');
+Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout.cancel');
+
 
 Route::get('/', function () {
     return view('welcome');

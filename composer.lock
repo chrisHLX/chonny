@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ddf83ea74eefc4159395969a5acda434",
+    "content-hash": "7dfd2f839a3c940c4d95883f4ed3be12",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -3620,16 +3620,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v18.2.0",
+            "version": "v19.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "0acd7bdac84ad0f940d5da30c417170ce59b4fbc"
+                "reference": "e444fbc524cd3d6583dde2c5b375d26174c54d96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/0acd7bdac84ad0f940d5da30c417170ce59b4fbc",
-                "reference": "0acd7bdac84ad0f940d5da30c417170ce59b4fbc",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/e444fbc524cd3d6583dde2c5b375d26174c54d96",
+                "reference": "e444fbc524cd3d6583dde2c5b375d26174c54d96",
                 "shasum": ""
             },
             "require": {
@@ -3673,9 +3673,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v18.2.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v19.2.0"
             },
-            "time": "2025-11-05T22:59:39+00:00"
+            "time": "2026-01-16T21:28:14+00:00"
         },
         {
             "name": "symfony/clock",
