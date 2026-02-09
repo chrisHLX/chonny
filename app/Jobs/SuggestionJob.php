@@ -56,7 +56,7 @@ class SuggestionJob implements ShouldQueue // What is should que and what is imp
             // mark step complete
             $step->update([
                 'status' => 'completed',
-                'finished_at' => now(),
+                'completed_at' => now(),
             ]);
 
             $this->checkPipelineCompletion($step->pipeline);
@@ -67,7 +67,7 @@ class SuggestionJob implements ShouldQueue // What is should que and what is imp
             $step->update([
                 'status' => 'failed',
                 'error_message' => $e->getMessage(),
-                'finished_at' => now(),
+                'completed_at' => now(),
             ]);
 
             $step->pipeline->update([

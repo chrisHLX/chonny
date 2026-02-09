@@ -249,11 +249,16 @@ class ModuleController extends Controller
                             ->where('module_id', $module->id)
                             ->with('steps')
                             ->first();
-        $pipelineStatus = $pipeline->steps->where('name', 'Generate Suggestions')->first()->status;
-        
-        if ($pipelineStatus !== 'completed') {
+
+        $step = $pipeline->steps->firstWhere('name', 'Generate Suggestions');
+
+        if (!$step || $step->status !== 'completed') {
             return view('modules.pending');
         }
+
+        $pipelineStatus = $step->status;
+
+
 
         // 1. Get hash & suggestions
         // Generate hash key for user-module based on the users performance, allowing for quick retrieval of suggestions
