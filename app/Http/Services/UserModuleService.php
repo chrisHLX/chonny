@@ -62,7 +62,7 @@ class UserModuleService
             }
         }
         $profDesc = Proficiency::where('name', $nextlevel)->first()->description ?? '';
-        dd("Current Proficiency: {$nextlevel} - {$profDesc}");
+
         // turn array into a comma-separated list
         $availableProficiencies = implode(", ", $availableProficiencies);
         
@@ -75,7 +75,7 @@ class UserModuleService
         } else {
             $nextlevel = "make questions slightly easier. Proficiency: {$previouslevel}";
         }
-
+        
         $prompt = <<<EOT
         You are an adaptive learning engine that recommends the next learning modules
         for a user based on their performance. 
@@ -85,6 +85,7 @@ class UserModuleService
 
         Rules:
         - Recommend exactly 3 next modules.
+        - Subject: {$aiData['module']['subject']}
         - {$nextlevel}
         - Output JSON ONLY with this exact structure:
 

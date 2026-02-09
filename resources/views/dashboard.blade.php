@@ -18,25 +18,20 @@
                     Ready to keep improving your knowledge? Let’s dive in.
                 </p>
                 <div class="mt-4 flex gap-2">
+                    <button id="buy-credits" class="bg-white px-3 py-2 rounded-md text-gray-800 font-semibold hover:bg-gray-200 transition">
+                        Add Credits Stripe
+                    </button>
+                </div>
+                <div class="mt-4 flex gap-2">
                     <form action="{{ route('credit.test') }}" method="POST" class="flex-1">
                         @csrf
                         <button class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
-                            Test
-                        </button>
-                    </form>
-                </div>
-                <div class="mt-4 flex gap-2">
-                    <form action="{{ route('credit.test2') }}" method="POST" class="flex-1">
-                        @csrf
-                        <button class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
-                            Add Credits
+                            Test Prompt
                         </button>
                     </form>
                 </div>
             </div>
-            <button id="buy-credits" class="bg-white px-3 py-2 rounded-md">
-                Add Credits Stripe
-            </button>
+
 
             <script src="https://js.stripe.com/v3/"></script>
             <script>

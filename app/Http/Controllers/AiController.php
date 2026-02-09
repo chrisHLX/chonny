@@ -43,7 +43,6 @@ class AiController extends Controller
     // Test function to call AiService test method on the home dashboard
     public function test(){
        $this->userModuleService->test();
-
     }
 
     //add credits
