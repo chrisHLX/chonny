@@ -245,58 +245,72 @@ class ModuleController extends Controller
         $user = auth()->user();
         $module = Module::findOrFail($moduleId);
 
+        // 1️⃣ Fetch the latest pipeline for this user & module
         $pipeline = Pipeline::where('user_id', $user->id)
                             ->where('module_id', $module->id)
                             ->with('steps')
+                            ->latest('id') // ensures we get the newest pipeline
                             ->first();
 
-        $step = $pipeline->steps->firstWhere('name', 'Generate Suggestions');
-
-        if (!$step || $step->status !== 'completed') {
+        // 2️⃣ Safety check: pipeline exists
+        if (!$pipeline) {
+            \Log::warning("No pipeline found for user {$user->id} and module {$module->id}");
             return view('modules.pending');
         }
 
-        $pipelineStatus = $step->status;
+        // 3️⃣ Find the "Generate Suggestions" step
+        $step = $pipeline->steps->firstWhere('name', 'Generate Suggestions');
 
+        if (!$step) {
+            \Log::warning("No 'Generate Suggestions' step found for pipeline {$pipeline->id}");
+            return view('modules.pending');
+        }
 
+        // 4️⃣ Check if step is completed
+        if ($step->status !== 'completed') {
+            \Log::info("Pipeline {$pipeline->id} step '{$step->name}' not completed yet. Status: {$step->status}");
+            return view('modules.pending');
+        }
 
-        // 1. Get hash & suggestions
-        // Generate hash key for user-module based on the users performance, allowing for quick retrieval of suggestions
-        // Unique hash keys are generated when a user completes a module quiz
+        // ✅ Optional: ensure all steps are completed before proceeding
+        $allStepsCompleted = $pipeline->steps->every(fn($s) => $s->status === 'completed');
+        if (!$allStepsCompleted) {
+            \Log::info("Pipeline {$pipeline->id} has incomplete steps");
+        }
+
+        // 5️⃣ Generate suggestions normally
         $hashKey = $this->userModuleService->getHash($user, $module);
         $response = $this->suggestionsService->getSuggestions($module, $hashKey);
         $parent_id = $response->module_id;
         $suggestions = $response->suggestions_json['recommendations'];
 
-        // 2. Find matching modules already in the DB
+        // 6️⃣ Check existing modules in DB
         $existingModules = Module::whereIn('name', collect($suggestions)->pluck('name'))
-                                ->pluck('id', 'name'); // ['Module A' => 4, 'Module B' => 7]
-        // check if user has already assigned any modules 
-        $existingIds = $existingModules->values(); // [4,7,10,...]
+                                ->pluck('id', 'name');
+        $existingIds = $existingModules->values();
+
         $userAssignedIds = $user->modules()
-            ->whereIn('modules.id', $existingIds)
-            ->pluck('modules.id')
-            ->toArray();
+                                ->whereIn('modules.id', $existingIds)
+                                ->pluck('modules.id')
+                                ->toArray();
 
-        // 3. Merge suggestions with existence info
+        // 7️⃣ Merge suggestions with existing module info
         $suggestions = collect($suggestions)->map(function ($s) use ($existingModules, $parent_id, $userAssignedIds) {
-
             $moduleId = $existingModules[$s['name']] ?? null;
 
             $s['parent_id'] = $parent_id;
             $s['exists'] = $moduleId !== null;
             $s['module_id'] = $moduleId;
-
-            // Only check among existing modules
             $s['assigned'] = in_array($moduleId, $userAssignedIds);
 
             return $s;
         });
 
-
+        \Log::info("Serving next module suggestions for user {$user->id}, pipeline {$pipeline->id}");
 
         return view('modules.next-module', compact('suggestions'));
     }
+
 
     // Create User Selected Module from the suggestions
     public function createSuggested(Request $request)
