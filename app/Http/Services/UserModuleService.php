@@ -144,29 +144,30 @@ class UserModuleService
             $nextlevel = "make questions slightly easier. Proficiency: {$previouslevel}";
         }
 
-        $prompt = <<<EOT
-        You are an adaptive learning engine that recommends the next learning modules
-        for a user based on their performance. 
+       $prompt = <<<EOT
+            You are an adaptive learning engine that recommends the next learning modules
+            for a user based on their performance. 
 
-        Users Module Performance Data:
-        {$usableData}
+            Users Module Performance Data:
+            {$usableData}
 
-        Rules:
-        - Recommend exactly 3 next modules.
-        - {$nextlevel}
-        - Output JSON ONLY with this exact structure:
+            Rules:
+            - Recommend exactly 3 next modules.
+            - Subject: {$aiData['module']['subject']}
+            - {$nextlevel}
+            - Output JSON ONLY with this exact structure:
 
-        \"recommendations\": [
-            {
-            \"name\": \"\",
-            \"subject\": \"\",
-            \"proficiency\": \"\",
-            \"description\": \"\"
-            }
-        ]
-    EOT
-    ;
-        
+            \"recommendations\": [
+                {
+                \"name\": \"\",
+                \"subject\": \"\",
+                \"proficiency\": \"\",
+                \"description\": \"\"
+                }
+            ]
+        EOT
+        ;
+            
         $existing = $this->suggestionsService->getSuggestions($module, $statsHash);
         $userID = $user->id; 
         if ($existing) {

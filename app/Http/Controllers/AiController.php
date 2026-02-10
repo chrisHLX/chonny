@@ -41,12 +41,12 @@ class AiController extends Controller
     }
 
     // Test function to call AiService test method on the home dashboard
-    public function test(){
+    public function test2(){
        $this->userModuleService->test();
     }
 
     //add credits
-    public function test2() {
+    public function test() {
         $user = auth()->user()->id;
         $this->creditService->addAiCredits($user, 100, "sign up credits");
     }

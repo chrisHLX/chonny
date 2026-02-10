@@ -22,33 +22,49 @@ use Illuminate\Support\Facades\Cache;
 
 class TimedQuiz extends Component
 {
+    // ====================
+    // QUIZ SELECTION STATE
+    // ====================
+
     public $modules;
     public $subjects = [];
     public $selectedModule;
+    public $selectedSubject = null; // Track which subject is selected
+    public $categrory;
+
+    // ====================
+    // QUIZ RUNTIME STATE
+    // ====================
+
     public $questions;
     public $currentIndex = 0;
     public $answer = [];
-    public $feedback;
     public $elapsed = 0; 
     public $questionTimes = [];
-    public $score = 0;
     public $completed = false;
     public $started = false;
+    public $status;
+
+    // ====================
+    // RESULTS AND SCORING
+    // ====================
+
+    public $score = 0;
+    public $proficiency;
     public $attemptNumber = 0; //default 
     public $difficulty; // easy, medium, hard, review
-    public $contents = []; // For review contents
-    // ✅ Track per-question correctness
     public $questionResults = [];
+    
+    // ====================
+    // REVIEW / AI STATE
+    // ====================
+    public $contents = []; // For review contents
     public $consecutiveFails = [];
     public $review_contents = [];    
     public $hasMissingContent = false;
     public $userCredits = null;
-    public $proficiency;
-    public $status;
-
-    // Trying filtering with context
-    public $selectedSubject = null; // Track which subject is selected
-    public $categrory;
+    public $feedback;
+    
 
     public function updating($name, $value)
     {
@@ -75,6 +91,18 @@ class TimedQuiz extends Component
         }
 
         $this->updateModules();
+    }
+
+    public function render()
+    {
+        return view('livewire.timed-quiz');
+    }
+
+    // Resets the module
+    public function retryModule()
+    {
+        // Reset state and start over
+        $this->startQuiz();
     }
 
     /**
@@ -403,20 +431,7 @@ class TimedQuiz extends Component
 
     }
 
-
-    public function render()
-    {
-        return view('livewire.timed-quiz');
-    }
-
-    // Resets the module
-    public function retryModule()
-    {
-        // Reset state and start over
-        $this->startQuiz();
-    }
-
-
+    // Just works out what level the user is on. (lets use this for proficiency above intermediate?)
     private function calculateNextDifficulty($module)
     {   
         $difficulties = ['easy', 'medium', 'hard'];
@@ -638,55 +653,6 @@ class TimedQuiz extends Component
     }
 
 
-// --------------------------------- Module completion button --------------------------------- //
-
-    protected function handleNextModule(UserModuleHistory $history)
-    {
-        $user = auth()->user();
-
-        // Get the actual module instance (you were missing this line)
-        $module = Module::find($this->selectedModule);
-        if (!$module) {
-            \Log::error("Module not found for ID {$this->selectedModule}");
-            return;
-        }
-
-        // Resolve AI service
-        $aiService = app(AiService::class);
-
-        // 1️⃣ Get all question IDs that belong to this module
-        $moduleQuestions = $module->questions()->pluck('questions.id')->toArray();
-
-        // 2️⃣ Get all question IDs this user has answered
-        $userQuestions = $user->answeredQuestions()->pluck('questions.id')->toArray();
-
-        // 3️⃣ Determine if user has answered *all* module questions
-        $unansweredQuestions = array_diff($moduleQuestions, $userQuestions);
-        $hasCompletedAllQuestions = empty($unansweredQuestions);
-
-        // 🔹 Case 1: Generate a revision module after 3 failed attempts
-        if ($history->status === 'failed' && $history->attempt_number >= 3) {
-            $newModule = $aiService->generateNewModule($module->id, $history->wrong_questions);
-            $this->selectedModule = $newModule->id;
-            \Log::info("revision done");
-            return;
-        }
-
-        // 🔹 Case 2: Generate a harder module only if user completed and answered all questions
-        if ($history->status === 'completed' && $hasCompletedAllQuestions) {
-            $newModule = $aiService->generateHarderModule($module->id, $history->right_questions);
-            \Log::info("harder done");
-            return;
-        }
-
-        // 🔹 Case 3: User completed the quiz but not all questions in module
-        if ($history->status === 'completed' && !$hasCompletedAllQuestions) {
-            // Grab unanswered questions for this module
-            $remainingQuestions = Question::whereIn('id', $unansweredQuestions)->get();
-            // You can now use $remainingQuestions to show or assign them
-            \Log::info("User still has unanswered questions", ['remaining' => $remainingQuestions->pluck('id')->toArray()]);
-        }
-    }
 
     // 🔄 Initialize or reset all quiz state variables for a new attempt, based on the selected difficulty
     private function initializeQuizState($difficulty)
@@ -724,14 +690,17 @@ class TimedQuiz extends Component
         }
 
         // 2️⃣ Count how many questions the user has answered correctly
-        $correctCount = $user->answeredQuestions()
+        $rows = $user->answeredQuestions()
             ->whereIn('questions.id', $moduleQuestionIds)
-            ->wherePivot('last_answer_correct', true)
-            ->count();
+            ->get();
 
-        // 3️⃣ Calculate the percentage score
-        $total = count($moduleQuestionIds);
-        $percentage = ($correctCount / $total) * 100;
+        $totalAttempts = $rows->sum(fn ($q) => $q->pivot->attempts);
+        $totalCorrect  = $rows->sum(fn ($q) => $q->pivot->correct_count);
+
+        $percentage = $totalAttempts > 0
+            ? ($totalCorrect / $totalAttempts) * 100
+            : 0;
+
 
         return round($percentage, 2);
     }

@@ -139,7 +139,7 @@ Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class,
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection.index');
 
 // ------- Backend UI Dashboard ------- CURRENTLY DISABLED //
-// Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); // Displays all tables and relationships.
+Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); // Displays all tables and relationships.
 
 
 
