@@ -1,21 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-2xl font-bold text-gray-800">📊 Your Learning Progress</h2>
-    </x-slot>
-    
-    <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
-        <div class="cards">
-            @forelse ($modules as $module)
-                <h1>{{$module->name}}</h1>
-            @empty
-                <p>no module available</p>
-            @endforelse
-        </div>
-    </div>
-
     <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
         <!-- CARD -->
-        <div class="py-6 max-w-5xl mx-auto text-gray-600 space-y-8">
+        <h2 class="text-3xl font-bold text-white mt-6">📊 Your Learning Collection</h2>
+        <div class="py-6 max-w-5xl mx-auto text-white-200 space-y-8">
         <h2 class="text-2xl font-bold">Your cards</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,10 +66,30 @@
                         @endif
                     </div>
                 </div>
+
+                
             @empty
                 <p class="text-gray-500">No questions attempted yet.</p>
             @endforelse
+
+
         </div>
+
+        <!-- Wrong Question Feedback -->
+         @if ($wrongQuestions->isNotEmpty())
+            <div class="bg-white shadow-lg text-gray-600 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-4 border-b pb-2">Ai Generated Feedback on Incorrect Answers</h3>
+                @foreach ($wrongQuestions as $question)
+                    <div class="mb-4 p-4 border rounded-lg hover:shadow transition duration-200">
+                        <div class="font-medium text-gray-800 mb-1">{{ $question->question }}</div>
+                        <div class="text-sm text-gray-700 mb-1">
+                            {{ optional($question->contents->first())->content }}
+                        </div>
+                        <div class="font-medium text-gray-800 mb-1">Source {{ $question->contents->first()->source }}</div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
 
     </div>
 </x-app-layout>

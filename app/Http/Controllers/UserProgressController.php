@@ -7,34 +7,24 @@ use App\Models\User;
 use App\Models\Module;
 use App\Models\Card;
 use App\Models\Pipeline;
+use App\Models\Question;
 
 
 class UserProgressController extends Controller
 {
     // display the users progress
-    public function indexOld()
-    {
-        $user = auth()->user();
-
-        $modules = $user->modules()->with('questions')->get();
-        
-        $answeredQuestions = $user->answeredQuestions()
-            ->with(['concepts', 'units'])
-            ->withPivot(['attempts', 'correct_count', 'total_time_spent'])
-            ->get();
-
-        return view('dashboard.progress', [
-            'modules' => $modules,
-            'answeredQuestions' => $answeredQuestions,
-        ]);
-    }
-
     public function index()
     {
         $user = auth()->user();
 
+
         $pipeline = $user->pipelines()->latest()->with('steps')->first();
         \Log::info('User pipeline', ['pipeline' => $pipeline]);
+        
+        if ($pipeline === null) {
+            return view('dashboard.pending');
+        }
+
         $pipelineStatus = $pipeline->steps->where('name', 'Generate Card')->first();
         
 
@@ -43,6 +33,16 @@ class UserProgressController extends Controller
         }
         // modules user is enrolled in
         $modules = $user->modules()->with('questions')->get();
+
+        $wrongQuestionIds = $user->answeredQuestions()
+            ->whereColumn('attempts', '>', 'correct_count') // what is where column and how come where doesnt work
+            ->pluck('questions.id');
+
+        $wrongQuestions = Question::whereIn('id', $wrongQuestionIds)
+            ->with('contents')
+            ->get();
+
+        
 
         // answered questions (existing)
         $answeredQuestions = $user->answeredQuestions()
@@ -60,6 +60,7 @@ class UserProgressController extends Controller
             'modules' => $modules,
             'answeredQuestions' => $answeredQuestions,
             'cards' => $cards,
+            'wrongQuestions' => $wrongQuestions,
         ]);
     }
 

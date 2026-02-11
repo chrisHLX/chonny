@@ -54,6 +54,7 @@ class TimedQuiz extends Component
     public $attemptNumber = 0; //default 
     public $difficulty; // easy, medium, hard, review
     public $questionResults = [];
+    public $wrongQuestions = []; 
     
     // ====================
     // REVIEW / AI STATE
@@ -368,6 +369,10 @@ class TimedQuiz extends Component
             $this->questionResults,
             fn($correct) => !$correct
         ));
+
+       $this->wrongQuestions = $this->questions
+            ->whereIn('id', $wrongQuestions)
+            ->values();
 
         $rightQuestions = array_keys(array_filter(
             $this->questionResults,

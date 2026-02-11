@@ -146,6 +146,16 @@
                     <p class="text-3xl font-bold text-blue-700">{{ $this->totalTime }}s</p>
                 </div>
             </div>
+           @if (count($wrongQuestions ?? []) > 0)
+            <div class="grid grid-cols-1 text-center mb-6">
+                <div class="p-4 bg-red-100 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-6">Wrong Questions</p>
+                    @foreach ($wrongQuestions as $Question)
+                        <p class="text-sm text-red-700 mb-4">{{ $Question->question }}</p>
+                    @endforeach
+                </div>
+            </div>
+            @endif
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 @if ($difficulty === 'final')
@@ -156,7 +166,7 @@
                             🎉 View Progress
                         </a>
                     @else
-                        <<!-- All review questions correct -->
+                        <!-- All review questions correct -->
                         <p>You have already completed this module!</p>
                         <a href="{{ route('dashboard.progress') }}"
                             class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
