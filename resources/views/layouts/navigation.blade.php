@@ -14,8 +14,8 @@
                 <x-nav-link :href="route_with_context('dashboard')" :active="request()->routeIs('dashboard')">
                     Dashboard
                 </x-nav-link>
-                <x-nav-link :href="route_with_context('concepts.index')" :active="request()->routeIs('concepts.index')">
-                    Concepts
+                <x-nav-link :href="route_with_context('collection.index')" :active="request()->routeIs('collection.index')">
+                    Collection
                 </x-nav-link>
                 <x-nav-link :href="route_with_context('questions.quiz.index')" :active="request()->routeIs('questions.quiz.index')">
                     Questions
@@ -99,8 +99,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('concepts.index')" :active="request()->routeIs('concepts.index')">
-                {{ __('Concepts') }}
+            <x-responsive-nav-link :href="route('collection.index')" :active="request()->routeIs('collection.index')">
+                {{ __('collection') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('questions.quiz.index')" :active="request()->routeIs('questions.quiz.index')">
                 {{ __('Questions') }}

@@ -88,5 +88,10 @@ class User extends Authenticatable
         return $this->hasMany(Pipeline::class);
     }
 
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+
 
 }
