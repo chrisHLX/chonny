@@ -169,11 +169,13 @@ class TimedQuiz extends Component
             return;
         }
 
+        /*
         if ($result['mode'] === 'review') {
             $this->questions = $this->prepareQuestionsForQuiz($result['questions']);
             $this->initializeQuizState($result['level']);
             return;
         }
+            */
 
         if ($result['mode'] === 'consecutive_fails') {
             $this->feedback = "review needed";
@@ -469,7 +471,7 @@ class TimedQuiz extends Component
         // Once we have looped through all questions and the user has correctly answered them all the module === All mastered
         return ['mode' => 'completed'];
     }
-
+                /*
     public function checkReviewContent()
     {
         $allReady = true;
@@ -505,7 +507,7 @@ class TimedQuiz extends Component
             $this->contents = $formattedContents;
         }
     }
-
+*/ // Not being used right now but keeping for reference
 
 
     private function handleMasteryCompletion($module)

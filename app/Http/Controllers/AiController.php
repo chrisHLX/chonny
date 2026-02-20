@@ -48,7 +48,13 @@ class AiController extends Controller
     //add credits
     public function test() {
         $user = auth()->user()->id;
+        // $module = auth()->user()->modules()->first();
+        
         $this->creditService->addAiCredits($user, 100, "sign up credits");
+
+        return redirect()->route('dashboard');
+
+        // return $this->aiService->generateQuestions('ordering', 'test content', $module, $user);
     }
 
     public function test2original() {

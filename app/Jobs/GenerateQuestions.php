@@ -43,7 +43,9 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
         $userID = $this->userID;
         $name = $newModule->name;
         $description = $newModule->description;
+        $subject = $newModule->subject;
         $module = $newModule;
+
         $step = PipelineStep::find($this->pipelineStepID);
 
         if (! $module || ! $step) {
@@ -56,7 +58,7 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
             'started_at' => now(),
         ]);
         
-        $string = $this->PromptBuilder($name, $description);
+        $string = $this->PromptBuilder($name, $description, $subject);
         try {
             \Log::info("Generating questions for module: {$name} with type: {$this->type}");
             $response = $AiService->generateQuestions($this->type, $string, $newModule, $userID);
@@ -87,8 +89,9 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
     public function PromptBuilder($name, $description)
     {
         $prompt = <<<EOT
-        Can you create questions for the following module {$name} which is about {$description}.
-EOT;
+        Can you create questions for the following module {$name} which is about {$description}. Must be directly relavant to the subject: {$subject}.
+        EOT;
+
         return $prompt;
     }
 

@@ -82,10 +82,6 @@
             
             @forelse ($this->answeredQuestions as $question)
                 <div class="mb-4 p-4 border rounded-lg hover:shadow transition duration-200">
-                    @php
-                            $user = $question->users->first();
-                            $pivot = $user ? $user->pivot : null;
-                    @endphp 
                     <div class="font-medium text-gray-800 mb-1">
                         {{ $question->question }}
                     </div>
@@ -118,13 +114,6 @@
                                 {{ $question->concepts->pluck('name')->join(', ') }}
                             </span>
                         @endif
-
-                        @if($question->units->isNotEmpty())
-                            <span class="bg-indigo-100 px-2 py-0.5 rounded">
-                                Units:
-                                {{ $question->units->pluck('name')->join(', ') }}
-                            </span>
-                        @endif
                     </div>
                 </div>
             @empty
@@ -147,15 +136,21 @@
                             {{ $question->question }}
                         </div>
 
-                        <div class="text-sm text-gray-700 mb-1">
-                            {{ optional($question->contents->first())->content }}
-                        </div>
+                        @php
+                            $content = $question->contents->first();
+                        @endphp
+                        <!-- Try not to call first directly in case there are no contents, to avoid errors -->
+                        @if($content)
+                            <div class="text-sm text-gray-700 mb-1">
+                                {{ $content->content }}
+                            </div>
 
-                        @if($question->contents->first())
                             <div class="font-medium text-gray-800 mb-1">
-                                Source {{ $question->contents->first()->source }}
+                                Source {{ $content->source }}
                             </div>
                         @endif
+
+
                     </div>
                 @endforeach
             </div>

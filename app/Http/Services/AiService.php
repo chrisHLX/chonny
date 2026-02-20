@@ -732,8 +732,8 @@ EOT;
         $conceptMap = Concept::where('subject_id', $newModule->subject_id)->pluck('id', 'name');
         $questionsList = $newModule->questions()->pluck('question')->toArray();
         $questionsList = $newModule->questions()->pluck('question')->implode("\n- ");
-        $prof = $newModule->proficiencies()->first()->name;
-        $pDesc = $newModule->proficiencies()->first()->description;
+        $prof = $newModule->proficiencies()->first();
+        
 
         if ($type == 'ordering' || $type == 'matching_pairs') {
             // Simplify content for complex question types
@@ -808,33 +808,46 @@ EOT;
         // Build the AI prompt (use HEREDOC for clarity)
         $usableConcepts = $conceptMap->keys()->implode(', ');
         $exampleJson = $examples[$type];
+        
+        $questionAmount = 5;
+        $requirements = " 2 easy, 2 medium, and 1 hard question."; 
 
-        $prompt = <<<PROMPT
-    Generate 5 {$type} questions for our learning app based on the following content.
+        if ($prof->index < 2 && ($type == 'ordering' || $type == 'matching_pairs')) {
+            $questionAmount = 2;
+            $requirements = " 1 medium, 1 hard";
+        } else if ($prof->index >= 2 && $prof->index < 4) {
+            $questionAmount = 5;
+            $requirements = " 2 easy, 2 medium, and 1 hard question.";
+        } else if ($prof->index >= 4) {
+            $questionAmount = 7;
+            $requirements = " 2 easy, 2 medium, and 3 hard question.";  
+        }
+
+
+    $prompt = <<<PROMPT
+    Generate {$questionAmount} {$type} questions for our learning app based on the following content.
 
     CONTENT:
     {$content}
 
-    PROFICIENCY LEVEL: {$prof}.
-    {$prof} Level Description: {$pDesc}.
+    PROFICIENCY LEVEL: {$prof->name}.
+    {$prof->name} Level Description: {$prof->description}.
 
     IMPORTANT NOTE: Proficiency represents the user's reading level (vocabulary) and prior knowledge. Use this to tailor question complexity and readability.
     
-
-    Existing Questions for this module:
-    {$questionsList}
+    Existing Questions for this module (try not to repeat the same ones):
+    - {$questionsList}
 
     REQUIREMENTS:
-    - 2 easy, 2 medium, and 1 hard question.
+    - {$requirements}
     - Return JSON ONLY in this format:
     {$exampleJson}
     - Concepts must be chosen from this list (you can tag one or more): {$usableConcepts}
     - Ensure JSON is valid, without markdown or commentary.
     PROMPT;
-
+        dd($prompt);
     $aiDescription = "Generate {$type} questions for module {$newModule->id}";
 
-    
         // Call the AI safely
         try {
             $questionsData = $this->callOpenAi($prompt, $model, $userID, $aiDescription);

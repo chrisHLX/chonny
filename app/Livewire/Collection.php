@@ -69,10 +69,21 @@ class Collection extends Component
             return collect();
         }
 
-return auth()->user()
-    ->answeredQuestions()
-    ->whereHas('modules', fn ($q) => $q->where('modules.id', $card->module_id))
-    ->get();
+        return auth()->user()
+            ->answeredQuestions()
+            ->whereHas('modules', fn ($q) => $q->where('modules.id', $card->module_id))
+            ->withPivot([
+                'attempts',
+                'correct_count',
+                'last_answered_at',
+                'total_time_spent',
+                'last_time_spent',
+                'last_answer',
+                'last_answer_correct',
+                'consecutive_fails'
+            ])
+            ->with(['concepts', 'contents'])
+            ->get();
 
     }
 

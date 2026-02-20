@@ -30,7 +30,7 @@ class CollectionController extends Controller
             ->latest()
             ->with('steps')
             ->first();
-
+        
         if (!$pipeline) {
             return view('dashboard.pending');
         }

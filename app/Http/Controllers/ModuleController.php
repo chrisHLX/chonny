@@ -243,9 +243,9 @@ class ModuleController extends Controller
     public function nextModule(int $moduleId)
     {
         $user = auth()->user();
-        $module = Module::findOrFail($moduleId);
+        $module = Module::findOrFail($moduleId); // suggestions for this module
 
-        // 1️⃣ Fetch the latest pipeline for this user & module
+        // 1️⃣ Fetch the latest pipeline for this user & module (however if we are still generating questions for this module it should show pending)
         $pipeline = Pipeline::where('user_id', $user->id)
                             ->where('module_id', $module->id)
                             ->with('steps')
