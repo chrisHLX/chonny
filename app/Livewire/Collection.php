@@ -133,6 +133,6 @@ class Collection extends Component
 
     public function render()
     {
-        return view('livewire.Collection');
+        return view('livewire.collection');
     }
 }
