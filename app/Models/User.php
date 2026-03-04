@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Services\CreditService;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -92,6 +93,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cards()
     {
         return $this->hasMany(Card::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            // Resolve CreditService from the container
+            $creditService = app(CreditService::class);
+
+            $creditService->addAiCredits(
+                $user->id,
+                50,
+                'Welcome signup credits'
+            );
+        });
     }
 
 

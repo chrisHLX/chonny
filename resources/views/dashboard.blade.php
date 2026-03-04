@@ -22,14 +22,6 @@
                         Add Credits Stripe
                     </button>
                 </div>
-                <div class="mt-4 flex gap-2">
-                    <form action="{{ route('credit.test') }}" method="POST" class="flex-1">
-                        @csrf
-                        <button class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
-                            Test Prompt
-                        </button>
-                    </form>
-                </div>
             </div>
 
 
