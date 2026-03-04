@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\UserProgressController;
+
 use App\Http\Controllers\ModuleQuizController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AiController;
@@ -22,6 +22,10 @@ use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
+
+use App\Livewire\Modules\Index;
+
+
 
 // STRIPE
 Route::post('/checkout/session', [StripeController::class, 'create'])
@@ -51,12 +55,6 @@ Route::get('/pipelines/{pipeline}', [PipelineController::class, 'status']);
 
 Route::get('/next-module/{pipeline}', [PipelineController::class, 'nextModule'])
     ->name('pipelines.next-module');
-
-
-
-Route::get('/dashboard/progress', [UserProgressController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('dashboard.progress');
 
 
 Route::middleware('auth')->group(function () {
@@ -91,8 +89,8 @@ Route::post('/questions', [QuestionController::class, 'store'])->name('questions
 Route::get('/questions/problematic', [QuestionController::class, 'problematic'])->name('questions.problematic')->middleware('auth');
 
 //create and store modules
-
-Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
+Route::get('modules', Index::class)->name('modules.index')->middleware('auth');
+//Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
 
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');
 Route::post('/modules-pagex/createLandingPage/{module}', [ModuleController::class, 'createLandingPage'])->name('modules-pagex.createLandingPage')->middleware('auth');
@@ -136,7 +134,7 @@ Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class,
 // php artisan make:controller QuestionController --model=Question
 
 // Collection routes
-Route::get('/collection', [CollectionController::class, 'index'])->name('collection.index');
+Route::get('/collection', [CollectionController::class, 'index'])->name('collection.index')->middleware('auth');
 
 // ------- Backend UI Dashboard ------- CURRENTLY DISABLED //
 Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); // Displays all tables and relationships.

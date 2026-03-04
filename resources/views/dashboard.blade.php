@@ -155,56 +155,7 @@
 
             </div>
 
-            <!-- Created Modules -->
-            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
-                @if ($createdModules->isEmpty())
-                    <h3 class="text-lg font-semibold mb-3 text-white flex items-center gap-2">
-                        🧩 Create Your Own Modules
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Create custom learning modules to share or refine your skills.
-                    </p>
-                    <a href="{{ route('modules.create') }}" 
-                       class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
-                        ➕ Create Module
-                    </a>
-                @else
-                    <h3 class="text-lg font-semibold mb-6 text-white flex items-center gap-2">
-                        🧠 Your Created Modules
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach($createdModules as $module)
-                            <div class="bg-gray-700 rounded-xl p-4 flex flex-col justify-between hover:bg-gray-600 transition">
-                                <div>
-                                    <h2 class="text-md font-bold text-white">{{ $module->name }}</h2>
-                                    <p class="text-gray-400 text-sm mt-1">{{ $module->description }}</p>
-                                </div>
-                                <div class="mt-4 flex gap-2">
-                                    <form action="{{ route('modules.destroy', $module) }}" method="POST" 
-                                          onsubmit="return confirm('Are you sure?');" class="flex-1">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="w-full bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md">
-                                            Delete
-                                        </button>
-                                    </form>
-                                    <a href="{{ route('modules.edit', $module) }}" 
-                                       class="flex-1 text-center bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-md">
-                                        Edit
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div class="mt-8 text-center">
-                        <a href="{{ route('modules.create') }}" 
-                           class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
-                            ➕ Create Another Module
-                        </a>
-                    </div>
-                @endif
-            </div>
+            <!-- Created Modules Disabled -->
 
         </div>
     </div>

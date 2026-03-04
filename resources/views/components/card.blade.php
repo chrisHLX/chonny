@@ -9,7 +9,7 @@ $tiers = [
         'glow' => '',
     ],
     2 => [
-        'border' => 'border-gray-300',
+        'border' => 'border-green-300',
         'text' => 'text-gray-700',
         'accent' => 'text-gray-500',
         'glow' => '',
@@ -76,20 +76,29 @@ $editionStyles = [
 $edition = $card->edition ?? 'Common';
 $editionStyle = $editionStyles[$edition] ?? $editionStyles['Common'];
 
-// Proficiencies come from the SUBJECT (not module)
+// Proficiencies come from the SUBJECT (not module) need to update this to do it by index when I do a fresh migrate on laptop
+/* UPDATED VERSION WHEN I FRESH MIGRATE TO USE INDEX INSTEAD OF ID
+$tier = $card->proficiency->index + 1;
+$style = $tiers[$tier] ?? $tiers[1];
+*/
+
 $proficiencies = $card->module->subject->proficiencies
     ->sortBy('id')
     ->values();
 
 $currentIndex = $proficiencies->search(fn ($p) => $p->id === $card->proficiency_id);
+
 $tier = $currentIndex !== false ? $currentIndex + 1 : 1;
 
 $style = $tiers[$tier] ?? $tiers[1];
+
+
 @endphp
 
-<div class="rounded-xl border-4 {{ $style['border'] }} bg-white
-            shadow-lg {{ $style['glow'] }} {{ $editionStyle['glow'] }}
-            transition-transform duration-200 hover:-translate-y-1">
+<div {{ $attributes->merge([
+    'class' => 'rounded-xl border-4 h-full w-full flex flex-col ' . $style['border'] . '
+                shadow-lg transition-transform duration-200 hover:-translate-y-1'
+            ]) }}>
 
 
     {{-- HEADER --}}

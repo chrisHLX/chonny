@@ -137,7 +137,7 @@
                 @if ($difficulty === 'review')
                     @if ($score === $questions->count())
                         <!-- All review questions correct -->
-                        <a href="{{ route('dashboard.progress') }}"
+                        <a href="{{ route('collection.index') }}"
                             class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow">
                             🎉 View Progress
                         </a>

@@ -69,6 +69,8 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
                 'completed_at' => now(),
             ]);
 
+            $module->update(['status' => 'ready']);
+
             $this->checkPipelineCompletion($step->pipeline);
 
         } catch (\Throwable $e) {
@@ -79,14 +81,14 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
                 'completed_at' => now(),
             ]);
             $this->checkPipelineCompletion($step->pipeline);
-
+            $module->update(['status' => 'failed']);
             throw $e; // keep queue behaviour consistent
         }
 
 
     }
 
-    public function PromptBuilder($name, $description)
+    public function PromptBuilder($name, $description, $subject)
     {
         $prompt = <<<EOT
         Can you create questions for the following module {$name} which is about {$description}. Must be directly relavant to the subject: {$subject}.

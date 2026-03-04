@@ -11,6 +11,8 @@ class Module extends Model
     protected $fillable = [
         'subject_id',
         'name',
+        'content_source',
+        'status',
         'description',
         'race',
         'difficulty',

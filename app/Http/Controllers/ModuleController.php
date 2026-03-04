@@ -40,43 +40,6 @@ class ModuleController extends Controller
         $this->suggestionsService = $suggestionsService;
     }
 
-    public function index()
-    {
-        $categoryId = request('category_id');
-        $currentSubjectId = request('subject_id');
-
-        // Default category if none selected
-        if (!$categoryId) {
-            $categoryId = Category::first()->id;
-        }
-
-        // Load subjects for this category (for the toggle)
-        $subjects = Subject::where('category_id', $categoryId)->get();
-
-        // Default subject if none picked
-        if (!$currentSubjectId && $subjects->count()) {
-            $currentSubjectId = $subjects->first()->id;
-        }
-
-        // Filter modules by subject
-        $modules = Module::where('subject_id', $currentSubjectId)
-                        ->with([
-                            'users' => fn ($q) => $q->where('user_id', Auth::id()),
-                            'questions',
-                            'proficiencies',
-                            'modulePages',
-                            ])
-                        ->get();
-        
-        return view('modules.index', compact(
-            'modules',
-            'subjects',
-            'currentSubjectId',
-            'categoryId'
-        ));
-    }
-
-
     public function assign(Module $module)
     {
         $user = Auth::user();
@@ -356,6 +319,7 @@ class ModuleController extends Controller
             'description' => $suggestion["description"],
             'parent_id' => $suggestion["parent_id"],
             'subject_id' => $subjectID,
+            'status' => 'preparing',
             'published' => true,
         ]);
 
@@ -379,7 +343,7 @@ class ModuleController extends Controller
             GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id, $userID);
         }
 
-       return redirect()->route('pipelines.next-module', $pipeline);
+       return redirect()->route('modules.index');
     
     }
 }

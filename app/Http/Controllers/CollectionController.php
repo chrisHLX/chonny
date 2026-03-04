@@ -29,7 +29,7 @@ class CollectionController extends Controller
         $pipeline = $user->pipelines()
             ->latest()
             ->with('steps')
-            ->first();
+            ->firstWhere('type', 'quiz_completion');
         
         if (!$pipeline) {
             return view('dashboard.pending');
@@ -37,63 +37,12 @@ class CollectionController extends Controller
 
         $generateStep = $pipeline->steps
             ->firstWhere('name', 'Generate Card');
-
+        
         if (!$generateStep || $generateStep->status !== 'completed') {
             return view('dashboard.pending');
         }
 
         return view('collection.index');
-    }
-
-    public function indexOLD()
-    {
-        $user = auth()->user();
-
-
-        $pipeline = $user->pipelines()->latest()->with('steps')->first();
-        \Log::info('User pipeline', ['pipeline' => $pipeline]);
-        
-        if ($pipeline === null) {
-            return view('dashboard.pending');
-        }
-
-        $pipelineStatus = $pipeline->steps->where('name', 'Generate Card')->first();
-        
-
-        if ($pipelineStatus->status !== 'completed') {
-            return view('dashboard.pending');
-        }
-        // modules user is enrolled in
-        $modules = $user->modules()->with('questions')->get();
-
-        $wrongQuestionIds = $user->answeredQuestions()
-            ->whereColumn('attempts', '>', 'correct_count') // what is where column and how come where doesnt work
-            ->pluck('questions.id');
-
-        $wrongQuestions = Question::whereIn('id', $wrongQuestionIds)
-            ->with('contents')
-            ->get();
-
-        
-
-        // answered questions (existing)
-        $answeredQuestions = $user->answeredQuestions()
-            ->with(['concepts', 'units'])
-            ->withPivot(['attempts', 'correct_count', 'total_time_spent'])
-            ->get();
-
-        // user cards
-        $cards = \App\Models\Card::where('user_id', $user->id)
-            ->with(['module', 'proficiency'])
-            ->orderByDesc('created_at')
-            ->get();
-
-        return view('dashboard.progress', [
-            'modules' => $modules,
-            'answeredQuestions' => $answeredQuestions,
-            'cards' => $cards,
-            'wrongQuestions' => $wrongQuestions,
-        ]);
     }
 
 

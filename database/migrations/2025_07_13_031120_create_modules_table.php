@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('content_source')->default('OPEN AI 4.0-mini'); // Added a parent id so we can attach modules to parents
+            $table->string('status')->default('ready'); // ready, generating, failed
             $table->text('description')->nullable();
             $table->string('race')->nullable(); // 'Zerg', 'Terran', 'Protoss', or null
             $table->json('art_spec')->nullable(); // JSON field for art specifications (image svg generation)

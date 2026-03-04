@@ -476,26 +476,25 @@ class AiService
     {
         $correct = $this->formatAnswer($question);
         $prompt = <<<EOT
-        The user has repeatedly answered the following question incorrectly. 
-        Please write a clear, structured explanation to help them understand the underlying concept.
+        The user has answered this question incorrectly multiple times.
 
-        - Start by explaining the context or reasoning behind the concept.
-        - Include an example or analogy where appropriate.
-        - End with the correct answer as a natural conclusion, not at the beginning.
-        - Avoid listing or emphasizing the answer early (e.g. don’t say 'the correct order is' or 'the answer is').
-        
-        Focus on:
-        - Explaining *why* the correct answer is right.
-        - Clarifying *why* common wrong answers might be confusing. 
-        - Giving one short, memorable tip or analogy.
+        Write a short explanation (max 120 words) that:
+
+        - Corrects the likely misconception.
+        - Explains why the correct answer fits the concept.
+        - If contrasting with other options, avoid making specific factual claims unless they are directly implied by the Question or Correct Answer.
+        - Do not introduce additional domain facts that are not explicitly given.
+        - End naturally with the correct answer.
+
+        Be concise. No fluff. No formatting.
+        Use simple language appropriate for the given proficiency level.
+        Include one short memorable mental hook.
+        Return only plain text.
 
         Context:
         - Module: $moduleInfo
         - Question: $question->question
         - Correct Answer: $correct
-
-        Return only the plain text explanation — no lists, titles, or formatting.
-        IMPORTANT! USE AS MINIMUM WORDS POSSIBLE BE CREATIVE
 
         EOT;
         
@@ -717,7 +716,7 @@ class AiService
         ]
         The module should focus on the subject of {$subject} and be suitable for a {$difficulty} level learner.
 EOT;
-        dd($prompt);
+        
         $newModule = $this->callOpenAi($prompt);
 
         // Create newModule then below create and attach questions to module
@@ -840,12 +839,12 @@ EOT;
 
     REQUIREMENTS:
     - {$requirements}
-    - Return JSON ONLY in this format:
+    - IMPORTANT Return JSON ONLY in this format Explicitly:
     {$exampleJson}
     - Concepts must be chosen from this list (you can tag one or more): {$usableConcepts}
     - Ensure JSON is valid, without markdown or commentary.
     PROMPT;
-        dd($prompt);
+        
     $aiDescription = "Generate {$type} questions for module {$newModule->id}";
 
         // Call the AI safely
