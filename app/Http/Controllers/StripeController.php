@@ -14,29 +14,16 @@ class StripeController extends Controller
 
         $user = $request->user();
 
-        // ✅ Create Stripe Customer if user doesn't have one yet
-        if (!$user->stripe_customer_id) {
-            $customer = Customer::create([
-                'email' => $user->email,
-                'name'  => $user->name, // Optional: use nickname for privacy
-            ]);
-
-            $user->stripe_customer_id = $customer->id;
-            $user->save();
-        } else {
-            $customer = Customer::retrieve($user->stripe_customer_id);
-        }
-
         $session = Session::create([
             'mode' => 'payment',
-            'customer' => $customer->id, // ensures personal Stripe account name is not shown
+
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'aud',
                     'product_data' => [
-                        'name' => 'AI Credits – 200 Pack',
+                        'name' => 'AI Credits – 100 Pack',
                     ],
-                    'unit_amount' => 100, // $1.00
+                    'unit_amount' => 500, // $5.00
                 ],
                 'quantity' => 1,
             ]],
