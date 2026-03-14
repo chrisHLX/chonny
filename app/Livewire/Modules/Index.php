@@ -25,6 +25,7 @@ class Index extends Component
     public $currentSubjectId;
     public $statusFilter = 'all'; // all | completed | in_progress | not_started
     public $proficiencyFilter = null;
+    public $category;
     
     // Sync these properties with the query string, using custom keys and excluding default values to 
     // to prevent url mismatches when filters are in their default state.
@@ -35,14 +36,35 @@ class Index extends Component
         'proficiencyFilter' => ['except' => null],
     ];
 
+    public function syncSubject()
+    {
+        $validSubject = Subject::where('id', $this->currentSubjectId)
+            ->where('category_id', $this->categoryId)
+            ->exists();
+
+        if (! $validSubject) {
+            $this->currentSubjectId = Subject::where('category_id', $this->categoryId)
+                ->first()?->id;
+        }
+    }
+
+    public function updatedCategoryId()
+    {
+        $this->syncSubject();
+        $this->category = Category::find($this->categoryId);
+    }
+
+    public function updatedCurrentSubjectId()
+    {
+        $this->reset('proficiencyFilter', 'statusFilter');
+    }
     public function mount()
     {
-        $this->categoryId = $this->categoryId ?? Category::first()->id;
+        $this->categoryId ??= Category::first()?->id;
 
-        $subjects = Subject::where('category_id', $this->categoryId)->get();
+        $this->syncSubject();
 
-        $this->currentSubjectId = $this->currentSubjectId 
-            ?? $subjects->first()?->id;
+        $this->category = Category::find($this->categoryId);
     }
 
     public function getModulesProperty()
@@ -53,6 +75,8 @@ class Index extends Component
                 'questions',
                 'proficiencies',
             ]);
+
+        \Log::info('subject_id: ' . $this->currentSubjectId);   
 
         if ($this->proficiencyFilter) {
             $query->whereHas('proficiencies', function ($q) {
@@ -69,7 +93,7 @@ class Index extends Component
                 return $userModule?->pivot->status === $this->statusFilter;
             });
         }
-
+        
         return $modules;
     }
 

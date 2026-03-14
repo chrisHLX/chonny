@@ -30,7 +30,7 @@ class TimedQuiz extends Component
     public $subjects = [];
     public $selectedModule;
     public $selectedSubject = null; // Track which subject is selected
-    public $categrory;
+    public $category;
 
     // ====================
     // QUIZ RUNTIME STATE

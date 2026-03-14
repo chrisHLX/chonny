@@ -39,6 +39,8 @@ class ProficiencySeeder extends Seeder
             ['subject_id' => 3, 'index' => 3, 'name' => 'Graduate', 'description' => 'Advanced knowledge, clinical reasoning, diagnosis, and therapeutics.'],
             ['subject_id' => 3, 'index' => 4, 'name' => 'Residency', 'description' => 'Hands-on skills, case-based reasoning, complex differential diagnosis.'],
             ['subject_id' => 3, 'index' => 5, 'name' => 'Specialist', 'description' => 'Expert-level, highly specialized, research-focused knowledge.'],
+        
+            
         ];
 
         DB::table('proficiencies')->insert($proficiencies);

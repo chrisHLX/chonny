@@ -7,11 +7,11 @@ use App\Models\Subject;
 use App\Models\Concept;
 use Illuminate\Support\Facades\File;
 
-class ConceptsSeeder extends Seeder
+class NewConceptSeeder extends Seeder
 {
     public function run(): void
     {
-        $json = File::get(database_path('data/concepts.json'));
+        $json = File::get(database_path('data/newconcepts.json'));
         $concepts = json_decode($json, true);
             
         foreach ($concepts as $data) {

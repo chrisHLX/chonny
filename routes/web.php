@@ -24,6 +24,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
 use App\Livewire\Modules\Index;
+use App\Livewire\ModuleSelector;
 
 
 

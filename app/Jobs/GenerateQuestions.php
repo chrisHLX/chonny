@@ -32,7 +32,6 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
         $this->newModuleID = $newModuleID;
         $this->pipelineStepID = $pipelineStepID;
         $this->userID = $userID;
-        
     }
 
     public function handle(AiService $AiService) // this must be a built in function in jobs to handle the request and we are going to use a function in the AiService
