@@ -2,8 +2,8 @@
 
 <h1 class="text-2xl font-bold mb-6">Generate an Introductory Guide for {{ $module->name }}</h1>
 
-<div class="bg-white shadow-sm sm:rounded-lg p-6">
-    <h3 class="text-lg font-semibold mb-4">Landing Page Generator</h3>
+<div class="bg-white text-gray-800 shadow-sm sm:rounded-lg p-6">
+    <h3 class="text-lg text-gray-800 font-semibold mb-4">Landing Page Generator</h3>
 
     <p class="mb-4 text-sm text-gray-600">
         Write a short description of what this guide will cover. For example:

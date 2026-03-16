@@ -71,23 +71,12 @@ class ModuleController extends Controller
             'subject_id' => 'required|exists:subjects,id',
             'proficiency_id' => 'required|exists:proficiencies,id',
         ]);
-        // how do I change $module to just an array that i can check with dd?
-        // // change module to be an array that I can check with dd, by 
-        $moduleArray = ([
-            'name' => $request->name,
-            'description' => $request->description,
-            'created_by' => auth()->user()->name,
-            'subject_id' => $request->subject_id,
-            'proficiency_id' => $request->proficiency_id,
-            'status' => 'need questions',
-        ]);
-
-        dd($moduleArray);
+        
         // will add proficiency here to be attached as well once I figure out how to do that in the blade
         $module = Module::create([
             'name' => $request->name,
             'description' => $request->description,
-            'created_by' => auth()->user()->name,
+            'created_by' => auth()->id(),
             'subject_id' => $request->subject_id,
             'proficiency_id' => $request->proficiency_id,
             'status' => 'need questions',

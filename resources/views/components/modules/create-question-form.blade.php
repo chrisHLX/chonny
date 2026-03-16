@@ -1,7 +1,7 @@
 @props(['module', 'conceptsList'])
 
-<div class="bg-white shadow-sm sm:rounded-lg p-6">
-    <h3 class="text-lg font-semibold mb-4">Add a New Question</h3>
+<div class="bg-white text-gray-800 shadow-sm sm:rounded-lg p-6">
+    <h3 class="text-lg text-gray-800 font-semibold mb-4">Add a New Question</h3>
 
     <form action="{{ route('questions.store') }}" method="POST" x-data="{ type: 'mcq' }" class="space-y-6">
         @csrf
