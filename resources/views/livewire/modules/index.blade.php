@@ -122,7 +122,7 @@
                             </a>
                         @elseif ($status === 'not_started')
                             <p class="mt-2 text-gray-400 font-semibold">Module Not Started</p>
-                            <a href="{{ route('questions.quiz.index', ['module_id' => $module->id]) }}"
+                            <a href="{{ route('questions.quiz.index', ['category_id' => request('category_id'), 'module_id' => $module->id]) }}"
                                 class="bg-blue-500 text-white mt-4 px-4 py-2 rounded hover:bg-blue-600 inline-block">
                                     Start Quiz
                             </a>    
