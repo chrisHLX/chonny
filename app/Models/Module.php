@@ -74,4 +74,9 @@ class Module extends Model
         return $this->hasMany(Card::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\ModuleSuggestions;
 
 use App\Jobs\SuggestionJob;
+use App\Jobs\TagJob;
 
 use App\Http\Services\AiService;
 use App\Http\Services\UserModuleService;
@@ -40,9 +41,11 @@ class AiController extends Controller
         return view('Ai/ai_requests', compact('ai_requests'));
     }
 
-    // Test function to call AiService test method on the home dashboard
+    // Function to generate and add tags to module_tag table based on module content
     public function test2(){
-       $this->userModuleService->test();
+
+        TagJob::dispatch();
+    
     }
 
     //add credits
@@ -55,21 +58,6 @@ class AiController extends Controller
         return redirect()->route('dashboard');
 
         // return $this->aiService->generateQuestions('ordering', 'test content', $module, $user);
-    }
-
-    public function test2original() {
-        $userID = auth()->user()->id;
-        $moduleID = 1;
-        
-        $user = User::find($userID);
-        $module = Module::find($moduleID);
-        
-        $hash = $this->userModuleService->getHash($user, $module);
-        // dispatch job stores the response in the DB for retrieval.
-        // SuggestionJob::dispatch($moduleID, $userID);  
-
-        $suggestion = ModuleSuggestions::where('stats_hash', $hash)->first()->suggestions_json;
-        dd($suggestion);
     }
 
     public function testOriginal(){

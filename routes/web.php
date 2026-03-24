@@ -24,9 +24,8 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
 use App\Livewire\Modules\Index;
+use App\Livewire\QuizPage;
 use App\Livewire\ModuleSelector;
-
-
 
 // STRIPE
 Route::post('/checkout/session', [StripeController::class, 'create'])
@@ -80,9 +79,10 @@ Route::get('/concepts/create', [ConceptController::class, 'create'])->name('conc
 Route::post('/concepts', [ConceptController::class, 'store'])->name('concepts.store');
 
 //questions
-Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
+Route::get('/questions/quiz', QuizPage::class)->name('questions.quiz.index')->middleware('auth');
+//Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
 Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy')->middleware('auth');
-Route::get('/questions/quiz', [QuestionController::class, 'quiz'])->name('questions.quiz.index')->middleware('auth');
+//Route::get('/questions/quiz', [QuestionController::class, 'quiz'])->name('questions.quiz.index')->middleware('auth');
 Route::post('/questions/{question}/answer', [QuestionController::class, 'submit'])->name('questions.answer');
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 

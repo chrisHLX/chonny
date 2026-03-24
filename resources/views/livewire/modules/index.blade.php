@@ -5,8 +5,30 @@
     
     {{-- Subject Toggle Component --}}
     <x-context-bar-livewire :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" routeName="modules.index"/>
-
+    
     <div class="mt-6 bg-gray-900 p-4 rounded-xl shadow-lg space-y-4">
+    <!-- Tag Filter Buttons -->
+     <div class="flex flex-wrap gap-2">
+        <button
+            wire:click="$set('tagFilter', [])"
+            class="px-3 py-1 rounded-md transition
+                {{ empty($tagFilter)
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700' }}">
+            All Tags
+        </button>
+
+        @foreach ($this->tags as $tag)
+            <button
+                wire:click="toggleTag('{{ $tag->name }}')"
+                class="px-3 py-1 rounded-md transition
+                    {{ in_array($tag->name, $tagFilter)
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700' }}">
+                {{ $tag->name }}
+            </button>
+        @endforeach
+    </div>
 
     <!-- Status Filter Buttons -->
     <div class="flex flex-wrap gap-3">
@@ -58,6 +80,11 @@
                 <div class="p-4 bg-gray-800 shadow rounded">
                     <h2 class="text-xl font-semibold mb-2">{{ $module->name }} </h2>
                     <h2 class="text-l font-semibold">Proficiency Level: {{ $module->proficiencies->first()->name ?? 'None' }}</h2>
+                    @foreach ($module->tags as $tag)
+                        <button type="submit" class="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-600 transition">
+                            {{ $tag->name }}
+                        </button>
+                    @endforeach
                     <p class="text-gray-400">{{ $module->description }}</p>
                     
 
@@ -101,7 +128,7 @@
                     @else
 
                         <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                            Score: {{ $userModule->pivot->score }}%
+                            Score: {{ $userModule?->pivot->score }}%
                         </span>
 
                     @endif

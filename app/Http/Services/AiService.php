@@ -10,6 +10,7 @@ use App\Models\ModulePage;
 use App\Models\Subject;
 use App\Models\Proficiency;
 use App\Models\User;
+use App\Models\Tag;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log; 
 
@@ -436,6 +437,40 @@ class AiService
 
         return $concepts;
 
+    }
+
+    public function generateTags(int $moduleId): array
+    {
+        $module = Module::findOrFail($moduleId);
+
+        // Get existing tags for the subject
+        $existingTags = Tag::where('subject_id', $module->subject->id)->get();
+        $existingTagsArray = $existingTags->map(fn($tag) => "{$tag->name} ({$tag->type})")->toArray();
+        $existingTagsString = implode(', ', $existingTagsArray);
+
+        // Build the prompt
+        $prompt = <<<EOT
+    I need you to pick 2–5 descriptive tags for a learning module based on the content provided. 
+    The tags will be used for filtering and discovery.
+
+    Module to have tags attached
+    Subject: {$module->subject->name}
+    Module title: {$module->name}
+    Description: {$module->description}
+
+    Return 2–5 tags only from the list of available tags below.
+
+    Tags: name (type): {$existingTagsString}
+
+    IMPORTANT Format: [{"name":"example","type":"identity"}]
+
+    NOTE: IMPORTANT Return only in the above JSON array format. Do not include any explanatory text or markdown formatting.
+    EOT;
+                
+        // Send to AI
+        $response = $this->callOpenAi($prompt, 'gpt-4.1-mini', 2, 'generate_tags');
+
+        return $response ?? [];
     }
 
     // Used in the question controller in the store function for saving questions, automatically generating keywords for open questions

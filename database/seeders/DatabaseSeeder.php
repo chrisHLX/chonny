@@ -64,6 +64,9 @@ class DatabaseSeeder extends Seeder
             LolSeeder::class,
             MedicalSeeder::class,
             QuestionConceptSeeder::class,
+            NewConceptSeeder::class,
+            ProfSubSeeder::class,
+            TagSeeder::class,
             
             // Add any other seeders here
         ]);

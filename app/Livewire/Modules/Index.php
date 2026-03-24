@@ -17,6 +17,7 @@ use App\Models\Proficiency;
 use App\Models\Pipeline;
 use App\Models\PipelineStep;
 use App\Models\Category;
+use App\Models\Tag;
 
 class Index extends Component
 {
@@ -24,6 +25,7 @@ class Index extends Component
     public $categoryId;
     public $currentSubjectId;
     public $statusFilter = 'all'; // all | completed | in_progress | not_started
+    public $tagFilter = [];
     public $proficiencyFilter = null;
     public $category;
     
@@ -56,8 +58,9 @@ class Index extends Component
 
     public function updatedCurrentSubjectId()
     {
-        $this->reset('proficiencyFilter', 'statusFilter');
+        $this->reset('proficiencyFilter', 'statusFilter', 'tagFilter');
     }
+    
     public function mount()
     {
         $this->categoryId ??= Category::first()?->id;
@@ -65,18 +68,19 @@ class Index extends Component
         $this->syncSubject();
 
         $this->category = Category::find($this->categoryId);
+
     }
 
     public function getModulesProperty()
     {
         $query = Module::where('subject_id', $this->currentSubjectId)
+            ->where('status', 'ready')
             ->with([
                 'users' => fn ($q) => $q->where('user_id', auth()->id()),
                 'questions',
                 'proficiencies',
+                'tags'
             ]);
-
-        \Log::info('subject_id: ' . $this->currentSubjectId);   
 
         if ($this->proficiencyFilter) {
             $query->whereHas('proficiencies', function ($q) {
@@ -84,7 +88,12 @@ class Index extends Component
             });
         }
 
-        
+        if (!empty($this->tagFilter)) {
+            $query->whereHas('tags', function ($q) {
+                $q->whereIn('name', $this->tagFilter);
+            });
+        }
+
         $modules = $query->get();
 
         if ($this->statusFilter !== 'all') {
@@ -93,8 +102,27 @@ class Index extends Component
                 return $userModule?->pivot->status === $this->statusFilter;
             });
         }
-        
+
         return $modules;
+    }
+
+    public function getTagsProperty()
+    {
+        if (!$this->currentSubjectId) {
+            return collect();
+        }
+
+        return Tag::where('subject_id', $this->currentSubjectId)
+                ->get();
+    }
+
+    public function toggleTag($tagName)
+    {
+        if (in_array($tagName, $this->tagFilter)) {
+            $this->tagFilter = array_values(array_diff($this->tagFilter, [$tagName]));
+        } else {
+            $this->tagFilter = [...$this->tagFilter, $tagName];
+        }
     }
 
     public function getProficienciesProperty()
@@ -114,3 +142,4 @@ class Index extends Component
             ->layout('layouts.app');
     }
 }
+

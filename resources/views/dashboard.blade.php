@@ -22,8 +22,15 @@
                         Add Credits Stripe
                     </button>
                 </div>
+                <div class="mt-4 text-sm text-gray-400">
+                    <form action="{{ route('credit.test2') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-600 transition">
+                            Test AI Tag Generation
+                        </button>
+                    </form>
+                </div>
             </div>
-
 
             <script src="https://js.stripe.com/v3/"></script>
             <script>

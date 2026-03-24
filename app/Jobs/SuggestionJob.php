@@ -17,7 +17,7 @@ use App\Models\User;
 use App\Models\Pipeline;
 use App\Models\PipelineStep;
 
-class SuggestionJob implements ShouldQueue // What is should que and what is implements
+class SuggestionJob implements ShouldQueue // allows the job to run asynchronously
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
