@@ -548,22 +548,52 @@ class AiService
     /* --------------------------------------------------------- Module Controller --------------------------------------------------------- */
 
     // Used in the module controller when creating landing pages
-    public function createLandingPage(Module $module, string $userPrompt = '')
+    public function createLandingPage(Module $module)
     {
+
+    $moduleName = $module->name;
+    $moduleCat = $module->subject->name;
+    $proficiency = $module->proficiencies()->first()->description;
+    $profName = $module->proficiencies()->first()->name;
     $prompt = <<<EOT
-    Please take the following user-provided content and format it into raw, well-structured HTML with no classes. 
-    Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
-    and use <p>, <ul>, <ol>, and <li> for content details.
+    Create a beginner learning module page for the module $moduleName
+    Under the Category: $moduleCat
 
-    Do not include <html>, <head>, or <body> tags.
+    Audience:
 
-    Module Name: {$module->name}
-    Module Description: {$module->description}
+    * Proficiency: $profName
+    * $proficiency
 
-    User Content:
-    {$userPrompt}
+    Purpose:
+
+    * Explain the essential foundational ideas clearly
+    * Build conceptual understanding before advanced strategy
+
+    Requirements:
+
+    * Use clear headings
+    * Explain concepts in simple language
+    * Focus only on beginner fundamentals
+    * Avoid advanced competitive nuance unless briefly mentioned
+    * Include practical examples where useful
+    * Keep the content readable and instructional
+
+    Output format:
+    Return JSON with:
+    {
+    "title": "",
+    "summary": "",
+    "sections": [
+    {
+    "heading": "",
+    "content": ""
+    }
+    ]
+    }
+
     EOT;
 
+    dd($prompt);
         $response = $this->callOpenAiHTML($prompt);
 
         $formattedResponse = $this->formatter->format($response);

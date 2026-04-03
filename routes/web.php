@@ -122,7 +122,7 @@ Route::post('/modules/create-suggested', [ModuleController::class, 'createSugges
 
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
-Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateQuestions'])->name('modules.generateLandingPage');
+Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage');
 Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
 
 Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class, 'bySubject']);

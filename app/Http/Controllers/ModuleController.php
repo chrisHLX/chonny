@@ -115,8 +115,7 @@ class ModuleController extends Controller
                    ->get();
         $subjectID = $module->subject_id;
         $conceptsList = Concept::where('subject_id', $subjectID)->get();
-        
-        \Log::info('Concepts List:', ['concepts' => $conceptsList]);
+
         return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList'));
     }
 
@@ -150,45 +149,31 @@ class ModuleController extends Controller
         
 
         $request->validate([
-            'description' => 'nullable|string|max:1000',
+            'description' => 'nullable|string|max:9000',
         ]);
 
         $description = $request->input('description', '');
-        $formattedDescription = $this->formatter->format($description);
-
-        ModulePage::create([
+        // $formattedDescription = $this->formatter->format($description);
+        
+        ModulePage::updateOrCreate([
             'module_id'   => $module->id,
             'title'       => $module->name,
-            'content'     => $formattedDescription,
             'page_number' => 1, // landing page
+        ],
+        [
+            'content'     => $description,
             'created_by'  => auth()->id(),
             'updated_by'  => auth()->id(),
         ]);
 
-        dd($formattedDescription);
+        return redirect()->route('modules.page', ['module' => $module->id]);     
     }
 
     
-    public function generateLandingPage(Module $module, Request $request)
-    {
-        
-        if ($userPrompt = $request->input('description') === null) {
-            $userPrompt = 'No additional context provided.';
-        } else {
-            $userPrompt = $request->input('description');
-        };
-
-        
-        
+    public function generateLandingPage(Module $module)
+    {      
         // Call the AI service to generate the landing page content
-        $content = $this->aiService->createLandingPage($module, $userPrompt);
-
-        // Log the AI request
-        \Log::info('Landing page generated for module', [
-            'module_id' => $module->id,
-            'user_id' => auth()->id(),
-            'content_length' => strlen($content),
-        ]);
+        $content = $this->aiService->createLandingPage($module);
 
         // Return the generated content or redirect to a view
         return view('modules.landing', [
@@ -215,6 +200,7 @@ class ModuleController extends Controller
         // 1️⃣ Fetch the latest pipeline for this user & module (however if we are still generating questions for this module it should show pending)
         $pipeline = Pipeline::where('user_id', $user->id)
                             ->where('module_id', $module->id)
+                            ->where('type', 'quiz_completion')
                             ->with('steps')
                             ->latest('id') // ensures we get the newest pipeline
                             ->first();
