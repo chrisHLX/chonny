@@ -18,6 +18,7 @@ class SubjectSeeder extends Seeder
         $humanities = Category::where('name', 'Humanities')->first();
         $trades     = Category::where('name', 'Trades')->first();
         $tech       = Category::where('name', 'Technology')->first();
+        $commerce   = Category::where('name', 'Commerce')->first();
 
         $subjects = [
             [
@@ -54,6 +55,11 @@ class SubjectSeeder extends Seeder
                 'name' => 'Programming',
                 'description' => 'Learn coding languages, software development, and computer science fundamentals.',
                 'category_id' => $tech->id,
+            ],
+            [
+                'name' => 'Global Macro',
+                'description' => 'Analyze how global events, interest rates, and systemic feedback loops (Reflexivity) drive market prices and national economies.',
+                'category_id' => $commerce->id,
             ],
         ];
 

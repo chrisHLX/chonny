@@ -45,6 +45,13 @@ class ProfSubSeeder extends Seeder
             ['subject_id' => 6, 'index' => 2, 'name' => 'Qualified', 'description' => 'Performs work independently with reliable competence.'],
             ['subject_id' => 6, 'index' => 3, 'name' => 'Advanced Tradesperson', 'description' => 'Handles complex work, diagnostics, and efficiency improvements.'],
             ['subject_id' => 6, 'index' => 4, 'name' => 'Master Tradesperson', 'description' => 'Deep expertise, precision, mentoring, and advanced troubleshooting.'],
+
+            // Commerce
+            ['subject_id' => 8, 'index' => 0, 'name' => 'Novice', 'description' => 'Basic awareness of money, trade, and how businesses operate at a surface level.'],
+            ['subject_id' => 8, 'index' => 1, 'name' => 'Foundational', 'description' => 'Understands core concepts such as supply and demand, budgeting, and simple financial statements.'],
+            ['subject_id' => 8, 'index' => 2, 'name' => 'Competent', 'description' => 'Can interpret financial data, understand market dynamics, and apply basic economic principles.'],
+            ['subject_id' => 8, 'index' => 3, 'name' => 'Proficient', 'description' => 'Analyses business strategy, investment decisions, and financial performance with confidence.'],
+            ['subject_id' => 8, 'index' => 4, 'name' => 'Expert', 'description' => 'Deep understanding of economic systems, capital markets, corporate finance, and strategic commercial thinking.'],
         ];
 
         // Replace this with firstOrCreate logic to avoid duplicates if the seeder is run multiple times

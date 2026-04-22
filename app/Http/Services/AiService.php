@@ -63,19 +63,6 @@ class AiService
 
     }
 
-    public function testContent($module)
-    { 
-        $newModule = $module;
-        
-        // dont forget to add parent module field instead of version potentially
-        
-        $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
-        foreach ($types as $selectedType) {
-            GenerateQuestions::dispatch($selectedType, $newModule);
-        }
-        
-    }
-
     public function sendPromptToAi(string $prompt, string $model, int $userID, string $description = 'undefined'): array
     {
         $response = $this->callOpenAi($prompt, $model, $userID, $description);
@@ -911,7 +898,7 @@ EOT;
     PROMPT;
         
     $aiDescription = "Generate {$type} questions for module {$newModule->id}";
-
+        
         // Call the AI safely
         try {
             $questionsData = $this->callOpenAi($prompt, $model, $userID, $aiDescription);

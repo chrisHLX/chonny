@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\ModulePage;
 use App\Models\Module;
@@ -72,22 +73,42 @@ class ModuleController extends Controller
             'proficiency_id' => 'required|exists:proficiencies,id',
         ]);
         
-        // will add proficiency here to be attached as well once I figure out how to do that in the blade
-        $module = Module::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'created_by' => auth()->id(),
-            'subject_id' => $request->subject_id,
-            'proficiency_id' => $request->proficiency_id,
-            'status' => 'need questions',
-        ]);
-        
+        try {
+           // Assign the result of the transaction to $module
+            $module = DB::transaction(function () use ($request) {
+                $newModule = Module::create([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'created_by' => auth()->id(),
+                    'subject_id' => $request->subject_id,
+                    'status' => 'need questions',
+                ]);
 
-        return redirect()->route('modules.edit', $module); // Or a success view      
+                // Note: Use the validated key 'proficiency_id' (with underscore) 
+                // as defined in your validation rules
+                $newModule->proficiencies()->attach($request->proficiency_id);
+
+                // Return the object so it can be captured outside
+                return $newModule; 
+            });
+
+            // Now $module is available here!
+            return redirect()->route('modules.edit', $module)
+                            ->with('success', 'Module created!');
+            
+        } catch (\Throwable $e) {
+            dd('error', $e);
+        }
+        
+        return redirect()->route('modules.edit', $module); // Or a success view 
+
+             
     }
 
     public function destroy(Module $module)
     {
+
+        
         // Optional: Confirm user owns this module
         if ($module->created_by !== Auth::id()) {
             abort(403, 'Unauthorized action.');
@@ -95,6 +116,9 @@ class ModuleController extends Controller
 
         $module->users()->detach(); // Detach all users
         $module->questions()->detach(); // Detach all questions associated with the module
+
+        // Delete the pages (but what about questions? we need to use an if statement to check if the questions are already attached to other modules then we cant delete them but if they are not we can)
+        $module->modulePages()->delete();
         $module->delete();
 
         return redirect()->route('dashboard')->with('success', 'Module deleted successfully.');
@@ -322,7 +346,7 @@ class ModuleController extends Controller
             'type' => 'question_generation',
             'status' => 'running',
         ]);
-
+        $mode = "suggestions";
         $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
         foreach ($types as $selectedType) {
             $pipelineStep = PipelineStep::create([
@@ -330,10 +354,43 @@ class ModuleController extends Controller
                 'name' => "Generate {$selectedType} Questions",
                 'status' => 'pending',
             ]);
-            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id, $userID);
+            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id, $userID, $mode);
         }
 
        return redirect()->route('modules.index');
     
+    }
+
+    // We can avoid the generate questions job for editing and creating modules by just calling the ai service function
+    public function generateQuestions(Module $module)
+    {
+        // Fetch all content associated with this module
+        $content = $module->modulePages()->pluck('content')->implode("\n\n");
+        if (empty($content)) {
+            return back()->with('error', 'empty content in generateQuestions()');
+        }
+        
+        $userID = auth()->id();
+        $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
+
+        $mode = "edit";
+        
+        $pipeline = Pipeline::create([
+            'user_id' => $userID,
+            'module_id' => $module->id,
+            'type' => 'question_generation',
+            'status' => 'running',
+        ]);
+
+        foreach ($types as $selectedType) {
+            $pipelineStep = PipelineStep::create([
+                'pipeline_id' => $pipeline->id,
+                'name' => "Generate {$selectedType} Questions",
+                'status' => 'pending',
+            ]);
+            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id, $userID, $mode);
+        }
+
+        return back()->with('status', 'Generation started! Check back in a few moments.');
     }
 }

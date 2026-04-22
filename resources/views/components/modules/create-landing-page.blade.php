@@ -16,9 +16,7 @@
             <x-input-label for="description" :value="'Guide Summary / Prompt for AI'" />
             <textarea name="description" id="descriptionC" rows="5"
                 class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="Explain what the guide should focus on. E.g. Introduce key Protoss strategies for beginners.">
-            {{ old('description', $modulePages->first()?->content ) }}
-            </textarea>
+                placeholder="Explain what the guide should focus on. E.g. Introduce key Protoss strategies for beginners.">{{ old('description', $modulePages->first()?->content ) }}</textarea>
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 

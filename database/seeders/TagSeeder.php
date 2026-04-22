@@ -24,6 +24,7 @@ class TagSeeder extends Seeder
                 ['name' => 'ZvT', 'type' => 'matchup'],
                 ['name' => 'ZvP', 'type' => 'matchup'],
                 ['name' => 'ZvZ', 'type' => 'matchup'],
+                ['name' => 'Other', 'type' => 'unspecified'],
             ],
             2 => [ // League of Legends
                 ['name' => 'Top Lane', 'type' => 'role'],
@@ -32,31 +33,37 @@ class TagSeeder extends Seeder
                 ['name' => 'Jungle', 'type' => 'role'],
                 ['name' => 'Support', 'type' => 'role'],
                 ['name' => 'Champ Name', 'type' => 'identity'],
+                ['name' => 'Other', 'type' => 'unspecified'],
             ],
             3 => [ // Medicine
                 ['name' => 'Cardiology', 'type' => 'specialty'],
                 ['name' => 'Neurology', 'type' => 'specialty'],
                 ['name' => 'Pediatrics', 'type' => 'specialty'],
+                ['name' => 'Other', 'type' => 'unspecified'],
             ],
             4 => [ // Music
                 ['name' => 'Guitar', 'type' => 'instrument'],
                 ['name' => 'Piano', 'type' => 'instrument'],
                 ['name' => 'Drums', 'type' => 'instrument'],
+                ['name' => 'Other', 'type' => 'unspecified'],
             ],
             5 => [ // Ancient History
                 ['name' => 'Egypt', 'type' => 'region'],
                 ['name' => 'Rome', 'type' => 'region'],
                 ['name' => 'Greece', 'type' => 'region'],
+                ['name' => 'Other', 'type' => 'unspecified'],
             ],
             6 => [ // Industrial Metals
                 ['name' => 'Steel', 'type' => 'material'],
                 ['name' => 'Aluminium', 'type' => 'material'],
                 ['name' => 'Copper', 'type' => 'material'],
+                ['name' => 'Other', 'type' => 'unspecified'],
             ],
             7 => [ // Programming
                 ['name' => 'PHP', 'type' => 'language'],
                 ['name' => 'Python', 'type' => 'language'],
                 ['name' => 'JavaScript', 'type' => 'language'],
+                ['name' => 'Other', 'type' => 'unspecified'],
             ],
         ];
 

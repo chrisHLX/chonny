@@ -50,7 +50,7 @@ class GenerateCardJob implements ShouldQueue
             // mark step complete
             $step->update([
                 'status' => 'completed',
-                'finished_at' => now(),
+                'completed_at' => now(),
             ]);
 
             $this->checkPipelineCompletion($step->pipeline);
@@ -63,7 +63,7 @@ class GenerateCardJob implements ShouldQueue
             $step->update([
                 'status' => 'failed',
                 'error_message' => $e->getMessage(),
-                'finished_at' => now(),
+                'completed_at' => now(),
             ]);
 
             $step->pipeline->update([
