@@ -1,77 +1,99 @@
 <x-app-layout>
-    <div class="max-w-4xl mx-auto p-4">
-        <h1 class="text-2xl font-bold">Modules</h1>
-        <p class="text-blue-100">Explore the available modules below.</p>
-        
-        {{-- Subject Toggle Component --}}
-        <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
+    <div class="min-h-full py-8 px-6 lg:px-10 xl:px-16">
+        <div class="max-w-5xl mx-auto">
 
-        <div class="mt-8 space-y-6">
-            @foreach ($modules as $module)
-                <div class="p-4 bg-gray-800 shadow rounded">
-                    <h2 class="text-xl font-semibold">{{ $module->name }} </h2>
-                    <h2 class="text-l font-semibold">Proficiency Level: {{ $module->proficiencies->first()->name ?? 'None' }}</h2>
-                    <p class="text-gray-400">{{ $module->description }}</p>
-                    
-
-
-                    {{-- Display Users and Scores --}}
-                    @foreach ($module->users as $user)
-                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                            {{ $user->name }}: {{ $user->pivot->score }}%
-                        </span>  
-                    @endforeach
-
-                    {{-- Add Button if user doesn't already have this module --}}
-                    @if ($module->users->isEmpty())
-
-                        <form action="{{ route('modules.assign', $module->id) }}" method="POST" class="mt-4">
-                            @csrf
-                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                                Add Module
-                            </button>
-                            @if ($module->created_by === Auth::id())
-                                <button class="bg-gray-600 text-white px-4 py-2 rounded">Delete</button>
-                            @endif
-                            
-                        </form>
-                    @endif
-
-                    {{-- lets try show something if the user has completed this module --}}
-                    @if ($module->users->isNotEmpty())
-                        @php
-                            $userModule = $module->users->first();
-                            $status = $userModule->pivot->status;
-                        @endphp
-
-                        @if ($status === 'completed')
-                          
-                            <p class="mt-2 text-green-400 font-semibold">Module Completed!</p>
-                            <p class="mt-2 text-green-400 font-semibold">Suggested Next Modules</p>
-                            <form action="{{ route('modules.next-module', ['moduleId' => $module->id]) }}" method="GET" class="mt-4">
-                                @csrf
-                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                    View Suggestions
-                                </button>
-                            </form>
-                        @elseif ($status === 'in_progress')
-                            <p class="mt-2 text-yellow-400 font-semibold">Module In Progress</p>
-                        @endif
-                    @endif
-                    
-                    {{-- Pages --}}
-                    @if ($module->modulePages && !$module->modulePages->isEmpty())
-                        <form action="{{ route('modules.page', $module->id) }}" method="GET" class="mt-4">
-                            @csrf
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                                View Pages
-                            </button>
-                        </form>
-                    @else
-                        <h1>No Pages</h1>
-                    @endif
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-[17px] font-semibold text-ink">Modules</h1>
+                    <p class="text-[13px] text-ink-muted mt-0.5">Browse and manage your learning modules.</p>
                 </div>
-            @endforeach
+            </div>
+
+            <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
+
+            <div class="linear-card overflow-hidden">
+                @forelse ($modules as $module)
+                    @php
+                        $userModule = $module->users->first();
+                        $status = $userModule?->pivot->status;
+                    @endphp
+                    <div class="{{ !$loop->last ? 'border-b border-line' : '' }} px-5 py-4 hover:bg-surface-2 transition-colors group">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <h2 class="text-[14px] font-medium text-ink truncate">{{ $module->name }}</h2>
+                                    @if($status === 'completed')
+                                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium shrink-0">Completed</span>
+                                    @elseif($status === 'in_progress')
+                                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 font-medium shrink-0">In Progress</span>
+                                    @endif
+                                </div>
+
+                                @if($module->proficiencies->first())
+                                    <p class="text-[11px] text-ink-subtle mb-1">Level: {{ $module->proficiencies->first()->name }}</p>
+                                @endif
+
+                                @if($module->description)
+                                    <p class="text-[13px] text-ink-muted line-clamp-2">{{ $module->description }}</p>
+                                @endif
+
+                                @if($module->users->isNotEmpty())
+                                    <div class="flex flex-wrap gap-1.5 mt-2">
+                                        @foreach ($module->users as $user)
+                                            <span class="text-[11px] px-2 py-0.5 bg-surface-3 text-ink-muted rounded-full">
+                                                {{ $user->name }}: {{ $user->pivot->score }}%
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="flex items-center gap-2 shrink-0 mt-0.5">
+                                @if ($module->users->isEmpty())
+                                    <form action="{{ route('modules.assign', $module->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                                class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                                            Add
+                                        </button>
+                                    </form>
+                                    @if ($module->created_by === Auth::id())
+                                        <button class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors">
+                                            Delete
+                                        </button>
+                                    @endif
+                                @endif
+
+                                @if ($module->modulePages && !$module->modulePages->isEmpty())
+                                    <form action="{{ route('modules.page', $module->id) }}" method="GET">
+                                        @csrf
+                                        <button type="submit"
+                                                class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors opacity-0 group-hover:opacity-100">
+                                            View
+                                        </button>
+                                    </form>
+                                @endif
+
+                                @if($status === 'completed')
+                                    <form action="{{ route('modules.next-module', ['moduleId' => $module->id]) }}" method="GET">
+                                        @csrf
+                                        <button type="submit"
+                                                class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-accent bg-accent/10 hover:bg-accent/20 rounded-md transition-colors">
+                                            Next
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="px-5 py-16 text-center">
+                        <p class="text-[13px] text-ink-subtle">No modules available.</p>
+                    </div>
+                @endforelse
+            </div>
+
         </div>
     </div>
 </x-app-layout>

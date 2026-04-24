@@ -1,49 +1,48 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Add New Concept') }}
-        </h2>
-    </x-slot>
+    <div class="min-h-full py-8 px-6 lg:px-10">
+        <div class="max-w-xl mx-auto">
 
-    <div class="py-6">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-6">
+                <h1 class="text-[17px] font-semibold text-ink">Add Concept</h1>
+                <p class="text-[13px] text-ink-muted mt-0.5">Create a new concept for tagging questions.</p>
+            </div>
+
             @if (session('success'))
-                <div class="mb-4 text-green-600">{{ session('success') }}</div>
+                <div class="flex items-center gap-2 px-3 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-md mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+                    <p class="text-[12px] text-emerald-400">{{ session('success') }}</p>
+                </div>
             @endif
 
-            <form method="POST" action="{{ route('concepts.store') }}" class="space-y-4">
-                @csrf
+            <div class="linear-card p-6">
+                <form method="POST" action="{{ route('concepts.store') }}" class="space-y-5">
+                    @csrf
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" name="name" required
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-                        value="{{ old('name') }}">
-                </div>
+                    <div>
+                        <x-input-label :value="'Name'" />
+                        <x-text-input type="text" name="name" :value="old('name')" required />
+                    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Type</label>
-                    <select name="type" required
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        @foreach ($types as $type)
-                            <option value="{{ $type }}" @selected(old('type') == $type)>
-                                {{ ucfirst($type) }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+                    <div>
+                        <x-input-label :value="'Type'" />
+                        <select name="type" required class="form-select mt-1.5">
+                            @foreach ($types as $type)
+                                <option value="{{ $type }}" @selected(old('type') == $type)>
+                                    {{ ucfirst($type) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea name="description" rows="4"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('description') }}</textarea>
-                </div>
+                    <div>
+                        <x-input-label :value="'Description'" />
+                        <textarea name="description" rows="4" class="form-textarea mt-1.5">{{ old('description') }}</textarea>
+                    </div>
 
-                <div>
-                    <button type="submit"
-                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add Concept</button>
-                </div>
-            </form>
+                    <x-primary-button>Add Concept</x-primary-button>
+                </form>
+            </div>
+
         </div>
     </div>
 </x-app-layout>

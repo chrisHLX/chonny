@@ -1,38 +1,26 @@
-
-
 <x-app-layout>
-    <div class="container-fluid">
-        <h1 class="mb-4">Laravel Logs</h1>
-        <p class="text-muted mb-4">
-            Showing the most recent entries from:
-            <code>{{ $logFile }}</code>
-        </p>
+    <div class="min-h-full py-8 px-6 lg:px-10">
+        <div class="max-w-5xl mx-auto space-y-4">
 
-        @if (empty($logs) || (count($logs) === 1 && str_contains($logs[0], 'not found')))
-            <div class="alert alert-warning">
-                No log entries found or file is empty.
+            <div>
+                <h1 class="text-[17px] font-semibold text-ink">Laravel Logs</h1>
+                <p class="text-[12px] text-ink-subtle mt-0.5 font-mono">{{ $logFile }}</p>
             </div>
-        @else
-            <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <span>Latest log entries (newest on top)</span>
-                    <small>Showing ~{{ count($logs) }} lines</small>
-                </div>
-                <div class="card-body p-0">
-                    <pre class="m-0 p-3 bg-dark text-light" style="font-size: 13px; white-space: pre-wrap; word-break: break-all; max-height: 75vh; overflow-y: auto;">
-{{ implode("\n", $logs) }}
-                    </pre>
-                </div>
-            </div>
-        @endif
 
-        <div class="mt-4 text-muted small">
-            <p>
-                Tip: Refresh the page to see new log entries.<br>
-                Want more control? Consider packages like <code>laravel-log-viewer</code> or <code>rap2hpoutre/laravel-log-viewer</code>.
-            </p>
+            @if (empty($logs) || (count($logs) === 1 && str_contains($logs[0], 'not found')))
+                <div class="linear-card px-5 py-8 text-center">
+                    <p class="text-[13px] text-ink-subtle">No log entries found or file is empty.</p>
+                </div>
+            @else
+                <div class="linear-card overflow-hidden">
+                    <div class="flex items-center justify-between px-5 py-3 border-b border-line">
+                        <p class="text-[12px] font-semibold text-ink-subtle uppercase tracking-wide">Latest entries (newest first)</p>
+                        <span class="badge-gray">~{{ count($logs) }} lines</span>
+                    </div>
+                    <pre class="p-5 text-[12px] text-ink-muted font-mono leading-relaxed overflow-x-auto max-h-[75vh] overflow-y-auto whitespace-pre-wrap break-all">{{ implode("\n", $logs) }}</pre>
+                </div>
+            @endif
+
         </div>
     </div>
-
-
 </x-app-layout>

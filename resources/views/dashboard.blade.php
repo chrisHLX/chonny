@@ -1,161 +1,140 @@
 {{-- resources/views/dashboard.blade.php --}}
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-2xl text-white leading-tight">
-                {{ __('Dashboard') }}
-            </h2>
-        </div>
-    </x-slot>
+    <div class="min-h-full py-8 px-6 lg:px-10 xl:px-16">
+        <div class="max-w-7xl mx-auto space-y-6">
 
-    <div class="bg-gray-900 text-gray-200 min-h-screen py-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-10">
-
-            <!-- Welcome Card -->
-            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
-                <h1 class="text-3xl font-bold mb-2">Welcome back, {{ $user->name }} 👋</h1>
-                <p class="text-blue-100">
-                    Ready to keep improving your knowledge? Let’s dive in.
-                </p>
-                <div class="mt-4 flex gap-2">
-                    <button id="buy-credits" class="bg-white px-3 py-2 rounded-md text-gray-800 font-semibold hover:bg-gray-200 transition">
-                        Add Credits Stripe
-                    </button>
-                </div>
-                <div class="mt-4 text-sm text-gray-400">
-                    <form action="{{ route('credit.test2') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-600 transition">
-                            Test AI Tag Generation
-                        </button>
-                    </form>
-                </div>
+            <!-- Page header -->
+            <div>
+                <h1 class="text-[17px] font-semibold text-ink">Dashboard</h1>
+                <p class="text-[13px] text-ink-muted mt-0.5">Welcome back, {{ $user->name }}</p>
             </div>
 
-            <script src="https://js.stripe.com/v3/"></script>
-            <script>
-                const stripe = Stripe("{{ config('services.stripe.key') }}");
-
-                document.getElementById('buy-credits').addEventListener('click', async () => {
-                    const res = await fetch("{{ route('checkout.session') }}", {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        }
-                    });
-
-                    const data = await res.json();
-                    await stripe.redirectToCheckout({ sessionId: data.id });
-                });
-            </script>
-
-            <!-- Subject Selection -->
-            {{-- Subject Toggle --}}
+            <!-- Subject context bar -->
             <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
-            
 
-            <!-- Main Dashboard Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <!-- Main grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
-            <!-- Concept Mastery -->
-            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
-                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                    📘 Your Concept Mastery
-                </h3>
-                <p class="text-gray-400 text-sm mb-6">
-                    Track your concepts. Complete more quizes to increase level.
-                </p>
-                @forelse($concepts as $concept)
-                    @php
-                        $userMastery = $concept->userConceptMasteries->first();
-
-                        $mastery = $userMastery?->mastery_percentage ?? 0;
-                        $totalQuestions = $userMastery?->total_questions ?? $concept->questions->count();
-                    @endphp
-                    <div class="mb-5">
-                        <div class="flex justify-between mb-1 text-sm">
-                            <span class="font-medium text-gray-200">{{ $concept->name }}</span>
-                            <span class="text-gray-400">{{ $mastery }}% ({{ $totalQuestions }} questions)</span>
-                        </div>
-                        <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                            <div class="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-in-out" 
-                                style="width: {{ $mastery }}%">
-                            </div>
-                        </div>
+                <!-- Concept Mastery -->
+                <div class="linear-card p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-[13px] font-semibold text-ink">Concept Mastery</h2>
+                        <span class="text-[11px] text-ink-subtle">{{ $concepts->count() }} concepts</span>
                     </div>
-                @empty
-                    <p class="text-gray-500">No mastery data yet.</p>
-                @endforelse
-            </div>
 
-
-            <!-- Leaderboard -->
-            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
-                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                    🏆 Leaderboard
-                </h3>
-                <p class="text-gray-400 text-sm mb-6">
-                    See who’s mastering the most concepts this week.
-                </p>
-
-                <ul class="divide-y divide-gray-700 mb-6">
-                    @foreach ($leaderboard as $index => $user)
-                        <li class="flex items-center justify-between py-3">
-                            <div class="flex items-center gap-3">
-                                <span class="text-gray-400 text-sm w-6 text-center">
-                                    {{ $index + 1 }}.
-                                </span>
-                                <span class="text-white font-medium">
-                                    {{ $user->name }}
-                                </span>
+                    @forelse($concepts as $concept)
+                        @php
+                            $userMastery = $concept->userConceptMasteries->first();
+                            $mastery = $userMastery?->mastery_percentage ?? 0;
+                            $totalQuestions = $userMastery?->total_questions ?? $concept->questions->count();
+                        @endphp
+                        <div class="mb-4 last:mb-0">
+                            <div class="flex justify-between mb-1.5">
+                                <span class="text-[12px] font-medium text-ink-muted">{{ $concept->name }}</span>
+                                <span class="text-[11px] text-ink-subtle">{{ $mastery }}%</span>
                             </div>
-                            <span class="text-blue-400 font-semibold">
-                                {{ round($user->total_mastery) }}%
-                                <!-- {{ number_format($user->total_mastery, 1) }}% -->
-                            </span>
-                        </li>
-                    @endforeach
-                </ul>
-                <!--
-                <a href="{{ route('dashboard') }}" 
-                class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition">
-                    View Full Leaderboard
-                </a>
--->
-            </div>
+                            <div class="w-full bg-surface-3 rounded-full h-1 overflow-hidden">
+                                <div class="bg-accent h-1 rounded-full transition-all duration-700"
+                                     style="width: {{ $mastery }}%"></div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-[13px] text-ink-subtle">No concepts yet.</p>
+                    @endforelse
+                </div>
 
+                <!-- Leaderboard -->
+                <div class="linear-card p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-[13px] font-semibold text-ink">Leaderboard</h2>
+                        <span class="text-[11px] text-ink-subtle">Top users</span>
+                    </div>
 
-                <!-- User Modules -->
-                <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
-                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                        🎯 Your Modules
-                    </h3>
+                    <div class="space-y-0">
+                        @foreach ($leaderboard as $index => $leaderUser)
+                            <div class="flex items-center justify-between py-2.5 {{ !$loop->last ? 'border-b border-line' : '' }}">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="text-[11px] text-ink-subtle w-4 shrink-0 tabular-nums">{{ $index + 1 }}</span>
+                                    <span class="text-[13px] text-ink">{{ $leaderUser->name }}</span>
+                                </div>
+                                <span class="text-[12px] font-medium text-accent tabular-nums">{{ round($leaderUser->total_mastery) }}%</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Modules -->
+                <div class="linear-card p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-[13px] font-semibold text-ink">Your Modules</h2>
+                        <a href="{{ route_with_context('modules.index') }}"
+                           class="text-[11px] text-accent hover:text-accent-hover transition-colors">View all</a>
+                    </div>
+
                     @if($modules->isEmpty())
-                        <p class="text-gray-400 text-sm mb-4">
-                            You have no active modules yet.
-                        </p>
-                        <a href="{{ route_with_context('modules.index') }}" 
-                           class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                        <p class="text-[13px] text-ink-subtle mb-4">No active modules yet.</p>
+                        <a href="{{ route_with_context('modules.index') }}"
+                           class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors">
                             Browse Modules
                         </a>
                     @else
-                        <ul class="space-y-3">
+                        <div>
                             @foreach($modules as $module)
-                                <li class="bg-gray-700 p-3 rounded-lg flex justify-between items-center hover:bg-gray-600 transition">
-                                    <span class="font-medium text-gray-100">{{ $module->name }}</span>
-                                    <span class="text-sm text-gray-400">
-                                        Score: {{ $module->pivot->score }} | {{ ucfirst($module->pivot->status) }}
-                                    </span>
-                                </li>
+                                <div class="flex items-center justify-between py-2.5 {{ !$loop->last ? 'border-b border-line' : '' }}">
+                                    <span class="text-[13px] text-ink truncate">{{ $module->name }}</span>
+                                    <div class="flex items-center gap-2 shrink-0 ml-2">
+                                        <span class="text-[11px] text-ink-subtle tabular-nums">{{ $module->pivot->score }}%</span>
+                                        <span class="text-[10px] px-1.5 py-0.5 rounded font-medium
+                                            {{ $module->pivot->status === 'completed'
+                                               ? 'bg-emerald-500/10 text-emerald-400'
+                                               : 'bg-amber-500/10 text-amber-400' }}">
+                                            {{ ucfirst($module->pivot->status) }}
+                                        </span>
+                                    </div>
+                                </div>
                             @endforeach
-                        </ul>
+                        </div>
                     @endif
                 </div>
 
             </div>
 
-            <!-- Created Modules Disabled -->
+            <!-- Credits / Billing -->
+            <div class="linear-card p-5">
+                <div class="flex items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-[13px] font-semibold text-ink">Credits</h2>
+                        <p class="text-[12px] text-ink-subtle mt-0.5">Purchase AI credits to generate questions and content.</p>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button id="buy-credits"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                            Add Credits
+                        </button>
+                        <form action="{{ route('credit.test2') }}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors">
+                                Test AI Tags
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe("{{ config('services.stripe.key') }}");
+        document.getElementById('buy-credits').addEventListener('click', async () => {
+            const res = await fetch("{{ route('checkout.session') }}", {
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
+            });
+            const data = await res.json();
+            await stripe.redirectToCheckout({ sessionId: data.id });
+        });
+    </script>
 </x-app-layout>

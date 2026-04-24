@@ -4,44 +4,49 @@
     $selectedIds = old('question_ids', $module->questions->pluck('id')->toArray());
 @endphp
 
-<div class="bg-white text-gray-800 shadow-sm sm:rounded-lg p-6">
-    <h3 class="text-lg text-gray-800 font-semibold mb-4">Edit Module</h3>
-    <form method="POST" action="{{ route('modules.update', $module) }}" class="space-y-6">
+<div class="linear-card p-6">
+    <h3 class="page-section-title mb-4">Edit Module</h3>
+
+    <form method="POST" action="{{ route('modules.update', $module) }}" class="space-y-5">
         @csrf
         @method('PUT')
 
-        {{-- Module Name --}}
         <div>
             <x-input-label for="name" :value="'Module Name'" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                :value="old('name', $module->name)" required autofocus />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-text-input id="name" type="text" name="name" :value="old('name', $module->name)" required autofocus />
+            <x-input-error :messages="$errors->get('name')" class="mt-1.5" />
         </div>
 
-        {{-- Description --}}
         <div>
             <x-input-label for="description" :value="'Description'" />
-            <textarea id="description" name="description" rows="4" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('description', $module->description) }}</textarea>
-            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+            <textarea id="description" name="description" rows="4"
+                      class="form-textarea mt-1.5">{{ old('description', $module->description) }}</textarea>
+            <x-input-error :messages="$errors->get('description')" class="mt-1.5" />
         </div>
 
-        {{-- Attach Questions --}}
         <div x-data="{ open: false }" class="relative">
-            <x-input-label for="question_ids" :value="'Attach Existing Questions'" />
-            <div @click="open = !open" class="cursor-pointer border rounded-md p-2 bg-white shadow-sm">
-                <span x-text="'Selected: ' + {{ json_encode($selectedIds) }}.length + ' questions'"></span>
-            </div>
-            <div x-show="open" @click.away="open = false" class="absolute bg-white border mt-1 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto w-full">
+            <x-input-label :value="'Attach Existing Questions'" />
+            <button type="button" @click="open = !open"
+                    class="mt-1.5 w-full flex items-center justify-between px-3 py-2 text-[13px] text-ink-muted bg-surface-1 border border-line rounded-md hover:border-line-strong transition-colors">
+                <span>Selected: {{ count($selectedIds) }} questions</span>
+                <svg :class="open ? 'rotate-180' : ''" class="w-3.5 h-3.5 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </button>
+
+            <div x-show="open" @click.away="open = false"
+                 class="absolute z-10 mt-1 w-full bg-surface-2 border border-line rounded-lg shadow-xl max-h-56 overflow-y-auto"
+                 style="display:none">
                 @foreach($allQuestions->sortBy('question') as $question)
-                    <label class="flex items-start p-2 space-x-2 hover:bg-gray-100">
+                    <label class="flex items-start gap-2.5 px-3 py-2.5 hover:bg-surface-3 cursor-pointer transition-colors">
                         <input type="checkbox" name="question_ids[]" value="{{ $question->id }}"
-                            {{ in_array($question->id, $selectedIds) ? 'checked' : '' }}
-                            class="rounded text-indigo-600 border-gray-300 focus:ring-indigo-500" />
-                        <span class="text-sm text-gray-700">{{ $question->question }}</span>
+                               {{ in_array($question->id, $selectedIds) ? 'checked' : '' }}
+                               class="form-checkbox mt-0.5 shrink-0">
+                        <span class="text-[12px] text-ink-muted leading-snug">{{ $question->question }}</span>
                     </label>
                 @endforeach
             </div>
-            <x-input-error :messages="$errors->get('question_ids')" class="mt-2" />
+            <x-input-error :messages="$errors->get('question_ids')" class="mt-1.5" />
         </div>
 
         <x-primary-button>Update Module</x-primary-button>

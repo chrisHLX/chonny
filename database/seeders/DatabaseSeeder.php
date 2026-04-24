@@ -3,19 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-
-
+        // ========== USERS ==========
         $users = [
             [
                 'name' => 'Test User',
@@ -44,32 +39,39 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::firstOrCreate(
-                ['email' => $user['email']],
-                $user
-            );
+            User::firstOrCreate(['email' => $user['email']], $user);
         }
 
-        
+        // ========== GROUP 1: CORE MASTER DATA ==========
+        // Categories → Subjects → Proficiencies (each depends on the previous)
         $this->call([
             CategorySeeder::class,
             SubjectSeeder::class,
             ProficiencySeeder::class,
-            ConceptsSeeder::class,
-            ModuleSeeder::class,
-            UserModuleSeeder::class,
-            ModuleUserProg::class,
-            QuestionSeeder::class,
-            ModuleQuestionSeeder::class,
-            LolSeeder::class,
-            MedicalSeeder::class,
-            QuestionConceptSeeder::class,
-            NewConceptSeeder::class,
-            ProfSubSeeder::class,
-            TagSeeder::class,
-            
-            // Add any other seeders here
         ]);
-    
+
+        // ========== GROUP 2: REFERENCE DATA ==========
+        // Tags and concepts depend on subjects existing
+        $this->call([
+            TagSeeder::class,
+            ConceptSeeder::class,
+        ]);
+
+        // ========== GROUP 3: PRIMARY CONTENT ==========
+        // Modules depend on subjects & proficiencies
+        $this->call([
+            ModuleSeeder::class,
+            QuestionSeeder::class,
+            UnitSeeder::class,
+        ]);
+
+        // ========== GROUP 4: RELATIONSHIPS ==========
+        // Counters depend on units; user-module depends on users & modules
+        // Module content depends on modules, questions, and concepts
+        $this->call([
+            CountersSeeder::class,
+            UserModuleSeeder::class,
+            ModuleContentSeeder::class,
+        ]);
     }
 }

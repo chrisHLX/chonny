@@ -1,31 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Example: resources/css/ck-editor.css */
-.ck-editor__editable.ck-content h1 {
-    @apply text-2xl font-bold mb-4;
+@layer base {
+    [x-cloak] { display: none !important; }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #242428; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #35353A; }
+
+    select option {
+        background-color: #1C1C1F;
+        color: #E8E8E9;
+    }
 }
 
-.ck-editor__editable.ck-content h2 {
-    @apply text-xl font-semibold mb-3;
+@layer components {
+    /* Sidebar */
+    .sidebar-item {
+        @apply flex items-center gap-2.5 px-2.5 py-1.5 rounded-md
+               text-[13px] font-medium text-ink-muted
+               hover:text-ink hover:bg-surface-2
+               transition-colors cursor-pointer select-none;
+    }
+    .sidebar-item.active { @apply text-ink bg-surface-2; }
+
+    /* Cards */
+    .linear-card { @apply bg-surface-1 border border-line rounded-lg; }
+
+    /* Form controls */
+    .form-select {
+        @apply bg-surface-1 border border-line text-ink rounded-md px-3 py-2 text-sm w-full
+               focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors;
+    }
+    .form-textarea {
+        @apply bg-surface-1 border border-line text-ink placeholder-ink-subtle rounded-md px-3 py-2 text-sm w-full
+               focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors resize-none;
+    }
+    .form-checkbox {
+        @apply w-3.5 h-3.5 rounded border-line bg-surface-2 text-accent
+               focus:ring-1 focus:ring-accent/30 focus:ring-offset-0;
+    }
+
+    /* Page sections (used in edit pages) */
+    .page-section { @apply linear-card p-6; }
+    .page-section-title { @apply text-[14px] font-semibold text-ink mb-0.5; }
+    .page-section-desc  { @apply text-[12px] text-ink-subtle mb-5; }
+
+    /* Status badges */
+    .badge-green { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium; }
+    .badge-amber { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 font-medium; }
+    .badge-blue  { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-medium; }
+    .badge-gray  { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-surface-3 text-ink-subtle font-medium; }
+
+    /* Tabs */
+    .tab-btn { @apply px-3 py-1.5 text-[12px] font-medium rounded-md transition-colors; }
+    .tab-active { @apply bg-surface-2 text-ink; }
+    .tab-inactive { @apply text-ink-muted hover:text-ink hover:bg-surface-2; }
+
+    /* Danger button */
+    .btn-danger {
+        @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium
+               text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20
+               rounded-md transition-colors;
+    }
 }
 
-.ck-editor__editable.ck-content p {
-    @apply mb-2 text-gray-600;
-}
-
-/* Example: resources/css/ck-editor.css */
+/* CKEditor dark theme */
 .ck-editor__editable.ck-content {
-    min-height: 400px;  /* change this to whatever height you want */
-    padding: 1rem;       /* optional: match your text spacing */
+    min-height: 400px;
+    padding: 1rem;
+    background: #141417 !important;
+    color: #E8E8E9 !important;
+    border-color: #242428 !important;
 }
+.ck-editor__editable.ck-content h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #E8E8E9; }
+.ck-editor__editable.ck-content h2 { font-size: 1.1rem;  font-weight: 500; margin-bottom: 0.75rem; color: #E8E8E9; }
+.ck-editor__editable.ck-content p  { margin-bottom: 0.5rem; color: #8D8D91; }
 
-/* Headings inside editor content */
-.ck-editor__editable.ck-content h1 {
-    @apply text-2xl font-bold mb-4;
+/* Drag-to-order lists (quiz ordering type) */
+.ordering-list { list-style: none; padding: 0; }
+.ordering-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.375rem;
+    background: #1C1C1F;
+    border: 1px solid #242428;
+    border-radius: 0.5rem;
+    cursor: grab;
+    user-select: none;
+    color: #E8E8E9;
+    font-size: 0.8125rem;
 }
-
-.ck-editor__editable.ck-content h2 {
-    @apply text-xl font-semibold mb-3;
-}
+.ordering-item:active { cursor: grabbing; }

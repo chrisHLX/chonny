@@ -1,5 +1,3 @@
 <x-app-layout>
-    <div>
-        <livewire:collection />
-    </div>
+    <livewire:collection />
 </x-app-layout>

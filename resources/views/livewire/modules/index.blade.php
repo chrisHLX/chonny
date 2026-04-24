@@ -1,167 +1,139 @@
+<div class="min-h-full py-8 px-6 lg:px-10">
+    <div class="max-w-5xl mx-auto space-y-6">
 
-<div class="max-w-4xl mx-auto p-4">
-    <h1 class="text-3xl font-bold">{{ $this->category->name }}</h1>
-    <p class="text-blue-100">Explore the available modules below.</p>
-    
-    {{-- Subject Toggle Component --}}
-    <x-context-bar-livewire :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" routeName="modules.index"/>
-    
-    <div class="mt-6 bg-gray-900 p-4 rounded-xl shadow-lg space-y-4">
-    <!-- Tag Filter Buttons -->
-     <div class="flex flex-wrap gap-2">
-        <button
-            wire:click="$set('tagFilter', [])"
-            class="px-3 py-1 rounded-md transition
-                {{ empty($tagFilter)
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700' }}">
-            All Tags
-        </button>
-
-        @foreach ($this->tags as $tag)
-            <button
-                wire:click="toggleTag('{{ $tag->name }}')"
-                class="px-3 py-1 rounded-md transition
-                    {{ in_array($tag->name, $tagFilter)
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700' }}">
-                {{ $tag->name }}
-            </button>
-        @endforeach
-    </div>
-
-    <!-- Status Filter Buttons -->
-    <div class="flex flex-wrap gap-3">
-        @foreach ([
-            'all' => 'All',
-            'completed' => 'Completed',
-            'in_progress' => 'In Progress',
-        ] as $value => $label)
-            <button
-                wire:click="$set('statusFilter', '{{ $value }}')"
-                class="px-4 py-2 rounded-lg text-sm font-semibold transition
-                    {{ $statusFilter === $value
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700' }}">
-                {{ $label }}
-            </button>
-        @endforeach
-    </div>
-
-    <!-- Proficiency Dropdown -->
-    <div class="relative w-64">
-        <select
-            wire:model.live="proficiencyFilter"
-            class="w-full bg-gray-800 text-gray-200 border border-gray-700 
-                   rounded-lg px-4 py-2 appearance-none
-                   focus:outline-none focus:ring-2 focus:ring-blue-500
-                   transition">
-
-            <option value="">All Proficiencies</option>
-
-            @foreach($this->proficiencies as $prof)
-                <option value="{{ $prof->id }}">
-                    {{ $prof->name }}
-                </option>
-            @endforeach
-        </select>
-
-        <!-- Dropdown Arrow -->
-        <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
-            ▼
+        <div>
+            <h1 class="text-[17px] font-semibold text-ink">{{ $this->category->name }}</h1>
+            <p class="text-[13px] text-ink-muted mt-0.5">Browse and filter available modules.</p>
         </div>
-    </div>
 
-</div>
-    @if (!$this->modules->isEmpty())
-        
-        <div class="mt-8 space-y-6">
-            @foreach ($this->modules as $module)
-                <div class="p-4 bg-gray-800 shadow rounded">
-                    <h2 class="text-xl font-semibold mb-2">{{ $module->name }} </h2>
-                    <h2 class="text-l font-semibold">Proficiency Level: {{ $module->proficiencies->first()->name ?? 'None' }}</h2>
-                    @foreach ($module->tags as $tag)
-                        <button type="submit" class="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-600 transition">
-                            {{ $tag->name }}
+        <x-context-bar-livewire :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" routeName="modules.index"/>
+
+        {{-- Filters --}}
+        <div class="linear-card p-4 space-y-3">
+            {{-- Tags --}}
+            <div class="flex flex-wrap gap-1.5">
+                <button wire:click="$set('tagFilter', [])"
+                        class="px-3 py-1 rounded-full text-[12px] font-medium transition-colors
+                            {{ empty($tagFilter) ? 'bg-accent text-white' : 'bg-surface-2 text-ink-muted hover:bg-surface-3 border border-line' }}">
+                    All Tags
+                </button>
+                @foreach ($this->tags as $tag)
+                    <button wire:click="toggleTag('{{ $tag->name }}')"
+                            class="px-3 py-1 rounded-full text-[12px] font-medium transition-colors
+                                {{ in_array($tag->name, $tagFilter) ? 'bg-accent text-white' : 'bg-surface-2 text-ink-muted hover:bg-surface-3 border border-line' }}">
+                        {{ $tag->name }}
+                    </button>
+                @endforeach
+            </div>
+
+            {{-- Status + Proficiency row --}}
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex gap-1">
+                    @foreach(['all' => 'All', 'completed' => 'Completed', 'in_progress' => 'In Progress'] as $val => $label)
+                        <button wire:click="$set('statusFilter', '{{ $val }}')"
+                                class="tab-btn {{ $statusFilter === $val ? 'tab-active' : 'tab-inactive' }}">
+                            {{ $label }}
                         </button>
                     @endforeach
-                    <p class="text-gray-400">{{ $module->description }}</p>
-                    
+                </div>
 
-                    {{-- Check if user has this module assigned --}}
+                <select wire:model.live="proficiencyFilter" class="form-select w-48">
+                    <option value="">All Proficiencies</option>
+                    @foreach($this->proficiencies as $prof)
+                        <option value="{{ $prof->id }}">{{ $prof->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
+        {{-- Module list --}}
+        @if (!$this->modules->isEmpty())
+            <div class="linear-card overflow-hidden">
+                @foreach ($this->modules as $module)
                     @php
-                        $userModule = $module->users->first(); // because you already filtered users to auth user
+                        $userModule = $module->users->first();
+                        $status = $userModule?->pivot->status;
                     @endphp
+                    <div class="{{ !$loop->last ? 'border-b border-line' : '' }} px-5 py-4 hover:bg-surface-2 transition-colors group">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <h2 class="text-[14px] font-medium text-ink truncate">{{ $module->name }}</h2>
+                                    @if($status === 'completed')
+                                        <span class="badge-green shrink-0">Completed</span>
+                                    @elseif($status === 'in_progress')
+                                        <span class="badge-amber shrink-0">In Progress</span>
+                                    @elseif($status === 'not_started')
+                                        <span class="badge-gray shrink-0">Not Started</span>
+                                    @endif
+                                    @if($module->status === 'preparing')
+                                        <span class="badge-amber shrink-0">Preparing</span>
+                                    @endif
+                                </div>
 
-                    {{-- USER DOES NOT HAVE MODULE --}}
-                    @if (!$userModule && $module->status === 'ready')
+                                @if($module->proficiencies->first())
+                                    <p class="text-[11px] text-ink-subtle mb-1">{{ $module->proficiencies->first()->name }}</p>
+                                @endif
 
-                        <form action="{{ route('modules.assign', $module->id) }}" method="POST" class="mt-4">
-                            @csrf
-                            <button type="submit"
-                                class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                                Add Module
-                            </button>
+                                @if($module->tags->isNotEmpty())
+                                    <div class="flex flex-wrap gap-1 mb-1.5">
+                                        @foreach($module->tags as $tag)
+                                            <span class="badge-gray">{{ $tag->name }}</span>
+                                        @endforeach
+                                    </div>
+                                @endif
 
-                            @if ($module->created_by === Auth::id())
-                                <button class="bg-gray-600 text-white px-4 py-2 rounded">
-                                    Delete
-                                </button>
-                            @endif
-                        </form>
+                                @if($module->description)
+                                    <p class="text-[12px] text-ink-muted line-clamp-2">{{ $module->description }}</p>
+                                @endif
 
-                    {{-- MODULE IS PREPARING --}}
-                    @elseif ($module->status === 'preparing')
-                    <div wire:poll.3s>
-                        <div class="flex items-center gap-2 mt-4 text-yellow-400">
-                            <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"
-                                    stroke="currentColor"
-                                    stroke-width="4"
-                                    fill="none"/>
-                            </svg>
-                            Preparing module...
+                                @if($userModule && $userModule->pivot->score)
+                                    <p class="text-[11px] text-ink-subtle mt-1">Score: {{ $userModule->pivot->score }}%</p>
+                                @endif
+                            </div>
+
+                            {{-- Actions --}}
+                            <div class="flex items-center gap-2 shrink-0">
+                                @if ($module->status === 'preparing')
+                                    <div wire:poll.3s class="flex items-center gap-1.5 text-[12px] text-ink-subtle">
+                                        <svg class="animate-spin w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"/>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+                                        </svg>
+                                        Preparing
+                                    </div>
+                                @elseif (!$userModule && $module->status === 'ready')
+                                    <form action="{{ route('modules.assign', $module->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                                class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                                            Add
+                                        </button>
+                                    </form>
+                                @endif
+
+                                @if($status === 'completed')
+                                    <a href="{{ route('modules.next-module', ['moduleId' => $module->id]) }}"
+                                       class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-accent bg-accent/10 hover:bg-accent/20 rounded-md transition-colors">
+                                        Next
+                                    </a>
+                                @endif
+
+                                @if($status === 'not_started' || $status === 'in_progress')
+                                    <a href="{{ route('questions.quiz.index', ['category_id' => request('category_id'), 'module_id' => $module->id]) }}"
+                                       class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors opacity-0 group-hover:opacity-100">
+                                        Quiz
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
-
-                    {{-- MODULE READY / NORMAL STATE --}}
-                    @else
-
-                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                            Score: {{ $userModule?->pivot->score }}%
-                        </span>
-
-                    @endif
-                    
-                    {{-- lets try show something if the user has completed this module --}}
-                    @if ($module->users->isNotEmpty())
-                        @php
-                            $userModule = $module->users->first();
-                            $status = $userModule->pivot->status;
-                        @endphp
-
-                        @if ($status === 'completed')
-                            
-                            <p class="mt-2 text-green-400 font-semibold">Module Completed!</p>
-                            <a href="{{ route('modules.next-module', ['moduleId' => $module->id]) }}"
-                                class="bg-blue-500 text-white mt-4 px-4 py-2 rounded hover:bg-blue-600 inline-block">
-                                    Next Modules
-                            </a>
-                        @elseif ($status === 'not_started')
-                            <p class="mt-2 text-gray-400 font-semibold">Module Not Started</p>
-                            <a href="{{ route('questions.quiz.index', ['category_id' => request('category_id'), 'module_id' => $module->id]) }}"
-                                class="bg-blue-500 text-white mt-4 px-4 py-2 rounded hover:bg-blue-600 inline-block">
-                                    Start Quiz
-                            </a>    
-                        @elseif ($status === 'in_progress')
-                            <p class="mt-2 text-yellow-400 font-semibold">Module In Progress</p>
-                        @endif
-                    @endif
-                </div>
-            @endforeach
-        </div>
-    @else
-        <p class="text-gray-400 mt-6">No modules found for the selected filters.</p>
-    @endif
+                @endforeach
+            </div>
+        @else
+            <div class="linear-card px-5 py-16 text-center">
+                <p class="text-[13px] text-ink-subtle">No modules match the selected filters.</p>
+            </div>
+        @endif
+    </div>
 </div>
-

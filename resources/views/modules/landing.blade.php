@@ -1,8 +1,11 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            This is where the landing page will go
-        </h2>
-    </x-slot>
-    {{!! $content !!}}
+    <div class="min-h-full py-8 px-6 lg:px-10">
+        <div class="max-w-3xl mx-auto">
+            <div class="linear-card p-6">
+                <div class="prose prose-invert prose-sm max-w-none">
+                    {!! $content !!}
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
