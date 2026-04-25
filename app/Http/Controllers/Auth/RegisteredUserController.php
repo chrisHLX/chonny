@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -33,6 +34,20 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'g-recaptcha-response' => ['required', 'string', function ($attribute, $value, $fail) use ($request) {
+                if (app()->environment('local')) {
+                    return; // skip reCAPTCHA on localhost
+                }
+
+                $result = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => config('services.recaptcha.secret_key'),
+                    'response' => $value,
+                    'remoteip' => $request->ip(),
+                ]);
+                if (! $result->json('success') || $result->json('score', 0) < 0.5) {
+                    $fail('reCAPTCHA verification failed. Please try again.');
+                }
+            }],
         ]);
 
         $user = User::create([

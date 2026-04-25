@@ -52,6 +52,66 @@
             Modules
         </a>
 
+        @can('admin')
+        <!-- Creator -->
+        <div x-data="{ creatorOpen: true }" class="pt-1">
+            <button @click="creatorOpen = !creatorOpen"
+                    class="sidebar-item w-full justify-between">
+                <div class="flex items-center gap-2.5">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                    <span>Creator</span>
+                </div>
+                <svg :class="creatorOpen ? 'rotate-90' : ''"
+                     class="w-3 h-3 text-ink-subtle transition-transform duration-150 shrink-0"
+                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+
+            <div x-show="creatorOpen"
+                 x-transition:enter="transition ease-out duration-100"
+                 x-transition:enter-start="opacity-0 -translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-75"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-1"
+                 class="pl-3 mt-0.5 space-y-0.5">
+                <a href="{{ route('modules.create') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('modules.create') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Create Module
+                </a>
+                <a href="{{ route('modules.manage') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('modules.manage') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Edit Modules
+                </a>
+
+                <div class="px-2.5 pt-2 pb-0.5">
+                    <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Content</p>
+                </div>
+
+                <a href="{{ route('admin.categories.index') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.categories.*') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Categories
+                </a>
+                <a href="{{ route('admin.subjects.index') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.subjects.*') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Subjects
+                </a>
+                <a href="{{ route('admin.concepts.index') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.concepts.*') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Concepts
+                </a>
+            </div>
+        </div>
+        @endcan
+
         <!-- Categories -->
         <div x-data="{ catOpen: true }" class="pt-1">
             <button @click="catOpen = !catOpen"

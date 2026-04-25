@@ -5,6 +5,7 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -29,6 +30,19 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'g-recaptcha-response' => ['required', 'string', function ($attribute, $value, $fail) {
+                if (app()->environment('local')) {
+                    return; // skip reCAPTCHA on localhost
+                }
+                $result = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => config('services.recaptcha.secret_key'),
+                    'response' => $value,
+                    'remoteip' => $this->ip(),
+                ]);
+                if (! $result->json('success') || $result->json('score', 0) < 0.5) {
+                    $fail('reCAPTCHA verification failed. Please try again.');
+                }
+            }],
         ];
     }
 

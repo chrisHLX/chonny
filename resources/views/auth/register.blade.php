@@ -1,6 +1,8 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" class="space-y-4">
+    <form id="register-form" method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf
+
+        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-register">
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -34,4 +36,18 @@
             <x-primary-button>Register</x-primary-button>
         </div>
     </form>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var form = this;
+            grecaptcha.ready(function () {
+                grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {action: 'register'}).then(function (token) {
+                    document.getElementById('g-recaptcha-response-register').value = token;
+                    form.submit();
+                });
+            });
+        });
+    </script>
 </x-guest-layout>

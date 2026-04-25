@@ -776,7 +776,7 @@ EOT;
     }
 
     //The content will be with html tag, we should strip them out before adding to the prompt
-    public function generateQuestions(string $type, string $content, $newModule, int $userID)
+    public function generateQuestions(string $type, string $content, $newModule, int $userID, ?string $difficultyFocus = null)
     {
         // Fetch all concepts as [ 'name' => id ]
         
@@ -861,7 +861,7 @@ EOT;
         $exampleJson = $examples[$type];
         
         $questionAmount = 5;
-        $requirements = " 2 easy, 2 medium, and 1 hard question."; 
+        $requirements = " 2 easy, 2 medium, and 1 hard question.";
 
         if ($prof->index < 2 && ($type == 'ordering' || $type == 'matching_pairs')) {
             $questionAmount = 2;
@@ -871,7 +871,12 @@ EOT;
             $requirements = " 2 easy, 2 medium, and 1 hard question.";
         } else if ($prof->index >= 4) {
             $questionAmount = 7;
-            $requirements = " 2 easy, 2 medium, and 3 hard question.";  
+            $requirements = " 2 easy, 2 medium, and 3 hard question.";
+        }
+
+        // Override difficulty mix when explicitly requested by the content creator
+        if ($difficultyFocus) {
+            $requirements = " all {$questionAmount} at {$difficultyFocus} difficulty.";
         }
 
 

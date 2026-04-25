@@ -58,10 +58,20 @@ class ModuleController extends Controller
         return redirect()->back()->with('success', 'Module added!');
     }
 
+    public function manage()
+    {
+        $modules = Module::where('created_by', Auth::id())
+            ->with(['subject', 'proficiencies', 'questions', 'modulePages'])
+            ->latest()
+            ->get();
+
+        return view('modules.manage', compact('modules'));
+    }
+
     public function create()
     {
-        $subjects = Subject::all();
-        return view('modules.create', compact('subjects'));
+        $categories = \App\Models\Category::orderBy('name')->get(['id', 'name']);
+        return view('modules.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -133,11 +143,20 @@ class ModuleController extends Controller
 
     public function edit(Module $module)
     {
-        $allQuestions = Question::all(); // for attaching existing ones
         $modulePages = ModulePage::where('module_id', $module->id)
                    ->orderBy('page_number')
                    ->get();
-        $subjectID = $module->subject_id;
+
+        $subjectID  = $module->subject_id;
+        $categoryId = $module->subject->category_id;
+
+        // Only surface questions whose concepts belong to subjects in the same category
+        $subjectIds  = Subject::where('category_id', $categoryId)->pluck('id');
+        $conceptIds  = Concept::whereIn('subject_id', $subjectIds)->pluck('id');
+        $allQuestions = Question::whereHas('concepts', fn ($q) => $q->whereIn('concepts.id', $conceptIds))
+                                ->orderBy('question')
+                                ->get();
+
         $conceptsList = Concept::where('subject_id', $subjectID)->get();
 
         return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList'));
@@ -362,35 +381,48 @@ class ModuleController extends Controller
     }
 
     // We can avoid the generate questions job for editing and creating modules by just calling the ai service function
-    public function generateQuestions(Module $module)
+    public function generateQuestions(Request $request, Module $module)
     {
-        // Fetch all content associated with this module
         $content = $module->modulePages()->pluck('content')->implode("\n\n");
         if (empty($content)) {
-            return back()->with('error', 'empty content in generateQuestions()');
+            return back()->with('error', 'Add module content before generating questions.');
         }
-        
-        $userID = auth()->id();
-        $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
 
-        $mode = "edit";
-        
+        $validTypes = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
+        $selectedTypes = $request->has('types')
+            ? array_values(array_intersect((array) $request->input('types'), $validTypes))
+            : $validTypes;
+
+        if (empty($selectedTypes)) {
+            return back()->with('error', 'Select at least one question type.');
+        }
+
+        $difficultyFocus = in_array($request->input('difficulty'), ['easy', 'medium', 'hard'])
+            ? $request->input('difficulty')
+            : null;
+
+        $userID = auth()->id();
+        $mode   = 'edit';
+
         $pipeline = Pipeline::create([
-            'user_id' => $userID,
+            'user_id'   => $userID,
             'module_id' => $module->id,
-            'type' => 'question_generation',
-            'status' => 'running',
+            'type'      => 'question_generation',
+            'status'    => 'running',
         ]);
 
-        foreach ($types as $selectedType) {
+        foreach ($selectedTypes as $type) {
             $pipelineStep = PipelineStep::create([
                 'pipeline_id' => $pipeline->id,
-                'name' => "Generate {$selectedType} Questions",
-                'status' => 'pending',
+                'name'        => "Generate {$type} Questions",
+                'status'      => 'pending',
             ]);
-            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id, $userID, $mode);
+            GenerateQuestions::dispatch($type, $module->id, $pipelineStep->id, $userID, $mode, $difficultyFocus);
         }
 
-        return back()->with('status', 'Generation started! Check back in a few moments.');
+        $typeLabels = implode(', ', $selectedTypes);
+        $difficultyLabel = $difficultyFocus ? " ({$difficultyFocus} difficulty)" : '';
+
+        return back()->with('status', "Generating {$typeLabels} questions{$difficultyLabel}. Check back in a few moments.");
     }
 }

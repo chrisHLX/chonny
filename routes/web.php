@@ -20,6 +20,7 @@ use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
@@ -93,6 +94,7 @@ Route::get('/questions/problematic', [QuestionController::class, 'problematic'])
 Route::get('modules', Index::class)->name('modules.index')->middleware('auth');
 //Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
 
+Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');
 Route::post('/modules-pagex/createLandingPage/{module}', [ModuleController::class, 'createLandingPage'])->name('modules-pagex.createLandingPage')->middleware('auth');
 Route::post('/modules/{module}/generate-questions', [ModuleController::class, 'generateQuestions'])
@@ -128,6 +130,7 @@ Route::post('/modules/{module}/generate-landing-page', [ModuleController::class,
 Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
 
 Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class, 'bySubject']);
+Route::get('/subjects/by-category/{category}', [CategoryController::class, 'subjectsByCategory']);
 
 // Category routes
 // routes/web.php
@@ -141,6 +144,32 @@ Route::get('/collection', [CollectionController::class, 'index'])->name('collect
 
 // ------- Backend UI Dashboard ------- CURRENTLY DISABLED //
 Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); // Displays all tables and relationships.
+
+// ------- Admin Content Management -------
+Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Categories
+    Route::get('/categories', [ContentController::class, 'categories'])->name('categories.index');
+    Route::post('/categories', [ContentController::class, 'storeCategory'])->name('categories.store');
+    Route::put('/categories/{category}', [ContentController::class, 'updateCategory'])->name('categories.update');
+    Route::delete('/categories/{category}', [ContentController::class, 'destroyCategory'])->name('categories.destroy');
+
+    // Subjects
+    Route::get('/subjects', [ContentController::class, 'subjects'])->name('subjects.index');
+    Route::post('/subjects', [ContentController::class, 'storeSubject'])->name('subjects.store');
+    Route::put('/subjects/{subject}', [ContentController::class, 'updateSubject'])->name('subjects.update');
+    Route::delete('/subjects/{subject}', [ContentController::class, 'destroySubject'])->name('subjects.destroy');
+
+    // Proficiencies (managed within subjects page)
+    Route::post('/proficiencies', [ContentController::class, 'storeProficiency'])->name('proficiencies.store');
+    Route::put('/proficiencies/{proficiency}', [ContentController::class, 'updateProficiency'])->name('proficiencies.update');
+    Route::delete('/proficiencies/{proficiency}', [ContentController::class, 'destroyProficiency'])->name('proficiencies.destroy');
+
+    // Concepts
+    Route::get('/concepts', [ContentController::class, 'concepts'])->name('concepts.index');
+    Route::post('/concepts', [ContentController::class, 'storeConcept'])->name('concepts.store');
+    Route::put('/concepts/{concept}', [ContentController::class, 'updateConcept'])->name('concepts.update');
+    Route::delete('/concepts/{concept}', [ContentController::class, 'destroyConcept'])->name('concepts.destroy');
+});
 
 
 

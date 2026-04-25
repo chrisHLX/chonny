@@ -203,10 +203,6 @@ Avoid creating routes with overlapping segment patterns (e.g. `/modules/destroy/
 - `app/Jobs/` — async pipeline, failures are hard to detect
 - Any migration that touches pivot tables
 
-### Before making ANY changes:
-- Always run `git add . && git commit -m "backup"` first
-- Show a plan and wait for approval before touching more than one file
-
 ### Known working solutions:
 - Ordering question type: use `x-on:sorted` to update `$wire.answer` reactively
 - Do NOT query DOM at submit time for ordering answers — causes rehydration bugs with Livewire + SortableJS
@@ -252,3 +248,9 @@ QUEUE_CONNECTION=redis
 SESSION_DRIVER=redis
 CACHE_STORE=redis
 ```
+
+## Security
+- reCAPTCHA v3 on login and registration
+- Keys in .env as RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY
+- Score threshold: 0.5 (adjust in RegisteredUserController and LoginRequest)
+- Uses direct Google siteverify API call — no package dependency

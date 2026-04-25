@@ -1,8 +1,10 @@
 <x-guest-layout>
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" class="space-y-4">
+    <form id="login-form" method="POST" action="{{ route('login') }}" class="space-y-4">
         @csrf
+
+        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-login">
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -35,4 +37,18 @@
             </x-primary-button>
         </div>
     </form>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var form = this;
+            grecaptcha.ready(function () {
+                grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {action: 'login'}).then(function (token) {
+                    document.getElementById('g-recaptcha-response-login').value = token;
+                    form.submit();
+                });
+            });
+        });
+    </script>
 </x-guest-layout>

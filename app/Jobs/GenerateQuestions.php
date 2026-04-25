@@ -26,14 +26,16 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
     protected $pipelineStepID;
     protected $userID;
     protected $mode;
+    protected $difficultyFocus; // optional override: 'easy' | 'medium' | 'hard' | null
 
-    public function __construct($type, $newModuleID, $pipelineStepID, $userID, $mode)
+    public function __construct($type, $newModuleID, $pipelineStepID, $userID, $mode, $difficultyFocus = null)
     {
         $this->type = $type;
         $this->newModuleID = $newModuleID;
         $this->pipelineStepID = $pipelineStepID;
         $this->userID = $userID;
-        $this->mode = $mode; // sueggestions, edit
+        $this->mode = $mode; // suggestions, edit
+        $this->difficultyFocus = $difficultyFocus;
     }
 
     public function handle(AiService $AiService) // this must be a built in function in jobs to handle the request and we are going to use a function in the AiService
@@ -66,7 +68,7 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
             }
 
             \Log::info("Generating questions for module: {$name} with type: {$this->type}");
-            $response = $AiService->generateQuestions($this->type, $string, $newModule, $userID);
+            $response = $AiService->generateQuestions($this->type, $string, $newModule, $userID, $this->difficultyFocus);
 
             // mark step complete
             $step->update([

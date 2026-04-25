@@ -10,7 +10,32 @@
             <x-input-error :messages="$errors->all()" class="mb-4" />
 
             <div class="linear-card p-6">
-                <form method="POST" action="{{ route('modules.store') }}" class="space-y-5">
+                <form method="POST" action="{{ route('modules.store') }}" class="space-y-5"
+                      x-data="{
+                          categoryId: '{{ old('category_id') }}',
+                          subjectId:  '{{ old('subject_id') }}',
+                          subjects:   [],
+                          proficiencies: [],
+                          loadSubjects() {
+                              this.subjects = [];
+                              this.proficiencies = [];
+                              this.subjectId = '';
+                              if (!this.categoryId) return;
+                              fetch(`/subjects/by-category/${this.categoryId}`)
+                                  .then(r => r.json())
+                                  .then(data => { this.subjects = data; });
+                          },
+                          loadProficiencies() {
+                              this.proficiencies = [];
+                              if (!this.subjectId) return;
+                              fetch(`/proficiencies/by-subject/${this.subjectId}`)
+                                  .then(r => r.json())
+                                  .then(data => { this.proficiencies = data; });
+                          },
+                      }"
+                      x-init="
+                          if (categoryId) loadSubjects();
+                      ">
                     @csrf
 
                     <div>
@@ -25,23 +50,48 @@
                         <x-input-error :messages="$errors->get('description')" class="mt-1.5" />
                     </div>
 
+                    {{-- Step 1: Category --}}
+                    <div>
+                        <x-input-label for="category_id" :value="__('Category')" />
+                        <select id="category_id" name="category_id" class="form-select mt-1.5"
+                                x-model="categoryId" @change="loadSubjects()">
+                            <option value="">— Select Category —</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('category_id')" class="mt-1.5" />
+                    </div>
+
+                    {{-- Step 2: Subject (unlocks after category) --}}
                     <div>
                         <x-input-label for="subject_id" :value="__('Subject')" />
-                        <select id="subject_id" name="subject_id" class="form-select mt-1.5">
-                            <option value="">— Select Subject —</option>
-                            @foreach($subjects as $subject)
-                                <option value="{{ $subject->id }}" {{ old('subject_id') == $subject->id ? 'selected' : '' }}>
-                                    {{ $subject->name }}
-                                </option>
-                            @endforeach
+                        <select id="subject_id" name="subject_id" class="form-select mt-1.5"
+                                x-model="subjectId" @change="loadProficiencies()"
+                                :disabled="!categoryId">
+                            <option value="">
+                                <span x-text="categoryId ? '— Select Subject —' : '— Select Category First —'"></span>
+                            </option>
+                            <template x-for="subject in subjects" :key="subject.id">
+                                <option :value="subject.id" x-text="subject.name"
+                                        :selected="subject.id == '{{ old('subject_id') }}'"></option>
+                            </template>
                         </select>
                         <x-input-error :messages="$errors->get('subject_id')" class="mt-1.5" />
                     </div>
 
+                    {{-- Step 3: Proficiency (unlocks after subject) --}}
                     <div>
                         <x-input-label for="proficiency_id" :value="__('Proficiency')" />
-                        <select id="proficiency_id" name="proficiency_id" class="form-select mt-1.5">
-                            <option value="">— Select Subject First —</option>
+                        <select id="proficiency_id" name="proficiency_id" class="form-select mt-1.5"
+                                :disabled="!subjectId">
+                            <option value="">
+                                <span x-text="subjectId ? '— Select Proficiency —' : (categoryId ? '— Select Subject First —' : '— Select Category First —')"></span>
+                            </option>
+                            <template x-for="prof in proficiencies" :key="prof.id">
+                                <option :value="prof.id" x-text="prof.name"
+                                        :selected="prof.id == '{{ old('proficiency_id') }}'"></option>
+                            </template>
                         </select>
                         <x-input-error :messages="$errors->get('proficiency_id')" class="mt-1.5" />
                     </div>
@@ -54,25 +104,4 @@
 
         </div>
     </div>
-
-    <script>
-        document.getElementById('subject_id').addEventListener('change', function () {
-            const subjectId = this.value;
-            const proficiencySelect = document.getElementById('proficiency_id');
-            proficiencySelect.innerHTML = '<option value="">Loading...</option>';
-
-            if (!subjectId) {
-                proficiencySelect.innerHTML = '<option value="">— Select Subject First —</option>';
-                return;
-            }
-
-            fetch(`/proficiencies/by-subject/${subjectId}`)
-                .then(r => r.json())
-                .then(data => {
-                    let opts = '<option value="">— Select Proficiency —</option>';
-                    data.forEach(item => { opts += `<option value="${item.id}">${item.name}</option>`; });
-                    proficiencySelect.innerHTML = opts;
-                });
-        });
-    </script>
 </x-app-layout>
