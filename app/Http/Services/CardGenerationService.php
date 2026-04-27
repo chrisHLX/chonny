@@ -88,7 +88,7 @@ class CardGenerationService
         ]);
         */
 
-        $imagePath = $module->art_path ?? 'cards/default.svg';
+        $imagePath = $module->art_path ?: null;
 
         $edition = match (true) {
             $mint === 1       => 'First Edition',

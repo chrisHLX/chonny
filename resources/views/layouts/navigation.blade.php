@@ -54,7 +54,7 @@
 
         @can('admin')
         <!-- Creator -->
-        <div x-data="{ creatorOpen: true }" class="pt-1">
+        <div x-data="{ creatorOpen: $persist(true).as('nav_creator_open') }" class="pt-1">
             <button @click="creatorOpen = !creatorOpen"
                     class="sidebar-item w-full justify-between">
                 <div class="flex items-center gap-2.5">
@@ -113,7 +113,7 @@
         @endcan
 
         <!-- Categories -->
-        <div x-data="{ catOpen: true }" class="pt-1">
+        <div x-data="{ catOpen: $persist(true).as('nav_cat_open') }" class="pt-1">
             <button @click="catOpen = !catOpen"
                     class="sidebar-item w-full justify-between">
                 <div class="flex items-center gap-2.5">

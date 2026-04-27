@@ -7,48 +7,56 @@ $tiers = [
         'text' => 'text-gray-800',
         'accent' => 'text-gray-400',
         'glow' => '',
+        'accentHex' => '#9CA3AF',
     ],
     2 => [
         'border' => 'border-green-300',
         'text' => 'text-gray-700',
         'accent' => 'text-gray-500',
         'glow' => '',
+        'accentHex' => '#86EFAC',
     ],
     3 => [
         'border' => 'border-yellow-400',
         'text' => 'text-yellow-600',
         'accent' => 'text-yellow-500',
         'glow' => 'shadow-yellow-200/50',
+        'accentHex' => '#FACC15',
     ],
     4 => [
         'border' => 'border-emerald-400',
         'text' => 'text-emerald-600',
         'accent' => 'text-emerald-500',
         'glow' => 'shadow-emerald-200/50',
+        'accentHex' => '#34D399',
     ],
     5 => [
         'border' => 'border-cyan-300',
         'text' => 'text-cyan-600',
         'accent' => 'text-cyan-500',
         'glow' => 'shadow-cyan-200/50',
+        'accentHex' => '#67E8F9',
     ],
     6 => [
         'border' => 'border-red-500 border-double',
         'text' => 'text-red-600',
         'accent' => 'text-red-500',
         'glow' => 'shadow-red-300/60',
+        'accentHex' => '#EF4444',
     ],
     7 => [
         'border' => 'border-yellow-400 border-emerald-400 border-double',
         'text' => 'text-emerald-600',
         'accent' => 'text-yellow-500',
         'glow' => 'shadow-emerald-300/60',
+        'accentHex' => '#34D399',
     ],
     8 => [
         'border' => 'border-yellow-400 border-emerald-400 border-cyan-300 border-double',
         'text' => 'text-cyan-600',
         'accent' => 'text-yellow-400',
         'glow' => 'shadow-cyan-300/70',
+        'accentHex' => '#67E8F9',
     ],
 ];
 
@@ -98,8 +106,7 @@ $style = $tiers[$tier] ?? $tiers[1];
 <div {{ $attributes->merge([
     'class' => 'rounded-xl border-4 h-full w-full flex flex-col ' . $style['border'] . '
                 shadow-lg transition-transform duration-200 hover:-translate-y-1'
-            ]) }}>
-
+        ]) }}>
 
     {{-- HEADER --}}
     <div class="p-4 border-b">
@@ -107,16 +114,41 @@ $style = $tiers[$tier] ?? $tiers[1];
                     {{ $edition === 'First Edition' ? 'drop-shadow-sm' : '' }}">
             {{ $card->module->name }}
         </div>
-
     </div>
 
     {{-- IMAGE --}}
-    <div class="h-40 bg-gray-100 flex items-center justify-center">
-        <img
-            src="{{ asset($card->image_path) }}"
-            alt="{{ $card->module->name }}"
-            class="h-32 object-contain"
-        >
+    <div class="h-40 overflow-hidden flex items-center justify-center bg-surface-2">
+        @if($card->image_path && $card->image_path !== 'cards/default.svg')
+            <img
+                src="{{ asset($card->image_path) }}"
+                alt="{{ $card->module->name }}"
+                class="h-full w-full object-cover"
+            >
+        @else
+            @php
+                $svgId = 'card-' . $card->id;
+                $accent = $style['accentHex'];
+            @endphp
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <linearGradient id="grad-{{ $svgId }}" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1C1C1F"/>
+                        <stop offset="100%" stop-color="#242428"/>
+                    </linearGradient>
+                    <radialGradient id="glow-{{ $svgId }}" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="{{ $accent }}" stop-opacity="0.08"/>
+                        <stop offset="100%" stop-color="{{ $accent }}" stop-opacity="0"/>
+                    </radialGradient>
+                    <pattern id="dots-{{ $svgId }}" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="1" cy="1" r="0.8" fill="{{ $accent }}" opacity="0.15"/>
+                    </pattern>
+                </defs>
+                <rect width="240" height="160" fill="url(#grad-{{ $svgId }})"/>
+                <rect width="240" height="160" fill="url(#dots-{{ $svgId }})"/>
+                <rect width="240" height="160" fill="url(#glow-{{ $svgId }})"/>
+                <x-concept-polygon :module="$card->module" :id="$svgId" :accent="$accent" :width="240" :height="160" />
+            </svg>
+        @endif
     </div>
 
     {{-- BODY --}}
@@ -153,7 +185,6 @@ $style = $tiers[$tier] ?? $tiers[1];
                     {{ $editionStyle['icon'] }} {{ strtoupper($edition) }}
                 </span>
             </div>
-
         </div>
 
     </div>
