@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Question;
 use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
+use App\Models\UserConceptSkillMastery;
 use Illuminate\Support\Collection;
 
 class MasteryService
@@ -73,6 +74,34 @@ class MasteryService
                     'mastery_percentage' => $mastery,
                 ]
             );
+
+            // Track mastery broken down by skill type for this concept
+            $skillType = $question->skill_type?->value ?? $question->skill_type;
+            if ($skillType) {
+                // Only count questions the user has actually attempted of this skill type
+                $answeredOfSkillType = $user->answeredQuestions()
+                    ->whereIn('questions.id', $concept->questions()->pluck('questions.id'))
+                    ->where('questions.skill_type', $skillType)
+                    ->get();
+
+                $skillTotal = $answeredOfSkillType->count();
+                $skillCorrect = $answeredOfSkillType
+                    ->filter(fn($q) => $q->pivot->last_answer_correct)
+                    ->count();
+
+                $skillMastery = $skillTotal > 0
+                    ? round(($skillCorrect / $skillTotal) * 100, 2)
+                    : 0;
+
+                UserConceptSkillMastery::updateOrCreate(
+                    ['user_id' => $user->id, 'concept_id' => $concept->id, 'skill_type' => $skillType],
+                    [
+                        'correct_count'      => $skillCorrect,
+                        'total_count'        => $skillTotal,
+                        'mastery_percentage' => $skillMastery,
+                    ]
+                );
+            }
 
             foreach ($concept->axes as $axis) {
                 $conceptsInAxis = $axis->concepts;

@@ -295,6 +295,12 @@ CACHE_STORE=redis
 - Score threshold: 0.5 (adjust in RegisteredUserController and LoginRequest)
 - Uses direct Google siteverify API call — no package dependency
 
+## Windows / Herd Environment
+- Do NOT attempt to run php artisan commands directly
+- Instruct the user to run them manually in PowerShell instead
+- PHP is available in Windows PATH but not accessible via bash
+- All shell commands should be provided for the user to run manually
+
 ## Implementation Roadmap
 Gap Analysis: Axes and Skill Types
 File-by-file findings

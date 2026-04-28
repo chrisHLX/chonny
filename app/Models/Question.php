@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\SkillType;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
@@ -17,9 +18,9 @@ class Question extends Model
         'created_by',
     ];
 
-    // This allows automatic casting of the 'answer' JSON column to an array which means you can access it like a normal array in PHP
     protected $casts = [
-        'answer' => 'array',
+        'answer'     => 'array',
+        'skill_type' => SkillType::class,
     ];
 
     public function concepts()
