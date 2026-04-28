@@ -494,9 +494,14 @@ class AiService
         return $keywords;
     }
 
-    public function generateContentForQuestion(Question $question, $moduleInfo, $userID): string
+    public function generateContentForQuestion(Question $question, $moduleInfo, $userID, string $skillType = ''): string
     {
         $correct = $this->formatAnswer($question);
+
+        $skillTypeInstruction = $skillType
+            ? "\nThinking mode: {$skillType}.\nrecall = reinforce the fact clearly; analysis = explain how to interpret the situation; application = demonstrate the decision and why it is correct."
+            : '';
+
         $prompt = <<<EOT
         The user has answered this question incorrectly multiple times.
 
@@ -511,7 +516,7 @@ class AiService
         Be concise. No fluff. No formatting.
         Use simple language appropriate for the given proficiency level.
         Include one short memorable mental hook.
-        Return only plain text.
+        Return only plain text.{$skillTypeInstruction}
 
         Context:
         - Module: $moduleInfo
@@ -779,11 +784,16 @@ EOT;
     public function generateQuestions(string $type, string $content, $newModule, int $userID, ?string $difficultyFocus = null)
     {
         // Fetch all concepts as [ 'name' => id ]
-        
         $conceptMap = Concept::where('subject_id', $newModule->subject_id)->pluck('id', 'name');
         $questionsList = $newModule->questions()->pluck('question')->toArray();
         $questionsList = $newModule->questions()->pluck('question')->implode("\n- ");
         $prof = $newModule->proficiencies()->first();
+
+        // Build axis context string for the prompt
+        $axes = $newModule->subject->category->axes()->with('concepts')->get();
+        $axisString = $axes->map(fn($axis) =>
+            $axis->name . ': ' . $axis->concepts->pluck('name')->implode(', ')
+        )->implode(' | ');
         
 
         if ($type == 'ordering' || $type == 'matching_pairs') {
@@ -884,6 +894,10 @@ EOT;
         }
 
 
+    $axisBlock = $axisString
+        ? "SKILL AXES:\n    {$axisString}\n    Each concept belongs to one or more axes above. Aim to spread questions across axes where the content allows.\n"
+        : '';
+
     $prompt = <<<PROMPT
     Generate {$questionAmount} {$type} questions for our learning app based on the following content.
 
@@ -894,7 +908,8 @@ EOT;
     {$prof->name} Level Description: {$prof->description}.
 
     IMPORTANT NOTE: Proficiency represents the user's reading level (vocabulary) and prior knowledge. Use this to tailor question complexity and readability.
-    
+
+    {$axisBlock}
     Existing Questions for this module (try not to repeat the same ones):
     - {$questionsList}
 

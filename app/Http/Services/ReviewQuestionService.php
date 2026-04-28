@@ -23,7 +23,7 @@ class ReviewQuestionService
      * @param Question $question
      * @return Content|string
      */
-    public function getReviewContent(Question $question, Module $module, $userID)
+    public function getReviewContent(Question $question, Module $module, $userID, string $skillType = '')
     {
         // Check if the question has an existing content block
         $content = $question->contents()->latest()->first();
@@ -38,7 +38,7 @@ class ReviewQuestionService
 
         // If no content exists, generate one using AI
         Log::info("Generating AI content for Question ID {$question->id}");
-        $generatedContent = $this->aiService->generateContentForQuestion($question, $moduleInfo, $userID);
+        $generatedContent = $this->aiService->generateContentForQuestion($question, $moduleInfo, $userID, $skillType);
 
         // Optionally save AI-generated content for future use
         $newContent = Content::create([
@@ -68,7 +68,7 @@ class ReviewQuestionService
             $reviews[] = [
                 'question_id' => $question->id,
                 'question' => $question->question,
-                'review_content' => $this->getReviewContent($question, $module),
+                'review_content' => $this->getReviewContent($question, $module, null, $question->skill_type?->value ?? ''),
             ];
         }
 

@@ -46,7 +46,8 @@ class GenerateReviewContentJob implements ShouldQueue
 
         Log::info("🚀 Generating review content for '{$question->question}' in module '{$module->name}'");
 
-        $reviewContent = $reviewQuestionService->getReviewContent($question, $module, $this->userID);
+        $skillType = $question->skill_type?->value ?? $question->skill_type ?? '';
+        $reviewContent = $reviewQuestionService->getReviewContent($question, $module, $this->userID, $skillType);
 
         $cacheKey = "review_content:{$question->id}";
 

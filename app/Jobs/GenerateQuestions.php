@@ -64,7 +64,7 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
             if ($this->mode == "edit") {
                 $string = $newModule->modulePages()->first()->content;
             } elseif ($this->mode == "suggestions") {
-                $string = $this->PromptBuilder($name, $description, $subject);
+                $string = $this->PromptBuilder($newModule);
             }
 
             \Log::info("Generating questions for module: {$name} with type: {$this->type}");
@@ -95,13 +95,16 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
 
     }
 
-    public function PromptBuilder($name, $description, $subject)
+    public function PromptBuilder(Module $module): string
     {
-        $prompt = <<<EOT
-        Can you create questions for the following module {$name} which is about {$description}. Must be directly relavant to the subject: {$subject}.
-        EOT;
+        $concepts = $module->subject->concepts()->pluck('name')->implode(', ');
 
-        return $prompt;
+        return <<<EOT
+        Create questions for the module "{$module->name}" which covers: {$module->description}.
+        Subject: {$module->subject->name}.
+        Available concepts for this subject: {$concepts}.
+        Questions must be directly relevant to this subject and should draw from these concepts where applicable.
+        EOT;
     }
 
     protected function checkPipelineCompletion(Pipeline $pipeline): void
