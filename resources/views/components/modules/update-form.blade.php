@@ -42,7 +42,16 @@
                         <input type="checkbox" name="question_ids[]" value="{{ $question->id }}"
                                {{ in_array($question->id, $selectedIds) ? 'checked' : '' }}
                                class="form-checkbox mt-0.5 shrink-0">
-                        <span class="text-[12px] text-ink-muted leading-snug">{{ $question->question }}</span>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-[12px] text-ink-muted leading-snug">{{ $question->question }}</span>
+                            @php $skillType = $question->skill_type ?? 'recall'; @endphp
+                            <span @class([
+                                'inline-block ml-1.5 text-[10px] px-1.5 py-0.5 rounded font-medium',
+                                'bg-violet-500/10 text-violet-400' => $skillType === 'recall',
+                                'bg-amber-500/10 text-amber-400' => $skillType === 'analysis',
+                                'bg-blue-500/10 text-blue-400' => $skillType === 'application',
+                            ])>{{ $skillType }}</span>
+                        </div>
                     </label>
                 @endforeach
             </div>

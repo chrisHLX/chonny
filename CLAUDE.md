@@ -73,8 +73,9 @@ The platform organises all learning content in a strict hierarchy:
 
 ```
 Category
+  ├── Axes (belong to Category — fixed skill dimensions, e.g. "Critical Thinking")
   └── Subject (belongs to Category)
-        ├── Concepts (belong to Subject — knowledge tags)
+        ├── Concepts (belong to Subject — many-to-many with Axes via concept_axis pivot)
         ├── Proficiencies (belong to Subject — difficulty tiers with an index integer)
         └── Module (belongs to Subject)
               ├── ModulePages (ordered pages of Markdown/HTML content)
@@ -82,11 +83,17 @@ Category
               └── Tags (many-to-many — freeform labels)
 ```
 
-**Category** (`categories` table) — top-level grouping (e.g. "Science", "Finance"). Has many Subjects.
+**Category** (`categories` table) — top-level grouping (e.g. "Science", "Finance"). Has many Subjects and many Axes.
+
+**Axis** (`axes` table) — Axes are defined per Category and should reflect the fundamental dimensions of skill in that domain (e.g. Games use Mechanics, Strategy, etc., while other categories may use different dimensions). Axes are used as a scaffold for AI to generate and organise Concepts consistently across Subjects. 
+
+Many-to-many with Concepts via `concept_axis` pivot. `UserAxisMastery` tracks each user's mastery percentage per Axis, calculated as the average concept mastery across all Concepts mapped to that Axis. The `weight` column on the `concept_axis` pivot is nullable and not yet used in calculations.
+
+**Mastery flow:** `Question answered → UserConceptMastery updated → for each Axis linked to that Concept → UserAxisMastery updated (average of all concept masteries in the Axis)`
 
 **Subject** (`subjects` table) — belongs to a Category. Has many Modules, Concepts, and Proficiencies. Every Module must belong to a Subject — the Subject determines which Concepts are available to tag questions and which Proficiency tiers govern difficulty.
 
-**Concept** (`concepts` table) — a knowledge unit that belongs to a Subject. Many-to-many with Questions via `concept_question` pivot. When the AI generates questions it is given the full list of Concept names for the module's Subject and must tag each question with one or more matching concepts. `UserConceptMastery` tracks each user's mastery percentage per Concept over time.
+**Concept** (`concepts` table) a subject-specific idea that represents one or more skill dimensions (Axes) and is used to tag questions and drive mastery tracking. Many-to-many with Questions via `concept_question` pivot, and many-to-many with Axes via `concept_axis` pivot (with nullable `weight` column). When the AI generates questions it is given the full list of Concept names for the module's Subject and must tag each question with one or more matching concepts. `UserConceptMastery` tracks each user's mastery percentage per Concept over time.
 
 **Proficiency** (`proficiencies` table) — ordered tiers on a Subject (index 0 = beginner, higher = advanced). Many-to-many with Modules via `module_proficiency`. The `index` value drives how many questions the AI generates per batch (index < 2 → 2 complex questions, 2–4 → 5, ≥4 → 7) and the difficulty mix (easy/medium/hard split).
 
@@ -154,6 +161,38 @@ matching_pairs:  { "correct": {"Key1": "Val1", "Key2": "Val2"}, "pairs": { "keys
 ```
 `prepareQuestionsForQuiz()` in `QuizRunner` shuffles options/steps/values before serving.
 
+### Skill Types
+
+Skill Types define *how* a question tests understanding, not just *what* it tests.
+Every question has one `skill_type` (enum stored on the `questions` table).
+
+**The three types:**
+- `recall` — tests memory and recognition of facts
+- `analysis` — tests interpretation of situations and information
+- `application` — tests decision-making and use of knowledge in context
+
+**Mental model:**
+- Concept → what is being learned
+- Skill Type → how it is being understood
+- Axis → where it fits in overall mastery
+
+**Purpose:**
+1. Improves learning depth — same concept tested across different thinking modes
+2. Enables better diagnostics — identifies HOW a user struggles not just WHAT they got wrong
+3. Drives adaptive progression — future questions target weakest skill type
+4. Increases question diversity — forces AI to generate fundamentally different questions
+
+**Relation to Bloom's Taxonomy:**
+- Recall ≈ Remember
+- Analysis ≈ Understand + Analyze
+- Application ≈ Apply
+
+**Current state:**
+- `skill_type` stored on `questions` table (enum, default: `recall`)
+- AI assigns `skill_type` during question generation
+- Displayed as a badge in admin question management
+- NOT yet used in mastery calculations or adaptive logic — planned for future
+
 ### Adaptive Quiz Logic (`app/Livewire/QuizRunner.php`)
 
 `calculateNextDifficulty()` iterates easy → medium → hard. A level is "mastered" at ≥80% correct. If all three levels are mastered, `handleMasteryCompletion()` serves the least-accurate questions as a `final` round. If `consecutive_fails >= 1` on a question, `GenerateReviewContentJob` is dispatched to generate AI review content.
@@ -162,7 +201,7 @@ matching_pairs:  { "correct": {"Key1": "Val1", "Key2": "Val2"}, "pairs": { "keys
 
 - **AiService** — all OpenAI calls. Uses `gpt-4o-mini` by default, `gpt-4.1-mini` for complex types (ordering, matching_pairs), `gpt-4.1-nano` for HTML generation. Always deducts credits after each call via `CreditService`.
 - **CreditService** — manages `UserCredit` balance. New users receive 50 welcome credits. The quiz requires >5 credits to start.
-- **MasteryService** — updates `UserConceptMastery` percentages after each question answer.
+- **MasteryService** — updates `UserConceptMastery` percentages after each question answer, then propagates to `UserAxisMastery` for every Axis linked to the answered Concept.
 - **VersioningService** — handles module versioning when AI generates follow-up modules.
 - **TokenService** — estimates token counts (chars / 4) and calculates credit cost per model.
 
@@ -173,6 +212,7 @@ matching_pairs:  { "correct": {"Key1": "Val1", "Key2": "Val2"}, "pairs": { "keys
 - **`QuizRunner`** — the active quiz engine (adaptive difficulty, pivot tracking, job dispatch on completion).
 - **`QuizSelection`** — picks module/subject before starting.
 - **`Collection`** — user's enrolled modules.
+- **`Admin\ContentManager`** — single admin interface for all content management: Axes, Categories, Subjects (with inline proficiency management), and Concepts (with axis mapping). Route: `admin.content` → `/admin/content`.
 
 ### Jobs (`app/Jobs/`)
 
@@ -221,9 +261,9 @@ The platform is moving toward a curated content model:
 - AI generates Modules from existing content via suggestion pipeline
 
 ### Not yet implemented cleanly:
-- Admin/creator interface for Subject → Category → Concept hierarchy
 - Forced concept tagging on question creation (currently optional = mastery breaks)
 - Multi-subject onboarding flow for new categories
+- Weight-based axis mastery calculation (weight column exists on concept_axis but is unused)
 
 ## Credit System
 - New users receive 50 welcome credits on registration
@@ -254,3 +294,152 @@ CACHE_STORE=redis
 - Keys in .env as RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY
 - Score threshold: 0.5 (adjust in RegisteredUserController and LoginRequest)
 - Uses direct Google siteverify API call — no package dependency
+
+## Implementation Roadmap
+Gap Analysis: Axes and Skill Types
+File-by-file findings
+AiService.php
+Axes: No reference at all. generateQuestions() fetches concepts for the subject and passes their names to the AI, but never fetches the subject's Axes, never passes the Axis structure, and the AI therefore has no awareness of what dimensional framework the concepts belong to.
+
+Skill Types: Partially integrated. The generateQuestions() prompt includes skill_type in the example JSON schema and defines all three values. skill_type is read from the response and saved to the Question model. This part works. However:
+
+generateContentForQuestion() (review explanations) receives no skill_type — the AI explanation is generic for all thinking modes.
+tagConcepts() has a hardcoded "StarCraft 2 coach" system prompt — it is a dead legacy function that would tag wrong for any other domain.
+What needs to change:
+
+Fetch the category's Axes and pass their names/descriptions into the generateQuestions() prompt so the AI can see which Axes each concept contributes to.
+Pass the question's skill_type into generateContentForQuestion() so review explanations target the right cognitive mode (recall = what it is, analysis = how to interpret it, application = how to use it).
+MasteryService.php
+Axes: Fully implemented. The updateMasteryForUserQuestion() method iterates $concept->axes, sums UserConceptMastery records within the axis, and writes a UserAxisMastery record. This is working correctly.
+
+Skill Types: Zero reference. All mastery is aggregated into a single mastery_percentage per concept and per axis. There is no record of whether the user struggles with recall vs analysis vs application for any concept.
+
+What needs to change:
+
+After updating UserConceptMastery, also write to a new user_concept_skill_mastery table — one row per (user_id, concept_id, skill_type) triplet — tracking correct_count and total_count per thinking mode. This is a purely additive extension with no change to existing columns.
+QuizRunner.php
+Axes: Not referenced anywhere. calculateNextDifficulty(), chooseQuestions(), getLeastAccurateQuestions(), and handleMasteryCompletion() are all axis-blind.
+
+Skill Types: Not referenced anywhere. Question selection is based on difficulty level and last-answer correctness only. The skill_type stored on questions is never read during quiz operation.
+
+What needs to change (high risk — see warnings):
+
+A new private getWeakestSkillType($user, $module) helper could read from user_concept_skill_mastery and return the skill_type the user scores lowest on for the module's concepts.
+chooseQuestions() could accept a $preferSkillType argument and add a soft preference for that type when all other targeting conditions are equal.
+getLeastAccurateQuestions() (final round) could weight toward the weakest skill_type in its sort logic.
+These must be additive — new methods only, no changes to the existing adaptive flow's core path.
+GenerateQuestions.php
+Axes: Not referenced.
+
+Skill Types: Not directly referenced — it passes everything to AiService::generateQuestions() which does handle skill_type. The issue is in the PromptBuilder() method used in suggestions mode: it builds a bare-minimum prompt with no concept list and no axis context. Questions generated in suggestions mode are likely to have poorly assigned skill_types and will miss valid concepts entirely.
+
+What needs to change:
+
+The PromptBuilder() method should load the module's subject concepts (as AiService::generateQuestions() does) and include them in the prompt.
+Both modes should eventually pass Axes so the AI's tagging is dimensionally aware.
+GenerateReviewContentJob.php
+Axes: Not referenced.
+
+Skill Types: Not referenced. The job calls ReviewQuestionService::getReviewContent() → AiService::generateContentForQuestion(), and neither pass $question->skill_type.
+
+What needs to change:
+
+The job already has the $question object. Pass $question->skill_type into the chain so the review explanation in generateContentForQuestion() can tailor its instruction to the relevant thinking mode.
+SuggestionJob.php
+Axes: Not referenced. Delegates entirely to UserModuleService::nextModuleResponse() (not in scope of this analysis).
+
+Skill Types: Not referenced.
+
+What needs to change:
+
+Read UserAxisMastery for the user and identify their weakest axes. Pass this information into nextModuleResponse() so it can bias suggestions toward modules that strengthen weak skill dimensions.
+Question.php
+Axes: Not directly related — axes are accessed via question → concepts → axes. No change needed here.
+
+Skill Types: skill_type is in $fillable and is saved correctly. However there is no enum cast, no validation, and no database-level constraint — any string value can be stored silently.
+
+What needs to change:
+
+Add 'skill_type' => \App\Enums\SkillType::class to $casts once a SkillType enum is created (or use a simple cast with validation at the boundary).
+Concept.php
+Axes: Fully modelled. axes() relationship exists with weight pivot. Correct.
+
+Skill Types: Not referenced. The mastery_for_user appended attribute returns a single percentage with no skill-type breakdown.
+
+What needs to change: No urgent changes. A future skillMasteryForUser($skillType) helper could be added but is not required now.
+
+Axis.php
+Axes: It is the Axis model. Relationships are correct: category() and concepts().
+
+Skill Types: Not referenced.
+
+What needs to change: Could add userMasteries() → hasMany(UserAxisMastery::class) for convenience querying, but this is optional.
+
+UserAxisMastery.php
+Axes: Correctly references Axis via axis().
+
+Skill Types: Not referenced. Only tracks a single mastery_percentage with no skill-type breakdown.
+
+What needs to change: No immediate changes — adding a user_axis_skill_mastery table later (derived from concept-skill mastery) is a Phase 2 concern.
+
+Prioritised Implementation Plan
+Ordered from lowest to highest risk. Each phase is independently deployable.
+
+Phase 1 — Data layer foundations (zero risk, no behavior change)
+1a. Create user_concept_skill_mastery table
+Columns: user_id, concept_id, skill_type (enum: recall/analysis/application), correct_count (int), total_count (int), mastery_percentage (decimal), timestamps. Unique key on (user_id, concept_id, skill_type).
+
+1b. Create UserConceptSkillMastery model
+With user(), concept() relationships and the three fillable columns.
+
+1c. Create SkillType PHP enum
+recall | analysis | application. Add 'skill_type' => SkillType::class cast to Question.php.
+
+Nothing writes to these yet — migration + model + enum only. Zero breakage risk.
+
+Phase 2 — MasteryService extension (low risk, purely additive)
+2a. Extend updateMasteryForUserQuestion()
+After the existing UserConceptMastery::updateOrCreate() block, add a parallel UserConceptSkillMastery::updateOrCreate() call scoped to the answered question's skill_type. Reads concept->questions()->where('skill_type', $skillType) and counts correct user answers of that skill type.
+
+Existing mastery columns are untouched. New records written to the new table only.
+
+Phase 3 — AI prompt enrichment (low risk, improves generation quality)
+3a. Pass Axes into generateQuestions() in AiService
+After fetching $conceptMap, fetch the category's axes: $module->subject->category->axes()->with('concepts')->get(). Build a short string like "Axes: [Strategy (concepts: Build Orders, Map Control), Mechanics (concepts: APM, Micro)]" and insert it into the prompt before the concepts line. Tell the AI: "Tag each question's concepts from the list above — the axes show which skill dimensions each concept belongs to."
+
+3b. Pass skill_type into generateContentForQuestion()
+Add a string $skillType parameter. Append to the prompt: "This question tests {$skillType} thinking. Tailor the explanation accordingly: recall = reinforce the fact; analysis = clarify the interpretation; application = demonstrate the decision." This requires the callers in ReviewQuestionService and GenerateReviewContentJob to pass $question->skill_type through the call chain.
+
+3c. Fix PromptBuilder() in GenerateQuestions job
+In suggestions mode, load the module's subject concepts and include them in the prompt string so the AI can tag concepts correctly, matching what edit mode does.
+
+Phase 4 — SuggestionJob axis awareness (moderate risk, isolated)
+4a. Extend SuggestionJob::handle()
+After loading $user, query: $user->userAxisMasteries()->with('axis')->orderBy('mastery_percentage')->take(3)->get(). Build a string of weak axis names. Pass this into UserModuleService::nextModuleResponse() as an additional parameter (or cache key) so the suggestion AI can factor in the user's weakest skill dimensions when recommending next modules. This requires a small change to UserModuleService interface — verify it doesn't break other callers.
+
+Phase 5 — QuizRunner skill-type adaptation (HIGHEST RISK — approach with caution)
+5a. Add getWeakestSkillType($user, $module) as a new private method
+Reads UserConceptSkillMastery for all concepts in the module, averages mastery by skill_type, returns the skill_type with the lowest average. Pure computation — no side effects. Safe to add.
+
+5b. Pass weakest skill_type into chooseQuestions()
+Add an optional ?string $preferSkillType = null argument. When set, prefer questions matching that skill_type using orderByRaw("CASE WHEN skill_type = '{$type}' THEN 0 ELSE 1 END") or a PHP sort after fetching. Fall back to existing logic if no preference is available. Only touch the internals of chooseQuestions() — do not change any of the caller paths.
+
+5c. Weight getLeastAccurateQuestions() by skill_type in final round
+In the sort closure in getLeastAccurateQuestions(), after the four existing criteria, add a fifth: questions whose skill_type matches the weakest skill_type from Phase 5a are preferred. Purely additive to the existing sort logic.
+
+New tables / models required
+What	Why
+user_concept_skill_mastery table	Core foundation for skill-type tracking per concept
+UserConceptSkillMastery model	Eloquent access to the above
+SkillType PHP enum	Enforce valid values, enable casting
+user_axis_skill_mastery (Phase 2 optional)	Axis-level skill-type rollup — lower priority
+Warnings
+QuizRunner.php — CLAUDE.md explicitly flags this file. Changes in Phase 5 must be surgical: new private methods only, arguments added as optionals with defaults, no changes to any method signatures that Livewire calls or that other methods depend on. Test each sub-step independently before combining.
+
+MasteryService — The existing mastery_percentage calculation uses count(all questions for concept) / count(user correct answers). If you accidentally change this denominator to be skill-type-scoped, existing mastery scores for all users will drift silently. Write only to the new table in Phase 2 — never touch the existing UserConceptMastery calculation.
+
+AiService credit deduction — Adding Axes to the prompt increases token length. Small increase (~5–10%), but every generation call deducts credits. Worth flagging so it doesn't surprise users.
+
+Review content caching — GenerateReviewContentJob caches content at key review_content:{question_id} for one hour. After Phase 3b, if a user hits a cached entry, they'll get the old non-skill-type-aware explanation until the cache expires. This is acceptable as a transient inconsistency during rollout.
+
+SuggestionJob → UserModuleService interface — Phase 4 requires passing weak axes into nextModuleResponse(). Verify how many places call that method before changing its signature. An optional parameter with a default null is the safest approach.

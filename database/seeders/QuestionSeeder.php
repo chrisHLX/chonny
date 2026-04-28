@@ -27,6 +27,7 @@ class QuestionSeeder extends Seeder
                 'question'   => $item['question'],
                 'type'       => $item['type'],
                 'difficulty' => $item['difficulty'],
+                'skill_type' => $item['skill_type'] ?? 'recall',
                 'answer'     => $item['answer'],
             ]);
 

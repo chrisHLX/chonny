@@ -800,6 +800,7 @@ EOT;
                 {
                     "question": "Which unit can create Creep Tumors to expand vision and map control?",
                     "type": "mcq",
+                    "skill_type": "recall",
                     "answer": {
                     "correct": "Queen",
                     "options": ["Queen", "Overlord", "Drone", "Infestor"]
@@ -812,6 +813,7 @@ EOT;
                 {
                     "question": "True or False: A Drone can be used to cancel a building and regain resources.",
                     "type": "true_false",
+                    "skill_type": "recall",
                     "answer": { "correct": true },
                     "difficulty": "medium",
                     "concepts": ["Economy", "Mechanics"]
@@ -821,6 +823,7 @@ EOT;
                 {
                     "question": "Match the Zerg unit to its primary role.",
                     "type": "matching_pairs",
+                    "skill_type": "analysis",
                     "answer": {
                         "correct": {
                             "Zergling": "Basic attacker",
@@ -841,6 +844,7 @@ EOT;
                 {
                     "question": "Put the following build steps in the correct order.",
                     "type": "ordering",
+                    "skill_type": "application",
                     "answer": {
                         "steps": ["Train Drone", "Build Overlord", "Build Spawning Pool", "Build Hatchery"]
                     },
@@ -899,6 +903,10 @@ EOT;
     - IMPORTANT Return JSON ONLY in this format Explicitly:
     {$exampleJson}
     - Concepts must be chosen from this list (you can tag one or more): {$usableConcepts}
+    - Each question must include a skill_type field. Assign the most appropriate:
+      recall = tests memory and recognition of facts
+      analysis = tests interpretation of a situation or information
+      application = tests decision making and use of knowledge in context
     - Ensure JSON is valid, without markdown or commentary.
     PROMPT;
         
@@ -933,6 +941,7 @@ EOT;
                 'answer'     => $qData['answer'],
                 'type'       => $qData['type'] ?? $type,
                 'difficulty' => $qData['difficulty'] ?? 'medium',
+                'skill_type' => $qData['skill_type'] ?? 'recall',
                 'created_by' => auth()->id() ?? 1,
             ]);
 

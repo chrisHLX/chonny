@@ -40,11 +40,14 @@ class Concept extends Model
     }
 
 
-    // Concept.php
     public function userConceptMasteries()
     {
         return $this->hasMany(UserConceptMastery::class);
-                    
+    }
+
+    public function axes()
+    {
+        return $this->belongsToMany(Axis::class, 'concept_axis')->withPivot('weight');
     }
 
 }

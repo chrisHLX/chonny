@@ -12,4 +12,9 @@ class Category extends Model
     {
         return $this->hasMany(Subject::class);
     }
+
+    public function axes()
+    {
+        return $this->hasMany(Axis::class);
+    }
 }

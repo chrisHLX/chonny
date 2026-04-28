@@ -2,6 +2,7 @@
   {
     "question": "What is the main reason to freeze a minion wave near your turret?",
     "type": "mcq",
+    "skill_type": "analysis",
     "answer": {
       "correct": "To deny your opponent farm and stay safe from ganks",
       "options": [
@@ -17,6 +18,7 @@
   {
     "question": "True or False: Slow pushing a wave is useful before taking an objective like Dragon or Rift Herald.",
     "type": "true_false",
+    "skill_type": "application",
     "answer": {
       "correct": true
     },
@@ -26,6 +28,7 @@
   {
     "question": "Which action helps you maintain lane control safely?",
     "type": "mcq",
+    "skill_type": "application",
     "answer": {
       "correct": "Last-hitting minions under turret while keeping wave frozen",
       "options": [
@@ -41,6 +44,7 @@
   {
     "question": "True or False: Constantly pushing the wave is always the best way to gain gold and experience.",
     "type": "true_false",
+    "skill_type": "analysis",
     "answer": {
       "correct": false
     },
@@ -50,6 +54,7 @@
   {
     "question": "Match the wave management term to its purpose.",
     "type": "matching_pairs",
+    "skill_type": "recall",
     "answer": {
       "correct": {
         "Freezing": "Keeps the wave close to your turret for safety and deny",
@@ -73,6 +78,7 @@
   {
     "question": "Put the following actions in the correct order to execute a standard early trade.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": [
         "Wait for enemy to last-hit a minion",
@@ -87,6 +93,7 @@
   {
     "question": "When crashing a large wave into the enemy tower, what should be your next action?",
     "type": "mcq",
+    "skill_type": "application",
     "answer": {
       "correct": "Ward, recall, or assist with an objective",
       "options": [
@@ -102,6 +109,7 @@
   {
     "question": "True or False: You should always push waves aggressively regardless of your jungler's position.",
     "type": "true_false",
+    "skill_type": "analysis",
     "answer": {
       "correct": false
     },
@@ -111,6 +119,7 @@
   {
     "question": "Which of these is a proper use of vision control in lane?",
     "type": "mcq",
+    "skill_type": "application",
     "answer": {
       "correct": "Placing wards in river or tri-bush to track enemy jungler",
       "options": [
@@ -126,6 +135,7 @@
   {
     "question": "Match the lane state to the correct advantage it provides.",
     "type": "matching_pairs",
+    "skill_type": "analysis",
     "answer": {
       "correct": {
         "Frozen near your tower": "Safer from ganks and easier to farm under pressure",
@@ -154,6 +164,7 @@
   {
     "question": "Put the following steps in the correct order for a safe recall in lane.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": [
         "Push wave to enemy tower",
@@ -168,6 +179,7 @@
   {
     "question": "True or False: Trading under enemy tower is always safe if you have more minions.",
     "type": "true_false",
+    "skill_type": "analysis",
     "answer": {
       "correct": false
     },
@@ -177,6 +189,7 @@
   {
     "question": "Which trading pattern is most effective against a melee champion as a ranged champion?",
     "type": "mcq",
+    "skill_type": "application",
     "answer": {
       "correct": "Hit minions, then poke champion when they go for last-hit",
       "options": [
@@ -192,6 +205,7 @@
   {
     "question": "Match the scenario to the correct macro decision.",
     "type": "matching_pairs",
+    "skill_type": "application",
     "answer": {
       "correct": {
         "Enemy top laner dies": "Apply pressure in other lanes or take Rift Herald",
@@ -210,6 +224,7 @@
   {
     "question": "True or False: Overextending without vision can lead to easy kills for the enemy jungler.",
     "type": "true_false",
+    "skill_type": "analysis",
     "answer": {
       "correct": true
     },
@@ -219,6 +234,7 @@
   {
     "question": "MCQ: What is the safest way to trade when your opponent has level advantage?",
     "type": "mcq",
+    "skill_type": "application",
     "answer": {
       "correct": "Wait for them to use abilities and then trade with auto-attacks",
       "options": [
@@ -234,6 +250,7 @@
   {
     "question": "Ordering: Arrange the steps for executing a lane gank as a jungler.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": [
         "Check enemy summoner spells and position",
@@ -248,6 +265,7 @@
   {
     "question": "True or False: Keeping the wave near mid lane is often safer than pushing it aggressively without vision.",
     "type": "true_false",
+    "skill_type": "analysis",
     "answer": {
       "correct": true
     },
@@ -257,6 +275,7 @@
   {
     "question": "MCQ: Why is trading near your turret safer than trading in the middle of the lane?",
     "type": "mcq",
+    "skill_type": "analysis",
     "answer": {
       "correct": "You have tower support and less chance of enemy jungler intervention",
       "options": [
@@ -272,6 +291,7 @@
   {
     "question": "Matching Pairs: Match the lane state to the correct risk.",
     "type": "matching_pairs",
+    "skill_type": "analysis",
     "answer": {
       "correct": {
         "Frozen near enemy tower": "Higher risk of ganks and turret damage",
@@ -290,12 +310,13 @@
   {
     "question": "MCQ: What is a key advantage of slow pushing a wave before recalling?",
     "type": "mcq",
+    "skill_type": "analysis",
     "answer": {
-      "correct": "You build a larger wave to pressure the enemy tower while you’re away",
+      "correct": "You build a larger wave to pressure the enemy tower while you're away",
       "options": [
         "You deny XP from minions",
         "You reset the wave instantly",
-        "You build a larger wave to pressure the enemy tower while you’re away",
+        "You build a larger wave to pressure the enemy tower while you're away",
         "You automatically get vision control"
       ]
     },
@@ -305,6 +326,7 @@
   {
     "question": "True or False: Using abilities to farm under turret is considered a part of wave management strategy.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -314,6 +336,7 @@
   {
     "question": "Ordering: Arrange the steps for performing a trade under your turret safely.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": [
         "Wait for enemy to attack minions",

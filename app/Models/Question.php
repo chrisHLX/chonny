@@ -11,6 +11,7 @@ class Question extends Model
         'answer',
         'type',
         'difficulty',
+        'skill_type',
         'concept_id',
         'unit_id',
         'created_by',

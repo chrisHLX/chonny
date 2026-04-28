@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\User;
 use App\Models\Question;
+use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
 use Illuminate\Support\Collection;
 
@@ -72,6 +73,22 @@ class MasteryService
                     'mastery_percentage' => $mastery,
                 ]
             );
+
+            foreach ($concept->axes as $axis) {
+                $conceptsInAxis = $axis->concepts;
+                $count = $conceptsInAxis->count();
+
+                $totalMastery = UserConceptMastery::where('user_id', $user->id)
+                    ->whereIn('concept_id', $conceptsInAxis->pluck('id'))
+                    ->sum('mastery_percentage');
+
+                $axisMastery = $count > 0 ? round($totalMastery / $count, 2) : 0;
+
+                UserAxisMastery::updateOrCreate(
+                    ['user_id' => $user->id, 'axis_id' => $axis->id],
+                    ['mastery_percentage' => $axisMastery]
+                );
+            }
         }
     }
 

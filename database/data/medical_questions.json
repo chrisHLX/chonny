@@ -2,6 +2,7 @@
     {
         "question": "What is the basic unit of life in the human body?",
         "type": "mcq",
+        "skill_type": "recall",
         "answer": {
             "correct": "Cell",
             "options": ["Tissue", "Organ", "Cell", "System"]
@@ -12,6 +13,7 @@
     {
         "question": "Which organ is primarily responsible for pumping blood throughout the body?",
         "type": "mcq",
+        "skill_type": "recall",
         "answer": {
             "correct": "Heart",
             "options": ["Lung", "Liver", "Heart", "Kidney"]
@@ -22,6 +24,7 @@
     {
         "question": "What is the term for the body's response to injury or infection?",
         "type": "mcq",
+        "skill_type": "recall",
         "answer": {
             "correct": "Inflammation",
             "options": ["Inflammation", "Infection", "Immunity", "Homeostasis"]
@@ -32,6 +35,7 @@
     {
         "question": "Which system in the body is responsible for transporting oxygen and nutrients to cells?",
         "type": "mcq",
+        "skill_type": "recall",
         "answer": {
             "correct": "Circulatory System",
             "options": ["Nervous System", "Endocrine System", "Circulatory System", "Digestive System"]
@@ -42,6 +46,7 @@
     {
         "question": "What is the primary function of red blood cells?",
         "type": "mcq",
+        "skill_type": "recall",
         "answer": {
             "correct": "Transporting oxygen",
             "options": ["Fighting infections", "Transporting oxygen", "Clotting blood", "Regulating temperature"]
@@ -52,6 +57,7 @@
     {
         "question": "True or False: The heart is the only organ responsible for pumping blood in the human body.",
         "type": "true_false",
+        "skill_type": "analysis",
         "answer": { "correct": false },
         "difficulty": "easy",
         "concepts": ["Anatomy", "Physiology"]
@@ -59,6 +65,7 @@
     {
         "question": "True or False: White blood cells play a crucial role in the body's immune response.",
         "type": "true_false",
+        "skill_type": "recall",
         "answer": { "correct": true },
         "difficulty": "easy",
         "concepts": ["Physiology", "Pathophysiology"]
@@ -66,6 +73,7 @@
     {
         "question": "True or False: The respiratory system is responsible for the digestion of food.",
         "type": "true_false",
+        "skill_type": "recall",
         "answer": { "correct": false },
         "difficulty": "medium",
         "concepts": ["Anatomy", "Physiology"]
@@ -73,6 +81,7 @@
     {
         "question": "True or False: The liver is involved in detoxifying harmful substances in the body.",
         "type": "true_false",
+        "skill_type": "recall",
         "answer": { "correct": true },
         "difficulty": "medium",
         "concepts": ["Anatomy", "Physiology"]
@@ -80,6 +89,7 @@
     {
         "question": "True or False: The process of inflammation is a complex biological response to harmful stimuli and is essential for healing.",
         "type": "true_false",
+        "skill_type": "analysis",
         "answer": { "correct": true },
         "difficulty": "hard",
         "concepts": ["Pathophysiology", "Physiology"]
@@ -87,6 +97,7 @@
     {
         "question": "Match the organ to its primary function.",
         "type": "matching_pairs",
+        "skill_type": "recall",
         "answer": {
             "correct": {
                 "Heart": "Pumping blood",
@@ -105,6 +116,7 @@
     {
         "question": "Match the blood cell type to its main function.",
         "type": "matching_pairs",
+        "skill_type": "recall",
         "answer": {
             "correct": {
                 "Red blood cells": "Transport oxygen",
@@ -122,6 +134,7 @@
     {
         "question": "Match the body system to its primary role.",
         "type": "matching_pairs",
+        "skill_type": "recall",
         "answer": {
             "correct": {
                 "Circulatory system": "Transport oxygen and nutrients",
@@ -140,6 +153,7 @@
     {
         "question": "Match the medical term to its definition.",
         "type": "matching_pairs",
+        "skill_type": "recall",
         "answer": {
             "correct": {
                 "Inflammation": "Body's response to injury or infection",
@@ -158,6 +172,7 @@
     {
         "question": "Match the physiological process to its description.",
         "type": "matching_pairs",
+        "skill_type": "analysis",
         "answer": {
             "correct": {
                 "Osmosis": "Movement of water across a membrane",
@@ -176,6 +191,7 @@
     {
         "question": "Put the following steps of blood flow through the heart in the correct order.",
         "type": "ordering",
+        "skill_type": "recall",
         "answer": {
             "steps": ["Right atrium", "Right ventricle", "Lungs", "Left atrium", "Left ventricle", "Body"]
         },
@@ -185,6 +201,7 @@
     {
         "question": "Arrange the following parts of the digestive system in the order food passes through them.",
         "type": "ordering",
+        "skill_type": "recall",
         "answer": {
             "steps": ["Mouth", "Esophagus", "Stomach", "Small intestine", "Large intestine", "Rectum"]
         },
@@ -194,6 +211,7 @@
     {
         "question": "Put the stages of the inflammatory response in the correct order.",
         "type": "ordering",
+        "skill_type": "analysis",
         "answer": {
             "steps": ["Injury or infection", "Vasodilation", "Increased permeability", "White blood cell migration", "Tissue repair"]
         },
@@ -203,6 +221,7 @@
     {
         "question": "Order the following steps in the process of oxygen transport from the lungs to body cells.",
         "type": "ordering",
+        "skill_type": "analysis",
         "answer": {
             "steps": ["Oxygen enters alveoli", "Oxygen diffuses into blood", "Oxygen binds to hemoglobin", "Blood circulates to tissues", "Oxygen released to cells"]
         },
@@ -212,6 +231,7 @@
     {
         "question": "Arrange the sequence of events in the cardiac cycle.",
         "type": "ordering",
+        "skill_type": "analysis",
         "answer": {
             "steps": ["Atrial contraction", "Ventricular contraction", "Blood ejection", "Ventricular relaxation", "Heart filling"]
         },

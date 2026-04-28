@@ -93,20 +93,10 @@
                     <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">Content</p>
                 </div>
 
-                <a href="{{ route('admin.categories.index') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.categories.*') ? 'active !text-accent' : '' }}">
+                <a href="{{ route('admin.content') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.content') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Categories
-                </a>
-                <a href="{{ route('admin.subjects.index') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.subjects.*') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Subjects
-                </a>
-                <a href="{{ route('admin.concepts.index') }}"
-                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.concepts.*') ? 'active !text-accent' : '' }}">
-                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
-                    Concepts
+                    Content Manager
                 </a>
             </div>
         </div>

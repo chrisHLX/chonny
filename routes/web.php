@@ -20,7 +20,7 @@ use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Admin\ContentController;
+use App\Livewire\Admin\ContentManager;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
@@ -147,28 +147,7 @@ Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); 
 
 // ------- Admin Content Management -------
 Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group(function () {
-    // Categories
-    Route::get('/categories', [ContentController::class, 'categories'])->name('categories.index');
-    Route::post('/categories', [ContentController::class, 'storeCategory'])->name('categories.store');
-    Route::put('/categories/{category}', [ContentController::class, 'updateCategory'])->name('categories.update');
-    Route::delete('/categories/{category}', [ContentController::class, 'destroyCategory'])->name('categories.destroy');
-
-    // Subjects
-    Route::get('/subjects', [ContentController::class, 'subjects'])->name('subjects.index');
-    Route::post('/subjects', [ContentController::class, 'storeSubject'])->name('subjects.store');
-    Route::put('/subjects/{subject}', [ContentController::class, 'updateSubject'])->name('subjects.update');
-    Route::delete('/subjects/{subject}', [ContentController::class, 'destroySubject'])->name('subjects.destroy');
-
-    // Proficiencies (managed within subjects page)
-    Route::post('/proficiencies', [ContentController::class, 'storeProficiency'])->name('proficiencies.store');
-    Route::put('/proficiencies/{proficiency}', [ContentController::class, 'updateProficiency'])->name('proficiencies.update');
-    Route::delete('/proficiencies/{proficiency}', [ContentController::class, 'destroyProficiency'])->name('proficiencies.destroy');
-
-    // Concepts
-    Route::get('/concepts', [ContentController::class, 'concepts'])->name('concepts.index');
-    Route::post('/concepts', [ContentController::class, 'storeConcept'])->name('concepts.store');
-    Route::put('/concepts/{concept}', [ContentController::class, 'updateConcept'])->name('concepts.update');
-    Route::delete('/concepts/{concept}', [ContentController::class, 'destroyConcept'])->name('concepts.destroy');
+    Route::get('/content', ContentManager::class)->name('content');
 });
 
 

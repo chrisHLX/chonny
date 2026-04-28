@@ -97,6 +97,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Card::class);
     }
 
+    public function axisMastery()
+    {
+        return $this->hasMany(UserAxisMastery::class);
+    }
+
     protected static function booted()
     {
         static::created(function ($user) {

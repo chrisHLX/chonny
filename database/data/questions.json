@@ -2,6 +2,7 @@
   {
     "question": "What is the supply cost of a Drone?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "1",
       "options": ["0", "1", "2", "3"]
@@ -13,6 +14,7 @@
   {
     "question": "True or False: A Drone can be used to cancel a building and regain resources.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -23,6 +25,7 @@
   {
     "question": "Match the Zerg unit to its primary role.",
     "type": "matching_pairs",
+    "skill_type": "recall",
     "answer": {
       "correct": {
       "Zergling": "Basic attacker",
@@ -42,6 +45,7 @@
   {
     "question": "Put the following build steps in the correct order.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": [
         "Train Drone",
@@ -57,6 +61,7 @@
   {
     "question": "What is the optimal number of Drones mining a single mineral patch?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "3",
       "options": ["1", "2", "3", "4"]
@@ -68,6 +73,7 @@
   {
     "question": "True or False: Drones can be used to build structures.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -78,6 +84,7 @@
   {
     "question": "How many minerals does a Drone gather per trip?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "5",
       "options": ["2", "5", "10", "15"]
@@ -89,6 +96,7 @@
   {
     "question": "What is the build time for a Drone?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "12",
       "options": ["8", "10", "12", "14"]
@@ -100,6 +108,7 @@
   {
     "question": "What is the build time for a Terran Barracks?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "65",
       "options": ["54", "44", "65", "48"]
@@ -111,6 +120,7 @@
   {
     "question": "At what supply is a common Reaper Expand timing started in a Terran build?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "16",
       "options": ["14", "15", "16", "17"]
@@ -122,6 +132,7 @@
   {
     "question": "What upgrade is usually completed in time for a 7:00 Terran Stim timing push?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "Stimpack",
       "options": ["Combat Shield", "Stimpack", "Concussive Shells", "Armory"]
@@ -133,6 +144,7 @@
   {
     "question": "In a 2-1-1 Marine-Medivac timing, how many Medivacs are typically produced for the initial drop?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "2",
       "options": ["1", "2", "3", "4"]
@@ -144,6 +156,7 @@
   {
     "question": "What structure allows Zerg to produce Zerglings?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "Spawning Pool",
       "options": ["Spawning Pool", "Hatchery", "Evolution Chamber", "Baneling Nest"]
@@ -155,6 +168,7 @@
   {
     "question": "True or False: The Overlord provides supply for the Zerg army.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -165,6 +179,7 @@
   {
     "question": "Which Zerg structure is required before morphing a Lair?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "Hatchery",
       "options": ["Hatchery", "Evolution Chamber", "Baneling Nest", "Spire"]
@@ -176,6 +191,7 @@
   {
     "question": "Match the Zerg structure to its primary function.",
     "type": "matching_pairs",
+    "skill_type": "recall",
     "answer": {
       "correct": {
         "Spawning Pool": "Enables Zerglings",
@@ -195,6 +211,7 @@
   {
     "question": "Put these early-game steps in the correct order.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": ["Train Drone", "Build Overlord", "Build Spawning Pool", "Train Zerglings"]
     },
@@ -205,6 +222,7 @@
   {
     "question": "True or False: Creep spread helps you move your army faster across the map.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -215,6 +233,7 @@
   {
     "question": "Which unit can create Creep Tumors to expand vision and map control?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "Queen",
       "options": ["Queen", "Overlord", "Drone", "Infestor"]
@@ -226,6 +245,7 @@
   {
     "question": "Match each Zerg unit to its movement type.",
     "type": "matching_pairs",
+    "skill_type": "recall",
     "answer": {
       "correct": {
         "Zergling": "Ground",
@@ -245,6 +265,7 @@
   {
     "question": "True or False: Queens can inject Larva to increase unit production.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -255,6 +276,7 @@
   {
     "question": "Which resource is required to build an Extractor?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "Minerals",
       "options": ["Minerals", "Gas", "Larva", "Supply"]
@@ -266,6 +288,7 @@
   {
     "question": "Match the upgrade to its effect.",
     "type": "matching_pairs",
+    "skill_type": "recall",
     "answer": {
       "correct": {
         "Metabolic Boost": "Increases Zergling speed",
@@ -285,6 +308,7 @@
   {
     "question": "Put the following structures in order of tech progression.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": ["Spawning Pool", "Lair", "Infestation Pit", "Hive"]
     },
@@ -295,6 +319,7 @@
   {
     "question": "How many supply does a Zergling cost?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "0.5",
       "options": ["0.5", "1", "2", "0"]
@@ -306,6 +331,7 @@
   {
     "question": "True or False: Roaches regenerate health faster when burrowed with the proper upgrade.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -316,6 +342,7 @@
   {
     "question": "Which unit is produced from the Baneling Nest?",
     "type": "mcq",
+    "skill_type": "recall",
     "answer": {
       "correct": "Baneling",
       "options": ["Baneling", "Roach", "Hydralisk", "Mutalisk"]
@@ -327,6 +354,7 @@
   {
     "question": "Match each Queen ability to its function.",
     "type": "matching_pairs",
+    "skill_type": "recall",
     "answer": {
       "correct": {
         "Inject Larva": "Increases Hatchery production",
@@ -346,6 +374,7 @@
   {
     "question": "Put the following early gas actions in order.",
     "type": "ordering",
+    "skill_type": "application",
     "answer": {
       "steps": ["Build Extractor", "Assign Drones to gas", "Start Zergling Speed", "Build Baneling Nest"]
     },
@@ -356,6 +385,7 @@
   {
     "question": "True or False: Creep recedes when the Hatchery that created it is destroyed.",
     "type": "true_false",
+    "skill_type": "recall",
     "answer": {
       "correct": true
     },
@@ -366,6 +396,7 @@
   {
     "question": "Match each scouting method to what information it reveals.",
     "type": "matching_pairs",
+    "skill_type": "analysis",
     "answer": {
       "correct": {
         "Overlord positioning": "Opponent's base layout and tech",
@@ -382,7 +413,4 @@
     "units": ["Overlord", "Zergling", "Drone"],
     "concepts": ["Scouting"]
   }
-
-
-
 ]

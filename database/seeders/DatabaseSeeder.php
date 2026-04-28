@@ -50,6 +50,12 @@ class DatabaseSeeder extends Seeder
             ProficiencySeeder::class,
         ]);
 
+        // ========== GROUP 1B: AXES ==========
+        // Axes belong to categories, so must run after CategorySeeder
+        $this->call([
+            GameAxesSeeder::class,
+        ]);
+
         // ========== GROUP 2: REFERENCE DATA ==========
         // Tags and concepts depend on subjects existing
         $this->call([
