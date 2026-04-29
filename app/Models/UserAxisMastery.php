@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserAxisMastery extends Model
 {
+    protected $table = 'user_axis_mastery';
     protected $fillable = ['user_id', 'axis_id', 'mastery_percentage'];
 
     public function user()

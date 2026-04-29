@@ -159,7 +159,13 @@ class ModuleController extends Controller
 
         $conceptsList = Concept::where('subject_id', $subjectID)->get();
 
-        return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList'));
+        $pipeline = Pipeline::where('module_id', $module->id)
+            ->where('type', 'question_generation')
+            ->where('status', 'running')
+            ->latest('id')
+            ->first();
+
+        return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList', 'pipeline'));
     }
 
     public function update(Request $request, Module $module)

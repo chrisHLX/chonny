@@ -46,6 +46,11 @@
             {{-- Generate questions --}}
             <x-modules.generate-questions-form :module="$module" :modulePages="$modulePages" />
 
+            {{-- Generation progress --}}
+            @if($pipeline)
+                <livewire:generation-progress :pipeline-id="$pipeline->id" />
+            @endif
+
             {{-- Landing page --}}
             <x-modules.create-landing-page :modulePages="$modulePages" :module="$module" :allQuestions="$allQuestions" />
 

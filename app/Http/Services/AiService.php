@@ -895,8 +895,8 @@ EOT;
 
 
     $axisBlock = $axisString
-        ? "SKILL AXES:\n    {$axisString}\n    Each concept belongs to one or more axes above. Aim to spread questions across axes where the content allows.\n"
-        : '';
+    ? "SKILL MEASUREMENT DIMENSIONS (do NOT use these as concept tags — they are measurement dimensions only, not content labels):\n    {$axisString}\n    Aim to spread questions across these dimensions where the content allows, but always tag questions using CONCEPTS from the list below, never axis names.\n"
+    : '';
 
     $prompt = <<<PROMPT
     Generate {$questionAmount} {$type} questions for our learning app based on the following content.
@@ -917,7 +917,7 @@ EOT;
     - {$requirements}
     - IMPORTANT Return JSON ONLY in this format Explicitly:
     {$exampleJson}
-    - Concepts must be chosen from this list (you can tag one or more): {$usableConcepts}
+    - IMPORTANT: Tag each question using ONLY concepts from this list. Do not invent new concept names. Do not use axis names as concepts. Only use: {$usableConcepts}
     - Each question must include a skill_type field. Assign the most appropriate:
       recall = tests memory and recognition of facts
       analysis = tests interpretation of a situation or information
