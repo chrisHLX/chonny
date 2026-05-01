@@ -11,11 +11,61 @@ class ProficiencySeeder extends Seeder
     {
         $proficiencies = [
             // StarCraft 2 (subject_id: 1)
-            ['subject_id' => 1, 'index' => 0, 'name' => 'Beginner', 'description' => 'New to the game, knows basic units and mechanics.'],
-            ['subject_id' => 1, 'index' => 1, 'name' => 'Casual', 'description' => 'Understands the game but hasn\'t mastered build orders or matchups.'],
-            ['subject_id' => 1, 'index' => 2, 'name' => 'Intermediate', 'description' => 'Can execute standard strategies, knows key timings and counters.'],
-            ['subject_id' => 1, 'index' => 3, 'name' => 'Advanced', 'description' => 'Comfortable with multiple strategies, scouting, and adapting builds.'],
-            ['subject_id' => 1, 'index' => 4, 'name' => 'Expert', 'description' => 'High-level competitive play, understands meta shifts, macro/micro optimization.'],
+            [
+                'subject_id' => 1, 'index' => 0, 'name' => 'Beginner',
+                'description' => 'New to the game, learning basic units, controls, and core mechanics.',
+                'outcomes' => json_encode([
+                    'Understands the basic goal of the game (economy, army, win condition)',
+                    'Can consistently produce workers and basic combat units',
+                    'Recognises core buildings (e.g. Barracks, Gateway, Hatchery)',
+                    'Uses basic controls (selecting units, issuing commands, camera movement)',
+                    'Avoids long periods of inactivity (no production for extended time)',
+                ]),
+            ],
+            [
+                'subject_id' => 1, 'index' => 1, 'name' => 'Casual',
+                'description' => 'Understands the game but lacks consistency and structured play.',
+                'outcomes' => json_encode([
+                    'Maintains worker production with minimal gaps in the early game',
+                    'Avoids major supply blocks during early stages',
+                    'Follows a simple build order up to an early goal (e.g. first expansion or unit timing)',
+                    'Produces units consistently instead of banking large amounts of resources',
+                    'Recognises basic threats (early rushes, obvious attacks)',
+                ]),
+            ],
+            [
+                'subject_id' => 1, 'index' => 2, 'name' => 'Intermediate',
+                'description' => 'Can execute standard strategies and understands key game timings.',
+                'outcomes' => json_encode([
+                    'Executes a standard build order to its first timing without major errors',
+                    'Maintains continuous worker production while building an army',
+                    'Spends resources efficiently with minimal floating',
+                    'Uses scouting to identify opponent\'s early strategy',
+                    'Responds correctly to common early-game aggression (e.g. rushes, early pushes)',
+                ]),
+            ],
+            [
+                'subject_id' => 1, 'index' => 3, 'name' => 'Advanced',
+                'description' => 'Comfortable adapting strategy, multitasking, and controlling the map.',
+                'outcomes' => json_encode([
+                    'Adjusts build order based on scouting information',
+                    'Maintains production while controlling units in multiple locations',
+                    'Balances economy and army production based on game state',
+                    'Controls map vision and denies opponent expansions',
+                    'Executes coordinated attacks or defenses with proper unit positioning',
+                ]),
+            ],
+            [
+                'subject_id' => 1, 'index' => 4, 'name' => 'Expert',
+                'description' => 'High-level competitive understanding with refined execution and decision-making.',
+                'outcomes' => json_encode([
+                    'Adapts strategy dynamically throughout the game based on opponent behavior',
+                    'Maintains near-continuous production across all structures under pressure',
+                    'Optimises economy, upgrades, and army composition simultaneously',
+                    'Applies consistent pressure while defending and expanding efficiently',
+                    'Identifies and exploits opponent weaknesses in real time',
+                ]),
+            ],
 
             // League of Legends (subject_id: 2)
             ['subject_id' => 2, 'index' => 0, 'name' => 'Beginner', 'description' => 'Knows basic champions and map layout.'],

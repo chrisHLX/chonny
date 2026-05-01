@@ -386,6 +386,120 @@ class ModuleController extends Controller
     
     }
 
+    public function export(Module $module)
+    {
+        $module->load([
+            'subject.category.axes',
+            'proficiencies',
+            'modulePages' => fn ($q) => $q->orderBy('page_number'),
+            'questions.concepts.axes',
+        ]);
+
+        $proficiency = $module->proficiencies->first();
+
+        $questions = $module->questions->map(function (Question $q) {
+            $concepts = $q->concepts->map(fn ($c) => [
+                'id'   => $c->id,
+                'name' => $c->name,
+                'axes' => $c->axes->map(fn ($a) => ['id' => $a->id, 'name' => $a->name])->values()->all(),
+            ])->values()->all();
+
+            return [
+                'id'               => $q->id,
+                'question'         => $q->question,
+                'type'             => $q->type,
+                'difficulty'       => $q->difficulty,
+                'skill_type'       => $q->skill_type?->value ?? $q->skill_type,
+                'concepts'         => $concepts,
+                'concepts_missing' => empty($concepts),
+            ];
+        });
+
+        // Diagnostics
+        $totalQuestions          = $questions->count();
+        $missingConcepts         = $questions->filter(fn ($q) => $q['concepts_missing'])->count();
+        $conceptsMissingAxisMap  = $module->questions->flatMap(fn ($q) => $q->concepts)
+            ->unique('id')
+            ->filter(fn ($c) => $c->axes->isEmpty())
+            ->count();
+
+        $skillDist = $questions->groupBy('skill_type')
+            ->map(fn ($g) => $g->count())
+            ->all();
+
+        $diffDist = $questions->groupBy('difficulty')
+            ->map(fn ($g) => $g->count())
+            ->all();
+
+        $conceptCoverage = $module->questions->flatMap(fn ($q) => $q->concepts)
+            ->groupBy('id')
+            ->map(function ($group) {
+                $concept = $group->first();
+                return [
+                    'concept'        => $concept->name,
+                    'question_count' => $group->count(),
+                    'axes'           => $concept->axes->pluck('name')->values()->all(),
+                ];
+            })
+            ->values()
+            ->sortByDesc('question_count')
+            ->values()
+            ->all();
+
+        $payload = [
+            'module' => [
+                'id'        => $module->id,
+                'name'      => $module->name,
+                'status'    => $module->status,
+                'published' => (bool) $module->published,
+                'subject'   => $module->subject ? [
+                    'id'       => $module->subject->id,
+                    'name'     => $module->subject->name,
+                    'category' => $module->subject->category ? [
+                        'id'   => $module->subject->category->id,
+                        'name' => $module->subject->category->name,
+                        'axes' => $module->subject->category->axes->map(fn ($a) => [
+                            'id'          => $a->id,
+                            'name'        => $a->name,
+                            'description' => $a->description ?? null,
+                        ])->values()->all(),
+                    ] : null,
+                ] : null,
+                'proficiency'   => $proficiency ? [
+                    'id'          => $proficiency->id,
+                    'name'        => $proficiency->name,
+                    'index'       => $proficiency->index ?? null,
+                    'description' => $proficiency->description ?? null,
+                    'outcomes'    => $proficiency->outcomes ?: null,
+                ] : null,
+                'content_pages' => $module->modulePages->map(fn ($p) => [
+                    'page_number' => $p->page_number,
+                    'title'       => $p->title,
+                    'content'     => $p->content ?: null,
+                ])->values()->all(),
+                'questions'   => $questions->values()->all(),
+                'diagnostics' => [
+                    'total_questions'               => $totalQuestions,
+                    'questions_missing_concepts'    => $missingConcepts,
+                    'concepts_missing_axis_mapping' => $conceptsMissingAxisMap,
+                    'proficiency_has_outcomes'      => $proficiency && ! empty($proficiency->outcomes),
+                    'has_content_pages'             => $module->modulePages->isNotEmpty(),
+                    'skill_type_distribution'       => $skillDist,
+                    'difficulty_distribution'       => $diffDist,
+                    'concept_coverage'              => $conceptCoverage,
+                ],
+            ],
+        ];
+
+        $filename = "module-{$module->id}-export.json";
+        $json     = json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+        return response($json, 200, [
+            'Content-Type'        => 'application/json',
+            'Content-Disposition' => "attachment; filename=\"{$filename}\"",
+        ]);
+    }
+
     // We can avoid the generate questions job for editing and creating modules by just calling the ai service function
     public function generateQuestions(Request $request, Module $module)
     {

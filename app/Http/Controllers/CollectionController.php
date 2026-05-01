@@ -23,23 +23,21 @@ class CollectionController extends Controller
 
     public function index()
     {
-        
         $user = auth()->user();
 
         $pipeline = $user->pipelines()
             ->latest()
             ->with('steps')
             ->firstWhere('type', 'quiz_completion');
-        
-        if (!$pipeline) {
-            return view('dashboard.pending');
+
+        if (! $pipeline) {
+            return view('collection.empty');
         }
 
-        $generateStep = $pipeline->steps
-            ->firstWhere('name', 'Generate Card');
-        
-        if (!$generateStep || $generateStep->status !== 'completed') {
-            return view('dashboard.pending');
+        $generateStep = $pipeline->steps->firstWhere('name', 'Generate Card');
+
+        if (! $generateStep || $generateStep->status !== 'completed') {
+            return view('collection.pending', ['pipelineId' => $pipeline->id]);
         }
 
         return view('collection.index');

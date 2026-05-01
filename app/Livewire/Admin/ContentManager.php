@@ -54,6 +54,12 @@ class ContentManager extends Component
     public string $editProfDescription = '';
     public int    $editProfIndex       = 0;
 
+    // ── Outcomes ─────────────────────────────────────────────────────────────
+    public ?int   $openOutcomeProfId      = null;
+    public string $newOutcomeText         = '';
+    public ?int   $editingOutcomeIndex    = null;
+    public string $editOutcomeText        = '';
+
     // ── Concepts ────────────────────────────────────────────────────────────
     public string $newConceptName        = '';
     public string $newConceptDescription = '';
@@ -164,9 +170,11 @@ class ContentManager extends Component
         $this->cancelEditCategory();
         $this->cancelEditSubject();
         $this->cancelEditProficiency();
+        $this->cancelEditOutcome();
         $this->cancelEditConcept();
         $this->cancelAxisMapping();
-        $this->openProfSubjectId = null;
+        $this->openProfSubjectId  = null;
+        $this->openOutcomeProfId  = null;
     }
 
     // ── Axes ─────────────────────────────────────────────────────────────────
@@ -438,6 +446,77 @@ class ContentManager extends Component
     {
         Proficiency::findOrFail($id)->delete();
         $this->flash('Proficiency deleted.');
+    }
+
+    // ── Outcomes ─────────────────────────────────────────────────────────────
+
+    public function toggleOutcomes(int $profId): void
+    {
+        if ($this->openOutcomeProfId === $profId) {
+            $this->openOutcomeProfId = null;
+            $this->cancelEditOutcome();
+            return;
+        }
+
+        $this->openOutcomeProfId   = $profId;
+        $this->newOutcomeText      = '';
+        $this->cancelEditOutcome();
+    }
+
+    public function addOutcome(int $profId): void
+    {
+        $this->validate(['newOutcomeText' => 'required|string|max:500']);
+
+        $prof     = Proficiency::findOrFail($profId);
+        $outcomes = $prof->outcomes ?? [];
+        $outcomes[] = trim($this->newOutcomeText);
+
+        $prof->update(['outcomes' => $outcomes]);
+
+        $this->newOutcomeText = '';
+        $this->flash('Outcome added.');
+    }
+
+    public function startEditOutcome(int $profId, int $index): void
+    {
+        $prof = Proficiency::findOrFail($profId);
+        $outcomes = $prof->outcomes ?? [];
+
+        $this->openOutcomeProfId   = $profId;
+        $this->editingOutcomeIndex = $index;
+        $this->editOutcomeText     = $outcomes[$index] ?? '';
+        $this->flashMessage        = null;
+    }
+
+    public function updateOutcome(int $profId): void
+    {
+        $this->validate(['editOutcomeText' => 'required|string|max:500']);
+
+        $prof     = Proficiency::findOrFail($profId);
+        $outcomes = $prof->outcomes ?? [];
+        $outcomes[$this->editingOutcomeIndex] = trim($this->editOutcomeText);
+
+        $prof->update(['outcomes' => array_values($outcomes)]);
+
+        $this->cancelEditOutcome();
+        $this->flash('Outcome updated.');
+    }
+
+    public function deleteOutcome(int $profId, int $index): void
+    {
+        $prof     = Proficiency::findOrFail($profId);
+        $outcomes = $prof->outcomes ?? [];
+
+        array_splice($outcomes, $index, 1);
+        $prof->update(['outcomes' => array_values($outcomes)]);
+
+        $this->flash('Outcome deleted.');
+    }
+
+    public function cancelEditOutcome(): void
+    {
+        $this->editingOutcomeIndex = null;
+        $this->editOutcomeText     = '';
     }
 
     // ── Concepts ─────────────────────────────────────────────────────────────

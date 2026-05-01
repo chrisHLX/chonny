@@ -94,6 +94,11 @@
 
                             {{-- Actions --}}
                             <div class="flex items-center gap-2 shrink-0">
+                                <a href="{{ route('modules.show', $module) }}"
+                                   class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-ink-subtle hover:text-ink bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors">
+                                    Details
+                                </a>
+
                                 @if ($module->status === 'preparing')
                                     <div wire:poll.3s class="flex items-center gap-1.5 text-[12px] text-ink-subtle">
                                         <svg class="animate-spin w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24">

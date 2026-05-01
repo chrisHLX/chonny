@@ -25,6 +25,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
 use App\Livewire\Modules\Index;
+use App\Livewire\Modules\Show;
 use App\Livewire\QuizPage;
 use App\Livewire\ModuleSelector;
 
@@ -103,6 +104,7 @@ Route::post('/modules', [ModuleController::class, 'store'])->name('modules.store
 Route::delete('/modules/destroy/{module}', [ModuleController::class, 'destroy'])->name('modules.destroy')->middleware('auth');
 Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit')->middleware('auth');
 Route::put('/modules/{module}', [ModuleController::class, 'update'])->name('modules.update')->middleware('auth');
+Route::get('/modules/{module}/export', [ModuleController::class, 'export'])->name('modules.export')->middleware('auth');
 
 // Module Suggestions
 Route::get('/modules/next-module/{moduleId}', [ModuleController::class, 'nextModule'])->name('modules.next-module')->middleware('auth');
@@ -116,8 +118,11 @@ Route::delete('/module-page/{modulePage}', [ModuleController::class, 'destroyPag
     ->middleware('auth');
 
 
+// Module detail page — public, no auth required
+Route::get('/modules/{module}', Show::class)->name('modules.show');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/modules/{module}', [ModuleQuizController::class, 'show'])->name('modules.quiz');
+    Route::get('/modules/{module}/quiz', [ModuleQuizController::class, 'show'])->name('modules.quiz');
     Route::post('/modules/{module}/start', [ModuleQuizController::class, 'start'])->name('modules.start');
 });
 

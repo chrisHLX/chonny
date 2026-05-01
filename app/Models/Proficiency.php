@@ -8,7 +8,9 @@ class Proficiency extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['subject_id', 'name', 'description'];
+    protected $fillable = ['subject_id', 'name', 'description', 'outcomes'];
+
+    protected $casts = ['outcomes' => 'array'];
 
     public function subject()
     {

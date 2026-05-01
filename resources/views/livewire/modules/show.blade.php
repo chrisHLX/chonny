@@ -1,0 +1,235 @@
+<div class="min-h-full py-8 px-6 lg:px-10">
+    <div class="max-w-5xl mx-auto space-y-6">
+
+        {{-- Breadcrumb --}}
+        <div class="flex items-center gap-1.5 text-[12px] text-ink-subtle">
+            <a href="{{ route('modules.index') }}" class="hover:text-ink transition-colors">Modules</a>
+            <span class="opacity-40">/</span>
+            <span class="text-ink truncate">{{ $module->name }}</span>
+        </div>
+
+        {{-- Header --}}
+        <div class="linear-card p-6">
+            <div class="flex items-start justify-between gap-6">
+                <div class="flex-1 min-w-0">
+                    <p class="text-[11px] text-ink-subtle mb-2 tracking-wide">
+                        {{ $module->subject->category->name }}
+                        <span class="opacity-40 mx-1">/</span>
+                        {{ $module->subject->name }}
+                    </p>
+
+                    <h1 class="text-[22px] font-semibold text-ink mb-3 leading-snug">{{ $module->name }}</h1>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        @if ($module->proficiencies->first())
+                            <span class="badge-gray">{{ $module->proficiencies->first()->name }}</span>
+                        @endif
+
+                        @foreach ($module->tags as $tag)
+                            <span class="badge-gray">{{ $tag->name }}</span>
+                        @endforeach
+                    </div>
+
+                    @if ($module->description)
+                        <p class="text-[13px] text-ink-muted mt-3 leading-relaxed">{{ $module->description }}</p>
+                    @endif
+                </div>
+
+                {{-- CTA block --}}
+                <div class="shrink-0 flex flex-col items-end gap-2">
+                    @auth
+                        @if ($enrolled && $userModule)
+                            @php $status = $userModule['status']; @endphp
+
+                            @if ($status === 'completed')
+                                <span class="badge-green">Completed</span>
+                            @elseif ($status === 'in_progress')
+                                <span class="badge-amber">In Progress</span>
+                            @else
+                                <span class="badge-gray">Not Started</span>
+                            @endif
+
+                            @if ($userModule['score'])
+                                <p class="text-[11px] text-ink-subtle">Score: {{ $userModule['score'] }}%</p>
+                            @endif
+
+                            <a href="{{ route('modules.quiz', $module) }}"
+                               class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                                {{ $status === 'completed' ? 'Retake Quiz' : ($status === 'in_progress' ? 'Continue Quiz' : 'Start Quiz') }}
+                            </a>
+                        @else
+                            <button wire:click="enroll"
+                                    class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                                <span wire:loading.remove wire:target="enroll">Enroll</span>
+                                <span wire:loading wire:target="enroll">Enrolling…</span>
+                            </button>
+                        @endif
+                    @else
+                        <a href="{{ route('register') }}"
+                           class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                            Sign up to enroll
+                        </a>
+                        <a href="{{ route('login') }}"
+                           class="text-[12px] text-ink-subtle hover:text-ink transition-colors">
+                            Already have an account?
+                        </a>
+                    @endauth
+                </div>
+            </div>
+        </div>
+
+        {{-- Stats row --}}
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="linear-card p-4 text-center">
+                <p class="text-[24px] font-semibold text-ink">{{ $module->questions->count() }}</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5 uppercase tracking-wide">Questions</p>
+            </div>
+            @foreach (['recall' => 'Recall', 'analysis' => 'Analysis', 'application' => 'Application'] as $type => $label)
+                <div class="linear-card p-4 text-center">
+                    <p class="text-[24px] font-semibold text-ink">{{ $this->skillTypeCounts[$type] }}</p>
+                    <p class="text-[11px] text-ink-subtle mt-0.5 uppercase tracking-wide">{{ $label }}</p>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Mastery section: radar + concept bars --}}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {{-- Radar chart --}}
+            <div class="linear-card p-6">
+                <h2 class="page-section-title mb-5">Domain Mastery</h2>
+
+                @php $svg = $this->svgData; @endphp
+
+                @if (!$svg['hasChart'])
+                    <div class="flex items-center justify-center h-52 text-[13px] text-ink-subtle">
+                        No axes configured for this category.
+                    </div>
+                @else
+                    <div class="relative">
+                        <svg viewBox="-25 -15 450 430" class="w-full mx-auto block">
+
+                            {{-- Grid rings --}}
+                            @foreach ($svg['gridRings'] as $ring)
+                                <polygon points="{{ $ring }}"
+                                         fill="none"
+                                         stroke="rgba(255,255,255,0.06)"
+                                         stroke-width="1"/>
+                            @endforeach
+
+                            {{-- Spoke lines from centre to each outer vertex --}}
+                            @foreach ($svg['spokeEnds'] as $pt)
+                                <line x1="{{ $svg['cx'] }}" y1="{{ $svg['cy'] }}"
+                                      x2="{{ $pt[0] }}" y2="{{ $pt[1] }}"
+                                      stroke="rgba(255,255,255,0.06)"
+                                      stroke-width="1"/>
+                            @endforeach
+
+                            {{-- User mastery filled polygon --}}
+                            <polygon points="{{ $svg['userPointsStr'] }}"
+                                     fill="rgba(129,140,248,0.18)"
+                                     stroke="rgba(129,140,248,0.65)"
+                                     stroke-width="1.5"
+                                     stroke-linejoin="round"/>
+
+                            {{-- Vertex dot markers --}}
+                            @foreach ($svg['dots'] as $dot)
+                                <circle cx="{{ $dot['x'] }}" cy="{{ $dot['y'] }}"
+                                        r="3"
+                                        fill="#818cf8"
+                                        stroke="rgba(255,255,255,0.35)"
+                                        stroke-width="1"/>
+                            @endforeach
+
+                            {{-- Ring percentage labels --}}
+                            @foreach ($svg['ringLabels'] as $rl)
+                                <text x="{{ $rl['x'] }}" y="{{ $rl['y'] }}"
+                                      font-size="10"
+                                      fill="rgba(255,255,255,0.22)"
+                                      text-anchor="start">{{ $rl['text'] }}</text>
+                            @endforeach
+
+                            {{-- Axis name labels --}}
+                            @foreach ($svg['labels'] as $label)
+                                <text x="{{ $label['x'] }}" y="{{ $label['y'] }}"
+                                      text-anchor="{{ $label['anchor'] }}"
+                                      font-size="13"
+                                      fill="#9CA3AF"
+                                      dominant-baseline="middle">{{ $label['name'] }}</text>
+                            @endforeach
+                        </svg>
+
+                        {{-- Overlay for guests and unenrolled users --}}
+                        @if (!$enrolled)
+                            <div class="absolute inset-0 flex items-center justify-center rounded-lg backdrop-blur-[2px] bg-surface-1/50">
+                                <p class="text-[12px] text-ink-muted px-4 text-center">
+                                    @auth Enroll to track your mastery @else Sign up to track your mastery @endauth
+                                </p>
+                            </div>
+                        @endif
+                    </div>
+
+                    {{-- Axis percentage legend below the chart --}}
+                    @if ($enrolled && !empty($this->radarData))
+                        <div class="mt-5 space-y-1.5 border-t border-line pt-4">
+                            @foreach ($this->radarData as $axis)
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[11px] text-ink-subtle">{{ $axis['name'] }}</span>
+                                    <span class="text-[11px] font-medium text-ink tabular-nums">{{ round($axis['mastery']) }}%</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                @endif
+            </div>
+
+            {{-- Concept mastery bars --}}
+            <div class="linear-card p-6">
+                <h2 class="page-section-title mb-5">Concept Mastery</h2>
+
+                @if (empty($this->conceptMastery))
+                    <div class="flex items-center justify-center h-52 text-[13px] text-ink-subtle">
+                        No concepts tagged to this module's questions.
+                    </div>
+                @else
+                    <div class="relative space-y-3.5">
+                        @foreach ($this->conceptMastery as $cm)
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <span class="text-[12px] text-ink-muted truncate max-w-[72%]">{{ $cm['name'] }}</span>
+                                    <span class="text-[11px] text-ink-subtle shrink-0 tabular-nums">{{ round($cm['mastery']) }}%</span>
+                                </div>
+                                <div class="w-full bg-surface-3 rounded-full h-1 overflow-hidden">
+                                    <div class="h-1 rounded-full transition-all duration-700"
+                                         style="width: {{ max(2, $cm['mastery']) }}%; background-color: rgba(129,140,248,{{ number_format(0.4 + ($cm['mastery'] / 100) * 0.55, 2) }})">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @if (!$enrolled)
+                            <div class="absolute inset-0 flex items-center justify-center rounded-lg backdrop-blur-[2px] bg-surface-1/50">
+                                <p class="text-[12px] text-ink-muted px-4 text-center">
+                                    @auth Enroll to see your progress @else Sign up to track your progress @endauth
+                                </p>
+                            </div>
+                        @endif
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        {{-- Module content (first page, markdown) --}}
+        @if ($this->firstPageHtml)
+            <div class="linear-card p-6">
+                <h2 class="page-section-title mb-4">Content</h2>
+                <div class="prose prose-sm prose-invert max-w-none
+                            prose-p:text-ink-muted prose-headings:text-ink prose-strong:text-ink
+                            prose-li:text-ink-muted prose-code:text-ink-muted">
+                    {!! $this->firstPageHtml !!}
+                </div>
+            </div>
+        @endif
+
+    </div>
+</div>

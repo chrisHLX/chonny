@@ -395,27 +395,100 @@
                                                         </div>
                                                     @else
                                                         {{-- View proficiency --}}
-                                                        <div class="flex items-center justify-between gap-3 px-3 py-2 rounded-md bg-surface-3 group/prof">
-                                                            <div class="flex items-center gap-3 min-w-0">
-                                                                <span class="text-[10px] font-mono text-ink-subtle bg-surface-0 px-1.5 py-0.5 rounded shrink-0">
-                                                                    {{ $prof->index }}
-                                                                </span>
-                                                                <span class="text-[13px] text-ink">{{ $prof->name }}</span>
-                                                                @if($prof->description)
-                                                                    <span class="text-[12px] text-ink-subtle truncate">{{ $prof->description }}</span>
-                                                                @endif
+                                                        <div class="rounded-md bg-surface-3 overflow-hidden group/prof">
+                                                            <div class="flex items-center justify-between gap-3 px-3 py-2">
+                                                                <div class="flex items-center gap-3 min-w-0">
+                                                                    <span class="text-[10px] font-mono text-ink-subtle bg-surface-0 px-1.5 py-0.5 rounded shrink-0">
+                                                                        {{ $prof->index }}
+                                                                    </span>
+                                                                    <span class="text-[13px] text-ink">{{ $prof->name }}</span>
+                                                                    @if($prof->description)
+                                                                        <span class="text-[12px] text-ink-subtle truncate">{{ $prof->description }}</span>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="flex items-center gap-2 shrink-0">
+                                                                    @php $outcomeCount = count($prof->outcomes ?? []); @endphp
+                                                                    <button wire:click="toggleOutcomes({{ $prof->id }})"
+                                                                            class="inline-flex items-center gap-1 px-2 py-1 text-[11px] rounded transition-colors
+                                                                                   {{ $openOutcomeProfId === $prof->id
+                                                                                        ? 'bg-surface-0 text-accent border border-accent/30'
+                                                                                        : 'text-ink-muted hover:text-ink opacity-0 group-hover/prof:opacity-100' }}">
+                                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                                                        Outcomes{{ $outcomeCount ? " ({$outcomeCount})" : '' }}
+                                                                    </button>
+                                                                    <button wire:click="startEditProficiency({{ $prof->id }})"
+                                                                            class="text-[11px] text-ink-muted hover:text-ink transition-colors opacity-0 group-hover/prof:opacity-100">
+                                                                        Edit
+                                                                    </button>
+                                                                    <button wire:click="deleteProficiency({{ $prof->id }})"
+                                                                            onclick="return confirm('Delete proficiency \'{{ addslashes($prof->name) }}\'?')"
+                                                                            class="text-[11px] text-red-400 hover:text-red-300 transition-colors opacity-0 group-hover/prof:opacity-100">
+                                                                        Delete
+                                                                    </button>
+                                                                </div>
                                                             </div>
-                                                            <div class="flex items-center gap-2 shrink-0">
-                                                                <button wire:click="startEditProficiency({{ $prof->id }})"
-                                                                        class="text-[11px] text-ink-muted hover:text-ink transition-colors opacity-0 group-hover/prof:opacity-100">
-                                                                    Edit
-                                                                </button>
-                                                                <button wire:click="deleteProficiency({{ $prof->id }})"
-                                                                        onclick="return confirm('Delete proficiency \'{{ addslashes($prof->name) }}\'?')"
-                                                                        class="text-[11px] text-red-400 hover:text-red-300 transition-colors opacity-0 group-hover/prof:opacity-100">
-                                                                    Delete
-                                                                </button>
-                                                            </div>
+
+                                                            {{-- Outcomes sub-panel --}}
+                                                            @if($openOutcomeProfId === $prof->id)
+                                                                <div class="border-t border-line/60 px-3 py-3 space-y-2">
+                                                                    <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-wider">Learning Outcomes</p>
+
+                                                                    @php $outcomes = $prof->outcomes ?? []; @endphp
+
+                                                                    @if(empty($outcomes))
+                                                                        <p class="text-[11px] text-ink-subtle italic">No outcomes yet.</p>
+                                                                    @else
+                                                                        <div class="space-y-1">
+                                                                            @foreach($outcomes as $i => $outcome)
+                                                                                @if($editingOutcomeIndex === $i)
+                                                                                    <div class="flex items-center gap-2">
+                                                                                        <x-text-input wire:model="editOutcomeText" type="text"
+                                                                                                      class="flex-1 text-[12px] py-1" />
+                                                                                        <button wire:click="updateOutcome({{ $prof->id }})"
+                                                                                                class="px-2 py-1 text-[11px] text-white bg-accent rounded hover:bg-accent-hover transition-colors">
+                                                                                            Save
+                                                                                        </button>
+                                                                                        <button wire:click="cancelEditOutcome"
+                                                                                                class="px-2 py-1 text-[11px] text-ink-muted hover:text-ink transition-colors">
+                                                                                            Cancel
+                                                                                        </button>
+                                                                                    </div>
+                                                                                @else
+                                                                                    <div class="flex items-start gap-2 group/outcome">
+                                                                                        <span class="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-accent/15 border border-accent/25 flex items-center justify-center">
+                                                                                            <svg class="w-2.5 h-2.5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                                                                        </span>
+                                                                                        <span class="flex-1 text-[12px] text-ink leading-snug">{{ $outcome }}</span>
+                                                                                        <div class="flex gap-1.5 shrink-0 opacity-0 group-hover/outcome:opacity-100 transition-opacity">
+                                                                                            <button wire:click="startEditOutcome({{ $prof->id }}, {{ $i }})"
+                                                                                                    class="text-[11px] text-ink-muted hover:text-ink transition-colors">
+                                                                                                Edit
+                                                                                            </button>
+                                                                                            <button wire:click="deleteOutcome({{ $prof->id }}, {{ $i }})"
+                                                                                                    onclick="return confirm('Delete this outcome?')"
+                                                                                                    class="text-[11px] text-red-400 hover:text-red-300 transition-colors">
+                                                                                                Delete
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </div>
+                                                                    @endif
+
+                                                                    {{-- Add outcome --}}
+                                                                    <div class="flex items-center gap-2 pt-1 border-t border-line/60">
+                                                                        <x-text-input wire:model="newOutcomeText" type="text"
+                                                                                      class="flex-1 text-[12px] py-1"
+                                                                                      placeholder="e.g. Identify the three core unit roles" />
+                                                                        <button wire:click="addOutcome({{ $prof->id }})"
+                                                                                class="px-2.5 py-1 text-[11px] font-medium text-white bg-accent rounded hover:bg-accent-hover transition-colors shrink-0">
+                                                                            Add
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+
                                                         </div>
                                                     @endif
                                                 @endforeach

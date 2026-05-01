@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->integer('index')->default(0); // e.g., 0 for Beginner, 1 for Intermediate, etc.
             $table->string('name'); // e.g., Beginner, Intermediate, College, etc.
             $table->text('description')->nullable();
+            $table->json('outcomes')->nullable();
             $table->timestamps();
         });
     }

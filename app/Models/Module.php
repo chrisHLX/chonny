@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Module extends Model
 {
-    //
-
     protected $fillable = [
         'subject_id',
         'name',
+        'slug',
         'content_source',
         'status',
         'description',
@@ -18,9 +18,33 @@ class Module extends Model
         'difficulty',
         'published',
         'created_by',
-        'parent_module', 
-        'version',       
+        'parent_module',
+        'version',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (Module $module) {
+            $base = Str::slug($module->name);
+            $slug = $base;
+            $i = 2;
+            while (static::where('slug', $slug)->exists()) {
+                $slug = "{$base}-{$i}";
+                $i++;
+            }
+            $module->slug = $slug;
+        });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function resolveRouteBinding($value, $field = null): ?static
+    {
+        return $this->where('slug', $value)->firstOrFail();
+    }
 
     public function subject()
     {
