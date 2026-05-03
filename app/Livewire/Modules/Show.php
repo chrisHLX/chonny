@@ -4,6 +4,7 @@ namespace App\Livewire\Modules;
 
 use Livewire\Component;
 use App\Models\Module;
+use App\Models\Pipeline;
 use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ class Show extends Component
     public Module $module;
     public bool $enrolled = false;
     public ?array $userModule = null;
+    public ?int $activePipelineId = null;
 
     public function mount(Module $module): void
     {
@@ -23,6 +25,11 @@ class Show extends Component
 
         $this->module = $module;
         $this->refreshEnrollment();
+
+        $this->activePipelineId = Pipeline::where('module_id', $module->id)
+            ->whereIn('status', ['running', 'pending'])
+            ->latest('id')
+            ->first()?->id;
     }
 
     public function render()

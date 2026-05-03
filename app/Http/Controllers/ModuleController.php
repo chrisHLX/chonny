@@ -24,6 +24,7 @@ use App\Http\Services\UserModuleService;
 use App\Http\Services\SuggestionsService;
 
 use App\Jobs\GenerateQuestions;
+use App\Jobs\ExploreModuleJob;
 
 class ModuleController extends Controller
 {
@@ -384,6 +385,77 @@ class ModuleController extends Controller
 
        return redirect()->route('modules.index');
     
+    }
+
+    public function explore(Request $request)
+    {
+        $request->validate([
+            'intent'         => 'required|string|max:500',
+            'subject_id'     => 'required|exists:subjects,id',
+            'proficiency_id' => 'required|exists:proficiencies,id',
+        ]);
+
+        $user        = auth()->user();
+        $subjectId   = $request->subject_id;
+        $proficiency = Proficiency::where('id', $request->proficiency_id)
+            ->where('subject_id', $subjectId)
+            ->firstOrFail();
+
+        $intent = trim($request->intent);
+        $name   = 'Exploring: ' . \Illuminate\Support\Str::limit($intent, 60);
+
+        $module = Module::create([
+            'name'       => $name,
+            'subject_id' => $subjectId,
+            'status'     => 'preparing',
+            'created_by' => $user->id,
+            'published'  => false,
+        ]);
+
+        $module->proficiencies()->attach($proficiency->id);
+
+        $user->modules()->attach($module->id, [
+            'status'             => 'not_started',
+            'current_difficulty' => 'easy',
+            'last_activity_at'   => now(),
+        ]);
+
+        $pipeline = Pipeline::create([
+            'user_id'   => $user->id,
+            'module_id' => $module->id,
+            'type'      => 'explore_generation',
+            'status'    => 'running',
+        ]);
+
+        $contentStep = PipelineStep::create([
+            'pipeline_id' => $pipeline->id,
+            'name'        => 'Generate Content',
+            'status'      => 'pending',
+        ]);
+
+        $mcqStep = PipelineStep::create([
+            'pipeline_id' => $pipeline->id,
+            'name'        => 'Generate MCQ Questions',
+            'status'      => 'pending',
+        ]);
+
+        $trueFalseStep = PipelineStep::create([
+            'pipeline_id' => $pipeline->id,
+            'name'        => 'Generate True/False Questions',
+            'status'      => 'pending',
+        ]);
+
+        ExploreModuleJob::dispatch(
+            $module->id,
+            $pipeline->id,
+            $contentStep->id,
+            $mcqStep->id,
+            $trueFalseStep->id,
+            $user->id,
+            $intent
+        );
+
+        return redirect()->route('modules.show', $module);
     }
 
     public function export(Module $module)

@@ -61,14 +61,16 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
         
         try {
 
-            if ($this->mode == "edit") {
+            if ($this->mode === 'edit' || $this->mode === 'explore') {
                 $string = $newModule->modulePages()->first()->content;
-            } elseif ($this->mode == "suggestions") {
+            } elseif ($this->mode === 'suggestions') {
                 $string = $this->PromptBuilder($newModule);
             }
 
+            $enforceAllSkillTypes = $this->mode === 'explore';
+
             \Log::info("Generating questions for module: {$name} with type: {$this->type}");
-            $response = $AiService->generateQuestions($this->type, $string, $newModule, $userID, $this->difficultyFocus);
+            $response = $AiService->generateQuestions($this->type, $string, $newModule, $userID, $this->difficultyFocus, $enforceAllSkillTypes);
 
             // mark step complete
             $step->update([

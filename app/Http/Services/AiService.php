@@ -781,7 +781,7 @@ EOT;
     }
 
     //The content will be with html tag, we should strip them out before adding to the prompt
-    public function generateQuestions(string $type, string $content, $newModule, int $userID, ?string $difficultyFocus = null)
+    public function generateQuestions(string $type, string $content, $newModule, int $userID, ?string $difficultyFocus = null, bool $enforceAllSkillTypes = false)
     {
         // Fetch all concepts as [ 'name' => id ]
         $conceptMap = Concept::where('subject_id', $newModule->subject_id)->pluck('id', 'name');
@@ -893,6 +893,10 @@ EOT;
             $requirements = " all {$questionAmount} at {$difficultyFocus} difficulty.";
         }
 
+        $skillTypeCoverageBlock = $enforceAllSkillTypes
+            ? "\n    - MANDATORY: Include at least 1 recall, 1 analysis, and 1 application question across the set."
+            : '';
+
 
     $axisBlock = $axisString
     ? "SKILL MEASUREMENT DIMENSIONS (do NOT use these as concept tags — they are measurement dimensions only, not content labels):\n    {$axisString}\n    Aim to spread questions across these dimensions where the content allows, but always tag questions using CONCEPTS from the list below, never axis names.\n"
@@ -921,7 +925,7 @@ EOT;
     - Each question must include a skill_type field. Assign the most appropriate:
       recall = tests memory and recognition of facts
       analysis = tests interpretation of a situation or information
-      application = tests decision making and use of knowledge in context
+      application = tests decision making and use of knowledge in context{$skillTypeCoverageBlock}
     - Ensure JSON is valid, without markdown or commentary.
     PROMPT;
         
@@ -985,6 +989,76 @@ EOT;
 
 
     
+    public function generateExploreContent(string $userIntent, \App\Models\Subject $subject, \App\Models\Proficiency $proficiency, int $userID): array
+    {
+        $subject->loadMissing(['category.axes.concepts', 'concepts']);
+
+        $axes        = $subject->category->axes;
+        $axisString  = $axes->map(fn ($axis) =>
+            $axis->name . ': ' . $axis->concepts->pluck('name')->implode(', ')
+        )->implode(' | ');
+
+        $conceptsList = $subject->concepts->pluck('name')->implode(', ');
+
+        $outcomesRaw = $proficiency->outcomes;
+        $outcomes = is_array($outcomesRaw) && ! empty($outcomesRaw)
+            ? implode("\n- ", $outcomesRaw)
+            : 'No outcomes specified.';
+
+        $axisBlock = $axisString
+            ? "SKILL MEASUREMENT DIMENSIONS (for context only — do NOT use axis names as content section titles):\n    {$axisString}\n"
+            : '';
+
+        $prompt = <<<PROMPT
+You are an expert educator creating a structured learning module.
+
+The user wants to learn: "{$userIntent}"
+
+SUBJECT: {$subject->name}
+PROFICIENCY LEVEL: {$proficiency->name}
+LEVEL DESCRIPTION: {$proficiency->description}
+LEARNING OUTCOMES AT THIS LEVEL:
+- {$outcomes}
+
+{$axisBlock}
+AVAILABLE CONCEPTS (write content that naturally covers relevant ones — these will be used to tag questions):
+{$conceptsList}
+
+YOUR TASK:
+Generate a structured learning module with 2–3 content pages that:
+1. Directly addresses the user's stated learning intent
+2. Is written at the {$proficiency->name} reading level and vocabulary
+3. Covers enough factual content to support Recall questions (memory and recognition of facts)
+4. Includes situations or examples to support Analysis questions (interpretation of information)
+5. Includes decisions or scenarios to support Application questions (contextual use of knowledge)
+
+Return JSON ONLY in this exact format, no markdown fences or commentary:
+{
+  "title": "A concise, specific module title",
+  "description": "One clear sentence describing what this module covers",
+  "pages": [
+    {
+      "title": "Page title",
+      "content": "Rich markdown content, 200–400 words"
+    }
+  ]
+}
+PROMPT;
+
+        $raw = $this->callOpenAi($prompt, 'gpt-4o-mini', $userID, "Explore module content: {$userIntent}");
+
+        if (! isset($raw['title'], $raw['pages'])) {
+            Log::error('generateExploreContent returned unexpected structure', ['raw' => $raw]);
+            throw new \RuntimeException('AI returned unexpected structure for explore content.');
+        }
+
+        return [
+            'title'       => $raw['title'],
+            'description' => $raw['description'] ?? '',
+            'pages'       => $raw['pages'],
+        ];
+    }
+
     /* --------------------------------------------------------- Unused Functions --------------------------------------------------------- */
 
     // currently not being used, was used for automatic landing page generation

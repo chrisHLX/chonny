@@ -5,7 +5,14 @@
       "Bash(xargs cat *)",
       "Bash(xargs grep *)",
       "Bash(php artisan *)",
-      "Bash(\"C:/Users/chris/Herd/bin/php/php8.4.exe\" artisan *)"
+      "Bash(\"C:/Users/chris/Herd/bin/php/php8.4.exe\" artisan *)",
+      "Bash(Get-ChildItem -Path \"resources\\\\views\" -Filter \"*.blade.php\" -Recurse)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Select-Object -First 30)",
+      "Bash(Find \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\" -type f -name \"*.php\")",
+      "Bash(findstr /I \"category\")",
+      "Bash(powershell -Command \"Get-ChildItem -Recurse -Path 'c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\resources\\\\views' -Name | grep -i 'explore|create|generate' | head -20\")",
+      "PowerShell(Get-ChildItem -Recurse -Path 'c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\resources\\\\views' | Where-Object {$_.Name -match 'explore|create|generate'} | Select-Object -ExpandProperty Name)"
     ]
   }
 }

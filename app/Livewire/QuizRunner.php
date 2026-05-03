@@ -240,18 +240,13 @@ class QuizRunner extends Component
 
         $userScore = $this->userScore($moduleId);
 
-        $status = (
-            $this->difficulty === 'final'
-            && $this->currentIndex === $this->questions->count()
-        ) ? 'completed' : 'in_progress';
-
         // ----------------------
         // 1) UPDATE MODULE PIVOT
         // ----------------------
         $user->modules()->syncWithoutDetaching([
             $moduleId => [
                 'score' => $userScore,
-                'status' => $status,
+                'status' => 'in_progress',
                 'last_activity_at' => now(),
                 'completed_at' => now(),
             ]
@@ -295,47 +290,6 @@ class QuizRunner extends Component
         ]);
 
         ModuleAttempted::dispatch($history);
-
-        // ----------------------
-        // 3) DISPATCH JOBS (LAST)
-        // ----------------------
-
-        if ($status === 'completed') {
-
-            $pipeline = Pipeline::create([
-                'user_id' => $userId,
-                'module_id' => $moduleId,
-                'type' => 'quiz_completion',
-                'status' => 'running',
-            ]);
-
-            $suggestionStep = PipelineStep::create([
-                'pipeline_id' => $pipeline->id,
-                'name' => 'Generate Suggestions',
-                'status' => 'pending',
-            ]);
-
-            $cardStep = PipelineStep::create([
-                'pipeline_id' => $pipeline->id,
-                'name' => 'Generate Card',
-                'status' => 'pending',
-            ]);
-
-            SuggestionJob::dispatch(
-                $moduleId,
-                $userId,
-                $suggestionStep->id
-            );
-
-            GenerateCardJob::dispatch(
-                $userId,
-                $moduleId,
-                $cardStep->id
-            )->afterCommit();
-
-            // Store pipeline id for frontend
-            session(['completion_pipeline_id' => $pipeline->id]);
-        }
     }  
     
     // Resets the module
@@ -381,41 +335,79 @@ class QuizRunner extends Component
 
 private function handleMasteryCompletion($module)
     {
-        $this->answer = []; // cast answer to array needed for livewire binding (otherwise matching pairs wont submit)
+        $this->answer = [];
+        $this->completeModule();
+    }
+
+    private function completeModule()
+    {
+        $this->completed = true;
+        $this->difficulty = 'final';
+        $this->questions = $this->questions ?? collect();
+        $this->wrongQuestions = collect();
+        $this->status = 'completed';
+
         $user = auth()->user();
-        \Log::info("User has mastered this module and now we are trying to review the questions they got wrong.");
+        $moduleId = $this->moduleId;
+        $userId = $user->id;
 
-        // Get all question IDs in this module
-        $moduleQuestionIds = $module->questions()->pluck('questions.id')->toArray();
+        $userScore = $this->userScore($moduleId);
 
-        // Get IDs of all questions the user has already answered
-        $answeredQuestionIds = $user->answeredQuestions()
-            ->whereIn('questions.id', $moduleQuestionIds)
-            ->pluck('questions.id')
-            ->toArray();
+        $user->modules()->syncWithoutDetaching([
+            $moduleId => [
+                'score' => $userScore,
+                'status' => 'completed',
+                'last_activity_at' => now(),
+                'completed_at' => now(),
+            ]
+        ]);
 
-        // Determine the unanswered questions
-        $unansweredQuestionIds = array_diff($moduleQuestionIds, $answeredQuestionIds);
+        $lastAttempt = UserModuleHistory::where('user_id', $userId)
+            ->where('module_id', $moduleId)
+            ->latest('created_at')
+            ->first();
 
-        if (empty($unansweredQuestionIds)) {
-            // All questions answered — show least accurate questions for review
-            \Log::info("User has answered all questions in this mastered module.");
-            $leastAccurate = $this->getLeastAccurateQuestions($user, 5, $module);
+        $attemptNumber = $lastAttempt ? $lastAttempt->attempt_number + 1 : 1;
+        $this->attemptNumber = $attemptNumber;
 
-            \Log::info('Least accurate questions:', $leastAccurate->pluck('id')->toArray());
+        $moduleVersion = Module::find($moduleId)->version ?? 'V1';
 
-            $this->questions = $this->prepareQuestionsForQuiz($leastAccurate);
-            $this->initializeQuizState('final');
-            return; // 🔹 Important: stop execution here so the "otherwise" block doesn't overwrite questions
-        }
+        $history = UserModuleHistory::create([
+            'user_id' => $userId,
+            'module_id' => $moduleId,
+            'attempt_number' => $attemptNumber,
+            'wrong_questions' => [],
+            'right_questions' => [],
+            'module_version' => $moduleVersion,
+            'status' => 'completed',
+        ]);
 
-        // Otherwise, serve only the unanswered questions
-        $questionsToServe = $module->questions()
-            ->whereIn('questions.id', $unansweredQuestionIds)
-            ->get();
+        ModuleAttempted::dispatch($history);
 
-        $this->questions = $this->prepareQuestionsForQuiz($questionsToServe);
-        $this->initializeQuizState('review');
+        $pipeline = Pipeline::create([
+            'user_id' => $userId,
+            'module_id' => $moduleId,
+            'type' => 'quiz_completion',
+            'status' => 'running',
+        ]);
+
+        $suggestionStep = PipelineStep::create([
+            'pipeline_id' => $pipeline->id,
+            'name' => 'Generate Suggestions',
+            'status' => 'pending',
+        ]);
+
+        $cardStep = PipelineStep::create([
+            'pipeline_id' => $pipeline->id,
+            'name' => 'Generate Card',
+            'status' => 'pending',
+        ]);
+
+        SuggestionJob::dispatch($moduleId, $userId, $suggestionStep->id);
+
+        GenerateCardJob::dispatch($userId, $moduleId, $cardStep->id)->afterCommit();
+
+        session(['completion_pipeline_id' => $pipeline->id]);
     }
     
     private function getQuestionIdsForDifficulty($module, $difficulty)
@@ -440,61 +432,6 @@ private function handleMasteryCompletion($module)
             $q->answer = $answer;
             return $q;
         });
-    }
-
-
-    private function getLeastAccurateQuestions($user, $limit = 3, $module = null)
-    {
-        $query = $user->answeredQuestions()
-            ->withPivot([
-                'attempts',
-                'correct_count',
-                'last_answer_correct',
-                'total_time_spent',
-                'last_answered_at'
-            ]);
-
-        // Filter by module if provided
-        if ($module) {
-            $query->whereHas('modules', fn($q) => 
-                $q->where('modules.id', $module->id)
-            );
-        }
-
-        $questions = $query->get()
-            ->filter(fn($q) => $q->pivot->attempts > 0)
-            ->map(function ($q) {
-                $q->accuracy = $q->pivot->correct_count / $q->pivot->attempts;
-                return $q;
-            });
-
-        // Now sort using a multi-metric system
-        $sorted = $questions->sort(function ($a, $b) {
-            // 1. Failed questions first
-            if ($a->pivot->last_answer_correct !== $b->pivot->last_answer_correct) {
-                return $a->pivot->last_answer_correct <=> $b->pivot->last_answer_correct;
-            }
-
-            // 2. Lower accuracy first
-            if ($a->accuracy !== $b->accuracy) {
-                return $a->accuracy <=> $b->accuracy;
-            }
-
-            // 3. Higher time spent first
-            if ($a->pivot->total_time_spent !== $b->pivot->total_time_spent) {
-                return $b->pivot->total_time_spent <=> $a->pivot->total_time_spent;
-            }
-
-            // 4. Older questions first
-            if ($a->pivot->last_answered_at !== $b->pivot->last_answered_at) {
-                return strtotime($a->pivot->last_answered_at) <=> strtotime($b->pivot->last_answered_at);
-            }
-
-            // 5. Finally random tie-breaker
-            return rand(-1, 1);
-        });
-
-        return $sorted->take($limit)->values();
     }
 
 

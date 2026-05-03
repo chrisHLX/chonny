@@ -8,6 +8,59 @@
 
         <x-context-bar-livewire :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" routeName="modules.index"/>
 
+        {{-- Explore --}}
+        <div class="linear-card p-5"
+             x-data="{
+                subjectId: '',
+                proficiencies: [],
+                loadProficiencies() {
+                    this.proficiencies = [];
+                    if (!this.subjectId) return;
+                    fetch('/proficiencies/by-subject/' + this.subjectId)
+                        .then(r => r.json())
+                        .then(data => { this.proficiencies = data; });
+                }
+             }">
+            <h2 class="text-[13px] font-semibold text-ink mb-3">Explore a topic</h2>
+            <form method="POST" action="{{ route('modules.explore') }}" class="flex flex-col sm:flex-row gap-2.5">
+                @csrf
+                <input
+                    type="text"
+                    name="intent"
+                    placeholder="What do you want to learn?"
+                    maxlength="500"
+                    required
+                    class="form-input flex-1 min-w-0"
+                />
+                <select
+                    name="subject_id"
+                    required
+                    x-model="subjectId"
+                    @change="loadProficiencies()"
+                    class="form-select w-44 shrink-0">
+                    <option value="">Subject</option>
+                    @foreach ($this->exploreSubjects as $subject)
+                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                    @endforeach
+                </select>
+                <select
+                    name="proficiency_id"
+                    required
+                    :disabled="proficiencies.length === 0"
+                    class="form-select w-44 shrink-0">
+                    <option value="">Level</option>
+                    <template x-for="prof in proficiencies" :key="prof.id">
+                        <option :value="prof.id" x-text="prof.name"></option>
+                    </template>
+                </select>
+                <button
+                    type="submit"
+                    class="inline-flex items-center justify-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors shrink-0">
+                    Explore
+                </button>
+            </form>
+        </div>
+
         {{-- Filters --}}
         <div class="linear-card p-4 space-y-3">
             {{-- Tags --}}

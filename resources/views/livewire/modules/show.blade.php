@@ -8,6 +8,11 @@
             <span class="text-ink truncate">{{ $module->name }}</span>
         </div>
 
+        {{-- Pipeline progress (shown while module is being generated) --}}
+        @if ($activePipelineId)
+            <livewire:generation-progress :pipelineId="$activePipelineId" />
+        @endif
+
         {{-- Header --}}
         <div class="linear-card p-6">
             <div class="flex items-start justify-between gap-6">

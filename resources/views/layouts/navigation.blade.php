@@ -98,6 +98,11 @@
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Content Manager
                 </a>
+                <a href="{{ route('jobs.dashboard') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('jobs.dashboard') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Job Queue
+                </a>
             </div>
         </div>
         @endcan

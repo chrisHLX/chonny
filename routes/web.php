@@ -28,6 +28,7 @@ use App\Livewire\Modules\Index;
 use App\Livewire\Modules\Show;
 use App\Livewire\QuizPage;
 use App\Livewire\ModuleSelector;
+use App\Livewire\JobDashboard;
 
 // STRIPE
 Route::post('/checkout/session', [StripeController::class, 'create'])
@@ -47,6 +48,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/jobs', JobDashboard::class)->name('jobs.dashboard');
 });
 
 Route::post('/credits', [AiController::class, 'test'])->name('credit.test');
@@ -105,6 +107,7 @@ Route::delete('/modules/destroy/{module}', [ModuleController::class, 'destroy'])
 Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit')->middleware('auth');
 Route::put('/modules/{module}', [ModuleController::class, 'update'])->name('modules.update')->middleware('auth');
 Route::get('/modules/{module}/export', [ModuleController::class, 'export'])->name('modules.export')->middleware('auth');
+Route::post('/modules/explore', [ModuleController::class, 'explore'])->name('modules.explore')->middleware('auth');
 
 // Module Suggestions
 Route::get('/modules/next-module/{moduleId}', [ModuleController::class, 'nextModule'])->name('modules.next-module')->middleware('auth');

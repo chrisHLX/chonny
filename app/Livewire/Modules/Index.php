@@ -136,6 +136,11 @@ class Index extends Component
             ->get();
     }
 
+    public function getExploreSubjectsProperty()
+    {
+        return Subject::with('category')->orderBy('name')->get();
+    }
+
     public function render()
     {
         return view('livewire.modules.index')
