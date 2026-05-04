@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Module;
 use App\Models\Subject;
 use App\Models\Category;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class QuizSelection extends Component
 {
@@ -13,6 +15,8 @@ class QuizSelection extends Component
     public $selectedModule;
     public $selectedSubject = null;
     public $category_id;
+    public ?array $selectedModuleData = null;
+    public ?Module $selectedModuleModel = null;
 
     public function mount()
     {
@@ -22,14 +26,18 @@ class QuizSelection extends Component
             $this->category_id = Category::first()?->id;
         }
 
-        // Load subjects based on category, when is used like an if statement, the first parameter is the value to check, the second is a callback that receives the query builder and the value if the first parameter is truthy
         $this->subjects = Subject::when($this->category_id, function($query, $catId) {
             $query->where('category_id', $catId);
         })->get();
 
         $this->selectedSubject = $this->subjects->first()?->id;
         $this->selectedModule = $this->modules->first()?->id;
+        $this->loadSelectedModuleData();
+    }
 
+    public function updatedSelectedModule(): void
+    {
+        $this->loadSelectedModuleData();
     }
 
     
@@ -47,6 +55,179 @@ class QuizSelection extends Component
                 $q->where('subject_id', $this->selectedSubject)
             )
             ->get();
+    }
+
+    private function loadSelectedModuleData(): void
+    {
+        if (!$this->selectedModule) {
+            $this->selectedModuleData = null;
+            $this->selectedModuleModel = null;
+            return;
+        }
+
+        $module = Module::with(['questions.concepts', 'subject.concepts', 'subject.category.axes.concepts', 'modulePages'])->find($this->selectedModule);
+
+        if (!$module) {
+            $this->selectedModuleData = null;
+            $this->selectedModuleModel = null;
+            return;
+        }
+
+        $this->selectedModuleModel = $module;
+
+        $total = $module->questions->count();
+
+        // Skill type counts
+        $skillCounts = ['recall' => 0, 'analysis' => 0, 'application' => 0];
+        foreach ($module->questions as $q) {
+            $type = $q->skill_type?->value ?? 'recall';
+            if (array_key_exists($type, $skillCounts)) {
+                $skillCounts[$type]++;
+            }
+        }
+
+        // Concept distribution: questions per concept as % of total
+        $conceptIds = $module->questions
+            ->flatMap(fn($q) => $q->concepts->pluck('id'))
+            ->unique()
+            ->values();
+
+        $conceptCounts = $conceptIds->mapWithKeys(fn($id) => [$id => 0])->toArray();
+        foreach ($module->questions as $q) {
+            foreach ($q->concepts as $concept) {
+                if (array_key_exists($concept->id, $conceptCounts)) {
+                    $conceptCounts[$concept->id]++;
+                }
+            }
+        }
+
+        $concepts = $module->subject->concepts
+            ->whereIn('id', $conceptIds->all())
+            ->map(fn($c) => [
+                'name'     => $c->name,
+                'coverage' => $total > 0 ? round(($conceptCounts[$c->id] / $total) * 100, 1) : 0,
+                'count'    => $conceptCounts[$c->id],
+            ])
+            ->sortByDesc('coverage')
+            ->values()
+            ->toArray();
+
+        $page = $module->modulePages->sortBy('page_number')->first();
+        $content = $page?->content
+            ? Str::markdown($page->content, ['html_input' => 'strip', 'allow_unsafe_links' => false])
+            : null;
+
+        $this->selectedModuleData = [
+            'total'        => $total,
+            'skill_counts' => $skillCounts,
+            'concepts'     => $concepts,
+            'content'      => $content,
+        ];
+    }
+
+    public function getSelectedModuleAxisDataProperty(): array
+    {
+        if (!$this->selectedModuleModel) {
+            return [];
+        }
+
+        $module = $this->selectedModuleModel;
+        $axes = $module->subject->category->axes;
+
+        if ($axes->isEmpty()) {
+            return [];
+        }
+
+        $totalQuestions = $module->questions->count();
+        if ($totalQuestions === 0) {
+            return [];
+        }
+
+        $conceptAxisMap = [];
+        foreach ($axes as $axis) {
+            foreach ($axis->concepts as $concept) {
+                $conceptAxisMap[$concept->id][] = $axis->id;
+            }
+        }
+
+        $axisCounts = $axes->mapWithKeys(fn($a) => [$a->id => 0])->toArray();
+        foreach ($module->questions as $q) {
+            $seenAxes = [];
+            foreach ($q->concepts as $concept) {
+                foreach ($conceptAxisMap[$concept->id] ?? [] as $axisId) {
+                    if (!in_array($axisId, $seenAxes) && array_key_exists($axisId, $axisCounts)) {
+                        $axisCounts[$axisId]++;
+                        $seenAxes[] = $axisId;
+                    }
+                }
+            }
+        }
+
+        return $axes->map(fn($a) => [
+            'name'     => $a->name,
+            'coverage' => round(($axisCounts[$a->id] / $totalQuestions) * 100, 1),
+        ])->values()->toArray();
+    }
+
+    public function getSelectedModuleRadarSvgProperty(): array
+    {
+        $axisData = $this->selectedModuleAxisData;
+        $n = count($axisData);
+
+        if ($n < 3) {
+            return ['hasChart' => false];
+        }
+
+        $cx = 100;
+        $cy = 100;
+        $r  = 75;
+        $lr = 98;
+
+        $toAttr = fn(array $pts) => collect($pts)
+            ->map(fn($p) => round($p[0], 2) . ',' . round($p[1], 2))
+            ->join(' ');
+
+        $gridRings = [];
+        foreach ([0.25, 0.5, 0.75, 1.0] as $frac) {
+            $pts = [];
+            for ($i = 0; $i < $n; $i++) {
+                $a     = -M_PI / 2 + $i * 2 * M_PI / $n;
+                $pts[] = [$cx + $r * $frac * cos($a), $cy + $r * $frac * sin($a)];
+            }
+            $gridRings[] = $toAttr($pts);
+        }
+
+        $spokeEnds = [];
+        for ($i = 0; $i < $n; $i++) {
+            $a           = -M_PI / 2 + $i * 2 * M_PI / $n;
+            $spokeEnds[] = [round($cx + $r * cos($a), 2), round($cy + $r * sin($a), 2)];
+        }
+
+        $labels = [];
+        foreach ($axisData as $i => $data) {
+            $a      = -M_PI / 2 + $i * 2 * M_PI / $n;
+            $lx     = round($cx + $lr * cos($a), 2);
+            $ly     = round($cy + $lr * sin($a), 2);
+            $anchor = 'middle';
+            if ($lx < $cx - 15) {
+                $anchor = 'end';
+            } elseif ($lx > $cx + 15) {
+                $anchor = 'start';
+            }
+            $labels[] = [
+                'x'      => $lx,
+                'y'      => $ly,
+                'name'   => $data['name'],
+                'anchor' => $anchor,
+            ];
+        }
+
+        return [
+            'hasChart'  => true,
+            'gridRings' => $gridRings,
+            'spokeEnds' => $spokeEnds,
+            'labels'    => $labels,
+        ];
     }
 
     public function startQuiz()

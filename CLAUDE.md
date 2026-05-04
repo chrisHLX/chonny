@@ -231,6 +231,10 @@ Module routes use both controller-based and Livewire routes:
 
 Avoid creating routes with overlapping segment patterns (e.g. `/modules/destroy/{id}` vs `/modules/{module}`) — the route file has a comment about this.
 
+### Module Route Binding
+
+`Module` uses `slug` as its route key — always pass the model or `$model->slug` to route helpers, never `$model->id` (causes 404).
+
 ### Helper
 
 `app/Helpers/routeWithContext.php` — autoloaded helper for building URLs with context parameters preserved.

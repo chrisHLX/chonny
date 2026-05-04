@@ -24,6 +24,7 @@ use App\Http\Services\UserModuleService;
 use App\Http\Services\SuggestionsService;
 
 use App\Jobs\GenerateQuestions;
+use App\Jobs\GenerateModuleContentJob;
 use App\Jobs\ExploreModuleJob;
 
 class ModuleController extends Controller
@@ -289,8 +290,9 @@ class ModuleController extends Controller
 
         // 6️⃣ Check existing modules in DB
         $existingModules = Module::whereIn('name', collect($suggestions)->pluck('name'))
-                                ->pluck('id', 'name');
-        $existingIds = $existingModules->values();
+                                ->get(['id', 'name', 'slug'])
+                                ->keyBy('name');
+        $existingIds = $existingModules->pluck('id');
 
         $userAssignedIds = $user->modules()
                                 ->whereIn('modules.id', $existingIds)
@@ -299,12 +301,13 @@ class ModuleController extends Controller
 
         // 7️⃣ Merge suggestions with existing module info
         $suggestions = collect($suggestions)->map(function ($s) use ($existingModules, $parent_id, $userAssignedIds) {
-            $moduleId = $existingModules[$s['name']] ?? null;
+            $mod = $existingModules[$s['name']] ?? null;
 
             $s['parent_id'] = $parent_id;
-            $s['exists'] = $moduleId !== null;
-            $s['module_id'] = $moduleId;
-            $s['assigned'] = in_array($moduleId, $userAssignedIds);
+            $s['exists'] = $mod !== null;
+            $s['module_id'] = $mod?->id;
+            $s['module_slug'] = $mod?->slug;
+            $s['assigned'] = in_array($mod?->id, $userAssignedIds);
 
             return $s;
         });
@@ -365,25 +368,33 @@ class ModuleController extends Controller
 
         $module->proficiencies()->attach($proficiencyId);
 
-        // Now start the pipeline to generate questions
         $pipeline = Pipeline::create([
-            'user_id' => $userID,
+            'user_id'   => $userID,
             'module_id' => $module->id,
-            'type' => 'question_generation',
-            'status' => 'running',
+            'type'      => 'question_generation',
+            'status'    => 'running',
         ]);
-        $mode = "suggestions";
-        $types = ['mcq', 'true_false', 'matching_pairs', 'ordering'];
-        foreach ($types as $selectedType) {
-            $pipelineStep = PipelineStep::create([
+
+        // Content step runs first; question steps are dispatched by GenerateModuleContentJob on success
+        $contentStep = PipelineStep::create([
+            'pipeline_id' => $pipeline->id,
+            'name'        => 'Generate Content',
+            'status'      => 'pending',
+        ]);
+
+        $questionSteps = [];
+        foreach (['mcq', 'true_false', 'matching_pairs', 'ordering'] as $type) {
+            $step = PipelineStep::create([
                 'pipeline_id' => $pipeline->id,
-                'name' => "Generate {$selectedType} Questions",
-                'status' => 'pending',
+                'name'        => "Generate {$type} Questions",
+                'status'      => 'pending',
             ]);
-            GenerateQuestions::dispatch($selectedType, $module->id, $pipelineStep->id, $userID, $mode);
+            $questionSteps[$type] = $step->id;
         }
 
-       return redirect()->route('modules.index');
+        GenerateModuleContentJob::dispatch($module->id, $contentStep->id, $questionSteps, $userID);
+
+        return redirect()->route('jobs.dashboard');
     
     }
 

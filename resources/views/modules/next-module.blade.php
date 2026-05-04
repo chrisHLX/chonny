@@ -31,7 +31,7 @@
                                         @if ($s['assigned'])
                                             <span class="badge-green">Added</span>
                                         @else
-                                            <form action="{{ route('modules.assign', $s['module_id']) }}" method="POST">
+                                            <form action="{{ route('modules.assign', $s['module_slug']) }}" method="POST">
                                                 @csrf
                                                 <button type="submit"
                                                         class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">

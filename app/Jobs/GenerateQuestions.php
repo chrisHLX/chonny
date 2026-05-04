@@ -64,7 +64,11 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
             if ($this->mode === 'edit' || $this->mode === 'explore') {
                 $string = $newModule->modulePages()->first()->content;
             } elseif ($this->mode === 'suggestions') {
-                $string = $this->PromptBuilder($newModule);
+                $page = $newModule->modulePages()->first();
+                if (! $page || empty($page->content)) {
+                    throw new \RuntimeException("Module {$newModule->id} has no content page — cannot generate questions");
+                }
+                $string = $page->content;
             }
 
             $enforceAllSkillTypes = $this->mode === 'explore';

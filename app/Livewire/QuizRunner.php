@@ -11,7 +11,6 @@ use App\Models\UserModuleHistory;
 
 use App\Http\Services\MasteryService;
 
-use App\Jobs\GenerateReviewContentJob;
 use App\Jobs\SuggestionJob;
 use App\Jobs\GenerateCardJob;
 
@@ -183,10 +182,6 @@ class QuizRunner extends Component
                 : ($existing->pivot->consecutive_fails ?? 0) + 1;
                 \Log::info("What existing pivot fails is {$existing->pivot->consecutive_fails}");
 
-                if ($existing->pivot->consecutive_fails >= 1) {
-                    GenerateReviewContentJob::dispatch($question->id, $this->moduleId, $user->id);
-                }
-
                 $user->answeredQuestions()->updateExistingPivot($question->id, [
                     'attempts' => $existing->pivot->attempts + 1,
                     'correct_count' => $existing->pivot->correct_count + ($correct ? 1 : 0),
@@ -233,11 +228,19 @@ class QuizRunner extends Component
             return;
         }
 
-        $this->completed = true;
         $user = auth()->user();
         $moduleId = $this->moduleId;
         $userId = $user->id;
 
+        // If this round just pushed the user to full mastery, complete immediately
+        $module = $user->modules()->with('questions')->find($moduleId);
+        if ($this->calculateNextDifficulty($module)['mode'] === 'completed') {
+            $this->completeModule();
+            return;
+        }
+
+        // Round ended but module not yet mastered
+        $this->completed = true;
         $userScore = $this->userScore($moduleId);
 
         // ----------------------
@@ -248,7 +251,6 @@ class QuizRunner extends Component
                 'score' => $userScore,
                 'status' => 'in_progress',
                 'last_activity_at' => now(),
-                'completed_at' => now(),
             ]
         ]);
 
@@ -268,7 +270,7 @@ class QuizRunner extends Component
             fn($correct) => !$correct
         ));
 
-       $this->wrongQuestions = $this->questions
+        $this->wrongQuestions = $this->questions
             ->whereIn('id', $wrongQuestions)
             ->values();
 

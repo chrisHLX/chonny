@@ -613,6 +613,71 @@ class AiService
         return $response;
     }
 
+    public function generateModuleContent(Module $module, int $userID): string
+    {
+        $prof     = $module->proficiencies()->first();
+        $subject  = $module->subject;
+        $category = $subject->category;
+
+        $axes = $category->axes()->with('concepts')->get();
+        $axisBlock = $axes->map(fn ($axis) =>
+            "- {$axis->name}: " . $axis->concepts->pluck('name')->implode(', ')
+        )->implode("\n");
+
+        $conceptList = $subject->concepts()->pluck('name')->implode(', ');
+
+        $profIndex = $prof?->index ?? 0;
+        if ($profIndex < 2) {
+            $depthGuide = "beginner — introduce terms plainly, use analogies, avoid jargon. Target 300–450 words.";
+        } elseif ($profIndex < 4) {
+            $depthGuide = "intermediate — assume basic familiarity, explain how concepts interact and why decisions matter. Target 450–650 words.";
+        } else {
+            $depthGuide = "advanced — assume solid fundamentals, explore nuance, trade-offs, and expert decision-making. Target 650–900 words.";
+        }
+
+        $profName        = $prof?->name ?? 'General';
+        $profDescription = $prof?->description ?? '';
+
+        $prompt = <<<EOT
+        You are writing educational module content for a structured learning platform.
+
+        MODULE: {$module->name}
+        DESCRIPTION: {$module->description}
+        SUBJECT: {$subject->name} (Category: {$category->name})
+        PROFICIENCY: {$profName} — {$profDescription}
+
+        SKILL DIMENSIONS (axes that define mastery in this category — write content that develops reasoning across these):
+        {$axisBlock}
+
+        CONCEPTS IN THIS SUBJECT (questions will test these — cover the ones most relevant to this module):
+        {$conceptList}
+
+        WRITING INSTRUCTIONS:
+        - Depth: {$depthGuide}
+        - Use Markdown: ## for main sections, ### for sub-sections, bullet points for lists
+        - Open with one short paragraph framing why this topic matters
+        - Each section should develop understanding across at least one skill dimension above
+        - Include at least one concrete example or scenario that shows the concept applied, not just defined
+        - Close with a ## Key Takeaways section containing 3–5 bullet points
+        - Return only the Markdown content. No JSON wrapper, no preamble, no meta-commentary.
+        EOT;
+
+        $content = $this->callOpenAiString($prompt, $userID, 'Module Content Generation');
+
+        AiRequest::create([
+            'user_id'  => $userID,
+            'purpose'  => 'generate_module_content',
+            'prompt'   => $prompt,
+            'response' => $content,
+            'metadata' => [
+                'module_id' => $module->id,
+                'model'     => 'gpt-4o-mini',
+            ],
+        ]);
+
+        return $content;
+    }
+
     /* --------------------------------------------------------- MODULE GENERATION --------------------------------------------------------- */
 
     // Questions the user gets wrong should be sufficient to generate a new module content.
