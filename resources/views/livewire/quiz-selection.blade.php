@@ -24,7 +24,7 @@
 
             {{-- Left: concept polygon + concept name list --}}
             <div class="linear-card p-4 flex flex-col items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" class="rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="-25 -25 250 250" class="rounded">
                     <defs>
                         <linearGradient id="qpg-grad-{{ $selectedModule }}" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%"   stop-color="#1C1C1F"/>
@@ -62,8 +62,8 @@
                         :module="$selectedModuleModel"
                         :id="'qpg-' . $selectedModule"
                         accent="#818cf8"
-                        :width="200"
-                        :height="200"
+                        :width="250"
+                        :height="250"
                     />
 
                     @if(!empty($this->selectedModuleRadarSvg['labels']))

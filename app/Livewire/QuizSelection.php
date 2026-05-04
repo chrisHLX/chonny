@@ -181,7 +181,7 @@ class QuizSelection extends Component
         $cx = 100;
         $cy = 100;
         $r  = 75;
-        $lr = 98;
+        $lr = 110;
 
         $toAttr = fn(array $pts) => collect($pts)
             ->map(fn($p) => round($p[0], 2) . ',' . round($p[1], 2))
