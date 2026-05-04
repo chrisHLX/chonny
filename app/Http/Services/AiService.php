@@ -34,7 +34,7 @@ class AiService
     {
         $this->client = $client;
         $this->formatter = $formatter;
-        $this->apiKey = env('OPENAI_API_KEY'); // or config('services.openai.key')
+        $this->apiKey = config('services.openai.key');
         $this->creditService = $creditService;
         $this->tokenService = $tokenService;
     }
