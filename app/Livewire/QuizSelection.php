@@ -217,7 +217,7 @@ class QuizSelection extends Component
             $labels[] = [
                 'x'      => $lx,
                 'y'      => $ly,
-                'name'   => $data['name'],
+                'name'   => strtoupper(substr($data['name'], 0, 3)),
                 'anchor' => $anchor,
             ];
         }

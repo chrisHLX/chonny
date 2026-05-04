@@ -133,7 +133,7 @@
                  x-transition:leave-end="opacity-0 -translate-y-1"
                  class="pl-3 mt-0.5 space-y-0.5 max-h-48 overflow-y-auto">
                 @foreach($nav_categories as $cat)
-                    <a href="{{ route_with_context(request()->route()->getName(), ['category_id' => $cat->id]) }}"
+                    <a href="{{ route('modules.index', ['category_id' => $cat->id]) }}"
                        class="sidebar-item text-[12px] {{ request('category_id') == $cat->id ? 'active !text-accent' : '' }}">
                         <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                         {{ $cat->name }}

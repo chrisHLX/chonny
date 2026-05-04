@@ -62,8 +62,8 @@
                         :module="$selectedModuleModel"
                         :id="'qpg-' . $selectedModule"
                         accent="#818cf8"
-                        :width="250"
-                        :height="250"
+                        :width="200"
+                        :height="200"
                     />
 
                     @if(!empty($this->selectedModuleRadarSvg['labels']))
@@ -82,7 +82,7 @@
                     <div class="mt-3 w-full border-t border-line pt-3 space-y-1.5">
                         @foreach($this->selectedModuleAxisData as $axis)
                             <div class="flex items-center justify-between">
-                                <span class="text-[11px] text-ink-subtle">{{ $axis['name'] }}</span>
+                                <span class="text-[11px] text-ink-subtle">{{ $axis['name'] }} <span class="text-ink-subtle/60">({{ strtoupper(substr($axis['name'], 0, 3)) }})</span></span>
                                 <span class="text-[11px] font-medium text-ink tabular-nums">{{ $axis['coverage'] }}%</span>
                             </div>
                         @endforeach
