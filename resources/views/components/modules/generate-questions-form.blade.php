@@ -98,6 +98,9 @@
                     </div>
                 </div>
 
+                {{-- AI Model --}}
+                <x-ai-model-selector />
+
             </div>
 
             {{-- Footer --}}

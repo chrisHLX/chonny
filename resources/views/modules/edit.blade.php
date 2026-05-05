@@ -49,6 +49,9 @@
                 </div>
             @endforeach
 
+            {{-- Research panel --}}
+            <x-modules.research-panel :module="$module" />
+
             {{-- Edit module --}}
             <x-modules.update-form :module="$module" :all-questions="$allQuestions" />
 

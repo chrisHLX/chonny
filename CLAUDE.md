@@ -91,11 +91,13 @@ Many-to-many with Concepts via `concept_axis` pivot. `UserAxisMastery` tracks ea
 
 **Mastery flow:** `Question answered → UserConceptMastery updated → for each Axis linked to that Concept → UserAxisMastery updated (average of all concept masteries in the Axis)`
 
+**`user_axis_mastery`** — stores one row per (user, axis). Written by `MasteryService`. **`user_concept_skill_mastery`** — stores one row per (user, concept, skill_type) triplet; tracks `correct_count`, `total_count`, `mastery_percentage` per thinking mode. Unique key on (user_id, concept_id, skill_type).
+
 **Subject** (`subjects` table) — belongs to a Category. Has many Modules, Concepts, and Proficiencies. Every Module must belong to a Subject — the Subject determines which Concepts are available to tag questions and which Proficiency tiers govern difficulty.
 
 **Concept** (`concepts` table) a subject-specific idea that represents one or more skill dimensions (Axes) and is used to tag questions and drive mastery tracking. Many-to-many with Questions via `concept_question` pivot, and many-to-many with Axes via `concept_axis` pivot (with nullable `weight` column). When the AI generates questions it is given the full list of Concept names for the module's Subject and must tag each question with one or more matching concepts. `UserConceptMastery` tracks each user's mastery percentage per Concept over time.
 
-**Proficiency** (`proficiencies` table) — ordered tiers on a Subject (index 0 = beginner, higher = advanced). Many-to-many with Modules via `module_proficiency`. The `index` value drives how many questions the AI generates per batch (index < 2 → 2 complex questions, 2–4 → 5, ≥4 → 7) and the difficulty mix (easy/medium/hard split).
+**Proficiency** (`proficiencies` table) — ordered tiers on a Subject (index 0 = beginner, higher = advanced). Many-to-many with Modules via `module_proficiency`. The `index` value drives how many questions the AI generates per batch (index < 2 → 2 complex questions, 2–4 → 5, ≥4 → 7) and the difficulty mix (easy/medium/hard split). `outcomes` (JSON) — optional array of expected learning outcomes for this proficiency tier; passed to the AI during question generation to anchor difficulty and scope.
 
 **Module** (`modules` table) — the primary learning unit. Key fields:
 - `subject_id` — determines available Concepts and Proficiencies
@@ -127,7 +129,7 @@ Clicking "Generate Questions" calls `ModuleController::generateQuestions()`:
 **Step 3 — `GenerateQuestions` job runs (per type).**
 In `app/Jobs/GenerateQuestions.php`:
 - `mode="edit"` → reads `$module->modulePages()->first()->content` (first page) as the context string
-- `mode="suggestions"` → builds context from a `PromptBuilder` using module name/description/subject instead of page content
+- `mode="suggestions"` → `GenerateModuleContentJob` runs **first**: it calls the AI to generate ModulePage content for the new module (using module name/description/subject via `PromptBuilder`), writes the resulting `ModulePage` records, then **chains** to `GenerateQuestions` jobs for each question type. Question generation in this mode reads the newly written page content, not pre-existing pages.
 - Calls `AiService::generateQuestions($type, $contextString, $module, $userID)`
 - Updates `PipelineStep` status (`running` → `completed` / `failed`)
 - When all steps complete, sets Module `status = 'ready'`
@@ -213,6 +215,8 @@ Every question has one `skill_type` (enum stored on the `questions` table).
 - **`QuizSelection`** — picks module/subject before starting.
 - **`Collection`** — user's enrolled modules.
 - **`Admin\ContentManager`** — single admin interface for all content management: Axes, Categories, Subjects (with inline proficiency management), and Concepts (with axis mapping). Route: `admin.content` → `/admin/content`.
+- **`GenerationProgress`** — real-time progress overlay displayed while a module's question generation pipeline is running; polls pipeline step statuses.
+- **`Modules\Show`** — public-facing module detail page; displays module metadata, proficiency tier, and enrollment call-to-action.
 
 ### Jobs (`app/Jobs/`)
 
@@ -221,6 +225,18 @@ All jobs run via Redis queue (`QUEUE_CONNECTION=redis`):
 - `GenerateReviewContentJob` — generates AI explanation for a question a user keeps failing
 - `SuggestionJob` — generates next-module suggestions after quiz completion
 - `GenerateCardJob` — generates collectible card art spec after quiz completion
+- `GenerateModuleContentJob` — generates AI-written ModulePage content for suggestion-mode modules; once content is written, chains directly to `GenerateQuestions` jobs for each question type
+
+### Model Table Name Overrides
+
+Some models declare an explicit `$table` property to avoid Laravel's default pluralisation:
+
+| Model | Table |
+|---|---|
+| `UserAxisMastery` | `user_axis_mastery` |
+| `UserConceptSkillMastery` | `user_concept_skill_mastery` |
+
+Always use the explicit table name in raw queries or `DB::table()` calls — never the auto-pluralised form.
 
 ### Route Naming Conventions
 
@@ -304,6 +320,14 @@ CACHE_STORE=redis
 - Instruct the user to run them manually in PowerShell instead
 - PHP is available in Windows PATH but not accessible via bash
 - All shell commands should be provided for the user to run manually
+
+## Production Environment
+- Linux server (Nginx + PHP-FPM) — Windows-specific assumptions do not apply
+- 2 Supervisor workers both listening on the **default queue** running `php artisan queue:work`:
+  - Worker 1: timeout 90s
+  - Worker 2: timeout 90s
+- Long-running jobs (e.g. `GenerateModuleContentJob`) must complete within 90s or they will be killed and retried — a dedicated long queue with a higher timeout is a **future improvement**
+- Same Redis, MySQL, and `.env` variable requirements as local dev
 
 ## Implementation Roadmap
 Gap Analysis: Axes and Skill Types
@@ -395,7 +419,7 @@ What needs to change: No immediate changes — adding a user_axis_skill_mastery 
 Prioritised Implementation Plan
 Ordered from lowest to highest risk. Each phase is independently deployable.
 
-Phase 1 — Data layer foundations (zero risk, no behavior change)
+Phase 1 — Data layer foundations ✓ COMPLETE
 1a. Create user_concept_skill_mastery table
 Columns: user_id, concept_id, skill_type (enum: recall/analysis/application), correct_count (int), total_count (int), mastery_percentage (decimal), timestamps. Unique key on (user_id, concept_id, skill_type).
 
@@ -407,13 +431,13 @@ recall | analysis | application. Add 'skill_type' => SkillType::class cast to Qu
 
 Nothing writes to these yet — migration + model + enum only. Zero breakage risk.
 
-Phase 2 — MasteryService extension (low risk, purely additive)
+Phase 2 — MasteryService extension ✓ COMPLETE
 2a. Extend updateMasteryForUserQuestion()
 After the existing UserConceptMastery::updateOrCreate() block, add a parallel UserConceptSkillMastery::updateOrCreate() call scoped to the answered question's skill_type. Reads concept->questions()->where('skill_type', $skillType) and counts correct user answers of that skill type.
 
 Existing mastery columns are untouched. New records written to the new table only.
 
-Phase 3 — AI prompt enrichment (low risk, improves generation quality)
+Phase 3 — AI prompt enrichment ✓ COMPLETE
 3a. Pass Axes into generateQuestions() in AiService
 After fetching $conceptMap, fetch the category's axes: $module->subject->category->axes()->with('concepts')->get(). Build a short string like "Axes: [Strategy (concepts: Build Orders, Map Control), Mechanics (concepts: APM, Micro)]" and insert it into the prompt before the concepts line. Tell the AI: "Tag each question's concepts from the list above — the axes show which skill dimensions each concept belongs to."
 

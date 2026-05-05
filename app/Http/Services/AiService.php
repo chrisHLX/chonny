@@ -846,7 +846,7 @@ EOT;
     }
 
     //The content will be with html tag, we should strip them out before adding to the prompt
-    public function generateQuestions(string $type, string $content, $newModule, int $userID, ?string $difficultyFocus = null, bool $enforceAllSkillTypes = false)
+    public function generateQuestions(string $type, string $content, $newModule, int $userID, ?string $difficultyFocus = null, bool $enforceAllSkillTypes = false, ?string $modelOverride = null)
     {
         // Fetch all concepts as [ 'name' => id ]
         $conceptMap = Concept::where('subject_id', $newModule->subject_id)->pluck('id', 'name');
@@ -859,13 +859,16 @@ EOT;
         $axisString = $axes->map(fn($axis) =>
             $axis->name . ': ' . $axis->concepts->pluck('name')->implode(', ')
         )->implode(' | ');
-        
 
-        if ($type == 'ordering' || $type == 'matching_pairs') {
-            // Simplify content for complex question types
-            $model= 'gpt-4.1-mini';
+        // Complex-type guard: gpt-4o-mini cannot handle ordering/matching_pairs reliably
+        $complexType = ($type === 'ordering' || $type === 'matching_pairs');
+
+        if ($modelOverride !== null) {
+            $model = ($modelOverride === 'gpt-4o-mini' && $complexType)
+                ? 'gpt-4.1-mini'  // silent upgrade — guard always wins
+                : $modelOverride;
         } else {
-            $model= 'gpt-4o-mini';
+            $model = $complexType ? 'gpt-4.1-mini' : 'gpt-4o-mini';
         }
         
         

@@ -22,6 +22,7 @@ use App\Http\Services\HtmlFormatter;
 use App\Http\Services\AiService;
 use App\Http\Services\UserModuleService;
 use App\Http\Services\SuggestionsService;
+use App\Http\Services\ResearchService;
 
 use App\Jobs\GenerateQuestions;
 use App\Jobs\GenerateModuleContentJob;
@@ -604,6 +605,11 @@ class ModuleController extends Controller
             ? $request->input('difficulty')
             : null;
 
+        $modelOverride = $request->input('model');
+        if ($modelOverride !== null && ! array_key_exists($modelOverride, config('ai_models', []))) {
+            return back()->with('error', 'Invalid model selection.');
+        }
+
         $userID = auth()->id();
         $mode   = 'edit';
 
@@ -620,12 +626,25 @@ class ModuleController extends Controller
                 'name'        => "Generate {$type} Questions",
                 'status'      => 'pending',
             ]);
-            GenerateQuestions::dispatch($type, $module->id, $pipelineStep->id, $userID, $mode, $difficultyFocus);
+            GenerateQuestions::dispatch($type, $module->id, $pipelineStep->id, $userID, $mode, $difficultyFocus, $modelOverride);
         }
 
         $typeLabels = implode(', ', $selectedTypes);
         $difficultyLabel = $difficultyFocus ? " ({$difficultyFocus} difficulty)" : '';
 
         return back()->with('status', "Generating {$typeLabels} questions{$difficultyLabel}. Check back in a few moments.");
+    }
+
+    public function research(Module $module, ResearchService $researchService): \Illuminate\Http\JsonResponse
+    {
+        $topic = $module->name . ' — ' . $module->subject->name;
+
+        $result = $researchService->fetchLatestMaterial($topic, $module->subject->name, auth()->id());
+
+        if (isset($result['error'])) {
+            return response()->json(['error' => $result['error']], 500);
+        }
+
+        return response()->json($result);
     }
 }

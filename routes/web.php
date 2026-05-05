@@ -102,6 +102,9 @@ Route::get('/modules/create', [ModuleController::class, 'create'])->name('module
 Route::post('/modules-pagex/createLandingPage/{module}', [ModuleController::class, 'createLandingPage'])->name('modules-pagex.createLandingPage')->middleware('auth');
 Route::post('/modules/{module}/generate-questions', [ModuleController::class, 'generateQuestions'])
     ->name('modules.generate-questions');
+Route::post('/modules/{module}/research', [ModuleController::class, 'research'])
+    ->name('modules.research')
+    ->middleware('auth');
 Route::post('/modules', [ModuleController::class, 'store'])->name('modules.store')->middleware('auth');
 Route::delete('/modules/destroy/{module}', [ModuleController::class, 'destroy'])->name('modules.destroy')->middleware('auth');
 Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit')->middleware('auth');
