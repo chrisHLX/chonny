@@ -191,6 +191,40 @@ class ModuleController extends Controller
         return redirect()->route('modules.index')->with('success', 'Module updated.');
     }
 
+    public function savePage(Request $request, Module $module)
+    {
+        $request->validate([
+            'content'    => 'required|string|max:50000',
+            'page_title' => 'nullable|string|max:255',
+            'page_id'    => 'nullable|integer',
+        ]);
+
+        if ($request->filled('page_id')) {
+            $page = ModulePage::where('id', $request->page_id)
+                ->where('module_id', $module->id)
+                ->firstOrFail();
+
+            $page->update([
+                'content'    => $request->content,
+                'title'      => $request->page_title ?: $page->title,
+                'updated_by' => auth()->id(),
+            ]);
+        } else {
+            $nextNumber = (ModulePage::where('module_id', $module->id)->max('page_number') ?? 0) + 1;
+
+            ModulePage::create([
+                'module_id'   => $module->id,
+                'page_number' => $nextNumber,
+                'title'       => $request->page_title ?: $module->name,
+                'content'     => $request->content,
+                'created_by'  => auth()->id(),
+                'updated_by'  => auth()->id(),
+            ]);
+        }
+
+        return redirect()->route('modules.edit', $module)->with('success', 'Page saved.');
+    }
+
     public function createLandingPage(Request $request, Module $module)
     {
         // Log the full request data
@@ -218,7 +252,7 @@ class ModuleController extends Controller
             'updated_by'  => auth()->id(),
         ]);
 
-        return redirect()->route('modules.page', ['module' => $module->id]);     
+        return redirect()->route('modules.page', $module);
     }
 
     

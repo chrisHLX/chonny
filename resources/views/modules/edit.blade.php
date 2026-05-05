@@ -26,29 +26,6 @@
                 </div>
             </div>
 
-            {{-- Module pages --}}
-            @foreach($modulePages as $modulePage)
-                <div class="linear-card overflow-hidden">
-                    <div class="px-6 pt-5 pb-4 border-b border-border flex items-start justify-between gap-4">
-                        <div>
-                            <p class="page-section-title">Content Preview</p>
-                            <p class="page-section-desc mt-0.5">Rendered view of the source material used to generate questions.</p>
-                        </div>
-                        <div class="flex gap-2 shrink-0">
-                            <form action="{{ route('module-page.destroyPage', ['modulePage' => $modulePage->id]) }}"
-                                  method="POST" onsubmit="return confirm('Delete this page?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-danger">Delete Page</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="px-6 py-5 prose prose-invert max-w-none text-[13px]">
-                        {!! Str::markdown($modulePage->content) !!}
-                    </div>
-                </div>
-            @endforeach
-
             {{-- Research panel --}}
             <x-modules.research-panel :module="$module" />
 
@@ -63,8 +40,8 @@
                 <livewire:generation-progress :pipeline-id="$pipeline->id" />
             @endif
 
-            {{-- Landing page --}}
-            <x-modules.create-landing-page :modulePages="$modulePages" :module="$module" :allQuestions="$allQuestions" />
+            {{-- Content manager --}}
+            <x-modules.content-manager :module="$module" :modulePages="$modulePages" />
 
         </div>
     </div>

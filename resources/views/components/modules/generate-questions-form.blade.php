@@ -38,7 +38,7 @@
 
     @else
 
-        <form action="{{ route('modules.generate-questions', $module->id) }}" method="POST">
+        <form action="{{ route('modules.generate-questions', $module) }}" method="POST">
             @csrf
 
             <div class="px-6 pt-5 space-y-6">

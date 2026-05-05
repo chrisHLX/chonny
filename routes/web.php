@@ -123,6 +123,10 @@ Route::delete('/module-page/{modulePage}', [ModuleController::class, 'destroyPag
     ->name('module-page.destroyPage')
     ->middleware('auth');
 
+Route::post('/modules/{module}/pages/save', [ModuleController::class, 'savePage'])
+    ->name('module-pages.save')
+    ->middleware('auth');
+
 
 // Module detail page — public, no auth required
 Route::get('/modules/{module}', Show::class)->name('modules.show');

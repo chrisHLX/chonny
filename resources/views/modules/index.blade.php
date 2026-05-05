@@ -66,7 +66,7 @@
                                 @endif
 
                                 @if ($module->modulePages && !$module->modulePages->isEmpty())
-                                    <form action="{{ route('modules.page', $module->id) }}" method="GET">
+                                    <form action="{{ route('modules.page', $module) }}" method="GET">
                                         @csrf
                                         <button type="submit"
                                                 class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors opacity-0 group-hover:opacity-100">

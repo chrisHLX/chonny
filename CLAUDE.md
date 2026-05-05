@@ -477,3 +477,9 @@ AiService credit deduction — Adding Axes to the prompt increases token length.
 Review content caching — GenerateReviewContentJob caches content at key review_content:{question_id} for one hour. After Phase 3b, if a user hits a cached entry, they'll get the old non-skill-type-aware explanation until the cache expires. This is acceptable as a transient inconsistency during rollout.
 
 SuggestionJob → UserModuleService interface — Phase 4 requires passing weak axes into nextModuleResponse(). Verify how many places call that method before changing its signature. An optional parameter with a default null is the safest approach.
+
+## Module Route Binding
+Module uses `slug` as its route key — always pass the model 
+or `$module->slug` to route helpers, NEVER `$module->id`.
+Known intentional integer exceptions:
+- modules.next-module uses {moduleId} as plain integer — correct by design

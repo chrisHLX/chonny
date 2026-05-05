@@ -10,7 +10,7 @@
         <em>“This module is designed to help new StarCraft players understand the fundamentals of playing Protoss, including basic build orders, unit compositions, and economy management.”</em>
     </p>
 
-    <form action="{{ route('modules.generateLandingPage', $module->id) }}" method="POST" class="space-y-6">
+    <form action="{{ route('modules.generateLandingPage', $module) }}" method="POST" class="space-y-6">
         @csrf
         <div>
             <x-input-label for="description" :value="'Guide Summary / Prompt for AI'" />

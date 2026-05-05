@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <form action="{{ route('modules-pagex.createLandingPage', $module->id) }}" method="POST">
+    <form action="{{ route('modules-pagex.createLandingPage', $module) }}" method="POST">
         @csrf
 
         {{-- Markdown toolbar hint --}}
