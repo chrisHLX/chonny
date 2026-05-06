@@ -65,6 +65,7 @@ class ModuleContentSeeder extends Seeder
             'data/questions.json',
             'data/lolquestions.json',
             'data/medical_questions.json',
+            'data/wowquestions.json',
         ];
 
         $linkedCount = 0;

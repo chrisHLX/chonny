@@ -32,6 +32,11 @@ class SubjectSeeder extends Seeder
                 'category_id' => $games->id,
             ],
             [
+                'name' => 'World of Warcraft: The War Within',
+                'description' => 'Master World of Warcraft gameplay, PvP strategy, and class mechanics in the War Within expansion.',
+                'category_id' => $games->id,
+            ],
+            [
                 'name' => 'Medicine',
                 'description' => 'Study medicine and the structure of the human body and its systems.',
                 'category_id' => $science->id,

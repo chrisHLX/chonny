@@ -1,0 +1,166 @@
+[
+  {
+    "question": "What does 'CC' stand for in World of Warcraft PvP?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Crowd Control",
+      "options": ["Crowd Control", "Critical Combat", "Close Combat", "Combat Cooldown"]
+    },
+    "difficulty": "easy",
+    "concepts": ["Crowd Control"]
+  },
+  {
+    "question": "In WoW PvP, which role is primarily responsible for keeping teammates alive?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Healer",
+      "options": ["Tank", "Healer", "Melee DPS", "Ranged DPS"]
+    },
+    "difficulty": "easy",
+    "concepts": ["Role Fundamentals"]
+  },
+  {
+    "question": "What does 'LoS' stand for, and why is it used in PvP?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Line of Sight — moving behind terrain to interrupt enemy casts",
+      "options": [
+        "Line of Sight — moving behind terrain to interrupt enemy casts",
+        "Level of Skill — a rating of your combat performance",
+        "Loss of Speed — a debuff that reduces movement",
+        "Line of Support — a healer positioning rule"
+      ]
+    },
+    "difficulty": "easy",
+    "concepts": ["Positioning"]
+  },
+  {
+    "question": "What is the primary purpose of the PvP Trinket?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "To break a crowd control effect",
+      "options": [
+        "To break a crowd control effect",
+        "To restore a large amount of health",
+        "To increase your damage output temporarily",
+        "To teleport back to a safe location"
+      ]
+    },
+    "difficulty": "easy",
+    "concepts": ["Cooldown Management", "Crowd Control"]
+  },
+  {
+    "question": "What does 'peeling' mean in WoW PvP?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Using CC or abilities to remove enemies who are attacking your teammate",
+      "options": [
+        "Using CC or abilities to remove enemies who are attacking your teammate",
+        "Retreating from combat when your health is low",
+        "Removing a debuff from yourself using a cooldown",
+        "Switching targets quickly to apply pressure"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Positioning", "Crowd Control"]
+  },
+  {
+    "question": "Which of the following is considered a 'hard CC' because it prevents all actions?",
+    "type": "mcq",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": "Stun",
+      "options": ["Stun", "Slow", "Root", "Silence"]
+    },
+    "difficulty": "easy",
+    "concepts": ["Crowd Control"]
+  },
+  {
+    "question": "What does Diminishing Returns (DR) mean in WoW PvP?",
+    "type": "mcq",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": "Repeated CC of the same type on the same target becomes shorter each time",
+      "options": [
+        "Repeated CC of the same type on the same target becomes shorter each time",
+        "Your damage output decreases the longer a fight goes on",
+        "Your cooldowns take longer to reset if you die",
+        "Healing received is reduced when a player has low health"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Crowd Control"]
+  },
+  {
+    "question": "True or False: A Stun prevents all actions while a Root only prevents movement.",
+    "type": "true_false",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "concepts": ["Crowd Control"]
+  },
+  {
+    "question": "True or False: Defensive cooldowns should always be used as soon as they become available in a PvP fight.",
+    "type": "true_false",
+    "skill_type": "application",
+    "answer": {
+      "correct": false
+    },
+    "difficulty": "easy",
+    "concepts": ["Cooldown Management"]
+  },
+  {
+    "question": "True or False: 'Switching targets' in PvP means changing which enemy player your team is attacking.",
+    "type": "true_false",
+    "skill_type": "recall",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "concepts": ["Target Switching"]
+  },
+  {
+    "question": "Match each PvP role to its primary responsibility.",
+    "type": "matching_pairs",
+    "skill_type": "recall",
+    "answer": {
+      "correct": {
+        "Tank": "Absorbing damage and disrupting enemies",
+        "Healer": "Restoring health and removing debuffs",
+        "DPS": "Dealing damage to eliminate opponents"
+      },
+      "pairs": {
+        "keys": ["Tank", "Healer", "DPS"],
+        "values": ["Restoring health and removing debuffs", "Dealing damage to eliminate opponents", "Absorbing damage and disrupting enemies"]
+      }
+    },
+    "difficulty": "easy",
+    "concepts": ["Role Fundamentals"]
+  },
+  {
+    "question": "Match each crowd control type to its effect.",
+    "type": "matching_pairs",
+    "skill_type": "recall",
+    "answer": {
+      "correct": {
+        "Stun": "Prevents all actions",
+        "Root": "Prevents movement but allows actions",
+        "Silence": "Prevents spellcasting only",
+        "Slow": "Reduces movement speed"
+      },
+      "pairs": {
+        "keys": ["Stun", "Root", "Silence", "Slow"],
+        "values": ["Prevents movement but allows actions", "Prevents all actions", "Reduces movement speed", "Prevents spellcasting only"]
+      }
+    },
+    "difficulty": "medium",
+    "concepts": ["Crowd Control"]
+  }
+]
