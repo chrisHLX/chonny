@@ -32,6 +32,10 @@
     .linear-card { @apply bg-surface-1 border border-line rounded-lg; }
 
     /* Form controls */
+    .form-input {
+        @apply bg-surface-1 border border-line text-ink placeholder-ink-subtle rounded-md px-3 py-2 text-sm w-full
+               focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors;
+    }
     .form-select {
         @apply bg-surface-1 border border-line text-ink rounded-md px-3 py-2 text-sm w-full
                focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors;

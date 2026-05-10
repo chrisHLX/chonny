@@ -10,38 +10,41 @@
 
         {{-- Explore --}}
         <div class="linear-card p-5">
-            <h2 class="text-[13px] font-semibold text-ink mb-3">Explore a topic</h2>
-            <form method="POST" action="{{ route('modules.explore') }}" class="flex flex-col sm:flex-row gap-2.5">
+            <h2 class="text-[13px] font-semibold text-ink mb-1">Explore a topic</h2>
+            <p class="text-[12px] text-ink-muted mb-4">Generate a personalised module from the latest research on any topic.</p>
+            <form method="POST" action="{{ route('modules.explore') }}" class="flex flex-col gap-3">
                 @csrf
                 <input
                     type="text"
                     name="intent"
-                    placeholder="What do you want to learn?"
+                    placeholder="What do you want to learn? (e.g. How to transition from Zerg to Terran)"
                     maxlength="500"
                     required
-                    class="form-input flex-1 min-w-0"
+                    class="form-input"
                 />
                 <textarea
                     name="prior_knowledge"
-                    placeholder="What do you already know about this? (e.g. I've been playing for a month, I know basic build orders but always run out of money)"
+                    placeholder="What do you already know? (e.g. I've been playing for a month, I know basic build orders but always run out of money)"
                     maxlength="500"
-                    rows="2"
-                    class="form-input flex-1 min-w-0 resize-none"
+                    rows="3"
+                    class="form-textarea"
                 ></textarea>
-                <select
-                    name="subject_id"
-                    required
-                    class="form-select w-44 shrink-0">
-                    <option value="">Subject</option>
-                    @foreach ($this->exploreSubjects as $subject)
-                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                    @endforeach
-                </select>
-                <button
-                    type="submit"
-                    class="inline-flex items-center justify-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors shrink-0">
-                    Explore
-                </button>
+                <div class="flex items-center gap-2.5">
+                    <select
+                        name="subject_id"
+                        required
+                        class="form-select">
+                        <option value="">Select a subject…</option>
+                        @foreach ($this->exploreSubjects as $subject)
+                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                        @endforeach
+                    </select>
+                    <button
+                        type="submit"
+                        class="inline-flex items-center justify-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors shrink-0">
+                        Explore
+                    </button>
+                </div>
             </form>
         </div>
 
