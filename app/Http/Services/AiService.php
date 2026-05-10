@@ -412,7 +412,7 @@ class AiService
         ";
 
         // Call OpenAI API (replace with your own client implementation)
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
             'model' => 'gpt-4o-mini',
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
@@ -677,7 +677,7 @@ class AiService
 
         // Call OpenAI API (CANCELLED AT THE MOMENT)
         
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post(
+        $response = Http::withToken(config('services.openai.key'))->post(
             'https://api.openai.com/v1/chat/completions',
             [
                 'model' => 'gpt-4.1-nano',
@@ -959,7 +959,7 @@ class AiService
         $model = 'gpt-4o-mini';
         $inputTokens = $this->estimateTokens($prompt);
 
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
             'model'       => $model,
             'messages'    => [
                 ['role' => 'system', 'content' => 'You are a proficiency assessment assistant. Reply only with a single integer.'],
