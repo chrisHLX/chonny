@@ -1003,7 +1003,7 @@ class AiService
             : '';
 
         $researchBlock = $researchContext !== ''
-            ? "LATEST RESEARCH (treat this as your primary factual source — it reflects current, up-to-date information):\n{$researchContext}\n"
+            ? "LATEST RESEARCH — YOU MUST USE THIS AS YOUR ONLY FACTUAL SOURCE:\nThe following contains current, patch-specific information.\nYou MUST base all content exclusively on what is written below.\nDo NOT use prior training knowledge about this topic.\nEvery specific ability name, talent name, cooldown value, or strategic detail\nyou include MUST appear in the research below.\nIf the research mentions specific talents, compositions, or mechanics — include them by name.\nDo not generalise or simplify patch-specific details.\n\n{$researchContext}\n"
             : '';
 
         $prompt = <<<PROMPT
@@ -1025,10 +1025,15 @@ AVAILABLE CONCEPTS (write content that naturally covers relevant ones — these 
 YOUR TASK:
 Generate a structured learning module with 2–3 content pages that:
 1. Directly addresses the user's stated learning intent
-2. Is written at the {$proficiency->name} reading level and vocabulary
+2. Uses the vocabulary and specific terminology found in the LATEST RESEARCH above —
+   do not simplify ability names, talent names, or strategic concepts.
+   A player at {$proficiency->name} level wants specifics not generalities.
 3. Covers enough factual content to support Recall questions (memory and recognition of facts)
 4. Includes situations or examples to support Analysis questions (interpretation of information)
 5. Includes decisions or scenarios to support Application questions (contextual use of knowledge)
+6. Write 300–500 words per content page. Use the full length to include
+   specific details from the research. Do not pad with generic advice.
+   Every sentence should contain actionable or specific information.
 
 Return JSON ONLY in this exact format, no markdown fences or commentary:
 {
@@ -1037,7 +1042,7 @@ Return JSON ONLY in this exact format, no markdown fences or commentary:
   "pages": [
     {
       "title": "Page title",
-      "content": "Rich markdown content, 200–400 words"
+      "content": "Rich markdown content"
     }
   ]
 }
