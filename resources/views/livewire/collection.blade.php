@@ -73,6 +73,51 @@
                         @forelse ($this->answeredQuestions as $question)
                             <div class="{{ !$loop->last ? 'border-b border-line' : '' }} py-3">
                                 <p class="text-[13px] text-ink mb-2">{{ $question->question }}</p>
+
+                                {{-- Correct answer --}}
+                                @php $ans = $question->answer; @endphp
+                                @if($ans)
+                                    <div class="mb-2">
+                                        @if($question->type === 'mcq')
+                                            <p class="text-[12px] text-ink-subtle">
+                                                <span class="text-ink-muted font-medium">Answer:</span>
+                                                {{ $ans['correct'] ?? '—' }}
+                                            </p>
+                                        @elseif($question->type === 'true_false')
+                                            <p class="text-[12px] text-ink-subtle">
+                                                <span class="text-ink-muted font-medium">Answer:</span>
+                                                {{ isset($ans['correct']) ? ($ans['correct'] ? 'True' : 'False') : '—' }}
+                                            </p>
+                                        @elseif($question->type === 'open')
+                                            @if(!empty($ans['ideal_answer']))
+                                                <p class="text-[12px] text-ink-subtle">
+                                                    <span class="text-ink-muted font-medium">Answer:</span>
+                                                    {{ $ans['ideal_answer'] }}
+                                                </p>
+                                            @elseif(!empty($ans['correct_keywords']))
+                                                <p class="text-[12px] text-ink-subtle">
+                                                    <span class="text-ink-muted font-medium">Keywords:</span>
+                                                    {{ implode(', ', $ans['correct_keywords']) }}
+                                                </p>
+                                            @endif
+                                        @elseif($question->type === 'ordering')
+                                            @if(!empty($ans['steps']))
+                                                <p class="text-[12px] text-ink-subtle">
+                                                    <span class="text-ink-muted font-medium">Order:</span>
+                                                    {{ implode(' → ', $ans['steps']) }}
+                                                </p>
+                                            @endif
+                                        @elseif($question->type === 'matching_pairs')
+                                            @if(!empty($ans['correct']))
+                                                <div class="text-[12px] text-ink-subtle">
+                                                    <span class="text-ink-muted font-medium">Pairs:</span>
+                                                    <span>{{ collect($ans['correct'])->map(fn($v, $k) => "$k → $v")->join(', ') }}</span>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    </div>
+                                @endif
+
                                 <div class="flex flex-wrap gap-2">
                                     <span class="badge-gray">{{ $question->pivot->attempts }} attempts</span>
                                     <span class="badge-green">{{ $question->pivot->correct_count }} correct</span>
