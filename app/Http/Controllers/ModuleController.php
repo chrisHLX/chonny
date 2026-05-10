@@ -436,16 +436,16 @@ class ModuleController extends Controller
     public function explore(Request $request)
     {
         $request->validate([
-            'intent'         => 'required|string|max:500',
-            'subject_id'     => 'required|exists:subjects,id',
-            'proficiency_id' => 'required|exists:proficiencies,id',
+            'intent'          => 'required|string|max:500',
+            'prior_knowledge' => 'nullable|string|max:500',
+            'subject_id'      => 'required|exists:subjects,id',
         ]);
 
-        $user        = auth()->user();
-        $subjectId   = $request->subject_id;
-        $proficiency = Proficiency::where('id', $request->proficiency_id)
-            ->where('subject_id', $subjectId)
-            ->firstOrFail();
+        $user          = auth()->user();
+        $subjectId     = $request->subject_id;
+        $subject       = Subject::findOrFail($subjectId);
+        $priorKnowledge = trim($request->input('prior_knowledge', ''));
+        $proficiency   = $this->inferProficiency($subject, $priorKnowledge);
 
         $intent = trim($request->intent);
         $name   = 'Exploring: ' . \Illuminate\Support\Str::limit($intent, 60);
@@ -498,10 +498,44 @@ class ModuleController extends Controller
             $mcqStep->id,
             $trueFalseStep->id,
             $user->id,
-            $intent
+            $intent,
+            $priorKnowledge
         );
 
         return redirect()->route('modules.show', $module);
+    }
+
+    private function inferProficiency(Subject $subject, string $priorKnowledge): Proficiency
+    {
+        $proficiencies = $subject->proficiencies()->orderBy('index')->get();
+
+        if ($proficiencies->isEmpty()) {
+            abort(422, 'This subject has no proficiency tiers configured.');
+        }
+
+        if (empty(trim($priorKnowledge))) {
+            return $proficiencies->first();
+        }
+
+        $tierList = $proficiencies->map(fn($p) =>
+            "index {$p->index}: {$p->name} — {$p->description}"
+        )->implode("\n");
+
+        $prompt = <<<EOT
+A user wants to learn about "{$subject->name}".
+They describe their current knowledge as: "{$priorKnowledge}"
+
+Available proficiency tiers:
+{$tierList}
+
+Reply with ONLY the index integer of the most appropriate tier. Nothing else.
+EOT;
+
+        $inferredIndex = trim($this->aiService->inferProficiencyLevel($prompt, auth()->id()));
+        $inferredIndex = is_numeric($inferredIndex) ? (int) $inferredIndex : 0;
+
+        return $proficiencies->firstWhere('index', $inferredIndex)
+            ?? $proficiencies->first();
     }
 
     public function export(Module $module)

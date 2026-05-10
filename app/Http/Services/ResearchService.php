@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Log;
 
 class ResearchService
 {
+    protected CreditService $creditService;
+    protected TokenService $tokenService;
+
+    public function __construct(CreditService $creditService, TokenService $tokenService)
+    {
+        $this->creditService = $creditService;
+        $this->tokenService  = $tokenService;
+    }
+
     public function fetchLatestMaterial(string $topic, string $subjectName, int $userID): array
     {
         $key = config('services.gemini.key');
@@ -81,6 +90,11 @@ class ResearchService
                 'sources' => count($sources),
             ],
         ]);
+
+        $inputTokens  = (int) ceil(strlen($promptText) / 4);
+        $outputTokens = (int) ceil(strlen($summary) / 4);
+        $usage        = $this->tokenService->calculateCreditCost($modelId, $inputTokens, $outputTokens);
+        $this->creditService->spendAiCredits($userID, $usage['credits']['charged'], 'research: ' . $topic);
 
         Log::info('ResearchService completed', ['topic' => $topic, 'sources' => count($sources)]);
 

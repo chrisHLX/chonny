@@ -260,18 +260,22 @@ class Show extends Component
         ];
     }
 
-    // First ModulePage content rendered as HTML
-    public function getFirstPageHtmlProperty(): ?string
+    // All ModulePages rendered as HTML, sorted by page_number
+    public function getAllPagesHtmlProperty(): array
     {
-        $page = $this->module->modulePages->sortBy('page_number')->first();
-        if (!$page?->content) {
-            return null;
-        }
-
-        return Str::markdown($page->content, [
-            'html_input'         => 'strip',
-            'allow_unsafe_links' => false,
-        ]);
+        return $this->module->modulePages
+            ->sortBy('page_number')
+            ->filter(fn ($p) => $p->content)
+            ->map(fn ($p) => [
+                'title'       => $p->title ?: 'Page ' . $p->page_number,
+                'page_number' => $p->page_number,
+                'html'        => Str::markdown($p->content, [
+                    'html_input'         => 'strip',
+                    'allow_unsafe_links' => false,
+                ]),
+            ])
+            ->values()
+            ->toArray();
     }
 
     // Question count per skill type

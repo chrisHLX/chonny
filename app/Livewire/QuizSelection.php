@@ -112,16 +112,21 @@ class QuizSelection extends Component
             ->values()
             ->toArray();
 
-        $page = $module->modulePages->sortBy('page_number')->first();
-        $content = $page?->content
-            ? Str::markdown($page->content, ['html_input' => 'strip', 'allow_unsafe_links' => false])
-            : null;
+        $pages = $module->modulePages
+            ->sortBy('page_number')
+            ->filter(fn ($p) => $p->content)
+            ->map(fn ($p) => [
+                'title' => $p->title ?: 'Page ' . $p->page_number,
+                'html'  => Str::markdown($p->content, ['html_input' => 'strip', 'allow_unsafe_links' => false]),
+            ])
+            ->values()
+            ->toArray();
 
         $this->selectedModuleData = [
             'total'        => $total,
             'skill_counts' => $skillCounts,
             'concepts'     => $concepts,
-            'content'      => $content,
+            'pages'        => $pages,
         ];
     }
 

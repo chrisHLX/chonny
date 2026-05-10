@@ -17,7 +17,6 @@ use App\Models\Proficiency;
 use App\Models\Pipeline;
 use App\Models\PipelineStep;
 use App\Models\Category;
-use App\Models\Tag;
 
 class Index extends Component
 {
@@ -25,7 +24,7 @@ class Index extends Component
     public $categoryId;
     public $currentSubjectId;
     public $statusFilter = 'all'; // all | completed | in_progress | not_started
-    public $tagFilter = [];
+    public array $selectedConcepts = [];
     public $proficiencyFilter = null;
     public $category;
     
@@ -58,7 +57,7 @@ class Index extends Component
 
     public function updatedCurrentSubjectId()
     {
-        $this->reset('proficiencyFilter', 'statusFilter', 'tagFilter');
+        $this->reset('proficiencyFilter', 'statusFilter', 'selectedConcepts');
     }
     
     public function mount()
@@ -77,9 +76,8 @@ class Index extends Component
             ->where('status', 'ready')
             ->with([
                 'users' => fn ($q) => $q->where('user_id', auth()->id()),
-                'questions',
+                'questions.concepts',
                 'proficiencies',
-                'tags'
             ]);
 
         if ($this->proficiencyFilter) {
@@ -88,9 +86,9 @@ class Index extends Component
             });
         }
 
-        if (!empty($this->tagFilter)) {
-            $query->whereHas('tags', function ($q) {
-                $q->whereIn('name', $this->tagFilter);
+        if (!empty($this->selectedConcepts)) {
+            $query->whereHas('questions.concepts', function ($q) {
+                $q->whereIn('concepts.id', $this->selectedConcepts);
             });
         }
 
@@ -106,22 +104,27 @@ class Index extends Component
         return $modules;
     }
 
-    public function getTagsProperty()
+    public function getConceptsProperty()
     {
-        if (!$this->currentSubjectId) {
-            return collect();
+        if ($this->currentSubjectId) {
+            return Concept::where('subject_id', $this->currentSubjectId)
+                ->orderBy('name')
+                ->get(['id', 'name']);
         }
 
-        return Tag::where('subject_id', $this->currentSubjectId)
-                ->get();
+        $subjectIds = Subject::where('category_id', $this->categoryId)->pluck('id');
+
+        return Concept::whereIn('subject_id', $subjectIds)
+            ->orderBy('name')
+            ->get(['id', 'name']);
     }
 
-    public function toggleTag($tagName)
+    public function toggleConcept(int $conceptId): void
     {
-        if (in_array($tagName, $this->tagFilter)) {
-            $this->tagFilter = array_values(array_diff($this->tagFilter, [$tagName]));
+        if (in_array($conceptId, $this->selectedConcepts)) {
+            $this->selectedConcepts = array_values(array_diff($this->selectedConcepts, [$conceptId]));
         } else {
-            $this->tagFilter = [...$this->tagFilter, $tagName];
+            $this->selectedConcepts = [...$this->selectedConcepts, $conceptId];
         }
     }
 

@@ -9,18 +9,7 @@
         <x-context-bar-livewire :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" routeName="modules.index"/>
 
         {{-- Explore --}}
-        <div class="linear-card p-5"
-             x-data="{
-                subjectId: '',
-                proficiencies: [],
-                loadProficiencies() {
-                    this.proficiencies = [];
-                    if (!this.subjectId) return;
-                    fetch('/proficiencies/by-subject/' + this.subjectId)
-                        .then(r => r.json())
-                        .then(data => { this.proficiencies = data; });
-                }
-             }">
+        <div class="linear-card p-5">
             <h2 class="text-[13px] font-semibold text-ink mb-3">Explore a topic</h2>
             <form method="POST" action="{{ route('modules.explore') }}" class="flex flex-col sm:flex-row gap-2.5">
                 @csrf
@@ -32,26 +21,21 @@
                     required
                     class="form-input flex-1 min-w-0"
                 />
+                <textarea
+                    name="prior_knowledge"
+                    placeholder="What do you already know about this? (e.g. I've been playing for a month, I know basic build orders but always run out of money)"
+                    maxlength="500"
+                    rows="2"
+                    class="form-input flex-1 min-w-0 resize-none"
+                ></textarea>
                 <select
                     name="subject_id"
                     required
-                    x-model="subjectId"
-                    @change="loadProficiencies()"
                     class="form-select w-44 shrink-0">
                     <option value="">Subject</option>
                     @foreach ($this->exploreSubjects as $subject)
                         <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                     @endforeach
-                </select>
-                <select
-                    name="proficiency_id"
-                    required
-                    :disabled="proficiencies.length === 0"
-                    class="form-select w-44 shrink-0">
-                    <option value="">Level</option>
-                    <template x-for="prof in proficiencies" :key="prof.id">
-                        <option :value="prof.id" x-text="prof.name"></option>
-                    </template>
                 </select>
                 <button
                     type="submit"
@@ -63,18 +47,18 @@
 
         {{-- Filters --}}
         <div class="linear-card p-4 space-y-3">
-            {{-- Tags --}}
+            {{-- Concepts --}}
             <div class="flex flex-wrap gap-1.5">
-                <button wire:click="$set('tagFilter', [])"
+                <button wire:click="$set('selectedConcepts', [])"
                         class="px-3 py-1 rounded-full text-[12px] font-medium transition-colors
-                            {{ empty($tagFilter) ? 'bg-accent text-white' : 'bg-surface-2 text-ink-muted hover:bg-surface-3 border border-line' }}">
-                    All Tags
+                            {{ empty($selectedConcepts) ? 'bg-accent text-white' : 'bg-surface-2 text-ink-muted hover:bg-surface-3 border border-line' }}">
+                    All Concepts
                 </button>
-                @foreach ($this->tags as $tag)
-                    <button wire:click="toggleTag('{{ $tag->name }}')"
+                @foreach ($this->concepts as $concept)
+                    <button wire:click="toggleConcept({{ $concept->id }})"
                             class="px-3 py-1 rounded-full text-[12px] font-medium transition-colors
-                                {{ in_array($tag->name, $tagFilter) ? 'bg-accent text-white' : 'bg-surface-2 text-ink-muted hover:bg-surface-3 border border-line' }}">
-                        {{ $tag->name }}
+                                {{ in_array($concept->id, $selectedConcepts) ? 'bg-accent text-white' : 'bg-surface-2 text-ink-muted hover:bg-surface-3 border border-line' }}">
+                        {{ $concept->name }}
                     </button>
                 @endforeach
             </div>
@@ -128,10 +112,11 @@
                                     <p class="text-[11px] text-ink-subtle mb-1">{{ $module->proficiencies->first()->name }}</p>
                                 @endif
 
-                                @if($module->tags->isNotEmpty())
+                                @php $moduleConcepts = $module->questions->flatMap->concepts->unique('id')->take(4); @endphp
+                                @if($moduleConcepts->isNotEmpty())
                                     <div class="flex flex-wrap gap-1 mb-1.5">
-                                        @foreach($module->tags as $tag)
-                                            <span class="badge-gray">{{ $tag->name }}</span>
+                                        @foreach($moduleConcepts as $concept)
+                                            <span class="badge-gray">{{ $concept->name }}</span>
                                         @endforeach
                                     </div>
                                 @endif

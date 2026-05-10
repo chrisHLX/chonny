@@ -20,9 +20,11 @@
     @endif
 
     @if($selectedModuleData && $selectedModuleModel)
+
+        {{-- Stats + radar row --}}
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
-            {{-- Left: concept polygon + concept name list --}}
+            {{-- Left: concept polygon + axis coverage --}}
             <div class="linear-card p-4 flex flex-col items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="-25 -25 250 250" class="rounded">
                     <defs>
@@ -90,8 +92,8 @@
                 @endif
             </div>
 
-            {{-- Right: stats + concept bars + content --}}
-            <div class="flex flex-col gap-4">
+            {{-- Right: stats + concept bars --}}
+            <div class="linear-card p-4 flex flex-col gap-4">
 
                 <div class="flex flex-wrap gap-1.5">
                     <span class="badge-gray">{{ $selectedModuleData['total'] }} questions</span>
@@ -101,7 +103,7 @@
                 </div>
 
                 @if(!empty($selectedModuleData['concepts']))
-                    <div class="max-h-28 overflow-y-auto space-y-2.5 pr-1">
+                    <div class="space-y-2.5">
                         @foreach($selectedModuleData['concepts'] as $concept)
                             <div>
                                 <div class="flex items-center justify-between mb-1">
@@ -118,16 +120,51 @@
                     </div>
                 @endif
 
-                @if($selectedModuleData['content'])
-                    <div class="prose prose-sm prose-invert max-w-none max-h-48 overflow-y-auto
-                                prose-p:text-ink-muted prose-headings:text-ink prose-strong:text-ink
-                                prose-li:text-ink-muted">
-                        {!! $selectedModuleData['content'] !!}
+            </div>
+        </div>
+
+        {{-- Full-width content pages --}}
+        @if(!empty($selectedModuleData['pages']))
+            @php $qsPages = $selectedModuleData['pages']; $qsMulti = count($qsPages) > 1; @endphp
+            <div class="linear-card overflow-hidden" x-data="{ activeTab: 0 }">
+
+                @if($qsMulti)
+                    <div class="flex gap-0.5 px-4 pt-4 border-b border-line overflow-x-auto">
+                        @foreach($qsPages as $i => $page)
+                            <button
+                                x-on:click="activeTab = {{ $i }}"
+                                :class="activeTab === {{ $i }}
+                                    ? 'border-b-2 border-accent text-ink bg-surface-2'
+                                    : 'border-b-2 border-transparent text-ink-subtle hover:text-ink-muted'"
+                                class="px-4 py-2.5 text-[12px] font-medium transition-colors whitespace-nowrap rounded-t-md -mb-px">
+                                {{ $page['title'] }}
+                            </button>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="px-5 pt-5 pb-2">
+                        <h3 class="text-[13px] font-semibold text-ink">Content</h3>
                     </div>
                 @endif
 
+                @foreach($qsPages as $i => $page)
+                    <div x-show="activeTab === {{ $i }}"
+                         x-cloak
+                         class="p-5">
+                        @if($qsMulti)
+                            <h3 class="text-[13px] font-semibold text-ink mb-3">{{ $page['title'] }}</h3>
+                        @endif
+                        <div class="prose prose-sm prose-invert max-w-none max-h-56 overflow-y-auto
+                                    prose-p:text-ink-muted prose-headings:text-ink prose-strong:text-ink
+                                    prose-li:text-ink-muted prose-code:text-ink-muted">
+                            {!! $page['html'] !!}
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
-        </div>
+        @endif
+
     @endif
 
     <div class="space-y-4">

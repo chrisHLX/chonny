@@ -65,8 +65,10 @@ class DatabaseSeeder extends Seeder
 
         // ========== GROUP 3: PRIMARY CONTENT ==========
         // Modules depend on subjects & proficiencies
+        // ModulePageSeeder must run after ModuleSeeder (needs module IDs)
         $this->call([
             ModuleSeeder::class,
+            ModulePageSeeder::class,
             QuestionSeeder::class,
             UnitSeeder::class,
         ]);

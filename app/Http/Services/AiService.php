@@ -75,36 +75,6 @@ class AiService
         return (int) ceil(strlen($text) / 4);
     }
 
-    public function generateArtSpec(array $data): array
-    {
-        $prompt = "
-    Generate a compact JSON art specification for a collectible learning card.
-
-    Rules:
-    - Output JSON only
-    - Abstract, non-representational
-    - Works across games, science, medicine, engineering
-    - No text references
-
-    Module:
-    Name: {$data['module_name']}
-    Subject: {$data['subject']}
-    Difficulty: {$data['difficulty']}
-    Proficiency: {$data['proficiency']}
-
-    Include:
-    - seed (integer)
-    - 3–5 color hex palette
-    - shape types
-    - symmetry
-    - density
-    - accent
-    ";
-
-        return $this->callOpenAi($prompt, 'gpt-4o-mini');
-    }
-
-
 
     /* --------------------------------------------------------- OPENAI CALLS & HELPERS --------------------------------------------------------- */
     private function callOpenAi(string $prompt, $model = 'gpt-4o-mini', int $userID, string $description = 'undefined'): array
@@ -355,35 +325,6 @@ class AiService
         }
     }
 
-    // CARD ART GENERATION
-    public function generateModuleArtSpec(Module $module): array
-    {
-        $prompt = <<<PROMPT
-        Generate a compact JSON art specification for a collectible learning card.
-
-        Rules:
-        - Output JSON only
-        - Abstract, non-representational
-        - No characters, objects, or text
-        - Deterministic-friendly
-
-        Module:
-        Name: {$module->name}
-        Subject: {$module->subject->name}
-        Difficulty: {$module->difficulty}
-
-        Include:
-        - seed (integer)
-        - palette (3–5 hex colors)
-        - shape_count (integer)
-        - shape_types (array)
-        - symmetry (none|vertical|radial)
-        - accent (none|glow|noise)
-        PROMPT;
-
-        return $this->callOpenAi($prompt);
-    }
-
 
     /* --------------------------------------------------------- Question Controller --------------------------------------------------------- */
 
@@ -585,7 +526,6 @@ class AiService
 
     EOT;
 
-    dd($prompt);
         $response = $this->callOpenAiHTML($prompt);
 
         $formattedResponse = $this->formatter->format($response);
@@ -802,49 +742,6 @@ class AiService
         return $module;
     }
 
-    public function generateIdeas($content, $userData)
-    {
-        $prompt = "the user just completed this module and would like a list of new modules to do";
-        $prompt .= "provide your list in the following JSON format ONLY";
-        $prompt .= '
-            [
-                {
-                    "module_name": "name here",
-                    "module_description": "description here"
-                },
-            ]
-        ';
-        $prompt .= "the user is interested " . $userModuleList . "consider their completed modules when creating 3 options";
-
-        $options = $this->callOpenAiString($prompt);
-        return $options;
-        // send these options so we can show them in the view like foreach options as option option->name option->description. 
-        // then the user can select the difficulty they want and then that gets sent to the below function
-    }
-
-    // This is an example of the generate next module no this is all wrong the user will select the module they want instead create a name and description
-    // of the module let the user select the difficulty level from a dropdown list. let the user choose the primary concepts?
-    // User will pass these variables $name $description $difficulty.
-    public function generateModule($name, $description, $difficulty, $subject)
-    {
-        $prompt = <<<EOT
-        Generate the following Module in JSON format ONLY:
-        [    
-            {
-                "module_name": "A concise name for the module",
-                "module_description": "A brief description of what the module covers",
-                "subject": {$subject}
-            }
-        ]
-        The module should focus on the subject of {$subject} and be suitable for a {$difficulty} level learner.
-EOT;
-        
-        $newModule = $this->callOpenAi($prompt);
-
-        // Create newModule then below create and attach questions to module
-        
-    }
-
     //The content will be with html tag, we should strip them out before adding to the prompt
     public function generateQuestions(string $type, string $content, $newModule, int $userID, ?string $difficultyFocus = null, bool $enforceAllSkillTypes = false, ?string $modelOverride = null)
     {
@@ -1057,7 +954,31 @@ EOT;
 
 
     
-    public function generateExploreContent(string $userIntent, \App\Models\Subject $subject, \App\Models\Proficiency $proficiency, int $userID): array
+    public function inferProficiencyLevel(string $prompt, int $userId): string
+    {
+        $model = 'gpt-4o-mini';
+        $inputTokens = $this->estimateTokens($prompt);
+
+        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+            'model'       => $model,
+            'messages'    => [
+                ['role' => 'system', 'content' => 'You are a proficiency assessment assistant. Reply only with a single integer.'],
+                ['role' => 'user', 'content' => $prompt],
+            ],
+            'temperature' => 0.0,
+        ]);
+
+        $json    = $response->json();
+        $content = trim($json['choices'][0]['message']['content'] ?? '0');
+
+        $outputTokens = $this->estimateTokens($content);
+        $usage = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+        $this->creditService->spendAiCredits($userId, $usage['credits']['charged'], 'infer_proficiency_level');
+
+        return $content;
+    }
+
+    public function generateExploreContent(string $userIntent, \App\Models\Subject $subject, \App\Models\Proficiency $proficiency, int $userID, string $priorKnowledge = '', string $researchContext = ''): array
     {
         $subject->loadMissing(['category.axes.concepts', 'concepts']);
 
@@ -1077,10 +998,18 @@ EOT;
             ? "SKILL MEASUREMENT DIMENSIONS (for context only — do NOT use axis names as content section titles):\n    {$axisString}\n"
             : '';
 
+        $priorKnowledgeLine = $priorKnowledge !== ''
+            ? "\nUser's current knowledge level: \"{$priorKnowledge}\""
+            : '';
+
+        $researchBlock = $researchContext !== ''
+            ? "LATEST RESEARCH (treat this as your primary factual source — it reflects current, up-to-date information):\n{$researchContext}\n"
+            : '';
+
         $prompt = <<<PROMPT
 You are an expert educator creating a structured learning module.
 
-The user wants to learn: "{$userIntent}"
+The user wants to learn: "{$userIntent}"{$priorKnowledgeLine}
 
 SUBJECT: {$subject->name}
 PROFICIENCY LEVEL: {$proficiency->name}
@@ -1088,6 +1017,7 @@ LEVEL DESCRIPTION: {$proficiency->description}
 LEARNING OUTCOMES AT THIS LEVEL:
 - {$outcomes}
 
+{$researchBlock}
 {$axisBlock}
 AVAILABLE CONCEPTS (write content that naturally covers relevant ones — these will be used to tag questions):
 {$conceptsList}
@@ -1125,60 +1055,6 @@ PROMPT;
             'description' => $raw['description'] ?? '',
             'pages'       => $raw['pages'],
         ];
-    }
-
-    /* --------------------------------------------------------- Unused Functions --------------------------------------------------------- */
-
-    // currently not being used, was used for automatic landing page generation
-    public function generateLandingPage(Module $module, string $userPrompt = '') 
-    {
-        $questions = $module->questions()->with('concepts')->get();
-        $prompt = <<<EOT
-        Could you create a guide for the following user-created module. The aim is to help people understand key concepts in sc2.
-
-        Module Name: {$module->name}
-        Module Description: {$module->description}
-        Additional Context: {$userPrompt}
-        EOT;
-
-            $prompt .= <<<EOT
-
-        Please format the guide using raw well structured HTML with no classes. 
-        Focus on a logical hierarchy using <h2> for main sections, <h3> for sub-sections, 
-        and use <p>, <ul>, <ol>, and <li> for content details.
-
-        Do not include <html>, <head>, or <body> tags.
-
-        EOT;
-
-            \Log::debug('Generating landing page with prompt', ['prompt' => $prompt]);
-
-            $response = $this->callOpenAiHTML($prompt);
-
-            $formattedResponse = $this->formatter->format($response);
-
-
-            AiRequest::create([
-                'user_id' => auth()->id(),
-                'purpose' => 'generate_landing_page',
-                'prompt' => $prompt,
-                'response' => $response,
-                'metadata' => [
-                    'module_id' => $module->id,
-                    'model' => 'gpt-4o-mini',
-                ],
-            ]);
-
-            ModulePage::create([
-                'module_id'   => $module->id,
-                'title'       => $module->name,
-                'content'     => $formattedResponse,
-                'page_number' => 1, // landing page
-                'created_by'  => auth()->id(),
-                'updated_by'  => auth()->id(),
-            ]);
-            
-        return $response;
     }
 
 }

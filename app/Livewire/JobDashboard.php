@@ -36,6 +36,6 @@ class JobDashboard extends Component
             'recent'  => $recent,
             'isAdmin' => $isAdmin,
             'polling' => $active->isNotEmpty(),
-        ]);
+        ])->layout('layouts.app');
     }
 }

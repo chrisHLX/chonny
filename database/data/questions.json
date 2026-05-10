@@ -412,5 +412,287 @@
     "difficulty": "hard",
     "units": ["Overlord", "Zergling", "Drone"],
     "concepts": ["Scouting"]
+  },
+
+  {
+    "question": "You have 200 minerals banked but no larvae at your Hatchery. What is the correct response?",
+    "type": "mcq",
+    "skill_type": "application",
+    "answer": {
+      "correct": "Use your Queen to inject the Hatchery immediately",
+      "options": [
+        "Use your Queen to inject the Hatchery immediately",
+        "Build more Drones by clicking the Hatchery",
+        "Wait for larvae to naturally regenerate",
+        "Build a second Hatchery to get more larvae"
+      ]
+    },
+    "difficulty": "medium",
+    "units": ["Queen", "Drone"],
+    "concepts": ["Mechanics", "Economy"]
+  },
+  {
+    "question": "Your opponent is massing Marines. Which Zerg unit counters them most cost-efficiently in a direct engagement?",
+    "type": "mcq",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": "Baneling",
+      "options": ["Baneling", "Roach", "Hydralisk", "Mutalisk"]
+    },
+    "difficulty": "medium",
+    "units": ["Baneling", "Roach", "Hydralisk"],
+    "concepts": ["Army", "Strategy"]
+  },
+  {
+    "question": "True or False: Zerglings can morph into Banelings without a Baneling Nest being built first.",
+    "type": "true_false",
+    "skill_type": "recall",
+    "answer": {
+      "correct": false
+    },
+    "difficulty": "medium",
+    "units": ["Zergling", "Baneling"],
+    "concepts": ["Army", "Build Orders"]
+  },
+  {
+    "question": "What is the primary reason to expand to a second Hatchery (natural) early in the game?",
+    "type": "mcq",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": "More mineral income lets you produce more Drones and units simultaneously",
+      "options": [
+        "More mineral income lets you produce more Drones and units simultaneously",
+        "It immediately unlocks Lair-tier technology",
+        "It provides additional supply for your army",
+        "It increases the rate at which Creep spreads"
+      ]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Economy", "Strategy"]
+  },
+  {
+    "question": "True or False: Creep Tumors can only be placed by Queens, not by other Creep Tumors.",
+    "type": "true_false",
+    "skill_type": "recall",
+    "answer": {
+      "correct": false
+    },
+    "difficulty": "medium",
+    "units": ["Queen"],
+    "concepts": ["Map Control"]
+  },
+
+  {
+    "question": "What is the primary goal of a timing attack in StarCraft 2?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "To strike before the opponent has prepared adequate defences",
+      "options": [
+        "To strike before the opponent has prepared adequate defences",
+        "To destroy every enemy building at once",
+        "To delay your own expansion as long as possible",
+        "To build the largest army before attacking"
+      ]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Tactics", "Strategy"]
+  },
+  {
+    "question": "Which building must Terran construct before building a Factory?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Barracks",
+      "options": ["Barracks", "Engineering Bay", "Starport", "Armory"]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "True or False: A Reaper can jump up and down cliffs using its jet pack.",
+    "type": "true_false",
+    "skill_type": "recall",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "units": ["Reaper"],
+    "concepts": ["Army", "Tactics"]
+  },
+  {
+    "question": "What is the purpose of opening with a Reaper Expand in Terran versus any matchup?",
+    "type": "mcq",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": "Apply early map pressure and gather information while safely securing a second base",
+      "options": [
+        "Apply early map pressure and gather information while safely securing a second base",
+        "Rush the opponent's main base with Reapers before they can react",
+        "Build as many Barracks as possible before taking any expansion",
+        "Skip Marine production entirely and transition directly into Factory units"
+      ]
+    },
+    "difficulty": "medium",
+    "units": ["Reaper", "Command Center"],
+    "concepts": ["Strategy", "Build Orders", "Scouting"]
+  },
+  {
+    "question": "True or False: The Orbital Command can use Scanner Sweep to reveal hidden units and buildings.",
+    "type": "true_false",
+    "skill_type": "recall",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Scouting", "Mechanics"]
+  },
+  {
+    "question": "True or False: Supply Depots can be lowered underground to allow friendly units to pass through.",
+    "type": "true_false",
+    "skill_type": "recall",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Which upgrade significantly increases Marine combat effectiveness by allowing bonus attack speed at the cost of health?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Stimpack",
+      "options": ["Stimpack", "Combat Shield", "Concussive Shells", "Neosteel Frame"]
+    },
+    "difficulty": "easy",
+    "units": ["Marine"],
+    "concepts": ["Army", "Mechanics"]
+  },
+  {
+    "question": "What is the main purpose of a Marine-Medivac timing push?",
+    "type": "mcq",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": "Deal significant damage or close out the game before the opponent reaches a stronger composition",
+      "options": [
+        "Deal significant damage or close out the game before the opponent reaches a stronger composition",
+        "Scout the opponent's base without risking a direct fight",
+        "Deny the opponent's third expansion permanently",
+        "Trade armies efficiently to stay even on supply"
+      ]
+    },
+    "difficulty": "medium",
+    "units": ["Marine", "Medivac"],
+    "concepts": ["Tactics", "Build Orders"]
+  },
+  {
+    "question": "Put the following early Terran build order steps in the correct order.",
+    "type": "ordering",
+    "skill_type": "application",
+    "answer": {
+      "steps": [
+        "Build Supply Depot",
+        "Build Barracks",
+        "Build Refinery",
+        "Build Orbital Command"
+      ]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "Which add-on must be attached to a Barracks to research Stimpack?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Tech Lab",
+      "options": ["Tech Lab", "Reactor", "Starport", "Engineering Bay"]
+    },
+    "difficulty": "easy",
+    "units": ["Marine"],
+    "concepts": ["Build Orders", "Mechanics"]
+  },
+  {
+    "question": "Match each Terran unit to its role in a Marine-Medivac timing push.",
+    "type": "matching_pairs",
+    "skill_type": "recall",
+    "answer": {
+      "correct": {
+        "Marine": "Primary damage dealer",
+        "Medivac": "Heals bio units during combat",
+        "Marauder": "Slows enemies and absorbs damage",
+        "Reaper": "Early scouting and harassment"
+      },
+      "pairs": {
+        "keys": ["Marine", "Medivac", "Marauder", "Reaper"],
+        "values": ["Heals bio units during combat", "Slows enemies and absorbs damage", "Primary damage dealer", "Early scouting and harassment"]
+      }
+    },
+    "difficulty": "easy",
+    "units": ["Marine", "Medivac", "Marauder", "Reaper"],
+    "concepts": ["Army", "Tactics"]
+  },
+  {
+    "question": "True or False: In a standard 2-1-1 build, Terran produces from 2 Barracks, 1 Factory, and 1 Starport simultaneously.",
+    "type": "true_false",
+    "skill_type": "recall",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "What ability does the Orbital Command use to boost mineral income beyond the base rate?",
+    "type": "mcq",
+    "skill_type": "recall",
+    "answer": {
+      "correct": "Call Down: MULE",
+      "options": ["Call Down: MULE", "Scanner Sweep", "Extra Supplies", "Stimpack Drop"]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Economy", "Mechanics"]
+  },
+  {
+    "question": "Put the following steps in the correct order to execute a Reaper Expand.",
+    "type": "ordering",
+    "skill_type": "application",
+    "answer": {
+      "steps": [
+        "Build Barracks",
+        "Produce Reaper",
+        "Scout with Reaper while harassing",
+        "Build Command Center at the natural expansion"
+      ]
+    },
+    "difficulty": "medium",
+    "units": ["Reaper", "Command Center"],
+    "concepts": ["Build Orders", "Strategy"]
+  },
+  {
+    "question": "Why do Terran players attach a Reactor to a Barracks instead of a Tech Lab?",
+    "type": "mcq",
+    "skill_type": "analysis",
+    "answer": {
+      "correct": "A Reactor allows the Barracks to produce two units simultaneously, maximising Marine output",
+      "options": [
+        "A Reactor allows the Barracks to produce two units simultaneously, maximising Marine output",
+        "A Reactor unlocks advanced upgrades like Stimpack and Combat Shield",
+        "A Reactor reduces the build time of each Marine by 50%",
+        "A Reactor gives the Barracks extra hit points to survive attacks"
+      ]
+    },
+    "difficulty": "easy",
+    "units": ["Marine"],
+    "concepts": ["Build Orders", "Mechanics"]
   }
 ]

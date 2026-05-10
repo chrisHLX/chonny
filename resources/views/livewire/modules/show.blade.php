@@ -30,9 +30,6 @@
                             <span class="badge-gray">{{ $module->proficiencies->first()->name }}</span>
                         @endif
 
-                        @foreach ($module->tags as $tag)
-                            <span class="badge-gray">{{ $tag->name }}</span>
-                        @endforeach
                     </div>
 
                     @if ($module->description)
@@ -224,15 +221,47 @@
             </div>
         </div>
 
-        {{-- Module content (first page, markdown) --}}
-        @if ($this->firstPageHtml)
-            <div class="linear-card p-6">
-                <h2 class="page-section-title mb-4">Content</h2>
-                <div class="prose prose-sm prose-invert max-w-none
-                            prose-p:text-ink-muted prose-headings:text-ink prose-strong:text-ink
-                            prose-li:text-ink-muted prose-code:text-ink-muted">
-                    {!! $this->firstPageHtml !!}
-                </div>
+        {{-- Module content pages --}}
+        @if (!empty($this->allPagesHtml))
+            @php $pages = $this->allPagesHtml; $multiPage = count($pages) > 1; @endphp
+            <div class="linear-card overflow-hidden" x-data="{ activeTab: 0 }">
+
+                {{-- Tab bar (only when multiple pages) --}}
+                @if ($multiPage)
+                    <div class="flex gap-0.5 px-4 pt-4 border-b border-line overflow-x-auto">
+                        @foreach ($pages as $i => $page)
+                            <button
+                                x-on:click="activeTab = {{ $i }}"
+                                :class="activeTab === {{ $i }}
+                                    ? 'border-b-2 border-accent text-ink bg-surface-2'
+                                    : 'border-b-2 border-transparent text-ink-subtle hover:text-ink-muted'"
+                                class="px-4 py-2.5 text-[12px] font-medium transition-colors whitespace-nowrap rounded-t-md -mb-px">
+                                {{ $page['title'] }}
+                            </button>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="px-6 pt-6 pb-2">
+                        <h2 class="page-section-title">Content</h2>
+                    </div>
+                @endif
+
+                {{-- Page content panels --}}
+                @foreach ($pages as $i => $page)
+                    <div x-show="activeTab === {{ $i }}"
+                         x-cloak
+                         class="p-6">
+                        @if ($multiPage)
+                            <h2 class="text-[15px] font-semibold text-ink mb-4">{{ $page['title'] }}</h2>
+                        @endif
+                        <div class="prose prose-sm prose-invert max-w-none
+                                    prose-p:text-ink-muted prose-headings:text-ink prose-strong:text-ink
+                                    prose-li:text-ink-muted prose-code:text-ink-muted">
+                            {!! $page['html'] !!}
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
         @endif
 

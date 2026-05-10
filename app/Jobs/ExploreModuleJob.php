@@ -13,6 +13,7 @@ use App\Models\Module;
 use App\Models\Pipeline;
 use App\Models\PipelineStep;
 use App\Http\Services\AiService;
+use App\Http\Services\ResearchService;
 
 class ExploreModuleJob implements ShouldQueue
 {
@@ -25,6 +26,7 @@ class ExploreModuleJob implements ShouldQueue
     protected int $trueFalseStepId;
     protected int $userId;
     protected string $intent;
+    protected string $priorKnowledge;
 
     public function __construct(
         int $moduleId,
@@ -33,7 +35,8 @@ class ExploreModuleJob implements ShouldQueue
         int $mcqStepId,
         int $trueFalseStepId,
         int $userId,
-        string $intent
+        string $intent,
+        string $priorKnowledge = ''
     ) {
         $this->moduleId        = $moduleId;
         $this->pipelineId      = $pipelineId;
@@ -42,9 +45,10 @@ class ExploreModuleJob implements ShouldQueue
         $this->trueFalseStepId = $trueFalseStepId;
         $this->userId          = $userId;
         $this->intent          = $intent;
+        $this->priorKnowledge  = $priorKnowledge;
     }
 
-    public function handle(AiService $aiService): void
+    public function handle(AiService $aiService, ResearchService $researchService): void
     {
         $module      = Module::find($this->moduleId);
         $contentStep = PipelineStep::find($this->contentStepId);
@@ -59,7 +63,11 @@ class ExploreModuleJob implements ShouldQueue
             $subject     = $module->subject;
             $proficiency = $module->proficiencies()->first();
 
-            $result = $aiService->generateExploreContent($this->intent, $subject, $proficiency, $this->userId);
+            $topic          = $this->intent . ' — ' . $subject->name;
+            $research       = $researchService->fetchLatestMaterial($topic, $subject->name, $this->userId);
+            $researchContext = $research['summary'] ?? '';
+
+            $result = $aiService->generateExploreContent($this->intent, $subject, $proficiency, $this->userId, $this->priorKnowledge, $researchContext);
 
             $module->update([
                 'name'        => $result['title'],

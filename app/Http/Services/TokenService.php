@@ -35,6 +35,10 @@ class TokenService
             'cached_input' => 0.075,
             'output' => 0.60,
         ],
+        'gemini-2.5-flash-lite' => [
+            'input' => 0.10,
+            'output' => 0.40,
+        ],
     ];
 
     /**
