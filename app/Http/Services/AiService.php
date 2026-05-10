@@ -84,7 +84,7 @@ class AiService
 
         // Estimate Input & Output Tokens
         $inputTokens = $this->estimateTokens($prompt);
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
             'model' => $model,     // use chosen model or default
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
@@ -156,7 +156,7 @@ class AiService
         // 1. Estimate input tokens
         $inputTokens = $this->estimateTokens($prompt);
 
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
             'model' => 'gpt-4o-mini', // or gpt-3.5-turbo
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
@@ -225,7 +225,7 @@ class AiService
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
 
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/chat/completions', [
+        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
             'model' => 'gpt-4.1-nano',
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
