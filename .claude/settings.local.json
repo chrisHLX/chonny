@@ -12,7 +12,8 @@
       "Bash(Find \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\" -type f -name \"*.php\")",
       "Bash(findstr /I \"category\")",
       "Bash(powershell -Command \"Get-ChildItem -Recurse -Path 'c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\resources\\\\views' -Name | grep -i 'explore|create|generate' | head -20\")",
-      "PowerShell(Get-ChildItem -Recurse -Path 'c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\resources\\\\views' | Where-Object {$_.Name -match 'explore|create|generate'} | Select-Object -ExpandProperty Name)"
+      "PowerShell(Get-ChildItem -Recurse -Path 'c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\resources\\\\views' | Where-Object {$_.Name -match 'explore|create|generate'} | Select-Object -ExpandProperty Name)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\" -Recurse -Include \"*.php\", \"*.blade.php\")"
     ]
   }
 }
