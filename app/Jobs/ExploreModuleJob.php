@@ -64,7 +64,7 @@ class ExploreModuleJob implements ShouldQueue
             $proficiency = $module->proficiencies()->first();
 
             $topic          = $this->intent . ' — ' . $subject->name;
-            $research       = $researchService->fetchLatestMaterial($topic, $subject->name, $this->userId);
+            $research       = $researchService->fetchLatestMaterial($topic, $subject->name, $this->userId, $module->subject_id, $module->id);
             $researchContext = $research['summary'] ?? '';
 
             $result = $aiService->generateExploreContent($this->intent, $subject, $proficiency, $this->userId, $this->priorKnowledge, $researchContext);

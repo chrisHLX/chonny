@@ -1,4 +1,4 @@
-@props(['module'])
+@props(['module', 'subjectResearchCount', 'modulePageCount', 'moduleResearch' => null])
 
 <div class="linear-card overflow-hidden">
 
@@ -39,6 +39,9 @@
                 result: null,
                 error: null,
                 appended: false,
+                userPrompt: '',
+                attachResearch: false,
+                attachPages: false,
                 async run() {
                     this.loading = true;
                     this.result = null;
@@ -50,13 +53,20 @@
                             headers: {
                                 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content,
                                 'Accept': 'application/json',
+                                'Content-Type': 'application/json',
                             },
+                            body: JSON.stringify({
+                                user_prompt: this.userPrompt,
+                                attach_research: this.attachResearch,
+                                attach_pages: this.attachPages,
+                            }),
                         });
                         const data = await res.json();
                         if (!res.ok) {
                             this.error = data.error ?? 'Research failed. Please try again.';
                         } else {
                             this.result = data;
+                            setTimeout(() => window.location.reload(), 2000);
                         }
                     } catch (e) {
                         this.error = 'Network error. Please check your connection and try again.';
@@ -77,6 +87,41 @@
             }"
             class="px-6 py-5 space-y-4"
         >
+            {{-- Custom prompt --}}
+            <div class="space-y-1.5">
+                <label class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide">
+                    Custom Research Request (optional)
+                </label>
+                <textarea
+                    x-model="userPrompt"
+                    placeholder="e.g. Focus on PvP arena only. Find cooldown timers for each ability mentioned. Ignore PvE content."
+                    rows="2"
+                    class="w-full rounded-md border border-border bg-surface-1 px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle focus:border-accent focus:outline-none resize-none"
+                ></textarea>
+                <p class="text-[11px] text-ink-subtle">Leave blank for a general overview of the topic.</p>
+            </div>
+
+            {{-- Context attachments --}}
+            @if($moduleResearch !== null || $modulePageCount > 0)
+            <div class="space-y-2">
+                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide">Attach Context</p>
+                @if($moduleResearch !== null)
+                <div class="flex items-start gap-2 p-3 rounded-lg bg-surface-1 border border-border">
+                    <svg class="w-3.5 h-3.5 shrink-0 mt-0.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="text-[12px] text-ink-muted">Existing research for this module will be used as context and <span class="text-ink font-medium">overwritten</span> with the new result.</p>
+                </div>
+                @endif
+                @if($modulePageCount > 0)
+                <label class="flex items-center gap-2 cursor-pointer select-none">
+                    <input type="checkbox" x-model="attachPages" class="rounded border-border text-accent focus:ring-accent/30">
+                    <span class="text-[13px] text-ink">Attach module content pages ({{ $modulePageCount }} {{ Str::plural('page', $modulePageCount) }})</span>
+                </label>
+                @endif
+            </div>
+            @endif
+
             {{-- Trigger button --}}
             <button
                 type="button"

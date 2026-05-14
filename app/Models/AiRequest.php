@@ -11,7 +11,9 @@ class AiRequest extends Model
         'user_id',
         'purpose',
         'prompt',
+        'template_prompt',
         'response',
+        'duration_ms',
         'metadata',
     ];
 
@@ -20,4 +22,8 @@ class AiRequest extends Model
         'metadata' => 'array',
     ];
 
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

@@ -82,61 +82,62 @@ class AiService
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
         \Log::info("Using Model {$model}");
 
-        // Estimate Input & Output Tokens
         $inputTokens = $this->estimateTokens($prompt);
+
+        $start = microtime(true);
         $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => $model,     // use chosen model or default
+            'model' => $model,
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $prompt],
             ],
             'temperature' => 0.2,
         ]);
+        $durationMs = (int) round((microtime(true) - $start) * 1000);
 
         $json = $response->json();
         $content = $json['choices'][0]['message']['content'] ?? '{}';
 
-        // 🔥 Strip Markdown code block (if present)
         $content = trim($content);
-        $content = preg_replace('/^```json|```$/i', '', $content); // Remove ```json and ```
+        $content = preg_replace('/^```json|```$/i', '', $content);
         $content = trim($content);
 
         Log::debug('Cleaned OpenAI content', ['content' => $content]);
 
-        // Estimate Output Tokens
         $outputTokens = $this->estimateTokens($content);
 
-        // Calculate Cost
-        // 4. Calculate cost in credits
-        $usage = $this->tokenService->calculateCreditCost(
-            $model,
-            $inputTokens,
-            $outputTokens
-        );
+        $usage = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
 
-        // Deduct credits from user
-        $this->creditService->spendAiCredits(
-            $userID,
-            $usage['credits']['charged'],
-            $description
-        );
-
+        $this->creditService->spendAiCredits($userID, $usage['credits']['charged'], $description);
 
         \Log::info('AI token usage', [
-            'model' => $usage['model'],
-            'input_tokens' => $usage['input_tokens'],
-            'output_tokens' => $usage['output_tokens'],
-
-            // Your actual OpenAI cost
-            'cost_usd' => $usage['cost']['total_usd'],
-            'input_usd' => $usage['cost']['input_usd'],
-            'output_usd' => $usage['cost']['output_usd'],
-
-            // What the user paid
+            'model'           => $usage['model'],
+            'input_tokens'    => $usage['input_tokens'],
+            'output_tokens'   => $usage['output_tokens'],
+            'cost_usd'        => $usage['cost']['total_usd'],
+            'input_usd'       => $usage['cost']['input_usd'],
+            'output_usd'      => $usage['cost']['output_usd'],
             'credits_charged' => $usage['credits']['charged'],
-            'credits_raw' => $usage['credits']['raw'],
+            'credits_raw'     => $usage['credits']['raw'],
         ]);
 
+        AiRequest::create([
+            'user_id'         => $userID,
+            'purpose'         => $description,
+            'prompt'          => $prompt,
+            'template_prompt' => '',
+            'response'        => $content,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $model,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'input_usd'       => $usage['cost']['input_usd'],
+                'output_usd'      => $usage['cost']['output_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
 
         $decoded = json_decode($content, true);
 
@@ -145,104 +146,174 @@ class AiService
 
     private function callOpenAiString(string $prompt, $userID, string $description = 'undefined'): string
     {
-        $userID = $userID; // Need to pass the user ID for jobs
-        
-        // Log the prompt for debugging
         \Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
 
-        /* --------- Token estimation logic ---------- */
-        $model = 'gpt-4o-mini';
-
-        // 1. Estimate input tokens
+        $model       = 'gpt-4o-mini';
         $inputTokens = $this->estimateTokens($prompt);
 
+        $start = microtime(true);
         $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o-mini', // or gpt-3.5-turbo
+            'model'    => $model,
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $prompt],
             ],
             'temperature' => 0.2,
         ]);
+        $durationMs = (int) round((microtime(true) - $start) * 1000);
 
-        $json = $response->json();
-        
-        // Grab the content from the first choice
+        $json    = $response->json();
         $content = $json['choices'][0]['message']['content'] ?? '';
 
-        // Strip any Markdown code blocks (like ```json ... ```)
         $content = trim(preg_replace('/^```json|```$/i', '', $content));
 
-        // If OpenAI returned a JSON string, decode and try to extract 'content'
         $decoded = json_decode($content, true);
         if (is_array($decoded) && isset($decoded['content'])) {
             $content = $decoded['content'];
         }
 
-        // 3. Estimate output tokens
         $outputTokens = $this->estimateTokens($content);
 
-        // 4. Calculate cost in credits
-        $usage = $this->tokenService->calculateCreditCost(
-            $model,
-            $inputTokens,
-            $outputTokens
-        );
+        $usage = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
 
-        // Deduct credits from user
-        $this->creditService->spendAiCredits(
-            $userID,
-            $usage['credits']['charged'],
-            $description
-        );
-
+        $this->creditService->spendAiCredits($userID, $usage['credits']['charged'], $description);
 
         \Log::info('AI token usage', [
-            'model' => $usage['model'],
-            'input_tokens' => $usage['input_tokens'],
-            'output_tokens' => $usage['output_tokens'],
-
-            // Your actual OpenAI cost
-            'cost_usd' => $usage['cost']['total_usd'],
-            'input_usd' => $usage['cost']['input_usd'],
-            'output_usd' => $usage['cost']['output_usd'],
-
-            // What the user paid
+            'model'           => $usage['model'],
+            'input_tokens'    => $usage['input_tokens'],
+            'output_tokens'   => $usage['output_tokens'],
+            'cost_usd'        => $usage['cost']['total_usd'],
+            'input_usd'       => $usage['cost']['input_usd'],
+            'output_usd'      => $usage['cost']['output_usd'],
             'credits_charged' => $usage['credits']['charged'],
-            'credits_raw' => $usage['credits']['raw'],
+            'credits_raw'     => $usage['credits']['raw'],
         ]);
 
-
-        // Final trim to clean up any leftover whitespace
         $content = trim($content);
 
         \Log::debug('Final OpenAI explanation', ['content' => $content]);
 
+        AiRequest::create([
+            'user_id'         => $userID,
+            'purpose'         => $description,
+            'prompt'          => $prompt,
+            'template_prompt' => '',
+            'response'        => $content,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $model,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'input_usd'       => $usage['cost']['input_usd'],
+                'output_usd'      => $usage['cost']['output_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
+
         return $content;
     }
 
-    private function callOpenAiHTML(string $prompt): string
+    private function callOpenAiHTML(string $prompt, int $userID = 0, string $description = 'generate_html'): string
     {
         Log::debug('Our prompt sent to OpenAI', ['prompt' => $prompt]);
 
+        $model       = 'gpt-4.1-nano';
+        $inputTokens = $this->estimateTokens($prompt);
+
+        $start = microtime(true);
         $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4.1-nano',
+            'model'    => $model,
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $prompt],
             ],
             'temperature' => 0.2,
         ]);
+        $durationMs = (int) round((microtime(true) - $start) * 1000);
 
-        $json = $response->json();
+        $json    = $response->json();
         $content = $json['choices'][0]['message']['content'] ?? '';
 
-        // 🔥 Strip Markdown code block (e.g. ```html)
         $content = trim($content);
         $content = preg_replace('/^```html|```$/i', '', $content);
         $content = trim($content);
 
         Log::debug('Cleaned OpenAI content', ['content' => $content]);
+
+        $outputTokens = $this->estimateTokens($content);
+        $usage        = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+
+        $resolvedUserId = $userID ?: (auth()->id() ?? 0);
+        $this->creditService->spendAiCredits($resolvedUserId, $usage['credits']['charged'], $description);
+
+        AiRequest::create([
+            'user_id'         => $resolvedUserId,
+            'purpose'         => $description,
+            'prompt'          => $prompt,
+            'template_prompt' => '',
+            'response'        => $content,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $model,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'input_usd'       => $usage['cost']['input_usd'],
+                'output_usd'      => $usage['cost']['output_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
+
+        return $content;
+    }
+
+    private function callOpenAiRaw(
+        string $prompt,
+        int    $userID,
+        string $description   = 'undefined',
+        string $model         = 'gpt-4o-mini',
+        string $systemPrompt  = 'You are a helpful assistant.',
+        float  $temperature   = 0.2
+    ): string {
+        $inputTokens = $this->estimateTokens($prompt);
+
+        $start = microtime(true);
+        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
+            'model'       => $model,
+            'messages'    => [
+                ['role' => 'system', 'content' => $systemPrompt],
+                ['role' => 'user', 'content' => $prompt],
+            ],
+            'temperature' => $temperature,
+        ]);
+        $durationMs = (int) round((microtime(true) - $start) * 1000);
+
+        $json    = $response->json();
+        $content = trim($json['choices'][0]['message']['content'] ?? '');
+
+        $outputTokens = $this->estimateTokens($content);
+        $usage        = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+
+        $this->creditService->spendAiCredits($userID, $usage['credits']['charged'], $description);
+
+        AiRequest::create([
+            'user_id'         => $userID,
+            'purpose'         => $description,
+            'prompt'          => $prompt,
+            'template_prompt' => '',
+            'response'        => $content,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $model,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'input_usd'       => $usage['cost']['input_usd'],
+                'output_usd'      => $usage['cost']['output_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
 
         return $content;
     }
@@ -349,20 +420,6 @@ class AiService
 
         \Log::info('This is the custom LOG', ['response' => $concepts]);
 
-        // add the response to the database
-        AiRequest::create([
-            'user_id' => auth()->id(),
-            'purpose' => 'tag_concepts',
-            'prompt' => $prompt,
-            'response' => $concepts,
-            'metadata' => [
-                'question_text' => $questionText,
-                'answer_text' => $answerText,
-                'module_id' => $module_id, 
-                'model' => 'gpt-4.1-mini',
-            ],
-        ]);
-
         return $concepts;
 
     }
@@ -404,35 +461,13 @@ class AiService
     // Used in the question controller in the store function for saving questions, automatically generating keywords for open questions
     public function getKeywords($input)
     {
-        // Example prompt for OpenAI
-        $prompt = "
-            Extract the most important keywords from the following text that I can then compare against a users answer.
-            Respond ONLY with a JSON array of strings. 
-            Text: \"$input\"
-        ";
+        $prompt = "Extract the most important keywords from the following text that I can then compare against a users answer.
+            Respond ONLY with a JSON array of strings.
+            Text: \"$input\"";
 
-        // Call OpenAI API (replace with your own client implementation)
-        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o-mini',
-            'messages' => [
-                ['role' => 'system', 'content' => 'You are a helpful assistant.'],
-                ['role' => 'user', 'content' => $prompt],
-            ],
-            'temperature' => 0.2,
-        ]);
+        $response = $this->callOpenAi($prompt, 'gpt-4o-mini', auth()->id() ?? 0, 'get_keywords');
 
-        // Get the text output from OpenAI
-        $output = $response['choices'][0]['message']['content'] ?? '[]';
-
-        // Decode into an array
-        $keywords = json_decode($output, true);
-
-        // Make sure it's always an array
-        if (!is_array($keywords)) {
-            $keywords = [];
-        }
-
-        return $keywords;
+        return is_array($response) ? $response : [];
     }
 
     public function generateContentForQuestion(Question $question, $moduleInfo, $userID, string $skillType = ''): string
@@ -526,20 +561,9 @@ class AiService
 
     EOT;
 
-        $response = $this->callOpenAiHTML($prompt);
+        $response = $this->callOpenAiHTML($prompt, auth()->id() ?? 0, 'generate_landing_page');
 
         $formattedResponse = $this->formatter->format($response);
-
-        AiRequest::create([
-            'user_id' => auth()->id(),
-            'purpose' => 'generate_landing_page',
-            'prompt' => $prompt,
-            'response' => $response,
-            'metadata' => [
-                'module_id' => $module->id,
-                'model' => 'gpt-4o-mini',
-            ],
-        ]);
 
         ModulePage::create([
             'module_id'   => $module->id,
@@ -570,9 +594,9 @@ class AiService
         if ($profIndex < 2) {
             $depthGuide = "beginner — introduce terms plainly, use analogies, avoid jargon. Target 300–450 words.";
         } elseif ($profIndex < 4) {
-            $depthGuide = "intermediate — assume basic familiarity, explain how concepts interact and why decisions matter. Target 450–650 words.";
+            $depthGuide = "intermediate — assume basic familiarity, explain how concepts interact and why decisions matter. Target 400–500 words.";
         } else {
-            $depthGuide = "advanced — assume solid fundamentals, explore nuance, trade-offs, and expert decision-making. Target 650–900 words.";
+            $depthGuide = "advanced — assume solid fundamentals, explore nuance, trade-offs, and expert decision-making. Target 450–500 words.";
         }
 
         $profName        = $prof?->name ?? 'General';
@@ -599,43 +623,33 @@ class AiService
         - Each section should develop understanding across at least one skill dimension above
         - Include at least one concrete example or scenario that shows the concept applied, not just defined
         - Close with a ## Key Takeaways section containing 3–5 bullet points
+        - Maximum 500 words total. Be concise and prioritise the most important information.
         - Return only the Markdown content. No JSON wrapper, no preamble, no meta-commentary.
         EOT;
 
-        $content = $this->callOpenAiString($prompt, $userID, 'Module Content Generation');
-
-        AiRequest::create([
-            'user_id'  => $userID,
-            'purpose'  => 'generate_module_content',
-            'prompt'   => $prompt,
-            'response' => $content,
-            'metadata' => [
-                'module_id' => $module->id,
-                'model'     => 'gpt-4o-mini',
-            ],
-        ]);
+        $content = $this->callOpenAiString($prompt, $userID, 'generate_module_content');
 
         return $content;
     }
 
     /* --------------------------------------------------------- MODULE GENERATION --------------------------------------------------------- */
 
-    // Questions the user gets wrong should be sufficient to generate a new module content.
+    // TODO: dead code — review before removing
     public function generateNewModule($moduleID, array $IDs)
     {
         \Log::info("new mod generated");
-        $module = Module::find($moduleID); 
+        $module = Module::find($moduleID);
         $module = $this->followUpQuestions($module, $IDs);
         return $module;
     }
 
-    // Questions the user gets wrong should be sufficient to generate a new module content.
+    // TODO: dead code — review before removing
     public function generateHarderModule($moduleID, array $IDs)
     {
         \Log::info("harder mod generated");
     }
 
-    // This is the functionality for helping users with problematic questions
+    // TODO: dead code — review before removing (hardcoded StarCraft 2 system prompt, HTTP call marked cancelled)
     private function followUpQuestions(Module $module, array $questionIds)
     {
         // Moved the variables up the top.
@@ -956,26 +970,14 @@ class AiService
     
     public function inferProficiencyLevel(string $prompt, int $userId): string
     {
-        $model = 'gpt-4o-mini';
-        $inputTokens = $this->estimateTokens($prompt);
-
-        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
-            'model'       => $model,
-            'messages'    => [
-                ['role' => 'system', 'content' => 'You are a proficiency assessment assistant. Reply only with a single integer.'],
-                ['role' => 'user', 'content' => $prompt],
-            ],
-            'temperature' => 0.0,
-        ]);
-
-        $json    = $response->json();
-        $content = trim($json['choices'][0]['message']['content'] ?? '0');
-
-        $outputTokens = $this->estimateTokens($content);
-        $usage = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
-        $this->creditService->spendAiCredits($userId, $usage['credits']['charged'], 'infer_proficiency_level');
-
-        return $content;
+        return $this->callOpenAiRaw(
+            $prompt,
+            $userId,
+            'infer_proficiency_level',
+            'gpt-4o-mini',
+            'You are a proficiency assessment assistant. Reply only with a single integer.',
+            0.0
+        );
     }
 
     public function generateExploreContent(string $userIntent, \App\Models\Subject $subject, \App\Models\Proficiency $proficiency, int $userID, string $priorKnowledge = '', string $researchContext = ''): array

@@ -5,6 +5,7 @@ namespace App\Livewire\Modules;
 use Livewire\Component;
 use App\Models\Module;
 use App\Models\Pipeline;
+use App\Models\SubjectContent;
 use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
 use Illuminate\Support\Facades\Auth;
@@ -276,6 +277,14 @@ class Show extends Component
             ])
             ->values()
             ->toArray();
+    }
+
+    public function getSubjectResearchProperty(): \Illuminate\Support\Collection
+    {
+        return SubjectContent::where('subject_id', $this->module->subject_id)
+            ->latest()
+            ->take(5)
+            ->get();
     }
 
     // Question count per skill type

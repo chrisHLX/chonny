@@ -59,6 +59,12 @@
                                class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                                 {{ $status === 'completed' ? 'Retake Quiz' : ($status === 'in_progress' ? 'Continue Quiz' : 'Start Quiz') }}
                             </a>
+                            @if ($module->modulePages->isNotEmpty())
+                                <a href="{{ route('modules.page', $module) }}"
+                                   class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-ink-muted border border-line hover:border-ink-subtle hover:text-ink rounded-lg transition-colors">
+                                    View Content
+                                </a>
+                            @endif
                         @else
                             <button wire:click="enroll"
                                     class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
@@ -220,6 +226,58 @@
                 @endif
             </div>
         </div>
+
+        {{-- Research content --}}
+        @if ($this->subjectResearch->isNotEmpty())
+            <div class="linear-card overflow-hidden">
+                <div class="px-6 pt-6 pb-4 border-b border-line flex items-center justify-between">
+                    <h2 class="page-section-title">Research</h2>
+                    <span class="text-[11px] text-ink-subtle">{{ $this->subjectResearch->count() }} {{ Str::plural('entry', $this->subjectResearch->count()) }}</span>
+                </div>
+
+                <div class="divide-y divide-line">
+                    @foreach ($this->subjectResearch as $research)
+                        <div x-data="{ open: false }">
+                            <button
+                                x-on:click="open = !open"
+                                class="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-surface-2 transition-colors group">
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-[13px] text-ink font-medium truncate">{{ $research->title }}</p>
+                                    <p class="text-[11px] text-ink-subtle mt-0.5">{{ $research->created_at->diffForHumans() }}</p>
+                                </div>
+                                <svg x-bind:class="open ? 'rotate-180' : ''"
+                                     class="w-4 h-4 text-ink-subtle shrink-0 ml-4 transition-transform duration-200"
+                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+
+                            <div x-show="open" x-cloak class="px-6 pb-5">
+                                <div class="prose prose-sm prose-invert max-w-none
+                                            prose-p:text-ink-muted prose-headings:text-ink prose-strong:text-ink
+                                            prose-li:text-ink-muted prose-code:text-ink-muted">
+                                    {!! Str::markdown(e($research->content), ['html_input' => 'strip', 'allow_unsafe_links' => false]) !!}
+                                </div>
+
+                                @if (!empty($research->source_urls))
+                                    <div class="mt-4 pt-4 border-t border-line">
+                                        <p class="text-[11px] text-ink-subtle mb-2 uppercase tracking-wide">Sources</p>
+                                        <div class="flex flex-col gap-1">
+                                            @foreach ($research->source_urls as $url)
+                                                <a href="{{ $url }}" target="_blank" rel="noopener noreferrer"
+                                                   class="text-[12px] text-accent hover:text-accent-hover truncate transition-colors">
+                                                    {{ $url }}
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
 
         {{-- Module content pages --}}
         @if (!empty($this->allPagesHtml))

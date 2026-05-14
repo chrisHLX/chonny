@@ -114,6 +114,17 @@ Many-to-many with Concepts via `concept_axis` pivot. `UserAxisMastery` tracks ea
 - `content` (longText) — Markdown or HTML written by the module creator; this is the primary source material for AI question generation
 - `created_by` / `updated_by` — user attribution
 
+**SubjectContent** (`subject_content` table) — persists AI-generated research fetched by `ResearchService`. Key fields:
+- `subject_id` — the Subject this research belongs to
+- `module_id` (nullable) — the Module it was fetched in context of (null if research is done outside a module)
+- `ai_request_id` (nullable) — links back to the `AiRequest` log entry for cost tracking
+- `created_by` (nullable) — user who triggered the research
+- `title` — auto-generated as `"Research: {topic} — {date}"`
+- `content` (longText) — raw Gemini summary text
+- `source_urls` (JSON array) — URLs extracted from Gemini grounding metadata
+
+`ResearchService::fetchLatestMaterial()` uses `updateOrCreate(['module_id' => $moduleId])` when a module ID is provided — each module therefore has **at most one** `SubjectContent` row. Multiple rows per `module_id` is a bug; investigate `ResearchService` if duplicates appear. Rows with `module_id = null` (subject-level research, no module context) are still created normally.
+
 ### How Module Content Pages Feed Question Generation
 
 **Step 1 — Author writes content pages.**
@@ -206,6 +217,42 @@ Every question has one `skill_type` (enum stored on the `questions` table).
 - **MasteryService** — updates `UserConceptMastery` percentages after each question answer, then propagates to `UserAxisMastery` for every Axis linked to the answered Concept.
 - **VersioningService** — handles module versioning when AI generates follow-up modules.
 - **TokenService** — estimates token counts (chars / 4) and calculates credit cost per model.
+- **ResearchService** — Gemini web-search integration. `fetchLatestMaterial()` sends a prompt to `gemini-2.5-flash-lite` with Google Search grounding enabled, then writes both an `AiRequest` log record and a `SubjectContent` record, and deducts credits via `CreditService`. Unlike AiService, ResearchService writes `AiRequest` directly — do NOT add a second write in calling code. Requires `GEMINI_API_KEY`. Called from `ModuleController::research()` (module edit panel) and `ExploreModuleJob` (explore flow).
+
+### Model Selection (`config/ai_models.php`)
+
+The `config/ai_models.php` file defines the user-selectable generation models:
+
+| Key | Label | Multiplier | Use |
+|---|---|---|---|
+| `gpt-4o-mini` | Standard | 1.0× | Default for mcq / true_false / open |
+| `gpt-4.1-mini` | Enhanced | 1.8× | Default for ordering / matching_pairs |
+| `gpt-4o` | Advanced | 4.0× | Optional upgrade for any type |
+
+The `ai-model-selector` Blade component iterates this config. `ModuleController::generateQuestions()` validates the incoming `model` parameter against the config keys before dispatching jobs.
+
+**Complex-type guard** in `AiService::generateQuestions()`: if `$type` is `ordering` or `matching_pairs`, the model is silently upgraded to `gpt-4.1-mini` even when a cheaper model is passed as `$modelOverride`. This guard always wins — `gpt-4o-mini` cannot reliably handle structured ordering and matching output.
+
+### AI Request Tracking (`app/Models/AiRequest.php`)
+
+Every AI call is logged to the `ai_requests` table. The write happens **inside** the four private methods in `AiService`:
+
+| Method | Used for |
+|---|---|
+| `callOpenAi()` | JSON-returning calls (question generation, explore content, tags) |
+| `callOpenAiString()` | Plain-text calls (review explanations, module content) |
+| `callOpenAiHTML()` | HTML generation (`gpt-4.1-nano`) |
+| `callOpenAiRaw()` | Single-value calls (proficiency inference) |
+
+`ResearchService::fetchLatestMaterial()` also writes `AiRequest` directly (Gemini calls bypass AiService entirely).
+
+**Do NOT write an `AiRequest` record in calling code** — each of the methods above already does it. Double-logging inflates the `Admin\ApiUsage` spend dashboard and charges credits twice.
+
+Key columns:
+- `purpose` — the `$description` argument passed to the call method. Keep it descriptive — it is the label shown in the `Admin\ApiUsage` purpose breakdown.
+- `template_prompt` — always stored as `''` currently; field exists for future structured prompt auditing.
+- `metadata` (JSON) — model, input_tokens, output_tokens, cost_usd, credits_charged.
+- `duration_ms` — wall-clock time of the HTTP call in milliseconds.
 
 ### Livewire Components (`app/Livewire/`)
 
@@ -215,6 +262,7 @@ Every question has one `skill_type` (enum stored on the `questions` table).
 - **`QuizSelection`** — picks module/subject before starting.
 - **`Collection`** — user's enrolled modules.
 - **`Admin\ContentManager`** — single admin interface for all content management: Axes, Categories, Subjects (with inline proficiency management), and Concepts (with axis mapping). Route: `admin.content` → `/admin/content`.
+- **`Admin\ApiUsage`** — AI spend dashboard. Reads from `ai_requests`. Has three computed properties: `summary` (this-month totals by provider), `chartData` (30-day daily spend), `purposeBreakdown` (grouped by `purpose` column). **Known gotcha:** do NOT use `fn($group, $purpose)` in the `map()` call after `groupBy()` — Laravel's `Collection::map` does not reliably pass the key as a second arg. Always derive the purpose from `$group->first()?->purpose` instead.
 - **`GenerationProgress`** — real-time progress overlay displayed while a module's question generation pipeline is running; polls pipeline step statuses.
 - **`Modules\Show`** — public-facing module detail page; displays module metadata, proficiency tier, and enrollment call-to-action.
 
@@ -225,7 +273,7 @@ All jobs run via Redis queue (`QUEUE_CONNECTION=redis`):
 - `GenerateReviewContentJob` — generates AI explanation for a question a user keeps failing
 - `SuggestionJob` — generates next-module suggestions after quiz completion
 - `GenerateCardJob` — generates collectible card art spec after quiz completion
-- `GenerateModuleContentJob` — generates AI-written ModulePage content for suggestion-mode modules; once content is written, chains directly to `GenerateQuestions` jobs for each question type
+- `GenerateModuleContentJob` — generates AI-written ModulePage content for suggestion-mode modules; once content is written, chains directly to `GenerateQuestions` jobs for each question type. Uses `ModulePage::updateOrCreate(['module_id', 'page_number' => 1])` — page 1 is **overwritten** on every run, not appended. Multiple page-1 rows per module is a bug.
 
 ### Model Table Name Overrides
 
@@ -235,6 +283,7 @@ Some models declare an explicit `$table` property to avoid Laravel's default plu
 |---|---|
 | `UserAxisMastery` | `user_axis_mastery` |
 | `UserConceptSkillMastery` | `user_concept_skill_mastery` |
+| `SubjectContent` | `subject_content` |
 
 Always use the explicit table name in raw queries or `DB::table()` calls — never the auto-pluralised form.
 
@@ -272,6 +321,13 @@ Avoid creating routes with overlapping segment patterns (e.g. `/modules/destroy/
 - Quiz completion pipeline not firing = pipeline step status stuck on pending
 - Review content not showing = cache key mismatch in GenerateReviewContentJob
 
+## Known UX Gaps
+
+- **Research panel auto-reload** — after a successful research call, the panel fires `window.location.reload()` after a 2-second delay. Any unsaved content in the module editor will be lost. There is no warning.
+- **Research "Add to content" uses a hardcoded DOM ID** — `append()` targets `document.getElementById('descriptionC')`. If the textarea is renamed the button will silently do nothing.
+- **Explore flow generates only MCQ + true_false** — `ExploreModuleJob` dispatches `GenerateQuestions` for `mcq` and `true_false` only. Explore-created modules never receive `ordering` or `matching_pairs` questions.
+- **`GEMINI_API_KEY` not in env docs** — ResearchService (and therefore the research panel and explore flow) silently returns an error object when this key is absent. It is now listed under Required Environment Variables.
+
 ## Content Model (Intended Direction)
 
 The platform is moving toward a curated content model:
@@ -284,6 +340,13 @@ The platform is moving toward a curated content model:
 - Forced concept tagging on question creation (currently optional = mastery breaks)
 - Multi-subject onboarding flow for new categories
 - Weight-based axis mastery calculation (weight column exists on concept_axis but is unused)
+
+## Content Limits
+- Research block: 500 words max (enforced in ResearchService prompt)
+- Content block: 500 words max (enforced in AiService::generateModuleContent prompt)
+- Both limits are hardcoded. Future: tie to user credit tier or module setting.
+- Research overwrites existing SubjectContent row for the module (updateOrCreate)
+- Content generation overwrites existing ModulePage page 1 (updateOrCreate)
 
 ## Credit System
 - New users receive 50 welcome credits on registration
@@ -301,6 +364,7 @@ The platform is moving toward a curated content model:
 
 ```
 OPENAI_API_KEY=       # AI question/content generation
+GEMINI_API_KEY=       # Gemini web-search grounding (ResearchService)
 STRIPE_KEY=           # Stripe publishable key
 STRIPE_SECRET=        # Stripe secret key
 DB_CONNECTION=mysql
@@ -326,6 +390,7 @@ CACHE_STORE=redis
 - 2 Supervisor workers both listening on the **default queue** running `php artisan queue:work`:
   - Worker 1: timeout 90s
   - Worker 2: timeout 90s
+  *(No supervisor `.conf` is committed to the repo — verify against `/etc/supervisor/conf.d/` on the production server if these values change.)*
 - Long-running jobs (e.g. `GenerateModuleContentJob`) must complete within 90s or they will be killed and retried — a dedicated long queue with a higher timeout is a **future improvement**
 - Same Redis, MySQL, and `.env` variable requirements as local dev
 

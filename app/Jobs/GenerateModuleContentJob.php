@@ -45,14 +45,15 @@ class GenerateModuleContentJob implements ShouldQueue
         try {
             $content = $aiService->generateModuleContent($module, $this->userId);
 
-            ModulePage::create([
-                'module_id'   => $module->id,
-                'title'       => $module->name,
-                'content'     => $content,
-                'page_number' => 1,
-                'created_by'  => $this->userId,
-                'updated_by'  => $this->userId,
-            ]);
+            ModulePage::updateOrCreate(
+                ['module_id' => $module->id, 'page_number' => 1],
+                [
+                    'title'      => $module->name,
+                    'content'    => $content,
+                    'created_by' => $this->userId,
+                    'updated_by' => $this->userId,
+                ]
+            );
 
             $step->update(['status' => 'completed', 'completed_at' => now()]);
 

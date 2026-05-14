@@ -21,6 +21,7 @@ use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
 use App\Livewire\Admin\ContentManager;
+use App\Livewire\Admin\ApiUsage;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
@@ -48,6 +49,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/jobs', JobDashboard::class)->name('jobs.dashboard');
 });
 
@@ -163,6 +167,7 @@ Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); 
 // ------- Admin Content Management -------
 Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/content', ContentManager::class)->name('content');
+    Route::get('/api-usage', ApiUsage::class)->name('api-usage');
 });
 
 

@@ -168,7 +168,16 @@ class ModuleController extends Controller
             ->latest('id')
             ->first();
 
-        return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList', 'pipeline'));
+        $subjectResearch = \App\Models\SubjectContent::where('subject_id', $module->subject_id)
+            ->latest()
+            ->take(10)
+            ->get();
+
+        $subjectResearchCount = \App\Models\SubjectContent::where('subject_id', $module->subject_id)->count();
+        $modulePageCount = $modulePages->count();
+        $moduleResearch = \App\Models\SubjectContent::where('module_id', $module->id)->first();
+
+        return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList', 'pipeline', 'subjectResearch', 'subjectResearchCount', 'modulePageCount', 'moduleResearch'));
     }
 
     public function update(Request $request, Module $module)
@@ -275,7 +284,12 @@ class ModuleController extends Controller
                    ->orderBy('page_number')
                    ->get();
 
-        return view('modules.page', ['pages' => $pages]);
+        $research = \App\Models\SubjectContent::where('subject_id', $module->subject_id)
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('modules.page', compact('module', 'pages', 'research'));
     }
 
     public function nextModule(int $moduleId)
@@ -703,11 +717,32 @@ EOT;
         return back()->with('status', "Generating {$typeLabels} questions{$difficultyLabel}. Check back in a few moments.");
     }
 
-    public function research(Module $module, ResearchService $researchService): \Illuminate\Http\JsonResponse
+    public function research(Request $request, Module $module, ResearchService $researchService): \Illuminate\Http\JsonResponse
     {
         $topic = $module->name . ' — ' . $module->subject->name;
+        $userPrompt = $request->input('user_prompt');
 
-        $result = $researchService->fetchLatestMaterial($topic, $module->subject->name, auth()->id());
+        $existingResearch = \App\Models\SubjectContent::where('module_id', $module->id)->first();
+        $attachedResearch = $existingResearch?->content ?? '';
+
+        $attachedPages = '';
+        if ($request->boolean('attach_pages')) {
+            $attachedPages = $module->modulePages()
+                ->orderBy('page_number')
+                ->pluck('content')
+                ->implode("\n\n---\n\n");
+        }
+
+        $result = $researchService->fetchLatestMaterial(
+            $topic,
+            $module->subject->name,
+            auth()->id(),
+            $module->subject_id,
+            $module->id,
+            $userPrompt,
+            $attachedResearch,
+            $attachedPages
+        );
 
         if (isset($result['error'])) {
             return response()->json(['error' => $result['error']], 500);
