@@ -721,6 +721,7 @@ EOT;
     {
         $topic = $module->name . ' — ' . $module->subject->name;
         $userPrompt = $request->input('user_prompt');
+        $sourceUrl = $request->input('source_url', '');
 
         $existingResearch = \App\Models\SubjectContent::where('module_id', $module->id)->first();
         $attachedResearch = $existingResearch?->content ?? '';
@@ -741,7 +742,8 @@ EOT;
             $module->id,
             $userPrompt,
             $attachedResearch,
-            $attachedPages
+            $attachedPages,
+            $sourceUrl
         );
 
         if (isset($result['error'])) {
@@ -749,5 +751,33 @@ EOT;
         }
 
         return response()->json($result);
+    }
+
+    public function synthesise(Request $request, Module $module): \Illuminate\Http\JsonResponse
+    {
+        $research = \App\Models\SubjectContent::where('module_id', $module->id)->first();
+
+        if (! $research) {
+            return response()->json(['error' => 'No research found. Run the research tool first.'], 422);
+        }
+
+        $content = $this->aiService->synthesiseContent(
+            $module,
+            $research->content,
+            $request->input('user_prompt', ''),
+            auth()->id()
+        );
+
+        ModulePage::updateOrCreate(
+            ['module_id' => $module->id, 'page_number' => 1],
+            [
+                'title'      => $module->name,
+                'content'    => $content,
+                'created_by' => auth()->id(),
+                'updated_by' => auth()->id(),
+            ]
+        );
+
+        return response()->json(['success' => true]);
     }
 }

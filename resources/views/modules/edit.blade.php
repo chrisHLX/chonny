@@ -43,6 +43,13 @@
                     </div>
                     <div>
                         @foreach($subjectResearch as $research)
+                            @php
+                                $isPrimaryDiscoveredFormat = isset($research->source_urls['discovered']);
+                                $primaryUrl = $isPrimaryDiscoveredFormat ? ($research->source_urls['primary'] ?? null) : null;
+                                $discovered = $isPrimaryDiscoveredFormat
+                                    ? $research->source_urls['discovered']
+                                    : collect($research->source_urls ?? [])->map(fn($url) => ['uri' => $url, 'title' => $url])->toArray();
+                            @endphp
                             <div x-data="{ open: {{ $loop->first ? 'true' : 'false' }} }"
                                  class="{{ !$loop->last ? 'border-b border-line' : '' }}">
 
@@ -56,8 +63,8 @@
                                             @if($research->module_id === $module->id)
                                                 · <span class="text-accent">This module</span>
                                             @endif
-                                            @if($research->source_urls)
-                                                · {{ count($research->source_urls) }} sources
+                                            @if(!empty($discovered))
+                                                · {{ count($discovered) }} sources
                                             @endif
                                         </p>
                                     </div>
@@ -80,15 +87,31 @@
                                         <div class="px-4 py-3 max-h-72 overflow-y-auto text-[13px] text-ink leading-relaxed whitespace-pre-wrap">{{ $research->content }}</div>
                                     </div>
 
-                                    @if($research->source_urls)
+                                    {{-- Primary source if user provided one --}}
+                                    @if(!empty($primaryUrl))
+                                        <div class="mb-2">
+                                            <span class="text-[10px] font-semibold text-ink-subtle uppercase tracking-wide mr-2">Primary Source</span>
+                                            <a href="{{ $primaryUrl }}"
+                                               target="_blank" rel="noopener noreferrer"
+                                               class="inline-flex items-center gap-1 px-2 py-1 rounded border border-accent/40 bg-accent/5 text-[11px] text-accent hover:text-accent-hover transition-colors truncate max-w-[260px]">
+                                                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                                </svg>
+                                                <span class="truncate">{{ $primaryUrl }}</span>
+                                            </a>
+                                        </div>
+                                    @endif
+
+                                    {{-- Gemini discovered sources --}}
+                                    @if(!empty($discovered))
                                         <div class="flex flex-wrap gap-2">
-                                            @foreach($research->source_urls as $url)
-                                                <a href="{{ $url }}" target="_blank" rel="noopener noreferrer"
+                                            @foreach($discovered as $source)
+                                                <a href="{{ $source['uri'] }}" target="_blank" rel="noopener noreferrer"
                                                    class="inline-flex items-center gap-1 px-2 py-1 rounded border border-border bg-surface-1 text-[11px] text-ink-muted hover:text-ink hover:border-accent/40 transition-colors truncate max-w-[260px]">
                                                     <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                                                     </svg>
-                                                    <span class="truncate">{{ $url }}</span>
+                                                    <span class="truncate">{{ $source['title'] ?? $source['uri'] }}</span>
                                                 </a>
                                             @endforeach
                                         </div>
@@ -109,6 +132,12 @@
                     </div>
                 </div>
             @endif
+
+            {{-- Synthesise content --}}
+            <x-modules.synthesise-content
+                :module="$module"
+                :module-research="$moduleResearch"
+            />
 
             {{-- Edit module --}}
             <x-modules.update-form :module="$module" :all-questions="$allQuestions" />

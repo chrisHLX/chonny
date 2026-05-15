@@ -40,6 +40,7 @@
                 error: null,
                 appended: false,
                 userPrompt: '',
+                sourceUrl: '',
                 attachResearch: false,
                 attachPages: false,
                 async run() {
@@ -57,6 +58,7 @@
                             },
                             body: JSON.stringify({
                                 user_prompt: this.userPrompt,
+                                source_url: this.sourceUrl,
                                 attach_research: this.attachResearch,
                                 attach_pages: this.attachPages,
                             }),
@@ -99,6 +101,20 @@
                     class="w-full rounded-md border border-border bg-surface-1 px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle focus:border-accent focus:outline-none resize-none"
                 ></textarea>
                 <p class="text-[11px] text-ink-subtle">Leave blank for a general overview of the topic.</p>
+            </div>
+
+            {{-- Source URL --}}
+            <div class="space-y-1.5">
+                <label class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide">
+                    Primary Source URL (optional)
+                </label>
+                <input
+                    type="url"
+                    x-model="sourceUrl"
+                    placeholder="e.g. https://www.wowhead.com/... or https://www.youtube.com/watch?v=..."
+                    class="w-full rounded-md border border-border bg-surface-1 px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle focus:border-accent focus:outline-none"
+                />
+                <p class="text-[11px] text-ink-subtle">Paste a webpage, Wowhead link, patch notes URL, or YouTube video. Gemini will use it as the primary source.</p>
             </div>
 
             {{-- Context attachments --}}

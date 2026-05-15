@@ -109,6 +109,9 @@ Route::post('/modules/{module}/generate-questions', [ModuleController::class, 'g
 Route::post('/modules/{module}/research', [ModuleController::class, 'research'])
     ->name('modules.research')
     ->middleware('auth');
+Route::post('/modules/{module}/synthesise', [ModuleController::class, 'synthesise'])
+    ->name('modules.synthesise')
+    ->middleware('auth');
 Route::post('/modules', [ModuleController::class, 'store'])->name('modules.store')->middleware('auth');
 Route::delete('/modules/destroy/{module}', [ModuleController::class, 'destroy'])->name('modules.destroy')->middleware('auth');
 Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit')->middleware('auth');

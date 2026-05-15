@@ -632,6 +632,39 @@ class AiService
         return $content;
     }
 
+    public function synthesiseContent(Module $module, string $researchContent, string $userPrompt, int $userID): string
+    {
+        $prof            = $module->proficiencies()->first();
+        $profName        = $prof?->name ?? 'General';
+        $profDescription = $prof?->description ?? '';
+        $subject         = $module->subject;
+
+        $effectivePrompt = trim($userPrompt) !== ''
+            ? $userPrompt
+            : 'Create a clear, structured educational guide suitable for quiz question generation.';
+
+        $prompt = <<<EOT
+        You are creating educational content for a learning module.
+
+        MODULE: {$module->name}
+        SUBJECT: {$subject->name}
+        PROFICIENCY: {$profName} — {$profDescription}
+
+        SOURCE RESEARCH (use this as your factual basis):
+        {$researchContent}
+
+        USER REQUEST:
+        {$effectivePrompt}
+
+        Write structured Markdown content. Maximum 500 words.
+        Use ## for sections, bullet points for lists.
+        Close with a ## Key Takeaways section with 3–5 points.
+        Return only the Markdown. No preamble.
+        EOT;
+
+        return $this->callOpenAiString($prompt, $userID, 'synthesise_content');
+    }
+
     /* --------------------------------------------------------- MODULE GENERATION --------------------------------------------------------- */
 
     // TODO: dead code — review before removing

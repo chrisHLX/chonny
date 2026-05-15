@@ -26,7 +26,8 @@ class ResearchService
         ?int $moduleId = null,
         ?string $userPrompt = null,
         string $attachedResearch = '',
-        string $attachedPages = ''
+        string $attachedPages = '',
+        string $sourceUrl = ''
     ): array {
         $key = config('services.gemini.key');
 
@@ -55,17 +56,23 @@ class ResearchService
             . $userRequestSection
             . "\n\nKeep your summary concise — maximum 500 words.";
 
-        $payload = [
-            'contents' => [
-                [
-                    'parts' => [
-                        ['text' => $promptText],
-                    ],
-                ],
-            ],
-            'tools' => [
+        if ($sourceUrl !== '') {
+            $promptText = "PRIMARY SOURCE URL (fetch this page and treat its content as authoritative, override conflicting information from other sources):\n{$sourceUrl}\n\n" . $promptText;
+            $tools = [
+                ['url_context' => (object) []],
                 ['google_search' => (object) []],
-            ],
+            ];
+        } else {
+            $tools = [
+                ['google_search' => (object) []],
+            ];
+        }
+
+        $payload = [
+            'contents' => [[
+                'parts' => [['text' => $promptText]],
+            ]],
+            'tools' => $tools,
         ];
 
         $modelId = 'gemini-2.5-flash-lite';
@@ -137,7 +144,13 @@ class ResearchService
                     'created_by'    => $userID,
                     'title'         => 'Research: ' . $topic . ' — ' . now()->format('Y-m-d'),
                     'content'       => $summary,
-                    'source_urls'   => collect($sources)->pluck('uri')->toArray(),
+                    'source_urls'   => [
+                        'primary'    => $sourceUrl !== '' ? $sourceUrl : null,
+                        'discovered' => collect($sources)->map(fn($s) => [
+                            'uri'   => $s['uri'],
+                            'title' => $s['title'] ?? $s['uri'],
+                        ])->toArray(),
+                    ],
                 ]
             );
         } else {
@@ -148,7 +161,13 @@ class ResearchService
                 'created_by'    => $userID,
                 'title'         => 'Research: ' . $topic . ' — ' . now()->format('Y-m-d'),
                 'content'       => $summary,
-                'source_urls'   => collect($sources)->pluck('uri')->toArray(),
+                'source_urls'   => [
+                    'primary'    => $sourceUrl !== '' ? $sourceUrl : null,
+                    'discovered' => collect($sources)->map(fn($s) => [
+                        'uri'   => $s['uri'],
+                        'title' => $s['title'] ?? $s['uri'],
+                    ])->toArray(),
+                ],
             ]);
         }
 

@@ -39,6 +39,13 @@
 
                     <div class="divide-y divide-line">
                         @foreach($research as $item)
+                            @php
+                                $isPrimaryDiscoveredFormat = isset($item->source_urls['discovered']);
+                                $primaryUrl = $isPrimaryDiscoveredFormat ? ($item->source_urls['primary'] ?? null) : null;
+                                $discovered = $isPrimaryDiscoveredFormat
+                                    ? $item->source_urls['discovered']
+                                    : collect($item->source_urls ?? [])->map(fn($url) => ['uri' => $url, 'title' => $url])->toArray();
+                            @endphp
                             <div x-data="{ open: false }">
                                 <button
                                     x-on:click="open = !open"
@@ -61,14 +68,23 @@
                                         {!! Str::markdown(e($item->content), ['html_input' => 'strip', 'allow_unsafe_links' => false]) !!}
                                     </div>
 
-                                    @if(!empty($item->source_urls))
+                                    @if(!empty($primaryUrl) || !empty($discovered))
                                         <div class="mt-4 pt-4 border-t border-line">
                                             <p class="text-[11px] text-ink-subtle mb-2 uppercase tracking-wide">Sources</p>
                                             <div class="flex flex-col gap-1">
-                                                @foreach($item->source_urls as $url)
-                                                    <a href="{{ $url }}" target="_blank" rel="noopener noreferrer"
+                                                @if(!empty($primaryUrl))
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="text-[10px] font-semibold text-ink-subtle uppercase tracking-wide shrink-0">Primary</span>
+                                                        <a href="{{ $primaryUrl }}" target="_blank" rel="noopener noreferrer"
+                                                           class="text-[12px] text-accent hover:text-accent-hover truncate transition-colors">
+                                                            {{ $primaryUrl }}
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                                @foreach($discovered as $source)
+                                                    <a href="{{ $source['uri'] }}" target="_blank" rel="noopener noreferrer"
                                                        class="text-[12px] text-accent hover:text-accent-hover truncate transition-colors">
-                                                        {{ $url }}
+                                                        {{ $source['title'] ?? $source['uri'] }}
                                                     </a>
                                                 @endforeach
                                             </div>
