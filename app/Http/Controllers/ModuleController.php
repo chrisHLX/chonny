@@ -453,12 +453,16 @@ class ModuleController extends Controller
             'intent'          => 'required|string|max:500',
             'prior_knowledge' => 'nullable|string|max:500',
             'subject_id'      => 'required|exists:subjects,id',
+            'source_url'      => 'nullable|url|max:2000',
+            'youtube_mode'    => 'nullable|in:transcript,video',
         ]);
 
         $user          = auth()->user();
         $subjectId     = $request->subject_id;
         $subject       = Subject::findOrFail($subjectId);
         $priorKnowledge = trim($request->input('prior_knowledge', ''));
+        $sourceUrl     = trim($request->input('source_url', ''));
+        $youtubeMode   = $request->input('youtube_mode', 'transcript');
         $proficiency   = $this->inferProficiency($subject, $priorKnowledge);
 
         $intent = trim($request->intent);
@@ -513,7 +517,9 @@ class ModuleController extends Controller
             $trueFalseStep->id,
             $user->id,
             $intent,
-            $priorKnowledge
+            $priorKnowledge,
+            $sourceUrl,
+            $youtubeMode
         );
 
         return redirect()->route('modules.show', $module);
@@ -721,7 +727,8 @@ EOT;
     {
         $topic = $module->name . ' — ' . $module->subject->name;
         $userPrompt = $request->input('user_prompt');
-        $sourceUrl = $request->input('source_url', '');
+        $sourceUrl   = $request->input('source_url', '');
+        $youtubeMode = $request->input('youtube_mode', 'transcript');
 
         $existingResearch = \App\Models\SubjectContent::where('module_id', $module->id)->first();
         $attachedResearch = $existingResearch?->content ?? '';
@@ -743,7 +750,8 @@ EOT;
             $userPrompt,
             $attachedResearch,
             $attachedPages,
-            $sourceUrl
+            $sourceUrl,
+            $youtubeMode
         );
 
         if (isset($result['error'])) {

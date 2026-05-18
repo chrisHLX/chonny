@@ -41,6 +41,7 @@
                 appended: false,
                 userPrompt: '',
                 sourceUrl: '',
+                youtubeMode: 'transcript',
                 attachResearch: false,
                 attachPages: false,
                 async run() {
@@ -59,6 +60,7 @@
                             body: JSON.stringify({
                                 user_prompt: this.userPrompt,
                                 source_url: this.sourceUrl,
+                                youtube_mode: this.youtubeMode,
                                 attach_research: this.attachResearch,
                                 attach_pages: this.attachPages,
                             }),
@@ -115,6 +117,24 @@
                     class="w-full rounded-md border border-border bg-surface-1 px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle focus:border-accent focus:outline-none"
                 />
                 <p class="text-[11px] text-ink-subtle">Paste a webpage, Wowhead link, patch notes URL, or YouTube video. Gemini will use it as the primary source.</p>
+            </div>
+
+            {{-- YouTube processing mode toggle --}}
+            <div x-show="sourceUrl.includes('youtube.com') || sourceUrl.includes('youtu.be')" x-cloak class="space-y-1.5">
+                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide">YouTube Processing Mode</p>
+                <div class="flex items-center gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" x-model="youtubeMode" value="transcript" class="text-accent">
+                        <span class="text-[13px] text-ink">Transcript only</span>
+                        <span class="text-[11px] text-ink-subtle">(fast, cheap)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" x-model="youtubeMode" value="video" class="text-accent">
+                        <span class="text-[13px] text-ink">Full video</span>
+                        <span class="text-[11px] text-amber-400">(~$0.13 per video)</span>
+                    </label>
+                </div>
+                <p class="text-[11px] text-ink-subtle">Transcript reads captions. Full video lets Gemini watch gameplay and visuals.</p>
             </div>
 
             {{-- Context attachments --}}

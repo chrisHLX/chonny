@@ -29,6 +29,33 @@
                     rows="3"
                     class="form-textarea"
                 ></textarea>
+                <div x-data="{ sourceUrl: '', youtubeMode: 'transcript' }" class="flex flex-col gap-3">
+                    <input
+                        type="url"
+                        name="source_url"
+                        x-model="sourceUrl"
+                        placeholder="Primary source URL (optional) — paste a webpage, patch notes, or article for Gemini to use as authoritative source"
+                        maxlength="2000"
+                        class="form-input"
+                    />
+                    <input type="hidden" name="youtube_mode" :value="youtubeMode">
+                    <div x-show="sourceUrl.includes('youtube.com') || sourceUrl.includes('youtu.be')" x-cloak class="space-y-1.5">
+                        <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide">YouTube Processing Mode</p>
+                        <div class="flex items-center gap-4">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" x-model="youtubeMode" value="transcript" class="text-accent">
+                                <span class="text-[13px] text-ink">Transcript only</span>
+                                <span class="text-[11px] text-ink-subtle">(fast, cheap)</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" x-model="youtubeMode" value="video" class="text-accent">
+                                <span class="text-[13px] text-ink">Full video</span>
+                                <span class="text-[11px] text-amber-400">(~$0.13 per video)</span>
+                            </label>
+                        </div>
+                        <p class="text-[11px] text-ink-subtle">Transcript reads captions. Full video lets Gemini watch gameplay and visuals.</p>
+                    </div>
+                </div>
                 <div class="flex items-center gap-2.5">
                     <select
                         name="subject_id"

@@ -103,18 +103,6 @@ class GenerateQuestions implements ShouldQueue // ShouldQueue is an interface th
 
     }
 
-    public function PromptBuilder(Module $module): string
-    {
-        $concepts = $module->subject->concepts()->pluck('name')->implode(', ');
-
-        return <<<EOT
-        Create questions for the module "{$module->name}" which covers: {$module->description}.
-        Subject: {$module->subject->name}.
-        Available concepts for this subject: {$concepts}.
-        Questions must be directly relevant to this subject and should draw from these concepts where applicable.
-        EOT;
-    }
-
     protected function checkPipelineCompletion(Pipeline $pipeline): void
     {
         $hasFailed = $pipeline->steps()

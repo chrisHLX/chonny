@@ -27,6 +27,8 @@ class ExploreModuleJob implements ShouldQueue
     protected int $userId;
     protected string $intent;
     protected string $priorKnowledge;
+    protected string $sourceUrl;
+    protected string $youtubeMode;
 
     public function __construct(
         int $moduleId,
@@ -36,7 +38,9 @@ class ExploreModuleJob implements ShouldQueue
         int $trueFalseStepId,
         int $userId,
         string $intent,
-        string $priorKnowledge = ''
+        string $priorKnowledge = '',
+        string $sourceUrl = '',
+        string $youtubeMode = 'transcript'
     ) {
         $this->moduleId        = $moduleId;
         $this->pipelineId      = $pipelineId;
@@ -46,6 +50,8 @@ class ExploreModuleJob implements ShouldQueue
         $this->userId          = $userId;
         $this->intent          = $intent;
         $this->priorKnowledge  = $priorKnowledge;
+        $this->sourceUrl       = $sourceUrl;
+        $this->youtubeMode     = $youtubeMode;
     }
 
     public function handle(AiService $aiService, ResearchService $researchService): void
@@ -64,7 +70,7 @@ class ExploreModuleJob implements ShouldQueue
             $proficiency = $module->proficiencies()->first();
 
             $topic          = $this->intent . ' — ' . $subject->name;
-            $research       = $researchService->fetchLatestMaterial($topic, $subject->name, $this->userId, $module->subject_id, $module->id);
+            $research       = $researchService->fetchLatestMaterial($topic, $subject->name, $this->userId, $module->subject_id, $module->id, null, '', '', $this->sourceUrl, $this->youtubeMode);
             $researchContext = $research['summary'] ?? '';
 
             $result = $aiService->generateExploreContent($this->intent, $subject, $proficiency, $this->userId, $this->priorKnowledge, $researchContext);

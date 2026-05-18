@@ -12,6 +12,7 @@ class SubjectContent extends Model
         'subject_id',
         'module_id',
         'ai_request_id',
+        'source_material_id',
         'created_by',
         'title',
         'content',
@@ -40,5 +41,10 @@ class SubjectContent extends Model
     public function creator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function sourceMaterial(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(SourceMaterial::class);
     }
 }
