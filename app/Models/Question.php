@@ -16,6 +16,7 @@ class Question extends Model
         'created_by',
     ];
 
+    // This allows automatic casting of the 'answer' JSON column to an array which means you can access it like a normal array in PHP
     protected $casts = [
         'answer' => 'array',
     ];
@@ -24,6 +25,12 @@ class Question extends Model
     {
         return $this->belongsToMany(Concept::class);
     }
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class, 'content_question')->withTimestamps();
+    }
+
 
     public function units()
     {
@@ -34,5 +41,22 @@ class Question extends Model
     {
         return $this->belongsToMany(Module::class)->withTimestamps();
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->withPivot([
+                'attempts',
+                'correct_count',
+                'last_answered_at',
+                'total_time_spent',
+                'last_time_spent',
+                'last_answer',
+                'last_answer_correct',
+                'consecutive_fails'
+            ])
+            ->withTimestamps();
+    }
+
 
 }

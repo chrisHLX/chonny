@@ -18,21 +18,44 @@
     },
     "difficulty": "medium",
     "units": ["Drone"],
-    "concepts": ["Build Cancel"]
+    "concepts": ["Economy", "Mechanics"]
   },
   {
-    "question": "Describe how the extractor trick works.",
-    "type": "open",
+    "question": "Match the Zerg unit to its primary role.",
+    "type": "matching_pairs",
     "answer": {
-      "correct_keywords": ["extractor", "cancel", "drone", "supply"],
-      "ideal_answer": "Build an extractor to temporarily go over supply cap, then cancel it to keep the drone."
+      "correct": {
+      "Zergling": "Basic attacker",
+      "Overlord": "Scouting",
+      "Hydralisk": "Anti-air",
+      "Drone": "Worker"
     },
-    "difficulty": "hard",
-    "units": ["Drone"],
-    "concepts": ["Supply Management"]
+      "pairs": {
+      "keys": ["Zergling", "Overlord", "Hydralisk", "Drone"],
+      "values": ["Worker", "Anti-air", "Scouting", "Basic attacker"]
+    }
+    },
+    "difficulty": "easy",
+    "units": ["Drone", "Zergling", "Overlord", "Hydralisk"],
+    "concepts": ["Army"]
   },
   {
-    "question": "What is the maximum number of Drones you can have on a single mineral patch?",
+    "question": "Put the following build steps in the correct order.",
+    "type": "ordering",
+    "answer": {
+      "steps": [
+        "Train Drone",
+        "Build Overlord",
+        "Build Spawning Pool",
+        "Build Hatchery"
+      ]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "What is the optimal number of Drones mining a single mineral patch?",
     "type": "mcq",
     "answer": {
       "correct": "3",
@@ -40,7 +63,7 @@
     },
     "difficulty": "easy",
     "units": ["Drone"],
-    "concepts": ["Resource Gathering"]
+    "concepts": ["Economy"]
   },
   {
     "question": "True or False: Drones can be used to build structures.",
@@ -50,18 +73,7 @@
     },
     "difficulty": "medium",
     "units": ["Drone"],
-    "concepts": ["Building"]
-  },
-  {
-    "question": "What is the primary role of a Drone in StarCraft?",
-    "type": "open",
-    "answer": {
-      "correct_keywords": ["gather", "resources", "build"],
-      "ideal_answer": "Drones gather resources and can build structures."
-    },
-    "difficulty": "easy",
-    "units": ["Drone"],
-    "concepts": ["Unit Role"]
+    "concepts": ["Economy", "Mechanics"]
   },
   {
     "question": "How many minerals does a Drone gather per trip?",
@@ -72,17 +84,7 @@
     },
     "difficulty": "easy",
     "units": ["Drone"],
-    "concepts": ["Resource Gathering"]
-  },
-  {
-    "question": "True or False: Drones can attack enemy units.",
-    "type": "true_false",
-    "answer": {
-      "correct": true
-    },
-    "difficulty": "medium",
-    "units": ["Drone"],
-    "concepts": ["Combat"]
+    "concepts": ["Economy"]
   },
   {
     "question": "What is the build time for a Drone?",
@@ -93,18 +95,18 @@
     },
     "difficulty": "easy",
     "units": ["Drone"],
-    "concepts": ["Production"]
+    "concepts": ["Economy", "Mechanics"]
   },
   {
     "question": "What is the build time for a Terran Barracks?",
     "type": "mcq",
     "answer": {
-      "correct": "46",
-      "options": ["42", "44", "46", "48"]
+      "correct": "65",
+      "options": ["54", "44", "65", "48"]
     },
     "difficulty": "easy",
     "units": ["Barracks"],
-    "concepts": ["Production", "Build Timings"]
+    "concepts": ["Build Orders", "Mechanics"]
   },
   {
     "question": "At what supply is a common Reaper Expand timing started in a Terran build?",
@@ -115,18 +117,7 @@
     },
     "difficulty": "easy",
     "units": ["Reaper", "Command Center"],
-    "concepts": ["Build Orders", "Expansion Timing"]
-  },
-  {
-    "question": "Which Terran unit is commonly used in a 1-1-1 6-minute timing push?",
-    "type": "mcq",
-    "answer": {
-      "correct": "Cyclone",
-      "options": ["Hellion", "Cyclone", "Ghost", "Marauder"]
-    },
-    "difficulty": "medium",
-    "units": ["Cyclone"],
-    "concepts": ["Timing Attacks", "1-1-1 Build"]
+    "concepts": ["Build Orders", "Strategy"]
   },
   {
     "question": "What upgrade is usually completed in time for a 7:00 Terran Stim timing push?",
@@ -137,7 +128,7 @@
     },
     "difficulty": "medium",
     "units": ["Marine", "Barracks Tech Lab"],
-    "concepts": ["Upgrades", "Timing Attacks"]
+    "concepts": ["Build Orders", "Army"]
   },
   {
     "question": "In a 2-1-1 Marine-Medivac timing, how many Medivacs are typically produced for the initial drop?",
@@ -148,6 +139,250 @@
     },
     "difficulty": "easy",
     "units": ["Medivac", "Marine"],
-    "concepts": ["Drop Play", "Timing Attacks"]
+    "concepts": ["Tactics", "Build Orders"]
+  },
+  {
+    "question": "What structure allows Zerg to produce Zerglings?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Spawning Pool",
+      "options": ["Spawning Pool", "Hatchery", "Evolution Chamber", "Baneling Nest"]
+    },
+    "difficulty": "easy",
+    "units": ["Zergling"],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "True or False: The Overlord provides supply for the Zerg army.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "units": ["Overlord"],
+    "concepts": ["Economy"]
+  },
+  {
+    "question": "Which Zerg structure is required before morphing a Lair?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Hatchery",
+      "options": ["Hatchery", "Evolution Chamber", "Baneling Nest", "Spire"]
+    },
+    "difficulty": "easy",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "Match the Zerg structure to its primary function.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Spawning Pool": "Enables Zerglings",
+        "Evolution Chamber": "Upgrades ground units",
+        "Extractor": "Collects Vespene gas",
+        "Spire": "Allows Mutalisk production"
+      },
+      "pairs": {
+        "keys": ["Spawning Pool", "Evolution Chamber", "Extractor", "Spire"],
+        "values": ["Allows Mutalisk production", "Collects Vespene gas", "Upgrades ground units", "Enables Zerglings"]
+      }
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "Put these early-game steps in the correct order.",
+    "type": "ordering",
+    "answer": {
+      "steps": ["Train Drone", "Build Overlord", "Build Spawning Pool", "Train Zerglings"]
+    },
+    "difficulty": "easy",
+    "units": ["Drone", "Overlord", "Zergling"],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "True or False: Creep spread helps you move your army faster across the map.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Map Control"]
+  },
+  {
+    "question": "Which unit can create Creep Tumors to expand vision and map control?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Queen",
+      "options": ["Queen", "Overlord", "Drone", "Infestor"]
+    },
+    "difficulty": "easy",
+    "units": ["Queen"],
+    "concepts": ["Map Control"]
+  },
+  {
+    "question": "Match each Zerg unit to its movement type.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Zergling": "Ground",
+        "Mutalisk": "Air",
+        "Overseer": "Air",
+        "Roach": "Ground"
+      },
+      "pairs": {
+        "keys": ["Zergling", "Mutalisk", "Overseer", "Roach"],
+        "values": ["Air", "Ground"]
+      }
+    },
+    "difficulty": "easy",
+    "units": ["Zergling", "Mutalisk", "Overseer", "Roach"],
+    "concepts": ["Army"]
+  },
+  {
+    "question": "True or False: Queens can inject Larva to increase unit production.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": ["Queen"],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Which resource is required to build an Extractor?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Minerals",
+      "options": ["Minerals", "Gas", "Larva", "Supply"]
+    },
+    "difficulty": "easy",
+    "units": ["Extractor"],
+    "concepts": ["Economy"]
+  },
+  {
+    "question": "Match the upgrade to its effect.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Metabolic Boost": "Increases Zergling speed",
+        "Pneumatized Carapace": "Increases Overlord speed",
+        "Burrow": "Allows units to hide underground",
+        "Flyer Attacks": "Improves Mutalisk attack damage"
+      },
+      "pairs": {
+        "keys": ["Metabolic Boost", "Pneumatized Carapace", "Burrow", "Flyer Attacks"],
+        "values": ["Allows units to hide underground", "Improves Mutalisk attack damage", "Increases Zergling speed", "Increases Overlord speed"]
+      }
+    },
+    "difficulty": "hard",
+    "units": [],
+    "concepts": ["Army"]
+  },
+  {
+    "question": "Put the following structures in order of tech progression.",
+    "type": "ordering",
+    "answer": {
+      "steps": ["Spawning Pool", "Lair", "Infestation Pit", "Hive"]
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "How many supply does a Zergling cost?",
+    "type": "mcq",
+    "answer": {
+      "correct": "0.5",
+      "options": ["0.5", "1", "2", "0"]
+    },
+    "difficulty": "easy",
+    "units": ["Zergling"],
+    "concepts": ["Economy"]
+  },
+  {
+    "question": "True or False: Roaches regenerate health faster when burrowed with the proper upgrade.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": ["Roach"],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Which unit is produced from the Baneling Nest?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Baneling",
+      "options": ["Baneling", "Roach", "Hydralisk", "Mutalisk"]
+    },
+    "difficulty": "easy",
+    "units": ["Baneling"],
+    "concepts": ["Army"]
+  },
+  {
+    "question": "Match each Queen ability to its function.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Inject Larva": "Increases Hatchery production",
+        "Creep Tumor": "Expands vision and mobility",
+        "Transfuse": "Heals units or buildings",
+        "Ensnare": "Slows enemy units"
+      },
+      "pairs": {
+        "keys": ["Inject Larva", "Creep Tumor", "Transfuse", "Ensnare"],
+        "values": ["Increases Hatchery production", "Expands vision and mobility", "Heals units or buildings", "Slows enemy units"]
+      }
+    },
+    "difficulty": "medium",
+    "units": ["Queen"],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Put the following early gas actions in order.",
+    "type": "ordering",
+    "answer": {
+      "steps": ["Build Extractor", "Assign Drones to gas", "Start Zergling Speed", "Build Baneling Nest"]
+    },
+    "difficulty": "medium",
+    "units": ["Drone", "Zergling"],
+    "concepts": ["Build Orders"]
+  },
+  {
+    "question": "True or False: Creep recedes when the Hatchery that created it is destroyed.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "units": [],
+    "concepts": ["Mechanics"]
+  },
+  {
+    "question": "Match each scouting method to what information it reveals.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Overlord positioning": "Opponent's base layout and tech",
+        "Zergling run-by": "Army composition and expansion timing",
+        "Creep spread": "Vision control of potential attack paths",
+        "Drone scout": "Opening build order"
+      },
+      "pairs": {
+        "keys": ["Overlord positioning", "Zergling run-by", "Creep spread", "Drone scout"],
+        "values": ["Vision control of potential attack paths", "Opponent's base layout and tech", "Army composition and expansion timing", "Opening build order"]
+      }
+    },
+    "difficulty": "hard",
+    "units": ["Overlord", "Zergling", "Drone"],
+    "concepts": ["Scouting"]
   }
+
+
+
 ]

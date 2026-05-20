@@ -1,0 +1,328 @@
+[
+  {
+    "question": "What is the main reason to freeze a minion wave near your turret?",
+    "type": "mcq",
+    "answer": {
+      "correct": "To deny your opponent farm and stay safe from ganks",
+      "options": [
+        "To push the wave faster",
+        "To reset the minions to mid lane",
+        "To deny your opponent farm and stay safe from ganks",
+        "To get vision of the river"
+      ]
+    },
+    "difficulty": "easy",
+    "concepts": ["Laning Phase"]
+  },
+  {
+    "question": "True or False: Slow pushing a wave is useful before taking an objective like Dragon or Rift Herald.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "concepts": ["Laning Phase", "Macro Play"]
+  },
+  {
+    "question": "Which action helps you maintain lane control safely?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Last-hitting minions under turret while keeping wave frozen",
+      "options": [
+        "Constantly auto-attacking enemy champions",
+        "Walking to mid lane to roam early",
+        "Last-hitting minions under turret while keeping wave frozen",
+        "Pushing wave immediately after level 1"
+      ]
+    },
+    "difficulty": "easy",
+    "concepts": ["Laning Phase"]
+  },
+  {
+    "question": "True or False: Constantly pushing the wave is always the best way to gain gold and experience.",
+    "type": "true_false",
+    "answer": {
+      "correct": false
+    },
+    "difficulty": "easy",
+    "concepts": ["Laning Phase"]
+  },
+  {
+    "question": "Match the wave management term to its purpose.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Freezing": "Keeps the wave close to your turret for safety and deny",
+        "Slow Push": "Builds up a large wave before rotating or recalling",
+        "Fast Push": "Quickly clears the wave to reset it or pressure objectives",
+        "Holding the Wave": "Stops the wave in place to control tempo"
+      },
+      "pairs": {
+        "keys": ["Freezing", "Slow Push", "Fast Push", "Holding the Wave"],
+        "values": [
+          "Builds up a large wave before rotating or recalling",
+          "Quickly clears the wave to reset it or pressure objectives",
+          "Stops the wave in place to control tempo",
+          "Keeps the wave close to your turret for safety and deny"
+        ]
+      }
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase"]
+  },
+  {
+    "question": "Put the following actions in the correct order to execute a standard early trade.",
+    "type": "ordering",
+    "answer": {
+      "steps": [
+        "Wait for enemy to last-hit a minion",
+        "Step forward to auto-attack or use ability",
+        "Retreat before drawing minion aggro",
+        "Return to last-hitting position"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Micro Mechanics"]
+  },
+  {
+    "question": "When crashing a large wave into the enemy tower, what should be your next action?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Ward, recall, or assist with an objective",
+      "options": [
+        "Stay in lane and wait for the next wave",
+        "Immediately engage under turret",
+        "Ward, recall, or assist with an objective",
+        "Spam emotes to tilt your opponent"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Macro Play"]
+  },
+  {
+    "question": "True or False: You should always push waves aggressively regardless of your jungler's position.",
+    "type": "true_false",
+    "answer": {
+      "correct": false
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Map Awareness"]
+  },
+  {
+    "question": "Which of these is a proper use of vision control in lane?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Placing wards in river or tri-bush to track enemy jungler",
+      "options": [
+        "Placing wards on enemy minions",
+        "Only warding after taking first blood",
+        "Placing wards in river or tri-bush to track enemy jungler",
+        "Ignoring wards completely"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Map Awareness", "Vision Control"]
+  },
+  {
+    "question": "Match the lane state to the correct advantage it provides.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Frozen near your tower": "Safer from ganks and easier to farm under pressure",
+        "Pushed to enemy tower": "Can look for roams or vision control",
+        "Even wave in the middle": "Equal footing for trades",
+        "Stacked wave pushing": "Threatens tower and allows tempo plays"
+      },
+      "pairs": {
+        "keys": [
+          "Frozen near your tower",
+          "Pushed to enemy tower",
+          "Even wave in the middle",
+          "Stacked wave pushing"
+        ],
+        "values": [
+          "Threatens tower and allows tempo plays",
+          "Safer from ganks and easier to farm under pressure",
+          "Equal footing for trades",
+          "Can look for roams or vision control"
+        ]
+      }
+    },
+    "difficulty": "hard",
+    "concepts": ["Laning Phase", "Macro Play"]
+  },
+  {
+    "question": "Put the following steps in the correct order for a safe recall in lane.",
+    "type": "ordering",
+    "answer": {
+      "steps": [
+        "Push wave to enemy tower",
+        "Check minimap for enemy presence",
+        "Move to safe position near turret",
+        "Recall at fountain"
+      ]
+    },
+    "difficulty": "hard",
+    "concepts": ["Laning Phase", "Macro Play"]
+  },
+  {
+    "question": "True or False: Trading under enemy tower is always safe if you have more minions.",
+    "type": "true_false",
+    "answer": {
+      "correct": false
+    },
+    "difficulty": "hard",
+    "concepts": ["Laning Phase", "Micro Mechanics"]
+  },
+  {
+    "question": "Which trading pattern is most effective against a melee champion as a ranged champion?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Hit minions, then poke champion when they go for last-hit",
+      "options": [
+        "All-in immediately",
+        "Trade randomly",
+        "Hit minions, then poke champion when they go for last-hit",
+        "Constantly run away"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Micro Mechanics"]
+  },
+  {
+    "question": "Match the scenario to the correct macro decision.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Enemy top laner dies": "Apply pressure in other lanes or take Rift Herald",
+        "Dragon spawns": "Coordinate with jungler to secure objective",
+        "Your mid turret falls": "Rotate and defend other objectives",
+        "Enemy jungle invades": "Track and counter-jungle or warn team"
+      },
+      "pairs": {
+        "keys": ["Enemy top laner dies", "Dragon spawns", "Your mid turret falls", "Enemy jungle invades"],
+        "values": ["Coordinate with jungler to secure objective", "Track and counter-jungle or warn team", "Rotate and defend other objectives", "Apply pressure in other lanes or take Rift Herald"]
+      }
+    },
+    "difficulty": "hard",
+    "concepts": ["Macro Play"]
+  },
+  {
+    "question": "True or False: Overextending without vision can lead to easy kills for the enemy jungler.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "concepts": ["Map Awareness", "Laning Phase"]
+  },
+  {
+    "question": "MCQ: What is the safest way to trade when your opponent has level advantage?",
+    "type": "mcq",
+    "answer": {
+      "correct": "Wait for them to use abilities and then trade with auto-attacks",
+      "options": [
+        "All-in immediately",
+        "Wait for them to use abilities and then trade with auto-attacks",
+        "Spam abilities randomly",
+        "Ignore trading until level parity"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Micro Mechanics"]
+  },
+  {
+    "question": "Ordering: Arrange the steps for executing a lane gank as a jungler.",
+    "type": "ordering",
+    "answer": {
+      "steps": [
+        "Check enemy summoner spells and position",
+        "Communicate with laner",
+        "Approach lane stealthily",
+        "Initiate gank when opponent overextends"
+      ]
+    },
+    "difficulty": "hard",
+    "concepts": ["Macro Play", "Map Awareness"]
+  },
+  {
+    "question": "True or False: Keeping the wave near mid lane is often safer than pushing it aggressively without vision.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Map Awareness"]
+  },
+  {
+    "question": "MCQ: Why is trading near your turret safer than trading in the middle of the lane?",
+    "type": "mcq",
+    "answer": {
+      "correct": "You have tower support and less chance of enemy jungler intervention",
+      "options": [
+        "You deal more damage",
+        "You get extra gold",
+        "You have tower support and less chance of enemy jungler intervention",
+        "Your minions die faster"
+      ]
+    },
+    "difficulty": "easy",
+    "concepts": ["Laning Phase", "Map Awareness"]
+  },
+  {
+    "question": "Matching Pairs: Match the lane state to the correct risk.",
+    "type": "matching_pairs",
+    "answer": {
+      "correct": {
+        "Frozen near enemy tower": "Higher risk of ganks and turret damage",
+        "Pushed to your tower": "Less trading potential but safer",
+        "Even wave": "Balanced risk for both sides",
+        "Stacked wave": "Can be punished if enemy rotates"
+      },
+      "pairs": {
+        "keys": ["Frozen near enemy tower", "Pushed to your tower", "Even wave", "Stacked wave"],
+        "values": ["Less trading potential but safer", "Can be punished if enemy rotates", "Balanced risk for both sides", "Higher risk of ganks and turret damage"]
+      }
+    },
+    "difficulty": "hard",
+    "concepts": ["Laning Phase"]
+  },
+  {
+    "question": "MCQ: What is a key advantage of slow pushing a wave before recalling?",
+    "type": "mcq",
+    "answer": {
+      "correct": "You build a larger wave to pressure the enemy tower while you’re away",
+      "options": [
+        "You deny XP from minions",
+        "You reset the wave instantly",
+        "You build a larger wave to pressure the enemy tower while you’re away",
+        "You automatically get vision control"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Macro Play"]
+  },
+  {
+    "question": "True or False: Using abilities to farm under turret is considered a part of wave management strategy.",
+    "type": "true_false",
+    "answer": {
+      "correct": true
+    },
+    "difficulty": "easy",
+    "concepts": ["Laning Phase"]
+  },
+  {
+    "question": "Ordering: Arrange the steps for performing a trade under your turret safely.",
+    "type": "ordering",
+    "answer": {
+      "steps": [
+        "Wait for enemy to attack minions",
+        "Auto-attack or use ability",
+        "Move back to turret to avoid aggro",
+        "Last-hit minions safely"
+      ]
+    },
+    "difficulty": "medium",
+    "concepts": ["Laning Phase", "Micro Mechanics"]
+  }
+]

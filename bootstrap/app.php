@@ -11,7 +11,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // for adding user credits to all requests
+        $middleware->web(append: [
+            \App\Http\Middleware\LoadUserCredits::class,
+        ]); 
+        
+         $middleware->validateCsrfTokens(except: [
+            'webhook/stripe', // your webhook route
+        ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

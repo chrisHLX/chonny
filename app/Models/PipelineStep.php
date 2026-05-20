@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class PipelineStep extends Model
+{
+    protected $fillable = [
+        'pipeline_id',
+        'name',
+        'status',
+        'job_id',
+        'started_at',
+        'completed_at',
+        'error',
+    ];
+
+    protected $casts = [
+        'started_at'   => 'datetime',
+        'completed_at' => 'datetime',
+    ];
+
+    // ------------------
+    // Relationships
+    // ------------------
+
+    public function pipeline(): BelongsTo
+    {
+        return $this->belongsTo(Pipeline::class);
+    }
+
+    // ------------------
+    // Status helpers
+    // ------------------
+
+    public function markRunning(): void
+    {
+        $this->update([
+            'status' => 'running',
+            'started_at' => $this->started_at ?? now(),
+        ]);
+    }
+
+    public function markCompleted(): void
+    {
+        $this->update([
+            'status' => 'completed',
+            'completed_at' => now(),
+        ]);
+    }
+
+    public function markFailed(string $error): void
+    {
+        $this->update([
+            'status' => 'failed',
+            'error' => $error,
+        ]);
+    }
+}

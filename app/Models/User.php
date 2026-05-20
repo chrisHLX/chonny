@@ -6,8 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Services\CreditService;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -50,5 +52,62 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Module::class)->withPivot(['status', 'score', 'current_difficulty', 'last_activity_at', 'completed_at'])->withTimestamps();
     }
+
+    public function answeredQuestions()
+    {
+        return $this->belongsToMany(Question::class)
+            ->withPivot([
+                'attempts',
+                'correct_count',
+                'last_answered_at',
+                'total_time_spent',
+                'last_time_spent',
+                'last_answer',
+                'last_answer_correct',
+                'consecutive_fails'
+            ])
+            ->withTimestamps();
+    }
+
+    // User.php
+    public function conceptMastery()
+    {
+        return $this->hasMany(UserConceptMastery::class);
+    }
+
+    public function credits()
+    {
+        return $this->hasOne(UserCredit::class);
+    }
+
+    public function proficiencies()
+    {
+        return $this->belongsToMany(Proficiency::class, 'user_proficiency')->withPivot('progress');
+    }
+
+    public function pipelines()
+    {
+        return $this->hasMany(Pipeline::class);
+    }
+
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            // Resolve CreditService from the container
+            $creditService = app(CreditService::class);
+
+            $creditService->addAiCredits(
+                $user->id,
+                50,
+                'Welcome signup credits'
+            );
+        });
+    }
+
 
 }

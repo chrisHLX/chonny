@@ -16,6 +16,11 @@ class QuestionSeeder extends Seeder
     public function run()
     {
         $data = json_decode(file_get_contents(database_path('data/questions.json')), true);
+        $moreData = json_decode(file_get_contents(database_path('data/lolquestions.json')), true);
+        $data3 = json_decode(file_get_contents(database_path('data/medical_questions.json')), true);
+
+        $data = array_merge($data, $moreData, $data3);
+
 
         foreach ($data as $item) {
             $question = Question::create([
@@ -25,17 +30,9 @@ class QuestionSeeder extends Seeder
                 'answer'     => $item['answer'],
             ]);
 
-            // Attach related units
-            if (!empty($item['units'])) {
-                $unitIds = Unit::whereIn('name', $item['units'])->pluck('id');
-                $question->units()->sync($unitIds);
-            }
+            
 
-            // Attach related concepts
-            if (!empty($item['concepts'])) {
-                $conceptIds = Concept::whereIn('name', $item['concepts'])->pluck('id');
-                $question->concepts()->sync($conceptIds);
-            }
+            
         }
     }
 }

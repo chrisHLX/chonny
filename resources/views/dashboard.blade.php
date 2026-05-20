@@ -1,28 +1,161 @@
+{{-- resources/views/dashboard.blade.php --}}
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>   
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("Welcome $user->name You're logged in! your id is $user->id") }}
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-2xl text-white leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+        </div>
+    </x-slot>
+
+    <div class="bg-gray-900 text-gray-200 min-h-screen py-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-10">
+
+            <!-- Welcome Card -->
+            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                <h1 class="text-3xl font-bold mb-2">Welcome back, {{ $user->name }} 👋</h1>
+                <p class="text-blue-100">
+                    Ready to keep improving your knowledge? Let’s dive in.
+                </p>
+                <div class="mt-4 flex gap-2">
+                    <button id="buy-credits" class="bg-white px-3 py-2 rounded-md text-gray-800 font-semibold hover:bg-gray-200 transition">
+                        Add Credits Stripe
+                    </button>
                 </div>
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-lg font-semibold mb-4">Your Modules</h3>
+                <div class="mt-4 text-sm text-gray-400">
+                    <form action="{{ route('credit.test2') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-gray-700 px-3 py-1 rounded-md hover:bg-gray-600 transition">
+                            Test AI Tag Generation
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+                const stripe = Stripe("{{ config('services.stripe.key') }}");
+
+                document.getElementById('buy-credits').addEventListener('click', async () => {
+                    const res = await fetch("{{ route('checkout.session') }}", {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        }
+                    });
+
+                    const data = await res.json();
+                    await stripe.redirectToCheckout({ sessionId: data.id });
+                });
+            </script>
+
+            <!-- Subject Selection -->
+            {{-- Subject Toggle --}}
+            <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
+            
+
+            <!-- Main Dashboard Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+            <!-- Concept Mastery -->
+            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                    📘 Your Concept Mastery
+                </h3>
+                <p class="text-gray-400 text-sm mb-6">
+                    Track your concepts. Complete more quizes to increase level.
+                </p>
+                @forelse($concepts as $concept)
+                    @php
+                        $userMastery = $concept->userConceptMasteries->first();
+
+                        $mastery = $userMastery?->mastery_percentage ?? 0;
+                        $totalQuestions = $userMastery?->total_questions ?? $concept->questions->count();
+                    @endphp
+                    <div class="mb-5">
+                        <div class="flex justify-between mb-1 text-sm">
+                            <span class="font-medium text-gray-200">{{ $concept->name }}</span>
+                            <span class="text-gray-400">{{ $mastery }}% ({{ $totalQuestions }} questions)</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                            <div class="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-in-out" 
+                                style="width: {{ $mastery }}%">
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-gray-500">No mastery data yet.</p>
+                @endforelse
+            </div>
+
+
+            <!-- Leaderboard -->
+            <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                    🏆 Leaderboard
+                </h3>
+                <p class="text-gray-400 text-sm mb-6">
+                    See who’s mastering the most concepts this week.
+                </p>
+
+                <ul class="divide-y divide-gray-700 mb-6">
+                    @foreach ($leaderboard as $index => $user)
+                        <li class="flex items-center justify-between py-3">
+                            <div class="flex items-center gap-3">
+                                <span class="text-gray-400 text-sm w-6 text-center">
+                                    {{ $index + 1 }}.
+                                </span>
+                                <span class="text-white font-medium">
+                                    {{ $user->name }}
+                                </span>
+                            </div>
+                            <span class="text-blue-400 font-semibold">
+                                {{ round($user->total_mastery) }}%
+                                <!-- {{ number_format($user->total_mastery, 1) }}% -->
+                            </span>
+                        </li>
+                    @endforeach
+                </ul>
+                <!--
+                <a href="{{ route('dashboard') }}" 
+                class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition">
+                    View Full Leaderboard
+                </a>
+-->
+            </div>
+
+
+                <!-- User Modules -->
+                <div class="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-blue-500/20 transition">
+                    <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                        🎯 Your Modules
+                    </h3>
                     @if($modules->isEmpty())
-                        <p>You have no modules assigned.</p>
+                        <p class="text-gray-400 text-sm mb-4">
+                            You have no active modules yet.
+                        </p>
+                        <a href="{{ route_with_context('modules.index') }}" 
+                           class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                            Browse Modules
+                        </a>
                     @else
-                        <ul class="list-disc pl-5">
+                        <ul class="space-y-3">
                             @foreach($modules as $module)
-                                <li>
-                                        {{ $module->name }} Score: ({{ $module->pivot->score }}) Status: {{ $module->pivot->status }}
+                                <li class="bg-gray-700 p-3 rounded-lg flex justify-between items-center hover:bg-gray-600 transition">
+                                    <span class="font-medium text-gray-100">{{ $module->name }}</span>
+                                    <span class="text-sm text-gray-400">
+                                        Score: {{ $module->pivot->score }} | {{ ucfirst($module->pivot->status) }}
+                                    </span>
                                 </li>
                             @endforeach
+                        </ul>
                     @endif
+                </div>
+
             </div>
+
+            <!-- Created Modules Disabled -->
+
         </div>
     </div>
 </x-app-layout>

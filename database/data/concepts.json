@@ -1,147 +1,172 @@
 [
-    {
-        "name": "12 Pool Rush",
-        "type": "strategy",
-        "description": "An aggressive early game Zerg strategy using fast Zerglings from a 12 supply Spawning Pool to catch the opponent off guard."
-    },
-    {
-        "name": "2-1-1 Stim Timing",
-        "type": "timing",
-        "description": "A Terran push with two Medivacs and Stimpack around 5:30 to pressure a Zerg before they can safely drone."
-    },
-    {
-        "name": "4 Base Macro Focus",
-        "type": "macro",
-        "description": "Focusing on production, expansions, and economy while minimizing unnecessary engagements."
-    },
-    {
-        "name": "All-In Timing",
-        "type": "other",
-        "description": "A push where the player commits all resources to one timing attack, often without a fallback economy."
-    },
-    {
-        "name": "Baneling Bust",
-        "type": "tactic",
-        "description": "Using Banelings to break through a wall-off or fortified entrance, typically to allow Zerglings to flood in early. Common against Terran or Protoss to punish greedy builds or lack of wall defenses."
-    },
-    {
-        "name": "Baneling Drops",
-        "type": "harassment",
-        "description": "Dropping Banelings into mineral lines to catch workers off guard and deal significant damage."
-    },
-    {
-        "name": "Burrowed Roach Ambush",
-        "type": "psychological",
-        "description": "Using hidden units to surprise your opponent, creating panic and overreaction."
-    },
-    {
-        "name": "Cannon Rush Meta",
-        "type": "meta",
-        "description": "A commonly used strategy on ladder where players attempt to win early using proxy Photon Cannons."
-    },
-    {
-        "name": "Creep Spread",
-        "type": "map control",
-        "description": "Spreading Creep Tumors to gain vision, speed up unit movement, and control the map."
-    },
-    {
-        "name": "Disruptor Shots",
-        "type": "unit control",
-        "description": "Using Disruptors effectively to zone out enemy units and deal massive area damage."
-    },
-    {
-        "name": "Faking Pressure",
-        "type": "psychological",
-        "description": "Pretending to commit to an attack to force a reaction or scout information."
-    },
-    {
-        "name": "Fast Expand",
-        "type": "economic",
-        "description": "Expanding quickly to a second base in order to boost economy and tech faster."
-    },
-    {
-        "name": "High Ground Advantage",
-        "type": "positioning",
-        "description": "Taking fights from the high ground to gain vision and defensive advantages."
-    },
-    {
-        "name": "Hydra to Lurker Transition",
-        "type": "transition",
-        "description": "Teching from Hydralisks into Lurkers for late-game defense and positional strength."
-    },
-    {
-        "name": "Inject Management",
-        "type": "resource management",
-        "description": "Maintaining regular Queen injects to ensure larva production and stable economy."
-    },
-    {
-        "name": "Ling Flood",
-        "type": "tactic",
-        "description": "Mass producing Zerglings to overwhelm the opponent before they can stabilize."
-    },
-    {
-        "name": "Ling-Bane into Muta",
-        "type": "adaptation",
-        "description": "Adjusting into Mutalisks after seeing the opponent overcommit to ground anti-light units."
-    },
-    {
-        "name": "Marine Split",
-        "type": "micro",
-        "description": "Manually spreading Marines during fights to reduce splash damage from Banelings or Psionic Storm."
-    },
-    {
-        "name": "Overlord Sacrifice",
-        "type": "scouting",
-        "description": "Sending an Overlord into the enemy base to scout tech paths at the cost of losing it."
-    },
-    {
-        "name": "Prism Micro",
-        "type": "unit control",
-        "description": "Using Warp Prisms to pick up and drop units mid-fight to extend their lifespan and efficiency."
-    },
-    {
-        "name": "Proxy Hatchery",
-        "type": "strategy",
-        "description": "Building a Hatchery in the opponent's base or near their expansion to produce units and apply pressure."
-    },
-    {
-        "name": "Roach Ravager Composition",
-        "type": "composition",
-        "description": "A mid-game Zerg composition utilizing Roaches and Ravagers for strong pushes and zone control."
-    },
-    {
-        "name": "Roach Ravager Push",
-        "type": "offensive",
-        "description": "A mid-game push using Roaches and Ravagers to apply pressure and potentially end the game."
-    },
-    {
-        "name": "Standard ZvT Build Order",
-        "type": "build order",
-        "description": "A safe and economic Zerg build for defending early pressure and transitioning into a mid-game army."
-    },
-    {
-        "name": "Stim Push",
-        "type": "offensive",
-        "description": "Using Stimmed bio units to put pressure on the opponent before their army is complete."
-    },
-    {
-        "name": "Wall-Off at the Ramp",
-        "type": "defensive",
-        "description": "Using buildings to block choke points and defend against early rushes."
-    },
-    {
-        "name": "Watchtower Control",
-        "type": "map control",
-        "description": "Maintaining vision over key areas of the map using Xel'Naga Watchtowers."
-    },
-    {
-        "name": "Widow Mine Drop",
-        "type": "harassment",
-        "description": "Dropping Widow Mines in mineral lines to force reactions and deny mining."
-    },
-    {
-        "name": "Zergling Run-By",
-        "type": "tactic",
-        "description": "Using Zerglings to attack enemy mineral lines or bases while the main armies are engaged elsewhere."
-    }
+  {
+    "name": "Economy",
+    "description": "Managing resources by building workers, expanding to new bases, and scaling production while avoiding oversaturation or resource float.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Army",
+    "description": "Creating the right units, managing their upgrades, and controlling them effectively in battle (micro and composition).",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Build Orders",
+    "description": "Executing a planned sequence of actions that reaches specific goals at specific timings, such as unit production, expansion, or tech.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Scouting",
+    "description": "Gaining and denying information to assess the opponent’s strategy, predict timings, and adapt your own plan accordingly.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Strategy",
+    "description": "Long-term game planning and decision-making, including how to win given your opponent’s behavior, tech path, or map situation.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Tactics",
+    "description": "Short-term decisions involving positioning, engagements, harassment, and exploiting terrain to gain advantages in fights.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Map Control",
+    "description": "Maintaining vision, limiting the opponent’s movement, denying expansions, and safely controlling parts of the map for strategic advantage.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Mechanics",
+    "description": "Your execution ability: efficient APM, hotkey use, multitasking, avoiding supply blocks, and making fast, accurate inputs under pressure.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Other",
+    "description": "Anything that doesn't fit into the other categories, such as specific unit interactions, map-specific strategies, or unique game mechanics.",
+    "subject": "StarCraft 2"
+  },
+  {
+    "name": "Laning Phase",
+    "description": "Covers everything about the early game: wave management (freezing, slow/fast pushing), trading and harassment, positioning, and maintaining lane vision. Strong laning builds the foundation for mid-game success.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Macro Play",
+    "description": "Focuses on map-wide decision-making, rotations, and objective control. Includes understanding win conditions, tempo, pressure, and how to translate small advantages into major map control.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Micro Mechanics",
+    "description": "Individual skill expression—executing champion combos, landing skillshots, kiting/orbwalking, tracking cooldowns, and outplaying opponents through precise mechanics.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Itemization",
+    "description": "Learning when and why to build specific items. Includes core and situational builds, counter-building (anti-heal, armor pen, MR), power spikes, and synergy between mythic and legendary items.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Teamfighting",
+    "description": "Understanding 5v5 engagements—engage/disengage tools, positioning, target priority, ultimate tracking, and how to convert fights into objectives afterward.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Map Awareness",
+    "description": "Developing awareness through vision control, tracking enemy movements, jungle presence, and recognizing rotations. Includes optimal ward placement and reading the minimap effectively.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Champion Knowledge",
+    "description": "Covers matchups, counters, and champion archetypes such as assassins, bruisers, and enchanters. Also includes scaling curves, power spikes, and understanding how kits interact.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Drafting & Strategy",
+    "description": "Long-term planning starting from champ select. Includes composition building, synergy, counterpicks, lane priority, and identifying team win conditions before and during the match.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Jungle Pathing & Objectives",
+    "description": "Mastering early game jungle routes, efficient clears, gank timings, counter-jungling, and objective trades like Dragon, Rift Herald, and Baron control.",
+    "subject": "League of Legends"
+  },
+  {
+    "name": "Mindset & Improvement",
+    "description": "Building consistency through emotional control and self-reflection. Covers tilt management, communication, learning from losses, and maintaining focus during long play sessions.",
+    "subject": "League of Legends"
+  },
+  {
+  "name": "Anatomy",
+  "description": "Covers the structural organization of the human body, including the skeletal, muscular, cardiovascular, nervous, and digestive systems. Understanding spatial relationships between organs and surface landmarks is key to physical examination and surgery.",
+  "subject": "Medicine"
+},
+{
+  "name": "Physiology",
+  "description": "Explores how the body’s systems function normally, including homeostasis, metabolism, neural signaling, and hormonal regulation. A foundation for understanding disease mechanisms.",
+  "subject": "Medicine"
+},
+{
+  "name": "Pathophysiology",
+  "description": "Focuses on how diseases disrupt normal physiology. Includes inflammation, cellular injury, immune dysfunction, and organ-specific pathology.",
+  "subject": "Medicine"
+},
+{
+  "name": "Pharmacology",
+  "description": "Covers drug classes, mechanisms of action, therapeutic uses, side effects, and interactions. Includes pharmacokinetics and pharmacodynamics principles.",
+  "subject": "Medicine"
+},
+{
+  "name": "Diagnosis",
+  "description": "Covers the process of clinical reasoning, differential diagnosis, interpretation of lab tests and imaging, and pattern recognition in disease presentations.",
+  "subject": "Medicine"
+},
+{
+  "name": "Clinical Skills",
+  "description": "Practical patient-facing skills such as history taking, physical examination, bedside manner, and clinical documentation.",
+  "subject": "Medicine"
+},
+{
+  "name": "Microbiology & Immunology",
+  "description": "Covers bacteria, viruses, fungi, and parasites, as well as the immune system’s components and responses. Includes infection control and vaccine principles.",
+  "subject": "Medicine"
+},
+{
+  "name": "Epidemiology & Public Health",
+  "description": "Population-level medicine: disease surveillance, outbreak control, study design, and preventive health strategies.",
+  "subject": "Medicine"
+},
+{
+  "name": "Ethics & Professionalism",
+  "description": "Explores medical ethics, patient confidentiality, consent, and professional conduct within healthcare teams.",
+  "subject": "Medicine"
+},
+{
+  "name": "Emergency Medicine",
+  "description": "Acute assessment and management of life-threatening conditions like cardiac arrest, trauma, shock, and respiratory failure.",
+  "subject": "Medicine"
+},
+{
+  "name": "Reflexivity",
+  "description": "Understanding the circular relationship between cause and effect, where participants' biases change the fundamentals they are observing.",
+  "subject": "Global Macro"
+},
+{
+  "name": "Monetary Policy",
+  "description": "How central banks use interest rates and money supply (M2) to control inflation and currency value.",
+  "subject": "Global Macro"
+},
+{
+  "name": "Liquidity & Credit",
+  "description": "Tracking the 'flow' of money and the expansion/contraction of credit (deleveraging) in a system.",
+  "subject": "Global Macro"
+},
+{
+  "name": "Market Psychology",
+  "description": "Analyzing sentiment, bubbles, and 'irrational exuberance' in asset prices like housing or crypto.",
+  "subject": "Global Macro"
+},
+{
+  "name": "Geopolitical Impact",
+  "description": "How physical events impact supply chains and resource/commodity prices.",
+  "subject": "Global Macro"
+}
 ]

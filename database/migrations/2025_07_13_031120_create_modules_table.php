@@ -7,17 +7,22 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migration for Modules table.
      */
     public function up(): void
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('content_source')->default('OPEN AI 4.0-mini'); // Added a parent id so we can attach modules to parents
+            $table->string('status')->default('ready'); // ready, generating, failed
             $table->text('description')->nullable();
             $table->string('race')->nullable(); // 'Zerg', 'Terran', 'Protoss', or null
-            $table->string('difficulty_level')->default('beginner'); // beginner, intermediate, advanced
+            $table->json('art_spec')->nullable(); // JSON field for art specifications (image svg generation)
+            $table->string('art_path')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete(); // optional custom module
+            $table->foreignId('parent_id')->nullable()->constrained('modules')->nullOnDelete();
             $table->boolean('published')->default(false);
             $table->timestamps();
         });

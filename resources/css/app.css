@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Example: resources/css/ck-editor.css */
+.ck-editor__editable.ck-content h1 {
+    @apply text-2xl font-bold mb-4;
+}
+
+.ck-editor__editable.ck-content h2 {
+    @apply text-xl font-semibold mb-3;
+}
+
+.ck-editor__editable.ck-content p {
+    @apply mb-2 text-gray-600;
+}
+
+/* Example: resources/css/ck-editor.css */
+.ck-editor__editable.ck-content {
+    min-height: 400px;  /* change this to whatever height you want */
+    padding: 1rem;       /* optional: match your text spacing */
+}
+
+/* Headings inside editor content */
+.ck-editor__editable.ck-content h1 {
+    @apply text-2xl font-bold mb-4;
+}
+
+.ck-editor__editable.ck-content h2 {
+    @apply text-xl font-semibold mb-3;
+}

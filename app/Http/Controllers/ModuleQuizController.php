@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Module;
 use App\Models\Question;
-use Illuminate\Http\Request;
 
 class ModuleQuizController extends Controller
 {
