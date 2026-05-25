@@ -73,6 +73,8 @@ class ResearchService
 
         $tools = [['google_search' => (object) []]];
 
+        $effectiveYoutubeMode = $youtubeMode;
+
         if ($sourceUrl !== '') {
             if ($isYouTube) {
                 if ($youtubeMode === 'transcript') {
@@ -106,6 +108,7 @@ class ResearchService
                         $promptText .= "\n\nYOUTUBE TRANSCRIPT:\n" . $transcript;
                         $parts = [['text' => $promptText]];
                     } else {
+                        $effectiveYoutubeMode = 'video';
                         $promptText .= "\n\nNote: transcript could not be fetched. Analyze video content directly.";
                         $parts = [
                             ['text' => $promptText],
@@ -191,7 +194,7 @@ class ResearchService
         $startTime = microtime(true);
         try {
             $response = Http::withHeaders(['Content-Type' => 'application/json'])
-                ->timeout($youtubeMode === 'video' ? 90 : 30)
+                ->timeout($effectiveYoutubeMode === 'video' ? 90 : 30)
                 ->post("{$endpoint}?key={$key}", $payload);
         } catch (\Throwable $e) {
             Log::error('ResearchService HTTP error', ['message' => $e->getMessage()]);
