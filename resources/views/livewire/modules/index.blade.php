@@ -17,14 +17,14 @@
                 <input
                     type="text"
                     name="intent"
-                    placeholder="What do you want to learn? (e.g. How to transition from Zerg to Terran)"
+                    placeholder="What do you want to learn? (e.g. How options trading works, the basics of photosynthesis)"
                     maxlength="500"
                     required
                     class="form-input"
                 />
                 <textarea
                     name="prior_knowledge"
-                    placeholder="What do you already know? (e.g. I've been playing for a month, I know basic build orders but always run out of money)"
+                    placeholder="What do you already know? (e.g. I understand the basics but struggle with the underlying concepts)"
                     maxlength="500"
                     rows="3"
                     class="form-textarea"
