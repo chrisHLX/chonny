@@ -35,6 +35,7 @@ class QuizRunner extends Component
     public $difficulty;
     public $questionResults = [];
     public $wrongQuestions = [];
+    public $completedDifficulties = [];
 
     // Review / AI related
     public $contents = [];
@@ -69,14 +70,14 @@ class QuizRunner extends Component
         $this->status = $module->pivot->status ?? 'in_progress';
 
         if ($result['mode'] === 'completed') {
-            $this->handleMasteryCompletion($module);
+            $this->completeModule();
             return;
         }
 
         if ($result['mode'] === 'normal') {
             $allDifficultyQuestions = $this->getQuestionIdsForDifficulty($module, $result['level']);
             $questionsToPractice   = $this->getTargetQuestions($allDifficultyQuestions, $user);
-            $selectedQuestions     = $this->chooseQuestions($module, $questionsToPractice, $result['level'])->get();
+            $selectedQuestions     = $this->chooseQuestions($module, $questionsToPractice, $result['level']);
             $this->questions       = $this->prepareQuestionsForQuiz($selectedQuestions);
             \Log::info("Starting quiz with difficulty {$result['level']} for module {$module->id}. Questions: " . implode(', ', $selectedQuestions->pluck('id')->toArray()));
             $this->initializeQuizState($result['level']);
@@ -232,7 +233,9 @@ class QuizRunner extends Component
         $moduleId = $this->moduleId;
         $userId = $user->id;
 
-        // If this round just pushed the user to full mastery, complete immediately
+        // Mark current difficulty as done for this session
+        $this->completedDifficulties[] = $this->difficulty;
+
         $module = $user->modules()->with('questions')->find($moduleId);
         if ($this->calculateNextDifficulty($module)['mode'] === 'completed') {
             $this->completeModule();
@@ -301,44 +304,37 @@ class QuizRunner extends Component
         $this->startQuizInternal();
     }
 
-    // Just works out what level the user is on. (lets use this for proficiency above intermediate?)
     private function calculateNextDifficulty($module)
-    {   
+    {
         $difficulties = ['easy', 'medium', 'hard'];
         $user = auth()->user();
 
-
         foreach ($difficulties as $level) {
-            // Grab all the questions at this difficulty starting at easy
-            $questions = $module->questions()->where('difficulty', $level)->pluck('questions.id');
-            if ($questions->isEmpty()) continue;
+            // Skip if already played this session
+            if (in_array($level, $this->completedDifficulties)) {
+                continue;
+            }
 
-            // Count how many the user answered correctly
-            $correctCount = $user->answeredQuestions()
-                ->whereIn('questions.id', $questions)
+            $allIds = $module->questions()
+                ->where('difficulty', $level)
+                ->pluck('questions.id')
+                ->toArray();
+
+            if (empty($allIds)) continue;
+
+            $roundSize = min(5, count($allIds));
+
+            $answeredCount = $user->answeredQuestions()
+                ->whereIn('questions.id', $allIds)
                 ->count();
 
-            // Calculate the percentage
-            $total = $questions->count();
-            $percentage = $total ? ($correctCount / $total) * 100 : 0;
+            // If user has completed a full round at this level, move on
+            if ($answeredCount >= $roundSize) continue;
 
-            // If user hasn't mastered the level keep grabbing questions until they have
-            if ($percentage < 80) {
-                return [
-                    'mode' => 'normal',
-                    'level' => $level
-                ];
-            }
+            return ['mode' => 'normal', 'level' => $level];
         }
 
-        // Once we have looped through all questions and the user has correctly answered them all the module === All mastered
         return ['mode' => 'completed'];
-    }
-
-private function handleMasteryCompletion($module)
-    {
-        $this->answer = [];
-        $this->completeModule();
     }
 
     private function completeModule()
@@ -446,25 +442,49 @@ private function handleMasteryCompletion($module)
             ->pluck('questions.id')
             ->toArray();
 
-        $wrong = $user->answeredQuestions()
-            ->whereIn('questions.id', $moduleQuestionIds)
-            ->wherePivot('last_answer_correct', false)
-            ->pluck('questions.id')
-            ->toArray();
-
-        $unanswered = array_diff($moduleQuestionIds, $answered);
-        \Log::info("Answered questions:", $answered);
-        \Log::info("Wrong questions:", $wrong);
-        return array_unique(array_merge($wrong, $unanswered));
+        $unanswered = array_values(array_diff($moduleQuestionIds, $answered));
+        \Log::info("Unanswered questions:", $unanswered);
+        return $unanswered;
     }
 
     private function chooseQuestions($module, array $targetQuestionIds, $difficulty)
     {
-        if (!empty($targetQuestionIds)) {
-            return $module->questions()->whereIn('questions.id', $targetQuestionIds)->limit(5);
+        $pool = !empty($targetQuestionIds)
+            ? $module->questions()->whereIn('questions.id', $targetQuestionIds)->get()->shuffle()
+            : $module->questions()->where('difficulty', $difficulty)->get()->shuffle();
+
+        if ($pool->count() <= 5) {
+            return $pool;
         }
 
-        return $module->questions()->where('difficulty', $difficulty)->inRandomOrder()->limit(5);
+        // Round-robin across skill_types, preferring unused question types within each slot
+        $skillOrder = collect(['recall', 'analysis', 'application']);
+        $bySkillType = $pool->groupBy('skill_type')->map(fn($g) => $g->values());
+        $activeSkills = $skillOrder->filter(fn($s) => $bySkillType->has($s))->values();
+
+        $selected = collect();
+        $usedQuestionTypes = [];
+        $index = 0;
+
+        while ($selected->count() < 5) {
+            $remaining = $activeSkills->filter(fn($s) => $bySkillType->get($s, collect())->isNotEmpty());
+            if ($remaining->isEmpty()) break;
+
+            $skill = $activeSkills[$index % $activeSkills->count()];
+            $index++;
+
+            $group = $bySkillType->get($skill, collect());
+            if ($group->isEmpty()) continue;
+
+            $pick = $group->first(fn($q) => !in_array($q->type, $usedQuestionTypes))
+                ?? $group->first();
+
+            $selected->push($pick);
+            $usedQuestionTypes[] = $pick->type;
+            $bySkillType[$skill] = $group->reject(fn($q) => $q->id === $pick->id)->values();
+        }
+
+        return $selected;
     }
 
 
