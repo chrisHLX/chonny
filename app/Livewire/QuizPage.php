@@ -9,6 +9,14 @@ class QuizPage extends Component
     public string $mode = 'selection';     // 'selection' | 'running' | 'review-feedback'
     public ?int $selectedModule = null;
 
+    public function mount(?int $moduleId = null): void
+    {
+        if ($moduleId) {
+            $this->selectedModule = $moduleId;
+            $this->mode = 'running';
+        }
+    }
+
     protected $listeners = [
         'startQuiz'     => 'handleStartQuiz',
         'quizFinished'  => 'handleQuizFinished',

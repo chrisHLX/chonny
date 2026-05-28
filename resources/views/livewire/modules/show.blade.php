@@ -55,10 +55,17 @@
                                 <p class="text-[11px] text-ink-subtle">Score: {{ $userModule['score'] }}%</p>
                             @endif
 
-                            <a href="{{ route('modules.quiz', $module) }}"
-                               class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                                {{ $status === 'completed' ? 'Retake Quiz' : ($status === 'in_progress' ? 'Continue Quiz' : 'Start Quiz') }}
-                            </a>
+                            @if ($status === 'completed')
+                                <a href="{{ route('collection.index') }}"
+                                   class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                                    View Results
+                                </a>
+                            @else
+                                <a href="{{ route('questions.quiz.index') }}?moduleId={{ $module->id }}"
+                                   class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                                    {{ $status === 'in_progress' ? 'Continue Quiz' : 'Start Quiz' }}
+                                </a>
+                            @endif
                             @if ($module->modulePages->isNotEmpty())
                                 <a href="{{ route('modules.page', $module) }}"
                                    class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-ink-muted border border-line hover:border-ink-subtle hover:text-ink rounded-lg transition-colors">

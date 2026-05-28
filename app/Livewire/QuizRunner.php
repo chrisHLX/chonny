@@ -26,6 +26,7 @@ class QuizRunner extends Component
     public $elapsed = 0;
     public $questionTimes = [];
     public $completed = false;
+    public $quizFullyComplete = false;
     public $started = true;
     public $status;
 
@@ -340,6 +341,7 @@ class QuizRunner extends Component
     private function completeModule()
     {
         $this->completed = true;
+        $this->quizFullyComplete = true;
         $this->difficulty = 'final';
         $this->questions = $this->questions ?? collect();
         $this->wrongQuestions = collect();
@@ -559,6 +561,30 @@ class QuizRunner extends Component
     // ... move ALL other methods from your original TimedQuiz here ...
     // calculateNextDifficulty, prepareQuestionsForQuiz, getLeastAccurateQuestions,
     // userScore, shuffleCurrentQuestionAnswers, initializeQuizState, etc.
+
+    public function getCompletionCardProperty()
+    {
+        if (!$this->moduleId) return null;
+        return \App\Models\Card::where('user_id', auth()->id())
+            ->where('module_id', $this->moduleId)
+            ->latest()
+            ->first();
+    }
+
+    public function getNextSuggestionProperty()
+    {
+        $pipelineId = session('completion_pipeline_id');
+        if (!$pipelineId) return null;
+        $step = \App\Models\PipelineStep::where('pipeline_id', $pipelineId)
+            ->where('name', 'Generate Suggestions')
+            ->where('status', 'completed')
+            ->first();
+        if (!$step) return null;
+        return \App\Models\Module::where('user_id', auth()->id())
+            ->where('status', 'ready')
+            ->latest()
+            ->first();
+    }
 
     public function render()
     {

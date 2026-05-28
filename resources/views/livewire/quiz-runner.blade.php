@@ -1,7 +1,7 @@
 <div class="py-6 max-w-2xl mx-auto">
 
-    {{-- COMPLETION SCREEN --}}
-    @if ($completed || $status == "completed")
+    {{-- FULL QUIZ COMPLETION SCREEN --}}
+    @if ($quizFullyComplete)
         <div class="linear-card p-6" x-transition>
             <h2 class="text-[17px] font-semibold text-ink text-center mb-6">Quiz Complete</h2>
 
@@ -27,19 +27,45 @@
                 </div>
             @endif
 
-            <div class="flex flex-col sm:flex-row justify-center gap-3">
-                @if ($difficulty === 'final')
-                    <a href="{{ route('collection.index') }}"
-                       class="inline-flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
-                        View Progress
-                    </a>
-                @else
-                    <button wire:click="nextLevel"
-                            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
-                        Next Level
-                    </button>
-                @endif
+            <div class="flex justify-center">
+                <a href="{{ route('collection.index') }}"
+                   class="inline-flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                    Complete Quiz
+                </a>
             </div>
+        </div>
+
+    {{-- BETWEEN-TIER COMPLETION SCREEN --}}
+    @elseif ($completed && !$quizFullyComplete)
+        <div class="linear-card p-6" x-transition>
+            <h2 class="text-[17px] font-semibold text-ink text-center mb-6">Level Complete</h2>
+
+            <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 text-center">
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Score</p>
+                    <p class="text-2xl font-semibold text-emerald-400">{{ $score }} / {{ $questions->count() }}</p>
+                </div>
+                <div class="bg-accent/10 border border-accent/20 rounded-lg p-4 text-center">
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Time</p>
+                    <p class="text-2xl font-semibold text-accent">{{ $this->totalTime }}s</p>
+                </div>
+            </div>
+
+                @if (count($wrongQuestions ?? []) > 0)
+                <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mb-6">
+                    <p class="text-[12px] font-medium text-red-400 mb-3">Incorrect answers</p>
+                    <ul class="space-y-2">
+                        @foreach ($wrongQuestions as $q)
+                            <li class="text-[13px] text-ink-muted">{{ $q->question }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <button wire:click="nextLevel"
+                    class="w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                Next Level
+            </button>
         </div>
 
     {{-- QUESTION SCREEN --}}

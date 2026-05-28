@@ -116,8 +116,12 @@ class CardGenerationService
 
     protected function nextMintNumberForModule(int $moduleId): int
     {
-        // Deliberately allow for race conditions here; a duplicate mint number will be rarer
-        return (Card::where('module_id', $moduleId)->max('mint_number') ?? 0) + 1;
+        return DB::transaction(function () use ($moduleId) {
+            $max = Card::where('module_id', $moduleId)
+                ->lockForUpdate()
+                ->max('mint_number') ?? 0;
+            return $max + 1;
+        });
     }
     
 }
