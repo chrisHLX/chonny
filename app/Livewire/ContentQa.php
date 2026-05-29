@@ -13,6 +13,7 @@ class ContentQa extends Component
     public string $promptableType;
     public int $promptableId;
     public string $newQuestion = '';
+    public string $selectedModel = 'gpt'; // gpt | gemini
 
     private const ALLOWED_TYPES = [
         \App\Models\ModulePage::class,
@@ -42,13 +43,18 @@ class ContentQa extends Component
             return;
         }
 
+        $selectedModel = in_array($this->selectedModel, ['gpt', 'gemini'], true)
+            ? $this->selectedModel
+            : 'gpt';
+
         $prompt = Prompt::create([
-            'user_id'         => Auth::id(),
-            'promptable_type' => $this->promptableType,
-            'promptable_id'   => $this->promptableId,
-            'question'        => $this->newQuestion,
+            'user_id'          => Auth::id(),
+            'promptable_type'  => $this->promptableType,
+            'promptable_id'    => $this->promptableId,
+            'model'            => $selectedModel,
+            'question'         => $this->newQuestion,
             'context_snapshot' => $model->content,
-            'status'          => 'pending',
+            'status'           => 'pending',
         ]);
 
         $this->newQuestion = '';

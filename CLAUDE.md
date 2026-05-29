@@ -273,7 +273,7 @@ Key columns:
 - **`Admin\ApiUsage`** — AI spend dashboard. Reads from `ai_requests`. Has three computed properties: `summary` (this-month totals by provider), `chartData` (30-day daily spend), `purposeBreakdown` (grouped by `purpose` column). **Known gotcha:** do NOT use `fn($group, $purpose)` in the `map()` call after `groupBy()` — Laravel's `Collection::map` does not reliably pass the key as a second arg. Always derive the purpose from `$group->first()?->purpose` instead.
 - **`GenerationProgress`** — real-time progress overlay displayed while a module's question generation pipeline is running; polls pipeline step statuses.
 - **`Modules\Show`** — public-facing module detail page; displays module metadata, proficiency tier, and enrollment call-to-action. `getAllPagesHtmlProperty()` returns an array with `id`, `title`, `page_number`, `html` — the `id` field is required by the embedded `ContentQa` components.
-- **`ContentQa`** — embeddable Q&A widget. Receives `promptableType` (allowlisted to `ModulePage` or `SubjectContent`) and `promptableId`. On submit: snapshots `$model->content`, creates a `Prompt` record, dispatches `AnswerPromptJob`. Uses `wire:poll.3s` on the root element only while prompts have `status = pending|processing`. Embedded inline in `modules/show.blade.php` beneath each research accordion body and each module page panel.
+- **`ContentQa`** — embeddable Q&A widget. Receives `promptableType` (allowlisted to `ModulePage` or `SubjectContent`) and `promptableId`. Public `$selectedModel` (`'gpt'` | `'gemini'`) drives the model toggle. On submit: snapshots `$model->content`, creates a `Prompt` record (with `model`), dispatches `AnswerPromptJob`. Uses `wire:poll.3s` on the root element only while prompts have `status = pending|processing`. Embedded inline in `modules/show.blade.php` beneath each research accordion body and each module page panel.
 
 ### Jobs (`app/Jobs/`)
 
@@ -283,7 +283,7 @@ All jobs run via Redis queue (`QUEUE_CONNECTION=redis`):
 - `SuggestionJob` — generates next-module suggestions after quiz completion
 - `GenerateCardJob` — generates collectible card art spec after quiz completion
 - `GenerateModuleContentJob` — generates AI-written ModulePage content for suggestion-mode modules; once content is written, chains directly to `GenerateQuestions` jobs for each question type. Uses `ModulePage::updateOrCreate(['module_id', 'page_number' => 1])` — page 1 is **overwritten** on every run, not appended. Multiple page-1 rows per module is a bug.
-- `AnswerPromptJob` — resolves a `Prompt` record. Marks `status = processing`, calls `AiService::answerQuestion()` with the stored `context_snapshot`, writes the response to `answer` and sets `status = completed`. On exception sets `status = failed` and writes `error_message`.
+- `AnswerPromptJob` — resolves a `Prompt` record. Marks `status = processing`, then routes by `$prompt->model`: `'gemini'` → `ResearchService::answerQuestion()` (Gemini + Google Search grounding, returns answer + sources); `'gpt'` → `AiService::answerQuestion()` (content-only). Writes `answer`, `sources`, `status = completed`. On exception sets `status = failed` + `error_message`.
 
 ### Content Q&A (`app/Models/Prompt.php`)
 
@@ -292,10 +292,12 @@ Users can ask questions about any `ModulePage` or `SubjectContent` record direct
 **`prompts` table:**
 - `user_id` — question author
 - `promptable_type` / `promptable_id` — polymorphic link to the content item (currently `App\Models\ModulePage` or `App\Models\SubjectContent`)
+- `model` (string, default `'gpt'`) — `'gpt'` routes to `AiService::answerQuestion()`; `'gemini'` routes to `ResearchService::answerQuestion()` (web search enabled)
 - `question` (text) — what the user asked
 - `context_snapshot` (longText) — copy of `$model->content` at submission time; used as AI context so answers remain valid even if the source content is later edited
 - `status` — `pending | processing | completed | failed`
 - `answer` (longText, nullable) — AI response once complete
+- `sources` (JSON, nullable) — web sources returned by Gemini; empty for GPT answers
 - `error_message` (text, nullable) — failure reason if status = failed
 
 **Flow:**
@@ -307,7 +309,10 @@ Users can ask questions about any `ModulePage` or `SubjectContent` record direct
 
 **Important rules:**
 - `promptableType` is allowlisted inside `ContentQa` — only `ModulePage` and `SubjectContent` are accepted. Never remove this guard.
-- `context_snapshot` is the AI's source of truth, not the live `content` column — do not change `answerQuestion()` to re-fetch the model.
+- `context_snapshot` is the AI's source of truth, not the live `content` column — do not change either `answerQuestion()` to re-fetch the model.
+- `selectedModel` is validated to `['gpt', 'gemini']` in `ContentQa::submit()` before being stored — never trust the raw Livewire property directly.
+- Gemini answers include `sources` (web URLs); GPT answers always store an empty array. The `Prompt` model casts `sources` as `array`.
+- `ResearchService::answerQuestion()` writes `AiRequest` with purpose `content_qa_gemini` and deducts credits — do NOT add a second write in `AnswerPromptJob`.
 - Prompts are user-scoped on the page (each user sees only their own). Admin can query all via `Prompt::all()` or filter by `promptable_type`.
 - The `prompts` table uses standard Laravel pluralisation — no `$table` override needed.
 

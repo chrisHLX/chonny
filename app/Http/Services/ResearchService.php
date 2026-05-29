@@ -278,6 +278,82 @@ class ResearchService
         return ['summary' => $summary, 'sources' => $sources];
     }
 
+    public function answerQuestion(string $question, string $context, int $userId): array
+    {
+        $key = config('services.gemini.key');
+
+        if (empty($key)) {
+            throw new \RuntimeException('GEMINI_API_KEY is not configured.');
+        }
+
+        $promptText = "You are an educational assistant. Here is content from a learning module:\n\n"
+            . "{$context}\n\n"
+            . "The user asks: {$question}\n\n"
+            . "Use the content above as your primary source. Use web search to verify its accuracy and add any important updates or corrections if the information appears outdated or incomplete. "
+            . "If key facts have changed, clearly note it. Keep your answer concise.";
+
+        $payload = [
+            'contents' => [[
+                'parts' => [['text' => $promptText]],
+            ]],
+            'tools' => [['google_search' => (object) []]],
+        ];
+
+        $modelId  = 'gemini-2.5-flash-lite';
+        $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$modelId}:generateContent";
+
+        Log::debug('ResearchService::answerQuestion sending to Gemini', ['question' => $question]);
+
+        $startTime = microtime(true);
+        $response  = Http::withHeaders(['Content-Type' => 'application/json'])
+            ->timeout(30)
+            ->post("{$endpoint}?key={$key}", $payload);
+        $durationMs = (int) round((microtime(true) - $startTime) * 1000);
+
+        if ($response->failed()) {
+            throw new \RuntimeException("Gemini API returned status {$response->status()}.");
+        }
+
+        $json   = $response->json();
+        $answer = $json['candidates'][0]['content']['parts'][0]['text'] ?? '';
+
+        $rawChunks = $json['candidates'][0]['groundingMetadata']['groundingChunks'] ?? [];
+        $sources   = collect($rawChunks)
+            ->filter(fn ($chunk) => isset($chunk['web']['uri']))
+            ->map(fn ($chunk) => [
+                'uri'   => $chunk['web']['uri'],
+                'title' => $chunk['web']['title'] ?? $chunk['web']['uri'],
+            ])
+            ->values()
+            ->all();
+
+        $inputTokens  = (int) ceil(strlen($promptText) / 4);
+        $outputTokens = (int) ceil(strlen($answer) / 4);
+        $usage        = $this->tokenService->calculateCreditCost($modelId, $inputTokens, $outputTokens);
+
+        AiRequest::create([
+            'user_id'         => $userId,
+            'purpose'         => 'content_qa_gemini',
+            'prompt'          => $promptText,
+            'template_prompt' => '',
+            'response'        => $answer,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $modelId,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
+
+        $this->creditService->spendAiCredits($userId, $usage['credits']['charged'], 'content_qa_gemini');
+
+        Log::info('ResearchService::answerQuestion completed', ['sources' => count($sources)]);
+
+        return ['answer' => $answer, 'sources' => $sources];
+    }
+
     private function extractYouTubeTranscript(string $url): string
     {
         preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $url, $matches);

@@ -8,6 +8,10 @@ class Prompt extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'sources' => 'array',
+    ];
+
     public function promptable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
         return $this->morphTo();
