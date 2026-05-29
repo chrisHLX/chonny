@@ -268,6 +268,7 @@ class Show extends Component
             ->sortBy('page_number')
             ->filter(fn ($p) => $p->content)
             ->map(fn ($p) => [
+                'id'          => $p->id,
                 'title'       => $p->title ?: 'Page ' . $p->page_number,
                 'page_number' => $p->page_number,
                 'html'        => Str::markdown($p->content, [

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Prompt;
 
 class SubjectContent extends Model
 {
@@ -22,6 +23,11 @@ class SubjectContent extends Model
     protected $casts = [
         'source_urls' => 'array',
     ];
+
+    public function prompts(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(Prompt::class, 'promptable');
+    }
 
     public function subject(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

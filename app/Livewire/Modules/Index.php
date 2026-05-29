@@ -141,7 +141,7 @@ class Index extends Component
 
     public function getExploreSubjectsProperty()
     {
-        $query = Subject::orderBy('name');
+        $query = Subject::with(['proficiencies' => fn ($q) => $q->orderBy('index')])->orderBy('name');
 
         if ($this->categoryId) {
             $query->where('category_id', $this->categoryId);

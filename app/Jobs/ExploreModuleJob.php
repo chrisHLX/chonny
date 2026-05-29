@@ -26,7 +26,7 @@ class ExploreModuleJob implements ShouldQueue
     protected int $trueFalseStepId;
     protected int $userId;
     protected string $intent;
-    protected string $priorKnowledge;
+    protected string $instructions;
     protected string $sourceUrl;
     protected string $youtubeMode;
 
@@ -38,7 +38,7 @@ class ExploreModuleJob implements ShouldQueue
         int $trueFalseStepId,
         int $userId,
         string $intent,
-        string $priorKnowledge = '',
+        string $instructions = '',
         string $sourceUrl = '',
         string $youtubeMode = 'transcript'
     ) {
@@ -49,7 +49,7 @@ class ExploreModuleJob implements ShouldQueue
         $this->trueFalseStepId = $trueFalseStepId;
         $this->userId          = $userId;
         $this->intent          = $intent;
-        $this->priorKnowledge  = $priorKnowledge;
+        $this->instructions    = $instructions;
         $this->sourceUrl       = $sourceUrl;
         $this->youtubeMode     = $youtubeMode;
     }
@@ -70,10 +70,21 @@ class ExploreModuleJob implements ShouldQueue
             $proficiency = $module->proficiencies()->first();
 
             $topic          = $this->intent . ' — ' . $subject->name;
-            $research       = $researchService->fetchLatestMaterial($topic, $subject->name, $this->userId, $module->subject_id, $module->id, null, '', '', $this->sourceUrl, $this->youtubeMode);
+            $research       = $researchService->fetchLatestMaterial(
+                $topic,
+                $subject->name,
+                $this->userId,
+                $module->subject_id,
+                $module->id,
+                $this->instructions !== '' ? $this->instructions : null,
+                '',
+                '',
+                $this->sourceUrl,
+                $this->youtubeMode
+            );
             $researchContext = $research['summary'] ?? '';
 
-            $result = $aiService->generateExploreContent($this->intent, $subject, $proficiency, $this->userId, $this->priorKnowledge, $researchContext);
+            $result = $aiService->generateExploreContent($this->intent, $subject, $proficiency, $this->userId, $this->instructions, $researchContext);
 
             $module->update([
                 'name'        => $result['title'],
@@ -92,8 +103,8 @@ class ExploreModuleJob implements ShouldQueue
 
             $contentStep->update(['status' => 'completed', 'completed_at' => now()]);
 
-            GenerateQuestions::dispatch('mcq',        $this->moduleId, $this->mcqStepId,       $this->userId, 'explore');
-            GenerateQuestions::dispatch('true_false',  $this->moduleId, $this->trueFalseStepId, $this->userId, 'explore');
+            GenerateQuestions::dispatch('mcq',       $this->moduleId, $this->mcqStepId,       $this->userId, 'explore');
+            GenerateQuestions::dispatch('true_false', $this->moduleId, $this->trueFalseStepId, $this->userId, 'explore');
 
         } catch (\Throwable $e) {
             Log::error("ExploreModuleJob failed for module {$this->moduleId}: " . $e->getMessage());

@@ -450,30 +450,35 @@ class ModuleController extends Controller
     public function explore(Request $request)
     {
         $request->validate([
-            'intent'          => 'required|string|max:500',
-            'prior_knowledge' => 'nullable|string|max:500',
-            'subject_id'      => 'required|exists:subjects,id',
-            'source_url'      => 'nullable|url|max:2000',
-            'youtube_mode'    => 'nullable|in:transcript,video',
+            'intent'         => 'required|string|max:500',
+            'instructions'   => 'nullable|string|max:1000',
+            'subject_id'     => 'required|exists:subjects,id',
+            'proficiency_id' => 'required|exists:proficiencies,id',
+            'source_url'     => 'nullable|url|max:2000',
+            'youtube_mode'   => 'nullable|in:transcript,video',
         ]);
 
-        $user          = auth()->user();
-        $subjectId     = $request->subject_id;
-        $subject       = Subject::findOrFail($subjectId);
-        $priorKnowledge = trim($request->input('prior_knowledge', ''));
-        $sourceUrl     = trim($request->input('source_url', ''));
-        $youtubeMode   = $request->input('youtube_mode', 'transcript');
-        $proficiency   = $this->inferProficiency($subject, $priorKnowledge);
+        $user         = auth()->user();
+        $subjectId    = $request->subject_id;
+        $subject      = Subject::findOrFail($subjectId);
+        $instructions = trim($request->input('instructions', ''));
+        $sourceUrl    = trim($request->input('source_url', ''));
+        $youtubeMode  = $request->input('youtube_mode', 'transcript');
+
+        $proficiency = Proficiency::where('id', $request->proficiency_id)
+            ->where('subject_id', $subjectId)
+            ->firstOrFail();
 
         $intent = trim($request->intent);
         $name   = 'Exploring: ' . \Illuminate\Support\Str::limit($intent, 60);
 
         $module = Module::create([
-            'name'       => $name,
-            'subject_id' => $subjectId,
-            'status'     => 'preparing',
-            'created_by' => $user->id,
-            'published'  => false,
+            'name'        => $name,
+            'description' => $intent,
+            'subject_id'  => $subjectId,
+            'status'      => 'preparing',
+            'created_by'  => $user->id,
+            'published'   => false,
         ]);
 
         $module->proficiencies()->attach($proficiency->id);
@@ -517,45 +522,12 @@ class ModuleController extends Controller
             $trueFalseStep->id,
             $user->id,
             $intent,
-            $priorKnowledge,
+            $instructions,
             $sourceUrl,
             $youtubeMode
         );
 
         return redirect()->route('modules.show', $module);
-    }
-
-    private function inferProficiency(Subject $subject, string $priorKnowledge): Proficiency
-    {
-        $proficiencies = $subject->proficiencies()->orderBy('index')->get();
-
-        if ($proficiencies->isEmpty()) {
-            abort(422, 'This subject has no proficiency tiers configured.');
-        }
-
-        if (empty(trim($priorKnowledge))) {
-            return $proficiencies->first();
-        }
-
-        $tierList = $proficiencies->map(fn($p) =>
-            "index {$p->index}: {$p->name} — {$p->description}"
-        )->implode("\n");
-
-        $prompt = <<<EOT
-A user wants to learn about "{$subject->name}".
-They describe their current knowledge as: "{$priorKnowledge}"
-
-Available proficiency tiers:
-{$tierList}
-
-Reply with ONLY the index integer of the most appropriate tier. Nothing else.
-EOT;
-
-        $inferredIndex = trim($this->aiService->inferProficiencyLevel($prompt, auth()->id()));
-        $inferredIndex = is_numeric($inferredIndex) ? (int) $inferredIndex : 0;
-
-        return $proficiencies->firstWhere('index', $inferredIndex)
-            ?? $proficiencies->first();
     }
 
     public function export(Module $module)

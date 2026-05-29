@@ -5,8 +5,10 @@
 
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('password.email') }}" class="space-y-4">
+    <form id="forgot-password-form" method="POST" action="{{ route('password.email') }}" class="space-y-4">
         @csrf
+
+        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-forgot">
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -18,4 +20,18 @@
             <x-primary-button>Send Reset Link</x-primary-button>
         </div>
     </form>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+    <script>
+        document.getElementById('forgot-password-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var form = this;
+            grecaptcha.ready(function () {
+                grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {action: 'forgot_password'}).then(function (token) {
+                    document.getElementById('g-recaptcha-response-forgot').value = token;
+                    form.submit();
+                });
+            });
+        });
+    </script>
 </x-guest-layout>

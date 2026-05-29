@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Prompt;
 
 class ModulePage extends Model
 {
@@ -42,6 +43,11 @@ class ModulePage extends Model
     public function module()
     {
         return $this->belongsTo(Module::class);
+    }
+
+    public function prompts(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(Prompt::class, 'promptable');
     }
 
     public function creator()

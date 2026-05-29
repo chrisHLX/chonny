@@ -69,6 +69,12 @@ class AiService
         return $response;
     }
 
+    public function answerQuestion(string $question, string $context, int $userId): string
+    {
+        $prompt = "Using ONLY the following content as context, answer the user's question concisely and clearly. If the answer cannot be determined from the provided content, say so.\n\nCONTENT:\n{$context}\n\nQUESTION:\n{$question}";
+        return $this->callOpenAiString($prompt, $userId, 'content_qa');
+    }
+
     private function estimateTokens(string $text): int
     {
         // Rough estimate: ~4 chars per token (English text)

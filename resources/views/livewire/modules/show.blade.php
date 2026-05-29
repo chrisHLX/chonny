@@ -295,6 +295,11 @@
                                         </div>
                                     </div>
                                 @endif
+
+                                <livewire:content-qa
+                                    promptable-type="App\Models\SubjectContent"
+                                    :promptable-id="$research->id"
+                                    :key="'qa-research-'.$research->id" />
                             </div>
                         </div>
                     @endforeach
@@ -340,6 +345,11 @@
                                     prose-li:text-ink-muted prose-code:text-ink-muted">
                             {!! $page['html'] !!}
                         </div>
+
+                        <livewire:content-qa
+                            promptable-type="App\Models\ModulePage"
+                            :promptable-id="$page['id']"
+                            :key="'qa-page-'.$page['id']" />
                     </div>
                 @endforeach
 
