@@ -22,6 +22,7 @@ use App\Http\Controllers\ProficiencyController;
 use App\Http\Controllers\CategoryController;
 use App\Livewire\Admin\ContentManager;
 use App\Livewire\Admin\ApiUsage;
+use App\Livewire\Admin\WeakAreas;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
@@ -171,6 +172,7 @@ Route::get('/admindash', [AdminController::class, 'index'])->name('admindash'); 
 Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/content', ContentManager::class)->name('content');
     Route::get('/api-usage', ApiUsage::class)->name('api-usage');
+    Route::get('/weak-areas', WeakAreas::class)->name('weak-areas');
 });
 
 

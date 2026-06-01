@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Listeners\SendNewUserNotification;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -26,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Event::listen(Registered::class, SendNewUserNotification::class);
+
         Gate::define('admin', fn (User $user) => $user->is_admin);
 
         View::composer('*', function ($view) {

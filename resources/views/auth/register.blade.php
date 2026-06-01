@@ -28,6 +28,8 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1.5" />
         </div>
 
+        <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-1.5" />
+
         <div class="flex items-center justify-between pt-1">
             <a href="{{ route('login') }}"
                class="text-[12px] text-ink-subtle hover:text-ink-muted transition-colors">

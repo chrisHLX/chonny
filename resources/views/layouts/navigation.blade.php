@@ -103,6 +103,11 @@
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     API Usage
                 </a>
+                <a href="{{ route('admin.weak-areas') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.weak-areas') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Weak Areas
+                </a>
                 <a href="{{ route('jobs.dashboard') }}"
                    class="sidebar-item text-[12px] {{ request()->routeIs('jobs.dashboard') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>

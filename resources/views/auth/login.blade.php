@@ -24,6 +24,8 @@
             <label for="remember_me" class="text-[12px] text-ink-muted cursor-pointer">Remember me</label>
         </div>
 
+        <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-1.5" />
+
         <div class="flex items-center justify-between pt-1">
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}"

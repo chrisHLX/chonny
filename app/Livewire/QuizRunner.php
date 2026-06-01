@@ -426,9 +426,9 @@ class QuizRunner extends Component
         return $questions->transform(function ($q) {
             $q = clone $q; // detach from original model
             $answer = array_merge([], $q->answer); // detach answer array
-            if ($q->type === 'mcq') shuffle($answer['options']);
-            if ($q->type === 'ordering') shuffle($answer['steps']);
-            if ($q->type === 'matching_pairs') shuffle($answer['pairs']['values']);
+            if ($q->type === 'mcq' && is_array($answer['options'] ?? null)) shuffle($answer['options']);
+            if ($q->type === 'ordering' && is_array($answer['steps'] ?? null)) shuffle($answer['steps']);
+            if ($q->type === 'matching_pairs' && is_array($answer['pairs']['values'] ?? null)) shuffle($answer['pairs']['values']);
             $q->answer = $answer;
             return $q;
         });

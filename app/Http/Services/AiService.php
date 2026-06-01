@@ -972,10 +972,17 @@ class AiService
                 continue;
             }
 
+            // Normalize ordering answer if AI returned a flat array instead of {"steps": [...]}
+            $qAnswer = $qData['answer'];
+            $qType   = $qData['type'] ?? $type;
+            if ($qType === 'ordering' && is_array($qAnswer) && !isset($qAnswer['steps'])) {
+                $qAnswer = ['steps' => array_values($qAnswer)];
+            }
+
             // Create the question
             $question = Question::create([
                 'question'   => $qData['question'],
-                'answer'     => $qData['answer'],
+                'answer'     => $qAnswer,
                 'type'       => $qData['type'] ?? $type,
                 'difficulty' => $qData['difficulty'] ?? 'medium',
                 'skill_type' => $qData['skill_type'] ?? 'recall',
