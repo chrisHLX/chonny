@@ -156,13 +156,7 @@
                                 class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
                             Add Credits
                         </button>
-                        <form action="{{ route('credit.test2') }}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors">
-                                Test AI Tags
-                            </button>
-                        </form>
+
                     </div>
                 </div>
             </div>
