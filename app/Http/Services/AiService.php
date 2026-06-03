@@ -583,7 +583,7 @@ class AiService
         return $response;
     }
 
-    public function generateModuleContent(Module $module, int $userID): string
+    public function generateModuleContent(Module $module, int $userID, string $focusContext = ''): string
     {
         $prof     = $module->proficiencies()->first();
         $subject  = $module->subject;
@@ -608,6 +608,10 @@ class AiService
         $profName        = $prof?->name ?? 'General';
         $profDescription = $prof?->description ?? '';
 
+        $focusBlock = $focusContext
+            ? "\nLEARNER CONTEXT (why this module was recommended — weight your content toward these gaps):\n{$focusContext}\n"
+            : '';
+
         $prompt = <<<EOT
         You are writing educational module content for a structured learning platform.
 
@@ -615,7 +619,7 @@ class AiService
         DESCRIPTION: {$module->description}
         SUBJECT: {$subject->name} (Category: {$category->name})
         PROFICIENCY: {$profName} — {$profDescription}
-
+        {$focusBlock}
         SKILL DIMENSIONS (axes that define mastery in this category — write content that develops reasoning across these):
         {$axisBlock}
 

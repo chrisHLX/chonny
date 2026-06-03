@@ -62,6 +62,15 @@ class Collection extends Component
         $this->selectedCardId = $cardId;
     }
 
+    public function getEnrolledModulesProperty()
+    {
+        return auth()->user()
+            ->modules()
+            ->where('subject_id', $this->currentSubjectId)
+            ->orderByPivot('last_activity_at', 'desc')
+            ->get();
+    }
+
     public function getCardsProperty()
     {
         return auth()->user()

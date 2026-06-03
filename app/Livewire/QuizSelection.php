@@ -31,7 +31,22 @@ class QuizSelection extends Component
         })->get();
 
         $this->selectedSubject = $this->subjects->first()?->id;
-        $this->selectedModule = $this->modules->first()?->id;
+
+        // Prefer a moduleId from the URL (set when arriving via Resume button)
+        $preselectedId = (int) request()->query('moduleId') ?: null;
+        if ($preselectedId) {
+            $preselectedModule = Module::find($preselectedId);
+            if ($preselectedModule) {
+                $this->selectedSubject = $preselectedModule->subject_id;
+                $this->subjects = Subject::when($this->category_id, function($query, $catId) {
+                    $query->where('category_id', $catId);
+                })->get();
+                $this->selectedModule = $preselectedId;
+            }
+        } else {
+            $this->selectedModule = $this->modules->first()?->id;
+        }
+
         $this->loadSelectedModuleData();
     }
 

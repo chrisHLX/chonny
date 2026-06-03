@@ -3,8 +3,8 @@
         <div class="max-w-3xl mx-auto space-y-6">
 
             <div>
-                <h1 class="text-[17px] font-semibold text-ink">Suggested Next Modules</h1>
-                <p class="text-[13px] text-ink-muted mt-0.5">Based on your progress, here's what to tackle next.</p>
+                <h1 class="text-[17px] font-semibold text-ink">Recommended Next Module</h1>
+                <p class="text-[13px] text-ink-muted mt-0.5">Chosen based on where you struggled most.</p>
             </div>
 
             @if(empty($suggestions))
@@ -20,6 +20,11 @@
                                     <p class="text-[14px] font-medium text-ink">{{ $s['name'] }}</p>
                                     @if(!empty($s['description']))
                                         <p class="text-[13px] text-ink-muted mt-0.5 line-clamp-2">{{ $s['description'] }}</p>
+                                    @endif
+                                    @if(!empty($s['reason']))
+                                        <p class="text-[12px] text-ink-subtle mt-2 leading-relaxed border-t border-line pt-2">
+                                            <span class="font-medium text-ink-muted">Why: </span>{{ $s['reason'] }}
+                                        </p>
                                     @endif
                                     <p class="text-[11px] text-ink-subtle mt-1">
                                         {{ $s['subject'] ?? '' }}@if(!empty($s['subject']) && !empty($s['proficiency'])) — @endif{{ $s['proficiency'] ?? '' }}

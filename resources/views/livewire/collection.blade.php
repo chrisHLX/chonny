@@ -2,15 +2,54 @@
     <div class="max-w-7xl mx-auto space-y-8">
 
         <div>
-            <h1 class="text-[17px] font-semibold text-ink">Collection</h1>
-            <p class="text-[13px] text-ink-muted mt-0.5">Your learning cards and question history.</p>
+            <h1 class="text-[17px] font-semibold text-ink">Progress</h1>
+            <p class="text-[13px] text-ink-muted mt-0.5">Your active modules, earned cards, and question history.</p>
         </div>
 
         <x-context-bar-livewire :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" routeName="collection.index"/>
 
+        {{-- Active Modules tray --}}
+        <div>
+            <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Active Modules</p>
+            @forelse($this->enrolledModules as $mod)
+                @php $modStatus = $mod->pivot->status ?? 'not_started'; @endphp
+                <div class="linear-card px-5 py-3.5 flex items-center justify-between gap-4 {{ !$loop->last ? 'mb-2' : '' }}">
+                    <div class="min-w-0 flex-1">
+                        <p class="text-[13px] font-medium text-ink truncate">{{ $mod->name }}</p>
+                        <div class="flex items-center gap-2 mt-1">
+                            <div class="flex-1 max-w-[120px] bg-surface-3 rounded-full h-1 overflow-hidden">
+                                <div class="h-1 rounded-full bg-accent transition-all"
+                                     style="width: {{ $mod->pivot->score ?? 0 }}%"></div>
+                            </div>
+                            <span class="text-[11px] text-ink-subtle tabular-nums">{{ $mod->pivot->score ?? 0 }}%</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded font-medium
+                                {{ $modStatus === 'completed' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400' }}">
+                                {{ ucfirst(str_replace('_', ' ', $modStatus)) }}
+                            </span>
+                        </div>
+                    </div>
+                    <a href="{{ route('questions.quiz.index', ['moduleId' => $mod->id]) }}"
+                       class="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 text-[12px] font-medium rounded transition-colors
+                           {{ $modStatus === 'completed'
+                              ? 'text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line'
+                              : 'text-white bg-accent hover:bg-accent-hover' }}">
+                        {{ $modStatus === 'not_started' ? 'Start' : ($modStatus === 'completed' ? 'Retake' : 'Resume') }}
+                    </a>
+                </div>
+            @empty
+                <div class="linear-card px-5 py-8 text-center">
+                    <p class="text-[13px] text-ink-subtle mb-3">No modules enrolled yet.</p>
+                    <a href="{{ route('modules.index') }}"
+                       class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                        Discover Modules
+                    </a>
+                </div>
+            @endforelse
+        </div>
+
         {{-- Cards grid --}}
         <div>
-            <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Your Cards</p>
+            <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Earned Cards</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 @forelse($this->cards as $card)
                     <div wire:click="selectCard({{ $card->id }})"
@@ -20,7 +59,8 @@
                     </div>
                 @empty
                     <div class="col-span-full linear-card p-8 text-center">
-                        <p class="text-[13px] text-ink-subtle">No cards yet. Complete a module to earn one.</p>
+                        <p class="text-[13px] text-ink-subtle mb-1">No cards yet.</p>
+                        <p class="text-[12px] text-ink-subtle">Finish a module to earn your first collectible card.</p>
                     </div>
                 @endforelse
             </div>

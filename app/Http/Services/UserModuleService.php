@@ -58,38 +58,45 @@ class UserModuleService
         $availableProficiencies = implode(", ", $availableProficiencies);
         
         $score = $moduleStats['module']['score_percent'] ?? 0;
-        
+
         if ($score >= 85) {
             $nextlevel = "Increase proficiency level from {$currentProficiency} to {$nextlevel}";
         } elseif ($score >= 60) {
             $nextlevel = "Keep current proficiency level with questions focusing on struggled concepts";
         } else {
-            $nextlevel = "make questions slightly easier. Proficiency: {$previouslevel}";
+            $nextlevel = "Make questions slightly easier. Proficiency: {$previouslevel}";
         }
 
-       $prompt = <<<EOT
-            You are an adaptive learning engine that recommends the next learning modules
-            for a user based on their performance. 
+        $strengthsStr = !empty($aiData['strengths']) ? implode(', ', $aiData['strengths']) : 'none identified';
+        $weaknessesStr = !empty($aiData['weaknesses']) ? implode(', ', $aiData['weaknesses']) : 'none identified';
 
-            Users Module Performance Data:
-            {$usableData}
+        $prompt = <<<EOT
+You are an adaptive learning engine that recommends the single best next learning module for a user based on their quiz performance.
 
-            Rules:
-            - Recommend exactly 3 next modules.
-            - Subject: {$aiData['module']['subject']}
-            - {$nextlevel}
-            - Output JSON ONLY with this exact structure:
+User Performance:
+- Module completed: {$aiData['module']['name']}
+- Subject: {$aiData['module']['subject']}
+- Score: {$score}%
+- Strong concepts: {$strengthsStr}
+- Weak concepts: {$weaknessesStr}
 
-            \"recommendations\": [
-                {
-                \"name\": \"\",
-                \"subject\": \"\",
-                \"proficiency\": \"\",
-                \"description\": \"\"
-                }
-            ]
-        EOT
-        ;
+Rules:
+- Recommend exactly 1 next module.
+- Subject must be: {$aiData['module']['subject']}
+- {$nextlevel}
+- The "reason" field must specifically reference the user's weak concepts by name and explain why this module addresses them.
+- Output JSON ONLY — no markdown, no code fences, no extra keys.
+
+{
+  "recommendation": {
+    "name": "",
+    "subject": "",
+    "proficiency": "",
+    "description": "",
+    "reason": ""
+  }
+}
+EOT;
             
         $existing = $this->suggestionsService->getSuggestions($module, $statsHash);
         $userID = $user->id; 
@@ -100,7 +107,7 @@ class UserModuleService
             $this->suggestionsService->storeSuggestions($module, $statsHash, $response);
         }
 
-        return $response['recommendations'];
+        return $response['recommendation'];
     }
 
     public function buildModuleUserStats(User $user, Module $module)
@@ -254,9 +261,7 @@ class UserModuleService
 
     public function prepareModuleStatsForAI(array $moduleStats)
     {
-        // Pick module summary fields
         $moduleSummary = [
-            //'id' => $moduleStats['module']['id'],
             'name' => $moduleStats['module']['name'],
             'subject' => $moduleStats['module']['subject'],
             'proficiency' => $moduleStats['module']['proficiency'],
@@ -266,14 +271,11 @@ class UserModuleService
             'total_wrong_attempts' => $moduleStats['module']['total_wrong_attempts'],
         ];
 
-        // Pick patterns
         $patterns = [
             'struggled_concepts' => array_slice($moduleStats['patterns']['struggled_concepts'] ?? [], 0, 5),
             'struggled_types' => array_slice($moduleStats['patterns']['struggled_types'] ?? [], 0, 3),
-            // 'longest_time_topics' => array_slice($moduleStats['patterns']['longest_time_topics'] ?? [], 0, 3),
         ];
 
-        // Optional: include only questions that the user struggled with
         $struggledQuestions = collect($moduleStats['question_stats'] ?? [])
             ->filter(fn($q) => $q['struggled'] ?? false)
             ->map(fn($q) => [
@@ -282,15 +284,28 @@ class UserModuleService
                 'type' => $q['type'],
                 'concepts' => $q['concepts']
             ])
-            ->sortBy('id')    // ← THE IMPORTANT PART
+            ->sortBy('id')
             ->values()
             ->toArray();
 
-           
+        $strengths = collect($moduleStats['question_stats'] ?? [])
+            ->filter(fn($q) => $q['attempts'] > 0 && !($q['struggled'] ?? false))
+            ->flatMap(fn($q) => $q['concepts'] ?? [])
+            ->countBy()
+            ->sortDesc()
+            ->keys()
+            ->take(4)
+            ->values()
+            ->toArray();
+
+        $weaknesses = array_slice($moduleStats['patterns']['struggled_concepts'] ?? [], 0, 4);
+
         return [
             'module' => $moduleSummary,
             'patterns' => $patterns,
-            'struggled_questions' => $struggledQuestions
+            'struggled_questions' => $struggledQuestions,
+            'strengths' => $strengths,
+            'weaknesses' => $weaknesses,
         ];
     }
 

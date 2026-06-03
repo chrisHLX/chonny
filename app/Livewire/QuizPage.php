@@ -11,8 +11,10 @@ class QuizPage extends Component
 
     public function mount(?int $moduleId = null): void
     {
-        if ($moduleId) {
-            $this->selectedModule = $moduleId;
+        $id = $moduleId ?? (int) request()->query('moduleId') ?: null;
+
+        if ($id) {
+            $this->selectedModule = $id;
             $this->mode = 'running';
         }
     }

@@ -7,9 +7,11 @@ use App\Events\ModuleAttempted;
 use App\Models\Module;
 use App\Models\Pipeline;
 use App\Models\PipelineStep;
+use App\Models\User;
 use App\Models\UserModuleHistory;
 
 use App\Http\Services\MasteryService;
+use App\Http\Services\UserModuleService;
 
 use App\Jobs\SuggestionJob;
 use App\Jobs\GenerateCardJob;
@@ -45,6 +47,11 @@ class QuizRunner extends Component
     public $hasMissingContent = false;
     public $userCredits = null;
     public $feedback;
+
+    // Completion screen data
+    public $completionStats = [];
+    public $suggestionsStatus = 'loading'; // loading | ready | failed
+    public $suggestions = [];
 
     public function mount($moduleId)
     {
@@ -408,6 +415,8 @@ class QuizRunner extends Component
         GenerateCardJob::dispatch($userId, $moduleId, $cardStep->id)->afterCommit();
 
         session(['completion_pipeline_id' => $pipeline->id]);
+
+        $this->buildCompletionStats($user, $moduleId, $userScore);
     }
     
     private function getQuestionIdsForDifficulty($module, $difficulty)
@@ -561,6 +570,72 @@ class QuizRunner extends Component
     // ... move ALL other methods from your original TimedQuiz here ...
     // calculateNextDifficulty, prepareQuestionsForQuiz, getLeastAccurateQuestions,
     // userScore, shuffleCurrentQuestionAnswers, initializeQuizState, etc.
+
+    public function checkSuggestions(): void
+    {
+        if ($this->suggestionsStatus !== 'loading') return;
+
+        $pipelineId = session('completion_pipeline_id');
+        if (!$pipelineId) {
+            $this->suggestionsStatus = 'failed';
+            return;
+        }
+
+        $step = PipelineStep::where('pipeline_id', $pipelineId)
+            ->where('name', 'Generate Suggestions')
+            ->first();
+
+        if (!$step || $step->status === 'failed') {
+            $this->suggestionsStatus = 'failed';
+            return;
+        }
+
+        if ($step->status === 'completed') {
+            $record = \App\Models\ModuleSuggestions::where('module_id', $this->moduleId)
+                ->latest()
+                ->first();
+
+            if ($record) {
+                $data = $record->getRecommendations();
+                // Support both new single-object format and old array format
+                $this->suggestions = $data['recommendation']
+                    ?? ($data['recommendations'][0] ?? null);
+                $this->suggestionsStatus = $this->suggestions ? 'ready' : 'failed';
+            }
+        }
+    }
+
+    private function buildCompletionStats(User $user, int $moduleId, float $userScore): void
+    {
+        $module = Module::find($moduleId);
+        if (!$module) return;
+
+        $stats = app(UserModuleService::class)->buildModuleUserStats($user, $module);
+
+        $questionStats = collect($stats['question_stats']);
+
+        // Concepts from answered questions where the user did NOT struggle
+        $strongConcepts = $questionStats
+            ->filter(fn($q) => $q['attempts'] > 0 && !$q['struggled'])
+            ->flatMap(fn($q) => $q['concepts'] ?? [])
+            ->countBy()
+            ->sortDesc()
+            ->keys()
+            ->take(4)
+            ->values()
+            ->toArray();
+
+        $this->completionStats = [
+            'module_name'     => $stats['module']['name'],
+            'module_slug'     => $module->slug,
+            'score_percent'   => $userScore,
+            'questions_count' => $stats['module']['num_questions'],
+            'total_time'      => $this->totalTime,
+            'strong_concepts' => $strongConcepts,
+            'weak_concepts'   => array_slice($stats['patterns']['struggled_concepts'], 0, 4),
+            'struggled_types' => $stats['patterns']['struggled_types'],
+        ];
+    }
 
     public function getCompletionCardProperty()
     {

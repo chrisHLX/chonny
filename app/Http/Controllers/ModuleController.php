@@ -335,7 +335,11 @@ class ModuleController extends Controller
         $hashKey = $this->userModuleService->getHash($user, $module);
         $response = $this->suggestionsService->getSuggestions($module, $hashKey);
         $parent_id = $response->module_id;
-        $suggestions = $response->suggestions_json['recommendations'];
+        $json = $response->suggestions_json;
+        // Support both new single-object format and old array format
+        $suggestions = isset($json['recommendation'])
+            ? [$json['recommendation']]
+            : ($json['recommendations'] ?? []);
 
         // 6️⃣ Check existing modules in DB
         $existingModules = Module::whereIn('name', collect($suggestions)->pluck('name'))
@@ -417,6 +421,12 @@ class ModuleController extends Controller
 
         $module->proficiencies()->attach($proficiencyId);
 
+        auth()->user()->modules()->attach($module->id, [
+            'status'             => 'not_started',
+            'current_difficulty' => 'easy',
+            'last_activity_at'   => now(),
+        ]);
+
         $pipeline = Pipeline::create([
             'user_id'   => $userID,
             'module_id' => $module->id,
@@ -441,7 +451,8 @@ class ModuleController extends Controller
             $questionSteps[$type] = $step->id;
         }
 
-        GenerateModuleContentJob::dispatch($module->id, $contentStep->id, $questionSteps, $userID);
+        $focusContext = $suggestion['reason'] ?? '';
+        GenerateModuleContentJob::dispatch($module->id, $contentStep->id, $questionSteps, $userID, $focusContext);
 
         return redirect()->route('jobs.dashboard');
     

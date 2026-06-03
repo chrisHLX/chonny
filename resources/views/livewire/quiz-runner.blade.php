@@ -2,37 +2,164 @@
 
     {{-- FULL QUIZ COMPLETION SCREEN --}}
     @if ($quizFullyComplete)
-        <div class="linear-card p-6" x-transition>
-            <h2 class="text-[17px] font-semibold text-ink text-center mb-6">Quiz Complete</h2>
+        <div class="space-y-3">
 
-            <div class="grid grid-cols-2 gap-3 mb-6">
-                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 text-center">
-                    <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Score</p>
-                    <p class="text-2xl font-semibold text-emerald-400">{{ $score }} / {{ $questions->count() }}</p>
-                </div>
-                <div class="bg-accent/10 border border-accent/20 rounded-lg p-4 text-center">
-                    <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Time</p>
-                    <p class="text-2xl font-semibold text-accent">{{ $this->totalTime }}s</p>
-                </div>
-            </div>
-
-            @if (count($wrongQuestions ?? []) > 0)
-                <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mb-6">
-                    <p class="text-[12px] font-medium text-red-400 mb-3">Incorrect answers</p>
-                    <ul class="space-y-2">
-                        @foreach ($wrongQuestions as $q)
-                            <li class="text-[13px] text-ink-muted">{{ $q->question }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            {{-- Polling trigger: hidden element removed from DOM once suggestions arrive --}}
+            @if ($suggestionsStatus === 'loading')
+                <span wire:poll.3s="checkSuggestions" class="hidden"></span>
             @endif
 
-            <div class="flex justify-center">
+            {{-- Header --}}
+            <div class="linear-card p-6 text-center">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/20 mb-4">
+                    <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h2 class="text-[18px] font-semibold text-ink mb-1">Module Complete</h2>
+                <p class="text-[13px] text-ink-subtle">{{ $completionStats['module_name'] ?? '' }}</p>
+            </div>
+
+            {{-- Stats row --}}
+            <div class="grid grid-cols-3 gap-3">
+                <div class="linear-card p-4 text-center">
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Score</p>
+                    <p class="text-xl font-semibold {{ ($completionStats['score_percent'] ?? 0) >= 70 ? 'text-emerald-400' : 'text-amber-400' }}">
+                        {{ $completionStats['score_percent'] ?? 0 }}%
+                    </p>
+                </div>
+                <div class="linear-card p-4 text-center">
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Questions</p>
+                    <p class="text-xl font-semibold text-ink">{{ $completionStats['questions_count'] ?? 0 }}</p>
+                </div>
+                <div class="linear-card p-4 text-center">
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Time</p>
+                    <p class="text-xl font-semibold text-accent">{{ $this->totalTime }}s</p>
+                </div>
+            </div>
+
+            {{-- Strengths & Needs Improvement --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="linear-card p-5">
+                    <p class="text-[11px] font-semibold text-emerald-400 uppercase tracking-wide mb-3">Strengths</p>
+                    @if (!empty($completionStats['strong_concepts']))
+                        <ul class="space-y-2">
+                            @foreach($completionStats['strong_concepts'] as $concept)
+                                <li class="flex items-center gap-2.5 text-[13px] text-ink">
+                                    <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    {{ $concept }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-[13px] text-ink-muted italic">No clear strengths yet — keep practicing.</p>
+                    @endif
+                </div>
+
+                <div class="linear-card p-5">
+                    <p class="text-[11px] font-semibold text-red-400 uppercase tracking-wide mb-3">Needs Improvement</p>
+                    @if (!empty($completionStats['weak_concepts']))
+                        <ul class="space-y-2">
+                            @foreach($completionStats['weak_concepts'] as $concept)
+                                <li class="flex items-center gap-2.5 text-[13px] text-ink">
+                                    <svg class="w-3.5 h-3.5 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                    {{ $concept }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-[13px] text-ink-muted italic">No weak areas detected — great work.</p>
+                    @endif
+                </div>
+            </div>
+
+            {{-- Recommended Next Module --}}
+            <div class="linear-card p-5">
+                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-4">Recommended Next Module</p>
+
+                @if ($suggestionsStatus === 'loading')
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin shrink-0"></div>
+                        <p class="text-[13px] text-ink-muted">Analysing your performance and generating recommendations...</p>
+                    </div>
+                    <div class="space-y-2.5 animate-pulse">
+                        <div class="h-4 bg-surface-3 rounded w-3/5"></div>
+                        <div class="h-3 bg-surface-3 rounded w-full"></div>
+                        <div class="h-3 bg-surface-3 rounded w-4/5"></div>
+                        <div class="h-3 bg-surface-3 rounded w-2/3"></div>
+                    </div>
+
+                @elseif ($suggestionsStatus === 'ready' && !empty($suggestions))
+                    @php $rec = $suggestions; @endphp
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-2">
+                            <h3 class="text-[15px] font-semibold text-ink leading-snug">{{ $rec['name'] ?? 'Next Module' }}</h3>
+                            @if (!empty($rec['proficiency']))
+                                <span class="text-[11px] px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20 shrink-0 whitespace-nowrap">
+                                    {{ $rec['proficiency'] }}
+                                </span>
+                            @endif
+                        </div>
+                        @if (!empty($rec['description']))
+                            <p class="text-[13px] text-ink-muted leading-relaxed mb-3">{{ $rec['description'] }}</p>
+                        @endif
+                        @if (!empty($rec['reason']))
+                            <div class="border-t border-line pt-3">
+                                <p class="text-[12px] text-ink-subtle leading-relaxed">
+                                    <span class="text-ink-muted font-medium">Why this module: </span>
+                                    {{ $rec['reason'] }}
+                                </p>
+                            </div>
+                        @elseif (!empty($completionStats['weak_concepts']))
+                            <div class="border-t border-line pt-3">
+                                <p class="text-[12px] text-ink-subtle leading-relaxed">
+                                    <span class="text-ink-muted font-medium">Why this module: </span>
+                                    You struggled with <span class="text-ink font-medium">{{ implode(', ', array_slice($completionStats['weak_concepts'], 0, 2)) }}</span>.
+                                    This module is designed to strengthen those areas.
+                                </p>
+                            </div>
+                        @endif
+                    </div>
+
+                @else
+                    <p class="text-[13px] text-ink-muted">Unable to generate recommendations right now. Explore the module library for your next challenge.</p>
+                @endif
+            </div>
+
+            {{-- Actions --}}
+            <div class="flex flex-col gap-2 pt-1">
+                @if ($suggestionsStatus === 'ready' && !empty($suggestions))
+                    <a href="{{ route('modules.next-module', $this->moduleId) }}"
+                       class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                        Continue Learning
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                @endif
+
+                @if (!empty($completionStats['module_slug']))
+                    <a href="{{ route('modules.show', $completionStats['module_slug']) }}"
+                       class="inline-flex items-center justify-center w-full py-2.5 text-[13px] font-medium text-ink-muted border border-line hover:bg-surface-2 rounded-md transition-colors">
+                        Return to Module
+                    </a>
+                @endif
+
                 <a href="{{ route('collection.index') }}"
-                   class="inline-flex items-center justify-center gap-2 px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
-                    Complete Quiz
+                   class="inline-flex items-center justify-center w-full py-2.5 text-[13px] font-medium text-ink-muted border border-line hover:bg-surface-2 rounded-md transition-colors">
+                    Return to Collection
+                </a>
+
+                <a href="{{ route('modules.index') }}"
+                   class="inline-flex items-center justify-center w-full py-2 text-[13px] font-medium text-ink-subtle hover:text-ink transition-colors">
+                    Explore Other Modules
                 </a>
             </div>
+
         </div>
 
     {{-- BETWEEN-TIER COMPLETION SCREEN --}}
@@ -69,7 +196,7 @@
         </div>
 
     {{-- QUESTION SCREEN --}}
-    @else
+    @elseif (!empty($questions) && $questions->count() > $currentIndex)
         @php $question = $questions[$currentIndex]; @endphp
 
         {{-- Header: proficiency + progress --}}
@@ -190,5 +317,17 @@
                 </div>
             </form>
         </div>
+
+    @else
+        {{-- Questions not yet loaded or feedback state --}}
+        @if ($feedback)
+            <div class="linear-card p-6 text-center">
+                <p class="text-[13px] text-ink-muted">{{ $feedback }}</p>
+            </div>
+        @else
+            <div class="linear-card p-6 text-center">
+                <p class="text-[13px] text-ink-muted">Loading...</p>
+            </div>
+        @endif
     @endif
 </div>

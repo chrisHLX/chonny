@@ -16,6 +16,19 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
+        // Hero: most recently active module that isn't completed
+        $heroModule = $user->modules()
+            ->wherePivot('status', '!=', 'completed')
+            ->orderByPivot('last_activity_at', 'desc')
+            ->first();
+
+        // Fallback: most recently active module of any status
+        if (! $heroModule) {
+            $heroModule = $user->modules()
+                ->orderByPivot('last_activity_at', 'desc')
+                ->first();
+        }
+
         $categoryId = $request->get('category_id');
 
         // Default category if none selected
@@ -63,6 +76,7 @@ class DashboardController extends Controller
 
         return view('dashboard', compact(
             'user',
+            'heroModule',
             'subjects',
             'categoryId',
             'currentSubjectId',

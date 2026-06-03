@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Services\AiService;
+use App\Http\Services\ResearchService;
 use App\Models\Module;
 use App\Models\ModulePage;
 use App\Models\PipelineStep;
@@ -22,16 +23,18 @@ class GenerateModuleContentJob implements ShouldQueue
     protected int $contentStepId;
     protected array $questionSteps; // ['mcq' => stepId, 'true_false' => stepId, ...]
     protected int $userId;
+    protected string $focusContext;
 
-    public function __construct(int $moduleId, int $contentStepId, array $questionSteps, int $userId)
+    public function __construct(int $moduleId, int $contentStepId, array $questionSteps, int $userId, string $focusContext = '')
     {
         $this->moduleId      = $moduleId;
         $this->contentStepId = $contentStepId;
         $this->questionSteps = $questionSteps;
         $this->userId        = $userId;
+        $this->focusContext  = $focusContext;
     }
 
-    public function handle(AiService $aiService): void
+    public function handle(AiService $aiService, ResearchService $researchService): void
     {
         $module = Module::find($this->moduleId);
         $step   = PipelineStep::find($this->contentStepId);
@@ -43,21 +46,50 @@ class GenerateModuleContentJob implements ShouldQueue
         $step->update(['status' => 'running', 'started_at' => now()]);
 
         try {
-            $content = $aiService->generateModuleContent($module, $this->userId);
+            $subject     = $module->subject;
+            $proficiency = $module->proficiencies()->first();
 
-            ModulePage::updateOrCreate(
-                ['module_id' => $module->id, 'page_number' => 1],
-                [
-                    'title'      => $module->name,
-                    'content'    => $content,
-                    'created_by' => $this->userId,
-                    'updated_by' => $this->userId,
-                ]
+            // Research first so content is grounded in factual material
+            $topic    = $module->name . ' — ' . $subject->name;
+            $research = $researchService->fetchLatestMaterial(
+                $topic,
+                $subject->name,
+                $this->userId,
+                $module->subject_id,
+                $module->id
             );
+            $researchContext = $research['summary'] ?? '';
+
+            $result = $aiService->generateExploreContent(
+                $module->name,
+                $subject,
+                $proficiency,
+                $this->userId,
+                $this->focusContext,
+                $researchContext
+            );
+
+            // Update module name/description from AI result
+            $module->update([
+                'name'        => $result['title'],
+                'description' => $result['description'],
+            ]);
+
+            // Delete existing pages before writing fresh ones (safe on retry)
+            $module->modulePages()->delete();
+
+            foreach ($result['pages'] as $i => $page) {
+                $module->modulePages()->create([
+                    'title'       => $page['title'],
+                    'content'     => $page['content'],
+                    'page_number' => $i + 1,
+                    'created_by'  => $this->userId,
+                    'updated_by'  => $this->userId,
+                ]);
+            }
 
             $step->update(['status' => 'completed', 'completed_at' => now()]);
 
-            // Pipeline check before proceeding — re-query to confirm the update persisted
             $step->refresh();
             if ($step->status !== 'completed') {
                 return;
