@@ -105,6 +105,11 @@
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Job Queue
                 </a>
+                <a href="{{ route('admin.logs') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.logs') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Log Viewer
+                </a>
             </div>
         </div>
         @endcan
