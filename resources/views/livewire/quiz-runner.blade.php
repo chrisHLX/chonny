@@ -293,6 +293,7 @@
                         @break
 
                     @case('ordering')
+                        @if(!empty($question->answer['steps']))
                         <ul id="ordering-list-{{ $question->id }}" class="ordering-list" x-sortable wire:ignore
                             x-init="$wire.set('answer', [...$el.children].map(e => e.dataset.value))"
                             x-on:sorted="$wire.set('answer', [...$el.children].map(e => e.dataset.value))">
@@ -305,6 +306,9 @@
                                 </li>
                             @endforeach
                         </ul>
+                        @else
+                            <p class="text-[13px] text-ink-subtle">This question has no steps configured.</p>
+                        @endif
                         @break
                 @endswitch
 

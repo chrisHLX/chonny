@@ -591,7 +591,7 @@ class AiService
 
         $axes = $category->axes()->with('concepts')->get();
         $axisBlock = $axes->map(fn ($axis) =>
-            "- {$axis->name}: " . $axis->concepts->pluck('name')->implode(', ')
+            "- {$axis->name}: " . $axis->concepts->where('subject_id', $subject->id)->pluck('name')->implode(', ')
         )->implode("\n");
 
         $conceptList = $subject->concepts()->pluck('name')->implode(', ');
@@ -811,7 +811,7 @@ class AiService
         // Build axis context string for the prompt
         $axes = $newModule->subject->category->axes()->with('concepts')->get();
         $axisString = $axes->map(fn($axis) =>
-            $axis->name . ': ' . $axis->concepts->pluck('name')->implode(', ')
+            $axis->name . ': ' . $axis->concepts->where('subject_id', $newModule->subject_id)->pluck('name')->implode(', ')
         )->implode(' | ');
 
         // Complex-type guard: gpt-4o-mini cannot handle ordering/matching_pairs reliably
@@ -1036,7 +1036,7 @@ class AiService
 
         $axes        = $subject->category->axes;
         $axisString  = $axes->map(fn ($axis) =>
-            $axis->name . ': ' . $axis->concepts->pluck('name')->implode(', ')
+            $axis->name . ': ' . $axis->concepts->where('subject_id', $subject->id)->pluck('name')->implode(', ')
         )->implode(' | ');
 
         $conceptsList = $subject->concepts->pluck('name')->implode(', ');
