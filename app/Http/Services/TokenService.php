@@ -39,6 +39,10 @@ class TokenService
             'input' => 0.10,
             'output' => 0.40,
         ],
+        'gemini-2.5-flash' => [
+            'input' => 0.30,
+            'output' => 1.00,
+        ],
     ];
 
     /**

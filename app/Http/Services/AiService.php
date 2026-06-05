@@ -324,6 +324,160 @@ class AiService
         return $content;
     }
 
+    /* --------------------------------------------------------- GEMINI CALLS & HELPERS --------------------------------------------------------- */
+    private function callGemini(string $prompt, string $model = 'gemini-2.5-flash', int $userID = 0, string $description = 'undefined'): array
+    {
+        Log::debug('Prompt sent to Gemini', ['prompt' => $prompt]);
+        Log::info("Using Gemini model {$model}");
+
+        $key      = config('services.gemini.key');
+        $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent";
+
+        $inputTokens = $this->estimateTokens($prompt);
+
+        $payload = [
+            'systemInstruction' => [
+                'parts' => [['text' => 'You are a helpful assistant.']],
+            ],
+            'contents' => [[
+                'parts' => [['text' => $prompt]],
+            ]],
+            'generationConfig' => [
+                'temperature'      => 0.2,
+                'responseMimeType' => 'application/json',
+            ],
+        ];
+
+        $start = microtime(true);
+        $response = Http::withHeaders(['Content-Type' => 'application/json'])
+            ->timeout(30)
+            ->post("{$endpoint}?key={$key}", $payload);
+        $durationMs = (int) round((microtime(true) - $start) * 1000);
+
+        if ($response->failed()) {
+            Log::error('Gemini API error in callGemini', ['status' => $response->status(), 'body' => $response->body()]);
+            return [];
+        }
+
+        $json    = $response->json();
+        $content = trim($json['candidates'][0]['content']['parts'][0]['text'] ?? '{}');
+
+        Log::debug('Gemini JSON response', ['content' => $content]);
+
+        $outputTokens = $this->estimateTokens($content);
+        $usage        = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+
+        $this->creditService->spendAiCredits($userID, $usage['credits']['charged'], $description);
+
+        Log::info('Gemini token usage', [
+            'model'           => $usage['model'],
+            'input_tokens'    => $usage['input_tokens'],
+            'output_tokens'   => $usage['output_tokens'],
+            'cost_usd'        => $usage['cost']['total_usd'],
+            'input_usd'       => $usage['cost']['input_usd'],
+            'output_usd'      => $usage['cost']['output_usd'],
+            'credits_charged' => $usage['credits']['charged'],
+            'credits_raw'     => $usage['credits']['raw'],
+        ]);
+
+        AiRequest::create([
+            'user_id'         => $userID,
+            'purpose'         => $description,
+            'prompt'          => $prompt,
+            'template_prompt' => '',
+            'response'        => $content,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $model,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'input_usd'       => $usage['cost']['input_usd'],
+                'output_usd'      => $usage['cost']['output_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
+
+        $decoded = json_decode($content, true);
+
+        return is_array($decoded) ? $decoded : [];
+    }
+
+    private function callGeminiString(string $prompt, int $userID = 0, string $description = 'undefined', string $model = 'gemini-2.5-flash'): string
+    {
+        Log::debug('Prompt sent to Gemini (string)', ['prompt' => $prompt]);
+        Log::info("Using Gemini model {$model}");
+
+        $key      = config('services.gemini.key');
+        $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent";
+
+        $inputTokens = $this->estimateTokens($prompt);
+
+        $payload = [
+            'systemInstruction' => [
+                'parts' => [['text' => 'You are a helpful assistant.']],
+            ],
+            'contents' => [[
+                'parts' => [['text' => $prompt]],
+            ]],
+            'generationConfig' => [
+                'temperature' => 0.2,
+            ],
+        ];
+
+        $start = microtime(true);
+        $response = Http::withHeaders(['Content-Type' => 'application/json'])
+            ->timeout(30)
+            ->post("{$endpoint}?key={$key}", $payload);
+        $durationMs = (int) round((microtime(true) - $start) * 1000);
+
+        if ($response->failed()) {
+            Log::error('Gemini API error in callGeminiString', ['status' => $response->status(), 'body' => $response->body()]);
+            return '';
+        }
+
+        $json    = $response->json();
+        $content = trim($json['candidates'][0]['content']['parts'][0]['text'] ?? '');
+
+        Log::debug('Gemini string response', ['content' => $content]);
+
+        $outputTokens = $this->estimateTokens($content);
+        $usage        = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+
+        $this->creditService->spendAiCredits($userID, $usage['credits']['charged'], $description);
+
+        Log::info('Gemini token usage', [
+            'model'           => $usage['model'],
+            'input_tokens'    => $usage['input_tokens'],
+            'output_tokens'   => $usage['output_tokens'],
+            'cost_usd'        => $usage['cost']['total_usd'],
+            'input_usd'       => $usage['cost']['input_usd'],
+            'output_usd'      => $usage['cost']['output_usd'],
+            'credits_charged' => $usage['credits']['charged'],
+            'credits_raw'     => $usage['credits']['raw'],
+        ]);
+
+        AiRequest::create([
+            'user_id'         => $userID,
+            'purpose'         => $description,
+            'prompt'          => $prompt,
+            'template_prompt' => '',
+            'response'        => $content,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $model,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'input_usd'       => $usage['cost']['input_usd'],
+                'output_usd'      => $usage['cost']['output_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
+
+        return $content;
+    }
+
     // Format the answer based on its type for better readability in prompts important for generating questions we send the correct answer to ai
     // Must return a string?
     private function formatAnswer($q): string
@@ -511,7 +665,7 @@ class AiService
 
         $aiDescription = 'AI explanation generation';
 
-        $explanationString = $this->callOpenAiString($prompt, $userID, $aiDescription);
+        $explanationString = $this->callGeminiString($prompt, $userID, $aiDescription);
 
         \Log::info('Generated explanation $explanationString["content"]');
 
@@ -637,7 +791,7 @@ class AiService
         - Return only the Markdown content. No JSON wrapper, no preamble, no meta-commentary.
         EOT;
 
-        $content = $this->callOpenAiString($prompt, $userID, 'generate_module_content');
+        $content = $this->callGeminiString($prompt, $userID, 'generate_module_content');
 
         return $content;
     }
@@ -1100,7 +1254,7 @@ Return JSON ONLY in this exact format, no markdown fences or commentary:
 }
 PROMPT;
 
-        $raw = $this->callOpenAi($prompt, 'gpt-4o-mini', $userID, "Explore module content: {$userIntent}");
+        $raw = $this->callGemini($prompt, 'gemini-2.5-flash', $userID, "Explore module content: {$userIntent}");
 
         if (! isset($raw['title'], $raw['pages'])) {
             Log::error('generateExploreContent returned unexpected structure', ['raw' => $raw]);
