@@ -148,6 +148,11 @@
             {{-- Generation progress --}}
             @if($pipeline)
                 <livewire:generation-progress :pipeline-id="$pipeline->id" />
+                <script>
+                    window.addEventListener('questions-generated', () => {
+                        setTimeout(() => window.location.reload(), 1200);
+                    });
+                </script>
             @endif
 
             {{-- Content manager --}}

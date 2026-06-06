@@ -538,7 +538,7 @@ class ModuleController extends Controller
             $youtubeMode
         );
 
-        return redirect()->route('modules.show', $module);
+        return redirect()->route('modules.building', ['module' => $module->slug, 'pipeline' => $pipeline->id]);
     }
 
     public function export(Module $module)

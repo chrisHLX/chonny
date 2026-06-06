@@ -27,6 +27,7 @@ use App\Livewire\Admin\LogViewer;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 
+use App\Livewire\Modules\Building;
 use App\Livewire\Modules\Index;
 use App\Livewire\Modules\Show;
 use App\Livewire\QuizPage;
@@ -120,6 +121,7 @@ Route::get('/modules/{module}/edit', [ModuleController::class, 'edit'])->name('m
 Route::put('/modules/{module}', [ModuleController::class, 'update'])->name('modules.update')->middleware('auth');
 Route::get('/modules/{module}/export', [ModuleController::class, 'export'])->name('modules.export')->middleware('auth');
 Route::post('/modules/explore', [ModuleController::class, 'explore'])->name('modules.explore')->middleware('auth');
+Route::get('/modules/{module}/building', Building::class)->name('modules.building')->middleware('auth');
 
 // Module Suggestions
 Route::get('/modules/next-module/{moduleId}', [ModuleController::class, 'nextModule'])->name('modules.next-module')->middleware('auth');

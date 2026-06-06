@@ -9,6 +9,7 @@ use App\Models\SubjectContent;
 use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class Show extends Component
@@ -85,6 +86,22 @@ class Show extends Component
         }
 
         $this->refreshEnrollment();
+    }
+
+    public function retake(): void
+    {
+        if (!Auth::check() || !$this->enrolled || ($this->userModule['status'] ?? '') !== 'completed') {
+            return;
+        }
+
+        Auth::user()->modules()->updateExistingPivot($this->module->id, [
+            'retake_started_at' => now(),
+            'retake_count'      => DB::raw('retake_count + 1'),
+            'status'            => 'in_progress',
+            'completed_at'      => null,
+        ]);
+
+        $this->redirect(route('questions.quiz.index') . '?moduleId=' . $this->module->id);
     }
 
     // Axis mastery: one entry per axis in the category, mastery from DB if enrolled

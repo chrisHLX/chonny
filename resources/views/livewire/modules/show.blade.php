@@ -11,6 +11,13 @@
         {{-- Pipeline progress (shown while module is being generated) --}}
         @if ($activePipelineId)
             <livewire:generation-progress :pipelineId="$activePipelineId" />
+            @script
+            <script>
+                window.addEventListener('questions-generated', () => {
+                    setTimeout(() => window.location.reload(), 1200);
+                });
+            </script>
+            @endscript
         @endif
 
         {{-- Header --}}
@@ -60,6 +67,13 @@
                                    class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
                                     View Results
                                 </a>
+                                <button wire:click="retake"
+                                        wire:loading.attr="disabled"
+                                        wire:target="retake"
+                                        class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-ink-muted border border-line hover:border-ink-subtle hover:text-ink rounded-lg transition-colors disabled:opacity-50">
+                                    <span wire:loading.remove wire:target="retake">Retake Quiz</span>
+                                    <span wire:loading wire:target="retake">Starting…</span>
+                                </button>
                             @else
                                 <a href="{{ route('questions.quiz.index') }}?moduleId={{ $module->id }}"
                                    class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">

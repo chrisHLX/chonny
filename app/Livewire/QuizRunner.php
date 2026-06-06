@@ -47,6 +47,7 @@ class QuizRunner extends Component
     public $hasMissingContent = false;
     public $userCredits = null;
     public $feedback;
+    public ?string $retakeStartedAt = null;
 
     // Completion screen data
     public $completionStats = [];
@@ -71,6 +72,12 @@ class QuizRunner extends Component
 
         $module = $user->modules()->with('questions')->find($this->moduleId);
         if (!$module) return;
+
+        // Load once here; all private methods read $this->retakeStartedAt directly
+        $retakeAt = $module->pivot->retake_started_at;
+        $this->retakeStartedAt = $retakeAt
+            ? \Carbon\Carbon::parse($retakeAt)->toDateTimeString()
+            : null;
 
         $this->proficiency = $module->proficiencies()->first()->name ?? '—';
 
@@ -186,9 +193,12 @@ class QuizRunner extends Component
             
             if ($existing) {
 
-                $newConsecutiveFails = $correct 
-                ? 0 
-                : ($existing->pivot->consecutive_fails ?? 0) + 1;
+                // On a retake, don't carry the stale fail streak from the previous attempt
+                $priorFails = ($this->retakeStartedAt && $existing->pivot->last_answered_at < $this->retakeStartedAt)
+                    ? 0
+                    : ($existing->pivot->consecutive_fails ?? 0);
+
+                $newConsecutiveFails = $correct ? 0 : $priorFails + 1;
                 \Log::info("What existing pivot fails is {$existing->pivot->consecutive_fails}");
 
                 $user->answeredQuestions()->updateExistingPivot($question->id, [
@@ -334,6 +344,7 @@ class QuizRunner extends Component
 
             $answeredCount = $user->answeredQuestions()
                 ->whereIn('questions.id', $allIds)
+                ->when($this->retakeStartedAt, fn ($q) => $q->where('question_user.last_answered_at', '>=', $this->retakeStartedAt))
                 ->count();
 
             // If user has completed a full round at this level, move on
@@ -391,30 +402,35 @@ class QuizRunner extends Component
 
         ModuleAttempted::dispatch($history);
 
-        $pipeline = Pipeline::create([
-            'user_id' => $userId,
-            'module_id' => $moduleId,
-            'type' => 'quiz_completion',
-            'status' => 'running',
-        ]);
+        // On a retake we skip suggestion and card generation — those ran on first completion
+        if (!$this->retakeStartedAt) {
+            $pipeline = Pipeline::create([
+                'user_id' => $userId,
+                'module_id' => $moduleId,
+                'type' => 'quiz_completion',
+                'status' => 'running',
+            ]);
 
-        $suggestionStep = PipelineStep::create([
-            'pipeline_id' => $pipeline->id,
-            'name' => 'Generate Suggestions',
-            'status' => 'pending',
-        ]);
+            $suggestionStep = PipelineStep::create([
+                'pipeline_id' => $pipeline->id,
+                'name' => 'Generate Suggestions',
+                'status' => 'pending',
+            ]);
 
-        $cardStep = PipelineStep::create([
-            'pipeline_id' => $pipeline->id,
-            'name' => 'Generate Card',
-            'status' => 'pending',
-        ]);
+            $cardStep = PipelineStep::create([
+                'pipeline_id' => $pipeline->id,
+                'name' => 'Generate Card',
+                'status' => 'pending',
+            ]);
 
-        SuggestionJob::dispatch($moduleId, $userId, $suggestionStep->id);
+            SuggestionJob::dispatch($moduleId, $userId, $suggestionStep->id);
 
-        GenerateCardJob::dispatch($userId, $moduleId, $cardStep->id)->afterCommit();
+            GenerateCardJob::dispatch($userId, $moduleId, $cardStep->id)->afterCommit();
 
-        session(['completion_pipeline_id' => $pipeline->id]);
+            session(['completion_pipeline_id' => $pipeline->id]);
+        } else {
+            $this->suggestionsStatus = 'failed';
+        }
 
         $this->buildCompletionStats($user, $moduleId, $userScore);
     }
@@ -450,6 +466,7 @@ class QuizRunner extends Component
 
         $answered = $user->answeredQuestions()
             ->whereIn('questions.id', $moduleQuestionIds)
+            ->when($this->retakeStartedAt, fn ($q) => $q->where('question_user.last_answered_at', '>=', $this->retakeStartedAt))
             ->pluck('questions.id')
             ->toArray();
 

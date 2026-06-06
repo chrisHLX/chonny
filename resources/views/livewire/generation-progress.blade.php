@@ -105,10 +105,3 @@
 
 </div>
 
-@script
-<script>
-    window.addEventListener('questions-generated', () => {
-        setTimeout(() => window.location.reload(), 1200);
-    });
-</script>
-@endscript
