@@ -11,15 +11,16 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
         </div>
-        <a href="{{ route_with_context('dashboard') }}"
+        <a href="{{ auth()->check() ? route_with_context('dashboard') : route('modules.index') }}"
            class="text-[13px] font-semibold text-ink tracking-tight hover:text-ink transition-colors">
-            Mindcollector
+            MindCollector
         </a>
     </div>
 
     <!-- Scrollable nav body -->
     <div class="flex-1 overflow-y-auto py-2 px-2 space-y-0.5">
 
+        @auth
         <a href="{{ route_with_context('dashboard') }}"
            class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
             <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,6 +36,7 @@
             </svg>
             Progress
         </a>
+        @endauth
 
         <a href="{{ route_with_context('modules.index') }}"
            class="sidebar-item {{ request()->routeIs('modules.*') ? 'active' : '' }}">
@@ -116,21 +118,51 @@
 
     </div>
 
-    <!-- Footer: credits + user -->
+    <!-- Feedback + Discord + Support -->
+    <div class="shrink-0 px-2 pb-1 space-y-0.5">
+        <a href="{{ route('feedback.create') }}"
+           class="sidebar-item text-[12px] text-ink-subtle {{ request()->routeIs('feedback.*') ? 'active' : '' }}">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+            </svg>
+            Feedback
+        </a>
+        <a href="https://discord.gg/Bk7wEvPRt"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="sidebar-item text-[12px] text-ink-subtle">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            Join Discord
+        </a>
+        @auth
+        <button id="nav-support-btn"
+                class="sidebar-item w-full text-[12px] text-ink-subtle">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            Support Development
+        </button>
+        @endauth
+    </div>
+
+    <!-- Footer: credits + user (auth) or sign-in prompt (guest) -->
     <div class="shrink-0 border-t border-line">
+        @auth
         <!-- Credits row -->
         <div class="flex items-center justify-between px-3 py-2">
             <div class="flex items-center gap-1.5 text-[11px] text-ink-subtle">
                 <svg class="w-3 h-3 text-accent shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
-                AI <span class="text-ink-muted font-medium">{{ $nav_ai_credits }}</span>
+                Credits <span class="text-ink-muted font-medium">{{ $nav_ai_credits }}</span>
             </div>
             <div class="flex items-center gap-1.5 text-[11px] text-ink-subtle">
                 <svg class="w-3 h-3 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Learned <span class="text-ink-muted font-medium">{{ $nav_learned_credits }}</span>
+                XP <span class="text-ink-muted font-medium">{{ $nav_learned_credits }}</span>
             </div>
         </div>
 
@@ -139,9 +171,9 @@
             <button @click="open = !open" class="sidebar-item w-full justify-between">
                 <div class="flex items-center gap-2 min-w-0">
                     <div class="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center text-[10px] font-semibold text-accent shrink-0">
-                        {{ strtoupper(substr(Auth::user()->name ?? 'G', 0, 1)) }}
+                        {{ strtoupper(substr(Auth::user()?->name ?? 'U', 0, 1)) }}
                     </div>
-                    <span class="truncate">{{ Auth::user()->name ?? 'Guest' }}</span>
+                    <span class="truncate">{{ Auth::user()?->name }}</span>
                 </div>
                 <svg class="w-3 h-3 text-ink-subtle shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
@@ -179,5 +211,33 @@
                 </div>
             </div>
         </div>
+        @else
+        <!-- Guest: sign-in / register prompt -->
+        <div class="px-2 py-2 space-y-1.5">
+            <a href="{{ route('register') }}"
+               class="sidebar-item w-full justify-center text-[12px] font-medium text-white bg-accent hover:bg-accent-hover">
+                Sign up free
+            </a>
+            <a href="{{ route('login') }}"
+               class="sidebar-item w-full justify-center text-[12px] text-ink-muted">
+                Sign in
+            </a>
+        </div>
+        @endauth
     </div>
 </aside>
+
+@auth
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.getElementById('nav-support-btn').addEventListener('click', async () => {
+        const stripe = Stripe("{{ config('services.stripe.key') }}");
+        const res = await fetch("{{ route('checkout.session') }}", {
+            method: 'POST',
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
+        });
+        const data = await res.json();
+        await stripe.redirectToCheckout({ sessionId: data.id });
+    });
+</script>
+@endauth

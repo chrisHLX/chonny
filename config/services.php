@@ -54,4 +54,8 @@ return [
         'key' => env('GEMINI_API_KEY'),
     ],
 
+    'discord' => [
+        'feedback_webhook_url' => env('DISCORD_FEEDBACK_WEBHOOK_URL'),
+    ],
+
 ];

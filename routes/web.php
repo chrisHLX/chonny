@@ -26,6 +26,7 @@ use App\Livewire\Admin\WeakAreas;
 use App\Livewire\Admin\LogViewer;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
+use App\Http\Controllers\FeedbackController;
 
 use App\Livewire\Modules\Building;
 use App\Livewire\Modules\Index;
@@ -101,7 +102,7 @@ Route::post('/questions', [QuestionController::class, 'store'])->name('questions
 Route::get('/questions/problematic', [QuestionController::class, 'problematic'])->name('questions.problematic')->middleware('auth');
 
 //create and store modules
-Route::get('modules', Index::class)->name('modules.index')->middleware('auth');
+Route::get('modules', Index::class)->name('modules.index');
 //Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
@@ -147,7 +148,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/modules/{module}/start', [ModuleQuizController::class, 'start'])->name('modules.start');
 });
 
-Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->name('modules.assign');
+Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->name('modules.assign')->middleware('auth');
 Route::post('/modules/create-suggested', [ModuleController::class, 'createSuggested'])->name('modules.create-suggested');
 
 // Ai Requests Page
@@ -180,5 +181,9 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
 });
 
 
+
+// Feedback
+Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 require __DIR__.'/auth.php';

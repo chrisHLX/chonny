@@ -81,5 +81,14 @@ class DatabaseSeeder extends Seeder
             UserModuleSeeder::class,
             ModuleContentSeeder::class,
         ]);
+
+        // ========== GROUP 5: GAME LAUNCH SEEDERS ==========
+        // Self-contained seeders: each creates modules, pages, and questions for their subject.
+        // Concepts are NOT created here — they come from ConceptSeeder above.
+        // Requires CategorySeeder, SubjectSeeder, ProficiencySeeder, GameAxesSeeder, ConceptSeeder.
+        $this->call([
+            WowPvpFundamentalsSeeder::class,
+            LolLaunchSeeder::class,
+        ]);
     }
 }

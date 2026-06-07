@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Module;
 use App\Models\Card;
 use App\Models\Pipeline;
+use App\Models\ModuleSuggestions;
 use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Concept;
@@ -126,6 +127,49 @@ class Collection extends Component
 
     }
 
+
+    public function getLatestSuggestionProperty(): ?array
+    {
+        $user = auth()->user();
+
+        $pipeline = Pipeline::where('user_id', $user->id)
+            ->where('type', 'quiz_completion')
+            ->whereHas('steps', fn ($q) => $q
+                ->where('name', 'Generate Suggestions')
+                ->where('status', 'completed')
+            )
+            ->latest()
+            ->first();
+
+        if (! $pipeline) return null;
+
+        $record = ModuleSuggestions::where('module_id', $pipeline->module_id)
+            ->latest()
+            ->first();
+
+        if (! $record) return null;
+
+        $data = $record->suggestions_json;
+        $rec  = $data['recommendation'] ?? ($data['recommendations'][0] ?? null);
+
+        if (! $rec) return null;
+
+        $existing       = Module::where('name', $rec['name'])->first();
+        $enrolledModule = $existing
+            ? $user->modules()->where('modules.id', $existing->id)->first()
+            : null;
+        $enrolled = $enrolledModule !== null;
+
+        return [
+            'recommendation'   => $rec,
+            'source_module_id' => $pipeline->module_id,
+            'exists'           => $existing !== null,
+            'enrolled'         => $enrolled,
+            'module_slug'      => $existing?->slug,
+            'module_status'    => $enrolledModule?->pivot->status,
+            'module_id'        => $existing?->id,
+        ];
+    }
 
     public function getWrongQuestionsProperty()
     {

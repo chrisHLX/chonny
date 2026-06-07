@@ -565,7 +565,7 @@ class AiService
         $conceptMap = json_encode($conceptMap);
 
         $prompt = <<<EOT
-        You are a StarCraft 2 coach. Analyze the following question and answer. Select 1–3 core gameplay concepts from the list that apply.
+        You are an expert educator. Analyze the following question and answer. Select 1–3 concepts from the list that best apply.
 
         Return only raw JSON. Do not include markdown or formatting. Just return: {"concepts": [...]}
 
@@ -984,58 +984,58 @@ class AiService
         $examples = [
             'mcq' => '[
                 {
-                    "question": "Which unit can create Creep Tumors to expand vision and map control?",
+                    "question": "Which organ in the human body is primarily responsible for filtering blood?",
                     "type": "mcq",
                     "skill_type": "recall",
                     "answer": {
-                    "correct": "Queen",
-                    "options": ["Queen", "Overlord", "Drone", "Infestor"]
+                        "correct": "Kidney",
+                        "options": ["Kidney", "Liver", "Spleen", "Pancreas"]
                     },
                     "difficulty": "easy",
-                    "concepts": ["Map Control"]
+                    "concepts": ["Human Biology"]
                 }
             ]',
             'true_false' => '[
                 {
-                    "question": "True or False: A Drone can be used to cancel a building and regain resources.",
+                    "question": "True or False: The mitochondria is responsible for producing ATP through cellular respiration.",
                     "type": "true_false",
                     "skill_type": "recall",
                     "answer": { "correct": true },
-                    "difficulty": "medium",
-                    "concepts": ["Economy", "Mechanics"]
+                    "difficulty": "easy",
+                    "concepts": ["Cell Biology"]
                 }
             ]',
             'matching_pairs' => '[
                 {
-                    "question": "Match the Zerg unit to its primary role.",
+                    "question": "Match each country to its capital city.",
                     "type": "matching_pairs",
-                    "skill_type": "analysis",
+                    "skill_type": "recall",
                     "answer": {
                         "correct": {
-                            "Zergling": "Basic attacker",
-                            "Overlord": "Scouting",
-                            "Hydralisk": "Anti-air",
-                            "Drone": "Worker"
+                            "France": "Paris",
+                            "Japan": "Tokyo",
+                            "Brazil": "Brasília",
+                            "Egypt": "Cairo"
                         },
                         "pairs": {
-                            "keys": ["Zergling", "Overlord", "Hydralisk", "Drone"],
-                            "values": ["Worker", "Anti-air", "Scouting", "Basic attacker"]
+                            "keys": ["France", "Japan", "Brazil", "Egypt"],
+                            "values": ["Cairo", "Brasília", "Paris", "Tokyo"]
                         }
                     },
                     "difficulty": "easy",
-                    "concepts": ["Army"]
+                    "concepts": ["World Geography"]
                 }
             ]',
             'ordering' => '[
                 {
-                    "question": "Put the following build steps in the correct order.",
+                    "question": "Put the steps of the scientific method in the correct order.",
                     "type": "ordering",
                     "skill_type": "application",
                     "answer": {
-                        "steps": ["Train Drone", "Build Overlord", "Build Spawning Pool", "Build Hatchery"]
+                        "steps": ["Observe a phenomenon", "Form a hypothesis", "Design an experiment", "Collect data", "Draw conclusions"]
                     },
                     "difficulty": "easy",
-                    "concepts": ["Build Orders"]
+                    "concepts": ["Research Methods"]
                 }
             ]',
         ];
@@ -1078,8 +1078,38 @@ class AiService
     ? "SKILL MEASUREMENT DIMENSIONS (do NOT use these as concept tags — they are measurement dimensions only, not content labels):\n    {$axisString}\n    Aim to spread questions across these dimensions where the content allows, but always tag questions using CONCEPTS from the list below, never axis names.\n"
     : '';
 
+    $typeConstraints = match ($type) {
+        'matching_pairs' => <<<'BLOCK'
+
+    MATCHING PAIRS DESIGN RULES:
+    - CONCRETE TRIGGER PRINCIPLE: Every Premise must reference a specific, actionable game state, scenario, data point, or error condition — never a high-level concept name.
+    - EXCLUSIVE 1-TO-1 MAPPING: Each Premise must have exactly ONE logically correct Match. A knowledgeable user should be able to match them with confidence, not guess between two plausible options.
+    - NO ABSTRACT PLATITUDES: Do NOT pair a high-level concept with a high-level goal (e.g., "Good positioning" -> "Helps you win"). Instead pair a specific trigger with its direct tactical consequence.
+    - Example of BAD pair: "Target switching" -> "Kills enemies efficiently"
+    - Example of GOOD pair: "Enemy healer at 30% HP with no defensive cooldowns" -> "Immediately switch all damage to the healer"
+    BLOCK,
+
+        'ordering' => <<<'BLOCK'
+
+    ORDERING DESIGN RULES:
+    - TEMPORAL DEPENDENCY: Only generate an ordering question if the items represent a strict, unarguable chronological or priority sequence. If the order could reasonably be debated, pick a different scenario.
+    - CONCRETE STEPS: Each step must describe a specific, observable action — not a vague phase label (e.g., NOT "Preparation phase" — YES "Activate defensive cooldown before the enemy burst window").
+    - NO ABSTRACT PLATITUDES: Steps must be distinct enough that swapping any two would produce a clearly wrong outcome.
+    BLOCK,
+
+        default => '',
+    };
+
     $prompt = <<<PROMPT
-    Generate {$questionAmount} {$type} questions for our learning app based on the following content.
+    You are an elite, performance-driven diagnostic coach, NOT a high school textbook author. Your goal is to test active recall and operational mastery of the material — not vocabulary definitions.
+
+    CRITICAL DESIGN RULES (apply to every question you generate):
+    1. NO ABSTRACT PLATITUDES: Never create questions where both the prompt and answer are high-level concept labels. Ground every question in a specific, observable state or action.
+    2. CONCRETE TRIGGER PRINCIPLE: Question stems should reference specific scenarios, data points, error conditions, or decision moments drawn directly from the content below.
+    3. EXCLUSIVE ANSWERS: Every correct answer must be the only defensible correct answer. Distractors must be plausible but clearly wrong to someone who has mastered the material.
+    4. TEST UNDERSTANDING, NOT GLOSSARY LOOKUP: A question that can be answered correctly by someone who has never studied the content is a bad question.
+    {$typeConstraints}
+    Generate {$questionAmount} {$type} questions based on the following content.
 
     CONTENT:
     {$content}
@@ -1232,14 +1262,15 @@ YOUR TASK:
 Generate a structured learning module with 2–3 content pages that:
 1. Directly addresses the user's stated learning intent
 2. Uses the vocabulary and specific terminology found in the LATEST RESEARCH above —
-   do not simplify ability names, talent names, or strategic concepts.
-   A player at {$proficiency->name} level wants specifics not generalities.
+   do not simplify named concepts, domain-specific terms, or precise details.
+   A learner at {$proficiency->name} level wants specifics not generalities.
 3. Covers enough factual content to support Recall questions (memory and recognition of facts)
 4. Includes situations or examples to support Analysis questions (interpretation of information)
 5. Includes decisions or scenarios to support Application questions (contextual use of knowledge)
-6. Write 300–500 words per content page. Use the full length to include
-   specific details from the research. Do not pad with generic advice.
-   Every sentence should contain actionable or specific information.
+6. Write only as much as the research context permits. Prioritise absolute accuracy and
+   brevity over length. If the research does not mention a specific detail, omit it entirely
+   rather than inferring or generalising. A shorter page with verified specifics is always
+   preferable to a longer page that invents or softens source-specific information.
 
 Return JSON ONLY in this exact format, no markdown fences or commentary:
 {

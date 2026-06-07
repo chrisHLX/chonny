@@ -69,7 +69,7 @@ class ResearchService
             . $attachedResearchSection
             . $attachedPagesSection
             . $userRequestSection
-            . "\n\nKeep your summary concise — maximum 500 words.";
+            . "\n\nAim for 1,000–1,500 words. Include enough specific detail — named concepts, precise terminology, exact values, and domain-specific specifics — that a downstream content generator can write accurate, non-generic educational material from this summary alone. Do not truncate important detail for brevity.";
 
         $tools = [['google_search' => (object) []]];
 

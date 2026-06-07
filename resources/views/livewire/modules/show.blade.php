@@ -3,7 +3,7 @@
 
         {{-- Breadcrumb --}}
         <div class="flex items-center gap-1.5 text-[12px] text-ink-subtle">
-            <a href="{{ route('modules.index') }}" class="hover:text-ink transition-colors">Modules</a>
+            <a href="{{ route('modules.index') }}" class="hover:text-ink transition-colors">Library</a>
             <span class="opacity-40">/</span>
             <span class="text-ink truncate">{{ $module->name }}</span>
         </div>
@@ -77,26 +77,26 @@
                             @else
                                 <a href="{{ route('questions.quiz.index') }}?moduleId={{ $module->id }}"
                                    class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                                    {{ $status === 'in_progress' ? 'Continue Quiz' : 'Start Quiz' }}
+                                    {{ $status === 'in_progress' ? 'Continue' : 'Start Training' }}
                                 </a>
                             @endif
                             @if ($module->modulePages->isNotEmpty())
                                 <a href="{{ route('modules.page', $module) }}"
                                    class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-ink-muted border border-line hover:border-ink-subtle hover:text-ink rounded-lg transition-colors">
-                                    View Content
+                                    Read the Guide
                                 </a>
                             @endif
                         @else
                             <button wire:click="enroll"
                                     class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                                <span wire:loading.remove wire:target="enroll">Enroll</span>
-                                <span wire:loading wire:target="enroll">Enrolling…</span>
+                                <span wire:loading.remove wire:target="enroll">Add to Training</span>
+                                <span wire:loading wire:target="enroll">Adding…</span>
                             </button>
                         @endif
                     @else
                         <a href="{{ route('register') }}"
                            class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                            Sign up to enroll
+                            Sign up to start training
                         </a>
                         <a href="{{ route('login') }}"
                            class="text-[12px] text-ink-subtle hover:text-ink transition-colors">
@@ -108,17 +108,24 @@
         </div>
 
         {{-- Stats row --}}
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        @php
+            $qCount = $module->questions->count();
+            $estMinutes = $qCount > 0 ? max(5, (int) round($qCount * 1.5)) : 0;
+            $difficultyLabel = $module->proficiencies->first()?->name ?? '—';
+        @endphp
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
             <div class="linear-card p-4 text-center">
-                <p class="text-[24px] font-semibold text-ink">{{ $module->questions->count() }}</p>
+                <p class="text-[24px] font-semibold text-ink">{{ $qCount }}</p>
                 <p class="text-[11px] text-ink-subtle mt-0.5 uppercase tracking-wide">Questions</p>
             </div>
-            @foreach (['recall' => 'Recall', 'analysis' => 'Analysis', 'application' => 'Application'] as $type => $label)
-                <div class="linear-card p-4 text-center">
-                    <p class="text-[24px] font-semibold text-ink">{{ $this->skillTypeCounts[$type] }}</p>
-                    <p class="text-[11px] text-ink-subtle mt-0.5 uppercase tracking-wide">{{ $label }}</p>
-                </div>
-            @endforeach
+            <div class="linear-card p-4 text-center">
+                <p class="text-[24px] font-semibold text-ink">{{ $estMinutes }}<span class="text-[14px] font-normal text-ink-subtle ml-0.5">min</span></p>
+                <p class="text-[11px] text-ink-subtle mt-0.5 uppercase tracking-wide">Est. Time</p>
+            </div>
+            <div class="linear-card p-4 text-center">
+                <p class="text-[13px] font-semibold text-ink mt-2 leading-tight">{{ $difficultyLabel }}</p>
+                <p class="text-[11px] text-ink-subtle mt-1 uppercase tracking-wide">Difficulty</p>
+            </div>
         </div>
 
         {{-- Mastery section: radar + concept bars --}}
@@ -126,13 +133,13 @@
 
             {{-- Radar chart --}}
             <div class="linear-card p-6">
-                <h2 class="page-section-title mb-5">Domain Mastery</h2>
+                <h2 class="page-section-title mb-5">Skill coverage</h2>
 
                 @php $svg = $this->svgData; @endphp
 
                 @if (!$svg['hasChart'])
                     <div class="flex items-center justify-center h-52 text-[13px] text-ink-subtle">
-                        No axes configured for this category.
+                        Skill breakdown not available for this guide yet.
                     </div>
                 @else
                     <div class="relative">
@@ -192,7 +199,7 @@
                         @if (!$enrolled)
                             <div class="absolute inset-0 flex items-center justify-center rounded-lg backdrop-blur-[2px] bg-surface-1/50">
                                 <p class="text-[12px] text-ink-muted px-4 text-center">
-                                    @auth Enroll to track your mastery @else Sign up to track your mastery @endauth
+                                    @auth Add to training to see your skill progress here. @else Sign up to start tracking your skills. @endauth
                                 </p>
                             </div>
                         @endif
@@ -214,11 +221,11 @@
 
             {{-- Concept mastery bars --}}
             <div class="linear-card p-6">
-                <h2 class="page-section-title mb-5">Concept Mastery</h2>
+                <h2 class="page-section-title mb-5">Topic breakdown</h2>
 
                 @if (empty($this->conceptMastery))
                     <div class="flex items-center justify-center h-52 text-[13px] text-ink-subtle">
-                        No concepts tagged to this module's questions.
+                        Topic breakdown not available for this guide yet.
                     </div>
                 @else
                     <div class="relative space-y-3.5">
@@ -239,7 +246,7 @@
                         @if (!$enrolled)
                             <div class="absolute inset-0 flex items-center justify-center rounded-lg backdrop-blur-[2px] bg-surface-1/50">
                                 <p class="text-[12px] text-ink-muted px-4 text-center">
-                                    @auth Enroll to see your progress @else Sign up to track your progress @endauth
+                                    @auth Add to training to track your topic progress. @else Sign up to start tracking your progress. @endauth
                                 </p>
                             </div>
                         @endif
@@ -252,7 +259,7 @@
         @if ($this->subjectResearch->isNotEmpty())
             <div class="linear-card overflow-hidden">
                 <div class="px-6 pt-6 pb-4 border-b border-line flex items-center justify-between">
-                    <h2 class="page-section-title">Research</h2>
+                    <h2 class="page-section-title">Further Reading</h2>
                     <span class="text-[11px] text-ink-subtle">{{ $this->subjectResearch->count() }} {{ Str::plural('entry', $this->subjectResearch->count()) }}</span>
                 </div>
 
@@ -270,7 +277,7 @@
                                 x-on:click="open = !open"
                                 class="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-surface-2 transition-colors group">
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-[13px] text-ink font-medium truncate">{{ $research->title }}</p>
+                                    <p class="text-[13px] text-ink font-medium truncate">{{ Str::after($research->title, 'Research: ') }}</p>
                                     <p class="text-[11px] text-ink-subtle mt-0.5">{{ $research->created_at->diffForHumans() }}</p>
                                 </div>
                                 <svg x-bind:class="open ? 'rotate-180' : ''"
@@ -342,7 +349,7 @@
                     </div>
                 @else
                     <div class="px-6 pt-6 pb-2">
-                        <h2 class="page-section-title">Content</h2>
+                        <h2 class="page-section-title">Guide</h2>
                     </div>
                 @endif
 

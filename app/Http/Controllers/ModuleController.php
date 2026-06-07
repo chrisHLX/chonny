@@ -454,8 +454,12 @@ class ModuleController extends Controller
         $focusContext = $suggestion['reason'] ?? '';
         GenerateModuleContentJob::dispatch($module->id, $contentStep->id, $questionSteps, $userID, $focusContext);
 
-        return redirect()->route('jobs.dashboard');
-    
+        app(\App\Http\Services\CreditService::class)->rewardLearnedCredits($userID, 10, 'Guide generated');
+
+        return redirect()->route('modules.building', [
+            'module'   => $module->slug,
+            'pipeline' => $pipeline->id,
+        ]);
     }
 
     public function explore(Request $request)
@@ -537,6 +541,8 @@ class ModuleController extends Controller
             $sourceUrl,
             $youtubeMode
         );
+
+        app(\App\Http\Services\CreditService::class)->rewardLearnedCredits($user->id, 10, 'Guide generated');
 
         return redirect()->route('modules.building', ['module' => $module->slug, 'pipeline' => $pipeline->id]);
     }

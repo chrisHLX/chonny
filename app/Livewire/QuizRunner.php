@@ -16,6 +16,7 @@ use App\Http\Services\UserModuleService;
 use App\Jobs\SuggestionJob;
 use App\Jobs\GenerateCardJob;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 
@@ -66,7 +67,7 @@ class QuizRunner extends Component
         $this->userCredits = $user->credits()->firstOrCreate([]);
 
         if ($this->userCredits->ai_credits <= 5) {
-            $this->feedback = "Not enough AI credits. Please top up.";
+            $this->feedback = "You've reached your alpha credit limit. Submit feedback or contact Christian if you'd like more credits while testing.";
             return;
         }
 
@@ -85,6 +86,20 @@ class QuizRunner extends Component
         $this->status = $module->pivot->status ?? 'in_progress';
 
         if ($result['mode'] === 'completed') {
+            // Module was already marked completed in the DB before this request — just render
+            // the screen without re-running the pipeline or writing new history records.
+            if ($module->pivot->status === 'completed') {
+                $this->completed         = true;
+                $this->quizFullyComplete = true;
+                $this->difficulty        = 'final';
+                $this->questions         = $this->questions ?? collect();
+                $this->wrongQuestions    = collect();
+                $this->status            = 'completed';
+                $this->suggestionsStatus = 'failed';
+                $userScore = $this->userScore($this->moduleId);
+                $this->buildCompletionStats($user, $this->moduleId, $userScore);
+                return;
+            }
             $this->completeModule();
             return;
         }
@@ -109,6 +124,33 @@ class QuizRunner extends Component
             $this->contents = $formatted;
             return;
         }
+    }
+
+    public function retake(): void
+    {
+        $user = auth()->user();
+        if (!$user) return;
+
+        $user->modules()->updateExistingPivot($this->moduleId, [
+            'retake_started_at' => now(),
+            'retake_count'      => DB::raw('retake_count + 1'),
+            'status'            => 'in_progress',
+            'completed_at'      => null,
+        ]);
+
+        $this->completed             = false;
+        $this->quizFullyComplete     = false;
+        $this->completedDifficulties = [];
+        $this->questionResults       = [];
+        $this->wrongQuestions        = [];
+        $this->score                 = 0;
+        $this->currentIndex          = 0;
+        $this->questions             = collect();
+        $this->completionStats       = [];
+        $this->suggestionsStatus     = 'loading';
+        $this->feedback              = null;
+
+        $this->startQuizInternal();
     }
 
     public function startReviewQuiz()
@@ -426,6 +468,12 @@ class QuizRunner extends Component
             SuggestionJob::dispatch($moduleId, $userId, $suggestionStep->id);
 
             GenerateCardJob::dispatch($userId, $moduleId, $cardStep->id)->afterCommit();
+
+            $creditService = app(\App\Http\Services\CreditService::class);
+            $creditService->rewardLearnedCredits($userId, 50, 'Guide completed');
+            if (Module::find($moduleId)->parent_id) {
+                $creditService->rewardLearnedCredits($userId, 25, 'Recommended guide bonus');
+            }
 
             session(['completion_pipeline_id' => $pipeline->id]);
         } else {

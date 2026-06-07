@@ -74,8 +74,11 @@ class Index extends Component
     {
         $query = Module::where('subject_id', $this->currentSubjectId)
             ->where('status', 'ready')
+            ->when(!auth()->check(), fn ($q) => $q->where('published', true))
             ->with([
-                'users' => fn ($q) => $q->where('user_id', auth()->id()),
+                'users' => fn ($q) => auth()->check()
+                    ? $q->where('user_id', auth()->id())
+                    : $q->whereRaw('1 = 0'),
                 'questions.concepts',
                 'proficiencies',
             ]);

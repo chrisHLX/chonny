@@ -16,7 +16,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                     </svg>
                 </div>
-                <h2 class="text-[18px] font-semibold text-ink mb-1">Module Complete</h2>
+                <h2 class="text-[18px] font-semibold text-ink mb-1">Guide Complete</h2>
                 <p class="text-[13px] text-ink-subtle">{{ $completionStats['module_name'] ?? '' }}</p>
             </div>
 
@@ -34,7 +34,7 @@
                 </div>
                 <div class="linear-card p-4 text-center">
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Time</p>
-                    <p class="text-xl font-semibold text-accent">{{ $this->totalTime }}s</p>
+                    <p class="text-xl font-semibold text-accent">{{ sprintf('%d:%02d', intdiv($this->totalTime, 60), $this->totalTime % 60) }}</p>
                 </div>
             </div>
 
@@ -79,7 +79,7 @@
 
             {{-- Recommended Next Module --}}
             <div class="linear-card p-5">
-                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-4">Recommended Next Module</p>
+                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-4">Recommended Next Guide</p>
 
                 @if ($suggestionsStatus === 'loading')
                     <div class="flex items-center gap-3 mb-4">
@@ -110,14 +110,14 @@
                         @if (!empty($rec['reason']))
                             <div class="border-t border-line pt-3">
                                 <p class="text-[12px] text-ink-subtle leading-relaxed">
-                                    <span class="text-ink-muted font-medium">Why this module: </span>
+                                    <span class="text-ink-muted font-medium">Why this guide: </span>
                                     {{ $rec['reason'] }}
                                 </p>
                             </div>
                         @elseif (!empty($completionStats['weak_concepts']))
                             <div class="border-t border-line pt-3">
                                 <p class="text-[12px] text-ink-subtle leading-relaxed">
-                                    <span class="text-ink-muted font-medium">Why this module: </span>
+                                    <span class="text-ink-muted font-medium">Why this guide: </span>
                                     You struggled with <span class="text-ink font-medium">{{ implode(', ', array_slice($completionStats['weak_concepts'], 0, 2)) }}</span>.
                                     This module is designed to strengthen those areas.
                                 </p>
@@ -126,7 +126,7 @@
                     </div>
 
                 @else
-                    <p class="text-[13px] text-ink-muted">Unable to generate recommendations right now. Explore the module library for your next challenge.</p>
+                    <p class="text-[13px] text-ink-muted">Unable to generate recommendations right now. Browse the guide library for your next challenge.</p>
                 @endif
             </div>
 
@@ -142,21 +142,29 @@
                     </a>
                 @endif
 
+                <button wire:click="retake"
+                        wire:loading.attr="disabled"
+                        wire:target="retake"
+                        class="inline-flex items-center justify-center w-full py-2.5 text-[13px] font-medium text-ink-muted border border-line hover:bg-surface-2 rounded-md transition-colors disabled:opacity-50">
+                    <span wire:loading.remove wire:target="retake">Retake Quiz</span>
+                    <span wire:loading wire:target="retake">Starting…</span>
+                </button>
+
                 @if (!empty($completionStats['module_slug']))
                     <a href="{{ route('modules.show', $completionStats['module_slug']) }}"
                        class="inline-flex items-center justify-center w-full py-2.5 text-[13px] font-medium text-ink-muted border border-line hover:bg-surface-2 rounded-md transition-colors">
-                        Return to Module
+                        Return to Guide
                     </a>
                 @endif
 
                 <a href="{{ route('collection.index') }}"
                    class="inline-flex items-center justify-center w-full py-2.5 text-[13px] font-medium text-ink-muted border border-line hover:bg-surface-2 rounded-md transition-colors">
-                    Return to Collection
+                    My Guides
                 </a>
 
                 <a href="{{ route('modules.index') }}"
                    class="inline-flex items-center justify-center w-full py-2 text-[13px] font-medium text-ink-subtle hover:text-ink transition-colors">
-                    Explore Other Modules
+                    Browse Guides
                 </a>
             </div>
 
@@ -174,7 +182,7 @@
                 </div>
                 <div class="bg-accent/10 border border-accent/20 rounded-lg p-4 text-center">
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Time</p>
-                    <p class="text-2xl font-semibold text-accent">{{ $this->totalTime }}s</p>
+                    <p class="text-2xl font-semibold text-accent">{{ sprintf('%d:%02d', intdiv($this->totalTime, 60), $this->totalTime % 60) }}</p>
                 </div>
             </div>
 
@@ -294,6 +302,7 @@
 
                     @case('ordering')
                         @if(!empty($question->answer['steps']))
+                        <p class="text-[11px] text-ink-subtle mb-2">Drag items into the correct order.</p>
                         <ul id="ordering-list-{{ $question->id }}" class="ordering-list" x-sortable wire:ignore
                             x-init="$wire.set('answer', [...$el.children].map(e => e.dataset.value))"
                             x-on:sorted="$wire.set('answer', [...$el.children].map(e => e.dataset.value))">

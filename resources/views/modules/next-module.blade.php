@@ -3,7 +3,7 @@
         <div class="max-w-3xl mx-auto space-y-6">
 
             <div>
-                <h1 class="text-[17px] font-semibold text-ink">Recommended Next Module</h1>
+                <h1 class="text-[17px] font-semibold text-ink">Your Next Training Guide</h1>
                 <p class="text-[13px] text-ink-muted mt-0.5">Chosen based on where you struggled most.</p>
             </div>
 
@@ -50,7 +50,7 @@
                                             <input type="hidden" name="suggestion" value="{{ json_encode($s) }}">
                                             <button type="submit"
                                                     class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors">
-                                                Create
+                                                Build This Guide
                                             </button>
                                         </form>
                                     @endif

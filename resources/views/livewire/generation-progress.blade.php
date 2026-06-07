@@ -53,9 +53,15 @@
                         'failed'    => 'text-red-400',
                         default     => 'text-ink-muted',
                     };
+                    $stepLabel = match(true) {
+                        str_contains($step->name, 'Content')     => 'Writing guide content',
+                        str_contains($step->name, 'Suggestions') => 'Analysing your performance',
+                        str_contains($step->name, 'Card')        => 'Creating your card',
+                        default                                  => 'Generating questions',
+                    };
                 @endphp
                 <li class="px-6 py-3.5 flex items-center justify-between gap-4">
-                    <span class="text-[13px] font-medium {{ $stepTextClass }}">{{ $step->name }}</span>
+                    <span class="text-[13px] font-medium {{ $stepTextClass }}">{{ $stepLabel }}</span>
                     <span class="shrink-0 flex items-center gap-1.5 text-[12px]">
                         @if($step->status === 'pending')
                             <svg class="w-4 h-4 text-ink-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -8,6 +8,61 @@
 
         <x-context-bar-livewire :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" routeName="collection.index"/>
 
+        {{-- Recommendation recovery --}}
+        @if($this->latestSuggestion)
+            @php
+                $s   = $this->latestSuggestion;
+                $rec = $s['recommendation'];
+            @endphp
+            <div class="linear-card overflow-hidden border border-accent/30">
+                <div class="px-5 py-2.5 bg-accent/5 border-b border-accent/20">
+                    <p class="text-[11px] font-semibold text-accent uppercase tracking-wide">Your Next Training Guide</p>
+                </div>
+                <div class="px-5 py-4 flex items-start justify-between gap-4">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[14px] font-medium text-ink">{{ $rec['name'] }}</p>
+                        @if(!empty($rec['description']))
+                            <p class="text-[13px] text-ink-muted mt-0.5 line-clamp-2">{{ $rec['description'] }}</p>
+                        @endif
+                        @if(!empty($rec['reason']))
+                            <p class="text-[12px] text-ink-subtle mt-2 border-t border-line pt-2 leading-relaxed">
+                                <span class="font-medium text-ink-muted">Why: </span>{{ $rec['reason'] }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="shrink-0">
+                        @if($s['enrolled'])
+                            <a href="{{ route('questions.quiz.index', ['moduleId' => $s['module_id']]) }}"
+                               class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                                @if($s['module_status'] === 'completed') Retake
+                                @elseif($s['module_status'] === 'in_progress') Resume
+                                @else Start Training
+                                @endif
+                            </a>
+                        @elseif($s['exists'])
+                            <form action="{{ route('modules.assign', $s['module_slug']) }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                        class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                                    Add to My Guides
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('modules.create-suggested') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="suggestion"
+                                       value="{{ json_encode(array_merge($rec, ['parent_id' => $s['source_module_id']])) }}">
+                                <button type="submit"
+                                        class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                                    Build This Guide
+                                </button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
+
         {{-- Active Modules tray --}}
         <div>
             <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Active Modules</p>
