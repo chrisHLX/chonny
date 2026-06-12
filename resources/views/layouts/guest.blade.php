@@ -11,14 +11,16 @@
     <body class="font-sans antialiased bg-surface-0 text-ink">
         <div class="min-h-screen flex flex-col items-center justify-center px-4">
             <!-- Logo -->
-            <div class="flex items-center gap-2.5 mb-8">
-                <div class="w-6 h-6 rounded bg-accent flex items-center justify-center shrink-0">
-                    <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <span class="text-[15px] font-semibold text-ink tracking-tight">Mindcollector</span>
-            </div>
+            <a href="{{ url('/') }}" class="flex items-center gap-2 mb-8 hover:opacity-90 transition-opacity">
+                <svg class="w-7 h-7 text-gold shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 3 L35 11.5 L35 28.5 L20 37 L5 28.5 L5 11.5 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    <path d="M11 29 L11 12 L20 20.5 L29 12 L29 29" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M15 26 A5 5 0 0 1 25 26" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="font-display text-[16px] font-bold tracking-wide">
+                    <span class="text-ink">Mind</span><span class="text-gold">Collector</span>
+                </span>
+            </a>
 
             <div class="w-full max-w-sm linear-card px-6 py-6">
                 {{ $slot }}

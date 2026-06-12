@@ -40,7 +40,7 @@
             <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> WARNING</span>
             <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-surface-3 inline-block"></span> INFO</span>
             @if ($showDebug)
-                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500/50 inline-block"></span> DEBUG</span>
+                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-violet/50 inline-block"></span> DEBUG</span>
             @endif
             <span class="ml-auto text-ink-subtle">{{ count($entries) }} entries</span>
         </div>
@@ -61,13 +61,13 @@
                         $rowClass = match ($entry['level']) {
                             'ERROR'   => 'border-l-2 border-red-500 bg-red-500/5',
                             'WARNING' => 'border-l-2 border-amber-400 bg-amber-400/5',
-                            'DEBUG'   => 'border-l-2 border-blue-500/40 opacity-60',
+                            'DEBUG'   => 'border-l-2 border-violet/30 opacity-60',
                             default   => '',
                         };
                         $levelClass = match ($entry['level']) {
                             'ERROR'   => 'text-red-400 bg-red-500/10',
                             'WARNING' => 'text-amber-400 bg-amber-400/10',
-                            'DEBUG'   => 'text-blue-400/70 bg-blue-500/10',
+                            'DEBUG'   => 'text-violet/70 bg-violet/10',
                             default   => 'text-ink-subtle bg-surface-2',
                         };
                     @endphp

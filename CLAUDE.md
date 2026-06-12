@@ -590,3 +590,105 @@ Module uses `slug` as its route key — always pass the model
 or `$module->slug` to route helpers, NEVER `$module->id`.
 Known intentional integer exceptions:
 - modules.next-module uses {moduleId} as plain integer — correct by design
+
+## Design System
+
+### Design Tokens (`tailwind.config.js`)
+
+**Fonts:**
+- `font-sans` → Inter (weights 300–800)
+- `font-display` → Playfair Display (italic + 400–900)
+
+**Color palette:**
+
+| Token | Value | Use |
+|---|---|---|
+| `surface-0` | `#09090D` | Page background |
+| `surface-1` | `#111116` | Cards, panels |
+| `surface-2` | `#18181E` | Elevated elements |
+| `surface-3` | `#1E1E26` | Modals, overlays |
+| `ink` | `#F0F0F2` | Primary text |
+| `ink-muted` | `#8A8A9A` | Secondary text |
+| `ink-subtle` | `#52525F` | Disabled/placeholder text |
+| `gold` | `#C8952C` | Brand/CTA primary |
+| `gold-light` | `#E8B84B` | Hover gold |
+| `gold-dark` | `#8B6420` | |
+| `gold-muted` | `#6B4E1A` | Subtle gold fills |
+| `gold-subtle` | `#1E150A` | Very faint gold tint |
+| `violet` | `#7B6EE8` | Secondary/quiz elements |
+| `violet-hover` | `#8B7EF8` | |
+| `violet-muted` | `#4A3FA8` | |
+| `violet-subtle` | `#18163A` | Very faint violet tint |
+| `accent` | `#C8952C` | Alias for `gold` — backwards compat |
+| `line` | `#1E1E26` | Default border |
+| `line-strong` | `#2C2C38` | Stronger border |
+| `line-gold` | `#6B4E1A` | Gold-tinted border |
+
+**Gradients:** `bg-gold-gradient`, `bg-gold-gradient-v`, `bg-violet-gradient`
+
+**Shadows:** `shadow-gold-sm`, `shadow-gold`, `shadow-gold-lg`, `shadow-violet-sm`, `shadow-violet`
+
+### Component Utility Classes (`resources/css/app.css`)
+
+| Class | Description |
+|---|---|
+| `.linear-card` | Standard card: `surface-1` bg, `line` border, gold hover |
+| `.sidebar-item` / `.sidebar-item.active` | Nav items (active = gold) |
+| `.form-input`, `.form-select`, `.form-textarea`, `.form-checkbox` | Form controls with gold focus ring |
+| `.page-section`, `.page-section-title`, `.page-section-desc` | Section layout (used in edit pages) |
+| `.badge-green`, `.badge-amber`, `.badge-gold`, `.badge-blue`, `.badge-gray` | 10px status pills |
+| `.tab-btn`, `.tab-active`, `.tab-inactive` | Tab navigation |
+| `.btn-primary` | Gold gradient button |
+| `.btn-secondary` | Violet-bordered button |
+| `.btn-ghost` | Subtle outline button |
+| `.btn-danger` | Red destructive action |
+| `.ordering-list`, `.ordering-item` | Drag-to-order quiz list (SortableJS) |
+
+### SVG Icon Component
+
+**Usage:** `<x-mc-icon name="icon-compass" class="w-6 h-6 text-gold"/>`
+
+- Component: `resources/views/components/mc-icon.blade.php`
+- Inlines SVG from `public/images/icons/{name}.svg` directly into HTML — `currentColor` works, so Tailwind `text-*` controls the color
+- `w-*`/`h-*` Tailwind classes set the dimensions
+
+**Important:** `<x-icon>` is **taken** by the `blade-ui-kit/blade-icons` package (^1.8). Always use `<x-mc-icon>` instead. Using `<x-icon>` will throw "Svg by name … not found."
+
+**Available icons** (`public/images/icons/`):
+
+| Name | Use |
+|---|---|
+| `icon-complete` | Quiz completion |
+| `icon-compass` | Score / navigation |
+| `icon-scroll` | Question count |
+| `icon-hourglass` | Time elapsed |
+| `icon-leaf` | Strengths |
+| `icon-starburst` | Weaknesses / needs improvement |
+| `icon-lightning-circle` | Guest CTA / energy |
+| `icon-flask` | Development / alpha |
+| `icon-axis-hex` | Concept/axis progress bars |
+| `icon-diamond` | Diamond bullet point |
+| `icon-delta` | Change / progression |
+| `badge-wow` | World of Warcraft game badge |
+| `badge-sc2` | StarCraft 2 game badge |
+| `badge-lol` | League of Legends game badge |
+| `gem-mastered` | Mastery gem (full) |
+| `gem-strong` | Mastery gem (strong) |
+| `gem-developing` | Mastery gem (developing) |
+| `gem-weak` | Mastery gem (weak) |
+| `gem-unknown` | Mastery gem (unknown) |
+| `bg-arch` | Decorative arch background |
+| `bg-constellation` | Decorative constellation background |
+
+### Ornament Components
+
+**`<x-ornament.corner position="tl|tr|bl|br" class="..."/>`**
+
+- File: `resources/views/components/ornament/corner.blade.php`
+- Inline SVG corner bracket ornament; rotate handled via `position` prop
+- Use `absolute` positioning, `text-gold/20` or similar for subtle decoration
+- Example: `<x-ornament.corner position="tl" class="absolute top-2 left-2 w-10 h-10 text-gold/20"/>`
+
+### Guest Quiz Score Accumulation
+
+Guest quiz uses `$allQuestionResults` (separate from the per-round `$questionResults`) to track answers across all difficulty rounds. `guestScore()` and `buildGuestCompletionStats()` read from `$allQuestionResults`. `$questionResults` is still round-scoped for the wrong-answer display between rounds. `$allQuestionResults` is reset on `retake()`.

@@ -5,15 +5,17 @@
        :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
     <!-- App name -->
-    <div class="flex items-center gap-2.5 px-3 h-11 border-b border-line shrink-0">
-        <div class="w-5 h-5 rounded bg-accent flex items-center justify-center shrink-0">
-            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-        </div>
+    <div class="flex items-center px-3 h-11 border-b border-gold/20 shrink-0">
         <a href="{{ auth()->check() ? route_with_context('dashboard') : route('modules.index') }}"
-           class="text-[13px] font-semibold text-ink tracking-tight hover:text-ink transition-colors">
-            MindCollector
+           class="flex items-center gap-2 hover:opacity-90 transition-opacity">
+            <svg class="w-6 h-6 text-gold shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 3 L35 11.5 L35 28.5 L20 37 L5 28.5 L5 11.5 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                <path d="M11 29 L11 12 L20 20.5 L29 12 L29 29" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M15 26 A5 5 0 0 1 25 26" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="text-[13px] font-semibold tracking-tight">
+                <span class="text-ink">Mind</span><span class="text-gold">Collector</span>
+            </span>
         </a>
     </div>
 
@@ -153,7 +155,7 @@
         <!-- Credits row -->
         <div class="flex items-center justify-between px-3 py-2">
             <div class="flex items-center gap-1.5 text-[11px] text-ink-subtle">
-                <svg class="w-3 h-3 text-accent shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3 h-3 text-gold shrink-0" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
                 Credits <span class="text-ink-muted font-medium">{{ $nav_ai_credits }}</span>
@@ -170,7 +172,7 @@
         <div x-data="{ open: false }" class="relative px-2 pb-2">
             <button @click="open = !open" class="sidebar-item w-full justify-between">
                 <div class="flex items-center gap-2 min-w-0">
-                    <div class="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center text-[10px] font-semibold text-accent shrink-0">
+                    <div class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-[10px] font-semibold text-gold shrink-0">
                         {{ strtoupper(substr(Auth::user()?->name ?? 'U', 0, 1)) }}
                     </div>
                     <span class="truncate">{{ Auth::user()?->name }}</span>
@@ -215,7 +217,9 @@
         <!-- Guest: sign-in / register prompt -->
         <div class="px-2 py-2 space-y-1.5">
             <a href="{{ route('register') }}"
-               class="sidebar-item w-full justify-center text-[12px] font-medium text-white bg-accent hover:bg-accent-hover">
+               class="flex items-center justify-center w-full px-3 py-1.5 rounded-md
+                      text-[12px] font-semibold text-surface-0 bg-gold-gradient
+                      hover:shadow-gold-sm transition-all duration-200">
                 Sign up free
             </a>
             <a href="{{ route('login') }}"

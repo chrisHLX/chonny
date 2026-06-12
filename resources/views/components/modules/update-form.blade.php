@@ -49,7 +49,7 @@
                                 'inline-block ml-1.5 text-[10px] px-1.5 py-0.5 rounded font-medium',
                                 'bg-violet-500/10 text-violet-400' => $skillType === 'recall',
                                 'bg-amber-500/10 text-amber-400' => $skillType === 'analysis',
-                                'bg-blue-500/10 text-blue-400' => $skillType === 'application',
+                                'bg-gold/10 text-gold' => $skillType === 'application',
                             ])>{{ $skillType }}</span>
                         </div>
                     </label>

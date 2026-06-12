@@ -923,7 +923,7 @@ class AiService
             'name'          => $ogModule->name . now()->toDateTimeString(),
             'description'   => "AI generated module to help user with problematic questions:" . $questionList,
             'version'       => $newVersion,
-            'parent_module' => $ogModule->id,
+            'parent_id' => $ogModule->id,
             'created_by'    => auth()->id(),
         ]);
 

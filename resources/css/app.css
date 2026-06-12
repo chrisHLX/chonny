@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,12 +9,12 @@
 
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #242428; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #35353A; }
+    ::-webkit-scrollbar-thumb { background: #1E1E26; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C8952C; }
 
     select option {
-        background-color: #1C1C1F;
-        color: #E8E8E9;
+        background-color: #18181E;
+        color: #F0F0F2;
     }
 }
 
@@ -26,27 +26,31 @@
                hover:text-ink hover:bg-surface-2
                transition-colors cursor-pointer select-none;
     }
-    .sidebar-item.active { @apply text-ink bg-surface-2; }
+    .sidebar-item.active { @apply text-gold bg-gold/10; }
 
     /* Cards */
-    .linear-card { @apply bg-surface-1 border border-line rounded-lg; }
+    .linear-card {
+        @apply bg-surface-1 border border-line rounded-lg
+               hover:border-line-gold hover:shadow-gold-sm
+               transition-all duration-200;
+    }
 
     /* Form controls */
     .form-input {
         @apply bg-surface-1 border border-line text-ink placeholder-ink-subtle rounded-md px-3 py-2 text-sm w-full
-               focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors;
+               focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold transition-colors;
     }
     .form-select {
         @apply bg-surface-1 border border-line text-ink rounded-md px-3 py-2 text-sm w-full
-               focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors;
+               focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold transition-colors;
     }
     .form-textarea {
         @apply bg-surface-1 border border-line text-ink placeholder-ink-subtle rounded-md px-3 py-2 text-sm w-full
-               focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors resize-none;
+               focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold transition-colors resize-none;
     }
     .form-checkbox {
-        @apply w-3.5 h-3.5 rounded border-line bg-surface-2 text-accent
-               focus:ring-1 focus:ring-accent/30 focus:ring-offset-0;
+        @apply w-3.5 h-3.5 rounded border-line bg-surface-2 text-gold
+               focus:ring-1 focus:ring-gold/30 focus:ring-offset-0;
     }
 
     /* Page sections (used in edit pages) */
@@ -55,17 +59,35 @@
     .page-section-desc  { @apply text-[12px] text-ink-subtle mb-5; }
 
     /* Status badges */
-    .badge-green { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium; }
-    .badge-amber { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 font-medium; }
-    .badge-blue  { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-medium; }
-    .badge-gray  { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-surface-3 text-ink-subtle font-medium; }
+    .badge-green  { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium; }
+    .badge-amber  { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10  text-amber-400  font-medium; }
+    .badge-gold   { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-gold/10        text-gold        font-medium; }
+    .badge-blue   { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-violet/10      text-violet      font-medium; }
+    .badge-gray   { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-surface-3      text-ink-subtle  font-medium; }
 
     /* Tabs */
-    .tab-btn { @apply px-3 py-1.5 text-[12px] font-medium rounded-md transition-colors; }
-    .tab-active { @apply bg-surface-2 text-ink; }
+    .tab-btn      { @apply px-3 py-1.5 text-[12px] font-medium rounded-md transition-colors; }
+    .tab-active   { @apply bg-gold/10 text-gold; }
     .tab-inactive { @apply text-ink-muted hover:text-ink hover:bg-surface-2; }
 
-    /* Danger button */
+    /* Buttons */
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold
+               bg-gold-gradient text-surface-0 rounded-md
+               hover:shadow-gold transition-all duration-200 cursor-pointer;
+    }
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium
+               bg-surface-2 text-violet border border-violet/40
+               hover:bg-violet/10 hover:border-violet rounded-md
+               transition-all duration-200 cursor-pointer;
+    }
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium
+               text-ink-muted border border-line rounded-md
+               hover:text-ink hover:border-line-strong
+               transition-colors duration-200 cursor-pointer;
+    }
     .btn-danger {
         @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium
                text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20
@@ -77,13 +99,13 @@
 .ck-editor__editable.ck-content {
     min-height: 400px;
     padding: 1rem;
-    background: #141417 !important;
-    color: #E8E8E9 !important;
-    border-color: #242428 !important;
+    background: #111116 !important;
+    color: #F0F0F2 !important;
+    border-color: #1E1E26 !important;
 }
-.ck-editor__editable.ck-content h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #E8E8E9; }
-.ck-editor__editable.ck-content h2 { font-size: 1.1rem;  font-weight: 500; margin-bottom: 0.75rem; color: #E8E8E9; }
-.ck-editor__editable.ck-content p  { margin-bottom: 0.5rem; color: #8D8D91; }
+.ck-editor__editable.ck-content h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #F0F0F2; }
+.ck-editor__editable.ck-content h2 { font-size: 1.1rem;  font-weight: 500; margin-bottom: 0.75rem; color: #F0F0F2; }
+.ck-editor__editable.ck-content p  { margin-bottom: 0.5rem; color: #8A8A9A; }
 
 /* Drag-to-order lists (quiz ordering type) */
 .ordering-list { list-style: none; padding: 0; }
@@ -93,12 +115,12 @@
     gap: 0.75rem;
     padding: 0.75rem 1rem;
     margin-bottom: 0.375rem;
-    background: #1C1C1F;
-    border: 1px solid #242428;
+    background: #18181E;
+    border: 1px solid #1E1E26;
     border-radius: 0.5rem;
     cursor: grab;
     user-select: none;
-    color: #E8E8E9;
+    color: #F0F0F2;
     font-size: 0.8125rem;
 }
 .ordering-item:active { cursor: grabbing; }

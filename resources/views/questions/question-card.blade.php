@@ -1,33 +1,42 @@
 {{-- resources/views/questions/question-card.blade.php --}}
 
-<div class="p-4 bg-white rounded shadow-md">
-    <h2 class="text-lg font-semibold">{{ $question->question }}</h2>
+<div class="linear-card p-5">
+    <h2 class="font-display text-[15px] font-semibold text-ink mb-4">{{ $question->question }}</h2>
 
     @if ($question->type === 'mcq')
         <form method="POST" action="{{ route('questions.answer', $question) }}">
             @csrf
-            @foreach ($question->answer['options'] as $option)
-                <div>
-                    <label>
-                        <input type="radio" name="answer" value="{{ $option }}">
-                        {{ $option }}
+            <div class="space-y-2 mb-4">
+                @foreach ($question->answer['options'] as $option)
+                    <label class="flex items-center gap-3 p-3 rounded-md bg-surface-2 border border-line hover:border-line-gold cursor-pointer transition-colors">
+                        <input type="radio" name="answer" value="{{ $option }}" class="form-checkbox shrink-0">
+                        <span class="text-[13px] text-ink">{{ $option }}</span>
                     </label>
-                </div>
-            @endforeach
-            <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Submit</button>
+                @endforeach
+            </div>
+            <button type="submit" class="btn-primary">Submit</button>
         </form>
+
     @elseif ($question->type === 'true_false')
         <form method="POST" action="{{ route('questions.answer', $question) }}">
             @csrf
-            <label><input type="radio" name="answer" value="true"> True</label><br>
-            <label><input type="radio" name="answer" value="false"> False</label><br>
-            <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Submit</button>
+            <div class="space-y-2 mb-4">
+                @foreach (['true' => 'True', 'false' => 'False'] as $val => $label)
+                    <label class="flex items-center gap-3 p-3 rounded-md bg-surface-2 border border-line hover:border-line-gold cursor-pointer transition-colors">
+                        <input type="radio" name="answer" value="{{ $val }}" class="form-checkbox shrink-0">
+                        <span class="text-[13px] text-ink">{{ $label }}</span>
+                    </label>
+                @endforeach
+            </div>
+            <button type="submit" class="btn-primary">Submit</button>
         </form>
+
     @elseif ($question->type === 'open')
         <form method="POST" action="{{ route('questions.answer', $question) }}">
             @csrf
-            <textarea name="answer" class="w-full border rounded p-2" rows="3"></textarea>
-            <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Submit</button>
+            <textarea name="answer" class="form-textarea mb-4" rows="3"
+                      placeholder="Write your answer here…"></textarea>
+            <button type="submit" class="btn-primary">Submit</button>
         </form>
     @endif
 </div>

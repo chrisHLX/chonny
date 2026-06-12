@@ -51,6 +51,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/diagnostic', function () {
+    return view('diagnostic');
+})->name('diagnostic');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
@@ -143,10 +147,8 @@ Route::post('/modules/{module}/pages/save', [ModuleController::class, 'savePage'
 // Module detail page — public, no auth required
 Route::get('/modules/{module}', Show::class)->name('modules.show');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/modules/{module}/quiz', [ModuleQuizController::class, 'show'])->name('modules.quiz');
-    Route::post('/modules/{module}/start', [ModuleQuizController::class, 'start'])->name('modules.start');
-});
+Route::get('/modules/{module}/quiz', [ModuleQuizController::class, 'show'])->name('modules.quiz');
+Route::post('/modules/{module}/start', [ModuleQuizController::class, 'start'])->name('modules.start')->middleware('auth');
 
 Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->name('modules.assign')->middleware('auth');
 Route::post('/modules/create-suggested', [ModuleController::class, 'createSuggested'])->name('modules.create-suggested');

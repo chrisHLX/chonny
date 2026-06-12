@@ -12,10 +12,18 @@ class ModuleQuizController extends Controller
 
     public function show(Module $module)
     {
-        return view('modules.show', [
-            'module' => $module,
-            'questions' => $module->questions()->inRandomOrder()->where('difficulty', 'easy')->limit(5)->get(),
-        ]);
+        if (auth()->guest()) {
+            if (!$module->published || $module->parent_id !== null) {
+                return redirect()->route('login');
+            }
+            return view('modules.show', ['module' => $module]);
+        }
+
+        if (!auth()->user()->modules->contains($module->id)) {
+            return redirect()->route('modules.show', $module->slug);
+        }
+
+        return view('modules.show', ['module' => $module]);
     }
 
     public function start(Request $request, Module $module)

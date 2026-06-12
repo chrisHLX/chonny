@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Cache;
 
 class QuizRunner extends Component
 {
+    public bool $guestMode = false;
+
     public $moduleId;
     public $questions;
     public $currentIndex = 0;
@@ -38,6 +40,7 @@ class QuizRunner extends Component
     public $attemptNumber = 0;
     public $difficulty;
     public $questionResults = [];
+    public $allQuestionResults = []; // accumulates across rounds; used for final guest score
     public $wrongQuestions = [];
     public $completedDifficulties = [];
 
@@ -58,11 +61,35 @@ class QuizRunner extends Component
     public function mount($moduleId)
     {
         $this->moduleId = $moduleId;
+        $this->guestMode = auth()->guest();
         $this->startQuizInternal();
     }
 
     public function startQuizInternal()
     {
+        if ($this->guestMode) {
+            $module = Module::with(['questions', 'proficiencies'])->find($this->moduleId);
+            if (!$module) return;
+
+            $this->proficiency = $module->proficiencies()->first()->name ?? '—';
+            $result = $this->calculateNextDifficulty($module);
+
+            if ($result['mode'] === 'completed') {
+                $this->completeModule();
+                return;
+            }
+
+            if ($result['mode'] === 'normal') {
+                $allDifficultyQuestions = $this->getQuestionIdsForDifficulty($module, $result['level']);
+                $answeredIds = array_keys($this->questionResults);
+                $unanswered = array_values(array_diff($allDifficultyQuestions, $answeredIds));
+                $selectedQuestions = $this->chooseQuestions($module, $unanswered, $result['level']);
+                $this->questions = $this->prepareQuestionsForQuiz($selectedQuestions);
+                $this->initializeQuizState($result['level']);
+            }
+            return;
+        }
+
         $user = auth()->user();
         $this->userCredits = $user->credits()->firstOrCreate([]);
 
@@ -128,6 +155,23 @@ class QuizRunner extends Component
 
     public function retake(): void
     {
+        if ($this->guestMode) {
+            $this->completed             = false;
+            $this->quizFullyComplete     = false;
+            $this->completedDifficulties = [];
+            $this->questionResults       = [];
+            $this->allQuestionResults    = [];
+            $this->wrongQuestions        = [];
+            $this->score                 = 0;
+            $this->currentIndex          = 0;
+            $this->questions             = collect();
+            $this->completionStats       = [];
+            $this->suggestionsStatus     = 'loading';
+            $this->feedback              = null;
+            $this->startQuizInternal();
+            return;
+        }
+
         $user = auth()->user();
         if (!$user) return;
 
@@ -222,6 +266,7 @@ class QuizRunner extends Component
 
         // ✅ Save result
         $this->questionResults[$question->id] = $correct;
+        $this->allQuestionResults[$question->id] = $correct;
 
         if ($correct) $this->score++;
 
@@ -232,7 +277,7 @@ class QuizRunner extends Component
         if (auth()->check()) {
             $user = auth()->user();
             $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
-            
+
             if ($existing) {
 
                 // On a retake, don't carry the stale fail streak from the previous attempt
@@ -265,8 +310,9 @@ class QuizRunner extends Component
                     'consecutive_fails' => $correct ? 0 : 1
                 ]);
             }
+
+            \App\Http\Services\MasteryService::updateMasteryForUserQuestions($user, $question);
         }
-        \App\Http\Services\MasteryService::updateMasteryForUserQuestions($user, $question);
 
         $this->nextQuestion();
     }
@@ -289,12 +335,24 @@ class QuizRunner extends Component
             return;
         }
 
+        // Mark current difficulty as done for this session
+        $this->completedDifficulties[] = $this->difficulty;
+
+        if ($this->guestMode) {
+            $module = Module::with('questions')->find($this->moduleId);
+            if ($this->calculateNextDifficulty($module)['mode'] === 'completed') {
+                $this->completeModule();
+                return;
+            }
+            $this->completed = true;
+            $wrongIds = array_keys(array_filter($this->questionResults, fn($c) => !$c));
+            $this->wrongQuestions = $this->questions->whereIn('id', $wrongIds)->values();
+            return;
+        }
+
         $user = auth()->user();
         $moduleId = $this->moduleId;
         $userId = $user->id;
-
-        // Mark current difficulty as done for this session
-        $this->completedDifficulties[] = $this->difficulty;
 
         $module = $user->modules()->with('questions')->find($moduleId);
         if ($this->calculateNextDifficulty($module)['mode'] === 'completed') {
@@ -367,6 +425,28 @@ class QuizRunner extends Component
     private function calculateNextDifficulty($module)
     {
         $difficulties = ['easy', 'medium', 'hard'];
+
+        if ($this->guestMode) {
+            foreach ($difficulties as $level) {
+                if (in_array($level, $this->completedDifficulties)) continue;
+
+                $allIds = $module->questions()
+                    ->where('difficulty', $level)
+                    ->pluck('questions.id')
+                    ->toArray();
+
+                if (empty($allIds)) continue;
+
+                $roundSize = min(5, count($allIds));
+                $answeredCount = count(array_intersect(array_keys($this->questionResults), $allIds));
+
+                if ($answeredCount >= $roundSize) continue;
+
+                return ['mode' => 'normal', 'level' => $level];
+            }
+            return ['mode' => 'completed'];
+        }
+
         $user = auth()->user();
 
         foreach ($difficulties as $level) {
@@ -406,6 +486,19 @@ class QuizRunner extends Component
         $this->questions = $this->questions ?? collect();
         $this->wrongQuestions = collect();
         $this->status = 'completed';
+
+        if ($this->guestMode) {
+            $score = $this->guestScore();
+            session(['guest_quiz_results.' . $this->moduleId => [
+                'module_id'        => $this->moduleId,
+                'score'            => $score,
+                'question_results' => $this->questionResults,
+                'question_times'   => $this->questionTimes,
+                'completed_at'     => now()->toIso8601String(),
+            ]]);
+            $this->buildGuestCompletionStats($score);
+            return;
+        }
 
         $user = auth()->user();
         $moduleId = $this->moduleId;
@@ -724,6 +817,48 @@ class QuizRunner extends Component
             ->where('status', 'ready')
             ->latest()
             ->first();
+    }
+
+    private function guestScore(): float
+    {
+        $total = count($this->allQuestionResults);
+        if ($total === 0) return 0.0;
+        $correct = count(array_filter($this->allQuestionResults));
+        return round(($correct / $total) * 100, 2);
+    }
+
+    private function buildGuestCompletionStats(float $score): void
+    {
+        $module = Module::with(['questions.concepts'])->find($this->moduleId);
+        if (!$module) return;
+
+        $rightIds = array_keys(array_filter($this->allQuestionResults));
+        $wrongIds  = array_keys(array_filter($this->allQuestionResults, fn($c) => !$c));
+
+        $strongConcepts = $module->questions()
+            ->whereIn('questions.id', $rightIds)
+            ->with('concepts')
+            ->get()
+            ->flatMap(fn($q) => $q->concepts->pluck('name'))
+            ->countBy()->sortDesc()->keys()->take(4)->values()->toArray();
+
+        $weakConcepts = $module->questions()
+            ->whereIn('questions.id', $wrongIds)
+            ->with('concepts')
+            ->get()
+            ->flatMap(fn($q) => $q->concepts->pluck('name'))
+            ->countBy()->sortDesc()->keys()->take(4)->values()->toArray();
+
+        $this->completionStats = [
+            'module_name'     => $module->name,
+            'module_slug'     => $module->slug,
+            'score_percent'   => $score,
+            'questions_count' => count($this->questionResults),
+            'total_time'      => $this->totalTime,
+            'strong_concepts' => $strongConcepts,
+            'weak_concepts'   => $weakConcepts,
+            'struggled_types' => [],
+        ];
     }
 
     public function render()

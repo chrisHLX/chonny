@@ -80,9 +80,7 @@
                                     <div class="rounded-lg border border-border bg-surface-1 overflow-hidden">
                                         <div class="px-4 py-2 border-b border-border flex items-center justify-between">
                                             <span class="text-[11px] font-medium text-ink-subtle uppercase tracking-wide">Research Content</span>
-                                            <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                                                Gemini · Web Search
-                                            </span>
+                                            <span class="badge-gold">Gemini · Web Search</span>
                                         </div>
                                         <div class="px-4 py-3 max-h-72 overflow-y-auto text-[13px] text-ink leading-relaxed whitespace-pre-wrap">{{ $research->content }}</div>
                                     </div>

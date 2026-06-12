@@ -20,19 +20,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Christian',
-                'email' => 'christian@example.com',
-                'password' => Hash::make('password'),
-                'email_verified_at' => now(),
-            ],
-            [
-                'name' => 'PIG',
-                'email' => 'pig@proplayer.com',
-                'password' => Hash::make('password'),
-                'email_verified_at' => now(),
-            ],
-            [
-                'name' => 'Serral',
-                'email' => 'serral@proplayer.com',
+                'email' => 'christian@mindcollector.com',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ],

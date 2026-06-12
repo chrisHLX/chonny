@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-82 -82 164 164" fill="none">
+  <!-- Concentric rings -->
+  <circle cx="0" cy="0" r="80" stroke="currentColor" stroke-width="0.8"/>
+  <circle cx="0" cy="0" r="60" stroke="currentColor" stroke-width="0.8"/>
+  <circle cx="0" cy="0" r="40" stroke="currentColor" stroke-width="0.8"/>
+  <!-- Star of David triangles -->
+  <polygon points="0,-80 69.3,40 -69.3,40" stroke="currentColor" stroke-width="0.8"/>
+  <polygon points="0,80 69.3,-40 -69.3,-40" stroke="currentColor" stroke-width="0.8"/>
+  <!-- Cross axes -->
+  <line x1="-80" y1="0" x2="80" y2="0" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+  <line x1="0" y1="-80" x2="0" y2="80" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+  <!-- Accent dots at centre and triangle vertices on inner ring -->
+  <circle cx="0" cy="0" r="4" fill="currentColor"/>
+  <circle cx="0" cy="-60" r="2" fill="currentColor"/>
+  <circle cx="51.96" cy="30" r="2" fill="currentColor"/>
+  <circle cx="-51.96" cy="30" r="2" fill="currentColor"/>
+</svg>

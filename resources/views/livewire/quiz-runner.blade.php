@@ -4,35 +4,73 @@
     @if ($quizFullyComplete)
         <div class="space-y-3">
 
-            {{-- Polling trigger: hidden element removed from DOM once suggestions arrive --}}
-            @if ($suggestionsStatus === 'loading')
+            {{-- Polling trigger: only for authenticated users --}}
+            @if (!$guestMode && $suggestionsStatus === 'loading')
                 <span wire:poll.3s="checkSuggestions" class="hidden"></span>
             @endif
 
             {{-- Header --}}
-            <div class="linear-card p-6 text-center">
-                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/20 mb-4">
-                    <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            <div class="linear-card p-6 text-center relative overflow-hidden">
+                {{-- bg-arch decoration --}}
+                <div class="absolute inset-0 opacity-20 pointer-events-none select-none text-gold" aria-hidden="true">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="-144 -144 288 166" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M-140,0 A140,140 0 0,1 140,0" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                        <path d="M-110,0 A110,110 0 0,1 110,0" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+                        <path d="M-80,0 A80,80 0 0,1 80,0" stroke="currentColor" stroke-width="0.6" stroke-linecap="round"/>
+                        <line x1="0" y1="-140" x2="0" y2="-60" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+                        <line x1="-69.3" y1="-120" x2="-30" y2="-52" stroke="currentColor" stroke-width="0.6" stroke-linecap="round"/>
+                        <line x1="69.3" y1="-120" x2="30" y2="-52" stroke="currentColor" stroke-width="0.6" stroke-linecap="round"/>
+                        <line x1="-120" y1="-69.3" x2="-52" y2="-30" stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+                        <line x1="120" y1="-69.3" x2="52" y2="-30" stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+                        <line x1="-140" y1="0" x2="-60" y2="0" stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+                        <line x1="60" y1="0" x2="140" y2="0" stroke="currentColor" stroke-width="0.5" stroke-linecap="round"/>
+                        <circle cx="0" cy="0" r="18" stroke="currentColor" stroke-width="1.2"/>
+                        <circle cx="0" cy="0" r="10" stroke="currentColor" stroke-width="0.8"/>
+                        <circle cx="0" cy="0" r="3" fill="currentColor"/>
+                        <circle cx="0" cy="-140" r="2" fill="currentColor"/>
+                        <circle cx="-69.3" cy="-120" r="1.5" fill="currentColor"/>
+                        <circle cx="69.3" cy="-120" r="1.5" fill="currentColor"/>
+                        <circle cx="-120" cy="-69.3" r="1.5" fill="currentColor"/>
+                        <circle cx="120" cy="-69.3" r="1.5" fill="currentColor"/>
                     </svg>
                 </div>
+                <x-ornament.corner position="tl" class="top-0 left-0 w-10 h-10 text-gold/50"/>
+                <x-ornament.corner position="tr" class="top-0 right-0 w-10 h-10 text-gold/50"/>
+                <x-ornament.corner position="bl" class="bottom-0 left-0 w-10 h-10 text-gold/50"/>
+                <x-ornament.corner position="br" class="bottom-0 right-0 w-10 h-10 text-gold/50"/>
+                <x-mc-icon name="icon-complete" class="w-12 h-12 text-emerald-400 mb-4"/>
                 <h2 class="text-[18px] font-semibold text-ink mb-1">Guide Complete</h2>
                 <p class="text-[13px] text-ink-subtle">{{ $completionStats['module_name'] ?? '' }}</p>
             </div>
 
             {{-- Stats row --}}
             <div class="grid grid-cols-3 gap-3">
-                <div class="linear-card p-4 text-center">
+                <div class="linear-card p-4 text-center relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-mc-icon name="icon-compass" class="w-6 h-6 text-gold opacity-60 mb-2"/>
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Score</p>
                     <p class="text-xl font-semibold {{ ($completionStats['score_percent'] ?? 0) >= 70 ? 'text-emerald-400' : 'text-amber-400' }}">
                         {{ $completionStats['score_percent'] ?? 0 }}%
                     </p>
                 </div>
-                <div class="linear-card p-4 text-center">
+                <div class="linear-card p-4 text-center relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-mc-icon name="icon-scroll" class="w-6 h-6 text-gold opacity-60 mb-2"/>
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Questions</p>
                     <p class="text-xl font-semibold text-ink">{{ $completionStats['questions_count'] ?? 0 }}</p>
                 </div>
-                <div class="linear-card p-4 text-center">
+                <div class="linear-card p-4 text-center relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-mc-icon name="icon-hourglass" class="w-6 h-6 text-gold opacity-60 mb-2"/>
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Time</p>
                     <p class="text-xl font-semibold text-accent">{{ sprintf('%d:%02d', intdiv($this->totalTime, 60), $this->totalTime % 60) }}</p>
                 </div>
@@ -40,8 +78,15 @@
 
             {{-- Strengths & Needs Improvement --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="linear-card p-5">
-                    <p class="text-[11px] font-semibold text-emerald-400 uppercase tracking-wide mb-3">Strengths</p>
+                <div class="linear-card p-5 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-emerald-400/20"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-emerald-400/20"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-emerald-400/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-emerald-400/20"/>
+                    <div class="flex items-center gap-2 mb-3">
+                        <x-mc-icon name="icon-leaf" class="w-8 h-8 text-emerald-400 opacity-70"/>
+                        <p class="text-[11px] font-semibold text-emerald-400 uppercase tracking-wide">Strengths</p>
+                    </div>
                     @if (!empty($completionStats['strong_concepts']))
                         <ul class="space-y-2">
                             @foreach($completionStats['strong_concepts'] as $concept)
@@ -58,8 +103,15 @@
                     @endif
                 </div>
 
-                <div class="linear-card p-5">
-                    <p class="text-[11px] font-semibold text-red-400 uppercase tracking-wide mb-3">Needs Improvement</p>
+                <div class="linear-card p-5 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-red-400/20"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-red-400/20"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-red-400/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-red-400/20"/>
+                    <div class="flex items-center gap-2 mb-3">
+                        <x-mc-icon name="icon-starburst" class="w-8 h-8 text-red-400 opacity-70"/>
+                        <p class="text-[11px] font-semibold text-red-400 uppercase tracking-wide">Needs Improvement</p>
+                    </div>
                     @if (!empty($completionStats['weak_concepts']))
                         <ul class="space-y-2">
                             @foreach($completionStats['weak_concepts'] as $concept)
@@ -77,62 +129,91 @@
                 </div>
             </div>
 
-            {{-- Recommended Next Module --}}
-            <div class="linear-card p-5">
-                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-4">Recommended Next Guide</p>
+            {{-- Guest: sign-up CTA | Auth: next module suggestions --}}
+            @if ($guestMode)
+                <div class="linear-card p-6 text-center border border-accent/30 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/30"/>
+                    <x-mc-icon name="icon-lightning-circle" class="w-10 h-10 text-gold mb-3"/>
+                    <h3 class="text-[16px] font-semibold text-ink mb-2">Save your results &amp; keep improving</h3>
+                    <p class="text-[13px] text-ink-muted leading-relaxed mb-5">
+                        Create a free account to save this score, track your weaknesses over time, and unlock a personalised learning path.
+                    </p>
+                    <a href="{{ route('register') }}"
+                       class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-semibold text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                        Sign up — it's free
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="{{ route('login') }}"
+                       class="block mt-2 text-[12px] text-ink-subtle hover:text-ink transition-colors">
+                        Already have an account? Log in
+                    </a>
+                </div>
+            @else
+                <div class="linear-card p-5 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
+                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-4">Recommended Next Guide</p>
 
-                @if ($suggestionsStatus === 'loading')
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin shrink-0"></div>
-                        <p class="text-[13px] text-ink-muted">Analysing your performance and generating recommendations...</p>
-                    </div>
-                    <div class="space-y-2.5 animate-pulse">
-                        <div class="h-4 bg-surface-3 rounded w-3/5"></div>
-                        <div class="h-3 bg-surface-3 rounded w-full"></div>
-                        <div class="h-3 bg-surface-3 rounded w-4/5"></div>
-                        <div class="h-3 bg-surface-3 rounded w-2/3"></div>
-                    </div>
+                    @if ($suggestionsStatus === 'loading')
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin shrink-0"></div>
+                            <p class="text-[13px] text-ink-muted">Analysing your performance and generating recommendations...</p>
+                        </div>
+                        <div class="space-y-2.5 animate-pulse">
+                            <div class="h-4 bg-surface-3 rounded w-3/5"></div>
+                            <div class="h-3 bg-surface-3 rounded w-full"></div>
+                            <div class="h-3 bg-surface-3 rounded w-4/5"></div>
+                            <div class="h-3 bg-surface-3 rounded w-2/3"></div>
+                        </div>
 
-                @elseif ($suggestionsStatus === 'ready' && !empty($suggestions))
-                    @php $rec = $suggestions; @endphp
-                    <div>
-                        <div class="flex items-start justify-between gap-3 mb-2">
-                            <h3 class="text-[15px] font-semibold text-ink leading-snug">{{ $rec['name'] ?? 'Next Module' }}</h3>
-                            @if (!empty($rec['proficiency']))
-                                <span class="text-[11px] px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20 shrink-0 whitespace-nowrap">
-                                    {{ $rec['proficiency'] }}
-                                </span>
+                    @elseif ($suggestionsStatus === 'ready' && !empty($suggestions))
+                        @php $rec = $suggestions; @endphp
+                        <div>
+                            <div class="flex items-start justify-between gap-3 mb-2">
+                                <h3 class="text-[15px] font-semibold text-ink leading-snug">{{ $rec['name'] ?? 'Next Module' }}</h3>
+                                @if (!empty($rec['proficiency']))
+                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20 shrink-0 whitespace-nowrap">
+                                        {{ $rec['proficiency'] }}
+                                    </span>
+                                @endif
+                            </div>
+                            @if (!empty($rec['description']))
+                                <p class="text-[13px] text-ink-muted leading-relaxed mb-3">{{ $rec['description'] }}</p>
+                            @endif
+                            @if (!empty($rec['reason']))
+                                <div class="border-t border-line pt-3">
+                                    <p class="text-[12px] text-ink-subtle leading-relaxed">
+                                        <span class="text-ink-muted font-medium">Why this guide: </span>
+                                        {{ $rec['reason'] }}
+                                    </p>
+                                </div>
+                            @elseif (!empty($completionStats['weak_concepts']))
+                                <div class="border-t border-line pt-3">
+                                    <p class="text-[12px] text-ink-subtle leading-relaxed">
+                                        <span class="text-ink-muted font-medium">Why this guide: </span>
+                                        You struggled with <span class="text-ink font-medium">{{ implode(', ', array_slice($completionStats['weak_concepts'], 0, 2)) }}</span>.
+                                        This module is designed to strengthen those areas.
+                                    </p>
+                                </div>
                             @endif
                         </div>
-                        @if (!empty($rec['description']))
-                            <p class="text-[13px] text-ink-muted leading-relaxed mb-3">{{ $rec['description'] }}</p>
-                        @endif
-                        @if (!empty($rec['reason']))
-                            <div class="border-t border-line pt-3">
-                                <p class="text-[12px] text-ink-subtle leading-relaxed">
-                                    <span class="text-ink-muted font-medium">Why this guide: </span>
-                                    {{ $rec['reason'] }}
-                                </p>
-                            </div>
-                        @elseif (!empty($completionStats['weak_concepts']))
-                            <div class="border-t border-line pt-3">
-                                <p class="text-[12px] text-ink-subtle leading-relaxed">
-                                    <span class="text-ink-muted font-medium">Why this guide: </span>
-                                    You struggled with <span class="text-ink font-medium">{{ implode(', ', array_slice($completionStats['weak_concepts'], 0, 2)) }}</span>.
-                                    This module is designed to strengthen those areas.
-                                </p>
-                            </div>
-                        @endif
-                    </div>
 
-                @else
-                    <p class="text-[13px] text-ink-muted">Unable to generate recommendations right now. Browse the guide library for your next challenge.</p>
-                @endif
-            </div>
+                    @else
+                        <p class="text-[13px] text-ink-muted">Unable to generate recommendations right now. Browse the guide library for your next challenge.</p>
+                    @endif
+                </div>
+            @endif
 
             {{-- Actions --}}
             <div class="flex flex-col gap-2 pt-1">
-                @if ($suggestionsStatus === 'ready' && !empty($suggestions))
+                @if (!$guestMode && $suggestionsStatus === 'ready' && !empty($suggestions))
                     <a href="{{ route('modules.next-module', $this->moduleId) }}"
                        class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
                         Continue Learning
@@ -157,10 +238,12 @@
                     </a>
                 @endif
 
-                <a href="{{ route('collection.index') }}"
-                   class="inline-flex items-center justify-center w-full py-2.5 text-[13px] font-medium text-ink-muted border border-line hover:bg-surface-2 rounded-md transition-colors">
-                    My Guides
-                </a>
+                @if (!$guestMode)
+                    <a href="{{ route('collection.index') }}"
+                       class="inline-flex items-center justify-center w-full py-2.5 text-[13px] font-medium text-ink-muted border border-line hover:bg-surface-2 rounded-md transition-colors">
+                        My Guides
+                    </a>
+                @endif
 
                 <a href="{{ route('modules.index') }}"
                    class="inline-flex items-center justify-center w-full py-2 text-[13px] font-medium text-ink-subtle hover:text-ink transition-colors">
@@ -172,23 +255,41 @@
 
     {{-- BETWEEN-TIER COMPLETION SCREEN --}}
     @elseif ($completed && !$quizFullyComplete)
-        <div class="linear-card p-6" x-transition>
+        <div class="linear-card p-6 relative overflow-hidden" x-transition>
+            <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/40"/>
+            <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/40"/>
+            <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/40"/>
+            <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/40"/>
             <h2 class="text-[17px] font-semibold text-ink text-center mb-6">Level Complete</h2>
 
             <div class="grid grid-cols-2 gap-3 mb-6">
-                <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 text-center">
+                <div class="linear-card p-4 text-center relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-mc-icon name="icon-compass" class="w-6 h-6 text-gold opacity-60 mb-2"/>
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Score</p>
-                    <p class="text-2xl font-semibold text-emerald-400">{{ $score }} / {{ $questions->count() }}</p>
+                    <p class="text-xl font-semibold text-emerald-400">{{ $score }} / {{ $questions->count() }}</p>
                 </div>
-                <div class="bg-accent/10 border border-accent/20 rounded-lg p-4 text-center">
+                <div class="linear-card p-4 text-center relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-6 h-6 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-6 h-6 text-gold/30"/>
+                    <x-mc-icon name="icon-hourglass" class="w-6 h-6 text-gold opacity-60 mb-2"/>
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1">Time</p>
-                    <p class="text-2xl font-semibold text-accent">{{ sprintf('%d:%02d', intdiv($this->totalTime, 60), $this->totalTime % 60) }}</p>
+                    <p class="text-xl font-semibold text-accent">{{ sprintf('%d:%02d', intdiv($this->totalTime, 60), $this->totalTime % 60) }}</p>
                 </div>
             </div>
 
-                @if (count($wrongQuestions ?? []) > 0)
-                <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mb-6">
-                    <p class="text-[12px] font-medium text-red-400 mb-3">Incorrect answers</p>
+            @if (count($wrongQuestions ?? []) > 0)
+                <div class="linear-card p-4 mb-6 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-red-400/20"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-6 h-6 text-red-400/20"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-6 h-6 text-red-400/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-6 h-6 text-red-400/20"/>
+                    <p class="text-[12px] font-medium text-red-400 mb-3">Review these</p>
                     <ul class="space-y-2">
                         @foreach ($wrongQuestions as $q)
                             <li class="text-[13px] text-ink-muted">{{ $q->question }}</li>
@@ -198,7 +299,7 @@
             @endif
 
             <button wire:click="nextLevel"
-                    class="w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
+                    class="w-full py-2.5 text-[13px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
                 Next Level
             </button>
         </div>
@@ -223,7 +324,11 @@
         </div>
 
         {{-- Question card --}}
-        <div class="linear-card p-6" wire:key="question-{{ $question->id }}" x-transition>
+        <div class="linear-card p-6 relative overflow-hidden" wire:key="question-{{ $question->id }}" x-transition>
+            <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/40"/>
+            <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/40"/>
+            <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/40"/>
+            <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/40"/>
             <p class="text-[15px] font-medium text-ink leading-relaxed mb-5">
                 <span class="text-accent font-semibold mr-1">{{ $currentIndex + 1 }}.</span>
                 {{ $question->question }}
@@ -334,11 +439,19 @@
     @else
         {{-- Questions not yet loaded or feedback state --}}
         @if ($feedback)
-            <div class="linear-card p-6 text-center">
+            <div class="linear-card p-6 text-center relative overflow-hidden">
+                <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
+                <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
+                <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
+                <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
                 <p class="text-[13px] text-ink-muted">{{ $feedback }}</p>
             </div>
         @else
-            <div class="linear-card p-6 text-center">
+            <div class="linear-card p-6 text-center relative overflow-hidden">
+                <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
+                <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
+                <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
+                <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
                 <p class="text-[13px] text-ink-muted">Loading...</p>
             </div>
         @endif

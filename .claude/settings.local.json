@@ -16,7 +16,9 @@
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\" -Recurse -Include \"*.php\", \"*.blade.php\")",
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\" -Directory)",
       "Bash(Select-Object Name)",
-      "Bash(Select-Object -First 20)"
+      "Bash(Select-Object -First 20)",
+      "Bash(grep -E \"\\\\.blade\\\\.php$\")",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\resources\\\\views\" -Filter \"*.blade.php\" -Recurse)"
     ]
   }
 }

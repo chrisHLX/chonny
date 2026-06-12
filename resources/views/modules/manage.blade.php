@@ -33,7 +33,7 @@
                                     @endif
 
                                     @if($module->published)
-                                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 font-medium shrink-0">Published</span>
+                                        <span class="badge-gold shrink-0">Published</span>
                                     @endif
                                 </div>
 

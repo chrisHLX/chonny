@@ -18,7 +18,7 @@ class Module extends Model
         'difficulty',
         'published',
         'created_by',
-        'parent_module',
+        'parent_id',
         'version',
     ];
 
@@ -75,7 +75,7 @@ class Module extends Model
 
     public function children()
     {
-        return $this->hasMany(Module::class, 'parent_module_id');
+        return $this->hasMany(Module::class, 'parent_id');
     }
 
     public function latestChild()
@@ -90,7 +90,7 @@ class Module extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Module::class, 'parent_module_id');
+        return $this->belongsTo(Module::class, 'parent_id');
     }
 
     public function cards()
