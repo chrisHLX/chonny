@@ -13,6 +13,7 @@ class Module extends Model
         'slug',
         'content_source',
         'status',
+        'type',
         'description',
         'race',
         'difficulty',

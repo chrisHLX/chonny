@@ -51,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function modules()
     {
-        return $this->belongsToMany(Module::class)->withPivot(['status', 'score', 'current_difficulty', 'last_activity_at', 'completed_at', 'retake_started_at', 'retake_count'])->withTimestamps();
+        return $this->belongsToMany(Module::class)->withPivot(['status', 'score', 'current_difficulty', 'last_activity_at', 'completed_at', 'retake_started_at', 'retake_count', 'diagnostic_profile'])->withTimestamps();
     }
 
     public function answeredQuestions()

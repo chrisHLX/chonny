@@ -24,6 +24,20 @@ class RegisteredUserController extends Controller
 
         foreach ($guestResults as $moduleId => $result) {
             try {
+                // Diagnostic sessions carry trait_scores/diagnostic_profile instead of
+                // score/question_results — they have no correct/incorrect signal to replay.
+                if (array_key_exists('trait_scores', $result)) {
+                    $user->modules()->syncWithoutDetaching([
+                        $moduleId => [
+                            'status'             => 'completed',
+                            'last_activity_at'   => \Carbon\Carbon::parse($result['completed_at']),
+                            'completed_at'       => \Carbon\Carbon::parse($result['completed_at']),
+                            'diagnostic_profile' => json_encode($result['diagnostic_profile'] ?? null),
+                        ],
+                    ]);
+                    continue;
+                }
+
                 $user->modules()->syncWithoutDetaching([
                     $moduleId => [
                         'status'           => 'completed',

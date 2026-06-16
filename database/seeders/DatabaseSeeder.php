@@ -78,5 +78,19 @@ class DatabaseSeeder extends Seeder
             WowPvpFundamentalsSeeder::class,
             LolLaunchSeeder::class,
         ]);
+
+        // ========== TRAITS ==========
+        // Platform-wide player trait taxonomy for the diagnostic quiz system.
+        // No dependencies — can run at any point after the traits table exists.
+        $this->call([
+            TraitsSeeder::class,
+        ]);
+
+        // ========== WOW DIAGNOSTIC ==========
+        // Arena Playstyle Assessment — diagnostic module for WoW arena players.
+        // Requires SubjectSeeder, ProficiencySeeder, and TraitsSeeder to have run.
+        $this->call([
+            WoWDiagnosticModuleSeeder::class,
+        ]);
     }
 }

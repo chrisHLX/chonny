@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Models\\\\Module.php\")",
+      "PowerShell(php -l app\\\\Http\\\\Controllers\\\\Auth\\\\RegisteredUserController.php)",
+      "PowerShell(php -l app\\\\Models\\\\User.php)",
+      "PowerShell(php -l database\\\\migrations\\\\2026_06_16_000003_add_diagnostic_profile_to_module_user_table.php)",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Controllers\\\\Auth\\\\RegisteredUserController.php\")",
+      "Bash(php -l database/migrations/2026_06_16_000004_make_last_answer_correct_nullable_on_question_user.php)",
+      "PowerShell(php -l \"C:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\database\\\\migrations\\\\2026_06_16_000004_make_last_answer_correct_nullable_on_question_user.php\")"
+    ]
+  }
+}

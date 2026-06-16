@@ -42,6 +42,14 @@ class DashboardController extends Controller
         $currentSubjectId = $request->get('subject_id')
             ?? $subjects->first()?->id;
 
+        // Whether the user has completed any non-diagnostic module in this subject —
+        // diagnostic completions don't feed mastery, so mastery panels stay empty otherwise.
+        $hasContentActivity = $user->modules()
+            ->where('subject_id', $currentSubjectId ?? 0)
+            ->where('modules.type', '!=', 'diagnostic')
+            ->wherePivot('status', 'completed')
+            ->exists();
+
         // User modules filtered by subject
         $modules = $user->modules()
             ->where('subject_id', $currentSubjectId)
@@ -66,6 +74,7 @@ class DashboardController extends Controller
             ->join('users', 'user_concept_mastery.user_id', '=', 'users.id')
             ->where('concepts.subject_id', $currentSubjectId)
             ->select(
+                'users.id',
                 'users.name',
                 DB::raw('AVG(user_concept_mastery.mastery_percentage) as total_mastery')
             )
@@ -83,7 +92,8 @@ class DashboardController extends Controller
             'modules',
             'createdModules',
             'concepts',
-            'leaderboard'
+            'leaderboard',
+            'hasContentActivity'
         ));
     }
 

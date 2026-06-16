@@ -71,7 +71,25 @@
                             @endif
                         </p>
 
-                        @if($heroModule)
+                        @if($heroModule && $heroModule->type === 'diagnostic')
+                            @php
+                                $heroStatus = $heroModule->pivot->status ?? 'not_started';
+                            @endphp
+                            <div class="bg-surface-2 border border-line rounded-lg p-4 mb-5 max-w-sm">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.15em] text-gold mb-1">
+                                    {{ $heroStatus === 'completed' ? 'Recently Completed' : 'Continue Learning' }}
+                                </p>
+                                <p class="text-[14px] font-semibold text-ink mb-0.5">{{ $heroModule->name }}</p>
+                                <p class="text-[11px] text-ink-subtle">Assessment · {{ ucfirst(str_replace('_', ' ', $heroStatus)) }}</p>
+                            </div>
+                            <a href="{{ route('questions.quiz.index', ['moduleId' => $heroModule->id]) }}"
+                               class="btn-primary">
+                                {{ $heroStatus === 'completed' ? 'View Profile' : 'Start Assessment' }}
+                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        @elseif($heroModule)
                             @php
                                 $heroStatus = $heroModule->pivot->status ?? 'not_started';
                                 $heroScore  = $heroModule->pivot->score ?? 0;
@@ -158,37 +176,45 @@
                         <span class="text-[11px] text-ink-subtle">{{ $concepts->count() }} topics</span>
                     </div>
 
-                    @forelse($concepts as $concept)
-                        @php
-                            $mastery = $concept->userConceptMasteries->first()?->mastery_percentage ?? 0;
-                        @endphp
-                        <div class="mb-3.5 last:mb-0">
-                            <div class="flex justify-between items-center mb-1.5">
-                                <div class="flex items-center gap-1.5">
-                                    <x-mc-icon name="icon-axis-hex" class="w-4 h-4 text-gold opacity-60"/>
-                                    <span class="text-[12px] font-medium text-ink-muted">{{ $concept->name }}</span>
-                                </div>
-                                <span class="text-[11px] font-semibold tabular-nums
-                                    {{ $mastery >= 70 ? 'text-gold-light' : ($mastery >= 40 ? 'text-gold' : 'text-ink-subtle') }}">
-                                    {{ $mastery }}%
-                                </span>
-                            </div>
-                            <div class="w-full bg-surface-3 rounded-full h-1.5 overflow-hidden">
-                                <div class="h-1.5 rounded-full transition-all duration-700"
-                                     style="width: {{ $mastery }}%;
-                                            background: linear-gradient(90deg, #C8952C, #E8B84B);
-                                            box-shadow: {{ $mastery > 5 ? '0 0 6px rgba(200,149,44,0.45)' : 'none' }};">
-                                </div>
-                            </div>
+                    @if (!$hasContentActivity)
+                        <div class="linear-card p-4 text-center">
+                            <x-mc-icon name="icon-axis-hex" class="w-8 h-8 text-gold/40 mx-auto mb-2"/>
+                            <p class="text-[13px] text-ink-muted">Complete a learning guide to start tracking mastery.</p>
+                            <p class="text-[12px] text-ink-subtle mt-1">Diagnostic assessments reveal your playstyle but don't contribute to mastery scores.</p>
                         </div>
-                    @empty
-                        <div class="text-center py-8">
-                            <svg class="w-8 h-8 text-ink-subtle mx-auto mb-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
-                            </svg>
-                            <p class="text-[12px] text-ink-subtle">No topics yet. Start a quiz to map your knowledge.</p>
-                        </div>
-                    @endforelse
+                    @else
+                        @forelse($concepts as $concept)
+                            @php
+                                $mastery = $concept->userConceptMasteries->first()?->mastery_percentage ?? 0;
+                            @endphp
+                            <div class="mb-3.5 last:mb-0">
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <div class="flex items-center gap-1.5">
+                                        <x-mc-icon name="icon-axis-hex" class="w-4 h-4 text-gold opacity-60"/>
+                                        <span class="text-[12px] font-medium text-ink-muted">{{ $concept->name }}</span>
+                                    </div>
+                                    <span class="text-[11px] font-semibold tabular-nums
+                                        {{ $mastery >= 70 ? 'text-gold-light' : ($mastery >= 40 ? 'text-gold' : 'text-ink-subtle') }}">
+                                        {{ $mastery }}%
+                                    </span>
+                                </div>
+                                <div class="w-full bg-surface-3 rounded-full h-1.5 overflow-hidden">
+                                    <div class="h-1.5 rounded-full transition-all duration-700"
+                                         style="width: {{ $mastery }}%;
+                                                background: linear-gradient(90deg, #C8952C, #E8B84B);
+                                                box-shadow: {{ $mastery > 5 ? '0 0 6px rgba(200,149,44,0.45)' : 'none' }};">
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="text-center py-8">
+                                <svg class="w-8 h-8 text-ink-subtle mx-auto mb-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                                </svg>
+                                <p class="text-[12px] text-ink-subtle">No topics yet. Start a quiz to map your knowledge.</p>
+                            </div>
+                        @endforelse
+                    @endif
                 </div>
 
                 {{-- Leaderboard --}}
@@ -198,7 +224,13 @@
                         <span class="text-[11px] text-ink-subtle">Top scholars</span>
                     </div>
 
-                    @if($leaderboard->isEmpty())
+                    @if (!$hasContentActivity)
+                        <div class="linear-card p-4 text-center">
+                            <x-mc-icon name="icon-axis-hex" class="w-8 h-8 text-gold/40 mx-auto mb-2"/>
+                            <p class="text-[13px] text-ink-muted">Complete a learning guide to appear on the leaderboard.</p>
+                            <p class="text-[12px] text-ink-subtle mt-1">Diagnostic assessments reveal your playstyle but don't contribute to mastery scores.</p>
+                        </div>
+                    @elseif($leaderboard->isEmpty())
                         <p class="text-[12px] text-ink-subtle text-center py-8">No rankings yet.</p>
                     @else
                         <div class="space-y-0">
@@ -258,34 +290,57 @@
                     @else
                         <div>
                             @foreach($modules as $module)
-                                @php
-                                    $mStatus    = $module->pivot->status ?? 'not_started';
-                                    $mScore     = $module->pivot->score ?? 0;
-                                    $mLabel     = $mStatus === 'not_started' ? 'Start' : ($mStatus === 'completed' ? 'Retake' : 'Resume');
-                                    $filledDots = (int) round($mScore / 10);
-                                @endphp
-                                <div class="py-3 {{ !$loop->last ? 'border-b border-line' : '' }}">
-                                    <div class="flex items-start justify-between gap-2 mb-2">
-                                        <span class="text-[13px] text-ink font-medium leading-tight truncate">{{ $module->name }}</span>
-                                        <a href="{{ route('questions.quiz.index', ['moduleId' => $module->id]) }}"
-                                           class="shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded transition-all
-                                               {{ $mStatus === 'completed'
-                                                  ? 'text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line'
-                                                  : 'text-surface-0 bg-gold-gradient hover:shadow-gold-sm' }}">
-                                            {{ $mLabel }}
-                                        </a>
+                                @if ($module->type === 'diagnostic')
+                                    @php
+                                        $dStatus = $module->pivot->status ?? 'not_started';
+                                    @endphp
+                                    <div class="py-3 {{ !$loop->last ? 'border-b border-line' : '' }}">
+                                        <div class="flex items-start justify-between gap-2 mb-2">
+                                            <span class="text-[13px] text-ink font-medium leading-tight truncate">{{ $module->name }}</span>
+                                            @if ($dStatus === 'completed')
+                                                <a href="{{ route('questions.quiz.index', ['moduleId' => $module->id]) }}"
+                                                   class="shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded transition-all text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line">
+                                                    View Profile
+                                                </a>
+                                            @else
+                                                <a href="{{ route('questions.quiz.index', ['moduleId' => $module->id]) }}"
+                                                   class="shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded transition-all text-surface-0 bg-gold-gradient hover:shadow-gold-sm">
+                                                    Start
+                                                </a>
+                                            @endif
+                                        </div>
+                                        <span class="badge-blue">Assessment</span>
                                     </div>
-                                    {{-- Fragment dots --}}
-                                    <div class="flex items-center gap-1">
-                                        @for($d = 0; $d < 10; $d++)
-                                            <div class="w-[6px] h-[6px] rounded-sm transition-all duration-300
-                                                {{ $d < $filledDots ? 'bg-gold' : 'bg-surface-3' }}"
-                                                 style="{{ $d < $filledDots ? 'box-shadow: 0 0 3px rgba(200,149,44,0.5)' : '' }}">
-                                            </div>
-                                        @endfor
-                                        <span class="text-[10px] text-ink-subtle ml-1.5 tabular-nums">{{ $mScore }}%</span>
+                                @else
+                                    @php
+                                        $mStatus    = $module->pivot->status ?? 'not_started';
+                                        $mScore     = $module->pivot->score ?? 0;
+                                        $mLabel     = $mStatus === 'not_started' ? 'Start' : ($mStatus === 'completed' ? 'Retake' : 'Resume');
+                                        $filledDots = (int) round($mScore / 10);
+                                    @endphp
+                                    <div class="py-3 {{ !$loop->last ? 'border-b border-line' : '' }}">
+                                        <div class="flex items-start justify-between gap-2 mb-2">
+                                            <span class="text-[13px] text-ink font-medium leading-tight truncate">{{ $module->name }}</span>
+                                            <a href="{{ route('questions.quiz.index', ['moduleId' => $module->id]) }}"
+                                               class="shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded transition-all
+                                                   {{ $mStatus === 'completed'
+                                                      ? 'text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line'
+                                                      : 'text-surface-0 bg-gold-gradient hover:shadow-gold-sm' }}">
+                                                {{ $mLabel }}
+                                            </a>
+                                        </div>
+                                        {{-- Fragment dots --}}
+                                        <div class="flex items-center gap-1">
+                                            @for($d = 0; $d < 10; $d++)
+                                                <div class="w-[6px] h-[6px] rounded-sm transition-all duration-300
+                                                    {{ $d < $filledDots ? 'bg-gold' : 'bg-surface-3' }}"
+                                                     style="{{ $d < $filledDots ? 'box-shadow: 0 0 3px rgba(200,149,44,0.5)' : '' }}">
+                                                </div>
+                                            @endfor
+                                            <span class="text-[10px] text-ink-subtle ml-1.5 tabular-nums">{{ $mScore }}%</span>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
                         </div>
                     @endif
