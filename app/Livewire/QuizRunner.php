@@ -12,9 +12,6 @@ use App\Models\UserModuleHistory;
 
 use App\Http\Services\MasteryService;
 use App\Http\Services\UserModuleService;
-use App\Http\Services\DiagnosticProfileService;
-use App\Models\UserAxisMastery;
-use App\Models\UserConceptMastery;
 
 use App\Jobs\SuggestionJob;
 use App\Jobs\GenerateCardJob;
@@ -61,20 +58,10 @@ class QuizRunner extends Component
     public $suggestionsStatus = 'loading'; // loading | ready | failed
     public $suggestions = [];
 
-    // Diagnostic mode
-    public bool $diagnosticMode = false;
-    public array $traitScores = []; // accumulated trait signals across all answers
-    public ?array $diagnosticProfile = null;
-    public bool $retakingDiagnostic = false;
-
     public function mount($moduleId)
     {
         $this->moduleId = $moduleId;
         $this->guestMode = auth()->guest();
-
-        $module = Module::find($moduleId);
-        $this->diagnosticMode = (bool) ($module && $module->type === 'diagnostic');
-
         $this->startQuizInternal();
     }
 
@@ -84,37 +71,11 @@ class QuizRunner extends Component
             $module = Module::with(['questions', 'proficiencies'])->find($this->moduleId);
             if (!$module) return;
 
-            // Guest reload after a completed diagnostic: re-render the stored profile from
-            // session instead of re-serving the assessment from question 1. Skipped while a
-            // retake is in progress so the guard doesn't redirect the user back to the old profile.
-            if ($this->diagnosticMode) {
-                $stored = session('guest_quiz_results.' . $this->moduleId);
-                if ($stored && isset($stored['diagnostic_profile']) && !$this->retakingDiagnostic) {
-                    $this->diagnosticProfile = $stored['diagnostic_profile'];
-                    $this->traitScores = $stored['trait_scores'] ?? [];
-                    $this->quizFullyComplete = true;
-                    $this->completed = true;
-                    $this->status = 'completed';
-                    $this->retakingDiagnostic = false;
-                    return;
-                }
-            }
-
             $this->proficiency = $module->proficiencies()->first()->name ?? '—';
             $result = $this->calculateNextDifficulty($module);
 
             if ($result['mode'] === 'completed') {
                 $this->completeModule();
-                return;
-            }
-
-            if ($this->diagnosticMode && $result['mode'] === 'normal') {
-                $answeredIds = array_keys($this->questionResults);
-                $allIds = $module->questions()->pluck('questions.id')->toArray();
-                $unanswered = array_values(array_diff($allIds, $answeredIds));
-                $selectedQuestions = $module->questions()->whereIn('questions.id', $unanswered)->get()->shuffle();
-                $this->questions = $this->prepareQuestionsForQuiz($selectedQuestions);
-                $this->initializeQuizState('diagnostic');
                 return;
             }
 
@@ -149,23 +110,6 @@ class QuizRunner extends Component
         $this->proficiency = $module->proficiencies()->first()->name ?? '—';
         $this->status = $module->pivot->status ?? 'in_progress';
 
-        // Diagnostic completion state lives only on the pivot. calculateNextDifficulty()'s
-        // diagnostic branch checks $this->questionResults, which is always empty on a fresh
-        // mount/page load — so it can never report 'completed' here. Check the pivot directly,
-        // before calling calculateNextDifficulty(), so a reload of a completed diagnostic
-        // re-renders the stored profile instead of re-serving the assessment from question 1.
-        if ($this->diagnosticMode && $module->pivot->status === 'completed') {
-            $this->completed         = true;
-            $this->quizFullyComplete = true;
-            $this->difficulty        = 'final';
-            $this->questions         = $this->questions ?? collect();
-            $this->wrongQuestions    = collect();
-            $this->status            = 'completed';
-            $storedProfile           = $module->pivot->diagnostic_profile;
-            $this->diagnosticProfile = $storedProfile ? json_decode($storedProfile, true) : null;
-            return;
-        }
-
         $result = $this->calculateNextDifficulty($module);
 
         if ($result['mode'] === 'completed') {
@@ -195,16 +139,6 @@ class QuizRunner extends Component
                 return;
             }
             $this->completeModule();
-            return;
-        }
-
-        if ($this->diagnosticMode && $result['mode'] === 'normal') {
-            $answeredIds = array_keys($this->questionResults);
-            $allIds = $module->questions()->pluck('questions.id')->toArray();
-            $unanswered = array_values(array_diff($allIds, $answeredIds));
-            $selectedQuestions = $module->questions()->whereIn('questions.id', $unanswered)->get()->shuffle();
-            $this->questions = $this->prepareQuestionsForQuiz($selectedQuestions);
-            $this->initializeQuizState('diagnostic');
             return;
         }
 
@@ -245,13 +179,6 @@ class QuizRunner extends Component
             $this->completionStats       = [];
             $this->suggestionsStatus     = 'loading';
             $this->feedback              = null;
-            $this->traitScores           = [];
-            $this->diagnosticProfile     = null;
-
-            if ($this->diagnosticMode) {
-                $this->retakingDiagnostic = true;
-                session()->forget('guest_quiz_results.' . $this->moduleId);
-            }
 
             $this->startQuizInternal();
             return;
@@ -278,8 +205,6 @@ class QuizRunner extends Component
         $this->completionStats       = [];
         $this->suggestionsStatus     = 'loading';
         $this->feedback              = null;
-        $this->traitScores           = [];
-        $this->diagnosticProfile     = null;
 
         $this->startQuizInternal();
     }
@@ -326,17 +251,14 @@ class QuizRunner extends Component
                 $correct = $matched->count() >= ceil(count($keywords) / 2);
                 break;
 
-            //Suggested fix
             case 'matching_pairs':
                 $correctPairs = $question->answer['correct'] ?? [];
                 $userPairs = $this->answer ?? [];
 
-                // Normalize: does each chosen value match the truth?
                 $correct = collect($correctPairs)->every(
                     fn($expectedValue, $key) => isset($userPairs[$key]) && $userPairs[$key] === $expectedValue
                 );
                 break;
-            
 
             case 'ordering':
                 $correctOrder = $question->answer['steps'];
@@ -355,21 +277,6 @@ class QuizRunner extends Component
 
                 $correct = $userOrder === $correctOrder;
                 break;
-
-            case 'diagnostic_mcq':
-                // No correct/incorrect — accumulate trait signals from the selected option instead.
-                $correct = true;
-                $options = $question->answer['options'] ?? [];
-                $selectedOption = collect($options)->first(function ($opt) {
-                    $text = is_array($opt) ? ($opt['text'] ?? null) : $opt;
-                    return $text === $this->answer;
-                });
-                if (is_array($selectedOption) && !empty($selectedOption['diagnostic_payload'])) {
-                    foreach ($selectedOption['diagnostic_payload']['traits'] ?? [] as $traitKey => $points) {
-                        $this->traitScores[$traitKey] = ($this->traitScores[$traitKey] ?? 0) + $points;
-                    }
-                }
-                break;
         }
 
         // ✅ Save result
@@ -381,9 +288,8 @@ class QuizRunner extends Component
         $this->questionTimes[] = $this->elapsed;
         \Log::info("Estimated time: {$this->elapsed}s");
 
-        // Track in pivot (answered_questions) updating user stats — skip for diagnostic questions,
-        // which carry no correct/incorrect signal and shouldn't feed the mastery flow.
-        if (auth()->check() && !($this->diagnosticMode && $question->type === 'diagnostic_mcq')) {
+        // Track in pivot (answered_questions) updating user stats
+        if (auth()->check()) {
             $user = auth()->user();
             $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
 
@@ -423,38 +329,6 @@ class QuizRunner extends Component
             \App\Http\Services\MasteryService::updateMasteryForUserQuestions($user, $question);
         }
 
-        // Diagnostic answers: record a history row of what was selected, without
-        // any correctness/mastery signal — last_answer_correct = null marks the row
-        // as diagnostic so it can be excluded from mastery-adjacent reads later.
-        if (auth()->check() && $this->diagnosticMode && $question->type === 'diagnostic_mcq') {
-            $user = auth()->user();
-            $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
-
-            if ($existing) {
-                $user->answeredQuestions()->updateExistingPivot($question->id, [
-                    'attempts' => $existing->pivot->attempts + 1,
-                    'correct_count' => 0,
-                    'last_answered_at' => now(),
-                    'last_time_spent' => $this->elapsed,
-                    'total_time_spent' => $existing->pivot->total_time_spent + $this->elapsed,
-                    'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
-                    'last_answer_correct' => null,
-                    'consecutive_fails' => 0,
-                ]);
-            } else {
-                $user->answeredQuestions()->attach($question->id, [
-                    'attempts' => 1,
-                    'correct_count' => 0,
-                    'last_answered_at' => now(),
-                    'last_time_spent' => $this->elapsed,
-                    'total_time_spent' => $this->elapsed,
-                    'last_answer' => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
-                    'last_answer_correct' => null,
-                    'consecutive_fails' => 0,
-                ]);
-            }
-        }
-
         $this->nextQuestion();
     }
 
@@ -477,19 +351,6 @@ class QuizRunner extends Component
 
         // Mark current difficulty as done for this session
         $this->completedDifficulties[] = $this->difficulty;
-
-        // Diagnostic modules serve a single flat sequence — never fall through to the
-        // content-module round-end logic below (pivot write, UserModuleHistory, ModuleAttempted).
-        if ($this->diagnosticMode) {
-            $module = $this->guestMode
-                ? Module::with('questions')->find($this->moduleId)
-                : auth()->user()->modules()->with('questions')->find($this->moduleId);
-
-            if ($this->calculateNextDifficulty($module)['mode'] === 'completed') {
-                $this->completeModule();
-            }
-            return;
-        }
 
         if ($this->guestMode) {
             $module = Module::with('questions')->find($this->moduleId);
@@ -566,8 +427,8 @@ class QuizRunner extends Component
         ]);
 
         ModuleAttempted::dispatch($history);
-    }  
-    
+    }
+
     // Resets the module
     public function nextLevel()
     {
@@ -577,24 +438,6 @@ class QuizRunner extends Component
 
     private function calculateNextDifficulty($module)
     {
-        // Diagnostic modules don't use difficulty tiers — serve every question once,
-        // as a single flat sequence, then report completed.
-        if ($this->diagnosticMode) {
-            $allIds = $module->questions()->pluck('questions.id')->toArray();
-
-            if (empty($allIds)) {
-                return ['mode' => 'completed'];
-            }
-
-            $answeredCount = count(array_intersect(array_keys($this->questionResults), $allIds));
-
-            if ($answeredCount >= count($allIds)) {
-                return ['mode' => 'completed'];
-            }
-
-            return ['mode' => 'normal', 'level' => 'diagnostic'];
-        }
-
         $difficulties = ['easy', 'medium', 'hard'];
 
         if ($this->guestMode) {
@@ -657,75 +500,6 @@ class QuizRunner extends Component
         $this->questions = $this->questions ?? collect();
         $this->wrongQuestions = collect();
         $this->status = 'completed';
-
-        if ($this->diagnosticMode) {
-            $userId = $this->guestMode ? null : auth()->id();
-
-            $axisScores = [];
-            $conceptScores = [];
-
-            // Don't regenerate if a profile already exists for this retake attempt — guards
-            // against a duplicate completeModule() call re-triggering a paid AI call.
-            $existingPivot = (!$this->guestMode && $userId) ? auth()->user()->modules()->find($this->moduleId)?->pivot : null;
-            if ($existingPivot
-                && $existingPivot->diagnostic_profile
-                && $this->retakeStartedAt
-                && $existingPivot->completed_at >= $this->retakeStartedAt) {
-                $this->diagnosticProfile = json_decode($existingPivot->diagnostic_profile, true);
-                $this->quizFullyComplete = true;
-                return;
-            }
-
-            if (!$this->guestMode && $userId) {
-                $axisScores = UserAxisMastery::where('user_id', $userId)
-                    ->with('axis')
-                    ->get()
-                    ->mapWithKeys(fn($m) => [$m->axis->name ?? "axis_{$m->axis_id}" => $m->mastery_percentage])
-                    ->toArray();
-
-                $conceptScores = UserConceptMastery::where('user_id', $userId)
-                    ->with('concept')
-                    ->orderBy('mastery_percentage')
-                    ->take(5)
-                    ->get()
-                    ->mapWithKeys(fn($m) => [$m->concept->name ?? "concept_{$m->concept_id}" => $m->mastery_percentage])
-                    ->toArray();
-            }
-
-            try {
-                $this->diagnosticProfile = app(DiagnosticProfileService::class)
-                    ->generateProfile($this->traitScores, $axisScores, $conceptScores, $userId ?? 0, $this->guestMode);
-            } catch (\Throwable $e) {
-                \Log::error('Diagnostic profile generation failed', ['error' => $e->getMessage()]);
-                $this->diagnosticProfile = [
-                    'player_type'            => 'Assessment Complete',
-                    'narrative'              => 'Your answers have been recorded, but we were unable to generate a full profile right now.',
-                    'top_traits'             => array_slice(array_keys($this->traitScores), 0, 3),
-                    'growth_area'            => '',
-                    'next_module_suggestion' => '',
-                ];
-            }
-
-            if ($this->guestMode) {
-                session(['guest_quiz_results.' . $this->moduleId => [
-                    'module_id'          => $this->moduleId,
-                    'trait_scores'       => $this->traitScores,
-                    'diagnostic_profile' => $this->diagnosticProfile,
-                    'completed_at'       => now()->toIso8601String(),
-                ]]);
-            } elseif ($userId) {
-                auth()->user()->modules()->syncWithoutDetaching([
-                    $this->moduleId => [
-                        'status'             => 'completed',
-                        'last_activity_at'   => now(),
-                        'completed_at'       => now(),
-                        'diagnostic_profile' => json_encode($this->diagnosticProfile),
-                    ],
-                ]);
-            }
-
-            return; // skip card generation, skip suggestion job, skip pipeline
-        }
 
         if ($this->guestMode) {
             $score = $this->guestScore();
@@ -815,7 +589,7 @@ class QuizRunner extends Component
 
         $this->buildCompletionStats($user, $moduleId, $userScore);
     }
-    
+
     private function getQuestionIdsForDifficulty($module, $difficulty)
     {
         return $module->questions()

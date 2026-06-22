@@ -1,0 +1,312 @@
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\Module;
+use App\Models\UserAxisMastery;
+use App\Models\UserConceptMastery;
+use App\Http\Services\DiagnosticProfileService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+class DiagnosticQuizRunner extends Component
+{
+    public bool $guestMode = false;
+
+    public $moduleId;
+    public $questions;
+    public $currentIndex = 0;
+    public $answer = [];
+    public $elapsed = 0;
+    public $questionTimes = [];
+    public $completed = false;
+    public $quizFullyComplete = false;
+    public $status;
+    public $proficiency;
+    public $difficulty = 'diagnostic';
+
+    public $questionResults = [];
+    public $userCredits = null;
+    public $feedback;
+
+    // Diagnostic-specific
+    public array $traitScores = [];
+    public ?array $diagnosticProfile = null;
+    public bool $retakingDiagnostic = false;
+    public ?string $retakeStartedAt = null;
+
+    public function mount($moduleId): void
+    {
+        $this->moduleId  = $moduleId;
+        $this->guestMode = auth()->guest();
+        $this->startQuizInternal();
+    }
+
+    public function startQuizInternal(): void
+    {
+        if ($this->guestMode) {
+            $module = Module::with(['questions', 'proficiencies'])->find($this->moduleId);
+            if (!$module) return;
+
+            // Reload stored profile on page refresh — skipped while a retake is in progress
+            $stored = session('guest_quiz_results.' . $this->moduleId);
+            if ($stored && isset($stored['diagnostic_profile']) && !$this->retakingDiagnostic) {
+                $this->diagnosticProfile  = $stored['diagnostic_profile'];
+                $this->traitScores        = $stored['trait_scores'] ?? [];
+                $this->quizFullyComplete  = true;
+                $this->completed          = true;
+                $this->status             = 'completed';
+                $this->retakingDiagnostic = false;
+                return;
+            }
+
+            $this->proficiency = $module->proficiencies()->first()->name ?? '—';
+            $this->questions   = $this->loadQuestions($module);
+            $this->initState();
+            return;
+        }
+
+        $user              = auth()->user();
+        $this->userCredits = $user->credits()->firstOrCreate([]);
+
+        if ($this->userCredits->ai_credits <= 5) {
+            $this->feedback = "You've reached your alpha credit limit. Submit feedback or contact Christian if you'd like more credits while testing.";
+            return;
+        }
+
+        $module = $user->modules()->with('questions')->find($this->moduleId);
+        if (!$module) return;
+
+        $retakeAt              = $module->pivot->retake_started_at;
+        $this->retakeStartedAt = $retakeAt
+            ? \Carbon\Carbon::parse($retakeAt)->toDateTimeString()
+            : null;
+
+        $this->proficiency = $module->proficiencies()->first()->name ?? '—';
+        $this->status      = $module->pivot->status ?? 'in_progress';
+
+        // Reload completed profile on page refresh without re-running AI
+        if ($module->pivot->status === 'completed') {
+            $this->completed         = true;
+            $this->quizFullyComplete = true;
+            $this->questions         = $this->questions ?? collect();
+            $this->status            = 'completed';
+            $storedProfile           = $module->pivot->diagnostic_profile;
+            $this->diagnosticProfile = $storedProfile ? json_decode($storedProfile, true) : null;
+            return;
+        }
+
+        $this->questions = $this->loadQuestions($module);
+        $this->initState();
+    }
+
+    public function submit($params = []): void
+    {
+        if (!isset($this->questions[$this->currentIndex])) {
+            return;
+        }
+
+        $question      = $this->questions[$this->currentIndex];
+        $this->elapsed = isset($params['elapsed']) ? (int) $params['elapsed'] : 0;
+
+        // Accumulate trait signals — diagnostic questions have no correct/incorrect
+        if ($question->type === 'diagnostic_mcq') {
+            $options        = $question->answer['options'] ?? [];
+            $selectedOption = collect($options)->first(function ($opt) {
+                $text = is_array($opt) ? ($opt['text'] ?? null) : $opt;
+                return $text === $this->answer;
+            });
+            if (is_array($selectedOption) && !empty($selectedOption['diagnostic_payload'])) {
+                foreach ($selectedOption['diagnostic_payload']['traits'] ?? [] as $traitKey => $points) {
+                    $this->traitScores[$traitKey] = ($this->traitScores[$traitKey] ?? 0) + $points;
+                }
+            }
+        }
+
+        $this->questionResults[$question->id] = true; // all answers accepted
+        $this->questionTimes[]                = $this->elapsed;
+
+        // Record the selected answer without a correctness or mastery signal
+        if (auth()->check()) {
+            $user     = auth()->user();
+            $existing = $user->answeredQuestions()->where('question_id', $question->id)->first();
+
+            if ($existing) {
+                $user->answeredQuestions()->updateExistingPivot($question->id, [
+                    'attempts'            => $existing->pivot->attempts + 1,
+                    'correct_count'       => 0,
+                    'last_answered_at'    => now(),
+                    'last_time_spent'     => $this->elapsed,
+                    'total_time_spent'    => $existing->pivot->total_time_spent + $this->elapsed,
+                    'last_answer'         => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
+                    'last_answer_correct' => null,
+                    'consecutive_fails'   => 0,
+                ]);
+            } else {
+                $user->answeredQuestions()->attach($question->id, [
+                    'attempts'            => 1,
+                    'correct_count'       => 0,
+                    'last_answered_at'    => now(),
+                    'last_time_spent'     => $this->elapsed,
+                    'total_time_spent'    => $this->elapsed,
+                    'last_answer'         => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
+                    'last_answer_correct' => null,
+                    'consecutive_fails'   => 0,
+                ]);
+            }
+        }
+
+        $this->nextQuestion();
+    }
+
+    public function nextQuestion(): void
+    {
+        $this->answer  = [];
+        $this->elapsed = 0;
+        $this->currentIndex++;
+
+        if ($this->currentIndex < $this->questions->count()) {
+            return;
+        }
+
+        $this->completeModule();
+    }
+
+    public function retake(): void
+    {
+        $this->completed         = false;
+        $this->quizFullyComplete = false;
+        $this->questionResults   = [];
+        $this->traitScores       = [];
+        $this->diagnosticProfile = null;
+        $this->currentIndex      = 0;
+        $this->questions         = collect();
+        $this->feedback          = null;
+
+        if ($this->guestMode) {
+            $this->retakingDiagnostic = true;
+            session()->forget('guest_quiz_results.' . $this->moduleId);
+            $this->startQuizInternal();
+            return;
+        }
+
+        $user = auth()->user();
+        if (!$user) return;
+
+        $user->modules()->updateExistingPivot($this->moduleId, [
+            'retake_started_at'  => now(),
+            'retake_count'       => DB::raw('retake_count + 1'),
+            'status'             => 'in_progress',
+            'completed_at'       => null,
+            'diagnostic_profile' => null,
+        ]);
+
+        $this->startQuizInternal();
+    }
+
+    public function getTotalTimeProperty(): int
+    {
+        return array_sum($this->questionTimes);
+    }
+
+    private function loadQuestions($module): \Illuminate\Support\Collection
+    {
+        return $module->questions()
+            ->get()
+            ->shuffle()
+            ->transform(function ($q) {
+                $q         = clone $q;
+                $q->answer = array_merge([], $q->answer);
+                return $q;
+            });
+    }
+
+    private function initState(): void
+    {
+        $this->completed       = false;
+        $this->currentIndex    = 0;
+        $this->questionResults = [];
+        $this->questionTimes   = [];
+        $this->elapsed         = 0;
+        $this->status          = 'in_progress';
+    }
+
+    private function completeModule(): void
+    {
+        $this->completed         = true;
+        $this->quizFullyComplete = true;
+        $this->status            = 'completed';
+        $this->questions         = $this->questions ?? collect();
+
+        $userId = $this->guestMode ? null : auth()->id();
+
+        // Guard: don't re-run AI if a profile was already committed for this retake attempt
+        if (!$this->guestMode && $userId) {
+            $existingPivot = auth()->user()->modules()->find($this->moduleId)?->pivot;
+            if ($existingPivot
+                && $existingPivot->diagnostic_profile
+                && $this->retakeStartedAt
+                && $existingPivot->completed_at >= $this->retakeStartedAt) {
+                $this->diagnosticProfile = json_decode($existingPivot->diagnostic_profile, true);
+                return;
+            }
+        }
+
+        $axisScores    = [];
+        $conceptScores = [];
+
+        if (!$this->guestMode && $userId) {
+            $axisScores = UserAxisMastery::where('user_id', $userId)
+                ->with('axis')
+                ->get()
+                ->mapWithKeys(fn($m) => [$m->axis->name ?? "axis_{$m->axis_id}" => $m->mastery_percentage])
+                ->toArray();
+
+            $conceptScores = UserConceptMastery::where('user_id', $userId)
+                ->with('concept')
+                ->orderBy('mastery_percentage')
+                ->take(5)
+                ->get()
+                ->mapWithKeys(fn($m) => [$m->concept->name ?? "concept_{$m->concept_id}" => $m->mastery_percentage])
+                ->toArray();
+        }
+
+        try {
+            $this->diagnosticProfile = app(DiagnosticProfileService::class)
+                ->generateProfile($this->traitScores, $axisScores, $conceptScores, $userId ?? 0, $this->guestMode);
+        } catch (\Throwable $e) {
+            Log::error('Diagnostic profile generation failed', ['error' => $e->getMessage()]);
+            $this->diagnosticProfile = [
+                'player_type'            => 'Assessment Complete',
+                'narrative'              => 'Your answers have been recorded, but we were unable to generate a full profile right now.',
+                'top_traits'             => array_slice(array_keys($this->traitScores), 0, 3),
+                'growth_area'            => '',
+                'next_module_suggestion' => '',
+            ];
+        }
+
+        if ($this->guestMode) {
+            session(['guest_quiz_results.' . $this->moduleId => [
+                'module_id'          => $this->moduleId,
+                'trait_scores'       => $this->traitScores,
+                'diagnostic_profile' => $this->diagnosticProfile,
+                'completed_at'       => now()->toIso8601String(),
+            ]]);
+        } elseif ($userId) {
+            auth()->user()->modules()->syncWithoutDetaching([
+                $this->moduleId => [
+                    'status'             => 'completed',
+                    'last_activity_at'   => now(),
+                    'completed_at'       => now(),
+                    'diagnostic_profile' => json_encode($this->diagnosticProfile),
+                ],
+            ]);
+        }
+    }
+
+    public function render()
+    {
+        return view('livewire.diagnostic-quiz-runner');
+    }
+}
