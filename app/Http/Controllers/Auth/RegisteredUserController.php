@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\PlayerTrait;
 use App\Models\User;
 use App\Models\UserModuleHistory;
+use App\Models\UserTraitEvidence;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,6 +37,32 @@ class RegisteredUserController extends Controller
                             'diagnostic_profile' => json_encode($result['diagnostic_profile'] ?? null),
                         ],
                     ]);
+
+                    // Write per-question trait evidence that was captured during the guest session
+                    $answeredAt = \Carbon\Carbon::parse($result['completed_at']);
+                    foreach ($result['question_evidence'] ?? [] as $evidence) {
+                        $trait = PlayerTrait::where('key', $evidence['trait_key'])->first();
+                        if (!$trait) {
+                            Log::warning("Guest claim: unknown trait key '{$evidence['trait_key']}' — skipping");
+                            continue;
+                        }
+
+                        UserTraitEvidence::updateOrCreate(
+                            [
+                                'user_id'     => $user->id,
+                                'question_id' => $evidence['question_id'],
+                                'trait_id'    => $trait->id,
+                            ],
+                            [
+                                'module_id'             => $moduleId,
+                                'selected_answer'       => $evidence['selected_answer'],
+                                'selected_option_index' => $evidence['selected_option_index'] ?? null,
+                                'points'                => $evidence['points'],
+                                'answered_at'           => $answeredAt,
+                            ]
+                        );
+                    }
+
                     continue;
                 }
 

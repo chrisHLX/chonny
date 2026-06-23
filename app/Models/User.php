@@ -101,6 +101,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UserAxisMastery::class);
     }
 
+    public function hasVerifiedEmail(): bool
+    {
+        if (! app()->isProduction()) {
+            return true;
+        }
+
+        return parent::hasVerifiedEmail();
+    }
+
     protected static function booted()
     {
         static::created(function ($user) {

@@ -73,16 +73,30 @@
 
                         @if($heroModule && $heroModule->type === 'diagnostic')
                             @php
-                                $heroStatus = $heroModule->pivot->status ?? 'not_started';
+                                $heroStatus  = $heroModule->pivot->status ?? 'not_started';
+                                $heroProfile = $heroModule->pivot->diagnostic_profile
+                                    ? json_decode($heroModule->pivot->diagnostic_profile, true)
+                                    : null;
                             @endphp
                             <div class="bg-surface-2 border border-line rounded-lg p-4 mb-5 max-w-sm">
                                 <p class="text-[10px] font-semibold uppercase tracking-[0.15em] text-gold mb-1">
-                                    {{ $heroStatus === 'completed' ? 'Recently Completed' : 'Continue Learning' }}
+                                    {{ $heroStatus === 'completed' ? 'Assessment Complete' : 'Continue Learning' }}
                                 </p>
                                 <p class="text-[14px] font-semibold text-ink mb-0.5">{{ $heroModule->name }}</p>
-                                <p class="text-[11px] text-ink-subtle">Assessment · {{ ucfirst(str_replace('_', ' ', $heroStatus)) }}</p>
+                                @if($heroProfile && !empty($heroProfile['player_type']))
+                                    <p class="text-[13px] font-display italic text-gold mt-1">{{ $heroProfile['player_type'] }}</p>
+                                    @if(!empty($heroProfile['top_traits']))
+                                        <div class="flex flex-wrap gap-1 mt-2">
+                                            @foreach(array_slice($heroProfile['top_traits'], 0, 3) as $trait)
+                                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gold/10 border border-gold/20 text-gold">{{ str($trait)->headline() }}</span>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                @else
+                                    <p class="text-[11px] text-ink-subtle">Assessment · {{ ucfirst(str_replace('_', ' ', $heroStatus)) }}</p>
+                                @endif
                             </div>
-                            <a href="{{ route('questions.quiz.index', ['moduleId' => $heroModule->id]) }}"
+                            <a href="{{ route('modules.quiz', $heroModule) }}"
                                class="btn-primary">
                                 {{ $heroStatus === 'completed' ? 'View Profile' : 'Start Assessment' }}
                                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -298,12 +312,12 @@
                                         <div class="flex items-start justify-between gap-2 mb-2">
                                             <span class="text-[13px] text-ink font-medium leading-tight truncate">{{ $module->name }}</span>
                                             @if ($dStatus === 'completed')
-                                                <a href="{{ route('questions.quiz.index', ['moduleId' => $module->id]) }}"
+                                                <a href="{{ route('modules.quiz', $module) }}"
                                                    class="shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded transition-all text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line">
                                                     View Profile
                                                 </a>
                                             @else
-                                                <a href="{{ route('questions.quiz.index', ['moduleId' => $module->id]) }}"
+                                                <a href="{{ route('modules.quiz', $module) }}"
                                                    class="shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded transition-all text-surface-0 bg-gold-gradient hover:shadow-gold-sm">
                                                     Start
                                                 </a>

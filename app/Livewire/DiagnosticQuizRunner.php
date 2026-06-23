@@ -5,7 +5,9 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Module;
 use App\Models\UserAxisMastery;
+use App\Models\PlayerTrait;
 use App\Models\UserConceptMastery;
+use App\Models\UserTraitEvidence;
 use App\Http\Services\DiagnosticProfileService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -32,6 +34,7 @@ class DiagnosticQuizRunner extends Component
 
     // Diagnostic-specific
     public array $traitScores = [];
+    public array $guestEvidenceLog = [];
     public ?array $diagnosticProfile = null;
     public bool $retakingDiagnostic = false;
     public ?string $retakeStartedAt = null;
@@ -110,6 +113,8 @@ class DiagnosticQuizRunner extends Component
         $question      = $this->questions[$this->currentIndex];
         $this->elapsed = isset($params['elapsed']) ? (int) $params['elapsed'] : 0;
 
+        $selectedOption = null;
+
         // Accumulate trait signals — diagnostic questions have no correct/incorrect
         if ($question->type === 'diagnostic_mcq') {
             $options        = $question->answer['options'] ?? [];
@@ -118,8 +123,28 @@ class DiagnosticQuizRunner extends Component
                 return $text === $this->answer;
             });
             if (is_array($selectedOption) && !empty($selectedOption['diagnostic_payload'])) {
+                // Derive option index once for evidence logging
+                $logOptionIndex = null;
+                foreach ($options as $i => $opt) {
+                    $optText = is_array($opt) ? ($opt['text'] ?? null) : $opt;
+                    if ($optText === $this->answer) {
+                        $logOptionIndex = $i;
+                        break;
+                    }
+                }
+
                 foreach ($selectedOption['diagnostic_payload']['traits'] ?? [] as $traitKey => $points) {
                     $this->traitScores[$traitKey] = ($this->traitScores[$traitKey] ?? 0) + $points;
+
+                    if ($this->guestMode) {
+                        $this->guestEvidenceLog[] = [
+                            'question_id'           => $question->id,
+                            'trait_key'             => $traitKey,
+                            'points'                => $points,
+                            'selected_answer'       => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
+                            'selected_option_index' => $logOptionIndex,
+                        ];
+                    }
                 }
             }
         }
@@ -155,6 +180,45 @@ class DiagnosticQuizRunner extends Component
                     'consecutive_fails'   => 0,
                 ]);
             }
+
+            // Persist per-question trait evidence for auth users
+            if ($question->type === 'diagnostic_mcq'
+                && is_array($selectedOption)
+                && !empty($selectedOption['diagnostic_payload']['traits'])) {
+
+                $options     = $question->answer['options'] ?? [];
+                $optionIndex = null;
+                foreach ($options as $i => $opt) {
+                    $text = is_array($opt) ? ($opt['text'] ?? null) : $opt;
+                    if ($text === $this->answer) {
+                        $optionIndex = $i;
+                        break;
+                    }
+                }
+
+                foreach ($selectedOption['diagnostic_payload']['traits'] as $traitKey => $points) {
+                    $trait = PlayerTrait::where('key', $traitKey)->first();
+                    if (!$trait) {
+                        Log::warning("DiagnosticQuizRunner: unknown trait key '{$traitKey}' on question {$question->id}");
+                        continue;
+                    }
+
+                    UserTraitEvidence::updateOrCreate(
+                        [
+                            'user_id'     => $user->id,
+                            'question_id' => $question->id,
+                            'trait_id'    => $trait->id,
+                        ],
+                        [
+                            'module_id'             => $this->moduleId,
+                            'selected_answer'       => is_array($this->answer) ? json_encode($this->answer) : $this->answer,
+                            'selected_option_index' => $optionIndex,
+                            'points'                => $points,
+                            'answered_at'           => now(),
+                        ]
+                    );
+                }
+            }
         }
 
         $this->nextQuestion();
@@ -179,6 +243,7 @@ class DiagnosticQuizRunner extends Component
         $this->quizFullyComplete = false;
         $this->questionResults   = [];
         $this->traitScores       = [];
+        $this->guestEvidenceLog  = [];
         $this->diagnosticProfile = null;
         $this->currentIndex      = 0;
         $this->questions         = collect();
@@ -290,6 +355,7 @@ class DiagnosticQuizRunner extends Component
             session(['guest_quiz_results.' . $this->moduleId => [
                 'module_id'          => $this->moduleId,
                 'trait_scores'       => $this->traitScores,
+                'question_evidence'  => $this->guestEvidenceLog,
                 'diagnostic_profile' => $this->diagnosticProfile,
                 'completed_at'       => now()->toIso8601String(),
             ]]);
