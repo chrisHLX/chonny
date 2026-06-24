@@ -1095,6 +1095,7 @@ class AiService
     - TEMPORAL DEPENDENCY: Only generate an ordering question if the items represent a strict, unarguable chronological or priority sequence. If the order could reasonably be debated, pick a different scenario.
     - CONCRETE STEPS: Each step must describe a specific, observable action — not a vague phase label (e.g., NOT "Preparation phase" — YES "Activate defensive cooldown before the enemy burst window").
     - NO ABSTRACT PLATITUDES: Steps must be distinct enough that swapping any two would produce a clearly wrong outcome.
+    - QUESTION TEXT IS A SHORT STEM ONLY: The "question" field must be a brief directive (e.g. "Put the steps of the Zerg opening build in the correct order."). NEVER list the steps inside the question text — steps belong ONLY in answer.steps. Keep the question under 100 characters.
     BLOCK,
 
         default => '',

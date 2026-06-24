@@ -43,17 +43,6 @@
 
             {{-- Hero: Mastery Overview --}}
             <div class="linear-card p-6 relative overflow-hidden">
-                {{-- Sacred geometry bg --}}
-                <div class="absolute inset-0 flex items-center justify-end pointer-events-none select-none" aria-hidden="true">
-                    <svg class="w-72 h-72 text-gold opacity-[0.05] mr-4" viewBox="0 0 300 300" fill="none">
-                        <circle cx="150" cy="150" r="130" stroke="currentColor" stroke-width="0.75"/>
-                        <circle cx="150" cy="150" r="100" stroke="currentColor" stroke-width="0.75"/>
-                        <circle cx="150" cy="150" r="70"  stroke="currentColor" stroke-width="0.75"/>
-                        <polygon points="150,20 262,85 262,215 150,280 38,215 38,85" stroke="currentColor" stroke-width="0.75" fill="none"/>
-                        <polygon points="150,20 262,215 38,215" stroke="currentColor" stroke-width="0.5" fill="none"/>
-                        <polygon points="150,280 38,85 262,85" stroke="currentColor" stroke-width="0.5" fill="none"/>
-                    </svg>
-                </div>
 
                 <div class="relative flex flex-col lg:flex-row gap-8">
                     {{-- Left: mastery stats + CTA --}}
@@ -134,8 +123,8 @@
                     </div>
 
                     {{-- Right: Radar chart --}}
-                    <div class="shrink-0 flex flex-col items-center justify-center lg:pr-4">
-                        <svg class="w-52 h-52" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="shrink-0 flex flex-col items-center justify-center">
+                        <svg class="w-72 h-72" viewBox="-20 -8 170 148" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <polygon points="65,15 108,40 108,90 65,115 22,90 22,40"  stroke="#C8952C" stroke-width="0.75" fill="none" opacity="0.2"/>
                             <polygon points="65,28 98,46 98,84 65,103 32,84 32,46"   stroke="#C8952C" stroke-width="0.75" fill="none" opacity="0.13"/>
                             <polygon points="65,40 87,53 87,78 65,90 43,78 43,53"    stroke="#C8952C" stroke-width="0.75" fill="none" opacity="0.13"/>
@@ -156,7 +145,7 @@
                             @foreach($radarConcepts as $i => $rc)
                                 @php $lp = $labelPositions[$i]; @endphp
                                 <text x="{{ $lp[0] }}" y="{{ $lp[1] }}" text-anchor="{{ $lp[2] }}"
-                                      font-size="5.5" fill="#C8952C" opacity="0.6" font-family="monospace">{{ mb_substr($rc->name, 0, 6) }}</text>
+                                      font-size="5.5" fill="#C8952C" opacity="0.6" font-family="monospace">{{ mb_substr($rc->name, 0, 9) }}</text>
                             @endforeach
 
                             @if($concepts->count() > 0)

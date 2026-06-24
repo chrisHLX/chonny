@@ -11,7 +11,8 @@
       "Bash(php -l \"c:/Users/chris/Herd/chonny/app/Livewire/QuizRunner.php\")",
       "Bash(php -l \"c:/Users/chris/Herd/chonny/app/Livewire/DiagnosticQuizRunner.php\")",
       "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Livewire\\\\DiagnosticQuizRunner.php\")",
-      "Read(//c/Windows/System32/drivers/etc/**)"
+      "Read(//c/Windows/System32/drivers/etc/**)",
+      "Bash(Get-Content \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\storage\\\\logs\\\\laravel.log\" -Tail 100)"
     ],
     "additionalDirectories": [
       "C:\\Windows\\System32\\drivers\\etc"
