@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Module;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -14,55 +15,233 @@ class DiagnosticProfileService
         $this->aiService = $aiService;
     }
 
-    public function generateProfile(array $traitScores, array $axisScores, array $conceptScores, int $userId, bool $isGuest = false): array
-    {
-        $traitBlock = collect($traitScores)
-            ->map(fn($score, $key) => "{$key}: {$score}")
-            ->implode(', ') ?: 'No trait signals recorded.';
+    public function generateProfile(
+        array $traitScores,
+        array $axisScores,
+        array $conceptScores,
+        int $userId,
+        bool $isGuest = false,
+        array $surveyAnswers = [],
+        ?Module $module = null
+    ): array {
+        $prompt = $this->buildPrompt($traitScores, $axisScores, $conceptScores, $surveyAnswers, $module);
 
-        $axisBlock = collect($axisScores)
-            ->map(fn($score, $name) => "{$name}: {$score}%")
-            ->implode(', ') ?: 'No axis mastery data available.';
-
-        $conceptBlock = collect($conceptScores)
-            ->map(fn($score, $name) => "{$name}: {$score}%")
-            ->implode(', ') ?: 'No concept mastery data available.';
-
-        $prompt = <<<PROMPT
-        You are analysing a player's diagnostic quiz results to build a personality-style learning profile.
-
-        TRAIT SCORES (accumulated signal strength per trait — higher means the trait is more strongly expressed, negative means the opposite tendency):
-        {$traitBlock}
-
-        AXIS MASTERY (percentage mastery per skill dimension):
-        {$axisBlock}
-
-        TOP STRUGGLED CONCEPTS (percentage mastery, weakest first):
-        {$conceptBlock}
-
-        Based on this data, return JSON ONLY in this exact format, no markdown fences or commentary:
-        {
-          "player_type": "Strategic Controller",
-          "narrative": "One paragraph starting with 'Your answers suggest...'",
-          "top_traits": ["control_orientation", "patience", "structure_preference"],
-          "growth_area": "Short sentence about weakest axis/concept",
-          "next_module_suggestion": "Module name or topic to study next"
-        }
-        PROMPT;
-
-        // Guests have no user_credits row and the diagnostic profile is the conversion
-        // moment for them — generate it for free via a direct Gemini call instead of
-        // routing through AiService/CreditService, which requires a real user_id.
+        // Guests get a free direct Gemini call — no credits deducted.
+        // The diagnostic is the conversion moment for guests so we absorb the cost.
         $response = $isGuest
             ? $this->generateForGuest($prompt)
             : $this->aiService->sendPromptToAi($prompt, 'gpt-4o-mini', $userId, 'diagnostic_profile_generation');
 
+        return $this->normaliseResponse($response);
+    }
+
+    private function buildPrompt(
+        array $traitScores,
+        array $axisScores,
+        array $conceptScores,
+        array $surveyAnswers,
+        ?Module $module
+    ): string {
+        $gameContext      = $this->buildGameContext($module);
+        $archetypeList    = $this->buildArchetypeList($module);
+        $availableModules = $this->buildAvailableModules($module);
+
+        $surveyBlock = collect($surveyAnswers)
+            ->map(fn($ans, $key) => "  {$key}: {$ans['text']}")
+            ->implode("\n") ?: '  (none collected)';
+
+        $traitBlock = collect($traitScores)->sortDesc()
+            ->map(fn($score, $key) => "  {$key}: {$score}")
+            ->implode("\n") ?: '  (no trait signals recorded)';
+
+        $axisBlock = collect($axisScores)
+            ->map(fn($score, $name) => "  {$name}: {$score}%")
+            ->implode("\n") ?: '  (no axis mastery data — likely a new user)';
+
+        $conceptBlock = collect($conceptScores)
+            ->map(fn($score, $name) => "  {$name}: {$score}%")
+            ->implode("\n") ?: '  (no concept mastery data — likely a new user)';
+
+        return <<<PROMPT
+You are a diagnostic profile generator for a competitive learning platform.
+
+The platform supports multiple disciplines. Use ONLY the information provided below — do not assume any game, sport, or domain-specific details unless they appear explicitly in GAME CONTEXT.
+
+---
+
+GAME CONTEXT
+{$gameContext}
+
+---
+
+AVAILABLE ARCHETYPES
+Choose the single best-fitting archetype from this list. Return its key in archetype_key.
+{$archetypeList}
+
+---
+
+AVAILABLE MODULES
+Choose the single best recommended module from this list. Use its exact id and title.
+{$availableModules}
+
+---
+
+SELF-REPORTED SURVEY (treat as context, not objective truth)
+{$surveyBlock}
+
+---
+
+TRAIT SCORES (accumulated signal from diagnostic answers — higher = more strongly expressed, negative = opposite tendency)
+{$traitBlock}
+
+---
+
+AXIS MASTERY (% mastery per skill dimension — may be empty for new users)
+{$axisBlock}
+
+---
+
+TOP STRUGGLED CONCEPTS (lowest mastery first — may be empty for new users)
+{$conceptBlock}
+
+---
+
+RULES
+1. Do not mention any rating, role, class, champion, rank, or mode unless it appears in the provided input.
+2. Treat survey answers as self-reported context — they may not match the diagnostic evidence.
+3. Treat trait scores and concept/axis scores as stronger evidence than survey answers.
+4. If survey answers and diagnostic evidence conflict, surface that tension — it is valuable signal.
+5. Every claim in evidence[] must trace to a specific input field (trait score, axis score, concept score, or survey answer).
+6. The summary must start with "Your answers suggest" and be 3–5 sentences. Be specific — reference their survey context where relevant. Never be generic.
+7. The recommended_module must be chosen from AVAILABLE MODULES only. If none fits well, choose the closest and note the uncertainty in the reason field.
+8. Use the game's own terminology only when it appears in GAME CONTEXT or AVAILABLE MODULES.
+9. Return JSON ONLY — no markdown fences, no extra fields, no commentary.
+
+OUTPUT SHAPE
+{
+  "profile_title": "Human-readable archetype label",
+  "archetype_key": "snake_case key from AVAILABLE ARCHETYPES",
+  "confidence_level": "low | medium | high",
+  "summary": "Paragraph starting with 'Your answers suggest...' (3-5 sentences)",
+  "evidence": [
+    {
+      "signal": "Short label for what was observed",
+      "source": "Field name e.g. trait_scores.patience or axis_scores.Mechanics",
+      "interpretation": "What this signal means for this specific player"
+    }
+  ],
+  "self_report_check": {
+    "alignment": "aligned | partially_aligned | conflicting | insufficient_data",
+    "comment": "One sentence comparing self-report to diagnostic evidence"
+  },
+  "likely_in_game_pattern": "One sentence describing how this probably shows up during actual play",
+  "primary_strength": {
+    "name": "Strength label",
+    "concepts": ["concept1", "concept2"]
+  },
+  "primary_growth_area": {
+    "name": "Growth area label",
+    "concepts": ["concept1", "concept2"]
+  },
+  "recommended_module": {
+    "module_id": 0,
+    "title": "Exact module title from AVAILABLE MODULES",
+    "reason": "One sentence explaining why this module follows from the profile"
+  },
+  "next_practice_goal": "One concrete, actionable thing to try in their next session"
+}
+PROMPT;
+    }
+
+    private function buildGameContext(?Module $module): string
+    {
+        if (!$module) {
+            return '  (no game context available)';
+        }
+
+        $subject  = $module->subject ?? $module->load('subject')->subject;
+        $category = $subject?->category ?? $subject?->load('category')->category;
+
+        $lines = [];
+        if ($category) {
+            $lines[] = "  category: {$category->name}";
+        }
+        if ($subject) {
+            $lines[] = "  subject: {$subject->name}";
+        }
+        $lines[] = "  module: {$module->name}";
+
+        return implode("\n", $lines);
+    }
+
+    private function buildArchetypeList(?Module $module): string
+    {
+        if (!$module) {
+            return '  (no archetypes configured)';
+        }
+
+        $subject  = $module->subject ?? $module->load('subject')->subject;
+        $category = $subject?->category ?? $subject?->load('category')->category;
+
+        if (!$category) {
+            return '  (no archetypes configured)';
+        }
+
+        $archetypes = $category->archetypes()->get();
+
+        if ($archetypes->isEmpty()) {
+            return '  (no archetypes configured for this category)';
+        }
+
+        return $archetypes->map(fn($a) => "  {$a->key}: {$a->label} — {$a->description}")->implode("\n");
+    }
+
+    private function buildAvailableModules(?Module $module): string
+    {
+        if (!$module) {
+            return '  (no module list available)';
+        }
+
+        $subject = $module->subject ?? $module->load('subject')->subject;
+        if (!$subject) {
+            return '  (no module list available)';
+        }
+
+        $modules = $subject->modules()
+            ->where('published', true)
+            ->where('status', 'ready')
+            ->where('type', '!=', 'diagnostic')
+            ->get(['id', 'name', 'description']);
+
+        if ($modules->isEmpty()) {
+            return '  (no published modules available in this subject yet)';
+        }
+
+        return $modules->map(fn($m) => "  id={$m->id}: {$m->name}" . ($m->description ? " — {$m->description}" : ''))->implode("\n");
+    }
+
+    private function normaliseResponse(array $response): array
+    {
         return [
-            'player_type'            => $response['player_type'] ?? 'Unclassified',
-            'narrative'              => $response['narrative'] ?? '',
+            // New structured fields
+            'profile_title'          => $response['profile_title'] ?? ($response['player_type'] ?? 'Unclassified'),
+            'archetype_key'          => $response['archetype_key'] ?? null,
+            'confidence_level'       => $response['confidence_level'] ?? 'medium',
+            'summary'                => $response['summary'] ?? ($response['narrative'] ?? ''),
+            'evidence'               => $response['evidence'] ?? [],
+            'self_report_check'      => $response['self_report_check'] ?? null,
+            'likely_in_game_pattern' => $response['likely_in_game_pattern'] ?? '',
+            'primary_strength'       => $response['primary_strength'] ?? null,
+            'primary_growth_area'    => $response['primary_growth_area'] ?? null,
+            'recommended_module'     => $response['recommended_module'] ?? null,
+            'next_practice_goal'     => $response['next_practice_goal'] ?? '',
+
+            // Backward-compat aliases so existing stored profiles keep rendering
+            'player_type'            => $response['profile_title'] ?? ($response['player_type'] ?? 'Unclassified'),
+            'narrative'              => $response['summary'] ?? ($response['narrative'] ?? ''),
             'top_traits'             => $response['top_traits'] ?? [],
-            'growth_area'            => $response['growth_area'] ?? '',
-            'next_module_suggestion' => $response['next_module_suggestion'] ?? '',
+            'growth_area'            => $response['primary_growth_area']['name'] ?? ($response['growth_area'] ?? ''),
+            'next_module_suggestion' => $response['recommended_module']['title'] ?? ($response['next_module_suggestion'] ?? ''),
         ];
     }
 
@@ -77,15 +256,22 @@ class DiagnosticProfileService
         $modelId  = 'gemini-2.5-flash-lite';
         $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$modelId}:generateContent";
 
-        try {
-            $response = Http::withHeaders(['Content-Type' => 'application/json'])
-                ->timeout(30)
-                ->post("{$endpoint}?key={$key}", [
-                    'contents' => [['parts' => [['text' => $prompt]]]],
-                ]);
-        } catch (\Throwable $e) {
-            Log::error('Guest diagnostic profile Gemini call failed', ['error' => $e->getMessage()]);
-            return [];
+        $payload  = ['contents' => [['parts' => [['text' => $prompt]]]]];
+        $response = null;
+
+        // Retry once on 503 (Gemini demand spikes are transient)
+        foreach ([0, 3] as $delaySecs) {
+            if ($delaySecs > 0) sleep($delaySecs);
+            try {
+                $response = Http::withHeaders(['Content-Type' => 'application/json'])
+                    ->timeout(30)
+                    ->post("{$endpoint}?key={$key}", $payload);
+            } catch (\Throwable $e) {
+                Log::error('Guest diagnostic profile Gemini call failed', ['error' => $e->getMessage()]);
+                return [];
+            }
+            if ($response->status() !== 503) break;
+            Log::warning('Guest diagnostic profile Gemini 503 — retrying', ['attempt' => $delaySecs === 0 ? 1 : 2]);
         }
 
         if ($response->failed()) {
@@ -97,7 +283,7 @@ class DiagnosticProfileService
         }
 
         $content = $response->json('candidates.0.content.parts.0.text', '');
-        $content = trim(preg_replace('/^```json|```$/i', '', trim($content)));
+        $content = trim(preg_replace('/^```json|```$/im', '', trim($content)));
 
         $decoded = json_decode($content, true);
 

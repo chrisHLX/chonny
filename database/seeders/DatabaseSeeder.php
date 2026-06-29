@@ -38,10 +38,11 @@ class DatabaseSeeder extends Seeder
             ProficiencySeeder::class,
         ]);
 
-        // ========== GROUP 1B: AXES ==========
-        // Axes belong to categories, so must run after CategorySeeder
+        // ========== GROUP 1B: AXES + ARCHETYPES ==========
+        // Both belong to categories, so must run after CategorySeeder
         $this->call([
             GameAxesSeeder::class,
+            ArchetypeSeeder::class,
         ]);
 
         // ========== GROUP 2: REFERENCE DATA ==========
@@ -86,11 +87,13 @@ class DatabaseSeeder extends Seeder
             TraitsSeeder::class,
         ]);
 
-        // ========== WOW DIAGNOSTIC ==========
-        // Arena Playstyle Assessment — diagnostic module for WoW arena players.
+        // ========== DIAGNOSTIC MODULES ==========
+        // Playstyle/profile assessments for each game.
         // Requires SubjectSeeder, ProficiencySeeder, and TraitsSeeder to have run.
         $this->call([
             WoWDiagnosticModuleSeeder::class,
+            LoLDiagnosticModuleSeeder::class,
+            SC2DiagnosticModuleSeeder::class,
         ]);
     }
 }

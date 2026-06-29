@@ -17,4 +17,9 @@ class Category extends Model
     {
         return $this->hasMany(Axis::class);
     }
+
+    public function archetypes()
+    {
+        return $this->belongsToMany(Archetype::class);
+    }
 }

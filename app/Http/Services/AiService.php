@@ -15,10 +15,10 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log; 
 
 use App\Http\Services\HtmlFormatter;
-use App\Http\Services\VersioningService;
 use App\Http\Services\CreditService;
 
 use App\Jobs\GenerateQuestions;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 
@@ -91,8 +91,8 @@ class AiService
         $inputTokens = $this->estimateTokens($prompt);
 
         $start = microtime(true);
-        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
-            'model' => $model,
+        $json = $this->makeOpenAiRequest([
+            'model'    => $model,
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
                 ['role' => 'user', 'content' => $prompt],
@@ -101,7 +101,6 @@ class AiService
         ]);
         $durationMs = (int) round((microtime(true) - $start) * 1000);
 
-        $json = $response->json();
         $content = $json['choices'][0]['message']['content'] ?? '{}';
 
         $content = trim($content);
@@ -145,7 +144,16 @@ class AiService
             ],
         ]);
 
-        $decoded = json_decode($content, true);
+        try {
+            $decoded = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            Log::error('AI JSON decode failed', [
+                'error'   => $e->getMessage(),
+                'content' => $content,
+                'purpose' => $description,
+            ]);
+            return [];
+        }
 
         return is_array($decoded) ? $decoded : [];
     }
@@ -158,7 +166,7 @@ class AiService
         $inputTokens = $this->estimateTokens($prompt);
 
         $start = microtime(true);
-        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
+        $json = $this->makeOpenAiRequest([
             'model'    => $model,
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
@@ -168,7 +176,6 @@ class AiService
         ]);
         $durationMs = (int) round((microtime(true) - $start) * 1000);
 
-        $json    = $response->json();
         $content = $json['choices'][0]['message']['content'] ?? '';
 
         $content = trim(preg_replace('/^```json|```$/i', '', $content));
@@ -228,7 +235,7 @@ class AiService
         $inputTokens = $this->estimateTokens($prompt);
 
         $start = microtime(true);
-        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
+        $json = $this->makeOpenAiRequest([
             'model'    => $model,
             'messages' => [
                 ['role' => 'system', 'content' => 'You are a helpful assistant.'],
@@ -238,7 +245,6 @@ class AiService
         ]);
         $durationMs = (int) round((microtime(true) - $start) * 1000);
 
-        $json    = $response->json();
         $content = $json['choices'][0]['message']['content'] ?? '';
 
         $content = trim($content);
@@ -285,7 +291,7 @@ class AiService
         $inputTokens = $this->estimateTokens($prompt);
 
         $start = microtime(true);
-        $response = Http::withToken(config('services.openai.key'))->post('https://api.openai.com/v1/chat/completions', [
+        $json = $this->makeOpenAiRequest([
             'model'       => $model,
             'messages'    => [
                 ['role' => 'system', 'content' => $systemPrompt],
@@ -295,7 +301,6 @@ class AiService
         ]);
         $durationMs = (int) round((microtime(true) - $start) * 1000);
 
-        $json    = $response->json();
         $content = trim($json['choices'][0]['message']['content'] ?? '');
 
         $outputTokens = $this->estimateTokens($content);
@@ -322,6 +327,156 @@ class AiService
         ]);
 
         return $content;
+    }
+
+    private function makeOpenAiRequest(array $payload): array
+    {
+        return Http::withToken(config('services.openai.key'))
+            ->connectTimeout(10)
+            ->timeout(60)
+            ->retry(2, 1000)
+            ->post('https://api.openai.com/v1/chat/completions', $payload)
+            ->throw()
+            ->json();
+    }
+
+    private function getQuestionSchema(string $type): ?array
+    {
+        $answerSchemas = [
+            'mcq' => [
+                'type'                 => 'object',
+                'required'             => ['correct', 'options'],
+                'additionalProperties' => false,
+                'properties'           => [
+                    'correct' => ['type' => 'string'],
+                    'options' => ['type' => 'array', 'items' => ['type' => 'string']],
+                ],
+            ],
+            'true_false' => [
+                'type'                 => 'object',
+                'required'             => ['correct'],
+                'additionalProperties' => false,
+                'properties'           => [
+                    'correct' => ['type' => 'boolean'],
+                ],
+            ],
+            'ordering' => [
+                'type'                 => 'object',
+                'required'             => ['steps'],
+                'additionalProperties' => false,
+                'properties'           => [
+                    'steps' => ['type' => 'array', 'items' => ['type' => 'string']],
+                ],
+            ],
+        ];
+
+        if (!isset($answerSchemas[$type])) {
+            return null; // matching_pairs has dynamic object keys — stays on json_object mode
+        }
+
+        return [
+            'type'                 => 'object',
+            'required'             => ['questions'],
+            'additionalProperties' => false,
+            'properties'           => [
+                'questions' => [
+                    'type'  => 'array',
+                    'items' => [
+                        'type'                 => 'object',
+                        'required'             => ['question', 'type', 'skill_type', 'answer', 'difficulty', 'concepts'],
+                        'additionalProperties' => false,
+                        'properties'           => [
+                            'question'   => ['type' => 'string'],
+                            'type'       => ['type' => 'string', 'enum' => [$type]],
+                            'skill_type' => ['type' => 'string', 'enum' => ['recall', 'analysis', 'application']],
+                            'answer'     => $answerSchemas[$type],
+                            'difficulty' => ['type' => 'string', 'enum' => ['easy', 'medium', 'hard']],
+                            'concepts'   => ['type' => 'array', 'items' => ['type' => 'string']],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    private function callOpenAiJson(string $prompt, string $model, int $userID, string $description, ?array $schema = null): array
+    {
+        Log::debug('Our prompt sent to OpenAI (JSON mode)', ['prompt' => $prompt]);
+        Log::info("Using Model {$model}");
+
+        $inputTokens = $this->estimateTokens($prompt);
+
+        $responseFormat = $schema !== null
+            ? ['type' => 'json_schema', 'json_schema' => ['name' => 'questions', 'strict' => true, 'schema' => $schema]]
+            : ['type' => 'json_object'];
+
+        $start = microtime(true);
+        $json = $this->makeOpenAiRequest([
+            'model'           => $model,
+            'messages'        => [
+                ['role' => 'system', 'content' => 'You are a helpful assistant.'],
+                ['role' => 'user', 'content' => $prompt],
+            ],
+            'temperature'     => 0.2,
+            'response_format' => $responseFormat,
+        ]);
+        $durationMs = (int) round((microtime(true) - $start) * 1000);
+
+        $content = trim($json['choices'][0]['message']['content'] ?? '{}');
+
+        Log::debug('OpenAI JSON mode response', ['content' => $content]);
+
+        $outputTokens = $this->estimateTokens($content);
+        $usage        = $this->tokenService->calculateCreditCost($model, $inputTokens, $outputTokens);
+
+        $this->creditService->spendAiCredits($userID, $usage['credits']['charged'], $description);
+
+        Log::info('AI token usage', [
+            'model'           => $usage['model'],
+            'input_tokens'    => $usage['input_tokens'],
+            'output_tokens'   => $usage['output_tokens'],
+            'cost_usd'        => $usage['cost']['total_usd'],
+            'input_usd'       => $usage['cost']['input_usd'],
+            'output_usd'      => $usage['cost']['output_usd'],
+            'credits_charged' => $usage['credits']['charged'],
+            'credits_raw'     => $usage['credits']['raw'],
+        ]);
+
+        AiRequest::create([
+            'user_id'         => $userID,
+            'purpose'         => $description,
+            'prompt'          => $prompt,
+            'template_prompt' => '',
+            'response'        => $content,
+            'duration_ms'     => $durationMs,
+            'metadata'        => [
+                'model'           => $model,
+                'input_tokens'    => $inputTokens,
+                'output_tokens'   => $outputTokens,
+                'cost_usd'        => $usage['cost']['total_usd'],
+                'input_usd'       => $usage['cost']['input_usd'],
+                'output_usd'      => $usage['cost']['output_usd'],
+                'credits_charged' => $usage['credits']['charged'],
+            ],
+        ]);
+
+        try {
+            $decoded = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            Log::error('AI JSON decode failed in question generation', [
+                'error'   => $e->getMessage(),
+                'content' => $content,
+                'purpose' => $description,
+            ]);
+            throw $e;
+        }
+
+        if (isset($decoded['questions']) && is_array($decoded['questions'])) {
+            return $decoded['questions'];
+        }
+
+        Log::warning('AI response did not contain expected "questions" key', ['keys' => array_keys($decoded)]);
+        return [];
     }
 
     /* --------------------------------------------------------- GEMINI CALLS & HELPERS --------------------------------------------------------- */
@@ -575,7 +730,7 @@ class AiService
         EOT;
 
 
-        $response = $this->callOpenAi($prompt);
+        $response = $this->callOpenAi($prompt, 'gpt-4o-mini', auth()->id() ?? 0, 'tag_concepts');
         $concepts = $response['concepts'] ?? [];
 
         \Log::info('This is the custom LOG', ['response' => $concepts]);
@@ -831,126 +986,115 @@ class AiService
 
     /* --------------------------------------------------------- MODULE GENERATION --------------------------------------------------------- */
 
-    // TODO: dead code — review before removing
-    public function generateNewModule($moduleID, array $IDs)
+    private function normalizeQuestion(array $qData, string $type): array
     {
-        \Log::info("new mod generated");
-        $module = Module::find($moduleID);
-        $module = $this->followUpQuestions($module, $IDs);
-        return $module;
-    }
+        if ($type === 'ordering') {
+            // Strip numbered steps that model placed inside the question stem
+            if (isset($qData['question']) && str_contains($qData['question'], ':')) {
+                $beforeColon = trim(strtok($qData['question'], ':'));
+                if (mb_strlen($beforeColon) >= 20) {
+                    $qData['question'] = rtrim($beforeColon, '.') . '.';
+                }
+            }
 
-    // TODO: dead code — review before removing
-    public function generateHarderModule($moduleID, array $IDs)
-    {
-        \Log::info("harder mod generated");
-    }
-
-    // TODO: dead code — review before removing (hardcoded StarCraft 2 system prompt, HTTP call marked cancelled)
-    private function followUpQuestions(Module $module, array $questionIds)
-    {
-        // Moved the variables up the top.
-        $user = auth()->user();
-        // Filter out questions that were answered correctly
-        $questionList = "";
-        $ogModule = $module;
-        // Get the latest version number of this parent’s children
-        $parentVersion = $ogModule->version;
-        $latestChildVersion = $ogModule->version;
-        // Lets change the name of the module
-
-        // If no children exist yet, start at 2 (since v1 is the parent itself) need a latest child version
-        $newVersion = VersioningService::next($parentVersion, $latestChildVersion);
-
-        $questions = Question::whereIn('id', $questionIds)->get()->map(fn($q) => [
-            'question' => $q->question,
-            'type'     => $q->type,
-            'answer'   => $q->answer,
-        ])->toArray();
-
-        foreach ($questions as $index => $q) {
-            $formattedAnswer = $this->formatAnswer($q); // We are fomatting the answer to handle different types like ordering, matching pairs (arrays not strings)
-            \logger()->info('Formatted answer for question', ['formattedAnswer' => $formattedAnswer]);
-            $questionList .= ($index + 1) . ". " . $q['question'] . " — " . $formattedAnswer . "\n";
+            // Fix flat array answer → {"steps": [...]}
+            $answer = $qData['answer'] ?? null;
+            if (is_array($answer) && !isset($answer['steps'])) {
+                $qData['answer'] = ['steps' => array_values($answer)];
+            }
         }
 
-        \logger()->info('Compiled question list for AI prompt', ['questionList' => $questionList]);
+        return $qData;
+    }
 
-        // Create the prompt
-        $prompt = "The user struggles to answer the following questions correctly:\n" .
-                $questionList .
-                "\nProvide a short summary that will help them understand the concepts better (try word it differently and).
-                
-                Provide the response in this format:
-                Summary: [Your summary here]
-                
-                ";
+    private function isValidQuestion(array $qData, string $type, $conceptMap): bool
+    {
+        if (!isset($qData['question'], $qData['answer'])) {
+            Log::warning('Question missing required fields', ['data' => $qData]);
+            return false;
+        }
 
-        // Call OpenAI API (CANCELLED AT THE MOMENT)
-        
-        $response = Http::withToken(config('services.openai.key'))->post(
-            'https://api.openai.com/v1/chat/completions',
-            [
-                'model' => 'gpt-4.1-nano',
-                'messages' => [
-                    ['role' => 'system', 'content' => 'You are helpful starcraft 2 coach.'],
-                    ['role' => 'user', 'content' => $prompt],
-                ],
-                'temperature' => 0.2,
-            ]
-        );
+        $stem   = $qData['question'];
+        $answer = $qData['answer'];
 
-        // Parse and return
-        $data = $response->json();
+        $stemLimits = [
+            'mcq'            => 220,
+            'true_false'     => 220,
+            'matching_pairs' => 180,
+            'ordering'       => 140,
+            'open'           => 260,
+        ];
+        $stemLimit = $stemLimits[$type] ?? 500;
 
-        $content = $data['choices'][0]['message']['content'] ?? '';
-
-        // Now send the newly created content back to ai to generate questions
-        $questions = $this->generateQuestions($content, $questionList); 
-
-        AiRequest::create([
-                'user_id' => auth()->id(),
-                'purpose' => 'follow_up_questions',
-                'prompt' => $prompt,
-                'response' => $content,
-                'metadata' => [
-                    'module_id' => "N/A",
-                    'model' => 'gpt-4o-mini',
-                ],
+        if (mb_strlen($stem) > $stemLimit) {
+            Log::warning("Question stem exceeds {$stemLimit} char limit for {$type}", [
+                'length' => mb_strlen($stem),
+                'stem'   => mb_substr($stem, 0, 80),
             ]);
-
-        $module = Module::create([
-            'name'          => $ogModule->name . now()->toDateTimeString(),
-            'description'   => "AI generated module to help user with problematic questions:" . $questionList,
-            'version'       => $newVersion,
-            'parent_id' => $ogModule->id,
-            'created_by'    => auth()->id(),
-        ]);
-
-        $formattedContent = $this->formatter->format($content);
-
-        $module->modulePages()->create([
-            'title'       => $module->name,
-            'content'     => $formattedContent,
-            'page_number' => 1,
-            'created_by'  => auth()->id(),
-            'updated_by'  => auth()->id(),
-        ]);
-
-        $user->modules()->attach($module->id, [
-            'status' => 'in_progress',
-            'score' => 0,
-            'last_activity_at' => now(),
-            'completed_at' => null
-        ]);
-
-        foreach ($questions as $q) {    
-            $q->modules()->attach($module->id); // attach to the new module
+            return false;
         }
 
-        \logger()->info('Generated follow-up questions', ['questions' => $questions]);
+        $concepts = $qData['concepts'] ?? [];
+        if (empty($concepts) || !is_array($concepts)) {
+            Log::warning('Question missing concepts', ['question' => mb_substr($stem, 0, 80)]);
+            return false;
+        }
+        foreach ($concepts as $concept) {
+            if (!isset($conceptMap[$concept])) {
+                Log::warning('Question references unknown concept', ['concept' => $concept, 'type' => $type]);
+                return false;
+            }
+        }
 
-        return $module;
+        switch ($type) {
+            case 'mcq':
+                if (!isset($answer['correct'], $answer['options']) || !is_array($answer['options'])) {
+                    Log::warning('MCQ answer malformed', ['answer' => $answer]);
+                    return false;
+                }
+                if (!in_array($answer['correct'], $answer['options'], true)) {
+                    Log::warning('MCQ correct answer not in options', ['answer' => $answer]);
+                    return false;
+                }
+                if (count(array_unique($answer['options'])) !== 4) {
+                    Log::warning('MCQ does not have exactly 4 unique options', ['count' => count(array_unique($answer['options']))]);
+                    return false;
+                }
+                break;
+
+            case 'true_false':
+                if (!isset($answer['correct']) || !is_bool($answer['correct'])) {
+                    Log::warning('True/false answer malformed', ['answer' => $answer]);
+                    return false;
+                }
+                break;
+
+            case 'ordering':
+                if (!isset($answer['steps']) || !is_array($answer['steps']) || count($answer['steps']) < 3) {
+                    Log::warning('Ordering answer malformed or too few steps', ['answer' => $answer]);
+                    return false;
+                }
+                break;
+
+            case 'matching_pairs':
+                if (!isset($answer['correct'], $answer['pairs']) || !is_array($answer['correct'])) {
+                    Log::warning('Matching pairs answer malformed', ['answer' => $answer]);
+                    return false;
+                }
+                if (count($answer['correct']) < 3) {
+                    Log::warning('Matching pairs has fewer than 3 pairs', ['answer' => $answer]);
+                    return false;
+                }
+                break;
+        }
+
+        $validDifficulties = ['easy', 'medium', 'hard'];
+        if (isset($qData['difficulty']) && !in_array($qData['difficulty'], $validDifficulties, true)) {
+            Log::warning('Invalid difficulty value', ['difficulty' => $qData['difficulty']]);
+            return false;
+        }
+
+        return true;
     }
 
     //The content will be with html tag, we should strip them out before adding to the prompt
@@ -984,58 +1128,58 @@ class AiService
         $examples = [
             'mcq' => '[
                 {
-                    "question": "Which organ in the human body is primarily responsible for filtering blood?",
+                    "question": "Which option correctly describes X in scenario Y?",
                     "type": "mcq",
                     "skill_type": "recall",
                     "answer": {
-                        "correct": "Kidney",
-                        "options": ["Kidney", "Liver", "Spleen", "Pancreas"]
+                        "correct": "Option A",
+                        "options": ["Option A", "Option B", "Option C", "Option D"]
                     },
                     "difficulty": "easy",
-                    "concepts": ["Human Biology"]
+                    "concepts": ["Concept Name"]
                 }
             ]',
             'true_false' => '[
                 {
-                    "question": "True or False: The mitochondria is responsible for producing ATP through cellular respiration.",
+                    "question": "True or False: [specific factual claim from the content].",
                     "type": "true_false",
                     "skill_type": "recall",
                     "answer": { "correct": true },
                     "difficulty": "easy",
-                    "concepts": ["Cell Biology"]
+                    "concepts": ["Concept Name"]
                 }
             ]',
             'matching_pairs' => '[
                 {
-                    "question": "Match each country to its capital city.",
+                    "question": "Match each item to its correct description.",
                     "type": "matching_pairs",
                     "skill_type": "recall",
                     "answer": {
                         "correct": {
-                            "France": "Paris",
-                            "Japan": "Tokyo",
-                            "Brazil": "Brasília",
-                            "Egypt": "Cairo"
+                            "Item A": "Description 1",
+                            "Item B": "Description 2",
+                            "Item C": "Description 3",
+                            "Item D": "Description 4"
                         },
                         "pairs": {
-                            "keys": ["France", "Japan", "Brazil", "Egypt"],
-                            "values": ["Cairo", "Brasília", "Paris", "Tokyo"]
+                            "keys": ["Item A", "Item B", "Item C", "Item D"],
+                            "values": ["Description 4", "Description 1", "Description 3", "Description 2"]
                         }
                     },
                     "difficulty": "easy",
-                    "concepts": ["World Geography"]
+                    "concepts": ["Concept Name"]
                 }
             ]',
             'ordering' => '[
                 {
-                    "question": "Put the steps of the scientific method in the correct order.",
+                    "question": "Put the steps of [specific process] in the correct order.",
                     "type": "ordering",
                     "skill_type": "application",
                     "answer": {
-                        "steps": ["Observe a phenomenon", "Form a hypothesis", "Design an experiment", "Collect data", "Draw conclusions"]
+                        "steps": ["First action", "Second action", "Third action", "Fourth action"]
                     },
                     "difficulty": "easy",
-                    "concepts": ["Research Methods"]
+                    "concepts": ["Concept Name"]
                 }
             ]',
         ];
@@ -1126,8 +1270,8 @@ class AiService
 
     REQUIREMENTS:
     - {$requirements}
-    - IMPORTANT Return JSON ONLY in this format Explicitly:
-    {$exampleJson}
+    - IMPORTANT Return a JSON object with a "questions" key containing an array in this format:
+    {"questions": {$exampleJson}}
     - IMPORTANT: Tag each question using ONLY concepts from this list. Do not invent new concept names. Do not use axis names as concepts. Only use: {$usableConcepts}
     - Each question must include a skill_type field. Assign the most appropriate:
       recall = tests memory and recognition of facts
@@ -1140,7 +1284,7 @@ class AiService
         
         // Call the AI safely
         try {
-            $questionsData = $this->callOpenAi($prompt, $model, $userID, $aiDescription);
+            $questionsData = $this->callOpenAiJson($prompt, $model, $userID, $aiDescription, $this->getQuestionSchema($type));
         } catch (\Throwable $e) {
             \Log::error("OpenAI request failed for {$type}: " . $e->getMessage());
             return [];
@@ -1152,51 +1296,61 @@ class AiService
             return [];
         }
 
-        $createdQuestions = [];
-
+        // Normalize and validate the full batch before touching the DB
+        $validBatch = [];
         foreach ($questionsData as $qData) {
-            // Skip malformed entries
             if (!isset($qData['question'], $qData['answer'])) {
-                \Log::warning("Malformed question data skipped", ['data' => $qData]);
+                \Log::warning('Malformed question data skipped', ['data' => $qData]);
                 continue;
             }
-
-            // Normalize ordering answer if AI returned a flat array instead of {"steps": [...]}
-            $qAnswer = $qData['answer'];
-            $qType   = $qData['type'] ?? $type;
-            if ($qType === 'ordering' && is_array($qAnswer) && !isset($qAnswer['steps'])) {
-                $qAnswer = ['steps' => array_values($qAnswer)];
+            $qType = $qData['type'] ?? $type;
+            $qData = $this->normalizeQuestion($qData, $qType);
+            if ($this->isValidQuestion($qData, $qType, $conceptMap)) {
+                $validBatch[] = ['data' => $qData, 'type' => $qType];
             }
-
-            // Create the question
-            $question = Question::create([
-                'question'   => $qData['question'],
-                'answer'     => $qAnswer,
-                'type'       => $qData['type'] ?? $type,
-                'difficulty' => $qData['difficulty'] ?? 'medium',
-                'skill_type' => $qData['skill_type'] ?? 'recall',
-                'created_by' => auth()->id() ?? 1,
-            ]);
-
-            // Map and attach concept IDs
-            $conceptIds = collect($qData['concepts'] ?? [])
-                ->map(fn($name) => $conceptMap[$name] ?? null)
-                ->filter()
-                ->unique()
-                ->values();
-
-            if ($conceptIds->isEmpty()) {
-                \Log::info("No valid concept IDs found for question: {$question->id}");
-            } else {
-                $question->concepts()->sync($conceptIds);
-            }
-            $newModule->questions()->syncWithoutDetaching($question->id);
-
-            $createdQuestions[] = $question;
         }
 
-        // sync selected questions
-        
+        $minimumRequired = max(1, (int) ceil($questionAmount * 0.5));
+        if (count($validBatch) < $minimumRequired) {
+            \Log::warning("Too few valid {$type} questions after validation — aborting save.", [
+                'valid'     => count($validBatch),
+                'requested' => $questionAmount,
+                'minimum'   => $minimumRequired,
+            ]);
+            throw new \RuntimeException(
+                "Question generation produced too few valid {$type} questions (" . count($validBatch) . " of {$minimumRequired} required)."
+            );
+        }
+
+        $createdQuestions = [];
+
+        DB::transaction(function () use ($validBatch, $conceptMap, $newModule, &$createdQuestions) {
+            foreach ($validBatch as ['data' => $qData, 'type' => $qType]) {
+                $question = Question::create([
+                    'question'   => $qData['question'],
+                    'answer'     => $qData['answer'],
+                    'type'       => $qType,
+                    'difficulty' => $qData['difficulty'] ?? 'medium',
+                    'skill_type' => $qData['skill_type'] ?? 'recall',
+                    'created_by' => auth()->id() ?? 1,
+                ]);
+
+                $conceptIds = collect($qData['concepts'] ?? [])
+                    ->map(fn($name) => $conceptMap[$name] ?? null)
+                    ->filter()
+                    ->unique()
+                    ->values();
+
+                if ($conceptIds->isEmpty()) {
+                    \Log::info("No valid concept IDs found for question: {$question->id}");
+                } else {
+                    $question->concepts()->sync($conceptIds);
+                }
+                $newModule->questions()->syncWithoutDetaching($question->id);
+
+                $createdQuestions[] = $question;
+            }
+        });
 
         return $createdQuestions;
     }

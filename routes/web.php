@@ -102,9 +102,6 @@ Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->
 Route::post('/questions/{question}/answer', [QuestionController::class, 'submit'])->name('questions.answer');
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 
-//get problematic questions
-Route::get('/questions/problematic', [QuestionController::class, 'problematic'])->name('questions.problematic')->middleware('auth');
-
 //create and store modules
 Route::get('modules', Index::class)->name('modules.index');
 //Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');

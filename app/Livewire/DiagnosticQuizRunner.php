@@ -8,6 +8,7 @@ use App\Models\UserAxisMastery;
 use App\Models\PlayerTrait;
 use App\Models\UserConceptMastery;
 use App\Models\UserTraitEvidence;
+use App\Models\UserProfileEvidence;
 use App\Http\Services\DiagnosticProfileService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -34,6 +35,7 @@ class DiagnosticQuizRunner extends Component
 
     // Diagnostic-specific
     public array $traitScores = [];
+    public array $surveyAnswers = [];   // keyed by question_key — context facts, not trait signals
     public array $guestEvidenceLog = [];
     public ?array $diagnosticProfile = null;
     public bool $retakingDiagnostic = false;
@@ -57,6 +59,7 @@ class DiagnosticQuizRunner extends Component
             if ($stored && isset($stored['diagnostic_profile']) && !$this->retakingDiagnostic) {
                 $this->diagnosticProfile  = $stored['diagnostic_profile'];
                 $this->traitScores        = $stored['trait_scores'] ?? [];
+                $this->surveyAnswers      = $stored['survey_answers'] ?? [];
                 $this->quizFullyComplete  = true;
                 $this->completed          = true;
                 $this->status             = 'completed';
@@ -145,6 +148,48 @@ class DiagnosticQuizRunner extends Component
                             'selected_option_index' => $logOptionIndex,
                         ];
                     }
+                }
+            }
+        }
+
+        // Survey questions collect self-reported context — not trait signals
+        if ($question->type === 'survey_mcq') {
+            $options        = $question->answer['options'] ?? [];
+            $selectedOption = collect($options)->first(fn($opt) => ($opt['text'] ?? null) === $this->answer);
+
+            if ($selectedOption) {
+                $questionKey                       = $question->answer['question_key'] ?? "survey_{$question->id}";
+                $this->surveyAnswers[$questionKey] = [
+                    'text'  => $selectedOption['text'],
+                    'value' => $selectedOption['value'] ?? null,
+                ];
+
+                if ($this->guestMode) {
+                    $this->guestEvidenceLog[] = [
+                        'type'         => 'survey',
+                        'question_id'  => $question->id,
+                        'question_key' => $questionKey,
+                        'answer_text'  => $selectedOption['text'],
+                        'answer_value' => $selectedOption['value'] ?? null,
+                    ];
+                } elseif (auth()->check()) {
+                    $module     = Module::with('subject')->find($this->moduleId);
+                    $categoryId = $module?->subject?->category_id;
+                    $subjectId  = $module?->subject_id;
+
+                    UserProfileEvidence::updateOrCreate(
+                        ['user_id' => auth()->id(), 'question_id' => $question->id],
+                        [
+                            'module_id'    => $this->moduleId,
+                            'category_id'  => $categoryId,
+                            'subject_id'   => $subjectId,
+                            'question_key' => $questionKey,
+                            'answer_text'  => $selectedOption['text'],
+                            'answer_value' => $selectedOption['value'] ?? null,
+                            'metadata'     => null,
+                            'answered_at'  => now(),
+                        ]
+                    );
                 }
             }
         }
@@ -243,6 +288,7 @@ class DiagnosticQuizRunner extends Component
         $this->quizFullyComplete = false;
         $this->questionResults   = [];
         $this->traitScores       = [];
+        $this->surveyAnswers     = [];
         $this->guestEvidenceLog  = [];
         $this->diagnosticProfile = null;
         $this->currentIndex      = 0;
@@ -338,8 +384,9 @@ class DiagnosticQuizRunner extends Component
         }
 
         try {
+            $moduleModel = Module::with(['subject.category'])->find($this->moduleId);
             $this->diagnosticProfile = app(DiagnosticProfileService::class)
-                ->generateProfile($this->traitScores, $axisScores, $conceptScores, $userId ?? 0, $this->guestMode);
+                ->generateProfile($this->traitScores, $axisScores, $conceptScores, $userId ?? 0, $this->guestMode, $this->surveyAnswers, $moduleModel);
         } catch (\Throwable $e) {
             Log::error('Diagnostic profile generation failed', ['error' => $e->getMessage()]);
             $this->diagnosticProfile = [
@@ -355,6 +402,7 @@ class DiagnosticQuizRunner extends Component
             session(['guest_quiz_results.' . $this->moduleId => [
                 'module_id'          => $this->moduleId,
                 'trait_scores'       => $this->traitScores,
+                'survey_answers'     => $this->surveyAnswers,
                 'question_evidence'  => $this->guestEvidenceLog,
                 'diagnostic_profile' => $this->diagnosticProfile,
                 'completed_at'       => now()->toIso8601String(),

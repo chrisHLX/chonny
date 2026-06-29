@@ -2,6 +2,23 @@
 
     {{-- DIAGNOSTIC COMPLETION SCREEN --}}
     @if ($diagnosticProfile)
+        @php
+            $profileTitle    = $diagnosticProfile['profile_title'] ?? ($diagnosticProfile['player_type'] ?? 'Unclassified');
+            $summary         = $diagnosticProfile['summary'] ?? ($diagnosticProfile['narrative'] ?? '');
+            $evidence        = $diagnosticProfile['evidence'] ?? [];
+            $selfReportCheck = $diagnosticProfile['self_report_check'] ?? null;
+            $inGamePattern   = $diagnosticProfile['likely_in_game_pattern'] ?? '';
+            $strength        = $diagnosticProfile['primary_strength'] ?? null;
+            $growthArea      = $diagnosticProfile['primary_growth_area'] ?? null;
+            $growthAreaName  = is_array($growthArea) ? ($growthArea['name'] ?? '') : ($diagnosticProfile['growth_area'] ?? '');
+            $recModule       = $diagnosticProfile['recommended_module'] ?? null;
+            $recTitle        = is_array($recModule) ? ($recModule['title'] ?? '') : ($diagnosticProfile['next_module_suggestion'] ?? '');
+            $recReason       = is_array($recModule) ? ($recModule['reason'] ?? '') : '';
+            $practiceGoal    = $diagnosticProfile['next_practice_goal'] ?? '';
+            $confidence      = $diagnosticProfile['confidence_level'] ?? null;
+            $topTraits       = $diagnosticProfile['top_traits'] ?? [];
+        @endphp
+
         <div class="space-y-3">
 
             {{-- Header --}}
@@ -12,21 +29,48 @@
                 <x-ornament.corner position="br" class="bottom-0 right-0 w-10 h-10 text-gold/50"/>
                 <x-mc-icon name="icon-complete" class="w-12 h-12 text-gold mb-4"/>
                 <h2 class="text-[18px] font-semibold text-ink mb-1">Assessment Complete</h2>
-                <p class="text-[20px] font-display italic text-gold mt-2">{{ $diagnosticProfile['player_type'] ?? 'Unclassified' }}</p>
+                <p class="text-[20px] font-display italic text-gold mt-2">{{ $profileTitle }}</p>
+                @if ($confidence)
+                    <span class="inline-block mt-2 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest rounded-full
+                        {{ $confidence === 'high' ? 'bg-gold-subtle text-gold border border-gold/20' : ($confidence === 'low' ? 'bg-surface-3 text-ink-subtle border border-line' : 'bg-surface-3 text-ink-subtle border border-line') }}">
+                        {{ $confidence }} confidence
+                    </span>
+                @endif
             </div>
 
-            {{-- Narrative --}}
-            <div class="linear-card p-6 relative overflow-hidden">
-                <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/30"/>
-                <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/30"/>
-                <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/30"/>
-                <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/30"/>
-                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Your answers suggest...</p>
-                <p class="text-[14px] text-ink leading-relaxed">{{ $diagnosticProfile['narrative'] ?? '' }}</p>
-            </div>
+            {{-- Summary --}}
+            @if ($summary)
+                <div class="linear-card p-6 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/30"/>
+                    <p class="text-[14px] text-ink leading-relaxed">{{ $summary }}</p>
+                </div>
+            @endif
 
-            {{-- Top traits --}}
-            @if (!empty($diagnosticProfile['top_traits']))
+            {{-- Evidence --}}
+            @if (!empty($evidence))
+                <div class="linear-card p-5 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
+                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">What we observed</p>
+                    <div class="space-y-3">
+                        @foreach ($evidence as $item)
+                            <div class="flex gap-3">
+                                <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+                                <div>
+                                    <p class="text-[13px] font-medium text-ink">{{ $item['signal'] ?? '' }}</p>
+                                    <p class="text-[12px] text-ink-muted leading-relaxed mt-0.5">{{ $item['interpretation'] ?? '' }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @elseif (!empty($topTraits))
+                {{-- Fallback: old-format top traits --}}
                 <div class="linear-card p-5 relative overflow-hidden">
                     <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
                     <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
@@ -34,22 +78,72 @@
                     <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
                     <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Top Traits</p>
                     <div class="flex flex-wrap gap-2">
-                        @foreach ($diagnosticProfile['top_traits'] as $trait)
+                        @foreach ($topTraits as $trait)
                             <span class="badge-gold text-[12px] px-3 py-1 rounded-full">{{ str($trait)->headline() }}</span>
                         @endforeach
                     </div>
                 </div>
             @endif
 
-            {{-- Growth area --}}
-            @if (!empty($diagnosticProfile['growth_area']))
-                <div class="linear-card p-5 relative overflow-hidden border border-violet/20">
-                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-violet/30"/>
-                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-violet/30"/>
-                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-violet/30"/>
-                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-violet/30"/>
-                    <p class="text-[11px] font-semibold text-violet uppercase tracking-wide mb-2">Growth Area</p>
-                    <p class="text-[13px] text-ink-muted leading-relaxed">{{ $diagnosticProfile['growth_area'] }}</p>
+            {{-- Self-report alignment --}}
+            @if ($selfReportCheck && !empty($selfReportCheck['comment']))
+                @php
+                    $alignment = $selfReportCheck['alignment'] ?? 'insufficient_data';
+                    $alignColor = match($alignment) {
+                        'aligned'           => 'text-gold border-gold/20 bg-gold-subtle',
+                        'conflicting'       => 'text-violet border-violet/20 bg-violet-subtle',
+                        'partially_aligned' => 'text-ink-muted border-line bg-surface-2',
+                        default             => 'text-ink-subtle border-line bg-surface-2',
+                    };
+                @endphp
+                <div class="linear-card p-4 relative overflow-hidden border {{ $alignColor }}">
+                    <p class="text-[11px] font-semibold uppercase tracking-wide mb-1
+                        {{ $alignment === 'conflicting' ? 'text-violet' : 'text-ink-subtle' }}">
+                        Self-report {{ str_replace('_', ' ', $alignment) }}
+                    </p>
+                    <p class="text-[13px] text-ink-muted leading-relaxed">{{ $selfReportCheck['comment'] }}</p>
+                </div>
+            @endif
+
+            {{-- Strength + Growth area --}}
+            @if ($strength || $growthAreaName)
+                <div class="grid grid-cols-2 gap-3">
+                    @if ($strength)
+                        <div class="linear-card p-4 relative overflow-hidden">
+                            <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-gold/20"/>
+                            <p class="text-[10px] font-semibold text-gold uppercase tracking-widest mb-1.5">Strength</p>
+                            <p class="text-[13px] font-medium text-ink">{{ $strength['name'] ?? '' }}</p>
+                            @if (!empty($strength['concepts']))
+                                <div class="flex flex-wrap gap-1 mt-2">
+                                    @foreach (array_slice($strength['concepts'], 0, 3) as $concept)
+                                        <span class="text-[10px] text-ink-subtle px-1.5 py-0.5 bg-surface-3 rounded">{{ $concept }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+                    @if ($growthAreaName)
+                        <div class="linear-card p-4 relative overflow-hidden border border-violet/20">
+                            <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-violet/30"/>
+                            <p class="text-[10px] font-semibold text-violet uppercase tracking-widest mb-1.5">Growth Area</p>
+                            <p class="text-[13px] font-medium text-ink">{{ $growthAreaName }}</p>
+                            @if (is_array($growthArea) && !empty($growthArea['concepts']))
+                                <div class="flex flex-wrap gap-1 mt-2">
+                                    @foreach (array_slice($growthArea['concepts'], 0, 3) as $concept)
+                                        <span class="text-[10px] text-ink-subtle px-1.5 py-0.5 bg-surface-3 rounded">{{ $concept }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+                </div>
+            @endif
+
+            {{-- In-game pattern --}}
+            @if ($inGamePattern)
+                <div class="linear-card p-4 relative overflow-hidden">
+                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-1.5">How this shows up in play</p>
+                    <p class="text-[13px] text-ink-muted leading-relaxed italic">{{ $inGamePattern }}</p>
                 </div>
             @endif
 
@@ -78,15 +172,20 @@
                 </div>
             @endif
 
-            {{-- Next module suggestion --}}
-            @if (!empty($diagnosticProfile['next_module_suggestion']))
+            {{-- Recommended module --}}
+            @if ($recTitle)
                 <div class="linear-card p-5 relative overflow-hidden">
                     <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
                     <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
                     <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
                     <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
-                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-2">Recommended Next Step</p>
-                    <p class="text-[14px] text-ink mb-4">{{ $diagnosticProfile['next_module_suggestion'] }}</p>
+                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-2">Recommended Next Module</p>
+                    <p class="text-[15px] font-medium text-ink mb-1">{{ $recTitle }}</p>
+                    @if ($recReason)
+                        <p class="text-[13px] text-ink-muted leading-relaxed mb-4">{{ $recReason }}</p>
+                    @else
+                        <div class="mb-4"></div>
+                    @endif
                     <a href="{{ route('modules.index') }}"
                        class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
                         Explore recommended training
@@ -94,6 +193,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
                     </a>
+                </div>
+            @endif
+
+            {{-- Next practice goal --}}
+            @if ($practiceGoal)
+                <div class="linear-card p-4 relative overflow-hidden border border-gold/10">
+                    <p class="text-[11px] font-semibold text-gold uppercase tracking-wide mb-1.5">Try this next session</p>
+                    <p class="text-[13px] text-ink leading-relaxed">{{ $practiceGoal }}</p>
                 </div>
             @endif
 
@@ -134,13 +241,29 @@
         </div>
 
         {{-- Question card --}}
-        <div class="linear-card p-6 relative overflow-hidden" wire:key="question-{{ $question->id }}" x-transition>
-            <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/40"/>
-            <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/40"/>
-            <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/40"/>
-            <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/40"/>
+        @php $isSurvey = $question->type === 'survey_mcq'; @endphp
+
+        <div class="linear-card p-6 relative overflow-hidden {{ $isSurvey ? 'border border-violet/25' : '' }}"
+             wire:key="question-{{ $question->id }}" x-transition>
+
+            @if ($isSurvey)
+                <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-violet/30"/>
+                <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-violet/30"/>
+                <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-violet/30"/>
+                <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-violet/30"/>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-violet-subtle border border-violet/20 mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-violet shrink-0"></span>
+                    <span class="text-[10px] font-semibold text-violet uppercase tracking-widest">About You</span>
+                </div>
+            @else
+                <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/40"/>
+                <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/40"/>
+                <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/40"/>
+                <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/40"/>
+            @endif
+
             <p class="text-[15px] font-medium text-ink leading-relaxed mb-5">
-                <span class="text-accent font-semibold mr-1">{{ $currentIndex + 1 }}.</span>
+                <span class="{{ $isSurvey ? 'text-violet' : 'text-accent' }} font-semibold mr-1">{{ $currentIndex + 1 }}.</span>
                 {{ $question->question }}
             </p>
 
@@ -148,18 +271,30 @@
                   x-init="setInterval(() => elapsed++, 1000)"
                   x-on:submit.prevent="$wire.submit({ elapsed })">
 
-                @if ($question->type === 'diagnostic_mcq')
+                @if (in_array($question->type, ['diagnostic_mcq', 'survey_mcq']))
                     <div class="space-y-2">
                         @foreach ($question->answer['options'] as $option)
-                            <label class="flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors"
-                                   :class="$wire.answer === @js($option['text'])
-                                       ? 'border-accent bg-accent/5 text-ink'
-                                       : 'border-line text-ink-muted hover:bg-surface-2 hover:border-line-strong'">
-                                <div class="w-3.5 h-3.5 rounded-full border-2 shrink-0 transition-colors"
-                                     :class="$wire.answer === @js($option['text']) ? 'border-accent bg-accent' : 'border-line-strong'"></div>
-                                <input type="radio" wire:model="answer" value="{{ $option['text'] }}" class="sr-only">
-                                <span class="text-[13px]">{{ $option['text'] }}</span>
-                            </label>
+                            @if ($isSurvey)
+                                <label class="flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors"
+                                       :class="$wire.answer === @js($option['text'])
+                                           ? 'border-violet bg-violet/5 text-ink'
+                                           : 'border-line text-ink-muted hover:bg-surface-2 hover:border-violet/30'">
+                                    <div class="w-3.5 h-3.5 rounded-full border-2 shrink-0 transition-colors"
+                                         :class="$wire.answer === @js($option['text']) ? 'border-violet bg-violet' : 'border-line-strong'"></div>
+                                    <input type="radio" wire:model="answer" value="{{ $option['text'] }}" class="sr-only">
+                                    <span class="text-[13px]">{{ $option['text'] }}</span>
+                                </label>
+                            @else
+                                <label class="flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors"
+                                       :class="$wire.answer === @js($option['text'])
+                                           ? 'border-accent bg-accent/5 text-ink'
+                                           : 'border-line text-ink-muted hover:bg-surface-2 hover:border-line-strong'">
+                                    <div class="w-3.5 h-3.5 rounded-full border-2 shrink-0 transition-colors"
+                                         :class="$wire.answer === @js($option['text']) ? 'border-accent bg-accent' : 'border-line-strong'"></div>
+                                    <input type="radio" wire:model="answer" value="{{ $option['text'] }}" class="sr-only">
+                                    <span class="text-[13px]">{{ $option['text'] }}</span>
+                                </label>
+                            @endif
                         @endforeach
                     </div>
                 @endif
@@ -168,9 +303,10 @@
                     <button type="submit"
                             wire:loading.attr="disabled"
                             wire:target="submit"
-                            class="w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            class="w-full py-2.5 text-[13px] font-medium rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2
+                                   {{ $isSurvey ? 'text-white bg-violet-muted hover:bg-violet border border-violet/40' : 'text-white bg-accent hover:bg-accent-hover' }}"
                             :disabled="!$wire.answer">
-                        <span wire:loading.remove wire:target="submit">Submit Answer</span>
+                        <span wire:loading.remove wire:target="submit">{{ $isSurvey ? 'Next' : 'Submit Answer' }}</span>
                         <span wire:loading wire:target="submit" class="flex items-center gap-2">
                             <span class="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                             Submitting…

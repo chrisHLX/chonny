@@ -57,13 +57,18 @@ class WoWDiagnosticModuleSeeder extends Seeder
     private function seedQuestions(Module $module): void
     {
         $created = 0;
-        $linked = 0;
+        $linked  = 0;
 
-        foreach ($this->questions() as $q) {
+        $allQuestions = array_merge(
+            array_map(fn($q) => array_merge($q, ['type' => 'diagnostic_mcq']), $this->questions()),
+            $this->surveyQuestions(),
+        );
+
+        foreach ($allQuestions as $q) {
             $question = Question::firstOrCreate(
                 ['question' => $q['question']],
                 [
-                    'type'       => 'diagnostic_mcq',
+                    'type'       => $q['type'],
                     'difficulty' => 'easy',
                     'skill_type' => 'application',
                     'answer'     => $q['answer'],
@@ -79,6 +84,68 @@ class WoWDiagnosticModuleSeeder extends Seeder
         }
 
         $this->command->info("✅ WoW diagnostic questions: {$created} created, {$linked} linked to module.");
+    }
+
+    private function surveyQuestions(): array
+    {
+        return [
+            [
+                'type'     => 'survey_mcq',
+                'question' => 'What is your current highest Arena rating?',
+                'answer'   => [
+                    'question_key' => 'current_rating',
+                    'options'      => [
+                        ['text' => 'Under 1400', 'value' => 1],
+                        ['text' => '1400–1799',  'value' => 2],
+                        ['text' => '1800–2099',  'value' => 3],
+                        ['text' => '2100–2399',  'value' => 4],
+                        ['text' => '2400+',      'value' => 5],
+                    ],
+                ],
+            ],
+            [
+                'type'     => 'survey_mcq',
+                'question' => 'Which role do you play most often?',
+                'answer'   => [
+                    'question_key' => 'primary_role',
+                    'options'      => [
+                        ['text' => 'Healer',                   'value' => 1],
+                        ['text' => 'Melee DPS',                'value' => 2],
+                        ['text' => 'Ranged DPS',               'value' => 3],
+                        ['text' => 'I play all roles equally', 'value' => 4],
+                        ['text' => 'Not sure / New to Arena',  'value' => 5],
+                    ],
+                ],
+            ],
+            [
+                'type'     => 'survey_mcq',
+                'question' => 'What is your main goal?',
+                'answer'   => [
+                    'question_key' => 'primary_goal',
+                    'options'      => [
+                        ['text' => 'Learn Arena fundamentals',   'value' => 1],
+                        ['text' => 'Increase my rating',         'value' => 2],
+                        ['text' => 'Master my class',            'value' => 3],
+                        ['text' => 'Become a better teammate',   'value' => 4],
+                        ['text' => 'Push Gladiator or higher',   'value' => 5],
+                    ],
+                ],
+            ],
+            [
+                'type'     => 'survey_mcq',
+                'question' => 'What do you believe is holding you back the most?',
+                'answer'   => [
+                    'question_key' => 'self_assessed_weakness',
+                    'options'      => [
+                        ['text' => 'Mechanics',        'value' => 1],
+                        ['text' => 'Decision making',  'value' => 2],
+                        ['text' => 'Awareness',        'value' => 3],
+                        ['text' => 'Teamwork',         'value' => 4],
+                        ['text' => "I'm not sure",     'value' => 5],
+                    ],
+                ],
+            ],
+        ];
     }
 
     private function questions(): array
