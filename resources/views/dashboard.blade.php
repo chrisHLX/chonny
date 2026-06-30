@@ -166,6 +166,26 @@
                 </div>
             </div>
 
+            {{-- Diagnostic nudge --}}
+            @if($diagnosticNudge)
+                <div class="relative overflow-hidden rounded-lg border border-violet-muted bg-violet-subtle px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
+                    <x-ornament.corner position="tl" class="absolute top-2 left-2 w-8 h-8 text-violet/20"/>
+                    <x-ornament.corner position="br" class="absolute bottom-2 right-2 w-8 h-8 text-violet/20"/>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-violet mb-0.5">Get Started</p>
+                        <p class="text-[14px] font-semibold text-ink leading-snug">Discover your player profile</p>
+                        <p class="text-[12px] text-ink-muted mt-0.5">Take the diagnostic assessment to reveal your playstyle and get a personalised learning path.</p>
+                    </div>
+                    <a href="{{ route('modules.quiz', $diagnosticNudge) }}"
+                       class="shrink-0 btn-secondary text-[13px]">
+                        Start Assessment
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            @endif
+
             {{-- Subject context bar --}}
             <x-context-bar :categoryId="$categoryId" :currentSubjectId="$currentSubjectId" />
 

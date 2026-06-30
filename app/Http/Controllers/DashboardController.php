@@ -50,6 +50,19 @@ class DashboardController extends Controller
             ->wherePivot('status', 'completed')
             ->exists();
 
+        // Nudge: find a published diagnostic for this category the user hasn't completed yet
+        $hasDiagnosticComplete = $user->modules()
+            ->where('modules.type', 'diagnostic')
+            ->wherePivot('status', 'completed')
+            ->whereHas('subject', fn($q) => $q->where('category_id', $categoryId))
+            ->exists();
+
+        $diagnosticNudge = $hasDiagnosticComplete ? null : Module::whereHas('subject', fn($q) => $q->where('category_id', $categoryId))
+            ->where('type', 'diagnostic')
+            ->where('published', true)
+            ->where('status', 'ready')
+            ->first();
+
         // User modules filtered by subject
         $modules = $user->modules()
             ->where('subject_id', $currentSubjectId)
@@ -93,7 +106,8 @@ class DashboardController extends Controller
             'createdModules',
             'concepts',
             'leaderboard',
-            'hasContentActivity'
+            'hasContentActivity',
+            'diagnosticNudge'
         ));
     }
 

@@ -119,7 +119,7 @@
             <div class="grid gap-5 lg:grid-cols-3">
 
                 {{-- World of Warcraft — Emerald --}}
-                <a href="{{ route('diagnostic') }}"
+                <a href="{{ route('modules.quiz', 'arena-playstyle-assessment') }}"
                    class="rounded-lg border bg-emerald-900/20 border-emerald-500/30
                           hover:border-emerald-500/60 hover:shadow-[0_0_28px_rgba(16,185,129,0.12)]
                           p-5 block group transition-all duration-200 relative overflow-hidden">
@@ -171,7 +171,7 @@
                 </a>
 
                 {{-- StarCraft II — Sky --}}
-                <a href="{{ route('diagnostic') }}"
+                <a href="{{ route('modules.quiz', 'commander-profile-assessment') }}"
                    class="rounded-lg border bg-sky-900/20 border-sky-500/30
                           hover:border-sky-500/60 hover:shadow-[0_0_28px_rgba(56,189,248,0.12)]
                           p-5 block group transition-all duration-200 relative overflow-hidden">
@@ -223,7 +223,7 @@
                 </a>
 
                 {{-- League of Legends — Red --}}
-                <a href="{{ route('diagnostic') }}"
+                <a href="{{ route('modules.quiz', 'ranked-playstyle-assessment') }}"
                    class="rounded-lg border bg-red-900/20 border-red-500/30
                           hover:border-red-500/60 hover:shadow-[0_0_28px_rgba(248,113,113,0.12)]
                           p-5 block group transition-all duration-200 relative overflow-hidden">
