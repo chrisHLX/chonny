@@ -221,12 +221,68 @@
             </div>
         </div>
 
+    {{-- INTRO SCREEN --}}
+    @elseif (!$introShown)
+
+        <div class="linear-card p-8 relative overflow-hidden">
+            <x-ornament.corner position="tl" class="top-0 left-0 w-10 h-10 text-gold/40"/>
+            <x-ornament.corner position="tr" class="top-0 right-0 w-10 h-10 text-gold/40"/>
+            <x-ornament.corner position="bl" class="bottom-0 left-0 w-10 h-10 text-gold/40"/>
+            <x-ornament.corner position="br" class="bottom-0 right-0 w-10 h-10 text-gold/40"/>
+
+            {{-- Badge --}}
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-subtle border border-gold/20 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+                <span class="text-[10px] font-semibold text-gold uppercase tracking-widest">Player Profile Assessment</span>
+            </div>
+
+            <h2 class="font-display text-[22px] font-semibold text-ink mb-1 leading-snug">
+                We're building your<br>
+                <span class="text-gold-light italic">{{ $moduleName ?: 'player profile' }}</span>.
+            </h2>
+
+            <div class="w-10 h-px bg-gold/30 my-5"></div>
+
+            <p class="text-[14px] text-ink-muted leading-relaxed mb-5">
+                This is not a trivia test. Your answers reveal how you naturally approach
+                pressure, decision-making, risk, and win conditions.
+            </p>
+
+            <div class="space-y-3 mb-7">
+                <div class="flex items-start gap-3">
+                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+                    <p class="text-[13px] text-ink-muted">Choose what you <em class="text-ink not-italic font-medium">would actually do</em> — not what sounds ideal.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+                    <p class="text-[13px] text-ink-muted">There are no right or wrong answers.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+                    <p class="text-[13px] text-ink-muted">At the end you'll receive your playstyle profile and a recommended next training step.</p>
+                </div>
+            </div>
+
+            <button wire:click="startAssessment"
+                    class="inline-flex items-center justify-center gap-2 w-full py-3 text-[14px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
+                Start Assessment
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+
     {{-- ACTIVE QUESTION SCREEN --}}
     @elseif (!empty($questions) && $questions->count() > $currentIndex)
         @php $question = $questions[$currentIndex]; @endphp
 
         {{-- Header: proficiency + progress --}}
-        <div class="mb-4">
+        <div class="mb-4"
+             x-data="{
+                 labels: ['Building your profile…', 'Mapping decision style…', 'Analysing pressure response…', 'Tracking risk tolerance…', 'Reading your tendencies…'],
+                 idx: 0
+             }"
+             x-init="setInterval(() => idx = (idx + 1) % labels.length, 3000)">
             <div class="flex items-center justify-between mb-2">
                 <span class="text-[12px] text-ink-subtle">{{ $proficiency ?? '' }}</span>
                 <span class="text-[12px] text-ink-subtle">{{ $currentIndex + 1 }} / {{ $questions->count() }}</span>
@@ -236,7 +292,8 @@
                      style="width: {{ (($currentIndex + 1) / $questions->count()) * 100 }}%"></div>
             </div>
             <div class="flex justify-end mt-1">
-                <span class="text-[11px] text-ink-subtle">Assessment</span>
+                <span class="text-[11px] text-ink-subtle transition-opacity duration-500"
+                      x-text="labels[idx]">Building your profile…</span>
             </div>
         </div>
 

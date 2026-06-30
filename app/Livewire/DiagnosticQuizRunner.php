@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Log;
 class DiagnosticQuizRunner extends Component
 {
     public bool $guestMode = false;
+    public bool $introShown = false;
+    public string $moduleName = '';
 
     public $moduleId;
     public $questions;
@@ -48,11 +50,18 @@ class DiagnosticQuizRunner extends Component
         $this->startQuizInternal();
     }
 
+    public function startAssessment(): void
+    {
+        $this->introShown = true;
+    }
+
     public function startQuizInternal(): void
     {
         if ($this->guestMode) {
             $module = Module::with(['questions', 'proficiencies'])->find($this->moduleId);
             if (!$module) return;
+
+            $this->moduleName = $module->name ?? '';
 
             // Reload stored profile on page refresh — skipped while a retake is in progress
             $stored = session('guest_quiz_results.' . $this->moduleId);
@@ -63,6 +72,7 @@ class DiagnosticQuizRunner extends Component
                 $this->quizFullyComplete  = true;
                 $this->completed          = true;
                 $this->status             = 'completed';
+                $this->introShown         = true;
                 $this->retakingDiagnostic = false;
                 return;
             }
@@ -84,6 +94,8 @@ class DiagnosticQuizRunner extends Component
         $module = $user->modules()->with('questions')->find($this->moduleId);
         if (!$module) return;
 
+        $this->moduleName = $module->name ?? '';
+
         $retakeAt              = $module->pivot->retake_started_at;
         $this->retakeStartedAt = $retakeAt
             ? \Carbon\Carbon::parse($retakeAt)->toDateTimeString()
@@ -98,6 +110,7 @@ class DiagnosticQuizRunner extends Component
             $this->quizFullyComplete = true;
             $this->questions         = $this->questions ?? collect();
             $this->status            = 'completed';
+            $this->introShown        = true;
             $storedProfile           = $module->pivot->diagnostic_profile;
             $this->diagnosticProfile = $storedProfile ? json_decode($storedProfile, true) : null;
             return;
@@ -294,6 +307,7 @@ class DiagnosticQuizRunner extends Component
         $this->currentIndex      = 0;
         $this->questions         = collect();
         $this->feedback          = null;
+        $this->introShown        = false;
 
         if ($this->guestMode) {
             $this->retakingDiagnostic = true;

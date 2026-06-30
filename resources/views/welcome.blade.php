@@ -72,33 +72,27 @@
 
         {{-- Heading --}}
         <h1 class="relative font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 max-w-3xl">
-            <span class="text-ink">Discover the</span><br>
-            <span class="text-gold-light">Structure Beneath</span><br>
-            <span class="text-ink">Performance</span>
+            <span class="text-ink">Find out what kind of</span><br>
+            <span class="text-gold-light">player you are</span><br>
+            <span class="text-ink text-4xl sm:text-5xl lg:text-5xl">— and what's stopping you from climbing.</span>
         </h1>
 
         {{-- Subheading --}}
         <p class="relative text-[16px] sm:text-[17px] text-ink-muted leading-relaxed mb-10 max-w-xl">
-            MindCollector maps your game knowledge, reveals hidden weaknesses,
-            and guides you toward true mastery.
+            MindCollector identifies your playstyle, maps your weaknesses,
+            and tells you exactly what to train next.
         </p>
 
         {{-- CTAs --}}
         <div class="relative flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="{{ route('modules.index') }}"
-               class="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[15px] font-semibold
-                      text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
-                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
-                </svg>
-                Explore the Map
-            </a>
             @guest
             <a href="{{ route('diagnostic') }}"
-               class="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[15px] font-medium
-                      bg-surface-2 text-violet border border-violet/40
-                      hover:bg-violet/10 hover:border-violet rounded-md transition-all duration-200">
-                Take Diagnostic Quiz
+               class="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[15px] font-semibold
+                      text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
+                Find your playstyle
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
             </a>
             @endguest
         </div>
@@ -108,11 +102,54 @@
     {{-- Content sections --}}
     <div class="flex-1 flex flex-col items-center px-6 pb-16">
 
-        {{-- Supported Games --}}
+        {{-- How it works --}}
         <div class="mt-4 w-full max-w-4xl">
             <div class="flex items-center gap-4 mb-10">
                 <div class="flex-1 h-px bg-gold/20"></div>
-                <span class="text-[11px] font-semibold text-gold uppercase tracking-[0.2em]">Supported Games</span>
+                <span class="text-[11px] font-semibold text-gold uppercase tracking-[0.2em]">How it works</span>
+                <div class="flex-1 h-px bg-gold/20"></div>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-3">
+
+                <div class="linear-card p-6 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-7 h-7 text-gold/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-7 h-7 text-gold/20"/>
+                    <span class="block font-display text-[36px] font-bold text-gold/20 leading-none mb-4 select-none">01</span>
+                    <h3 class="text-[14px] font-semibold text-ink mb-2">Answer game scenarios</h3>
+                    <p class="text-[13px] text-ink-muted leading-relaxed">
+                        Choose what you'd naturally do in real situations. There are no right or wrong answers.
+                    </p>
+                </div>
+
+                <div class="linear-card p-6 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-7 h-7 text-gold/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-7 h-7 text-gold/20"/>
+                    <span class="block font-display text-[36px] font-bold text-gold/20 leading-none mb-4 select-none">02</span>
+                    <h3 class="text-[14px] font-semibold text-ink mb-2">Get your player profile</h3>
+                    <p class="text-[13px] text-ink-muted leading-relaxed">
+                        MindCollector maps your tendencies, strengths, weaknesses, and decision patterns.
+                    </p>
+                </div>
+
+                <div class="linear-card p-6 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-7 h-7 text-gold/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-7 h-7 text-gold/20"/>
+                    <span class="block font-display text-[36px] font-bold text-gold/20 leading-none mb-4 select-none">03</span>
+                    <h3 class="text-[14px] font-semibold text-ink mb-2">Train what matters next</h3>
+                    <p class="text-[13px] text-ink-muted leading-relaxed">
+                        Get recommended modules based on what your profile reveals about your play.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        {{-- Choose your game --}}
+        <div class="mt-16 w-full max-w-4xl">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="flex-1 h-px bg-gold/20"></div>
+                <span class="text-[11px] font-semibold text-gold uppercase tracking-[0.2em]">Choose your game</span>
                 <div class="flex-1 h-px bg-gold/20"></div>
             </div>
 
@@ -304,7 +341,7 @@
         {{-- Bottom CTA --}}
         @guest
         <div class="mt-16 text-center">
-            <p class="text-[14px] text-ink-muted mb-5">Ready to train like a top player?</p>
+            <p class="text-[14px] text-ink-muted mb-5">Find your playstyle. Find your weakness. Train the next thing that helps you win.</p>
             <a href="{{ route('register') }}"
                class="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[15px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
                 Create a Free Account
