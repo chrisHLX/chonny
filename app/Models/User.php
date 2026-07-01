@@ -110,6 +110,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return parent::hasVerifiedEmail();
     }
 
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify((new \Illuminate\Auth\Notifications\VerifyEmail)->onQueue('default'));
+    }
+
     protected static function booted()
     {
         static::created(function ($user) {
