@@ -277,12 +277,7 @@
         @php $question = $questions[$currentIndex]; @endphp
 
         {{-- Header: proficiency + progress --}}
-        <div class="mb-4"
-             x-data="{
-                 labels: ['Building your profile…', 'Mapping decision style…', 'Analysing pressure response…', 'Tracking risk tolerance…', 'Reading your tendencies…'],
-                 idx: 0
-             }"
-             x-init="setInterval(() => idx = (idx + 1) % labels.length, 3000)">
+        <div class="mb-4">
             <div class="flex items-center justify-between mb-2">
                 <span class="text-[12px] text-ink-subtle">{{ $proficiency ?? '' }}</span>
                 <span class="text-[12px] text-ink-subtle">{{ $currentIndex + 1 }} / {{ $questions->count() }}</span>
@@ -292,8 +287,7 @@
                      style="width: {{ (($currentIndex + 1) / $questions->count()) * 100 }}%"></div>
             </div>
             <div class="flex justify-end mt-1">
-                <span class="text-[11px] text-ink-subtle transition-opacity duration-500"
-                      x-text="labels[idx]">Building your profile…</span>
+                <span class="text-[11px] text-ink-subtle">Answer honestly — choose what you'd actually do.</span>
             </div>
         </div>
 
@@ -324,8 +318,15 @@
                 {{ $question->question }}
             </p>
 
-            <form x-data="{ elapsed: 0 }"
-                  x-init="setInterval(() => elapsed++, 1000)"
+            <form x-data="{
+                      elapsed: 0,
+                      loadingLabels: ['Logging your answer…', 'Analysing your response…', 'Building your profile…', 'Mapping your tendencies…', 'Calculating patterns…'],
+                      loadingIdx: 0
+                  }"
+                  x-init="
+                      setInterval(() => elapsed++, 1000);
+                      setInterval(() => loadingIdx = (loadingIdx + 1) % loadingLabels.length, 2000);
+                  "
                   x-on:submit.prevent="$wire.submit({ elapsed })">
 
                 @if (in_array($question->type, ['diagnostic_mcq', 'survey_mcq']))
@@ -364,11 +365,16 @@
                                    {{ $isSurvey ? 'text-white bg-violet-muted hover:bg-violet border border-violet/40' : 'text-white bg-accent hover:bg-accent-hover' }}"
                             :disabled="!$wire.answer">
                         <span wire:loading.remove wire:target="submit">{{ $isSurvey ? 'Next' : 'Submit Answer' }}</span>
-                        <span wire:loading wire:target="submit" class="flex items-center gap-2">
-                            <span class="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                            Submitting…
+                        <span wire:loading wire:target="submit">
+                            <span class="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin inline-block"></span>
                         </span>
                     </button>
+
+                    <div wire:loading wire:target="submit" class="mt-3 flex items-center justify-center gap-2">
+                        <span class="w-1 h-1 rounded-full bg-ink-subtle animate-pulse"></span>
+                        <span class="text-[12px] text-ink-subtle" x-text="loadingLabels[loadingIdx]">Logging your answer…</span>
+                        <span class="w-1 h-1 rounded-full bg-ink-subtle animate-pulse" style="animation-delay:0.3s"></span>
+                    </div>
                 </div>
             </form>
         </div>
