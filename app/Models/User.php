@@ -112,7 +112,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification(): void
     {
-        $this->notify((new \Illuminate\Auth\Notifications\VerifyEmail)->onQueue('default'));
+        $this->notify(new \App\Notifications\QueuedVerifyEmail);
     }
 
     protected static function booted()
