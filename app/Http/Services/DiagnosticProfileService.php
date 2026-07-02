@@ -50,9 +50,19 @@ class DiagnosticProfileService
             ->map(fn($ans, $key) => "  {$key}: {$ans['text']}")
             ->implode("\n") ?: '  (none collected)';
 
-        $traitBlock = collect($traitScores)->sortDesc()
-            ->map(fn($score, $key) => "  {$key}: {$score}")
-            ->implode("\n") ?: '  (no trait signals recorded)';
+        arsort($traitScores);
+        $dominant   = collect($traitScores)->filter(fn($s) => $s > 0);
+        $suppressed = collect($traitScores)->filter(fn($s) => $s <= 0);
+
+        if ($dominant->isEmpty()) {
+            $traitBlock = '  (no trait signals recorded)';
+        } else {
+            $traitBlock = $dominant->map(fn($s, $k) => "  {$k}: +{$s}")->implode("\n");
+            if ($suppressed->isNotEmpty()) {
+                $traitBlock .= "\n  --- suppressed / absent ---\n";
+                $traitBlock .= $suppressed->map(fn($s, $k) => "  {$k}: {$s}")->implode("\n");
+            }
+        }
 
         $axisBlock = collect($axisScores)
             ->map(fn($score, $name) => "  {$name}: {$score}%")
@@ -116,6 +126,7 @@ RULES
 7. The recommended_module must be chosen from AVAILABLE MODULES only. If none fits well, choose the closest and note the uncertainty in the reason field.
 8. Use the game's own terminology only when it appears in GAME CONTEXT or AVAILABLE MODULES.
 9. Return JSON ONLY — no markdown fences, no extra fields, no commentary.
+10. In evidence[].signal use plain English Title Case — never raw field names or numbers. Prefix with a strength word: "Dominant", "Strong", "Moderate", or "Low" for trait/axis evidence (e.g. "Strong Reactivity", "Moderate Control Orientation"). For survey evidence use "Self-reported: Label" (e.g. "Self-reported: Awareness"). For evidence[].score include the raw numeric value as a short string (e.g. "+8", "+4") for trait/axis evidence, or null for survey evidence.
 
 OUTPUT SHAPE
 {
@@ -125,9 +136,10 @@ OUTPUT SHAPE
   "summary": "Paragraph starting with 'Your answers suggest...' (3-5 sentences)",
   "evidence": [
     {
-      "signal": "Short label for what was observed",
+      "signal": "Plain English title e.g. 'Strong Reactivity' or 'Self-reported: Awareness'",
       "source": "Field name e.g. trait_scores.patience or axis_scores.Mechanics",
-      "interpretation": "What this signal means for this specific player"
+      "interpretation": "One sentence — what this signal means for this specific player",
+      "score": "+8"
     }
   ],
   "self_report_check": {

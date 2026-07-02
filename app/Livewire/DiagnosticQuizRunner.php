@@ -337,14 +337,62 @@ class DiagnosticQuizRunner extends Component
 
     private function loadQuestions($module): \Illuminate\Support\Collection
     {
-        return $module->questions()
+        $questions = $module->questions()
             ->get()
-            ->shuffle()
             ->transform(function ($q) {
                 $q         = clone $q;
                 $q->answer = array_merge([], $q->answer);
                 return $q;
             });
+
+        $surveyQuestions     = $questions->where('type', 'survey_mcq')->shuffle()->values();
+        $diagnosticQuestions = $questions->where('type', '!=', 'survey_mcq')->shuffle()->values();
+
+        return $this->interleaveSurveyQuestions($surveyQuestions, $diagnosticQuestions);
+    }
+
+    /**
+     * Spreads survey_mcq questions evenly across the quiz — first question is
+     * always a survey question, and (when there's more than one) so is the
+     * last, with diagnostic_mcq questions filling the gaps as evenly as possible.
+     */
+    private function interleaveSurveyQuestions($surveyQuestions, $diagnosticQuestions): \Illuminate\Support\Collection
+    {
+        $surveyCount = $surveyQuestions->count();
+        $total       = $surveyCount + $diagnosticQuestions->count();
+
+        if ($surveyCount === 0 || $total === 0) {
+            return $diagnosticQuestions;
+        }
+
+        $surveyPositions = [];
+        $lastPosition    = -1;
+
+        for ($i = 0; $i < $surveyCount; $i++) {
+            $position = $surveyCount > 1
+                ? (int) floor($i * ($total - 1) / ($surveyCount - 1))
+                : 0;
+            $position = max($position, $lastPosition + 1);
+            $position = min($position, $total - 1);
+
+            $surveyPositions[] = $position;
+            $lastPosition      = $position;
+        }
+
+        $surveyPositions  = array_flip($surveyPositions);
+        $ordered          = collect();
+        $diagnosticIndex  = 0;
+
+        for ($position = 0; $position < $total; $position++) {
+            if (isset($surveyPositions[$position]) && $surveyQuestions->isNotEmpty()) {
+                $ordered->push($surveyQuestions->shift());
+            } elseif ($diagnosticIndex < $diagnosticQuestions->count()) {
+                $ordered->push($diagnosticQuestions[$diagnosticIndex]);
+                $diagnosticIndex++;
+            }
+        }
+
+        return $ordered->values();
     }
 
     private function initState(): void

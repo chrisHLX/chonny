@@ -42,18 +42,6 @@ class ArchetypeSeeder extends Seeder
                 'signals'     => ['high_adaptability', 'high_creativity', 'low_structure_preference', 'high_kill_instinct'],
             ],
             [
-                'key'         => 'theory_heavy_underperformer',
-                'label'       => 'Theory-Heavy Underperformer',
-                'description' => 'Understands concepts in theory but struggles to convert them into real-time decisions. Gap between knowledge and execution under pressure.',
-                'signals'     => ['high_control_orientation', 'high_structure_preference', 'low_risk_tolerance', 'low_aggression'],
-            ],
-            [
-                'key'         => 'uncertain_beginner',
-                'label'       => 'Uncertain Beginner',
-                'description' => 'Still forming a basic mental model of what matters and when. Lacks consistent decision patterns. More guided by instinct than structured thinking.',
-                'signals'     => ['low_confidence', 'low_structure_preference', 'low_control_orientation', 'high_adaptability'],
-            ],
-            [
                 'key'         => 'patient_setup_artist',
                 'label'       => 'Patient Setup Artist',
                 'description' => 'Waits for the right moment and executes deliberate, planned sequences. Strong in structured environments but may miss windows that require improvisation.',

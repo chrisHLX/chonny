@@ -151,351 +151,231 @@ class SC2DiagnosticModuleSeeder extends Seeder
     {
         return [
             [
-                'question' => "Your opener is standard but your early scout reveals an unusually fast expansion from your opponent. What is your first instinct?",
+                'question' => "The first minute of a match. What occupies most of your attention?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Hit them before they stabilise with an all-in timing attack.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'kill_instinct' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Looks to punish economic greed immediately with aggression.',
-                            ],
+                            'text'               => 'Hitting every production timing and macro benchmark clean.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Take my own expansion to match their economic pace.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'structure_preference' => 1, 'adaptability' => 1],
-                                'interpretation' => 'Mirrors the economic decision, accepting a longer macro game.',
-                            ],
+                            'text'               => "Whatever the first scout reveals — I'm already adjusting.",
+                            'diagnostic_payload' => ['traits' => ['adaptability' => 2, 'reactivity' => 1]],
                         ],
                         [
-                            'text'               => 'Scout their army strength before deciding anything.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'patience' => 1],
-                                'interpretation' => 'Gathers more information before committing to a response.',
-                            ],
+                            'text'               => "Whether there's a timing I can hit before they're settled.",
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'kill_instinct' => 1]],
                         ],
                         [
-                            'text'               => 'Continue my original build and see how it plays out.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'risk_tolerance' => 1, 'adaptability' => -1],
-                                'interpretation' => 'Stays committed to the planned build regardless of new information.',
-                            ],
+                            'text'               => "Running my plan. I'll deal with their opener when I know it.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'patience' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "Your timing attack hits at the right window but the enemy wall is better reinforced than expected. Your units are at the ramp. Do you:",
+                'question' => "Your all-in timing hits the ramp and it's better defended than expected. Your units are committed. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Commit everything — I need to deal damage to justify the timing.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'risk_tolerance' => 2, 'kill_instinct' => 1],
-                                'interpretation' => 'Accepts losses to force economic or structural damage on the opponent.',
-                            ],
+                            'text'               => 'Commit everything — I need to deal damage to justify burning these resources.',
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'risk_tolerance' => 2]],
                         ],
                         [
-                            'text'               => 'Probe for any gap in their defence before pulling back.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'patience' => 1],
-                                'interpretation' => 'Looks for an opening before fully committing or retreating.',
-                            ],
+                            'text'               => 'Probe for a gap before fully committing or pulling back.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Pull back cleanly and transition into a macro build.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'defensive_discipline' => 1, 'adaptability' => 1],
-                                'interpretation' => 'Accepts the failed timing and pivots to a long-term economic approach.',
-                            ],
+                            'text'               => 'Pull back cleanly and transition to macro — this timing is dead.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'defensive_discipline' => 1]],
                         ],
                         [
-                            'text'               => 'Try to attack from a different angle or drop their mineral line.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'adaptability' => 2, 'aggression' => 1],
-                                'interpretation' => 'Improvises an alternative path to force damage rather than accepting retreat.',
-                            ],
+                            'text'               => 'Open a different angle — drop or multi-prong instead of the main ramp.',
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'adaptability' => 2]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "It is mid-game and you are even in army and base count. A scan reveals their main base is undefended while their army is on the map. What do you do?",
+                'question' => "You lose your early army in a failed attack. Your economy is still intact. First instinct?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Drop their main immediately and kill as many workers as possible.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'kill_instinct' => 2, 'creativity' => 1],
-                                'interpretation' => 'Exploits the opportunity to deal economic damage immediately.',
-                            ],
+                            'text'               => "Read what they're most likely to do next and prepare for it.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'Sneak in a third base while they are out of position.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'control_orientation' => 1, 'structure_preference' => 1],
-                                'interpretation' => 'Converts the mistake into an economic advantage rather than direct damage.',
-                            ],
+                            'text'               => 'Place static defence and rebuild safely before committing again.',
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'patience' => 2]],
                         ],
                         [
-                            'text'               => 'Engage their army on the map while their base is undefended.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'pressure_orientation' => 2],
-                                'interpretation' => 'Commits to forcing a decisive fight while the enemy is out of position.',
-                            ],
+                            'text'               => 'Launch drop harassment to slow their follow-up while I rebuild.',
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'creativity' => 2]],
                         ],
                         [
-                            'text'               => 'Sit back and build up — I\'ll engage when I have a bigger lead.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'defensive_discipline' => 1, 'structure_preference' => 1],
-                                'interpretation' => 'Resists the temptation to act and accumulates a larger advantage first.',
-                            ],
+                            'text'               => 'Work out the unit composition mistake and tech into the counter.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'control_orientation' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You lose your main army in a fight but your economy is still healthy and running. What is your first priority?",
+                'question' => "Both armies are equal in the mid-game. The fight can happen anywhere on the map. What are you looking for?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Rebuild immediately and counterattack before they press the advantage.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'pressure_orientation' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Tries to reverse momentum through immediate aggressive play.',
-                            ],
+                            'text'               => 'The moment their positioning slips — I go the instant I see the window.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'kill_instinct' => 2]],
                         ],
                         [
-                            'text'               => 'Pull back, place static defence, and rebuild safely.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'defensive_discipline' => 2],
-                                'interpretation' => 'Accepts a defensive phase to stabilise before committing again.',
-                            ],
+                            'text'               => 'A supply or composition advantage that makes the fight clearly mine.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'defensive_discipline' => 1]],
                         ],
                         [
-                            'text'               => 'Use a tech unit or drop to harass while the main force rebuilds.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'adaptability' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Multi-tasks to deny their follow-up while rebuilding in the background.',
-                            ],
+                            'text'               => 'A second angle — a drop or multi-prong to split them before the main fight.',
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'independence' => 2]],
                         ],
                         [
-                            'text'               => 'Assess what went wrong in that fight while rebuilding.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'control_orientation' => 1, 'structure_preference' => 1],
-                                'interpretation' => 'Diagnoses the cause of the loss before deciding the next move.',
-                            ],
+                            'text'               => "Nothing — I'm pushing. Waiting while equal means they're building confidence.",
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'pressure_orientation' => 2]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "How do you approach your build order at the start of a game?",
+                'question' => "Your opponent is maxed and marching across the map. You're ahead on workers but behind on bases. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'I run the same build every game until it stops working.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'adaptability' => -1],
-                                'interpretation' => 'Relies on repetition and refinement over flexible in-game decisions.',
-                            ],
+                            'text'               => 'Hold at home — the worker advantage means I recover faster if they break through.',
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'patience' => 2]],
                         ],
                         [
-                            'text'               => 'I have two or three core builds and choose based on the match-up.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 1, 'adaptability' => 1, 'control_orientation' => 1],
-                                'interpretation' => 'Balances prepared builds with basic adaptive decision-making.',
-                            ],
+                            'text'               => 'Engage on the map — I have more units to lose and more to gain.',
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'independence' => 2]],
                         ],
                         [
-                            'text'               => 'I scout first and then decide which build fits best.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'adaptability' => 2],
-                                'interpretation' => 'Prioritises information and reactive decision-making over memorised execution.',
-                            ],
+                            'text'               => 'Drop their main base while holding with enough units at home.',
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'reactivity' => 1]],
                         ],
                         [
-                            'text'               => 'I build by feel — whatever seems right in the moment.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'adaptability' => 1, 'structure_preference' => -1],
-                                'interpretation' => 'Relies on improvisation and instinct over formal build order discipline.',
-                            ],
+                            'text'               => 'Let them approach and look for the counter-engage moment at home.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'control_orientation' => 2]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You have a significant worker and economic lead but your opponent has a larger army. What is your approach?",
+                'question' => "You land a drop on an undefended mineral line. Their army is far away. What are you doing with your main army right now?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Keep expanding and trust my economy to overwhelm them long-term.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Bets on the economic advantage paying off without forcing an engagement.',
-                            ],
+                            'text'               => "Pushing with the main army too — I want them reacting on both sides at once.",
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'aggression' => 2]],
                         ],
                         [
-                            'text'               => 'Attack into the superior army — I have the resources to replace losses.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'risk_tolerance' => 2, 'kill_instinct' => 1],
-                                'interpretation' => 'Uses economic depth to sustain an aggressive push into a stronger force.',
-                            ],
+                            'text'               => 'Splitting attention between the drop and the army — controlling both.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 2]],
                         ],
                         [
-                            'text'               => 'Drop their base while avoiding their main army.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'adaptability' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Converts the army lead into an exploitation opportunity rather than a direct fight.',
-                            ],
+                            'text'               => 'Pulling back to defend in case the drop draws a counterattack.',
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Tech to better units and engage when army strength is even.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'defensive_discipline' => 1, 'structure_preference' => 1],
-                                'interpretation' => 'Invests the economic lead into tech and waits for a favourable engagement.',
-                            ],
+                            'text'               => "Taking another base — the drop creates time and I'm using it to expand.",
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'independence' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "Your opponent opens with an aggressive two-base build you did not scout in time. You are caught underprepared. What do you do?",
+                'question' => "You're losing on the economy graph but your current army is ahead in strength. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Take the hit, macro through it, and try to rebuild for a comeback.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'adaptability' => 2, 'defensive_discipline' => 1],
-                                'interpretation' => 'Absorbs early pressure and focuses on surviving and recovering.',
-                            ],
+                            'text'               => 'Push constantly — army strength is temporary, an economic deficit is permanent.',
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'kill_instinct' => 2]],
                         ],
                         [
-                            'text'               => 'Counterattack immediately while their units are committed.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'risk_tolerance' => 2, 'creativity' => 1],
-                                'interpretation' => 'Looks to create chaos and force them to defend rather than absorbing pressure.',
-                            ],
+                            'text'               => 'Find the moment their economy converts to army supply and attack before then.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'independence' => 1]],
                         ],
                         [
-                            'text'               => 'Fall back to a tight defensive position and slow them down.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'defensive_discipline' => 2],
-                                'interpretation' => 'Buys time and defensive space to survive and regroup.',
-                            ],
+                            'text'               => 'Drop and harass to hold their economy back while my army lead holds.',
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'aggression' => 1]],
                         ],
                         [
-                            'text'               => 'Sacrifice some units to gather information on exactly what they are doing.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'adaptability' => 1],
-                                'interpretation' => 'Prioritises intelligence gathering to make a more informed defensive decision.',
-                            ],
+                            'text'               => 'Be selective — only commit when I can guarantee enough economic damage to even it.',
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 2]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You have hit maximum supply several times this game but keep losing major engagements. What is your primary concern?",
+                'question' => "You scout an unusual tech choice mid-game — something you haven't practised against. First reaction?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'My army composition is wrong for their unit mix.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Diagnoses the loss through composition and counter-unit logic.',
-                            ],
+                            'text'               => 'Adjust my build immediately based on what that tech implies.',
+                            'diagnostic_payload' => ['traits' => ['adaptability' => 2, 'reactivity' => 2]],
                         ],
                         [
-                            'text'               => 'My micro and ability usage during battles.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'kill_instinct' => 1],
-                                'interpretation' => 'Diagnoses losses through individual unit control during fights.',
-                            ],
+                            'text'               => 'Hit them before it finishes — their investment means their economy is weaker right now.',
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'independence' => 2]],
                         ],
                         [
-                            'text'               => 'I am not choosing the right moment to engage.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'patience' => 1, 'structure_preference' => 1],
-                                'interpretation' => 'Diagnoses losses through timing and engagement selection.',
-                            ],
+                            'text'               => 'Send more scouts to confirm before changing anything.',
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'I need to attack sooner before they get a stronger army.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'pressure_orientation' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Believes the problem is failing to act aggressively enough at the right window.',
-                            ],
+                            'text'               => 'Identify which units hard-counter it and pivot tech.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'creativity' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You reach a point in the game where both attack options seem risky and neither path is clearly favourable. What is your instinct?",
+                'question' => "Your macro is clean and you're hitting all your benchmarks. The wins aren't coming. What's most likely wrong?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Pick one and commit — hesitation loses games.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['risk_tolerance' => 2, 'aggression' => 1, 'kill_instinct' => 1],
-                                'interpretation' => 'Accepts uncertainty and commits decisively to force a result.',
-                            ],
+                            'text'               => "I'm attacking one-dimensionally — I need to split the map or multi-prong.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'creativity' => 2]],
                         ],
                         [
-                            'text'               => 'Wait and gather more information before acting.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'control_orientation' => 2],
-                                'interpretation' => 'Delays the decision until more certainty is available.',
-                            ],
+                            'text'               => "I'm taking fights at the wrong moment — army strength doesn't guarantee a win.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'Use a harass unit or drop to force them to react first.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'adaptability' => 2, 'pressure_orientation' => 1],
-                                'interpretation' => 'Creates pressure through a side action to shift the dynamic rather than committing directly.',
-                            ],
+                            'text'               => "I'm not being aggressive enough with early timing windows.",
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'kill_instinct' => 1]],
                         ],
                         [
-                            'text'               => 'Build up a larger supply lead to make any engagement safer.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'structure_preference' => 1, 'defensive_discipline' => 1],
-                                'interpretation' => 'Chooses to build overwhelming force before engaging.',
-                            ],
+                            'text'               => 'My build order needs refining for this specific match-up.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "After a ladder loss, what part of the replay do you watch first?",
+                'question' => "When you're playing at your sharpest, which of these best describes it?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'The key battles — when and why I lost each engagement.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['kill_instinct' => 1, 'control_orientation' => 2],
-                                'interpretation' => 'Reviews losses through fight execution and army decisions.',
-                            ],
+                            'text'               => 'Every cooldown and timing is deliberate — nothing is wasted.',
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'defensive_discipline' => 1]],
                         ],
                         [
-                            'text'               => 'My build order and how my economy compared to theirs.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'adaptability' => 1],
-                                'interpretation' => 'Reviews losses through build execution and economic benchmarks.',
-                            ],
+                            'text'               => "I'm reading the game faster than conscious thought — I just react and it works.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'My worker production and base count across the game.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Reviews losses through macro fundamentals and economic discipline.',
-                            ],
+                            'text'               => "I never let up — I'm applying pressure and they're always reacting to me.",
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'aggression' => 1]],
                         ],
                         [
-                            'text'               => 'Moments where I could have made a different call.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'creativity' => 1],
-                                'interpretation' => 'Reviews losses by identifying decision points and counterfactual paths.',
-                            ],
+                            'text'               => "I'm playing my own game — the plan is running and I don't second-guess it.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'structure_preference' => 1]],
                         ],
                     ],
                 ],

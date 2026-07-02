@@ -152,351 +152,231 @@ class LoLDiagnosticModuleSeeder extends Seeder
     {
         return [
             [
-                'question' => "The enemy jungler ganks your lane while you're pushed up at 60% health. Your flash is up but the enemy laner also has a dash ability. What do you do first?",
+                'question' => "In the first 5 minutes of a ranked game, what's driving most of your decisions?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Flash immediately to safety.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'reactivity' => 1, 'risk_tolerance' => -1],
-                                'interpretation' => 'Prioritises immediate survival over resource conservation.',
-                            ],
+                            'text'               => 'Not making mistakes in lane — fundamentals first.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Try to burn their flash with your abilities first, then flash away.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 1, 'kill_instinct' => 1, 'risk_tolerance' => 1],
-                                'interpretation' => 'Looks to trade resources before escaping — accepts short-term risk for longer-term advantage.',
-                            ],
+                            'text'               => 'Reading the matchup as it plays out and adjusting my trading patterns.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'Walk into a minion wave for extra pathing and dodge skill shots.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'patience' => 1],
-                                'interpretation' => 'Uses positioning and game mechanics to survive without burning flash.',
-                            ],
+                            'text'               => 'Finding windows to bully them out of farm.',
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'kill_instinct' => 1]],
                         ],
                         [
-                            'text'               => 'Fight both of them — the numbers are two-for-one if I die.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'risk_tolerance' => 2, 'kill_instinct' => 1],
-                                'interpretation' => 'Willing to accept death in exchange for forcing enemy resources.',
-                            ],
+                            'text'               => "Playing my own pace — the lane result won't decide the game anyway.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'patience' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You win a 2v2 skirmish in your lane and your opponent just backed. You have 30 seconds before your abilities are back up. What do you prioritise?",
+                'question' => "You just killed the enemy laner. They're dead for 35 seconds. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Shove the wave hard and take tower plates.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['pressure_orientation' => 2, 'aggression' => 1],
-                                'interpretation' => 'Converts fight win into immediate map pressure.',
-                            ],
+                            'text'               => 'Shove the wave hard and crash it under their tower.',
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'aggression' => 1]],
                         ],
                         [
-                            'text'               => 'Rotate to help another lane while the window is open.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Prioritises cross-map impact over local gains.',
-                            ],
+                            'text'               => 'Immediately check the minimap and rotate to the most impactful place.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'Back to spend your gold and recoup health.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'defensive_discipline' => 1],
-                                'interpretation' => 'Values item spike and recovery over pressing the advantage.',
-                            ],
+                            'text'               => 'Back to spend gold and come back with an item spike.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'defensive_discipline' => 1]],
                         ],
                         [
-                            'text'               => 'Set up vision control around objectives for the next play.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'patience' => 1],
-                                'interpretation' => 'Thinks ahead to vision and objective control rather than immediate action.',
-                            ],
+                            'text'               => 'Ward deep and look to all-in again when they return.',
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'kill_instinct' => 2]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "Your lane opponent is farming passively under tower and rarely contests you. What do you do?",
+                'question' => "The enemy laner is playing passive under tower. You have a clear lane advantage. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Zone them off CS with aggressive trading patterns.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'pressure_orientation' => 2],
-                                'interpretation' => 'Uses passive opponent to maximise lane dominance.',
-                            ],
+                            'text'               => 'Freeze the wave and deny them CS for as long as possible.',
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 2]],
                         ],
                         [
-                            'text'               => 'Freeze the wave near your tower to deny them farm safely.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'patience' => 2],
-                                'interpretation' => 'Uses wave control to deny resources without risking all-ins.',
-                            ],
+                            'text'               => "Push hard and roam — a passive opponent is an invitation to impact other lanes.",
+                            'diagnostic_payload' => ['traits' => ['adaptability' => 2, 'pressure_orientation' => 1]],
                         ],
                         [
-                            'text'               => 'Roam frequently — they\'re not going anywhere.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'pressure_orientation' => 1],
-                                'interpretation' => 'Redirects lane advantage into cross-map pressure.',
-                            ],
+                            'text'               => 'Zone them with aggressive positioning and look for an all-in.',
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'kill_instinct' => 2]],
                         ],
                         [
-                            'text'               => 'Match their pace, farm up, and scale into late game.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Accepts a passive lane in exchange for safe scaling.',
-                            ],
+                            'text'               => 'Farm safely, spend gold when the window comes, and scale.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'structure_preference' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "Your team starts Baron without you and it's not the timing you would have chosen. What do you do?",
+                'question' => "A fight breaks out 2v2 in your lane before either team planned it. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Join in — better to commit together than abandon them.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['independence' => -1, 'structure_preference' => 1],
-                                'interpretation' => 'Prioritises team cohesion over individual judgment.',
-                            ],
+                            'text'               => 'Read the health bars and cooldowns instantly — I know in a second if I should commit.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'kill_instinct' => 2]],
                         ],
                         [
-                            'text'               => 'Ping abort and explain why in chat.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'independence' => 1],
-                                'interpretation' => 'Willing to challenge the group decision with reasoning.',
-                            ],
+                            'text'               => 'Look for an angle to set up a kill rather than just trading.',
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'independence' => 2]],
                         ],
                         [
-                            'text'               => 'Take a side objective while they distract the enemy.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'independence' => 2, 'adaptability' => 1],
-                                'interpretation' => 'Converts a team mistake into an independent win condition.',
-                            ],
+                            'text'               => 'Play safe — unplanned fights are usually coin flips.',
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Join in but position near the exit in case it goes wrong.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 1, 'defensive_discipline' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Participates while preparing to minimise losses if it fails.',
-                            ],
+                            'text'               => 'Trade even and disengage — the objective is to farm, not brawl.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'structure_preference' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "Late game. You spot the enemy ADC alone in the side lane with no vision nearby. You can reach them in four seconds. What's your first thought?",
+                'question' => "Drake is spawning in 90 seconds. What are you doing right now?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Go for the kill — solo picks win games.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['kill_instinct' => 2, 'independence' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Immediately identifies and commits to the kill opportunity.',
-                            ],
+                            'text'               => 'Setting up vision and positioning around the objective.',
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Check the minimap for the rest of their team before moving.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'patience' => 1],
-                                'interpretation' => 'Gathers more information before committing.',
-                            ],
+                            'text'               => 'Looking to kill someone before they can contest — take the pick, then drake.',
+                            'diagnostic_payload' => ['traits' => ['kill_instinct' => 2, 'pressure_orientation' => 2]],
                         ],
                         [
-                            'text'               => 'Alert your team to set up a 5v4 teamfight instead.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'independence' => -1],
-                                'interpretation' => 'Converts the pick opportunity into a structured team play.',
-                            ],
+                            'text'               => 'Checking if I can force a fight before they arrive.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'aggression' => 1]],
                         ],
                         [
-                            'text'               => 'Take the nearest objective while they\'re out of position.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'adaptability' => 1],
-                                'interpretation' => 'Uses enemy mistake to secure macro objectives rather than a kill.',
-                            ],
+                            'text'               => 'Shoving a side wave to bring a gold advantage into the fight.',
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'structure_preference' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You're 0/4 in the early game through no single avoidable mistake — just lost trades and pressure. What is your most likely response?",
+                'question' => "Your team wins a clean 5v5 teamfight. 20 seconds before they respawn. What do you prioritise?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Play extremely safe and focus entirely on farming.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'defensive_discipline' => 2],
-                                'interpretation' => 'Accepts the deficit and focuses on safe scaling.',
-                            ],
-                        ],
-                        [
-                            'text'               => 'Look for an unconventional play to flip the game.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'risk_tolerance' => 2, 'aggression' => 1],
-                                'interpretation' => 'Seeks an unexpected play to reverse momentum.',
-                            ],
-                        ],
-                        [
-                            'text'               => 'Identify what the enemy is doing to beat me and adjust.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Diagnoses the problem first and adapts the gameplan.',
-                            ],
-                        ],
-                        [
-                            'text'               => 'Continue my normal game plan — the score will even out.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'adaptability' => -1],
-                                'interpretation' => 'Stays committed to their usual style regardless of the deficit.',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'question' => "Your team wins a clean 5v5 teamfight in the mid game with all enemies dead. You have 20 seconds before they respawn. What do you prioritise?",
-                'answer'   => [
-                    'options' => [
-                        [
-                            'text'               => 'Rush the nearest inhibitor to force a base defence.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'pressure_orientation' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Maximises aggression to turn a fight win into a base threat.',
-                            ],
+                            'text'               => 'Rush the nearest structure before they come back.',
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'pressure_orientation' => 2]],
                         ],
                         [
                             'text'               => 'Secure Baron or Dragon for the objective buff.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Converts fight win into a controlled objective advantage.',
-                            ],
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'structure_preference' => 1]],
                         ],
                         [
-                            'text'               => 'Recall and spend gold — the item spike matters more.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Values the power spike of items over immediate map control.',
-                            ],
+                            'text'               => 'Identify the specific thing that converts this lead and do that.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'Identify the highest-value thing to take and do it.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Evaluates the situation dynamically rather than defaulting to a set play.',
-                            ],
+                            'text'               => 'Recall, buy, come back full — item power matters more than raw map pressure.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'defensive_discipline' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "In champion select, your team has two carries and needs a tank. You were planning to play a carry. What do you do?",
+                'question' => "The enemy has been running a split push for 5 minutes and getting free objectives. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Pick the tank — team needs it.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['independence' => -1, 'structure_preference' => 1, 'adaptability' => 1],
-                                'interpretation' => 'Prioritises team composition over personal preference.',
-                            ],
+                            'text'               => 'Shadow their split pusher — one person always follows them.',
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Play my carry anyway — I\'m more impactful there.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['independence' => 2, 'aggression' => 1],
-                                'interpretation' => 'Backs personal skill over team composition optimisation.',
-                            ],
+                            'text'               => 'Group and force a 5v4 teamfight while they are out of position.',
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'kill_instinct' => 2]],
                         ],
                         [
-                            'text'               => 'Ask a teammate to swap roles.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 1, 'structure_preference' => 1, 'independence' => 1],
-                                'interpretation' => 'Tries to optimise the team\'s overall composition through coordination.',
-                            ],
+                            'text'               => 'Match their split push with your own on the other side.',
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'creativity' => 2]],
                         ],
                         [
-                            'text'               => 'Pick a champion that can be played both ways.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'adaptability' => 2],
-                                'interpretation' => 'Looks for a flexible pick that satisfies both needs.',
-                            ],
+                            'text'               => 'Group mid and siege — a split pusher cannot answer a 5-man push.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You and your jungler have the enemy support cornered in a 2v1. They\'ve used flash. You\'re at 50% health with abilities on cooldown. Do you:",
+                'question' => "You are losing a close game. Your team is turtling under nexus towers. What is your play?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Commit everything to secure the kill.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['kill_instinct' => 2, 'aggression' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Prioritises the kill window over safe resource management.',
-                            ],
+                            'text'               => 'Find a pick on their carry when they step up — one kill can flip this.',
+                            'diagnostic_payload' => ['traits' => ['kill_instinct' => 2, 'reactivity' => 2]],
                         ],
                         [
-                            'text'               => 'Wait for abilities to come back before committing.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'control_orientation' => 1],
-                                'interpretation' => 'Delays to ensure the kill is clean and low-risk.',
-                            ],
+                            'text'               => 'Set up vision and wait for them to make the mistake.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'control_orientation' => 2]],
                         ],
                         [
-                            'text'               => 'Zone them off and let your jungler secure it.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'defensive_discipline' => 1],
-                                'interpretation' => 'Uses positioning to assist without overcommitting personal resources.',
-                            ],
+                            'text'               => 'Look for a base race — if they take a tower, race for their base.',
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'independence' => 2]],
                         ],
                         [
-                            'text'               => 'Back off — the kill isn\'t worth the risk at 50% health.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'risk_tolerance' => -1],
-                                'interpretation' => 'Prioritises self-preservation over the kill opportunity.',
-                            ],
+                            'text'               => 'Communicate a coordinated 5-man push around the next objective.',
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'structure_preference' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "You review a ranked game you lost. What part of the replay do you focus on first?",
+                'question' => "In champion select, your team clearly needs engage but everyone has called damage champions. You have not locked in. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'The moments I died — what I could have done differently.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'adaptability' => 1],
-                                'interpretation' => 'Reviews losses through survivability and individual decision errors.',
-                            ],
+                            'text'               => 'Pick what the team needs — a bad composition loses before the game starts.',
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'Missed kill opportunities and fights I should have taken.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['kill_instinct' => 2, 'aggression' => 1],
-                                'interpretation' => 'Reviews losses through missed offensive windows.',
-                            ],
+                            'text'               => "Play what I'm best at and outperform the compositional weakness.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'aggression' => 1]],
                         ],
                         [
-                            'text'               => 'Objective timing and macro rotations.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Reviews losses through map control and objective decisions.',
-                            ],
+                            'text'               => 'Find a champion that can flex between engage and damage.',
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'adaptability' => 2]],
                         ],
                         [
-                            'text'               => 'How the game state shifted and what I adapted to.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'creativity' => 1],
-                                'interpretation' => 'Reviews losses by analysing how the game evolved and how they responded.',
-                            ],
+                            'text'               => 'Type in chat and see if a teammate swaps before I decide.',
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'defensive_discipline' => 1]],
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'question' => "When you are playing at your sharpest, which of these best describes it?",
+                'answer'   => [
+                    'options' => [
+                        [
+                            'text'               => 'Controlled and aware — I know where every threat is and my decisions flow from that.',
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 1]],
+                        ],
+                        [
+                            'text'               => "Instinctive and fast — I'm reacting to the game faster than I can think about it.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
+                        ],
+                        [
+                            'text'               => "Aggressive and decisive — I'm creating the action and they're following my lead.",
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'kill_instinct' => 1]],
+                        ],
+                        [
+                            'text'               => "Decisive and self-directed — I'm running my gameplan and no one can stop it.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'aggression' => 1]],
                         ],
                     ],
                 ],

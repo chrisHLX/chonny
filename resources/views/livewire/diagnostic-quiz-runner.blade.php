@@ -49,38 +49,50 @@
                 </div>
             @endif
 
-            {{-- Evidence --}}
-            @if (!empty($evidence))
-                <div class="linear-card p-5 relative overflow-hidden">
-                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
-                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">What we observed</p>
-                    <div class="space-y-3">
-                        @foreach ($evidence as $item)
-                            <div class="flex gap-3">
-                                <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
-                                <div>
-                                    <p class="text-[13px] font-medium text-ink">{{ $item['signal'] ?? '' }}</p>
-                                    <p class="text-[12px] text-ink-muted leading-relaxed mt-0.5">{{ $item['interpretation'] ?? '' }}</p>
+            {{-- Evidence (collapsible) --}}
+            @php $observedEvidence = array_values(array_filter($evidence, fn($e) => !str_starts_with($e['signal'] ?? '', 'Self-reported'))); @endphp
+            @if (!empty($observedEvidence))
+                <div class="linear-card relative overflow-hidden" x-data="{ open: false }">
+                    <button @click="open = !open"
+                            class="w-full flex items-center justify-between px-5 py-4 text-left">
+                        <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide">What we observed</p>
+                        <svg class="w-4 h-4 text-ink-subtle transition-transform duration-200"
+                             :class="open ? 'rotate-180' : ''"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-collapse class="px-5 pb-5">
+                        <div class="space-y-0">
+                            @foreach ($observedEvidence as $item)
+                                <div class="{{ !$loop->first ? 'border-t border-line pt-4 mt-4' : '' }}">
+                                    <p class="text-[13px] font-semibold text-ink mb-1">{{ $item['signal'] ?? '' }}</p>
+                                    <p class="text-[12px] text-ink-muted leading-relaxed">{{ $item['interpretation'] ?? '' }}</p>
+                                    @if (!empty($item['score']))
+                                        <p class="text-[11px] text-ink-subtle mt-1.5">Signal: <span class="font-mono text-ink-muted">{{ $item['score'] }}</span></p>
+                                    @endif
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             @elseif (!empty($topTraits))
-                {{-- Fallback: old-format top traits --}}
-                <div class="linear-card p-5 relative overflow-hidden">
-                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
-                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Top Traits</p>
-                    <div class="flex flex-wrap gap-2">
-                        @foreach ($topTraits as $trait)
-                            <span class="badge-gold text-[12px] px-3 py-1 rounded-full">{{ str($trait)->headline() }}</span>
-                        @endforeach
+                <div class="linear-card relative overflow-hidden" x-data="{ open: false }">
+                    <button @click="open = !open"
+                            class="w-full flex items-center justify-between px-5 py-4 text-left">
+                        <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide">What we observed</p>
+                        <svg class="w-4 h-4 text-ink-subtle transition-transform duration-200"
+                             :class="open ? 'rotate-180' : ''"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-collapse class="px-5 pb-5">
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($topTraits as $trait)
+                                <span class="badge-gold text-[12px] px-3 py-1 rounded-full">{{ str($trait)->headline() }}</span>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             @endif
@@ -147,48 +159,70 @@
                 </div>
             @endif
 
-            {{-- Sign up CTA (guests only) --}}
+            {{-- Combined CTA: sign up + explore --}}
             @if ($guestMode)
-                <div class="linear-card p-6 text-center border border-accent/30 relative overflow-hidden">
-                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/30"/>
-                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/30"/>
-                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/30"/>
-                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/30"/>
-                    <x-mc-icon name="icon-lightning-circle" class="w-10 h-10 text-gold mb-3"/>
-                    <h3 class="text-[16px] font-semibold text-ink mb-2">Save your profile &amp; keep improving</h3>
+                <div class="linear-card p-6 relative overflow-hidden border border-gold/20">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-10 h-10 text-gold/30"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-10 h-10 text-gold/30"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-10 h-10 text-gold/30"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-10 h-10 text-gold/30"/>
+
+                    <x-mc-icon name="icon-lightning-circle" class="w-10 h-10 text-gold mb-4"/>
+
+                    <h3 class="font-display text-[20px] italic text-gold-light leading-snug mb-3">
+                        Your training path is ready.
+                    </h3>
+
                     <p class="text-[13px] text-ink-muted leading-relaxed mb-5">
-                        Create a free account to save this profile, track your growth areas over time, and unlock a personalised learning path.
+                        Create a free account to save your result, start your recommended module, and track how your gameplay changes over time.
                     </p>
+
                     <a href="{{ route('register') }}"
-                       class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-semibold text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
-                        Sign up — it's free
+                       class="inline-flex items-center justify-center gap-2 w-full py-3 text-[14px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200 mb-3">
+                        Unlock my path — free
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
                     </a>
-                    <a href="{{ route('login') }}" class="block mt-2 text-[12px] text-ink-subtle hover:text-ink transition-colors">
-                        Already have an account? Log in
-                    </a>
-                </div>
-            @endif
 
-            {{-- Recommended module --}}
-            @if ($recTitle)
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        @foreach (['Profile saved', 'First module unlocked', 'Progress tracking'] as $perk)
+                            <span class="flex items-center gap-1 text-[11px] text-ink-subtle">
+                                <svg class="w-3 h-3 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                {{ $perk }}
+                            </span>
+                        @endforeach
+                    </div>
+
+                    <p class="text-center text-[12px] text-ink-subtle">
+                        Already have an account?
+                        <a href="{{ route('login') }}" class="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">Log in</a>
+                    </p>
+                </div>
+            @else
                 <div class="linear-card p-5 relative overflow-hidden">
                     <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
                     <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
                     <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
                     <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
-                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-2">Recommended Next Module</p>
-                    <p class="text-[15px] font-medium text-ink mb-1">{{ $recTitle }}</p>
-                    @if ($recReason)
-                        <p class="text-[13px] text-ink-muted leading-relaxed mb-4">{{ $recReason }}</p>
+                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-2">What to do next</p>
+                    <p class="text-[14px] font-medium text-ink mb-1">
+                        {{ $growthAreaName ? 'Put your profile to work' : 'Explore your training' }}
+                    </p>
+                    @if ($growthAreaName)
+                        <p class="text-[13px] text-ink-muted leading-relaxed mb-4">
+                            Your growth area is <span class="text-ink font-medium">{{ $growthAreaName }}</span>. Browse the available modules to find targeted training that addresses it directly.
+                        </p>
                     @else
-                        <div class="mb-4"></div>
+                        <p class="text-[13px] text-ink-muted leading-relaxed mb-4">
+                            Explore the available training modules and find one that matches what your profile revealed.
+                        </p>
                     @endif
                     <a href="{{ route('modules.index') }}"
                        class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200">
-                        Explore recommended training
+                        Explore training modules
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>

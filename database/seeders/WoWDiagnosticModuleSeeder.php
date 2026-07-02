@@ -152,351 +152,231 @@ class WoWDiagnosticModuleSeeder extends Seeder
     {
         return [
             [
-                'question' => "Enemy Rogue uses Shadow Blades. Enemy Mage uses Combustion. Your healer is stunned with no trinket. You have: Trinket, Wall, Disarm. What is your first response?",
+                'question' => "What are you thinking in the first 10 seconds of a match before anyone has committed a cooldown?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Trinket immediately and run.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 1, 'reactivity' => 2, 'risk_tolerance' => -1],
-                                'interpretation' => 'Quick, safety-first reaction prioritising immediate survival.',
-                            ],
+                            'text'               => "I'm already scanning for which target looks most vulnerable.",
+                            'diagnostic_payload' => ['traits' => ['kill_instinct' => 2, 'aggression' => 1]],
                         ],
                         [
-                            'text'               => 'Wall first and hold trinket.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'patience' => 1],
-                                'interpretation' => 'Conserves resources by leaning on a defensive cooldown before committing the trinket.',
-                            ],
+                            'text'               => "I want to understand their setup before I commit to anything.",
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Disarm Rogue and reposition.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'defensive_discipline' => 1, 'patience' => 1],
-                                'interpretation' => 'Neutralises the threat directly while creating space.',
-                            ],
+                            'text'               => "I follow the opener we agreed on before the game.",
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Hold everything unless health drops dangerously low.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['risk_tolerance' => 2, 'patience' => 1, 'defensive_discipline' => -1],
-                                'interpretation' => 'Comfortable absorbing risk before reacting.',
-                            ],
+                            'text'               => "I react to whatever they show me first and adjust from there.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'You force enemy trinket during the opener. What is your next thought?',
+                'question' => "You're mid-burst cooldowns on your kill target when your healer calls a swap to help a teammate who's in danger. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Try to end the game immediately.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 2, 'kill_instinct' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Sees a forced trinket as a finishing opportunity.',
-                            ],
+                            'text'               => "Swap immediately — protecting the team is the priority.",
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Track remaining cooldowns before committing further.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'control_orientation' => 1, 'patience' => 1],
-                                'interpretation' => 'Methodically tracks resources before acting.',
-                            ],
+                            'text'               => "Finish the window — abandoning mid-burst usually wastes both targets.",
+                            'diagnostic_payload' => ['traits' => ['kill_instinct' => 2, 'independence' => 1]],
                         ],
                         [
-                            'text'               => 'Reset and prepare a cleaner setup.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['patience' => 2, 'structure_preference' => 2],
-                                'interpretation' => 'Prefers a deliberate, well-prepared follow-up over an immediate push.',
-                            ],
+                            'text'               => "Quickly weigh how close the kill is before deciding.",
+                            'diagnostic_payload' => ['traits' => ['adaptability' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Keep pressure high and see what happens.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['pressure_orientation' => 2, 'adaptability' => 1, 'structure_preference' => -1],
-                                'interpretation' => 'Maintains tempo and reacts to outcomes as they unfold.',
-                            ],
+                            'text'               => "React on instinct — if the swap feels right in the moment, I commit.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'kill_instinct' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'You are ahead on damage but behind on cooldowns. What concerns you most?',
+                'question' => "You're running a planned CC chain on your kill target. A different enemy unexpectedly drops to 10% health. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Losing momentum.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['pressure_orientation' => 2, 'aggression' => 1],
-                                'interpretation' => 'Values sustained tempo over cooldown parity.',
-                            ],
+                            'text'               => "Swap instantly — a real kill window beats a planned one every time.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'kill_instinct' => 2]],
                         ],
                         [
-                            'text'               => 'Being unable to survive the next enemy push.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Concerned primarily with surviving the next exchange.',
-                            ],
+                            'text'               => "Stick to the plan — an incomplete chain is almost always worse.",
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Whether the enemy still has a win condition.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'adaptability' => 1],
-                                'interpretation' => 'Thinks in terms of controlling the enemy\'s remaining options.',
-                            ],
+                            'text'               => "Call it to the team first and let them confirm before committing.",
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'defensive_discipline' => 1]],
                         ],
                         [
-                            'text'               => 'Nothing, keep pushing.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['risk_tolerance' => 2, 'aggression' => 2, 'defensive_discipline' => -1],
-                                'interpretation' => 'Disregards cooldown deficit in favour of continued aggression.',
-                            ],
+                            'text'               => "Improvise with whatever I have — I'll make something work.",
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'risk_tolerance' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'You enter a new matchup you rarely play against. What do you do first?',
+                'question' => "The enemy healer is consistently playing behind pillars, resetting your pressure every time you build it. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Play aggressively and learn as you go.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 1, 'adaptability' => 2, 'risk_tolerance' => 1],
-                                'interpretation' => 'Learns through active engagement rather than observation.',
-                            ],
+                            'text'               => "Rotate to cut off their pillar routes and control the space.",
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Observe enemy cooldown usage carefully.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 1, 'patience' => 2],
-                                'interpretation' => 'Gathers information before committing to a plan.',
-                            ],
+                            'text'               => "Switch to a different kill target — a healer playing defensively is doing their job.",
+                            'diagnostic_payload' => ['traits' => ['adaptability' => 2, 'kill_instinct' => 1]],
                         ],
                         [
-                            'text'               => 'Focus on surviving until you understand the matchup.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'patience' => 1],
-                                'interpretation' => 'Prioritises safety while building understanding.',
-                            ],
+                            'text'               => "Keep sustained pressure and wait for them to make a greedy mistake.",
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'pressure_orientation' => 1]],
                         ],
                         [
-                            'text'               => 'Follow your normal gameplan regardless.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'adaptability' => -1],
-                                'interpretation' => 'Relies on established routines even in unfamiliar situations.',
-                            ],
+                            'text'               => "Use an unexpected angle or timing to bait them out of position.",
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'aggression' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'Your target reaches low health unexpectedly. What are you most likely to do?',
+                'question' => "You can see a clean kill window your teammates haven't noticed. They're calling for a reset. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Commit additional resources to secure the kill.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['kill_instinct' => 2, 'aggression' => 1],
-                                'interpretation' => 'Recognises and commits to a genuine finishing opportunity.',
-                            ],
+                            'text'               => "Play my read — I'm in the best position to see it.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'kill_instinct' => 1]],
                         ],
                         [
-                            'text'               => 'Evaluate what cooldowns remain first.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'patience' => 1],
-                                'interpretation' => 'Checks the broader resource state before committing.',
-                            ],
+                            'text'               => "Honor the reset — team coherence is worth more than one window.",
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'defensive_discipline' => 1]],
                         ],
                         [
-                            'text'               => 'Wait for teammates to commit before acting.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 1, 'independence' => -1],
-                                'interpretation' => 'Defers initiative to teammates rather than acting independently.',
-                            ],
+                            'text'               => "Communicate what I see fast — if they react, great. If not, I'll make the call.",
+                            'diagnostic_payload' => ['traits' => ['adaptability' => 2, 'independence' => 1]],
                         ],
                         [
-                            'text'               => 'Maintain pressure but avoid overcommitting.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 1, 'patience' => 1],
-                                'interpretation' => 'Balances opportunity against overextension risk.',
-                            ],
+                            'text'               => "Start the reset but commit if the window is still open in two seconds.",
+                            'diagnostic_payload' => ['traits' => ['risk_tolerance' => 2, 'aggression' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'Your team loses the opener. What is your mindset?',
+                'question' => "Your team is ahead on cooldowns but you're personally low on health. The enemy pushes in hard. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Look for an unexpected offensive opportunity.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['creativity' => 2, 'aggression' => 1],
-                                'interpretation' => 'Looks for unconventional ways to flip momentum.',
-                            ],
+                            'text'               => "Absorb the pressure — the cooldown lead will pay off if I survive.",
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Stabilise and recover resources.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'patience' => 2],
-                                'interpretation' => 'Prioritises recovery before attempting to push back.',
-                            ],
+                            'text'               => "Trade into them aggressively — they're likely dry on cooldowns too.",
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'risk_tolerance' => 1]],
                         ],
                         [
-                            'text'               => 'Identify what caused the failure.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Adjusts based on diagnosing the root cause.',
-                            ],
+                            'text'               => "React beat by beat — use defensives only when it actually looks critical.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'risk_tolerance' => 1]],
                         ],
                         [
-                            'text'               => 'Continue the original plan.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'adaptability' => -1],
-                                'interpretation' => 'Stays committed to the original gameplan despite the setback.',
-                            ],
+                            'text'               => "Disengage entirely — the advantage doesn't expire if I stay alive.",
+                            'diagnostic_payload' => ['traits' => ['patience' => 2, 'independence' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'What is most satisfying in arena?',
+                'question' => "Of these four, which demands the most of your mental attention during active arena play?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Perfect crowd control chains.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Draws satisfaction from precise, controlled execution.',
-                            ],
+                            'text'               => "Enemy cooldowns and trinket status — my decisions are built around what they have left.",
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'structure_preference' => 1]],
                         ],
                         [
-                            'text'               => 'Securing unexpected kills.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['kill_instinct' => 2, 'creativity' => 1],
-                                'interpretation' => 'Enjoys capitalising on unexpected finishing windows.',
-                            ],
+                            'text'               => "My own positioning and where I can escape to.",
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'independence' => 1]],
                         ],
                         [
-                            'text'               => 'Outlasting enemy cooldowns.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'patience' => 2],
-                                'interpretation' => 'Finds reward in patient, attritional play.',
-                            ],
+                            'text'               => "Where the momentum is shifting and which direction the game is tipping.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'pressure_orientation' => 1]],
                         ],
                         [
-                            'text'               => 'Constant pressure throughout the match.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['pressure_orientation' => 2, 'aggression' => 1],
-                                'interpretation' => 'Enjoys maintaining relentless tempo.',
-                            ],
+                            'text'               => "Openings to create action — I'm constantly scanning for a window to go.",
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'kill_instinct' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'Your healer calls for a reset. What is your typical reaction?',
+                'question' => "You win a close game where your original plan fell apart early. What was the actual winning factor?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Reset immediately.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2, 'independence' => -1],
-                                'interpretation' => 'Defers to the healer\'s call without hesitation.',
-                            ],
+                            'text'               => "I adapted in real-time and found new angles as the game evolved.",
+                            'diagnostic_payload' => ['traits' => ['adaptability' => 2, 'creativity' => 1]],
                         ],
                         [
-                            'text'               => 'Look for one last opportunity first.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['aggression' => 1, 'kill_instinct' => 1, 'risk_tolerance' => 1],
-                                'interpretation' => 'Weighs a final opportunity against the call to disengage.',
-                            ],
+                            'text'               => "I spotted the right moment and committed to the kill.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'kill_instinct' => 1]],
                         ],
                         [
-                            'text'               => 'Evaluate positioning before deciding.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'patience' => 1],
-                                'interpretation' => 'Assesses the situation independently before committing to a reset.',
-                            ],
+                            'text'               => "I stayed disciplined under pressure and didn't waste a single cooldown.",
+                            'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'structure_preference' => 1]],
                         ],
                         [
-                            'text'               => 'Stay in and continue pressure.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['pressure_orientation' => 2, 'risk_tolerance' => 2],
-                                'interpretation' => 'Overrides the reset call to keep pressure on.',
-                            ],
+                            'text'               => "I took over and created a window rather than waiting for one.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'aggression' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'What wins more games?',
+                'question' => "Two games in, you're losing to a team you have no excuse to lose to. What changes?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Better mechanics.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['independence' => 1, 'aggression' => 1],
-                                'interpretation' => 'Believes individual execution is the deciding factor.',
-                            ],
+                            'text'               => "Identify exactly what's causing the losses before changing anything.",
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Better positioning.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 1, 'patience' => 1],
-                                'interpretation' => 'Believes spatial control decides outcomes.',
-                            ],
+                            'text'               => "Try something they haven't seen — the current gameplan clearly isn't working.",
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'risk_tolerance' => 1]],
                         ],
                         [
-                            'text'               => 'Better cooldown management.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['structure_preference' => 2, 'defensive_discipline' => 1],
-                                'interpretation' => 'Believes resource discipline decides outcomes.',
-                            ],
+                            'text'               => "Ramp up the pressure and force them into reactive mode.",
+                            'diagnostic_payload' => ['traits' => ['aggression' => 2, 'pressure_orientation' => 1]],
                         ],
                         [
-                            'text'               => 'Better adaptation.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'creativity' => 1],
-                                'interpretation' => 'Believes flexibility decides outcomes.',
-                            ],
+                            'text'               => "Lock in and clean up the execution — the plan is fine, the errors aren't.",
+                            'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => 'You review a loss. What are you most likely to focus on?',
+                'question' => "When you're playing at your sharpest, which of these best describes what your play actually looks like?",
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Missed kill opportunities.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['kill_instinct' => 2, 'aggression' => 1],
-                                'interpretation' => 'Reviews losses through missed finishing windows.',
-                            ],
+                            'text'               => "Controlled and deliberate — every decision is intentional and nothing is wasted.",
+                            'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'defensive_discipline' => 1]],
                         ],
                         [
-                            'text'               => 'Defensive mistakes.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['defensive_discipline' => 2],
-                                'interpretation' => 'Reviews losses through survivability errors.',
-                            ],
+                            'text'               => "Relentless — I keep pressure going and they're always reacting to me.",
+                            'diagnostic_payload' => ['traits' => ['pressure_orientation' => 2, 'aggression' => 1]],
                         ],
                         [
-                            'text'               => 'Positioning and setup issues.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['control_orientation' => 2, 'structure_preference' => 1],
-                                'interpretation' => 'Reviews losses through spatial and setup discipline.',
-                            ],
+                            'text'               => "Instinctive — I'm reading the game faster than I can consciously think.",
+                            'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => 'How the game changed over time.',
-                            'diagnostic_payload' => [
-                                'traits'         => ['adaptability' => 2, 'creativity' => 1],
-                                'interpretation' => 'Reviews losses through how the matchup evolved.',
-                            ],
+                            'text'               => "Self-directed — I create my own windows without waiting for calls.",
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'kill_instinct' => 1]],
                         ],
                     ],
                 ],
