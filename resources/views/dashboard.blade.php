@@ -4,10 +4,17 @@
         <div class="max-w-7xl mx-auto space-y-6">
 
             @php
+                $currentSubjectName = $subjects->firstWhere('id', $currentSubjectId)?->name ?? 'Subject';
+
                 $overallMastery = $concepts->count() > 0
                     ? round($concepts->avg(function ($c) { return $c->userConceptMasteries->first()?->mastery_percentage ?? 0; }))
                     : 0;
                 $alchemistLevel = $overallMastery < 20 ? 'I' : ($overallMastery < 40 ? 'II' : ($overallMastery < 60 ? 'III' : ($overallMastery < 80 ? 'IV' : 'V')));
+
+                // Concept Knowledge Profile: how many of this subject's concepts have any real
+                // question/mastery evidence at all — distinct from "0 mastery" on an assessed concept.
+                $totalConceptCount = $concepts->count();
+                $assessedConceptCount = $concepts->filter(fn ($c) => $c->userConceptMasteries->isNotEmpty())->count();
 
                 // 6-axis hex radar polygon (center 65,65, outer r=50)
                 $radarConcepts = $concepts->take(6)->values();
@@ -30,10 +37,8 @@
             {{-- Page header --}}
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="font-display text-[20px] font-bold text-ink">Knowledge Atlas</h1>
-                    <p class="text-[13px] text-ink-muted mt-0.5">
-                        Welcome back, <span class="text-gold">{{ $user->name }}</span>
-                    </p>
+                    <h1 class="font-display text-[20px] font-bold text-ink">{{ $currentSubjectName }} Profile</h1>
+                    <p class="text-[13px] text-ink-muted mt-0.5">Your current profile, focus, and learning evidence.</p>
                 </div>
                 <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/30">
                     <span class="text-[10px] font-semibold uppercase tracking-[0.15em] text-gold">Alchemist</span>
@@ -41,58 +46,64 @@
                 </div>
             </div>
 
-            {{-- Hero: Mastery Overview --}}
+            {{-- Profile-First Sections (if diagnostic completed) --}}
+            @if ($diagnosticProfile)
+                @php
+                    $recModule = $diagnosticProfile['recommended_module'] ?? null;
+                    $recModuleId = is_array($recModule) ? ($recModule['module_id'] ?? null) : null;
+                    $recReason = is_array($recModule) ? ($recModule['reason'] ?? null) : null;
+                    $recommendedModule = $recModuleId ? \App\Models\Module::find($recModuleId) : null;
+                @endphp
+
+                <x-dashboard.profile-hero :profile="$diagnosticProfile" />
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <x-dashboard.current-focus :profile="$diagnosticProfile" />
+                    <x-dashboard.next-experiment :profile="$diagnosticProfile" />
+                </div>
+
+                <x-dashboard.evidence-panel :profile="$diagnosticProfile" />
+
+                @if ($recommendedModule)
+                    <x-dashboard.recommended-next-step type="module" :data="$recommendedModule" :reason="$recReason" />
+                @elseif (!empty($diagnosticProfile['next_module_suggestion']))
+                    <x-dashboard.recommended-next-step type="module" :data="$diagnosticProfile['next_module_suggestion']" />
+                @endif
+            @elseif ($subjectDiagnosticModule)
+                <div class="relative overflow-hidden rounded-lg border border-violet-muted bg-violet-subtle px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
+                    <x-ornament.corner position="tl" class="absolute top-2 left-2 w-8 h-8 text-violet/20"/>
+                    <x-ornament.corner position="br" class="absolute bottom-2 right-2 w-8 h-8 text-violet/20"/>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-violet mb-0.5">Development Focus</p>
+                        <p class="text-[14px] font-semibold text-ink leading-snug">Complete the {{ $currentSubjectName }} diagnostic</p>
+                        <p class="text-[12px] text-ink-muted mt-0.5">Your Development Focus for {{ $currentSubjectName }} will appear here once you've taken its diagnostic assessment.</p>
+                    </div>
+                    <a href="{{ route('modules.quiz', $subjectDiagnosticModule) }}"
+                       class="shrink-0 btn-secondary text-[13px]">
+                        Start Assessment
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            @endif
+
+            {{-- Knowledge Profile: what MindCollector has objectively measured, distinct from the profile above --}}
             <div class="linear-card p-6 relative overflow-hidden">
 
                 <div class="relative flex flex-col lg:flex-row gap-8">
-                    {{-- Left: mastery stats + CTA --}}
+                    {{-- Left: assessed-concept count + CTA --}}
                     <div class="flex-1 min-w-0">
-                        <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-subtle mb-2">Overall Mastery</p>
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-subtle mb-2">Knowledge Profile</p>
                         <div class="flex items-end gap-2 mb-3">
-                            <span class="font-display text-[56px] font-bold leading-none text-ink">{{ $overallMastery }}</span>
-                            <span class="text-[20px] text-ink-subtle mb-2.5">/100</span>
+                            <span class="font-display text-[40px] font-bold leading-none text-ink">{{ $assessedConceptCount }}</span>
+                            <span class="text-[16px] text-ink-subtle mb-1.5">of {{ $totalConceptCount }} concepts assessed</span>
                         </div>
                         <p class="text-[13px] text-ink-muted mb-5 max-w-sm">
-                            @if($overallMastery === 0) Start your first quiz to begin mapping your knowledge.
-                            @elseif($overallMastery < 40) Your knowledge map is forming. Keep taking quizzes.
-                            @elseif($overallMastery < 70) Good progress — your blind spots are narrowing.
-                            @else Strong foundation. Push toward full mastery.
-                            @endif
+                            Your knowledge profile will become more detailed as you complete targeted checks and learning activities.
                         </p>
 
-                        @if($heroModule && $heroModule->type === 'diagnostic')
-                            @php
-                                $heroStatus  = $heroModule->pivot->status ?? 'not_started';
-                                $heroProfile = $heroModule->pivot->diagnostic_profile
-                                    ? json_decode($heroModule->pivot->diagnostic_profile, true)
-                                    : null;
-                            @endphp
-                            <div class="bg-surface-2 border border-line rounded-lg p-4 mb-5 max-w-sm">
-                                <p class="text-[10px] font-semibold uppercase tracking-[0.15em] text-gold mb-1">
-                                    {{ $heroStatus === 'completed' ? 'Assessment Complete' : 'Continue Learning' }}
-                                </p>
-                                <p class="text-[14px] font-semibold text-ink mb-0.5">{{ $heroModule->name }}</p>
-                                @if($heroProfile && !empty($heroProfile['player_type']))
-                                    <p class="text-[13px] font-display italic text-gold mt-1">{{ $heroProfile['player_type'] }}</p>
-                                    @if(!empty($heroProfile['top_traits']))
-                                        <div class="flex flex-wrap gap-1 mt-2">
-                                            @foreach(array_slice($heroProfile['top_traits'], 0, 3) as $trait)
-                                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gold/10 border border-gold/20 text-gold">{{ str($trait)->headline() }}</span>
-                                            @endforeach
-                                        </div>
-                                    @endif
-                                @else
-                                    <p class="text-[11px] text-ink-subtle">Assessment · {{ ucfirst(str_replace('_', ' ', $heroStatus)) }}</p>
-                                @endif
-                            </div>
-                            <a href="{{ route('modules.quiz', $heroModule) }}"
-                               class="btn-primary">
-                                {{ $heroStatus === 'completed' ? 'View Profile' : 'Start Assessment' }}
-                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </a>
-                        @elseif($heroModule)
+                        @if($heroModule)
                             @php
                                 $heroStatus = $heroModule->pivot->status ?? 'not_started';
                                 $heroScore  = $heroModule->pivot->score ?? 0;
@@ -148,7 +159,9 @@
                                       font-size="5.5" fill="#C8952C" opacity="0.6" font-family="monospace">{{ mb_substr($rc->name, 0, 9) }}</text>
                             @endforeach
 
-                            @if($concepts->count() > 0)
+                            {{-- Only render the filled polygon once something has actually been assessed —
+                                 an unassessed subject gets a neutral empty grid, not a "scored zero everywhere" shape. --}}
+                            @if($assessedConceptCount > 0)
                                 <polygon points="{{ $radarPolygon }}"
                                          fill="#C8952C" fill-opacity="0.2" stroke="#E8B84B" stroke-width="1.5" stroke-opacity="0.85"/>
                                 @foreach(explode(' ', $radarPolygon) as $pt)
@@ -159,9 +172,12 @@
                                 @endforeach
                             @endif
 
-                            <circle cx="65" cy="65" r="2.5" fill="#E8B84B" opacity="0.9"/>
+                            <circle cx="65" cy="65" r="2.5" fill="#E8B84B" opacity="{{ $assessedConceptCount > 0 ? '0.9' : '0.35' }}"/>
                         </svg>
-                        <p class="text-[10px] text-ink-subtle tracking-wide mt-1">Knowledge Map</p>
+                        <p class="text-[10px] text-ink-subtle tracking-wide mt-1">Concept Knowledge Map</p>
+                        @if($assessedConceptCount === 0)
+                            <p class="text-[9px] text-ink-subtle/70 tracking-wide">No knowledge evidence yet</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -192,23 +208,25 @@
             {{-- Main grid --}}
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
-                {{-- Topic Mastery --}}
+                {{-- Concept Knowledge: what MindCollector has measured about this subject via correct/incorrect questions --}}
                 <div class="linear-card p-5">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-[13px] font-semibold text-ink">Topic Mastery</h2>
-                        <span class="text-[11px] text-ink-subtle">{{ $concepts->count() }} topics</span>
+                        <h2 class="text-[13px] font-semibold text-ink">Concept Knowledge</h2>
+                        <span class="text-[11px] text-ink-subtle">{{ $totalConceptCount }} concepts</span>
                     </div>
 
                     @if (!$hasContentActivity)
                         <div class="linear-card p-4 text-center">
                             <x-mc-icon name="icon-axis-hex" class="w-8 h-8 text-gold/40 mx-auto mb-2"/>
-                            <p class="text-[13px] text-ink-muted">Complete a learning guide to start tracking mastery.</p>
-                            <p class="text-[12px] text-ink-subtle mt-1">Diagnostic assessments reveal your playstyle but don't contribute to mastery scores.</p>
+                            <p class="text-[13px] text-ink-muted">Complete a targeted check or learning activity to begin mapping your understanding.</p>
+                            <p class="text-[12px] text-ink-subtle mt-1">Diagnostic assessments reveal your profile but don't contribute to knowledge evidence.</p>
                         </div>
                     @else
                         @forelse($concepts as $concept)
                             @php
-                                $mastery = $concept->userConceptMasteries->first()?->mastery_percentage ?? 0;
+                                $conceptMastery = $concept->userConceptMasteries->first();
+                                $isAssessed = $conceptMastery !== null;
+                                $mastery = $conceptMastery?->mastery_percentage ?? 0;
                             @endphp
                             <div class="mb-3.5 last:mb-0">
                                 <div class="flex justify-between items-center mb-1.5">
@@ -216,17 +234,23 @@
                                         <x-mc-icon name="icon-axis-hex" class="w-4 h-4 text-gold opacity-60"/>
                                         <span class="text-[12px] font-medium text-ink-muted">{{ $concept->name }}</span>
                                     </div>
-                                    <span class="text-[11px] font-semibold tabular-nums
-                                        {{ $mastery >= 70 ? 'text-gold-light' : ($mastery >= 40 ? 'text-gold' : 'text-ink-subtle') }}">
-                                        {{ $mastery }}%
-                                    </span>
+                                    @if ($isAssessed)
+                                        <span class="text-[11px] font-semibold tabular-nums
+                                            {{ $mastery >= 70 ? 'text-gold-light' : ($mastery >= 40 ? 'text-gold' : 'text-ink-subtle') }}">
+                                            {{ $mastery }}%
+                                        </span>
+                                    @else
+                                        <span class="text-[10px] font-medium text-ink-subtle/70 italic">Not yet assessed</span>
+                                    @endif
                                 </div>
                                 <div class="w-full bg-surface-3 rounded-full h-1.5 overflow-hidden">
-                                    <div class="h-1.5 rounded-full transition-all duration-700"
-                                         style="width: {{ $mastery }}%;
-                                                background: linear-gradient(90deg, #C8952C, #E8B84B);
-                                                box-shadow: {{ $mastery > 5 ? '0 0 6px rgba(200,149,44,0.45)' : 'none' }};">
-                                    </div>
+                                    @if ($isAssessed)
+                                        <div class="h-1.5 rounded-full transition-all duration-700"
+                                             style="width: {{ $mastery }}%;
+                                                    background: linear-gradient(90deg, #C8952C, #E8B84B);
+                                                    box-shadow: {{ $mastery > 5 ? '0 0 6px rgba(200,149,44,0.45)' : 'none' }};">
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         @empty
@@ -234,71 +258,16 @@
                                 <svg class="w-8 h-8 text-ink-subtle mx-auto mb-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                                 </svg>
-                                <p class="text-[12px] text-ink-subtle">No topics yet. Start a quiz to map your knowledge.</p>
+                                <p class="text-[12px] text-ink-subtle">No concepts yet for this subject.</p>
                             </div>
                         @endforelse
                     @endif
                 </div>
 
-                {{-- Leaderboard --}}
+                {{-- Learning: modules today, other activity types (knowledge checks, etc.) later --}}
                 <div class="linear-card p-5">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-[13px] font-semibold text-ink">Leaderboard</h2>
-                        <span class="text-[11px] text-ink-subtle">Top scholars</span>
-                    </div>
-
-                    @if (!$hasContentActivity)
-                        <div class="linear-card p-4 text-center">
-                            <x-mc-icon name="icon-axis-hex" class="w-8 h-8 text-gold/40 mx-auto mb-2"/>
-                            <p class="text-[13px] text-ink-muted">Complete a learning guide to appear on the leaderboard.</p>
-                            <p class="text-[12px] text-ink-subtle mt-1">Diagnostic assessments reveal your playstyle but don't contribute to mastery scores.</p>
-                        </div>
-                    @elseif($leaderboard->isEmpty())
-                        <p class="text-[12px] text-ink-subtle text-center py-8">No rankings yet.</p>
-                    @else
-                        <div class="space-y-0">
-                            @foreach ($leaderboard as $index => $leaderUser)
-                                @php $isMe = $leaderUser->id === auth()->id(); @endphp
-                                <div class="flex items-center gap-3 py-2.5 {{ !$loop->last ? 'border-b border-line' : '' }}">
-                                    {{-- Hex rank badge --}}
-                                    <div class="w-6 h-6 shrink-0 flex items-center justify-center">
-                                        @if($index === 0)
-                                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                                                <polygon points="10,1 17.5,5.5 17.5,14.5 10,19 2.5,14.5 2.5,5.5" fill="#E8B84B" fill-opacity="0.15" stroke="#E8B84B" stroke-opacity="0.7" stroke-width="1"/>
-                                                <text x="10" y="13.5" text-anchor="middle" font-size="7.5" fill="#E8B84B" font-weight="bold" font-family="monospace">1</text>
-                                            </svg>
-                                        @elseif($index === 1)
-                                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                                                <polygon points="10,1 17.5,5.5 17.5,14.5 10,19 2.5,14.5 2.5,5.5" fill="#8A8A9A" fill-opacity="0.1" stroke="#8A8A9A" stroke-opacity="0.45" stroke-width="1"/>
-                                                <text x="10" y="13.5" text-anchor="middle" font-size="7.5" fill="#8A8A9A" font-family="monospace">2</text>
-                                            </svg>
-                                        @elseif($index === 2)
-                                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                                                <polygon points="10,1 17.5,5.5 17.5,14.5 10,19 2.5,14.5 2.5,5.5" fill="#C8952C" fill-opacity="0.1" stroke="#C8952C" stroke-opacity="0.45" stroke-width="1"/>
-                                                <text x="10" y="13.5" text-anchor="middle" font-size="7.5" fill="#C8952C" font-family="monospace">3</text>
-                                            </svg>
-                                        @else
-                                            <span class="text-[11px] text-ink-subtle text-center w-full tabular-nums">{{ $index + 1 }}</span>
-                                        @endif
-                                    </div>
-
-                                    <span class="text-[13px] flex-1 truncate {{ $isMe ? 'text-gold font-medium' : 'text-ink' }}">
-                                        {{ $leaderUser->name }}{{ $isMe ? ' ·you' : '' }}
-                                    </span>
-                                    <span class="text-[12px] font-semibold tabular-nums
-                                        {{ $index === 0 ? 'text-gold-light' : ($index === 1 ? 'text-ink-muted' : ($index === 2 ? 'text-gold' : 'text-ink-subtle')) }}">
-                                        {{ round($leaderUser->total_mastery) }}%
-                                    </span>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-
-                {{-- My Guides --}}
-                <div class="linear-card p-5">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-[13px] font-semibold text-ink">My Guides</h2>
+                        <h2 class="text-[13px] font-semibold text-ink">Learning</h2>
                         <a href="{{ route_with_context('collection.index') }}"
                            class="text-[11px] text-gold hover:text-gold-light transition-colors">View all</a>
                     </div>
@@ -364,6 +333,61 @@
                                         </div>
                                     </div>
                                 @endif
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Leaderboard: secondary to the profile/knowledge experience, kept but visually muted --}}
+                <div class="linear-card p-5 opacity-80">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-[12px] font-medium text-ink-muted">Leaderboard</h2>
+                        <span class="text-[11px] text-ink-subtle">Top scholars</span>
+                    </div>
+
+                    @if (!$hasContentActivity)
+                        <div class="linear-card p-4 text-center">
+                            <x-mc-icon name="icon-axis-hex" class="w-8 h-8 text-gold/40 mx-auto mb-2"/>
+                            <p class="text-[13px] text-ink-muted">Complete a targeted check or learning activity to appear on the leaderboard.</p>
+                            <p class="text-[12px] text-ink-subtle mt-1">Diagnostic assessments reveal your profile but don't contribute to knowledge evidence.</p>
+                        </div>
+                    @elseif($leaderboard->isEmpty())
+                        <p class="text-[12px] text-ink-subtle text-center py-8">No rankings yet.</p>
+                    @else
+                        <div class="space-y-0">
+                            @foreach ($leaderboard as $index => $leaderUser)
+                                @php $isMe = $leaderUser->id === auth()->id(); @endphp
+                                <div class="flex items-center gap-3 py-2.5 {{ !$loop->last ? 'border-b border-line' : '' }}">
+                                    {{-- Hex rank badge --}}
+                                    <div class="w-6 h-6 shrink-0 flex items-center justify-center">
+                                        @if($index === 0)
+                                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                                                <polygon points="10,1 17.5,5.5 17.5,14.5 10,19 2.5,14.5 2.5,5.5" fill="#E8B84B" fill-opacity="0.15" stroke="#E8B84B" stroke-opacity="0.7" stroke-width="1"/>
+                                                <text x="10" y="13.5" text-anchor="middle" font-size="7.5" fill="#E8B84B" font-weight="bold" font-family="monospace">1</text>
+                                            </svg>
+                                        @elseif($index === 1)
+                                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                                                <polygon points="10,1 17.5,5.5 17.5,14.5 10,19 2.5,14.5 2.5,5.5" fill="#8A8A9A" fill-opacity="0.1" stroke="#8A8A9A" stroke-opacity="0.45" stroke-width="1"/>
+                                                <text x="10" y="13.5" text-anchor="middle" font-size="7.5" fill="#8A8A9A" font-family="monospace">2</text>
+                                            </svg>
+                                        @elseif($index === 2)
+                                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                                                <polygon points="10,1 17.5,5.5 17.5,14.5 10,19 2.5,14.5 2.5,5.5" fill="#C8952C" fill-opacity="0.1" stroke="#C8952C" stroke-opacity="0.45" stroke-width="1"/>
+                                                <text x="10" y="13.5" text-anchor="middle" font-size="7.5" fill="#C8952C" font-family="monospace">3</text>
+                                            </svg>
+                                        @else
+                                            <span class="text-[11px] text-ink-subtle text-center w-full tabular-nums">{{ $index + 1 }}</span>
+                                        @endif
+                                    </div>
+
+                                    <span class="text-[13px] flex-1 truncate {{ $isMe ? 'text-gold font-medium' : 'text-ink' }}">
+                                        {{ $leaderUser->name }}{{ $isMe ? ' ·you' : '' }}
+                                    </span>
+                                    <span class="text-[12px] font-semibold tabular-nums
+                                        {{ $index === 0 ? 'text-gold-light' : ($index === 1 ? 'text-ink-muted' : ($index === 2 ? 'text-gold' : 'text-ink-subtle')) }}">
+                                        {{ round($leaderUser->total_mastery) }}%
+                                    </span>
+                                </div>
                             @endforeach
                         </div>
                     @endif

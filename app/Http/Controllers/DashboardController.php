@@ -16,19 +16,6 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        // Hero: most recently active module that isn't completed
-        $heroModule = $user->modules()
-            ->wherePivot('status', '!=', 'completed')
-            ->orderByPivot('last_activity_at', 'desc')
-            ->first();
-
-        // Fallback: most recently active module of any status
-        if (! $heroModule) {
-            $heroModule = $user->modules()
-                ->orderByPivot('last_activity_at', 'desc')
-                ->first();
-        }
-
         $categoryId = $request->get('category_id');
 
         // Default category if none selected
@@ -41,6 +28,50 @@ class DashboardController extends Controller
         // Default subject
         $currentSubjectId = $request->get('subject_id')
             ?? $subjects->first()?->id;
+
+        // Hero: most recently active non-diagnostic module in the selected subject that isn't completed —
+        // the diagnostic profile has its own dedicated section above, so it's excluded here.
+        $heroModule = $user->modules()
+            ->where('subject_id', $currentSubjectId ?? 0)
+            ->where('modules.type', '!=', 'diagnostic')
+            ->wherePivot('status', '!=', 'completed')
+            ->orderByPivot('last_activity_at', 'desc')
+            ->first();
+
+        // Fallback: most recently active non-diagnostic module of any status, in the selected subject
+        if (! $heroModule) {
+            $heroModule = $user->modules()
+                ->where('subject_id', $currentSubjectId ?? 0)
+                ->where('modules.type', '!=', 'diagnostic')
+                ->orderByPivot('last_activity_at', 'desc')
+                ->first();
+        }
+
+        // Find the most recently completed diagnostic module FOR THE CURRENTLY SELECTED SUBJECT ONLY —
+        // a diagnostic profile from a different subject must never be shown against this subject's context.
+        $completedDiagnostic = $user->modules()
+            ->where('modules.type', 'diagnostic')
+            ->where('subject_id', $currentSubjectId ?? 0)
+            ->wherePivot('status', 'completed')
+            ->orderByPivot('completed_at', 'desc')
+            ->first();
+
+        // Decode the diagnostic profile if available
+        $diagnosticProfile = null;
+        if ($completedDiagnostic && $completedDiagnostic->pivot->diagnostic_profile) {
+            $diagnosticProfile = json_decode($completedDiagnostic->pivot->diagnostic_profile, true);
+        }
+
+        // If the selected subject has no completed diagnostic, offer a subject-specific CTA
+        // instead of silently showing nothing (or, previously, another subject's profile).
+        $subjectDiagnosticModule = null;
+        if (!$diagnosticProfile) {
+            $subjectDiagnosticModule = Module::where('subject_id', $currentSubjectId ?? 0)
+                ->where('type', 'diagnostic')
+                ->where('published', true)
+                ->where('status', 'ready')
+                ->first();
+        }
 
         // Whether the user has completed any non-diagnostic module in this subject —
         // diagnostic completions don't feed mastery, so mastery panels stay empty otherwise.
@@ -107,7 +138,10 @@ class DashboardController extends Controller
             'concepts',
             'leaderboard',
             'hasContentActivity',
-            'diagnosticNudge'
+            'diagnosticNudge',
+            'completedDiagnostic',
+            'diagnosticProfile',
+            'subjectDiagnosticModule'
         ));
     }
 

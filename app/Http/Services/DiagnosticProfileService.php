@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Concept;
 use App\Models\Module;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -24,13 +25,24 @@ class DiagnosticProfileService
         array $surveyAnswers = [],
         ?Module $module = null
     ): array {
-        $prompt = $this->buildPrompt($traitScores, $axisScores, $conceptScores, $surveyAnswers, $module);
+        // Build concept map for validation grounding
+        $subject = $module?->subject ?? $module?->load('subject')->subject;
+        $conceptMap = $subject
+            ? Concept::where('subject_id', $subject->id)->pluck('id', 'name')
+            : collect();
+
+        // Pass valid concept names to the prompt builder
+        $validConceptNames = $conceptMap->keys()->implode(', ');
+        $prompt = $this->buildPrompt($traitScores, $axisScores, $conceptScores, $surveyAnswers, $module, $validConceptNames);
 
         // Guests get a free direct Gemini call — no credits deducted.
         // The diagnostic is the conversion moment for guests so we absorb the cost.
         $response = $isGuest
             ? $this->generateForGuest($prompt)
             : $this->aiService->sendPromptToAi($prompt, 'gpt-4o-mini', $userId, 'diagnostic_profile_generation');
+
+        // Ground concepts in the raw response before normalising
+        $response = $this->groundConcepts($response, $conceptMap);
 
         return $this->normaliseResponse($response);
     }
@@ -40,7 +52,8 @@ class DiagnosticProfileService
         array $axisScores,
         array $conceptScores,
         array $surveyAnswers,
-        ?Module $module
+        ?Module $module,
+        ?string $validConceptNames = null
     ): string {
         $gameContext      = $this->buildGameContext($module);
         $archetypeList    = $this->buildArchetypeList($module);
@@ -71,6 +84,10 @@ class DiagnosticProfileService
         $conceptBlock = collect($conceptScores)
             ->map(fn($score, $name) => "  {$name}: {$score}%")
             ->implode("\n") ?: '  (no concept mastery data — likely a new user)';
+
+        $validConceptsBlock = !empty($validConceptNames)
+            ? "  {$validConceptNames}"
+            : '  (no concepts configured for this subject yet)';
 
         return <<<PROMPT
 You are a diagnostic profile generator for a competitive learning platform.
@@ -127,6 +144,14 @@ RULES
 8. Use the game's own terminology only when it appears in GAME CONTEXT or AVAILABLE MODULES.
 9. Return JSON ONLY — no markdown fences, no extra fields, no commentary.
 10. In evidence[].signal use plain English Title Case — never raw field names or numbers. Prefix with a strength word: "Dominant", "Strong", "Moderate", or "Low" for trait/axis evidence (e.g. "Strong Reactivity", "Moderate Control Orientation"). For survey evidence use "Self-reported: Label" (e.g. "Self-reported: Awareness"). For evidence[].score include the raw numeric value as a short string (e.g. "+8", "+4") for trait/axis evidence, or null for survey evidence.
+11. When populating primary_strength.concepts and primary_growth_area.concepts, use ONLY exact names from VALID CONCEPTS below. Do not invent concept names. If none fit well, return fewer concepts or an empty array — do not guess.
+
+---
+
+VALID CONCEPTS FOR THIS SUBJECT
+{$validConceptsBlock}
+
+---
 
 OUTPUT SHAPE
 {
@@ -255,6 +280,57 @@ PROMPT;
             'growth_area'            => $response['primary_growth_area']['name'] ?? ($response['growth_area'] ?? ''),
             'next_module_suggestion' => $response['recommended_module']['title'] ?? ($response['next_module_suggestion'] ?? ''),
         ];
+    }
+
+    private function groundConcepts(array $response, $conceptMap): array
+    {
+        // Filter primary_strength.concepts to valid concept names only
+        if (
+            isset($response['primary_strength'])
+            && is_array($response['primary_strength'])
+            && isset($response['primary_strength']['concepts'])
+            && is_array($response['primary_strength']['concepts'])
+        ) {
+            $original = $response['primary_strength']['concepts'];
+            $filtered = array_values(array_filter(
+                $original,
+                fn($name) => $conceptMap->has($name)
+            ));
+
+            if (count($filtered) !== count($original)) {
+                Log::warning('DiagnosticProfileService: Filtered invalid concept names from primary_strength', [
+                    'original' => $original,
+                    'filtered' => $filtered,
+                ]);
+            }
+
+            $response['primary_strength']['concepts'] = $filtered;
+        }
+
+        // Filter primary_growth_area.concepts to valid concept names only
+        if (
+            isset($response['primary_growth_area'])
+            && is_array($response['primary_growth_area'])
+            && isset($response['primary_growth_area']['concepts'])
+            && is_array($response['primary_growth_area']['concepts'])
+        ) {
+            $original = $response['primary_growth_area']['concepts'];
+            $filtered = array_values(array_filter(
+                $original,
+                fn($name) => $conceptMap->has($name)
+            ));
+
+            if (count($filtered) !== count($original)) {
+                Log::warning('DiagnosticProfileService: Filtered invalid concept names from primary_growth_area', [
+                    'original' => $original,
+                    'filtered' => $filtered,
+                ]);
+            }
+
+            $response['primary_growth_area']['concepts'] = $filtered;
+        }
+
+        return $response;
     }
 
     private function generateForGuest(string $prompt): array

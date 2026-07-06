@@ -401,6 +401,9 @@ Avoid creating routes with overlapping segment patterns (e.g. `/modules/destroy/
 - Quiz completion pipeline not firing = pipeline step status stuck on pending
 - Review content not showing = cache key mismatch in GenerateReviewContentJob
 
+### Architectural invariant: subject-scoped queries must use the selected subject, not "most recent"
+The dashboard (and any future feature) supports multiple Subjects per Category, switchable via the context-bar pills (`$currentSubjectId`, carried through navigation via `route_with_context()`). Any query that reads Subject-scoped, user-specific data — diagnostic profile, mastery, concepts, modules, or anything else keyed to a `subject_id` — **must filter by `$currentSubjectId`**, never by "most recently completed/active across all subjects." A query that ignores the selected subject and falls back to global recency will silently show the wrong subject's data once a user has activity in more than one subject — this is a correctness bug, not a UX nit, and it will not surface in testing with only one subject seeded. When adding a new subject-aware dashboard panel, cross-check it against `$currentSubjectId` the same way `$hasContentActivity` and `$completedDiagnostic` already do in `DashboardController::index()`.
+
 ## Known UX Gaps
 
 - **Research panel auto-reload** — after a successful research call, the panel fires `window.location.reload()` after a 2-second delay. Any unsaved content in the module editor will be lost. There is no warning.
@@ -636,6 +639,42 @@ New fields: `profile_title`, `archetype_key`, `confidence_level`, `summary`, `ev
 
 ### Evidence-based philosophy
 Survey answers are treated as self-reported context (weaker signal). Trait scores and concept/axis scores are stronger evidence. The prompt explicitly instructs the AI to surface contradictions between self-report and diagnostic behaviour — this is the most valuable output the system can produce. Every claim in `evidence[]` must trace back to a named input field.
+
+### Guest → auth evidence transfer (fixed)
+`RegisteredUserController::claimGuestQuizResults()` previously only wrote `UserTraitEvidence` for a guest's diagnostic session — `survey_mcq` answers logged in `$guestEvidenceLog` (tagged `'type' => 'survey'`) were silently dropped on signup, so `UserProfileEvidence` never got backfilled for guests. Fixed: survey-tagged evidence entries now also write to `UserProfileEvidence::updateOrCreate()` (same `(user_id, question_id)` key as the authenticated path in `DiagnosticQuizRunner`), resolving `category_id`/`subject_id` from the module. Each module's claim (diagnostic and regular-quiz branches) now runs inside `DB::transaction()`, and `session()->forget("guest_quiz_results.{$moduleId}")` only fires after that module's transaction commits — a failed claim no longer wipes the guest's session data, so it survives for a retry instead of being lost. Tests: `tests/Feature/Auth/GuestDiagnosticClaimTest.php`.
+
+### Concept grounding for strength/growth-area concepts (fixed)
+`primary_strength.concepts` and `primary_growth_area.concepts` used to be pure LLM invention — free-text labels (e.g. "Direct Pressure", "Converting Advantages") never checked against the subject's real `concepts` table, even though the dashboard renders them as chips that look like real ontology entities. Fixed in `DiagnosticProfileService`:
+- `generateProfile()` builds `Concept::where('subject_id', $subject->id)->pluck('id', 'name')` and passes the concept names into `buildPrompt()`.
+- `buildPrompt()` gained an optional `?string $validConceptNames` param and a new "VALID CONCEPTS FOR THIS SUBJECT" prompt block + Rule 11 instructing the AI to use only exact names from that list (or return fewer/none — never invent).
+- New private `groundConcepts(array $response, $conceptMap): array` runs on the **raw AI response, before `normaliseResponse()`** — filters both `concepts[]` arrays down to names that exist in the map, drops anything else, logs a warning per field when something's dropped, never touches the `.name` labels, never fails the whole profile (empty array is a valid outcome). Applied identically to both the guest (direct Gemini) and authenticated (`AiService`) paths.
+- **Decision: stores validated names (flat strings), not `{name, id}` objects** — keeps the JSON shape unchanged so `resources/views/components/dashboard/profile-hero.blade.php` needed no changes. A future feature needing concept IDs can re-resolve them from validated names via the same one-line `pluck('id', 'name')` query.
+- `primary_strength.name` / `primary_growth_area.name` remain free personalised text — only the `concepts[]` arrays are ontology-constrained.
+- Does NOT touch `AiService.php` — `DiagnosticProfileService` loads/validates concepts entirely on its own.
+- Tests: `tests/Feature/Services/DiagnosticProfileServiceTest.php` (all-valid / mixed-valid / all-invalid / missing-concepts-key / zero-concepts-subject / null-module / guest-path / warning-logged).
+
+### Known gap: recommended_module is still not concept-grounded
+`DiagnosticProfileService::buildAvailableModules()` still hands the AI the **entire** catalog of published/ready non-diagnostic modules for the subject (id, name, description — no concept tags), and the AI picks one in the same generation call by free-text similarity between its own profile prose and each module's static `description` field — not a structured recommendation. Grounding `primary_strength`/`primary_growth_area` concepts (above) does not by itself fix this: there is still no code path checking whether a module's tagged concepts (via `concept_question`) actually cover the now-validated `primary_growth_area.concepts`, and no distinction between a knowledge gap (module appropriate) vs. a behavioural/execution gap (module may not help). `$conceptScores` passed into the prompt comes from `UserConceptMastery`, which is empty for a user who has only completed the diagnostic and no content module — so there's no real mastery evidence to base a module recommendation on yet either. This is the concrete gap a future targeted-knowledge-check / next-step selector (a proposed lightweight `KnowledgeCheck`-style assessment, not yet built) needs to close — do not treat `recommended_module` as validated against the ontology today.
+
+## Profile-First Dashboard (V1) ✓ COMPLETE
+
+The authenticated dashboard (`DashboardController` → `resources/views/dashboard.blade.php`) is profile-first for any user with a completed diagnostic, rather than module-first. Uses only data already generated at diagnostic completion — no schema changes, no AI calls on dashboard load.
+
+`DashboardController::index()` additionally loads:
+- `$completedDiagnostic` — the user's most recently completed diagnostic module **for the currently selected subject only**: `$user->modules()->where('modules.type', 'diagnostic')->where('subject_id', $currentSubjectId ?? 0)->wherePivot('status', 'completed')->orderByPivot('completed_at', 'desc')->first()`. Must stay subject-scoped — see the "subject-scoped queries" invariant under Critical Rules.
+- `$diagnosticProfile` — that module's `pivot->diagnostic_profile`, `json_decode`d
+- `$subjectDiagnosticModule` — when the selected subject has no completed diagnostic, the published/ready diagnostic module for that subject (if one exists), used to render a subject-specific "Complete the {Subject} diagnostic" CTA in place of the profile-first sections instead of showing nothing or another subject's profile
+
+New Blade components under `resources/views/components/dashboard/`, rendered in this order at the top of `dashboard.blade.php` (only when `$diagnosticProfile` exists):
+- `profile-hero.blade.php` — `profile_title` / `confidence_level` / `summary` / `primary_strength` / `primary_growth_area`
+- `current-focus.blade.php` — `primary_growth_area.name` + `likely_in_game_pattern`, framed as a hypothesis ("Mindcollector currently thinks this is worth investigating"), not a verdict
+- `next-experiment.blade.php` — promotes `next_practice_goal` into a persistent action card
+- `evidence-panel.blade.php` — collapsible (`x-collapse`, matches the pattern already used in `diagnostic-quiz-runner.blade.php`); renders `evidence[]` (signal/interpretation/score, self-reported items filtered out) plus `self_report_check`. Never renders the raw `source` field (internal path like `trait_scores.reactivity`) in production UI.
+- `recommended-next-step.blade.php` — `@props(['type' => 'module', 'data' => null, 'reason' => null])`. `type='module'` is the only implemented type; `$data` accepts either a `Module` model (new-shape profile, resolved via `recommended_module.module_id`) or a plain string (legacy-shape fallback via `next_module_suggestion`, rendered without a CTA since there's no reliable module id). Add future step types as additional `$type` branches — do not restructure the props contract.
+
+All components read both the new normalised fields and the legacy backward-compat aliases (`player_type`, `narrative`, `top_traits`, `growth_area`, `next_module_suggestion`) so old stored profiles still render. `top_traits` (flat array of trait keys) is used as a synthetic `primary_strength` (`name = 'Key Traits'`) when the new-shape field is absent. Existing dashboard sections (mastery radar, Topic Mastery, Leaderboard, My Guides) are unchanged and render below the profile-first sections; the no-completed-diagnostic path (`$diagnosticNudge`) is untouched.
+
+**Not yet implemented** (intentionally deferred — see the "recommended_module is not concept-grounded" gap above): no stored "current focus" object, no progress/completion tracking on the next-practice-goal, no next-step selector beyond the single `recommended_module` passthrough.
 
 ## Module Route Binding
 Module uses `slug` as its route key — always pass the model 
