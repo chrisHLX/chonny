@@ -145,6 +145,7 @@ RULES
 9. Return JSON ONLY — no markdown fences, no extra fields, no commentary.
 10. In evidence[].signal use plain English Title Case — never raw field names or numbers. Prefix with a strength word: "Dominant", "Strong", "Moderate", or "Low" for trait/axis evidence (e.g. "Strong Reactivity", "Moderate Control Orientation"). For survey evidence use "Self-reported: Label" (e.g. "Self-reported: Awareness"). For evidence[].score include the raw numeric value as a short string (e.g. "+8", "+4") for trait/axis evidence, or null for survey evidence.
 11. When populating primary_strength.concepts and primary_growth_area.concepts, use ONLY exact names from VALID CONCEPTS below. Do not invent concept names. If none fit well, return fewer concepts or an empty array — do not guess.
+12. growth_area_pattern must describe a concrete manifestation of primary_growth_area specifically — how THIS growth area shows up in practice. Do not reuse or restate likely_in_game_pattern, which is general archetype flavor unrelated to the growth area.
 
 ---
 
@@ -180,6 +181,7 @@ OUTPUT SHAPE
     "name": "Growth area label",
     "concepts": ["concept1", "concept2"]
   },
+  "growth_area_pattern": "One sentence describing how this specific growth area shows up in practice",
   "recommended_module": {
     "module_id": 0,
     "title": "Exact module title from AVAILABLE MODULES",
@@ -270,6 +272,7 @@ PROMPT;
             'likely_in_game_pattern' => $response['likely_in_game_pattern'] ?? '',
             'primary_strength'       => $response['primary_strength'] ?? null,
             'primary_growth_area'    => $response['primary_growth_area'] ?? null,
+            'growth_area_pattern'    => $response['growth_area_pattern'] ?? '',
             'recommended_module'     => $response['recommended_module'] ?? null,
             'next_practice_goal'     => $response['next_practice_goal'] ?? '',
 

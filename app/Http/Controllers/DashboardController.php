@@ -9,6 +9,7 @@ use App\Models\Module;
 use App\Models\Concept;
 use App\Models\Subject;
 use App\Models\Category;
+use App\Models\UserNextStep;
 
 class DashboardController extends Controller
 {
@@ -61,6 +62,15 @@ class DashboardController extends Controller
         if ($completedDiagnostic && $completedDiagnostic->pivot->diagnostic_profile) {
             $diagnosticProfile = json_decode($completedDiagnostic->pivot->diagnostic_profile, true);
         }
+
+        // Active task-type next-step for the selected subject — mirrors the same subject-scoping
+        // invariant as $completedDiagnostic above (never "most recent across all subjects").
+        $activeNextStep = UserNextStep::where('user_id', $user->id)
+            ->where('subject_id', $currentSubjectId ?? 0)
+            ->where('step_type', 'task')
+            ->whereIn('status', ['pending', 'attempted'])
+            ->latest()
+            ->first();
 
         // If the selected subject has no completed diagnostic, offer a subject-specific CTA
         // instead of silently showing nothing (or, previously, another subject's profile).
@@ -141,7 +151,8 @@ class DashboardController extends Controller
             'diagnosticNudge',
             'completedDiagnostic',
             'diagnosticProfile',
-            'subjectDiagnosticModule'
+            'subjectDiagnosticModule',
+            'activeNextStep'
         ));
     }
 

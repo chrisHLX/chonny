@@ -59,7 +59,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <x-dashboard.current-focus :profile="$diagnosticProfile" />
-                    <x-dashboard.next-experiment :profile="$diagnosticProfile" />
+                    <x-dashboard.next-experiment :profile="$diagnosticProfile" :active-next-step="$activeNextStep" />
                 </div>
 
                 <x-dashboard.evidence-panel :profile="$diagnosticProfile" />
