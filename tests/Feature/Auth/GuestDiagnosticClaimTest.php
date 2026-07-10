@@ -6,7 +6,9 @@ use App\Models\PlayerTrait;
 use App\Models\Question;
 use App\Models\Subject;
 use App\Models\User;
+use App\Models\UserNextStep;
 use App\Models\UserProfileEvidence;
+use App\Models\UserProfileInsight;
 use App\Models\UserTraitEvidence;
 use Illuminate\Support\Facades\Http;
 
@@ -16,6 +18,21 @@ function fakeRecaptchaSuccess(): void
         'https://www.google.com/recaptcha/api/siteverify' => Http::response([
             'success' => true,
             'score' => 0.9,
+        ]),
+    ]);
+}
+
+function fakeOpenAiNextStep(): void
+{
+    Http::fake([
+        'https://api.openai.com/*' => Http::response([
+            'choices' => [
+                ['message' => ['content' => json_encode([
+                    'title' => 'Track enemy cooldowns',
+                    'instructions' => 'In your next session, consciously track enemy cooldowns and position to punish their absence.',
+                    'concept' => null,
+                ])]],
+            ],
         ]),
     ]);
 }
@@ -47,6 +64,7 @@ function makeDiagnosticFixtures(): array
 
 test('guest diagnostic evidence transfers to the new account on registration', function () {
     fakeRecaptchaSuccess();
+    fakeOpenAiNextStep();
 
     ['category' => $category, 'subject' => $subject, 'module' => $module, 'trait' => $trait, 'traitQuestion' => $traitQuestion, 'surveyQuestion' => $surveyQuestion] = makeDiagnosticFixtures();
 
@@ -124,6 +142,20 @@ test('guest diagnostic evidence transfers to the new account on registration', f
 
     // Guest session data cleared only once the transfer succeeded
     $response->assertSessionMissing("guest_quiz_results.{$module->id}");
+
+    // Guest-claim path now produces the same queryable insight + first next-step task
+    // a logged-in diagnostic completion gets (NextStepService::recordInsightAndGenerateInitialStep)
+    $insight = UserProfileInsight::where('user_id', $user->id)->first();
+    expect($insight)->not->toBeNull();
+    expect($insight->subject_id)->toBe($subject->id);
+    expect($insight->profile_title)->toBe('Strategic Controller');
+
+    $nextStep = UserNextStep::where('user_id', $user->id)->first();
+    expect($nextStep)->not->toBeNull();
+    expect($nextStep->subject_id)->toBe($subject->id);
+    expect($nextStep->insight_id)->toBe($insight->id);
+    expect($nextStep->status)->toBe(\App\Enums\NextStepStatus::Pending);
+    expect($nextStep->title)->toBe('Track enemy cooldowns');
 });
 
 test('guest session data is retained when the diagnostic transfer fails', function () {

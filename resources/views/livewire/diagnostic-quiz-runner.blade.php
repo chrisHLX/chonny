@@ -11,9 +11,6 @@
             $strength        = $diagnosticProfile['primary_strength'] ?? null;
             $growthArea      = $diagnosticProfile['primary_growth_area'] ?? null;
             $growthAreaName  = is_array($growthArea) ? ($growthArea['name'] ?? '') : ($diagnosticProfile['growth_area'] ?? '');
-            $recModule       = $diagnosticProfile['recommended_module'] ?? null;
-            $recTitle        = is_array($recModule) ? ($recModule['title'] ?? '') : ($diagnosticProfile['next_module_suggestion'] ?? '');
-            $recReason       = is_array($recModule) ? ($recModule['reason'] ?? '') : '';
             $practiceGoal    = $diagnosticProfile['next_practice_goal'] ?? '';
             $confidence      = $diagnosticProfile['confidence_level'] ?? null;
             $topTraits       = $diagnosticProfile['top_traits'] ?? [];

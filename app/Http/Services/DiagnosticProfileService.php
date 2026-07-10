@@ -57,7 +57,6 @@ class DiagnosticProfileService
     ): string {
         $gameContext      = $this->buildGameContext($module);
         $archetypeList    = $this->buildArchetypeList($module);
-        $availableModules = $this->buildAvailableModules($module);
 
         $surveyBlock = collect($surveyAnswers)
             ->map(fn($ans, $key) => "  {$key}: {$ans['text']}")
@@ -107,12 +106,6 @@ Choose the single best-fitting archetype from this list. Return its key in arche
 
 ---
 
-AVAILABLE MODULES
-Choose the single best recommended module from this list. Use its exact id and title.
-{$availableModules}
-
----
-
 SELF-REPORTED SURVEY (treat as context, not objective truth)
 {$surveyBlock}
 
@@ -140,12 +133,11 @@ RULES
 4. If survey answers and diagnostic evidence conflict, surface that tension — it is valuable signal.
 5. Every claim in evidence[] must trace to a specific input field (trait score, axis score, concept score, or survey answer).
 6. The summary must start with "Your answers suggest" and be 3–5 sentences. Be specific — reference their survey context where relevant. Never be generic.
-7. The recommended_module must be chosen from AVAILABLE MODULES only. If none fits well, choose the closest and note the uncertainty in the reason field.
-8. Use the game's own terminology only when it appears in GAME CONTEXT or AVAILABLE MODULES.
-9. Return JSON ONLY — no markdown fences, no extra fields, no commentary.
-10. In evidence[].signal use plain English Title Case — never raw field names or numbers. Prefix with a strength word: "Dominant", "Strong", "Moderate", or "Low" for trait/axis evidence (e.g. "Strong Reactivity", "Moderate Control Orientation"). For survey evidence use "Self-reported: Label" (e.g. "Self-reported: Awareness"). For evidence[].score include the raw numeric value as a short string (e.g. "+8", "+4") for trait/axis evidence, or null for survey evidence.
-11. When populating primary_strength.concepts and primary_growth_area.concepts, use ONLY exact names from VALID CONCEPTS below. Do not invent concept names. If none fit well, return fewer concepts or an empty array — do not guess.
-12. growth_area_pattern must describe a concrete manifestation of primary_growth_area specifically — how THIS growth area shows up in practice. Do not reuse or restate likely_in_game_pattern, which is general archetype flavor unrelated to the growth area.
+7. Use the game's own terminology only when it appears in GAME CONTEXT.
+8. Return JSON ONLY — no markdown fences, no extra fields, no commentary.
+9. In evidence[].signal use plain English Title Case — never raw field names or numbers. Prefix with a strength word: "Dominant", "Strong", "Moderate", or "Low" for trait/axis evidence (e.g. "Strong Reactivity", "Moderate Control Orientation"). For survey evidence use "Self-reported: Label" (e.g. "Self-reported: Awareness"). For evidence[].score include the raw numeric value as a short string (e.g. "+8", "+4") for trait/axis evidence, or null for survey evidence.
+10. When populating primary_strength.concepts and primary_growth_area.concepts, use ONLY exact names from VALID CONCEPTS below. Do not invent concept names. If none fit well, return fewer concepts or an empty array — do not guess.
+11. growth_area_pattern must describe a concrete manifestation of primary_growth_area specifically — how THIS growth area shows up in practice. Do not reuse or restate likely_in_game_pattern, which is general archetype flavor unrelated to the growth area.
 
 ---
 
@@ -182,11 +174,6 @@ OUTPUT SHAPE
     "concepts": ["concept1", "concept2"]
   },
   "growth_area_pattern": "One sentence describing how this specific growth area shows up in practice",
-  "recommended_module": {
-    "module_id": 0,
-    "title": "Exact module title from AVAILABLE MODULES",
-    "reason": "One sentence explaining why this module follows from the profile"
-  },
   "next_practice_goal": "One concrete, actionable thing to try in their next session"
 }
 PROMPT;
@@ -235,30 +222,6 @@ PROMPT;
         return $archetypes->map(fn($a) => "  {$a->key}: {$a->label} — {$a->description}")->implode("\n");
     }
 
-    private function buildAvailableModules(?Module $module): string
-    {
-        if (!$module) {
-            return '  (no module list available)';
-        }
-
-        $subject = $module->subject ?? $module->load('subject')->subject;
-        if (!$subject) {
-            return '  (no module list available)';
-        }
-
-        $modules = $subject->modules()
-            ->where('published', true)
-            ->where('status', 'ready')
-            ->where('type', '!=', 'diagnostic')
-            ->get(['id', 'name', 'description']);
-
-        if ($modules->isEmpty()) {
-            return '  (no published modules available in this subject yet)';
-        }
-
-        return $modules->map(fn($m) => "  id={$m->id}: {$m->name}" . ($m->description ? " — {$m->description}" : ''))->implode("\n");
-    }
-
     private function normaliseResponse(array $response): array
     {
         return [
@@ -273,7 +236,6 @@ PROMPT;
             'primary_strength'       => $response['primary_strength'] ?? null,
             'primary_growth_area'    => $response['primary_growth_area'] ?? null,
             'growth_area_pattern'    => $response['growth_area_pattern'] ?? '',
-            'recommended_module'     => $response['recommended_module'] ?? null,
             'next_practice_goal'     => $response['next_practice_goal'] ?? '',
 
             // Backward-compat aliases so existing stored profiles keep rendering
@@ -281,7 +243,7 @@ PROMPT;
             'narrative'              => $response['summary'] ?? ($response['narrative'] ?? ''),
             'top_traits'             => $response['top_traits'] ?? [],
             'growth_area'            => $response['primary_growth_area']['name'] ?? ($response['growth_area'] ?? ''),
-            'next_module_suggestion' => $response['recommended_module']['title'] ?? ($response['next_module_suggestion'] ?? ''),
+            'next_module_suggestion' => $response['next_module_suggestion'] ?? '',
         ];
     }
 

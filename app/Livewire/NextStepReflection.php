@@ -53,6 +53,24 @@ class NextStepReflection extends Component
         $this->submitted = true;
     }
 
+    /**
+     * Polled while $submitted is true — InterpretReflectionJob runs in the background (often
+     * within seconds, but it's a queued job with no other completion signal reaching this
+     * component). Checking $step->status === Completed alone is racy: the job marks the step
+     * Completed *before* it generates the replacement (a separate AI call, can take a couple
+     * more seconds) — a poll landing in that gap would redirect to a dashboard whose
+     * $activeNextStep resolves to nothing yet. Check for the successor's existence instead,
+     * which is only ever true once regeneration has actually finished.
+     */
+    public function checkCompletion(): void
+    {
+        $hasSuccessor = UserNextStep::where('previous_step_id', $this->nextStepId)->exists();
+
+        if ($hasSuccessor) {
+            $this->redirect(route('dashboard'));
+        }
+    }
+
     public function render()
     {
         return view('livewire.next-step-reflection');

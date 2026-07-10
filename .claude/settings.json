@@ -26,7 +26,25 @@
       "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Services\\\\DiagnosticProfileService.php\")",
       "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\tests\\\\Feature\\\\Services\\\\DiagnosticProfileServiceTest.php\")",
       "Bash(xargs -I{} cat {})",
-      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Controllers\\\\DashboardController.php\")"
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Controllers\\\\DashboardController.php\")",
+      "Bash(mysql -h127.0.0.1 -P3306 -uroot -ppassword chonny -e \"SELECT COUNT\\(*\\) AS insight_rows FROM user_profile_insights; SELECT COUNT\\(*\\) AS step_rows FROM user_next_steps; SELECT COUNT\\(*\\) AS reflection_rows FROM user_next_step_reflections; SELECT COUNT\\(*\\) AS evidence_rows FROM user_reflection_evidence;\")",
+      "Read(//c//**)",
+      "Read(//c/Users/chris/**)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Services\\\\NextStepService.php\")",
+      "Bash(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Livewire\\\\DiagnosticQuizRunner.php\")",
+      "Bash(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Controllers\\\\Auth\\\\RegisteredUserController.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Services\\\\NextStepService.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\tests\\\\Feature\\\\Auth\\\\GuestDiagnosticClaimTest.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\database\\\\migrations\\\\2026_06_16_000003_add_diagnostic_mcq_to_questions_table.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\database\\\\migrations\\\\2026_06_25_000001_add_survey_mcq_to_questions_table.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\tests\\\\Feature\\\\NextStepServiceModuleMatchingTest.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Enums\\\\GeneratedReason.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Livewire\\\\QuizRunner.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Services\\\\UserModuleService.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Controllers\\\\ModuleController.php\")",
+      "PowerShell(php -l \"c:\\\\Users\\\\chris\\\\Herd\\\\chonny\\\\app\\\\Http\\\\Controllers\\\\CollectionController.php\")"
     ],
     "additionalDirectories": [
       "C:\\Windows\\System32\\drivers\\etc"

@@ -51,20 +51,32 @@ class Index extends Component
 
     public function updatedCategoryId()
     {
+        session(['context.category_id' => $this->categoryId]);
         $this->syncSubject();
         $this->category = Category::find($this->categoryId);
     }
 
     public function updatedCurrentSubjectId()
     {
+        session(['context.subject_id' => $this->currentSubjectId]);
         $this->reset('proficiencyFilter', 'statusFilter', 'selectedConcepts');
     }
-    
+
     public function mount()
     {
-        $this->categoryId ??= Category::first()?->id;
+        // Falls back to the last explicitly selected context remembered in session before
+        // Category::first() — see DashboardController for why (a contextless visit shouldn't
+        // reset to whatever's first in the DB).
+        $this->categoryId ??= session('context.category_id') ?? Category::first()?->id;
+        session(['context.category_id' => $this->categoryId]);
 
+        $this->currentSubjectId ??= session('context.subject_id');
+
+        // syncSubject() already validates currentSubjectId actually belongs to categoryId and
+        // falls back to that category's first subject otherwise — reused as-is here.
         $this->syncSubject();
+
+        session(['context.subject_id' => $this->currentSubjectId]);
 
         $this->category = Category::find($this->categoryId);
 

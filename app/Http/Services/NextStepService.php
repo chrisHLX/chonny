@@ -5,11 +5,14 @@ namespace App\Http\Services;
 use App\Enums\GeneratedReason;
 use App\Enums\NextStepStatus;
 use App\Enums\StepType;
+use App\Models\Archetype;
 use App\Models\Concept;
+use App\Models\Module;
 use App\Models\UserConceptMastery;
 use App\Models\UserNextStep;
 use App\Models\UserNextStepReflection;
 use App\Models\UserProfileInsight;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class NextStepService
@@ -20,7 +23,14 @@ class NextStepService
 
     public function generateInitial(UserProfileInsight $insight): UserNextStep
     {
-        $growthConcepts = $this->growthConceptsWithMastery($insight->user_id, $insight->growthAreaConcepts()->get());
+        $growthConceptModels = $insight->growthAreaConcepts()->get();
+
+        $matchedModule = $this->findBestModuleForConcepts($insight->user_id, $insight->subject_id, $growthConceptModels->pluck('id')->all());
+        if ($matchedModule) {
+            return $this->createModuleStep($matchedModule, $insight->user_id, $insight->subject_id, $insight->id, $growthConceptModels, null, GeneratedReason::Initial);
+        }
+
+        $growthConcepts = $this->growthConceptsWithMastery($insight->user_id, $growthConceptModels);
 
         $prompt = $this->buildPrompt(
             summary: $insight->summary,
@@ -51,6 +61,69 @@ class NextStepService
         ]);
     }
 
+    /**
+     * Writes the queryable UserProfileInsight snapshot for a completed diagnostic and generates
+     * the first next-step task from it. Shared by both completion paths — a user completing the
+     * diagnostic while logged in (DiagnosticQuizRunner) and a guest's diagnostic result being
+     * claimed on registration (RegisteredUserController) — so both get the same next-step loop.
+     * Never throws: failures here must not break diagnostic completion or account registration.
+     */
+    public function recordInsightAndGenerateInitialStep(int $userId, ?Module $moduleModel, array $diagnosticProfile): ?UserProfileInsight
+    {
+        if (!$moduleModel || !$moduleModel->subject_id) {
+            return null;
+        }
+
+        try {
+            $insight = DB::transaction(function () use ($userId, $moduleModel, $diagnosticProfile) {
+                $archetypeId = !empty($diagnosticProfile['archetype_key'])
+                    ? Archetype::where('key', $diagnosticProfile['archetype_key'])->value('id')
+                    : null;
+
+                $insight = UserProfileInsight::create([
+                    'user_id'                => $userId,
+                    'module_id'              => $moduleModel->id,
+                    'subject_id'             => $moduleModel->subject_id,
+                    'archetype_id'           => $archetypeId,
+                    'profile_title'          => $diagnosticProfile['profile_title'] ?? ($diagnosticProfile['player_type'] ?? 'Unclassified'),
+                    'confidence_level'       => $diagnosticProfile['confidence_level'] ?? 'medium',
+                    'summary'                => $diagnosticProfile['summary'] ?? ($diagnosticProfile['narrative'] ?? ''),
+                    'evidence'               => $diagnosticProfile['evidence'] ?? [],
+                    'self_report_check'      => $diagnosticProfile['self_report_check'] ?? null,
+                    'likely_in_game_pattern' => $diagnosticProfile['likely_in_game_pattern'] ?? '',
+                    'growth_area_pattern'    => $diagnosticProfile['growth_area_pattern'] ?? '',
+                    'generated_at'           => now(),
+                ]);
+
+                $conceptMap = Concept::where('subject_id', $moduleModel->subject_id)->pluck('id', 'name');
+
+                foreach (($diagnosticProfile['primary_strength']['concepts'] ?? []) as $name) {
+                    if ($conceptMap->has($name)) {
+                        $insight->concepts()->attach($conceptMap[$name], ['role' => 'strength']);
+                    }
+                }
+
+                foreach (($diagnosticProfile['primary_growth_area']['concepts'] ?? []) as $name) {
+                    if ($conceptMap->has($name)) {
+                        $insight->concepts()->attach($conceptMap[$name], ['role' => 'growth_area']);
+                    }
+                }
+
+                $this->supersedePendingStepsForNewInsight($insight);
+
+                return $insight;
+            });
+
+            // Runs outside the transaction — it makes an AI HTTP call and shouldn't hold a DB lock open.
+            $this->generateInitial($insight);
+
+            return $insight;
+        } catch (\Throwable $e) {
+            Log::error('Failed to record profile insight / next step', ['error' => $e->getMessage()]);
+            return null;
+        }
+    }
+
     public function regenerateAfterReflection(UserNextStepReflection $reflection): UserNextStep
     {
         $previousStep = $reflection->nextStep;
@@ -60,19 +133,29 @@ class NextStepService
                 ->latest('generated_at')
                 ->first();
 
-        $growthConcepts = $this->growthConceptsWithMastery($previousStep->user_id, $insight?->growthAreaConcepts()->get() ?? collect());
+        $growthConceptModels = $insight?->growthAreaConcepts()->get() ?? collect();
+
+        $matchedModule = $this->findBestModuleForConcepts($previousStep->user_id, $previousStep->subject_id, $growthConceptModels->pluck('id')->all());
+        if ($matchedModule) {
+            return $this->createModuleStep($matchedModule, $previousStep->user_id, $previousStep->subject_id, $insight?->id, $growthConceptModels, $previousStep->id, GeneratedReason::Reflection);
+        }
+
+        $growthConcepts = $this->growthConceptsWithMastery($previousStep->user_id, $growthConceptModels);
 
         $evidenceContext = $reflection->evidence
             ->map(fn($e) => "  {$e->signal}: {$e->interpretation}")
             ->implode("\n");
 
+        $historyContext = $this->buildHistoryContext($previousStep);
+        $historyBlock = $historyContext ? "\n\n{$historyContext}" : '';
+
         $reflectionContext = <<<CTX
-PREVIOUS TASK: {$previousStep->title} — {$previousStep->instructions}
+MOST RECENT TASK: {$previousStep->title} — {$previousStep->instructions}
 DID THEY TRY IT: {$reflection->did_try->value}
 HOW IT WENT: {$reflection->how_it_went}
 THEIR REASONING: {$reflection->why_reasoning}
 INTERPRETED EVIDENCE (weak signal, low confidence — do not over-index on this):
-{$evidenceContext}
+{$evidenceContext}{$historyBlock}
 CTX;
 
         $prompt = $this->buildPrompt(
@@ -112,13 +195,23 @@ CTX;
                 ->latest('generated_at')
                 ->first();
 
-        $growthConcepts = $this->growthConceptsWithMastery($expiredStep->user_id, $insight?->growthAreaConcepts()->get() ?? collect());
+        $growthConceptModels = $insight?->growthAreaConcepts()->get() ?? collect();
+
+        $matchedModule = $this->findBestModuleForConcepts($expiredStep->user_id, $expiredStep->subject_id, $growthConceptModels->pluck('id')->all());
+        if ($matchedModule) {
+            return $this->createModuleStep($matchedModule, $expiredStep->user_id, $expiredStep->subject_id, $insight?->id, $growthConceptModels, $expiredStep->id, GeneratedReason::Expired);
+        }
+
+        $growthConcepts = $this->growthConceptsWithMastery($expiredStep->user_id, $growthConceptModels);
+
+        $historyContext = $this->buildHistoryContext($expiredStep);
+        $historyBlock = $historyContext ? "\n\n{$historyContext}" : '';
 
         $prompt = $this->buildPrompt(
             summary: $insight?->summary ?? '',
             profileTitle: $insight?->profile_title ?? '',
             growthConcepts: $growthConcepts,
-            context: "The previous task ({$expiredStep->title}) went unanswered and expired — pick a fresh, approachable task.",
+            context: "The previous task ({$expiredStep->title}) went unanswered and expired — pick a fresh, approachable task.{$historyBlock}",
         );
 
         [$title, $instructions, $conceptId] = $this->callAndGround(
@@ -149,6 +242,224 @@ CTX;
             ->where('subject_id', $insight->subject_id)
             ->where('status', NextStepStatus::Pending->value)
             ->update(['status' => NextStepStatus::Superseded->value]);
+    }
+
+    /**
+     * Finds the best already-existing, already-published module that covers one of the given
+     * growth-area concepts, so a next-step can route a user to real content instead of always
+     * generating a free-text task. Excludes modules the user already completed, diagnostic
+     * modules, and AI-pipeline child/suggested modules (parent_id set) — those aren't meant to
+     * be surfaced as generic library recommendations. Ranked in PHP (same style as
+     * QuizSelection.php's concept-coverage counting) rather than a raw SQL aggregate — trivial
+     * at this app's content-bank scale.
+     */
+    public function findBestModuleForConcepts(int $userId, int $subjectId, array $conceptIds): ?Module
+    {
+        if (empty($conceptIds)) {
+            return null;
+        }
+
+        $completedModuleIds = DB::table('module_user')
+            ->where('user_id', $userId)
+            ->where('status', 'completed')
+            ->pluck('module_id');
+
+        $candidates = Module::where('subject_id', $subjectId)
+            ->where('published', true)
+            ->where('status', 'ready')
+            ->where('type', '!=', 'diagnostic')
+            ->whereNull('parent_id')
+            ->whereNotIn('id', $completedModuleIds)
+            ->whereHas('questions.concepts', fn($q) => $q->whereIn('concepts.id', $conceptIds))
+            ->with('questions.concepts:id')
+            ->orderBy('id')
+            ->get();
+
+        if ($candidates->isEmpty()) {
+            return null;
+        }
+
+        return $candidates
+            ->sortByDesc(function (Module $module) use ($conceptIds) {
+                return $module->questions
+                    ->flatMap(fn($q) => $q->concepts->pluck('id'))
+                    ->intersect($conceptIds)
+                    ->unique()
+                    ->count();
+            })
+            ->first();
+    }
+
+    /**
+     * Builds the UserNextStep for a matched module — no AI call, unlike the free-text task path.
+     * The title/instructions are deterministic since we already know exactly which real content
+     * closes the gap; the AI is only needed when no real content exists yet.
+     */
+    private function createModuleStep(Module $module, int $userId, int $subjectId, ?int $insightId, $growthConceptModels, ?int $previousStepId, GeneratedReason $reason): UserNextStep
+    {
+        $coveredConceptIds = $module->questions->flatMap(fn($q) => $q->concepts->pluck('id'))->unique();
+        $matchedConcept = $growthConceptModels->first(fn($c) => $coveredConceptIds->contains($c->id));
+
+        $instructions = $matchedConcept
+            ? "This module covers \"{$matchedConcept->name}\" — one of your current growth areas. Complete it to work on this directly."
+            : 'This module covers one of your current growth areas.';
+
+        return UserNextStep::create([
+            'user_id'           => $userId,
+            'module_id'         => $module->id,
+            'subject_id'        => $subjectId,
+            'insight_id'        => $insightId,
+            'concept_id'        => $matchedConcept?->id,
+            'previous_step_id'  => $previousStepId,
+            'step_type'         => StepType::Module,
+            'status'            => NextStepStatus::Pending,
+            'generated_reason'  => $reason,
+            'title'             => $module->name,
+            'instructions'      => $instructions,
+        ]);
+    }
+
+    /**
+     * Checks whether a Module-type step's target module has since been completed, and if so
+     * marks it complete and generates the next step. No-op for Task-type steps or steps that
+     * aren't currently pending/attempted — cheap enough to call on every dashboard load.
+     *
+     * Uses an atomic conditional UPDATE rather than read-then-write to avoid a double-regeneration
+     * race when this fires from two concurrent requests (multi-tab, prefetch) against the same
+     * just-completed step — only the request that wins the UPDATE proceeds to regenerate.
+     */
+    public function checkAndCompleteModuleStep(UserNextStep $step): UserNextStep
+    {
+        if ($step->step_type !== StepType::Module || !$step->module_id) {
+            return $step;
+        }
+
+        if (!in_array($step->status, [NextStepStatus::Pending, NextStepStatus::Attempted], true)) {
+            return $step;
+        }
+
+        $isCompleted = DB::table('module_user')
+            ->where('user_id', $step->user_id)
+            ->where('module_id', $step->module_id)
+            ->where('status', 'completed')
+            ->exists();
+
+        if (!$isCompleted) {
+            return $step;
+        }
+
+        $claimed = UserNextStep::where('id', $step->id)
+            ->whereIn('status', [NextStepStatus::Pending->value, NextStepStatus::Attempted->value])
+            ->update(['status' => NextStepStatus::Completed->value, 'completed_at' => now()]);
+
+        if ($claimed === 0) {
+            // Another concurrent request already claimed and handled this transition.
+            return $step->fresh();
+        }
+
+        $step = $step->fresh();
+
+        try {
+            // Return the freshly generated replacement, not the now-completed step, so the
+            // dashboard immediately shows the next thing rather than a dead "Start Module" link.
+            return $this->regenerateAfterModuleCompletion($step);
+        } catch (\Throwable $e) {
+            Log::error('NextStepService: failed to regenerate after module completion', [
+                'step_id' => $step->id,
+                'error'   => $e->getMessage(),
+            ]);
+
+            return $step;
+        }
+    }
+
+    private function regenerateAfterModuleCompletion(UserNextStep $completedStep): UserNextStep
+    {
+        $insight = $completedStep->insight
+            ?? UserProfileInsight::where('user_id', $completedStep->user_id)
+                ->where('subject_id', $completedStep->subject_id)
+                ->latest('generated_at')
+                ->first();
+
+        $growthConceptModels = $insight?->growthAreaConcepts()->get() ?? collect();
+
+        $matchedModule = $this->findBestModuleForConcepts($completedStep->user_id, $completedStep->subject_id, $growthConceptModels->pluck('id')->all());
+        if ($matchedModule) {
+            return $this->createModuleStep($matchedModule, $completedStep->user_id, $completedStep->subject_id, $insight?->id, $growthConceptModels, $completedStep->id, GeneratedReason::ModuleCompleted);
+        }
+
+        $growthConcepts = $this->growthConceptsWithMastery($completedStep->user_id, $growthConceptModels);
+
+        $historyContext = $this->buildHistoryContext($completedStep);
+        $historyBlock = $historyContext ? "\n\n{$historyContext}" : '';
+
+        $prompt = $this->buildPrompt(
+            summary: $insight?->summary ?? '',
+            profileTitle: $insight?->profile_title ?? '',
+            growthConcepts: $growthConcepts,
+            context: "The user just completed the module \"{$completedStep->title}\" — pick a fresh task or the next best thing to focus on.{$historyBlock}",
+        );
+
+        [$title, $instructions, $conceptId] = $this->callAndGround(
+            $prompt,
+            $completedStep->user_id,
+            $completedStep->subject_id,
+            'next_step_generation_module_completed'
+        );
+
+        return UserNextStep::create([
+            'user_id'           => $completedStep->user_id,
+            'module_id'         => null,
+            'subject_id'        => $completedStep->subject_id,
+            'insight_id'        => $insight?->id,
+            'concept_id'        => $conceptId,
+            'previous_step_id'  => $completedStep->id,
+            'step_type'         => StepType::Task,
+            'status'            => NextStepStatus::Pending,
+            'generated_reason'  => GeneratedReason::ModuleCompleted,
+            'title'             => $title,
+            'instructions'      => $instructions,
+        ]);
+    }
+
+    /**
+     * Walks back the previous_step_id chain so the AI sees more than just the single
+     * immediately-previous reflection in isolation — without this, a repeating failure pattern
+     * across two or more tasks (e.g. "narrowing focus keeps causing me to miss everything else")
+     * is invisible to each new generation call, and the AI keeps proposing cosmetically different
+     * versions of the same approach the user already reported doesn't work.
+     */
+    private function buildHistoryContext(UserNextStep $step, int $maxSteps = 4): string
+    {
+        $lines = [];
+        $current = $step->previousStep;
+        $depth = 0;
+
+        while ($current && $depth < $maxSteps) {
+            if ($current->step_type === StepType::Task && $current->reflection) {
+                $r = $current->reflection;
+                $lines[] = "- Task \"{$current->title}\" — tried: {$r->did_try->value}. How it went: \"{$r->how_it_went}\". Their reasoning: \"{$r->why_reasoning}\".";
+            } elseif ($current->step_type === StepType::Module && $current->status === NextStepStatus::Completed) {
+                $lines[] = "- Completed module \"{$current->title}\".";
+            }
+
+            $current = $current->previousStep;
+            $depth++;
+        }
+
+        if (empty($lines)) {
+            return '';
+        }
+
+        // Oldest first so the AI reads it as a timeline, not a stack.
+        $timeline = implode("\n", array_reverse($lines));
+
+        return <<<HIST
+RECENT HISTORY (oldest to newest — look for a repeating pattern, e.g. the same kind of task
+failing or producing the same complaint more than once; if you see one, do not propose another
+task in that same style)
+{$timeline}
+HIST;
     }
 
     /**
@@ -195,6 +506,7 @@ RULES
 2. The task must be one concrete, actionable thing to try in their next session — not generic advice.
 3. "concept" must be ONLY the exact name portion (before the colon) of one line from GROWTH-AREA CONCEPTS above, or null if none fit. Never invent a concept name, never include the mastery context in this field.
 4. Return JSON ONLY — no markdown fences, no commentary.
+5. If ADDITIONAL CONTEXT includes a RECENT HISTORY section, read it for repeating patterns before writing the task. If the same kind of task has already failed, or the learner reported the same complaint more than once, the new task must take a meaningfully different approach — not a reworded or narrower version of what already didn't work.
 
 OUTPUT SHAPE
 {
@@ -208,7 +520,7 @@ PROMPT;
     private function callAndGround(string $prompt, int $userId, int $subjectId, string $purpose): array
     {
         try {
-            $response = $this->aiService->sendPromptToAi($prompt, 'gpt-4o-mini', $userId, $purpose);
+            $response = $this->aiService->sendPromptToAi($prompt, 'gpt-4.1-mini', $userId, $purpose);
         } catch (\Throwable $e) {
             Log::error("NextStepService: AI call failed for purpose {$purpose}", ['error' => $e->getMessage()]);
             $response = [];

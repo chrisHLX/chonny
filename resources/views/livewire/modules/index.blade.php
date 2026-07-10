@@ -234,13 +234,6 @@
                                     </form>
                                 @endif
 
-                                @if($status === 'completed')
-                                    <a href="{{ route('modules.next-module', ['moduleId' => $module->id]) }}"
-                                       class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-accent bg-accent/10 hover:bg-accent/20 rounded-md transition-colors">
-                                        Next
-                                    </a>
-                                @endif
-
                                 @if($status === 'not_started' || $status === 'in_progress')
                                     <a href="{{ route('questions.quiz.index', ['category_id' => request('category_id'), 'module_id' => $module->id]) }}"
                                        class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-ink-muted bg-surface-2 hover:bg-surface-3 border border-line rounded-md transition-colors opacity-0 group-hover:opacity-100">

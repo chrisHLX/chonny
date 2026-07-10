@@ -75,15 +75,6 @@
                                     </form>
                                 @endif
 
-                                @if($status === 'completed')
-                                    <form action="{{ route('modules.next-module', ['moduleId' => $module->id]) }}" method="GET">
-                                        @csrf
-                                        <button type="submit"
-                                                class="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-accent bg-accent/10 hover:bg-accent/20 rounded-md transition-colors">
-                                            Next
-                                        </button>
-                                    </form>
-                                @endif
                             </div>
                         </div>
                     </div>

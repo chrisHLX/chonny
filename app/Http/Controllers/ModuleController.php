@@ -20,8 +20,6 @@ use App\Models\Category;
 
 use App\Http\Services\HtmlFormatter;
 use App\Http\Services\AiService;
-use App\Http\Services\UserModuleService;
-use App\Http\Services\SuggestionsService;
 use App\Http\Services\ResearchService;
 
 use App\Jobs\GenerateQuestions;
@@ -33,15 +31,11 @@ class ModuleController extends Controller
 
     protected AiService $aiService;
     protected HtmlFormatter $formatter;
-    protected UserModuleService $userModuleService;
-    protected SuggestionsService $suggestionsService;
 
-    public function __construct(AiService $aiService, HtmlFormatter $formatter, UserModuleService $userModuleService, SuggestionsService $suggestionsService)
+    public function __construct(AiService $aiService, HtmlFormatter $formatter)
     {
         $this->aiService = $aiService;
         $this->formatter = $formatter;
-        $this->userModuleService = $userModuleService;
-        $this->suggestionsService = $suggestionsService;
     }
 
     public function assign(Module $module)
@@ -290,176 +284,6 @@ class ModuleController extends Controller
             ->get();
 
         return view('modules.page', compact('module', 'pages', 'research'));
-    }
-
-    public function nextModule(int $moduleId)
-    {
-        $user = auth()->user();
-        $module = Module::findOrFail($moduleId); // suggestions for this module
-
-        // 1️⃣ Fetch the latest pipeline for this user & module (however if we are still generating questions for this module it should show pending)
-        $pipeline = Pipeline::where('user_id', $user->id)
-                            ->where('module_id', $module->id)
-                            ->where('type', 'quiz_completion')
-                            ->with('steps')
-                            ->latest('id') // ensures we get the newest pipeline
-                            ->first();
-
-        // 2️⃣ Safety check: pipeline exists
-        if (!$pipeline) {
-            \Log::warning("No pipeline found for user {$user->id} and module {$module->id}");
-            return view('modules.pending');
-        }
-
-        // 3️⃣ Find the "Generate Suggestions" step
-        $step = $pipeline->steps->firstWhere('name', 'Generate Suggestions');
-
-        if (!$step) {
-            \Log::warning("No 'Generate Suggestions' step found for pipeline {$pipeline->id}");
-            return view('modules.pending');
-        }
-
-        // 4️⃣ Check if step is completed
-        if ($step->status !== 'completed') {
-            \Log::info("Pipeline {$pipeline->id} step '{$step->name}' not completed yet. Status: {$step->status}");
-            return view('modules.pending');
-        }
-
-        // ✅ Optional: ensure all steps are completed before proceeding
-        $allStepsCompleted = $pipeline->steps->every(fn($s) => $s->status === 'completed');
-        if (!$allStepsCompleted) {
-            \Log::info("Pipeline {$pipeline->id} has incomplete steps");
-        }
-
-        // 5️⃣ Generate suggestions normally
-        $hashKey = $this->userModuleService->getHash($user, $module);
-        $response = $this->suggestionsService->getSuggestions($module, $hashKey);
-        $parent_id = $response->module_id;
-        $json = $response->suggestions_json;
-        // Support both new single-object format and old array format
-        $suggestions = isset($json['recommendation'])
-            ? [$json['recommendation']]
-            : ($json['recommendations'] ?? []);
-
-        // 6️⃣ Check existing modules in DB
-        $existingModules = Module::whereIn('name', collect($suggestions)->pluck('name'))
-                                ->get(['id', 'name', 'slug'])
-                                ->keyBy('name');
-        $existingIds = $existingModules->pluck('id');
-
-        $userAssignedIds = $user->modules()
-                                ->whereIn('modules.id', $existingIds)
-                                ->pluck('modules.id')
-                                ->toArray();
-
-        // 7️⃣ Merge suggestions with existing module info
-        $suggestions = collect($suggestions)->map(function ($s) use ($existingModules, $parent_id, $userAssignedIds) {
-            $mod = $existingModules[$s['name']] ?? null;
-
-            $s['parent_id'] = $parent_id;
-            $s['exists'] = $mod !== null;
-            $s['module_id'] = $mod?->id;
-            $s['module_slug'] = $mod?->slug;
-            $s['assigned'] = in_array($mod?->id, $userAssignedIds);
-
-            return $s;
-        });
-
-        \Log::info("Serving next module suggestions for user {$user->id}, pipeline {$pipeline->id}");
-
-        return view('modules.next-module', compact('suggestions'));
-    }
-
-
-    // Create User Selected Module from the suggestions
-    public function createSuggested(Request $request)
-    {
-        $userID = Auth()->id();
-
-        $data = $request->validate([
-            'suggestion' => 'required|string',
-        ]);
-
-        // Decode the JSON coming from the blade form
-        $suggestion = json_decode($data['suggestion'], true);
-        
-        if (! $suggestion) {
-            return back()->with('error', 'Invalid suggestion data.');
-        }
-        
-        // Prevent duplicate modules
-        $existing = Module::where('name', $suggestion['name'])->first();
-
-        if ($existing) {
-            // Module already exists → assign to user instead
-            auth()->user()->modules()->syncWithoutDetaching([
-                $existing->id => ['status' => 'not_started']
-            ]);
-
-            return redirect()
-                ->route('modules.index')
-                ->with('success', "Module '{$existing->name}' already existed and has been added to your list.");
-            }
-
-        $subjectID = Subject::where("name", $suggestion["subject"])->first()->id;
-
-        $proficiencyId = Proficiency::where('subject_id', $subjectID)
-                                    ->where('name', $suggestion["proficiency"])
-                                    ->first()
-                                    ->id;
-        
-        
-        // need to add all this to a create module job
-        $module = Module::create([
-            'name' => $suggestion["name"],
-            'description' => $suggestion["description"],
-            'parent_id' => $suggestion["parent_id"],
-            'subject_id' => $subjectID,
-            'status' => 'preparing',
-            'published' => true,
-        ]);
-
-        $module->proficiencies()->attach($proficiencyId);
-
-        auth()->user()->modules()->attach($module->id, [
-            'status'             => 'not_started',
-            'current_difficulty' => 'easy',
-            'last_activity_at'   => now(),
-        ]);
-
-        $pipeline = Pipeline::create([
-            'user_id'   => $userID,
-            'module_id' => $module->id,
-            'type'      => 'question_generation',
-            'status'    => 'running',
-        ]);
-
-        // Content step runs first; question steps are dispatched by GenerateModuleContentJob on success
-        $contentStep = PipelineStep::create([
-            'pipeline_id' => $pipeline->id,
-            'name'        => 'Generate Content',
-            'status'      => 'pending',
-        ]);
-
-        $questionSteps = [];
-        foreach (['mcq', 'true_false', 'matching_pairs', 'ordering'] as $type) {
-            $step = PipelineStep::create([
-                'pipeline_id' => $pipeline->id,
-                'name'        => "Generate {$type} Questions",
-                'status'      => 'pending',
-            ]);
-            $questionSteps[$type] = $step->id;
-        }
-
-        $focusContext = $suggestion['reason'] ?? '';
-        GenerateModuleContentJob::dispatch($module->id, $contentStep->id, $questionSteps, $userID, $focusContext);
-
-        app(\App\Http\Services\CreditService::class)->rewardLearnedCredits($userID, 10, 'Guide generated');
-
-        return redirect()->route('modules.building', [
-            'module'   => $module->slug,
-            'pipeline' => $pipeline->id,
-        ]);
     }
 
     public function explore(Request $request)

@@ -94,11 +94,6 @@ class Module extends Model
         return $this->belongsTo(Module::class, 'parent_id');
     }
 
-    public function cards()
-    {
-        return $this->hasMany(Card::class);
-    }
-
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

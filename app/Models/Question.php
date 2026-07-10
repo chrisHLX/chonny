@@ -60,5 +60,9 @@ class Question extends Model
             ->withTimestamps();
     }
 
+    public function flaggedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'question_user_flags')->withTimestamps();
+    }
 
 }

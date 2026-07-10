@@ -125,9 +125,6 @@ Route::get('/modules/{module}/export', [ModuleController::class, 'export'])->nam
 Route::post('/modules/explore', [ModuleController::class, 'explore'])->name('modules.explore')->middleware('auth');
 Route::get('/modules/{module}/building', Building::class)->name('modules.building')->middleware('auth');
 
-// Module Suggestions
-Route::get('/modules/next-module/{moduleId}', [ModuleController::class, 'nextModule'])->name('modules.next-module')->middleware('auth');
-
 //Routes can be very temperamental, so we need to create unique routes for each action for example
 //Dont use the same route for both destroy and destroyPage, even if they are similar 
 //Thats why we changed the destroyPage route to be more specific
@@ -148,7 +145,6 @@ Route::get('/modules/{module}/quiz', [ModuleQuizController::class, 'show'])->nam
 Route::post('/modules/{module}/start', [ModuleQuizController::class, 'start'])->name('modules.start')->middleware('auth');
 
 Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->name('modules.assign')->middleware('auth');
-Route::post('/modules/create-suggested', [ModuleController::class, 'createSuggested'])->name('modules.create-suggested');
 
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');

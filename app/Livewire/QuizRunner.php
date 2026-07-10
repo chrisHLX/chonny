@@ -5,16 +5,11 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Events\ModuleAttempted;
 use App\Models\Module;
-use App\Models\Pipeline;
-use App\Models\PipelineStep;
 use App\Models\User;
 use App\Models\UserModuleHistory;
 
 use App\Http\Services\MasteryService;
 use App\Http\Services\UserModuleService;
-
-use App\Jobs\SuggestionJob;
-use App\Jobs\GenerateCardJob;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -26,6 +21,12 @@ class QuizRunner extends Component
 
     public $moduleId;
     public $questions;
+    // Shuffled option/step/value order per question ID, e.g. ['options' => [...]] — kept as a
+    // plain array (not baked into a cloned Question model's `answer` attribute) because Livewire
+    // re-fetches fresh Eloquent models from the DB on every request when hydrating a Collection
+    // property, silently discarding any in-memory-only attribute mutation on a clone. Plain
+    // arrays don't have that problem.
+    public array $shuffledOptions = [];
     public $currentIndex = 0;
     public $answer = [];
     public $elapsed = 0;
@@ -55,8 +56,6 @@ class QuizRunner extends Component
 
     // Completion screen data
     public $completionStats = [];
-    public $suggestionsStatus = 'loading'; // loading | ready | failed
-    public $suggestions = [];
 
     public function mount($moduleId)
     {
@@ -123,17 +122,6 @@ class QuizRunner extends Component
                 $this->wrongQuestions    = collect();
                 $this->status            = 'completed';
 
-                // The original SuggestionJob may have already produced a recommendation —
-                // check for it instead of assuming it failed just because we're re-rendering.
-                $record = \App\Models\ModuleSuggestions::where('module_id', $this->moduleId)->latest()->first();
-                if ($record) {
-                    $data = $record->getRecommendations();
-                    $this->suggestions = $data['recommendation'] ?? ($data['recommendations'][0] ?? null);
-                    $this->suggestionsStatus = $this->suggestions ? 'ready' : 'failed';
-                } else {
-                    $this->suggestionsStatus = 'failed';
-                }
-
                 $userScore = $this->userScore($this->moduleId);
                 $this->buildCompletionStats($user, $this->moduleId, $userScore);
                 return;
@@ -177,7 +165,6 @@ class QuizRunner extends Component
             $this->currentIndex          = 0;
             $this->questions             = collect();
             $this->completionStats       = [];
-            $this->suggestionsStatus     = 'loading';
             $this->feedback              = null;
 
             $this->startQuizInternal();
@@ -203,7 +190,6 @@ class QuizRunner extends Component
         $this->currentIndex          = 0;
         $this->questions             = collect();
         $this->completionStats       = [];
-        $this->suggestionsStatus     = 'loading';
         $this->feedback              = null;
 
         $this->startQuizInternal();
@@ -220,6 +206,26 @@ class QuizRunner extends Component
     //  All the rest of your quiz logic goes here
     //  (submit, nextQuestion, calculateNextDifficulty, etc.)
     // ──────────────────────────────────────────────
+
+    /**
+     * Flag a question as personally important while taking a quiz — no interruption to
+     * answering, purely a personal bookmark surfaced later on the Progress page's "Your
+     * Library" section. Guests have no account to persist a flag against (a deliberate v1
+     * scope cut, not a bug).
+     */
+    public function toggleFlag($questionId): void
+    {
+        if ($this->guestMode) {
+            return;
+        }
+
+        auth()->user()->flaggedQuestions()->toggle($questionId);
+    }
+
+    public function getFlaggedQuestionIdsProperty()
+    {
+        return $this->guestMode ? collect() : auth()->user()->flaggedQuestions()->pluck('questions.id');
+    }
 
     public function submit($params = [])
     {
@@ -551,40 +557,13 @@ class QuizRunner extends Component
 
         ModuleAttempted::dispatch($history);
 
-        // On a retake we skip suggestion and card generation — those ran on first completion
+        // On a retake we skip the completion bonus — that ran on first completion
         if (!$this->retakeStartedAt) {
-            $pipeline = Pipeline::create([
-                'user_id' => $userId,
-                'module_id' => $moduleId,
-                'type' => 'quiz_completion',
-                'status' => 'running',
-            ]);
-
-            $suggestionStep = PipelineStep::create([
-                'pipeline_id' => $pipeline->id,
-                'name' => 'Generate Suggestions',
-                'status' => 'pending',
-            ]);
-
-            $cardStep = PipelineStep::create([
-                'pipeline_id' => $pipeline->id,
-                'name' => 'Generate Card',
-                'status' => 'pending',
-            ]);
-
-            SuggestionJob::dispatch($moduleId, $userId, $suggestionStep->id);
-
-            GenerateCardJob::dispatch($userId, $moduleId, $cardStep->id)->afterCommit();
-
             $creditService = app(\App\Http\Services\CreditService::class);
             $creditService->rewardLearnedCredits($userId, 50, 'Guide completed');
             if (Module::find($moduleId)->parent_id) {
                 $creditService->rewardLearnedCredits($userId, 25, 'Recommended guide bonus');
             }
-
-            session(['completion_pipeline_id' => $pipeline->id]);
-        } else {
-            $this->suggestionsStatus = 'failed';
         }
 
         $this->buildCompletionStats($user, $moduleId, $userScore);
@@ -599,19 +578,35 @@ class QuizRunner extends Component
     }
 
     /**
-     * Prepare a collection of questions for the quiz: shuffle answers/options depending on type
+     * Prepare a collection of questions for the quiz: shuffle answers/options depending on type.
+     * Writes into $this->shuffledOptions (plain array) rather than mutating the question models
+     * themselves — see the property doc comment for why. Returns $questions unchanged.
      */
     private function prepareQuestionsForQuiz($questions)
     {
-        return $questions->transform(function ($q) {
-            $q = clone $q; // detach from original model
-            $answer = array_merge([], $q->answer); // detach answer array
-            if ($q->type === 'mcq' && is_array($answer['options'] ?? null)) shuffle($answer['options']);
-            if ($q->type === 'ordering' && is_array($answer['steps'] ?? null)) shuffle($answer['steps']);
-            if ($q->type === 'matching_pairs' && is_array($answer['pairs']['values'] ?? null)) shuffle($answer['pairs']['values']);
-            $q->answer = $answer;
-            return $q;
-        });
+        foreach ($questions as $q) {
+            $answer = $q->answer;
+
+            if ($q->type === 'mcq' && is_array($answer['options'] ?? null)) {
+                $options = $answer['options'];
+                shuffle($options);
+                $this->shuffledOptions[$q->id]['options'] = $options;
+            }
+
+            if ($q->type === 'ordering' && is_array($answer['steps'] ?? null)) {
+                $steps = $answer['steps'];
+                shuffle($steps);
+                $this->shuffledOptions[$q->id]['steps'] = $steps;
+            }
+
+            if ($q->type === 'matching_pairs' && is_array($answer['pairs']['values'] ?? null)) {
+                $values = $answer['pairs']['values'];
+                shuffle($values);
+                $this->shuffledOptions[$q->id]['values'] = $values;
+            }
+        }
+
+        return $questions;
     }
 
 
@@ -728,54 +723,12 @@ class QuizRunner extends Component
         $question = $this->questions[$this->currentIndex] ?? null;
         if (!$question) return;
 
-        $q = clone $question; // detach reference
-        $answer = array_merge([], $q->answer); // detach array
-
-        if ($q->type === 'mcq' && is_array($answer['options'] ?? null)) shuffle($answer['options']);
-        if ($q->type === 'ordering' && is_array($answer['steps'] ?? null)) shuffle($answer['steps']);
-        if ($q->type === 'matching_pairs' && is_array($answer['pairs']['values'] ?? null)) shuffle($answer['pairs']['values']);
-
-        $q->answer = $answer;
-        $this->questions[$this->currentIndex] = $q; // replace with shuffled
+        $this->prepareQuestionsForQuiz(collect([$question]));
     }
 
     // ... move ALL other methods from your original TimedQuiz here ...
     // calculateNextDifficulty, prepareQuestionsForQuiz, getLeastAccurateQuestions,
     // userScore, shuffleCurrentQuestionAnswers, initializeQuizState, etc.
-
-    public function checkSuggestions(): void
-    {
-        if ($this->suggestionsStatus !== 'loading') return;
-
-        $pipelineId = session('completion_pipeline_id');
-        if (!$pipelineId) {
-            $this->suggestionsStatus = 'failed';
-            return;
-        }
-
-        $step = PipelineStep::where('pipeline_id', $pipelineId)
-            ->where('name', 'Generate Suggestions')
-            ->first();
-
-        if (!$step || $step->status === 'failed') {
-            $this->suggestionsStatus = 'failed';
-            return;
-        }
-
-        if ($step->status === 'completed') {
-            $record = \App\Models\ModuleSuggestions::where('module_id', $this->moduleId)
-                ->latest()
-                ->first();
-
-            if ($record) {
-                $data = $record->getRecommendations();
-                // Support both new single-object format and old array format
-                $this->suggestions = $data['recommendation']
-                    ?? ($data['recommendations'][0] ?? null);
-                $this->suggestionsStatus = $this->suggestions ? 'ready' : 'failed';
-            }
-        }
-    }
 
     private function buildCompletionStats(User $user, int $moduleId, float $userScore): void
     {
@@ -807,30 +760,6 @@ class QuizRunner extends Component
             'weak_concepts'   => array_slice($stats['patterns']['struggled_concepts'], 0, 4),
             'struggled_types' => $stats['patterns']['struggled_types'],
         ];
-    }
-
-    public function getCompletionCardProperty()
-    {
-        if (!$this->moduleId) return null;
-        return \App\Models\Card::where('user_id', auth()->id())
-            ->where('module_id', $this->moduleId)
-            ->latest()
-            ->first();
-    }
-
-    public function getNextSuggestionProperty()
-    {
-        $pipelineId = session('completion_pipeline_id');
-        if (!$pipelineId) return null;
-        $step = \App\Models\PipelineStep::where('pipeline_id', $pipelineId)
-            ->where('name', 'Generate Suggestions')
-            ->where('status', 'completed')
-            ->first();
-        if (!$step) return null;
-        return \App\Models\Module::where('user_id', auth()->id())
-            ->where('status', 'ready')
-            ->latest()
-            ->first();
     }
 
     private function guestScore(): float

@@ -39,7 +39,7 @@ class InterpretReflectionJob implements ShouldQueue
 
         try {
             $prompt   = $this->buildPrompt($reflection);
-            $response = $aiService->sendPromptToAi($prompt, 'gpt-4o-mini', $step->user_id, 'reflection_interpretation');
+            $response = $aiService->sendPromptToAi($prompt, 'gpt-4.1-mini', $step->user_id, 'reflection_interpretation');
 
             foreach ($response['evidence'] ?? [] as $item) {
                 $confidence = min((float) ($item['confidence'] ?? 0), self::MAX_CONFIDENCE);

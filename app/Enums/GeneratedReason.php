@@ -8,4 +8,5 @@ enum GeneratedReason: string
     case Reflection = 'reflection';
     case Expired = 'expired';
     case InsightChange = 'insight_change';
+    case ModuleCompleted = 'module_completed';
 }

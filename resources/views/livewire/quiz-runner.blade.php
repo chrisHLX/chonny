@@ -4,11 +4,6 @@
     @if ($quizFullyComplete)
         <div class="space-y-3">
 
-            {{-- Polling trigger: only for authenticated users --}}
-            @if (!$guestMode && $suggestionsStatus === 'loading')
-                <span wire:poll.3s="checkSuggestions" class="hidden"></span>
-            @endif
-
             {{-- Header --}}
             <div class="linear-card p-6 text-center relative overflow-hidden">
                 {{-- bg-arch decoration --}}
@@ -154,67 +149,13 @@
                     </a>
                 </div>
             @else
-                <div class="linear-card p-5 relative overflow-hidden">
-                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/20"/>
-                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/20"/>
-                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-4">Recommended Next Guide</p>
-
-                    @if ($suggestionsStatus === 'loading')
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin shrink-0"></div>
-                            <p class="text-[13px] text-ink-muted">Analysing your performance and generating recommendations...</p>
-                        </div>
-                        <div class="space-y-2.5 animate-pulse">
-                            <div class="h-4 bg-surface-3 rounded w-3/5"></div>
-                            <div class="h-3 bg-surface-3 rounded w-full"></div>
-                            <div class="h-3 bg-surface-3 rounded w-4/5"></div>
-                            <div class="h-3 bg-surface-3 rounded w-2/3"></div>
-                        </div>
-
-                    @elseif ($suggestionsStatus === 'ready' && !empty($suggestions))
-                        @php $rec = $suggestions; @endphp
-                        <div>
-                            <div class="flex items-start justify-between gap-3 mb-2">
-                                <h3 class="text-[15px] font-semibold text-ink leading-snug">{{ $rec['name'] ?? 'Next Module' }}</h3>
-                                @if (!empty($rec['proficiency']))
-                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20 shrink-0 whitespace-nowrap">
-                                        {{ $rec['proficiency'] }}
-                                    </span>
-                                @endif
-                            </div>
-                            @if (!empty($rec['description']))
-                                <p class="text-[13px] text-ink-muted leading-relaxed mb-3">{{ $rec['description'] }}</p>
-                            @endif
-                            @if (!empty($rec['reason']))
-                                <div class="border-t border-line pt-3">
-                                    <p class="text-[12px] text-ink-subtle leading-relaxed">
-                                        <span class="text-ink-muted font-medium">Why this guide: </span>
-                                        {{ $rec['reason'] }}
-                                    </p>
-                                </div>
-                            @elseif (!empty($completionStats['weak_concepts']))
-                                <div class="border-t border-line pt-3">
-                                    <p class="text-[12px] text-ink-subtle leading-relaxed">
-                                        <span class="text-ink-muted font-medium">Why this guide: </span>
-                                        You struggled with <span class="text-ink font-medium">{{ implode(', ', array_slice($completionStats['weak_concepts'], 0, 2)) }}</span>.
-                                        This module is designed to strengthen those areas.
-                                    </p>
-                                </div>
-                            @endif
-                        </div>
-
-                    @else
-                        <p class="text-[13px] text-ink-muted">Unable to generate recommendations right now. Browse the guide library for your next challenge.</p>
-                    @endif
-                </div>
+                <x-quiz.concept-diagnostic-recap :module-id="$moduleId" />
             @endif
 
             {{-- Actions --}}
             <div class="flex flex-col gap-2 pt-1">
-                @if (!$guestMode && $suggestionsStatus === 'ready' && !empty($suggestions))
-                    <a href="{{ route('modules.next-module', $this->moduleId) }}"
+                @if (!$guestMode)
+                    <a href="{{ route('dashboard') }}"
                        class="inline-flex items-center justify-center gap-2 w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors">
                         Continue Learning
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -329,6 +270,7 @@
             <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-gold/40"/>
             <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-gold/40"/>
             <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-gold/40"/>
+
             <p class="text-[15px] font-medium text-ink leading-relaxed mb-5">
                 <span class="text-accent font-semibold mr-1">{{ $currentIndex + 1 }}.</span>
                 {{ $question->question }}
@@ -341,7 +283,7 @@
                 @switch($question->type)
                     @case('mcq')
                         <div class="space-y-2">
-                            @foreach ($question->answer['options'] as $option)
+                            @foreach ($shuffledOptions[$question->id]['options'] ?? $question->answer['options'] as $option)
                                 <label class="flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors"
                                        :class="$wire.answer === @js($option)
                                            ? 'border-accent bg-accent/5 text-ink'
@@ -394,7 +336,7 @@
                                         <li>
                                             <select wire:model="answer.{{ $key }}" class="form-select">
                                                 <option value="">— Select —</option>
-                                                @foreach ($question->answer['pairs']['values'] as $value)
+                                                @foreach ($shuffledOptions[$question->id]['values'] ?? $question->answer['pairs']['values'] as $value)
                                                     <option value="{{ $value }}">{{ $value }}</option>
                                                 @endforeach
                                             </select>
@@ -406,12 +348,13 @@
                         @break
 
                     @case('ordering')
-                        @if(!empty($question->answer['steps']))
+                        @php $orderingSteps = $shuffledOptions[$question->id]['steps'] ?? $question->answer['steps'] ?? []; @endphp
+                        @if(!empty($orderingSteps))
                         <p class="text-[11px] text-ink-subtle mb-2">Drag items into the correct order.</p>
                         <ul id="ordering-list-{{ $question->id }}" class="ordering-list" x-sortable wire:ignore
                             x-init="$wire.set('answer', [...$el.children].map(e => e.dataset.value))"
                             x-on:sorted="$wire.set('answer', [...$el.children].map(e => e.dataset.value))">
-                            @foreach($question->answer['steps'] as $step)
+                            @foreach($orderingSteps as $step)
                                 <li class="ordering-item" data-value="{{ $step }}">
                                     <svg class="w-3.5 h-3.5 text-ink-subtle shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
@@ -440,6 +383,21 @@
                     </button>
                 </div>
             </form>
+
+            @unless ($guestMode)
+                @php $isFlagged = $this->flaggedQuestionIds->contains($question->id); @endphp
+                <button type="button"
+                        wire:click="toggleFlag({{ $question->id }})"
+                        class="mt-3 w-full flex items-center justify-center gap-2 py-2.5 text-[12px] font-medium rounded-md border transition-colors
+                            {{ $isFlagged
+                                ? 'border-gold/40 bg-gold/10 text-gold'
+                                : 'border-line text-ink-muted hover:bg-surface-2 hover:border-line-strong' }}">
+                    <svg class="w-4 h-4 shrink-0" fill="{{ $isFlagged ? 'currentColor' : 'none' }}" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v18l7-5 7 5V3a1 1 0 00-1-1H6a1 1 0 00-1 1z"/>
+                    </svg>
+                    {{ $isFlagged ? 'Flagged — saved to your Library' : 'Flag this question to remember it later' }}
+                </button>
+            @endunless
         </div>
 
     @else

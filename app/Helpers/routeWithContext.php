@@ -2,9 +2,12 @@
 
 function route_with_context($routeName, $params = [])
 {
-    // Grab the current category/subject from the request
-    $currentCategory = request('category_id');
-    $currentSubject = request('subject_id');
+    // Grab the current category/subject from the request, falling back to the last explicitly
+    // selected context remembered in session (see DashboardController) — otherwise a link built
+    // on a page that itself has no category_id/subject_id in its URL would silently point back
+    // to Category::first(), undoing the "remember last context" fix everywhere else.
+    $currentCategory = request('category_id') ?? session('context.category_id');
+    $currentSubject = request('subject_id') ?? session('context.subject_id');
 
     if (!$currentCategory) {
         $currentCategory = \App\Models\Category::first()?->id; // default to first category if not in request

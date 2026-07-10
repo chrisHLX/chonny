@@ -28,21 +28,29 @@ class ConceptController extends Controller
 
     public function index()
     {
-        $categoryId = request('category_id');
-        $currentSubjectId = request('subject_id');
+        // Falls back to the last explicitly selected context remembered in session before
+        // Category::first() — see DashboardController for why (a contextless visit shouldn't
+        // reset to whatever's first in the DB).
+        $categoryId = request('category_id') ?? session('context.category_id');
+        $currentSubjectId = request('subject_id') ?? session('context.subject_id');
         $user = auth()->user();
-        // Default category if none selected
+        // Default category if none selected or remembered
         if (!$categoryId) {
             $categoryId = Category::first()->id;
         }
 
+        session(['context.category_id' => $categoryId]);
+
         // Load subjects for this category (for the toggle)
         $subjects = Subject::where('category_id', $categoryId)->get();
 
-        // Default subject if none picked
-        if (!$currentSubjectId && $subjects->count()) {
+        // A remembered/URL subject may belong to a different category than the one just
+        // resolved above — don't let a stale cross-category value survive.
+        if (!$subjects->contains('id', $currentSubjectId) && $subjects->count()) {
             $currentSubjectId = $subjects->first()->id;
         }
+
+        session(['context.subject_id' => $currentSubjectId]);
 
         // Filter concepts by the selected subject
         $concepts = Concept::when($currentSubjectId, function ($query, $subjectId) {

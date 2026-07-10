@@ -9,9 +9,6 @@ use App\Models\PlayerTrait;
 use App\Models\UserConceptMastery;
 use App\Models\UserTraitEvidence;
 use App\Models\UserProfileEvidence;
-use App\Models\Archetype;
-use App\Models\Concept;
-use App\Models\UserProfileInsight;
 use App\Http\Services\DiagnosticProfileService;
 use App\Http\Services\NextStepService;
 use Illuminate\Support\Facades\DB;
@@ -490,59 +487,12 @@ class DiagnosticQuizRunner extends Component
     /**
      * Additive to the pivot JSON write above — records the same profile into the
      * queryable user_profile_insights model and generates the first next-step task.
-     * Failures here must never break diagnostic completion, so they're caught and logged.
+     * Delegates to NextStepService so the guest-claim path (RegisteredUserController)
+     * can produce the exact same insight/next-step records for a guest who signs up.
      */
     private function recordProfileInsight(int $userId, ?Module $moduleModel): void
     {
-        if (!$moduleModel || !$moduleModel->subject_id) {
-            return;
-        }
-
-        try {
-            $insight = DB::transaction(function () use ($userId, $moduleModel) {
-                $archetypeId = !empty($this->diagnosticProfile['archetype_key'])
-                    ? Archetype::where('key', $this->diagnosticProfile['archetype_key'])->value('id')
-                    : null;
-
-                $insight = UserProfileInsight::create([
-                    'user_id'                => $userId,
-                    'module_id'              => $moduleModel->id,
-                    'subject_id'             => $moduleModel->subject_id,
-                    'archetype_id'           => $archetypeId,
-                    'profile_title'          => $this->diagnosticProfile['profile_title'] ?? ($this->diagnosticProfile['player_type'] ?? 'Unclassified'),
-                    'confidence_level'       => $this->diagnosticProfile['confidence_level'] ?? 'medium',
-                    'summary'                => $this->diagnosticProfile['summary'] ?? ($this->diagnosticProfile['narrative'] ?? ''),
-                    'evidence'               => $this->diagnosticProfile['evidence'] ?? [],
-                    'self_report_check'      => $this->diagnosticProfile['self_report_check'] ?? null,
-                    'likely_in_game_pattern' => $this->diagnosticProfile['likely_in_game_pattern'] ?? '',
-                    'growth_area_pattern'    => $this->diagnosticProfile['growth_area_pattern'] ?? '',
-                    'generated_at'           => now(),
-                ]);
-
-                $conceptMap = Concept::where('subject_id', $moduleModel->subject_id)->pluck('id', 'name');
-
-                foreach (($this->diagnosticProfile['primary_strength']['concepts'] ?? []) as $name) {
-                    if ($conceptMap->has($name)) {
-                        $insight->concepts()->attach($conceptMap[$name], ['role' => 'strength']);
-                    }
-                }
-
-                foreach (($this->diagnosticProfile['primary_growth_area']['concepts'] ?? []) as $name) {
-                    if ($conceptMap->has($name)) {
-                        $insight->concepts()->attach($conceptMap[$name], ['role' => 'growth_area']);
-                    }
-                }
-
-                app(NextStepService::class)->supersedePendingStepsForNewInsight($insight);
-
-                return $insight;
-            });
-
-            // Runs outside the transaction — it makes an AI HTTP call and shouldn't hold a DB lock open.
-            app(NextStepService::class)->generateInitial($insight);
-        } catch (\Throwable $e) {
-            Log::error('Failed to record profile insight / next step', ['error' => $e->getMessage()]);
-        }
+        app(NextStepService::class)->recordInsightAndGenerateInitialStep($userId, $moduleModel, $this->diagnosticProfile);
     }
 
     public function render()

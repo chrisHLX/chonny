@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\NextStepService;
 use App\Models\Module;
 use App\Models\PlayerTrait;
 use App\Models\User;
@@ -32,7 +33,9 @@ class RegisteredUserController extends Controller
                 // Diagnostic sessions carry trait_scores/diagnostic_profile instead of
                 // score/question_results — they have no correct/incorrect signal to replay.
                 if (array_key_exists('trait_scores', $result)) {
-                    DB::transaction(function () use ($user, $moduleId, $result) {
+                    $module = Module::with('subject')->find($moduleId);
+
+                    DB::transaction(function () use ($user, $moduleId, $result, $module) {
                         $user->modules()->syncWithoutDetaching([
                             $moduleId => [
                                 'status'             => 'completed',
@@ -43,7 +46,6 @@ class RegisteredUserController extends Controller
                         ]);
 
                         $answeredAt = \Carbon\Carbon::parse($result['completed_at']);
-                        $module     = Module::with('subject')->find($moduleId);
                         $categoryId = $module?->subject?->category_id;
                         $subjectId  = $module?->subject_id;
 
@@ -95,6 +97,16 @@ class RegisteredUserController extends Controller
 
                     // Only clear this module's guest data once its transfer has committed
                     session()->forget("guest_quiz_results.{$moduleId}");
+
+                    // Same insight + first-task creation a logged-in diagnostic completion gets
+                    // (DiagnosticQuizRunner::recordProfileInsight) — without this, a guest who
+                    // signs up after the diagnostic never gets a live next-step, only the static
+                    // next_practice_goal string baked into the profile JSON.
+                    app(NextStepService::class)->recordInsightAndGenerateInitialStep(
+                        $user->id,
+                        $module,
+                        $result['diagnostic_profile'] ?? []
+                    );
 
                     continue;
                 }

@@ -20,17 +20,32 @@ class QuizSelection extends Component
 
     public function mount()
     {
-        $this->category_id = request()->query('category_id');
+        // Falls back to the last explicitly selected context remembered in session before
+        // Category::first() — see DashboardController for why (a contextless visit shouldn't
+        // reset to whatever's first in the DB).
+        $this->category_id = request()->query('category_id') ?? session('context.category_id');
 
         if(!$this->category_id) {
             $this->category_id = Category::first()?->id;
         }
 
+        session(['context.category_id' => $this->category_id]);
+
         $this->subjects = Subject::when($this->category_id, function($query, $catId) {
             $query->where('category_id', $catId);
         })->get();
 
-        $this->selectedSubject = $this->subjects->first()?->id;
+        $this->selectedSubject = request()->query('subject_id')
+            ?? session('context.subject_id')
+            ?? $this->subjects->first()?->id;
+
+        // A remembered/URL subject may belong to a different category than the one just
+        // resolved above — don't let a stale cross-category value survive.
+        if (!$this->subjects->contains('id', $this->selectedSubject)) {
+            $this->selectedSubject = $this->subjects->first()?->id;
+        }
+
+        session(['context.subject_id' => $this->selectedSubject]);
 
         // Prefer a moduleId from the URL (set when arriving via Resume button)
         $preselectedId = (int) request()->query('moduleId') ?: null;
@@ -42,6 +57,7 @@ class QuizSelection extends Component
                     $query->where('category_id', $catId);
                 })->get();
                 $this->selectedModule = $preselectedId;
+                session(['context.subject_id' => $this->selectedSubject]);
             }
         } else {
             $this->selectedModule = $this->modules->first()?->id;

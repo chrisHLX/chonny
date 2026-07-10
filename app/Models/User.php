@@ -91,9 +91,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Pipeline::class);
     }
 
-    public function cards()
+    public function flaggedQuestions()
     {
-        return $this->hasMany(Card::class);
+        return $this->belongsToMany(Question::class, 'question_user_flags')->withTimestamps();
     }
 
     public function axisMastery()

@@ -38,19 +38,8 @@ A reference for every prompt sent to AI in this codebase — what triggers it, w
 
 ---
 
-## 3. Next Module Suggestion
-**Method:** `UserModuleService::nextModuleResponse()` — [UserModuleService.php:28](app/Http/Services/UserModuleService.php#L28)
-**Purpose label:** `"Next Module Recommendations"`
-**Model:** `gpt-4o-mini`
-**Input:**
-- Completed module name, subject, score %
-- Strong concepts (no struggles), weak concepts (struggled)
-- Available proficiency tier names
-- Difficulty direction instruction (advance / hold / ease — derived from score %)
-
-**Output:** `{ "recommendation": { name, subject, proficiency, description, reason } }`
-**Cache:** hashed by struggled question IDs — skips AI call if same hash already stored in `Suggestion`
-**Triggered by:** `SuggestionJob` after quiz completion pipeline
+## 3. Next Module Suggestion — REMOVED 2026-07-09
+`UserModuleService::nextModuleResponse()` and `SuggestionJob` were retired entirely (single-module-blind, ungrounded free-text output, superseded by `NextStepService::findBestModuleForConcepts()` — see CLAUDE.md's Next Step + Reflection Loop section). No AI call happens here anymore; `buildModuleUserStats()` (the stats builder this prompt used to consume) survives only for the quiz-completion screen's Strengths/Needs-Improvement lists.
 
 ---
 

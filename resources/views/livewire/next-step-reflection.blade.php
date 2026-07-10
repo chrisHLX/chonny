@@ -1,4 +1,4 @@
-<div>
+<div @if ($submitted) wire:poll.3s="checkCompletion" @endif>
     @if ($submitted)
         <p class="text-[12px] text-ink-muted italic">Reflection submitted — Mindcollector is thinking it over. Your next task will appear here soon.</p>
     @else

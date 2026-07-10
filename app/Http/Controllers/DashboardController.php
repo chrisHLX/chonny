@@ -10,6 +10,7 @@ use App\Models\Concept;
 use App\Models\Subject;
 use App\Models\Category;
 use App\Models\UserNextStep;
+use App\Http\Services\NextStepService;
 
 class DashboardController extends Controller
 {
@@ -17,36 +18,37 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        $categoryId = $request->get('category_id');
+        // Category/subject context only ever travels through URL query params (context-bar
+        // pills use route_with_context()) — nothing persists it. Any link that omits them
+        // (a plain route('dashboard'), the nav sidebar, a bookmark) used to silently reset to
+        // Category::first()/Subject::first() regardless of what the user was last looking at.
+        // Remember the last explicit selection in session so a contextless visit resumes there
+        // instead of resetting to whatever happens to be first in the DB.
+        $categoryId = $request->get('category_id') ?? session('context.category_id');
 
-        // Default category if none selected
+        // Default category if none selected or remembered
         if (!$categoryId) {
             $categoryId = Category::first()->id;
         }
+
+        session(['context.category_id' => $categoryId]);
 
         $subjects = Subject::where('category_id', $categoryId)->get();
 
         // Default subject
         $currentSubjectId = $request->get('subject_id')
+            ?? session('context.subject_id')
             ?? $subjects->first()?->id;
 
-        // Hero: most recently active non-diagnostic module in the selected subject that isn't completed —
-        // the diagnostic profile has its own dedicated section above, so it's excluded here.
-        $heroModule = $user->modules()
-            ->where('subject_id', $currentSubjectId ?? 0)
-            ->where('modules.type', '!=', 'diagnostic')
-            ->wherePivot('status', '!=', 'completed')
-            ->orderByPivot('last_activity_at', 'desc')
-            ->first();
-
-        // Fallback: most recently active non-diagnostic module of any status, in the selected subject
-        if (! $heroModule) {
-            $heroModule = $user->modules()
-                ->where('subject_id', $currentSubjectId ?? 0)
-                ->where('modules.type', '!=', 'diagnostic')
-                ->orderByPivot('last_activity_at', 'desc')
-                ->first();
+        // A remembered subject_id may belong to a different category than the one just
+        // resolved above (e.g. session held a subject from before a category switch) —
+        // don't let a stale cross-category value silently scope every query below to a
+        // subject that isn't even in $subjects.
+        if (!$subjects->contains('id', $currentSubjectId)) {
+            $currentSubjectId = $subjects->first()?->id;
         }
+
+        session(['context.subject_id' => $currentSubjectId]);
 
         // Find the most recently completed diagnostic module FOR THE CURRENTLY SELECTED SUBJECT ONLY —
         // a diagnostic profile from a different subject must never be shown against this subject's context.
@@ -63,14 +65,21 @@ class DashboardController extends Controller
             $diagnosticProfile = json_decode($completedDiagnostic->pivot->diagnostic_profile, true);
         }
 
-        // Active task-type next-step for the selected subject — mirrors the same subject-scoping
+        // Active next-step (task or module) for the selected subject — mirrors the same subject-scoping
         // invariant as $completedDiagnostic above (never "most recent across all subjects").
         $activeNextStep = UserNextStep::where('user_id', $user->id)
             ->where('subject_id', $currentSubjectId ?? 0)
-            ->where('step_type', 'task')
+            ->whereIn('step_type', ['task', 'module'])
             ->whereIn('status', ['pending', 'attempted'])
             ->latest()
             ->first();
+
+        // If the recommended module has since been completed, flip the step and generate the
+        // next one right here (synchronous, on dashboard load — deliberately not a queued job,
+        // see NextStepService::checkAndCompleteModuleStep). No-ops instantly for task-type steps.
+        if ($activeNextStep) {
+            $activeNextStep = app(NextStepService::class)->checkAndCompleteModuleStep($activeNextStep);
+        }
 
         // If the selected subject has no completed diagnostic, offer a subject-specific CTA
         // instead of silently showing nothing (or, previously, another subject's profile).
@@ -139,7 +148,6 @@ class DashboardController extends Controller
 
         return view('dashboard', compact(
             'user',
-            'heroModule',
             'subjects',
             'categoryId',
             'currentSubjectId',

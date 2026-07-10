@@ -77,9 +77,11 @@ The between-rounds view shows `$wrongQuestions` (questions answered incorrectly 
 
 - Sets `status = completed` on the user–module pivot, records `completed_at`
 - Creates a `UserModuleHistory` record with `status = completed`
-- Creates a `quiz_completion` Pipeline with two steps
-- Dispatches `SuggestionJob` and `GenerateCardJob`
-- Stores `completion_pipeline_id` in session for the frontend progress overlay
+- Rewards credits (50 for first completion, +25 if the module has a `parent_id`)
+- No pipeline, no async jobs — both the `SuggestionJob` dispatch (removed 2026-07-09) and the
+  `GenerateCardJob`/card-generation `Pipeline` (removed 2026-07-10, alongside the whole
+  collectible-card system) are gone. See CLAUDE.md's "Next Step + Reflection Loop" and "Card
+  system retired" sections.
 
 There is no "final round" of weak questions. Hard finishes → module completes.
 

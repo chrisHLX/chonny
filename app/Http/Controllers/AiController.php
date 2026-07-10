@@ -5,31 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\AiRequest;
-use App\Models\Module;
-use App\Models\User;
-use App\Models\ModuleSuggestions;
 
-use App\Jobs\SuggestionJob;
 use App\Jobs\TagJob;
 
 use App\Http\Services\AiService;
-use App\Http\Services\UserModuleService;
 use App\Http\Services\CreditService;
-use App\Http\Services\CardGenerationService;
 
 class AiController extends Controller
 {
     protected AiService $aiService;
-    protected UserModuleService $userModuleService;
     protected CreditService $creditService;
 
 
-    public function __construct(AiService $aiService, UserModuleService $userModuleService, CreditService $creditService, CardGenerationService $cardGenerationService)
+    public function __construct(AiService $aiService, CreditService $creditService)
     {
         $this->aiService = $aiService;
-        $this->userModuleService = $userModuleService;
         $this->creditService = $creditService;
-        $this->cardGenerationService = $cardGenerationService;
     }
 
     
@@ -60,17 +51,4 @@ class AiController extends Controller
         // return $this->aiService->generateQuestions('ordering', 'test content', $module, $user);
     }
 
-    public function testOriginal(){
-        //$this->aiService->addCredits();
-        $user = auth()->user();
-        $module = Module::where('id', 3)->first();
-
-        $suggestions = $this->userModuleService->nextModuleResponse($user, $module);
-        
-        return view('modules.next-module', compact('suggestions'));
-        
-        //dd($response);    
-    
-        
-    }
 }

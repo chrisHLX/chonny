@@ -48,13 +48,6 @@
 
             {{-- Profile-First Sections (if diagnostic completed) --}}
             @if ($diagnosticProfile)
-                @php
-                    $recModule = $diagnosticProfile['recommended_module'] ?? null;
-                    $recModuleId = is_array($recModule) ? ($recModule['module_id'] ?? null) : null;
-                    $recReason = is_array($recModule) ? ($recModule['reason'] ?? null) : null;
-                    $recommendedModule = $recModuleId ? \App\Models\Module::find($recModuleId) : null;
-                @endphp
-
                 <x-dashboard.profile-hero :profile="$diagnosticProfile" />
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -63,12 +56,6 @@
                 </div>
 
                 <x-dashboard.evidence-panel :profile="$diagnosticProfile" />
-
-                @if ($recommendedModule)
-                    <x-dashboard.recommended-next-step type="module" :data="$recommendedModule" :reason="$recReason" />
-                @elseif (!empty($diagnosticProfile['next_module_suggestion']))
-                    <x-dashboard.recommended-next-step type="module" :data="$diagnosticProfile['next_module_suggestion']" />
-                @endif
             @elseif ($subjectDiagnosticModule)
                 <div class="relative overflow-hidden rounded-lg border border-violet-muted bg-violet-subtle px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
                     <x-ornament.corner position="tl" class="absolute top-2 left-2 w-8 h-8 text-violet/20"/>
@@ -102,35 +89,6 @@
                         <p class="text-[13px] text-ink-muted mb-5 max-w-sm">
                             Your knowledge profile will become more detailed as you complete targeted checks and learning activities.
                         </p>
-
-                        @if($heroModule)
-                            @php
-                                $heroStatus = $heroModule->pivot->status ?? 'not_started';
-                                $heroScore  = $heroModule->pivot->score ?? 0;
-                                $heroLabel  = $heroStatus === 'not_started' ? 'Start' : ($heroStatus === 'completed' ? 'Retake' : 'Resume');
-                            @endphp
-                            <div class="bg-surface-2 border border-line rounded-lg p-4 mb-5 max-w-sm">
-                                <p class="text-[10px] font-semibold uppercase tracking-[0.15em] text-gold mb-1">
-                                    {{ $heroStatus === 'completed' ? 'Recently Completed' : 'Continue Learning' }}
-                                </p>
-                                <p class="text-[14px] font-semibold text-ink mb-0.5">{{ $heroModule->name }}</p>
-                                <p class="text-[11px] text-ink-subtle">{{ $heroScore }}% · {{ ucfirst(str_replace('_', ' ', $heroStatus)) }}</p>
-                            </div>
-                            <a href="{{ route('questions.quiz.index', ['moduleId' => $heroModule->id]) }}"
-                               class="btn-primary">
-                                {{ $heroLabel }} Journey
-                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </a>
-                        @else
-                            <a href="{{ route_with_context('modules.index') }}" class="btn-primary">
-                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
-                                </svg>
-                                Explore the Map
-                            </a>
-                        @endif
                     </div>
 
                     {{-- Right: Radar chart --}}

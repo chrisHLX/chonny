@@ -6,21 +6,20 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Module;
-use App\Models\Card;
-use App\Models\Pipeline;
-use App\Models\ModuleSuggestions;
 use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Concept;
 use App\Models\Proficiency;
 use App\Models\Category;
+use App\Http\Services\ReviewQuestionService;
 use App\Jobs\GenerateReviewContentJob;
 
 class Collection extends Component
 {
 
-    public $selectedCardId = null;
+    public $selectedModuleId = null;
     public $activeQuestionTab = 'history'; // default tab
+    public array $flaggedExplanations = []; // questionId => explanation string, in-memory only
 
     public $categoryId;
     public $currentSubjectId;
@@ -34,33 +33,40 @@ class Collection extends Component
 
     public function mount()
     {
-        
-        $this->categoryId = $this->categoryId ?? Category::first()->id;
+        // $this->categoryId/$currentSubjectId are already populated from the URL query string
+        // by Livewire (see $queryString below) before mount() runs. Fall back to the last
+        // explicitly selected context remembered in session, then Category::first() — see
+        // DashboardController for why (a contextless visit shouldn't reset to whatever's first
+        // in the DB).
+        $this->categoryId = $this->categoryId ?? session('context.category_id') ?? Category::first()->id;
+        session(['context.category_id' => $this->categoryId]);
 
         $subjects = Subject::where('category_id', $this->categoryId)->get();
 
-        $this->currentSubjectId = $this->currentSubjectId 
+        $this->currentSubjectId = $this->currentSubjectId
+            ?? session('context.subject_id')
             ?? $subjects->first()?->id;
-        
-        $this->loadInitialCard();
+
+        // A remembered/URL subject_id may belong to a different category than the one just
+        // resolved above — don't let a stale cross-category value scope every query below to
+        // a subject that isn't even in $subjects.
+        if (!$subjects->contains('id', $this->currentSubjectId)) {
+            $this->currentSubjectId = $subjects->first()?->id;
+        }
+
+        session(['context.subject_id' => $this->currentSubjectId]);
+
+        $this->loadInitialModule();
     }
 
-    protected function loadInitialCard()
+    protected function loadInitialModule()
     {
-        $card = auth()->user()
-            ->cards()
-            ->latest()
-            ->whereHas('module', function ($q) {
-                $q->where('subject_id', $this->currentSubjectId);
-            })
-            ->first();
-
-        $this->selectedCardId = $card?->id;
+        $this->selectedModuleId = $this->enrolledModules->first()?->id;
     }
 
-    public function selectCard($cardId)
+    public function selectModule($moduleId)
     {
-        $this->selectedCardId = $cardId;
+        $this->selectedModuleId = $moduleId;
     }
 
     public function getEnrolledModulesProperty()
@@ -72,46 +78,27 @@ class Collection extends Component
             ->get();
     }
 
-    public function getCardsProperty()
+    public function getSelectedModuleProperty()
     {
-        return auth()->user()
-            ->cards()
-            ->with(['module', 'proficiency'])
-            ->whereHas('module', function ($q) {
-                $q->where('subject_id', $this->currentSubjectId);
-            })
-            ->latest()
-            ->get();
-    }
+        if (!$this->selectedModuleId) {
+            return null;
+        }
 
-    public function getModulesProperty()
-    {
         return auth()->user()
             ->modules()
-            ->with('questions')
-            ->when($this->selectedCardId, function ($query) {
-                $query->whereHas('cards', function ($q) {
-                    $q->where('cards.id', $this->selectedCardId);
-                });
-            })
-            ->get();
+            ->where('modules.id', $this->selectedModuleId)
+            ->first();
     }
 
     public function getAnsweredQuestionsProperty()
     {
-        if (!$this->selectedCardId) {
-            return collect();
-        }
-
-        $card = Card::find($this->selectedCardId);
-
-        if (!$card) {
+        if (!$this->selectedModuleId) {
             return collect();
         }
 
         return auth()->user()
             ->answeredQuestions()
-            ->whereHas('modules', fn ($q) => $q->where('modules.id', $card->module_id))
+            ->whereHas('modules', fn ($q) => $q->where('modules.id', $this->selectedModuleId))
             ->withPivot([
                 'attempts',
                 'correct_count',
@@ -128,60 +115,53 @@ class Collection extends Component
     }
 
 
-    public function getLatestSuggestionProperty(): ?array
-    {
-        $user = auth()->user();
-
-        $pipeline = Pipeline::where('user_id', $user->id)
-            ->where('type', 'quiz_completion')
-            ->whereHas('steps', fn ($q) => $q
-                ->where('name', 'Generate Suggestions')
-                ->where('status', 'completed')
-            )
-            ->latest()
-            ->first();
-
-        if (! $pipeline) return null;
-
-        $record = ModuleSuggestions::where('module_id', $pipeline->module_id)
-            ->latest()
-            ->first();
-
-        if (! $record) return null;
-
-        $data = $record->suggestions_json;
-        $rec  = $data['recommendation'] ?? ($data['recommendations'][0] ?? null);
-
-        if (! $rec) return null;
-
-        $existing       = Module::where('name', $rec['name'])->first();
-        $enrolledModule = $existing
-            ? $user->modules()->where('modules.id', $existing->id)->first()
-            : null;
-        $enrolled = $enrolledModule !== null;
-
-        return [
-            'recommendation'   => $rec,
-            'source_module_id' => $pipeline->module_id,
-            'exists'           => $existing !== null,
-            'enrolled'         => $enrolled,
-            'module_slug'      => $existing?->slug,
-            'module_status'    => $enrolledModule?->pivot->status,
-            'module_id'        => $existing?->id,
-        ];
-    }
-
     public function getWrongQuestionsProperty()
     {
         return $this->answeredQuestions
             ->filter(fn ($q) => $q->pivot->attempts > $q->pivot->correct_count);
     }
 
-    public function regenerateExplanation($questionId)
+    /**
+     * Subject-scoped, not module-scoped — same invariant getEnrolledModulesProperty() already
+     * follows on this page (see CLAUDE.md's "subject-scoped queries" architectural invariant).
+     * A user's flagged-question library is meant to feel like a standalone thing worth
+     * remembering, not something buried behind selecting a specific module first.
+     */
+    public function getFlaggedQuestionsProperty()
     {
-        $question = Question::find($questionId);
-        // Dispatch a job to regenerate the explanation content
-        dd("currently  not implemented");
+        return auth()->user()
+            ->flaggedQuestions()
+            ->whereHas('modules', fn ($q) => $q->where('modules.subject_id', $this->currentSubjectId))
+            ->with(['concepts', 'modules'])
+            ->get();
+    }
+
+    public function explainQuestion($questionId)
+    {
+        $question = Question::with('modules')->find($questionId);
+
+        if (!$question) {
+            return;
+        }
+
+        // Resolve to the module matching the currently-selected subject, not an arbitrary
+        // first() — a question can belong to modules in more than one subject, and the AI
+        // explanation prompt includes the module's name/subject context, so this must match
+        // what the user is actually looking at.
+        $module = $question->modules->firstWhere('subject_id', $this->currentSubjectId)
+            ?? $question->modules->first();
+
+        if (!$module) {
+            return;
+        }
+
+        $this->flaggedExplanations[$questionId] = app(ReviewQuestionService::class)
+            ->getReviewContent($question, $module, auth()->id());
+    }
+
+    public function unflagQuestion($questionId)
+    {
+        auth()->user()->flaggedQuestions()->detach($questionId);
     }
 
     public function render()
