@@ -290,7 +290,7 @@
                                            : 'border-line text-ink-muted hover:bg-surface-2 hover:border-line-strong'">
                                     <div class="w-3.5 h-3.5 rounded-full border-2 shrink-0 transition-colors"
                                          :class="$wire.answer === @js($option) ? 'border-accent bg-accent' : 'border-line-strong'"></div>
-                                    <input type="radio" wire:model="answer" value="{{ $option }}" class="sr-only">
+                                    <input type="radio" wire:model="answer" name="answer-{{ $question->id }}" value="{{ $option }}" required class="sr-only">
                                     <span class="text-[13px]">{{ $option }}</span>
                                 </label>
                             @endforeach
@@ -306,7 +306,7 @@
                                            : 'border-line text-ink-muted hover:bg-surface-2 hover:border-line-strong'">
                                     <div class="w-3.5 h-3.5 rounded-full border-2 shrink-0 transition-colors"
                                          :class="$wire.answer === @js($val) ? 'border-accent bg-accent' : 'border-line-strong'"></div>
-                                    <input type="radio" wire:model="answer" value="{{ $val }}" class="sr-only">
+                                    <input type="radio" wire:model="answer" name="answer-{{ $question->id }}" value="{{ $val }}" required class="sr-only">
                                     <span class="text-[13px]">{{ $label }}</span>
                                 </label>
                             @endforeach
@@ -334,8 +334,8 @@
                                 <ul class="space-y-2">
                                     @foreach ($question->answer['pairs']['keys'] as $key)
                                         <li>
-                                            <select wire:model="answer.{{ $key }}" class="form-select">
-                                                <option value="">— Select —</option>
+                                            <select wire:model="answer.{{ $key }}" required class="form-select">
+                                                <option value="" disabled>— Select —</option>
                                                 @foreach ($shuffledOptions[$question->id]['values'] ?? $question->answer['pairs']['values'] as $value)
                                                     <option value="{{ $value }}">{{ $value }}</option>
                                                 @endforeach
@@ -374,7 +374,13 @@
                             wire:loading.attr="disabled"
                             wire:target="submit"
                             class="w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                            :disabled="!$wire.answer && !$el.closest('form').querySelector('.ordering-list')">
+                            :disabled="(() => {
+                                if ($el.closest('form').querySelector('.ordering-list')) return false;
+                                const a = $wire.answer;
+                                if (Array.isArray(a)) return a.length === 0;
+                                if (a && typeof a === 'object') return Object.values(a).some(v => v === '' || v === null || v === undefined);
+                                return a === null || a === undefined || String(a).trim() === '';
+                            })()">
                         <span wire:loading.remove wire:target="submit">Submit Answer</span>
                         <span wire:loading wire:target="submit" class="flex items-center gap-2">
                             <span class="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>

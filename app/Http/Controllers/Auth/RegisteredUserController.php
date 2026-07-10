@@ -95,6 +95,17 @@ class RegisteredUserController extends Controller
                         }
                     });
 
+                    // Carry the diagnostic's own subject/category into the session context so the
+                    // post-signup dashboard shows this subject instead of silently falling back to
+                    // Category::first()/Subject::first() (see the "Category/subject selection is
+                    // remembered in session" invariant in CLAUDE.md).
+                    if ($module?->subject_id && $module?->subject?->category_id) {
+                        session([
+                            'context.category_id' => $module->subject->category_id,
+                            'context.subject_id'  => $module->subject_id,
+                        ]);
+                    }
+
                     // Only clear this module's guest data once its transfer has committed
                     session()->forget("guest_quiz_results.{$moduleId}");
 
@@ -110,6 +121,8 @@ class RegisteredUserController extends Controller
 
                     continue;
                 }
+
+                $module = Module::with('subject')->find($moduleId);
 
                 DB::transaction(function () use ($user, $moduleId, $result) {
                     $user->modules()->syncWithoutDetaching([
@@ -146,6 +159,13 @@ class RegisteredUserController extends Controller
                         'status'          => 'completed',
                     ]);
                 });
+
+                if ($module?->subject_id && $module?->subject?->category_id) {
+                    session([
+                        'context.category_id' => $module->subject->category_id,
+                        'context.subject_id'  => $module->subject_id,
+                    ]);
+                }
 
                 session()->forget("guest_quiz_results.{$moduleId}");
             } catch (\Throwable $e) {

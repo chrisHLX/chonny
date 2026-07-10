@@ -227,6 +227,26 @@ class QuizRunner extends Component
         return $this->guestMode ? collect() : auth()->user()->flaggedQuestions()->pluck('questions.id');
     }
 
+    private function hasAnswer($question): bool
+    {
+        if ($question->type === 'matching_pairs') {
+            $pairKeys = $question->answer['pairs']['keys'] ?? [];
+            if (empty($pairKeys)) return false;
+
+            foreach ($pairKeys as $key) {
+                if (empty($this->answer[$key] ?? null)) return false;
+            }
+
+            return true;
+        }
+
+        // mcq / true_false / open all store a plain scalar once answered — the
+        // unanswered default is the empty array $answer starts as (see property decl).
+        if (is_array($this->answer)) return false;
+
+        return trim((string) $this->answer) !== '';
+    }
+
     public function submit($params = [])
     {
         // Guards against a duplicate/stale request (e.g. double-click on the last
@@ -236,6 +256,17 @@ class QuizRunner extends Component
         }
 
         $question = $this->questions[$this->currentIndex];
+
+        // Guard against submitting a blank answer — mirrors the client-side `required`
+        // validation, but also covers a direct Livewire call that bypasses the DOM
+        // (stale request, JS disabled, etc). Ordering is exempt: SortableJS's x-init
+        // always populates $answer with the current on-screen order before any drag
+        // happens, so it never legitimately arrives here empty (see the ordering-question
+        // note in CLAUDE.md — don't touch that flow from here).
+        if ($question->type !== 'ordering' && !$this->hasAnswer($question)) {
+            return;
+        }
+
         $correct = false;
 
         // Time parameters

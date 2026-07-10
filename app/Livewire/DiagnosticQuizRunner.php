@@ -127,7 +127,15 @@ class DiagnosticQuizRunner extends Component
             return;
         }
 
-        $question      = $this->questions[$this->currentIndex];
+        $question = $this->questions[$this->currentIndex];
+
+        // Guard against submitting with no option selected — mirrors the client-side
+        // `required` radio validation, but also covers a direct Livewire call that
+        // bypasses the DOM (stale request, JS disabled, etc).
+        if (is_array($this->answer) || trim((string) $this->answer) === '') {
+            return;
+        }
+
         $this->elapsed = isset($params['elapsed']) ? (int) $params['elapsed'] : 0;
 
         $selectedOption = null;

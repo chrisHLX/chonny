@@ -370,7 +370,7 @@
                                            : 'border-line text-ink-muted hover:bg-surface-2 hover:border-violet/30'">
                                     <div class="w-3.5 h-3.5 rounded-full border-2 shrink-0 transition-colors"
                                          :class="$wire.answer === @js($option['text']) ? 'border-violet bg-violet' : 'border-line-strong'"></div>
-                                    <input type="radio" wire:model="answer" value="{{ $option['text'] }}" class="sr-only">
+                                    <input type="radio" wire:model="answer" name="answer-{{ $question->id }}" value="{{ $option['text'] }}" required class="sr-only">
                                     <span class="text-[13px]">{{ $option['text'] }}</span>
                                 </label>
                             @else
@@ -380,7 +380,7 @@
                                            : 'border-line text-ink-muted hover:bg-surface-2 hover:border-line-strong'">
                                     <div class="w-3.5 h-3.5 rounded-full border-2 shrink-0 transition-colors"
                                          :class="$wire.answer === @js($option['text']) ? 'border-accent bg-accent' : 'border-line-strong'"></div>
-                                    <input type="radio" wire:model="answer" value="{{ $option['text'] }}" class="sr-only">
+                                    <input type="radio" wire:model="answer" name="answer-{{ $question->id }}" value="{{ $option['text'] }}" required class="sr-only">
                                     <span class="text-[13px]">{{ $option['text'] }}</span>
                                 </label>
                             @endif
@@ -394,7 +394,7 @@
                             wire:target="submit"
                             class="w-full py-2.5 text-[13px] font-medium rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2
                                    {{ $isSurvey ? 'text-white bg-violet-muted hover:bg-violet border border-violet/40' : 'text-white bg-accent hover:bg-accent-hover' }}"
-                            :disabled="!$wire.answer">
+                            :disabled="Array.isArray($wire.answer) ? $wire.answer.length === 0 : ($wire.answer === null || $wire.answer === undefined || String($wire.answer).trim() === '')">
                         <span wire:loading.remove wire:target="submit">{{ $isSurvey ? 'Next' : 'Submit Answer' }}</span>
                         <span wire:loading wire:target="submit">
                             <span class="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin inline-block"></span>
