@@ -44,6 +44,7 @@ class Show extends Component
             'modulePages',
             'proficiencies',
             'tags',
+            'creator',
         ]);
 
         return view('livewire.modules.show')

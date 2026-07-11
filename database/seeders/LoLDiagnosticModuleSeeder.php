@@ -6,6 +6,7 @@ use App\Models\Module;
 use App\Models\Proficiency;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class LoLDiagnosticModuleSeeder extends Seeder
@@ -42,6 +43,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                 'status'      => 'ready',
                 'published'   => true,
                 'parent_id'   => null,
+                'created_by'  => User::where('email', User::SYSTEM_ENGINE_EMAIL)->value('id'),
             ]
         );
 
@@ -160,7 +162,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                             'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'patience' => 1]],
                         ],
                         [
-                            'text'               => 'Reading the matchup as it plays out and adjusting my trading patterns.',
+                            'text'               => 'Reading the matchup and adjusting how I trade as it plays out.',
                             'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
@@ -279,7 +281,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                             'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'structure_preference' => 1]],
                         ],
                         [
-                            'text'               => 'Identify the specific thing that converts this lead and do that.',
+                            'text'               => 'Look for whatever turns this lead into more damage.',
                             'diagnostic_payload' => ['traits' => ['reactivity' => 2, 'adaptability' => 1]],
                         ],
                         [
@@ -290,7 +292,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                 ],
             ],
             [
-                'question' => "The enemy has been running a split push for 5 minutes and getting free objectives. What do you do?",
+                'question' => "The enemy's been split-pushing for 5 minutes, picking up free objectives. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
@@ -329,14 +331,14 @@ class LoLDiagnosticModuleSeeder extends Seeder
                             'diagnostic_payload' => ['traits' => ['creativity' => 2, 'independence' => 2]],
                         ],
                         [
-                            'text'               => 'Communicate a coordinated 5-man push around the next objective.',
+                            'text'               => 'Call a coordinated 5-man push on the next objective.',
                             'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'structure_preference' => 1]],
                         ],
                     ],
                 ],
             ],
             [
-                'question' => "In champion select, your team clearly needs engage but everyone has called damage champions. You have not locked in. What do you do?",
+                'question' => "Your team needs engage but everyone's picked damage, and you're last to lock in. What do you do?",
                 'answer'   => [
                     'options' => [
                         [
@@ -344,7 +346,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                             'diagnostic_payload' => ['traits' => ['structure_preference' => 2, 'adaptability' => 1]],
                         ],
                         [
-                            'text'               => "Play what I'm best at and outperform the compositional weakness.",
+                            'text'               => "Play what I'm best at and outplay the bad comp.",
                             'diagnostic_payload' => ['traits' => ['independence' => 2, 'aggression' => 1]],
                         ],
                         [

@@ -10,6 +10,10 @@ use App\Models\Concept;
 use App\Models\Subject;
 use App\Models\Category;
 use App\Models\UserNextStep;
+use App\Models\UserNextStepReflection;
+use App\Enums\NextStepStatus;
+use App\Enums\StepType;
+use App\Enums\DidTry;
 use App\Http\Services\NextStepService;
 
 class DashboardController extends Controller
@@ -71,6 +75,7 @@ class DashboardController extends Controller
             ->where('subject_id', $currentSubjectId ?? 0)
             ->whereIn('step_type', ['task', 'module'])
             ->whereIn('status', ['pending', 'attempted'])
+            ->with('concept')
             ->latest()
             ->first();
 
@@ -79,6 +84,48 @@ class DashboardController extends Controller
         // see NextStepService::checkAndCompleteModuleStep). No-ops instantly for task-type steps.
         if ($activeNextStep) {
             $activeNextStep = app(NextStepService::class)->checkAndCompleteModuleStep($activeNextStep);
+        }
+
+        // Quest lineage for the card (Task 3): this step's position within its own insight+concept
+        // chain, counting every step (task or module) sharing that pair up to and including this
+        // one. Only meaningful when both keys are present — a step with no grounded concept has no
+        // defined chain to number.
+        $activeNextStepQuestNumber = null;
+        if ($activeNextStep && $activeNextStep->insight_id && $activeNextStep->concept_id) {
+            $activeNextStepQuestNumber = UserNextStep::where('insight_id', $activeNextStep->insight_id)
+                ->where('concept_id', $activeNextStep->concept_id)
+                ->where('id', '<=', $activeNextStep->id)
+                ->count();
+        }
+
+        // Conclusion state (Task 2): only looked up when there's no active step left to show for
+        // this subject — if another growth-area chain still has a pending task or module, that
+        // takes priority via $activeNextStep above, same as existing routing already does.
+        $concludedNextStep = null;
+        $concludedIsPositiveTrend = false;
+        if (!$activeNextStep) {
+            $concludedNextStep = UserNextStep::where('user_id', $user->id)
+                ->where('subject_id', $currentSubjectId ?? 0)
+                ->where('status', NextStepStatus::Concluded->value)
+                ->with('concept')
+                ->latest()
+                ->first();
+
+            if ($concludedNextStep && $concludedNextStep->insight_id && $concludedNextStep->concept_id) {
+                // Dumb, explicit rule (deliberately no AI call): did_try is already a clean
+                // discrete field for every reflection in the chain, so majority-yes is enough to
+                // read as a "positive/attempted" trend — no need to parse how_it_went free text.
+                $chainTaskStepIds = UserNextStep::where('insight_id', $concludedNextStep->insight_id)
+                    ->where('concept_id', $concludedNextStep->concept_id)
+                    ->where('step_type', StepType::Task->value)
+                    ->pluck('id');
+
+                $triedCount = UserNextStepReflection::whereIn('next_step_id', $chainTaskStepIds)
+                    ->where('did_try', DidTry::Yes->value)
+                    ->count();
+
+                $concludedIsPositiveTrend = $triedCount >= 2;
+            }
         }
 
         // If the selected subject has no completed diagnostic, offer a subject-specific CTA
@@ -160,7 +207,10 @@ class DashboardController extends Controller
             'completedDiagnostic',
             'diagnosticProfile',
             'subjectDiagnosticModule',
-            'activeNextStep'
+            'activeNextStep',
+            'activeNextStepQuestNumber',
+            'concludedNextStep',
+            'concludedIsPositiveTrend'
         ));
     }
 

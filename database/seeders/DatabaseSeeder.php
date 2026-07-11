@@ -30,6 +30,13 @@ class DatabaseSeeder extends Seeder
             User::firstOrCreate(['email' => $user['email']], $user);
         }
 
+        // ========== SYSTEM USER ==========
+        // Attribution account for AI-generated modules with no human author.
+        // Must run before any module-creating seeder below so they can reference its ID.
+        $this->call([
+            SystemUserSeeder::class,
+        ]);
+
         // ========== GROUP 1: CORE MASTER DATA ==========
         // Categories → Subjects → Proficiencies (each depends on the previous)
         $this->call([
@@ -94,6 +101,13 @@ class DatabaseSeeder extends Seeder
             WoWDiagnosticModuleSeeder::class,
             LoLDiagnosticModuleSeeder::class,
             SC2DiagnosticModuleSeeder::class,
+        ]);
+
+        // ========== BACKFILL ==========
+        // Catches any module left with created_by = NULL (e.g. from a prior run of
+        // these seeders before SystemUserSeeder existed). Safe to re-run.
+        $this->call([
+            BackfillModuleAuthorsSeeder::class,
         ]);
     }
 }

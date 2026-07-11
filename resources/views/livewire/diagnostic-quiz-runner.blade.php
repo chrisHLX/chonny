@@ -307,6 +307,15 @@
     @elseif (!empty($questions) && $questions->count() > $currentIndex)
         @php $question = $questions[$currentIndex]; @endphp
 
+        {{-- Module heading --}}
+        @if ($moduleName)
+            <div class="flex items-center justify-center gap-3 mb-5">
+                <span class="h-px w-8 bg-gold/30"></span>
+                <span class="text-[11px] font-semibold text-gold/80 uppercase tracking-[0.15em] text-center">{{ $moduleName }}</span>
+                <span class="h-px w-8 bg-gold/30"></span>
+            </div>
+        @endif
+
         {{-- Header: proficiency + progress --}}
         <div class="mb-4">
             <div class="flex items-center justify-between mb-2">

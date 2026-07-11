@@ -6,6 +6,7 @@ use App\Models\Module;
 use App\Models\Proficiency;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class SC2DiagnosticModuleSeeder extends Seeder
@@ -42,6 +43,7 @@ class SC2DiagnosticModuleSeeder extends Seeder
                 'status'      => 'ready',
                 'published'   => true,
                 'parent_id'   => null,
+                'created_by'  => User::where('email', User::SYSTEM_ENGINE_EMAIL)->value('id'),
             ]
         );
 

@@ -136,13 +136,15 @@ RULES
 7. Use the game's own terminology only when it appears in GAME CONTEXT.
 8. Return JSON ONLY — no markdown fences, no extra fields, no commentary.
 9. In evidence[].signal use plain English Title Case — never raw field names or numbers. Prefix with a strength word: "Dominant", "Strong", "Moderate", or "Low" for trait/axis evidence (e.g. "Strong Reactivity", "Moderate Control Orientation"). For survey evidence use "Self-reported: Label" (e.g. "Self-reported: Awareness"). For evidence[].score include the raw numeric value as a short string (e.g. "+8", "+4") for trait/axis evidence, or null for survey evidence.
-10. When populating primary_strength.concepts and primary_growth_area.concepts, use ONLY exact names from VALID CONCEPTS below. Do not invent concept names. If none fit well, return fewer concepts or an empty array — do not guess.
+10. TRAIT SCORES, AXIS MASTERY, and VALID CONCEPTS are three separate vocabularies — never interchange them. Trait names (e.g. patience, kill_instinct, pressure_orientation, reactivity, aggression) and axis names are NOT concepts, even when reworded into the Title Case style used for evidence[].signal in Rule 9 (e.g. "Kill Instinct", "Low Pressure Orientation"). When populating primary_strength.concepts and primary_growth_area.concepts, use ONLY exact names from VALID CONCEPTS below — never a trait or axis name in any casing. Do not invent concept names. If no VALID CONCEPTS name fits well, return fewer concepts or an empty array — do not guess or substitute a trait/axis name to fill the slot.
 11. growth_area_pattern must describe a concrete manifestation of primary_growth_area specifically — how THIS growth area shows up in practice. Do not reuse or restate likely_in_game_pattern, which is general archetype flavor unrelated to the growth area.
 
 ---
 
 VALID CONCEPTS FOR THIS SUBJECT
 {$validConceptsBlock}
+
+Reminder: the list above is the ONLY valid source for primary_strength.concepts / primary_growth_area.concepts. Trait and axis names from earlier in this prompt (TRAIT SCORES, AXIS MASTERY) must never appear there, in any casing.
 
 ---
 

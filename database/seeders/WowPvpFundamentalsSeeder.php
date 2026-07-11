@@ -9,6 +9,7 @@ use App\Models\ModulePage;
 use App\Models\Proficiency;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class WowPvpFundamentalsSeeder extends Seeder
@@ -104,6 +105,11 @@ class WowPvpFundamentalsSeeder extends Seeder
                 'description' => 'Develop spatial decision-making — why positioning creates advantages, how pillars and line of sight shape fights, and how positioning changes under pressure.',
                 'proficiency' => 'Casual',
             ],
+            [
+                'name'        => 'Team Composition Fundamentals',
+                'description' => 'Understand your own comp\'s synergy, how CC categories and Diminishing Returns shape crowd control chains across teammates, kill target selection, and basic peel priority.',
+                'proficiency' => 'Beginner',
+            ],
         ];
 
         foreach ($modules as $data) {
@@ -122,6 +128,7 @@ class WowPvpFundamentalsSeeder extends Seeder
                     'description' => $data['description'],
                     'published'   => true,
                     'status'      => 'ready',
+                    'created_by'  => User::where('email', User::SYSTEM_ENGINE_EMAIL)->value('id'),
                 ]
             );
 
@@ -552,6 +559,38 @@ Using aggressive positioning at the wrong time — moving up when your team has 
 Map awareness informs every positioning decision. A player who does not know where the enemy team is cannot position against threats they do not see.
 
 Developing map awareness requires looking beyond your own character — noting enemy locations, teammate positions, and processing that information in real time. This is a habit that improves with practice.
+MD,
+            ],
+
+            // -----------------------------------------------------------------
+            // MODULE 5: Team Composition Fundamentals
+            // -----------------------------------------------------------------
+            [
+                'module_name' => 'Team Composition Fundamentals',
+                'page_number' => 1,
+                'title'       => 'Team Composition Fundamentals',
+                'content'     => <<<'MD'
+# Team Composition Fundamentals
+
+## What "Team Composition" Really Means
+
+At the beginner level, team composition isn't about drafting the strongest comp or reacting to what you queue into — it's about understanding your own team's identity: what your comp is built to do, and how each teammate's tools work together. A comp has synergy when its pieces reinforce each other — one player's crowd control setting up another's burst window, or one player's mobility covering a teammate who lacks it. Knowing your comp's synergy means knowing who creates openings, who capitalises on them, and whose job is mainly to protect the others.
+
+## CC Categories and Diminishing Returns
+
+Crowd control effects are grouped into categories — stuns, incapacitates, fears, silences, roots — and Diminishing Returns (DR) is tracked per category, per target. Two effects from the *same* category back-to-back on one target waste value: the second lands at reduced duration. Effects from *different* categories don't share DR at all — each tracks its own duration independently. This is why a CC chain is only as strong as its category diversity — a comp drawing on several DR categories can disable a target far longer, in total, than one reusing a single category no matter how many charges are available.
+
+## Chaining CC Across Teammates
+
+Because DR is tracked per category and per target, a comp's crowd control gets powerful when teammates layer *different* categories on *different* targets in sequence, rather than stacking effects on one target or duplicating each other's category. A simple pattern: one teammate opens with hard CC on the kill target while a second holds a different category in reserve — either for when the first expires, or for a second target such as a healer or peel target. The goal is maximising total uptime of "the enemy cannot act," not maximising how many times CC gets used.
+
+## Kill Target Selection
+
+Which target a comp commits to killing follows from what the comp is actually built to do. A comp built around a short, heavy burst window wants that window spent on whoever dies fastest under it — often whoever has the least defensive support available in that moment, not necessarily the lowest health. A comp built around sustained pressure over a longer fight wants a target whose team cannot out-heal or out-sustain that pressure indefinitely. Kill target selection is a comp-level question, not an individual preference — it follows from what your team's tools are actually good at.
+
+## Basic Peel Priority
+
+Peeling — using CC or positioning to protect a threatened teammate — is a team decision, not left to whoever notices danger first. A comp should have a basic, agreed priority: which teammate gets protected first when the team can't protect everyone at once. Typically this is whoever's loss ends the team's ability to keep applying pressure or staying alive. Deciding this in advance, as a comp-level agreement, prevents wasted or duplicated CC when several teammates react to the same threat independently.
 MD,
             ],
         ];
@@ -1292,6 +1331,192 @@ MD,
                             ],
                         ],
                         'concepts' => ['Positioning', 'Crowd Control', 'Awareness & Tracking'],
+                    ],
+                ],
+            ],
+
+            // =================================================================
+            // MODULE 5: Team Composition Fundamentals
+            // 12 questions: 6 easy · 4 medium · 2 hard
+            // =================================================================
+            [
+                'module_name' => 'Team Composition Fundamentals',
+                'questions'   => [
+                    [
+                        'question'   => 'What does having "synergy" in a team composition mean at a fundamental level?',
+                        'type'       => 'mcq',
+                        'difficulty' => 'easy',
+                        'skill_type' => 'recall',
+                        'answer'     => [
+                            'correct' => 'Each teammate\'s tools reinforce each other — for example, one player\'s CC sets up another player\'s burst window',
+                            'options' => [
+                                'Each teammate\'s tools reinforce each other — for example, one player\'s CC sets up another player\'s burst window',
+                                'Every teammate plays the exact same role so the team is easy to coordinate',
+                                'The comp counters whatever the enemy team queues into',
+                                'Every teammate has an identical set of crowd control abilities',
+                            ],
+                        ],
+                        'concepts' => ['Team Composition'],
+                    ],
+                    [
+                        'question'   => 'Diminishing Returns (DR) for crowd control is tracked per what?',
+                        'type'       => 'mcq',
+                        'difficulty' => 'easy',
+                        'skill_type' => 'recall',
+                        'answer'     => [
+                            'correct' => 'CC category (e.g. stuns, fears, silences), applied to a specific target',
+                            'options' => [
+                                'CC category (e.g. stuns, fears, silences), applied to a specific target',
+                                'Each individual ability button, regardless of category',
+                                'The team as a whole, shared across every target',
+                                'The match timer, resetting at fixed intervals',
+                            ],
+                        ],
+                        'concepts' => ['Crowd Control'],
+                    ],
+                    [
+                        'question'   => 'True or False: Two different CC categories applied to the same target do not share Diminishing Returns with each other.',
+                        'type'       => 'true_false',
+                        'difficulty' => 'easy',
+                        'skill_type' => 'recall',
+                        'answer'     => ['correct' => true],
+                        'concepts' => ['Crowd Control'],
+                    ],
+                    [
+                        'question'   => 'Why does using two CC effects from the same DR category back-to-back on one target waste value?',
+                        'type'       => 'mcq',
+                        'difficulty' => 'easy',
+                        'skill_type' => 'recall',
+                        'answer'     => [
+                            'correct' => 'The second application lands at a reduced duration because DR is shared within that category',
+                            'options' => [
+                                'The second application lands at a reduced duration because DR is shared within that category',
+                                'The second application fails to land entirely',
+                                'The target becomes permanently immune to all crowd control',
+                                'It has no downside — value is never wasted by reusing a category',
+                            ],
+                        ],
+                        'concepts' => ['Crowd Control'],
+                    ],
+                    [
+                        'question'   => 'True or False: Team composition, at the fundamental level covered here, is primarily about which comp to draft or queue against a specific enemy comp.',
+                        'type'       => 'true_false',
+                        'difficulty' => 'easy',
+                        'skill_type' => 'recall',
+                        'answer'     => ['correct' => false],
+                        'concepts' => ['Team Composition'],
+                    ],
+                    [
+                        'question'   => 'True or False: Peel priority should be decided in advance as a team-level agreement, rather than left to whichever player notices danger first.',
+                        'type'       => 'true_false',
+                        'difficulty' => 'easy',
+                        'skill_type' => 'recall',
+                        'answer'     => ['correct' => true],
+                        'concepts' => ['Team Composition'],
+                    ],
+                    [
+                        'question'   => 'Match each team composition concept to its correct definition.',
+                        'type'       => 'matching_pairs',
+                        'difficulty' => 'medium',
+                        'skill_type' => 'recall',
+                        'answer'     => [
+                            'correct' => [
+                                'Synergy'              => 'Teammates\' tools reinforce each other to create or capitalise on openings',
+                                'DR Category'          => 'The grouping that Diminishing Returns is tracked within',
+                                'Kill Target Selection' => 'Choosing who to commit damage to based on what the comp is built to punish',
+                                'Peel Priority'        => 'A team-level agreement on which teammate is protected first',
+                            ],
+                            'pairs' => [
+                                'keys'   => ['Synergy', 'DR Category', 'Kill Target Selection', 'Peel Priority'],
+                                'values' => [
+                                    'The grouping that Diminishing Returns is tracked within',
+                                    'A team-level agreement on which teammate is protected first',
+                                    'Teammates\' tools reinforce each other to create or capitalise on openings',
+                                    'Choosing who to commit damage to based on what the comp is built to punish',
+                                ],
+                            ],
+                        ],
+                        'concepts' => ['Team Composition', 'Crowd Control'],
+                    ],
+                    [
+                        'question'   => 'Two teammates each have a stun available (same DR category) heading into a kill attempt on the same target. What is the more effective way to use them?',
+                        'type'       => 'mcq',
+                        'difficulty' => 'medium',
+                        'skill_type' => 'analysis',
+                        'answer'     => [
+                            'correct' => 'Use one stun to open the window, and hold the second until the first expires — or use a different CC category instead',
+                            'options' => [
+                                'Use one stun to open the window, and hold the second until the first expires — or use a different CC category instead',
+                                'Use both stuns at the exact same moment for maximum initial disable',
+                                'Save both stuns entirely and rely on damage alone for the kill window',
+                                'Use one stun and never use the second one at all, regardless of the fight',
+                            ],
+                        ],
+                        'concepts' => ['Team Composition', 'Crowd Control'],
+                    ],
+                    [
+                        'question'   => 'A comp is built around a short, heavy burst window rather than sustained damage. What does this imply about kill target selection?',
+                        'type'       => 'mcq',
+                        'difficulty' => 'medium',
+                        'skill_type' => 'analysis',
+                        'answer'     => [
+                            'correct' => 'The comp should target whoever has the least defensive support available during that window, since its strength is a short burst rather than a long grind',
+                            'options' => [
+                                'The comp should target whoever has the least defensive support available during that window, since its strength is a short burst rather than a long grind',
+                                'The comp should always target the enemy healer regardless of the comp\'s own strengths',
+                                'The comp should switch to a sustained-pressure approach instead of using its burst window',
+                                'Target selection does not matter for burst-oriented compositions',
+                            ],
+                        ],
+                        'concepts' => ['Team Composition'],
+                    ],
+                    [
+                        'question'   => 'Place the following steps of a coordinated CC chain across two teammates in the correct order.',
+                        'type'       => 'ordering',
+                        'difficulty' => 'medium',
+                        'skill_type' => 'application',
+                        'answer'     => [
+                            'steps' => [
+                                'Confirm the two teammates are holding different CC categories before committing to the kill attempt',
+                                'Teammate A applies a hard CC (e.g. a stun) to open the kill window on the target',
+                                'Teammate B holds their different CC category in reserve rather than duplicating teammate A\'s category',
+                                'As teammate A\'s CC expires, teammate B applies their CC to extend the disable without triggering DR',
+                                'The team continues stacking damage on the kill target throughout the extended window',
+                            ],
+                        ],
+                        'concepts' => ['Team Composition', 'Crowd Control'],
+                    ],
+                    [
+                        'question'   => 'Your team is committing a kill attempt on the enemy healer with two different-category CC effects available among your teammates. You also expect the enemy DPS to try to burst your own healer moments later. What is the best plan?',
+                        'type'       => 'mcq',
+                        'difficulty' => 'hard',
+                        'skill_type' => 'application',
+                        'answer'     => [
+                            'correct' => 'Use one CC effect to secure the current kill window, and hold the other in reserve as a peel option for your own healer',
+                            'options' => [
+                                'Use one CC effect to secure the current kill window, and hold the other in reserve as a peel option for your own healer',
+                                'Use both CC effects immediately on the enemy healer since more CC always means a safer kill',
+                                'Hold both CC effects in reserve and rely on damage alone for the kill window',
+                                'Use both CC effects on your own healer preemptively before any pressure begins',
+                            ],
+                        ],
+                        'concepts' => ['Team Composition', 'Crowd Control'],
+                    ],
+                    [
+                        'question'   => 'A comp built around sustained pressure over a long fight is deciding which enemy to commit to killing. Which target selection best fits this comp\'s strengths?',
+                        'type'       => 'mcq',
+                        'difficulty' => 'hard',
+                        'skill_type' => 'application',
+                        'answer'     => [
+                            'correct' => 'The enemy whose team cannot out-heal or out-sustain the pressure over time, even if they aren\'t the easiest target early in the fight',
+                            'options' => [
+                                'The enemy whose team cannot out-heal or out-sustain the pressure over time, even if they aren\'t the easiest target early in the fight',
+                                'Whichever enemy currently has the lowest health, regardless of how the fight develops',
+                                'The enemy who most recently used a defensive cooldown',
+                                'Whichever enemy is standing in the most exposed position, regardless of comp strengths',
+                            ],
+                        ],
+                        'concepts' => ['Team Composition'],
                     ],
                 ],
             ],

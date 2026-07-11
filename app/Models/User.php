@@ -14,6 +14,11 @@ class User extends Authenticatable implements MustVerifyEmail
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    // Attribution account for AI-generated content with no human author (seeded
+    // modules, AI-only pipelines). Real pro-author accounts get their own row —
+    // this is only a placeholder for "nobody specific wrote this."
+    const SYSTEM_ENGINE_EMAIL = 'engine@mindcollector.internal';
+
     /**
      * The attributes that are mass assignable.
      *

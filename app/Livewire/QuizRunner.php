@@ -20,6 +20,7 @@ class QuizRunner extends Component
     public bool $guestMode = false;
 
     public $moduleId;
+    public string $moduleName = '';
     public $questions;
     // Shuffled option/step/value order per question ID, e.g. ['options' => [...]] — kept as a
     // plain array (not baked into a cloned Question model's `answer` attribute) because Livewire
@@ -70,6 +71,7 @@ class QuizRunner extends Component
             $module = Module::with(['questions', 'proficiencies'])->find($this->moduleId);
             if (!$module) return;
 
+            $this->moduleName = $module->name ?? '';
             $this->proficiency = $module->proficiencies()->first()->name ?? '—';
             $result = $this->calculateNextDifficulty($module);
 
@@ -99,6 +101,8 @@ class QuizRunner extends Component
 
         $module = $user->modules()->with('questions')->find($this->moduleId);
         if (!$module) return;
+
+        $this->moduleName = $module->name ?? '';
 
         // Load once here; all private methods read $this->retakeStartedAt directly
         $retakeAt = $module->pivot->retake_started_at;

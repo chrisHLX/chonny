@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Module;
 use App\Models\Proficiency;
 use App\Models\Subject;
+use App\Models\User;
 
 class ModuleSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class ModuleSeeder extends Seeder
         }
 
         $modules = json_decode(File::get($jsonPath), true);
+        $systemUserId = User::where('email', User::SYSTEM_ENGINE_EMAIL)->value('id');
 
         foreach ($modules as $data) {
             $subject = Subject::where('name', $data['subject'])->first();
@@ -35,7 +37,7 @@ class ModuleSeeder extends Seeder
                     'description' => $data['description'] ?? null,
                     'race' => $data['race'] ?? null,
                     'published' => $data['published'] ?? false,
-                    'created_by' => $data['created_by'] ?? null,
+                    'created_by' => $data['created_by'] ?? $systemUserId,
                 ]
             );
 

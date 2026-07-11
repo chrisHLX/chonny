@@ -61,12 +61,20 @@ class NextStepReflection extends Component
      * more seconds) — a poll landing in that gap would redirect to a dashboard whose
      * $activeNextStep resolves to nothing yet. Check for the successor's existence instead,
      * which is only ever true once regeneration has actually finished.
+     *
+     * A concluded investigation chain (NextStepService::investigationChainExhausted) never gets
+     * a successor by design — regeneration deliberately stops there — so that alone would poll
+     * forever. Treat the step's own status flipping to Concluded as an equally valid terminal
+     * signal to redirect on.
      */
     public function checkCompletion(): void
     {
         $hasSuccessor = UserNextStep::where('previous_step_id', $this->nextStepId)->exists();
+        $concluded = UserNextStep::where('id', $this->nextStepId)
+            ->where('status', NextStepStatus::Concluded->value)
+            ->exists();
 
-        if ($hasSuccessor) {
+        if ($hasSuccessor || $concluded) {
             $this->redirect(route('dashboard'));
         }
     }

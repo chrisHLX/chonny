@@ -42,6 +42,10 @@
                     @if ($module->description)
                         <p class="text-[13px] text-ink-muted mt-3 leading-relaxed">{{ $module->description }}</p>
                     @endif
+
+                    @if ($module->creator)
+                        <p class="text-[11px] text-ink-subtle mt-2">by {{ $module->creator->name }}</p>
+                    @endif
                 </div>
 
                 {{-- CTA block --}}

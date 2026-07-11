@@ -1,22 +1,40 @@
 {{-- resources/views/components/dashboard/next-experiment.blade.php --}}
-@props(['profile' => null, 'activeNextStep' => null])
+@props([
+    'profile' => null,
+    'activeNextStep' => null,
+    'activeNextStepQuestNumber' => null,
+    'concludedNextStep' => null,
+    'concludedIsPositiveTrend' => false,
+])
 
 @php
     $practiceGoal = $profile['next_practice_goal'] ?? '';
-    if (!$activeNextStep && !$practiceGoal) return;
+    if (!$activeNextStep && !$practiceGoal && !$concludedNextStep) return;
 
-    // A module-type step is a bigger, structured commitment — not a self-reported "experiment" —
-    // so the card's framing switches with it rather than showing two separate module cards
-    // (this replaces the old, ungrounded recommended-next-step.blade.php card entirely).
     $isModuleStep = $activeNextStep && $activeNextStep->step_type === \App\Enums\StepType::Module;
-    $cardLabel = $isModuleStep ? 'Recommended Next Step' : 'Your Next Experiment';
-    $cardIcon = $isModuleStep ? 'icon-compass' : 'icon-lightning-circle';
+    $isConcludedState = $concludedNextStep && !$activeNextStep;
+
+    // Quest framing (Task 3) applies to both step types — a module-type step is a quest to
+    // complete that module, a task-type step an in-game quest. The concluded state isn't an
+    // active quest, so it gets its own eyebrow label rather than reusing "Your Current Quest".
+    $cardLabel = $isConcludedState ? 'Investigation Concluded' : 'Your Current Quest';
+    $cardIcon = $isConcludedState ? 'icon-delta' : ($isModuleStep ? 'icon-compass' : 'icon-lightning-circle');
+
+    // Lineage: which concept this quest targets and its position in the insight+concept chain
+    // (already computed in DashboardController from insight_id/concept_id/previous_step_id —
+    // no new AI call or schema, just surfacing what was already on the row).
+    $questConceptName = $activeNextStep?->concept?->name;
+    $questSuffix = $isModuleStep ? '' : ' investigation';
 @endphp
 
 <div class="linear-card p-5 relative overflow-hidden border border-gold/20">
     <x-ornament.corner position="tl" class="top-0 left-0 w-6 h-6 text-gold/20"/>
     <x-mc-icon :name="$cardIcon" class="w-6 h-6 text-gold mb-2"/>
-    <p class="text-[10px] font-semibold text-gold uppercase tracking-widest mb-2">{{ $cardLabel }}</p>
+    <p class="text-[10px] font-semibold text-gold uppercase tracking-widest mb-1">{{ $cardLabel }}</p>
+
+    @if ($activeNextStep && $activeNextStepQuestNumber && $questConceptName)
+        <p class="text-[11px] text-ink-subtle mb-2">Quest {{ $activeNextStepQuestNumber }} &middot; {{ $questConceptName }}{{ $questSuffix }}</p>
+    @endif
 
     @if ($activeNextStep && $activeNextStep->step_type === \App\Enums\StepType::Task)
         <p class="text-[13px] font-medium text-ink mb-1">{{ $activeNextStep->title }}</p>
@@ -39,6 +57,19 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </a>
+        @endif
+    @elseif ($concludedNextStep)
+        @php $conceptName = $concludedNextStep->concept?->name ?? 'this area'; @endphp
+        @if ($concludedIsPositiveTrend)
+            <p class="text-[13px] font-medium text-ink mb-1">Investigation complete</p>
+            <p class="text-[13px] text-ink-muted leading-relaxed">
+                You've run 3 experiments on {{ $conceptName }} and reported how they went. Mindcollector's read: this may no longer be your biggest gap. Deeper re-profiling based on your accumulated evidence is coming.
+            </p>
+        @else
+            <p class="text-[13px] font-medium text-ink mb-1">Finding filed</p>
+            <p class="text-[13px] text-ink-muted leading-relaxed">
+                You've given {{ $conceptName }} three genuine attempts. This angle doesn't seem to be the way in — that's useful information, not a failure. Mindcollector will use it to try a different approach.
+            </p>
         @endif
     @elseif ($practiceGoal)
         <p class="text-[13px] text-ink leading-relaxed">{{ $practiceGoal }}</p>

@@ -249,6 +249,15 @@
     @elseif (!empty($questions) && $questions->count() > $currentIndex)
         @php $question = $questions[$currentIndex]; @endphp
 
+        {{-- Module heading --}}
+        @if ($moduleName)
+            <div class="flex items-center justify-center gap-3 mb-5">
+                <span class="h-px w-8 bg-gold/30"></span>
+                <span class="text-[11px] font-semibold text-gold/80 uppercase tracking-[0.15em] text-center">{{ $moduleName }}</span>
+                <span class="h-px w-8 bg-gold/30"></span>
+            </div>
+        @endif
+
         {{-- Header: proficiency + progress --}}
         <div class="mb-4">
             <div class="flex items-center justify-between mb-2">
@@ -276,8 +285,9 @@
                 {{ $question->question }}
             </p>
 
-            <form x-data="{ elapsed: 0 }"
+            <form x-data="{ elapsed: 0, _tick: 0 }"
                   x-init="setInterval(() => elapsed++, 1000)"
+                  x-on:change="_tick++"
                   x-on:submit.prevent="$wire.submit({ elapsed })">
 
                 @switch($question->type)
@@ -374,13 +384,22 @@
                             wire:loading.attr="disabled"
                             wire:target="submit"
                             class="w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                            :disabled="(() => {
-                                if ($el.closest('form').querySelector('.ordering-list')) return false;
+                            {{-- matching_pairs reads live <select> DOM values, not $wire.answer — nested
+                                 wire:model bindings (answer.KEY) don't reactively sync to the client-side
+                                 $wire proxy the way a flat wire:model=answer binding does; only an actual
+                                 server round-trip (e.g. toggling the flag button) used to refresh it. --}}
+                            :disabled="(_tick, (() => {
+                                const form = $el.closest('form');
+                                if (form.querySelector('.ordering-list')) return false;
+                                const selects = form.querySelectorAll('select');
+                                if (selects.length > 0) {
+                                    return [...selects].some(s => s.value === '');
+                                }
                                 const a = $wire.answer;
                                 if (Array.isArray(a)) return a.length === 0;
                                 if (a && typeof a === 'object') return Object.values(a).some(v => v === '' || v === null || v === undefined);
                                 return a === null || a === undefined || String(a).trim() === '';
-                            })()">
+                            })())">
                         <span wire:loading.remove wire:target="submit">Submit Answer</span>
                         <span wire:loading wire:target="submit" class="flex items-center gap-2">
                             <span class="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>

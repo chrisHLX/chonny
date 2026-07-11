@@ -103,10 +103,26 @@ class NextStepService
                     }
                 }
 
+                $growthConceptsAttached = 0;
                 foreach (($diagnosticProfile['primary_growth_area']['concepts'] ?? []) as $name) {
                     if ($conceptMap->has($name)) {
                         $insight->concepts()->attach($conceptMap[$name], ['role' => 'growth_area']);
+                        $growthConceptsAttached++;
                     }
+                }
+
+                // Distinct from DiagnosticProfileService's per-field "filtered invalid concept
+                // names" warning (which fires on the raw AI response, before grounding). This one
+                // fires on the post-grounding outcome that actually matters downstream: when it's
+                // zero, findBestModuleForConcepts() returns null before querying, and this insight
+                // falls back to free-text tasks for its entire lifetime. Greppable so the rate can
+                // be queried without re-deriving it from raw AI-response logs.
+                if ($growthConceptsAttached === 0) {
+                    Log::warning('NextStepService: insight created with zero growth-area concepts — module routing will be skipped for this insight', [
+                        'insight_id' => $insight->id,
+                        'user_id'    => $userId,
+                        'subject_id' => $moduleModel->subject_id,
+                    ]);
                 }
 
                 $this->supersedePendingStepsForNewInsight($insight);
@@ -138,6 +154,11 @@ class NextStepService
         $matchedModule = $this->findBestModuleForConcepts($previousStep->user_id, $previousStep->subject_id, $growthConceptModels->pluck('id')->all());
         if ($matchedModule) {
             return $this->createModuleStep($matchedModule, $previousStep->user_id, $previousStep->subject_id, $insight?->id, $growthConceptModels, $previousStep->id, GeneratedReason::Reflection);
+        }
+
+        if ($this->investigationChainExhausted($previousStep)) {
+            $previousStep->update(['status' => NextStepStatus::Concluded]);
+            return $previousStep;
         }
 
         $growthConcepts = $this->growthConceptsWithMastery($previousStep->user_id, $growthConceptModels);
@@ -185,6 +206,29 @@ CTX;
             'title'             => $title,
             'instructions'      => $instructions,
         ]);
+    }
+
+    /**
+     * A task's success condition is information gain, not skill gain — three genuine attempts on
+     * the same growth-area concept, reflected on, is a concluded investigation either way, not a
+     * failure to keep retrying. Scoped to insight_id+concept_id so a new insight (which attaches
+     * its own fresh growth-area concept rows) always starts a new chain, never inherits a count
+     * from a prior insight. Module-type steps never reach this — findBestModuleForConcepts() is
+     * checked first in every caller and always wins when a match exists, regardless of task count.
+     */
+    private function investigationChainExhausted(UserNextStep $completedTaskStep, int $threshold = 3): bool
+    {
+        if (!$completedTaskStep->insight_id || !$completedTaskStep->concept_id) {
+            return false;
+        }
+
+        $completedTaskCount = UserNextStep::where('insight_id', $completedTaskStep->insight_id)
+            ->where('concept_id', $completedTaskStep->concept_id)
+            ->where('step_type', StepType::Task->value)
+            ->where('status', NextStepStatus::Completed->value)
+            ->count();
+
+        return $completedTaskCount >= $threshold;
     }
 
     public function regenerateAfterExpiry(UserNextStep $expiredStep): UserNextStep
