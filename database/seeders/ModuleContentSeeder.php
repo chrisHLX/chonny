@@ -61,9 +61,10 @@ class ModuleContentSeeder extends Seeder
     // These files contain concept metadata that module_questions.json does not have
     private function linkConceptsToQuestions(): void
     {
+        // data/lolquestions.json is intentionally excluded — QuestionSeeder no longer
+        // loads it (see QuestionSeeder for why), so none of its questions exist to link.
         $sourceFiles = [
             'data/questions.json',
-            'data/lolquestions.json',
             'data/medical_questions.json',
             'data/wowquestions.json',
         ];

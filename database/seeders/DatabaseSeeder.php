@@ -46,9 +46,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // ========== GROUP 1B: AXES + ARCHETYPES ==========
-        // Both belong to categories, so must run after CategorySeeder
+        // Both belong to categories, so must run after CategorySeeder.
+        // AxesSeeder covers every category (consolidated from the former GameAxesSeeder,
+        // Games-only, and the orphaned CategoriesAndAxesSeeder, which never ran).
         $this->call([
-            GameAxesSeeder::class,
+            AxesSeeder::class,
             ArchetypeSeeder::class,
         ]);
 
@@ -81,7 +83,7 @@ class DatabaseSeeder extends Seeder
         // ========== GROUP 5: GAME LAUNCH SEEDERS ==========
         // Self-contained seeders: each creates modules, pages, and questions for their subject.
         // Concepts are NOT created here — they come from ConceptSeeder above.
-        // Requires CategorySeeder, SubjectSeeder, ProficiencySeeder, GameAxesSeeder, ConceptSeeder.
+        // Requires CategorySeeder, SubjectSeeder, ProficiencySeeder, AxesSeeder, ConceptSeeder.
         $this->call([
             WowPvpFundamentalsSeeder::class,
             LolLaunchSeeder::class,

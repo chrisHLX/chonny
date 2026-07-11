@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Tag;
+use App\Models\Subject;
 
 class TagSeeder extends Seeder
 {
@@ -12,9 +13,11 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        // Map subject IDs to their tags
+        // Map subjects (by name — never by hardcoded ID, since insertion order in
+        // SubjectSeeder has changed over time and a hardcoded ID map has previously
+        // drifted out of sync, silently tagging the wrong subject) to their tags.
         $subjectTags = [
-            1 => [ // SC2
+            'StarCraft 2' => [
                 ['name' => 'Zerg', 'type' => 'identity'],
                 ['name' => 'Terran', 'type' => 'identity'],
                 ['name' => 'Protoss', 'type' => 'identity'],
@@ -26,7 +29,7 @@ class TagSeeder extends Seeder
                 ['name' => 'ZvZ', 'type' => 'matchup'],
                 ['name' => 'Other', 'type' => 'unspecified'],
             ],
-            2 => [ // League of Legends
+            'League of Legends' => [
                 ['name' => 'Top Lane', 'type' => 'role'],
                 ['name' => 'Mid Lane', 'type' => 'role'],
                 ['name' => 'ADC', 'type' => 'role'],
@@ -35,31 +38,31 @@ class TagSeeder extends Seeder
                 ['name' => 'Champ Name', 'type' => 'identity'],
                 ['name' => 'Other', 'type' => 'unspecified'],
             ],
-            3 => [ // Medicine
+            'Medicine' => [
                 ['name' => 'Cardiology', 'type' => 'specialty'],
                 ['name' => 'Neurology', 'type' => 'specialty'],
                 ['name' => 'Pediatrics', 'type' => 'specialty'],
                 ['name' => 'Other', 'type' => 'unspecified'],
             ],
-            4 => [ // Music
+            'Music' => [
                 ['name' => 'Guitar', 'type' => 'instrument'],
                 ['name' => 'Piano', 'type' => 'instrument'],
                 ['name' => 'Drums', 'type' => 'instrument'],
                 ['name' => 'Other', 'type' => 'unspecified'],
             ],
-            5 => [ // Ancient History
+            'Ancient History' => [
                 ['name' => 'Egypt', 'type' => 'region'],
                 ['name' => 'Rome', 'type' => 'region'],
                 ['name' => 'Greece', 'type' => 'region'],
                 ['name' => 'Other', 'type' => 'unspecified'],
             ],
-            6 => [ // Industrial Metals
+            'Industrial Materials' => [
                 ['name' => 'Steel', 'type' => 'material'],
                 ['name' => 'Aluminium', 'type' => 'material'],
                 ['name' => 'Copper', 'type' => 'material'],
                 ['name' => 'Other', 'type' => 'unspecified'],
             ],
-            7 => [ // Programming
+            'Programming' => [
                 ['name' => 'PHP', 'type' => 'language'],
                 ['name' => 'Python', 'type' => 'language'],
                 ['name' => 'JavaScript', 'type' => 'language'],
@@ -68,11 +71,18 @@ class TagSeeder extends Seeder
         ];
 
         // Loop through subjects and their tags
-        foreach ($subjectTags as $subjectId => $tags) {
+        foreach ($subjectTags as $subjectName => $tags) {
+            $subject = Subject::where('name', $subjectName)->first();
+
+            if (! $subject) {
+                $this->command->warn("⚠️ Subject not found for tags: {$subjectName}");
+                continue;
+            }
+
             foreach ($tags as $tag) {
                 Tag::firstOrCreate(
                     [
-                        'subject_id' => $subjectId,
+                        'subject_id' => $subject->id,
                         'name' => $tag['name'],
                     ],
                     [
@@ -81,7 +91,5 @@ class TagSeeder extends Seeder
                 );
             }
         }
-
-        
     }
 }
