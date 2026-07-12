@@ -14,7 +14,6 @@ class Question extends Model
         'difficulty',
         'skill_type',
         'concept_id',
-        'unit_id',
         'created_by',
     ];
 
@@ -33,11 +32,6 @@ class Question extends Model
         return $this->belongsToMany(Content::class, 'content_question')->withTimestamps();
     }
 
-
-    public function units()
-    {
-        return $this->belongsToMany(Unit::class);
-    }
 
     public function modules()
     {

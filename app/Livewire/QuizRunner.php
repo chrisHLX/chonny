@@ -233,17 +233,6 @@ class QuizRunner extends Component
 
     private function hasAnswer($question): bool
     {
-        if ($question->type === 'matching_pairs') {
-            $pairKeys = $question->answer['pairs']['keys'] ?? [];
-            if (empty($pairKeys)) return false;
-
-            foreach ($pairKeys as $key) {
-                if (empty($this->answer[$key] ?? null)) return false;
-            }
-
-            return true;
-        }
-
         // mcq / true_false / open all store a plain scalar once answered — the
         // unanswered default is the empty array $answer starts as (see property decl).
         if (is_array($this->answer)) return false;
@@ -261,13 +250,18 @@ class QuizRunner extends Component
 
         $question = $this->questions[$this->currentIndex];
 
-        // Guard against submitting a blank answer — mirrors the client-side `required`
-        // validation, but also covers a direct Livewire call that bypasses the DOM
-        // (stale request, JS disabled, etc). Ordering is exempt: SortableJS's x-init
-        // always populates $answer with the current on-screen order before any drag
-        // happens, so it never legitimately arrives here empty (see the ordering-question
-        // note in CLAUDE.md — don't touch that flow from here).
-        if ($question->type !== 'ordering' && !$this->hasAnswer($question)) {
+        // Guard against submitting a blank answer for mcq/true_false/open — also covers a
+        // direct Livewire call that bypasses the DOM (stale request, JS disabled, etc).
+        // Ordering and matching_pairs are both exempt, for the same underlying reason:
+        // ordering's SortableJS x-init always populates $answer with the current on-screen
+        // order before any drag happens, so it never legitimately arrives here empty (see
+        // the ordering-question note in CLAUDE.md — don't touch that flow from here).
+        // matching_pairs' nested wire:model="answer.KEY" bindings don't give a reliable
+        // client-side signal of fill state (see quiz-runner.blade.php's :disabled comment),
+        // so rather than block on a signal that can't be trusted, an incomplete/wrong
+        // matching_pairs submission is just allowed through and scored wrong — same
+        // tradeoff already accepted for ordering.
+        if (!in_array($question->type, ['ordering', 'matching_pairs'], true) && !$this->hasAnswer($question)) {
             return;
         }
 

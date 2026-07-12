@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Unit;
 use App\Models\Concept;
 use App\Models\Question;
 use App\Models\Module;
@@ -78,16 +77,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('/units', function () {
-    $units = Unit::with(['attributes', 'abilities', 'counters.counterUnit'])->orderBy('race')->orderBy('name')->get();
-    return view('units.index', compact('units'));
-})->name('units.index');
-
-Route::get('/units/table', function () {
-    $units = Unit::with('attributes')->orderBy('race')->orderBy('name')->get();
-    return view('units.table', compact('units'));
-})->name('units.table');
 
 Route::get('/concepts', [ConceptController::class, 'index'])->name('concepts.index');
 

@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete(); // optional: if request is tied to a user
             $table->string('purpose'); // e.g. 'tag_question', 'diagnose_progress', 'generate_quiz'
-            $table->text('prompt'); // raw prompt sent to OpenAI
+            $table->longText('prompt'); // raw prompt sent to OpenAI
             $table->json('response'); // full API response as JSON
             $table->json('metadata')->nullable(); // store additional data like temperature, model, related IDs
+            $table->integer('duration_ms')->nullable();
+            $table->text('template_prompt')->nullable();
             $table->timestamps();
         });
 

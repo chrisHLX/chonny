@@ -10,10 +10,7 @@ use App\Models\Concept;
 use App\Models\Subject;
 use App\Models\Category;
 use App\Models\UserNextStep;
-use App\Models\UserNextStepReflection;
 use App\Enums\NextStepStatus;
-use App\Enums\StepType;
-use App\Enums\DidTry;
 use App\Http\Services\NextStepService;
 
 class DashboardController extends Controller
@@ -111,20 +108,8 @@ class DashboardController extends Controller
                 ->latest()
                 ->first();
 
-            if ($concludedNextStep && $concludedNextStep->insight_id && $concludedNextStep->concept_id) {
-                // Dumb, explicit rule (deliberately no AI call): did_try is already a clean
-                // discrete field for every reflection in the chain, so majority-yes is enough to
-                // read as a "positive/attempted" trend — no need to parse how_it_went free text.
-                $chainTaskStepIds = UserNextStep::where('insight_id', $concludedNextStep->insight_id)
-                    ->where('concept_id', $concludedNextStep->concept_id)
-                    ->where('step_type', StepType::Task->value)
-                    ->pluck('id');
-
-                $triedCount = UserNextStepReflection::whereIn('next_step_id', $chainTaskStepIds)
-                    ->where('did_try', DidTry::Yes->value)
-                    ->count();
-
-                $concludedIsPositiveTrend = $triedCount >= 2;
+            if ($concludedNextStep) {
+                $concludedIsPositiveTrend = app(NextStepService::class)->isPositiveReflectionTrend($concludedNextStep);
             }
         }
 

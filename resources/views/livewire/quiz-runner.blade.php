@@ -285,9 +285,8 @@
                 {{ $question->question }}
             </p>
 
-            <form x-data="{ elapsed: 0, _tick: 0 }"
+            <form x-data="{ elapsed: 0 }"
                   x-init="setInterval(() => elapsed++, 1000)"
-                  x-on:change="_tick++"
                   x-on:submit.prevent="$wire.submit({ elapsed })">
 
                 @switch($question->type)
@@ -344,8 +343,8 @@
                                 <ul class="space-y-2">
                                     @foreach ($question->answer['pairs']['keys'] as $key)
                                         <li>
-                                            <select wire:model="answer.{{ $key }}" required class="form-select">
-                                                <option value="" disabled>— Select —</option>
+                                            <select wire:model="answer.{{ $key }}" class="form-select">
+                                                <option value="">— Select —</option>
                                                 @foreach ($shuffledOptions[$question->id]['values'] ?? $question->answer['pairs']['values'] as $value)
                                                     <option value="{{ $value }}">{{ $value }}</option>
                                                 @endforeach
@@ -384,22 +383,20 @@
                             wire:loading.attr="disabled"
                             wire:target="submit"
                             class="w-full py-2.5 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                            {{-- matching_pairs reads live <select> DOM values, not $wire.answer — nested
-                                 wire:model bindings (answer.KEY) don't reactively sync to the client-side
-                                 $wire proxy the way a flat wire:model=answer binding does; only an actual
-                                 server round-trip (e.g. toggling the flag button) used to refresh it. --}}
-                            :disabled="(_tick, (() => {
+                            {{-- matching_pairs is exempt for the same reason ordering is: wire:model="answer.KEY"
+                                 nested bindings don't reactively sync to the client-side $wire proxy the way a
+                                 flat wire:model="answer" binding does, so a live fill-state check here is
+                                 unreliable. Rather than patch around that per-question, matching_pairs gets the
+                                 same treatment as ordering — always submittable, an incomplete/wrong combination
+                                 just gets marked wrong like an unshuffled ordering answer would. --}}
+                            :disabled="(() => {
                                 const form = $el.closest('form');
-                                if (form.querySelector('.ordering-list')) return false;
-                                const selects = form.querySelectorAll('select');
-                                if (selects.length > 0) {
-                                    return [...selects].some(s => s.value === '');
-                                }
+                                if (form.querySelector('.ordering-list') || form.querySelector('select.form-select')) return false;
                                 const a = $wire.answer;
                                 if (Array.isArray(a)) return a.length === 0;
                                 if (a && typeof a === 'object') return Object.values(a).some(v => v === '' || v === null || v === undefined);
                                 return a === null || a === undefined || String(a).trim() === '';
-                            })())">
+                            })()">
                         <span wire:loading.remove wire:target="submit">Submit Answer</span>
                         <span wire:loading wire:target="submit" class="flex items-center gap-2">
                             <span class="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>

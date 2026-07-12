@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('current_difficulty')->default('easy');
             $table->timestamp('last_activity_at')->nullable();
             $table->timestamp('completed_at')->nullable();
+            $table->json('diagnostic_profile')->nullable();
+            $table->timestamp('retake_started_at')->nullable();
+            $table->unsignedInteger('retake_count')->default(0);
             $table->timestamps();
         });
     }

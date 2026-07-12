@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('total_time_spent')->default(0); // in seconds
             $table->integer('last_time_spent')->nullable(); // in seconds
             $table->text('last_answer')->nullable();
-            $table->boolean('last_answer_correct')->default(false); // added this to check if the last answer was correct
+            $table->boolean('last_answer_correct')->nullable(); // whether the last answer was correct
             $table->unsignedInteger('consecutive_fails')->default(0); // to track how many times in a row the user has failed this question
             $table->timestamps();
         });

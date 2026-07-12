@@ -12,9 +12,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->morphs('promptable');
+            $table->string('model')->default('gpt'); // gpt | gemini
             $table->text('question');
             $table->longText('context_snapshot')->nullable();
             $table->longText('answer')->nullable();
+            $table->json('sources')->nullable(); // web sources returned by gemini
             $table->string('status')->default('pending'); // pending|processing|completed|failed
             $table->text('error_message')->nullable();
             $table->timestamps();

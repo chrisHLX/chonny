@@ -68,14 +68,12 @@ class DatabaseSeeder extends Seeder
             ModuleSeeder::class,
             ModulePageSeeder::class,
             QuestionSeeder::class,
-            UnitSeeder::class,
         ]);
 
         // ========== GROUP 4: RELATIONSHIPS ==========
-        // Counters depend on units; user-module depends on users & modules
+        // User-module depends on users & modules
         // Module content depends on modules, questions, and concepts
         $this->call([
-            CountersSeeder::class,
             UserModuleSeeder::class,
             ModuleContentSeeder::class,
         ]);

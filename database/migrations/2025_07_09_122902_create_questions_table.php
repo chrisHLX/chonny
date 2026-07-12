@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('question');                      
             $table->json('answer');                          
-            $table->enum('type', ['mcq', 'true_false', 'matching_pairs', 'ordering' ,'open']);
+            $table->enum('type', ['mcq', 'true_false', 'matching_pairs', 'ordering', 'open', 'diagnostic_mcq', 'survey_mcq']);
             $table->enum('difficulty', ['easy', 'medium', 'hard'])->default('easy');
+            $table->enum('skill_type', ['recall', 'analysis', 'application'])->default('recall');
             $table->unsignedBigInteger('parent_id')->nullable(); // New: link to parent question
             $table->foreign('parent_id')->references('id')->on('questions')->onDelete('cascade');
             $table->string('created_by')->nullable();        

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Models\Concept;
-use App\Models\Unit;
 use App\Http\Services\AiService;
 
 class QuestionController extends Controller
@@ -148,7 +147,6 @@ class QuestionController extends Controller
         // Detach relationships
         $question->modules()->detach();
         $question->concepts()->detach();
-        $question->units()->detach();
         $question->users()->detach();
 
         // Delete the question

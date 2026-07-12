@@ -19,11 +19,6 @@ class Concept extends Model
 
     protected $appends = ['mastery_for_user'];
 
-    public function units()
-    {
-        return $this->belongsToMany(Unit::class)->withTimestamps();
-    }
-
     public function concepts()
     {
         return $this->belongsToMany(Concept::class)->withTimestamps();

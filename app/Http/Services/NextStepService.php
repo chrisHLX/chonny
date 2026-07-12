@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Enums\DidTry;
 use App\Enums\GeneratedReason;
 use App\Enums\NextStepStatus;
 use App\Enums\StepType;
@@ -37,6 +38,7 @@ class NextStepService
             profileTitle: $insight->profile_title,
             growthConcepts: $growthConcepts,
             context: null,
+            subjectName: $insight->subject?->name,
         );
 
         [$title, $instructions, $conceptId] = $this->callAndGround(
@@ -184,6 +186,7 @@ CTX;
             profileTitle: $insight?->profile_title ?? '',
             growthConcepts: $growthConcepts,
             context: $reflectionContext,
+            subjectName: $previousStep->subject?->name,
         );
 
         [$title, $instructions, $conceptId] = $this->callAndGround(
@@ -256,6 +259,7 @@ CTX;
             profileTitle: $insight?->profile_title ?? '',
             growthConcepts: $growthConcepts,
             context: "The previous task ({$expiredStep->title}) went unanswered and expired — pick a fresh, approachable task.{$historyBlock}",
+            subjectName: $expiredStep->subject?->name,
         );
 
         [$title, $instructions, $conceptId] = $this->callAndGround(
@@ -278,6 +282,34 @@ CTX;
             'title'             => $title,
             'instructions'      => $instructions,
         ]);
+    }
+
+    /**
+     * Shared with the dashboard's conclusion-card copy selection and the Progress page's "Your
+     * Path" timeline, so both surfaces read the same chain the same way — a second, drifted copy
+     * of this rule is exactly the kind of duplication the growth-area-concept-grounding note in
+     * CLAUDE.md flags as worth avoiding.
+     *
+     * Dumb, explicit rule (deliberately no AI call): did_try is already a clean discrete field on
+     * every reflection in the chain, so a majority-yes (2 of the 3 completed tasks) is enough to
+     * read as a "positive/attempted" trend — no need to parse how_it_went free text.
+     */
+    public function isPositiveReflectionTrend(UserNextStep $concludedStep): bool
+    {
+        if (!$concludedStep->insight_id || !$concludedStep->concept_id) {
+            return false;
+        }
+
+        $chainTaskStepIds = UserNextStep::where('insight_id', $concludedStep->insight_id)
+            ->where('concept_id', $concludedStep->concept_id)
+            ->where('step_type', StepType::Task->value)
+            ->pluck('id');
+
+        $triedCount = UserNextStepReflection::whereIn('next_step_id', $chainTaskStepIds)
+            ->where('did_try', DidTry::Yes->value)
+            ->count();
+
+        return $triedCount >= 2;
     }
 
     public function supersedePendingStepsForNewInsight(UserProfileInsight $insight): void
@@ -442,6 +474,7 @@ CTX;
             profileTitle: $insight?->profile_title ?? '',
             growthConcepts: $growthConcepts,
             context: "The user just completed the module \"{$completedStep->title}\" — pick a fresh task or the next best thing to focus on.{$historyBlock}",
+            subjectName: $completedStep->subject?->name,
         );
 
         [$title, $instructions, $conceptId] = $this->callAndGround(
@@ -525,16 +558,18 @@ HIST;
         });
     }
 
-    private function buildPrompt(string $summary, string $profileTitle, $growthConcepts, ?string $context): string
+    private function buildPrompt(string $summary, string $profileTitle, $growthConcepts, ?string $context, ?string $subjectName = null): string
     {
         $conceptsBlock = $growthConcepts->isNotEmpty()
             ? $growthConcepts->map(fn($c) => "  {$c}")->implode("\n")
             : '  (no growth-area concepts recorded yet)';
 
         $contextBlock = $context ? "\n\nADDITIONAL CONTEXT\n{$context}" : '';
+        $subjectLine  = $subjectName ? "\nSUBJECT: {$subjectName}" : '';
 
         return <<<PROMPT
 You generate one concrete practice task for a learner, based on their current profile. Use ONLY the information below — do not assume any game, sport, or domain-specific detail not present here.
+{$subjectLine}
 
 PROFILE SUMMARY
 {$summary}

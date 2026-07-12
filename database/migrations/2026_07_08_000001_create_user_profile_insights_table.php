@@ -20,7 +20,7 @@ return new class extends Migration
             $table->json('evidence')->nullable();
             $table->json('self_report_check')->nullable();
             $table->text('likely_in_game_pattern')->nullable();
-            $table->string('growth_area_pattern')->nullable();
+            $table->text('growth_area_pattern')->nullable();
             $table->timestamp('generated_at');
             $table->timestamps();
 
