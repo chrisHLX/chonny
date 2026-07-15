@@ -252,7 +252,7 @@ test('checkAndCompleteModuleStep no-ops when the module has not been completed y
     expect($result->status)->toBe(NextStepStatus::Pending);
 });
 
-test('checkAndCompleteModuleStep completes the step and generates a replacement when the module is completed', function () {
+test('checkAndCompleteModuleStep completes the step and returns it as-is when no other module covers the concept', function () {
     fakeOpenAiTask();
 
     $subject = makeSubject();
@@ -281,12 +281,11 @@ test('checkAndCompleteModuleStep completes the step and generates a replacement 
     expect($original->status)->toBe(NextStepStatus::Completed);
     expect($original->completed_at)->not->toBeNull();
 
-    expect($newStep->id)->not->toBe($step->id);
-    expect($newStep->previous_step_id)->toBe($step->id);
-    expect($newStep->generated_reason)->toBe(GeneratedReason::ModuleCompleted);
-    // The just-completed module is now excluded from matching, and no other module covers
-    // this concept, so it must fall back to the free-text task path.
-    expect($newStep->step_type)->toBe(StepType::Task);
+    // The just-completed module is now excluded, and no other module covers this concept, so
+    // RecommendationService has no candidate to recommend — no replacement is generated (never
+    // a free-text task fallback), and the now-completed step is returned as-is.
+    expect($newStep->id)->toBe($step->id);
+    expect(UserNextStep::where('previous_step_id', $step->id)->exists())->toBeFalse();
 });
 
 test('checkAndCompleteModuleStep guards against a duplicate transition from a stale concurrent read', function () {
@@ -297,6 +296,9 @@ test('checkAndCompleteModuleStep guards against a duplicate transition from a st
     $concept = makeConcept($subject, 'Positioning');
     $module = makeContentModule($subject, [$concept]);
     $insight = makeInsightWithGrowthConcepts($user, $subject, [$concept]);
+    // A second, still-available module/concept so RecommendationService has something to
+    // regenerate into — otherwise there'd be nothing for the dedup guard to guard against.
+    makeContentModule($subject, [makeConcept($subject, 'Awareness')]);
 
     $step = UserNextStep::create([
         'user_id'          => $user->id,
@@ -332,6 +334,9 @@ test('dashboard load completes an active module step and surfaces the freshly ge
     $concept = makeConcept($subject, 'Positioning');
     $module = makeContentModule($subject, [$concept]);
     $insight = makeInsightWithGrowthConcepts($user, $subject, [$concept]);
+    // A second, still-available module/concept so RecommendationService has something to
+    // regenerate into once the first module is completed.
+    makeContentModule($subject, [makeConcept($subject, 'Awareness')]);
 
     $step = UserNextStep::create([
         'user_id'          => $user->id,

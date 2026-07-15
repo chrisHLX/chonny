@@ -26,7 +26,7 @@ class ExpireNextSteps extends Command
             $step->update(['status' => NextStepStatus::Expired]);
 
             try {
-                $nextStepService->regenerateAfterExpiry($step);
+                $nextStepService->generateRecommendationAfterExpiry($step);
             } catch (\Throwable $e) {
                 Log::error("ExpireNextSteps: regeneration failed for step #{$step->id} — {$e->getMessage()}");
             }

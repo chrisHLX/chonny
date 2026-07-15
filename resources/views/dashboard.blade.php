@@ -50,6 +50,8 @@
             @if ($diagnosticProfile)
                 <x-dashboard.profile-hero :profile="$diagnosticProfile" />
 
+                <x-dashboard.recommended-focus :active-next-step="$activeNextStep" />
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <x-dashboard.current-focus :profile="$diagnosticProfile" />
                     <x-dashboard.next-experiment

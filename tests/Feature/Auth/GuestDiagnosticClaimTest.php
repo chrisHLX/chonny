@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Concept;
 use App\Models\Module;
 use App\Models\PlayerTrait;
 use App\Models\Question;
@@ -22,15 +23,14 @@ function fakeRecaptchaSuccess(): void
     ]);
 }
 
-function fakeOpenAiNextStep(): void
+function fakeOpenAiNextStep(string $concept = 'Cooldown Tracking', string $reason = 'Worth exploring next.'): void
 {
     Http::fake([
         'https://api.openai.com/*' => Http::response([
             'choices' => [
                 ['message' => ['content' => json_encode([
-                    'title' => 'Track enemy cooldowns',
-                    'instructions' => 'In your next session, consciously track enemy cooldowns and position to punish their absence.',
-                    'concept' => null,
+                    'concept' => $concept,
+                    'reason'  => $reason,
                 ])]],
             ],
         ]),
@@ -59,14 +59,32 @@ function makeDiagnosticFixtures(): array
         'type' => 'survey_mcq',
     ]);
 
-    return compact('category', 'subject', 'module', 'trait', 'traitQuestion', 'surveyQuestion');
+    // A real, available content module tagged with a concept — so RecommendationService has
+    // something to recommend once the guest's diagnostic evidence is claimed on registration.
+    $concept = Concept::create(['subject_id' => $subject->id, 'name' => 'Cooldown Tracking', 'description' => 'Cooldown Tracking']);
+    $contentModule = Module::create([
+        'subject_id' => $subject->id,
+        'name'       => 'Cooldown Fundamentals',
+        'status'     => 'ready',
+        'type'       => 'content',
+        'published'  => true,
+    ]);
+    $contentQuestion = Question::create([
+        'question' => 'Sample question',
+        'answer'   => ['correct' => 'A', 'options' => ['A', 'B']],
+        'type'     => 'mcq',
+    ]);
+    $contentModule->questions()->attach($contentQuestion->id);
+    $contentQuestion->concepts()->attach($concept->id);
+
+    return compact('category', 'subject', 'module', 'trait', 'traitQuestion', 'surveyQuestion', 'concept', 'contentModule');
 }
 
 test('guest diagnostic evidence transfers to the new account on registration', function () {
     fakeRecaptchaSuccess();
     fakeOpenAiNextStep();
 
-    ['category' => $category, 'subject' => $subject, 'module' => $module, 'trait' => $trait, 'traitQuestion' => $traitQuestion, 'surveyQuestion' => $surveyQuestion] = makeDiagnosticFixtures();
+    ['category' => $category, 'subject' => $subject, 'module' => $module, 'trait' => $trait, 'traitQuestion' => $traitQuestion, 'surveyQuestion' => $surveyQuestion, 'concept' => $concept, 'contentModule' => $contentModule] = makeDiagnosticFixtures();
 
     $completedAt = now()->toIso8601String();
 
@@ -155,7 +173,9 @@ test('guest diagnostic evidence transfers to the new account on registration', f
     expect($nextStep->subject_id)->toBe($subject->id);
     expect($nextStep->insight_id)->toBe($insight->id);
     expect($nextStep->status)->toBe(\App\Enums\NextStepStatus::Pending);
-    expect($nextStep->title)->toBe('Track enemy cooldowns');
+    expect($nextStep->step_type)->toBe(\App\Enums\StepType::Module);
+    expect($nextStep->module_id)->toBe($contentModule->id);
+    expect($nextStep->concept_id)->toBe($concept->id);
 });
 
 test('guest session data is retained when the diagnostic transfer fails', function () {

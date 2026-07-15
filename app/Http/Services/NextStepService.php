@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Log;
 
 class NextStepService
 {
-    public function __construct(protected AiService $aiService)
+    public function __construct(protected AiService $aiService, protected RecommendationService $recommendationService)
     {
     }
 
@@ -133,7 +133,11 @@ class NextStepService
             });
 
             // Runs outside the transaction — it makes an AI HTTP call and shouldn't hold a DB lock open.
-            $this->generateInitial($insight);
+            // Delegates to RecommendationService rather than generateInitial(): the recommendation
+            // is picked from a closed, availability-filtered concept list, not the diagnosis's own
+            // (sometimes ungrounded) growth-area concepts. generateInitial() and the free-text task
+            // path stay in this file, untouched, for future use — just no longer called from here.
+            $this->recommendationService->generateRecommendation($insight);
 
             return $insight;
         } catch (\Throwable $e) {
@@ -438,7 +442,7 @@ CTX;
         try {
             // Return the freshly generated replacement, not the now-completed step, so the
             // dashboard immediately shows the next thing rather than a dead "Start Module" link.
-            return $this->regenerateAfterModuleCompletion($step);
+            return $this->generateRecommendationAfterModuleCompletion($step);
         } catch (\Throwable $e) {
             Log::error('NextStepService: failed to regenerate after module completion', [
                 'step_id' => $step->id,
@@ -447,6 +451,54 @@ CTX;
 
             return $step;
         }
+    }
+
+    /**
+     * RecommendationService-backed counterpart to regenerateAfterModuleCompletion() below — used
+     * by checkAndCompleteModuleStep() instead of the old method so completing a recommended module
+     * always leads to another concept-then-module recommendation, never a free-text task fallback.
+     * regenerateAfterModuleCompletion() itself is untouched and still available for future use.
+     */
+    public function generateRecommendationAfterModuleCompletion(UserNextStep $completedStep): UserNextStep
+    {
+        $insight = $this->resolveInsightForStep($completedStep);
+        if (!$insight) {
+            return $completedStep;
+        }
+
+        return $this->recommendationService->generateRecommendation($insight, $completedStep, GeneratedReason::ModuleCompleted)
+            ?? $completedStep;
+    }
+
+    /**
+     * RecommendationService-backed counterpart to regenerateAfterExpiry() below — used by the
+     * next-steps:expire command instead of the old method for the same reason as its
+     * module-completion counterpart above. regenerateAfterExpiry() itself is untouched.
+     */
+    public function generateRecommendationAfterExpiry(UserNextStep $expiredStep): UserNextStep
+    {
+        $insight = $this->resolveInsightForStep($expiredStep);
+        if (!$insight) {
+            return $expiredStep;
+        }
+
+        return $this->recommendationService->generateRecommendation($insight, $expiredStep, GeneratedReason::Expired)
+            ?? $expiredStep;
+    }
+
+    /**
+     * Shared insight-resolution fallback for the two RecommendationService-backed methods above —
+     * mirrors the same `$step->insight ?? latest insight for user+subject` pattern already inlined
+     * 3x elsewhere in this file (regenerateAfterReflection/regenerateAfterExpiry/
+     * regenerateAfterModuleCompletion), which are left with their own copies untouched.
+     */
+    private function resolveInsightForStep(UserNextStep $step): ?UserProfileInsight
+    {
+        return $step->insight
+            ?? UserProfileInsight::where('user_id', $step->user_id)
+                ->where('subject_id', $step->subject_id)
+                ->latest('generated_at')
+                ->first();
     }
 
     private function regenerateAfterModuleCompletion(UserNextStep $completedStep): UserNextStep
