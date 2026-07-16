@@ -212,7 +212,7 @@ class SC2DiagnosticModuleSeeder extends Seeder
                         ],
                         [
                             'text'               => 'Launch drop harassment to slow their follow-up while I rebuild.',
-                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'creativity' => 2]],
+                            'diagnostic_payload' => ['traits' => ['risk_tolerance' => 2, 'independence' => 1]],
                         ],
                         [
                             'text'               => 'Work out the unit composition mistake and tech into the counter.',
@@ -253,7 +253,7 @@ class SC2DiagnosticModuleSeeder extends Seeder
                             'diagnostic_payload' => ['traits' => ['defensive_discipline' => 2, 'patience' => 2]],
                         ],
                         [
-                            'text'               => 'Engage on the map — I have more units to lose and more to gain.',
+                            'text'               => "Engage on the map — I'd rather dictate the fight than let their timing pick it for me.",
                             'diagnostic_payload' => ['traits' => ['aggression' => 2, 'independence' => 2]],
                         ],
                         [
@@ -304,7 +304,7 @@ class SC2DiagnosticModuleSeeder extends Seeder
                         ],
                         [
                             'text'               => 'Drop and harass to hold their economy back while my army lead holds.',
-                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'aggression' => 1]],
+                            'diagnostic_payload' => ['traits' => ['creativity' => 2, 'risk_tolerance' => 1]],
                         ],
                         [
                             'text'               => 'Be selective — only commit when I can guarantee enough economic damage to even it.',
@@ -364,7 +364,7 @@ class SC2DiagnosticModuleSeeder extends Seeder
                 'answer'   => [
                     'options' => [
                         [
-                            'text'               => 'Every cooldown and timing is deliberate — nothing is wasted.',
+                            'text'               => 'Every worker and mineral is accounted for — production never sits idle.',
                             'diagnostic_payload' => ['traits' => ['control_orientation' => 2, 'defensive_discipline' => 1]],
                         ],
                         [

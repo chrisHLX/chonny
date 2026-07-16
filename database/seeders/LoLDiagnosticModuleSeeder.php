@@ -194,7 +194,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                         ],
                         [
                             'text'               => 'Ward deep and look to all-in again when they return.',
-                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'kill_instinct' => 2]],
+                            'diagnostic_payload' => ['traits' => ['risk_tolerance' => 2, 'kill_instinct' => 1]],
                         ],
                     ],
                 ],
@@ -305,7 +305,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                         ],
                         [
                             'text'               => 'Match their split push with your own on the other side.',
-                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'creativity' => 2]],
+                            'diagnostic_payload' => ['traits' => ['risk_tolerance' => 2, 'creativity' => 1]],
                         ],
                         [
                             'text'               => 'Group mid and siege — a split pusher cannot answer a 5-man push.',
@@ -347,7 +347,7 @@ class LoLDiagnosticModuleSeeder extends Seeder
                         ],
                         [
                             'text'               => "Play what I'm best at and outplay the bad comp.",
-                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'aggression' => 1]],
+                            'diagnostic_payload' => ['traits' => ['independence' => 2, 'risk_tolerance' => 1]],
                         ],
                         [
                             'text'               => 'Find a champion that can flex between engage and damage.',
