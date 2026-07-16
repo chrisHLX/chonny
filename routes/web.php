@@ -23,6 +23,7 @@ use App\Livewire\Admin\ContentManager;
 use App\Livewire\Admin\ApiUsage;
 use App\Livewire\Admin\WeakAreas;
 use App\Livewire\Admin\LogViewer;
+use App\Livewire\Admin\DiagnosticStats;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 use App\Http\Controllers\FeedbackController;
@@ -161,6 +162,7 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
     Route::get('/content', ContentManager::class)->name('content');
     Route::get('/api-usage', ApiUsage::class)->name('api-usage');
     Route::get('/weak-areas', WeakAreas::class)->name('weak-areas');
+    Route::get('/diagnostic-stats', DiagnosticStats::class)->name('diagnostic-stats');
     Route::get('/logs', LogViewer::class)->name('logs');
 });
 

@@ -9,6 +9,7 @@ use App\Models\PlayerTrait;
 use App\Models\UserConceptMastery;
 use App\Models\UserTraitEvidence;
 use App\Models\UserProfileEvidence;
+use App\Models\DiagnosticAttempt;
 use App\Http\Services\DiagnosticProfileService;
 use App\Http\Services\NextStepService;
 use Illuminate\Support\Facades\DB;
@@ -79,6 +80,7 @@ class DiagnosticQuizRunner extends Component
             }
 
             $this->proficiency = $module->proficiencies()->first()->name ?? '—';
+            $this->recordAttemptStarted($module);
             $this->questions   = $this->loadQuestions($module);
             $this->initState();
             return;
@@ -117,6 +119,7 @@ class DiagnosticQuizRunner extends Component
             return;
         }
 
+        $this->recordAttemptStarted($module);
         $this->questions = $this->loadQuestions($module);
         $this->initState();
     }
@@ -469,6 +472,8 @@ class DiagnosticQuizRunner extends Component
             ];
         }
 
+        $this->recordAttemptCompleted($moduleModel ?? Module::find($this->moduleId));
+
         if ($this->guestMode) {
             session(['guest_quiz_results.' . $this->moduleId => [
                 'module_id'          => $this->moduleId,
@@ -501,6 +506,47 @@ class DiagnosticQuizRunner extends Component
     private function recordProfileInsight(int $userId, ?Module $moduleModel): void
     {
         app(NextStepService::class)->recordInsightAndGenerateInitialStep($userId, $moduleModel, $this->diagnosticProfile);
+    }
+
+    /**
+     * Lightweight engagement tracking — one row per (module, user) or (module, guest session),
+     * reset to in-progress on every fresh/retake start. Not a full attempt history, just
+     * "is anyone starting/finishing this" visibility for the admin stats page.
+     */
+    private function recordAttemptStarted(Module $module): void
+    {
+        DiagnosticAttempt::updateOrCreate(
+            $this->attemptIdentity($module->id),
+            [
+                'subject_id'   => $module->subject_id,
+                'started_at'   => now(),
+                'completed_at' => null,
+            ]
+        );
+    }
+
+    private function recordAttemptCompleted(?Module $module): void
+    {
+        $identity = $this->attemptIdentity($this->moduleId);
+        $attempt  = DiagnosticAttempt::where($identity)->latest('started_at')->first();
+
+        if ($attempt) {
+            $attempt->update(['completed_at' => now()]);
+            return;
+        }
+
+        DiagnosticAttempt::create(array_merge($identity, [
+            'subject_id'   => $module?->subject_id,
+            'started_at'   => now(),
+            'completed_at' => now(),
+        ]));
+    }
+
+    private function attemptIdentity(int $moduleId): array
+    {
+        return $this->guestMode
+            ? ['module_id' => $moduleId, 'user_id' => null, 'session_id' => session()->getId()]
+            : ['module_id' => $moduleId, 'user_id' => auth()->id()];
     }
 
     public function render()
