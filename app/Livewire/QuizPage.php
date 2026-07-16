@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Models\Module;
 use Livewire\Component;
 
 class QuizPage extends Component
 {
     public string $mode = 'selection';     // 'selection' | 'running' | 'review-feedback'
     public ?int $selectedModule = null;
+    public bool $selectedModuleIsDiagnostic = false;
 
     public function mount(?int $moduleId = null): void
     {
@@ -15,6 +17,7 @@ class QuizPage extends Component
 
         if ($id) {
             $this->selectedModule = $id;
+            $this->selectedModuleIsDiagnostic = Module::where('id', $id)->value('type') === 'diagnostic';
             $this->mode = 'running';
         }
     }
@@ -28,6 +31,7 @@ class QuizPage extends Component
     public function handleStartQuiz(int $moduleId)
     {
         $this->selectedModule = $moduleId;
+        $this->selectedModuleIsDiagnostic = Module::where('id', $moduleId)->value('type') === 'diagnostic';
         $this->mode = 'running';
     }
 
@@ -43,6 +47,7 @@ class QuizPage extends Component
     {
         $this->mode = 'selection';
         $this->selectedModule = null;
+        $this->selectedModuleIsDiagnostic = false;
     }
 
     public function render()
