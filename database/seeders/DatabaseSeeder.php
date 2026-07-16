@@ -23,11 +23,12 @@ class DatabaseSeeder extends Seeder
                 'email' => 'christian@mindcollector.com',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
+                'is_admin' => true,
             ],
         ];
 
         foreach ($users as $user) {
-            User::firstOrCreate(['email' => $user['email']], $user);
+            User::updateOrCreate(['email' => $user['email']], $user);
         }
 
         // ========== SYSTEM USER ==========
