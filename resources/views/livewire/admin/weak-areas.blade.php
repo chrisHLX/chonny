@@ -96,6 +96,154 @@
             </div>
         @endif
 
+        {{-- User detail drill-down --}}
+        @if($viewingUserId && $viewingUser)
+            <div class="linear-card overflow-hidden">
+                <div class="px-5 py-4 border-b border-line flex items-center justify-between gap-4">
+                    <div>
+                        <p class="text-[13px] font-semibold text-ink">{{ $viewingUser->name }}</p>
+                        <p class="text-[11px] text-ink-subtle">{{ $viewingUser->email }}</p>
+                    </div>
+                    <button wire:click="closeUserDetail"
+                            class="text-[12px] text-ink-muted hover:text-ink transition-colors shrink-0">
+                        &larr; Back to list
+                    </button>
+                </div>
+
+                <div class="p-5 space-y-8">
+                    {{-- Diagnostic profile(s) --}}
+                    <div>
+                        <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
+                            Diagnostic Profile{{ $userDiagnosticProfiles->count() === 1 ? '' : 's' }}
+                        </p>
+                        @forelse($userDiagnosticProfiles as $d)
+                            <div class="border border-line rounded-lg p-4 mb-3 last:mb-0">
+                                <div class="flex items-center justify-between gap-4 mb-2">
+                                    <p class="text-[13px] font-semibold text-ink">
+                                        {{ $d['subject_name'] }}
+                                        <span class="text-ink-subtle font-normal">— {{ $d['profile']['profile_title'] ?? ($d['profile']['player_type'] ?? 'Unclassified') }}</span>
+                                    </p>
+                                    <span class="text-[11px] text-ink-subtle shrink-0">{{ $d['completed_at'] }}</span>
+                                </div>
+                                @if($d['profile'])
+                                    <pre class="text-[11px] text-ink-muted whitespace-pre-wrap break-words bg-surface-2 rounded p-3 overflow-x-auto max-h-96 overflow-y-auto">{{ json_encode($d['profile'], JSON_PRETTY_PRINT) }}</pre>
+                                @else
+                                    <p class="text-[12px] text-ink-subtle">No profile JSON stored for this completion.</p>
+                                @endif
+                            </div>
+                        @empty
+                            <p class="text-[12px] text-ink-subtle">No completed diagnostics for this user.</p>
+                        @endforelse
+                    </div>
+
+                    {{-- Diagnostic answers: trait evidence --}}
+                    <div>
+                        <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
+                            Diagnostic Answers — Trait Questions ({{ $userTraitEvidence->count() }})
+                        </p>
+                        @if($userTraitEvidence->isEmpty())
+                            <p class="text-[12px] text-ink-subtle">No trait evidence recorded.</p>
+                        @else
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-line">
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Question</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Selected Answer</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Trait</th>
+                                            <th class="px-3 py-2 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Points</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider hidden sm:table-cell">Module</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-line">
+                                        @foreach($userTraitEvidence as $e)
+                                            <tr>
+                                                <td class="px-3 py-2 text-[12px] text-ink max-w-xs">{{ $e->question?->question ?? '—' }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted">{{ $e->selected_answer }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted">{{ $e->trait?->name ?? $e->trait_id }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted text-right">{{ $e->points }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-subtle hidden sm:table-cell">{{ $e->module?->name ?? '—' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
+                    </div>
+
+                    {{-- Diagnostic answers: self-reported survey --}}
+                    <div>
+                        <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
+                            Diagnostic Answers — Survey ({{ $userProfileEvidence->count() }})
+                        </p>
+                        @if($userProfileEvidence->isEmpty())
+                            <p class="text-[12px] text-ink-subtle">No survey evidence recorded.</p>
+                        @else
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-line">
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Question</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Key</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Answer</th>
+                                            <th class="px-3 py-2 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-line">
+                                        @foreach($userProfileEvidence as $e)
+                                            <tr>
+                                                <td class="px-3 py-2 text-[12px] text-ink max-w-xs">{{ $e->question?->question ?? '—' }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted">{{ $e->question_key }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted">{{ $e->answer_text }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted text-right">{{ $e->answer_value }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
+                    </div>
+
+                    {{-- Wrong answers on regular modules --}}
+                    <div>
+                        <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
+                            Wrong Answers — Modules ({{ $userWrongAnswers->count() }})
+                        </p>
+                        @if($userWrongAnswers->isEmpty())
+                            <p class="text-[12px] text-ink-subtle">No incorrect answers on record.</p>
+                        @else
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-line">
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Question</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Type</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Their Answer</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Correct Answer</th>
+                                            <th class="px-3 py-2 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Attempts</th>
+                                            <th class="px-3 py-2 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider hidden lg:table-cell">Module(s)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-line">
+                                        @foreach($userWrongAnswers as $q)
+                                            <tr>
+                                                <td class="px-3 py-2 text-[12px] text-ink max-w-xs">{{ $q->question }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted">{{ $q->type }}</td>
+                                                <td class="px-3 py-2 text-[11px] text-red-400 font-mono max-w-[16rem] truncate" title="{{ json_encode($q->pivot->last_answer) }}">{{ json_encode($q->pivot->last_answer) }}</td>
+                                                <td class="px-3 py-2 text-[11px] text-ink-muted font-mono max-w-[16rem] truncate" title="{{ json_encode($q->answer) }}">{{ json_encode($q->answer) }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-muted text-right">{{ $q->pivot->correct_count }}/{{ $q->pivot->attempts }}</td>
+                                                <td class="px-3 py-2 text-[12px] text-ink-subtle hidden lg:table-cell">{{ $q->modules->pluck('name')->implode(', ') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @else
+
         {{-- Tabs --}}
         <div class="border-b border-line flex gap-6">
             <button wire:click="$set('tab', 'concepts')"
@@ -190,6 +338,7 @@
                                 <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Avg mastery</th>
                                 <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Concepts tracked</th>
                                 <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Weak (&lt;50%)</th>
+                                <th class="px-5 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider"></th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-line">
@@ -216,6 +365,12 @@
                                             <span class="text-[12px] text-ink-subtle">0</span>
                                         @endif
                                     </td>
+                                    <td class="px-5 py-3 text-right">
+                                        <button wire:click="viewUser({{ $row->user_id }})"
+                                                class="text-[12px] font-medium text-accent hover:text-accent-hover transition-colors">
+                                            View
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -225,6 +380,8 @@
                     </div>
                 @endif
             </div>
+        @endif
+
         @endif
 
     </div>

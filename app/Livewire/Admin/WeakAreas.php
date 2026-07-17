@@ -2,9 +2,12 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\User;
 use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
 use App\Models\UserConceptSkillMastery;
+use App\Models\UserProfileEvidence;
+use App\Models\UserTraitEvidence;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -15,6 +18,7 @@ class WeakAreas extends Component
 
     public string $tab = 'concepts';
     public int $threshold = 50;
+    public ?int $viewingUserId = null;
 
     public function updatedTab(): void
     {
@@ -24,6 +28,16 @@ class WeakAreas extends Component
     public function updatedThreshold(): void
     {
         $this->resetPage();
+    }
+
+    public function viewUser(int $userId): void
+    {
+        $this->viewingUserId = $userId;
+    }
+
+    public function closeUserDetail(): void
+    {
+        $this->viewingUserId = null;
     }
 
     public function getSummaryProperty(): array
@@ -91,6 +105,95 @@ class WeakAreas extends Component
             ->get();
     }
 
+    // --- User detail drill-down (diagnostic profile, diagnostic answers, wrong module answers) ---
+    // Product-improvement view: lets an admin inspect exactly what a given user saw and answered,
+    // not just their aggregate mastery numbers.
+
+    public function getViewingUserProperty(): ?User
+    {
+        return $this->viewingUserId ? User::find($this->viewingUserId) : null;
+    }
+
+    /**
+     * One entry per completed diagnostic the user has taken (a user can have one per subject —
+     * WoW, SC2, LoL, etc. are separate diagnostic modules). Returns the raw AI-generated profile
+     * JSON as stored on the module_user pivot, decoded — this is deliberately the full, unedited
+     * output (not a hand-picked subset) so product review can see exactly what the AI produced,
+     * including any malformed/unexpected fields.
+     */
+    public function getUserDiagnosticProfilesProperty(): \Illuminate\Support\Collection
+    {
+        if (!$this->viewingUserId) {
+            return collect();
+        }
+
+        return User::findOrFail($this->viewingUserId)
+            ->modules()
+            ->where('type', 'diagnostic')
+            ->wherePivot('status', 'completed')
+            ->with('subject')
+            ->get()
+            ->map(fn ($module) => [
+                'subject_name' => $module->subject?->name ?? '—',
+                'module_name'  => $module->name,
+                'completed_at' => $module->pivot->completed_at,
+                'profile'      => $module->pivot->diagnostic_profile
+                    ? json_decode($module->pivot->diagnostic_profile, true)
+                    : null,
+            ]);
+    }
+
+    /**
+     * The raw diagnostic_mcq answers behind the trait scores in the profile above — one row per
+     * question the user answered during a diagnostic, with which trait it fed and how many points.
+     */
+    public function getUserTraitEvidenceProperty()
+    {
+        if (!$this->viewingUserId) {
+            return collect();
+        }
+
+        return UserTraitEvidence::where('user_id', $this->viewingUserId)
+            ->with(['question', 'trait', 'module'])
+            ->orderByDesc('answered_at')
+            ->get();
+    }
+
+    /**
+     * The raw survey_mcq (self-reported) answers from diagnostics — separate from trait evidence,
+     * see the "traits vs profile evidence" distinction documented for the diagnostic system.
+     */
+    public function getUserProfileEvidenceProperty()
+    {
+        if (!$this->viewingUserId) {
+            return collect();
+        }
+
+        return UserProfileEvidence::where('user_id', $this->viewingUserId)
+            ->with(['question', 'module'])
+            ->orderByDesc('answered_at')
+            ->get();
+    }
+
+    /**
+     * Regular (non-diagnostic) module questions this user has gotten wrong — last_answer_correct
+     * is the most recently recorded attempt's outcome, so a question the user eventually got right
+     * after retrying won't show here (attempts/correct_count are shown alongside for that context).
+     */
+    public function getUserWrongAnswersProperty()
+    {
+        if (!$this->viewingUserId) {
+            return collect();
+        }
+
+        return User::findOrFail($this->viewingUserId)
+            ->answeredQuestions()
+            ->wherePivot('last_answer_correct', false)
+            ->with('modules:id,name,type')
+            ->orderByPivot('last_answered_at', 'desc')
+            ->get();
+    }
+
     public function render()
     {
         return view('livewire.admin.weak-areas', [
@@ -98,6 +201,11 @@ class WeakAreas extends Component
             'weakConcepts' => $this->weakConcepts,
             'weakUsers'    => $this->weakUsers,
             'weakAxes'     => $this->weakAxes,
+            'viewingUser'            => $this->viewingUser,
+            'userDiagnosticProfiles' => $this->userDiagnosticProfiles,
+            'userTraitEvidence'      => $this->userTraitEvidence,
+            'userProfileEvidence'    => $this->userProfileEvidence,
+            'userWrongAnswers'       => $this->userWrongAnswers,
         ])->layout('layouts.app');
     }
 }
