@@ -185,7 +185,7 @@ class WowPvpFundamentalsSeeder extends Seeder
             }
 
             foreach ($entry['questions'] as $q) {
-                $question = Question::firstOrCreate(
+                $question = Question::updateOrCreate(
                     ['question' => $q['question']],
                     [
                         'type'       => $q['type'],
@@ -338,10 +338,11 @@ DR prevents CC from being applied indefinitely. When the same **category** of CC
 
 | Application | Duration |
 |-------------|----------|
-| First       | Full     |
-| Second      | 50%      |
-| Third       | 25%      |
-| Fourth      | Immune for 18 seconds |
+| First       | 100% (Full duration) |
+| Second      | 50% duration |
+| Third       | 0% (Full Immunity) |
+
+The DR window resets 16 seconds after the last CC effect of that category expires — once 16 seconds pass with no new application of that category, the next application lands at full duration again.
 
 DR is shared within categories — stuns share DR with other stuns, fears share with fears, and so on. Silences and incapacitates each have their own categories.
 
@@ -807,7 +808,7 @@ MD,
                             'options' => [
                                 '50% of the original duration',
                                 '75% of the original duration',
-                                '25% of the original duration',
+                                'Full immunity (0%)',
                                 'The same full duration as the first',
                             ],
                         ],
