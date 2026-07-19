@@ -146,14 +146,14 @@
         </div>
 
         {{-- Choose your game --}}
-        <div class="mt-16 w-full max-w-4xl">
+        <div class="mt-16 w-full max-w-5xl">
             <div class="flex items-center gap-4 mb-10">
                 <div class="flex-1 h-px bg-gold/20"></div>
                 <span class="text-[11px] font-semibold text-gold uppercase tracking-[0.2em]">Choose your game</span>
                 <div class="flex-1 h-px bg-gold/20"></div>
             </div>
 
-            <div class="grid gap-5 lg:grid-cols-3">
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
                 {{-- World of Warcraft — Emerald --}}
                 <a href="{{ route('modules.quiz', 'arena-playstyle-assessment') }}"
@@ -307,6 +307,58 @@
                             <polygon points="65,44 104,43 103,87 65,90 57,70 54,59"
                                      fill="#f87171" fill-opacity="0.22" stroke="#f87171" stroke-width="1.5" stroke-opacity="0.8"/>
                             <circle cx="65" cy="65" r="2.5" fill="#f87171" opacity="0.7"/>
+                        </svg>
+                    </div>
+                </a>
+
+                {{-- Poker — Purple --}}
+                <a href="{{ route('modules.quiz', 'poker-playstyle-assessment') }}"
+                   class="rounded-lg border bg-purple-900/20 border-purple-500/30
+                          hover:border-purple-500/60 hover:shadow-[0_0_28px_rgba(192,132,252,0.12)]
+                          p-5 block group transition-all duration-200 relative overflow-hidden">
+                    <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-purple-400/20"/>
+                    <x-ornament.corner position="tr" class="top-0 right-0 w-8 h-8 text-purple-400/20"/>
+                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-8 h-8 text-purple-400/20"/>
+                    <x-ornament.corner position="br" class="bottom-0 right-0 w-8 h-8 text-purple-400/20"/>
+                    <div class="flex items-center gap-2 mb-3">
+                        <x-mc-icon name="badge-poker" class="w-9 h-9 shrink-0 text-purple-400"/>
+                        <h3 class="font-display text-[15px] font-semibold text-ink group-hover:text-purple-300 transition-colors leading-tight">Poker</h3>
+                    </div>
+                    <div class="flex items-end gap-3">
+                        <div class="flex-1 min-w-0 flex flex-col">
+                            <svg class="w-2.5 h-2.5 text-gold mb-2" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L10 5L5 10L0 5Z"/></svg>
+                            <p class="text-[12px] text-ink-muted leading-relaxed mb-4 flex-1">Hand ranges, pot odds, position, and reading opponents at the table.</p>
+                            <div class="flex items-center gap-1.5 text-purple-400">
+                                <svg class="w-3 h-3 shrink-0" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M6 1.5L10.5 10.5L1.5 10.5Z"/></svg>
+                                <span class="text-[10px] font-semibold uppercase tracking-[0.15em]">Edge</span>
+                            </div>
+                        </div>
+                        <svg class="w-24 h-24 shrink-0" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="65,15 108,40 108,90 65,115 22,90 22,40" stroke="#c084fc" stroke-width="0.75" fill="none" opacity="0.18"/>
+                            <polygon points="65,28 98,46 98,84 65,103 32,84 32,46" stroke="#c084fc" stroke-width="0.75" fill="none" opacity="0.12"/>
+                            <polygon points="65,40 87,53 87,78 65,90 43,78 43,53" stroke="#c084fc" stroke-width="0.75" fill="none" opacity="0.12"/>
+                            <polygon points="65,53 76,59 76,71 65,78 54,71 54,59" stroke="#c084fc" stroke-width="0.75" fill="none" opacity="0.08"/>
+                            <line x1="65" y1="65" x2="65"  y2="15"  stroke="#c084fc" stroke-width="0.5" opacity="0.18"/>
+                            <line x1="65" y1="65" x2="108" y2="40"  stroke="#c084fc" stroke-width="0.5" opacity="0.18"/>
+                            <line x1="65" y1="65" x2="108" y2="90"  stroke="#c084fc" stroke-width="0.5" opacity="0.18"/>
+                            <line x1="65" y1="65" x2="65"  y2="115" stroke="#c084fc" stroke-width="0.5" opacity="0.18"/>
+                            <line x1="65" y1="65" x2="22"  y2="90"  stroke="#c084fc" stroke-width="0.5" opacity="0.18"/>
+                            <line x1="65" y1="65" x2="22"  y2="40"  stroke="#c084fc" stroke-width="0.5" opacity="0.18"/>
+                            <circle cx="65" cy="15"  r="1.5" fill="#c084fc" opacity="0.45"/>
+                            <circle cx="108" cy="40" r="1.5" fill="#c084fc" opacity="0.45"/>
+                            <circle cx="108" cy="90" r="1.5" fill="#c084fc" opacity="0.45"/>
+                            <circle cx="65" cy="115" r="1.5" fill="#c084fc" opacity="0.45"/>
+                            <circle cx="22" cy="90"  r="1.5" fill="#c084fc" opacity="0.45"/>
+                            <circle cx="22" cy="40"  r="1.5" fill="#c084fc" opacity="0.45"/>
+                            <text x="65"  y="9"   text-anchor="middle" font-size="6.5" fill="#c084fc" opacity="0.55" font-family="monospace">E</text>
+                            <text x="115" y="38"  text-anchor="start"  font-size="6.5" fill="#c084fc" opacity="0.55" font-family="monospace">X</text>
+                            <text x="115" y="93"  text-anchor="start"  font-size="6.5" fill="#c084fc" opacity="0.55" font-family="monospace">I</text>
+                            <text x="65"  y="125" text-anchor="middle" font-size="6.5" fill="#c084fc" opacity="0.55" font-family="monospace">D</text>
+                            <text x="15"  y="93"  text-anchor="end"    font-size="6.5" fill="#c084fc" opacity="0.55" font-family="monospace">C</text>
+                            <text x="15"  y="38"  text-anchor="end"    font-size="6.5" fill="#c084fc" opacity="0.55" font-family="monospace">A</text>
+                            <polygon points="65,20 100,52 96,85 65,105 40,80 45,50"
+                                     fill="#c084fc" fill-opacity="0.22" stroke="#c084fc" stroke-width="1.5" stroke-opacity="0.8"/>
+                            <circle cx="65" cy="65" r="2.5" fill="#c084fc" opacity="0.7"/>
                         </svg>
                     </div>
                 </a>

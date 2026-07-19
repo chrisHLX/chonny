@@ -15,10 +15,11 @@ return [
 
     'name' => env('APP_NAME', 'Mindcollector'),
 
-    'screener_module_id'     => env('SCREENER_MODULE_ID'),
-    'screener_wow_module_id' => env('SCREENER_WOW_MODULE_ID'),
-    'screener_sc2_module_id' => env('SCREENER_SC2_MODULE_ID'),
-    'screener_lol_module_id' => env('SCREENER_LOL_MODULE_ID'),
+    'screener_module_id'       => env('SCREENER_MODULE_ID'),
+    'screener_wow_module_id'   => env('SCREENER_WOW_MODULE_ID'),
+    'screener_sc2_module_id'   => env('SCREENER_SC2_MODULE_ID'),
+    'screener_lol_module_id'   => env('SCREENER_LOL_MODULE_ID'),
+    'screener_poker_module_id' => env('SCREENER_POKER_MODULE_ID'),
 
     /*
     |--------------------------------------------------------------------------

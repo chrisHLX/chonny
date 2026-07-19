@@ -99,4 +99,9 @@ class Module extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function contextOptions()
+    {
+        return $this->belongsToMany(SubjectContextOption::class, 'module_context_option');
+    }
+
 }

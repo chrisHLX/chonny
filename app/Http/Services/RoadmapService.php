@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\Concept;
 use App\Models\Module;
+use App\Models\SubjectContextDimension;
 use App\Models\UserLearningPathStage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -143,6 +144,18 @@ class RoadmapService
                 continue;
             }
 
+            if ($stage['key'] === 'context_dimensions') {
+                $contextStage = $this->buildContextDimensionsStage($module->subject_id);
+
+                // A subject with zero seeded dimensions (Poker, deliberately) omits this
+                // milestone from the path entirely, rather than showing an empty/meaningless step.
+                if ($contextStage) {
+                    $stages[] = $contextStage;
+                }
+
+                continue;
+            }
+
             $stages[] = [
                 'key'        => $stage['key'],
                 'title'      => $stage['title'],
@@ -153,6 +166,66 @@ class RoadmapService
         }
 
         return $stages;
+    }
+
+    /**
+     * Builds the context-declaration milestone from real SubjectContextDimension rows — never
+     * the hardcoded per-subject copy in config/roadmap.php, which exists only as a defensive
+     * fallback. Title rule: a single dimension reads "{Name} Breakdown" (e.g. "Race Breakdown"
+     * for SC2); two or more join with " & " (e.g. "Class & Spec" for WoW). Detail copy
+     * deliberately describes declaration, not inference — the user tells us this, the system
+     * never guesses it (see the context-vs-behaviour-vs-evidence design principle in CLAUDE.md).
+     */
+    private function buildContextDimensionsStage(?int $subjectId): ?array
+    {
+        if (!$subjectId) {
+            return null;
+        }
+
+        $dimensions = SubjectContextDimension::where('subject_id', $subjectId)
+            ->orderBy('order')
+            ->get();
+
+        if ($dimensions->isEmpty()) {
+            return null;
+        }
+
+        $names = $dimensions->pluck('name');
+
+        $title = $names->count() === 1
+            ? "{$names->first()} Breakdown"
+            : $names->implode(' & ');
+
+        $detail = 'Tell us which ' . $this->naturalJoin($names->map(fn ($n) => strtolower($n))) . ' you play so every future recommendation is personalised to it.';
+
+        return [
+            'key'        => 'context_dimensions',
+            'title'      => $title,
+            'detail'     => $detail,
+            'concept_id' => null,
+            'module_id'  => null,
+        ];
+    }
+
+    /**
+     * "race" / "class and spec" / "a, b and c" — no Oxford comma, matches the plain, unadorned
+     * copy style used throughout this feature's guest-facing summary text.
+     */
+    private function naturalJoin($items): string
+    {
+        $items = $items->values();
+
+        if ($items->count() <= 1) {
+            return $items->first() ?? '';
+        }
+
+        if ($items->count() === 2) {
+            return "{$items[0]} and {$items[1]}";
+        }
+
+        $last = $items->pop();
+
+        return $items->implode(', ') . " and {$last}";
     }
 
     /**

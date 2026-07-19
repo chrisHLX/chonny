@@ -101,6 +101,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Question::class, 'question_user_flags')->withTimestamps();
     }
 
+    public function subjectContext()
+    {
+        return $this->hasMany(UserSubjectContext::class);
+    }
+
     public function axisMastery()
     {
         return $this->hasMany(UserAxisMastery::class);

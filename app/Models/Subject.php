@@ -27,5 +27,10 @@ class Subject extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    
+
+    public function contextDimensions()
+    {
+        return $this->hasMany(SubjectContextDimension::class);
+    }
+
 }

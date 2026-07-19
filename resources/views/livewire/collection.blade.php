@@ -110,9 +110,18 @@
              for this subject); Your Path always renders since it has its own empty state. --}}
         <div class="grid md:grid-cols-2 gap-6">
             @if($this->learningPath->isNotEmpty())
-                <div>
-                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Learning Path</p>
-                    <x-milestone-path :milestones="$this->learningPath->all()"/>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Learning Path</p>
+                        <x-milestone-path :milestones="$this->learningPath->all()"/>
+                    </div>
+
+                    {{-- Renders nothing for a subject with zero context dimensions (e.g. Poker) —
+                         see SubjectContextForm's own docblock. Always shown here (not gated behind
+                         clicking the milestone) so a declaration already made can still be updated
+                         later — context can go stale (a reroll, a role swap), unlike a one-time
+                         diagnostic. --}}
+                    <livewire:subject-context-form :subject-id="$currentSubjectId" :key="'context-form-'.$currentSubjectId"/>
                 </div>
             @endif
 

@@ -121,7 +121,7 @@ class PokerDiagnosticModuleSeeder extends Seeder
             ],
             [
                 'type'     => 'survey_mcq',
-                'question' => 'What is your main goal?',
+                'question' => 'What is your main goal at the table?',
                 'answer'   => [
                     'question_key' => 'primary_goal',
                     'options'      => [
@@ -135,7 +135,7 @@ class PokerDiagnosticModuleSeeder extends Seeder
             ],
             [
                 'type'     => 'survey_mcq',
-                'question' => 'What do you believe is holding you back the most?',
+                'question' => 'What do you think is holding your results back the most?',
                 'answer'   => [
                     'question_key' => 'self_assessed_weakness',
                     'options'      => [
@@ -361,7 +361,7 @@ class PokerDiagnosticModuleSeeder extends Seeder
                 ],
             ],
             [
-                'question' => "When you're playing at your sharpest, which of these best describes what your play actually looks like?",
+                'question' => "When you're playing your best poker, which of these best describes what it actually looks like?",
                 'answer'   => [
                     'options' => [
                         [

@@ -6,6 +6,7 @@ use App\Models\Concept;
 use App\Models\Module;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\SubjectContextDimension;
 use App\Models\User;
 use App\Models\UserLearningPathStage;
 
@@ -61,7 +62,10 @@ test('builds a full roadmap with correct statuses and a real matched module', fu
         ->toContain('Cooldown Fundamentals');
 
     $milestones = $roadmap['milestones'];
-    expect($milestones)->toHaveCount(7); // WoW-specific config set
+    // WoW-specific config set is 7 stages, but 'context_dimensions' is omitted here since no
+    // SubjectContextDimension rows exist for this test's subject (see SubjectContextDimensionsTest
+    // for that stage's dedicated coverage) — 6 remain.
+    expect($milestones)->toHaveCount(6);
     expect($milestones[0]['status'])->toBe('complete');
     expect($milestones[0]['title'])->toBe('Diagnostic Assessment');
     expect($milestones[1]['status'])->toBe('next');
@@ -70,7 +74,7 @@ test('builds a full roadmap with correct statuses and a real matched module', fu
     foreach (array_slice($milestones, 2) as $future) {
         expect($future['status'])->toBe('future');
     }
-    expect($milestones[6]['title'])->toBe('Reassessment');
+    expect($milestones[5]['title'])->toBe('Reassessment');
 });
 
 test('falls back to a generic first-module title when no concept matches any real module', function () {
@@ -135,13 +139,13 @@ test('persistStagesForUser writes one ordered row per milestone with the real ma
 
     $stages = UserLearningPathStage::where('user_id', $user->id)->orderBy('order_index')->get();
 
-    expect($stages)->toHaveCount(7);
+    expect($stages)->toHaveCount(6); // 'context_dimensions' omitted — no dimensions seeded
     expect($stages[0]->stage_key)->toBe('diagnostic');
     expect($stages[0]->order_index)->toBe(0);
     expect($stages[1]->stage_key)->toBe('first_module');
     expect($stages[1]->module_id)->toBe($contentModule->id);
     expect($stages[1]->concept_id)->toBe($concept->id);
-    expect($stages[6]->stage_key)->toBe('reassessment');
+    expect($stages[5]->stage_key)->toBe('reassessment');
 });
 
 test('persistStagesForUser replaces old stages instead of accumulating on a second call (e.g. a retake)', function () {
@@ -151,5 +155,39 @@ test('persistStagesForUser replaces old stages instead of accumulating on a seco
     app(RoadmapService::class)->persistStagesForUser($user->id, $module, [], [], insightId: null);
     app(RoadmapService::class)->persistStagesForUser($user->id, $module, [], [], insightId: null);
 
-    expect(UserLearningPathStage::where('user_id', $user->id)->count())->toBe(7);
+    expect(UserLearningPathStage::where('user_id', $user->id)->count())->toBe(6);
+});
+
+test('a single seeded dimension produces a "{Name} Breakdown" milestone title', function () {
+    ['diagnosticModule' => $module, 'subject' => $subject] = makeRoadmapFixtures();
+    SubjectContextDimension::create(['subject_id' => $subject->id, 'name' => 'Race', 'slug' => 'race']);
+
+    $roadmap = app(RoadmapService::class)->buildGuestRoadmap([], [], $module);
+
+    $contextMilestone = collect($roadmap['milestones'])->firstWhere('title', 'Race Breakdown');
+    expect($contextMilestone)->not->toBeNull();
+    expect($contextMilestone['detail'])->toContain('Tell us which race you play');
+});
+
+test('two seeded dimensions join with " & ", not "Breakdown"', function () {
+    ['diagnosticModule' => $module, 'subject' => $subject] = makeRoadmapFixtures();
+    $class = SubjectContextDimension::create(['subject_id' => $subject->id, 'name' => 'Class', 'slug' => 'class', 'order' => 0]);
+    SubjectContextDimension::create(['subject_id' => $subject->id, 'name' => 'Spec', 'slug' => 'spec', 'order' => 1, 'parent_dimension_id' => $class->id]);
+
+    $roadmap = app(RoadmapService::class)->buildGuestRoadmap([], [], $module);
+
+    $contextMilestone = collect($roadmap['milestones'])->firstWhere('title', 'Class & Spec');
+    expect($contextMilestone)->not->toBeNull();
+    expect($contextMilestone['detail'])->toContain('Tell us which class and spec you play');
+});
+
+test('the context milestone is omitted entirely when the subject has zero dimensions', function () {
+    ['diagnosticModule' => $module] = makeRoadmapFixtures(); // no SubjectContextDimension rows created
+
+    $roadmap = app(RoadmapService::class)->buildGuestRoadmap([], [], $module);
+
+    // 6 stages, not 7 — WoW's config lists 7 keys including 'context_dimensions', which gets
+    // dropped here since no dimensions were seeded for this test's subject.
+    expect($roadmap['milestones'])->toHaveCount(6);
+    expect(collect($roadmap['milestones'])->pluck('title'))->not->toContain('Class & Spec');
 });

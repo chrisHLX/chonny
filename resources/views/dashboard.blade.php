@@ -59,7 +59,8 @@
                         :active-next-step="$activeNextStep"
                         :active-next-step-quest-number="$activeNextStepQuestNumber"
                         :concluded-next-step="$concludedNextStep"
-                        :concluded-is-positive-trend="$concludedIsPositiveTrend" />
+                        :concluded-is-positive-trend="$concludedIsPositiveTrend"
+                        :next-step-content-exhausted="$nextStepContentExhausted" />
                 </div>
 
                 <x-dashboard.evidence-panel :profile="$diagnosticProfile" />

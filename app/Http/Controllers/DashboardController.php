@@ -113,6 +113,16 @@ class DashboardController extends Controller
             }
         }
 
+        // Distinguishes "the recommendation engine ran out of available content" from "nothing
+        // was ever generated" — without this, the Next Experiment card silently falls back to
+        // the static, non-interactive next_practice_goal text from diagnostic-completion time,
+        // which reads as a vague, un-actionable "quest" once the user has actually made real
+        // progress past it. See NextStepService::hasAnyStepEverExisted()'s docblock.
+        $nextStepContentExhausted = false;
+        if (!$activeNextStep && !$concludedNextStep) {
+            $nextStepContentExhausted = app(NextStepService::class)->hasAnyStepEverExisted($user->id, $currentSubjectId ?? 0);
+        }
+
         // If the selected subject has no completed diagnostic, offer a subject-specific CTA
         // instead of silently showing nothing (or, previously, another subject's profile).
         $subjectDiagnosticModule = null;
@@ -195,7 +205,8 @@ class DashboardController extends Controller
             'activeNextStep',
             'activeNextStepQuestNumber',
             'concludedNextStep',
-            'concludedIsPositiveTrend'
+            'concludedIsPositiveTrend',
+            'nextStepContentExhausted'
         ));
     }
 

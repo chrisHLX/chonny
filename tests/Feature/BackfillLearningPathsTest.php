@@ -61,7 +61,7 @@ test('backfill persists learning path stages for a user who completed a diagnost
     $this->artisan('roadmap:backfill')->assertSuccessful();
 
     $stages = UserLearningPathStage::where('user_id', $user->id)->orderBy('order_index')->get();
-    expect($stages)->toHaveCount(7);
+    expect($stages)->toHaveCount(6); // 'context_dimensions' omitted — no dimensions seeded in this test
     expect($stages[1]->module_id)->toBe($contentModule->id);
 });
 
@@ -108,7 +108,7 @@ test('backfill is idempotent — running it twice does not duplicate stages', fu
     $this->artisan('roadmap:backfill')->assertSuccessful();
     $this->artisan('roadmap:backfill')->assertSuccessful();
 
-    expect(UserLearningPathStage::where('user_id', $user->id)->count())->toBe(7);
+    expect(UserLearningPathStage::where('user_id', $user->id)->count())->toBe(6);
 });
 
 test('backfill skips non-diagnostic modules and users with no diagnostic_profile', function () {

@@ -11,6 +11,12 @@
 // Statuses are assigned positionally by RoadmapService: index 0 = complete (the diagnostic
 // just finished), index 1 = next, everything after = future. Do not put a non-'first_module'
 // stage at index 1 unless you also want it to inherit the deterministic-module treatment.
+//
+// 'context_dimensions' is another special key, like 'first_module': RoadmapService replaces its
+// title/detail at runtime from the subject's real SubjectContextDimension rows (e.g. "Race" for
+// SC2, "Class"+"Spec" for WoW) rather than the hardcoded copy below, which exists only as a
+// fallback if dimension data is somehow missing. A subject with zero seeded dimensions (Poker,
+// deliberately) has this stage omitted from the path entirely — see resolveStages().
 
 return [
 
@@ -25,7 +31,7 @@ return [
     'World of Warcraft: The War Within' => [
         ['key' => 'diagnostic', 'title' => 'Diagnostic Assessment', 'detail' => "We've identified how you naturally approach arena."],
         ['key' => 'first_module', 'title' => null, 'detail' => null],
-        ['key' => 'class_breakdown', 'title' => 'Class Breakdown', 'detail' => "We'll learn how your class changes the way your strengths and weaknesses show up in game."],
+        ['key' => 'context_dimensions', 'title' => 'Class Breakdown', 'detail' => "We'll learn how your class changes the way your strengths and weaknesses show up in game."],
         ['key' => 'win_conditions', 'title' => 'Personalised Win Conditions', 'detail' => "We'll identify the situations that matter most for your class and playstyle."],
         ['key' => 'practice_drills', 'title' => 'In-Game Practice Drills', 'detail' => "Drills built around your biggest opportunities."],
         ['key' => 'comp_prep', 'title' => 'Comp & Matchup Preparation', 'detail' => "Focus on the compositions and opponents that matter most for your climb."],
@@ -35,7 +41,7 @@ return [
     'League of Legends' => [
         ['key' => 'diagnostic', 'title' => 'Diagnostic Assessment', 'detail' => "We've identified how you naturally approach the game."],
         ['key' => 'first_module', 'title' => null, 'detail' => null],
-        ['key' => 'role_breakdown', 'title' => 'Champion & Role Breakdown', 'detail' => "We'll learn how your role and champion pool change the way your strengths and weaknesses show up."],
+        ['key' => 'context_dimensions', 'title' => 'Champion & Role Breakdown', 'detail' => "We'll learn how your role and champion pool change the way your strengths and weaknesses show up."],
         ['key' => 'win_conditions', 'title' => 'Personalised Win Conditions', 'detail' => "We'll identify the situations that matter most for your playstyle."],
         ['key' => 'practice_drills', 'title' => 'In-Game Practice Drills', 'detail' => "Drills built around your biggest opportunities."],
         ['key' => 'matchup_prep', 'title' => 'Matchup Preparation', 'detail' => "Focus on the matchups that matter most for your climb."],
@@ -45,7 +51,7 @@ return [
     'StarCraft 2' => [
         ['key' => 'diagnostic', 'title' => 'Diagnostic Assessment', 'detail' => "We've identified how you naturally approach the game."],
         ['key' => 'first_module', 'title' => null, 'detail' => null],
-        ['key' => 'race_breakdown', 'title' => 'Race Breakdown', 'detail' => "We'll learn how your race changes the way your strengths and weaknesses show up."],
+        ['key' => 'context_dimensions', 'title' => 'Race Breakdown', 'detail' => "We'll learn how your race changes the way your strengths and weaknesses show up."],
         ['key' => 'win_conditions', 'title' => 'Personalised Win Conditions', 'detail' => "We'll identify the build orders and situations that matter most for your playstyle."],
         ['key' => 'practice_drills', 'title' => 'In-Game Practice Drills', 'detail' => "Drills built around your biggest opportunities."],
         ['key' => 'matchup_prep', 'title' => 'Matchup Preparation', 'detail' => "Focus on the matchups that matter most for your climb."],
@@ -55,7 +61,7 @@ return [
     'Poker' => [
         ['key' => 'diagnostic', 'title' => 'Diagnostic Assessment', 'detail' => "We've identified how you naturally approach decisions at the table."],
         ['key' => 'first_module', 'title' => null, 'detail' => null],
-        ['key' => 'style_breakdown', 'title' => 'Playstyle Breakdown', 'detail' => "We'll learn how your style changes the way your strengths and weaknesses show up in hands."],
+        ['key' => 'context_dimensions', 'title' => 'Playstyle Breakdown', 'detail' => "We'll learn how your style changes the way your strengths and weaknesses show up in hands."],
         ['key' => 'win_conditions', 'title' => 'Personalised Decision Points', 'detail' => "We'll identify the spots that matter most for your win rate."],
         ['key' => 'practice_drills', 'title' => 'Hand-History Drills', 'detail' => "Drills built around your biggest opportunities."],
         ['key' => 'opponent_prep', 'title' => 'Opponent-Read Preparation', 'detail' => "Focus on the reads that matter most for moving up in stakes."],

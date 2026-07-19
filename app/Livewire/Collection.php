@@ -17,6 +17,7 @@ use App\Models\UserLearningPathStage;
 use App\Enums\NextStepStatus;
 use App\Http\Services\ReviewQuestionService;
 use App\Http\Services\NextStepService;
+use App\Http\Services\SubjectContextService;
 use App\Jobs\GenerateReviewContentJob;
 
 class Collection extends Component
@@ -194,12 +195,28 @@ class Collection extends Component
      * CLAUDE.md documents retiring twice already (SuggestionJob, recommended_module). This makes
      * the roadmap a view over NextStepService's single decision, not a second one.
      *
-     * Every stage after 'first_module' (the static config copy — "Class Breakdown", "Win
-     * Conditions", etc.) always stays 'future'. There is currently no real module/task tracking
-     * any of them, so there's nothing to light up — a known, deliberately accepted gap, not a
-     * bug: filling it in means either building that content or generating it, which is future
-     * work. The "Module" stage does not advance into them when its current module completes —
-     * it just keeps reflecting whatever NextStepService recommends next, indefinitely.
+     * Stages after 'first_module' with no special handling below (the static config copy — "Win
+     * Conditions", "Practice Drills", etc.) never self-report complete — there is currently no
+     * real module/task tracking any of them, so there's nothing to light up. Known, deliberately
+     * accepted gap, not a bug: filling it in means either building that content or generating it,
+     * which is future work.
+     *
+     * When there's no live UserNextStep at all, that's not always "nothing has happened yet" —
+     * it's the normal end state once RecommendationService runs out of candidate concepts for a
+     * small content bank (confirmed in production: an SC2 user exhausted it after two module
+     * completions). Falling back to the frozen persist-time guess in that case actively lies
+     * about progress (it can show a module the user completed long ago). NextStepService::
+     * hasAnyStepEverExisted() distinguishes that case from the genuine edge case of no next-step
+     * system ever having run for this subject, which is the only time the frozen guess is shown.
+     *
+     * 'context_dimensions' (declared class/race/role/... — see SubjectContextService) is a
+     * second, independently-completable stage, not gated behind 'first_module': a user can
+     * declare their class before ever touching a module, so it reports its own complete/next/
+     * future state regardless of 'first_module''s state (a declared-early context stage can show
+     * 'complete' even while 'first_module' still shows 'next'). Only these two stage_keys ever
+     * carry real tracking, though — every other stage (the plain static copy — "Win Conditions",
+     * etc.) unconditionally stays 'future' and is never eligible to become 'next', since there is
+     * nothing behind it a user could actually act on yet.
      */
     public function getLearningPathProperty()
     {
@@ -223,17 +240,52 @@ class Collection extends Component
             $activeNextStep = app(NextStepService::class)->checkAndCompleteModuleStep($activeNextStep);
         }
 
-        return $stages->values()->map(function ($stage, $index) use ($activeNextStep) {
+        $contentExhausted = !$activeNextStep
+            && app(NextStepService::class)->hasAnyStepEverExisted(auth()->id(), $this->currentSubjectId);
+
+        $contextDeclared = app(SubjectContextService::class)->hasDeclaredAllRequiredDimensions(auth()->id(), $this->currentSubjectId);
+
+        $nextAssigned = false;
+
+        return $stages->values()->map(function ($stage, $index) use ($activeNextStep, $contentExhausted, $contextDeclared, &$nextAssigned) {
             if ($index === 0) {
                 return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'complete'];
             }
 
             if ($stage->stage_key === 'first_module') {
-                return $activeNextStep
-                    ? ['title' => $activeNextStep->title, 'detail' => $activeNextStep->instructions, 'status' => 'next']
-                    : ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'next'];
+                if ($activeNextStep) {
+                    $nextAssigned = true;
+                    return ['title' => $activeNextStep->title, 'detail' => $activeNextStep->instructions, 'status' => 'next'];
+                }
+
+                if ($contentExhausted) {
+                    return [
+                        'title'  => 'All available modules completed',
+                        'detail' => "You've worked through everything currently available for your growth areas. More content is on the way.",
+                        'status' => 'complete',
+                    ];
+                }
+
+                $nextAssigned = true;
+                return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'next'];
             }
 
+            if ($stage->stage_key === 'context_dimensions') {
+                if ($contextDeclared) {
+                    return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'complete'];
+                }
+
+                if (!$nextAssigned) {
+                    $nextAssigned = true;
+                    return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'next'];
+                }
+
+                return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'future'];
+            }
+
+            // Every other stage is plain static copy with no real module/task tracking it — always
+            // 'future', regardless of position. Unlike 'first_module'/'context_dimensions' above,
+            // there is nothing here a user could actually act on, so it must never claim 'next'.
             return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'future'];
         });
     }

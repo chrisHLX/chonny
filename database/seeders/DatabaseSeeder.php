@@ -46,6 +46,12 @@ class DatabaseSeeder extends Seeder
             ProficiencySeeder::class,
         ]);
 
+        // ========== GROUP 1A: SUBJECT CONTEXT DIMENSIONS ==========
+        // Class/Race/Role/... declaration ontology. Depends only on SubjectSeeder above.
+        $this->call([
+            SubjectContextSeeder::class,
+        ]);
+
         // ========== GROUP 1B: AXES + ARCHETYPES ==========
         // Both belong to categories, so must run after CategorySeeder.
         // AxesSeeder covers every category (consolidated from the former GameAxesSeeder,

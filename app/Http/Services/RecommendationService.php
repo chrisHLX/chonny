@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Log;
 
 class RecommendationService
 {
-    public function __construct(protected AiService $aiService)
-    {
+    public function __construct(
+        protected AiService $aiService,
+        protected SubjectContextService $subjectContextService
+    ) {
     }
 
     /**
@@ -124,6 +126,13 @@ class RecommendationService
      * Resolves a single already-chosen concept to a module. Deliberately simpler than
      * findBestModuleForConcepts() (no multi-concept coverage ranking needed — candidateConcepts()
      * already guarantees a match exists for this concept).
+     *
+     * Routing preference (Subject Context Dimensions): applies the same context
+     * exclusion/specificity rule as NextStepService::findBestModuleForConcepts() — see
+     * SubjectContextService::isContextEligible()/contextSpecificity() — so this path and the
+     * module-completion path never disagree about which real content a declared user should see.
+     * Ties within the same specificity fall back to id ascending, matching this method's original
+     * (context-blind) ordering.
      */
     private function findModuleForConcept(int $userId, int $subjectId, int $conceptId): ?Module
     {
@@ -132,14 +141,42 @@ class RecommendationService
             ->where('status', 'completed')
             ->pluck('module_id');
 
-        return Module::where('subject_id', $subjectId)
+        $candidates = Module::where('subject_id', $subjectId)
             ->where('published', true)
             ->where('status', 'ready')
             ->where('type', '!=', 'diagnostic')
             ->whereNull('parent_id')
             ->whereNotIn('id', $completedModuleIds)
             ->whereHas('questions.concepts', fn ($q) => $q->where('concepts.id', $conceptId))
+            ->with('contextOptions')
             ->orderBy('id')
+            ->get();
+
+        if ($candidates->isEmpty()) {
+            return null;
+        }
+
+        $declaredOptionIds = $this->subjectContextService->declaredOptionIds($userId, $subjectId);
+
+        $eligible = $candidates->filter(
+            fn (Module $module) => $this->subjectContextService->isContextEligible($module, $declaredOptionIds)
+        );
+
+        if ($eligible->isEmpty()) {
+            return null;
+        }
+
+        return $eligible
+            ->sort(function (Module $a, Module $b) use ($declaredOptionIds) {
+                $specificityA = $this->subjectContextService->contextSpecificity($a, $declaredOptionIds);
+                $specificityB = $this->subjectContextService->contextSpecificity($b, $declaredOptionIds);
+
+                if ($specificityA !== $specificityB) {
+                    return $specificityB <=> $specificityA;
+                }
+
+                return $a->id <=> $b->id;
+            })
             ->first();
     }
 

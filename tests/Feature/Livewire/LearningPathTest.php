@@ -3,12 +3,15 @@
 use App\Enums\NextStepStatus;
 use App\Enums\StepType;
 use App\Http\Services\RoadmapService;
+use App\Http\Services\SubjectContextService;
 use App\Livewire\Collection;
 use App\Models\Category;
 use App\Models\Concept;
 use App\Models\Module;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\SubjectContextDimension;
+use App\Models\SubjectContextOption;
 use App\Models\User;
 use App\Models\UserNextStep;
 use Livewire\Livewire;
@@ -68,7 +71,7 @@ test('learning path shows the diagnostic as complete and the matched module as n
         ->set('currentSubjectId', $subject->id)
         ->instance()->learningPath;
 
-    expect($learningPath)->toHaveCount(7);
+    expect($learningPath)->toHaveCount(6); // 'context_dimensions' omitted — no dimensions seeded
     expect($learningPath[0]['status'])->toBe('complete');
     expect($learningPath[1]['status'])->toBe('next');
     expect($learningPath[1]['title'])->toBe('Cooldown Fundamentals');
@@ -147,6 +150,85 @@ test('the Module stage keeps reflecting the live next-step after completion, and
     foreach (array_slice($learningPath->all(), 2) as $future) {
         expect($future['status'])->toBe('future');
     }
+});
+
+test('the Module stage shows an honest exhausted state instead of the frozen guess once content runs out', function () {
+    ['subject' => $subject, 'diagnosticModule' => $module, 'contentModule' => $contentModule] = makeLearningPathFixtures();
+    $user = User::factory()->create();
+
+    // Frozen guess at persist time: "Cooldown Fundamentals".
+    $profile = ['primary_growth_area' => ['name' => 'Cooldown Tracking', 'concepts' => ['Cooldown Tracking']]];
+    app(RoadmapService::class)->persistStagesForUser($user->id, $module, $profile, [], insightId: null);
+
+    // A UserNextStep existed at some point (proving the recommendation engine actually ran) but
+    // there is currently nothing pending/attempted — RecommendationService returned null on the
+    // last regeneration attempt because there was no more available content, exactly like the
+    // production case (SC2, small content bank, exhausted after two modules).
+    $user->modules()->syncWithoutDetaching([
+        $contentModule->id => ['status' => 'completed', 'completed_at' => now()],
+    ]);
+    UserNextStep::create([
+        'user_id'          => $user->id,
+        'subject_id'       => $subject->id,
+        'module_id'        => $contentModule->id,
+        'step_type'        => StepType::Module->value,
+        'status'           => NextStepStatus::Completed->value,
+        'generated_reason' => 'module_completed',
+        'title'            => 'Cooldown Fundamentals',
+        'instructions'     => 'This module covers "Cooldown Tracking" — one of your current growth areas.',
+        'completed_at'     => now(),
+    ]);
+
+    $learningPath = Livewire::actingAs($user)
+        ->test(Collection::class)
+        ->set('currentSubjectId', $subject->id)
+        ->instance()->learningPath;
+
+    expect($learningPath[1]['status'])->toBe('complete');
+    expect($learningPath[1]['title'])->not->toBe('Cooldown Fundamentals'); // not the stale frozen guess
+    expect($learningPath[1]['title'])->toBe('All available modules completed');
+});
+
+test('the context-dimensions milestone shows complete once all required dimensions are declared', function () {
+    ['subject' => $subject, 'diagnosticModule' => $module] = makeLearningPathFixtures();
+    $user = User::factory()->create();
+
+    $race = SubjectContextDimension::create(['subject_id' => $subject->id, 'name' => 'Race', 'slug' => 'race', 'required' => true]);
+    $zerg = SubjectContextOption::create(['dimension_id' => $race->id, 'name' => 'Zerg', 'slug' => 'zerg']);
+
+    app(RoadmapService::class)->persistStagesForUser($user->id, $module, [], [], insightId: null);
+
+    $learningPathBefore = Livewire::actingAs($user)
+        ->test(Collection::class)
+        ->set('currentSubjectId', $subject->id)
+        ->instance()->learningPath;
+
+    $contextStageBefore = $learningPathBefore->firstWhere('title', 'Race Breakdown');
+    expect($contextStageBefore['status'])->toBe('future'); // 'first_module' still holds the 'next' slot
+
+    app(SubjectContextService::class)->declare($user->id, $race->id, $zerg->id);
+
+    $learningPathAfter = Livewire::actingAs($user)
+        ->test(Collection::class)
+        ->set('currentSubjectId', $subject->id)
+        ->instance()->learningPath;
+
+    $contextStageAfter = $learningPathAfter->firstWhere('title', 'Race Breakdown');
+    expect($contextStageAfter['status'])->toBe('complete');
+});
+
+test('the context-dimensions milestone is absent entirely for a subject with zero dimensions', function () {
+    ['diagnosticModule' => $module] = makeLearningPathFixtures(); // no dimensions seeded
+    $user = User::factory()->create();
+
+    app(RoadmapService::class)->persistStagesForUser($user->id, $module, [], [], insightId: null);
+
+    $learningPath = Livewire::actingAs($user)
+        ->test(Collection::class)
+        ->set('currentSubjectId', $module->subject_id)
+        ->instance()->learningPath;
+
+    expect($learningPath->pluck('title'))->not->toContain('Race Breakdown');
 });
 
 test('learning path is subject-scoped, not shown when browsing a different subject', function () {

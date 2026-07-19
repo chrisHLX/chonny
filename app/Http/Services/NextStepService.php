@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Log;
 
 class NextStepService
 {
-    public function __construct(protected AiService $aiService, protected RecommendationService $recommendationService)
-    {
+    public function __construct(
+        protected AiService $aiService,
+        protected RecommendationService $recommendationService,
+        protected SubjectContextService $subjectContextService
+    ) {
     }
 
     public function generateInitial(UserProfileInsight $insight): UserNextStep
@@ -316,6 +319,23 @@ CTX;
         return $triedCount >= 2;
     }
 
+    /**
+     * True if a UserNextStep has ever been generated for this (user, subject) — used to
+     * distinguish "content genuinely ran out" (some step exists, none currently pending/attempted,
+     * because RecommendationService::generateRecommendation() returned null on the last regen
+     * attempt) from "nothing was ever generated" (e.g. insight recording failed silently). Both
+     * DashboardController's Next Experiment card and Collection::getLearningPathProperty() need
+     * this same distinction — a stale fallback (frozen roadmap guess / generic next_practice_goal
+     * text) is actively misleading once real progress has happened, vs. being a reasonable
+     * last-resort when no next-step system ever ran at all.
+     */
+    public function hasAnyStepEverExisted(int $userId, int $subjectId): bool
+    {
+        return UserNextStep::where('user_id', $userId)
+            ->where('subject_id', $subjectId)
+            ->exists();
+    }
+
     public function supersedePendingStepsForNewInsight(UserProfileInsight $insight): void
     {
         UserNextStep::where('user_id', $insight->user_id)
@@ -332,6 +352,14 @@ CTX;
      * be surfaced as generic library recommendations. Ranked in PHP (same style as
      * QuizSelection.php's concept-coverage counting) rather than a raw SQL aggregate — trivial
      * at this app's content-bank scale.
+     *
+     * Routing preference (Subject Context Dimensions): declared context is the primary sort
+     * signal, concept coverage is the secondary tie-breaker — see
+     * SubjectContextService::isContextEligible()/contextSpecificity() for the actual rule (a
+     * module tagged with an option the user did NOT declare is excluded entirely; among eligible
+     * candidates, the more specific match wins, e.g. a declared Assassination Rogue prefers an
+     * Assassination-tagged module over a Rogue-tagged one over a context-free one). Deterministic,
+     * no AI involvement.
      */
     public function findBestModuleForConcepts(int $userId, int $subjectId, array $conceptIds): ?Module
     {
@@ -351,7 +379,7 @@ CTX;
             ->whereNull('parent_id')
             ->whereNotIn('id', $completedModuleIds)
             ->whereHas('questions.concepts', fn($q) => $q->whereIn('concepts.id', $conceptIds))
-            ->with('questions.concepts:id')
+            ->with(['questions.concepts:id', 'contextOptions'])
             ->orderBy('id')
             ->get();
 
@@ -359,13 +387,32 @@ CTX;
             return null;
         }
 
+        $declaredOptionIds = $this->subjectContextService->declaredOptionIds($userId, $subjectId);
+
+        $candidates = $candidates->filter(
+            fn (Module $module) => $this->subjectContextService->isContextEligible($module, $declaredOptionIds)
+        );
+
+        if ($candidates->isEmpty()) {
+            return null;
+        }
+
         return $candidates
-            ->sortByDesc(function (Module $module) use ($conceptIds) {
-                return $module->questions
-                    ->flatMap(fn($q) => $q->concepts->pluck('id'))
+            ->sort(function (Module $a, Module $b) use ($conceptIds, $declaredOptionIds) {
+                $specificityA = $this->subjectContextService->contextSpecificity($a, $declaredOptionIds);
+                $specificityB = $this->subjectContextService->contextSpecificity($b, $declaredOptionIds);
+
+                if ($specificityA !== $specificityB) {
+                    return $specificityB <=> $specificityA;
+                }
+
+                $coverage = fn (Module $module) => $module->questions
+                    ->flatMap(fn ($q) => $q->concepts->pluck('id'))
                     ->intersect($conceptIds)
                     ->unique()
                     ->count();
+
+                return $coverage($b) <=> $coverage($a);
             })
             ->first();
     }
