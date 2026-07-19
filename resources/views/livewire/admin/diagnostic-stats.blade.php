@@ -33,6 +33,51 @@
             </div>
         </div>
 
+        {{-- ── Signup funnel (guest → registered) ── --}}
+        <div class="linear-card p-5">
+            <div class="flex items-center justify-between mb-4">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">Signup funnel — guest → registered</p>
+                <p class="text-[11px] text-ink-subtle">Since the learning path launched</p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+                <div>
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Profile viewed</p>
+                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['profileViewed']) }}</p>
+                </div>
+                <div>
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Roadmap clicked</p>
+                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['roadmapClicked']) }}</p>
+                    <p class="text-[11px] text-ink-muted mt-1">{{ $funnel['clickThroughRate'] }}% of profile views</p>
+                </div>
+                <div>
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Signup started</p>
+                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['signupStarted']) }}</p>
+                </div>
+                <div>
+                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Signed up</p>
+                    <p class="text-[20px] font-semibold text-ink leading-none">{{ number_format($funnel['uniqueSignups']) }}</p>
+                </div>
+            </div>
+
+            <div class="border-t border-line pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="flex items-center justify-between px-4 py-3 rounded-md bg-surface-2">
+                    <div>
+                        <p class="text-[12px] font-medium text-ink">Signed up after clicking the roadmap</p>
+                        <p class="text-[11px] text-ink-subtle mt-0.5">{{ number_format($funnel['signupsAfterClick']) }} of {{ number_format($funnel['roadmapClicked']) }} clickers</p>
+                    </div>
+                    <p class="text-[18px] font-semibold text-gold">{{ $funnel['clickerSignupRate'] }}%</p>
+                </div>
+                <div class="flex items-center justify-between px-4 py-3 rounded-md bg-surface-2">
+                    <div>
+                        <p class="text-[12px] font-medium text-ink">Signed up without clicking it</p>
+                        <p class="text-[11px] text-ink-subtle mt-0.5">went straight from profile to signup</p>
+                    </div>
+                    <p class="text-[18px] font-semibold text-ink-muted">{{ number_format($funnel['nonClickerSignups']) }}</p>
+                </div>
+            </div>
+        </div>
+
         {{-- ── 30-day chart ── --}}
         <div class="linear-card p-5">
             <div class="flex items-center justify-between mb-4">

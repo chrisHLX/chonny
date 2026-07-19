@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\DiagnosticAttempt;
+use App\Models\FunnelEvent;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,6 +11,59 @@ use Livewire\WithPagination;
 class DiagnosticStats extends Component
 {
     use WithPagination;
+
+    /**
+     * Guest → registered signup funnel, sourced from funnel_events (see GuestRoadmap,
+     * RegisteredUserController). Answers the question this whole roadmap feature was built to
+     * answer: are guests actually curious enough to click, and does clicking correlate with
+     * signing up — not just "we assume nobody wants to sign up."
+     *
+     * signup_completed is logged once per diagnostic module a guest had pending at registration
+     * time (RegisteredUserController::claimGuestQuizResults() loops per module) — a guest with
+     * more than one pending diagnostic at once would be double-counted by a raw event count, so
+     * signup totals here are deduplicated by distinct user_id rather than raw row count.
+     */
+    public function getFunnelProperty(): array
+    {
+        $counts = FunnelEvent::selectRaw('event, count(*) as count')
+            ->groupBy('event')
+            ->pluck('count', 'event');
+
+        $profileViewed  = (int) ($counts['profile_viewed'] ?? 0);
+        $roadmapClicked = (int) ($counts['roadmap_clicked'] ?? 0);
+        $signupStarted  = (int) ($counts['signup_started'] ?? 0);
+
+        $uniqueSignups = FunnelEvent::where('event', 'signup_completed')
+            ->whereNotNull('user_id')
+            ->distinct('user_id')
+            ->count('user_id');
+
+        $clickedSessionIds = FunnelEvent::where('event', 'roadmap_clicked')
+            ->whereNotNull('guest_session_id')
+            ->pluck('guest_session_id')
+            ->unique();
+
+        $signupsAfterClick = FunnelEvent::where('event', 'signup_completed')
+            ->whereNotNull('user_id')
+            ->whereIn('guest_session_id', $clickedSessionIds)
+            ->distinct('user_id')
+            ->count('user_id');
+
+        $rate = fn (int $numerator, int $denominator) => $denominator > 0
+            ? round(($numerator / $denominator) * 100, 1)
+            : 0.0;
+
+        return [
+            'profileViewed'     => $profileViewed,
+            'roadmapClicked'    => $roadmapClicked,
+            'signupStarted'     => $signupStarted,
+            'uniqueSignups'     => $uniqueSignups,
+            'clickThroughRate'  => $rate($roadmapClicked, $profileViewed),
+            'signupsAfterClick' => $signupsAfterClick,
+            'nonClickerSignups' => max(0, $uniqueSignups - $signupsAfterClick),
+            'clickerSignupRate' => $rate($signupsAfterClick, $roadmapClicked),
+        ];
+    }
 
     public function getSummaryProperty(): array
     {
@@ -88,6 +142,7 @@ class DiagnosticStats extends Component
     {
         return view('livewire.admin.diagnostic-stats', [
             'summary'          => $this->summary,
+            'funnel'           => $this->funnel,
             'chartData'        => $this->chartData,
             'subjectBreakdown' => $this->subjectBreakdown,
             'attempts'         => DiagnosticAttempt::with(['module', 'subject', 'user'])
