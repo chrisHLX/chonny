@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Module;
@@ -39,6 +40,21 @@ class Collection extends Component
         'statusFilter' => ['except' => 'all'],
         'proficiencyFilter' => ['except' => null],
     ];
+
+    /**
+     * SubjectContextForm is a sibling Livewire component (see collection.blade.php), not a child
+     * whose state Livewire tracks for us — declaring a dimension there writes straight to the DB
+     * via SubjectContextService, but without this listener nothing tells this component to
+     * re-render, so getLearningPathProperty() (a computed property, freshly evaluated on every
+     * render — nothing here is cached) keeps showing the pre-declaration status until an unrelated
+     * action or full page reload happens to trigger one. The method body can stay empty: receiving
+     * the event is what forces the re-render; no state needs updating on this side.
+     */
+    #[On('subject-context-saved')]
+    public function refreshAfterContextSaved(): void
+    {
+        //
+    }
 
     public function mount()
     {
