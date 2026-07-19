@@ -13,6 +13,7 @@ use App\Models\Proficiency;
 use App\Models\Category;
 use App\Models\UserProfileInsight;
 use App\Models\UserNextStep;
+use App\Models\UserLearningPathStage;
 use App\Enums\NextStepStatus;
 use App\Http\Services\ReviewQuestionService;
 use App\Http\Services\NextStepService;
@@ -174,6 +175,67 @@ class Collection extends Component
     public function loadMoreTimeline(): void
     {
         $this->timelineLimit += 20;
+    }
+
+    /**
+     * "Learning Path" — the persisted, authenticated counterpart to the guest-facing roadmap
+     * preview (RoadmapService::buildGuestRoadmap()). Deliberately rendered parallel to "Your
+     * Path" below rather than merged into it: this is a forward-looking plan, "Your Path" is a
+     * backward-looking history — different shapes, different purpose, matching the same reasoning
+     * milestone-path.blade.php's docblock gives for not sharing a component with the timeline.
+     *
+     * The 'first_module' stage never trusts the module_id UserLearningPathStage froze at persist
+     * time — it always mirrors the live UserNextStep for this subject (same query and
+     * completion-check DashboardController's $activeNextStep uses), so this can never show a
+     * different recommendation than the dashboard's Next Experiment card. Concretely: this used
+     * to independently guess a module via RoadmapService::findFirstModule() and freeze it forever,
+     * which could (and did) disagree with NextStepService/RecommendationService's own, separately
+     * evolving pick — the exact "two disconnected what's-next opinions shown at once" bug pattern
+     * CLAUDE.md documents retiring twice already (SuggestionJob, recommended_module). This makes
+     * the roadmap a view over NextStepService's single decision, not a second one.
+     *
+     * Every stage after 'first_module' (the static config copy — "Class Breakdown", "Win
+     * Conditions", etc.) always stays 'future'. There is currently no real module/task tracking
+     * any of them, so there's nothing to light up — a known, deliberately accepted gap, not a
+     * bug: filling it in means either building that content or generating it, which is future
+     * work. The "Module" stage does not advance into them when its current module completes —
+     * it just keeps reflecting whatever NextStepService recommends next, indefinitely.
+     */
+    public function getLearningPathProperty()
+    {
+        $stages = UserLearningPathStage::where('user_id', auth()->id())
+            ->where('subject_id', $this->currentSubjectId)
+            ->orderBy('order_index')
+            ->get();
+
+        if ($stages->isEmpty()) {
+            return collect();
+        }
+
+        $activeNextStep = UserNextStep::where('user_id', auth()->id())
+            ->where('subject_id', $this->currentSubjectId)
+            ->whereIn('step_type', ['task', 'module'])
+            ->whereIn('status', ['pending', 'attempted'])
+            ->latest()
+            ->first();
+
+        if ($activeNextStep) {
+            $activeNextStep = app(NextStepService::class)->checkAndCompleteModuleStep($activeNextStep);
+        }
+
+        return $stages->values()->map(function ($stage, $index) use ($activeNextStep) {
+            if ($index === 0) {
+                return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'complete'];
+            }
+
+            if ($stage->stage_key === 'first_module') {
+                return $activeNextStep
+                    ? ['title' => $activeNextStep->title, 'detail' => $activeNextStep->instructions, 'status' => 'next']
+                    : ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'next'];
+            }
+
+            return ['title' => $stage->title, 'detail' => $stage->detail, 'status' => 'future'];
+        });
     }
 
     /**

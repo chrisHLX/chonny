@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\NextStepService;
+use App\Http\Services\RoadmapService;
+use App\Models\FunnelEvent;
 use App\Models\Module;
 use App\Models\PlayerTrait;
 use App\Models\User;
@@ -95,6 +97,14 @@ class RegisteredUserController extends Controller
                         }
                     });
 
+                    // Funnel attribution join key: RegisteredUserController::store() never calls
+                    // session()->regenerate() (unlike AuthenticatedSessionController's login flow),
+                    // so session()->getId() here is still the same id GuestRoadmap logged
+                    // profile_viewed/roadmap_clicked under during the guest visit. Logged after the
+                    // transaction above commits, per FunnelEvent's own "never break the flow it's
+                    // observing" contract.
+                    FunnelEvent::log('signup_completed', session()->getId(), (int) $moduleId, $user->id);
+
                     // Carry the diagnostic's own subject/category into the session context so the
                     // post-signup dashboard shows this subject instead of silently falling back to
                     // Category::first()/Subject::first() (see the "Category/subject selection is
@@ -113,11 +123,25 @@ class RegisteredUserController extends Controller
                     // (DiagnosticQuizRunner::recordProfileInsight) — without this, a guest who
                     // signs up after the diagnostic never gets a live next-step, only the static
                     // next_practice_goal string baked into the profile JSON.
-                    app(NextStepService::class)->recordInsightAndGenerateInitialStep(
+                    $insight = app(NextStepService::class)->recordInsightAndGenerateInitialStep(
                         $user->id,
                         $module,
                         $result['diagnostic_profile'] ?? []
                     );
+
+                    // Same persisted learning-path stages a logged-in diagnostic completion gets
+                    // (DiagnosticQuizRunner::recordProfileInsight) — without this, a guest's
+                    // roadmap (shown pre-signup via GuestRoadmap) simply vanishes on registration
+                    // instead of carrying over to the Progress page.
+                    if ($module) {
+                        app(RoadmapService::class)->persistStagesForUser(
+                            $user->id,
+                            $module,
+                            $result['diagnostic_profile'] ?? [],
+                            $result['survey_answers'] ?? [],
+                            $insight?->id
+                        );
+                    }
 
                     continue;
                 }
@@ -179,6 +203,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+        FunnelEvent::log('signup_started', session()->getId());
+
         return view('auth.register');
     }
 

@@ -37,6 +37,11 @@ class SubjectSeeder extends Seeder
                 'category_id' => $games->id,
             ],
             [
+                'name' => 'Poker',
+                'description' => 'Learn and master No-Limit Texas Hold\'em strategy — hand reading, position, bet sizing, and decision-making under uncertainty.',
+                'category_id' => $games->id,
+            ],
+            [
                 'name' => 'Medicine',
                 'description' => 'Study medicine and the structure of the human body and its systems.',
                 'category_id' => $science->id,

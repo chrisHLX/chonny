@@ -12,6 +12,7 @@ use App\Models\UserProfileEvidence;
 use App\Models\DiagnosticAttempt;
 use App\Http\Services\DiagnosticProfileService;
 use App\Http\Services\NextStepService;
+use App\Http\Services\RoadmapService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -505,7 +506,11 @@ class DiagnosticQuizRunner extends Component
      */
     private function recordProfileInsight(int $userId, ?Module $moduleModel): void
     {
-        app(NextStepService::class)->recordInsightAndGenerateInitialStep($userId, $moduleModel, $this->diagnosticProfile);
+        $insight = app(NextStepService::class)->recordInsightAndGenerateInitialStep($userId, $moduleModel, $this->diagnosticProfile);
+
+        if ($moduleModel) {
+            app(RoadmapService::class)->persistStagesForUser($userId, $moduleModel, $this->diagnosticProfile, $this->surveyAnswers, $insight?->id);
+        }
     }
 
     /**

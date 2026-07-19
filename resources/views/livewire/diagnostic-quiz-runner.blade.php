@@ -156,48 +156,10 @@
                 </div>
             @endif
 
-            {{-- Combined CTA: sign up + explore --}}
+            {{-- Guest: gated learning-path reveal (GuestRoadmap component) which itself contains
+                 the sign-up CTA once revealed. Auth users get the "what to do next" card below. --}}
             @if ($guestMode)
-                <div class="linear-card p-6 relative overflow-hidden border border-gold/20">
-                    <x-ornament.corner position="tl" class="top-0 left-0 w-10 h-10 text-gold/30"/>
-                    <x-ornament.corner position="tr" class="top-0 right-0 w-10 h-10 text-gold/30"/>
-                    <x-ornament.corner position="bl" class="bottom-0 left-0 w-10 h-10 text-gold/30"/>
-                    <x-ornament.corner position="br" class="bottom-0 right-0 w-10 h-10 text-gold/30"/>
-
-                    <x-mc-icon name="icon-lightning-circle" class="w-10 h-10 text-gold mb-4"/>
-
-                    <h3 class="font-display text-[20px] italic text-gold-light leading-snug mb-3">
-                        Your training path is ready.
-                    </h3>
-
-                    <p class="text-[13px] text-ink-muted leading-relaxed mb-5">
-                        Create a free account to save your result, start your recommended module, and track how your gameplay changes over time.
-                    </p>
-
-                    <a href="{{ route('register') }}"
-                       class="inline-flex items-center justify-center gap-2 w-full py-3 text-[14px] font-semibold text-surface-0 bg-gold-gradient rounded-md hover:shadow-gold transition-all duration-200 mb-3">
-                        Unlock my path — free
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-
-                    <div class="flex items-center justify-center gap-4 mb-4">
-                        @foreach (['Profile saved', 'First module unlocked', 'Progress tracking'] as $perk)
-                            <span class="flex items-center gap-1 text-[11px] text-ink-subtle">
-                                <svg class="w-3 h-3 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                                </svg>
-                                {{ $perk }}
-                            </span>
-                        @endforeach
-                    </div>
-
-                    <p class="text-center text-[12px] text-ink-subtle">
-                        Already have an account?
-                        <a href="{{ route('login') }}" class="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">Log in</a>
-                    </p>
-                </div>
+                <livewire:guest-roadmap :module-id="$moduleId" :key="'guest-roadmap-'.$moduleId"/>
             @else
                 <div class="linear-card p-5 relative overflow-hidden">
                     <x-ornament.corner position="tl" class="top-0 left-0 w-8 h-8 text-gold/20"/>

@@ -86,6 +86,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             WowPvpFundamentalsSeeder::class,
             LolLaunchSeeder::class,
+            PokerFundamentalsSeeder::class,
         ]);
 
         // ========== TRAITS ==========
@@ -102,6 +103,7 @@ class DatabaseSeeder extends Seeder
             WoWDiagnosticModuleSeeder::class,
             LoLDiagnosticModuleSeeder::class,
             SC2DiagnosticModuleSeeder::class,
+            PokerDiagnosticModuleSeeder::class,
         ]);
 
         // ========== BACKFILL ==========

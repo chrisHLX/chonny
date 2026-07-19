@@ -14,6 +14,7 @@ class ProficiencySeeder extends Seeder
             'StarCraft 2',
             'League of Legends',
             'World of Warcraft: The War Within',
+            'Poker',
             'Medicine',
             'Music',
             'Ancient History',
@@ -141,6 +142,63 @@ class ProficiencySeeder extends Seeder
                     'Dictates fight pace and forces enemies into unfavourable positions',
                     'Executes complex cross-CC setups with precision timing',
                     'Reads and counters any composition at a high level',
+                ]),
+            ],
+
+            // Poker
+            [
+                'subject_id' => $ids['Poker'], 'index' => 0, 'name' => 'Beginner',
+                'description' => 'New to poker, learning hand rankings, basic rules, and how a hand of Hold\'em is played.',
+                'outcomes' => json_encode([
+                    'Understands the two ways to win a pot (showdown or getting all opponents to fold)',
+                    'Knows the basic hand rankings and can identify the winning hand at showdown',
+                    'Understands what position is and why acting later is an advantage',
+                    'Recognises the four betting rounds (preflop, flop, turn, river)',
+                    'Can explain the basic idea of pot odds (cost to call vs size of the pot)',
+                ]),
+            ],
+            [
+                'subject_id' => $ids['Poker'], 'index' => 1, 'name' => 'Casual',
+                'description' => 'Understands preflop and postflop fundamentals and plays with basic positional and sizing awareness.',
+                'outcomes' => json_encode([
+                    'Adjusts starting hand selection based on position',
+                    'Understands the difference between opening, calling, and 3-betting preflop',
+                    'Uses pot odds to make basic continue-or-fold decisions',
+                    'Recognises dry vs wet board textures and their effect on continuation betting',
+                    'Understands the purpose of checking beyond simply having a weak hand',
+                ]),
+            ],
+            [
+                'subject_id' => $ids['Poker'], 'index' => 2, 'name' => 'Intermediate',
+                'description' => 'Plays with range-based thinking and can construct basic value/bluff balance.',
+                'outcomes' => json_encode([
+                    'Thinks in terms of opponent ranges rather than single hands',
+                    'Sizes bets differently for value, protection, and bluffing purposes',
+                    'Recognises blockers and uses them to inform bluffing decisions',
+                    'Tracks betting patterns across multiple streets as a single coherent story',
+                    'Adjusts strategy against clearly exploitable opponent tendencies',
+                ]),
+            ],
+            [
+                'subject_id' => $ids['Poker'], 'index' => 3, 'name' => 'Advanced',
+                'description' => 'Consistently applies balanced strategy while adapting to specific opponents and table dynamics.',
+                'outcomes' => json_encode([
+                    'Constructs balanced betting ranges that resist simple exploitation',
+                    'Uses implied odds to evaluate speculative hands beyond direct pot odds',
+                    'Reads and adjusts to opponents\' table image and recent tendencies',
+                    'Plans multi-street lines in advance rather than deciding street by street',
+                    'Manages variance and bankroll considerations as part of in-game decision-making',
+                ]),
+            ],
+            [
+                'subject_id' => $ids['Poker'], 'index' => 4, 'name' => 'Expert',
+                'description' => 'High-level strategic understanding with refined range construction, adaptability, and mental-game discipline.',
+                'outcomes' => json_encode([
+                    'Balances exploitative adjustments against game-theoretically sound baseline strategy',
+                    'Reads subtle deviations in bet sizing and timing as range-narrowing information',
+                    'Maintains disciplined bankroll and variance management under significant swings',
+                    'Adapts strategy dynamically across an entire session based on evolving table dynamics',
+                    "Identifies and exploits leaks in strong opponents' otherwise balanced strategies",
                 ]),
             ],
 

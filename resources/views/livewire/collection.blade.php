@@ -104,45 +104,58 @@
             </div>
         </div>
 
-        {{-- Your Path: a chronological, subject-scoped record of real events only — diagnostics
-             completed, questions flagged, modules completed, quest chains concluded. No
-             fabricated scores or trend lines; see Collection.php's getAllTimelineEventsProperty()
-             for exactly what feeds each entry. --}}
-        <div>
-            <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Your Path</p>
-            <div class="linear-card p-5">
-                @forelse($this->timelineEvents as $event)
-                    <div class="relative pl-10 {{ !$loop->last ? 'pb-6' : '' }}">
-                        @unless($loop->last)
-                            <div class="absolute left-4 top-8 bottom-0 w-px bg-line"></div>
-                        @endunless
-                        <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-surface-2 border border-line flex items-center justify-center">
-                            <x-mc-icon :name="$event['icon']" class="w-4 h-4 text-gold"/>
-                        </div>
-                        <div class="flex items-center justify-between gap-3 mb-0.5">
-                            <p class="text-[13px] font-medium text-ink">{{ $event['title'] }}</p>
-                            <span class="text-[11px] text-ink-subtle shrink-0 tabular-nums">{{ $event['timestamp']->diffForHumans() }}</span>
-                        </div>
-                        <p class="text-[12px] text-ink-muted leading-relaxed line-clamp-2">{{ $event['detail'] }}</p>
-                    </div>
-                @empty
-                    <div class="text-center py-8">
-                        <p class="text-[13px] text-ink-subtle mb-1">Nothing on your path yet.</p>
-                        <p class="text-[12px] text-ink-subtle">Complete a diagnostic, finish a module, or flag a question to start building your history.</p>
-                    </div>
-                @endforelse
+        {{-- Learning Path (forward-looking plan) and Your Path (backward-looking history), side
+             by side — same subject-scoped data, opposite directions in time. Learning Path is
+             only rendered when stages exist (i.e. the user has completed at least one diagnostic
+             for this subject); Your Path always renders since it has its own empty state. --}}
+        <div class="grid md:grid-cols-2 gap-6">
+            @if($this->learningPath->isNotEmpty())
+                <div>
+                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Learning Path</p>
+                    <x-milestone-path :milestones="$this->learningPath->all()"/>
+                </div>
+            @endif
 
-                @if($this->timelineTotalCount > $timelineLimit)
-                    <div class="text-center pt-4 {{ $this->timelineEvents->isNotEmpty() ? 'mt-2 border-t border-line' : '' }}">
-                        <button wire:click="loadMoreTimeline"
-                                wire:loading.attr="disabled"
-                                wire:target="loadMoreTimeline"
-                                class="text-[12px] font-medium text-accent hover:text-accent-hover px-3 py-2 disabled:opacity-50">
-                            <span wire:loading.remove wire:target="loadMoreTimeline">Load more ({{ $this->timelineTotalCount - $timelineLimit }} more)</span>
-                            <span wire:loading wire:target="loadMoreTimeline">Loading…</span>
-                        </button>
-                    </div>
-                @endif
+            {{-- Your Path: a chronological, subject-scoped record of real events only — diagnostics
+                 completed, questions flagged, modules completed, quest chains concluded. No
+                 fabricated scores or trend lines; see Collection.php's getAllTimelineEventsProperty()
+                 for exactly what feeds each entry. --}}
+            <div>
+                <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide mb-3">Your Path</p>
+                <div class="linear-card p-5">
+                    @forelse($this->timelineEvents as $event)
+                        <div class="relative pl-10 {{ !$loop->last ? 'pb-6' : '' }}">
+                            @unless($loop->last)
+                                <div class="absolute left-4 top-8 bottom-0 w-px bg-line"></div>
+                            @endunless
+                            <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-surface-2 border border-line flex items-center justify-center">
+                                <x-mc-icon :name="$event['icon']" class="w-4 h-4 text-gold"/>
+                            </div>
+                            <div class="flex items-center justify-between gap-3 mb-0.5">
+                                <p class="text-[13px] font-medium text-ink">{{ $event['title'] }}</p>
+                                <span class="text-[11px] text-ink-subtle shrink-0 tabular-nums">{{ $event['timestamp']->diffForHumans() }}</span>
+                            </div>
+                            <p class="text-[12px] text-ink-muted leading-relaxed line-clamp-2">{{ $event['detail'] }}</p>
+                        </div>
+                    @empty
+                        <div class="text-center py-8">
+                            <p class="text-[13px] text-ink-subtle mb-1">Nothing on your path yet.</p>
+                            <p class="text-[12px] text-ink-subtle">Complete a diagnostic, finish a module, or flag a question to start building your history.</p>
+                        </div>
+                    @endforelse
+
+                    @if($this->timelineTotalCount > $timelineLimit)
+                        <div class="text-center pt-4 {{ $this->timelineEvents->isNotEmpty() ? 'mt-2 border-t border-line' : '' }}">
+                            <button wire:click="loadMoreTimeline"
+                                    wire:loading.attr="disabled"
+                                    wire:target="loadMoreTimeline"
+                                    class="text-[12px] font-medium text-accent hover:text-accent-hover px-3 py-2 disabled:opacity-50">
+                                <span wire:loading.remove wire:target="loadMoreTimeline">Load more ({{ $this->timelineTotalCount - $timelineLimit }} more)</span>
+                                <span wire:loading wire:target="loadMoreTimeline">Loading…</span>
+                            </button>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
 
