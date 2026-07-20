@@ -13,6 +13,8 @@ class DiagnosticAttempt extends Model
         'session_id',
         'started_at',
         'completed_at',
+        'last_question_index',
+        'total_questions',
     ];
 
     protected $casts = [

@@ -146,6 +146,57 @@
             @endif
         </div>
 
+        {{-- ── Drop-off by question ── --}}
+        <div class="linear-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-line">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">Where people are dropping off</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5">Incomplete attempts, grouped by the last question they reached — updated live as people answer, so this includes people who never came back.</p>
+            </div>
+
+            @if($dropOff->isEmpty())
+                <p class="px-5 py-8 text-center text-[13px] text-ink-subtle">No incomplete attempts with progress data yet.</p>
+            @else
+                <div class="divide-y divide-line">
+                    @foreach($dropOff as $row)
+                        <div class="px-5 py-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <p class="text-[13px] font-medium text-ink">{{ $row['subject'] }}</p>
+                                <p class="text-[11px] text-ink-subtle">
+                                    {{ $row['incomplete'] }} incomplete
+                                    @if($row['worstQuestion'])
+                                        · most got stuck on Q{{ $row['worstQuestion'] }} of {{ $row['total_questions'] }} ({{ $row['worstCount'] }})
+                                    @endif
+                                </p>
+                            </div>
+                            <div class="flex items-end gap-1 h-16">
+                                @for($qn = 1; $qn <= $row['total_questions']; $qn++)
+                                    @php
+                                        $count = $row['byQuestion'][$qn] ?? 0;
+                                        $pct   = $row['worstCount'] > 0 ? round(($count / $row['worstCount']) * 100) : 0;
+                                        $isWorst = $qn === $row['worstQuestion'];
+                                    @endphp
+                                    <div class="flex-1 flex flex-col justify-end group/bar relative"
+                                         title="Question {{ $qn }}: {{ $count }} stuck here">
+                                        <div class="w-full rounded-t-sm transition-colors {{ $isWorst ? 'bg-red-400' : 'bg-accent/40 group-hover/bar:bg-accent' }}"
+                                             style="height: {{ max($pct, $count > 0 ? 4 : 0) }}%"></div>
+                                    </div>
+                                @endfor
+                            </div>
+                            <div class="flex mt-1">
+                                @for($qn = 1; $qn <= $row['total_questions']; $qn++)
+                                    <div class="flex-1 text-center">
+                                        @if($qn === 1 || $qn === $row['total_questions'] || $qn % 5 === 0)
+                                            <span class="text-[9px] text-ink-subtle">{{ $qn }}</span>
+                                        @endif
+                                    </div>
+                                @endfor
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
         {{-- ── Recent attempts log ── --}}
         <div class="linear-card overflow-hidden">
             <div class="px-5 py-4 border-b border-line">
@@ -163,6 +214,7 @@
                                 <th class="px-4 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Subject</th>
                                 <th class="px-4 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Module</th>
                                 <th class="px-4 py-2.5 text-left text-[11px] font-medium text-ink-subtle uppercase tracking-wider">User</th>
+                                <th class="px-4 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Progress</th>
                                 <th class="px-4 py-2.5 text-right text-[11px] font-medium text-ink-subtle uppercase tracking-wider">Status</th>
                             </tr>
                         </thead>
@@ -181,6 +233,15 @@
                                     </td>
                                     <td class="px-4 py-3 text-[12px] text-ink-muted whitespace-nowrap">
                                         {{ $attempt->user->name ?? 'Guest' }}
+                                    </td>
+                                    <td class="px-4 py-3 text-[12px] text-ink-muted text-right whitespace-nowrap">
+                                        @if($attempt->completed_at)
+                                            &mdash;
+                                        @elseif($attempt->last_question_index !== null && $attempt->total_questions)
+                                            Q{{ $attempt->last_question_index + 1 }} of {{ $attempt->total_questions }}
+                                        @else
+                                            &mdash;
+                                        @endif
                                     </td>
                                     <td class="px-4 py-3 text-right">
                                         @if($attempt->completed_at)

@@ -118,6 +118,42 @@ class DiagnosticStats extends Component
         ])->values()->all();
     }
 
+    /**
+     * Where people are getting stuck, per subject (grouped separately since each subject's
+     * diagnostic has a different question count, so raw question numbers aren't comparable
+     * across subjects). Sourced from DiagnosticAttempt.last_question_index/total_questions,
+     * updated on every question transition by DiagnosticQuizRunner::recordAttemptProgress() —
+     * so an abandoned attempt (guest or auth) shows exactly which question it stalled on,
+     * not just that it never finished.
+     */
+    public function getDropOffProperty(): \Illuminate\Support\Collection
+    {
+        return DiagnosticAttempt::with('subject')
+            ->whereNull('completed_at')
+            ->whereNotNull('last_question_index')
+            ->whereNotNull('total_questions')
+            ->where('total_questions', '>', 0)
+            ->get(['subject_id', 'last_question_index', 'total_questions'])
+            ->groupBy('subject_id')
+            ->map(function ($group) {
+                $byQuestion = $group
+                    ->groupBy(fn ($a) => $a->last_question_index + 1) // 1-based, human-readable
+                    ->map->count()
+                    ->sortKeys();
+
+                return [
+                    'subject'         => $group->first()->subject?->name ?? '—',
+                    'incomplete'      => $group->count(),
+                    'total_questions' => $group->first()->total_questions,
+                    'byQuestion'      => $byQuestion,
+                    'worstQuestion'   => $byQuestion->sortDesc()->keys()->first(),
+                    'worstCount'      => $byQuestion->max(),
+                ];
+            })
+            ->sortByDesc('incomplete')
+            ->values();
+    }
+
     public function getSubjectBreakdownProperty(): \Illuminate\Support\Collection
     {
         return DiagnosticAttempt::with('subject')
@@ -145,6 +181,7 @@ class DiagnosticStats extends Component
             'funnel'           => $this->funnel,
             'chartData'        => $this->chartData,
             'subjectBreakdown' => $this->subjectBreakdown,
+            'dropOff'          => $this->dropOff,
             'attempts'         => DiagnosticAttempt::with(['module', 'subject', 'user'])
                 ->latest('started_at')
                 ->paginate(25),

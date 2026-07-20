@@ -300,6 +300,7 @@ class DiagnosticQuizRunner extends Component
         $this->answer  = [];
         $this->elapsed = 0;
         $this->currentIndex++;
+        $this->recordAttemptProgress();
 
         if ($this->currentIndex < $this->questions->count()) {
             return;
@@ -523,11 +524,30 @@ class DiagnosticQuizRunner extends Component
         DiagnosticAttempt::updateOrCreate(
             $this->attemptIdentity($module->id),
             [
-                'subject_id'   => $module->subject_id,
-                'started_at'   => now(),
-                'completed_at' => null,
+                'subject_id'           => $module->subject_id,
+                'started_at'           => now(),
+                'completed_at'         => null,
+                // Reset explicitly (not just left stale from a prior attempt) — updateOrCreate only
+                // touches the keys listed here, so a retake that abandons earlier than a previous
+                // attempt did would otherwise keep showing the old, further-along progress.
+                'last_question_index'  => 0,
+                'total_questions'      => $module->questions()->count(),
             ]
         );
+    }
+
+    /**
+     * Updates how far into the quiz this attempt has gotten — called on every question
+     * transition, not just at start/completion, so an attempt that's abandoned mid-quiz still
+     * durably records exactly which question the user was on. Works for guests too, since
+     * attemptIdentity() already resolves guest attempts by session_id.
+     */
+    private function recordAttemptProgress(): void
+    {
+        DiagnosticAttempt::where($this->attemptIdentity($this->moduleId))
+            ->latest('started_at')
+            ->first()
+            ?->update(['last_question_index' => $this->currentIndex]);
     }
 
     private function recordAttemptCompleted(?Module $module): void
