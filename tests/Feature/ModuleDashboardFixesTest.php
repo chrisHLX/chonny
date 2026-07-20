@@ -24,6 +24,41 @@ function moduleFixesSubject(): Subject
 // — Pest loads all Feature test files into one process, so it's reused here rather than
 // redeclared (a second definition with the same name is a fatal error).
 
+// --- Manage list / MindCollector attribution --------------------------------------------------
+
+test('a module attributed to MindCollector still shows up in an admin\'s My Modules list', function () {
+    $subject = moduleFixesSubject();
+    $admin = User::factory()->create(['is_admin' => true, 'name' => 'Christian']);
+    $mindCollector = User::factory()->create(['email' => User::SYSTEM_ENGINE_EMAIL, 'name' => 'MindCollector']);
+
+    $module = Module::create([
+        'subject_id' => $subject->id,
+        'name'       => 'MindCollector Module',
+        'created_by' => $mindCollector->id,
+    ]);
+
+    $response = $this->actingAs($admin)->get(route('modules.manage'));
+
+    $response->assertOk();
+    expect($response->viewData('modules')->pluck('id'))->toContain($module->id);
+});
+
+test('a non-admin\'s My Modules list is not widened to MindCollector-attributed modules', function () {
+    $subject = moduleFixesSubject();
+    $nonAdmin = User::factory()->create(['is_admin' => false]);
+    $mindCollector = User::factory()->create(['email' => User::SYSTEM_ENGINE_EMAIL, 'name' => 'MindCollector']);
+
+    $module = Module::create([
+        'subject_id' => $subject->id,
+        'name'       => 'MindCollector Module',
+        'created_by' => $mindCollector->id,
+    ]);
+
+    $response = $this->actingAs($nonAdmin)->get(route('modules.manage'));
+
+    expect($response->viewData('modules')->pluck('id'))->not->toContain($module->id);
+});
+
 // --- Ownership / authorization ---------------------------------------------------------------
 
 test('a non-owner, non-admin user cannot update someone else\'s module', function () {

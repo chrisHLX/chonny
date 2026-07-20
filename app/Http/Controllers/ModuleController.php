@@ -57,8 +57,28 @@ class ModuleController extends Controller
 
     public function manage()
     {
-        $modules = Module::where('created_by', Auth::id())
-            ->with(['subject', 'proficiencies', 'questions', 'modulePages'])
+        $query = Module::query();
+
+        if (Auth::user()?->is_admin) {
+            // "Attribute as MindCollector" deliberately repoints created_by away from the admin
+            // who actually made it — that's the whole point, for the public byline. But this
+            // list was filtering strictly by created_by = Auth::id(), so any module an admin
+            // attributed to MindCollector (or that got moved there after the fact, e.g. via a
+            // manual tinker reassignment) silently vanished from their own "My Modules" list.
+            // Admins manage both: their own modules and anything attributed to the system account.
+            $mindCollectorId = \App\Models\User::where('email', \App\Models\User::SYSTEM_ENGINE_EMAIL)->value('id');
+
+            $query->where(function ($q) use ($mindCollectorId) {
+                $q->where('created_by', Auth::id());
+                if ($mindCollectorId) {
+                    $q->orWhere('created_by', $mindCollectorId);
+                }
+            });
+        } else {
+            $query->where('created_by', Auth::id());
+        }
+
+        $modules = $query->with(['subject', 'proficiencies', 'questions', 'modulePages'])
             ->latest()
             ->get();
 
