@@ -418,6 +418,89 @@ CTX;
     }
 
     /**
+     * Whether a user has a completed diagnostic for a subject — used to gate manual next-step
+     * assignment. Without a completed diagnostic, $diagnosticProfile is null and the entire
+     * "Next Experiment" card (dashboard.blade.php's @if($diagnosticProfile) branch) never renders
+     * at all, regardless of whether a UserNextStep row exists — so assigning one anyway would be
+     * a silent no-op today (worse: if the user later completes the diagnostic,
+     * supersedePendingStepsForNewInsight() would flip the never-seen manual assignment straight
+     * to Superseded without it ever having been shown).
+     */
+    public function hasCompletedDiagnosticForSubject(int $userId, int $subjectId): bool
+    {
+        return DB::table('module_user')
+            ->join('modules', 'modules.id', '=', 'module_user.module_id')
+            ->where('module_user.user_id', $userId)
+            ->where('modules.subject_id', $subjectId)
+            ->where('modules.type', 'diagnostic')
+            ->where('module_user.status', 'completed')
+            ->exists();
+    }
+
+    /**
+     * Admin-driven override: directly assigns a specific module as a specific user's active next
+     * step, bypassing concept-matching entirely (unlike createModuleStep(), which is only ever
+     * reached via findBestModuleForConcepts()). Used by the module-edit dashboard's "Assign as
+     * next step" action. Supersedes both pending AND attempted steps for that user+subject — a
+     * deliberate override is meant to unambiguously replace whatever was active, unlike the
+     * automatic insight-driven supersede (supersedePendingStepsForNewInsight()) which only ever
+     * touches pending steps and deliberately leaves an in-progress attempt alone.
+     *
+     * Callers must check hasCompletedDiagnosticForSubject() first — this method does not enforce
+     * it itself, since NextStepService methods elsewhere in this file are called from contexts
+     * (reflection/expiry/module-completion regeneration) that legitimately have no diagnostic
+     * gate of their own; the gate belongs to this specific admin-facing entry point only.
+     *
+     * Sends NextStepModuleAssigned to the target user on success — wrapped in try/catch so a mail
+     * failure (bad SMTP config, queue down) never breaks the assignment itself, matching the
+     * "never let this side effect break the flow it's observing" contract already used by
+     * FunnelEvent::log() and RoadmapService::persistStagesForUser() elsewhere in this app.
+     */
+    public function assignModuleAsNextStep(Module $module, int $targetUserId, ?string $why = null): UserNextStep
+    {
+        $subjectId = $module->subject_id;
+
+        UserNextStep::where('user_id', $targetUserId)
+            ->where('subject_id', $subjectId)
+            ->whereIn('status', [NextStepStatus::Pending->value, NextStepStatus::Attempted->value])
+            ->update(['status' => NextStepStatus::Superseded->value]);
+
+        $insightId = UserProfileInsight::where('user_id', $targetUserId)
+            ->where('subject_id', $subjectId)
+            ->latest('generated_at')
+            ->value('id');
+
+        $step = UserNextStep::create([
+            'user_id'          => $targetUserId,
+            'module_id'        => $module->id,
+            'subject_id'       => $subjectId,
+            'insight_id'       => $insightId,
+            'concept_id'       => null,
+            'previous_step_id' => null,
+            'step_type'        => StepType::Module,
+            'status'           => NextStepStatus::Pending,
+            'generated_reason' => GeneratedReason::ManualAssignment,
+            'title'            => $module->name,
+            'instructions'     => $why ?: 'Recommended for you — take a look when you have a chance.',
+        ]);
+
+        try {
+            $targetUser = $step->user;
+            if ($targetUser?->email) {
+                \Illuminate\Support\Facades\Mail::to($targetUser->email)
+                    ->queue(new \App\Mail\NextStepModuleAssigned($step));
+            }
+        } catch (\Throwable $e) {
+            Log::error('NextStepService: failed to send NextStepModuleAssigned email', [
+                'step_id' => $step->id,
+                'error'   => $e->getMessage(),
+            ]);
+        }
+
+        return $step;
+    }
+
+    /**
      * Builds the UserNextStep for a matched module — no AI call, unlike the free-text task path.
      * The title/instructions are deterministic since we already know exactly which real content
      * closes the gap; the AI is only needed when no real content exists yet.

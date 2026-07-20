@@ -10,6 +10,10 @@
                     @endif
                 </div>
                 <div class="flex items-center gap-2">
+                    <a href="{{ route('modules.show', $module) }}"
+                       class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium text-accent border border-accent/40 hover:bg-accent/5 rounded-md transition-colors">
+                        Try Module
+                    </a>
                     <a href="{{ route('modules.export', $module) }}" target="_blank"
                        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium text-ink-muted border border-border hover:border-accent/50 hover:text-ink rounded-md transition-colors">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,6 +143,11 @@
 
             {{-- Edit module --}}
             <x-modules.update-form :module="$module" :all-questions="$allQuestions" />
+
+            {{-- Assign as a specific user's next recommended step (admin only) --}}
+            @if(auth()->user()->is_admin)
+                <x-modules.assign-next-step :module="$module" :users="$users" />
+            @endif
 
             {{-- Generate questions --}}
             <x-modules.generate-questions-form :module="$module" :modulePages="$modulePages" />

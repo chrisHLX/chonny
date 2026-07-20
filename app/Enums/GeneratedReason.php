@@ -9,4 +9,5 @@ enum GeneratedReason: string
     case Expired = 'expired';
     case InsightChange = 'insight_change';
     case ModuleCompleted = 'module_completed';
+    case ManualAssignment = 'manual_assignment';
 }

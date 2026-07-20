@@ -98,9 +98,12 @@ Route::get('modules', Index::class)->name('modules.index');
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');
+Route::get('/modules/upload', [\App\Http\Controllers\ModuleUploadController::class, 'create'])->name('modules.upload')->middleware('auth');
+Route::post('/modules/upload', [\App\Http\Controllers\ModuleUploadController::class, 'store'])->name('modules.upload.store')->middleware('auth');
 Route::post('/modules-pagex/createLandingPage/{module}', [ModuleController::class, 'createLandingPage'])->name('modules-pagex.createLandingPage')->middleware('auth');
 Route::post('/modules/{module}/generate-questions', [ModuleController::class, 'generateQuestions'])
-    ->name('modules.generate-questions');
+    ->name('modules.generate-questions')
+    ->middleware('auth');
 Route::post('/modules/{module}/research', [ModuleController::class, 'research'])
     ->name('modules.research')
     ->middleware('auth');
@@ -138,8 +141,12 @@ Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->na
 
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
-Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage');
-Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
+Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage')->middleware('auth');
+Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page')->middleware('auth');
+
+Route::post('/modules/{module}/assign-next-step', [ModuleController::class, 'assignNextStep'])
+    ->name('modules.assign-next-step')
+    ->middleware(['auth', 'can:admin']);
 
 Route::get('/proficiencies/by-subject/{subject}', [ProficiencyController::class, 'bySubject']);
 Route::get('/subjects/by-category/{category}', [CategoryController::class, 'subjectsByCategory']);

@@ -16,11 +16,9 @@ class Module extends Model
         'type',
         'description',
         'race',
-        'difficulty',
         'published',
         'created_by',
         'parent_id',
-        'version',
     ];
 
     protected static function booted(): void

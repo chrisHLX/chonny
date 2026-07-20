@@ -6,7 +6,10 @@ use App\Models\User;
 use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
 use App\Models\UserConceptSkillMastery;
+use App\Models\UserNextStep;
 use App\Models\UserProfileEvidence;
+use App\Models\UserProfileInsight;
+use App\Models\UserSubjectContext;
 use App\Models\UserTraitEvidence;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -194,6 +197,64 @@ class WeakAreas extends Component
             ->get();
     }
 
+    /**
+     * What the user has actually declared (race/class/role/...) per subject — see
+     * SubjectContextService. Shown separately from the insight/next-step sections below because
+     * it's the one input here that's never inferred: it directly gates which modules
+     * findBestModuleForConcepts()/findModuleForConcept() will even consider recommending.
+     */
+    public function getUserDeclaredContextProperty()
+    {
+        if (!$this->viewingUserId) {
+            return collect();
+        }
+
+        return UserSubjectContext::where('user_id', $this->viewingUserId)
+            ->with(['dimension.subject', 'option'])
+            ->get()
+            ->sortBy(fn ($c) => [$c->dimension?->subject?->name, $c->dimension?->order]);
+    }
+
+    /**
+     * The grounded, structured read of each diagnostic completion — distinct from the raw
+     * diagnostic_profile JSON shown further down (which is the unedited AI output). This is what
+     * the next-step system actually acts on: growth-area/strength concepts here are the same rows
+     * UserNextStep::insight()/findBestModuleForConcepts() consume, not free text.
+     */
+    public function getUserProfileInsightsProperty()
+    {
+        if (!$this->viewingUserId) {
+            return collect();
+        }
+
+        return UserProfileInsight::where('user_id', $this->viewingUserId)
+            ->with(['subject', 'archetype', 'strengthConcepts', 'growthAreaConcepts'])
+            ->orderByDesc('generated_at')
+            ->get();
+    }
+
+    /**
+     * The full recommendation trail — every UserNextStep this user has ever been given, in each
+     * subject, oldest to newest (matches how NextStepService::buildHistoryContext() itself reads
+     * the chain, so this reflects the same "story" the AI sees, not an arbitrary sort). Reflections
+     * and their interpreted evidence are eager-loaded so the "why" behind a regeneration is visible
+     * without a second click. This is the section the product-review use case actually cares about:
+     * not just current mastery numbers, but what was recommended, whether it landed, and why the
+     * system moved on to the next thing.
+     */
+    public function getUserNextStepsProperty()
+    {
+        if (!$this->viewingUserId) {
+            return collect();
+        }
+
+        return UserNextStep::where('user_id', $this->viewingUserId)
+            ->with(['subject', 'module', 'concept', 'reflection.evidence.concept'])
+            ->orderBy('created_at')
+            ->get()
+            ->groupBy(fn ($step) => $step->subject?->name ?? '—');
+    }
+
     public function render()
     {
         return view('livewire.admin.weak-areas', [
@@ -202,6 +263,9 @@ class WeakAreas extends Component
             'weakUsers'    => $this->weakUsers,
             'weakAxes'     => $this->weakAxes,
             'viewingUser'            => $this->viewingUser,
+            'userDeclaredContext'    => $this->userDeclaredContext,
+            'userProfileInsights'    => $this->userProfileInsights,
+            'userNextSteps'          => $this->userNextSteps,
             'userDiagnosticProfiles' => $this->userDiagnosticProfiles,
             'userTraitEvidence'      => $this->userTraitEvidence,
             'userProfileEvidence'    => $this->userProfileEvidence,

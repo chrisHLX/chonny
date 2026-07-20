@@ -111,10 +111,154 @@
                 </div>
 
                 <div class="p-5 space-y-8">
+                    {{-- Declared context --}}
+                    <div>
+                        <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
+                            Declared Context ({{ $userDeclaredContext->count() }})
+                        </p>
+                        @if($userDeclaredContext->isEmpty())
+                            <p class="text-[12px] text-ink-subtle">No context declared — every recommendation for this user currently only ever sees context-free modules.</p>
+                        @else
+                            <div class="flex flex-wrap gap-2">
+                                @foreach($userDeclaredContext as $c)
+                                    <span class="inline-flex items-center gap-1.5 text-[12px] bg-surface-2 border border-line rounded-full px-3 py-1">
+                                        <span class="text-ink-subtle">{{ $c->dimension?->subject?->name ?? '—' }} · {{ $c->dimension?->name ?? '—' }}</span>
+                                        <span class="text-ink font-medium">{{ $c->option?->name ?? '—' }}</span>
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+
+                    {{-- Profile insight(s) — the grounded read the next-step system actually acts on --}}
+                    <div>
+                        <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
+                            Profile Insight{{ $userProfileInsights->count() === 1 ? '' : 's' }} ({{ $userProfileInsights->count() }})
+                        </p>
+                        @if($userProfileInsights->isEmpty())
+                            <p class="text-[12px] text-ink-subtle">No recorded insight — either no diagnostic completed yet, or it was created before this table existed (see roadmap:backfill).</p>
+                        @else
+                            @foreach($userProfileInsights as $insight)
+                                <div class="border border-line rounded-lg p-4 mb-3 last:mb-0">
+                                    <div class="flex items-center justify-between gap-4 mb-2">
+                                        <p class="text-[13px] font-semibold text-ink">
+                                            {{ $insight->subject?->name ?? '—' }}
+                                            <span class="text-ink-subtle font-normal">— {{ $insight->profile_title }}</span>
+                                        </p>
+                                        <span class="text-[11px] text-ink-subtle shrink-0">{{ $insight->generated_at }}</span>
+                                    </div>
+                                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                                        <span class="badge-gold">{{ ucfirst($insight->confidence_level) }} confidence</span>
+                                        @if($insight->archetype)
+                                            <span class="badge-blue">{{ $insight->archetype->label }}</span>
+                                        @endif
+                                    </div>
+                                    @if($insight->summary)
+                                        <p class="text-[12px] text-ink-muted leading-relaxed mb-3">{{ $insight->summary }}</p>
+                                    @endif
+                                    <div class="grid sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Growth area</p>
+                                            @if($insight->growthAreaConcepts->isEmpty())
+                                                <p class="text-[11px] text-ink-subtle">None grounded.</p>
+                                            @else
+                                                <div class="flex flex-wrap gap-1.5">
+                                                    @foreach($insight->growthAreaConcepts as $concept)
+                                                        <span class="text-[11px] bg-red-400/10 text-red-400 rounded px-2 py-0.5">{{ $concept->name }}</span>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1.5">Strength</p>
+                                            @if($insight->strengthConcepts->isEmpty())
+                                                <p class="text-[11px] text-ink-subtle">None grounded.</p>
+                                            @else
+                                                <div class="flex flex-wrap gap-1.5">
+                                                    @foreach($insight->strengthConcepts as $concept)
+                                                        <span class="text-[11px] bg-accent/10 text-accent rounded px-2 py-0.5">{{ $concept->name }}</span>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+
+                    {{-- Next step trail — what was actually recommended, in order, with reflections/evidence --}}
+                    <div>
+                        <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
+                            Next Step Trail ({{ $userNextSteps->collapse()->count() }})
+                        </p>
+                        @if($userNextSteps->isEmpty())
+                            <p class="text-[12px] text-ink-subtle">No next-step system has ever run for this user.</p>
+                        @else
+                            @foreach($userNextSteps as $subjectName => $steps)
+                                <div class="mb-5 last:mb-0">
+                                    <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-2">{{ $subjectName }}</p>
+                                    <div class="space-y-2">
+                                        @foreach($steps as $step)
+                                            @php
+                                                $statusBadge = match($step->status->value) {
+                                                    'pending'    => 'badge-gold',
+                                                    'attempted'  => 'badge-amber',
+                                                    'completed'  => 'badge-green',
+                                                    'concluded'  => 'badge-blue',
+                                                    default      => 'badge-gray', // superseded, expired
+                                                };
+                                            @endphp
+                                            <div class="border border-line rounded-lg p-3">
+                                                <div class="flex items-start justify-between gap-3 mb-1.5">
+                                                    <div class="flex items-center gap-2 flex-wrap">
+                                                        <span class="badge-gray">{{ $step->step_type->value }}</span>
+                                                        <span class="{{ $statusBadge }}">{{ $step->status->value }}</span>
+                                                        <span class="text-[13px] font-semibold text-ink">{{ $step->title }}</span>
+                                                    </div>
+                                                    <span class="text-[11px] text-ink-subtle shrink-0">{{ $step->created_at }}</span>
+                                                </div>
+                                                <p class="text-[12px] text-ink-muted leading-relaxed mb-1.5">{{ $step->instructions }}</p>
+                                                <p class="text-[11px] text-ink-subtle">
+                                                    reason: {{ $step->generated_reason->value }}
+                                                    @if($step->concept) · concept: {{ $step->concept->name }} @endif
+                                                    @if($step->module) · module: {{ $step->module->name }} @endif
+                                                </p>
+
+                                                @if($step->reflection)
+                                                    <div class="mt-2.5 pt-2.5 border-t border-line">
+                                                        <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-1">
+                                                            Reflection — tried: {{ $step->reflection->did_try->value }}
+                                                        </p>
+                                                        <p class="text-[12px] text-ink-muted mb-1"><span class="text-ink-subtle">How it went:</span> {{ $step->reflection->how_it_went }}</p>
+                                                        <p class="text-[12px] text-ink-muted"><span class="text-ink-subtle">Reasoning:</span> {{ $step->reflection->why_reasoning }}</p>
+
+                                                        @if($step->reflection->evidence->isNotEmpty())
+                                                            <div class="mt-2 space-y-1">
+                                                                @foreach($step->reflection->evidence as $ev)
+                                                                    <p class="text-[11px] text-ink-subtle">
+                                                                        <span class="text-violet">{{ $ev->signal }}</span>
+                                                                        — {{ $ev->interpretation }}
+                                                                        @if($ev->concept) ({{ $ev->concept->name }}) @endif
+                                                                        <span class="text-ink-subtle">· confidence {{ $ev->confidence }}</span>
+                                                                    </p>
+                                                                @endforeach
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+
                     {{-- Diagnostic profile(s) --}}
                     <div>
                         <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider mb-3">
-                            Diagnostic Profile{{ $userDiagnosticProfiles->count() === 1 ? '' : 's' }}
+                            Diagnostic Profile{{ $userDiagnosticProfiles->count() === 1 ? '' : 's' }} <span class="normal-case text-ink-subtle">(raw AI output)</span>
                         </p>
                         @forelse($userDiagnosticProfiles as $d)
                             <div class="border border-line rounded-lg p-4 mb-3 last:mb-0">

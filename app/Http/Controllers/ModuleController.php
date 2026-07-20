@@ -112,14 +112,21 @@ class ModuleController extends Controller
              
     }
 
-    public function destroy(Module $module)
+    /**
+     * Any authenticated user could otherwise edit/regenerate/research any other user's module —
+     * only destroy() had an ownership check before this. Admins bypass it (they're expected to be
+     * able to manage any module, e.g. to fix or publish content another user created).
+     */
+    private function authorizeModuleAccess(Module $module): void
     {
-
-        
-        // Optional: Confirm user owns this module
-        if ($module->created_by !== Auth::id()) {
+        if ($module->created_by !== Auth::id() && !Auth::user()?->is_admin) {
             abort(403, 'Unauthorized action.');
         }
+    }
+
+    public function destroy(Module $module)
+    {
+        $this->authorizeModuleAccess($module);
 
         $module->users()->detach(); // Detach all users
         $module->questions()->detach(); // Detach all questions associated with the module
@@ -140,6 +147,8 @@ class ModuleController extends Controller
 
     public function edit(Module $module)
     {
+        $this->authorizeModuleAccess($module);
+
         $modulePages = ModulePage::where('module_id', $module->id)
                    ->orderBy('page_number')
                    ->get();
@@ -171,27 +180,94 @@ class ModuleController extends Controller
         $modulePageCount = $modulePages->count();
         $moduleResearch = \App\Models\SubjectContent::where('module_id', $module->id)->first();
 
-        return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList', 'pipeline', 'subjectResearch', 'subjectResearchCount', 'modulePageCount', 'moduleResearch'));
+        // Only queried for admins — feeds the "Assign as next step" user picker, which is
+        // itself admin-gated in the view and at the route/controller level. Scoped to users who
+        // have actually completed this module's subject's diagnostic — without one, the
+        // dashboard's entire "Next Experiment" card never renders (see
+        // NextStepService::hasCompletedDiagnosticForSubject()), so an assignment to anyone else
+        // would silently never be seen. Filtering the dropdown up front avoids the round-trip
+        // through assignNextStep()'s own guard for the common case.
+        $users = Auth::user()?->is_admin
+            ? \App\Models\User::whereHas('modules', function ($q) use ($module) {
+                // wherePivot() only exists on the BelongsToMany relation itself — the closure
+                // whereHas() invokes here receives a plain Eloquent Builder for the related
+                // model (Module), with the pivot table already joined in via performJoin().
+                // Reference the joined pivot column directly instead.
+                $q->where('modules.type', 'diagnostic')
+                    ->where('modules.subject_id', $module->subject_id)
+                    ->where('module_user.status', 'completed');
+            })->orderBy('name')->get(['id', 'name', 'email'])
+            : collect();
+
+        return view('modules.edit', compact('module', 'allQuestions', 'modulePages', 'conceptsList', 'pipeline', 'subjectResearch', 'subjectResearchCount', 'modulePageCount', 'moduleResearch', 'users'));
     }
 
     public function update(Request $request, Module $module)
     {
+        $this->authorizeModuleAccess($module);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'question_ids' => 'array',
             'question_ids.*' => 'exists:questions,id',
+            'published' => 'boolean',
         ]);
 
         $module->update([
             'name' => $request->name,
             'description' => $request->description,
+            'published' => $request->boolean('published'),
         ]);
 
         // sync selected questions
-        $module->questions()->sync($request->question_ids);
+        $module->questions()->sync($request->question_ids ?? []);
+
+        // A module previously stuck at the initial 'need questions' status was otherwise
+        // permanently invisible in the public browse index (Modules\Index requires
+        // status='ready') unless the AI "Generate Questions" pipeline happened to run to
+        // completion — manually attaching existing questions here, or explicitly publishing,
+        // never flipped it. Only ever promotes forward; never demotes a status set elsewhere
+        // (e.g. a running/failed async pipeline).
+        if ($module->status !== 'ready' && ($module->questions()->count() > 0 || $module->published)) {
+            $module->update(['status' => 'ready']);
+        }
 
         return redirect()->route('modules.index')->with('success', 'Module updated.');
+    }
+
+    /**
+     * Admin-only: directly assigns this module as a specific user's active next recommended
+     * step (bypasses the automatic concept-matching NextStepService normally uses). Route is
+     * gated by the `can:admin` middleware; this check is defense-in-depth.
+     */
+    public function assignNextStep(Request $request, Module $module, \App\Http\Services\NextStepService $nextStepService)
+    {
+        if (!Auth::user()?->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'why' => 'nullable|string|max:1000',
+        ]);
+
+        $targetUser = \App\Models\User::findOrFail($request->user_id);
+
+        // Defense-in-depth: edit()'s user picker is already scoped to eligible users, but a
+        // stale page load or a direct request could still name an ineligible one. Without a
+        // completed diagnostic for this subject, the assignment would be a silent no-op (see
+        // hasCompletedDiagnosticForSubject()'s docblock) — reject it outright instead.
+        if (!$nextStepService->hasCompletedDiagnosticForSubject($targetUser->id, $module->subject_id)) {
+            return back()->withErrors([
+                'user_id' => "{$targetUser->name} hasn't completed the {$module->subject->name} diagnostic yet, so this would never appear on their dashboard. Assign it after they have.",
+            ]);
+        }
+
+        $nextStepService->assignModuleAsNextStep($module, $targetUser->id, $request->input('why'));
+
+        return redirect()->route('modules.edit', $module)
+            ->with('success', "Assigned as {$targetUser->name}'s next recommended step. They'll get an email.");
     }
 
     public function savePage(Request $request, Module $module)
@@ -488,6 +564,8 @@ class ModuleController extends Controller
     // We can avoid the generate questions job for editing and creating modules by just calling the ai service function
     public function generateQuestions(Request $request, Module $module)
     {
+        $this->authorizeModuleAccess($module);
+
         $content = $module->modulePages()->pluck('content')->implode("\n\n");
         if (empty($content)) {
             return back()->with('error', 'Add module content before generating questions.');
@@ -538,6 +616,8 @@ class ModuleController extends Controller
 
     public function research(Request $request, Module $module, ResearchService $researchService): \Illuminate\Http\JsonResponse
     {
+        $this->authorizeModuleAccess($module);
+
         $topic = $module->name . ' — ' . $module->subject->name;
         $userPrompt = $request->input('user_prompt');
         $sourceUrl   = $request->input('source_url', '');
@@ -576,6 +656,8 @@ class ModuleController extends Controller
 
     public function synthesise(Request $request, Module $module): \Illuminate\Http\JsonResponse
     {
+        $this->authorizeModuleAccess($module);
+
         $research = \App\Models\SubjectContent::where('module_id', $module->id)->first();
 
         if (! $research) {

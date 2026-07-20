@@ -58,6 +58,17 @@
             <x-input-error :messages="$errors->get('question_ids')" class="mt-1.5" />
         </div>
 
+        <div>
+            <label class="flex items-center gap-2 cursor-pointer">
+                <input type="hidden" name="published" value="0">
+                <input type="checkbox" name="published" value="1" class="form-checkbox"
+                       {{ old('published', $module->published) ? 'checked' : '' }}>
+                <span class="text-[13px] text-ink">Published</span>
+            </label>
+            <p class="text-[11px] text-ink-subtle mt-1">Controls whether this module can show up in the public browse list and be recommended to users. Unpublished modules are only visible to you (and admins).</p>
+            <x-input-error :messages="$errors->get('published')" class="mt-1.5" />
+        </div>
+
         <x-primary-button>Update Module</x-primary-button>
     </form>
 </div>
