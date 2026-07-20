@@ -169,3 +169,52 @@ test('an unrecognised question type rejects the whole upload', function () {
     $response->assertSessionHasErrors('upload');
     expect(Module::where('name', 'Ghost Module')->exists())->toBeFalse();
 });
+
+// --- MindCollector attribution -----------------------------------------------------------------
+
+test('checking attribute_as_mindcollector attributes the module to the MindCollector system account', function () {
+    // The real form always posts this field (a hidden "0" input backs the visible checkbox, which
+    // is checked by default in the view) — a raw POST here has to include it explicitly to
+    // simulate that, since Request::boolean() defaults to false when the key is simply absent.
+    $subject = uploadFixtureSubject();
+    $user = User::factory()->create(['name' => 'Christian']);
+    $systemUser = User::factory()->create(['email' => User::SYSTEM_ENGINE_EMAIL, 'name' => 'MindCollector']);
+
+    $this->actingAs($user)->post(route('modules.upload.store'), [
+        'content_file' => uploadContentFile('Attributed Module', $subject->name),
+        'attribute_as_mindcollector' => '1',
+    ]);
+
+    $module = Module::where('name', 'Attributed Module')->firstOrFail();
+    expect($module->created_by)->toBe($systemUser->id);
+});
+
+test('unchecking attribute_as_mindcollector attributes the module to the uploading user instead', function () {
+    $subject = uploadFixtureSubject();
+    $user = User::factory()->create(['name' => 'Christian']);
+    User::factory()->create(['email' => User::SYSTEM_ENGINE_EMAIL, 'name' => 'MindCollector']);
+
+    $this->actingAs($user)->post(route('modules.upload.store'), [
+        'content_file' => uploadContentFile('Personal Module', $subject->name),
+        'attribute_as_mindcollector' => '0',
+    ]);
+
+    $module = Module::where('name', 'Personal Module')->firstOrFail();
+    expect($module->created_by)->toBe($user->id);
+});
+
+test('the module page actually renders "by MindCollector" for a MindCollector-attributed module', function () {
+    $subject = uploadFixtureSubject();
+    $user = User::factory()->create(['name' => 'Christian']);
+    User::factory()->create(['email' => User::SYSTEM_ENGINE_EMAIL, 'name' => 'MindCollector']);
+
+    $this->actingAs($user)->post(route('modules.upload.store'), [
+        'content_file' => uploadContentFile('Byline Module', $subject->name),
+        'attribute_as_mindcollector' => '1',
+    ]);
+
+    $module = Module::where('name', 'Byline Module')->firstOrFail();
+
+    $this->actingAs($user)->get(route('modules.show', $module))
+        ->assertSee('by MindCollector');
+});

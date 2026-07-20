@@ -21,8 +21,17 @@ class Show extends Component
 
     public function mount(Module $module): void
     {
+        // A guest hitting an unpublished module (e.g. the "View Module" link in
+        // NextStepModuleAssigned — those modules start unpublished by default) used to hard-404
+        // here, unlike ModuleQuizController::show()'s equivalent guest guard, which correctly
+        // sends them to log in instead. An assigned recipient clicking the email link from a
+        // logged-out browser would see a dead link with no path forward. Remember the intended
+        // URL (same mechanism Laravel's own `redirect()->guest()` uses) so login sends them back
+        // here, matching AuthenticatedSessionController::store()'s redirect()->intended() call.
         if (!$module->published && !Auth::check()) {
-            abort(404);
+            session()->put('url.intended', request()->fullUrl());
+            $this->redirect(route('login'));
+            return;
         }
 
         $this->module = $module;

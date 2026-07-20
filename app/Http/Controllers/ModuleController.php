@@ -83,10 +83,17 @@ class ModuleController extends Controller
         try {
            // Assign the result of the transaction to $module
             $module = DB::transaction(function () use ($request) {
+                // Same "Attribute as MindCollector" option as the Upload Module form — see
+                // ModuleUploadController::store() for the fuller rationale. Field is backed by a
+                // hidden "0" input so it's always present in the request, checked by default.
+                $createdBy = $request->boolean('attribute_as_mindcollector')
+                    ? \App\Models\User::where('email', \App\Models\User::SYSTEM_ENGINE_EMAIL)->value('id')
+                    : auth()->id();
+
                 $newModule = Module::create([
                     'name' => $request->name,
                     'description' => $request->description,
-                    'created_by' => auth()->id(),
+                    'created_by' => $createdBy,
                     'subject_id' => $request->subject_id,
                     'status' => 'need questions',
                 ]);

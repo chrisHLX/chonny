@@ -32,6 +32,16 @@
                         <p class="text-[11px] text-ink-subtle mt-1">Leave blank for knowledge-only content with no quiz yet.</p>
                     </div>
 
+                    <div>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="hidden" name="attribute_as_mindcollector" value="0">
+                            <input type="checkbox" name="attribute_as_mindcollector" value="1" class="form-checkbox"
+                                   {{ old('attribute_as_mindcollector', true) ? 'checked' : '' }}>
+                            <span class="text-[13px] text-ink">Attribute as MindCollector</span>
+                        </label>
+                        <p class="text-[11px] text-ink-subtle mt-1">Shows "by MindCollector" on the module page instead of your own account name. Uncheck to attribute it to yourself.</p>
+                    </div>
+
                     <div class="pt-2">
                         <x-primary-button>Upload</x-primary-button>
                     </div>

@@ -96,6 +96,16 @@
                         <x-input-error :messages="$errors->get('proficiency_id')" class="mt-1.5" />
                     </div>
 
+                    <div>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="hidden" name="attribute_as_mindcollector" value="0">
+                            <input type="checkbox" name="attribute_as_mindcollector" value="1" class="form-checkbox"
+                                   {{ old('attribute_as_mindcollector', true) ? 'checked' : '' }}>
+                            <span class="text-[13px] text-ink">Attribute as MindCollector</span>
+                        </label>
+                        <p class="text-[11px] text-ink-subtle mt-1">Shows "by MindCollector" on the module page instead of your own account name.</p>
+                    </div>
+
                     <div class="pt-2">
                         <x-primary-button>Create Module</x-primary-button>
                     </div>
