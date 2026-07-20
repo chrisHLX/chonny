@@ -45,6 +45,7 @@ class DiagnosticQuizRunner extends Component
     public ?array $diagnosticProfile = null;
     public bool $retakingDiagnostic = false;
     public ?string $retakeStartedAt = null;
+    public ?int $diagnosticAttemptId = null;
 
     public function mount($moduleId): void
     {
@@ -518,10 +519,23 @@ class DiagnosticQuizRunner extends Component
      * Lightweight engagement tracking — one row per (module, user) or (module, guest session),
      * reset to in-progress on every fresh/retake start. Not a full attempt history, just
      * "is anyone starting/finishing this" visibility for the admin stats page.
+     *
+     * The created/updated row's own id is cached on $diagnosticAttemptId (a plain Livewire
+     * public property) so every later write during this attempt (recordAttemptProgress,
+     * recordAttemptCompleted) updates by primary key instead of re-resolving "which row is
+     * this" via attemptIdentity() on every request. That re-resolution turned out to be
+     * unreliable in practice — session()->getId() for a guest does not reliably resolve back to
+     * the same row on a later Livewire request, which silently broke progress tracking (always
+     * stuck at question 1) and, worse, silently broke completion tracking too: the old
+     * recordAttemptCompleted() fell back to *creating a second row* stamped with both
+     * started_at and completed_at set to "now" when its lookup failed, which looked like a
+     * genuine multi-minute completed attempt but was actually a same-second artifact (confirmed
+     * in production data — two "completed" rows with a 21–23 second start-to-completion gap,
+     * far too fast for a real run). Keying off the row's own id sidesteps the lookup entirely.
      */
     private function recordAttemptStarted(Module $module): void
     {
-        DiagnosticAttempt::updateOrCreate(
+        $attempt = DiagnosticAttempt::updateOrCreate(
             $this->attemptIdentity($module->id),
             [
                 'subject_id'           => $module->subject_id,
@@ -534,33 +548,40 @@ class DiagnosticQuizRunner extends Component
                 'total_questions'      => $module->questions()->count(),
             ]
         );
+
+        $this->diagnosticAttemptId = $attempt->id;
     }
 
     /**
      * Updates how far into the quiz this attempt has gotten — called on every question
      * transition, not just at start/completion, so an attempt that's abandoned mid-quiz still
-     * durably records exactly which question the user was on. Works for guests too, since
-     * attemptIdentity() already resolves guest attempts by session_id.
+     * durably records exactly which question the user was on. Updates by primary key — see the
+     * docblock on recordAttemptStarted() for why an identity re-lookup here doesn't work reliably.
      */
     private function recordAttemptProgress(): void
     {
-        DiagnosticAttempt::where($this->attemptIdentity($this->moduleId))
-            ->latest('started_at')
-            ->first()
-            ?->update(['last_question_index' => $this->currentIndex]);
+        if (!$this->diagnosticAttemptId) {
+            return;
+        }
+
+        DiagnosticAttempt::whereKey($this->diagnosticAttemptId)
+            ->update(['last_question_index' => $this->currentIndex]);
     }
 
     private function recordAttemptCompleted(?Module $module): void
     {
-        $identity = $this->attemptIdentity($this->moduleId);
-        $attempt  = DiagnosticAttempt::where($identity)->latest('started_at')->first();
+        if ($this->diagnosticAttemptId) {
+            $updated = DiagnosticAttempt::whereKey($this->diagnosticAttemptId)
+                ->update(['completed_at' => now()]);
 
-        if ($attempt) {
-            $attempt->update(['completed_at' => now()]);
-            return;
+            if ($updated) {
+                return;
+            }
         }
 
-        DiagnosticAttempt::create(array_merge($identity, [
+        // Fallback only for the case this component instance never captured an attempt id
+        // (e.g. recordAttemptStarted failed earlier) — not the normal path.
+        DiagnosticAttempt::create(array_merge($this->attemptIdentity($this->moduleId), [
             'subject_id'   => $module?->subject_id,
             'started_at'   => now(),
             'completed_at' => now(),
