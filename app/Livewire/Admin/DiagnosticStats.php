@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\DiagnosticAttempt;
 use App\Models\FunnelEvent;
+use App\Models\Question;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -154,6 +155,60 @@ class DiagnosticStats extends Component
             ->values();
     }
 
+    /**
+     * The read the context-aware-diagnostic work exists to produce (see Phase 7 of the
+     * implementation plan): does declaring context correlate with finishing, and does having
+     * authored context-specific variants for that subject correlate with it further? Computed at
+     * query time from existing tables — DiagnosticAttempt, the context_declared funnel event
+     * (DiagnosticQuizRunner::handleContextDeclared()), and question_context_option — no new
+     * storage, matching the "extend funnel_events, don't build new analytics" decision.
+     *
+     * Declaration is matched to an attempt by (user_id, module_id) for auth or
+     * (guest_session_id, module_id) for guest — the same identity shape funnel_events already
+     * uses elsewhere in this class (see getFunnelProperty()'s guest_session_id joins).
+     */
+    public function getContextCompletionProperty(): array
+    {
+        $declaredKeys = FunnelEvent::where('event', 'context_declared')
+            ->get(['module_id', 'user_id', 'guest_session_id'])
+            ->map(fn ($e) => $e->user_id ? "u:{$e->user_id}:{$e->module_id}" : "s:{$e->guest_session_id}:{$e->module_id}")
+            ->unique();
+
+        $subjectsWithVariants = Question::whereHas('contextOptions')
+            ->with('modules:id,subject_id')
+            ->get()
+            ->flatMap(fn ($q) => $q->modules->pluck('subject_id'))
+            ->unique();
+
+        $buckets = [
+            'declared_with_variants'    => ['label' => 'Declared context, variants available', 'started' => 0, 'completed' => 0],
+            'declared_without_variants' => ['label' => 'Declared context, no variants yet',     'started' => 0, 'completed' => 0],
+            'not_declared'              => ['label' => 'Did not declare context',               'started' => 0, 'completed' => 0],
+        ];
+
+        DiagnosticAttempt::get(['module_id', 'user_id', 'session_id', 'subject_id', 'completed_at'])
+            ->each(function ($attempt) use ($declaredKeys, $subjectsWithVariants, &$buckets) {
+                $key      = $attempt->user_id ? "u:{$attempt->user_id}:{$attempt->module_id}" : "s:{$attempt->session_id}:{$attempt->module_id}";
+                $declared = $declaredKeys->contains($key);
+
+                $bucket = !$declared
+                    ? 'not_declared'
+                    : ($subjectsWithVariants->contains($attempt->subject_id) ? 'declared_with_variants' : 'declared_without_variants');
+
+                $buckets[$bucket]['started']++;
+                if ($attempt->completed_at) {
+                    $buckets[$bucket]['completed']++;
+                }
+            });
+
+        return collect($buckets)->map(fn ($b) => [
+            'label'     => $b['label'],
+            'started'   => $b['started'],
+            'completed' => $b['completed'],
+            'rate'      => $b['started'] > 0 ? round(($b['completed'] / $b['started']) * 100, 1) : 0.0,
+        ])->values()->all();
+    }
+
     public function getSubjectBreakdownProperty(): \Illuminate\Support\Collection
     {
         return DiagnosticAttempt::with('subject')
@@ -182,6 +237,7 @@ class DiagnosticStats extends Component
             'chartData'        => $this->chartData,
             'subjectBreakdown' => $this->subjectBreakdown,
             'dropOff'          => $this->dropOff,
+            'contextCompletion' => $this->contextCompletion,
             'attempts'         => DiagnosticAttempt::with(['module', 'subject', 'user'])
                 ->latest('started_at')
                 ->paginate(25),

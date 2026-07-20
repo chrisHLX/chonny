@@ -21,9 +21,21 @@ class SubjectContextForm extends Component
 
     public bool $saved = false;
 
-    public function mount($subjectId): void
+    // When true (only ever set by DiagnosticQuizRunner for a guest taking the diagnostic
+    // pre-signup), save() dispatches the raw selections instead of calling
+    // SubjectContextService::declare() — there's no user_id yet to persist against.
+    // DiagnosticQuizRunner captures the dispatched selections in-memory and, if the guest later
+    // registers, RegisteredUserController::claimGuestQuizResults() declares them for real.
+    public bool $guestMode = false;
+
+    public function mount($subjectId, $guestMode = false): void
     {
         $this->subjectId = $subjectId;
+        $this->guestMode = $guestMode;
+
+        if ($this->guestMode) {
+            return;
+        }
 
         $declarations = app(SubjectContextService::class)->declarationsForSubject(auth()->id(), $subjectId);
 
@@ -93,6 +105,12 @@ class SubjectContextForm extends Component
         }
 
         if ($this->getErrorBag()->isNotEmpty()) {
+            return;
+        }
+
+        if ($this->guestMode) {
+            $this->saved = true;
+            $this->dispatch('subject-context-saved', selections: $this->selections);
             return;
         }
 

@@ -265,6 +265,20 @@
             </button>
         </div>
 
+    {{-- DECLARE CONTEXT STEP — folded into the sequence right after the intro, not a separate
+         gated screen: same module heading, same card language as the questions that follow. --}}
+    @elseif ($showContextStep)
+
+        @if ($moduleName)
+            <div class="flex items-center justify-center gap-3 mb-5">
+                <span class="h-px w-8 bg-gold/30"></span>
+                <span class="text-[11px] font-semibold text-gold/80 uppercase tracking-[0.15em] text-center">{{ $moduleName }}</span>
+                <span class="h-px w-8 bg-gold/30"></span>
+            </div>
+        @endif
+
+        <livewire:subject-context-form :subject-id="$subjectId" :guest-mode="$guestMode" :key="'diagnostic-context-form-'.$moduleId"/>
+
     {{-- ACTIVE QUESTION SCREEN --}}
     @elseif (!empty($questions) && $questions->count() > $currentIndex)
         @php $question = $questions[$currentIndex]; @endphp

@@ -6,6 +6,8 @@ use App\Models\Module;
 use App\Models\Proficiency;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\SubjectContextDimension;
+use App\Models\SubjectContextOption;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -31,6 +33,30 @@ class WoWDiagnosticModuleSeeder extends Seeder
 
         $module = $this->seedModule($subject, $proficiency);
         $this->seedQuestions($module);
+        $this->seedContextVariants($module, $subject);
+        $this->seedWarriorQuestionVariants($module, $subject);
+        $this->seedWarriorSurveyQuestion($module, $subject);
+        $this->detachRetiredQuestions($module);
+    }
+
+    /**
+     * seedQuestions() uses syncWithoutDetaching() so re-seeding is safe to run repeatedly without
+     * losing manual data — but that also means removing an entry from surveyQuestions()/questions()
+     * alone does nothing: the old question stays linked to the module forever unless explicitly
+     * detached here. Does not delete the Question row itself (it may still hold real user answer
+     * history) — only unlinks it from this module so it stops appearing in the quiz.
+     */
+    private function detachRetiredQuestions(Module $module): void
+    {
+        $retiredTexts = [
+            'Which role do you play most often?', // primary_role — replaced by the Class/Spec context declare step
+        ];
+
+        $retiredIds = Question::whereIn('question', $retiredTexts)->pluck('id');
+
+        if ($retiredIds->isNotEmpty()) {
+            $module->questions()->detach($retiredIds);
+        }
     }
 
     private function seedModule(Subject $subject, Proficiency $proficiency): Module
@@ -88,6 +114,223 @@ class WoWDiagnosticModuleSeeder extends Seeder
         $this->command->info("✅ WoW diagnostic questions: {$created} created, {$linked} linked to module.");
     }
 
+    /**
+     * Proof-of-concept for context-aware diagnostic scenarios (see the implementation plan) —
+     * deliberately small (one root question, two class-flavored rewrites) rather than mass
+     * content generation, matching the plan's "humans create high-quality, reusable content"
+     * principle. Each variant measures the exact same traits at the exact same point values as
+     * the root — only the framing changes — so declaring Rogue or Warrior substitutes the
+     * flavored version in DiagnosticQuizRunner::applyContextRouting() without altering what's
+     * actually being measured.
+     */
+    private function seedContextVariants(Module $module, Subject $subject): void
+    {
+        $classDimension = SubjectContextDimension::where('subject_id', $subject->id)
+            ->where('name', 'Class')
+            ->first();
+
+        if (!$classDimension) {
+            $this->command->warn('⚠️ WoW Class dimension not found — run SubjectContextSeeder first. Skipping context variants.');
+            return;
+        }
+
+        $rogue   = SubjectContextOption::where('dimension_id', $classDimension->id)->where('name', 'Rogue')->first();
+        $warrior = SubjectContextOption::where('dimension_id', $classDimension->id)->where('name', 'Warrior')->first();
+
+        $rootText = "You're mid-burst cooldowns on your kill target when your healer calls a swap to help a teammate who's in danger. What do you do?";
+        $root     = Question::where('question', $rootText)->first();
+
+        if (!$root || !$rogue || !$warrior) {
+            $this->command->warn('⚠️ Root question or Rogue/Warrior options not found — skipping context variants.');
+            return;
+        }
+
+        $variants = [
+            $rogue->id => [
+                'question' => "You're mid-combo with Vanish already burned to reset your opener, when your healer calls a swap to help a teammate who's in danger. What do you do?",
+                'options'  => [
+                    ['text' => 'Swap immediately and reposition — protecting the team matters more than one kill attempt.', 'traits' => ['defensive_discipline' => 2, 'patience' => 1]],
+                    ['text' => 'Finish the combo — breaking it mid-Envenom wastes the whole opener.', 'traits' => ['kill_instinct' => 2, 'independence' => 1]],
+                    ['text' => 'Check how many combo points and cooldowns I\'ve already committed before deciding.', 'traits' => ['adaptability' => 2, 'patience' => 1]],
+                    ['text' => 'Go with instinct — if the swap feels urgent, I disengage and go.', 'traits' => ['reactivity' => 2, 'kill_instinct' => 1]],
+                ],
+            ],
+            $warrior->id => [
+                'question' => "You're mid-execute on your kill target with Recklessness already active, when your healer calls a swap to help a teammate who's in danger. What do you do?",
+                'options'  => [
+                    ['text' => 'Charge to the swap target immediately — protecting the team comes first.', 'traits' => ['defensive_discipline' => 2, 'patience' => 1]],
+                    ['text' => 'Finish the execute — abandoning a target at low health wastes the whole cooldown sequence.', 'traits' => ['kill_instinct' => 2, 'independence' => 1]],
+                    ['text' => 'Weigh how much rage and cooldown I\'ve already spent before deciding.', 'traits' => ['adaptability' => 2, 'patience' => 1]],
+                    ['text' => 'Go on instinct — if the swap feels urgent, I pivot immediately.', 'traits' => ['reactivity' => 2, 'kill_instinct' => 1]],
+                ],
+            ],
+        ];
+
+        $created = 0;
+
+        foreach ($variants as $optionId => $variant) {
+            $question = Question::updateOrCreate(
+                ['question' => $variant['question']],
+                [
+                    'type'                   => 'diagnostic_mcq',
+                    'difficulty'             => 'easy',
+                    'skill_type'             => 'application',
+                    'diagnostic_variant_of'  => $root->id,
+                    'answer'                 => [
+                        'options' => array_map(fn ($o) => [
+                            'text'               => $o['text'],
+                            'diagnostic_payload' => ['traits' => $o['traits']],
+                        ], $variant['options']),
+                    ],
+                ]
+            );
+
+            if ($question->wasRecentlyCreated) {
+                $created++;
+            }
+
+            $module->questions()->syncWithoutDetaching([$question->id]);
+            $question->contextOptions()->syncWithoutDetaching([$optionId]);
+        }
+
+        $this->command->info("✅ WoW context variants: {$created} created (Rogue + Warrior rewrites of the mid-burst swap question).");
+    }
+
+    /**
+     * Three more Warrior-only rewrites, each pointing back at a different existing root question
+     * (unlike seedContextVariants(), which gives one root two flavors). Same discipline as that
+     * method: exact same traits/points as the root, only the framing changes.
+     */
+    private function seedWarriorQuestionVariants(Module $module, Subject $subject): void
+    {
+        $classDimension = SubjectContextDimension::where('subject_id', $subject->id)
+            ->where('name', 'Class')
+            ->first();
+
+        $warrior = $classDimension
+            ? SubjectContextOption::where('dimension_id', $classDimension->id)->where('name', 'Warrior')->first()
+            : null;
+
+        if (!$warrior) {
+            $this->command->warn('⚠️ Warrior option not found — skipping additional Warrior variants.');
+            return;
+        }
+
+        $variants = [
+            [
+                'root_question' => "You're running a planned CC chain on your kill target. A different enemy unexpectedly drops to 10% health. What do you do?",
+                'question'      => "You're mid-Storm Bolt setup on your kill target when a different enemy unexpectedly drops to 10% health. What do you do?",
+                'options'       => [
+                    ['text' => 'Storm Bolt them and go for the guaranteed pickoff — a real kill window beats a planned one every time.', 'traits' => ['reactivity' => 2, 'kill_instinct' => 2]],
+                    ['text' => 'Stick to the plan — an incomplete stun chain almost always costs the game.', 'traits' => ['structure_preference' => 2, 'patience' => 1]],
+                    ['text' => 'Call it to the team first and let them confirm before I commit Recklessness.', 'traits' => ['patience' => 2, 'defensive_discipline' => 1]],
+                    ['text' => 'Improvise — Charge the low-health target and make it work.', 'traits' => ['creativity' => 2, 'risk_tolerance' => 1]],
+                ],
+            ],
+            [
+                'root_question' => "The enemy healer is consistently playing behind pillars, resetting your pressure every time you build it. What do you do?",
+                'question'      => "The enemy healer is consistently playing behind pillars, and your Charge keeps getting eaten by line of sight before it lands. What do you do?",
+                'options'       => [
+                    ['text' => 'Rotate with Heroic Leap to cut off their pillar routes and control the space.', 'traits' => ['control_orientation' => 2, 'patience' => 1]],
+                    ['text' => 'Switch to a different kill target — a healer playing defensively is doing their job.', 'traits' => ['adaptability' => 2, 'kill_instinct' => 1]],
+                    ['text' => 'Keep sustained pressure with Whirlwind and wait for them to make a greedy mistake.', 'traits' => ['patience' => 2, 'pressure_orientation' => 1]],
+                    ['text' => 'Use an unexpected Heroic Leap angle to bait them out of position.', 'traits' => ['creativity' => 2, 'aggression' => 1]],
+                ],
+            ],
+            [
+                'root_question' => "Your team is ahead on cooldowns but you're personally low on health. The enemy pushes in hard. What do you do?",
+                'question'      => "Your team is ahead on cooldowns but you're personally low on health with Die by the Sword down, and the enemy pushes in hard. What do you do?",
+                'options'       => [
+                    ['text' => 'Pop Rallying Cry and absorb the pressure — the cooldown lead pays off if I survive.', 'traits' => ['defensive_discipline' => 2, 'patience' => 1]],
+                    ['text' => 'Trade into them aggressively with Recklessness — they\'re likely dry on cooldowns too.', 'traits' => ['aggression' => 2, 'risk_tolerance' => 1]],
+                    ['text' => 'React beat by beat — use Spell Reflect and Intervene only when it actually looks critical.', 'traits' => ['reactivity' => 2, 'risk_tolerance' => 1]],
+                    ['text' => 'Disengage entirely with Heroic Leap — the advantage doesn\'t expire if I stay alive.', 'traits' => ['patience' => 2, 'independence' => 1]],
+                ],
+            ],
+        ];
+
+        $created = 0;
+
+        foreach ($variants as $variant) {
+            $root = Question::where('question', $variant['root_question'])->first();
+
+            if (!$root) {
+                $this->command->warn("⚠️ Root question not found, skipping variant: {$variant['question']}");
+                continue;
+            }
+
+            $question = Question::updateOrCreate(
+                ['question' => $variant['question']],
+                [
+                    'type'                  => 'diagnostic_mcq',
+                    'difficulty'            => 'easy',
+                    'skill_type'            => 'application',
+                    'diagnostic_variant_of' => $root->id,
+                    'answer'                => [
+                        'options' => array_map(fn ($o) => [
+                            'text'               => $o['text'],
+                            'diagnostic_payload' => ['traits' => $o['traits']],
+                        ], $variant['options']),
+                    ],
+                ]
+            );
+
+            if ($question->wasRecentlyCreated) {
+                $created++;
+            }
+
+            $module->questions()->syncWithoutDetaching([$question->id]);
+            $question->contextOptions()->syncWithoutDetaching([$warrior->id]);
+        }
+
+        $this->command->info("✅ WoW additional Warrior variants: {$created} created.");
+    }
+
+    /**
+     * A Warrior-only bonus survey question (no generic counterpart being substituted — this is
+     * additive, unlike the diagnostic_mcq variants above). Tagging the root question itself with
+     * Warrior makes DiagnosticQuizRunner::applyContextRouting()'s eligibility check drop it
+     * entirely for anyone who hasn't declared Warrior.
+     */
+    private function seedWarriorSurveyQuestion(Module $module, Subject $subject): void
+    {
+        $classDimension = SubjectContextDimension::where('subject_id', $subject->id)
+            ->where('name', 'Class')
+            ->first();
+
+        $warrior = $classDimension
+            ? SubjectContextOption::where('dimension_id', $classDimension->id)->where('name', 'Warrior')->first()
+            : null;
+
+        if (!$warrior) {
+            $this->command->warn('⚠️ Warrior option not found — skipping Warrior comp survey question.');
+            return;
+        }
+
+        $question = Question::updateOrCreate(
+            ['question' => 'Which comp do you prefer to play?'],
+            [
+                'type'       => 'survey_mcq',
+                'difficulty' => 'easy',
+                'skill_type' => 'application',
+                'answer'     => [
+                    'question_key' => 'preferred_comp',
+                    'options'      => [
+                        ['text' => 'Ret War Disc',    'value' => 1],
+                        ['text' => 'TSG',             'value' => 2],
+                        ['text' => 'War Mage Healer', 'value' => 3],
+                        ['text' => 'War Lock Shaman', 'value' => 4],
+                    ],
+                ],
+            ]
+        );
+
+        $module->questions()->syncWithoutDetaching([$question->id]);
+        $question->contextOptions()->syncWithoutDetaching([$warrior->id]);
+
+        $this->command->info('✅ Warrior comp survey question seeded and tagged.');
+    }
+
     private function surveyQuestions(): array
     {
         return [
@@ -105,20 +348,11 @@ class WoWDiagnosticModuleSeeder extends Seeder
                     ],
                 ],
             ],
-            [
-                'type'     => 'survey_mcq',
-                'question' => 'Which role do you play most often?',
-                'answer'   => [
-                    'question_key' => 'primary_role',
-                    'options'      => [
-                        ['text' => 'Healer',                   'value' => 1],
-                        ['text' => 'Melee DPS',                'value' => 2],
-                        ['text' => 'Ranged DPS',               'value' => 3],
-                        ['text' => 'I play all roles equally', 'value' => 4],
-                        ['text' => 'Not sure / New to Arena',  'value' => 5],
-                    ],
-                ],
-            ],
+            // 'Which role do you play most often?' (question_key: primary_role) retired — this
+            // vocabulary (Healer/Melee/Ranged) was coarser and redundant with Class, which is now
+            // captured via the real SubjectContextOption declare step folded into the diagnostic
+            // sequence (13-class vocabulary, cascading to Spec) and persisted to
+            // UserSubjectContext instead of free-text UserProfileEvidence.
             [
                 'type'     => 'survey_mcq',
                 'question' => 'What is your main goal?',

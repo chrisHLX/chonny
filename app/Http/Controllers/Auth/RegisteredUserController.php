@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Services\NextStepService;
 use App\Http\Services\RoadmapService;
+use App\Http\Services\SubjectContextService;
 use App\Models\FunnelEvent;
 use App\Models\Module;
 use App\Models\PlayerTrait;
@@ -94,6 +95,24 @@ class RegisteredUserController extends Controller
                                     'answered_at'           => $answeredAt,
                                 ]
                             );
+                        }
+
+                        // Context declared during the diagnostic's declare-context step
+                        // (DiagnosticQuizRunner::handleContextDeclared(), guest branch) — kept
+                        // in-memory only until now since SubjectContextService::declare()
+                        // requires a real user_id. Keyed dimension_id => option_id, same shape
+                        // SubjectContextForm::save() produces for an auth user.
+                        $service = app(SubjectContextService::class);
+                        foreach ($result['declared_context'] ?? [] as $dimensionId => $optionId) {
+                            try {
+                                $service->declare($user->id, (int) $dimensionId, (int) $optionId);
+                            } catch (\Throwable $e) {
+                                Log::warning('Guest claim: failed to declare context', [
+                                    'dimension_id' => $dimensionId,
+                                    'option_id'    => $optionId,
+                                    'error'        => $e->getMessage(),
+                                ]);
+                            }
                         }
                     });
 

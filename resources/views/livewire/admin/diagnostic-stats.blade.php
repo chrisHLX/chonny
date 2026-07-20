@@ -197,6 +197,25 @@
             @endif
         </div>
 
+        {{-- ── Context declaration vs completion ── --}}
+        <div class="linear-card overflow-hidden">
+            <div class="px-5 py-4 border-b border-line">
+                <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">Does declaring context correlate with finishing?</p>
+                <p class="text-[11px] text-ink-subtle mt-0.5">The read the context-aware-diagnostic work exists to produce — split further by whether that subject has any authored context-specific variants yet.</p>
+            </div>
+            <div class="divide-y divide-line">
+                @foreach($contextCompletion as $row)
+                    <div class="px-5 py-3 flex items-center justify-between gap-4">
+                        <div>
+                            <p class="text-[13px] text-ink">{{ $row['label'] }}</p>
+                            <p class="text-[11px] text-ink-subtle">{{ number_format($row['completed']) }} of {{ number_format($row['started']) }}</p>
+                        </div>
+                        <p class="text-[16px] font-semibold text-ink">{{ $row['rate'] }}%</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         {{-- ── Recent attempts log ── --}}
         <div class="linear-card overflow-hidden">
             <div class="px-5 py-4 border-b border-line">

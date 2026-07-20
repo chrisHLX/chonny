@@ -31,6 +31,27 @@ class SC2DiagnosticModuleSeeder extends Seeder
 
         $module = $this->seedModule($subject, $proficiency);
         $this->seedQuestions($module);
+        $this->detachRetiredQuestions($module);
+    }
+
+    /**
+     * seedQuestions() uses syncWithoutDetaching() so re-seeding is safe to run repeatedly without
+     * losing manual data — but that also means removing an entry from surveyQuestions()/questions()
+     * alone does nothing: the old question stays linked to the module forever unless explicitly
+     * detached here. Does not delete the Question row itself (it may still hold real user answer
+     * history) — only unlinks it from this module so it stops appearing in the quiz.
+     */
+    private function detachRetiredQuestions(Module $module): void
+    {
+        $retiredTexts = [
+            'Which race do you play?', // primary_role — replaced by the Race context declare step
+        ];
+
+        $retiredIds = Question::whereIn('question', $retiredTexts)->pluck('id');
+
+        if ($retiredIds->isNotEmpty()) {
+            $module->questions()->detach($retiredIds);
+        }
     }
 
     private function seedModule(Subject $subject, Proficiency $proficiency): Module
@@ -105,19 +126,10 @@ class SC2DiagnosticModuleSeeder extends Seeder
                     ],
                 ],
             ],
-            [
-                'type'     => 'survey_mcq',
-                'question' => 'Which race do you play?',
-                'answer'   => [
-                    'question_key' => 'primary_role',
-                    'options'      => [
-                        ['text' => 'Terran',   'value' => 1],
-                        ['text' => 'Zerg',     'value' => 2],
-                        ['text' => 'Protoss',  'value' => 3],
-                        ['text' => 'Random',   'value' => 4],
-                    ],
-                ],
-            ],
+            // 'Which race do you play?' (question_key: primary_role) retired — the same
+            // Terran/Zerg/Protoss choice is now made via the real SubjectContextOption declare
+            // step folded into the diagnostic sequence (DiagnosticQuizRunner::shouldShowContextStep()),
+            // which persists to UserSubjectContext instead of free-text UserProfileEvidence.
             [
                 'type'     => 'survey_mcq',
                 'question' => 'What is your main focus right now?',

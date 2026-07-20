@@ -10,19 +10,35 @@ use App\Models\UserConceptMastery;
 use App\Models\UserTraitEvidence;
 use App\Models\UserProfileEvidence;
 use App\Models\DiagnosticAttempt;
+use App\Models\FunnelEvent;
+use App\Models\SubjectContextDimension;
 use App\Http\Services\DiagnosticProfileService;
 use App\Http\Services\NextStepService;
 use App\Http\Services\RoadmapService;
+use App\Http\Services\SubjectContextService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class DiagnosticQuizRunner extends Component
 {
+    protected $listeners = ['subject-context-saved' => 'handleContextDeclared'];
+
     public bool $guestMode = false;
     public bool $introShown = false;
     public string $moduleName = '';
 
     public $moduleId;
+    public ?int $subjectId = null;
+    // True while the "tell us how you play" declare-context step is the thing being shown —
+    // folded into the question sequence (see the blade) rather than a separate gated screen, so
+    // it doesn't add friction in front of an already-leaky funnel.
+    public bool $showContextStep = false;
+    // In-memory only for guests — SubjectContextService::declare() requires a real user_id, so a
+    // guest's declaration can't be persisted until they register. Populated by
+    // handleContextDeclared(), read by applyContextRouting() and claimed for real by
+    // RegisteredUserController::claimGuestQuizResults() on signup. Always empty for auth users,
+    // who declare straight to UserSubjectContext via SubjectContextForm.
+    public array $guestDeclaredContext = [];
     public $questions;
     public $currentIndex = 0;
     public $answer = [];
@@ -70,10 +86,11 @@ class DiagnosticQuizRunner extends Component
             // Reload stored profile on page refresh — skipped while a retake is in progress
             $stored = session('guest_quiz_results.' . $this->moduleId);
             if ($stored && isset($stored['diagnostic_profile']) && !$this->retakingDiagnostic) {
-                $this->diagnosticProfile  = $stored['diagnostic_profile'];
-                $this->traitScores        = $stored['trait_scores'] ?? [];
-                $this->surveyAnswers      = $stored['survey_answers'] ?? [];
-                $this->quizFullyComplete  = true;
+                $this->diagnosticProfile    = $stored['diagnostic_profile'];
+                $this->traitScores          = $stored['trait_scores'] ?? [];
+                $this->surveyAnswers        = $stored['survey_answers'] ?? [];
+                $this->guestDeclaredContext = $stored['declared_context'] ?? [];
+                $this->quizFullyComplete    = true;
                 $this->completed          = true;
                 $this->status             = 'completed';
                 $this->introShown         = true;
@@ -82,8 +99,14 @@ class DiagnosticQuizRunner extends Component
             }
 
             $this->proficiency = $module->proficiencies()->first()->name ?? '—';
+            $this->subjectId   = $module->subject_id;
             $this->recordAttemptStarted($module);
-            $this->questions   = $this->loadQuestions($module);
+            $this->showContextStep = $this->shouldShowContextStep($module->subject_id);
+
+            if (!$this->showContextStep) {
+                $this->questions = $this->loadQuestions($module);
+            }
+
             $this->initState();
             return;
         }
@@ -108,6 +131,7 @@ class DiagnosticQuizRunner extends Component
 
         $this->proficiency = $module->proficiencies()->first()->name ?? '—';
         $this->status      = $module->pivot->status ?? 'in_progress';
+        $this->subjectId   = $module->subject_id;
 
         // Reload completed profile on page refresh without re-running AI
         if ($module->pivot->status === 'completed') {
@@ -122,8 +146,80 @@ class DiagnosticQuizRunner extends Component
         }
 
         $this->recordAttemptStarted($module);
-        $this->questions = $this->loadQuestions($module);
+        $this->showContextStep = $this->shouldShowContextStep($module->subject_id);
+
+        if (!$this->showContextStep) {
+            $this->questions = $this->loadQuestions($module);
+        }
+
         $this->initState();
+    }
+
+    /**
+     * Whether to show the "tell us how you play" declare-context step before scenario questions.
+     * False whenever the subject has no seeded context dimensions at all (e.g. Poker), or every
+     * required dimension is already covered — from UserSubjectContext for an auth user (e.g. a
+     * retake, or a prior declaration via the standalone Progress-page form), or from
+     * $guestDeclaredContext for a guest (never persisted mid-quiz, so this is only ever true
+     * again after a fresh mount/retake).
+     */
+    private function shouldShowContextStep(?int $subjectId): bool
+    {
+        if (!$subjectId) {
+            return false;
+        }
+
+        $requiredDimensionIds = SubjectContextDimension::where('subject_id', $subjectId)
+            ->where('required', true)
+            ->pluck('id');
+
+        if ($requiredDimensionIds->isEmpty()) {
+            return false;
+        }
+
+        if ($this->guestMode) {
+            return $requiredDimensionIds->diff(array_keys($this->guestDeclaredContext))->isNotEmpty();
+        }
+
+        return !app(SubjectContextService::class)->hasDeclaredAllRequiredDimensions(auth()->id(), $subjectId);
+    }
+
+    /**
+     * Fired by SubjectContextForm's own subject-context-saved event once the user has declared.
+     * For auth users SubjectContextForm::save() already persisted it — nothing more to write
+     * here. For a guest (SubjectContextForm::guestMode = true), the event carries the raw
+     * selections instead, since there's no user_id yet to persist against — captured in-memory
+     * and later written into the guest_quiz_results session payload by completeModule(), then
+     * claimed for real by RegisteredUserController::claimGuestQuizResults() on signup.
+     * Loading questions only now, not at mount, means Phase 3's context routing sees the
+     * declaration that was just made, not stale/absent state from before this step ran.
+     */
+    public function handleContextDeclared($selections = null): void
+    {
+        $this->showContextStep = false;
+
+        // Specifically the diagnostic's own declare step, not every SubjectContextForm save
+        // (e.g. edits from the standalone Progress-page form) — this funnel event exists to
+        // answer "does declaring context during the diagnostic correlate with completing it,"
+        // see Admin\DiagnosticStats.
+        FunnelEvent::log('context_declared', session()->getId(), (int) $this->moduleId, auth()->id());
+
+        if ($this->guestMode) {
+            $this->guestDeclaredContext = collect($selections ?? [])
+                ->filter()
+                ->map(fn ($optionId) => (int) $optionId)
+                ->all();
+
+            $module = Module::with('questions')->find($this->moduleId);
+        } else {
+            $module = auth()->user()->modules()->with('questions')->find($this->moduleId);
+        }
+
+        if (!$module) {
+            return;
+        }
+
+        $this->questions = $this->loadQuestions($module);
     }
 
     public function submit($params = []): void
@@ -353,6 +449,7 @@ class DiagnosticQuizRunner extends Component
     private function loadQuestions($module): \Illuminate\Support\Collection
     {
         $questions = $module->questions()
+            ->with('contextOptions')
             ->get()
             ->transform(function ($q) {
                 $q         = clone $q;
@@ -360,10 +457,77 @@ class DiagnosticQuizRunner extends Component
                 return $q;
             });
 
+        $questions = $this->applyContextRouting($questions, $module->subject_id);
+
         $surveyQuestions     = $questions->where('type', 'survey_mcq')->shuffle()->values();
         $diagnosticQuestions = $questions->where('type', '!=', 'survey_mcq')->shuffle()->values();
 
         return $this->interleaveSurveyQuestions($surveyQuestions, $diagnosticQuestions);
+    }
+
+    /**
+     * Two distinct context behaviours, both driven by the same question_context_option tags:
+     *
+     * 1. Substitution — for a root diagnostic_mcq question with tagged variants (diagnostic_variant_of
+     *    pointing back to it), the most context-specific eligible variant replaces the root, falling
+     *    back to the generic root when nothing matches (or nothing was declared) — never an addition,
+     *    so trait coverage stays constant regardless of how much variant content exists yet.
+     * 2. Eligibility — any root question (diagnostic_mcq or survey_mcq) that is *itself* tagged is
+     *    dropped entirely unless a declared option matches — e.g. a Warrior-only survey question
+     *    never appears for a non-Warrior. An untagged root is always eligible (the same "no tags =
+     *    universal" convention already used for module_context_option).
+     *
+     * Mirrors SubjectContextService::isContextEligible()/contextSpecificity()'s logic at Question
+     * scale rather than sharing it directly — see the "three near-copies" note in the
+     * implementation plan for why that's deliberate for now.
+     */
+    private function applyContextRouting(\Illuminate\Support\Collection $questions, ?int $subjectId): \Illuminate\Support\Collection
+    {
+        if (!$subjectId) {
+            return $questions;
+        }
+
+        $userId = $this->guestMode ? null : auth()->id();
+
+        $declaredOptionIds = $userId
+            ? app(SubjectContextService::class)->declaredOptionIds($userId, $subjectId)
+            : collect($this->guestDeclaredContext)->values();
+
+        $roots    = $questions->whereNull('diagnostic_variant_of')->values();
+        $variants = $questions->whereNotNull('diagnostic_variant_of')->groupBy('diagnostic_variant_of');
+
+        // Eligibility first — a tagged root (e.g. the Warrior-only comp survey question) that
+        // doesn't match declared context is dropped before substitution ever considers it.
+        $roots = $roots->filter(function ($root) use ($declaredOptionIds) {
+            $tagIds = $root->contextOptions->pluck('id');
+            return $tagIds->isEmpty() || $tagIds->intersect($declaredOptionIds)->isNotEmpty();
+        })->values();
+
+        if ($declaredOptionIds->isEmpty()) {
+            return $roots;
+        }
+
+        return $roots->map(function ($root) use ($variants, $declaredOptionIds) {
+            $candidates = $variants->get($root->id, collect());
+
+            if ($candidates->isEmpty()) {
+                return $root;
+            }
+
+            $eligible = $candidates->filter(
+                fn ($variant) => $variant->contextOptions->pluck('id')->intersect($declaredOptionIds)->isNotEmpty()
+            );
+
+            if ($eligible->isEmpty()) {
+                return $root;
+            }
+
+            return $eligible->sortByDesc(function ($variant) use ($declaredOptionIds) {
+                return $variant->contextOptions
+                    ->filter(fn ($option) => $declaredOptionIds->contains($option->id))
+                    ->max(fn ($option) => $option->depth());
+            })->first();
+        })->values();
     }
 
     /**
@@ -483,6 +647,7 @@ class DiagnosticQuizRunner extends Component
                 'trait_scores'       => $this->traitScores,
                 'survey_answers'     => $this->surveyAnswers,
                 'question_evidence'  => $this->guestEvidenceLog,
+                'declared_context'   => $this->guestDeclaredContext,
                 'diagnostic_profile' => $this->diagnosticProfile,
                 'completed_at'       => now()->toIso8601String(),
             ]]);

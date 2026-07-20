@@ -64,4 +64,9 @@ class SubjectContextOption extends Model
     {
         return $this->belongsToMany(Module::class, 'module_context_option');
     }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, 'question_context_option');
+    }
 }
