@@ -73,6 +73,12 @@ class DiagnosticQuizRunner extends Component
     public function startAssessment(): void
     {
         $this->introShown = true;
+
+        // Distinguishes "never clicked Start Assessment" from "clicked it, then abandoned
+        // before answering Q1" — both previously looked identical in DiagnosticAttempt
+        // (last_question_index stays 0 either way, since that column only advances on a
+        // successful submit). See Admin\DiagnosticStats::getDropOffProperty().
+        FunnelEvent::log('assessment_started', session()->getId(), (int) $this->moduleId, auth()->id());
     }
 
     public function startQuizInternal(): void

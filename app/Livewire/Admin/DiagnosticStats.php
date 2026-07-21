@@ -126,21 +126,39 @@ class DiagnosticStats extends Component
      * updated on every question transition by DiagnosticQuizRunner::recordAttemptProgress() —
      * so an abandoned attempt (guest or auth) shows exactly which question it stalled on,
      * not just that it never finished.
+     *
+     * last_question_index stays 0 for two genuinely different situations: never clicked
+     * "Start Assessment" at all, vs. clicked it and abandoned before submitting Q1 — both used
+     * to be indistinguishable. Split using the assessment_started funnel event
+     * (DiagnosticQuizRunner::startAssessment()), matched to each attempt the same
+     * user_id/guest_session_id + module_id identity shape getContextCompletionProperty() below
+     * already uses.
      */
     public function getDropOffProperty(): \Illuminate\Support\Collection
     {
+        $startedKeys = FunnelEvent::where('event', 'assessment_started')
+            ->get(['module_id', 'user_id', 'guest_session_id'])
+            ->map(fn ($e) => $e->user_id ? "u:{$e->user_id}:{$e->module_id}" : "s:{$e->guest_session_id}:{$e->module_id}")
+            ->unique();
+
         return DiagnosticAttempt::with('subject')
             ->whereNull('completed_at')
             ->whereNotNull('last_question_index')
             ->whereNotNull('total_questions')
             ->where('total_questions', '>', 0)
-            ->get(['subject_id', 'last_question_index', 'total_questions'])
+            ->get(['subject_id', 'module_id', 'user_id', 'session_id', 'last_question_index', 'total_questions'])
             ->groupBy('subject_id')
-            ->map(function ($group) {
+            ->map(function ($group) use ($startedKeys) {
                 $byQuestion = $group
                     ->groupBy(fn ($a) => $a->last_question_index + 1) // 1-based, human-readable
                     ->map->count()
                     ->sortKeys();
+
+                $stuckOnQ1 = $group->filter(fn ($a) => $a->last_question_index === 0);
+                $neverStarted = $stuckOnQ1->filter(function ($a) use ($startedKeys) {
+                    $key = $a->user_id ? "u:{$a->user_id}:{$a->module_id}" : "s:{$a->session_id}:{$a->module_id}";
+                    return !$startedKeys->contains($key);
+                })->count();
 
                 return [
                     'subject'         => $group->first()->subject?->name ?? '—',
@@ -149,6 +167,8 @@ class DiagnosticStats extends Component
                     'byQuestion'      => $byQuestion,
                     'worstQuestion'   => $byQuestion->sortDesc()->keys()->first(),
                     'worstCount'      => $byQuestion->max(),
+                    'neverStarted'    => $neverStarted,
+                    'abandonedOnQ1'   => $stuckOnQ1->count() - $neverStarted,
                 ];
             })
             ->sortByDesc('incomplete')

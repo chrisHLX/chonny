@@ -168,6 +168,14 @@
                                     @endif
                                 </p>
                             </div>
+                            @if(($row['neverStarted'] ?? 0) > 0 || ($row['abandonedOnQ1'] ?? 0) > 0)
+                                <p class="text-[11px] text-ink-subtle mb-3">
+                                    Of those stuck on Q1:
+                                    <span class="text-ink-muted">{{ $row['neverStarted'] }} never clicked "Start Assessment"</span>
+                                    ·
+                                    <span class="text-ink-muted">{{ $row['abandonedOnQ1'] }} clicked it, then left before answering Q1</span>
+                                </p>
+                            @endif
                             <div class="flex items-end gap-1 h-16">
                                 @for($qn = 1; $qn <= $row['total_questions']; $qn++)
                                     @php
