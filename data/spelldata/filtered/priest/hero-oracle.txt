@@ -1,0 +1,331 @@
+# Priest — Oracle Hero Talents
+# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 16 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Prophet's Will (id=433905) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1123525)  : Apply Aura (6) | Modify Healing Taken% from Caster's Spells (283)
+                   Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Affected Spells: Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Shadow Mend (186263), Ultimate Serenity (1250581), Benediction (1262763)
+                   Family Flags: 10, 11, 12
+Description      : $?a137032[Your Flash Heal and Power Word: Shield are $s1%][Your Flash Heal and Holy Word: Serenity are $s1%] more effective when cast on yourself.
+
+Name             : Preventive Measures (id=440662) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1134692)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Prayer of Mending (33110)
+                   Family Flags: 117
+#2 (id=1134693)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
+                   Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.834 | Misc Value: 24 | Target: Self (1)
+                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
+                   Family Flags: 0
+#3 (id=1170141)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Smite (585), Penance (47666), Holy Nova (132157), Penance (186724), Dark Reprimand (373130), Ultimate Penitence (421543), Smite (425529), Void Blast (450215), Penance (1232571), Dark Reprimand (1232592)
+                   Family Flags: 7, 47, 49
+#4 (id=1170142)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 40 | Scaled Value: 40 | PvP Coefficient: 0.375 | Target: Self (1)
+                   Affected Spells: Smite (585), Holy Fire (14914), Holy Nova (132157), Encroaching Shadows (204215), Smite (425529), Void Blast (450215)
+                   Family Flags: 7, 20, 49
+#5 (id=1170143)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 40 | Scaled Value: 40 | PvP Coefficient: 0.375 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Holy Fire (14914), Encroaching Shadows (204215)
+                   Family Flags: 20
+Description      : $?a137032[Power Word: Shield absorbs $s2% additional damage.
+
+Name             : Save the Day (id=440669) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1134708)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : For $458650d after casting Leap of Faith you may cast it a second time for free, ignoring its cooldown.
+
+Name             : Divine Feathers (id=440670) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1134709)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1164733)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Misc Value 2: 3799 (Label) | Target: Self (1)
+                   Affected Spells (Label): Angelic Feather (121557)
+Description      : Your Angelic Feathers increase movement speed by an additional $s2%.
+
+Name             : Preemptive Care (id=440671) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+                 : 3985
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1134710)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Renew (139)
+                   Family Flags: 6
+#2 (id=1134711)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Renew (139)
+                   Family Flags: 6
+#3 (id=1176321)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 3 (23)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 23 | Target: Self (1)
+                   Family Flags: 91
+#4 (id=1176322)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 3 | Misc Value 2: 4263 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lasting Words (471504)
+#5 (id=1197410)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 12 | Misc Value 2: 4263 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lasting Words (471504)
+Description      : $?a137032[Increases the duration of Atonement by ${$s1/1000} sec.][Increases the duration of your Renew by $s2%.]
+
+Name             : Waste No Time (id=440681) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1134726)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -1500 | Scaled Value: -1500 | Misc Value: 1181 (Category) | Target: Self (1)
+                   Affected Spells (Category): Prayer of Mending (33076)
+#2 (id=1248561)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -1500 | Scaled Value: -1500 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
+                   Family Flags: 0
+Description      : Reduces the cooldown of $?a137032[Power Word: Shield by ${$s2/-1000}.1 sec.][Prayer of Mending by ${$s1/-1000}.1 sec.]
+
+Name             : Foreseen Circumstances (id=440738) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=3, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1134825)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Pain Suppression (33206)
+                   Family Flags: 60
+#2 (id=1134826)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Guardian Spirit (47788)
+                   Family Flags: 75
+Description      : $?a137032[Pain Suppression reduces damage taken by an additional $s1%.][Guardian Spirit lasts an additional ${$s2/1000} sec.]
+
+Name             : Twinsight (id=440742) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 4233: Phantom Reach (459559 effect#10)
+Proc Chance      : 101%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1134833)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | PvP Coefficient: 0.5 | Target: Self (1)
+#2 (id=1190019)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 40 yards | Target: at Self (18) -> Summoner in Area (32)
+#3 (id=1190020)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : $?a137031[An additional $s1 stacks of Prayer of Mending is placed on a second ally within $A2 yards when casting Prayer of Mending.][$s3 additional Penance bolts are fired at an enemy within $A2 yards when healing an ally with Penance, or fired at an ally within $A2 yards when damaging an enemy with Penance.]
+
+Name             : Assured Safety (id=440766) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1134870)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1134871)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : $?a137032[Power Word: Shield casts apply $s1 $Lstack:stacks; of Prayer of Mending to your target.
+
+Name             : Desperate Measures (id=458718) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1164916)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10000 | Scaled Value: 10000 | Target: Self (1)
+#2 (id=1164932)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 3801 (Label) | Target: Self (1)
+                   Affected Spells (Label): Angelic Bulwark (108945)
+Description      : Desperate Prayer lasts an additional ${$s1/1000} sec.
+
+Name             : Prompt Prognosis (id=1246799) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 295
+                 : 5061
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Suppress Caster Procs (112), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1248560)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 125 | Scaled Value: 125 | Target: Self (1)
+Description      : $?a137032[The first bolt of each Penance cast damages or heals for $s1% more.][$@spelldesc1246798]
+
+Name             : Piety (id=1246802) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+                 : 6460: Discipline Priest (137032 effect#27)
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal, Helpful Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1248567)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Modified By: Discipline Priest (137032 effect#27)
+#2 (id=1248568)  : Apply Aura (6) | Periodic Dummy (226): every 0.5 seconds
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : $s1% of overhealing done is redistributed to up to $s2 nearby injured allies.
+
+Name             : Guiding Light (id=1248423) [Spell Family (6), Passive] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1251342)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1230 (Category) | Target: Self (1)
+                   Affected Spells (Category): Penance (47540), Dark Reprimand (400169)
+#2 (id=1251343)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1181 (Category) | Target: Self (1)
+                   Affected Spells (Category): Prayer of Mending (33076)
+Description      : $?a137032[Penance][Prayer of Mending] gains an additional charge.
+
+Name             : Words of the Wise (id=1272352) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1285549)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Holy Word: Serenity (2050), Holy Word: Sanctify (34861), Ultimate Serenity (1250581)
+                   Family Flags: 10, 28
+#2 (id=1285550)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Flash Heal (2061), Shadow Mend (186263), Power Word: Radiance (194509), Plea (200829), Benediction (1262763)
+                   Family Flags: 8, 11, 22
+Description      : $?a137031&?a1246517[Holy Word: Serenity healing increased by $s1%.]?c2[Holy Word: Serenity and Holy Word: Sanctify healing increased by $s1%.][Flash Heal, Plea, and Power Word: Radiance healing increased by $s2%.]
+
+Name             : Prophet's Insight (id=1272359) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1285557)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1673 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Word: Serenity (2050)
+#2 (id=1285558)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 2075 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Word: Sanctify (34861)
+#3 (id=1285564)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Holy Word: Chastise (88625), Holy Word: Chastise (200196), Holy Word: Chastise (200200)
+                   Family Flags: 69
+#4 (id=1285565)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : $?c2[Reduces the cooldown of your Holy Words by ${$s1/-1000} sec.][Atonement healing from Holy spells is increased by $s4%.]
+
+Name             : Unfolding Vision (id=1272363) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1285568)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1285569)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : $?c2[When Prayer of Mending expires without healing, it jumps to a nearby injured ally and loses $s1 $Lstack:stacks; instead.][
+When Power Word: Shield or Void Shield expires with absorption remaining, it jumps to a nearby injured ally and loses $s2% of its maximum absorb instead.]

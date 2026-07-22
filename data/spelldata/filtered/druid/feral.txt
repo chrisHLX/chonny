@@ -1,0 +1,980 @@
+# Druid — Feral Spec Talents
+# Extracted verbatim from druid.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 46 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Tiger's Fury (id=5217) [Spell Family (7)] 
+Talent Entry     : Feral [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Duration         : 10 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Affecting Spells : Wildcat Celerity (184877 effect#1), Starfall (191034 effect#2), Predator (202021 effect#1), Jungle Fury (274425 effect#2), Carnivorous Instinct (390902 effects: #1, #2, #3), Raging Fury (391078 effect#1), Tiger's Tenacity (391872 effect#3)
+Family Flags     : 75
+Attributes       : Is Ability (4), Do Not Sheath (18), Allow While Stealthed (37), No Threat (42), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Do Not Enforce Shapeshift Requirements (434)
+Effects          :
+#1 (id=1854)     : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274838), Primal Wrath (285381), Rampant Ferocity (391710), Thrash (405233), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Frantic Frenzy (1244079), Chomp (1244258), Unseen Slash (1263890), Unseen Swipe (1263908), Twin Claw (1271636), Unseen Slash (1271863)
+                   Family Flags: 98
+                   Modified By: Carnivorous Instinct (390902 effect#1)
+#2 (id=117350)   : Energize Power (30)
+                   Base Value: 50 | Scaled Value: 50 | Resource: energy | Target: Self (1)
+#3 (id=479758)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274838), Primal Wrath (285381), Rampant Ferocity (391710), Thrash (405233), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Frantic Frenzy (1244079), Chomp (1244258), Unseen Slash (1263890), Unseen Swipe (1263908), Twin Claw (1271636), Unseen Slash (1271863)
+                   Family Flags: 98
+                   Modified By: Carnivorous Instinct (390902 effect#2), Tiger's Tenacity (391872 effect#3)
+#4 (id=479881)   : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Carnivorous Instinct (390902 effect#3)
+Description      : Instantly restores $s2 Energy, and increases the damage of all your attacks by $s1% for their full duration. Lasts $d.
+Tooltip          : Attacks deal $s1% additional damage for their full duration.
+
+Name             : Omen of Clarity (id=16864) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee
+Affecting Spells : Starfall (191034 effect#2), Moment of Clarity (236068 effects: #1, #4), Flash of Clarity (392220 effect#1), Tranquil Mind (403521 effect#1), Druid Feral 12.0 Class Set 4pc (1264813 effect#3)
+Family Flags     : 114
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=8554)     : Apply Aura (6) | Proc Trigger Spell (42): Clearcasting
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Trigger Spell: 135700 | Target: Self (1)
+Description      : Your auto attacks have a $?s236068[high ][]chance to cause a Clearcasting state, making your next Shred or $?s202028[Brutal Slash][Swipe] cost no Energy$?s236068[ and deal $236068s4% more damage][].$?s236068[
+
+Name             : Infected Wounds (id=48484) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Instant Target Procs (115), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=40659)    : Apply Aura (6) | Proc Trigger Spell (42): Infected Wounds
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Trigger Spell: 58180 | Target: Self (1)
+#2 (id=1028325)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Rake (1822), Rake (155722)
+                   Family Flags: 12
+#3 (id=1028326)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rake (1822), Rake (155722)
+                   Family Flags: 12
+Description      : Rake damage increased by $s2%, and Rake causes an Infected Wound in the target, reducing the target's movement speed by $58180s1% for $58180d.
+
+Name             : Survival Instincts (id=61336) [Spell Family (7)] 
+Talent Entry     : Feral [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+                 : Guardian [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Spell Level      : 32
+Duration         : 6 seconds
+Cooldown         : 6 seconds
+Charges          : 1 (180 seconds cooldown)
+Category         : 1469 (Type 0x1): Guardian Druid (137010 effect#9), Survival of the Fittest (203965 effect#2), Dual Determination (208228 effect#1), Dual Determination (208228 effect#2), Strive for Perfection (296320 effect#7), Strive for Perfection (296320 effect#8), Strive for Perfection (299367 effect#7), Strive for Perfection (299369 effect#7)
+Category Flags   : Reset Charges on Encounter End (4), Reset Coooldown on Encounter End (5)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 770
+                 : 930
+Affecting Spells : Starfall (191034 effect#2), Dual Determination (208228 effect#3), Oakskin (449191 effect#1)
+Family Flags     : 71
+Attributes       : Is Ability (4), No Threat (42), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=55176)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 14 | Target: Self (1)
+                   Modified By: Oakskin (449191 effect#1)
+#2 (id=334306)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 14 | Target: Self (1)
+                   Modified By: Dual Determination (208228 effect#3)
+Description      : Reduces all damage you take by $50322s1% for $50322d.
+Tooltip          : Damage taken reduced by $50322s1%.
+
+Name             : Incarnation: Avatar of Ashamane (desc=Shapeshift) (id=102543) [Spell Family (7)] 
+Talent Entry     : Feral [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=100, replace="Berserk" (id=106951)]
+Class            : Druid
+School           : Physical
+Spell Type       : Melee
+Spell Level      : 1
+Duration         : 20 seconds
+Cooldown         : 180 seconds
+Category         : 1333 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 1387
+Category Cooldown: 180 seconds
+Proc Chance      : 101%
+Affecting Spells : Metamorphosis Rune (23724 effect#1), Cheaper Druid Shapeshifting (38314 effect#1), Incarnation (117679 effect#1), Druid (137009 effect#4), Wildcat Celerity (184877 effect#1), Starfall (191034 effect#2), Berserk (343223 effect#1), Orbital Strike (390378 effect#2), Berserk: Heart of the Lion (391174 effect#1), Whirling Stars (468743 effects: #1, #4), Ashamane's Guidance (1244546 effect#1)
+Family Flags     : 31, 43
+Attributes       : Is Ability (4), Do Not Sheath (18), Allow While Stealthed (37), No Threat (42), Immunity to Hostile & Friendly Effects (48), Allow Entering Arena (149), Aura Points On Client (268), Spellcast Override In Spellbook (310), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Allow Aura On Level Scale (444), Important Spell (491)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=111355)   : Apply Aura (6) | Periodic Trigger Spell (23): Berserk every 1.5 seconds
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 343216 | Target: Self (1)
+                   Modified By: Berserk (343223 effect#1), Whirling Stars (468743 effect#4)
+#2 (id=310506)   : Trigger Spell (64): Incarnation: Avatar of Ashamane
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 252071 | Target: Self (1)
+#3 (id=471804)   : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -25 | Scaled Value: -25 | SP Coefficient: 0.25 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Infected Wounds (58180), Thrash (77758), Stampeding Roar (77761), Stampeding Roar (77764), Skull Bash (93985), Swipe (106785), Thrash (106830), Skull Bash (106839), Ysera's Gift (145108), Ysera's Gift (145109), Ysera's Gift (145110), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274837), Feral Frenzy (274838), Primal Wrath (285381), Infected Wounds (354571), Thrash (405233), Ravage (441591), Frantic Frenzy (1243807), Frantic Frenzy (1244079), Frantic Frenzy (1278969)
+                   Family Flags: 12, 15, 25, 39, 60, 64, 74, 82, 85, 86, 87, 93, 94, 99, 108, 120
+#4 (id=1149781)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.6667 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274838), Primal Wrath (285381), Rampant Ferocity (391710), Thrash (405233), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Frantic Frenzy (1244079), Chomp (1244258), Unseen Slash (1263890), Unseen Swipe (1263908), Twin Claw (1271636), Unseen Slash (1271863)
+                   Family Flags: 98
+#5 (id=1149782)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.6667 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274838), Primal Wrath (285381), Rampant Ferocity (391710), Thrash (405233), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Frantic Frenzy (1244079), Chomp (1244258), Unseen Slash (1263890), Unseen Swipe (1263908), Twin Claw (1271636), Unseen Slash (1271863)
+                   Family Flags: 98
+#6 (id=1149783)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.6667 | Target: Self (1)
+Description      : An improved Cat Form that grants all of your known Berserk effects and lasts $d. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation:
+
+Name             : Lunar Inspiration (id=155580) [Passive] 
+Talent Entry     : Feral [tree=spec, row=10, col=2, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 52
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=216224)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Moonfire is usable in Cat Form, costs $155625c energy, and generates $155625s3 combo $lpoint:points;.
+
+Name             : Soul of the Forest (id=158476) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=7, col=7, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=221437)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=464157)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Ferocious Bite (22568), Maim (22570), Primal Wrath (285381), Ravage (441591)
+                   Family Flags: 39, 93, 108
+#3 (id=464158)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rip (1079), Primal Wrath (285381)
+                   Family Flags: 85, 93
+Description      : Your finishing moves grant $s1 Energy per combo point spent and deal $s2% increased damage.
+
+Name             : Predator (id=202021) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 52
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=297711)   : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Tiger's Fury (5217)
+                   Family Flags: 75
+#2 (id=1149399)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Predator
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 449864 | Target: Self (1)
+Description      : Tiger's Fury lasts ${$s1/1000} additional seconds.
+
+Name             : Sabertooth (id=202031) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 117
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=297731)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.67 | Target: Self (1)
+                   Affected Spells: Ferocious Bite (22568), Ravage (441591)
+                   Family Flags: 108
+#2 (id=753677)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | PvP Coefficient: 0.6 | Target: Self (1)
+Description      : Ferocious Bite deals $s1% increased damage.
+
+Name             : Merciless Claws (id=231063) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=348405)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 37 | Target: Self (1)
+#2 (id=1032874)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 37 | Target: Self (1)
+Description      : Shred deals $s2% increased damage and $?s202028[Brutal Slash][Swipe] deals $s1% increased damage against bleeding targets.
+
+Name             : Moment of Clarity (id=236068) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 52
+                 : 292
+                 : 3432
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=356850)   : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Omen of Clarity (16864), Clearcasting (16870), Clearcasting (135700)
+                   Family Flags: 114
+#2 (id=356851)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 26 | Target: Self (1)
+#3 (id=356852)   : Apply Aura (6) | Increase Resource (35)
+                   Base Value: 0 | Scaled Value: 0 | Resource: energy | Target: Self (1)
+#4 (id=356853)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Omen of Clarity (16864), Clearcasting (16870), Clearcasting (135700)
+                   Family Flags: 114
+Description      : Omen of Clarity now triggers $s2% more often, can accumulate up to ${$s135700u+$s1} charges, and increases the damage of your next Shred or $?s202028[Brutal Slash][Swipe] by $s4%.
+
+Name             : Feral Frenzy (id=274837) [Spell Family (7)] 
+Talent Entry     : Feral [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : Melee
+Resource         : 25 Energy (3) (id=191704)
+Range            : 5 yards
+GCD              : 1 seconds
+Duration         : 1 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Stance Mask      : 0x00000001
+Affecting Spells : Cat Form (768 effect#8), Mastery: Razor Claws (77493 effects: #1, #2), Incarnation: Avatar of Ashamane (102543 effect#3), Starfall (191034 effect#2), Untamed Ferocity (273338 effect#2), Adaptive Swarm (325733 effect#2), Sabertooth (391722 effect#1), Druid Feral 10.2 Class Set 4pc (422748 effect#1), Dreadful Wound (441812 effect#3), Tear Down the Mighty (441846 effects: #2, #3), Predator (449864 effect#1), Dreadful Wound (451177 effect#3), Big Winner!!! (1217245 effect#1), Focused Frenzy (1244544 effects: #1, #2, #3), Lacerating Claws (1244632 effects: #1, #2), Patient Custodian (1270592 effect#1)
+Family Flags     : 94
+Attributes       : Initiates Combat (Enables Auto-Attack) (41), No Aura Icon (60), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=727432)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Target: Targeted Enemy (6)
+#2 (id=727433)   : Apply Aura (6) | Periodic Dummy (226): every 0.2 seconds
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Unleash a furious frenzy, clawing your target $m2 times for ${$274838s1*$m2} Physical damage and an additional ${$m2*$274838s3*$274838d/$274838t3} Bleed damage over $274838d.
+
+Name             : Primal Wrath (id=285381) [Spell Family (7)] 
+Talent Entry     : Feral [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : Melee
+Resource         : 25 Energy (3) (id=191997)
+Resource         : 1 - 5 Combo Points (4) (id=191998)
+Range            : 8 yards
+GCD              : 1 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Stance Mask      : 0x00000001
+Affecting Spells : Cat Form (768 effect#10), Rip (1079 effect#4), Tiger's Fury (5217 effects: #1, #3), Berserk (50334 effects: #6, #7), Mastery: Razor Claws (77493 effects: #1, #2), Incarnation: Avatar of Ashamane (102543 effects: #3, #4, #5), Incarnation: Guardian of Ursoc (102558 effects: #6, #7), Cat Form (106840 effects: #3, #4), Berserk (106951 effects: #3, #4), Heart of the Wild (108292 effects: #1, #2), Killer Instinct (108299 effects: #1, #2), Feral Druid (137011 effects: #1, #2), Rake (155722 effect#2), Soul of the Forest (158476 effects: #2, #3), Starfall (191034 effect#2), Thrash (192090 effect#2), Master Shapeshifter (290640 effect#1), Call of the Elder Druid (319454 effects: #4, #5), Ravenous Frenzy (323546 effects: #1, #2, #6, #7), Convoke the Spirits (323764 effects: #3, #4), Circle of Life and Death (338657 effects: #1, #3, #5), Ravenous Frenzy (355315 effects: #1, #4), Ephemeral Mote (365117 effect#1), Convoke the Spirits (391528 effects: #3, #4), Veinripper (391978 effect#2), Circle of Life and Death (400320 effects: #1, #3, #5), Initial Druid (417382 effects: #1, #2), Smoldering Frenzy (422751 effects: #1, #2), Liveliness (426702 effects: #1, #3), Root Network (439887 effects: #1, #2), Bestial Strength (441841 effect#2), Coiled to Spring (449538 effect#1), Fell Prey (454957 effect#1), Guardian's Tenacity (455011 effects: #1, #2), Circle of the Wild (474530 effects: #1, #2, #3, #4), Winning Streak! (1217236 effects: #1, #2), Luck of the Draw! (1218553 effects: #1, #2), Hunger for Battle (1244553 effects: #1, #2), Feral Druid (1256992 effects: #1, #2), Unseen Predator's Craving (1263939 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 2pc (1283647 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 4pc (1283648 effects: #1, #2)
+Family Flags     : 93, 98
+Attributes       : Is Ability (4), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Spell Haste Affects Periodic (173), Treat as Area Effect (175), Taps immediately (215), Periodic Can Crit (265), Aura Points On Client (268), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=747140)   : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 0.155 | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
+#2 (id=873122)   : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2
+                   Modified By: Circle of Life and Death (338657 effect#5), Veinripper (391978 effect#2), Circle of Life and Death (400320 effect#5), Liveliness (426702 effect#3)
+Description      : Finishing move that deals instant damage and applies Rip to all enemies within $A1 yards. Lasts longer per combo point.
+
+Name             : Berserk (id=343223) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=6, col=4, max_rank=1, req_points=8, override="Berserk" (id=106951)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Hide Passive From Tooltip (451)
+Effects          :
+#1 (id=844855)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Incarnation: Tree of Life (33891), Incarnation: Avatar of Ashamane (102543), Incarnation: Guardian of Ursoc (102558), Incarnation: Chosen of Elune (102560), Berserk (106951), Berserk (279526), Incarnation: Chosen of Elune (390414), Ancient of Lore (473909)
+                   Family Flags: 43, 70
+Description      : $@spelldesc106951
+
+Name             : Tireless Energy (id=383352) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=4, col=4, max_rank=2, req_points=0]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=set, values=(8, 15)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3431
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1015211)  : Apply Aura (6) | Increase Resource (35)
+                   Base Value: 20 | Scaled Value: 20 | Resource: energy | Target: Self (1)
+#2 (id=1027913)  : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 5 | Scaled Value: 5 | Resource: energy | Target: Self (1)
+Description      : Maximum Energy increased by $s1 and Energy regeneration increased by $s2%.
+
+Name             : Taste for Blood (id=384665) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017416)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 12 | Scaled Value: 12 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Affected Spells: Ferocious Bite (22568), Ravage (441591)
+                   Family Flags: 108
+#2 (id=1149687)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Ferocious Bite deals $s1% increased damage and an additional $s2% during Tiger's Fury.
+
+Name             : Sudden Ambush (id=384667) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1017419)  : Apply Aura (6) | Proc Trigger Spell (42): Sudden Ambush
+                   Base Value: 6 | Scaled Value: 6 | Trigger Spell: 1244483 | Target: Self (1)
+Description      : Finishing moves have a $s1% chance per combo point spent to increase the direct damage of your next Rake, Shred, or Swipe by $1244483s2% and make it critically strike. 
+
+Name             : Pouncing Strikes (id=390772) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=4, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1027835)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0
+Description      : While stealthed, Rake will also stun the target for $163505d, and deal $1822s4% increased damage for its full duration.
+
+Name             : Wild Slashes (id=390864) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1027985)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Affected Spells: Swipe (106785), Brutal Slash (202028), Swipe (213771)
+                   Family Flags: 52, 74, 99
+Description      : Swipe damage is increased by $s1%.
+
+Name             : Carnivorous Instinct (id=390902) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=8, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028046)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Tiger's Fury (5217)
+                   Family Flags: 75
+#2 (id=1028047)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Tiger's Fury (5217)
+                   Family Flags: 75
+#3 (id=1028048)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Tiger's Fury (5217)
+                   Family Flags: 75
+Description      : Tiger's Fury's damage bonus is increased by $s1%.
+
+Name             : Dreadful Bleeding (id=391045) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028301)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Rip (1079)
+                   Family Flags: 85
+#2 (id=1028302)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rip (1079)
+                   Family Flags: 85
+Description      : Rip damage increased by $s1%.
+
+Name             : Raging Fury (id=391078) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=7, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3434
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1028359)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Tiger's Fury (5217)
+                   Family Flags: 75
+#2 (id=1149671)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Tiger's Fury lasts ${$s1/1000} additional seconds.
+
+Name             : Berserk: Heart of the Lion (id=391174) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028503)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Incarnation: Tree of Life (33891), Incarnation: Avatar of Ashamane (102543), Incarnation: Guardian of Ursoc (102558), Incarnation: Chosen of Elune (102560), Berserk (106951), Berserk (279526), Incarnation: Chosen of Elune (390414), Ancient of Lore (473909)
+                   Family Flags: 43, 70
+Description      : Reduces the cooldown of $?s102543[Incarnation: Avatar of Ashamane][Berserk] by ${$s1/-1000} sec.
+
+Name             : Rip and Tear (id=391347) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=9, col=7, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1028809)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Applying Rip to a target also applies a Tear that deals $s1% of the new Rip's damage over $391356d.
+
+Name             : Convoke the Spirits (id=391528) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
+                 : Feral [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=200]
+                 : Guardian [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=1]
+                 : Balance [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Spell Level      : 48
+GCD              : 1.5 seconds
+Duration         : 4 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Stacks           : 99 maximum
+Proc Chance      : 101%
+Stance Mask      : 0x40000011
+Affecting Spells : Starfall (191034 effect#2), Celestial Spirits (354118 effects: #2, #3, #4), Ashamane's Guidance (391538 effects: #1, #2, #3), Cenarius' Guidance (393374 effects: #1, #2, #3), Ursoc's Guidance (393414 effects: #1, #2, #3), Elune's Guidance (393991 effects: #1, #2, #3), Astral Insight (429536 effects: #1, #2)
+Family Flags     : 16
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Allow While Not Shapeshifted (caster form) (83), Not In Spellbook Until Learned (269), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Sheathing (10), Interacting (11), Looting (12), Attacking (13)
+Effects          :
+#1 (id=1029094)  : Apply Aura (6) | Periodic Dummy (226): every 0.25 seconds
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1029095)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 16 | Scaled Value: 16 | Target: Self (1)
+                   Modified By: Celestial Spirits (354118 effect#2), Ashamane's Guidance (391538 effect#1), Cenarius' Guidance (393374 effect#1), Ursoc's Guidance (393414 effect#1), Elune's Guidance (393991 effect#1), Astral Insight (429536 effect#2)
+#3 (id=1029096)  : Apply Party Aura (35) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Maul (6807), Regrowth (8936), Swiftmend (18562), Ferocious Bite (22568), Maim (22570), Lifebloom (33763), Lifebloom (33778), Mangle (33917), Wild Growth (48438), Thrash (77758), Starsurge (78674), Efflorescence (81269), Fungal Growth (81281), Wild Mushroom (88751), Cenarion Ward (102352), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Rejuvenation (Germination) (155777), Tranquility (157982), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Lifebloom (188550), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Cultivation (200389), Brutal Slash (202028), Stellar Flare (202347), Shooting Stars (202497), Reactive Resin (203406), Brambles (203958), Fury of Elune (211545), Brambles (213709), Swipe (213771), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Grove Tending (279793), Primal Wrath (285381), Early Harvest (287255), Thorns (305496), Adaptive Swarm (325733), Adaptive Swarm (325748), Star Burst (356474), Orbital Strike (361237), Architect's Aligner (363789), Renewing Bloom (364686), Fury of Elune (365640), Ephemeral Profusion (367330), Rampant Ferocity (391710), Embrace of the Dream (392147), Verdancy (392329), Goldrinn's Fang (394047), Fury of Elune (394111), Raze (400254), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Nourish (422090), Nourish (423618), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Dream Bloom (434141), Symbiotic Blooms (439530), Bloodseeker Vines (439531), Bursting Growth (440121), Bursting Growth (440122), Ravage (441591), Ravage (441605), Dreadful Wound (441812), Dreadful Wound (451177), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Sundering Roar (1253799), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Regrowth (1264664), Spirit of the Thicket (1264905), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973), Lunar Beam (1270292), Starsurge (1271222), Twin Claw (1271636), Twin Claw (1271657), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 77, 98, 118
+#4 (id=1029097)  : Apply Party Aura (35) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Maul (6807), Regrowth (8936), Swiftmend (18562), Ferocious Bite (22568), Maim (22570), Lifebloom (33763), Lifebloom (33778), Mangle (33917), Wild Growth (48438), Thrash (77758), Starsurge (78674), Efflorescence (81269), Fungal Growth (81281), Wild Mushroom (88751), Cenarion Ward (102352), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Rejuvenation (Germination) (155777), Tranquility (157982), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Lifebloom (188550), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Cultivation (200389), Brutal Slash (202028), Stellar Flare (202347), Shooting Stars (202497), Reactive Resin (203406), Brambles (203958), Fury of Elune (211545), Brambles (213709), Swipe (213771), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Grove Tending (279793), Primal Wrath (285381), Early Harvest (287255), Thorns (305496), Adaptive Swarm (325733), Adaptive Swarm (325748), Star Burst (356474), Orbital Strike (361237), Architect's Aligner (363789), Renewing Bloom (364686), Fury of Elune (365640), Ephemeral Profusion (367330), Rampant Ferocity (391710), Embrace of the Dream (392147), Verdancy (392329), Goldrinn's Fang (394047), Fury of Elune (394111), Raze (400254), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Nourish (422090), Nourish (423618), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Dream Bloom (434141), Symbiotic Blooms (439530), Bloodseeker Vines (439531), Bursting Growth (440121), Bursting Growth (440122), Ravage (441591), Ravage (441605), Dreadful Wound (441812), Dreadful Wound (451177), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Sundering Roar (1253799), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Regrowth (1264664), Spirit of the Thicket (1264905), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973), Lunar Beam (1270292), Starsurge (1271222), Twin Claw (1271636), Twin Claw (1271657), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 77, 98, 118
+#5 (id=1029098)  : Apply Aura (6) | Ignore Aura State (262)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Swiftmend (18562)
+                   Family Flags: 33, 123
+Description      : Call upon the spirits for an eruption of energy, channeling a rapid flurry of $s2 Druid spells and abilities over $d.$?s391538[ Chance to use an exceptional spell or ability is increased.][]
+
+Name             : Ashamane's Guidance (id=391548) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029128)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spellicon102543$@spellname102543
+$@spelldesc1244546
+
+Name             : Double-Clawed Rake (id=391700) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029360)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Rake also applies Rake to $s1 additional nearby $Ltarget:targets;.
+
+Name             : Rampant Ferocity (id=391709) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029375)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1164302)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Ferocious Bite also deals $391710s1 damage per combo point spent to all nearby enemies. Spending extra Energy on Ferocious Bite increases damage dealt by up to $s2%. Damage reduced beyond $s1 $Ltarget:targets;.
+
+Name             : Tiger's Tenacity (id=391872) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=7, col=1, max_rank=1, req_points=8, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029634)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1029641)  : Apply Aura (6) | Proc Trigger Spell (42): Tiger's Tenacity
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 391873 | Target: Self (1)
+#3 (id=1165844)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Tiger's Fury (5217)
+                   Family Flags: 75
+Description      : Tiger's Fury causes your next $391873n finishing $Lmove:moves; to restore $391874s1 combo $Lpoint:points;.
+
+Name             : Frantic Momentum (id=391875) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=8, col=4, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1029639)  : Apply Aura (6) | Proc Trigger Spell (42): Frantic Momentum
+                   Base Value: 3 | Scaled Value: 3 | Trigger Spell: 391876 | Target: Self (1)
+Description      : Finishing moves have a $s1% chance per combo point spent to grant $391876s1% Haste for $391876d.
+
+Name             : Apex Predator's Craving (id=391881) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029646)  : Apply Aura (6) | Proc Trigger Spell (42): Apex Predator's Craving
+                   Base Value: 50 | Scaled Value: 50 | Trigger Spell: 391882 | Target: Self (1)
+#2 (id=1245379)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15
+Description      : Rip damage has a ${$s1/10}.1% chance to make your next Ferocious Bite free and deal the maximum damage.
+
+Name             : Veinripper (id=391978) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=9, col=7, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1029796)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Rake (155722)
+                   Family Flags: 12, 85
+#2 (id=1039637)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Primal Wrath (285381)
+                   Family Flags: 93
+Description      : Rip and Rake last $s1% longer.
+
+Name             : Circle of Life and Death (id=400320) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1045213)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Ferocious Bite (22568), Maim (22570), Thrash (77758), Starsurge (78674), Fungal Growth (81281), Wild Mushroom (88751), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Brutal Slash (202028), Shooting Stars (202342), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (211545), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Primal Wrath (285381), Thorns (305496), Adaptive Swarm (325733), Star Burst (356474), Orbital Strike (361237), Fury of Elune (365640), Tear (391356), Rampant Ferocity (391710), Goldrinn's Fang (394047), Fury of Elune (394111), Thrash (405233), Star Burst (406430), Crashing Star (408310), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Dire Echo (1253489), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Starsurge (1271222), Twin Claw (1271636), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 40, 80, 91, 98, 124
+#2 (id=1045214)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Regrowth (8936), Swiftmend (18562), Lifebloom (33763), Lifebloom (33778), Wild Growth (48438), Efflorescence (81269), Cenarion Ward (102352), Rejuvenation (Germination) (155777), Tranquility (157982), Lifebloom (188550), Cultivation (200389), Reactive Resin (203406), Grove Tending (279793), Early Harvest (287255), Adaptive Swarm (325748), Renewing Bloom (364686), Ephemeral Profusion (367330), Embrace of the Dream (392147), Verdancy (392329), Nourish (422090), Nourish (423618), Dream Bloom (434141), Symbiotic Blooms (439530), Bursting Growth (440121), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Regrowth (1264664), Spirit of the Thicket (1264905)
+                   Family Flags: 118
+#3 (id=1045215)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Ferocious Bite (22568), Maim (22570), Thrash (77758), Starsurge (78674), Fungal Growth (81281), Wild Mushroom (88751), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Brutal Slash (202028), Shooting Stars (202342), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (211545), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Primal Wrath (285381), Thorns (305496), Adaptive Swarm (325733), Star Burst (356474), Orbital Strike (361237), Fury of Elune (365640), Tear (391356), Rampant Ferocity (391710), Goldrinn's Fang (394047), Fury of Elune (394111), Thrash (405233), Star Burst (406430), Crashing Star (408310), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Dire Echo (1253489), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Starsurge (1271222), Twin Claw (1271636), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 40, 80, 91, 98, 124
+#4 (id=1045216)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Regrowth (8936), Swiftmend (18562), Lifebloom (33763), Lifebloom (33778), Wild Growth (48438), Efflorescence (81269), Cenarion Ward (102352), Rejuvenation (Germination) (155777), Tranquility (157982), Lifebloom (188550), Cultivation (200389), Reactive Resin (203406), Grove Tending (279793), Early Harvest (287255), Adaptive Swarm (325748), Renewing Bloom (364686), Ephemeral Profusion (367330), Embrace of the Dream (392147), Verdancy (392329), Nourish (422090), Nourish (423618), Dream Bloom (434141), Symbiotic Blooms (439530), Bursting Growth (440121), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Regrowth (1264664), Spirit of the Thicket (1264905)
+                   Family Flags: 118
+#5 (id=1045217)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Primal Wrath (285381)
+                   Family Flags: 93
+#6 (id=1137599)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Tick Time (19)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 19 | Misc Value 2: 3345 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dreadful Wound (441812), Dreadful Wound (451177)
+#7 (id=1137600)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 1 | Misc Value 2: 3345 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dreadful Wound (441812), Dreadful Wound (451177)
+Description      : Your damage over time effects deal their damage in $s1% less time, and your healing over time effects in $s2% less time.
+
+Name             : Saber Jaws (id=421432) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=8, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1095708)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.4 | Target: Self (1)
+Description      : When you spend extra Energy on Ferocious Bite, the extra damage is increased by $s1%.
+
+Name             : Coiled to Spring (id=449537) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=2, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1148749)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : If you generate a combo point in excess of what you can store, your next Ferocious Bite or Primal Wrath deals $449538s1% increased direct damage.
+
+Name             : Savage Fury (id=449645) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1148997)  : Apply Aura (6) | Proc Trigger Spell (42): Savage Fury
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 449646 | Target: Self (1)
+Description      : Tiger's Fury increases your Haste by $449646s1% and Energy recovery rate by $449646s2% for $449646d.
+
+Name             : Frantic Frenzy (id=1243807) [Spell Family (7)] 
+Talent Entry     : Feral [tree=spec, row=10, col=3, max_rank=1, req_points=20, select_idx=200, replace="Feral Frenzy" (id=274837)]
+Class            : Druid
+School           : Physical
+Spell Type       : Melee
+Resource         : 25 Energy (3) (id=311056)
+Range            : 5 yards
+Line Width       : 16 yards
+GCD              : 1 seconds
+Duration         : 1.5 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Stance Mask      : 0x00000001
+Affecting Spells : Cat Form (768 effect#8), Mastery: Razor Claws (77493 effects: #1, #2), Incarnation: Avatar of Ashamane (102543 effect#3), Starfall (191034 effect#2), Untamed Ferocity (273338 effect#2), Adaptive Swarm (325733 effect#2), Sabertooth (391722 effect#1), Druid Feral 10.2 Class Set 4pc (422748 effect#1), Dreadful Wound (441812 effect#3), Tear Down the Mighty (441846 effects: #2, #3), Predator (449864 effect#1), Dreadful Wound (451177 effect#3), Big Winner!!! (1217245 effect#1), Focused Frenzy (1244544 effects: #1, #2, #3), Lacerating Claws (1244632 effects: #1, #2), Patient Custodian (1270592 effect#1)
+Family Flags     : 94
+Attributes       : Initiates Combat (Enables Auto-Attack) (41), No Aura Icon (60), Aura Points On Client (268), Area Effects Use Target Radius (328), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1244235)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Radius: 2 - 16 yards | Target: Front of Self (47) -> Target Reticule: Enemy (129)
+#2 (id=1244702)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Unleash a furious frenzy, flickering to nearby targets in front of you $s1 times and clawing all enemies around them for $1244079s1 Physical damage and an additional ${$1244079s3*$1244079d/$1244079t3} Bleed damage over $1244079d.
+
+Name             : Chomp (id=1244258) [Spell Family (7)] 
+Talent Entry     : Feral [tree=spec, row=10, col=2, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : Melee
+Range            : 5 yards
+GCD              : 1 seconds
+Cooldown         : 20 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 5320
+Stance Mask      : 0x00000001
+Affecting Spells : Rip (1079 effect#4), Tiger's Fury (5217 effects: #1, #3), Berserk (50334 effects: #6, #7), Incarnation: Avatar of Ashamane (102543 effects: #4, #5), Incarnation: Guardian of Ursoc (102558 effects: #6, #7), Cat Form (106840 effects: #3, #4), Berserk (106951 effects: #3, #4), Heart of the Wild (108292 effects: #1, #2), Killer Instinct (108299 effects: #1, #2), Feral Druid (137011 effects: #1, #2), Rake (155722 effect#2), Starfall (191034 effect#2), Thrash (192090 effect#2), Master Shapeshifter (290640 effect#1), Call of the Elder Druid (319454 effects: #4, #5), Ravenous Frenzy (323546 effects: #1, #2, #6, #7), Convoke the Spirits (323764 effects: #3, #4), Circle of Life and Death (338657 effects: #1, #3), Ravenous Frenzy (355315 effects: #1, #4), Convoke the Spirits (391528 effects: #3, #4), Circle of Life and Death (400320 effects: #1, #3), Initial Druid (417382 effects: #1, #2), Smoldering Frenzy (422751 effects: #1, #2), Liveliness (426702 effect#1), Root Network (439887 effects: #1, #2), Tear Down the Mighty (441846 effects: #2, #3), Guardian's Tenacity (455011 effects: #1, #2), Circle of the Wild (474530 effects: #1, #2, #3, #4), Luck of the Draw! (1218553 effects: #1, #2), Chomp Controller (1244292 effect#3), Hunger for Battle (1244553 effects: #1, #2), Feral Druid (1256992 effects: #1, #2), Unseen Predator's Craving (1263939 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 2pc (1283647 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 4pc (1283648 effects: #1, #2)
+Family Flags     : 76, 98
+Attributes       : Is Ability (4), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Require All Targets (58), Discount Power On Miss (59), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1244916)  : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 9 | Target: Targeted Enemy (6)
+Description      : Chomp your target, causing $s1 Physical damage. Chomp critical strikes deal ${$1244292s3/100+2} times normal damage.
+
+Name             : Blood Spattered (id=1244532) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245392)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1245393)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Ferocious Bite's damage to its primary target increased by $s1% for each enemy affected by your Rip, up to $s2.
+
+Name             : Focused Frenzy (id=1244544) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=10, col=3, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245408)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Feral Frenzy (274837), Feral Frenzy (274838), Frantic Frenzy (1243807), Frantic Frenzy (1244079), Frantic Frenzy (1278969)
+                   Family Flags: 94
+#2 (id=1293368)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Feral Frenzy (274837), Feral Frenzy (274838), Frantic Frenzy (1243807), Frantic Frenzy (1244079), Frantic Frenzy (1278969)
+                   Family Flags: 94
+#3 (id=1293369)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Feral Frenzy (274837), Feral Frenzy (274838), Frantic Frenzy (1243807), Frantic Frenzy (1244079), Frantic Frenzy (1278969)
+                   Family Flags: 94
+Description      : Feral Frenzy's cooldown reduced by ${-$s1/1000} sec and its damage is increased by $s2%.
+
+Name             : Hunger for Battle (id=1244547) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245413)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When an enemy afflicted by your Rip dies, gain 10 Energy and your damage dealt is increased by 5% for 8 sec, stacking up to 5 times.
+
+Name             : Lacerating Claws (id=1244632) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245536)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Thrash (106830), Rake (155722), Feral Frenzy (274837), Feral Frenzy (274838), Thrash (405233), Frantic Frenzy (1243807), Frantic Frenzy (1244079), Frantic Frenzy (1278969)
+                   Family Flags: 12, 85, 94, 126
+#2 (id=1245537)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Thrash (106830), Rake (155722), Feral Frenzy (274837), Feral Frenzy (274838), Thrash (405233), Frantic Frenzy (1243807), Frantic Frenzy (1244079), Frantic Frenzy (1278969)
+                   Family Flags: 12, 85, 94, 126
+#3 (id=1245538)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 5809 (Label) | Target: Self (1)
+                   Affected Spells (Label): Unseen Slash (1263890), Unseen Swipe (1263908)
+#4 (id=1245539)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 3245 (Label) | Target: Self (1)
+                   Affected Spells (Label): Bloodseeker Vines (439531)
+#5 (id=1245540)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 3345 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dreadful Wound (441812), Dreadful Wound (451177)
+#6 (id=1284877)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 5977 (Label) | Target: Self (1)
+                   Affected Spells (Label): Unseen Slash (1271863)
+Description      : Damage of your bleeds increased by $s1%.
+
+Name             : Unseen Predator (id=1263657) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1274459)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1274912)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : When you Ferocious Bite, you have a $s1% chance per combo point spent to flicker to an enemy within $s2 yds and deliver an Unseen Attack. Unseen Attack damage is reduced if less than 5 combo points and ${$22568c+$22568s2} Energy are spent on Ferocious Bite.
+
+Name             : Unseen Predator (id=1263658) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=set, values=(8, 15)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1274460)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Unseen Attacks increase your damage done by $s1% for $1263939d per combo point spend to trigger it. Additional applications extend this effect.
+
+Name             : Unseen Predator (id=1263660) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1274462)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rip (1079)
+                   Family Flags: 85
+#2 (id=1274464)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value 2: 5809 (Label) | Target: Self (1)
+                   Affected Spells (Label): Unseen Slash (1263890), Unseen Swipe (1263908)
+#3 (id=1274465)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Misc Value 2: 5977 (Label) | Target: Self (1)
+                   Affected Spells (Label): Unseen Slash (1271863)
+#4 (id=1274953)  : Apply Aura (6) | Proc Trigger Spell (42): Stalking Predator
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1263962 | Target: Self (1)
+Description      : Tiger's Fury causes you to perform an Unseen Attack for maximum damage after your next $1263962u combo point generating attacks. Rip and Unseen Attack damage increased by $s2%.
+
+Name             : Panther's Guile (id=1280316) [Spell Family (7), Passive] 
+Talent Entry     : Feral [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 25%
+Proc Flags       : Generic Helpful Taken, Magic Heal Taken
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1293226)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When Shred or Moonfire generate combo points, they have a $h% chance to generate full combo points.

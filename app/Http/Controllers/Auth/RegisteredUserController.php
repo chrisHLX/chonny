@@ -26,6 +26,8 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    private const TOS_VERSION = '1.0';
+
     private function claimGuestQuizResults(User $user): void
     {
         $guestResults = session('guest_quiz_results', []);
@@ -238,6 +240,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'terms' => ['accepted'],
             'g-recaptcha-response' => ['required', 'string', function ($attribute, $value, $fail) use ($request) {
                 if (app()->environment('local')) {
                     return; // skip reCAPTCHA on localhost
@@ -258,6 +261,8 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'tos_accepted_at' => now(),
+            'tos_version' => self::TOS_VERSION,
         ]);
 
         event(new Registered($user));

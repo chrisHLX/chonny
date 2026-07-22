@@ -1,0 +1,1000 @@
+# Priest — Shadow Spec Talents
+# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 51 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Shadowfiend (id=34433) [Spell Family (6), Passive] 
+Talent Entry     : Discipline [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+                 : Shadow [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5419: Deathspeaker (392507 effect#4), Subservient Shadows (1228516 effect#5)
+                 : 6366: Discipline Priest (137032 effect#24)
+Attributes       : Passive (6), Do Not Log (8), No Aura Icon (60), Do Not Log on Learn (355)
+Effects          :
+#1 (id=24424)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Modified By: Subservient Shadows (1228516 effect#5)
+#2 (id=24425)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Modified By: Deathspeaker (392507 effect#4)
+#3 (id=1293160)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Modified By: Discipline Priest (137032 effect#24)
+Description      : Shadow Word: Death has a $s3% chance to summon a Shadowfiend for $s1 sec when damaging targets below $s2% health.
+
+Name             : Auspicious Spirits (id=155271) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 52
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=215755)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Shadowy Apparition (413231), Void Apparition (1264176)
+                   Family Flags: 90
+#2 (id=315218)   : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 3 | Misc Value 2: 2560 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shadowy Apparition (405746)
+Description      : Your Shadowy Apparitions deal $s1% increased damage and have a chance to generate ${$m2/100} Insanity.
+
+Name             : Psychic Link (id=199484) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=293563)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Your direct damage spells inflict $s1% of their damage on all other targets afflicted by your Vampiric Touch within $199486A2 yards.
+
+Name             : Voidform (id=228260) [Spell Family (6)] 
+Talent Entry     : Shadow [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : Magic
+Range            : 40 yards
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 690: Major Cooldowns
+Stance Mask      : 0x08000000
+Affecting Spells : Mastery: Madness (77486 effects: #1, #2), Voidform (194249 effect#7), Heart of the Void (248296 effect#1), Dark Ascension (391109 effect#1)
+Family Flags     : 36
+Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Important Spell (491)
+Effects          :
+#1 (id=343555)   : Dummy (3) | Attributes: Add Target (Dest) Combat Reach to AOE (11), Area Effects Use Target Radius (17)
+                   Base Value: 1 | Scaled Value: 1 | Radius: 10 yards | Target: Targeted Enemy (6)
+#2 (id=1033519)  : Dummy (3)
+                   Base Value: 3000 | Scaled Value: 3000
+Description      : Bombards your target with a Void Volley and twists your Shadowform with void magic, increasing your spell damage by $194249s1% for $194249d. 
+
+Name             : Misery (id=238558) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=361457)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1005335)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1
+                   Affected Spells: Shadow Word: Pain (589)
+                   Family Flags: 15
+Description      : Vampiric Touch also applies Shadow Word: Pain to the target. Shadow Word: Pain lasts an additional ${$s2/1000} sec.
+
+Name             : Intangibility (id=288733) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=2, col=5, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=752639)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Dispersion (47585)
+                   Family Flags: 50
+#2 (id=752640)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Dispersion heals you for an additional $<intangheal>% of your maximum health over its duration and its cooldown is reduced by ${$s1/-1000} sec.
+Variables        : $intang=$?a288733[${$288733s2}][${0}]
+$alteration=$?a453729[${$453729s2/1000}][${0}]
+$heal=${($s5+$<intang>)*($<alteration>+$d)/$d}
+$intangheal=${($s2*($<alteration>+$47585d)/$47585d)}
+
+Name             : Death and Madness (id=321291) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=8, col=3, max_rank=1, req_points=20, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5193
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=808877)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+#2 (id=810034)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=810232)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 322098 | Target: Self (1)
+Description      : If a target dies within $322098d after being struck by Shadow Word: Death, generate ${$321973s1/100} Insanity.
+
+Name             : Shadow Word: Madness (id=335467) [Spell Family (6)] 
+Talent Entry     : Shadow [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Shadow
+Spell Type       : Magic
+Resource         : 50 Insanity (13) (id=215233)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Category         : 691 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 1405
+Stance Mask      : 0x08000000
+Affecting Spells : Mastery: Madness (77486 effects: #1, #2), Spirit Shell (109964 effect#2), Holy Priest (137031 effects: #4, #5), Discipline Priest (137032 effects: #4, #5), Shadow Priest (137033 effects: #1, #2), Voidform (194249 effects: #1, #2, #3), Shadowform (232698 effects: #1, #3), Sins of the Many (280398 effects: #1, #2), Inner Shadow (355898 effects: #1, #4), Mind Devourer (373204 effect#1), Twist of Fate (390978 effects: #1, #2), Dark Evangelism (391099 effect#1), Dark Ascension (391109 effects: #1, #2, #4, #5), Priest Shadow 10.1 Class Set 4pc (405558 effects: #1, #2), Voidtouched (407430 effects: #2, #3), Mind's Eye (407470 effect#1), Distorted Reality (409044 effects: #2, #3, #4, #5), Initial Priest (417191 effects: #1, #2), Void Empowerment (450150 effects: #1, #2), Priest Shadow 11.0 Class Set 2pc (453681 effect#1), Resonant Energy (453850 effects: #1, #3), Devouring Chorus (454638 effects: #1, #2), Holy Priest (1238052 effects: #4, #5), Focused Power (1249230 effects: #1, #2), Tormenting Whispers (1250492 effects: #1, #2), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #4, #5), Shadow Priest (1256905 effects: #1, #2), Priest Shadow 12.0 Class Set 2pc (1264854 effects: #1, #2, #3), Priest - Midnight PrePatch - 11.2 Class Set 2pc (1283668 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc (1283669 effects: #1, #2)
+Family Flags     : 72, 87
+Attributes       : Not Shapeshifted (16), Discount Power On Miss (59), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Rolling Periodic (334), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=832086)   : Health Leech (9)
+                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 0.3 | SP Coefficient: 2.275 | PvP Coefficient: 0.875 | Target: Targeted Enemy (6)
+#2 (id=832087)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 1 | Target: Targeted Enemy (6)
+#3 (id=832088)   : Apply Aura (6) | Periodic Health Leech (53): every 2 seconds
+                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 0.3 | SP Coefficient: 2.275 | PvP Coefficient: 0.875 | Target: Targeted Enemy (6)
+Description      : A word of madness haunts the target's mind, dealing $s1 Shadow damage instantly plus an additional $o3 Shadow damage over $d. Heals you for ${$e1*100}% of damage dealt.
+
+Name             : Improved Voidform (id=341240) [Spell Family (6), Passive] 
+Talent Entry     : Shadow [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=841516)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+#2 (id=841564)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Voidform (194249)
+                   Family Flags: 89
+#3 (id=1223343)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Voidform (194249)
+                   Family Flags: 89
+Description      : Voidform generates $s1 Insanity and increases your spell damage by an additonal $s2%.
+
+Name             : Shadowy Apparitions (id=341491) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Allow Proc While Sitting (147), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=841943)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Shadow Word: Madness conjures Shadowy Apparitions that float towards all targets afflicted by your Vampiric Touch for $413231s1 Shadow damage.
+
+Name             : Mind Devourer (id=373202) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=998259)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Mind Blast has a $s1% chance to make your next Shadow Word: Madness cost no Insanity and deal $373204s2% additional damage.
+
+Name             : Insidious Ire (id=373212) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=9, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(13, 25)]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=998271)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : While you have Shadow Word: Pain, Shadow Word: Madness, and Vampiric Touch active on the same target, your Mind Blast, Void Torrent, Mind Flay, and Void Volley deal $s1% more damage.
+
+Name             : Idol of Yogg-Saron (id=373273) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=998377)   : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=998388)   : Apply Aura (6) | Proc Trigger Spell (42): Idol of Yogg-Saron
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 373276 | Target: Self (1)
+Description      : After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At $s1 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for $373277d.
+
+Name             : Idol of N'Zoth (id=373280) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell, Periodic, Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=998389)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1242971)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : You create Horrific Visions when casting harmful spells on enemies.
+
+Name             : Idol of Y'Shaarj (id=373310) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=10, col=1, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Real PPM         : 2
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=998438)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : While Shadowfiend, Mindbender, or Voidwraith are active, your haste is increased by $373316s1%.
+
+Name             : Inescapable Torment (id=373427) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+                 : Discipline [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 2616: Shadow Priest (137033 effect#18)
+Affecting Spells : Spirit Shell (109964 effect#2), Holy Priest (137031 effects: #4, #5), Discipline Priest (137032 effects: #4, #5, #16), Shadow Priest (137033 effects: #1, #2), Voidform (194249 effects: #1, #2, #3), Shadowform (232698 effects: #1, #3), Sins of the Many (280398 effects: #1, #2), Shadow Covenant (322105 effect#1), Inner Shadow (355898 effects: #1, #4), Twist of Fate (390978 effects: #1, #2), Dark Ascension (391109 effects: #1, #2, #4, #5), Initial Priest (417191 effects: #1, #2), Resonant Energy (453850 effect#1), Devouring Chorus (454638 effects: #1, #2), Holy Priest (1238052 effects: #4, #5), Focused Power (1249230 effects: #1, #2), Occultist (1250293 effects: #1, #2), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #4, #5), Shadow Priest (1256905 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 2pc (1283668 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc (1283669 effects: #1, #2)
+Family Flags     : 23, 72
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416), Unknown (450)
+Effects          :
+#1 (id=998634)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#2 (id=998635)   : Dummy (3)
+                   Base Value: 700 | Scaled Value: 700
+#3 (id=998636)   : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 2326 (Label) | Target: Self (1)
+                   Affected Spells (Label): Inescapable Torment (373442)
+#4 (id=1033126)  : School Damage (2): shadow
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.9
+Description      : $?a137032[Penance, ][]Mind Blast and Shadow Word: Death cause your Shadowfiend, Mindbender, and Voidwraith to teleport behind your target, slashing up to $s1 nearby enemies for $<value> Shadow damage and extending their durations by ${$s2/1000}.1 sec.
+Variables        : $mindbendermult=$?a137032[${0.478}][${0.442}]
+$value=${$s4*$<mindbendermult>}
+
+Name             : Screams of the Void (id=375767) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=9, col=4, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(-40, -80)]
+                 : Effect#2 [op=set, values=(-28.6, -44.5)]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1002383)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 12 | Misc Value 2: 2327 (Label) | Target: Self (1)
+                   Affected Spells (Label): Screams of the Void (393919)
+#2 (id=1071085)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: -28.6 | Scaled Value: -28.6 | Misc Value: 3 | Misc Value 2: 2327 (Label) | Target: Self (1)
+                   Affected Spells (Label): Screams of the Void (393919)
+#3 (id=1071104)  : Dummy (3)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : Shadow Word: Madness causes your Shadow Word: Pain and Vampiric Touch to deal damage $s1% faster on all targets for $393919d.
+
+Name             : Shadowy Insight (id=375888) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002555)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Shadow Word: Pain periodic damage has a chance to cause your next Mind Blast to be instant and ignore its cooldown.
+
+Name             : Mental Decay (id=375994) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002746)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Mind Flay (15407), Mind Flay: Insanity (391403)
+                   Family Flags: 70
+Description      : Increases the damage of Mind Flay by $s1%.
+
+Name             : Mental Fortitude (id=377065) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=2, col=5, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Aura Icon (60), Do Not Display Range (126), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1004708)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Healing from Vampiric Touch and Shadow Word: Madness when you are at maximum health will shield you for the same amount. The shield cannot exceed $s1% of your maximum health.
+
+Name             : Idol of C'Thun (id=377349) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Real PPM         : 2 (Haste multiplier)
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1005136)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 11 | Target: Self (1)
+Description      : Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target.
+
+Name             : Shattered Psyche (id=391090) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028377)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 3 | Misc Value 2: 2586 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shattered Psyche (391092)
+#2 (id=1070947)  : Apply Aura (6) | Proc Trigger Spell (42): Shattered Psyche
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 391092 | Target: Self (1)
+Description      : Mind Flay damage increases the critical strike chance of Mind Blast by $s1%, stacking up to $391092U times.
+
+Name             : Dark Evangelism (id=391099) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028388)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589), Mind Flay (15407), Vampiric Touch (34914), Void Torrent (263165), Shadow Word: Madness (335467), Mind Flay: Insanity (391403)
+                   Family Flags: 15, 42, 51, 70, 87
+Description      : Increases your periodic spell damage by $s1%.
+
+Name             : Mastermind (id=391151) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=7, col=2, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(4, 8)]
+                 : Effect#2 [op=set, values=(20, 40)]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028467)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Mind Blast (8092), Mind Flay (15407), Shadow Word: Death (32379), Corrupted Apparitions (73510), Painbreaker Psalm (336167), Mind Flay: Insanity (391403), Void Blast (450983)
+                   Family Flags: 13, 33, 70, 80
+#2 (id=1028468)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Mind Blast (8092), Mind Flay (15407), Shadow Word: Death (32379), Corrupted Apparitions (73510), Painbreaker Psalm (336167), Mind Flay: Insanity (391403), Void Blast (450983)
+                   Family Flags: 13, 33, 70, 80
+Description      : Increases the critical strike chance of Mind Blast, Mind Flay, and Shadow Word: Death by $s1% and increases their critical strike damage by $s2%.
+
+Name             : Maddening Touch (id=391228) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Include In Advanced Combat Log (72)
+Effects          :
+#1 (id=1028588)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Vampiric Touch (34914)
+                   Family Flags: 42
+#2 (id=1070933)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 3 | Misc Value 2: 2585 (Label) | Target: Self (1)
+                   Affected Spells (Label): Maddening Touch (391232)
+Description      : Vampiric Touch deals $s1% additional damage and has a chance to generate ${$s2/100} Insanity each time it deals damage.
+
+Name             : Tormented Spirits (id=391284) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028678)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Your Shadow Word: Pain damage has a chance to create Shadowy Apparitions that float towards all targets afflicted by your Vampiric Touch. 
+
+Name             : Surge of Insanity (id=391399) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=4, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028890)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Mind Flay (15407), Mind Flay: Insanity (391403)
+                   Family Flags: 70
+#2 (id=1070942)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 3 (23)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Mind Flay (15407), Mind Flay: Insanity (391403)
+                   Family Flags: 70
+Description      : Mind Flay damage increased by $s1% and Insanity generation increased by $s2%.
+
+Name             : Deathspeaker (id=392507) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=8, col=3, max_rank=1, req_points=20, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 187
+                 : 294
+Proc Chance      : 101%
+Real PPM         : 2.25 (Haste multiplier)
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1030772)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Shadow Word: Death (32379), Painbreaker Psalm (336167)
+                   Family Flags: 33
+#2 (id=1238082)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Shadow Word: Death (32379), Painbreaker Psalm (336167)
+                   Family Flags: 33
+#3 (id=1238083)  : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#4 (id=1238709)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 5419 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shadowfiend (34433)
+Description      : Shadow Word: Death damage increased by $s1%.
+
+Name             : Thought Harvester (id=406788) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=3, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1055979)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1602 (Category) | Target: Self (1)
+                   Affected Spells (Category): Mind Blast (8092), Void Blast (450983)
+Description      : Mind Blast gains an additional charge.
+
+Name             : Voidtouched (id=407430) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1070862)  : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 5000 | Scaled Value: 5000 | Resource: insanity | Target: Self (1)
+#2 (id=1070864)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+#3 (id=1070867)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+Description      : Increases your Shadow Word: Madness damage by $s2% and increases your maximum Insanity by ${$s1/100}.
+
+Name             : Spectral Horrors (id=407469) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1070949)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Shadow Apparitions deal $s1% increased damage to targets affected by your Shadow Word: Madness.
+
+Name             : Mind's Eye (id=407470) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1070950)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -500 | Scaled Value: -500 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+Description      : Reduces the Insanity cost of Shadow Word: Madness by ${$s1/-100}.
+
+Name             : Distorted Reality (id=409044) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1073575)  : Dummy (3)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+#2 (id=1073576)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 6000 | Scaled Value: 6000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+#3 (id=1073577)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+#4 (id=1073578)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+#5 (id=1073579)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: 500 | Scaled Value: 500 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+Description      : Increases the damage of Shadow Word: Madness by $s3% and causes it to deal its damage over $s1 sec, but increases its Insanity cost by ${$s5/100}.
+
+Name             : Tentacle Slam (id=1227280) [Spell Family (6)] 
+Talent Entry     : Shadow [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Shadow
+Spell Type       : Magic
+Range            : 40 yards
+GCD              : 1.5 seconds
+Charges          : 2 (15 seconds cooldown)
+Category         : 1907 (Type 0x1)
+Category Flags   : Reset Charges on Encounter End (4), Reset Coooldown on Encounter End (5)
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 117
+                 : 292
+Affecting Spells : Dark Ascension (391109 effect#1), Descending Darkness (1242666 effect#1), Crushing Void (1279354 effect#2)
+Family Flags     : 31
+Attributes       : No Threat (42), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1217596)  : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 700 | Target: Targeted Enemy (6)
+#2 (id=1217597)  : Energize Power (30)
+                   Base Value: 600 | Scaled Value: 600 | Resource: insanity | Target: Self (1)
+#3 (id=1226998)  : Dummy (3)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 700 | Target: Targeted Enemy (6)
+Description      : Summons a massive shadowy appendage to slam the ground, dealing $1227621s1 Shadow damage in front of you and $s1 yds around your target.
+
+Name             : Subservient Shadows (id=1228516) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1219565)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1219599)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 1 | Misc Value 2: 4779 (Label) | Target: Self (1)
+                   Affected Spells (Label): Mindbender (200174), Thing from Beyond (373277), Idol of C'Thun (377355), Idol of C'Thun (377357), Voidwraith (451235), Mindbender (1230339), Shadowfiend (1280172)
+#3 (id=1238723)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 1 | Misc Value 2: 5194 (Label) | Target: Self (1)
+                   Affected Spells (Label): Mind Flay (193473), Mind Sear (394976)
+#4 (id=1238728)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Misc Value 2: 5194 (Label) | Target: Self (1)
+                   Affected Spells (Label): Mind Flay (193473), Mind Sear (394976)
+#5 (id=1252557)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 5419 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shadowfiend (34433)
+#6 (id=1257378)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Shadowy Apparition (413231), Void Apparition (1264176)
+                   Family Flags: 90
+Description      : Summoned minions last $s2% longer and deal an additional $s1% damage.
+
+Name             : Mindbender (id=1230339) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=8, col=1, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : Magic
+Spell Level      : 1
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 4779: Subservient Shadows (1228516 effect#2)
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Affecting Spells : Shadowflame Prism (336143 effect#1), Dark Ascension (391109 effect#1), Occultist (1250293 effects: #1, #2)
+Family Flags     : 19
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1221868)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 200174 | Target: Self (1)
+Description      : Casting Voidform summons a Mindbender for $200174d.
+
+Name             : Ancient Madness (id=1231346) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1223331)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1223332)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#3 (id=1292055)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Casting Shadow Word: Madness increases the duration of Voidform by ${$228260s2/1000}.1 sec.
+
+Name             : Death's Torment (id=1240364) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+                 : Discipline [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1238685)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1238686)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Shadow Word: Death deals damage $s1 additional $Ltime:times; at $s2% effectiveness.
+
+Name             : Dark Thoughts (id=1240388) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1238729)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 23 | Misc Value 2: 2610 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shadowy Insight (375981), Shadowy Insight (1287613)
+#2 (id=1238730)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Increases the chance for Shadowy Insight to occur by $s2%. When consuming Shadowy Insight, Mind Blast generates ${$s1/100} additional Insanity.
+
+Name             : Madness Weaving (id=1240394) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=9, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(25, 50)]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1238744)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : The damage bonus from your Mastery: Shadow Weaving gains $s1% additional benefit from Shadow Word: Madness.
+
+Name             : Descending Darkness (id=1242666) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 117
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1242315)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 300 | Scaled Value: 300 | Target: Self (1)
+                   Affected Spells: Tentacle Slam (1227280), Tentacle Slam (1227621)
+                   Family Flags: 31
+Description      : Increases Tentacle Slam damage by $s1%.
+
+Name             : Phantom Menace (id=1242779) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1242502)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Shadowy Apparition (413231), Void Apparition (1264176)
+                   Family Flags: 90
+#2 (id=1242506)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Shadowy Apparition (413231), Void Apparition (1264176)
+                   Family Flags: 90
+Description      : Increases the critical strike chance of Shadowy Apparitions by $s1% and their critical strike damage by $s2%.
+
+Name             : Instilled Doubt (id=1242862) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=7, col=6, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(8, 15)]
+                 : Effect#2 [op=set, values=(20, 40)]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1242621)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589), Vampiric Touch (34914)
+                   Family Flags: 15, 42
+#2 (id=1242622)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589), Vampiric Touch (34914)
+                   Family Flags: 15, 42
+Description      : Increases the critical strike chance of Vampiric Touch and Shadow Word: Pain by $s1% and their critical strike damage by $s2%.
+
+Name             : Tormenting Whispers (id=1250492) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1254599)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+#2 (id=1254600)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Shadow Word: Madness (335467)
+                   Family Flags: 87
+Description      : Increases Shadow Word: Madness damage by $s1%.
+
+Name             : Void Apparitions (id=1264096) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5671
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1275193)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When an effect from an Idol is activated, conjure Shadowy Apparitions.
+
+Name             : Void Apparitions (id=1264104) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1275206)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value 2: 5815 (Label) | Target: Self (1)
+                   Affected Spells (Label): Void Apparition (1264176)
+#2 (id=1275207)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Shadowy Apparitions have a $s2% chance to spawn as Void Apparitions that release a $@spellname1264177 at their target and deal $s1% increased damage.
+
+Name             : Void Apparitions (id=1264107) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5671
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1275210)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Tentacle Slam has a $s1% chance to activate an effect from one of your Idols.
+
+Name             : Invoked Nightmare (id=1279350) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1291799)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 150 | Scaled Value: 150 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589)
+                   Family Flags: 15
+#2 (id=1291800)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 150 | Scaled Value: 150 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589)
+                   Family Flags: 15
+Description      : Shadow Word: Pain deals $s1% increased damage.
+
+Name             : Maddening Tentacles (id=1279353) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1291803)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Tentacle Slam afflicts your target with Shadow Word: Madness at $s1% effectiveness.
+
+Name             : Crushing Void (id=1279354) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1291805)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Void Volley (1242173), Void Volley (1242189)
+                   Family Flags: 41
+#2 (id=1291806)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Tentacle Slam (1227280), Tentacle Slam (1227621)
+                   Family Flags: 31
+#3 (id=1291807)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Tentacle Slam deals $s2% increased damage and Void Volley deals $s1% increased damage.
+
+Name             : Haunting Shadows (id=1279355) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Shadow [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Priest
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1291814)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Shadowy Apparition (413231), Void Apparition (1264176)
+                   Family Flags: 90
+#2 (id=1291815)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+Description      : Shadowy Apparition damage increased by $s1%.

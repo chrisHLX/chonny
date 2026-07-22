@@ -1,0 +1,334 @@
+# Hunter — Sentinel Hero Talents
+# Extracted verbatim from hunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Don't Look Back (id=450373) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1150243)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.5 | Target: Self (1)
+#2 (id=1152094)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Consuming Sentinel's Mark grants you an absorb shield equal to ${$s1}.1% of your maximum health.
+
+Name             : Invigorating Pulse (id=450379) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1150249)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Kill Command (259489)
+                   Family Flags: 72
+#2 (id=1151599)  : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 25 | Scaled Value: 25 | Resource: focus | Target: Self (1)
+#3 (id=1259925)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 4071 (Label) | Target: Self (1)
+                   Affected Spells (Label): Steady Shot (77443)
+#4 (id=1259926)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Steady Shot (56641), Kill Command (259277)
+                   Family Flags: 32, 37
+Description      : $?c2[Steady Shot][Kill Command] grants an additional $s1 Focus and its damage is increased by $s4%. 
+
+Name             : Sentinel (id=1253599) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+                 : 5585: Moon's Blessing (1253825 effect#1)
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259463)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Moon's Blessing (1253825 effect#1)
+Description      : $?c3[Consuming Tip of the Spear has a $s2% chance to summon the aid of a Sentinel Owl that descends from the skies and applies Sentinel's Mark to your target][Your Eagle is replaced with a Sentinel Owl that applies an enhanced Sentinel's Mark].
+
+Name             : Lunar Storm (id=1253732) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259726)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1259736)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : When Sentinel's Mark is consumed, it summons a barrage of $s1 lunar missiles, each dealing $1253733s1 Arcane damage to enemies within $s2 yds.
+
+Name             : Stargazer (id=1253751) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259758)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1259759)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : $?c2[Consuming Precise Shots][Consuming Tip of the Spear] grants $1253750s1% increased critical strike damage for $1253750d. Multiple applications may overlap.
+
+Name             : Open Fire (id=1253807) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259850)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Volley (260243), Volley (260247)
+                   Family Flags: 34
+#2 (id=1259865)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Flamefang Pitch (1251595)
+                   Family Flags: 110
+Description      : $?c2[Volley damage increased by $s1%][Flamefang Pitch damage increased by $s2%].
+
+Name             : Moon's Blessing (id=1253825) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259883)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Misc Value 2: 5585 (Label) | Target: Self (1)
+                   Affected Spells (Label): Sentinel (1253599)
+#2 (id=1259884)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
+#3 (id=1259885)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+Description      : $?c2[Consuming Precise Shots][Consuming Tip of the Spear] has a $s1% increased chance to summon your Sentinel Owl.
+
+Name             : Can't Miss, Won't Miss (id=1253830) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259903)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Precise Shots (260242)
+                   Family Flags: 16
+#2 (id=1259904)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Tip of the Spear (260286), Tip of the Spear (460852), Tip of the Spear (471536), Tip of the Spear (1280140)
+                   Family Flags: 61
+#3 (id=1260075)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Trueshot (288613)
+                   Family Flags: 53
+#4 (id=1260076)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Takedown (1250646), Takedown (1253859), Takedown (1253862)
+                   Family Flags: 84
+#5 (id=1276519)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Precise Shots (260242)
+                   Family Flags: 16
+#6 (id=1276520)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Misc Value 2: 6394 (Label) | Target: Self (1)
+                   Affected Spells (Label): Moonlight Chakram (1264946)
+Description      : $?c2[Precise Shots damage bonus][Tip of the Spear damage bonus] increased by $?c2[$s1][$s2]%.
+
+Name             : Sanctified Armaments (id=1253831) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259905)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1259906)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : An additional $?c2[$s1][$s2]% of $?c2[Rapid Fire][Raptor Strike]'s damage is dealt as Arcane damage over $1253836d.
+
+Name             : Arcane Talons (id=1253846) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259927)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Spotter's Mark (466872), Spotter's Mark (1215057), Sentinel's Mark (1253601), Sentinel's Mark (1266960)
+                   Family Flags: 117
+#2 (id=1259928)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Spotter's Mark (466872), Spotter's Mark (1215057), Sentinel's Mark (1253601), Sentinel's Mark (1266960)
+                   Family Flags: 117
+Description      : Sentinel's Mark further increases the damage of $?c2[Aimed Shot][Wildfire Bomb] by $?c2[$s1][$s2]% 
+
+Name             : Lunar Calling (id=1253852) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259934)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1259935)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?c2[Feathered Frenzy further increases your chance to summon your Sentinel Owl during Trueshot by $s1%][Takedown summons your Sentinel Owl and your chance to summon your Sentinel Owl is increased by an additional $s2% during Takedown].
+
+Name             : Conditioning (id=1253887) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1259992)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#2 (id=1259993)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Aspect of the Cheetah (186257), Aspect of the Cheetah (186258)
+                   Family Flags: 21
+Description      : Your movement speed is increased by $s1%.
+
+Name             : Scout's Vigil (id=1253892) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1260001)  : Apply Aura (6) | Modify Aggro Distance (152)
+                   Base Value: -10 | Scaled Value: -10 | Target: Self (1)
+#2 (id=1260010)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Enemy detection radius reduced by $s1 yds.
+
+Name             : Moonlight Chakram (id=1264902) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 1 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276512)  : Apply Aura (6) | Proc Trigger Spell (42): Moonlight Chakram
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1264946 | Target: Self (1)
+Description      : For $1264946d after casting $?c2[Trueshot][Takedown], $?c2[Trueshot][Takedown] is replaced with Moonlight Chakram.
+
+Name             : Radiant Edge (id=1264903) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1276513)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Your Moonlight Chakram deals $1264949s3% increased damage each time it bounces.
+
+Name             : Twilight Requiem (id=1264904) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=3, col=5, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1276514)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : When your Moonlight Chakram expires, it summons an explosion of moonlight, dealing $1266096s1 Arcane damage to nearby enemies. Damage reduced beyond $s1 targets.
+
+Name             : Stalk and Strike (id=1266069) [Spell Family (9), Passive] 
+Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=3, col=5, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147)
+Effects          :
+#1 (id=1278244)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10000 | Scaled Value: 10000 | Target: Self (1)
+#2 (id=1278245)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Throwing your Moonlight Chakram $?c2[grants you Lock and Load][reduces the cooldown of Wildfire Bomb by ${$s1/1000} sec].

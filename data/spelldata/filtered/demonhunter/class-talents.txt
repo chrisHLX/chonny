@@ -1,0 +1,889 @@
+# Demon Hunter — Class Talents
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 48 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Chaos Nova (id=179057) [Spell Family (107)] 
+Talent Entry     : Havoc [tree=class, row=4, col=1, max_rank=1, req_points=0]
+                 : Vengeance [tree=class, row=4, col=1, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Chromatic
+Spell Type       : Magic
+Resource         : 25 Fury (17) (id=10418)
+GCD              : 1.5 seconds
+Duration         : 3 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Demon Soul (163073 effects: #1, #2), Mastery: Demonic Presence (185164 effects: #1, #2), Fiery Brand (207744 effect#2), Fiery Brand (207771 effect#2), Exergy (208628 effects: #1, #2), Havoc Demon Hunter (212612 effects: #1, #2, #6), Vengeance Demon Hunter (212613 effects: #1, #2, #6), Frailty (247456 effect#4), Chaos Blades (247938 effects: #2, #3), Demon Soul (347765 effects: #1, #2), Burning Blood (390213 effects: #1, #2), Seething Chaos (394934 effects: #1, #2), Fiery Resolve (425653 effects: #1, #2), Inertia (427641 effects: #1, #2), Demon Hide (428241 effects: #1, #3), Reaver's Mark (442624 effect#1), Void Metamorphosis (471306 effect#3), Devourer Demon Hunter (1213636 effect#5), Luck of the Draw! (1219012 effects: #1, #2), Havoc Demon Hunter (1256955 effects: #1, #2), Vengeance Demon Hunter (1256959 effects: #1, #2), Blind Focus (1272364 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 2pc (1283625 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 4pc (1283628 effects: #1, #2)
+Family Flags     : 16, 17, 32, 43, 70
+Attributes       : Is Ability (4), No Redirection (35), No Reflection (39), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Effects          :
+#1 (id=257307)   : Apply Aura (6) | Stun (12)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 8 yards | Mechanic: Stun | Target: at Self (18) -> at Enemy in Area (16)
+#2 (id=267052)   : School Damage (2): chromatic
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 0.274816 | Radius: 0 - 8 yards | Target: at Self (18) -> at Enemy in Area (16)
+#3 (id=738282)   : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30 | Radius: 0 - 8 yards | Target: at Self (18) -> at Enemy in Area (16)
+Description      : Unleash an eruption of fel energy, dealing $s2 Chaos damage and stunning all nearby enemies for $d.$?s320412[
+
+Name             : Disrupting Fury (id=183782) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=3, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=266245)   : Apply Aura (6) | Proc Trigger Spell (42): Disrupt
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 218903 | Target: Self (1)
+Description      : Disrupt generates $218903s1 Fury on a successful interrupt.
+
+Name             : Darkness (id=196718) [Spell Family (107)] 
+Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Cooldown         : 300 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Havoc Demon Hunter (212612 effect#6), Vengeance Demon Hunter (212613 effect#6), Cover of Darkness (357419 effect#2), Long Night (389781 effect#1), Pitch Black (389783 effect#1), Devourer Demon Hunter (1213636 effect#5)
+Family Flags     : 32, 77
+Attributes       : Is Ability (4), Not Shapeshifted (16), No Aura Cancel (31), Allow While Stealthed (37), No Threat (42), No Aura Icon (60), No Aura Log (202), Reset cooldown upon ending an encounter (333), Caster Death Cancels Persistent Area Auras (347), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=288808)   : Create Area Trigger (179)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 6615 | Target: at Ground (62)
+#2 (id=374312)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1107233)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Summons darkness around you in a$?a357419[ 12 yd][n 8 yd] radius, granting friendly targets a $209426s2% chance to avoid all damage from an attack. Lasts $d.
+
+Name             : Vengeful Retreat (id=198793) [Spell Family (107)] 
+Talent Entry     : Generic [free=(Havoc), tree=class, row=1, col=2, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Duration         : 1 seconds
+Cooldown         : 0.5 seconds
+Category         : 1601 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 186
+                 : 219
+                 : 292
+Category Cooldown: 25 seconds
+Affecting Spells : Prepared (203551 effect#2), Tactical Retreat (389688 effect#1), Evasive Action (444929 effect#1), Demonsurge (1245496 effect#3)
+Triggered By     : Vengeful Retreat (344866)
+Family Flags     : 3
+Attributes       : Is Ability (4), No Aura Cancel (31), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), No Aura Icon (60), No Casting Bar Text (98), No Aura Log (202), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=292234)   : Trigger Spell (64): Vengeful Retreat
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 198813 | Target: Self (1)
+#2 (id=295099)   : Directional Knockback (144)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 175 | Target: Self (1) -> Front of Self (47)
+#3 (id=326695)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#4 (id=351230)   : Trigger Spell (64): Vengeful Retreat
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 232709 | Target: Self (1)
+Description      : Remove all snares and vault away. Nearby enemies take $198813s2 Physical damage$?s320635[ and have their movement speed reduced by $198813s1% for $198813d][].$?a203551[
+
+Name             : Soul Rending (id=204909) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(5, 10)]
+                 : Effect#2 [op=set, values=(5, 10)]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 120
+                 : 292
+                 : 2793: Improved Soul Rending (452407 effect#1), Improved Soul Rending (452407 effect#2)
+Attributes       : Passive (6), No Aura Icon (60), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=302487)   : Apply Aura (6) | Modify Leech% (443)
+                   Base Value: 6 | Scaled Value: 6 | PvP Coefficient: 0.833333 | Target: Self (1)
+                   Modified By: Improved Soul Rending (452407 effect#1)
+#2 (id=483201)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 6 | Scaled Value: 6 | PvP Coefficient: 0.833333 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Metamorphosis (162264), Metamorphosis (187827), Metamorphosis (191427), Void Metamorphosis (1217605), Void Metamorphosis (1217607)
+                   Family Flags: 15, 28, 84
+                   Modified By: Improved Soul Rending (452407 effect#2)
+Description      : Leech increased by $s1%.
+
+Name             : Aura of Pain (id=207347) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=306656)   : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Immolation Aura (258921), Immolation Aura (258922), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916)
+                   Family Flags: 49, 61
+#2 (id=1278655)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Misc Value 2: 5348 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soul Immolation (1242475)
+Description      : $?c3[Soul Immolation grants ${$s2*$1241937d} additional Fury over its duration.][Increases the critical strike chance of Immolation Aura by $s1%.]
+
+Name             : Sigil of Misery (id=207684) [Spell Family (107)] 
+Talent Entry     : Generic [free=(Vengeance), tree=class, row=1, col=6, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 2 seconds
+Charges          : 1 (120 seconds cooldown)
+Category         : 1607 (Type 0x1): Quickened Sigils (209281 effect#4), Improved Sigil of Misery (320418 effect#1), Cycle of Binding (389718 effect#2)
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Quickened Sigils (209281 effect#1), Havoc Demon Hunter (212612 effect#6), Vengeance Demon Hunter (212613 effect#6), Any Means Necessary (388114 effect#1), Chains of Anger (389715 effect#1), Devourer Demon Hunter (1213636 effect#5)
+Family Flags     : 24, 32, 76
+Attributes       : Is Ability (4), Not Shapeshifted (16), Always Show Ground Texture (190), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=307158)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 8 yards | Target: at Area (87)
+#2 (id=307159)   : Create Area Trigger (179)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 6351 | Target: at Area (87)
+Description      : Place a Sigil of Misery at the target location that activates after $d.
+
+Name             : Charred Warblades (id=213010) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=6, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 2667: Vengeance Demon Hunter (212613 effect#12)
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), No Aura Cancel (31), Can Proc From Procs (122), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=315975)   : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Modified By: Vengeance Demon Hunter (212613 effect#12)
+Description      : You heal for $s1% of all Fire damage you deal.
+
+Name             : Imprison (id=217832) [Spell Family (107)] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Shadow
+Spell Type       : Magic
+Spell Level      : 34
+Range            : 20 yards
+Max Targets      : 1
+GCD              : 1.5 seconds
+Duration         : 60 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Mechanic         : Sap
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Affecting Spells : Havoc Demon Hunter (212612 effect#6), Vengeance Demon Hunter (212613 effect#6), Devourer Demon Hunter (1213636 effect#5)
+Family Flags     : 32, 48
+Attributes       : Is Ability (4), Not Shapeshifted (16), Cancels Auto Attack Combat (20), No Active Defense (21), No Redirection (35), No Threat (42), Prevents Anim (50), Aura Stays After Combat (57), Discount Power On Miss (59), PvP Enabling (96), Completely Blocked (99), Suppress Caster Procs (112), Can Proc From Procs (122), Suppress Weapon Procs (151), Limit N (165), Can Proc From Suppressed Target Procs (254), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Hide Shapeshift Requirements (356), Can Proc from Suppressed Caster Procs (385), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Aura Interrupt   : Leave World (19), Enter World (22), Damage (Script) (27)
+Effects          :
+#1 (id=324244)   : Apply Aura (6) | Stun (12)
+                   Base Value: 1 | Scaled Value: 1 | Target: Targeted Enemy (6)
+Description      : Imprisons a demon, beast, or humanoid, incapacitating them for $d. Damage may cancel the effect. Limit 1.
+Tooltip          : Incapacitated.
+
+Name             : Felblade (id=232893) [Spell Family (107)] 
+Talent Entry     : Havoc [tree=class, row=1, col=4, max_rank=1, req_points=0]
+                 : Vengeance [tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : Melee
+Range            : 15 yards
+GCD              : 0.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, War Glaive, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 12 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Havoc Demon Hunter (212612 effect#7), Vengeance Demon Hunter (212613 effects: #7, #14), Any Means Necessary (388114 effects: #3, #4), Demonsurge (452435 effect#2), Devourer Demon Hunter (1213636 effect#6), Guile (1223171 effect#1), Demonsurge (1245496 effect#5), Reaper's Toll (1245523 effect#2), Duty Eternal (1246562 effects: #1, #2), Furious (1266326 effects: #1, #2), Soulforged Blades (1272432 effect#1), Singular Strikes (1272770 effect#1)
+Family Flags     : 30, 85
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), Initiates Combat (Enables Auto-Attack) (41), Not an Action (92), Always Line of Sight (185), Taps immediately (215), Attack on Charge to Unit (242), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=351567)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Charge to your target and deal $213243sw2 $@spelldesc395020 damage.
+
+Name             : Consume Magic (id=278326) [Spell Family (107)] 
+Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Chromatic
+Spell Type       : Magic
+Spell Level      : 17
+Range            : 30 yards
+GCD              : 1.5 seconds
+Cooldown         : 10 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Guile (1223171 effect#1)
+Family Flags     : 89
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Reflection (39), Taps immediately (215), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=733970)   : Dispel (38)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1 | Target: Targeted Enemy (6)
+#2 (id=733971)   : Dispel (38)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+Description      : Consume $m1 beneficial Magic effect removing it from the target$?s320313[ and granting you $1277738s1 Fury][].
+
+Name             : Swallowed Anger (id=320313) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=5, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=807325)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Consume Magic generates $1277738s1 Fury when a beneficial Magic effect is successfully removed from the target.
+
+Name             : Infernal Armor (id=320331) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(10, 20)]
+                 : Effect#2 [op=set, values=(0, 100)]
+                 : Effect#3 [op=set, values=(2, 1)]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=807348)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Immolation Aura (258920), Immolation Aura (258921), Immolation Aura (258922), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427913), Immolation Aura (427914), Immolation Aura (427915), Immolation Aura (427916), Soul Immolation (1241937)
+                   Family Flags: 11
+#2 (id=1043571)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value 2: 2432 (Label) | Target: Self (1)
+                   Affected Spells (Label): Infernal Armor (320334)
+#3 (id=1092667)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : $?c3[Soul Immolation][Immolation Aura] increases your armor by $s1% and causes melee attackers to suffer ${$320334s1/$s3} $@spelldesc395020 damage.
+Variables        : $dmg=${$320334s1*(1+$320331s2/100)}
+
+Name             : Improved Disrupt (id=320361) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=807392)   : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Disrupt (183752)
+                   Family Flags: 19
+#2 (id=1078593)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Increases the range of Disrupt to ${$s2+$s1} yds.
+
+Name             : Bouncing Glaives (id=320386) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=2, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=807428)   : Apply Aura (6) | Add Flat Modifier (107): Spell Chain Targets (17)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 17 | Target: Self (1)
+                   Affected Spells: Throw Glaive (185123), Throw Glaive (204157), Throw Glaive (337819), Throw Glaive (346665), Throw Glaive (393035), Reaver's Glaive (442294), Reaver's Glaive (1283344)
+                   Family Flags: 5
+Description      : Throw Glaive ricochets to $s1 additional $ltarget:targets;.
+
+Name             : Blazing Path (id=320416) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=807464)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1545 (Category) | Target: Self (1)
+                   Affected Spells (Category): Fel Rush (195072), Fel Rush (344865)
+#2 (id=1029042)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1553 (Category) | Target: Self (1)
+                   Affected Spells (Category): Infernal Strike (189110)
+#3 (id=1269406)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2448 (Category) | Target: Self (1)
+                   Affected Spells (Category): Shift (1234796)
+Description      : $?a212613[Infernal Strike]?s195072[Fel Rush][Shift] gains an additional charge.
+
+Name             : Improved Sigil of Misery (id=320418) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=6, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=807466)   : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 1607 (Category) | Target: Self (1)
+                   Affected Spells (Category): Sigil of Misery (207684)
+#2 (id=1279441)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 1606 (Category) | Target: Self (1)
+                   Affected Spells (Category): Sigil of Chains (202138)
+Description      : Reduces the cooldown of Sigil of $?s202138[Chains][Misery] by $?s202138[${$s2/-1000}][${$s1/-1000}] sec.
+
+Name             : Vengeful Bonds (id=320635) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=2, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=807820)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Vengeful Retreat reduces the movement speed of all nearby enemies by $198813s1% for $198813d.
+
+Name             : Pursuit (id=320654) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Mastery Affects Points (285), Do Not Log on Learn (355)
+Effects          :
+#1 (id=807847)   : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.6 | Target: Self (1)
+Description      : Mastery increases your movement speed.
+
+Name             : Unrestrained Fury (id=320770) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=3, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=808070)   : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 20 | Scaled Value: 20 | Resource: fury | Target: Self (1)
+Description      : Increases maximum Fury by $s1.
+
+Name             : Will of the Illidari (id=389695) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1026101)  : Apply Aura (6) | Increase Health% (133)
+                   Base Value: 3 | Scaled Value: 3 | PvP Coefficient: 0.6 | Target: Self (1)
+Description      : Increases maximum health by $s1%.
+
+Name             : Illidari Knowledge (id=389696) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=2, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 6594
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1026102)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -3 | Scaled Value: -3 | PvP Coefficient: 0.667 | Misc Value: 0x7e | Target: Self (1)
+                   Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
+Description      : Reduces magic damage taken by $s1%.
+
+Name             : Master of the Glaive (id=389763) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 120
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1026224)  : Apply Aura (6) | Proc Trigger Spell (42): Master of the Glaive
+                   Base Value: 100 | Scaled Value: 100 | Trigger Spell: 213405 | Target: Self (1)
+#2 (id=1028668)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1612 (Category) | Target: Self (1)
+                   Affected Spells (Category): Throw Glaive (185123), Throw Glaive (204157)
+Description      : Throw Glaive has ${$s2+1} charges and snares all enemies hit by $213405s1% for $213405d.
+
+Name             : Long Night (id=389781) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=100]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1026249)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Darkness (196718)
+                   Family Flags: 77
+Description      : Increases the duration of Darkness by ${$s1/1000} sec.
+
+Name             : Pitch Black (id=389783) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=200]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1026251)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -120000 | Scaled Value: -120000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Darkness (196718)
+                   Family Flags: 77
+Description      : Reduces the cooldown of Darkness by ${$s1/-1000} sec.
+
+Name             : Shattered Restoration (id=389824) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1026316)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : The healing of Shattered Souls is increased by $s1%.
+
+Name             : Felfire Haste (id=389846) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=4, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1026352)  : Apply Aura (6) | Proc Trigger Spell (42): Felfire Haste
+                   Base Value: 10 | Scaled Value: 10 | Trigger Spell: 389847 | Target: Self (1)
+Description      : $?a212613[Infernal Strike]?a1213636[Shift][Fel Rush] increases your movement speed by $389847s1% for $389847d.
+
+Name             : Lost in Darkness (id=389849) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=7, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1026359)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Spectral Sight (188501), Spectral Sight (1251417)
+                   Family Flags: 74
+#2 (id=1195355)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Spectral Sight (188501), Spectral Sight (1251417)
+                   Family Flags: 74
+Description      : Spectral Sight has ${$s1/-1000} sec reduced cooldown and no longer reduces movement speed. 
+
+Name             : Erratic Felheart (id=391397) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=2, req_points=23]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028885)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -1000 | Scaled Value: -1000 | Misc Value: 1545 (Category) | Target: Self (1)
+                   Affected Spells (Category): Fel Rush (195072), Fel Rush (344865)
+#2 (id=1028886)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -1000 | Scaled Value: -1000 | Misc Value: 1553 (Category) | Target: Self (1)
+                   Affected Spells (Category): Infernal Strike (189110)
+#3 (id=1278703)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -1000 | Scaled Value: -1000 | Misc Value: 2448 (Category) | Target: Self (1)
+                   Affected Spells (Category): Shift (1234796)
+Description      : The cooldown of $?a212613[Infernal Strike]?a1213636[Shift][Fel Rush] is reduced by ${-$s1/1000}.1 sec.
+
+Name             : Aldrachi Design (id=391409) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=7, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1028912)  : Apply Aura (6) | Modify Parry% (47)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Increases your chance to parry by $s1%.
+
+Name             : Internal Struggle (id=393822) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=2, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Aura Required by Client (262), Mastery Affects Points (285), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1032991)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Increases your mastery by ${$s1*$mas}.1%.
+
+Name             : Live by the Glaive (id=428607) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=7, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Internal Cooldown: 5 seconds
+Proc Chance      : 101%
+Proc Flags       : White Melee, White Melee Taken, Yellow Melee, Yellow Melee Taken
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1109569)  : Apply Aura (6) | Proc Trigger Spell (42): Live by the Glaive
+                   Base Value: 5 | Scaled Value: 5 | Trigger Spell: 428608 | Target: Self (1)
+Description      : When you parry an attack or have one of your attacks parried, restore $428608s2% of max health and $428608s1 Fury. 
+
+Name             : Champion of the Glaive (id=429211) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 120
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1113269)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Throw Glaive (185123), Throw Glaive (204157), Throw Glaive (337819), Throw Glaive (346665), Throw Glaive (393035), Reaver's Glaive (442294), Reaver's Glaive (1283344)
+                   Family Flags: 5
+#2 (id=1113270)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1612 (Category) | Target: Self (1)
+                   Affected Spells (Category): Throw Glaive (185123), Throw Glaive (204157)
+Description      : Throw Glaive has ${$s2+1} charges and $s1 yard increased range.
+
+Name             : Guile (id=1223171) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=class, row=7, col=4, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1210931)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Disrupt (183752), Felblade (213241), Felblade (213243), Felblade (232893), Consume Magic (278326), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Pierce the Veil (1245483)
+                   Family Flags: 19, 30, 89
+Description      : The cast range of Voidblade, Consume Magic, and Disrupt are increased by $s1 yds.
+
+Name             : Void Nova (id=1234195) [Spell Family (107)] 
+Talent Entry     : Devourer [tree=class, row=4, col=1, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : Magic
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 2 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Demon Soul (163073 effects: #1, #2), Mastery: Demonic Presence (185164 effects: #1, #2), Fiery Brand (207744 effect#2), Fiery Brand (207771 effect#2), Exergy (208628 effects: #1, #2), Havoc Demon Hunter (212612 effects: #1, #2, #6), Vengeance Demon Hunter (212613 effects: #1, #2, #6), Frailty (247456 effect#4), Chaos Blades (247938 effects: #2, #3), Demon Soul (347765 effects: #1, #2), Burning Blood (390213 effects: #1, #2), Seething Chaos (394934 effects: #1, #2), Fiery Resolve (425653 effects: #1, #2), Inertia (427641 effects: #1, #2), Demon Hide (428241 effects: #1, #3), Reaver's Mark (442624 effect#1), Void Metamorphosis (471306 effect#3), Devourer Demon Hunter (1213636 effect#5), Luck of the Draw! (1219012 effects: #1, #2), Havoc Demon Hunter (1256955 effects: #1, #2), Vengeance Demon Hunter (1256959 effects: #1, #2), Blind Focus (1272364 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 2pc (1283625 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 4pc (1283628 effects: #1, #2)
+Family Flags     : 16, 17, 32, 43, 70
+Attributes       : Is Ability (4), No Redirection (35), No Reflection (39), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Effects          :
+#1 (id=1228435)  : Apply Aura (6) | Stun (12)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 8 yards | Mechanic: Stun | Target: At Enemy (53) -> at Enemy in Area (16)
+#2 (id=1228436)  : School Damage (2): cosmic
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 0.274816 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+#3 (id=1228437)  : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+Description      : Unleash an eruption of void energy, dealing $s2 Cosmic damage and stunning your target and all nearby enemies for $d.
+Tooltip          : Stunned.
+
+Name             : Voidblade (id=1245412) [Spell Family (107)] 
+Talent Entry     : Devourer [free=(Devourer), tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : Melee
+Range            : 15 yards
+GCD              : 0.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, War Glaive, Staff, Fist Weapon, Dagger, Spear
+Charges          : 1 (30 seconds cooldown)
+Category         : 2426 (Type 0x1)
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Vengeance Demon Hunter (212613 effect#14), Any Means Necessary (388114 effects: #3, #4), Demonsurge (452435 effect#2), Guile (1223171 effect#1), Demonsurge (1245496 effect#5), Reaper's Toll (1245523 effect#2), Duty Eternal (1246562 effects: #1, #2), Furious (1266326 effects: #1, #2), Soulforged Blades (1272432 effect#1), Singular Strikes (1272770 effect#1)
+Family Flags     : 30
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), Initiates Combat (Enables Auto-Attack) (41), Not an Action (92), Always Line of Sight (185), Taps immediately (215), Attack on Charge to Unit (242), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1246440)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Unleash your glaives and charge to your target, dealing $1245414s2 Cosmic damage.$?a1246562[
+
+Name             : Focused Ire (id=1266296) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=1, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278639)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2000 | Scaled Value: 2000 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : The primary target of $?c3[Void Nova][Chaos Nova] is stunned for an additional ${$s1/1000} sec.
+
+Name             : Demonic Resilience (id=1266307) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278663)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1621 (Category) | Target: Self (1)
+                   Affected Spells (Category): Blur (198589), Blur (212800)
+#2 (id=1279237)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1586 (Category) | Target: Self (1)
+                   Affected Spells (Category): Demon Spikes (203720)
+Description      : $?c2[Demon Spikes][Blur] gains $s1 additional $Lcharge:charges;.
+
+Name             : Burn It Out (id=1266316) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8, select_idx=100]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278676)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : $?c3[Soul Immolation][Immolation Aura] removes $s1 Disease $Leffect:effects;.
+
+Name             : Furious (id=1266326) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278695)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Sigil of Flame (204598), Felblade (213241), Felblade (213243), Fracture (225919), Fracture (225921), Felblade (232893), Immolation Aura (258921), Immolation Aura (258922), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916), Sigil of Doom (462030), Consume (473662), Devour (1217610), Reap (1225823), Eradicate (1225827), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Cull (1245455), Pierce the Veil (1245483), Eradicate (1279200)
+                   Family Flags: 30, 49, 61, 65, 69, 97, 99
+#2 (id=1279228)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Sigil of Flame (204598), Felblade (213241), Felblade (213243), Fracture (225919), Fracture (225921), Felblade (232893), Immolation Aura (258921), Immolation Aura (258922), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916), Sigil of Doom (462030), Consume (473662), Devour (1217610), Reap (1225823), Eradicate (1225827), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Cull (1245455), Pierce the Veil (1245483), Eradicate (1279200)
+                   Family Flags: 30, 49, 61, 65, 69, 97, 99
+#3 (id=1279229)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Attacks and abilities that generate Fury deal $s1% increased damage.
+
+Name             : Remorseless (id=1266328) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278697)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Blade Dance (188499), Eye Beam (198030), Chaos Strike (199547), Blade Dance (199552), Blade Dance (200685), Annihilation (201428), Death Sweep (210152), Death Sweep (210153), Death Sweep (210155), Fel Devastation (212105), Chaos Strike (222031), Annihilation (227518), Soul Cleave (228478), Spirit Bomb (247455), Fel Devastation (333110), Glaive Tempest (342817), Fel Devastation (346503), Eye Beam (391058), Blade Dance (391374), Blade Dance (391378), Death Sweep (393054), Death Sweep (393055), Fel Devastation (393834), Void Ray (1213649), Void Ray (1214595), Hungering Slash (1239127), Eye Beam (1287949)
+                   Family Flags: 6, 8, 14, 25, 31, 37, 50, 67, 68, 88, 100, 106, 127
+#2 (id=1279230)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Blade Dance (188499), Eye Beam (198030), Chaos Strike (199547), Blade Dance (199552), Blade Dance (200685), Annihilation (201428), Death Sweep (210152), Death Sweep (210153), Death Sweep (210155), Fel Devastation (212105), Chaos Strike (222031), Annihilation (227518), Soul Cleave (228478), Spirit Bomb (247455), Fel Devastation (333110), Glaive Tempest (342817), Fel Devastation (346503), Eye Beam (391058), Blade Dance (391374), Blade Dance (391378), Death Sweep (393054), Death Sweep (393055), Fel Devastation (393834), Void Ray (1213649), Void Ray (1214595), Hungering Slash (1239127), Eye Beam (1287949)
+                   Family Flags: 6, 8, 14, 25, 31, 37, 50, 67, 68, 88, 100, 106, 127
+Description      : Attacks and abilities that spend Fury deal $s1% increased damage.
+
+Name             : Demon Muzzle (id=1266329) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=5, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278698)  : Apply Aura (6) | Proc Trigger Spell (42): Demon Muzzle
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 1266616 | Target: Self (1)
+#2 (id=1278699)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : Interrupting a spell with Disrupt decreases your magic damage taken by $1266616s1% for $1266616d.
+
+Name             : Soul Splitter (id=1266330) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=6, max_rank=2, req_points=23]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 5883: Soul Splitter (1266330 effect#1)
+Internal Cooldown: 0.5 seconds
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278700)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Proc Chance (18)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 18 | Misc Value 2: 5883 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soul Splitter (1266330)
+Description      : Any time you would generate one or more Soul Fragments, you have a $s1% chance to generate an additional Soul Fragment.
+
+Name             : Wings of Wrath (id=1266493) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278990)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Glide speed increased by $s1%.
+
+Name             : Soul Cleanse (id=1266496) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8, select_idx=200]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278993)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : $?c3[Soul Immolation][Immolation Aura] removes $s1 Curse $Leffect:effects;.
+
+Name             : First In, Last Out (id=1266497) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=6, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1278995)  : Apply Aura (6) | Proc Trigger Spell (42): First In, Last Out
+                   Base Value: 6 | Scaled Value: 6 | Trigger Spell: 1266619 | Target: Self (1)
+Description      : $?a212612[Fel Rush]?a212613[Infernal Strike][Shift] grants you a rapidly decaying shield equal to $s1% of your maximum health.
+
+Name             : Final Breath (id=1266500) [Spell Family (107), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=3, max_rank=1, req_points=23]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1279001)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 300 | Scaled Value: 300 | Target: Self (1)
+Description      : Fully channeling $?a212612[Eye Beam]?a212613[Fel Devastation][Void Ray] increases the damage of its final tick by $s1%.
+
+Name             : Felbound (id=1266762) [Spell Family (107), Passive] 
+Talent Entry     : Havoc [tree=class, row=7, col=4, max_rank=1, req_points=8]
+                 : Vengeance [tree=class, row=7, col=4, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1279421)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Your movement speed is increased by $s1%.

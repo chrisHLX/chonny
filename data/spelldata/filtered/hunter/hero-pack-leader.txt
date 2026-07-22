@@ -1,0 +1,347 @@
+# Hunter — Pack Leader Hero Talents
+# Extracted verbatim from hunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Howl of the Pack Leader (id=471876) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+                 : 4692: Survival Hunter (137017 effect#9)
+Proc Chance      : 100%
+Proc Flags       : Enter Combat
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1189657)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1189828)  : Dummy (3)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1191058)  : Dummy (3)
+                   Base Value: 10 | Scaled Value: 10
+                   Modified By: Survival Hunter (137017 effect#9)
+Description      : While in combat, every $471877d your next Kill Command summons the aid of a Beast.
+
+Name             : Dire Summons (id=472352) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.7 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190427)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+#2 (id=1190428)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1500 | Scaled Value: 1500 | Target: Self (1)
+#3 (id=1190429)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+#4 (id=1190430)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+Description      : Kill Command reduces the cooldown of Howl of the Pack Leader by $?c1[${$s1/1000}.1][${$s2/1000}.1] sec.
+
+Name             : Better Together (id=472357) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190439)  : Apply Aura (6) | Modify Pet Damage Done% (429)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1190440)  : Apply Aura (6) | Modify Pet Damage Done% (429)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1190441)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Raptor Strike (186270), Raptor Strike (265189), Raptor Swipe (1262293), Raptor Swipe (1262343)
+                   Family Flags: 80
+#4 (id=1226146)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Barbed Shot (217200), Frenzy (217207), Frenzy (272795)
+                   Family Flags: 78
+Description      : Damage dealt by your pet$?c1[s][] is increased by $?c1[$s1][$s2]%.
+
+Name             : Pack Mentality (id=472358) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+                 : 6404: Beast Mastery Hunter (137015 effect#7)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190444)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Modified By: Beast Mastery Hunter (137015 effect#7)
+#2 (id=1190445)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+#3 (id=1190446)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6000 | Scaled Value: 6000 | Target: Self (1)
+Description      : Howl of the Pack Leader increases the damage of your Kill Command by $s1%.
+
+Name             : Ursine Fury (id=472476) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190617)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : When your Bear is summoned, it is joined by $s1 Dire $LBeast:Beasts;.
+
+Name             : Sharpened Claws (id=472524) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190702)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Misc Value 2: 4175 (Label) | Target: Self (1)
+                   Affected Spells (Label): Rend Flesh (471999)
+Description      : The damage of your Bear's Rend Flesh is increased by $s1%.
+
+Name             : Fury of the Wyvern (id=472550) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190738)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1190739)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+#3 (id=1190740)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5000 | Scaled Value: 5000 | Target: Self (1)
+#4 (id=1190741)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#5 (id=1296668)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Your pet's attacks increase your Wyvern's damage bonus by $471881s1%, up to $s1%.
+
+Name             : Hogstrider (id=472639) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190877)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : $?c1[When your Boar deals damage, the damage of your next Cobra Shot is increased by $472640s1%.
+
+Name             : No Mercy (id=472660) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190921)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 4934 (Label) | Target: Self (1)
+                   Affected Spells (Label): Barbed Shot (217200), Bloodshed (321538), Laceration (459560), Ravenous Leap (459753), Merciless Blow (459870), Rend Flesh (471999), Wildfire Bomb (1253171)
+#2 (id=1259196)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 35 | Scaled Value: 35 | Misc Value: 22 | Misc Value 2: 4934 (Label) | Target: Self (1)
+                   Affected Spells (Label): Barbed Shot (217200), Bloodshed (321538), Laceration (459560), Ravenous Leap (459753), Merciless Blow (459870), Rend Flesh (471999), Wildfire Bomb (1253171)
+Description      : Your Bleed effects deal $?c1[$s1][$s2]% increased damage.
+
+Name             : Shell Cover (id=472707) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1190995)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Survival of the Fittest (264735)
+                   Family Flags: 44
+#2 (id=1266928)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Survival of the Fittest (264735)
+                   Family Flags: 44
+Description      : Survival of the Fittest now summons a Turtle to aid you, further increasing its damage reduction effect by ${-$s1}%.
+
+Name             : Slicked Shoes (id=472719) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=5, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1191008)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+Description      : When Disengage removes a movement impairing effect, its cooldown is reduced by ${$s1/1000} sec.
+
+Name             : Stampede! (id=472741) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 5 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1191036)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 9 | Scaled Value: 9 | Target: Self (1)
+#2 (id=1266930)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Casting $?c1[Bestial Wrath][Takedown] grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing ${$201594s1* $s1} Physical damage over $201430d.
+
+Name             : Sharpened Fangs (id=1264775) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276352)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1311163)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Your mastery is increased by $s1%.$?c3[
+
+Name             : Lethal Barbs (id=1264781) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : White Melee, White Ranged
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276367)  : Apply Aura (6) | Proc Trigger Spell (42): Lethal Barbs
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1264783 | Target: Self (1)
+#2 (id=1276373)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Auto Shot (75), Bleak Arrows (467718)
+                   Family Flags: 0
+#3 (id=1276378)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Your $?c1[auto shot][auto attacks] grant$?c1[s][] $1264783s1 Focus to you and your pet.
+
+Name             : Wyvern's Gaze (id=1264792) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276383)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Doses (31)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 31 | Misc Value 2: 4691 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wyvern's Cry (471881)
+#2 (id=1276401)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Misc Value 2: 4691 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wyvern's Cry (471881)
+#3 (id=1276402)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 37 | Misc Value 2: 4691 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wyvern's Cry (471881)
+Description      : The damage bonus from your Wyvern now lasts an additional ${$s2/1000}.1 sec.
+
+Name             : Hoof and Blade (id=1264797) [Spell Family (9), Passive] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276389)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Misc Value 2: 5828 (Label) | Target: Self (1)
+                   Affected Spells (Label): Hogstrider (472640)
+#2 (id=1276390)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 12 | Misc Value 2: 5828 (Label) | Target: Self (1)
+                   Affected Spells (Label): Hogstrider (472640)
+#3 (id=1276404)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 37 | Misc Value 2: 5828 (Label) | Target: Self (1)
+                   Affected Spells (Label): Hogstrider (472640)
+Description      : $?c1[Hogstrider further increases the damage of Cobra Shot by $s1% and it now strikes up to $s3 additional targets][Hogstrider further increases the damage of Boomstick by $s2%].
+
+Name             : Masterful Call (id=1268705) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=5, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280213)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Master's Call (54216)
+                   Family Flags: 83
+#2 (id=1280219)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Master's Call (54216)
+                   Family Flags: 83
+Description      : The duration of Master's Call is increased by ${$s1/1000} sec and it increases the movement speed of its target by $s2%.

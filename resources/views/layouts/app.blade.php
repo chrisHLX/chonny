@@ -6,6 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Mindcollector') }}</title>
         <link rel="canonical" href="https://mindcollector.com/">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="alternate icon" href="/favicon.ico">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>

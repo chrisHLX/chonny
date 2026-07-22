@@ -56,6 +56,7 @@ class SubjectContextSeeder extends Seeder
         $this->options($spec->id, ['Assassination', 'Outlaw', 'Subtlety'], parentOptionId: $classOptions['Rogue']->id);
         $this->options($spec->id, ['Balance', 'Feral', 'Guardian', 'Restoration'], parentOptionId: $classOptions['Druid']->id);
         $this->options($spec->id, ['Arms', 'Fury', 'Protection'], parentOptionId: $classOptions['Warrior']->id);
+        $this->options($spec->id, ['Discipline', 'Holy', 'Shadow'], parentOptionId: $classOptions['Priest']->id);
     }
 
     private function seedLol(): void

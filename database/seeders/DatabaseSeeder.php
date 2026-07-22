@@ -95,6 +95,14 @@ class DatabaseSeeder extends Seeder
             PokerFundamentalsSeeder::class,
         ]);
 
+        // ========== CANONICAL CONTEXT MODULES (pilot) ==========
+        // Player-dictated expertise, structured rather than AI-authored — see VISION.md
+        // and the "Canonical Context Module Template" section in CLAUDE.md. Depends on
+        // SubjectContextSeeder (Group 1A) for the module_context_option tag.
+        $this->call([
+            DiscPriestOracleModuleSeeder::class,
+        ]);
+
         // ========== TRAITS ==========
         // Platform-wide player trait taxonomy for the diagnostic quiz system.
         // No dependencies — can run at any point after the traits table exists.

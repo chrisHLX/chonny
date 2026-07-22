@@ -28,6 +28,18 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1.5" />
         </div>
 
+        <div class="flex items-start gap-2 pt-1">
+            <input id="terms" type="checkbox" name="terms" value="1" @checked(old('terms'))
+                   class="form-checkbox mt-0.5" required>
+            <label for="terms" class="text-[13px] text-ink-muted leading-snug">
+                I agree to the
+                <a href="{{ route('terms') }}" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Terms of Service</a>
+                and
+                <a href="{{ route('privacy') }}" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Privacy Policy</a>.
+            </label>
+        </div>
+        <x-input-error :messages="$errors->get('terms')" class="mt-1.5" />
+
         <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-1.5" />
 
         <div class="flex items-center justify-between pt-1">

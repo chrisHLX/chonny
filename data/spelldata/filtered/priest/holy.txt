@@ -1,0 +1,971 @@
+# Priest — Holy Spec Talents
+# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 49 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Prayer of Healing (id=596) [Spell Family (6)] 
+Talent Entry     : Holy [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Resource         : 4.83% Base Mana (0) (id=67)
+Range            : 40 yards
+Cast Time        : 2.5 seconds
+GCD              : 1.5 seconds
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 954
+Stance Mask      : 0x80000000
+Affecting Spells : Renew (139 effect#2), Rapid Healing (24546 effect#2), Healing Trance (37706 effect#1), Archangel (81700 effects: #1, #2), Surge of Light (114255 effects: #7, #8, #10), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #2, #3, #4, #5), Light of T'uure (208065 effect#1), Muze's Unwavering Will (210632 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#2), Unwavering Will (373456 effect#1), Crisis Management (390954 effect#1), Twist of Fate (390978 effects: #1, #2), Lightweaver (390993 effects: #1, #2), Prayer Focus (394729 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Resonant Energy (453846 effect#1), Divinity (1216314 effects: #1, #2), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Efficient Prayers (1247131 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Focused Outburst (1272320 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2)
+Triggered By     : Surge of Light (114255), Lightweaver (390993)
+Family Flags     : 9, 126
+Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=243)      : Trigger Spell (64): Prayer of Healing
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 98367 | Target: Targeted Ally (21)
+#2 (id=105332)   : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 5.78742 | Radius: 0 - 40 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
+#3 (id=1207850)  : None (0)
+                   Base Value: 5 | Scaled Value: 5
+Description      : A powerful prayer that heals your target and ${$s3-1} injured allies within $A2 yards for $s2.
+
+Name             : Holy Word: Serenity (id=2050) [Spell Family (6)] 
+Talent Entry     : Holy [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Resource         : 2.375% Base Mana (0) (id=152)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Charges          : 1 (60 seconds cooldown)
+Category         : 1673 (Type 0x1): Miracle Worker (235587 effect#1), Holy Celerity (1215275 effect#2), Prophet's Insight (1272359 effect#1)
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 741: Healing Spells
+                 : 1116
+Stance Mask      : 0x80000000
+Affecting Spells : Renew (139 effect#2), Archangel (81700 effects: #1, #2), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #3, #4, #6), Light of T'uure (208065 effect#1), Al'maiesh, the Cord of Hope (211440 effect#1), Rammal's Ulterior Motive (234711 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#3), Twist of Fate (390978 effects: #1, #2), Inspired Word (409479 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Sacred Reverence (423510 effect#2), Prophet's Will (433905 effect#1), Resonant Energy (453846 effects: #1, #2), Phantom Reach (459559 effect#2), Light in the Darkness (471668 effect#1), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Ultimate Serenity (1246517 effect#2), Uplifting Words (1250562 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Words of the Wise (1272352 effect#1), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2)
+Family Flags     : 10, 126
+Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=611)      : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | Value Multiplier: 1 | SP Coefficient: 21.4493 | PvP Coefficient: 1.512 | Target: Targeted Ally (21)
+#2 (id=709474)   : Dummy (3)
+                   Base Value: 6 | Scaled Value: 6
+Description      : Perform a miracle, healing an ally for $s1.
+
+Name             : Holy Word: Sanctify (id=34861) [Spell Family (6)] 
+Talent Entry     : Holy [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Resource         : 3.325% Base Mana (0) (id=1546)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Charges          : 1 (60 seconds cooldown)
+Category         : 2075 (Type 0x1): Miracle Worker (235587 effect#2), Holy Celerity (1215275 effect#1), Prophet's Insight (1272359 effect#2)
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 1116
+Stance Mask      : 0x80000000
+Affecting Spells : Renew (139 effect#2), Healing Trance (37706 effect#1), Archangel (81700 effects: #1, #2), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #3, #4, #6), Light of T'uure (208065 effect#1), Al'maiesh, the Cord of Hope (211442 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#3), Twist of Fate (390978 effects: #1, #2), Inspired Word (409479 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Sacred Reverence (423510 effect#2), Resonant Energy (453846 effects: #1, #2), Light in the Darkness (471668 effects: #1, #2), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Ultimate Serenity (1246517 effect#1), Uplifting Words (1250562 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Words of the Wise (1272352 effect#1), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2)
+Family Flags     : 28, 126
+Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), DoT Stacking Rule (103), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=24949)    : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 6.01321 | PvP Coefficient: 1.512 | Radius: 10 yards | Target: At Ally in Area (31)
+#2 (id=288932)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#3 (id=709475)   : Dummy (3)
+                   Base Value: 6 | Scaled Value: 6
+#4 (id=709476)   : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2
+Description      : Releases miraculous light at a target location, healing up to $s2 allies within $a1 yds for $s1.
+
+Name             : Guardian Spirit (id=47788) [Spell Family (6)] 
+Talent Entry     : Holy [tree=spec, row=2, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Resource         : 0.9% Base Mana (0) (id=2205)
+Range            : 40 yards
+Duration         : 10 seconds
+Cooldown         : 180 seconds
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Stance Mask      : 0x80000000
+Affecting Spells : Phyrix's Embrace (234689 effects: #1, #2), Foreseen Circumstances (440738 effect#2)
+Family Flags     : 75
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No AutoCast (AI) (49), Allow Low Level Buff (67), Include In Advanced Combat Log (72), Allow While Not Shapeshifted (caster form) (83), Absorb Cannot Be Ignore (214), Vehicle Immunity Category (218), Do Not Count For PvP Scoreboard (252), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Do Not Log Absorb (348), Ignore Caster Absorb Modifiers (370), Ignore Target Absorb Modifiers (371), Allow While Stunned by Stun Mechanic (378), Hide Damage Absorb UI (380), Allow Class Ability Procs (416), Important Spell (491), External Defensive (499), Big Defensive (512)
+Effects          :
+#1 (id=40042)    : Apply Aura (6) | Modify Healing Received% (118)
+                   Base Value: 60 | Scaled Value: 60 | Misc Value: 0x7f | Target: Targeted Ally (21)
+                   Affected School(s): All
+                   Modified By: Phyrix's Embrace (234689 effect#2)
+#2 (id=40043)    : Dummy (3)
+                   Base Value: 40 | Scaled Value: 40
+#3 (id=188025)   : Apply Aura (6) | Absorb Overkill Damage From School (316)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 20 | Target: Targeted Ally (21)
+                   Affected School(s): All
+Description      : Calls upon a guardian spirit to watch over the friendly target for $d, increasing healing received by $s1%. If the target would die, the Spirit sacrifices itself and restores the target to $s2% health.
+
+Name             : Divine Hymn (id=64843) [Spell Family (6)] 
+Talent Entry     : Holy [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Resource         : 4.4% Base Mana (0) (id=2876)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 5 seconds
+Cooldown         : 180 seconds
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 930
+                 : 954
+Stance Mask      : 0x80000000
+Affecting Spells : Kam Xi'raff (281457 effect#1), Seraphic Crescendo (419110 effect#1)
+Family Flags     : 54
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Name in Channel Bar (61), Ignore Line of Sight (66), Allow While Not Shapeshifted (caster form) (83), Active Threat (94), Do Not Display Range (126), Cannot Be Stolen (134), Extra Initial Period (169), Spell Haste Affects Periodic (173), Haste Affects Duration (273), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Important Spell (491)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13)
+Effects          :
+#1 (id=59162)    : Apply Aura (6) | Periodic Trigger Spell (23): Divine Hymn every 1.25 seconds
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 64844 | Target: Self (1)
+#2 (id=59163)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#3 (id=59164)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#4 (id=192423)   : Dummy (3)
+                   Base Value: 12 | Scaled Value: 12
+#5 (id=1164215)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Heals all party or raid members within $64844A1 yards for ${5*$64844s1} over $d. Each heal increases all targets' healing taken by $64844s2% for $64844d, stacking.
+
+Name             : Holy Word: Chastise (id=88625) [Spell Family (6)] 
+Talent Entry     : Holy [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Resource         : 0.6% Base Mana (0) (id=4095)
+Range            : 30 yards
+GCD              : 1.5 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 1116
+Affecting Spells : Spirit Shell (109964 effect#2), Holy Priest (137031 effects: #4, #5), Discipline Priest (137032 effects: #4, #5), Shadow Priest (137033 effects: #1, #2), Voidform (194249 effects: #1, #2, #3), Apotheosis (200183 effect#6), Al'maiesh, the Cord of Hope (211443 effect#1), Shadowform (232698 effects: #1, #3), Sins of the Many (280398 effects: #1, #2), Inner Shadow (355898 effects: #1, #4), Twist of Fate (390978 effects: #1, #2), Dark Ascension (391109 effects: #2, #4, #5), Inspired Word (409479 effect#1), Initial Priest (417191 effects: #1, #2), Resonant Energy (453850 effect#1), Devouring Chorus (454638 effects: #1, #2), Phantom Reach (459559 effect#4), Holy Celerity (1215275 effect#3), Holy Priest (1238052 effects: #4, #5), Focused Power (1249230 effects: #1, #2), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #4, #5), Shadow Priest (1256905 effects: #1, #2), Prophet's Insight (1272359 effect#3), Priest - Midnight PrePatch - 11.2 Class Set 2pc (1283668 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc (1283669 effects: #1, #2)
+Family Flags     : 69, 72
+Attributes       : Not Shapeshifted (16), Allow Class Ability Procs (416)
+Aura Interrupt   : Leave World (19)
+Effects          :
+#1 (id=91044)    : School Damage (2): holy
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.85749 | Target: Targeted Enemy (6)
+#2 (id=709477)   : Dummy (3)
+                   Base Value: 4 | Scaled Value: 4
+Description      : Chastises the target for $s1 Holy damage and $?s200199[stuns][incapacitates] them for $?s200199[$200200d][$200196d].$?s63733[
+
+Name             : Enlightenment (id=193155) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=283373)   : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 10 | Scaled Value: 10 | Resource: mana | Target: Self (1)
+Description      : You regenerate mana $s1% faster.
+
+Name             : Light's Resurgence (id=193157) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=283376)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Misc Value: 8 | Target: Self (1)
+Description      : Your Prayer of Mending has a $s1% chance to leave a Renew on each target it heals.
+
+Name             : Afterlife (id=196707) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=288794)   : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Spirit of Redemption (20711), Spirit of Redemption (27827), Spirit of Redemption (215769)
+                   Family Flags: 5, 73
+#2 (id=809102)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Spirit of Redemption (20711), Spirit of Redemption (27827), Spirit of Redemption (215769)
+                   Family Flags: 5, 73
+#3 (id=1054278)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Spirit of Redemption (20711), Spirit of Redemption (27827), Spirit of Redemption (215769)
+                   Family Flags: 5, 73
+Description      : Increases the duration of Spirit of Redemption by $s1% and the range of its spells by $s2%.
+
+Name             : Light of the Naaru (id=196985) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=9, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(10, 20)]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Aura Points On Client (268), Spellcast Override In Spellbook (310), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=289244)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 11 | Target: Self (1)
+Description      : The cooldowns of your Holy Words are reduced by an additional $s1% when you cast the relevant spells.
+
+Name             : Trail of Light (id=200128) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=8, col=1, max_rank=1, req_points=20, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=294596)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : $s1% of healing done by Flash Heal is replicated to the previous target you healed with those spells.
+
+Name             : Apotheosis (id=200183) [Spell Family (6)] 
+Talent Entry     : Holy [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Priest
+School           : Holy
+Spell Type       : Magic
+Spell Level      : 1
+GCD              : 1.5 seconds
+Duration         : 20 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 930
+                 : 3635: Perfected Form (453917 effect#3), Perfected Form (453917 effect#4), Divinity (1215241 effect#1), Divinity (1215241 effect#2), Eternal Sanctity (1215245 effect#1)
+Stance Mask      : 0x80000000
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Allow While Banished Aura State (299), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=294682)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Misc Value: 126 | Misc Value 2: 1 | Target: Self (1)
+#2 (id=334777)   : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Prayer of Healing (596), Heal (2060)
+                   Family Flags: 9, 12
+#3 (id=476562)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Renew (139), Prayer of Healing (596), Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Prayer of Mending (33110), Holy Word: Sanctify (34861), Penance (47750), Divine Hymn (64844), Divine Star (110745), Halo (120692), Shadow Mend (186263), Power Word: Radiance (194509), Healing Light (196809), Dazzling Lights (196810), Blessed Light (196813), Tranquil Light (196816), Plea (200829), Cosmic Ripple (243241), Penance (270501), Moment of Repose (272776), Twist Magic (280198), Holy Nova (281265), Penance (281469), Unholy Nova (324724), Ascended Nova (325041), Unholy Transfusion (325118), Cauterizing Shadows (336373), Crystalline Reflection (336509), Unholy Nova (347788), Halo (390971), Divine Star (390981), Holy Mending (391156), Dark Reprimand (400187), Ultimate Penitence (421544), Light Eruption (464047), Evangelism (472433), Insurance! (1215349), Insurance! (1215354), Insurance! (1215503), Insurance! (1217013), Penance (1232567), Dark Reprimand (1232615), Prompt Prognosis (1246798), Ultimate Serenity (1250581), Benediction (1262763)
+                   Family Flags: 126
+                   Modified By: Perfected Form (453917 effect#3), Divinity (1215241 effect#1)
+#4 (id=476563)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Renew (139), Prayer of Healing (596), Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Prayer of Mending (33110), Holy Word: Sanctify (34861), Penance (47750), Divine Hymn (64844), Divine Star (110745), Halo (120692), Shadow Mend (186263), Power Word: Radiance (194509), Healing Light (196809), Dazzling Lights (196810), Blessed Light (196813), Tranquil Light (196816), Plea (200829), Cosmic Ripple (243241), Penance (270501), Moment of Repose (272776), Twist Magic (280198), Holy Nova (281265), Penance (281469), Unholy Nova (324724), Ascended Nova (325041), Unholy Transfusion (325118), Cauterizing Shadows (336373), Crystalline Reflection (336509), Unholy Nova (347788), Halo (390971), Divine Star (390981), Holy Mending (391156), Dark Reprimand (400187), Ultimate Penitence (421544), Light Eruption (464047), Evangelism (472433), Insurance! (1215349), Insurance! (1215354), Insurance! (1215503), Insurance! (1217013), Penance (1232567), Dark Reprimand (1232615), Prompt Prognosis (1246798), Ultimate Serenity (1250581), Benediction (1262763)
+                   Family Flags: 126
+                   Modified By: Perfected Form (453917 effect#4), Divinity (1215241 effect#2)
+#5 (id=1156166)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Prayer of Healing (596), Heal (2060)
+                   Family Flags: 9, 12
+#6 (id=1156167)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Holy Word: Serenity (2050), Holy Word: Sanctify (34861), Holy Word: Chastise (88625), Holy Word: Chastise (200196), Holy Word: Chastise (200200), Ultimate Serenity (1250581)
+                   Family Flags: 10, 28, 69
+#7 (id=1181324)  : Apply Aura (6) | Modify Attack Power (104)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#8 (id=1198070)  : Apply Aura (6) | Resist Dispel (235)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#9 (id=1198071)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $?s235587[Gain a charge][Reset the cooldown] of your Holy Words, and enter a pure Holy form for $d, increasing the cooldown reductions to your Holy Words by $s1% and reducing their cost by $s6%.
+Tooltip          : Effects that reduce Holy Word cooldowns increased by $s1%. Cost of Holy Words reduced by $s6%.$?$w3>0[
+
+Name             : Censure (id=200199) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=294714)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Holy Word: Chastise stuns the target for $200200d and is not broken by damage.
+
+Name             : Guardian Angel (id=200209) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=294728)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+Description      : When Guardian Spirit saves the target from death, it does not expire.
+
+Name             : Miracle Worker (id=235587) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=356036)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1673 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Word: Serenity (2050)
+#2 (id=1031547)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2075 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Word: Sanctify (34861)
+Description      : Holy Word: Serenity$?a?a1246517[ gains][ and Holy Word: Sanctify gain] an additional charge.
+
+Name             : Cosmic Ripple (id=238136) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=360821)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : When Holy Word: Serenity $?a1246517[finishes its][or Holy Word: Sanctify finish their] cooldown, you emit a burst of light that heals up to $s1 injured targets within $243241A1 yards for $243241s1.
+
+Name             : Renewed Faith (id=341997) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=842754)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Renew (139)
+                   Family Flags: 6
+Description      : Your healing on allies with your Renew is increased by $s1%.
+
+Name             : Burning Vehemence (id=372307) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=4, col=7, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=996847)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Holy Fire (14914), Encroaching Shadows (204215)
+                   Family Flags: 20
+#2 (id=996848)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Holy Fire (14914), Encroaching Shadows (204215)
+                   Family Flags: 20
+#3 (id=1045307)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+Description      : Increases the damage of Holy Fire by $s1%.
+
+Name             : Gales of Song (id=372370) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=996937)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 9000 | Scaled Value: 9000 | Target: Self (1)
+#2 (id=996938)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1194533)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : While channeling Divine Hymn, place $s2 stacks of Prayer of Mending on up to $s3 allies within its range every ${$64843d/$64843s5}.1 sec.
+
+Name             : Empyreal Blaze (id=372616) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 1513
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=997345)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Holy Word: Chastise causes your next $s1 casts of Holy Fire to be instant, cost no mana, and incur no cooldown.
+
+Name             : Crisis Management (id=390954) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028125)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Prayer of Healing (596), Flash Heal (2061), Shadow Mend (186263), Benediction (1262763)
+                   Family Flags: 9, 11
+Description      : Increases the critical strike chance of Flash Heal and Prayer of Healing by $s1%.
+
+Name             : Prismatic Echoes (id=390967) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=9, col=4, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(8, 15)]
+                 : Effect#2 [op=set, values=(20, 40)]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028161)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1198148)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 13 | Scaled Value: 13 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Renew (139)
+                   Family Flags: 6
+Description      : Increases the healing done by your Mastery: Echo of Light by $s1% and your Renew by $s2%.
+
+Name             : Prayers of the Virtuous (id=390977) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028179)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Prayer of Mending (33076)
+                   Family Flags: 118
+#2 (id=1045365)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Prayer of Mending (41635)
+                   Family Flags: 123
+Description      : Prayer of Mending jumps $s1 additional $Ltime:times;.
+
+Name             : Lightweaver (id=390992) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028206)  : Apply Aura (6) | Proc Trigger Spell (42): Lightweaver
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 390993 | Target: Self (1)
+Description      : Flash Heal reduces the cast time of your next Prayer of Healing within $390993d by $390993s2% and increases its healing done by $390993s1%.
+
+Name             : Voice of Harmony (id=390994) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=4, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028210)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1165297)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#3 (id=1165298)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Prayer of Mending $?S120517&?a1246517[and creating a Halo ][]reduces the cooldown of Holy Word: Serenity by $s2 sec.
+
+Name             : Restitution (id=391124) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028424)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : After Spirit of Redemption expires, you will revive at up to $s1% health, based on your healing done during Spirit of Redemption. After reviving, you cannot benefit from Spirit of Redemption for $211319d.
+
+Name             : Say Your Prayers (id=391186) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Aura Icon (60), Do Not Display Range (126), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1028522)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Prayer of Mending has a $s1% chance to not consume a charge when it jumps to a new target.
+
+Name             : Prayerful Litany (id=391209) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=4, col=1, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028559)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 125 | Scaled Value: 125 | Target: Self (1)
+Description      : The primary target of Prayer of Healing is healed for $s1% more.
+
+Name             : Divine Service (id=391233) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028593)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Prayer of Mending heals $s1% more for each bounce remaining.
+
+Name             : Desperate Times (id=391381) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=9, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(10, 20)]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1028857)  : Apply Aura (6) | Unknown(359)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 25 | Target: Self (1)
+#2 (id=1028858)  : Dummy (3)
+                   Base Value: 50 | Scaled Value: 50
+Description      : Increases healing by $s1% on friendly targets at or below $s2% health.
+
+Name             : Divine Image (id=392988) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Paladin, Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1031610)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Holy Words summon an image of a Naaru at your side. For $392990d, whenever you cast a healing or damaging spell, the Naaru will cast a similar spell.
+
+Name             : Epiphany (id=414553) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1083738)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1096650)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1096651)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Your Holy Words have a $s1% chance to cause your next cast of Prayer of Mending to ignore its cooldown. 
+
+Name             : Seraphic Crescendo (id=419110) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1091846)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Divine Hymn (64843)
+                   Family Flags: 54
+Description      : Reduces the cooldown of Divine Hymn by ${$s1/-1000} sec.
+
+Name             : Lasting Words (id=471504) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 4263: Preemptive Care (440671 effect#4), Preemptive Care (440671 effect#5)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1189053)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12000 | Scaled Value: 12000 | Target: Self (1)
+                   Modified By: Preemptive Care (440671 effect#4)
+#2 (id=1189054)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6000 | Scaled Value: 6000 | Target: Self (1)
+                   Modified By: Preemptive Care (440671 effect#5)
+#3 (id=1189055)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Holy Word: Serenity applies ${$s1/1000} sec of Renew to its target.
+
+Name             : Light in the Darkness (id=471668) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=9, col=3, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(13, 25)]
+                 : Effect#2 [op=set, values=(15, 30)]
+                 : Effect#3 [op=set, values=(15, 30)]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1189372)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Holy Word: Serenity (2050), Holy Word: Sanctify (34861), Ultimate Serenity (1250581)
+                   Family Flags: 10, 28
+#2 (id=1189373)  : Apply Aura (6) | Add Percent Modifier (108): Spell Radius (6)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 6 | Target: Self (1)
+                   Affected Spells: Holy Word: Sanctify (34861)
+                   Family Flags: 28
+#3 (id=1189402)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Radius (6)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 6 | Misc Value 2: 4163 (Label) | Target: Self (1)
+Description      : Increases the healing done by Holy Word: Serenity$?a1246517[ by $s1%.][ and Holy Word: Sanctify by $s1%.
+
+Name             : Divinity (id=1215241) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1198072)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 23 | Misc Value 2: 3635 (Label) | Target: Self (1)
+                   Affected Spells (Label): Apotheosis (200183)
+#2 (id=1198073)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Misc Value 2: 3635 (Label) | Target: Self (1)
+                   Affected Spells (Label): Apotheosis (200183)
+#3 (id=1199683)  : Apply Aura (6) | Proc Trigger Spell (42): Divinity
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1216314 | Target: Self (1)
+Description      : Your healing is increased by $s1% while Apotheosis is active.
+
+Name             : Eternal Sanctity (id=1215245) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1198078)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 12000 | Scaled Value: 12000 | Misc Value: 1 | Misc Value 2: 3635 (Label) | Target: Self (1)
+                   Affected Spells (Label): Apotheosis (200183)
+Description      : Increases the duration of Apotheosis by ${$s1/1000} sec.
+
+Name             : Dispersing Light (id=1215265) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=8, col=1, max_rank=1, req_points=20, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1198111)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1198112)  : Dummy (3)
+                   Base Value: 4 | Scaled Value: 4
+Description      : $s1% of healing done with Flash Heal is replicated to $s2 injured allies within $1215266A2 yards.
+
+Name             : Holy Celerity (id=1215275) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1198131)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 2075 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Word: Sanctify (34861)
+#2 (id=1198132)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 1673 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Word: Serenity (2050)
+#3 (id=1198133)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Holy Word: Chastise (88625), Holy Word: Chastise (200196), Holy Word: Chastise (200200)
+                   Family Flags: 69
+Description      : Reduces the cooldown of your Holy Words by ${$s1/-1000} sec.
+
+Name             : Ultimate Serenity (id=1246517) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=10, col=3, max_rank=1, req_points=20, replace="Holy Word: Sanctify" (id=34861)]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1248107)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332)
+                   Base Value: 1250548 | Scaled Value: 1250548 | Misc Value 2: 2 | Target: Self (1)
+                   Affected Spells: Holy Word: Sanctify (34861)
+                   Family Flags: 28
+#2 (id=1254653)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Holy Word: Serenity (2050), Ultimate Serenity (1250581)
+                   Family Flags: 10
+#3 (id=1254727)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Increases the healing done by Holy Word: Serenity by $s2% and causes it to heal $1250581s2 nearby injured allies within $1250581A1 yards for $s3% of its healing done.
+
+Name             : Efficient Prayers (id=1247131) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1249083)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Prayer of Healing (596)
+                   Family Flags: 9
+Description      : Reduces the mana cost of Prayer of Healing by $s1%.
+
+Name             : Healing Focus (id=1247166) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1249148)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Flash Heal (2061), Shadow Mend (186263), Benediction (1262763)
+                   Family Flags: 11
+Description      : Reduces the mana cost of Flash Heal by $s1%.
+
+Name             : Cosmic Wave (id=1248418) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1251337)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Cosmic Ripple (243241)
+                   Family Flags: 93
+Description      : Increases Cosmic Ripple healing by $s1%.
+
+Name             : Uplifting Words (id=1250562) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1254673)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Holy Word: Serenity (2050), Holy Word: Sanctify (34861), Ultimate Serenity (1250581)
+                   Family Flags: 10, 28
+Description      : Increases the critical strike chance of your Holy Word: Serenity$?a1246517[] [ and Holy Word: Sanctify] by $s1%.
+
+Name             : Angelic Touch (id=1250565) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Holy [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1254682)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.75 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Renew (139), Prayer of Healing (596), Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Prayer of Mending (33110), Holy Word: Sanctify (34861), Penance (47750), Divine Hymn (64844), Divine Star (110745), Halo (120692), Shadow Mend (186263), Power Word: Radiance (194509), Healing Light (196809), Dazzling Lights (196810), Blessed Light (196813), Tranquil Light (196816), Plea (200829), Cosmic Ripple (243241), Penance (270501), Moment of Repose (272776), Twist Magic (280198), Holy Nova (281265), Penance (281469), Unholy Nova (324724), Ascended Nova (325041), Unholy Transfusion (325118), Cauterizing Shadows (336373), Crystalline Reflection (336509), Unholy Nova (347788), Halo (390971), Divine Star (390981), Holy Mending (391156), Dark Reprimand (400187), Ultimate Penitence (421544), Light Eruption (464047), Evangelism (472433), Insurance! (1215349), Insurance! (1215354), Insurance! (1215503), Insurance! (1217013), Penance (1232567), Dark Reprimand (1232615), Prompt Prognosis (1246798), Ultimate Serenity (1250581), Benediction (1262763)
+                   Family Flags: 126
+#2 (id=1254683)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | PvP Coefficient: 0.75 | Target: Self (1)
+Description      : Your healing spells critically strike for ${$s1+$s2}% of healing done instead of the usual $s2%.
+
+Name             : Radiant Plea (id=1250684) [Spell Family (6), Passive] 
+Talent Entry     : Holy [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1254856)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Prayer of Mending (33110)
+                   Family Flags: 117
+Description      : Increases Prayer of Mending healing by $s1%.
+
+Name             : Benediction (id=1262755) [Spell Family (6), Passive] 
+Talent Entry     : Holy [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5671
+Proc Chance      : 101%
+Real PPM         : 5 (Haste multiplier)
+Proc Flags       : Generic Helpful, Magic Heal, Helpful Periodic, Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1273220)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value 2: 5780 (Label) | Target: Self (1)
+                   Affected Spells (Label): Benediction (1262763)
+Description      : Prayer of Mending healing has a chance to upgrade your next Flash Heal to Benediction, healing the target for $s1% more and causing a Cosmic Ripple.
+
+Name             : Benediction (id=1262758) [Spell Family (6), Passive] 
+Talent Entry     : Holy [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=300]
+                 : Effect#1 [op=set, values=(15, 30)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+                 : Effect#4 [op=set, values=(6, 12)]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1273225)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Cosmic Ripple (243241)
+                   Family Flags: 93
+#2 (id=1286808)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+                   Affected Spells: Renew (139), Prayer of Healing (596), Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Prayer of Mending (33110), Holy Word: Sanctify (34861), Penance (47750), Divine Hymn (64844), Divine Star (110745), Halo (120692), Shadow Mend (186263), Power Word: Radiance (194509), Healing Light (196809), Dazzling Lights (196810), Blessed Light (196813), Tranquil Light (196816), Plea (200829), Cosmic Ripple (243241), Penance (270501), Moment of Repose (272776), Twist Magic (280198), Holy Nova (281265), Penance (281469), Unholy Nova (324724), Ascended Nova (325041), Unholy Transfusion (325118), Cauterizing Shadows (336373), Crystalline Reflection (336509), Unholy Nova (347788), Halo (390971), Divine Star (390981), Holy Mending (391156), Dark Reprimand (400187), Ultimate Penitence (421544), Light Eruption (464047), Evangelism (472433), Insurance! (1215349), Insurance! (1215354), Insurance! (1215503), Insurance! (1217013), Penance (1232567), Dark Reprimand (1232615), Prompt Prognosis (1246798), Ultimate Serenity (1250581), Benediction (1262763)
+                   Family Flags: 126
+#3 (id=1286809)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Renew (139), Prayer of Healing (596), Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Prayer of Mending (33110), Holy Word: Sanctify (34861), Penance (47750), Divine Hymn (64844), Divine Star (110745), Halo (120692), Shadow Mend (186263), Power Word: Radiance (194509), Healing Light (196809), Dazzling Lights (196810), Blessed Light (196813), Tranquil Light (196816), Plea (200829), Cosmic Ripple (243241), Penance (270501), Moment of Repose (272776), Twist Magic (280198), Holy Nova (281265), Penance (281469), Unholy Nova (324724), Ascended Nova (325041), Unholy Transfusion (325118), Cauterizing Shadows (336373), Crystalline Reflection (336509), Unholy Nova (347788), Halo (390971), Divine Star (390981), Holy Mending (391156), Dark Reprimand (400187), Ultimate Penitence (421544), Light Eruption (464047), Evangelism (472433), Insurance! (1215349), Insurance! (1215354), Insurance! (1215503), Insurance! (1217013), Penance (1232567), Dark Reprimand (1232615), Prompt Prognosis (1246798), Ultimate Serenity (1250581), Benediction (1262763)
+                   Family Flags: 126
+#4 (id=1293197)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 24 | Target: Self (1)
+                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
+                   Family Flags: 0
+Description      : Cosmic Ripple healing increased by $s1%.
+
+Name             : Benediction (id=1262760) [Spell Family (6), Passive] 
+Talent Entry     : Holy [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=400]
+Class            : Priest
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1273228)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+Description      : Each pulse of Divine Hymn emits a Cosmic Ripple at $s1% effectiveness.

@@ -1,0 +1,362 @@
+# Priest — Voidweaver Hero Talents
+# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Void Torrent (id=263165) [Spell Family (6)] 
+Talent Entry     : Voidweaver (Shadow) [free=(Shadow), tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Shadow
+Spell Type       : Magic
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 3 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Stance Mask      : 0x08000000
+Affecting Spells : Spirit Shell (109964 effect#2), Holy Priest (137031 effects: #4, #5), Discipline Priest (137032 effects: #4, #5), Shadow Priest (137033 effects: #1, #2), Mental Fatigue (185104 effect#1), Voidform (194249 effects: #1, #2, #3), Shadowform (232698 effects: #1, #3), Sins of the Many (280398 effects: #1, #2), Inner Shadow (355898 effects: #1, #4), Insidious Ire (373213 effect#2), Twist of Fate (390978 effects: #1, #2), Dark Evangelism (391099 effect#1), Dark Ascension (391109 effects: #2, #4, #5), Initial Priest (417191 effects: #1, #2), Dark Energy (451018 effect#1), Resonant Energy (453850 effect#1), Devouring Chorus (454638 effects: #1, #2), Holy Priest (1238052 effects: #4, #5), Focused Power (1249230 effects: #1, #2), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #4, #5), Shadow Priest (1256905 effects: #1, #2), Overwhelming Shadows (1266883 effect#1), Priest - Midnight PrePatch - 11.2 Class Set 2pc (1283668 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc (1283669 effects: #1, #2)
+Family Flags     : 51, 72
+Attributes       : Not Shapeshifted (16), Aura Is Debuff (26), Is Channelled (34), Track Target in Channel (46), Name in Channel Bar (61), Allow While Not Shapeshifted (caster form) (83), Extra Initial Period (169), Spell Haste Affects Periodic (173), No Caster Aura Icon (187), Periodic Can Crit (265), Aura Points On Client (268), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=651860)   : Apply Aura (6) | Periodic Damage (3): shadow every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 2.37685 | PvP Coefficient: 0.7 | Target: Targeted Enemy (6)
+#2 (id=651861)   : Apply Aura (6) | Modify Time Rate (Label) (470)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 3678 (Label) | Target: Self (1)
+                   Affected Spells (Label): Entropic Rift (447445), Voidheart (449887)
+#3 (id=754067)   : Trigger Spell (64): Void Torrent
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 289577 | Target: Self (1)
+#4 (id=1158790)  : Apply Aura (6) | Modify Time Rate (Label) (470)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 3678 (Label) | Target: Self (1)
+                   Affected Spells (Label): Entropic Rift (447445), Voidheart (449887)
+Description      : Channel a torrent of void energy into the target, dealing $o Shadow damage over $d and tearing open an $@spellname447444.
+
+Name             : Entropic Rift (id=447444) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline) [free=(Discipline), tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1145408)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : $?c3[Tear open a rift][Mind Blast tears open an Entropic Rift] that follows the enemy for $450193d. Enemies caught in its path suffer $447448s1 Shadow damage every $459314t1 sec while within its reach.
+
+Name             : Inner Quietus (id=448278) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+                 : 3886: Discipline Priest (137032 effect#12), Discipline Priest (137032 effect#13), Shadow Priest (137033 effect#9)
+Triggered By     : Discipline Priest (137032), Shadow Priest (137033)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1146665)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589), Vampiric Touch (34914)
+                   Family Flags: 15, 42
+                   Modified By: Discipline Priest (137032 effect#12)
+#2 (id=1151713)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 2.5 | Misc Value: 24 | Target: Self (1)
+                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
+                   Family Flags: 0
+                   Modified By: Shadow Priest (137033 effect#9)
+#3 (id=1158795)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589), Vampiric Touch (34914)
+                   Family Flags: 15, 42
+                   Modified By: Discipline Priest (137032 effect#13)
+Description      : $?c3[Vampiric Touch and Shadow Word: Pain deal $s1% additional damage.][Power Word: Shield absorbs $s2% additional damage.]
+
+Name             : Collapsing Void (id=448403) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1146865)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1149377)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#3 (id=1153887)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#4 (id=1157290)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Each time $?c3[you cast Shadow Word: Madness][Penance damages or heals], Entropic Rift is empowered, increasing its damage and size by $?c1[$s4][$s3]%.
+
+Name             : Voidheart (id=449880) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1149476)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1149477)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 1.5 | Target: Self (1)
+Description      : While Entropic Rift is active, your $?c3[Shadow damage is increased by $s1%] [Atonement healing is increased by $s2%].
+
+Name             : Darkening Horizon (id=449912) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1149556)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1149557)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1150719)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Void Blast increases the duration of Entropic Rift by $?c1[${$s1}.1][${$s3}.1] sec, up to a maximum of $s2 sec.
+
+Name             : Void Empowerment (id=450138) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1149933)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1149934)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1150704)  : None (0)
+                   Base Value: 1 | Scaled Value: 1
+#4 (id=1158945)  : None (0)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Summoning an Entropic Rift $?c1[extends the duration of your $s4 shortest Atonements by $s1 sec][grants you Shadowy Insight].
+
+Name             : Void Blast (id=450405) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Priest
+School           : Shadow
+Spell Type       : Magic
+Spell Level      : 23
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1150285)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 450215 | Scaled Value: 450215 | Target: Self (1)
+#2 (id=1150586)  : None (0)
+                   Base Value: 2 | Scaled Value: 2
+Description      : Entropic Rift upgrades $?c3[Mind Blast][Smite] into Void Blast while it is active.
+
+Name             : Void Infusion (id=450612) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1150625)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 200 | Scaled Value: 200 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Void Blast (450215), Void Blast (450983)
+                   Family Flags: 57
+#2 (id=1150626)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.6 | Target: Self (1)
+Description      : $?c1[While Entropic Rift is active, Atonement healing with Void Blast and Penance is $s2% more effective.][Void Blast generates ${$s1/100} additional Insanity.]
+
+Name             : Dark Energy (id=451018) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151322)  : Apply Aura (6) | Cast while Moving (Whitelist) (330)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Void Torrent (263165)
+                   Family Flags: 51
+#2 (id=1151443)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 3556 (Label) | Target: Self (1)
+                   Affected Spells (Label): Entropic Rift (450193), Entropic Rift (459314)
+Description      : $?c3[Void Torrent can be used while moving. ][]While Entropic Rift is active, you move $s1% faster.
+
+Name             : No Escape (id=451204) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151642)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 70 | Scaled Value: 70 | PvP Coefficient: 0.715 | Target: Self (1)
+Description      : Entropic Rift slows enemies by up to $s1%, increased the closer they are to its center.
+
+Name             : Voidwraith (id=451234) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=3, col=4, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151694)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When Entropic Rift ends, a Voidwraith is summoned from the collapsed rift for $451235d.
+
+Name             : Void Leech (id=451311) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151816)  : Apply Aura (6) | Periodic Dummy (226): every 3 seconds
+                   Base Value: 4 | Scaled Value: 4 | PvP Coefficient: 0.5 | Target: Self (1)
+#2 (id=1151817)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#3 (id=1172575)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : Every $t1 sec siphon an amount equal to $s1% of your health from an ally within $s3 yds if they are higher health than you.
+
+Name             : Embrace the Shadow (id=451569) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1152243)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7e | Target: Self (1)
+                   Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
+#2 (id=1152244)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#3 (id=1152245)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : You absorb $s3% of all magic damage taken. Absorbing Shadow damage heals you for $s2% of the amount absorbed.
+
+Name             : Devour Matter (id=451840) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1152603)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 300 | Scaled Value: 300 | Target: Self (1)
+#2 (id=1152604)  : None (0)
+                   Base Value: 1 | Scaled Value: 1
+#3 (id=1152605)  : None (0)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Shadow Word: Death consumes absorb shields from your target, dealing $32379s1 extra damage to them and granting you $?c3[$s3 Insanity][$s2% mana] if a shield was present.
+
+Name             : Quickened Pulse (id=1266845) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+                 : 6416: Shadow Priest (137033 effect#25), Shadow Priest (137033 effect#26)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1279541)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Shadow Word: Pain (589), Entropic Rift (447445), Entropic Rift (447448), Entropic Rift (450193), Entropic Rift (459314)
+                   Family Flags: 15, 44
+                   Modified By: Shadow Priest (137033 effect#25)
+#2 (id=1279551)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Tick Time (19)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Misc Value 2: 3556 (Label) | Target: Self (1)
+                   Affected Spells (Label): Entropic Rift (450193), Entropic Rift (459314)
+                   Modified By: Shadow Priest (137033 effect#26)
+Description      : Shadow Word: Pain and Entropic Rift deal damage ${100*(1/(1+$m1/100)-1)}% more often.
+
+Name             : Touch of the Void (id=1266856) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1279556)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Voidheart now persists for $s1 sec after Entropic Rift ends.
+
+Name             : Overwhelming Shadows (id=1266883) [Spell Family (6), Passive, Hidden] 
+Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Priest
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 18: Priest Spells
+                 : 292
+                 : 3022
+                 : 5887
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1279587)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Void Torrent (263165)
+                   Family Flags: 51
+#2 (id=1279588)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Affected Spells: Mind Blast (8092), Void Blast (450983)
+                   Family Flags: 13
+Description      : $?c3[Void Torrent deals $s1% increased damage.][Mind Blast deals $s2% increased damage.]

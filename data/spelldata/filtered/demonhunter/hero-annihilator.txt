@@ -1,0 +1,297 @@
+# Demon Hunter — Annihilator Hero Talents
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 16 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Voidfall (id=1253304) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Mage, Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 5650
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1258980)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1258981)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#3 (id=1258982)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+Description      : $?a212613[Fracture][Consume] has a $s3% chance to grant $m1 $Lstack:stacks; of Voidfall.
+
+Name             : Meteoric Rise (id=1253377) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 6284: Vengeance Demon Hunter (212613 effect#22), Devourer Demon Hunter (1213636 effect#12)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259104)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Fel Devastation (212105), Fel Devastation (333110), Fel Devastation (346503), Fel Devastation (393834), Void Ray (1213649), Void Ray (1214595)
+                   Family Flags: 67, 100
+                   Modified By: Vengeance Demon Hunter (212613 effect#22), Devourer Demon Hunter (1213636 effect#12)
+#2 (id=1275079)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1275080)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#4 (id=1275225)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : $?c2[Fel Devastation][Void Ray] damage increased by $s1%.
+
+Name             : Meteoric Fall (id=1253391) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259120)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : While at $s1 stacks of Voidfall, $?c2[Spirit Bomb and Soul Cleave][Reap] consumes all $s1 to rapidly call down that many meteor strikes.
+
+Name             : Path to Oblivion (id=1253399) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Mage, Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259124)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 32 | Misc Value 2: 5652 (Label) | Target: Self (1)
+                   Affected Spells (Label): Voidfall (1256301), Voidfall (1256302), Voidfall (1256322)
+Description      : Each stack of Voidfall grants $s1% increased movement speed.
+
+Name             : State of Matter (id=1253402) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259130)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2447 (Category) | Target: Self (1)
+                   Affected Spells (Category): Torment (185245)
+#2 (id=1263819)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2448 (Category) | Target: Self (1)
+                   Affected Spells (Category): Shift (1234796)
+#3 (id=1305503)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2524 (Category) | Target: Self (1)
+Description      : $?a212613[Torment][Shift] has $m1 additional $Lcharge:charges;.
+
+Name             : Celestial Echoes (id=1253415) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259151)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Shear (203782)
+                   Family Flags: 22
+#2 (id=1275182)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Misc Value 2: 5813 (Label) | Target: Self (1)
+                   Affected Spells (Label): Consume (1261710), Rolling Torment (1277769), Devour (1288123)
+#3 (id=1275183)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Shear (203782), Fracture (225919), Fracture (225921)
+                   Family Flags: 22, 69
+#4 (id=1275184)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Consume (473662), Devour (1217610)
+                   Family Flags: 97
+#5 (id=1275185)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Fracture (263642)
+                   Family Flags: 73
+Description      : $?s263642[Fracture]?a212613[Shear][Consume] generates $?a212613[$s1][$s2] additional Fury and deals $?a212613[$s3%][$s4%] increased damage.
+
+Name             : Swift Erasure (id=1253668) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Mage, Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 5812: Devourer Demon Hunter (1213636 effect#8)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259589)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Misc Value 2: 5652 (Label) | Target: Self (1)
+                   Affected Spells (Label): Voidfall (1256301), Voidfall (1256302), Voidfall (1256322)
+                   Modified By: Devourer Demon Hunter (1213636 effect#8)
+Description      : Each stack of Voidfall grants $s1% Haste.
+
+Name             : Doomsayer (id=1253676) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259609)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1291695)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1291696)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Activating $?a212613[Infernal Strike][Void Ray] out of combat or within $?a1213636[${$1265768d*$s2} sec][$1265768d] of entering combat calls down $?a212613[$s3][$s1] Voidfall $LMeteor:Meteors;$?a212613[][ over its duration].
+
+Name             : Catastrophe (id=1253769) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1259787)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1264307)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Enemies struck by a Voidfall Meteor take an additional $?a212613[$s1%][$s2%] damage over $1256667d.
+
+Name             : Final Hour (id=1253805) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259847)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Passive bonuses granted by each stack of Voidfall persist for $1256322d after being consumed.
+
+Name             : Otherworldly Focus (id=1253817) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 6285
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1259872)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#2 (id=1259873)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?a212613[Spirit Bomb][Collapsing Star] and Voidfall meteors deal $s1% increased damage when striking a single target.
+
+Name             : Phase Shift (id=1256245) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Mage, Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1263659)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: -2 | Scaled Value: -2 | Misc Value: 12 | Misc Value 2: 5652 (Label) | Target: Self (1)
+                   Affected Spells (Label): Voidfall (1256301), Voidfall (1256302), Voidfall (1256322)
+Description      : Each stack of Voidfall grants $s1% reduced damage taken.
+
+Name             : Mass Acceleration (id=1256295) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1263732)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Gain $m1 $Lstack:stacks; of Voidfall $?a212613[and reset the cooldown of Spirit Bomb][and reset the cooldown of Reap] upon activating $?a212613[Metamorphosis][Void Metamorphosis].
+
+Name             : Dark Matter (id=1256307) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Mage, Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1263765)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : Your first $?a212613[Spirit Bomb][Collapsing Star] after $?a212613[entering demon form][casting Void Metamorphosis] causes a $?a212613[Shadowflame][Cosmic] meteor shower to assault the area, dealing $?a212613[${$1264130s1*($s1)} Shadowflame][${$1264129s1*($s1)} Cosmic] damage over ${$s1/2} sec.
+
+Name             : World Killer (id=1256353) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1263856)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1263857)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1263858)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#4 (id=1263859)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : The third Voidfall meteor strike called down in sequence is larger, has $s1% increased area, deals $s2% increased damage, and $?a212613[reduces the remaining cooldown of Metamorphosis by $s3 sec][generates $s4 Soul $LFragment:Fragments;].
+
+Name             : Harness the Cosmos (id=1279247) [Spell Family (107), Passive] 
+Talent Entry     : Annihilator (Generic) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Demon Hunter
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1291693)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Voidfall Meteor (1256305), Voidfall Meteor (1256306), World Killer (1256617), World Killer (1256619), Meteor Shower (1264129), Meteor Shower (1264130)
+                   Family Flags: 109
+#2 (id=1291694)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Voidfall Meteor (1256305), Voidfall Meteor (1256306), World Killer (1256617), World Killer (1256619), Meteor Shower (1264129), Meteor Shower (1264130)
+                   Family Flags: 109
+Description      : Voidfall Meteor damage increased by $s1%.

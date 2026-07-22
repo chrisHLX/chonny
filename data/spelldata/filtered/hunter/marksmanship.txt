@@ -1,0 +1,929 @@
+# Hunter — Marksmanship Spec Talents
+# Extracted verbatim from hunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 46 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Kill Shot (id=53351) [Spell Family (9)] 
+Talent Entry     : Marksmanship [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : Ranged
+Resource         : 10 Focus (2) (id=192720)
+Spell Level      : 42
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 80 yards/sec
+Requires weapon  : Bow, Gun, Crossbow
+Charges          : 1 (10 seconds cooldown)
+Category         : 1873 (Type 0x1): Deadeye (321460 effect#1), Deadeye (321460 effect#2)
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 4289
+Affecting Spells : Freezing Trap (3355 effect#2), Bestial Wrath (19574 effects: #1, #4), Mortal Shots (36413 effect#1), Hunter (137014 effect#3), Beast Mastery Hunter (137015 effects: #1, #2), Marksmanship Hunter (137016 effects: #1, #2), Survival Hunter (137017 effects: #1, #2), Lone Wolf (155228 effects: #1, #2), Mastery: Sniper Training (193468 effects: #1, #2), Bullseye (204090 effect#1), Unseen Predator's Cloak (248212 effect#1), Thrill of the Hunt (257946 effect#1), Precise Shots (260242 effects: #2, #3), Mastery: Spirit Bond (263135 effects: #1, #2), Trueshot (288613 effect#4), Flayer's Mark (324156 effects: #1, #2, #3), Empowered Release (339061 effect#1), Coordinated Assault (360952 effects: #2, #5), Bestial Pact (360955 effects: #3, #4), Improved Deathblow (378769 effect#3), Deathblow (378770 effects: #1, #2, #3), Spearhead (378957 effects: #2, #3), Hunter Marksmanship 10.1 Class Set 4pc (405527 effect#1), In the Rhythm (407405 effect#1), Fury Strikes (425830 effects: #1, #2), Outland Venom (459941 effect#1), Wyvern's Cry (471881 effects: #1, #2), The Bell Tolls (1232992 effects: #1, #2), Takedown (1250646 effects: #1, #2), Stargazer (1253750 effect#1), Beast Mastery Hunter (1256939 effects: #1, #2, #3), Marksmanship Hunter (1256940 effects: #1, #2, #3, #4), Survival Hunter (1256941 effects: #1, #2), Lethal Calibration (1262408 effect#1), Take Aim (1273129 effects: #2, #3), Headshot (1277558 effect#1), Hunter- Midnight PrePatch - 11.2 Class Set 2pc (1283629 effects: #1, #2), Hunter- Midnight PrePatch - 11.2 Class Set 4pc (1283630 effects: #1, #2)
+Family Flags     : 1, 11, 106, 121
+Attributes       : Uses Ranged Slot (1), Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), Combat Feedback When Usable (137), Do Not Chain To Crowd-Controlled Targets (200), Do Not Auto Select Target with Initiates Combat (220), Allow Class Ability Procs (416), Prevent Jumping During Precast (448)
+Effects          :
+#1 (id=45989)    : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 7 | Target: Targeted Enemy (6)
+#2 (id=45990)    : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20
+Description      : You attempt to finish off a wounded target, dealing $s1 Physical damage. Only usable on enemies with less than $s2% health.
+
+Name             : Lock and Load (id=194595) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Ranged, Yellow Ranged
+Family Flags     : 104
+Attributes       : Passive (6), Not In Spellbook (143), Allow Proc While Sitting (147), Do Not Log on Learn (355)
+Effects          :
+#1 (id=285666)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Your ranged auto attacks have a $s1% chance to trigger Lock and Load, causing your next Aimed Shot to cost no Focus and be instant.
+
+Name             : Bullseye (id=204089) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Can Proc from Suppressed Caster Procs (385), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=301189)   : Apply Aura (6) | Proc Trigger Spell (42): Bullseye
+                   Base Value: 20 | Scaled Value: 20 | Trigger Spell: 204090 | Target: Self (1)
+Description      : When your abilities damage a target below $s1% health, you gain $204090s1% increased critical strike chance for $204090d, stacking up to $204090u times.
+
+Name             : Explosive Shot (id=212431) [Spell Family (9)] 
+Talent Entry     : Marksmanship [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Fire
+Spell Type       : Ranged
+Resource         : 20 Focus (2) (id=11773)
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 120 yards/sec
+Duration         : 3 seconds
+Requires weapon  : Two-handed Axe, Bow, Gun, Two-handed Mace, Polearm, Two-handed Sword, Staff, Spear, Crossbow
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Affecting Spells : Hunter (137014 effect#3), Mastery: Sniper Training (193468 effect#1), Grenade Juggler (470492 effect#1)
+Family Flags     : 1, 63, 121
+Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), DoT Stacking Rule (103), Allow Client Targeting (133), Not On Trivial (182), Do Not Chain To Crowd-Controlled Targets (200), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=314949)   : Apply Aura (6) | Periodic Dummy (226): every 3 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=899838)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Fires an explosive shot at your target. After $t1 sec, the shot will explode, dealing $212680s1 Fire damage to all enemies within $212680A1 yds. Deals reduced damage beyond $s2 targets.
+Tooltip          : Exploding for $212680s1 Fire damage after $t1 sec.
+
+Name             : Rapid Fire (id=257044) [Spell Family (9)] 
+Talent Entry     : Marksmanship [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : Ranged
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 2 seconds
+Requires weapon  : Bow, Gun, Crossbow
+Cooldown         : 16 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Affecting Spells : Hunter (137014 effect#3), Mastery: Sniper Training (193468 effects: #1, #4), Trick Shots (257622 effect#2), Double Tap (260402 effects: #1, #3), Whirling Rebound (264199 effect#1), Trueshot (288613 effect#1), Rapid Reload (431156 effects: #1, #2), Quick Draw (459794 effects: #1, #4)
+Family Flags     : 1, 118, 121
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Initiates Combat (Enables Auto-Attack) (41), Name in Channel Bar (61), Do Not Reset Combat Timers (81), Force Display Castbar (155), Extra Initial Period (169), Spell Haste Affects Periodic (173), Do Not Auto Select Target with Initiates Combat (220), Haste Affects Duration (273), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Sheathing (10), Use Item (14)
+Effects          :
+#1 (id=479997)   : Dummy (3)
+                   Base Value: 7 | Scaled Value: 7 | Target: Targeted Enemy (6)
+                   Modified By: Double Tap (260402 effect#3), Rapid Reload (431156 effect#1), Quick Draw (459794 effect#4)
+#2 (id=738873)   : Apply Aura (6) | Periodic Dummy (226): every 0.333 seconds
+                   Base Value: 40 | Scaled Value: 40 | Target: Targeted Enemy (6)
+#3 (id=1193565)  : Dummy (3)
+                   Base Value: 1 | Scaled Value: 1 | Target: Targeted Enemy (6)
+Description      : Shoot a stream of $s1 shots at your target over $d, dealing a total of ${$m1*$257045sw1} Physical damage. Usable while moving.
+
+Name             : Trick Shots (id=257621) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=4, col=6, max_rank=1, req_points=0, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 1073
+Affecting Spells : Light Ammo (378913 effects: #1, #2), Blighted Quiver (1264291 effects: #2, #3)
+Family Flags     : 59
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=480920)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 9 | Target: Self (1)
+                   Modified By: Light Ammo (378913 effect#1)
+#2 (id=716810)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 9 | Target: Self (1)
+#3 (id=738672)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 9 | Target: Self (1)
+                   Modified By: Light Ammo (378913 effect#2)
+#4 (id=738673)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.54 | Misc Value: 9 | Target: Self (1)
+                   Modified By: Blighted Quiver (1264291 effect#2)
+#5 (id=753424)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.54 | Misc Value: 9 | Target: Self (1)
+                   Modified By: Blighted Quiver (1264291 effect#3)
+Description      : When Multi-Shot hits $s2 or more targets, your next Aimed Shot or Rapid Fire will ricochet and hit up to $s1 additional targets for $s4% of normal damage.
+
+Name             : Precise Shots (id=260240) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 52
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=485306)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1311981)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Aimed Shot causes your next Arcane Shot or Multi-Shot to deal $260242s1% more damage and cost $260242s3% less Focus.
+
+Name             : Volley (id=260243) [Spell Family (9)] 
+Talent Entry     : Marksmanship [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Requires weapon  : Bow, Gun, Crossbow
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 52
+                 : 292
+Affecting Spells : Hunter (137014 effect#3), Mastery: Sniper Training (193468 effects: #1, #2, #4), Roar of the Seven Lions (207318 effect#1), Unnatural Causes (459529 effect#1), Small Game Hunter (459802 effect#2), Open Fire (1253807 effect#1), Take Aim (1273129 effects: #2, #3)
+Family Flags     : 1, 34, 121
+Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Allow Aura While Dead (116), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=485310)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 8 yards | Target: at Area (87) -> at Enemy in Area (16)
+#2 (id=809257)   : Apply Aura (6) | Periodic Dummy (226): every 0.5 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Rain a volley of arrows down over $d, dealing up to ${$260247s1*12} Physical damage to any enemy in the area, and gain the effects of Trick Shots for as long as Volley is active.
+Tooltip          : Raining arrows down in the target area.
+
+Name             : Master Marksman (id=260309) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 52
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=485405)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
+Description      : Your ranged ability critical strikes cause the target to bleed for an additional $s1% of the damage dealt over $269576d.
+
+Name             : Calling the Shots (id=260404) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 52
+                 : 292
+                 : 4589
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=485543)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Trueshot (288613)
+                   Family Flags: 53
+Description      : Trueshot's cooldown is reduced by ${$s1/1000*-1} sec.
+
+Name             : Trueshot (id=288613) [Spell Family (9)] 
+Talent Entry     : Marksmanship [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Duration         : 15 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 690: Major Cooldowns
+Affecting Spells : Hunter (137014 effect#3), Calling the Shots (260404 effect#1), Call of the Wild (336742 effect#1), Eagletalon's True Focus (336849 effect#2), Unerring Vision (474738 effects: #1, #2), Can't Miss, Won't Miss (1253830 effect#3)
+Family Flags     : 1, 53
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Aura Never Bounces (148), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491)
+Effects          :
+#1 (id=752441)   : Apply Aura (6) | Modify Cooldown Recharge Rate% (286)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+                   Affected Spells: Rapid Fire (257044)
+                   Family Flags: 118
+#2 (id=752442)   : Apply Aura (6) | Modify Charge Cooldown Recharge Rate% (Category) (148)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 1715 (Category) | Target: Self (1)
+                   Affected Spells (Category): Aimed Shot (19434)
+#3 (id=752449)   : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Unerring Vision (474738 effect#1)
+#4 (id=752452)   : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Auto Shot (75), Multi-Shot (2643), Aimed Shot (19434), Kill Command (34026), Kill Shot (53351), Steady Shot (56641), A Murder of Crows (131900), Steel Trap (162487), Chimaera Shot (171454), Chimaera Shot (171457), Arcane Shot (185358), Raptor Strike (186270), Wind Arrow (191043), Hatchet Toss (193265), Cobra Shot (193455), Stomp (199530), Stampede (201594), Fury of the Eagle (203413), Butchery (212436), Explosive Shot (212680), Barbed Shot (217200), Rapid Fire (257045), Multi-Shot (257620), Mongoose Bite (259387), Chakrams (259398), Kill Command (259489), Flanking Strike (259516), Scorching Wildfire (259587), Violent Reaction (260231), Volley (260247), Rapid Fire (263585), Wildfire Bomb (265157), Raptor Strike (265189), Mongoose Bite (265888), Chakrams (267666), Wildfire Bomb (269747), Flanking Strike (269751), Flanking Strike (269752), Explosive Shot (269850), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Volatile Bomb (271048), Volatile Bomb (271049), Harpoon (271625), Wildfire Cluster (272745), Latent Poison (273289), Multi-Shot (278565), Resonating Arrow (308495), Kill Shot (320976), Bloodshed (321530), Flayed Shot (324149), Death Chakram (325028), Death Chakram (325037), Wild Spirits (328757), Wild Spirits (328837), Wildfire Cluster (336899), Chimaera Shot (344120), Chimaera Shot (344121), Wailing Arrow (354831), Wailing Arrow (355589), Wailing Arrow (355596), Coordinated Assault (360969), Death Chakram (361756), Latent Poison (378016), Spearhead (378957), Wailing Arrow (392058), Wailing Arrow (392060), Wailing Arrow (392061), Wailing Arrow (398388), Shadow Surge (444269), Spearhead (459690), Merciless Blow (459870), Rapid Fire (460496), Black Arrow (466930), Bleak Arrows (467718), Bleak Powder (467914), Black Arrow (468037), Boar Charge (471936), Boar Charge (471938), Rend Flesh (471999), Bleak Powder (472084), Merciless Blow (1217375), Spearhead (1221386), Flamefang Pitch (1251595), Flamefang Pitch (1251614), Hemorrhaging Strikes (1251683), Wildfire Imbuement (1252966), Sic 'Em (1253138), Wildfire Bomb (1253171), Lunar Storm (1253733), Takedown (1253859), Takedown (1253862), Rupturing Blow (1256931), Boomstick (1261215), Raptor Swipe (1262293), Raptor Swipe (1262343), Sticky Bomb (1262390), Moonlight Chakram (1264949), Moonlight Chakram (1266081), Twilight Requiem (1266096), Let Fly! (1271682)
+                   Family Flags: 0, 106
+                   Modified By: Unerring Vision (474738 effect#2)
+#5 (id=1277010)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#6 (id=1277011)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Aimed Shot (19434)
+                   Family Flags: 17
+#7 (id=1277012)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Aimed Shot (19434)
+                   Family Flags: 17
+Description      : Increases your critical strike chance by $s3% and critical strike damage by $s4% for $d.
+
+Name             : Deadeye (id=321460) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=809194)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1873 (Category) | Target: Self (1)
+                   Affected Spells (Category): Kill Shot (53351), Kill Shot (320976), Black Arrow (466930)
+#2 (id=1026383)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -2000 | Scaled Value: -2000 | Misc Value: 1873 (Category) | Target: Self (1)
+                   Affected Spells (Category): Kill Shot (53351), Kill Shot (320976), Black Arrow (466930)
+Description      : $?a466932[Black Arrow][Kill Shot] now has ${$m1+1} charges and has its cooldown reduced by ${$m2/-1000}.1 sec.
+
+Name             : Deathblow (id=343248) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 4055: Improved Deathblow (378769 effect#4), Soul Drinker (469638 effect#3), Soul Drinker (469638 effect#4)
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=844891)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Improved Deathblow (378769 effect#4), Soul Drinker (469638 effect#3)
+#2 (id=1276213)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Modified By: Soul Drinker (469638 effect#4)
+Description      : $?c2[Aimed Shot][Kill Command] has a $?c1[$s2]?c2[$s1][$s3]% chance to grant Deathblow.
+
+Name             : Focused Aim (id=378767) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1007207)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
+Description      : Consuming Precise Shots reduces the cooldown of Aimed Shot by ${$s1/1000}.2 sec.
+
+Name             : Light Ammo (id=378913) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1007414)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Trick Shots (257621)
+                   Family Flags: 59
+#2 (id=1007415)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Trick Shots (257621)
+                   Family Flags: 59
+#3 (id=1226133)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 3 | Misc Value 2: 4938 (Label) | Target: Self (1)
+                   Affected Spells (Label): Aspect of the Hydra (470945)
+Description      : Trick Shots now causes Aimed Shot and Rapid Fire to ricochet to $s1 additional $Ltarget:targets;.
+
+Name             : Bulletstorm (id=389019) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 52
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1025065)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Damage from Rapid Fire increases the damage of Aimed Shot by $389020s1% for $389020d, stacking up to $389020u times.
+
+Name             : Surging Shots (id=391559) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Not In Spellbook (143), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029144)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+                   Affected Spells: Rapid Fire (257045), Rapid Fire (460496)
+                   Family Flags: 3
+#2 (id=1029145)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 35 | Scaled Value: 35 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rapid Fire (257045), Rapid Fire (460496)
+                   Family Flags: 3
+#3 (id=1289952)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Rapid Fire deals $s1% additional damage, and Aimed Shot has a $s3% chance to reset the cooldown of Rapid Fire.
+
+Name             : Salvo (id=400456) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Suppress Caster Procs (112), Suppress Target Procs (113), Not In Spellbook (143), Suppress Weapon Procs (151), Do Not Log on Learn (355)
+Aura Interrupt   : Leave World (19), Enter World (22), Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1045506)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Volley now also applies Explosive Shot to up to $s1 $Ltarget:targets; hit.
+
+Name             : Penetrating Shots (id=459783) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1166844)  : Apply Aura (6) | Modify Crit Damage Done% (163)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#2 (id=1166845)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Gain critical strike damage equal to $s2% of your critical strike chance.
+
+Name             : Quick Draw (id=459794) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=3, col=3, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1166856)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -34 | Scaled Value: -34 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Rapid Fire (257044)
+                   Family Flags: 118
+#2 (id=1166857)  : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3
+#3 (id=1166874)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Tick Time (19)
+                   Base Value: -34 | Scaled Value: -34 | Misc Value: 19 | Misc Value 2: 3847 (Label) | Target: Self (1)
+#4 (id=1193937)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Rapid Fire (257044)
+                   Family Flags: 118
+Description      : Rapid Fire shoots $s2 additional shots.
+
+Name             : Small Game Hunter (id=459802) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1166875)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Explosive Shot (212680), Explosive Shot (269850)
+                   Family Flags: 73
+#2 (id=1166876)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Volley (260243), Volley (260247)
+                   Family Flags: 34
+Description      : Explosive Shot deals $s1% increased damage and Volley deals $s2% increased damage.
+
+Name             : Avian Specialization (id=466867) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1179721)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Spotter's Mark (466872), Spotter's Mark (1215057), Sentinel's Mark (1253601), Sentinel's Mark (1266960)
+                   Family Flags: 117
+Description      : The damage bonus of Spotter's Mark is increased by $s1%.
+
+Name             : Feathered Frenzy (id=470943) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1186801)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Trueshot sends your $?a1253599[Sentinel Owl][Spotting Eagle] into a frenzy, instantly applying $?a1253599[Sentinel's Mark][Spotter's Mark] to your target. 
+
+Name             : Aspect of the Hydra (id=470945) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=4, col=6, max_rank=1, req_points=0, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 4938: Light Ammo (378913 effect#3), Blighted Quiver (1264291 effect#4)
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1186803)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Modified By: Light Ammo (378913 effect#3), Blighted Quiver (1264291 effect#4)
+#2 (id=1226132)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Aimed Shot, Rapid Fire, and Arcane Shot now hit $s2 additional $Ltarget:targets; for $s1% of their damage.
+
+Name             : On Target (id=471348) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=5, col=1, max_rank=1, req_points=8, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1187639)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Your Haste is increased by $s1%.
+
+Name             : Obsidian Arrowhead (id=471350) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=5, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1187641)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Auto Shot (75), Bleak Arrows (467718)
+                   Family Flags: 0
+#2 (id=1188909)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Auto Shot (75), Bleak Arrows (467718)
+                   Family Flags: 0
+Description      : The damage of your auto shot is increased by $s2% and its critical strike chance is increased by $s1%.
+
+Name             : Headshot (id=471363) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1187662)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Trigger Spell: 1277558 | Target: Self (1)
+Description      : Damage from $?a466932[Black Arrow][Kill Shot] increases the damage your target receives from $?a466932[Black Arrow][Kill Shot] by $1277558s1%, stacking up to $1277558u times.
+
+Name             : Tensile Bowstring (id=471366) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1187667)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1277014)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+Description      : Trueshot now also reduces the cast time of Aimed Shot by $s1% and reduces the Focus cost of Aimed Shot by $s2%.
+
+Name             : Precision Detonation (id=471369) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1187670)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When Aimed Shot damages a target affected by your Explosive Shot, Explosive Shot instantly explodes, dealing $474199s1% increased damage.
+
+Name             : Incendiary Ammunition (id=471428) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 52
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1188914)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 2 | Scaled Value: 2 | PvP Coefficient: 0.5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Bulletstorm (389020)
+                   Family Flags: 123
+#2 (id=1188915)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Bulletstorm (389020)
+                   Family Flags: 123
+Description      : Bulletstorm now increases your critical strike damage by $s1%. Additionally, Bulletstorm now stacks $s2 more times.
+
+Name             : Eagle's Accuracy (id=473369) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=8, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1192245)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Aimed Shot (19434)
+                   Family Flags: 17
+#2 (id=1312383)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Rapid Fire (257045), Rapid Fire (460496)
+                   Family Flags: 3
+Description      : Aimed Shot deals $s1% increased damage.
+
+Name             : Double Tap (id=473370) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1192246)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1192463)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | PvP Coefficient: 0.5 | Target: Self (1)
+#3 (id=1192464)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Casting Trueshot or Volley grants Double Tap, causing your next Aimed Shot to fire again at $s2% power, or your next Rapid Fire to fire $s3% additional shots during its channel.
+
+Name             : No Scope (id=473385) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1192267)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Rapid Fire grants Precise Shots.
+
+Name             : Shrapnel Shot (id=473520) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=7, col=7, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1192466)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Casting Explosive Shot has a $s1% chance to grant Lock and Load.
+
+Name             : Windrunner Quiver (id=473523) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=10, col=1, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1192472)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Precise Shots (260242)
+                   Family Flags: 16
+#2 (id=1192473)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Precise Shots (260242)
+                   Family Flags: 16
+#3 (id=1192490)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Consuming Precise Shots has a $s3% to grant Precise Shots.
+
+Name             : Cunning (id=474440) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=5, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 40
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1194112)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Master's Call overrides Command Pet
+                   Base Value: 1241871 | Scaled Value: 1241871 | Misc Value: 272651 | Target: Self (1)
+                   Affected Spells: Command Pet (272651)
+                   Family Flags: 4
+#2 (id=1194146)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Your Spotting Eagle gains the Cunning specialization, granting you Master's Call and Pathfinding.
+
+Name             : Tenacious (id=474456) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=5, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 40
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1194133)  : Apply Aura (6) | Increase Health% (133)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Your Spotting Eagle gains the Tenacity specialization, granting you Endurance Training and Air Superiority.
+
+Name             : Unerring Vision (id=474738) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 52
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1194573)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.5 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Trueshot (288613)
+                   Family Flags: 53
+#2 (id=1194574)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Trueshot (288613)
+                   Family Flags: 53
+Description      : Trueshot now increases your critical strike chance by an additional $s1% and increases your critical strike damage by an additional $s2%.
+
+Name             : Unbreakable Bond (id=1223323) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143)
+Effects          :
+#1 (id=1211164)  : Apply Aura (6) | Modify Pet Damage Done% (429)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Regain access to Call Pet.
+
+Name             : Unmatched Precision (id=1232955) [Spell Family (9), Passive] 
+Talent Entry     : Marksmanship [tree=spec, row=8, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Can Proc from Suppressed Caster Procs (385), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1226075)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Precise Shots (260242)
+                   Family Flags: 16
+#2 (id=1226076)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Precise Shots (260242)
+                   Family Flags: 16
+Description      : The damage bonus of Precise Shots is increased by an additional $s1%.
+
+Name             : Take Aim (id=1273128) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1286544)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Aimed Shot (19434)
+                   Family Flags: 17
+#2 (id=1286545)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Aimed Shot always critically strikes.
+
+Name             : Take Aim (id=1273129) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+                 : Effect#4 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1286547)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Aimed Shot (19434)
+                   Family Flags: 17
+#2 (id=1289921)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Multi-Shot (2643), Kill Shot (53351), Steady Shot (56641), Arcane Shot (185358), Explosive Shot (212680), Rapid Fire (257045), Multi-Shot (257620), Volley (260243), Volley (260247), Explosive Shot (269850), Resonating Arrow (308495), Kill Shot (320976), Flayed Shot (324149), Death Chakram (325028), Death Chakram (325037), Wild Spirits (328757), Wild Spirits (328837), Chimaera Shot (342049), Chimaera Shot (344120), Chimaera Shot (344121), Wailing Arrow (354831), Death Chakram (361756), Wailing Arrow (392058), Shadow Surge (444269), Rapid Fire (460496), Black Arrow (466930), Moonlight Chakram (1264949), Moonlight Chakram (1266081), Let Fly! (1271682)
+                   Family Flags: 3, 11, 12, 14, 32, 34, 70, 73, 74, 76, 79, 105, 119
+#3 (id=1289922)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Multi-Shot (2643), Kill Shot (53351), Steady Shot (56641), Arcane Shot (185358), Explosive Shot (212680), Rapid Fire (257045), Multi-Shot (257620), Volley (260243), Volley (260247), Explosive Shot (269850), Resonating Arrow (308495), Kill Shot (320976), Flayed Shot (324149), Death Chakram (325028), Death Chakram (325037), Wild Spirits (328757), Wild Spirits (328837), Chimaera Shot (342049), Chimaera Shot (344120), Chimaera Shot (344121), Wailing Arrow (354831), Death Chakram (361756), Wailing Arrow (392058), Shadow Surge (444269), Rapid Fire (460496), Black Arrow (466930), Moonlight Chakram (1264949), Moonlight Chakram (1266081), Let Fly! (1271682)
+                   Family Flags: 3, 11, 12, 14, 32, 34, 70, 73, 74, 76, 79, 105, 119
+#4 (id=1289923)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Aimed Shot's critical strike damage is increased by $s4% of your critical strike chance.
+
+Name             : Take Aim (id=1273132) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1286552)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Rapid Fire (257045), Rapid Fire (460496)
+                   Family Flags: 3
+#2 (id=1286553)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+#3 (id=1289906)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Rapid Fire damage increased by $s1%.
+
+Name             : Focus Fire (id=1277546) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1289928)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : When Surging Shots resets the cooldown of Rapid Fire, the damage of your next Rapid Fire is increased by $s1%.
+
+Name             : Unload (id=1277548) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1289933)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : When Rapid Fire begins and finishes channeling, it releases an Arcane Shot at $s1% effectiveness.
+
+Name             : Critical Precision (id=1277572) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Marksmanship [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1289972)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Precise Shots (260242)
+                   Family Flags: 16
+Description      : Precise Shots now increases the critical strike chance of Arcane Shot and Multi-Shot by $s1%

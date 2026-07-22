@@ -1,0 +1,968 @@
+# Druid — Balance Spec Talents
+# Extracted verbatim from druid.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 48 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Solar Beam (id=78675) [Spell Family (7)] 
+Talent Entry     : Balance [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Resource         : 3.36% Base Mana (0) (id=3373)
+Range            : 40 yards
+Duration         : 8 seconds
+Cooldown         : 60 seconds
+Category         : 1420 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 5901
+Category Cooldown: 60 seconds
+Stance Mask      : 0x40000000
+Affecting Spells : Starfall (191034 effect#2), Astral Influence (197524 effect#1), Ekowraith, Creator of Worlds (210667 effect#1)
+Family Flags     : 90
+Attributes       : Not Shapeshifted (16), No Aura Icon (60), Allow While Not Shapeshifted (caster form) (83), Can Cause Interrupt (235), No Attack Miss (249), Caster Death Cancels Persistent Area Auras (347), Allow Class Ability Procs (416), Interrupts Current Cast (419)
+Effects          :
+#1 (id=68270)    : Trigger Spell (64): Solar Beam
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 97547 | Target: Targeted Enemy (6)
+#2 (id=68271)    : Create Area Trigger (179)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 983 | Target: At Enemy (53)
+Description      : Summons a beam of solar light over an enemy target's location, interrupting the target and silencing all enemies within the beam. Lasts $d.
+Tooltip          : Silenced.
+
+Name             : Wild Mushroom (id=88747) [Spell Family (7)] 
+Talent Entry     : Balance [tree=spec, row=6, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Druid
+School           : Nature
+Spell Type       : Magic
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 1 seconds
+Charges          : 3 (30 seconds cooldown)
+Category         : 1372 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Stance Mask      : 0x40000002
+Affecting Spells : Eclipse (Solar) (48517 effects: #1, #2), Sunfire (164815 effect#4), Starfall (191034 effect#2), Astral Influence (197524 effects: #1, #3), Mastery: Astral Invocation (393014 effects: #3, #4), Balance of All Things (394049 effect#1)
+Family Flags     : 88
+Attributes       : Not Shapeshifted (16), No Aura Cancel (31), No Aura Icon (60), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Allow Class Ability Procs (416)
+Aura Interrupt   : Leave World (19), Enter World (22)
+Effects          :
+#1 (id=91238)    : Trigger Spell (64): Wild Mushroom
+                   Base Value: 0 | Scaled Value: 0 | Delay: 1000_ms | Trigger Spell: 88751 | Target: At Enemy (53)
+#2 (id=1043162)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Grow a magical mushroom at the target enemy's location. After $d, the mushroom detonates, dealing $88751s1 Nature damage and then an additional $81281o1 Nature damage over $81281d. Affected targets are slowed by ${$81281s2*-1}%.
+
+Name             : Soul of the Forest (id=114107) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=127234)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Eclipse (Solar) (48517)
+                   Family Flags: 59
+#2 (id=325445)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Eclipse (Lunar) (48518)
+                   Family Flags: 42
+Description      : Solar Eclipse increases Wrath's Astral Power generation by $s1% and Lunar Eclipse increases Starfire's Astral Power generation by $s2%.
+
+Name             : Shooting Stars (id=202342) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Affecting Spells : Starfall (191034 effect#2), Circle of Life and Death (338657 effect#1), Solstice (343648 effect#1), Cosmic Rapidity (400059 effect#1), Circle of Life and Death (400320 effects: #1, #3), Liveliness (426702 effect#1)
+Family Flags     : 124
+Attributes       : Passive (6), Not In Spellbook (143), Spell Haste Affects Periodic (173), Do Not Log on Learn (355)
+Effects          :
+#1 (id=298290)   : Apply Aura (6) | Periodic Dummy (226): every 2 seconds
+                   Base Value: 17 | Scaled Value: 17 | Target: Self (1)
+                   Modified By: Solstice (343648 effect#1)
+Description      : Moonfire and Sunfire damage over time has a chance to call down a falling star, dealing $202497s1 Astral damage and generating ${$202497m2/10} Astral Power.
+
+Name             : Starlord (id=202345) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=7, col=6, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=298293)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Starsurge and Starfall grant you $s1% Haste for $279709d or until you enter a new Eclipse.
+
+Name             : Nature's Balance (id=202430) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=298422)   : Apply Aura (6) | Periodic Energize Power (24): every 2 seconds
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 8 | Target: Self (1)
+#2 (id=298423)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=736081)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#4 (id=736368)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : While in combat you generate ${$s1/10} Astral Power every $t1 sec.
+
+Name             : Fury of Elune (id=202770) [Spell Family (7)] 
+Talent Entry     : Balance [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Astral
+Spell Type       : Magic
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 52
+                 : 292
+Stance Mask      : 0x40000000
+Affecting Spells : Eclipse (Solar) (48517 effects: #1, #2), Eclipse (Lunar) (48518 effects: #1, #2), Moonfire (164812 effects: #3, #4), Sunfire (164815 effects: #3, #4), Starfall (191034 effect#2), Astral Influence (197524 effect#1), Lunar Beam (204066 effects: #6, #7), Ekowraith, Creator of Worlds (210667 effect#1), Adaptive Swarm (325733 effect#2), Balance of All Things (339943 effect#1), Balance of All Things (339946 effect#1), Mastery: Astral Invocation (393014 effects: #1, #2, #3, #4), Balance of All Things (394049 effect#1), Balance of All Things (394050 effect#1), Radiant Moonlight (394121 effects: #1, #3), Arcane Affinity (429540 effects: #1, #2), Stellar Command (429668 effect#1), Sylvan Beckoning (1264618 effect#11), Spirit of the Thicket (1264911 effect#12)
+Family Flags     : 23
+Attributes       : Not Shapeshifted (16), No Aura Icon (60), Allow While Not Shapeshifted (caster form) (83), DoT Stacking Rule (103), Periodic Can Crit (265), Aura Points On Client (268), Force Dest Location (288), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=298967)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=298968)   : Create Area Trigger (179)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 6887 | Radius: 1.25 yards | Target: in Area From Target to Self (148)
+#3 (id=726656)   : Apply Aura (6) | Periodic Energize Power (24): every 0.5 seconds
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 8 | Target: Self (1)
+                   Modified By: Sylvan Beckoning (1264618 effect#11), Spirit of the Thicket (1264911 effect#12)
+#4 (id=1119682)  : Apply Aura (6) | Periodic Energize Power (24): every 0.5 seconds
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 1 | Target: Self (1)
+Description      : $?a137010[$@spelldesc428655][Calls down a beam of pure celestial energy that follows the enemy, dealing up to $<dmg> Astral damage over $d within its area. Damage reduced on secondary targets.
+
+Name             : Force of Nature (desc=Talent) (id=205636) [Spell Family (7)] 
+Talent Entry     : Balance [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3035: Early Spring (428937 effect#1), Bounteous Bloom (429215 effect#2)
+Affecting Spells : Druid (137009 effect#4), Starfall (191034 effect#2), Astral Influence (197524 effect#1), Ekowraith, Creator of Worlds (210667 effect#1), Sylvan Beckoning (1264618 effect#6), Spirit of the Thicket (1264911 effects: #6, #8)
+Family Flags     : 41
+Attributes       : No Aura Icon (60), Suppress Target Procs (113), Not In Spellbook Until Learned (269), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=303838)   : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3 | Radius: 8 yards | Target: at Area (87)
+                   Modified By: Bounteous Bloom (429215 effect#2)
+#2 (id=303839)   : Trigger Spell (64): Force of Nature
+                   Base Value: 0 | Scaled Value: 0 | Delay: 10_ms | Trigger Spell: 248280 | Target: at Area (87)
+#3 (id=465061)   : Trigger Spell (64): Force of Nature
+                   Base Value: 0 | Scaled Value: 0 | Delay: 155_ms | Trigger Spell: 248280 | Target: at Area (87)
+#4 (id=465062)   : Trigger Spell (64): Force of Nature
+                   Base Value: 0 | Scaled Value: 0 | Delay: 300_ms | Trigger Spell: 248280 | Target: at Area (87)
+#5 (id=736032)   : Energize Power (30)
+                   Base Value: 200 | Scaled Value: 200 | Resource: astral_power | Target: Self (1)
+                   Modified By: Sylvan Beckoning (1264618 effect#6), Spirit of the Thicket (1264911 effect#6), Spirit of the Thicket (1264911 effect#8)
+#6 (id=1293022)  : Trigger Spell (64): Force of Nature
+                   Base Value: 0 | Scaled Value: 0 | Delay: 445_ms | Trigger Spell: 248280 | Target: at Area (87)
+Description      : Summons a stand of $s1 Treants for $248280d which immediately taunt and attack enemies in the targeted area.
+
+Name             : New Moon (id=274281) [Spell Family (7)] 
+Talent Entry     : Balance [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Astral
+Spell Type       : Magic
+Range            : 40 yards
+Cast Time        : 1 seconds
+GCD              : 1 seconds
+Velocity         : 20 yards/sec
+Charges          : 3 (20 seconds cooldown)
+Category         : 1727 (Type 0x1)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 5831: Sylvan Beckoning (1264618 effect#8), Spirit of the Thicket (1264911 effect#9)
+Affecting Spells : Moonkin Form (24858 effects: #9, #10), Nurturing Instinct (33873 effects: #1, #2), Eclipse (Solar) (48517 effects: #1, #2), Eclipse (Lunar) (48518 effects: #1, #2), Berserk (50334 effects: #6, #7), Incarnation: Guardian of Ursoc (102558 effects: #6, #7, #14, #15), Incarnation: Chosen of Elune (102560 effects: #2, #6, #7), Cat Form (106840 effects: #3, #4), Heart of the Wild (108291 effects: #1, #2), Balance Druid (137013 effects: #1, #2), Moonfire (164812 effects: #3, #4), Sunfire (164815 effects: #3, #4), Starfall (191034 effect#2), Thrash (192090 effect#2), Astral Influence (197524 effect#1), Moonkin Form (197625 effects: #7, #8), Ekowraith, Creator of Worlds (210667 effect#1), Call of the Elder Druid (319454 effects: #1, #2, #13, #15), Ravenous Frenzy (323546 effects: #1, #2, #6, #7), Convoke the Spirits (323764 effects: #3, #4), Circle of Life and Death (338657 effects: #1, #3), Balance of All Things (339943 effect#1), Balance of All Things (339946 effect#1), Ravenous Frenzy (355315 effects: #1, #4), Umbral Embrace (365473 effects: #2, #5), Lycara's Teachings (378989 effects: #2, #3), Incarnation: Chosen of Elune (390414 effects: #2, #6, #7), Convoke the Spirits (391528 effects: #3, #4), Mastery: Astral Invocation (393014 effects: #1, #2, #3, #4), Balance of All Things (394049 effect#1), Balance of All Things (394050 effect#1), Radiant Moonlight (394121 effect#2), Circle of Life and Death (400320 effects: #1, #3), Initial Druid (417382 effects: #1, #2), Liveliness (426702 effect#1), Harmony of the Grove (428735 effects: #1, #2), Arcane Affinity (429540 effects: #1, #2), Atmospheric Exposure (430589 effect#1), Root Network (439887 effects: #1, #2), Guardian's Tenacity (455011 effects: #1, #2), Circle of the Heavens (474541 effects: #1, #2, #3, #4), Luck of the Draw! (1218553 effects: #1, #2), Balance Druid (1256996 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 2pc (1283647 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 4pc (1283648 effects: #1, #2)
+Family Flags     : 18, 63
+Attributes       : Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=726522)   : School Damage (2): astral
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 2.584 | Target: Targeted Enemy (6)
+#2 (id=726523)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=726524)   : Energize Power (30)
+                   Base Value: 100 | Scaled Value: 100 | Resource: astral_power | Target: Self (1)
+                   Modified By: Sylvan Beckoning (1264618 effect#8), Spirit of the Thicket (1264911 effect#9)
+Description      : Deals $s1 Astral damage to the target and empowers New Moon to become Half Moon. 
+
+Name             : Twin Moons (id=279620) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Balance [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=736036)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=736037)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Moonfire (164812), Red Moon (1252871), Red Moon (1253582), Lunar Wrath (1253609)
+                   Family Flags: 92
+#3 (id=736038)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Moonfire (164812), Red Moon (1252871), Red Moon (1253582), Lunar Wrath (1253609)
+                   Family Flags: 92
+Description      : Moonfire deals $s2% increased damage and also hits another nearby enemy within $s1 yds of the target.
+
+Name             : Aetherial Kindling (id=327541) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=4, col=7, max_rank=1, req_points=0, select_idx=100]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 4084
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=819061)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 7 | Target: Self (1)
+#2 (id=1035326)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 28 | Scaled Value: 28 | Target: Self (1)
+Description      : Casting Starfall extends the duration of active Moonfires and Sunfires by ${$s1}.1 sec, up to $s2 sec.
+
+Name             : Solstice (id=343647) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=845634)   : Apply Aura (6) | Trigger Spell with Value (231)
+                   Base Value: 200 | Scaled Value: 200 | Trigger Spell: 343648 | Target: Self (1)
+Description      : During the first $343648d of every Eclipse, Shooting Stars fall $s1% more often.
+
+Name             : Umbral Intensity (id=383195) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=4, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1014956)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Eclipse (Solar) (48517)
+                   Family Flags: 59
+#2 (id=1084896)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Eclipse (Lunar) (48518)
+                   Family Flags: 42
+Description      : Solar Eclipse increases Wrath damage by an additional $s1%. 
+
+Name             : Orbit Breaker (id=383197) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=9, col=2, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1014959)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1033069)  : None (0)
+                   Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.75
+Description      : Every $s1th Shooting Star calls down a Full Moon at $s2% effectiveness upon its target.
+
+Name             : Orbital Strike (id=390378) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Druid
+School           : Astral
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1027150)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Celestial Alignment overrides Celestial Alignment
+                   Base Value: 383410 | Scaled Value: 383410 | Misc Value: 194223 | Misc Value 2: 2 | Target: Self (1)
+                   Affected Spells: Celestial Alignment (194223), Celestial Alignment (383410)
+                   Family Flags: 113
+#2 (id=1027228)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Incarnation: Chosen of Elune overrides Incarnation: Chosen of Elune
+                   Base Value: 390414 | Scaled Value: 390414 | Misc Value: 102560 | Misc Value 2: 2 | Target: Self (1)
+                   Affected Spells: Incarnation: Tree of Life (33891), Incarnation: Avatar of Ashamane (102543), Incarnation: Guardian of Ursoc (102558), Incarnation: Chosen of Elune (102560), Incarnation: Chosen of Elune (390414), Ancient of Lore (473909)
+                   Family Flags: 43
+#3 (id=1038807)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 2328 (Category) | Target: Self (1)
+                   Affected Spells (Category): Incarnation: Chosen of Elune (102560), Celestial Alignment (194223), Celestial Alignment (383410), Incarnation: Chosen of Elune (390414)
+Description      : $?s102560[Incarnation: Chosen of Elune][Celestial Alignment] blasts all enemies in a targeted area for ${$361237s1*$<mastery>} Astral damage and applies Stellar Flare to them.
+
+Name             : Convoke the Spirits (id=391528) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
+                 : Feral [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=200]
+                 : Guardian [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=1]
+                 : Balance [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Spell Level      : 48
+GCD              : 1.5 seconds
+Duration         : 4 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Stacks           : 99 maximum
+Proc Chance      : 101%
+Stance Mask      : 0x40000011
+Affecting Spells : Starfall (191034 effect#2), Celestial Spirits (354118 effects: #2, #3, #4), Ashamane's Guidance (391538 effects: #1, #2, #3), Cenarius' Guidance (393374 effects: #1, #2, #3), Ursoc's Guidance (393414 effects: #1, #2, #3), Elune's Guidance (393991 effects: #1, #2, #3), Astral Insight (429536 effects: #1, #2)
+Family Flags     : 16
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Allow While Not Shapeshifted (caster form) (83), Not In Spellbook Until Learned (269), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Sheathing (10), Interacting (11), Looting (12), Attacking (13)
+Effects          :
+#1 (id=1029094)  : Apply Aura (6) | Periodic Dummy (226): every 0.25 seconds
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1029095)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 16 | Scaled Value: 16 | Target: Self (1)
+                   Modified By: Celestial Spirits (354118 effect#2), Ashamane's Guidance (391538 effect#1), Cenarius' Guidance (393374 effect#1), Ursoc's Guidance (393414 effect#1), Elune's Guidance (393991 effect#1), Astral Insight (429536 effect#2)
+#3 (id=1029096)  : Apply Party Aura (35) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Maul (6807), Regrowth (8936), Swiftmend (18562), Ferocious Bite (22568), Maim (22570), Lifebloom (33763), Lifebloom (33778), Mangle (33917), Wild Growth (48438), Thrash (77758), Starsurge (78674), Efflorescence (81269), Fungal Growth (81281), Wild Mushroom (88751), Cenarion Ward (102352), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Rejuvenation (Germination) (155777), Tranquility (157982), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Lifebloom (188550), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Cultivation (200389), Brutal Slash (202028), Stellar Flare (202347), Shooting Stars (202497), Reactive Resin (203406), Brambles (203958), Fury of Elune (211545), Brambles (213709), Swipe (213771), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Grove Tending (279793), Primal Wrath (285381), Early Harvest (287255), Thorns (305496), Adaptive Swarm (325733), Adaptive Swarm (325748), Star Burst (356474), Orbital Strike (361237), Architect's Aligner (363789), Renewing Bloom (364686), Fury of Elune (365640), Ephemeral Profusion (367330), Rampant Ferocity (391710), Embrace of the Dream (392147), Verdancy (392329), Goldrinn's Fang (394047), Fury of Elune (394111), Raze (400254), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Nourish (422090), Nourish (423618), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Dream Bloom (434141), Symbiotic Blooms (439530), Bloodseeker Vines (439531), Bursting Growth (440121), Bursting Growth (440122), Ravage (441591), Ravage (441605), Dreadful Wound (441812), Dreadful Wound (451177), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Sundering Roar (1253799), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Regrowth (1264664), Spirit of the Thicket (1264905), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973), Lunar Beam (1270292), Starsurge (1271222), Twin Claw (1271636), Twin Claw (1271657), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 77, 98, 118
+#4 (id=1029097)  : Apply Party Aura (35) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Maul (6807), Regrowth (8936), Swiftmend (18562), Ferocious Bite (22568), Maim (22570), Lifebloom (33763), Lifebloom (33778), Mangle (33917), Wild Growth (48438), Thrash (77758), Starsurge (78674), Efflorescence (81269), Fungal Growth (81281), Wild Mushroom (88751), Cenarion Ward (102352), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Rejuvenation (Germination) (155777), Tranquility (157982), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Lifebloom (188550), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Cultivation (200389), Brutal Slash (202028), Stellar Flare (202347), Shooting Stars (202497), Reactive Resin (203406), Brambles (203958), Fury of Elune (211545), Brambles (213709), Swipe (213771), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Grove Tending (279793), Primal Wrath (285381), Early Harvest (287255), Thorns (305496), Adaptive Swarm (325733), Adaptive Swarm (325748), Star Burst (356474), Orbital Strike (361237), Architect's Aligner (363789), Renewing Bloom (364686), Fury of Elune (365640), Ephemeral Profusion (367330), Rampant Ferocity (391710), Embrace of the Dream (392147), Verdancy (392329), Goldrinn's Fang (394047), Fury of Elune (394111), Raze (400254), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Nourish (422090), Nourish (423618), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Dream Bloom (434141), Symbiotic Blooms (439530), Bloodseeker Vines (439531), Bursting Growth (440121), Bursting Growth (440122), Ravage (441591), Ravage (441605), Dreadful Wound (441812), Dreadful Wound (451177), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Sundering Roar (1253799), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Regrowth (1264664), Spirit of the Thicket (1264905), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973), Lunar Beam (1270292), Starsurge (1271222), Twin Claw (1271636), Twin Claw (1271657), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 77, 98, 118
+#5 (id=1029098)  : Apply Aura (6) | Ignore Aura State (262)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Swiftmend (18562)
+                   Family Flags: 33, 123
+Description      : Call upon the spirits for an eruption of energy, channeling a rapid flurry of $s2 Druid spells and abilities over $d.$?s391538[ Chance to use an exceptional spell or ability is increased.][]
+
+Name             : Umbral Embrace (id=393760) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1032875)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 75 | Scaled Value: 75 | PvP Coefficient: 0.5334 | Misc Value: 3 | Misc Value 2: 2318 (Label) | Target: Self (1)
+                   Affected Spells (Label): Umbral Embrace (393763)
+#2 (id=1032888)  : Apply Aura (6) | Proc Trigger Spell (42): Umbral Embrace
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 393763 | Target: Self (1)
+Description      : Wrath and Starfire have a 20% chance to cause your next Wrath or Starfire cast during an Eclipse to become Astral and deal $s1% additional damage.
+
+Name             : Starweaver (id=393940) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=8, col=6, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033190)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1033191)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 23 | Target: Self (1)
+Description      : Starsurge has a $s1% chance to make Starfall free. Starfall has a $s2% chance to make Starsurge free.
+
+Name             : Rattle the Stars (id=393954) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=8, col=6, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033218)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+                   Affected Spells: Starfall (50286), Starsurge (78674), Starfall (191034), Starfall (191037), Starsurge (197626), Starsurge (1271222), Starfall (1286243), Starfall (1286247)
+                   Family Flags: 55, 89
+#2 (id=1096835)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Starfall (50286), Starsurge (78674), Starfall (191034), Starfall (191037), Starsurge (197626), Starsurge (1271222), Starfall (1286243), Starfall (1286247)
+                   Family Flags: 55, 89
+#3 (id=1189263)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 11 | Scaled Value: 11 | Misc Value: 12 | Misc Value 2: 4160 (Label) | Target: Self (1)
+                   Affected Spells (Label): Astral Communion (450599)
+Description      : Starsurge and Starfall deal $s1% increased damage and their cost is reduced by $s2%.
+
+Name             : Elune's Guidance (id=393991) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033283)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Convoke the Spirits (323764), Convoke the Spirits (391528)
+                   Family Flags: 16
+#2 (id=1033284)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Convoke the Spirits (323764), Convoke the Spirits (391528)
+                   Family Flags: 16
+#3 (id=1033285)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Convoke the Spirits (323764), Convoke the Spirits (391528)
+                   Family Flags: 16
+#4 (id=1033286)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -60000 | Scaled Value: -60000 | Target: Self (1)
+#5 (id=1033287)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 23 | Misc Value 2: 2330 (Label) | Target: Self (1)
+                   Affected Spells (Label): Incarnation: Chosen of Elune (102560), Incarnation: Chosen of Elune (390414)
+#6 (id=1033288)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: -120 | Scaled Value: -120 | Misc Value: 32 | Misc Value 2: 2330 (Label) | Target: Self (1)
+                   Affected Spells (Label): Incarnation: Chosen of Elune (102560), Incarnation: Chosen of Elune (390414)
+Description      : $@spellicon394013 $@spellname394013
+Reduces the Astral Power cost of Starsurge by ${$s5*-1/10}, and the Astral Power cost of Starfall by ${$s6*-1/10}.
+
+Name             : Incarnation: Chosen of Elune (id=394013) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Balance [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=100, override="Incarnation: Chosen of Elune" (id=102560)]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1033331)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 102560 | Scaled Value: 102560 | Target: Self (1)
+Description      : $@spelldesc102560
+
+Name             : Power of Goldrinn (id=394046) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+Class            : Druid
+School           : Astral
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 33%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), No Aura Log (202), Can Proc From Suppressed Target Procs (254), Do Not Log on Learn (355), Can Proc from Suppressed Caster Procs (385), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1033384)  : Apply Aura (6) | Proc Trigger Spell (42): Goldrinn's Fang
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 394047 | Target: Self (1)
+#2 (id=1045466)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 2445 (Label) | Target: Self (1)
+                   Affected Spells (Label): Goldrinn's Fang (394047)
+#3 (id=1109174)  : School Damage (2): astral
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.927 | PvP Coefficient: 0.4
+Description      : Starsurge has a chance to summon the Spirit of Goldrinn, which immediately deals ${$s3*$<mastery>} Astral damage to the target.
+Variables        : $mastery=${(1+$393014s1/100)*(1+$393014s3/100)}
+
+Name             : Balance of All Things (id=394048) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=8, col=3, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(1, 2)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033387)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Misc Value 2: 2334 (Label) | Target: Self (1)
+                   Affected Spells (Label): Balance of All Things (394049), Balance of All Things (394050)
+Description      : Entering Eclipse increases your critical strike chance with Arcane or Nature spells by ${$s1*$394049u}%, decreasing by $s1% every $394049t2 sec.
+
+Name             : Denizen of the Dream (id=394065) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Real PPM         : 1 (Haste multiplier)
+Proc Flags       : Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033414)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 10 | Target: Self (1)
+Description      : Your Moonfire and Sunfire have a chance to summon a Faerie Dragon to assist you in battle for $394076d.
+
+Name             : Sundered Firmament (id=394094) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=9, col=2, max_rank=1, req_points=20, select_idx=0]
+Class            : Druid
+School           : Astral
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033467)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1033493)  : None (0)
+                   Base Value: 8 | Scaled Value: 8
+Description      : Every other Eclipse creates a Fury of Elune at $s1% effectiveness that follows your current target for $s2 sec.
+
+Name             : Radiant Moonlight (id=394121) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033526)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Fury of Elune (202770), Fury of Elune (211545), Fury of Elune (281871), Fury of Elune (365640), Fury of Elune (394111)
+                   Family Flags: 23
+#2 (id=1070114)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: New Moon (274281), Half Moon (274282), Full Moon (274283)
+                   Family Flags: 63
+#3 (id=1070115)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Fury of Elune (202770), Fury of Elune (211545), Fury of Elune (281871), Fury of Elune (365640), Fury of Elune (394111)
+                   Family Flags: 23
+Description      : New Moon, Half Moon, and Full Moon deal $s2% increased damage. Full Moon becomes Full Moon once more before resetting to New Moon.
+
+Name             : Celestial Alignment (id=395022) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Balance [tree=spec, row=5, col=4, max_rank=1, req_points=8, override="Celestial Alignment" (id=194223)]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1035164)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spelldesc194223
+
+Name             : Cosmic Rapidity (id=400059) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=7, col=2, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(-13, -25)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1044656)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Moonfire (164812), Sunfire (164815), Shooting Stars (202342), Red Moon (1252871), Red Moon (1253582), Lunar Wrath (1253609)
+                   Family Flags: 92, 124, 127
+Description      : Your Moonfire and Sunfire deal damage $s1% more frequently, also increasing the rate that Shooting Stars fall.
+
+Name             : Wild Surges (id=406890) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1069985)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Wrath (5176), Wrath (190984), Starfire (194153), Starfire (197628)
+                   Family Flags: 0, 2
+#2 (id=1069990)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Wrath (5176), Wrath (190984), Starfire (194153), Starfire (197628)
+                   Family Flags: 0, 2
+Description      : Your Wrath and Starfire chance to critically strike is increased by $s1% and they generate ${$s2/10} additional Astral Power.
+
+Name             : Stellar Amplification (id=450212) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1150044)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20000 | Scaled Value: 20000 | Target: Self (1)
+Description      : Starsurge increases the damage the target takes from your periodic effects and Shooting Stars by $450214s1% for $450214d. Reapplying this effect extends its duration, up to ${$s1/1000} sec.
+
+Name             : Nature's Grace (id=450347) [Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1150196)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When Eclipse ends or when you enter combat, enter a Dreamstate, reducing the cast time of your next $450346u Starfires or Wraths by $450346s1%.
+
+Name             : Touch the Cosmos (id=450356) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1150218)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1150219)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
+Description      : Casting Wrath has a $s1% chance to make your next Starsurge or Starfall free.
+
+Name             : Harmony of the Heavens (id=450558) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Balance [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1150545)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1150546)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : Starsurge or Starfall increase your current Eclipse's Arcane or Nature damage bonus by an additional $s1%, up to $s2%.
+
+Name             : Astral Communion (id=450598) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Balance [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Druid
+School           : Astral
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1150604)  : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 200 | Scaled Value: 200 | Resource: astral_power | Target: Self (1)
+Description      : Increases maximum Astral Power by ${$s1/10}. Entering Eclipse reduces the Astral Power cost of your next Starsurge or Starfall by ${$450599s1/-10}.
+
+Name             : Whirling Stars (id=468743) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Druid
+School           : Astral
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 4081: Potent Enchantments (429420 effect#4)
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1182657)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 1.5 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Incarnation: Tree of Life (33891), Incarnation: Avatar of Ashamane (102543), Incarnation: Guardian of Ursoc (102558), Incarnation: Chosen of Elune (102560), Celestial Alignment (194223), Celestial Alignment (383410), Incarnation: Chosen of Elune (390414), Ancient of Lore (473909)
+                   Family Flags: 43, 113
+#2 (id=1182658)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2328 (Category) | Target: Self (1)
+                   Affected Spells (Category): Incarnation: Chosen of Elune (102560), Celestial Alignment (194223), Celestial Alignment (383410), Incarnation: Chosen of Elune (390414)
+#3 (id=1182659)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 2328 (Category) | Target: Self (1)
+                   Affected Spells (Category): Incarnation: Chosen of Elune (102560), Celestial Alignment (194223), Celestial Alignment (383410), Incarnation: Chosen of Elune (390414)
+#4 (id=1293040)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Incarnation: Tree of Life (33891), Incarnation: Avatar of Ashamane (102543), Incarnation: Guardian of Ursoc (102558), Incarnation: Chosen of Elune (102560), Celestial Alignment (194223), Celestial Alignment (383410), Incarnation: Chosen of Elune (390414), Ancient of Lore (473909)
+                   Family Flags: 43, 113
+                   Modified By: Potent Enchantments (429420 effect#4)
+Description      : $?s102560[Incarnation: Chosen of Elune][Celestial Alignment]'s cooldown is reduced by ${-$s3/1000} seconds and it has two charges.
+
+Name             : Sunseeker Mushroom (id=468936) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=1, max_rank=1, req_points=8, select_idx=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Real PPM         : 1.66
+Proc Flags       : Periodic
+Affecting Spells : Eclipse (Solar) (48517 effects: #1, #2), Sunfire (164815 effect#4), Starfall (191034 effect#2), Astral Influence (197524 effects: #1, #3), Mastery: Astral Invocation (393014 effects: #3, #4), Balance of All Things (394049 effect#1)
+Family Flags     : 88
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1182945)  : Apply Aura (6) | Proc Trigger Spell (42): Sunseeker Mushroom
+                   Base Value: 30 | Scaled Value: 30 | Trigger Spell: 468938 | Target: Self (1)
+Description      : Sunfire damage has a chance to grow a magical mushroom at a target's location. After $468938d, the mushroom detonates, dealing $1280212s1 Nature damage and then an additional $1280213o1 Nature damage over $1280213d. Affected targets are slowed by ${$1280213s2*-1}%.
+
+Name             : Hail of Stars (id=469004) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1183060)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : Casting a free Starsurge or Starfall grants Solstice for ${$s1/1000} sec.
+
+Name             : Eclipse (id=1239669) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Affecting Spells : Starfall (191034 effect#2)
+Family Flags     : 17
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1237603)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 32 | Scaled Value: 32 | Target: Self (1)
+Description      : You may draw the sun and moon into alignment for $48517d, empowering either your Nature or Arcane spells. Casting Wrath or Starfire changes what mode of Eclipse will be entered, and the two modes of Eclipse share a button and $?a1240188[${$s1+$1240188s1/1000}][$s1] sec cooldown.
+
+Name             : Celestial Fire (id=1240185) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238353)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+                   Affected Spells: Moonfire (164812), Sunfire (164815), Shooting Stars (202497), Crashing Star (408310), Red Moon (1252871), Red Moon (1253582), Lunar Wrath (1253609), Shooting Stars (1272339)
+                   Family Flags: 92, 116, 127
+#2 (id=1238354)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Moonfire (164812), Sunfire (164815), Shooting Stars (202497), Crashing Star (408310), Red Moon (1252871), Red Moon (1253582), Lunar Wrath (1253609), Shooting Stars (1272339)
+                   Family Flags: 92, 116, 127
+Description      : Moonfire, Sunfire, and Shooting Stars damage increased by $s1%.
+
+Name             : Sculpt the Stars (id=1240188) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=8, col=1, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238362)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -2000 | Scaled Value: -2000 | Misc Value: 2394 (Category) | Target: Self (1)
+                   Affected Spells (Category): Lunar Eclipse (1233272), Solar Eclipse (1233346)
+Description      : The cooldowns of Lunar Eclipse and Solar Eclipse are reduced by ${-$s1/1000} sec.
+
+Name             : Total Eclipse (id=1240206) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=8, col=5, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 5191: Total Eclipse (1240206 effect#1)
+Internal Cooldown: 0.2 seconds
+Proc Flags       : Magic Heal Taken
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238390)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Proc Chance (18)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 18 | Misc Value 2: 5191 (Label) | Target: Self (1)
+                   Affected Spells (Label): Total Eclipse (1240206)
+Description      : Entering any Eclipse has a $s1% chance to grant the benefits of both Lunar and Solar Eclipse.
+
+Name             : Meteor Storm (id=1240262) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=4, col=7, max_rank=1, req_points=0, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238489)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Starfall (191034)
+                   Family Flags: 119
+#2 (id=1238514)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Starfall (191034)
+                   Family Flags: 119
+#3 (id=1238515)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 1 | Misc Value 2: 4082 (Label) | Target: Self (1)
+                   Affected Spells (Label): Touch the Cosmos (394451), Ascendant Stars (1263401)
+Description      : Starfall deals its damage ${100*(-1/($s1/100)-1)}% faster.
+
+Name             : Elune's Challenge (id=1240283) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238523)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 400 | Scaled Value: 400 | Target: Self (1)
+Description      : When you exit Eclipse with less than ${$s1/10} Astral Power, Wrath and Starfire's cast times are reduced by $1240285s1% for $1240285d or until you enter an Eclipse.
+
+Name             : Improved Eclipse (id=1240906) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=4, col=1, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1239539)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2394 (Category) | Target: Self (1)
+                   Affected Spells (Category): Lunar Eclipse (1233272), Solar Eclipse (1233346)
+Description      : Lunar Eclipse and Solar Eclipse have one additional charge.
+
+Name             : Meteorites (id=1240907) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1239540)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Every time Starfall drops a wave of stars, a meteorite also falls on up to $s1 targets in its range, each dealing $1240913s1 Astral damage.
+
+Name             : Ascendant Eclipses (id=1261564) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1271382)  : Apply Aura (6) | Proc Trigger Spell (42): Ascendant Fires
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1263363 | Target: Self (1)
+Description      : Activating an Eclipse makes your next Wrath or Starfire instant. The first 3 Starsurges or Starfalls you cast during each Eclipse deal $1263382s1% increased damage.
+
+Name             : Ascendant Eclipses (id=1261565) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=100]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1271383)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : Your critical strikes dealt during an Eclipse cause their victims to languish for an additional $s1% of damage dealt for $1263250d.
+
+Name             : Ascendant Eclipses (id=1261566) [Spell Family (7), Passive] 
+Talent Entry     : Balance [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Internal Cooldown: 0.2 seconds
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1271384)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1271693)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1271694)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Activating an Eclipse also launches Solar or Lunar Bolts at enemies within $s1 yds that always critically strike.

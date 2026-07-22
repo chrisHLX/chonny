@@ -20,6 +20,8 @@
 /storage/*.key
 /storage/pail
 /vendor
+/data/spelldata/raw/*
+!/data/spelldata/raw/.gitkeep
 Homestead.json
 Homestead.yaml
 Thumbs.db

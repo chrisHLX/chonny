@@ -1,0 +1,775 @@
+# Demon Hunter — Devourer Spec Talents
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 43 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Void Metamorphosis (id=471306) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : Ranged
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 5408: Soul Glutton (1247534 effect#2)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1187543)  : Apply Aura (6) | Periodic Dummy (226): every 0.12 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1198557)  : Apply Aura (6) | Modify Cooldown Recharge Rate% (Label) (143)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 4284 (Label) | Target: Self (1)
+#3 (id=1198558)  : Apply Aura (6) | Add Flat Modifier (107): Spell Global Cooldown (21)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 21 | Target: Self (1)
+                   Affected Spells: Demon's Bite (162243), Chaos Nova (179057), Throw Glaive (185123), Infernal Strike (189112), Fel Rush (192611), Eye Beam (198030), Vengeful Retreat (198813), Chaos Strike (199547), Blade Dance (199552), Metamorphosis (200166), Blade Dance (200685), Annihilation (201428), Shear (203782), Demon Blades (203796), Fiery Brand (204021), Throw Glaive (204157), Sigil of Flame (204598), Soul Carver (207407), Fiery Brand (207771), Death Sweep (210153), Death Sweep (210155), Fel Devastation (212105), Felblade (213243), Soul Carver (214743), Chaos Strike (222031), Fracture (225919), Fracture (225921), Annihilation (227518), Soul Cleave (228478), Spirit Bomb (247455), Essence Break (258860), Trail of Ruin (258883), Immolation Aura (258921), Immolation Aura (258922), Infernal Armor (273239), Unbound Chaos (275148), Essence Sever (279450), Elysian Decree (307046), Sinful Brand (317009), Infernal Armor (320334), The Hunt (323802), Fel Devastation (333110), Throw Glaive (337819), Elysian Decree (339893), Elysian Decree (339894), Glaive Tempest (342857), Chaos Nova (344867), The Hunt (345335), Fel Devastation (346503), Throw Glaive (346665), The Hunt (370966), The Hunt (370969), Sigil of Spite (389860), Inner Demon (390137), Eye Beam (391058), Demon Spikes (391159), Burning Wound (391191), Blade Dance (391374), Blade Dance (391378), Throw Glaive (393035), Death Sweep (393054), Death Sweep (393055), Fel Devastation (393834), Metamorphosis - Alex S Copy (418583), Sigil of Flame (425672), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916), Blazing Nova (436899), Blazing Nova (436964), Reaver's Glaive (442294), Warblade's Hunger (442507), Fury of the Aldrachi (444806), Preemptive Strike (444979), Demonsurge (451266), Demonsurge (452416), Burning Blades (453177), Sigil of Doom (462030), Consume (473662), Void Ray (1213649), Void Ray (1214595), Devour (1217610), Collapsing Star (1221162), Reap (1225823), Eradicate (1225827), Void Nova (1234195), Hungering Slash (1239127), Voidblade (1245414), Cull (1245455), Essence Break (1245759), Voidsurge (1246160), The Hunt (1246168), The Hunt (1246169), Voidfall Meteor (1256305), Voidfall Meteor (1256306), World Killer (1256617), World Killer (1256619), Catastrophe (1256667), Catastrophe (1256676), Meteor Shower (1264129), Meteor Shower (1264130), Explosion of the Soul (1276488), Eradicate (1279200), Reaver's Glaive (1283344), Eye Beam (1287949)
+                   Family Flags: 16, 70, 95
+#4 (id=1251936)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Modified By: Soul Glutton (1247534 effect#2)
+Description      : Collecting $1225789u Soul Fragments grants access to Void Metamorphosis.
+
+Name             : Void Ray (id=473728) [Spell Family (107)] 
+Talent Entry     : Devourer [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : None
+Resource         : 100 Fury (17) (id=310553)
+Range            : 25 yards
+GCD              : 1.5 seconds
+Duration         : 3 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Havoc Demon Hunter (212612 effect#7), Vengeance Demon Hunter (212613 effect#7), Devourer Demon Hunter (1213636 effect#6), Void Metamorphosis (1217607 effects: #8, #9), Voidpurge (1244220 effect#1)
+Family Flags     : 85, 104
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Initiates Combat (Enables Auto-Attack) (41), No Aura Icon (60), Name in Channel Bar (61), Spell Haste Affects Periodic (173), No Caster Aura Icon (187), Do Not Consume Resources (197), Delay Combat Timer During Cast (211), Aura Points On Client (268), Haste Affects Duration (273), Do Not Display Power Cost (303), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Sheathing (10), Interacting (11), Looting (12), Attacking (13)
+Effects          :
+#1 (id=1192837)  : Apply Aura (6) | Periodic Trigger Spell (23): Unknown(0) every 0.15 seconds
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2 | Target: Self (1)
+#2 (id=1203433)  : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -200 | Scaled Value: -200 | Target: Self (1)
+#3 (id=1203434)  : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 26 | Target: Self (1)
+#4 (id=1215763)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $?a1217607[][|CFFffffffRequires $c Fury|R]
+Unleash a beam of concentrated void energy, dealing $1213649s1 Cosmic damage$?a1217607[][ and consuming $1213649c Fury] every ${$t1}.1 sec.$?a1217607[
+
+Name             : Predator's Thirst (id=1215617) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : Ranged
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1198676)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Consume (473662), Devour (1217610)
+                   Family Flags: 97
+#2 (id=1271546)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Shattered Souls (1227619)
+                   Family Flags: 96
+Description      : Consume damage increased by $s1%.
+
+Name             : Collapsing Star (id=1221167) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 5248
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1207533)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : While in Void Metamorphosis, every $s1 Soul Fragments harvested grants access to Collapsing Star.
+
+Name             : Waste Not (id=1223918) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1212255)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+#2 (id=1212323)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Damage from Void Ray has a $s1% increased chance to generate a Soul Fragment.
+
+Name             : Eradicate (id=1226033) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1215639)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Fully channeling Void Ray upgrades your Reap to Eradicate.
+
+Name             : Impending Apocalypse (id=1227707) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1218303)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : Each Collapsing Star you cast increases the damage of your next Collapsing Star by $1227338s1%.
+
+Name             : Feast of Souls (id=1237270) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1233964)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Soul Fragments grant $1232310s1% increased damage for $1232310d. Multiple applications may overlap.
+
+Name             : Moment of Craving (id=1238488) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1235682)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : After fully channeling Void Ray, the cooldown of Reap is reset and your next Reap will collect up to $1238495s1 additional Soul Fragments.
+
+Name             : Soulshaper (id=1238739) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 5264
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1236002)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Each Soul Fragment gathered by Reap increases its damage by $s1%.
+
+Name             : Hungering Slash (id=1239519) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1237347)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : After dealing damage with The Hunt or Voidblade, Voidblade is replaced with Hungering Slash for $1239525d.
+
+Name             : Second Helping (id=1239537) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1237374)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2409 (Category) | Target: Self (1)
+                   Affected Spells (Category): Eradicate (1225826), Reap (1226019), Cull (1245453)
+Description      : Reap gains an additional charge.
+
+Name             : Devourer's Bite (id=1240201) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238384)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Damage from Voidblade and the Hunt increases the damage your target takes from you by $1241532s1% for $1241532d. Multiple applications may overlap.
+
+Name             : Voidglare Boon (id=1240202) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238386)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : After fully channeling Void Ray, gain $1241922s1 Fury.
+
+Name             : Focused Ray (id=1240203) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238387)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | PvP Coefficient: 0.3 | Target: Self (1)
+#2 (id=1239241)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Void Ray deals $s1% more damage when damaging $s2 $Ltarget:targets;.
+
+Name             : Star Fragments (id=1240204) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1238388)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Collapsing Star now generates $s1 Soul $LFragment:Fragments;.
+
+Name             : Soul Immolation (id=1241937) [Spell Family (107)] 
+Talent Entry     : Devourer [tree=spec, row=2, col=3, max_rank=1, req_points=0, replace="Immolation Aura" (id=258920)]
+Class            : Demon Hunter
+School           : Fire
+Spell Type       : Magic
+Spell Level      : 10
+GCD              : 1.5 seconds
+Duration         : 5 seconds
+Charges          : 1 (60 seconds cooldown)
+Category         : 2450 (Type 0x1): Tempered Soul (1246555 effect#1), Tempered Soul (1246555 effect#2)
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken
+Affecting Spells : Agonizing Flames (207548 effects: #1, #2), Havoc Demon Hunter (212612 effect#7), Vengeance Demon Hunter (212613 effect#7), Infernal Armor (320331 effect#1), Immolation Aura (320377 effect#1), Burning Wound (346278 effect#2), Any Means Necessary (388114 effect#1), Immolation Aura (433721 effect#1), Immolation Aura (433724 effect#1), Immolation Aura (433737 effect#1), Devourer Demon Hunter (1213636 effect#6), Spontaneous Immolation (1246556 effect#1)
+Family Flags     : 11, 85
+Attributes       : Extra Initial Period (169), Aura Points On Client (268), Allow Harmful on Friendly (373), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Aura Interrupt   : Leave World (19)
+Effects          :
+#1 (id=1241227)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1241249)  : Apply Aura (6) | Periodic Heal% (20): every 1 seconds
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+                   Modified By: Spontaneous Immolation (1246556 effect#1)
+#3 (id=1242009)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+#4 (id=1279238)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Modified By: Agonizing Flames (207548 effect#1)
+#5 (id=1279239)  : Apply Aura (6) | Modify Armor% (101)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+                   Modified By: Infernal Armor (320331 effect#1)
+Description      : Light your soul aflame, healing yourself for ${$s2*$s3}% of your maximum health, generating ${$1242475s1*$s3} Fury and shattering $s1 Soul Fragments over $d.
+Tooltip          : Recovering health, gaining Fury, and generating Soul Fragments.
+
+Name             : Midnight (id=1242486) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1242017)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Collapsing Star (1221162)
+                   Family Flags: 103
+Description      : Collapsing Star always critically strikes.
+
+Name             : Emptiness (id=1242492) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=10, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1242026)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Every soul consumed in Void Metamorphosis grants ${$s1/100}.2% haste, up to $s1%.
+
+Name             : Calamitous (id=1242495) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1242029)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Consume (473662), Void Ray (1213649), Void Ray (1214595), Devour (1217610), Collapsing Star (1221162), Reap (1225823), Eradicate (1225827), Hungering Slash (1239127), Voidblade (1245414), Cull (1245455), Voidsurge (1246160), The Hunt (1246168), The Hunt (1246169), Voidfall Meteor (1256305), World Killer (1256619), Meteor Shower (1264129), Eradicate (1279200)
+                   Family Flags: 95
+Description      : Your damaging critical strikes deal ${200+$s1}% damage instead of the usual 200%.
+
+Name             : Sweet Release (id=1242768) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=6, col=6, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1242480)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Shattered Souls (1227619)
+                   Family Flags: 96
+Description      : Your chance to shatter a Soul Fragment from enemies you damage is increased by $s1%.
+
+Name             : Voidrage (id=1242956) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=7, col=4, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1242802)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Your Mastery is increased by $s1%.
+
+Name             : Voidpurge (id=1244220) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1244852)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -2000 | Scaled Value: -2000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Void Ray (473728)
+                   Family Flags: 104
+Description      : Void Ray's cooldown during Void Metamorphosis is reduced by ${-$s1/1000}.1 sec.
+
+Name             : Devourer's Edge (id=1244222) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=8, col=5, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1244858)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Consume (473662), Devour (1217610), Reap (1225823), Eradicate (1225827), Cull (1245455), Eradicate (1279200)
+                   Family Flags: 97, 99
+#2 (id=1244859)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Consume (473662), Devour (1217610), Reap (1225823), Eradicate (1225827), Cull (1245455), Eradicate (1279200)
+                   Family Flags: 97, 99
+Description      : Reap and Consume damage increased by $s1%.
+
+Name             : Rolling Torment (id=1244237) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1244878)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : When Void Metamorphosis expires, for each unused Soul you harvested, gain $s1 Fury and increase your damage by ${$s1/10}.2% for $1244235d.
+
+Name             : Sweet Suffering (id=1244295) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=6, col=2, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Spellshadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1244971)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1 | Misc Value 2: 5312 (Label) | Target: Self (1)
+                   Affected Spells (Label): Feast of Souls (1232310)
+Description      : The duration of Feast of Souls is increased by ${$s1/1000} sec.
+
+Name             : The Hunt (id=1246167) [Spell Family (107)] 
+Talent Entry     : Devourer [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : Melee
+Spell Level      : 48
+Range            : 50 yards
+Line Width       : 8 yards
+Cast Time        : 1 seconds
+GCD              : 1.5 seconds
+Duration         : 2 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Affecting Spells : Havoc Demon Hunter (212612 effect#6), Vengeance Demon Hunter (212613 effect#6), Any Means Necessary (388114 effects: #1, #3, #4), Violent Transformation (452409 effect#2), Devourer Demon Hunter (1213636 effect#5), Demonsurge (1245496 effects: #3, #6), Eternal Hunt (1270900 effect#1)
+Triggered By     : The Hunt (370966), The Hunt (1246169)
+Family Flags     : 32, 82
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Track Target in Cast (Player Only) (22), No Immunities (29), No Threat (42), No Aura Icon (60), Always Hit (114), Taps immediately (215), Attack on Charge to Unit (242), Not In Spellbook Until Learned (269), Haste Affects Melee Ability Casttime (301), Allow Defense While Casting (337), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1247652)  : Charge (96)
+                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 2 | Trigger Spell: 1246169 | Target: Targeted Enemy (6)
+#2 (id=1247653)  : Trigger Spell (64): The Hunt
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 370967 | Target: Targeted Enemy (6)
+#3 (id=1247654)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#4 (id=1247655)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Charge to your target, striking them for $1246169s1 Cosmic damage, rooting them in place for $370970d and inflicting $1246168o1 Cosmic damage over $1246168d to up to $370967s2 enemies in your path.
+
+Name             : Tempered Soul (id=1246555) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1248169)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 2450 (Category) | Target: Self (1)
+                   Affected Spells (Category): Soul Immolation (1241937)
+#2 (id=1268555)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2450 (Category) | Target: Self (1)
+                   Affected Spells (Category): Soul Immolation (1241937)
+Description      : The cooldown of Soul Immolation is reduced by ${-$s1/1000} sec and it gains $s2 additional $Lcharge:charges;.
+
+Name             : Spontaneous Immolation (id=1246556) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Killing Blow
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1248171)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Immolation Aura (258920), Immolation Aura (258921), Immolation Aura (258922), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427913), Immolation Aura (427914), Immolation Aura (427915), Immolation Aura (427916), Soul Immolation (1241937)
+                   Family Flags: 11
+#2 (id=1268564)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Soul Immolation heals for an additional ${$s1*$1241937s2}% of your health over its duration and its cooldown is reset upon killing an enemy that yields experience or honor.
+
+Name             : Scythe's Embrace (id=1246558) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=4, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1248174)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Reap now generates $s1 Fury.
+
+Name             : Duty Eternal (id=1246562) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=4, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1248178)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Affected Spells: Felblade (213241), Felblade (213243), Felblade (232893), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Pierce the Veil (1245483)
+                   Family Flags: 30
+#2 (id=1248179)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Felblade (213241), Felblade (213243), Felblade (232893), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Pierce the Veil (1245483)
+                   Family Flags: 30
+Description      : Voidblade damage increased by $s1% and Voidblade now generates $s2 Fury.
+
+Name             : Soul Glutton (id=1247534) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=10, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1249836)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 37 | Misc Value 2: 5249 (Label) | Target: Self (1)
+                   Affected Spells (Label): Void Metamorphosis (1225789)
+#2 (id=1251941)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 32 | Misc Value 2: 5408 (Label) | Target: Self (1)
+                   Affected Spells (Label): Void Metamorphosis (471306)
+Description      : Void Metamorphosis requires $s1 less souls.
+
+Name             : Demonic Instinct (id=1247538) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=8, col=3, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1249845)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Void Ray (1213649), Void Ray (1214595), Hungering Slash (1239127)
+                   Family Flags: 100, 106
+Description      : Void Ray and Hungering Slash damage increased by $s1%.
+
+Name             : Midnight (id=1250088) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#4 [op=mul, values=(1, 2)]
+                 : Effect#5 [op=mul, values=(1, 2)]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1254029)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Collapsing Star (1221162)
+                   Family Flags: 103
+#2 (id=1254030)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1254031)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#4 (id=1254034)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Consume (473662), Void Ray (1213649), Void Ray (1214595), Devour (1217610), Collapsing Star (1221162), Reap (1225823), Eradicate (1225827), Hungering Slash (1239127), Voidblade (1245414), Cull (1245455), Voidsurge (1246160), The Hunt (1246168), The Hunt (1246169), Voidfall Meteor (1256305), World Killer (1256619), Meteor Shower (1264129), Eradicate (1279200)
+                   Family Flags: 95
+#5 (id=1254035)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Consume (473662), Void Ray (1213649), Void Ray (1214595), Devour (1217610), Collapsing Star (1221162), Reap (1225823), Eradicate (1225827), Hungering Slash (1239127), Voidblade (1245414), Cull (1245455), Voidsurge (1246160), The Hunt (1246168), The Hunt (1246169), Voidfall Meteor (1256305), World Killer (1256619), Meteor Shower (1264129), Eradicate (1279200)
+                   Family Flags: 95
+Description      : All Cosmic damage dealt increased by $s4%.
+
+Name             : Midnight (id=1250094) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 5671
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1254040)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1254043)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Entering Void Metamorphosis causes your soul to erupt, generating $s1 Soul Fragments and granting immediate access to Collapsing Star.
+
+Name             : Entropy (id=1261684) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1271516)  : Apply Aura (6) | Periodic Dummy (226): every 12 seconds
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1271517)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : While in combat, generate $s1 Soul $LFragment:Fragments; every $t1 sec.
+
+Name             : Voidrush (id=1272422) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=9, col=2, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Internal Cooldown: 2 seconds
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1285651)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10000 | Scaled Value: 10000 | Target: Self (1)
+Description      : Collapsing Star reduces the cooldown of Voidblade by ${$s1/1000} sec.
+
+Name             : Soulforged Blades (id=1272432) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=8, col=1, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1285665)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Felblade (213241), Felblade (213243), Felblade (232893), Hungering Slash (1239127), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Pierce the Veil (1245483)
+                   Family Flags: 30, 106
+Description      : Hungering Slash and Voidblade's critical strike chance is increased by $s1%.
+
+Name             : Singular Strikes (id=1272770) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286059)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Felblade (213241), Felblade (213243), Felblade (232893), Voidblade (1241285), Voidblade (1245412), Voidblade (1245414), Pierce the Veil (1245483)
+                   Family Flags: 30
+#2 (id=1286060)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Voidblade damage increased by $s1%.
+
+Name             : Improved Consume (id=1272817) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286122)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Consume (473662), Devour (1217610)
+                   Family Flags: 97
+#2 (id=1286123)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)
+                   Base Value: -250 | Scaled Value: -250 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Consume (473662), Devour (1217610)
+                   Family Flags: 97
+Description      : Consume deals $s1% increased damage and its cast time is reduced by ${-$s2/1000}.2 sec.
+
+Name             : Singed Spirit (id=1272832) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286147)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Misc Value 2: 5348 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soul Immolation (1242475)
+Description      : Soul Immolation generates an additional ${$s2*$1241937s3} Fury over its duration.
+
+Name             : Umbral Blade (id=1272842) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286159)  : Apply Aura (6) | Hasted Cooldown Duration (Category) (457)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 2409 (Category) | Target: Self (1)
+                   Affected Spells (Category): Eradicate (1225826), Reap (1226019), Cull (1245453)
+Description      : Reap's cooldown is reduced by your Haste.
+
+Name             : Gift of the Void (id=1272847) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Devourer [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Demon Hunter
+School           : Cosmic
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286170)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Your critical strike chance is increased by $s1%.

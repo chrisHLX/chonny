@@ -263,6 +263,13 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </button>
+
+            @if ($guestMode)
+            <p class="text-[11px] text-ink-subtle text-center mt-3">
+                Your answers are saved to this session so you can claim them by creating a free account
+                afterward. See our <a href="{{ route('privacy') }}" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Privacy Policy</a>.
+            </p>
+            @endif
         </div>
 
     {{-- DECLARE CONTEXT STEP — folded into the sequence right after the intro, not a separate

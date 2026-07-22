@@ -1,0 +1,404 @@
+# Druid — Elune's Chosen Hero Talents
+# Extracted verbatim from druid.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Boundless Moonlight (id=424058) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Druid
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1100487)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1101700)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 7 | Scaled Value: 7 | Misc Value: 12 | Misc Value 2: 2905 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lunar Beam (204066)
+#3 (id=1101701)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?a137010[$@spellicon204066 $@spellname204066
+Lunar Beam now causes you to leech life equal to $425217s1% of all damage dealt to enemies within the beam.
+
+Name             : The Eternal Moon (id=424113) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1100590)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value 2: 3880 (Label) | Target: Self (1)
+                   Affected Spells (Label): Boundless Moonlight (428682)
+#2 (id=1101695)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1101696)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 2905 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lunar Beam (204066)
+#4 (id=1101697)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 3 | Misc Value 2: 2905 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lunar Beam (204066)
+#5 (id=1101698)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 14.5 | Scaled Value: 14.5 | Misc Value: 12 | Misc Value 2: 2905 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lunar Beam (204066)
+#6 (id=1101704)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Lunar Beam (414613), Lunar Beam (1270292)
+                   Family Flags: 109
+#7 (id=1283952)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Lunar Beam (414613), Lunar Beam (1270292)
+                   Family Flags: 109
+#8 (id=1312423)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 5960 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lunar Beam (1270292)
+Description      : Further increases the power of Boundless Moonlight.
+
+Name             : The Light of Elune (id=428655) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Real PPM         : 1 (Haste multiplier)
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268)
+Effects          :
+#1 (id=1109656)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+#2 (id=1119684)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : Moonfire damage has a chance to call down a Fury of Elune to follow your target for ${$s2/1000} sec.
+
+Name             : Moon Guardian (id=429520) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113815)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Starfire (194153), Starfire (197628)
+                   Family Flags: 2
+#2 (id=1117493)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Moonfire (8921)
+                   Family Flags: 21
+Description      : $?a137013[Moonfire and Starfire generate ${$s1/10} additional Astral Power.][Free automatic Moonfires from Galactic Guardian generate ${$430581s1/10} Rage.]
+
+Name             : Lunar Calling (id=429523) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Druid
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113818)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 120 | Scaled Value: 120 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Affected Spells: Starfire (194153), Starfire (197628)
+                   Family Flags: 2
+#2 (id=1118640)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+                   Affected Spells: Thrash (77758), Thrash (106830), Thrash (192090), Thrash (405233), Dire Echo (1253489)
+                   Family Flags: 40, 91, 126
+#3 (id=1118641)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 12 | Scaled Value: 12 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Thrash (77758), Thrash (106830), Thrash (192090), Thrash (405233), Dire Echo (1253489)
+                   Family Flags: 40, 91, 126
+#4 (id=1118642)  : Apply Aura (6) | Modify Spell School (220)
+                   Base Value: 0 | Scaled Value: 0 | School: arcane | Target: Self (1)
+                   Affected Spells: Thrash (77758), Thrash (106830), Thrash (192090), Thrash (405233), Dire Echo (1253489)
+                   Family Flags: 40, 91, 126
+#5 (id=1204429)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 12 | Misc Value 2: 4367 (Label)
+                   Affected Spells (Label): Fury of Nature (370701), Fury of Nature (370704)
+#6 (id=1204430)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 23 | Misc Value 2: 4367 (Label)
+                   Affected Spells (Label): Fury of Nature (370701), Fury of Nature (370704)
+Description      : $?a137013[Starfire deals $s1% increased damage to its primary target.
+
+Name             : Lunar Insight (id=429530) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+                 : 3990: Guardian Druid (137010 effect#11), Guardian Druid (137010 effect#12)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113829)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value 2: 6553 (Label) | Target: Self (1)
+                   Affected Spells (Label): Moonfire (164812)
+                   Modified By: Guardian Druid (137010 effect#11)
+#2 (id=1117669)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Misc Value 2: 6553 (Label) | Target: Self (1)
+                   Affected Spells (Label): Moonfire (164812)
+                   Modified By: Guardian Druid (137010 effect#12)
+#3 (id=1314401)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value 2: 6552 (Label) | Target: Self (1)
+                   Affected Spells (Label): Red Moon (1252871), Lunar Wrath (1253609)
+#4 (id=1314402)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Misc Value 2: 6552 (Label) | Target: Self (1)
+                   Affected Spells (Label): Red Moon (1252871), Lunar Wrath (1253609)
+Description      : Moonfire deals $s1% increased damage.$?a137010[
+
+Name             : Atmospheric Exposure (id=429532) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113831)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Enemies damaged by $?a137013[Full Moon or Fury of Elune][Lunar Beam or Fury of Elune] take $430589s1% increased damage from you for $430589d.
+
+Name             : Glistening Fur (id=429533) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113832)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1138654)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : Bear Form and Moonkin Form reduce Arcane damage taken by $s2% and all other magic damage taken by $s1%.
+
+Name             : Astral Insight (id=429536) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Druid
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113835)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Convoke the Spirits (323764), Convoke the Spirits (391528)
+                   Family Flags: 16
+#2 (id=1118786)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Convoke the Spirits (323764), Convoke the Spirits (391528)
+                   Family Flags: 16
+Description      : $?a137013[Incarnation: Chosen of Elune][Incarnation: Guardian of Ursoc] increases Arcane damage from spells and abilities by $102560s6% while active.
+
+Name             : Moondust (id=429538) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Druid
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113841)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Enemies affected by Moonfire are slowed by $164812s8%.
+
+Name             : Lunation (id=429539) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Helpful, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113842)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -1500 | Scaled Value: -1500 | Target: Self (1)
+#2 (id=1134390)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -1000 | Scaled Value: -1000 | Target: Self (1)
+#3 (id=1134391)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -3000 | Scaled Value: -3000 | Target: Self (1)
+Description      : $?a137013[Your Arcane abilities reduce the cooldown of Fury of Elune by ${$s1/-1000}.1 sec and the cooldown of New Moon, Half Moon, and Full Moon by ${$s2/-1000}.1 sec.][Your Arcane abilities reduce the cooldown of Lunar Beam by ${$s3/-1000}.1 sec.]
+
+Name             : Arcane Affinity (id=429540) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1113844)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Wrath (5176), Starfall (50286), Thrash (77758), Starsurge (78674), Thrash (106830), Moonfire (164812), Wrath (190984), Starfall (191034), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (202770), Fury of Elune (211545), New Moon (274281), Half Moon (274282), Full Moon (274283), Fury of Elune (281871), Star Burst (356474), Fury of Elune (365640), Fury of Elune (394111), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Star Burst (421072), Red Moon (1252871), Dire Echo (1253489), Red Moon (1253582), Lunar Wrath (1253609), Lunar Beam (1270292), Starsurge (1271222), Shooting Stars (1272339), Starfall (1286243), Starfall (1286247)
+                   Family Flags: 0, 2, 19, 23, 34, 40, 55, 63, 89, 91, 92, 105, 109, 116, 126
+#2 (id=1119519)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Wrath (5176), Starfall (50286), Thrash (77758), Starsurge (78674), Thrash (106830), Moonfire (164812), Wrath (190984), Starfall (191034), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (202770), Fury of Elune (211545), New Moon (274281), Half Moon (274282), Full Moon (274283), Fury of Elune (281871), Star Burst (356474), Fury of Elune (365640), Fury of Elune (394111), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Star Burst (421072), Red Moon (1252871), Dire Echo (1253489), Red Moon (1253582), Lunar Wrath (1253609), Lunar Beam (1270292), Starsurge (1271222), Shooting Stars (1272339), Starfall (1286243), Starfall (1286247)
+                   Family Flags: 0, 2, 19, 23, 34, 40, 55, 63, 89, 91, 92, 105, 109, 116, 126
+#3 (id=1169337)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 3687 (Label) | Target: Self (1)
+                   Affected Spells (Label): Orbital Strike (361237)
+#4 (id=1169338)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 3880 (Label) | Target: Self (1)
+                   Affected Spells (Label): Boundless Moonlight (428682)
+Description      : All Arcane damage from your spells and abilities is increased by $s1%.
+
+Name             : Stellar Command (id=429668) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Druid
+School           : Astral
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1114060)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Fury of Elune (202770), Fury of Elune (211545), Fury of Elune (281871), Fury of Elune (365640), Fury of Elune (394111)
+                   Family Flags: 23
+#2 (id=1118753)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value 2: 3082 (Label) | Target: Self (1)
+                   Affected Spells (Label): Full Moon (274283)
+#3 (id=1118754)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Lunar Beam (414613), Lunar Beam (1270292)
+                   Family Flags: 109
+#4 (id=1311874)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Lunar Beam (414613), Lunar Beam (1270292)
+                   Family Flags: 109
+Description      : $?a137013[Increases the damage of Fury of Elune by $s1% and the damage of Full Moon by $s2%.][Increases the damage of Lunar Beam by $s3% and Fury of Elune by $s1%.]
+
+Name             : Elune's Grace (id=443046) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Druid
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Display Cast Time (441)
+Effects          :
+#1 (id=1138679)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Using Wild Charge while in Bear Form or Moonkin Form incurs a $s1 sec shorter cooldown.
+
+Name             : Star Cascade (id=1271206) [Spell Family (7), Passive] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283786)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1283788)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1283789)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 70 | Scaled Value: 70 | Target: Self (1)
+#4 (id=1283790)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 120 | Scaled Value: 120 | Target: Self (1)
+Description      : $?c1[Gaining Astral Power with Wrath or Starfire][Thrash] has a $?c1[$s1][$s2]% chance to launch a Starsurge at a victim at $?c1[$s3][$s4]% effectiveness.
+
+Name             : Penumbral Swell (id=1271261) [Spell Family (7), Passive] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283861)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Eclipse (Lunar) (48518)
+                   Family Flags: 42
+#2 (id=1283862)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Eclipse (Lunar) (48518)
+                   Family Flags: 42
+Description      : $?c1[Lunar Eclipse increases Arcane damage by an additional $s1%][
+Lunar Beam increases Arcane damage you deal by $204066s6% while it is active].
+
+Name             : Bask in Moonlight (id=1271305) [Spell Family (7), Passive] 
+Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283928)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Starsurge (78674), Starsurge (197626), Starsurge (1271222)
+                   Family Flags: 89
+#2 (id=1283929)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Starfall (50286), Starfall (191034), Starfall (191037), Starfall (1286243), Starfall (1286247)
+                   Family Flags: 55
+#3 (id=1283930)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Maul (6807), Strength of the Wild (236716), Raze (400254), Ravage (441605), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973)
+                   Family Flags: 11
+#4 (id=1283931)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Misc Value 2: 5960 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lunar Beam (1270292)
+Description      : $?c1[Starsurge damage increased by $s1%. 
+Starfall damage increased by $s2%.]?s400254[Raze][Maul] $?c3[damage increased by $s3%. Lunar Beam's damage dealt to its primary target increased by $s4%.][]

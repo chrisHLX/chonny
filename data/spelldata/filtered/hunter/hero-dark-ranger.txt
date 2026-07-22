@@ -1,0 +1,374 @@
+# Hunter — Dark Ranger Hero Talents
+# Extracted verbatim from hunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Smoke Screen (id=430709) [Spell Family (9), Passive] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1117877)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1137745)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Exhilaration grants you $s1 sec of Survival of the Fittest.
+
+Name             : Dark Chains (id=430712) [Spell Family (9), Passive] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1117880)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : While in combat, Disengage will chain the closest target to the ground, causing them to move $442396s1% slower until they move $s1 yards away.
+
+Name             : Black Arrow (id=466930) [Spell Family (9)] 
+Talent Entry     : Dark Ranger (Beast Mastery) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : Ranged
+Resource         : 10 Focus (2) (id=307396)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 80 yards/sec
+Requires weapon  : Bow, Gun, Crossbow
+Charges          : 1 (10 seconds cooldown)
+Category         : 1873 (Type 0x1): Deadeye (321460 effect#1), Deadeye (321460 effect#2)
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Affecting Spells : Freezing Trap (3355 effect#2), Bestial Wrath (19574 effects: #1, #4), Mortal Shots (36413 effect#1), Mastery: Master of Beasts (76657 effects: #5, #6), Hunter (137014 effect#3), Beast Mastery Hunter (137015 effects: #1, #2, #8), Marksmanship Hunter (137016 effects: #1, #2, #7, #8), Survival Hunter (137017 effects: #1, #2), Lone Wolf (155228 effects: #1, #2), Mastery: Sniper Training (193468 effects: #1, #2, #4), Bullseye (204090 effect#1), Unseen Predator's Cloak (248212 effect#1), Thrill of the Hunt (257946 effect#1), Precise Shots (260242 effects: #2, #3), Mastery: Spirit Bond (263135 effects: #1, #2), Trueshot (288613 effect#4), Flayer's Mark (324156 effects: #1, #2, #3), Empowered Release (339061 effect#1), Coordinated Assault (360952 effects: #2, #5), Bestial Pact (360955 effects: #3, #4), Improved Deathblow (378769 effect#3), Deathblow (378770 effects: #1, #2, #3), Spearhead (378957 effects: #2, #3), Hunter Marksmanship 10.1 Class Set 4pc (405527 effect#1), In the Rhythm (407405 effect#1), Fury Strikes (425830 effects: #1, #2), Outland Venom (459941 effect#1), Banshee's Mark (467902 effect#1), Black Arrow (468572 effect#2), Wyvern's Cry (471881 effects: #1, #2), The Bell Tolls (1232992 effects: #1, #2), Takedown (1250646 effects: #1, #2), Stargazer (1253750 effect#1), Beast Mastery Hunter (1256939 effects: #1, #2, #3), Marksmanship Hunter (1256940 effects: #1, #2, #3, #4), Survival Hunter (1256941 effects: #1, #2), Lethal Calibration (1262408 effect#1), Take Aim (1273129 effects: #2, #3), Headshot (1277558 effect#1), Hunter- Midnight PrePatch - 11.2 Class Set 2pc (1283629 effects: #1, #2), Hunter- Midnight PrePatch - 11.2 Class Set 4pc (1283630 effects: #1, #2)
+Family Flags     : 1, 11, 91, 106, 121
+Attributes       : Uses Ranged Slot (1), Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), Combat Feedback When Usable (137), Do Not Chain To Crowd-Controlled Targets (200), Do Not Auto Select Target with Initiates Combat (220), Allow Class Ability Procs (416), Prevent Jumping During Precast (448)
+Effects          :
+#1 (id=1179817)  : School Damage (2): shadow
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 3.484 | Target: Targeted Enemy (6)
+#2 (id=1179818)  : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20
+#3 (id=1179819)  : Dummy (3)
+                   Base Value: 80 | Scaled Value: 80
+Description      : You attempt to finish off a wounded target, dealing $s1 Shadow damage and $468572o1 Shadow damage over $468572d. Only usable on enemies above $s3% health or below $s2% health.
+
+Name             : Black Arrow (id=466932) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Marksmanship) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1179821)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Black Arrow overrides Kill Shot
+                   Base Value: 466930 | Scaled Value: 466930 | Misc Value: 53351 | Target: Self (1)
+Description      : Your Kill Shot is replaced with Black Arrow.
+
+Name             : Withering Fire (id=466990) [Spell Family (9), Passive] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+                 : 4949: Blighted Quiver (1264291 effect#7)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1179904)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1179943)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+#3 (id=1179944)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Modified By: Blighted Quiver (1264291 effect#7)
+#4 (id=1181481)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : $?c1[Bestial Wrath][Trueshot] causes you to surrender to darkness, granting you Withering Fire for $?c1[$466991d][the duration of Trueshot] and Deathblow.
+
+Name             : The Bell Tolls (id=467644) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1180919)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1276990)  : Apply Aura (6) | Modify Pet Damage Done% (429)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+#3 (id=1276991)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#4 (id=1276996)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?c1[All pet damage increased by $s2%][Critical strike chance increased by $s1%].
+
+Name             : Shadow Dagger (id=467741) [Spell Family (9), Passive] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful, Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Can Proc from Suppressed Caster Procs (385)
+Effects          :
+#1 (id=1181046)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1181058)  : Apply Aura (6) | Proc Trigger Spell (42): Shadow Dagger
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 467745 | Target: Self (1)
+Description      : While in combat, Disengage releases a fan of shadow daggers, dealing $467745s1 Shadow damage per second and reducing affected target's movement speed by $467745s2% for $467745d.
+
+Name             : Bleak Arrows (id=467749) [Spell Family (9), Passive] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1181059)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Trigger Spell: 467718 | Target: Self (1)
+#2 (id=1181060)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#3 (id=1276119)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Affected Spells: Auto Shot (75), Bleak Arrows (467718)
+                   Family Flags: 0
+Description      : Your auto shot now deals Shadow damage, allowing it to bypass armor.
+
+Name             : Ebon Bowstring (id=467897) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1181279)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Casting Black Arrow has a $s1% chance to grant Deathblow.
+
+Name             : Banshee's Mark (id=467902) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1181285)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Black Arrow (466930), Black Arrow (468037), Black Arrow (468572)
+                   Family Flags: 91
+#2 (id=1276994)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 15 | Misc Value 2: 5078 (Label) | Target: Self (1)
+                   Affected Spells (Label): Bleak Powder (467914), Bleak Powder (472084)
+Description      : Black Arrow and Bleak Powder critical strike damage increased by $s1%.
+
+Name             : Bleak Powder (id=467911) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.7 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1181295)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1204997)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing $?c1[$472084s1][$467914s1] Shadow damage to all enemies within an $s2 yd cone behind the target. Damage reduced beyond $s2 targets.
+
+Name             : Soul Drinker (id=469638) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.6 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Ranged, Generic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1184104)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1184106)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1250755)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Misc Value 2: 4055 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathblow (343248)
+#4 (id=1276129)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 12 | Misc Value 2: 4055 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathblow (343248)
+Description      : $?c1[Kill Command has a $s1% chance and Barbed Shot has a $s2% chance to grant Deathblow.
+][Aimed Shot's chance to grant Deathblow is increased by $s3%. Rapid Fire has a $s4% chance to grant Deathblow.]
+$@spellicon378770 $@spellname378770
+The cooldown of $?a137015[Black Arrow]?a466932[Black Arrow][Kill Shot] is reset. Your next $?a137015[Black Arrow]?a466932[Black Arrow][Kill Shot] can be used on any target, regardless of their current health.
+
+Name             : Umbral Reach (id=1235397) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1230695)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1230712)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages.
+
+Name             : Corpsecaller (id=1264289) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Real PPM         : 0.5 (Haste multiplier)
+Proc Flags       : Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275551)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?c1[When summoning a Dire Beast, you have a $s1% chance to instead summon a Dark Hound that deals significantly increased damage.][Black Arrow's periodic damage has a small chance to rouse the dead, summoning a Dark Minion to fight alongside you for $1264345d.]
+
+Name             : Wailing Dead (id=1264290) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 1 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275552)  : Apply Aura (6) | Proc Trigger Spell (42): Wailing Arrow
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 459808 | Target: Self (1)
+Description      : $?c1[Bestial Wrath][Trueshot] summons a $?c1[Dark Hound][Dark Minion].
+
+Name             : Blighted Quiver (id=1264291) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275553)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Misc Value 2: 5771 (Label) | Target: Self (1)
+                   Affected Spells (Label): Withering Fire (466991)
+#2 (id=1275936)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Trick Shots (257621)
+                   Family Flags: 59
+#3 (id=1275937)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Trick Shots (257621)
+                   Family Flags: 59
+#4 (id=1275938)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 12 | Scaled Value: 12 | Misc Value: 3 | Misc Value 2: 4938 (Label) | Target: Self (1)
+                   Affected Spells (Label): Aspect of the Hydra (470945)
+#5 (id=1275940)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Beast Cleave (115939), Beast Cleave (118455), Beast Cleave (118459), Kill Cleave (389448), Shadow Thrash (1264485)
+                   Family Flags: 111
+#6 (id=1275953)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 5823 (Label) | Target: Self (1)
+                   Affected Spells (Label): Kill Cleave (378207)
+#7 (id=1275957)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Misc Value 2: 4949 (Label) | Target: Self (1)
+                   Affected Spells (Label): Withering Fire (466990)
+Description      : You fire $s1 additional Black Arrows during Withering Fire's barrage.
+
+Name             : Pact of the Hollow (id=1264690) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276204)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#2 (id=1276217)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : $?c1[Kill Command causes your Dark Hound to Shadow Thrash, dealing $1264485s1 Shadow damage to up to $s2 nearby enemies][Aimed Shot causes your Dark Minion to fire a Blighted Arrow, dealing $1264364s1 Shadow damage to up to $s1 nearby enemies].
+
+Name             : Through the Eyes (id=1277565) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Hunter
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1289958)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 37 | Misc Value 2: 6027 (Label) | Target: Self (1)
+                   Affected Spells (Label): Headshot (1277558)
+#2 (id=1290963)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Misc Value 2: 6046 (Label) | Target: Self (1)
+                   Affected Spells (Label): Black Arrow (468572)
+Description      : $?c1[Black Arrow deals $s2% increased damage to enemies affected by Black Arrow's periodic damage.][Headshot can now stack $s1 additional $Ltime:times;.

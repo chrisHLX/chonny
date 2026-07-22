@@ -1,0 +1,968 @@
+# Hunter — Class Talents
+# Extracted verbatim from hunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 52 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Scare Beast (id=1513) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : Magic
+Resource         : 25 Focus (2) (id=131)
+Spell Level      : 39
+Range            : 30 yards
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 20 seconds
+Category         : 33 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Mechanic         : Flee
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Family Flags     : 31
+Attributes       : Not Shapeshifted (16), Cancels Auto Attack Combat (20), Heartbeat Resist (30), Discount Power On Miss (59), Limit N (165), Delay Combat Timer During Cast (211), Taps immediately (215), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Defense While Casting (337), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=478)      : Apply Aura (6) | Fear (7)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.25) | Misc Value: 1 | Target: Targeted Enemy (6)
+#2 (id=200191)   : Apply Aura (6) | Use Base Move Speed (191)
+                   Base Value: 7 | Scaled Value: 7 | Target: Targeted Enemy (6)
+Description      : Scares a beast, causing it to run in fear for up to $d.  Damage caused may interrupt the effect.  Only one beast can be feared at a time.
+Tooltip          : Feared.
+
+Name             : Concussive Shot (id=5116) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=3, col=7, max_rank=1, req_points=0, replace="Wing Clip" (id=195645)]
+Class            : Hunter
+School           : Physical
+Spell Type       : Ranged
+Spell Level      : 13
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 50 yards/sec
+Duration         : 6 seconds
+Cooldown         : 5 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 5872: Improved Snaring (1268868 effect#2)
+Mechanic         : Snare
+Affecting Spells : Hunter (137014 effect#3), Mastery: Sniper Training (193468 effect#1)
+Family Flags     : 1, 121
+Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), Show Mechanic as Combat Text (213), Taps immediately (215), Do Not Auto Select Target with Initiates Combat (220), Aura Points On Client (268), Don't Cancel When All Effects are Disabled (353), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1805)     : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -50 | Scaled Value: -50 | Target: Targeted Enemy (6)
+                   Modified By: Improved Snaring (1268868 effect#2)
+Description      : Dazes the target, slowing movement speed by $s1% for $d.$?a137015[
+
+Name             : Intimidation (id=19577) [Spell Family (9)] 
+Talent Entry     : Beast Mastery [tree=class, row=8, col=2, max_rank=1, req_points=23]
+                 : Survival [tree=class, row=8, col=2, max_rank=1, req_points=23]
+Class            : Hunter, Monk
+School           : Nature
+Spell Type       : None
+Spell Level      : 33
+Range            : 100 yards
+GCD              : 1.5 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Affecting Spells : Hunter (137014 effect#3), Territorial Instincts (459507 effect#1)
+Family Flags     : 1, 67
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Active Defense (21), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), Require All Targets (58), No Aura Icon (60), Ignore Line of Sight (66), Can Proc From Procs (122), Do Not Display Range (126), Not an Attack (194), Taps immediately (215), Do Not Auto Select Target with Initiates Combat (220), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=10785)    : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Commands your pet to intimidate the target stunning your target for $24394d$?a1258509[ and nearby enemies for ${$1258508d}.1 sec][].
+
+Name             : Tranquilizing Shot (id=19801) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=5, col=1, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : Ranged
+Spell Level      : 37
+Range            : 40 yards
+GCD              : 1 seconds
+Velocity         : 80 yards/sec
+Cooldown         : 10 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3861
+Affecting Spells : Mastery: Sniper Training (193468 effect#1)
+Family Flags     : 121
+Attributes       : Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Do Not Reset Combat Timers (81), Taps immediately (215), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=11021)    : Dispel (38)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 9 | Target: Targeted Enemy (6)
+#2 (id=11022)    : Dispel (38)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1 | Target: Targeted Enemy (6)
+Description      : Removes $s1 Enrage and $s2 Magic effect from an enemy target.
+
+Name             : Misdirection (id=34477) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=5, col=7, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 27
+Range            : 100 yards
+Duration         : 30 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell
+Affecting Spells : No Hard Feelings (459546 effect#1)
+Family Flags     : 33
+Attributes       : Is Ability (4), Not Shapeshifted (16), Cooldown On Event (25), No Threat (42), Require All Targets (58), Allow Low Level Buff (67), Include In Advanced Combat Log (72), PvP Enabling (96), Can Proc From Procs (122), Vehicle Immunity Category (218), Only Proc From Class Abilities (415)
+Aura Interrupt   : Mount (17), Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=24488)    : Redirect Threat (130)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 38000 | Target: Targeted Raid Member (57)
+#2 (id=24489)    : Apply Aura (6) | Scale% (Stacking) (61)
+                   Base Value: 15 | Scaled Value: 15 | Target: Targeted Raid Member (57)
+#3 (id=815342)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Misdirects all threat you cause to the targeted party or raid member, beginning with your next attack within $d and lasting for $35079d.
+Tooltip          : Threat redirected from Hunter.
+
+Name             : Roar of Sacrifice (id=53480) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=100]
+Class            : Hunter
+School           : Nature
+Spell Type       : Magic
+Range            : 40 yards
+Duration         : 10 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Attributes       : Is Ability (4), Not Shapeshifted (16), No Threat (42), Include In Advanced Combat Log (72), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow While Stunned By Horror Mechanic (342), Do Not Log on Learn (355), Allow While Stunned by Stun Mechanic (378), Allow Class Ability Procs (416), Allow While Feared By Fear Mechanic (417), External Defensive (499), Big Defensive (512)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=46148)    : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -15 | Scaled Value: -15 | Value Multiplier: 1 | Misc Value: 0x7f | Target: Targeted Ally (21)
+                   Affected School(s): All
+#2 (id=46149)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Value Multiplier: 1 | Misc Value: 127 | Target: Targeted Ally (21)
+#3 (id=1279850)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Value Multiplier: 1 | Misc Value: 127 | Target: Targeted Ally (21)
+Description      : Instructs your pet to protect a friendly target, reducing their damage taken by $s1%, but $s2% of all damage taken by that target is transferred to your pet. 
+
+Name             : Posthaste (id=109215) [Spell Family (9), Passive] 
+Talent Entry     : Generic [tree=class, row=1, col=6, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=120617)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 50 | Scaled Value: 50 | SP Coefficient: 0.25 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Posthaste (118922)
+                   Family Flags: 47
+Description      : Disengage also frees you from all movement impairing effects and increases your movement speed by $s2% for $118922d.
+
+Name             : Binding Shot (id=109248) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=8, col=6, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 33
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 10 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Affecting Spells : Hunter (137014 effect#3), Mastery: Sniper Training (193468 effect#1)
+Family Flags     : 1, 102, 121
+Attributes       : Is Ability (4), Not Shapeshifted (16), No AutoCast (AI) (49), No Aura Icon (60), Extra Initial Period (169), No Aura Log (202), Bypass Visibility Check (320), Caster Death Cancels Persistent Area Auras (347), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=120669)   : Create Area Trigger (179)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1524 | Target: in Area of Ground Area (138)
+#2 (id=133047)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Radius: 5 yards | Target: at Area (87)
+Description      : Fires a magical projectile, tethering the enemy and any other enemies within $s2 yds for $d, stunning them for $117526d if they move more than $s2 yds from the arrow.$?s321468[
+
+Name             : Counter Shot (id=147362) [Spell Family (9)] 
+Talent Entry     : Beast Mastery [tree=class, row=4, col=4, max_rank=1, req_points=0]
+                 : Marksmanship [tree=class, row=4, col=4, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : Ranged
+Spell Level      : 18
+Range            : 40 yards
+Duration         : 5 seconds
+Requires weapon  : Bow, Gun, Crossbow
+Cooldown         : 24 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 5901
+Proc Chance      : 101%
+Affecting Spells : Mastery: Sniper Training (193468 effect#1)
+Family Flags     : 115, 121
+Attributes       : Uses Ranged Slot (1), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), No AutoCast (AI) (49), Do Not Reset Combat Timers (81), Do Not Auto Select Target with Initiates Combat (220), Can Cause Interrupt (235), No Attack Miss (249), Missile Speed is Delay (in sec) (292), Allow Class Ability Procs (416), Interrupts Current Cast (419), Prevent Jumping During Precast (448)
+Effects          :
+#1 (id=199883)   : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Interrupt | Target: Targeted Enemy (6)
+Description      : Interrupts spellcasting, preventing any spell in that school from being cast for $d.
+
+Name             : Tar Trap (id=187698) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 21
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 20 yards/sec
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Affecting Spells : Trap Cooldown Reduction (61255 effect#1), Hunter (137014 effect#3), Improved Traps (343247 effect#1)
+Family Flags     : 1, 7, 92
+Attributes       : Is Ability (4), Not Shapeshifted (16), No AutoCast (AI) (49), Ignore Weaponskill (91), Not an Attack (194), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=273748)   : Trigger Missiles (32): Tar Trap
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 187699 | Radius: 3 yards | Target: at Area (87) -> at Enemy in Area (16)
+#2 (id=1168718)  : Dummy (3)
+                   Base Value: 1 | Scaled Value: 1
+Description      : Hurls a tar trap to the target location that creates a $187699s1 yd radius pool of tar around itself for $13810d when the first enemy approaches. All enemies have $135299s1% reduced movement speed while in the area of effect. Limit $s2. Trap will exist for $13809d.
+
+Name             : Muzzle (id=187707) [Spell Family (9)] 
+Talent Entry     : Survival [tree=class, row=4, col=4, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : Melee
+Spell Level      : 18
+Range            : 5 yards
+Duration         : 5 seconds
+Cooldown         : 15 seconds
+Category         : 88 (Type 0x0): Quick Witted (382297 effect#1)
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 5901
+Category Cooldown: 15 seconds
+Family Flags     : 115
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), No AutoCast (AI) (49), No Attack Miss (249), Allow Class Ability Procs (416), Interrupts Current Cast (419), Prevent Jumping During Precast (448)
+Effects          :
+#1 (id=273764)   : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Interrupt | Target: Targeted Enemy (6)
+Description      : Interrupts spellcasting, preventing any spell in that school from being cast for $d.
+
+Name             : Camouflage (id=199483) [Spell Family (9)] 
+Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Range            : 50000 yards
+Duration         : 60 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 566
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Family Flags     : 69
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Cancels Auto Attack Combat (20), Cooldown On Event (25), Allow While Sitting (27), Not In Combat (Only Peaceful) (28), No Skill Increase (36), No Threat (42), Ignore Line of Sight (66), Fail on all targets immune (85), Can Proc From Procs (122), Do Not Display Range (126), Allow Proc While Sitting (147), Aura Points On Client (268), Update Passives on Apply/Remove (344), No Client Fail on No Pet (376), Allow Class Ability Procs (416)
+Aura Interrupt   : Interacting (10), Looting (11), Attacking (12), Use Item (13), Mount (17), Damage (Script) (27)
+Effects          :
+#1 (id=293558)   : Apply Aura (6) | Stealth (16)
+                   Base Value: 10 | Scaled Value: 455 | Points Per Level: 5 | Radius: 100 yards | Target: Self and Summons in Area (120)
+#2 (id=293559)   : Apply Aura (6) | Dummy (4)
+                   Base Value: -30 | Scaled Value: -30 | Radius: 100 yards | Target: Self and Summons in Area (120)
+#3 (id=293560)   : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 100 yards | Target: Self and Summons in Area (120)
+#4 (id=293561)   : Apply Aura (6) | Periodic Heal% (20): every 1 seconds
+                   Base Value: 2 | Scaled Value: 2 | Radius: 100 yards | Target: Self and Summons in Area (120)
+#5 (id=293562)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 445 | Points Per Level: 5 | Target: Self (1)
+Description      : You and your pet blend into the surroundings and gain stealth for $d. While camouflaged, you will heal for $s4% of maximum health every $T4 sec.
+Tooltip          : Stealthed.
+
+Name             : Trailblazer (id=199921) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=7, max_rank=1, req_points=23, select_idx=100]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=294283)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Target: Self (1)
+#2 (id=1007184)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Trailblazer (231390)
+                   Family Flags: 46
+Description      : Your movement speed is increased by $s2% anytime you have not attacked for ${$s1/1000} sec.
+
+Name             : Survival of the Fittest (id=264735) [Spell Family (9)] 
+Talent Entry     : Generic [free=(Beast Mastery, Marksmanship, Survival), tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Tenacity Hunter Pet
+School           : Physical
+Spell Type       : None
+Range            : 50000 yards
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Charges          : 1 (90 seconds cooldown)
+Category         : 1830 (Type 0x1): Padded Armor (459450 effect#1)
+Category Flags   : Reset Charges on Encounter End (4), Reset Coooldown on Encounter End (5)
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Affecting Spells : Lone Survivor (388039 effect#1), Shell Cover (472707 effects: #1, #2)
+Family Flags     : 44
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), No AutoCast (AI) (49), Do Not Display Range (126), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), No Client Fail on No Pet (376), Allow Class Ability Procs (416), Important Spell (491), Big Defensive (512)
+Effects          :
+#1 (id=708480)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -30 | Scaled Value: -30 | PvP Coefficient: 0.833333 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Shell Cover (472707 effect#1)
+#2 (id=708481)   : Apply Aura (6) | Modify Damage Taken% (87) | Attributes: Don't Fail Spell On Targeting Failure (20)
+                   Base Value: -30 | Scaled Value: -30 | PvP Coefficient: 0.833333 | Misc Value: 0x7f | Target: Active Pet (5)
+                   Affected School(s): All
+                   Modified By: Shell Cover (472707 effect#2)
+Description      : Reduces all damage you and your pet take by $s1% for $d.
+Tooltip          : All damage taken reduced by $s1%.
+
+Name             : Born To Be Wild (id=266921) [Spell Family (9), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=3, max_rank=2, req_points=23]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=713188)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Aspect of the Cheetah (186257), Aspect of the Cheetah (186258), Aspect of the Turtle (186265), Aspect of the Eagle (186289), Aspect of the Turtle - Pacify Aura (205769)
+                   Family Flags: 15, 20, 21
+Description      : The cooldown of $?c3[Aspect of the Eagle, ][]Aspect of the Cheetah, and Aspect of the Turtle are reduced by ${$s1/-1000} sec.
+
+Name             : Natural Mending (id=270581) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=2, max_rank=2, req_points=0]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 4262
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=720204)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Exhilaration (109304)
+                   Family Flags: 107
+Description      : Exhilaration's cooldown is reduced by ${-$s1/1000} sec.
+
+Name             : Wilderness Medicine (id=343242) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=1, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=844883)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Mend Pet (136)
+                   Family Flags: 42
+#2 (id=1017554)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Mend Pet heals for an additional ${$m1*$136d/$136t1}% of your pet's health over its duration, and has a $s2% chance to dispel a magic effect each time it heals your pet.
+
+Name             : Disruptive Rounds (id=343244) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=844886)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When $?c3[Muzzle][Counter Shot] interrupts a cast, gain $459976s1 Focus.
+
+Name             : Improved Traps (id=343247) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=844890)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Steel Trap (162488), Freezing Trap (187650), Tar Trap (187698), High Explosive Trap (236776)
+                   Family Flags: 7
+Description      : The cooldown of Tar Trap and Freezing Trap is reduced by ${$m1/-1000}.1 sec.
+
+Name             : Pathfinding (id=378002) [Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=3, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1006224)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Movement speed increased by $s1%.
+
+Name             : Keen Eyesight (id=378004) [Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=5, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(2, 4)]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1006226)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Critical strike chance increased by $s1%.
+
+Name             : Hunter's Avoidance (id=384799) [Spell Family (9), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=6, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017662)  : Apply Aura (6) | Modify AoE Damage Taken% (229)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 127 | Target: Self (1)
+Description      : Damage taken from area of effect attacks reduced by $s1%.
+
+Name             : Rejuvenating Wind (id=385539) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=1, col=2, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1018855)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : Exhilaration now also heals you for an additional ${$s1}.1% of your maximum health over $385540d.
+
+Name             : Lone Survivor (id=388039) [Spell Family (9), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=4, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Range            : 50000 yards
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), No AutoCast (AI) (49), Do Not Display Range (126), Not In Spellbook (143), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1023497)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Survival of the Fittest (264735)
+                   Family Flags: 44
+Description      : The duration of Survival of the Fittest is increased by ${$s2/1000}.1 sec.
+
+Name             : Padded Armor (id=459450) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=4, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166242)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1830 (Category) | Target: Self (1)
+                   Affected Spells (Category): Survival of the Fittest (264735)
+Description      : Survival of the Fittest gains an additional charge.
+
+Name             : Scout's Instincts (id=459455) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166251)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : You cannot be slowed below $186257s2% of your normal movement speed while Aspect of the Cheetah is active.
+
+Name             : Tar-Coated Bindings (id=459460) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=6, max_rank=1, req_points=23, select_idx=100]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166262)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1 | Misc Value 2: 3830 (Label) | Target: Self (1)
+                   Affected Spells (Label): Binding Shot (117526)
+Description      : Binding Shot's stun duration is increased by ${$s1/1000} sec.
+
+Name             : Moment of Opportunity (id=459488) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=7, max_rank=1, req_points=23, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166331)  : Apply Aura (6) | Proc Trigger Spell (42): Moment of Opportunity
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 1267208 | Target: Self (1)
+#2 (id=1176676)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : When a trap triggers, gain $1267208s1% increased movement speed for $1267208d.
+
+Name             : Serrated Tips (id=459502) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=6, max_rank=2, req_points=0]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166362)  : Apply Aura (6) | Modify Combat Rating Multiplier (405)
+                   Base Value: 2 | Scaled Value: 2 | Rating: Crit | Target: Self (1)
+Description      : You gain $s1% more critical strike from critical strike sources.
+
+Name             : Kindling Flare (id=459506) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=2, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166369)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Flare's radius is increased by $s1%.
+
+Name             : Territorial Instincts (id=459507) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=1, req_points=23, select_idx=100]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166370)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -20000 | Scaled Value: -20000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Intimidation (19577), Intimidation (474421)
+                   Family Flags: 67
+Description      : The cooldown of Intimidation is reduced by ${$abs($s2)/1000} sec.
+
+Name             : Emergency Salve (id=459517) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166387)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Feign Death and Aspect of the Turtle removes poison and disease effects from you.
+
+Name             : Unnatural Causes (id=459527) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166403)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1166404)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1166405)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Your damage over time effects deal $s1% increased damage.
+
+Name             : Trigger Finger (id=459534) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(0.5, 1)]
+                 : Effect#2 [op=mul, values=(0.5, 1)]
+                 : Effect#4 [op=mul, values=(0.5, 1)]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166416)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Haste increased by $s1%.
+
+Name             : Specialized Arsenal (id=459542) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=4, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166436)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Aimed Shot (19434), Kill Command (34026), Kill Command (83381), Wildfire Bomb (265157), Pheromone Bomb (270329), Shrapnel Bomb (270338), Volatile Bomb (271048), Kill Command (1232922)
+                   Family Flags: 17, 25, 43
+#2 (id=1166437)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Aimed Shot (19434), Kill Command (34026), Kill Command (83381), Scorching Wildfire (259587), Violent Reaction (260231), Wildfire Bomb (265157), Wildfire Bomb (269747), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Internal Bleeding (270343), Volatile Bomb (271048), Volatile Bomb (271049), Kill Command (1232922), Wildfire Bomb (1253171)
+                   Family Flags: 17, 22, 43
+Description      : $?a137017[Wildfire Bomb]?a137016[Aimed Shot][Kill Command] deals $s1% increased damage.
+
+Name             : No Hard Feelings (id=459546) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=7, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1166443)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Misdirection (34477)
+                   Family Flags: 33
+Description      : When Misdirection targets your pet, it reduces the damage they take by $459547s1% for $459547d.
+
+Name             : Kodo Tranquilizer (id=459983) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1167229)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1167230)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1171392)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#4 (id=1189983)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Tranquilizing Shot removes $s1 additional Magic effect from up to $s3 nearby targets.
+
+Name             : Devilsaur Tranquilizer (id=459991) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1167248)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : If Tranquilizing Shot removes only an Enrage effect, its cooldown is reduced by $s1 sec.
+
+Name             : Horsehair Tether (id=472729) [Spell Family (9), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=6, max_rank=1, req_points=23, select_idx=200]
+Class            : Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1191019)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When an enemy is stunned by Binding Shot, it is dragged to Binding Shot's center.
+
+Name             : Intimidation (id=474421) [Spell Family (9)] 
+Talent Entry     : Marksmanship [tree=class, row=8, col=2, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Spell Level      : 33
+Range            : 40 yards
+GCD              : 1.5 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Affecting Spells : Hunter (137014 effect#3), Territorial Instincts (459507 effect#1)
+Family Flags     : 1, 67
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Active Defense (21), No Threat (42), Require All Targets (58), No Aura Icon (60), Ignore Line of Sight (66), Can Proc From Procs (122), Taps immediately (215), Do Not Auto Select Target with Initiates Combat (220), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1194052)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Your Spotting Eagle descends from the skies, stunning your target for $24394d.$?s321468[
+
+Name             : Touch of Grass (id=1258402) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1267045)  : Apply Aura (6) | Increase Health% (133)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Your maximum health is increased by $s1%.
+
+Name             : Catlike Reflexes (id=1258404) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1267050)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Aspect of the Cheetah (186257)
+                   Family Flags: 40
+Description      : Aspect of the Cheetah's initial burst of speed is increased by ${$s2/1000}.1 sec.
+
+Name             : Improved Aspect of the Cheetah (id=1258407) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=5, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1267055)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Aspect of the Cheetah (186257), Aspect of the Cheetah (186258)
+                   Family Flags: 21
+Description      : The cooldown of Aspect of the Cheetah is reduced by ${-$s1/1000} sec.
+
+Name             : Improved Aspect of the Turtle (id=1258485) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=2, max_rank=1, req_points=8]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1267167)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Aspect of the Turtle (186265), Aspect of the Turtle - Pacify Aura (205769)
+                   Family Flags: 15
+Description      : The cooldown of Aspect of the Turtle is reduced by ${-$s1/1000} sec.
+
+Name             : Improved Feign Death (id=1258486) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1267168)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Feign Death (5384)
+                   Family Flags: 8
+Description      : The cooldown of Feign Death is reduced by ${-$s1/1000} sec.
+
+Name             : Guttural Roar (id=1258509) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=1, req_points=23, select_idx=200]
+Class            : Hunter, Monk
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1267201)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Intimidation now also stuns nearby enemies for ${$1258508d}.1 sec.
+
+Name             : Precision Strikes (id=1267003) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=2, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1279739)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Auto Shot (75), Bleak Arrows (467718)
+                   Family Flags: 0
+#2 (id=1279740)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Your $?c3[auto attack][auto shot] damage is increased by $s1%.
+
+Name             : Shell Wall (id=1267218) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=1, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280084)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Aspect of the Turtle (186265), Aspect of the Turtle - Pacify Aura (205769)
+                   Family Flags: 15
+Description      : Damage taken during Aspect of the Turtle is reduced by an additional $s1%.
+
+Name             : Cold Feet (id=1268671) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=1, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280168)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -20 | Scaled Value: -20 | Target: Self (1)
+Description      : When your Freezing Trap breaks, the victim's movement speed is reduced by $1268673s1% for $1268673d.
+
+Name             : Improved Snaring (id=1268868) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=1, req_points=23]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280404)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 3 | Misc Value 2: 5871 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wing Clip (195645)
+#2 (id=1280405)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Misc Value 2: 5872 (Label) | Target: Self (1)
+                   Affected Spells (Label): Concussive Shot (5116)
+Description      : Wing Clip slows an additional ${-$s1}%.
+
+Name             : Combat Experience (id=1268871) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=3, max_rank=1, req_points=0]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280408)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Agi | Target: Self (1)
+Description      : Your Agility is increased by $s1%.
+
+Name             : Guardian's Hide (id=1272094) [Spell Family (9), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=200]
+Class            : Hunter
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 23: Hunter Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1285144)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -3 | Scaled Value: -3 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#2 (id=1285146)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Your pet protects you at all times, reducing the damage you take by $s1%. Your pet receives $s2% of the damage it mitigates.

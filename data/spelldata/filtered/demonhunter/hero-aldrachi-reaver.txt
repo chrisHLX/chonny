@@ -1,0 +1,322 @@
+# Demon Hunter — Aldrachi Reaver Hero Talents
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Art of the Glaive (id=442290) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1137372)  : Apply Aura (6) | Proc Trigger Spell (42): Art of the Glaive
+                   Base Value: 6 | Scaled Value: 6 | Trigger Spell: 444661 | Target: Self (1)
+#2 (id=1137373)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=1168477)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#4 (id=1168478)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Consuming $?a212612[$s1][$s2] Soul Fragments or casting $?a212612[The Hunt][Sigil of Spite] converts your next Throw Glaive into Reaver's Glaive.
+
+Name             : Incisive Blade (id=442492) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1137751)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Chaos Strike (199547), Annihilation (201428), Chaos Strike (222031), Annihilation (227518), Soul Cleave (228478)
+                   Family Flags: 6, 14, 31, 50, 127
+Description      : $?a212612[Chaos Strike][Soul Cleave] deals $s1% increased damage.
+
+Name             : Keen Engagement (id=442497) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1137759)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Misc Value 2: 3349 (Label) | Target: Self (1)
+                   Affected Spells (Label): Reaver's Glaive (442294), Reaver's Glaive (444686), Reaver's Glaive (444764), Reaver's Glaive (1283344)
+Description      : Reaver's Glaive generates $s1 Fury.
+
+Name             : Warblade's Hunger (id=442502) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful Taken, Magic Heal Taken
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1137766)  : Apply Aura (6) | Proc Trigger Spell (42): Warblade's Hunger
+                   Base Value: 20 | Scaled Value: 20 | Trigger Spell: 442503 | Target: Self (1)
+#2 (id=1174097)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Consuming a Soul Fragment causes your next $?a212612[Chaos Strike]?s263642[Fracture][Shear] to deal $442507s1 additional Physical damage.$?a212612[
+
+Name             : Reaver's Mark (id=442679) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+                 : 5190: Demon Hunter Aldrachi Reaver 11.2 Class Set 4pc (1236360 effect#3), Bladecraft (1272153 effect#3)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1138061)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1238322)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+                   Modified By: Demon Hunter Aldrachi Reaver 11.2 Class Set 4pc (1236360 effect#3), Bladecraft (1272153 effect#3)
+Description      : When enhanced by Reaver's Glaive, $?a212612[Chaos Strike]?s263642[Fracture][Shear] applies Reaver's Mark, which causes the target to take $442624s1% increased damage for $442624d. Max $442624u stacks.
+
+Name             : Aldrachi Tactics (id=442683) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1138066)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : The second enhanced ability in a pattern shatters an additional Soul Fragment.
+
+Name             : Thrill of the Fight (id=442686) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1138069)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : After consuming both enhancements, gain Thrill of the Fight, increasing the damage of your next Reaver's Glaive by $442695s1% and increasing Haste by $442688s1% for $442688d.
+
+Name             : Army Unto Oneself (id=442714) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1138115)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Felblade surrounds you with a Blade Ward, reducing damage taken by $442715s1% for $442715d.
+
+Name             : Fury of the Aldrachi (id=442718) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+                 : 5189
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1138123)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1138124)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : When enhanced by Reaver's Glaive, $?a212612[Blade Dance][Soul Cleave] casts $s2 additional glaive slashes to nearby targets. Deals reduced damage beyond $444806s2 targets.
+
+Name             : Incorruptible Spirit (id=442736) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+                 : 5145: Vengeance Demon Hunter (212613 effect#13)
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1138156)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Vengeance Demon Hunter (212613 effect#13)
+Description      : Each Soul Fragment you consume shields you for an additional $s1% of the amount healed.
+
+Name             : Wounded Quarry (id=442806) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+                 : 6282: Vengeance Demon Hunter (212613 effect#21)
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1138289)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Vengeance Demon Hunter (212613 effect#21)
+Description      : Expose weaknesses in the target of your $@spellname442624, causing your Physical damage to any enemy to also deal $s1% of the damage dealt to your marked target as Chaos, and sometimes shatter a Soul Fragment.
+
+Name             : Evasive Action (id=444926) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Internal Cooldown: 3 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1141588)  : Apply Aura (6) | Proc Trigger Spell (42): Evasive Action
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 444929 | Target: Self (1)
+Description      : Vengeful Retreat can be cast a second time within $444929d.
+
+Name             : Unhindered Assault (id=444931) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1141603)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Vengeful Retreat resets the cooldown of Felblade.
+
+Name             : Preemptive Strike (id=444997) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1141710)  : Apply Aura (6) | Proc Trigger Spell (42): Preemptive Strike
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 444979 | Target: Self (1)
+Description      : Throw Glaive deals $444979s1 Physical damage to enemies near its initial target.
+
+Name             : Keen Edge (id=1272138) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1285217)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.33 | Target: Self (1)
+#2 (id=1285218)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Vengeful Retreat (198813), Blade Dance (199552), Blade Dance (200685), Shear (203782), Death Sweep (210153), Death Sweep (210155), Fracture (225919), Fracture (225921), Throw Glaive (337819), Throw Glaive (346665), Reaver's Glaive (442294), Warblade's Hunger (442507), Fury of the Aldrachi (444806), Preemptive Strike (444979), Reaver's Glaive (1283344)
+                   Family Flags: 58
+#3 (id=1285219)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Vengeful Retreat (198813), Blade Dance (199552), Blade Dance (200685), Shear (203782), Death Sweep (210153), Death Sweep (210155), Fracture (225919), Fracture (225921), Throw Glaive (337819), Throw Glaive (346665), Reaver's Glaive (442294), Warblade's Hunger (442507), Fury of the Aldrachi (444806), Preemptive Strike (444979), Reaver's Glaive (1283344)
+                   Family Flags: 58
+#4 (id=1285220)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#5 (id=1285221)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 9 | Scaled Value: 9 | Misc Value 2: 3349 (Label) | Target: Self (1)
+                   Affected Spells (Label): Reaver's Glaive (442294), Reaver's Glaive (444686), Reaver's Glaive (444764), Reaver's Glaive (1283344)
+Description      : Reaver's Glaive damage is increased by $s1% and other Physical-only damage is increased by $s2%.
+
+Name             : Broken Spirit (id=1272143) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1285228)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 23 | Misc Value 2: 6099 (Label) | Target: Self (1)
+                   Affected Spells (Label): Sigil of Spite (390163)
+#2 (id=1285229)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1285230)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#4 (id=1285231)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : $?a212613[Sigil of Spite][The Hunt] shatters $?a212613[$s1 additional][$s2] Soul $LFragment:Fragments;. $?a212613[Soul Cleave has][Blade Dance and Chaos Strike have] a $?a212613[$s3][$s4]% chance to shatter a Soul Fragment.
+
+Name             : Bladecraft (id=1272153) [Spell Family (107), Passive] 
+Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 66: Demon Hunter Spells
+                 : 292
+                 : 3367: Havoc Demon Hunter (212612 effect#12), Havoc Demon Hunter (212612 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1285259)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+#2 (id=1285260)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Misc Value 2: 4821 (Label) | Target: Self (1)
+                   Affected Spells (Label): Reaver's Mark (442624)
+#3 (id=1285261)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Misc Value 2: 5190 (Label) | Target: Self (1)
+                   Affected Spells (Label): Reaver's Mark (442679)
+#4 (id=1285262)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Fury of the Aldrachi further empowers $?a212613[Soul Cleave][Blade Dance] when cast after $?a212613[Fracture][Chaos Strike], increasing slashes to ${$442718s2*($442718s1/100+1)+$s1}.

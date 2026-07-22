@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Product Vision (updated 2026-07-21 — read `VISION.md` for the full document)
+
+MindCollector's center of gravity has shifted twice: **content** (AI-generated question/module bank) → **diagnostics** (profiling the player) → now **capturing expertise** — structuring what real experts already know into canonical modules, rather than asking AI to invent or verify domain knowledge from scratch. A canonical module (see the "Canonical Context Module Template" section below) is increasingly treated as *structured player expertise*, not AI-generated-then-verified content — the AI's job is to organize a practitioner's own brain dump, not to know the class itself. This does not change any architectural boundary already documented in this file (diagnostics stay universal/class-blind; context still only filters post-diagnosis recommendations, per the Player Model Design Principle and Subject Context Dimensions sections below) — it changes how canonical modules get authored and what confidence the platform can place in them. See `VISION.md` for the full vision, the "what this validates before automating" framing, and pattern findings from the first two practitioner brain dumps (Discipline Priest, Feral Druid).
+
 ## Commands
 
 **Start full dev environment (server + queue + logs + vite in parallel):**
@@ -880,6 +884,24 @@ Applied identically in `NextStepService::findBestModuleForConcepts()` and `Recom
 
 ### Out of scope (not built)
 Champion dimension for LoL; any migration of the existing Tags system; admin UI for managing dimensions/options (seeder only); re-profiling or diagnostic changes (a declaration is a fact, not evidence — it never feeds the diagnostic AI).
+
+## Canonical Context Module Template (pilot: Arms Warrior, 2026-07-21)
+
+Separate from AI-generated learning modules, this is a **human/Haiku-authored, offline reference** module type — one per class/spec/race/role context option (e.g. "Arms Warrior," "Zerg," "Jungle") — intended to become the canonical educational representation of that context and to ground future content authoring (diagnostic variants, recall questions, explanations). It is explicitly **not** queried at runtime by the diagnostic or recommendation AI, and this boundary is enforced structurally, not just by convention: `NextStepService::findBestModuleForConcepts()` / `RecommendationService`'s module matching both require `whereHas('questions.concepts', ...)` — a module with zero `Question` rows is automatically unselectable, so a context module stays inert to the runtime system for as long as it has no recall questions attached. No new `Module.type` value is needed (`type` stays `content`, the default) — keep `published = false` until recall questions exist, since `Modules\Index` browsing does not filter on question count and would otherwise let a user enroll into an empty quiz.
+
+**Page structure — 6 pages, not 8.** Piloted at 8 (adding "Win Condition" and "Typical Arena Patterns"), both removed after the Arms Warrior draft made the overlap concrete: "how does this thing create pressure" was being answered at two different zoom levels by two different pages, and "Typical Arena Patterns" in particular read as largely generic across specs/games once compared side by side (the same sentence shape — "long quiet stretches punctuated by burst" — fit an SC2 timing attack or a LoL assassin with only nouns swapped). Locked-in structure:
+1. **Identity** — role, class fantasy, arena role, general combat approach (this already carries a condensed version of what "Win Condition" would have said — no content was lost, just the redundant second page)
+2. **Resources** — primary resource(s), generation, spending, resource philosophy
+3. **Major Offensive Cooldowns**
+4. **Major Defensive Cooldowns**
+5. **Utility** — interrupts, CC, mobility, peels, support tools
+6. **Weaknesses** — vulnerabilities, windows of weakness, counterplay
+
+**Ability-name volatility is isolated into a per-page callout, not left embedded in prose.** Pages 3–5 (the ones that reference specific abilities) each end with a small **"Current Ability Names (verify each patch)"** table — role/purpose → current ability name — and the surrounding prose describes abilities only by role ("the armor-debuff burst cooldown," "the healing-reduction signature strike"), never by name. This means a patch/rework only ever requires editing the table row, never the educational paragraph around it — directly satisfies the "update only affected sections" maintenance goal without needing a structured-content schema change. Locked in now, while there is only one module, specifically because retrofitting this split across dozens of already-drafted modules later would be expensive.
+
+**Schema:** no changes needed to author these. A future per-page `last_checked_at` (or similar verification-status column) on `module_pages` is anticipated for the patch-verification workflow described above, but is deliberately deferred until that workflow is actually built — see the module's own review notes for the reasoning.
+
+**Status:** template locked, two pilot modules drafted (Arms Warrior — AI-researched draft, not yet seeded to DB; Discipline Priest (Oracle) — seeded via `DiscPriestOracleModuleSeeder`, `database/seeders/DiscPriestOracleModuleSeeder.php`, registered in `DatabaseSeeder`). The Discipline Priest module is the first built via the **expertise-capture** authoring path (see `VISION.md`): structured directly from a Gladiator-rated player's own dictation rather than AI/guide-researched, with a 5-page structure adapted to what the dictation actually contained (Build/Path Identity, Core Cooldowns, Priority Cooldowns, Matchup/Situational Notes, Weaknesses) rather than forced into the original 6-page/8-page template shape. Ambiguous or hedged facts from the dictation are preserved and flagged in the page content ("stated with uncertainty — verify") rather than resolved by AI guesswork. Module is seeded `published = false` (no recall questions yet — a separate, later authoring stage) and tagged via `module_context_option` to Priest → Discipline. Scaling to the remaining WoW specs, SC2 races, LoL roles, and Poker archetypes is future work.
 
 ## Module Route Binding
 Module uses `slug` as its route key — always pass the model 

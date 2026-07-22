@@ -1,0 +1,1065 @@
+# Druid — Restoration Spec Talents
+# Extracted verbatim from druid.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 53 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Tranquility (id=740) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Druid
+School           : Nature
+Spell Type       : Magic
+Resource         : 3.68% Base Mana (0) (id=90)
+Spell Level      : 37
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Cooldown         : 180 seconds
+Category         : 46 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 690: Major Cooldowns
+Category Cooldown: 180 seconds
+Affecting Spells : Starfall (191034 effect#2), Inner Peace (197073 effect#1), Astral Influence (197524 effects: #1, #3), Ekowraith, Creator of Worlds (210667 effects: #1, #7)
+Family Flags     : 53
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), No Threat (42), No Aura Icon (60), Name in Channel Bar (61), Active Threat (94), Extra Initial Period (169), Spell Haste Affects Periodic (173), Vehicle Immunity Category (218), Haste Affects Duration (273), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13)
+Effects          :
+#1 (id=293)      : Apply Aura (6) | Periodic Trigger Spell (23): Tranquility every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 157982 | Target: Self (1)
+#2 (id=294)      : Apply Party Aura (35) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Radius: 40 yards | Target: at Dynamic Ally in Area (29)
+#3 (id=291495)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#4 (id=912640)   : Apply Aura (6) | Creature Immunities (147)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 2347 | Target: Self (1)
+#5 (id=912641)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#6 (id=1201052)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#7 (id=1202407)  : Apply Aura (6) | Modify Time Rate (Label) (470)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 4339 (Label) | Target: Self (1)
+                   Affected Spells (Label): Incarnation (117679)
+Description      : Heals all allies within $a2 yards for $<healing> over $d.$?s197721[ Extends the duration of all your heal over time effects by $s6 sec every $t1 sec.][]
+
+Name             : Swiftmend (id=18562) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=2, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Nature
+Spell Type       : Magic
+Resource         : 1.4% Base Mana (0) (id=781) w/ Restoration Druid (id=137012)
+Resource         : 10% Base Mana (0) (id=305262) w/ Balance Druid (id=137013)
+Resource         : 10% Base Mana (0) (id=305263) w/ Feral Druid (id=137011)
+Resource         : 10% Base Mana (0) (id=305264) w/ Guardian Druid (id=137010)
+Spell Level      : 11
+Range            : 40 yards
+GCD              : 1.5 seconds
+Charges          : 1 (15 seconds cooldown)
+Category         : 1576 (Type 0x1): Prosperity (200383 effect#1), Early Spring (428937 effect#2), Sylvan Beckoning (1264618 effect#3), Spirit of the Thicket (1264911 effect#3)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 741: Healing Spells
+Stance Mask      : 0x00000002
+Affecting Spells : Incarnation: Tree of Life (5420 effects: #1, #2), Nurturing Instinct (33873 effects: #1, #2), Blessing of Lower City (37878 effect#1), Cat Form (106840 effects: #3, #4), Heart of the Wild (108294 effects: #1, #2), Guardian Druid (137010 effect#16), Feral Druid (137011 effect#9), Restoration Druid (137012 effects: #1, #2, #23), Starfall (191034 effect#2), Astral Influence (197524 effect#1), Ekowraith, Creator of Worlds (210667 effect#1), Call of the Elder Druid (319454 effects: #10, #11), Ravenous Frenzy (323546 effects: #1, #2, #6, #7), Convoke the Spirits (323764 effects: #3, #4, #5), Circle of Life and Death (338657 effects: #2, #4), Ravenous Frenzy (355315 effects: #1, #4), Convoke the Spirits (391528 effects: #3, #4, #5), Circle of Life and Death (400320 effects: #2, #4), Blossoming Infusion (408571 effect#1), Initial Druid (417382 effects: #3, #4), Liveliness (426702 effect#2), Harmony of the Grove (428737 effects: #1, #2), Grove's Inspiration (429402 effects: #2, #3), Root Network (439888 effects: #1, #2), Druid Restoration 11.0 Class Set 2pc (453669 effects: #1, #2), Power of the Forest (455070 effects: #1, #2), Cenarius' Might (455797 effect#2), Improved Swiftmend (470549 effect#1), Restoration Druid (1256995 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283649 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283650 effects: #1, #2)
+Family Flags     : 33, 118
+Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=10065)    : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 10.37 | PvP Coefficient: 1.25 | Target: Targeted Ally (21)
+Description      : $?s392410[Extend the duration of your heal over time effects by $392410s1 sec and][Consume a Regrowth, Wild Growth, or Rejuvenation effect to] instantly heal an ally for $s1.
+
+Name             : Lifebloom (id=33763) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=1, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Nature
+Spell Type       : Magic
+Resource         : 1.6% Base Mana (0) (id=1447)
+Spell Level      : 21
+Range            : 40 yards
+Max Targets      : 1
+GCD              : 1.5 seconds
+Duration         : 15 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 741: Healing Spells
+                 : 4337
+Stacks           : 1 maximum
+Proc Chance      : 100%
+Stance Mask      : 0x00000002
+Proc Flags       : Helpful Periodic Taken
+Affecting Spells : Incarnation: Tree of Life (5420 effects: #1, #2), Nurturing Instinct (33873 effects: #1, #2), Blessing of Lower City (37878 effect#1), Ironbark (102342 effect#2), Cat Form (106840 effects: #3, #4), Heart of the Wild (108294 effects: #1, #2), Restoration Druid (137012 effects: #1, #2), Starfall (191034 effect#2), Astral Influence (197524 effect#1), The Dark Titan's Advice (207271 effect#1), Essence of G'Hanir (208253 effect#1), Ekowraith, Creator of Worlds (210667 effect#1), Call of the Elder Druid (319454 effects: #10, #11), Ravenous Frenzy (323546 effects: #1, #2, #6, #7), Convoke the Spirits (323764 effects: #3, #4), Adaptive Swarm (325748 effect#2), Circle of Life and Death (338657 effects: #2, #4), The Dark Titan's Lesson (338831 effects: #1, #2), Ravenous Frenzy (355315 effects: #1, #4), Convoke the Spirits (391528 effects: #3, #4), Everbloom (392167 effect#2), Druid Restoration Class Set 2pc (393639 effect#1), Circle of Life and Death (400320 effects: #2, #4), Druid Restoration 10.1 Class Set 2pc (405516 effects: #1, #2), Tenacious Flourishing (408546 effect#1), Blossoming Infusion (408571 effect#1), Initial Druid (417382 effects: #3, #4), Liveliness (426702 effect#2), Harmony of the Grove (428737 effects: #1, #2), Power of Nature (428866 effects: #1, #2), Root Network (439888 effects: #1, #2), Strategic Infusion (439890 effect#1), Wildstalker's Power (439926 effects: #4, #5), Power of the Forest (455070 effects: #1, #2), Restoration Druid (1256995 effects: #1, #2), Patient Custodian (1270592 effect#3), Druid - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283649 effects: #1, #2), Druid - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283650 effects: #1, #2)
+Family Flags     : 36, 44, 118
+Attributes       : Not Shapeshifted (16), Include In Advanced Combat Log (72), Allow While Not Shapeshifted (caster form) (83), DoT Stacking Rule (103), Can Proc From Procs (122), Aura Never Bounces (148), Limit N (165), Spell Haste Affects Periodic (173), Vehicle Immunity Category (218), Periodic Can Crit (265), Aura Points On Client (268), Heal Prediction (280), Periodic Refresh Extends Duration (436), Unknown (456), Non-secret Aura (506)
+Effects          :
+#1 (id=23639)    : Apply Aura (6) | Periodic Heal (8): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.2684 | Target: Targeted Ally (21)
+Description      : Heals the target for $o1 over $d. When Lifebloom expires, is dispelled, or is refreshed near expiration the target is instantly healed for $33778s1.
+
+Name             : Incarnation: Tree of Life (desc=Talent, Shapeshift) (id=33891) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : Magic
+Spell Level      : 1
+GCD              : 1.5 seconds
+Duration         : Aura (infinite)
+Cooldown         : 180 seconds
+Category         : 1333 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 930
+                 : 1220
+Category Cooldown: 180 seconds
+Proc Chance      : 101%
+Affecting Spells : Metamorphosis Rune (23724 effect#1), Cheaper Druid Shapeshifting (38314 effect#1), Incarnation (117679 effect#1), Nature's Swiftness (132158 effect#1), Druid (137009 effect#4), Wildcat Celerity (184877 effect#1), Starfall (191034 effect#2), Berserk (343223 effect#1), Orbital Strike (390378 effect#2), Berserk: Heart of the Lion (391174 effect#1), Whirling Stars (468743 effects: #1, #4), Ashamane's Guidance (1244546 effect#1)
+Family Flags     : 43, 48
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Immunity to Hostile & Friendly Effects (48), No shapeshift UI (65), Allow Entering Arena (149), Not In Spellbook Until Learned (269), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Allow Aura On Level Scale (444)
+Aura Interrupt   : Leave World (19), Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=23806)    : Apply Aura (6) | Shapeshift (36)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.25) | Misc Value: 2 | Misc Value 2: 9 | Target: Self (1)
+                   Modified By: Berserk (343223 effect#1), Whirling Stars (468743 effect#4)
+#2 (id=102371)   : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 17 | Target: Self (1)
+#3 (id=170940)   : Apply Aura (6) | Periodic Dummy (226): every 7 seconds
+                   Base Value: 2 | Scaled Value: 2 | Trigger Spell: 132213 | Target: Self (1)
+Description      : Shapeshift into the Tree of Life, increasing healing done by $5420s1%, increasing armor by $5420s3%, and granting protection from Polymorph effects. Functionality of Rejuvenation, Wild Growth, Regrowth, Entangling Roots, and Wrath is enhanced.
+
+Name             : Ironbark (id=102342) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Druid
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 12
+Range            : 40 yards
+Duration         : 12 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Helpful Taken, Generic Hostile Spell Taken, Magic Heal Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Affecting Spells : Starfall (191034 effect#2), Stonebark (197061 effect#1), Astral Influence (197524 effect#1), Ekowraith, Creator of Worlds (210667 effect#1), X'oni's Caress (235039 effect#2), Improved Ironbark (382552 effect#1), Regenerative Heartwood (392116 effect#2)
+Family Flags     : 104
+Attributes       : Include In Advanced Combat Log (72), PvP Enabling (96), Vehicle Immunity Category (218), Aura Points On Client (268), Allow Class Ability Procs (416), Important Spell (491), External Defensive (499), Big Defensive (512)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=111070)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 0x7f | Target: Targeted Ally (21)
+                   Affected School(s): All
+#2 (id=116796)   : Apply Aura (6) | Modify Healing Taken% from Caster's Spells (283)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
+                   Affected Spells: Rejuvenation (774), Regrowth (8936), Lifebloom (33763), Wild Growth (48438), Efflorescence (81269), Cenarion Ward (102352), Rejuvenation (Germination) (155777), Tranquility (157982), Lifebloom (188550), Cultivation (200389), Tranquility (1236573), Regrowth (1264664)
+                   Family Flags: 4, 6, 7, 20, 44, 58, 65, 106, 121
+                   Modified By: Stonebark (197061 effect#1)
+Description      : The target's skin becomes as tough as Ironwood, reducing damage taken by $s1%$?a197061[ and increasing healing from your heal over time effects by $s2%][] for $d.$?a392116[
+
+Name             : Omen of Clarity (id=113043) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=2, col=6, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : Magic
+Spell Level      : 12
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 2526: Tranquil Mind (403521 effect#2)
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Periodic, Helpful Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=125741)   : Apply Aura (6) | Proc Trigger Spell (42): Clearcasting
+                   Base Value: 4 | Scaled Value: 4 | SP Coefficient: 0.25 | Trigger Spell: 16870 | Target: Self (1)
+                   Modified By: Tranquil Mind (403521 effect#2)
+Description      : Your healing over time from Lifebloom has a $s1% chance to cause a Clearcasting state, making your next $?a155577[${$155577m1+1} Regrowths][Regrowth] cost no mana.
+
+Name             : Nature's Swiftness (id=132158) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : Magic
+Duration         : Aura (infinite)
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Affecting Spells : Starfall (191034 effect#2), Ailuro Pouncers (208209 effect#1), Passing Seasons (382550 effect#1), Nature's Splendor (392288 effect#1)
+Triggered By     : Passing Seasons (382550)
+Family Flags     : 51
+Attributes       : Do Not Sheath (18), Cooldown On Event (25), No Threat (42), No AutoCast (AI) (49), Suppress Caster Procs (112), Suppress Target Procs (113), Cannot Be Stolen (134), Aura Points On Client (268), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=170811)   : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Entangling Roots (339), Regrowth (8936), Rebirth (20484), Incarnation: Tree of Life (33891), Ancient of Lore (473909), Regrowth (1264664)
+                   Family Flags: 6, 9, 28, 48
+#2 (id=170812)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+                   Affected Spells: Regrowth (8936), Regrowth (1264664)
+                   Family Flags: 6
+                   Modified By: Nature's Splendor (392288 effect#1)
+#3 (id=170813)   : Apply Aura (6) | Modify Stance Mask (275)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Entangling Roots (339), Regrowth (8936), Rebirth (20484), Regrowth (1264664)
+                   Family Flags: 6, 9, 28
+#4 (id=170814)   : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Entangling Roots (339), Regrowth (8936), Rebirth (20484), Regrowth (1264664)
+                   Family Flags: 6, 9, 28
+#5 (id=1247560)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Cyclone (33786)
+                   Family Flags: 37
+#6 (id=1247561)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Cyclone (33786)
+                   Family Flags: 37
+#7 (id=1303900)  : Apply Aura (6) | Modify Stance Mask (275)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Cyclone (33786)
+                   Family Flags: 37
+Description      : Your next Regrowth, $?$a1246126[Cyclone, ][]Rebirth, $?s473909[Ancient of Lore, ][]or Entangling Roots is instant, free, castable in all forms, and heals for an additional $s2%.
+Tooltip          : Your next Regrowth, $?$a1246126[Cyclone, ][]Rebirth, or Entangling Roots is instant, free, castable in all forms, and heals for an additional $w2%.
+
+Name             : Ysera's Gift (id=145108) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 2922: Oath of the Elder Druid (338608 effect#1)
+Affecting Spells : Incarnation: Avatar of Ashamane (102543 effect#3), Starfall (191034 effect#2), Astral Influence (197524 effects: #1, #3), Ekowraith, Creator of Worlds (210667 effect#1), Waking Dream (278958 effect#1), Adaptive Swarm (325748 effect#2), Waking Dream (392223 effect#1)
+Family Flags     : 82
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=195304)   : Apply Aura (6) | Periodic Dummy (226): every 5 seconds
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Modified By: Oath of the Elder Druid (338608 effect#1)
+Description      : Heals you for $s1% of your maximum health every $t1 sec. If you are at full health, an injured party or raid member will be healed instead.$?a392221[
+
+Name             : Efflorescence (id=145205) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Druid
+School           : Nature
+Spell Type       : Magic
+Resource         : 3.4% Base Mana (0) (id=9240)
+Spell Level      : 39
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 30 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Affecting Spells : Starfall (191034 effect#2), Astral Influence (197524 effect#1), Ekowraith, Creator of Worlds (210667 effect#1)
+Family Flags     : 115
+Attributes       : Not Shapeshifted (16), No Aura Cancel (31), Always Show Ground Texture (190), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Aura Interrupt   : Leave World (19), Enter World (22)
+Effects          :
+#1 (id=195464)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Radius: 10 yards | Target: at Area (87)
+#2 (id=195465)   : Summon Guardian (28)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 47649 | Misc Value 2: 3456 | Target: at Area (87)
+#3 (id=195466)   : Create Area Trigger (179)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 9049 | Target: at Area (87)
+#4 (id=1108291)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Grows a healing blossom at the target location, restoring $81269s1 health to $?p138284[four][three] injured allies within $81269A1 yards every $81262t1 sec for $81262d. Limit 1.
+Tooltip          : An Efflorescence is active.
+
+Name             : Germination (id=155675) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=10, col=8, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 52
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=216363)   : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rejuvenation (Germination) (155777)
+                   Family Flags: 4
+Description      : You can apply Rejuvenation twice to the same target. Rejuvenation's duration is increased by ${$s1/1000} sec.
+
+Name             : Soul of the Forest (id=158478) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=221440)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Swiftmend increases the healing of your next Regrowth or Rejuvenation by $114108s1%$?s392302[, and they apply to $392302s1 additional targets within $392302s2 yards.][.]
+
+Name             : Dream of Cenarius (id=158504) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Magic Hostile Spell
+Attributes       : Is Ability (4), Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=221552)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1144889)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1185835)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+Description      : Wrath and Shred transfer $s1% of their damage and Starfire and Swipe transfer $s2% of their damage into healing onto a nearby ally. 
+
+Name             : Stonebark (id=197061) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=8, max_rank=1, req_points=8, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=289362)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Ironbark (102342)
+                   Family Flags: 104
+Description      : Ironbark increases healing from your heal over time effects by $s1%.
+
+Name             : Inner Peace (id=197073) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=5, max_rank=1, req_points=8, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Aura Points On Client (268), Spellcast Override In Spellbook (310), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=289378)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Tranquility (740)
+                   Family Flags: 53
+Description      : Reduces the cooldown of Tranquility by ${$m1/-1000} sec.
+
+Name             : Flourish (id=197721) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=5, max_rank=1, req_points=8, select_idx=300]
+Class            : Druid
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 2706: Spatial Paradox (406732 effect#11), Spatial Paradox (406789 effect#10)
+Attributes       : Passive (6), Not Shapeshifted (16), Vehicle Immunity Category (218), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=290540)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Tranquility extends the duration of all of your heal over time effects by $s1 sec every $740t1 sec.
+Tooltip          : Heal over time spells are healing ${100*(1/(1+($m2/100))-1)}% faster.
+
+Name             : Prosperity (id=200383) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=3, col=3, max_rank=1, req_points=0, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Aura Points On Client (268), Spellcast Override In Spellbook (310), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=294998)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1576 (Category) | Target: Self (1)
+                   Affected Spells (Category): Swiftmend (18562)
+Description      : Swiftmend now has ${$m1+1} charges.
+
+Name             : Cultivation (id=200390) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Restoration [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=295008)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Misc Value: 7 | Target: Self (1)
+Description      : When Rejuvenation heals a target below $s1% health, they are instantly healed for $200389s1.
+
+Name             : Abundance (id=207383) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Restoration [tree=spec, row=9, col=8, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=306700)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value: 7 | Target: Self (1)
+Description      : For each Rejuvenation you have active, Regrowth's cost is reduced by $207640s1% and critical effect chance is increased by $207640s2%, up to a maximum of ${$207640s2*$207640u}%.
+
+Name             : Improved Regrowth (id=231032) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=3, col=7, max_rank=1, req_points=0]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=348362)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 7 | Target: Self (1)
+Description      : Regrowth's initial heal has a $s1% increased chance for a critical effect if the target is already affected by Regrowth.
+
+Name             : Photosynthesis (id=274902) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 52
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=727546)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=727557)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Your periodic heals on targets with Lifebloom have a $s2% chance to cause it to bloom.
+
+Name             : Master Shapeshifter (id=289237) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Restoration [tree=spec, row=9, col=1, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 118
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=753477)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Ironfur (192081), Echo of Ironfur (1269633)
+                   Family Flags: 78
+#2 (id=753478)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#3 (id=756150)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+                   Affected Spells: Rip (1079), Ferocious Bite (22568), Maim (22570), Ravage (441591)
+                   Family Flags: 39, 85, 108
+#4 (id=1077638)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#5 (id=1077717)  : Apply Aura (6) | Proc Trigger Spell (42): Master Shapeshifter
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 411144 | Target: Self (1)
+#6 (id=1080594)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 60 | Scaled Value: 60 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rip (1079)
+                   Family Flags: 85
+Description      : Your abilities are amplified based on your current shapeshift form, granting an additional effect.
+
+Name             : Improved Wild Growth (id=328025) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=819839)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Wild Growth (48438)
+                   Family Flags: 58
+Description      : Wild Growth heals $s1 additional $ltarget:targets;.
+
+Name             : Passing Seasons (id=382550) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=3, col=5, max_rank=1, req_points=0, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013940)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -12000 | Scaled Value: -12000 | Misc Value: 11 | Trigger Spell: 132158 | Target: Self (1)
+                   Affected Spells: Nature's Swiftness (132158)
+                   Family Flags: 51
+Description      : Nature's Swiftness's cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Improved Ironbark (id=382552) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=8, max_rank=1, req_points=8, select_idx=200]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013942)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -20000 | Scaled Value: -20000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Ironbark (102342)
+                   Family Flags: 104
+Description      : Ironbark's cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Unstoppable Growth (id=382559) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=7, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(30, 60)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013952)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 22 | Target: Self (1)
+Description      : Wild Growth's healing falls off $s1% less over time.
+
+Name             : Regenesis (id=383191) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(30, 60)]
+                 : Effect#2 [op=set, values=(30, 60)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1014950)  : Apply Aura (6) | Modify Healing% Based on Target Health% (354)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rejuvenation (Germination) (155777)
+                   Family Flags: 4
+#2 (id=1014951)  : Apply Aura (6) | Modify Healing% Based on Target Health% (354)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Tranquility (157982), Tranquility (1236573)
+                   Family Flags: 7
+Description      : Rejuvenation healing is increased by up to $s1%, and Tranquility healing is increased by up to $s2%, healing for more on low-health targets.
+
+Name             : Convoke the Spirits (id=391528) [Spell Family (7)] 
+Talent Entry     : Restoration [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
+                 : Feral [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=200]
+                 : Guardian [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=1]
+                 : Balance [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Spell Level      : 48
+GCD              : 1.5 seconds
+Duration         : 4 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Stacks           : 99 maximum
+Proc Chance      : 101%
+Stance Mask      : 0x40000011
+Affecting Spells : Starfall (191034 effect#2), Celestial Spirits (354118 effects: #2, #3, #4), Ashamane's Guidance (391538 effects: #1, #2, #3), Cenarius' Guidance (393374 effects: #1, #2, #3), Ursoc's Guidance (393414 effects: #1, #2, #3), Elune's Guidance (393991 effects: #1, #2, #3), Astral Insight (429536 effects: #1, #2)
+Family Flags     : 16
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Allow While Not Shapeshifted (caster form) (83), Not In Spellbook Until Learned (269), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Sheathing (10), Interacting (11), Looting (12), Attacking (13)
+Effects          :
+#1 (id=1029094)  : Apply Aura (6) | Periodic Dummy (226): every 0.25 seconds
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1029095)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 16 | Scaled Value: 16 | Target: Self (1)
+                   Modified By: Celestial Spirits (354118 effect#2), Ashamane's Guidance (391538 effect#1), Cenarius' Guidance (393374 effect#1), Ursoc's Guidance (393414 effect#1), Elune's Guidance (393991 effect#1), Astral Insight (429536 effect#2)
+#3 (id=1029096)  : Apply Party Aura (35) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Maul (6807), Regrowth (8936), Swiftmend (18562), Ferocious Bite (22568), Maim (22570), Lifebloom (33763), Lifebloom (33778), Mangle (33917), Wild Growth (48438), Thrash (77758), Starsurge (78674), Efflorescence (81269), Fungal Growth (81281), Wild Mushroom (88751), Cenarion Ward (102352), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Rejuvenation (Germination) (155777), Tranquility (157982), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Lifebloom (188550), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Cultivation (200389), Brutal Slash (202028), Stellar Flare (202347), Shooting Stars (202497), Reactive Resin (203406), Brambles (203958), Fury of Elune (211545), Brambles (213709), Swipe (213771), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Grove Tending (279793), Primal Wrath (285381), Early Harvest (287255), Thorns (305496), Adaptive Swarm (325733), Adaptive Swarm (325748), Star Burst (356474), Orbital Strike (361237), Architect's Aligner (363789), Renewing Bloom (364686), Fury of Elune (365640), Ephemeral Profusion (367330), Rampant Ferocity (391710), Embrace of the Dream (392147), Verdancy (392329), Goldrinn's Fang (394047), Fury of Elune (394111), Raze (400254), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Nourish (422090), Nourish (423618), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Dream Bloom (434141), Symbiotic Blooms (439530), Bloodseeker Vines (439531), Bursting Growth (440121), Bursting Growth (440122), Ravage (441591), Ravage (441605), Dreadful Wound (441812), Dreadful Wound (451177), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Sundering Roar (1253799), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Regrowth (1264664), Spirit of the Thicket (1264905), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973), Lunar Beam (1270292), Starsurge (1271222), Twin Claw (1271636), Twin Claw (1271657), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 77, 98, 118
+#4 (id=1029097)  : Apply Party Aura (35) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Maul (6807), Regrowth (8936), Swiftmend (18562), Ferocious Bite (22568), Maim (22570), Lifebloom (33763), Lifebloom (33778), Mangle (33917), Wild Growth (48438), Thrash (77758), Starsurge (78674), Efflorescence (81269), Fungal Growth (81281), Wild Mushroom (88751), Cenarion Ward (102352), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Rejuvenation (Germination) (155777), Tranquility (157982), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Lifebloom (188550), Wrath (190984), Starfall (191037), Thrash (192090), Starfire (194153), Starsurge (197626), Starfire (197628), Cultivation (200389), Brutal Slash (202028), Stellar Flare (202347), Shooting Stars (202497), Reactive Resin (203406), Brambles (203958), Fury of Elune (211545), Brambles (213709), Swipe (213771), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Grove Tending (279793), Primal Wrath (285381), Early Harvest (287255), Thorns (305496), Adaptive Swarm (325733), Adaptive Swarm (325748), Star Burst (356474), Orbital Strike (361237), Architect's Aligner (363789), Renewing Bloom (364686), Fury of Elune (365640), Ephemeral Profusion (367330), Rampant Ferocity (391710), Embrace of the Dream (392147), Verdancy (392329), Goldrinn's Fang (394047), Fury of Elune (394111), Raze (400254), Thrash (405233), Star Burst (406430), Crashing Star (408310), Lunar Beam (414613), Nourish (422090), Nourish (423618), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Dream Bloom (434141), Symbiotic Blooms (439530), Bloodseeker Vines (439531), Bursting Growth (440121), Bursting Growth (440122), Ravage (441591), Ravage (441605), Dreadful Wound (441812), Dreadful Wound (451177), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Sundering Roar (1253799), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Regrowth (1264664), Spirit of the Thicket (1264905), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973), Lunar Beam (1270292), Starsurge (1271222), Twin Claw (1271636), Twin Claw (1271657), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 77, 98, 118
+#5 (id=1029098)  : Apply Aura (6) | Ignore Aura State (262)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Swiftmend (18562)
+                   Family Flags: 33, 123
+Description      : Call upon the spirits for an eruption of energy, channeling a rapid flurry of $s2 Druid spells and abilities over $d.$?s391538[ Chance to use an exceptional spell or ability is increased.][]
+
+Name             : Nurturing Dormancy (id=392099) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=9, col=9, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1030014)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1030015)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : When your Rejuvenation heals a full health target, its duration is increased by $s1 sec, up to a maximum total increase of $s2 sec per cast.
+
+Name             : Regenerative Heartwood (id=392116) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=9, max_rank=1, req_points=8]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Helpful Periodic
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030039)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 75 | Scaled Value: 75 | Misc Value: 1 | Target: Self (1)
+#2 (id=1050562)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Ironbark (102342)
+                   Family Flags: 104
+Description      : Allies protected by your Ironbark also receive $s1% of the healing from each of your active Rejuvenations and Ironbark's duration is increased by ${$s2/1000} sec.
+
+Name             : Embrace of the Dream (id=392124) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1030053)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1030054)  : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100
+#3 (id=1030055)  : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100
+Description      : Wild Growth momentarily shifts your mind into the Emerald Dream, instantly healing all allies affected by your Rejuvenation or Regrowth for $392147s1.
+
+Name             : Everbloom (id=392167) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030137)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1030140)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Lifebloom (33763), Lifebloom (188550)
+                   Family Flags: 44
+Description      : Lifebloom stacks every $s1 sec, stacking up to ${$s2+1} times.
+
+Name             : Waking Dream (id=392221) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=9, col=2, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030245)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Waking Dream
+                   Base Value: 8 | Scaled Value: 8 | Trigger Spell: 392223 | Target: Self (1)
+#2 (id=1030246)  : Dummy (3)
+                   Base Value: 4000 | Scaled Value: 4000
+Description      : Ysera's Gift now heals every ${$s2/1000} sec and its healing is increased by $s1% for each of your active Rejuvenations.
+
+Name             : Harmonious Blooming (id=392256) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030319)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Lifebloom counts for ${$s1+1} stacks of Mastery: Harmony.
+
+Name             : Nature's Splendor (id=392288) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=3, col=5, max_rank=1, req_points=0, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030384)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 35 | Scaled Value: 35 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Nature's Swiftness (132158)
+                   Family Flags: 51
+Description      : The healing bonus to Regrowth from Nature's Swiftness is increased by $s1%.
+
+Name             : Power of the Archdruid (id=392302) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030404)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1275745)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Soul of the Forest now causes your next Rejuvenation or Regrowth to apply to $s1 additional $Lally:allies; within $189877s1 yards of the target.
+
+Name             : Verdancy (id=392325) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Allow Proc While Sitting (147), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030440)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 23 | Target: Self (1)
+Description      : When Lifebloom blooms, up to $s1 targets within your Efflorescence are healed for $392329s1.
+
+Name             : Reforestation (id=392356) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3042: Potent Enchantments (429420 effect#5)
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal, Helpful Periodic
+Attributes       : Passive (6), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030499)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1030500)  : Dummy (3) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Potent Enchantments (429420 effect#5)
+Description      : Every $s1 casts of Swiftmend grants you Incarnation: Tree of Life for $s2 sec.
+
+Name             : Verdant Infusion (id=392410) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=3, col=3, max_rank=1, req_points=0, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1030606)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | PvP Coefficient: 0.5 | Misc Value: 23 | Target: Self (1)
+Description      : Swiftmend no longer consumes a heal over time effect, and extends the duration of your heal over time effects on the target by $s1 sec.
+
+Name             : Cenarius' Guidance (id=393371) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1032242)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spellicon33891 $@spellname5420
+During Incarnation: Tree of Life, you summon a Grove Guardian every $393418t sec. The cooldown of Incarnation: Tree of Life is reduced by ${$393381s1/-1000}.1 sec when Grove Guardians fade.
+
+Name             : Wild Synthesis (id=400533) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1045655)  : Apply Aura (6) | Modify Absorb% Done (157)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1215802)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Efflorescence (81269)
+                   Family Flags: 65
+#3 (id=1225791)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Efflorescence (81269)
+                   Family Flags: 65
+Description      : Grove Guardians, Efflorescence, and your other summons heal for $s1% more.
+
+Name             : Tranquil Mind (id=403521) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1050510)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Omen of Clarity (16864), Clearcasting (16870), Clearcasting (135700)
+                   Family Flags: 114
+#2 (id=1050524)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Misc Value 2: 2526 (Label) | Target: Self (1)
+                   Affected Spells (Label): Omen of Clarity (113043)
+#3 (id=1050702)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Increases Omen of Clarity's chance to activate Clearcasting to $s3% and Clearcasting can stack $s1 additional time.
+
+Name             : Rampant Growth (id=404521) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1052125)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Regrowth (8936), Regrowth (1264664)
+                   Family Flags: 6
+Description      : Regrowth's healing over time is increased by $s1%, and it also applies to the target of your Lifebloom.
+
+Name             : Liveliness (id=426702) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=9, col=1, max_rank=1, req_points=20, select_idx=100]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1105416)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Rip (1079), Rake (1822), Wrath (5176), Shred (5221), Ferocious Bite (22568), Maim (22570), Starsurge (78674), Fungal Growth (81281), Wild Mushroom (88751), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Wrath (190984), Starfall (191037), Starfire (194153), Starsurge (197626), Starfire (197628), Brutal Slash (202028), Shooting Stars (202342), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (211545), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Feral Frenzy (274838), Lunar Shrapnel (279641), Primal Wrath (285381), Thorns (305496), Adaptive Swarm (325733), Star Burst (356474), Orbital Strike (361237), Fury of Elune (365640), Tear (391356), Rampant Ferocity (391710), Goldrinn's Fang (394047), Fury of Elune (394111), Thrash (405233), Star Burst (406430), Crashing Star (408310), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Meteorites (1240913), Frantic Frenzy (1244079), Chomp (1244258), Solar Bolt (1261573), Lunar Bolt (1263137), Unseen Slash (1263890), Unseen Swipe (1263908), Starsurge (1271222), Twin Claw (1271636), Unseen Slash (1271863), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
+                   Family Flags: 18, 80, 98, 124
+#2 (id=1105417)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Rejuvenation (774), Regrowth (8936), Swiftmend (18562), Lifebloom (33763), Lifebloom (33778), Wild Growth (48438), Efflorescence (81269), Cenarion Ward (102352), Rejuvenation (Germination) (155777), Tranquility (157982), Lifebloom (188550), Cultivation (200389), Reactive Resin (203406), Grove Tending (279793), Early Harvest (287255), Adaptive Swarm (325748), Renewing Bloom (364686), Ephemeral Profusion (367330), Embrace of the Dream (392147), Verdancy (392329), Nourish (422090), Nourish (423618), Dream Bloom (434141), Symbiotic Blooms (439530), Bursting Growth (440121), Reactive Resin (468152), Blossom Burst (473919), Mass Blooming (474149), Insurance! (1215515), Insurance! (1215518), Tranquility (1236573), Regrowth (1264664), Spirit of the Thicket (1264905)
+                   Family Flags: 118
+#3 (id=1105418)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Primal Wrath (285381)
+                   Family Flags: 93
+Description      : Your damage over time effects deal their damage $s1% faster, and your healing over time effects heal $s2% faster.
+
+Name             : Call of the Elder Druid (id=426784) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1105560)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 8 | Target: Self (1)
+Description      : When you cast Starsurge, Rake, Shred, or Frenzied Regeneration you gain Call of the Elder Druid for $s2 sec, once every $338643d.
+
+Name             : Thriving Vegetation (id=447131) [Spell Family (7), Passive, Hidden] 
+Talent Entry     : Restoration [tree=spec, row=9, col=7, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(15, 30)]
+                 : Effect#2 [op=set, values=(3000, 6000)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1144922)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1144923)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Regrowth (8936), Regrowth (1264664)
+                   Family Flags: 6
+Description      : Rejuvenation instantly heals your target for $s1% of its total periodic effect and Regrowth's duration is increased by ${$s2/1000} sec.
+
+Name             : Improved Swiftmend (id=470549) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=8, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1185949)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Swiftmend (18562)
+                   Family Flags: 33
+Description      : Swiftmend healing increased by $s1%.
+
+Name             : Renewing Surge (id=470562) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1185972)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1297336)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Swiftmend cooldown is reduced by $s1%, increasing up to $s2% on lower health targets.
+
+Name             : Lifetreading (id=1217941) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=3, max_rank=1, req_points=8, replace="Efflorescence" (id=145205)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Allow Proc While Sitting (147), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1202352)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Trigger Spell: 1232285 | Target: Self (1)
+                   Affected Spells: Efflorescence (81269)
+                   Family Flags: 65
+Description      : Efflorescence healing increased by $s1%, and it now automatically grows beneath your Lifebloom target's feet.
+
+Name             : Grove Guardians (id=1226140) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 3034: Durability of Nature (429227 effect#2)
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1215801)  : Apply Aura (6) | Proc Trigger Spell (42): Grove Guardians
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 102693 | Target: Self (1)
+Description      : Casting Swiftmend or Wild Growth summons a Treant that casts Nourish on that target or a nearby ally periodically, healing for ${$422090m1}. Lasts $102693d.
+
+Name             : Everbloom (id=1244331) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=11, col=5, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245025)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1245026)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 1.25 | Target: Self (1)
+#3 (id=1314559)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : $s2% of Lifebloom's final bloom heals up to $s3 injured allies within $1244341a1 yds.
+
+Name             : Everbloom (id=1244470) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=300]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245242)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Lifebloom bursts into a Blooming Frenzy when you consume Soul of the Forest, causing it to bloom $s1 times in rapid succession.
+
+Name             : Nature's Bounty (id=1263879) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1274815)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Regrowth heals all other allies with Regrowth for $s1% of its healing.
+
+Name             : Intensity (id=1264649) [Spell Family (7), Passive] 
+Talent Entry     : Restoration [tree=spec, row=8, col=8, max_rank=1, req_points=20]
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276137)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 60 | Scaled Value: 60 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Regrowth (8936), Regrowth (1264664)
+                   Family Flags: 6
+Description      : When Regrowth critically heals, it is ${$s1+200}% effective instead of the usual 200%.
