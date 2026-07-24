@@ -1,0 +1,308 @@
+# Evoker — Flameshaper Hero Talents
+# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Enkindle (desc=Red) (id=444016) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1140265)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Essence abilities are enhanced with Flame, dealing $s1% of healing or damage done as Fire over 8 sec.
+
+Name             : Burning Adrenaline (desc=Red) (id=444020) [Spell Family (224), Passive] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Fire
+Spell Type       : Magic
+Spell Level      : 59
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1464: Red Evoker Spells
+Stacks           : 1 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1140270)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Dream Breath (355936), Fire Breath (357208), Fire Breath (382266), Dream Breath (382614)
+                   Family Flags: 15, 25
+Description      : Fire Breath $?c1[reaches its][and Dream Breath reach their] maximum empower level $s1% faster.
+
+Name             : Consume Flame (desc=Red) (id=444088) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+                 : 4185: Preservation Evoker (356810 effect#17)
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1140380)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
+#2 (id=1141764)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+#3 (id=1141810)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+                   Modified By: Preservation Evoker (356810 effect#17)
+#4 (id=1275546)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 150 | Scaled Value: 150 | Target: Self (1)
+#5 (id=1275591)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+#6 (id=1278179)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+#7 (id=1317269)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 115 | Scaled Value: 115 | Target: Self (1)
+Description      : $?c1[Disintegrate damage consumes ${$s2/1000}.1 sec of Fire Breath from enemies it damages, detonating it for $s4% of the amount consumed.
+
+Name             : Lifecinders (desc=Red) (id=444322) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1140693)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1174085)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Obsidian Scales also applies to your target or $s1 nearby injured $Lally:allies; at $s2% value.
+
+Name             : Conduit of Flame (desc=Red) (id=444843) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+                 : 6457: Devastation Evoker (1286123 effect#16)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1141482)  : Apply Aura (6) | Unknown(183)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 50 | Target: Self (1)
+                   Modified By: Devastation Evoker (1286123 effect#16)
+#2 (id=1141483)  : None (0)
+                   Base Value: 50 | Scaled Value: 50
+Description      : Critical strike chance against targets above $s2% health increased by $s1%.
+
+Name             : Expanded Lungs (desc=Red) (id=444845) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1141486)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Fire Breath (357209), Dream Breath (376788), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 21, 35
+Description      : Fire Breath's damage over time is increased by $s1%. Dream Breath's heal over time is increased by $s1%.
+
+Name             : Trailblazer (desc=Red) (id=444849) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1141490)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : $?c1[Hover and Deep Breath][Hover, Deep Breath, and Dream Flight] travel $s1% faster, and Hover travels $s1% further.
+
+Name             : Shape of Flame (desc=Red) (id=445074) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1141818)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Tail Swipe and Wing Buffet scorch enemies and blind them with ash, causing their next attack within $445134d to miss.
+
+Name             : Titanic Precision (desc=Red) (id=445625) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1142589)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1163538)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Living Flame $?c1[and Azure Strike have $s1 extra chance to trigger Essence Burst when they critically strike.][has $s1 extra chance to trigger Essence Burst when it critically strikes.]
+
+Name             : Draconic Instincts (desc=Red) (id=445958) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1143076)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Your wounds have a small chance to cauterize, healing you for $s1% of damage taken. Occurs more often from attacks that deal high damage.
+
+Name             : Fulminous Roar (desc=Red) (id=1218447) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=3, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+                 : 6458: Devastation Evoker (1286123 effect#17)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1203322)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Fire Breath (357209), Dream Breath (376788), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 21, 35
+                   Modified By: Devastation Evoker (1286123 effect#17)
+Description      : $?c1[Fire Breath deals its damage][Fire Breath and Dream Breath deal their damage and healing] $s1% more often.
+
+Name             : Legacy of the Lifebinder (desc=Red) (id=1264269) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1275511)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2456 (Category) | Target: Self (1)
+                   Affected Spells (Category): Fire Breath (357208), Fire Breath (382266)
+#2 (id=1275513)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2054 (Category) | Target: Self (1)
+                   Affected Spells (Category): Dream Breath (355936), Dream Breath (382614)
+Description      : $?c1[Fire Breath gains][Dream Breath and Fire Breath gain] an additional charge.
+
+Name             : Deep Exhalation (id=1264321) [Spell Family (224), Passive] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1275609)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1275612)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 6000 | Scaled Value: 6000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+Description      : Fire Breath's damage over time lasts $s1 sec longer.$?c2[
+
+Name             : Ashes in Motion (id=1264365) [Spell Family (224), Passive] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1275679)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 2456 (Category) | Target: Self (1)
+                   Affected Spells (Category): Fire Breath (357208), Fire Breath (382266)
+Description      : Fire Breath's cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Twin Flame (desc=Red) (id=1265979) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278093)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Consuming Essence Burst fires a twin flame, $?c1[striking your target for $1265980s1 Fire damage][healing your target for $1265991s1].
+
+Name             : Fire Torrent (desc=Red) (id=1265992) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278109)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Chain Targets (17)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 17 | Misc Value 2: 5865 (Label) | Target: Self (1)
+                   Affected Spells (Label): Twin Flame (1265980), Twin Flame (1265991)
+Description      : Twin Flame bounces to up to $s1 additional targets.
+
+Name             : Essence Well (desc=Red) (id=1265993) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278110)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : $?c1[Fire Breath has][Dream Breath and Fire Breath have] a $s1% chance to generate Essence Burst.

@@ -1,0 +1,308 @@
+# Warlock — Soul Harvester Hero Talents
+# Extracted verbatim from warlock.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Gorefiend's Resolve (id=389623) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1025973)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Use Soulstone (3026), Soulstone Resurrection (95750)
+                   Family Flags: 58
+#2 (id=1025975)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 80 | Scaled Value: 80 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Use Soulstone (3026), Soulstone Resurrection (95750)
+                   Family Flags: 58
+Description      : Targets resurrected with Soulstone resurrect with $s1% additional health and $s2% additional mana.
+
+Name             : Demonic Soul (id=449614) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148938)  : Apply Aura (6) | Trigger Spell Based on Resource Amount (396): Demonic Soul
+                   Base Value: 10 | Scaled Value: 10 | Resource: soul_shard | Trigger Spell: 450510 | Target: Self (1)
+#2 (id=1150458)  : Apply Aura (6) | Trigger Spell Based on Resource Amount (396): Demonic Soul
+                   Base Value: 20 | Scaled Value: 20 | Resource: soul_shard | Trigger Spell: 450510 | Target: Self (1)
+#3 (id=1150459)  : Apply Aura (6) | Trigger Spell Based on Resource Amount (396): Demonic Soul
+                   Base Value: 30 | Scaled Value: 30 | Resource: soul_shard | Trigger Spell: 450510 | Target: Self (1)
+#4 (id=1150460)  : Apply Aura (6) | Trigger Spell Based on Resource Amount (396): Demonic Soul
+                   Base Value: 40 | Scaled Value: 40 | Resource: soul_shard | Trigger Spell: 450510 | Target: Self (1)
+#5 (id=1150461)  : Apply Aura (6) | Trigger Spell Based on Resource Amount (396): Demonic Soul
+                   Base Value: 50 | Scaled Value: 50 | Resource: soul_shard | Trigger Spell: 450510 | Target: Self (1)
+Description      : A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated.
+
+Name             : Necrolyte Teachings (id=449620) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148946)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.2 | Misc Value: 12 | Misc Value 2: 3537 (Label) | Target: Self (1)
+                   Affected Spells (Label): Nightfall (264571), Nightfall (1260279)
+#2 (id=1150565)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Affected Spells: Shadow Bolt (686), Drain Soul (198590), Infernal Bolt (434506), Malefic Grasp (1261153)
+                   Family Flags: 0, 23
+#3 (id=1150566)  : Apply Party Aura (35) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 3684 (Label) | Target: Self (1)
+                   Affected Spells (Label): Power Siphon (334581)
+#4 (id=1151695)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Drain Soul (198590), Malefic Grasp (1261153)
+                   Family Flags: 23
+Description      : $?s137043[Shadow Bolt and Drain Soul damage increased by $s2%. Nightfall increases the damage of Shadow Bolt and Drain Soul by an additional $s1%.][Shadow Bolt damage increased by $s2%. Power Siphon increases the damage of Demonbolt by an additional $s3%.]
+
+Name             : Soul Anathema (id=449624) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148953)  : Apply Aura (6) | Proc Trigger Spell (42): Soul Anathema
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 450538 | Target: Self (1)
+Description      : Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing $450538o1 Shadow damage over $450538d.
+
+Name             : Demoniac's Fervor (id=449629) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 6534: Demonology Warlock (137044 effect#11)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148960)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Modified By: Demonology Warlock (137044 effect#11)
+Description      : Your demonic soul deals $s1% increased damage to $?s137043[targets affected by your Unstable Affliction.][the main target of Hand of Gul'dan.]
+
+Name             : Wicked Reaping (id=449631) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 6343: Demonology Warlock (137044 effect#6)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148962)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 3535 (Label) | Target: Self (1)
+                   Affected Spells (Label): Demonic Soul (449801), Wicked Reaping (449826), Demonic Soul (1239715), Manifested Avarice (1269050), Demonic Touch (1269221)
+                   Modified By: Demonology Warlock (137044 effect#6)
+#2 (id=1151732)  : None (0)
+                   Base Value: 40 | Scaled Value: 40
+Description      : Damage dealt by your demonic soul is increased by $s1%.
+
+Name             : Quietus (id=449634) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148968)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Misc Value 2: 3545 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soul Anathema (450538)
+#2 (id=1150905)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Tick Time (19)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Misc Value 2: 3545 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soul Anathema (450538)
+#3 (id=1166670)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Misc Value 2: 3545 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soul Anathema (450538)
+Description      : Soul Anathema damage increased by $s1% and is dealt $s2% faster.
+
+Name             : Sataiel's Volition (id=449637) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148973)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Corruption (172), Corruption (146739), Deliberate Corruption (367831), Wither (445468), Wither (445474), Corruption (1261158), Wither (1279686)
+                   Family Flags: 1
+#2 (id=1150936)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+                   Affected Spells: Fel Firebolt (104318), Diabolic Bolt (438823)
+                   Family Flags: 12
+#3 (id=1150937)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?s137043[Corruption deals damage $s1% faster and Haunt grants Nightfall.][Wild Imp damage increased by $s2% and Wild Imps that are imploded have an additional $s3% chance to grant a Demonic Core.]
+
+Name             : Shadow of Death (id=449638) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148975)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1280512)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Your $?s137043[Dark Harvest spell is empowered by the demonic entity within you, causing it to grant ${$s2} Soul Shard that each contain a Succulent Soul every 1 sec while channeled.][Summon Demonic Tyrant spell is empowered by the demonic entity within you, causing it to grant ${$449858s1/10} Soul Shards that each contain a Succulent Soul.]
+
+Name             : Gorebound Fortitude (id=449701) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1149132)  : Apply Aura (6) | Proc Trigger Spell (42): Soulburn: Healthstone
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 387636 | Target: Self (1)
+Description      : You always gain the benefit of Soulburn when consuming a Healthstone, increasing its healing by 30% and increasing your maximum health by 20% for 12 sec.
+
+Name             : Friends In Dark Places (id=449703) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1149136)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.6 | Target: Self (1)
+Description      : Dark Pact now shields you for an additional $s1% of the sacrificed health.
+
+Name             : Shared Fate (id=449704) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic, Unknown 38
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1149138)  : Apply Aura (6) | Proc Trigger Spell (42): Marked Soul
+                   Base Value: 8 | Scaled Value: 8 | Trigger Spell: 450629 | Target: Self (1)
+Description      : When you kill a target, its tortured soul is flung into a nearby enemy for $450591d. This effect inflicts $450593s1 Shadow damage to enemies within $450593a1 yds every $450591t1 sec.
+
+Name             : Feast of Souls (id=449706) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic, Unknown 38
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1149141)  : Apply Aura (6) | Proc Trigger Spell (42): Marked Soul
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 450629 | Target: Self (1)
+Description      : When you kill a target, you have a chance to generate a Soul Shard that is guaranteed to be a Succulent Soul.
+
+Name             : Eternal Servitude (id=449707) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1149142)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -90000 | Scaled Value: -90000 | PvP Coefficient: 0.333334 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Fel Domination (333889)
+                   Family Flags: 123
+Description      : Fel Domination cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Manifested Avarice (id=1268884) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1280427)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for $1269042d.
+
+Name             : Shared Vessel (id=1268889) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5914: Manifested Demonic Soul (1269042 effect#2)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1280432)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Modified By: Manifested Demonic Soul (1269042 effect#2)
+Description      : Increases your Mastery by $s1%.
+
+Name             : Eternal Hunger (id=1268903) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1280458)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Misc Value 2: 5915 (Label) | Target: Self (1)
+                   Affected Spells (Label): Manifested Demonic Soul (1269042)
+#2 (id=1281573)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Increases the duration of Manifested Avarice by ${$s1/1000} sec and increases the damage of Soul Swipe by $s2%.

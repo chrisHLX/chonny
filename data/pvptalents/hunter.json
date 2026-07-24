@@ -1,0 +1,438 @@
+{
+    "class": "Hunter",
+    "fetched_at": "2026-07-23T05:00:22+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Marksmanship": {
+            "spec_id": 254,
+            "pvp_talents": [
+                {
+                    "id": 651,
+                    "name": "Survival Tactics",
+                    "spell_id": 202746,
+                    "spell_name": "Survival Tactics",
+                    "description": "Feign Death reduces damage taken by 90% for 2 sec.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 653,
+                    "name": "Chimaeral Sting",
+                    "spell_id": 356719,
+                    "spell_name": "Chimaeral Sting",
+                    "description": "Stings the target, dealing 53 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 659,
+                    "name": "Ranger's Finesse",
+                    "spell_id": 248443,
+                    "spell_name": "Ranger's Finesse",
+                    "description": "Casting Aimed Shot provides you with Ranger's Finesse. After gaining 3 stacks of Ranger's Finesse, increase your next Volley's radius and duration by 50%.\r\n\r\nConsuming Ranger's Finesse reduces the remaining cooldown of Aspect of the Turtle by 20 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 660,
+                    "name": "Sniper's Advantage",
+                    "spell_id": 1217102,
+                    "spell_name": "Sniper's Advantage",
+                    "description": "Trueshot and Volley increase the range of all shots by 30% for their duration.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 3729,
+                    "name": "Hunting Pack",
+                    "spell_id": 203235,
+                    "spell_name": "Hunting Pack",
+                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 15 yds.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 5440,
+                    "name": "Consecutive Concussion",
+                    "spell_id": 357018,
+                    "spell_name": "Consecutive Concussion",
+                    "description": "Concussive Shot slows movement by an additional 10%. Using Steady Shot 3 times on a concussed enemy stuns them for 4 sec.",
+                    "unlock_player_level": 20,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 5533,
+                    "name": "Diamond Ice",
+                    "spell_id": 203340,
+                    "spell_name": "Diamond Ice",
+                    "description": "Victims of Freezing Trap can no longer be damaged or healed.  Freezing Trap is now undispellable, but has a 4 sec duration.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 5700,
+                    "name": "Aspect of the Fox",
+                    "spell_id": 1219162,
+                    "spell_name": "Aspect of the Fox",
+                    "description": "Aimed Shot may be cast while moving during Aspect of the Cheetah and Aspect of the Cheetah's delayed effect is increased by 4 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
+                }
+            ]
+        },
+        "Survival": {
+            "spec_id": 255,
+            "pvp_talents": [
+                {
+                    "id": 661,
+                    "name": "Hunting Pack",
+                    "spell_id": 203235,
+                    "spell_name": "Hunting Pack",
+                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 15 yds.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 662,
+                    "name": "Mending Bandage",
+                    "spell_id": 212640,
+                    "spell_name": "Mending Bandage",
+                    "description": "Instantly clears all bleeds, poisons, and diseases from the target, and heals for 18% damage over 6 sec.\r\n\r\nBeing attacked will stop you from using Mending Bandage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 664,
+                    "name": "Sticky Tar Bomb",
+                    "spell_id": 407028,
+                    "spell_name": "Sticky Tar Bomb",
+                    "description": "Throw a Sticky Tar Bomb that coats your target's weapons with tar, disarming them for 4 sec. \r\n\r\nAfter 4 sec, Sticky Tar Bomb explodes onto nearby enemies. Other enemies that are hit by the explosion are affected by Sticky Tar Bomb but this effect cannot spread further.",
+                    "unlock_player_level": 21,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 665,
+                    "name": "Tracker's Net",
+                    "spell_id": 212638,
+                    "spell_name": "Tracker's Net",
+                    "description": "Hurl a net at your enemy, rooting them for 6 sec. While within the net, the target's chance to hit is reduced by 80%. Any damage will break the net.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 686,
+                    "name": "Diamond Ice",
+                    "spell_id": 203340,
+                    "spell_name": "Diamond Ice",
+                    "description": "Victims of Freezing Trap can no longer be damaged or healed.  Freezing Trap is now undispellable, but has a 4 sec duration.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 3607,
+                    "name": "Survival Tactics",
+                    "spell_id": 202746,
+                    "spell_name": "Survival Tactics",
+                    "description": "Feign Death reduces damage taken by 90% for 2 sec.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 3609,
+                    "name": "Chimaeral Sting",
+                    "spell_id": 356719,
+                    "spell_name": "Chimaeral Sting",
+                    "description": "Stings the target, dealing 52 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 5443,
+                    "name": "Wild Kingdom",
+                    "spell_id": 356707,
+                    "spell_name": "Wild Kingdom",
+                    "description": "Call in help from one of your dismissed Cunning pets for 10 sec. Your current pet is dismissed to rest and heal 30% of maximum health.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 5532,
+                    "name": "Interlope",
+                    "spell_id": 248518,
+                    "spell_name": "Interlope",
+                    "description": "Misdirection now causes the next 3 hostile spells cast on your target within 10 sec to be redirected to your pet, but its cooldown is increased by 15 sec.\r\n\r\nYour pet must be within 20 yards of the target for spells to be redirected.\r\n",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                }
+            ]
+        },
+        "Beast Mastery": {
+            "spec_id": 253,
+            "pvp_talents": [
+                {
+                    "id": 693,
+                    "name": "The Beast Within",
+                    "spell_id": 356976,
+                    "spell_name": "The Beast Within",
+                    "description": "Bestial Wrath now provides immunity to Fear and Horror effects for you and your pets for 8 sec. Nearby allied pets are also inspired, increasing their attack speed by 10%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 824,
+                    "name": "Dire Beast: Hawk",
+                    "spell_id": 208652,
+                    "spell_name": "Dire Beast: Hawk",
+                    "description": "Summons a hawk to circle the target area, attacking all targets within 10 yards over the next 10 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 1214,
+                    "name": "Interlope",
+                    "spell_id": 248518,
+                    "spell_name": "Interlope",
+                    "description": "Misdirection now causes the next 3 hostile spells cast on your target within 10 sec to be redirected to your pet, but its cooldown is increased by 15 sec.\r\n\r\nYour pet must be within 20 yards of the target for spells to be redirected.\r\n",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 3599,
+                    "name": "Survival Tactics",
+                    "spell_id": 202746,
+                    "spell_name": "Survival Tactics",
+                    "description": "Feign Death reduces damage taken by 90% for 2 sec.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 3604,
+                    "name": "Chimaeral Sting",
+                    "spell_id": 356719,
+                    "spell_name": "Chimaeral Sting",
+                    "description": "Stings the target, dealing 52 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 3730,
+                    "name": "Hunting Pack",
+                    "spell_id": 203235,
+                    "spell_name": "Hunting Pack",
+                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 15 yds.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 5441,
+                    "name": "Wild Kingdom",
+                    "spell_id": 356707,
+                    "spell_name": "Wild Kingdom",
+                    "description": "Call in help from one of your dismissed Cunning pets for 10 sec. Your current pet is dismissed to rest and heal 30% of maximum health.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 5444,
+                    "name": "Kindred Beasts",
+                    "spell_id": 356962,
+                    "spell_name": "Kindred Beasts",
+                    "description": "Command Pet's unique ability cooldown reduced by 50%, and gains additional effects.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 5534,
+                    "name": "Diamond Ice",
+                    "spell_id": 203340,
+                    "spell_name": "Diamond Ice",
+                    "description": "Victims of Freezing Trap can no longer be damaged or healed.  Freezing Trap is now undispellable, but has a 4 sec duration.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                }
+            ]
+        }
+    }
+}

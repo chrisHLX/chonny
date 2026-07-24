@@ -1,0 +1,363 @@
+# Death Knight — San'layn Hero Talents
+# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Vampiric Strike (id=433901) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 4242: Blood Death Knight (137008 effect#13)
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1123520)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Modified By: Blood Death Knight (137008 effect#13)
+Description      : Your Death Coil$?a137007[, Epidemic][] and Death Strike have a $s1% chance to make your next $?a137008[Heart Strike]?s207311[Clawing Shadows][Scourge Strike] become Vampiric Strike.
+
+Name             : Newly Turned (id=433934) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Ignore Caster Damage Modifiers (221), Ignore Caster Healing Modifiers (312), Do Not Log on Learn (355), Ignore Caster Absorb Modifiers (370), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1123580)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Raise Ally (61999)
+                   Family Flags: 63
+#2 (id=1123581)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=1123677)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100
+Description      : Raise Ally revives players at full health and grants you and your ally an absorb shield equal to $s2% of your maximum health.
+
+Name             : Vampiric Speed (id=434028) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1123733)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Death's Advance (48265), Wraith Walk (212552), Death's Messenger (440447), Death Charge (444347), Price of Progress (1233429)
+                   Family Flags: 32, 123
+#2 (id=1123741)  : Apply Aura (6) | Proc Trigger Spell (42): Vampiric Speed
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 434029
+Description      : Death's Advance and Wraith Walk movement speed bonuses are increased by $s1%.
+
+Name             : Blood-Soaked Ground (id=434033) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123745)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 1 | Target: Self (1)
+#2 (id=1123746)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 1 | Target: Self (1)
+Description      : While you are within your Death and Decay, your physical damage taken is reduced by ${$434034s1*-1}% and your chance to gain Vampiric Strike is increased by $s2%.
+
+Name             : Frenzied Bloodthirst (id=434075) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+                 : 4192: Unholy Death Knight (137007 effect#15), Blood Death Knight (137008 effect#16)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1123818)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 3134 (Label) | Target: Self (1)
+                   Affected Spells (Label): Essence of the Blood Queen (433925)
+#2 (id=1123820)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Misc Value 2: 3134 (Label) | Target: Self (1)
+                   Affected Spells (Label): Essence of the Blood Queen (433925)
+                   Modified By: Unholy Death Knight (137007 effect#15), Blood Death Knight (137008 effect#16)
+#3 (id=1310894)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 32 | Misc Value 2: 3134 (Label) | Target: Self (1)
+                   Affected Spells (Label): Essence of the Blood Queen (433925)
+Description      : Essence of the Blood Queen stacks $s1 additional times and increases the damage of your $?s137008[Death Coil and Death Strike by $s2%][Death Coil and Death Strike by $s2%, and Epidemic by $s3%] per stack.
+
+Name             : Vampiric Aura (id=434100) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3135: Vampiric Aura (434105 effect#1)
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123857)  : Apply Aura (6) | Modify Leech% (443)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Modified By: Vampiric Aura (434105 effect#1)
+#2 (id=1123914)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Your Leech is increased by $s1%.
+
+Name             : Bloody Fortitude (id=434136) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Killing Blow
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123920)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1123921)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Icebound Fortitude reduces all damage you take by up to an additional $s1% based on your missing health.
+
+Name             : Infliction of Sorrow (id=434143) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+                 : 4138: Unholy Death Knight (137007 effect#12), Blood Death Knight (137008 effect#14), Blood Death Knight (137008 effect#15), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#1), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#2), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#3), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#4)
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123935)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Modified By: Unholy Death Knight (137007 effect#12), Blood Death Knight (137008 effect#15), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#1), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#2)
+#2 (id=1124553)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Blood Death Knight (137008 effect#14), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#3), Death Knight San'layn 11.2 Class Set 4pc (1236260 effect#4)
+#3 (id=1124554)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+#4 (id=1249513)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#5 (id=1283137)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+#6 (id=1293332)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : When Vampiric Strike damages an enemy affected by your $?a137008[Blood Plague][plagues], it extends the duration of the $?a137008[disease][plagues] by $?c1[${$s3/1000}.1][${$s5/1000}.1] sec$?c1[, and deals $s2% of the remaining damage to the enemy.][, and erupts them with $s6% increased effectiveness.]
+
+Name             : Incite Terror (id=434151) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123956)  : Apply Aura (6) | Proc Trigger Spell (42): Incite Terror
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 458478 | Target: Self (1)
+#2 (id=1123957)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 400 | Scaled Value: 400 | Target: Self (1)
+Description      : Vampiric Strike and $?a137008[Heart Strike]?s207311[Clawing Shadows][Scourge Strike] cause your targets to take $458478s1% increased Shadow damage, up to ${$458478s1*$458478U}% for $458478d.
+
+Name             : Gift of the San'layn (id=434152) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123958)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : While $?a137008[Dancing Rune Weapon][Dark Transformation] is active you gain Gift of the San'layn.
+
+Name             : Visceral Strength (id=434157) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1123969)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : When $?a137008[Crimson Scourge][Sudden Doom] is consumed, you gain $?a137008[$461130s1][$434159s1]% Strength for $?a137008[$461130d][$434159d].
+
+Name             : The Blood is Life (id=434260) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Internal Cooldown: 1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1124175)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1124623)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#3 (id=1176842)  : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : $?a137008[Dancing Rune Weapon]?s275699[Apocalypse][Dark Transformation] summons a Blood Beast to attack your enemy for $434237d.
+
+Name             : Pact of the San'layn (id=434261) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+                 : 5220
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1124176)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 1 | Target: Self (1)
+Description      : You store $s1% of all Shadow damage dealt into your Blood Beast to explode for additional damage when it expires.
+
+Name             : Sanguine Scent (id=434263) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1124180)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Misc Value: 1 | Target: Self (1)
+#2 (id=1124181)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 1 | Target: Self (1)
+Description      : Your Death Coil$?a137007[, Epidemic][] and Death Strike have a $s2% increased chance to trigger Vampiric Strike when damaging enemies below $s1% health.
+
+Name             : Desecrate (id=1234559) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1228924)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Death and Decay (43265), Defile (152280), Defile (169018), Death's Due (324128), Death's Due (324164), Death's Due (324165), Death and Decay (444474)
+                   Family Flags: 5
+#2 (id=1286019)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Death and Decay (43265), Defile (152280), Defile (169018), Death's Due (324128), Death's Due (324164), Death's Due (324165), Death and Decay (444474)
+                   Family Flags: 5
+Description      : Death and Decay deals its damage ${(1/(1+($s1/100))-1)*100}% faster.
+
+Name             : Thrill of Blood (id=1265547) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1277378)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1277379)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1311173)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Virulent Plague (191587), Virulent Eruption (191685), Virulent Plague (Erupt) (1241167)
+                   Family Flags: 40, 41
+#4 (id=1311174)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Blood Plague (55078), Consumption (1263872)
+                   Family Flags: 57
+#5 (id=1311177)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Festering Wound (194311), Dread Plague (1240996), Dread Plague (Erupt) (1241171), Dread Plague (1242564)
+                   Family Flags: 119
+#6 (id=1319200)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Virulent Plague (191587), Virulent Eruption (191685), Virulent Plague (Erupt) (1241167)
+                   Family Flags: 40, 41
+#7 (id=1319201)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Blood Plague (55078), Consumption (1263872)
+                   Family Flags: 57
+#8 (id=1319202)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Festering Wound (194311), Dread Plague (1240996), Dread Plague (Erupt) (1241171), Dread Plague (1242564)
+                   Family Flags: 119
+Description      : Essence of the Blood Queen additionally increases your Mastery by $?c3[${$s1/10}.1][${$s3/10}.1]% per stack.
+
+Name             : Transfusion (id=1265574) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1277419)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Vampiric Strike increases the damage of $?c3[the Lesser Ghoul it summons][your Dancing Rune Weapons] by $?c3[$1280386s1%.][$1236822s3% for $1236822d. 
+
+Name             : Inevitable (id=1280658) [Spell Family (15), Passive] 
+Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1293648)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1293649)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : $?a137008[Blood Plague deals up to $s2%][Your plagues deal up to $s1%] increased damage based on the target's missing health.$?a137007[

@@ -1,0 +1,795 @@
+{
+    "class": "Druid",
+    "fetched_at": "2026-07-23T05:00:27+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Balance": {
+            "spec_id": 102,
+            "pvp_talents": [
+                {
+                    "id": 180,
+                    "name": "Celestial Guardian",
+                    "spell_id": 233754,
+                    "spell_name": "Celestial Guardian",
+                    "description": "Bear Form reduces magic damage taken from spells by 10% and you may now cast Moonfire while in Bear Form.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 182,
+                    "name": "Crescent Burn",
+                    "spell_id": 200567,
+                    "spell_name": "Crescent Burn",
+                    "description": "Using Moonfire on a target already afflicted by Moonfire's damage over time effect deals 35% additional direct damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 184,
+                    "name": "Moon and Stars",
+                    "spell_id": 233750,
+                    "spell_name": "Moon and Stars",
+                    "description": "Entering an Eclipse summons a beam of light at your location granting you 50% reduction in silence and interrupts for 6 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 185,
+                    "name": "Moonkin Aura",
+                    "spell_id": 209740,
+                    "spell_name": "Moonkin Aura",
+                    "description": "Starsurge grants 2% spell critical strike chance to 8 allies within 40 yards for 18 sec, stacking up to 3 times.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 822,
+                    "name": "Dying Stars",
+                    "spell_id": 410544,
+                    "spell_name": "Dying Stars",
+                    "description": "Enemies that dispel your Moonfire or Sunfire suffer 25% additional damage from their effects for 12 sec. If already vulnerable, 50% of the remaining duration is applied to the dispeller.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 834,
+                    "name": "Deep Roots",
+                    "spell_id": 233755,
+                    "spell_name": "Deep Roots",
+                    "description": "Increases the amount of damage required to cancel your Entangling Roots by 75%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 836,
+                    "name": "Faerie Swarm",
+                    "spell_id": 209749,
+                    "spell_name": "Faerie Swarm",
+                    "description": "Swarms the target with Faeries, disarming the enemy, preventing the use of any weapons or shield and reducing movement speed by 30% for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 3058,
+                    "name": "Star Burst",
+                    "spell_id": 356517,
+                    "spell_name": "Star Burst",
+                    "description": "Starfall calls down collapsing stars that last 15 sec. Enemies that come into contact with a star cause it to burst, knocking nearby enemies upwards and dealing 803 Astral damage. Generates 15 Astral Power.\r\n\r\nThe Druid and their allies may pick up stars, causing them to orbit around you.",
+                    "unlock_player_level": 34,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 3728,
+                    "name": "Protector of the Grove",
+                    "spell_id": 209730,
+                    "spell_name": "Protector of the Grove",
+                    "description": "When using Regrowth on an ally the initial heal will always have a critical effect and the cast time of Regrowth will be reduced by 50% for 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 3731,
+                    "name": "Thorns",
+                    "spell_id": 1217017,
+                    "spell_name": "Thorns",
+                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 440 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 5383,
+                    "name": "High Winds",
+                    "spell_id": 200931,
+                    "spell_name": "High Winds",
+                    "description": "Increases the range of Cyclone, Typhoon, and Entangling Roots by 5 yds.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 5407,
+                    "name": "Owlkin Adept",
+                    "spell_id": 354541,
+                    "spell_name": "Owlkin Adept",
+                    "description": "Owlkin Frenzy can stack up to 2 times and reduces the cast time of your next Cyclone or Entangling Roots by 10%.",
+                    "unlock_player_level": 55,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 5515,
+                    "name": "Malorne's Swiftness",
+                    "spell_id": 236147,
+                    "spell_name": "Malorne's Swiftness",
+                    "description": "Your Travel Form movement speed while within a Battleground or Arena is increased by 20% and you always move at 100% movement speed while in Travel Form.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 5604,
+                    "name": "Master Shapeshifter",
+                    "spell_id": 411266,
+                    "spell_name": "Master Shapeshifter",
+                    "description": "Your abilities are amplified based on your current shapeshift form, granting an additional effect.\r\n\r\n Caster Form\r\nRejuvenation heals for 30% more and generates 8 Astral Power.\r\n\r\n Bear Form\r\nIronfur grants 30% additional armor and generates 12 Astral Power.\r\n\r\n Cat Form\r\nRip, Ferocious Bite, and Maim deal 60% additional damage and generate 60 Astral Power when cast with 5 combo points.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                },
+                {
+                    "id": 5646,
+                    "name": "Tireless Pursuit",
+                    "spell_id": 377801,
+                    "spell_name": "Tireless Pursuit",
+                    "description": "For 3 sec after leaving Cat Form or Travel Form, you retain up to 25% movement speed.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 102,
+                    "playable_spec_name": "Balance"
+                }
+            ]
+        },
+        "Restoration": {
+            "spec_id": 105,
+            "pvp_talents": [
+                {
+                    "id": 59,
+                    "name": "Disentanglement",
+                    "spell_id": 233673,
+                    "spell_name": "Disentanglement",
+                    "description": "Efflorescence removes all snare effects from friendly targets when it heals and its Mana cost is reduced by 40%.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 692,
+                    "name": "Entangling Bark",
+                    "spell_id": 247543,
+                    "spell_name": "Entangling Bark",
+                    "description": "Ironbark now also grants the target Nature's Grasp, rooting the first 3 melee attackers for 6 sec.",
+                    "unlock_player_level": 23,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 697,
+                    "name": "Thorns",
+                    "spell_id": 1217017,
+                    "spell_name": "Thorns",
+                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 432 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 700,
+                    "name": "Deep Roots",
+                    "spell_id": 233755,
+                    "spell_name": "Deep Roots",
+                    "description": "Increases the amount of damage required to cancel your Entangling Roots by 75%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 838,
+                    "name": "High Winds",
+                    "spell_id": 200931,
+                    "spell_name": "High Winds",
+                    "description": "Increases the range of Cyclone, Typhoon, and Entangling Roots by 5 yds.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 1215,
+                    "name": "Early Spring",
+                    "spell_id": 203624,
+                    "spell_name": "Early Spring",
+                    "description": "Wild Growth is now instant cast, and when you heal 6 allies with Wild Growth you gain Full Bloom. This effect has a 30 sec cooldown.\r\n\r\nFull Bloom\r\nYour next Wild Growth applies Lifebloom to all targets at 100% effectiveness. Lasts for 30 sec.",
+                    "unlock_player_level": 34,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5514,
+                    "name": "Malorne's Swiftness",
+                    "spell_id": 236147,
+                    "spell_name": "Malorne's Swiftness",
+                    "description": "Your Travel Form movement speed while within a Battleground or Arena is increased by 20% and you always move at 100% movement speed while in Travel Form.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5649,
+                    "name": "Tireless Pursuit",
+                    "spell_id": 377801,
+                    "spell_name": "Tireless Pursuit",
+                    "description": "For 3 sec after leaving Cat Form or Travel Form, you retain up to 25% movement speed.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5668,
+                    "name": "Call of Ohn'ahra",
+                    "spell_id": 1246126,
+                    "spell_name": "Call of Ohn'ahra",
+                    "description": "Nature's Swiftness now also affects Cyclone, but its cooldown is increased by 10 sec.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5687,
+                    "name": "Forest Guardian",
+                    "spell_id": 1217474,
+                    "spell_name": "Forest Guardian",
+                    "description": "Wrath, Starfire, Cyclone, and Combo-Point generating abilities extend the duration of your active heal over time effects by 1.0 sec on up to 3 allies.\r\n\r\nStarsurge and Combo-Point spending abilities increase the rate of your heal over time spells by 20% for 4 sec.\r\n\r\n",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                }
+            ]
+        },
+        "Feral": {
+            "spec_id": 103,
+            "pvp_talents": [
+                {
+                    "id": 201,
+                    "name": "Thorns",
+                    "spell_id": 1217017,
+                    "spell_name": "Thorns",
+                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 432 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 203,
+                    "name": "Freedom of the Herd",
+                    "spell_id": 213200,
+                    "spell_name": "Freedom of the Herd",
+                    "description": "Your Stampeding Roar clears all roots and snares from yourself and allies.",
+                    "unlock_player_level": 43,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 601,
+                    "name": "Malorne's Swiftness",
+                    "spell_id": 236012,
+                    "spell_name": "Malorne's Swiftness",
+                    "description": "Your Travel Form movement speed while within a Battleground or Arena is increased by 20% and you always move at 100% movement speed while in Travel Form.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 611,
+                    "name": "Ferocious Wound",
+                    "spell_id": 236020,
+                    "spell_name": "Ferocious Wound",
+                    "description": "Attacking with a 5 combo point Ferocious Bite reduces the target's maximum health by up to 3% for 30 sec, stacking up to 2 times. Ferocious Wound can only be active on one target at once.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 612,
+                    "name": "Fresh Wound",
+                    "spell_id": 203224,
+                    "spell_name": "Fresh Wound",
+                    "description": "Rake has a 100% increased critical strike chance if used on a target that doesn’t already have Rake active.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 620,
+                    "name": "Wicked Claws",
+                    "spell_id": 203242,
+                    "spell_name": "Wicked Claws",
+                    "description": "Infected Wounds can now stack up to 2 times, and reduces 8% of all healing received by the target per stack.\r\n\r\nInfected Wounds can now also be applied from Rip.",
+                    "unlock_player_level": 37,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 820,
+                    "name": "Savage Momentum",
+                    "spell_id": 205673,
+                    "spell_name": "Savage Momentum",
+                    "description": "Interrupting a spell with Skull Bash reduces the remaining cooldown of Tiger's Fury, Survival Instincts, and Dash by 10 sec.",
+                    "unlock_player_level": 27,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 3053,
+                    "name": "Strength of the Wild",
+                    "spell_id": 236019,
+                    "spell_name": "Strength of the Wild",
+                    "description": "You become further adept in Caster Form and Bear Form.\r\n\r\nCaster Form\r\nWhen using Regrowth on an ally the initial heal will have a 30% increased critical chance and the cast time of Regrowth will be reduced by 50% for 6 sec.\r\n\r\nBear Form\r\nMaximum health while in Bear Form increased by 15% and you gain 5 Rage when attacked in Bear Form.\r\n\r\nYou also learn:\r\n\r\n Strength of the Wild\r\nMaul the target for 8% of the target's maximum health in Physical damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 3751,
+                    "name": "Leader of the Pack",
+                    "spell_id": 202626,
+                    "spell_name": "Leader of the Pack",
+                    "description": "While in Cat Form, you increase the movement speed of raid members within 20 yards by 10%.\r\n\r\nLeader of the Pack also causes allies to heal themselves for 3% of their maximum health when they critically hit with a direct attack. The healing effect cannot occur more than once every 8 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 5384,
+                    "name": "High Winds",
+                    "spell_id": 200931,
+                    "spell_name": "High Winds",
+                    "description": "Increases the range of Cyclone, Typhoon, and Entangling Roots by 5 yds.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                },
+                {
+                    "id": 5647,
+                    "name": "Tireless Pursuit",
+                    "spell_id": 377801,
+                    "spell_name": "Tireless Pursuit",
+                    "description": "For 3 sec after leaving Cat Form or Travel Form, you retain up to 25% movement speed.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 103,
+                    "playable_spec_name": "Feral"
+                }
+            ]
+        },
+        "Guardian": {
+            "spec_id": 104,
+            "pvp_talents": [
+                {
+                    "id": 49,
+                    "name": "Master Shapeshifter",
+                    "spell_id": 236144,
+                    "spell_name": "Master Shapeshifter",
+                    "description": "Your abilities are amplified based on your current shapeshift form, granting an additional effect.\r\n\r\n Caster Form\r\nRejuvenation heals for 30% more and causes you to instantly generate 25 Rage after entering Bear Form.\r\n\r\n Moonkin Form\r\nWrath, Starfire, and Starsurge deal 30% additional damage and cause you to instantly generate 25 Rage after entering Bear Form.\r\n\r\n Cat Form\r\nRip, Ferocious Bite, and Maim deal 60% additional damage and cause you to instantly generate 50 Rage after entering Bear Form when cast with 5 combo points.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 51,
+                    "name": "Den Mother",
+                    "spell_id": 236180,
+                    "spell_name": "Den Mother",
+                    "description": "You bolster nearby allies within 15 yards, increasing their maximum health by 15%.\r\n\r\nThe duration of all stun effects on you is reduced by 15%.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 52,
+                    "name": "Demoralizing Roar",
+                    "spell_id": 201664,
+                    "spell_name": "Demoralizing Roar",
+                    "description": "Demoralizes all enemies within 10 yards, reducing the damage they do by 20% for 8 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 194,
+                    "name": "Charging Bash",
+                    "spell_id": 228431,
+                    "spell_name": "Charging Bash",
+                    "description": "Increases the range of your Skull Bash by 10 yards.",
+                    "unlock_player_level": 27,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 195,
+                    "name": "Entangling Claws",
+                    "spell_id": 202226,
+                    "spell_name": "Entangling Claws",
+                    "description": "Entangling Roots is now an instant cast spell with a 6 second cooldown but with a 10 yard range. It can also be cast while in shapeshift forms.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 196,
+                    "name": "Overrun",
+                    "spell_id": 202246,
+                    "spell_name": "Overrun",
+                    "description": "Charge to an enemy, stunning them for 3 sec and knocking back their allies within 15 yards.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 197,
+                    "name": "Emerald Slumber",
+                    "spell_id": 329042,
+                    "spell_name": "Emerald Slumber",
+                    "description": "Embrace the Emerald Dream, causing you to enter a deep slumber for 8 sec. While sleeping, all other cooldowns recover 400% faster, and allies within 40 yds are healed for 21 every 1 sec.\r\n\r\nDirect damage taken may awaken you.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 842,
+                    "name": "Alpha Challenge",
+                    "spell_id": 207017,
+                    "spell_name": "Alpha Challenge",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 1237,
+                    "name": "Malorne's Swiftness",
+                    "spell_id": 236147,
+                    "spell_name": "Malorne's Swiftness",
+                    "description": "Your Travel Form movement speed while within a Battleground or Arena is increased by 20% and you always move at 100% movement speed while in Travel Form.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 3750,
+                    "name": "Freedom of the Herd",
+                    "spell_id": 213200,
+                    "spell_name": "Freedom of the Herd",
+                    "description": "Your Stampeding Roar clears all roots and snares from yourself and allies.",
+                    "unlock_player_level": 43,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 5410,
+                    "name": "Grove Protection",
+                    "spell_id": 354654,
+                    "spell_name": "Grove Protection",
+                    "description": "Summon a grove to protect allies in the area for 10 sec, reducing damage taken by 50% from enemies outside the grove.",
+                    "unlock_player_level": 55,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                },
+                {
+                    "id": 5648,
+                    "name": "Tireless Pursuit",
+                    "spell_id": 377801,
+                    "spell_name": "Tireless Pursuit",
+                    "description": "For 3 sec after leaving Cat Form or Travel Form, you retain up to 25% movement speed.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 104,
+                    "playable_spec_name": "Guardian"
+                }
+            ]
+        }
+    }
+}

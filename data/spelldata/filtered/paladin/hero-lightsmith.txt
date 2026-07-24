@@ -1,0 +1,334 @@
+# Paladin — Lightsmith Hero Talents
+# Extracted verbatim from paladin.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 19 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Holy Bulwark (id=432459) [Spell Family (10)] 
+Talent Entry     : Lightsmith (Protection) [tree=hero, row=1, col=3, max_rank=1, req_points=0, name="Holy Armaments"]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 20 yards/sec
+Charges          : 2 (60 seconds cooldown)
+Category         : 2220 (Type 0x1): Quickened Invocation (379391 effect#2), Forewarning (432804 effect#1)
+Category Flags   : Reset Charges on Encounter End (4)
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3113
+Triggered By     : Holy Armaments (1289892)
+Family Flags     : 64
+Attributes       : Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1121173)  : Trigger Missiles (32): Holy Bulwark
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 432496 | Target: Targeted Ally (21)
+#2 (id=1311044)  : Energize Power (30)
+                   Base Value: 3 | Scaled Value: 3 | Resource: holy_power | Target: Self (1)
+Description      : Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target.
+
+Name             : Solidarity (id=432802) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1121750)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : If you bestow an Armament upon an ally, you also gain its benefits.
+
+Name             : Forewarning (id=432804) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1121752)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 2220 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Bulwark (432459), Sacred Weapon (432472)
+Description      : The cooldown of Holy Armaments is reduced by $s1%.
+
+Name             : Shared Resolve (id=432821) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1121788)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : The effect of your active Aura is increased by $432496s1% on targets with your Armaments.
+
+Name             : Laying Down Arms (id=432866) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1121857)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15000 | Scaled Value: 15000 | Target: Self (1)
+Description      : When an Armament fades from you, the cooldown of Lay on Hands is reduced by ${$s1/1000}.1 sec and you gain $?a137028[Shining Light][Infusion of Light].
+
+Name             : Valiance (id=432919) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1121939)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : Consuming $?a137028[Shining Light][Infusion of Light] reduces the cooldown of Holy Armaments by ${$s1/1000}.1 sec.
+
+Name             : Divine Inspiration (id=432964) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 1 seconds
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic, Helpful Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1121992)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your spells and abilities have a chance to manifest a Holy Armament for a nearby ally.
+
+Name             : Blessing of the Forge (id=433011) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1122061)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Avenging Wrath summons an additional Sacred Weapon, and during Avenging Wrath your Sacred Weapon casts spells on your target and echoes the effects of your Holy Power abilities.
+
+Name             : Blessed Assurance (id=433015) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Heal, Helpful Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1122068)  : Apply Aura (6) | Proc Trigger Spell (42): Blessed Assurance
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 433019 | Target: Self (1)
+Description      : Casting a Holy Power ability increases the damage and healing of your next $?s204019[Blessed Hammer]?s53595[Hammer of the Righteous]?s137029[Holy Shock][Crusader Strike] by $433019s1%.
+
+Name             : Divine Guidance (id=433106) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 4182: Protection Paladin (137028 effect#20)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1122231)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Protection Paladin (137028 effect#20)
+#2 (id=1123462)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : For each Holy Power ability cast, your next Consecration deals $?a137029[$<holy>][$<prot>] damage or healing immediately, split across all enemies and allies.
+Variables        : $prot=${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137028s1/100)}
+$holy=${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137029s9/100)}
+$value=$?a137028[${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137028s1/100)}][${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137029s9/100)}]
+
+Name             : Rite of Sanctification (desc=Weapon Imbue) (id=433568) [Spell Family (10)] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Cast Time        : 2 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Allow Class Ability Procs (416), Non-secret Aura (506)
+Effects          :
+#1 (id=1122950)  : Enchant Item Temporary (54)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 7143 | Target: Self (1)
+Description      : Imbue your weapon with the power of the Light, increasing your armor by $433550s2% and your primary stat by $433550s1%.
+
+Name             : Rite of Adjuration (desc=Weapon Imbue) (id=433583) [Spell Family (10)] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Cast Time        : 2 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Allow Class Ability Procs (416), Non-secret Aura (506)
+Effects          :
+#1 (id=1122971)  : Enchant Item Temporary (54)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 7144 | Target: Self (1)
+Description      : Imbue your weapon with the power of the Light, increasing your Stamina by $433584s1% and causing your Holy Power abilities to sometimes unleash a burst of healing around a target.
+
+Name             : Hammer and Anvil (id=433718) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123221)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1245941)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#3 (id=1284772)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#4 (id=1300721)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Judgment critical strikes cause a shockwave around the target, $?c1[healing to up to $s3 injuried allies for $433722s1][dealing $433717s1 damage to enemies within $433717a1 yards. Damage reduced above $s4 targets].
+
+Name             : Tempered in Battle (id=469701) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1184221)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : When you or an ally wielding a Holy Bulwark are healed above maximum health, transfer $s1% of the overhealing to your ally.
+
+Name             : Authoritative Rebuke (id=469886) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic, Helpful Periodic, Unknown 37
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1184542)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+#2 (id=1184543)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#3 (id=1297718)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+Description      : Successfully $?c1[dispelling a harmful effect][interrupting an enemy spellcast] reduces $?c1[Cleanse's cooldown by ${$s3/1000}.1 sec][Rebuke's cooldown by ${$s1/1000}.1 sec]. Effect increased by $s2% while wielding a Holy Armament.
+
+Name             : Masterwork (id=1271387) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Stacks           : 6 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1284059)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : After casting a Holy Armament, your next $s1 $Lability:abilities; $Lcasts:cast; a Lesser Armament of the same kind on a nearby ally.
+
+Name             : Reflection of Radiance (id=1271466) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Stacks           : 6 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1284188)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : When your Holy Bulwark absorbs damage or your Sacred Weapon deals damage or healing, you have a chance to gain $?c2[Grand Crusader][Awakening].
+
+Name             : Resounding Strike (id=1271553) [Spell Family (10), Passive] 
+Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1284312)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : $?c1[Holy Armaments activate][Divine Toll activates] Hammer and Anvil at $s1% effectiveness.
+
+Name             : Holy Armaments (id=1289728) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Lightsmith (Holy) [tree=hero, row=1, col=3, max_rank=1, req_points=0, override="Holy Bulwark" (id=432459)]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Icon (60), No Aura Log (202), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1308254)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spelldesc432472

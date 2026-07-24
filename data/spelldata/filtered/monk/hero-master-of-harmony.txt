@@ -1,0 +1,350 @@
+# Monk — Master of Harmony Hero Talents
+# Extracted verbatim from monk.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Aspect of Harmony (id=450508) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3600: Path of Resurgence (451084 effect#1), Path of Resurgence (451084 effect#2), Path of Resurgence (451084 effect#3), Path of Resurgence (451084 effect#4)
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic, Helpful Periodic, Cast Successful, Unknown 38
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1150447)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Radius: 100 yards | Target: Self and Summons in Area (120)
+                   Modified By: Path of Resurgence (451084 effect#1)
+#2 (id=1150448)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Path of Resurgence (451084 effect#2)
+#3 (id=1150449)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+                   Modified By: Path of Resurgence (451084 effect#3)
+#4 (id=1150450)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Path of Resurgence (451084 effect#4)
+#5 (id=1150722)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#6 (id=1151053)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#7 (id=1168114)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
+#8 (id=1168900)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#9 (id=1293371)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Store vitality from $?a137023[$s1%][$s2%] of your damage dealt and $?a137023[$s3%][$s4%] of your $?a137023[effective ][]healing.$?a137024[ Vitality stored from overhealing is reduced.][]
+
+Name             : Coalescence (id=450529) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3536
+                 : 4179
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1150502)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1153038)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#3 (id=1293357)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : When Aspect of Harmony $?a450870[deals damage or heals]?a137023[deals damage][heals], it has a chance to spread to a nearby $?a450870[target]?a137023[enemy][ally]. When you directly $?a450870[attack or heal]?a137023[attack][heal] an affected target, it has a chance to intensify, withdrawing additional vitality to increase its effect by up to $450508s9%.
+
+Name             : Purified Spirit (id=450867) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Rolling Periodic (334), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151062)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1168907)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : When Aspect of Harmony ends, any remaining vitality is expelled as $?a137023[damage over $450820d][healing over $450805d], split among nearby targets.
+
+Name             : Harmonic Gambit (id=450870) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151065)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1218208)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : During Aspect of Harmony, $?a137023[Expel Harm and Vivify withdraw vitality to heal for an additional $s1% over $450769d][Rising Sun Kick, Blackout Kick, and Tiger Palm also withdraw vitality to damage enemies for an additional $s2% over $450763d].
+
+Name             : Manifestation (id=450875) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 4194: Brewmaster Monk (1258153 effect#16)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151074)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Affected Spells: Chi Burst (123986), Chi Burst (130654), Chi Wave (132463), Chi Wave (132466), Chi Wave (132467), Chi Burst (148135), Chi Burst (261682), Chi Burst (461404)
+                   Family Flags: 27, 38, 58
+                   Modified By: Brewmaster Monk (1258153 effect#16)
+Description      : $?c1[Chi Burst and Chi Wave deal][Chi Wave deals] $s1% increased damage and healing.
+
+Name             : Balanced Stratagem (id=450889) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic, Helpful Periodic, Cast Successful, Unknown 38
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151110)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Casting a Physical spell or ability increases the damage and healing of your next Fire or Nature spell or ability by $451508s1%, and vice versa. Stacks up to $451508U.
+
+Name             : Endless Draught (id=450892) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151116)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2294 (Category) | Target: Self (1)
+                   Affected Spells (Category): Thunder Focus Tea (116680)
+#2 (id=1153986)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2293 (Category) | Target: Self (1)
+                   Affected Spells (Category): Celestial Brew (322507), Celestial Infusion (1241059)
+Description      : $?a137023[Celestial Brew and Celestial Infusion have][Thunder Focus Tea has] $s1 additional charge.
+
+Name             : Path of Resurgence (id=450912) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Internal Cooldown: 3 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151151)  : Apply Aura (6) | Proc Trigger Spell (42): Path of Resurgence
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 451084 | Target: Self (1)
+Description      : $?a450391[Chi Wave][Chi Burst] increases vitality stored by $451084s1% for $451084d.
+
+Name             : Way of a Thousand Strikes (id=450965) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 6418: Brewmaster Monk (1258153 effect#17)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151234)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Brewmaster Monk (1258153 effect#17)
+Description      : $?a137023[][Rising Sun Kick, ]Blackout Kick and Tiger Palm contribute $s1% additional vitality.
+
+Name             : Clarity of Purpose (id=451017) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151321)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 300 | Scaled Value: 300 | Target: Self (1)
+#2 (id=1151592)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Casting $?a137023[Purifying Brew][Enveloping Mist] stores $<value> additional vitality.
+Variables        : $value=$?a137023[${($AP*$451017s1/100)*(1+$@versadmg)}][${($SP*$451017s1/100)*(1+$@versadmg)}]
+
+Name             : Overwhelming Force (id=451024) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 4196: Mistweaver Monk (1258138 effect#20), Brewmaster Monk (1258153 effect#15)
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151334)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Mistweaver Monk (1258138 effect#20), Brewmaster Monk (1258153 effect#15)
+#2 (id=1153571)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?a137023[][Rising Sun Kick, ]Blackout Kick and Tiger Palm deal $s1% additional damage to enemies in a line in front of you. Damage reduced above $s2 targets.
+
+Name             : Mantra of Tenacity (id=451029) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151343)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : $?a137023[Fortifying Brew applies a Chi Cocoon, absorbing $<value> damage][Fortifying Brew grants $s1% Stagger].
+Variables        : $value=${$MHP*$451299s2/100*(1+$@versadmg)}
+
+Name             : Mantra of Purity (id=451036) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151354)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Purifying Brew (119582)
+                   Family Flags: 66
+#2 (id=1151661)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#3 (id=1151790)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : $?a137023[Purifying Brew removes $s1% additional Stagger and causes you to absorb up to $<value> incoming Stagger][When cast on yourself, your single-target healing spells heal for $s2% more and restore an additional $451452o1 health over $451452d].
+Variables        : $value=${($AP*$s3/100)*(1+$@versadmg)}
+
+Name             : Tiger's Vigor (id=451041) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151360)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5000 | Scaled Value: 5000 | Target: Self (1)
+Description      : Casting Tiger's Lust reduces the remaining cooldown on Roll by ${$s1/1000} sec.
+
+Name             : Roar from the Heavens (id=451043) [Spell Family (53), Passive] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151363)  : Apply Aura (6) | Proc Trigger Spell (42): Roar from the Heavens
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 452701 | Target: Self (1)
+Description      : Tiger's Lust grants $452701s1% movement speed to up to $452701i allies near its target.
+
+Name             : Harmonic Surge (id=1270958) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Entering Arena (149)
+Effects          :
+#1 (id=1283407)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 55 | Scaled Value: 55 | PvP Coefficient: 0.33 | Target: Self (1)
+#2 (id=1283408)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.33 | Target: Self (1)
+#3 (id=1283409)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.33 | Target: Self (1)
+#4 (id=1283410)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | PvP Coefficient: 0.33 | Target: Self (1)
+#5 (id=1283411)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#6 (id=1283412)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#7 (id=1306317)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#8 (id=1306318)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Casting $?s322507[Celestial Brew]?s1241059[Celestial Infusion][Thunder Focus Tea] grants $?c1[$s5][$s6] $Lcharge:charges; of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge.
+
+Name             : Potential Energy (id=1271048) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Entering Arena (149)
+Effects          :
+#1 (id=1283542)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Casting $?c1[Keg Smash][Rising Sun Kick or Rushing Wind Kick] grants a charge of Potential Energy.
+
+Name             : Meditative Focus (id=1271105) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Entering Arena (149)
+Effects          :
+#1 (id=1283653)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Misc Value 2: 2577 (Label) | Target: Self (1)
+                   Affected Spells (Label): Ancient Teachings (388023)
+#2 (id=1283654)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Misc Value 2: 5954 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blackout Combo (228563)
+#3 (id=1283655)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+#4 (id=1283765)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value 2: 5955 (Label) | Target: Self (1)
+                   Affected Spells (Label): Press the Advantage (418360)
+#5 (id=1283766)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 250 | Scaled Value: 250 | Misc Value: 12 | Misc Value 2: 5957 (Label) | Target: Self (1)
+                   Affected Spells (Label): Press the Advantage (418359)
+Description      : $?a388023[Ancient Teachings transfers an additional $s1% damage to healing.][$@spellicon196736 Blackout Combo:
+Increases Tiger Palm damage by an additional $s2% and Keg Smash reduces the cooldown on your Brews by an additional ${$s3/1000}.1 sec.

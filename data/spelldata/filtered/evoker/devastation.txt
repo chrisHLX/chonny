@@ -1,0 +1,716 @@
+# Evoker — Devastation Spec Talents
+# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 42 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Quell (id=351338) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+                 : Devastation [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : Ranged
+Range            : 25 yards
+Duration         : 6 seconds
+Cooldown         : 20 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 5901
+Family Flags     : 33
+Attributes       : Not Shapeshifted (16), Always Hit (114), Taps immediately (215), Allow Class Ability Procs (416), Interrupts Current Cast (419)
+Effects          :
+#1 (id=881542)   : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Interrupt | Target: Targeted Enemy (6)
+Description      : Interrupt an enemy's spellcasting and prevent any spell from that school of magic from being cast for $d.
+
+Name             : Pyre (desc=Red) (id=357211) [Spell Family (224)] 
+Talent Entry     : Devastation [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Fire
+Spell Type       : Magic
+Resource         : 3 Essence (19) (id=232359)
+Range            : 25 yards
+GCD              : 1.5 seconds
+Travel Time      : 1 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1464: Red Evoker Spells
+Affecting Spells : Essence Burst (359618 effect#1), Imminent Destruction (411055 effect#1), Evoker Devastation 11.0 Class Set 2pc (453676 effect#2), Refined Essence (1261452 effect#1)
+Triggered By     : Charged Blast (370454)
+Family Flags     : 3, 5, 23
+Attributes       : Not Shapeshifted (16), Missile Speed is Delay (in sec) (292), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=891601)   : Trigger Missiles (32): Pyre
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 393568 | Target: Targeted Enemy (6)
+Description      : Lob a ball of flame, dealing $357212s1 Fire damage to your target and all enemies within $357212A1 yds.
+
+Name             : Eternity Surge (desc=Blue) (id=359073) [Spell Family (224)] 
+Talent Entry     : Devastation [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Spellfrost
+Spell Type       : None
+Range            : 25 yards
+GCD              : 0.5 seconds
+Duration         : 2.5 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1465: Blue Evoker Spells
+Affecting Spells : Tip the Scales (370553 effects: #1, #2), Event Horizon (411164 effect#1), Font of Magic (411212 effect#3), Evoker Devastation 11.0 Class Set 4pc (453675 effect#1)
+Family Flags     : 16
+Attributes       : Not Shapeshifted (16), No Immunities (29), Is Channelled (34), No Threat (42), Aura Stays After Combat (57), No Aura Icon (60), Name in Channel Bar (61), Include In Advanced Combat Log (72), Always Hit (114), Force Display Castbar (155), No Aura Log (202), Haste Affects Duration (273), Allow Class Ability Procs (416), Do Not Allow "Disable Movement Interrupt" (443)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Action (Delayed) (17)
+Effects          :
+#1 (id=894877)   : Apply Aura (6) | Dummy (4) | Attributes: Always Hit (22)
+                   Base Value: 25 | Scaled Value: 25 | Target: Targeted Enemy (6)
+#2 (id=894878)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Focus your energies to release a salvo of pure magic, dealing $<dmg> Spellfrost damage to an enemy. Damages additional enemies within $s1 yds when empowered.
+
+Name             : Ruby Embers (id=365937) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=907200)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Living Flame deals $361500o2 damage over $361500d to enemies, or restores $361509o2 health to allies over $361509d. Stacks $361509u times.
+
+Name             : Volatility (id=369089) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=4, col=1, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(15, 30)]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=914054)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Pyre has a $s1% chance to flare up and explode again on a nearby target.
+
+Name             : Feed the Flames (id=369846) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=8, col=1, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=915548)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : After casting $411288s2 Pyres, your next Pyre will explode into a Firestorm.
+
+Name             : Power Nexus (id=369908) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+                 : Preservation [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+                 : Devastation [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=915679)   : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 1 | Scaled Value: 1 | Resource: essence | Target: Self (1)
+Description      : Increases your maximum Essence to $<max>.
+Variables        : $max=${6}
+
+Name             : Charged Blast (id=370455) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Devastation [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=981820)   : Apply Aura (6) | Proc Trigger Spell (42): Charged Blast
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 370454 | Target: Self (1)
+Description      : Your Blue damage increases the damage of your next Pyre by $370454s1%, stacking $370454u times.
+
+Name             : Imminent Destruction (id=370781) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=9, col=2, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982303)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Deep Breath reduces the Essence costs of your next $s1 Disintegrates and Pyres by $411055s1. Stacks up to $411055U times.
+
+Name             : Scorching Embers (id=370819) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982354)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Fire Breath (357209), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 35
+Description      : Enemies affected by Fire Breath's damage over time effect take $s1% increased damage from your Red spells.
+
+Name             : Scintillation (id=370821) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982356)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1033150)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Disintegrate has a $s2% chance each time it deals damage to launch a level 1 Eternity Surge at $s1% power.
+
+Name             : Engulfing Blaze (id=370837) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1464: Red Evoker Spells
+Attributes       : Passive (6), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982388)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)
+                   Base Value: -300 | Scaled Value: -300 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Living Flame (361469), Chrono Flames (431443)
+                   Family Flags: 52
+#2 (id=982389)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Living Flame (361469), Living Flame (361500), Living Flame (361509), Chrono Flames (431443)
+                   Family Flags: 7
+Description      : Living Flame deals $s2% increased damage and healing and its cast time is reduced by ${$s1/-1000}.1 sec.
+
+Name             : Power Swell (id=370839) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982392)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Casting an empower spell increases your Essence regeneration rate by $376850s1% for $376850d.
+Variables        : $rate=${100}
+
+Name             : Spellweaver's Dominance (id=370845) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Allow Class Ability Procs (416), Unknown (450)
+Effects          :
+#1 (id=982398)   : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.667 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Deep Breath (353759), Disintegrate (356995), Fire Breath (357209), Pyre (357212), Eternity Surge (359077), Living Flame (361500), Azure Strike (362969), Firestorm (369374), Eruption (395160), Upheaval (396288), Eruption (424428), Eruption (438653), Melt Armor (441172), Fire Breath (444249), Firestorm (456657), Disintegrate (1236949), Pyre (1236970), Eruption (1259172), Unravel (1264379), Shattering Star (1265804), Azure Sweep (1265872), Twin Flame (1265980)
+                   Family Flags: 0
+Description      : Your damaging critical strikes deal ${$s1+200}% damage instead of the usual 200%.
+
+Name             : Iridescence (id=370867) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982427)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Casting an empower spell increases the damage of your next $386353u spells of the same color by $386353s1% within $386353d.
+
+Name             : Lay Waste (id=371034) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982687)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Deep Breath (353759), Melt Armor (441172)
+                   Family Flags: 34
+Description      : Deep Breath's damage is increased by $s1%.
+
+Name             : Honed Aggression (id=371038) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=6, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(2, 4)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=982697)   : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Deep Breath (353759), Emerald Blossom (355916), Dream Breath (355941), Disintegrate (356995), Fire Breath (357209), Pyre (357212), Eternity Surge (359077), Verdant Embrace (361195), Fluttering Seedlings (361361), Living Flame (361500), Living Flame (361509), Azure Strike (362969), Dream Flight (363502), Echo (364343), Reversion (366155), Spiritbloom (367230), Spiritbloom (367231), Reversion (367364), Firestorm (369374), Lifebind (373267), Lifebind (373268), Emerald Blossom (373766), Temporal Anomaly (373862), Dream Breath (376788), Panacea (387763), Eruption (395160), Upheaval (396288), Defy Fate (404381), Spiritbloom (409894), Verdant Embrace (409895), Molten Blood (410651), Eruption (424428), Eruption (438653), Melt Armor (441172), Fire Breath (444249), Firestorm (456657), Insurance! (1215550), Insurance! (1215553), Disintegrate (1236949), Pyre (1236970), Merithra's Blessing (1256581), Eruption (1259172), Unravel (1264379), Shattering Star (1265804), Azure Sweep (1265872), Twin Flame (1265980), Twin Flame (1265991)
+                   Family Flags: 0, 1
+#2 (id=1300036)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 7 | Misc Value 2: 6314 (Label) | Target: Self (1)
+                   Affected Spells (Label): Consume Flame (444089)
+Description      : The critical strike chance of your spells is increased by $s1%.
+
+Name             : Dragonrage (desc=Red) (id=375087) [Spell Family (224)] 
+Talent Entry     : Devastation [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+GCD              : 1.5 seconds
+Duration         : 18 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 1216: Evoker Spells
+                 : 1464: Red Evoker Spells
+Family Flags     : 44
+Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491)
+Aura Interrupt   : Change Specialization (38), Raid Encounter End or M+ Start (41), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=1001313)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1001314)  : Trigger Spell (64): Dragonrage
+                   Base Value: 100 | Scaled Value: 100 | Trigger Spell: 375088 | Target: Self (1)
+Description      : Erupt with draconic fury and exhale Pyres at $375088s1 enemies within $375088A1 yds.
+
+Name             : Arcane Intensity (desc=Blue) (id=375618) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=4, col=7, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(8, 16)]
+Class            : Evoker
+School           : Spellfrost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002177)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Disintegrate (356995)
+                   Family Flags: 6
+#2 (id=1277870)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+                   Affected Spells: Azure Strike (362969), Azure Sweep (1265872)
+                   Family Flags: 12
+Description      : Disintegrate and Azure Strike deal $s1% more damage.
+
+Name             : Azure Essence Burst (id=375721) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002321)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Azure Strike has a $s1% chance to cause an Essence Burst, making your next Disintegrate or Pyre cost no Essence.
+
+Name             : Essence Attunement (id=375722) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+                 : Preservation [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+                 : Devastation [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002322)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Essence Burst (359618), Essence Burst (369299), Essence Burst (392268), Essence Burst (417402)
+                   Family Flags: 43
+Description      : Essence Burst stacks ${$s1+1} times.
+
+Name             : Heat Wave (id=375725) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=6, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(15, 30)]
+                 : Effect#2 [op=set, values=(15, 30)]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002325)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Fire Breath (357209), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 35
+#2 (id=1036260)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Fire Breath (357209), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 35
+Description      : Fire Breath deals $s1% more damage.
+
+Name             : Eternity's Span (id=375757) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Spellfrost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Family Flags     : 46
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002367)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Eternity Surge hits twice as many targets.
+
+Name             : Causality (id=375777) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002393)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -500 | Scaled Value: -500 | Target: Self (1)
+#2 (id=1077539)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -400 | Scaled Value: -400 | Target: Self (1)
+Description      : Disintegrate reduces the remaining cooldown of your empower spells by ${$s1/-1000}.2 sec each time it deals damage.
+
+Name             : Animosity (id=375797) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002416)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5000 | Scaled Value: 5000 | Target: Self (1)
+#2 (id=1160688)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Casting an empower spell extends the duration of Dragonrage by ${$s1/1000} sec.
+
+Name             : Burnout (id=375801) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Internal Cooldown: 1 seconds
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell, Periodic
+Family Flags     : 60
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002421)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 16 | Scaled Value: 16 | Target: Self (1)
+Description      : Fire Breath damage has $s1% chance to cause your next Living Flame to be instant cast, stacking $375802u times.
+Variables        : $rate=${30}
+
+Name             : Ruby Essence Burst (id=376872) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1004288)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Your Living Flame has a $s1% chance to cause an Essence Burst, making your next Disintegrate or Pyre cost no Essence.
+
+Name             : Tyranny (id=376888) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1004315)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : During Deep Breath and Dragonrage you gain the maximum benefit of Mastery: Giantkiller regardless of targets' health.
+
+Name             : Titanic Wrath (id=386272) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1020228)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Essence Burst increases the damage of affected spells by ${$s1}.1%.
+
+Name             : Catalyze (id=386283) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1020247)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : While channeling Disintegrate your Fire Breath on the target deals damage $s1% more often.
+
+Name             : Onyx Legacy (id=386348) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1020352)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 2463 (Category) | Target: Self (1)
+                   Affected Spells (Category): Deep Breath (357210), Deep Breath (433874)
+Description      : Deep Breath's cooldown is reduced by 1 min.
+
+Name             : Event Horizon (id=411164) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1077537)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -3000 | Scaled Value: -3000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Eternity Surge (359073), Eternity Surge (382411)
+                   Family Flags: 16
+Description      : Eternity Surge's cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Eye of Infinity (id=411165) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=100]
+Class            : Evoker
+School           : Spellfrost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1077538)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Eternity Surge deals $s1% increased damage to your primary target.
+
+Name             : Font of Magic (id=411212) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1077606)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Fire Breath overrides Fire Breath
+                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 2 | Target: Self (1)
+#2 (id=1077607)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Eternity Surge overrides Eternity Surge
+                   Base Value: 382411 | Scaled Value: 382411 | Misc Value: 359073 | Misc Value 2: 2 | Target: Self (1)
+#3 (id=1077608)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Fire Breath (357208), Eternity Surge (359073), Fire Breath (382266), Eternity Surge (382411)
+                   Family Flags: 15, 16
+Description      : Your empower spells' maximum level is increased by 1, and they reach maximum empower level $s3% faster.
+
+Name             : Azure Celerity (id=1219723) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1205622)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Disintegrate (356995)
+                   Family Flags: 6
+#2 (id=1205623)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Disintegrate (356995)
+                   Family Flags: 6
+#3 (id=1205625)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+                   Affected Spells: Disintegrate (356995)
+                   Family Flags: 6
+#4 (id=1227842)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Doses (31)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 31 | Misc Value 2: 4948 (Label) | Target: Self (1)
+                   Affected Spells (Label): Titanic Wrath (397870), Iridescence: Blue (399370)
+#5 (id=1227843)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Misc Value 2: 4948 (Label) | Target: Self (1)
+                   Affected Spells (Label): Titanic Wrath (397870), Iridescence: Blue (399370)
+Description      : Disintegrate deals damage $s1% more often, but deals $s2% less damage.
+
+Name             : Shattering Stars (id=1265802) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=7, col=7, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Spellfrost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277780)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Eternity Surge additionally releases a Shattering Star at your target that deals $s1% more damage per empower level reached.
+
+Name             : Star Salvo (id=1265826) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Spellfrost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Family Flags     : 46
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277821)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+                   Affected Spells: Shattering Star (1265804)
+                   Family Flags: 20
+Description      : Increases Shattering Star damage by $s1%.
+
+Name             : Azure Sweep (id=1265867) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=4, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Spellfrost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277887)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Eternity Surge upgrades your next Azure Strike to Azure Sweep, damaging all nearby enemies and dealing $1265871s2% additional damage.
+
+Name             : Strafing Run (id=1266151) [Spell Family (224), Passive] 
+Talent Entry     : Devastation [tree=spec, row=10, col=1, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1278387)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: -1 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Deep Breath (353759), Melt Armor (441172)
+                   Family Flags: 34
+Description      : Deep Breath deals $?a134735[$s1% reduced][$s1% increased] damage and can be cast again within $1266165d of being used.
+
+Name             : Rising Fury (id=1271687) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Devastation [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Proc Cooldown On Failure (87), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1284541)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : While Dragonrage is active you gain Rising Fury every $1271783t4 sec, increasing your haste by $1271783s1%, stacking up to $1271783U times.
+
+Name             : Rising Fury (id=1271788) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Devastation [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Proc Cooldown On Failure (87), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1284732)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+Description      : When Dragonrage ends, gain Risen Fury for ${$s1/1000} sec for each stack of Rising Fury.
+
+Name             : Rising Fury (id=1271796) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Devastation [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=set, values=(8, 15)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Proc Cooldown On Failure (87), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1284743)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : At $1271783U stacks of Rising Fury, all damage dealt is increased by $s1%.

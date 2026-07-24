@@ -1,0 +1,502 @@
+{
+    "class": "Death Knight",
+    "fetched_at": "2026-07-23T05:00:31+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Blood": {
+            "spec_id": 250,
+            "pvp_talents": [
+                {
+                    "id": 204,
+                    "name": "Rot and Wither",
+                    "spell_id": 202727,
+                    "spell_name": "Rot and Wither",
+                    "description": "Your Death and Decay rots enemies each time it deals damage, absorbing healing equal to 100% of damage dealt.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 206,
+                    "name": "Strangulate",
+                    "spell_id": 47476,
+                    "spell_name": "Strangulate",
+                    "description": "Shadowy tendrils constrict an enemy's throat, silencing them for 4 sec.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 608,
+                    "name": "Last Dance",
+                    "spell_id": 233412,
+                    "spell_name": "Last Dance",
+                    "description": "Reduces the cooldown of Dancing Rune Weapon by 50% and its duration by 25%.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 609,
+                    "name": "Death Chain",
+                    "spell_id": 203173,
+                    "spell_name": "Death Chain",
+                    "description": "Chains 3 enemies together, dealing 10.2 Shadow damage and causing 20% of all damage taken to also be received by the others in the chain. Lasts for 10 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 841,
+                    "name": "Murderous Intent",
+                    "spell_id": 207018,
+                    "spell_name": "Murderous Intent",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 3441,
+                    "name": "Decomposing Aura",
+                    "spell_id": 199720,
+                    "spell_name": "Decomposing Aura",
+                    "description": "All enemies within 8 yards slowly decay, losing up to 3% of their max health every 2 sec. Max 5 stacks. Lasts 6 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 3511,
+                    "name": "Dark Simulacrum",
+                    "spell_id": 77606,
+                    "spell_name": "Dark Simulacrum",
+                    "description": "Places a dark ward on an enemy player that persists for 12 sec, triggering when the enemy next spends mana on a spell, and allowing the Death Knight to unleash an exact duplicate of that spell.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 5587,
+                    "name": "Bloodforged Armor",
+                    "spell_id": 410301,
+                    "spell_name": "Bloodforged Armor",
+                    "description": "Death Strike reduces all Physical damage taken by 25% for 4 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 5592,
+                    "name": "Spellwarden",
+                    "spell_id": 410320,
+                    "spell_name": "Spellwarden",
+                    "description": "Anti-Magic Shell is now usable on allies and its cooldown is reduced by 10 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                },
+                {
+                    "id": 5712,
+                    "name": "Price of Progress",
+                    "spell_id": 1233429,
+                    "spell_name": "Price of Progress",
+                    "description": "You sacrifice 1% of your health every 1 sec and in exchange you cannot be slowed below 90% of normal speed, and you are immune to forced movement effects and knockbacks. Lasts until canceled.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 250,
+                    "playable_spec_name": "Blood"
+                }
+            ]
+        },
+        "Unholy": {
+            "spec_id": 252,
+            "pvp_talents": [
+                {
+                    "id": 40,
+                    "name": "Life and Death",
+                    "spell_id": 288855,
+                    "spell_name": "Life and Death",
+                    "description": "When the target afflicted with your Dread Plague is healed, you are also healed for 10% of the amount.\r\n\r\nAdditionally, Dread Plague deals 200% of its remaining damage to the target when dispelled.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 41,
+                    "name": "Dark Simulacrum",
+                    "spell_id": 77606,
+                    "spell_name": "Dark Simulacrum",
+                    "description": "Places a dark ward on an enemy player that persists for 12 sec, triggering when the enemy next spends mana on a spell, and allowing the Death Knight to unleash an exact duplicate of that spell.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 149,
+                    "name": "Necrotic Wounds",
+                    "spell_id": 356520,
+                    "spell_name": "Necrotic Wounds",
+                    "description": "Putrefy applies a Necrotic Wound to the enemy when it deals damage, absorbing 8% of all healing received for 15 sec.\r\n\r\nMax 3 stacks. Adding a stack does not refresh the duration.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 152,
+                    "name": "Zombify",
+                    "spell_id": 210128,
+                    "spell_name": "Zombify",
+                    "description": "Reanimates a nearby corpse, summoning a zombie for 20 sec that slowly moves towards your target. \r\n\r\nIf your zombie reaches its target, it explodes after 3.0 sec. The explosion stuns all enemies within 8 yards for 3 sec and deals 10% of their health in Shadow damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 3746,
+                    "name": "Stitchmaster",
+                    "spell_id": 1281529,
+                    "spell_name": "Stitchmaster",
+                    "description": "When a Lesser Ghoul dies, you gather the remains to heal for 2% of its maximum health.\r\n\r\nDeath Strike sacrifices all Lesser Ghouls under your command.",
+                    "unlock_player_level": 29,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 5430,
+                    "name": "Strangulate",
+                    "spell_id": 47476,
+                    "spell_name": "Strangulate",
+                    "description": "Shadowy tendrils constrict an enemy's throat, silencing them for 4 sec.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 5436,
+                    "name": "Doomburst",
+                    "spell_id": 356512,
+                    "spell_name": "Doomburst",
+                    "description": "Sudden Doom also causes your next Death Coil to deal the damage of your plagues an additional time at 25% effectiveness and reduce the target's movement speed by 45% for 3 sec.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 5511,
+                    "name": "Rot and Wither",
+                    "spell_id": 202727,
+                    "spell_name": "Rot and Wither",
+                    "description": "Your Death and Decay rots enemies each time it deals damage, absorbing healing equal to 100% of damage dealt.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 5585,
+                    "name": "Bloodforged Armor",
+                    "spell_id": 410301,
+                    "spell_name": "Bloodforged Armor",
+                    "description": "Death Strike reduces all Physical damage taken by 25% for 4 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                },
+                {
+                    "id": 5590,
+                    "name": "Spellwarden",
+                    "spell_id": 410320,
+                    "spell_name": "Spellwarden",
+                    "description": "Anti-Magic Shell is now usable on allies and its cooldown is reduced by 10 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 252,
+                    "playable_spec_name": "Unholy"
+                }
+            ]
+        },
+        "Frost": {
+            "spec_id": 251,
+            "pvp_talents": [
+                {
+                    "id": 701,
+                    "name": "Deathchill",
+                    "spell_id": 204080,
+                    "spell_name": "Deathchill",
+                    "description": "Your Remorseless Winter and Chains of Ice apply Deathchill, rooting the target in place for 4 sec.\r\n\r\nRemorseless Winter \r\nAll targets within 8 yards are afflicted with Deathchill when Remorseless Winter is cast.\r\n\r\nChains of Ice\r\nWhen you Chains of Ice a target already afflicted by your Chains of Ice they will be afflicted by Deathchill.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 702,
+                    "name": "Delirium",
+                    "spell_id": 233396,
+                    "spell_name": "Delirium",
+                    "description": "Howling Blast applies Delirium, reducing the cooldown recovery rate of movement enhancing abilities by 50% for 12 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 3439,
+                    "name": "Shroud of Winter",
+                    "spell_id": 199719,
+                    "spell_name": "Shroud of Winter",
+                    "description": "Enemies within 8 yards of you become shrouded in winter, reducing the range of their spells and abilities by 30%.",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 3512,
+                    "name": "Dark Simulacrum",
+                    "spell_id": 77606,
+                    "spell_name": "Dark Simulacrum",
+                    "description": "Places a dark ward on an enemy player that persists for 12 sec, triggering when the enemy next spends mana on a spell, and allowing the Death Knight to unleash an exact duplicate of that spell.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 5429,
+                    "name": "Strangulate",
+                    "spell_id": 47476,
+                    "spell_name": "Strangulate",
+                    "description": "Shadowy tendrils constrict an enemy's throat, silencing them for 4 sec.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 5435,
+                    "name": "Bitter Chill",
+                    "spell_id": 356470,
+                    "spell_name": "Bitter Chill",
+                    "description": "Chains of Ice reduces the target's Haste by 8%. Frost Strike refreshes the duration of Chains of Ice.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 5510,
+                    "name": "Rot and Wither",
+                    "spell_id": 202727,
+                    "spell_name": "Rot and Wither",
+                    "description": "Your Death and Decay rots enemies each time it deals damage, absorbing healing equal to 100% of damage dealt.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 5586,
+                    "name": "Bloodforged Armor",
+                    "spell_id": 410301,
+                    "spell_name": "Bloodforged Armor",
+                    "description": "Death Strike reduces all Physical damage taken by 25% for 4 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 5591,
+                    "name": "Spellwarden",
+                    "spell_id": 410320,
+                    "spell_name": "Spellwarden",
+                    "description": "Anti-Magic Shell is now usable on allies and its cooldown is reduced by 10 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                },
+                {
+                    "id": 5693,
+                    "name": "Death's Cold Embrace",
+                    "spell_id": 1218603,
+                    "spell_name": "Death's Cold Embrace",
+                    "description": "Pillar of Frost grants you Remorseless Winter and increases its damage by 400% and its radius by 150%, but your movement speed is heavily reduced for its duration.\r\n\r\nPillar of Frost's cooldown is increased by 15 sec.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 251,
+                    "playable_spec_name": "Frost"
+                }
+            ]
+        }
+    }
+}

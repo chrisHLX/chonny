@@ -1,5 +1,5 @@
 # Priest — Class Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
 # 54 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Dispel Magic (id=528) [Spell Family (6)] 
@@ -222,9 +222,9 @@ Family Flags     : 20, 72
 Attributes       : Not Shapeshifted (16), DoT Stacking Rule (103), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Periodic Refresh Extends Duration (436)
 Effects          :
 #1 (id=6990)     : School Damage (2): holy
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.08 | PvP Coefficient: 1.3 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.08 | PvP Coefficient: 1.5 | Target: Targeted Enemy (6)
 #2 (id=6991)     : Apply Aura (6) | Periodic Damage (3): holy every 1 seconds
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.1413 | PvP Coefficient: 1.3 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.1413 | PvP Coefficient: 1.65 | Target: Targeted Enemy (6)
 #3 (id=808675)   : Apply Aura (6) | Area Trigger (395)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 19526 | Target: Targeted Enemy (6)
 #4 (id=1167235)  : Apply Aura (6) | Modify Damage Done% to Caster (269)

@@ -1,0 +1,293 @@
+# Warlock — Diabolist Hero Talents
+# Extracted verbatim from warlock.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Diabolic Ritual (id=428514) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic, Helpful Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1109408)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1181008)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1260223)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -20 | Scaled Value: -20 | Target: Self (1)
+#4 (id=1260224)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : $?s137044[Spending a Soul Shard on a damaging spell grants Diabolic Ritual for $431944d. While Diabolic Ritual is active, each Soul Shard spent on a damaging spell reduces its duration by $s1 sec.][Casting Chaos Bolt, Rain of Fire, or Shadowburn grants Diabolic Ritual for $431944d. If Diabolic Ritual is already active, its duration is reduced by $s2 sec instead.]
+
+Name             : Cloven Souls (id=428517) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1109413)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Enemies damaged by your Overlord have their souls cloven, increasing damage taken by you and your pets by $434424s1% for $434424d.
+
+Name             : Secrets of the Coven (id=428518) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1109414)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Mother of Chaos empowers your next $?s137044[Shadow Bolt][Incinerate] to become Infernal Bolt.
+
+Name             : Ruination (id=428522) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1109419)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Summoning a Pit Lord causes your next $?s137044[Hand of Gul'dan][Chaos Bolt] to become Ruination.
+
+Name             : Soul-Etched Circles (id=428911) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1112646)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : You always gain the benefit of Soulburn when casting Demonic Circle: Teleport, increasing your movement speed by 50% and making you immune to snares and roots for 6 sec.
+
+Name             : Annihilan's Bellow (id=429072) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1112983)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Howl of Terror (5484)
+                   Family Flags: 35
+#2 (id=1124551)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.4 | Misc Value: 6 | Target: Self (1)
+                   Affected Spells: Howl of Terror (5484)
+                   Family Flags: 35
+Description      : Howl of Terror cooldown is reduced by ${$s1/-1000} sec and range is increased by $s2 yds.
+
+Name             : Infernal Vitality (id=429115) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1113070)  : Apply Aura (6) | Proc Trigger Spell (42): Infernal Vitality
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 434559 | Target: Self (1)
+Description      : Unending Resolve heals you for ${$434559s1*($434559d/$434559t1)}% of your maximum health over $434559d.
+
+Name             : Infernal Bulwark (id=429130) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1113092)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Unending Resolve grants Soul Leech equal to $434561s1% of your maximum health and increases the maximum amount Soul Leech can absorb by $434561s1% for $434561d.
+
+Name             : Abyssal Dominion (id=429581) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1113918)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 70 | Scaled Value: 70 | Target: Self (1)
+                   Affected Spells: Demonfire (270481), Burning Cleave (1264093)
+                   Family Flags: 120
+#2 (id=1124695)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=1124696)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 40 | Scaled Value: 40 | Stat: Spell Power Inheritence (3) | NPC ID: 89 | Target: Self (1)
+#4 (id=1131611)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#5 (id=1160404)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?s137044[Summon Demonic Tyrant is empowered, dealing $s1% increased damage and increasing the damage of your demons by $s2% while active.][Summon Infernal becomes empowered, dealing $s3% increased damage. When your Summon Infernal ends, it fragments into two smaller Infernals at $s4% effectiveness that lasts $456310d.]
+
+Name             : Flames of Xoroth (id=429657) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1114039)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+                   Affected Spells: Immolate (348), Soul Fire (6353), Shadowburn (17877), Conflagrate (17962), Incinerate (29722), Rain of Fire (42223), Hand of Gul'dan (86040), Chaos Bolt (116858), Immolate (157736), Immolate (193540), Implosion (196277), Implosion (196278), Hand of Gul'dan (196282), Channel Demonfire (196448), Totem Mastery (226772), Immolate (228312), Incinerate (244670), Demonbolt (264178), Implosion (370371), Channel Demonfire (409890), Infernal Bolt (434506), Wither (445468), Wither (445474), Channel Demonfire (1217787)
+                   Family Flags: 2, 4, 7, 15, 38, 45, 46, 55, 65, 70, 86, 92
+#2 (id=1124640)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Immolate (348), Soul Fire (6353), Shadowburn (17877), Conflagrate (17962), Incinerate (29722), Rain of Fire (42223), Hand of Gul'dan (86040), Chaos Bolt (116858), Immolate (157736), Immolate (193540), Implosion (196277), Implosion (196278), Hand of Gul'dan (196282), Channel Demonfire (196448), Totem Mastery (226772), Immolate (228312), Incinerate (244670), Demonbolt (264178), Implosion (370371), Channel Demonfire (409890), Infernal Bolt (434506), Wither (445468), Wither (445474), Channel Demonfire (1217787)
+                   Family Flags: 2, 4, 7, 15, 38, 45, 46, 55, 65, 70, 86, 92
+#3 (id=1124641)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#4 (id=1124642)  : Apply Aura (6) | Modify Pet Damage Done% (429)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Fire damage increased by $s1% and damage dealt by your demons is increased by $s3%.
+
+Name             : Touch of Rancora (id=429893) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1114490)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 3147 (Label) | Target: Self (1)
+                   Affected Spells (Label): Demonic Art: Overlord (428524), Demonic Art: Mother of Chaos (432794), Demonic Art: Pit Lord (432795)
+#2 (id=1124477)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: -50 | Scaled Value: -50 | PvP Coefficient: 0.4 | Misc Value: 12 | Misc Value 2: 3147 (Label) | Target: Self (1)
+                   Affected Spells (Label): Demonic Art: Overlord (428524), Demonic Art: Mother of Chaos (432794), Demonic Art: Pit Lord (432795)
+#3 (id=1181010)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Demonic Art increases the damage of your next $?s137044[Hand of Gul'dan][Chaos Bolt, Rain of Fire, or Shadowburn] by $s1% and reduces its cast time by $s2%.
+
+Name             : Gloom of Nathreza (id=429899) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1114502)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1124753)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 7 | Scaled Value: 7 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Havoc (80240), Bane of Havoc (200546), Bane of Havoc (200548)
+                   Family Flags: 20
+Description      : $?s137044[Hand of Gul'dan deals $s1% increased damage for each Soul Shard spent.][Enemies marked by your Havoc take $s2% increased damage from your single target spells.]
+
+Name             : Cruelty of Kerxan (id=429902) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1114505)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : $?s137044[Summon Demonic Tyrant][Summon Infernal] grants Diabolic Ritual and reduces its duration by ${$s1/1000} sec.
+
+Name             : Infernal Machine (id=429917) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1114527)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+Description      : Spending Soul Shards on damaging spells while your $?s137044[Demonic Tyrant][Infernal] is active decreases the duration of Diabolic Ritual by ${$s1/1000} additional sec.
+
+Name             : Diabolic Oculi (id=1268709) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1280218)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : You summon a Diabolic Oculus, up to $1269643u, each time the duration of Diabolic Ritual is reduced by one of your spells.
+
+Name             : Looks That Kill (id=1268713) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1280227)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Diabolic Oculi now cast Diabolic Gaze at your primary demon's target every 1 sec while active.
+
+Name             : Mind's Eyes (id=1268716) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1280231)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Diabolic Oculi observe the battlefield and collect information that is imparted to you upon being exploded, each Diabolic Oculi increasing your Intellect by $1269879s1% for $1269879d.

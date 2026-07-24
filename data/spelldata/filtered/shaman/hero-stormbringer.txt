@@ -1,0 +1,352 @@
+# Shaman — Stormbringer Hero Talents
+# Extracted verbatim from shaman.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Tempest (id=454009) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+                 : 5698: Awakening Storms (455129 effect#3)
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1156239)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Awakening Storms (455129 effect#3)
+#2 (id=1156240)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+#3 (id=1156241)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : $?s137040[Each Maelstrom spent has a ${$s1/100}.2% chance to upgrade][Each Maelstrom Weapon spent has a ${$s2/100}.2% chance to upgrade] your next Lightning Bolt to Tempest.
+
+Name             : Stormcaller (id=454021) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+                 : 5149: Enhancement Shaman (137041 effect#15), Enhancement Shaman (137041 effect#16)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1156264)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Earth Shock (8042), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Elemental Blast (117014), Elemental Blast Overload (120588), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Shield (192106), Lightning Shield (192109), Crash Lightning (195592), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Lightning Shield Overcharge (273323), Lightning Shield (273324), Lightning Lasso (305483), Lightning Lasso (305484), Lightning Lasso (305485), Primordial Wave (326059), Lightning Shield (344174), Elemental Blast (344645), Earth Shock Overload (381725), Tempest (452201), Tempest Overload (463351), Flame Shock (470411), Primordial Storm (1218047), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433)
+                   Family Flags: 0, 1, 3, 10, 20, 25, 28, 45, 63, 64, 82, 85, 96, 98, 107, 108
+#2 (id=1156265)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Earth Shock (8042), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Elemental Blast (117014), Elemental Blast Overload (120588), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Shield (192106), Lightning Shield (192109), Crash Lightning (195592), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Lightning Shield Overcharge (273323), Lightning Shield (273324), Lightning Lasso (305483), Lightning Lasso (305484), Lightning Lasso (305485), Primordial Wave (326059), Lightning Shield (344174), Elemental Blast (344645), Earth Shock Overload (381725), Tempest (452201), Tempest Overload (463351), Flame Shock (470411), Primordial Storm (1218047), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433)
+                   Family Flags: 0, 1, 3, 10, 20, 25, 28, 45, 63, 64, 82, 85, 96, 98, 107, 108, 118
+                   Modified By: Enhancement Shaman (137041 effect#15)
+#3 (id=1176169)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Misc Value 2: 4013 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthen Rage (170379), Ascendance (344548), Awakening Storms (455130), Thunderstrike (462763), Ascendance (467263), Doom Winds (469270), Voltaic Blaze (1259101)
+#4 (id=1176170)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 15 | Misc Value 2: 4013 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthen Rage (170379), Ascendance (344548), Awakening Storms (455130), Thunderstrike (462763), Ascendance (467263), Doom Winds (469270), Voltaic Blaze (1259101)
+                   Modified By: Enhancement Shaman (137041 effect#16)
+Description      : Increases the critical strike chance of your Nature damage spells by $s1% and the critical strike damage of your Nature spells by $s2%.
+
+Name             : Electroshock (id=454022) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1156269)  : Apply Aura (6) | Proc Trigger Spell (42): Electroshock
+                   Base Value: 20 | Scaled Value: 20 | Trigger Spell: 454025 | Target: Self (1)
+Description      : Tempest increases your movement speed by $454025s1% for $454025d.
+
+Name             : Rolling Thunder (id=454026) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1156275)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Stormkeeper (191634), Stormkeeper (383009)
+                   Family Flags: 111
+#2 (id=1276808)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12000 | Scaled Value: 12000 | Target: Self (1)
+Description      : $?s137040[Reduces the cooldown of Stormkeeper by ${$s1/-1000} sec.][Doom Winds summons a Nature Feral Spirit for ${$s2/1000} sec.
+
+Name             : Nature's Protection (id=454027) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1156276)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -3 | Scaled Value: -3 | Target: Self (1)
+#2 (id=1189012)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+Description      : Lightning Shield reduces the damage you take by $s1%.
+
+Name             : Surging Currents (id=454372) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.9 seconds
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1156859)  : Apply Aura (6) | Proc Trigger Spell (42): Surging Currents
+                   Base Value: 60000 | Scaled Value: 60000 | Trigger Spell: 454376 | Target: Self (1)
+Description      : Casting Tempest grants Surging Currents, increasing the effectiveness of your next Chain Heal or Healing Surge by $454376s1%, up to ${$454376s1*$454376u}%.
+
+Name             : Unlimited Power (id=454391) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1156895)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60000 | Scaled Value: 60000 | Target: Self (1)
+#2 (id=1180815)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Spending $?s137040[Maelstrom][Maelstrom Weapon stacks] grants you $454394s1% haste for $454394d.
+
+Name             : Voltaic Surge (id=454919) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+                 : 4239: Elemental Shaman (137040 effect#13), Enhancement Shaman (137041 effect#11)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1157912)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Chain Lightning Overload (45297), Earthquake (61882), Earthquake (77478), Crash Lightning (187874), Chain Lightning (188443), Crash Lightning (195592), Chain Lightning (211094), Earthquake (298762), Earthquake Overload (298765), Earthquake (329801), Earthquake (336740), Earthquake (462620), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433)
+                   Family Flags: 1, 63, 83, 85
+                   Modified By: Elemental Shaman (137040 effect#13), Enhancement Shaman (137041 effect#11)
+Description      : $?s137040[Earthquake][Crash Lightning] and Chain Lightning damage increased by $s1%.
+
+Name             : Storm Swell (id=455088) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1158270)  : Apply Aura (6) | Proc Trigger Spell (42): Storm Swell
+                   Base Value: 3 | Scaled Value: 3 | Trigger Spell: 455089 | Target: Self (1)
+Description      : Tempest grants ${$455089s1*$mas}% Mastery for $455089d.
+
+Name             : Arc Discharge (id=455096) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1158280)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : $?s137040[Casting Tempest grants a charge of Stormkeeper.][Tempest causes your next Chain Lightning to be instant cast, deal $455097s2% increased damage, and cast an additional time.
+
+Name             : Supercharge (id=455110) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1158303)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1158304)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#3 (id=1158643)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : $?s137040[Lightning Bolt, Tempest, and Chain Lightning have a $s1% chance to cause an additional Elemental Overload.][Lightning Bolt, Tempest, and Chain Lightning have a $s2% chance to refund $s3 Maelstrom Weapon stacks.]
+
+Name             : Conductive Energy (id=455123) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+                 : 3986: Enhancement Shaman (137041 effect#12), Charged Conduit (468625 effect#2)
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1158318)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1158319)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Enhancement Shaman (137041 effect#12), Charged Conduit (468625 effect#2)
+Description      : $?s137040[Lightning Rod targets now also take $s2% of the damage that Tempest deals, and Tempest also applies Lightning Rod effect.][Gain the effects of the Lightning Rod talent:
+
+Name             : Awakening Storms (id=455129) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+                 : 4700
+Proc Chance      : 101%
+Real PPM         : 1.1 (Haste multiplier)
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1158331)  : Apply Aura (6) | Proc Trigger Spell (42): Tempest
+                   Base Value: 50 | Scaled Value: 50 | Trigger Spell: 454015 | Target: Self (1)
+#2 (id=1158332)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1268073)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 3 | Misc Value 2: 5698 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tempest (454009)
+Description      : $?a137040[Each Maelstrom spent has an additional ${$s3/100}.2% chance to upgrade your next Lightning Bolt to Tempest.][Stormstrike has a small chance to upgrade your next Lightning Bolt to Tempest.]
+
+Name             : Lightning Conduit (id=467778) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1181105)  : Apply Aura (6) | Periodic Trigger Spell (23): Unknown(0) every 5 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1181753)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1181762)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : You have a chance to get struck by lightning, increasing your movement speed by $468226s2% for $468226d. The effectiveness is increased to $s3% in outdoor areas.
+
+Name             : Descending Skies (id=1264688) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1276200)  : Apply Aura (6) | Proc Trigger Spell (42): Tempest
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 454015 | Target: Self (1)
+Description      : $?c1[Casting ][]Ascendance upgrades your next Lightning Bolt to Tempest.
+
+Name             : Natural Gift (id=1264691) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 6720: Enhancement Shaman (137041 effect#13), Enhancement Shaman (137041 effect#32)
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1276205)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Affected Spells: Earth Shock (8042), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Earthquake (77478), Elemental Blast (117014), Elemental Blast Overload (120588), Wind Gust (157331), Call Lightning (157348), Stormfury (157375), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Chain Lightning (211094), Stormfury (269005), Lightning Lasso (305483), Lightning Lasso (305484), Lightning Lasso (305485), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Acid Rain (378597), Earth Shock Overload (381725), Stormblast (390287), Tempest (452201), Awakening Storms (455130), Surging Bolt (458267), Thunderstrike (462763), Tempest Overload (463351), Ascendance (467263), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
+                   Family Flags: 126
+                   Modified By: Enhancement Shaman (137041 effect#32)
+#2 (id=1301057)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Earth Shock (8042), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Earthquake (77478), Elemental Blast (117014), Elemental Blast Overload (120588), Wind Gust (157331), Call Lightning (157348), Stormfury (157375), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Chain Lightning (211094), Stormfury (269005), Lightning Lasso (305483), Lightning Lasso (305484), Lightning Lasso (305485), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Acid Rain (378597), Earth Shock Overload (381725), Stormblast (390287), Tempest (452201), Awakening Storms (455130), Surging Bolt (458267), Thunderstrike (462763), Tempest Overload (463351), Ascendance (467263), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
+                   Family Flags: 126
+                   Modified By: Enhancement Shaman (137041 effect#13)
+Description      : Nature damage is increased by $s1%
+
+Name             : Stormwell (id=1264762) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1276337)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Storm Elemental (157299), Primal Storm Elemental (157319), Storm Elemental (192249), Lesser Storm Elemental (462990), Lesser Storm Elemental (462993)
+                   Family Flags: 124
+#2 (id=1276338)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Stormkeeper (191634), Stormkeeper (383009)
+                   Family Flags: 111
+#3 (id=1276339)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Windfury Attack (25504), Windfury Attack (33750)
+                   Family Flags: 23
+Description      : $?c1[Storm Elemental lasts ${$s1/1000} sec longer, and Stormkeeper generates $s2 Maelstrom.][Windfury Weapon damage increased by $s3%.

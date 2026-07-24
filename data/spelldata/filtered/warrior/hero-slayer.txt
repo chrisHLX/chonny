@@ -1,0 +1,292 @@
+# Warrior — Slayer Hero Talents
+# Extracted verbatim from warrior.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Unhinged (id=386628) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Sheath (18), Include In Advanced Combat Log (72), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1020844)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1020845)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.4 | Target: Self (1)
+Description      : Every $s1 strikes of Bladestorm, you automatically cast a $?c1[Mortal Strike][Bloodthirst] at your target or random nearby enemy, dealing $s2% of normal damage.
+
+Name             : Slayer's Dominance (id=444767) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141365)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Your attacks against your primary target have a $s1% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing $445579s1 Physical damage and granting you a stack of Executioner, increasing your Execute damage by $445584s1% for $445584d. Multiple stacks of Executioner may overlap.
+
+Name             : Imminent Demise (id=444769) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141367)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1298727)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#3 (id=1318124)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Every $s1 Slayer's Strikes you gain Sudden Death.
+
+Name             : Death Drive (id=444770) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141368)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : You heal for $s1% of damage dealt by Sudden Death.
+
+Name             : Show No Mercy (id=444771) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141369)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Executioner also increases your Execute critical strike chance and critical strike damage by $445584s2% per stack.
+
+Name             : Overwhelming Blades (id=444772) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141370)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Each strike of Bladestorm applies Overwhelmed to all enemies affected, increasing damage you deal to them by $445836s1% for $445836d, max $445836u stacks.
+
+Name             : Fierce Followthrough (id=444773) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141371)  : Apply Aura (6) | Proc Trigger Spell (42): Fierce Followthrough
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 458689 | Target: Self (1)
+Description      : $?c1[Mortal Strike][Bloodthirst] critical strikes increase the damage of your next $?c1[Mortal Strike][Bloodthirst] by $?c1[$458689s1][$458689s2]%.
+
+Name             : Opportunist (id=444774) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141372)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $?c1[When Overpower has its cooldown reset by Tactician, your next Overpower deals $456120s3% additional damage and $456120s4% additional critical damage.][When Raging Blow resets its own cooldown, your next Raging Blow deals $456120s1% additional damage and $456120s2% additional critical damage.] Stacking up to $456120u times.
+
+Name             : Reap the Storm (id=444775) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Aura Points On Client (268), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141373)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#2 (id=1196332)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1289791)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#4 (id=1300777)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : When $?c1[Cleave hits][Rampage hits] $s2 or more targets$?c2[ via Improved Whirlwind][] you have a $?c1[$s3][$s4]% chance to unleash a flurry of steel, striking all nearby enemies for $446005s1 Physical damage and applying Overwhelmed. Deals reduced damage beyond $s1 targets.
+
+Name             : Relentless Pursuit (id=444776) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141374)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Charge increases your movement speed by $446044s1% for $446044d.
+
+Name             : Vicious Agility (id=444777) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141375)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1143227)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Heroic Leap reduces the cooldown of Charge by $s1 sec and Charge reduces the cooldown of Heroic Leap by $s2 sec.
+
+Name             : Culling Cyclone (id=444778) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141376)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Each strike of Bladestorm deals an additional $s1% damage evenly split across all targets.
+
+Name             : Slayer's Malice (id=444779) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141377)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Execute (5308), Overpower (7384), Execute (163201), Execute Off-Hand (163558), Execute (260798), Execute (280735), Execute (280849), Execute (281000), Dreadnaught (315961), Condemn (317349), Condemn (317483), Condemn (317485), Condemn (317488), Condemn Off-Hand (317489), Condemn (330325), Condemn (330334), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817)
+                   Family Flags: 2, 29
+#2 (id=1184814)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Execute (5308), Raging Blow (85384), Raging Blow (96103), Execute (163201), Execute Off-Hand (163558), Execute (260798), Execute (280735), Execute (280849), Execute (281000), Condemn (317349), Condemn (317483), Condemn (317485), Condemn (317488), Condemn Off-Hand (317489), Condemn (330325), Condemn (330334), Crushing Blow (335098), Crushing Blow (335100), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817)
+                   Family Flags: 29, 45
+Description      : $?c1[Overpower][Raging Blow] and Execute damage increased by $?c1[$s1][$s2]%.
+
+Name             : Unrelenting Onslaught (id=444780) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1141378)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1147804)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1160105)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Bladestorm overrides Bladestorm
+                   Base Value: 446035 | Scaled Value: 446035 | Misc Value: 227847 | Target: Self (1)
+#4 (id=1310824)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Bladestorm (50622), Bladestorm Off-Hand (95738), Bladestorm (227847), Bladestorm (446035)
+                   Family Flags: 46
+Description      : Using Sudden Death causes you to both reduce the cooldown of Bladestorm by $s1 sec and apply $s2 stack of Overwhelmed to your primary target per stack of Executioner you have.
+
+Name             : Brutal Finish (id=446085) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1143288)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your next $?c1[Mortal Strike][Rampage] after Bladestorm ends deals $?c1[$446918s1][$446918s2]% additional damage.
+
+Name             : Violent Euphoria (id=1270717) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283020)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Bladestorm puts you into a battle trance, granting you 15% haste for 8 sec after you stop Bladestorming.
+
+Name             : Deadly Focus (id=1270718) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283021)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 6000 | Scaled Value: 6000 | Misc Value: 1 | Misc Value 2: 5931 (Label) | Target: Self (1)
+                   Affected Spells (Label): Executioner (445584)
+Description      : Executioner's duration is increased by ${$s1/1000} sec.

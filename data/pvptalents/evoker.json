@@ -1,0 +1,518 @@
+{
+    "class": "Evoker",
+    "fetched_at": "2026-07-23T05:00:46+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Augmentation": {
+            "spec_id": 1473,
+            "pvp_talents": [
+                {
+                    "id": 5454,
+                    "name": "Seismic Slam",
+                    "spell_id": 408543,
+                    "spell_name": "Seismic Slam",
+                    "description": "Landslide causes enemies who are mid-air to be slammed to the ground, stunning them for 4 sec and Landslide's cooldown is reduced by 15 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5557,
+                    "name": "Divide and Conquer",
+                    "spell_id": 384689,
+                    "spell_name": "Divide and Conquer",
+                    "description": "Deep Breath forms curtains of fire, preventing line of sight to enemies outside its walls and burning enemies who walk through them for 2,736 Fire damage. Lasts 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5558,
+                    "name": "Nullifying Shroud",
+                    "spell_id": 1241352,
+                    "spell_name": "Nullifying Shroud",
+                    "description": "Verdant Embrace wreathes you in arcane energy, preventing the next full loss of control effect against you. Lasts 3 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5560,
+                    "name": "Unburdened Flight",
+                    "spell_id": 378437,
+                    "spell_name": "Unburdened Flight",
+                    "description": "Hover makes you immune to movement speed reduction effects.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5561,
+                    "name": "Scouring Flame",
+                    "spell_id": 378438,
+                    "spell_name": "Scouring Flame",
+                    "description": "Fire Breath burns away 2 beneficial Magic effects from all targets.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5562,
+                    "name": "Swoop Up",
+                    "spell_id": 370388,
+                    "spell_name": "Swoop Up",
+                    "description": "Grab an enemy and fly with them to the target location.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5563,
+                    "name": "Obsidian Mettle",
+                    "spell_id": 378444,
+                    "spell_name": "Obsidian Mettle",
+                    "description": "While Obsidian Scales is active you gain immunity to interrupt, silence, and pushback effects.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5564,
+                    "name": "Chrono Loop",
+                    "spell_id": 383005,
+                    "spell_name": "Chrono Loop",
+                    "description": "Trap the enemy in a time loop for 5 sec. Afterwards, they are returned to their previous location and health. Cannot reduce an enemy's health below 20%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5612,
+                    "name": "Born in Flame",
+                    "spell_id": 414937,
+                    "spell_name": "Born in Flame",
+                    "description": "Casting Ebon Might grants 2 charges of Burnout, reducing the cast time of Living Flame by 100%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5615,
+                    "name": "Dreamwalker's Embrace",
+                    "spell_id": 415651,
+                    "spell_name": "Dreamwalker's Embrace",
+                    "description": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 475 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                },
+                {
+                    "id": 5619,
+                    "name": "Time Stop",
+                    "spell_id": 378441,
+                    "spell_name": "Time Stop",
+                    "description": "Freeze an ally's timestream for 5 sec. While frozen in time they are invulnerable, cannot act, and auras do not progress.\r\n\r\nYou may reactivate Time Stop to end this effect early.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1473,
+                    "playable_spec_name": "Augmentation"
+                }
+            ]
+        },
+        "Preservation": {
+            "spec_id": 1468,
+            "pvp_talents": [
+                {
+                    "id": 5455,
+                    "name": "Chrono Loop",
+                    "spell_id": 383005,
+                    "spell_name": "Chrono Loop",
+                    "description": "Trap the enemy in a time loop for 5 sec. Afterwards, they are returned to their previous location and health. Cannot reduce an enemy's health below 20%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5459,
+                    "name": "Obsidian Mettle",
+                    "spell_id": 378444,
+                    "spell_name": "Obsidian Mettle",
+                    "description": "While Obsidian Scales is active you gain immunity to interrupt, silence, and pushback effects.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5461,
+                    "name": "Scouring Flame",
+                    "spell_id": 378438,
+                    "spell_name": "Scouring Flame",
+                    "description": "Fire Breath burns away 2 beneficial Magic effects from all targets.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5463,
+                    "name": "Time Stop",
+                    "spell_id": 378441,
+                    "spell_name": "Time Stop",
+                    "description": "Freeze an ally's timestream for 5 sec. While frozen in time they are invulnerable, cannot act, and auras do not progress.\r\n\r\nYou may reactivate Time Stop to end this effect early.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5465,
+                    "name": "Swoop Up",
+                    "spell_id": 370388,
+                    "spell_name": "Swoop Up",
+                    "description": "Grab an enemy and fly with them to the target location.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5468,
+                    "name": "Nullifying Shroud",
+                    "spell_id": 1241352,
+                    "spell_name": "Nullifying Shroud",
+                    "description": "Verdant Embrace wreathes you in arcane energy, preventing the next full loss of control effect against you. Lasts 3 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5470,
+                    "name": "Unburdened Flight",
+                    "spell_id": 378437,
+                    "spell_name": "Unburdened Flight",
+                    "description": "Hover makes you immune to movement speed reduction effects.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5595,
+                    "name": "Divide and Conquer",
+                    "spell_id": 384689,
+                    "spell_name": "Divide and Conquer",
+                    "description": "Deep Breath forms curtains of fire, preventing line of sight to enemies outside its walls and burning enemies who walk through them for 2,736 Fire damage. Lasts 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5616,
+                    "name": "Dreamwalker's Embrace",
+                    "spell_id": 415651,
+                    "spell_name": "Dreamwalker's Embrace",
+                    "description": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 475 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5711,
+                    "name": "Dream Projection",
+                    "spell_id": 377509,
+                    "spell_name": "Dream Projection",
+                    "description": "Summon a flying projection of yourself that heals allies you pass through for 743. Detonating your projection dispels all nearby allies of Magical effects, and heals for 3,823 over 20 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                },
+                {
+                    "id": 5718,
+                    "name": "Emerald Communion",
+                    "spell_id": 370960,
+                    "spell_name": "Emerald Communion",
+                    "description": "Commune with the Emerald Dream, restoring 20% health and 2% mana every 0.9 sec for 4.5 sec. Overhealing is transferred to an injured ally within 40 yds.\r\n\r\nCastable while stunned, disoriented, incapacitated, or silenced.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1468,
+                    "playable_spec_name": "Preservation"
+                }
+            ]
+        },
+        "Devastation": {
+            "spec_id": 1467,
+            "pvp_talents": [
+                {
+                    "id": 5456,
+                    "name": "Chrono Loop",
+                    "spell_id": 383005,
+                    "spell_name": "Chrono Loop",
+                    "description": "Trap the enemy in a time loop for 5 sec. Afterwards, they are returned to their previous location and health. Cannot reduce an enemy's health below 20%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5460,
+                    "name": "Obsidian Mettle",
+                    "spell_id": 378444,
+                    "spell_name": "Obsidian Mettle",
+                    "description": "While Obsidian Scales is active you gain immunity to interrupt, silence, and pushback effects.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5462,
+                    "name": "Scouring Flame",
+                    "spell_id": 378438,
+                    "spell_name": "Scouring Flame",
+                    "description": "Fire Breath burns away 2 beneficial Magic effects from all targets.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5464,
+                    "name": "Time Stop",
+                    "spell_id": 378441,
+                    "spell_name": "Time Stop",
+                    "description": "Freeze an ally's timestream for 5 sec. While frozen in time they are invulnerable, cannot act, and auras do not progress.\r\n\r\nYou may reactivate Time Stop to end this effect early.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5466,
+                    "name": "Swoop Up",
+                    "spell_id": 370388,
+                    "spell_name": "Swoop Up",
+                    "description": "Grab an enemy and fly with them to the target location.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5467,
+                    "name": "Nullifying Shroud",
+                    "spell_id": 1241352,
+                    "spell_name": "Nullifying Shroud",
+                    "description": "Verdant Embrace wreathes you in arcane energy, preventing the next full loss of control effect against you. Lasts 3 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5469,
+                    "name": "Unburdened Flight",
+                    "spell_id": 378437,
+                    "spell_name": "Unburdened Flight",
+                    "description": "Hover makes you immune to movement speed reduction effects.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5556,
+                    "name": "Divide and Conquer",
+                    "spell_id": 384689,
+                    "spell_name": "Divide and Conquer",
+                    "description": "Deep Breath forms curtains of fire, preventing line of sight to enemies outside its walls and burning enemies who walk through them for 2,736 Fire damage. Lasts 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                },
+                {
+                    "id": 5617,
+                    "name": "Dreamwalker's Embrace",
+                    "spell_id": 415651,
+                    "spell_name": "Dreamwalker's Embrace",
+                    "description": "Verdant Embrace tethers you to an ally, increasing movement speed by 40% and slowing and siphoning 475 life from enemies who come in contact with the tether.\r\n\r\nThe tether lasts up to 10 sec or until you move more than 30 yards away from your ally.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1467,
+                    "playable_spec_name": "Devastation"
+                }
+            ]
+        }
+    }
+}

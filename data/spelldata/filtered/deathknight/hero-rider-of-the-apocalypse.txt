@@ -1,0 +1,326 @@
+# Death Knight — Rider of the Apocalypse Hero Talents
+# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Rider's Champion (id=444005) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140240)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1286325)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+Description      : Spending Runes has a chance to call forth the aid of a Horsemen for $454390d.
+
+Name             : On a Paler Horse (id=444008) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355), Displayed Outside Of Spellbook (432)
+Effects          :
+#1 (id=1140253)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 445194 | Scaled Value: 445194 | Target: Self (1)
+Description      : While outdoors you are able to mount your Acherus Deathcharger in combat.
+
+Name             : Death Charge (id=444010) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200, replace="Death's Advance" (id=124285)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140259)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Death Charge overrides Death's Advance
+                   Base Value: 444347 | Scaled Value: 444347 | Misc Value: 48265 | Target: Self (1)
+Description      : Call upon your Death Charger to break free of movement impairment effects.
+
+Name             : Whitemane's Famine (id=444033) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140290)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : When $?a137006[Obliterate or Frostscythe]?s207311[Clawing Shadows][Scourge Strike] damages an enemy affected by Undeath it gains $s1 $Lstack:stacks; and infects another nearby enemy.
+
+Name             : Hungering Thirst (id=444037) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140296)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Death Coil (47632), Frost Strike (49143), Frost Fever (55095), Frost Strike Off-Hand (66196), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Frost Strike (222026), Frost Strike (325464), Frostbane (1228443), Dread Plague (1240996), Dread Plague (Erupt) (1241171), Necrotic Coil (1242172), Necrotic Coil (1242178), Dread Plague (1242564)
+                   Family Flags: 34, 40, 58, 64, 110, 119
+#2 (id=1140714)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Death Coil (47632), Frost Strike (49143), Blood Plague (55078), Frost Fever (55095), Frost Strike Off-Hand (66196), Virulent Plague (191587), Virulent Eruption (191685), Festering Wound (194311), Frost Strike (222026), Frost Strike (325464), Frostbane (1228443), Dread Plague (1240996), Dread Plague (Erupt) (1241171), Necrotic Coil (1242172), Necrotic Coil (1242178), Dread Plague (1242564), Consumption (1263872)
+                   Family Flags: 34, 40, 57, 58, 64, 110, 119
+Description      : The damage of your diseases and $?a137006[Frost Strike][Death Coil] are increased by $s1%.
+
+Name             : Apocalypse Now (id=444040) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140302)  : Apply Aura (6) | Proc Trigger Spell (42): Apocalypse Now
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 444244 | Target: Self (1)
+#2 (id=1277722)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20000 | Scaled Value: 20000 | Target: Self (1)
+Description      : Army of the Dead and Frostwyrm's Fury call upon all 4 Horsemen to aid you for ${$s2/1000} sec.
+
+Name             : Mograine's Might (id=444047) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140317)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your damage is increased by $444505s1% and you gain $?c3[the benefits of your Death and Decay]?c2[$444505s4% critical strike chance][] while inside Mograine's Death and Decay.
+
+Name             : Nazgrim's Conquest (id=444052) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140322)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1141404)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : If an enemy dies while Nazgrim is active, the strength of Apocalyptic Conquest is increased by $s1%.
+
+Name             : Fury of the Horsemen (id=444069) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140355)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1141549)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1141550)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Every $s1 Runic Power you spend extends the duration of the Horsemen's aid in combat by $s3 sec, up to $s2 sec.
+
+Name             : A Feast of Souls (id=444072) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140359)  : Apply Aura (6) | Periodic Trigger Spell (23): Unknown(0) every 1 seconds
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1146068)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : While you have $s1 or more Horsemen aiding you, your $?c2[Runic Power spending abilities deal]?c3[Death Coil deals $440861s1% and Epidemic deals $440861s3%][] increased damage.
+
+Name             : Horsemen's Aid (id=444074) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140361)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
+Description      : While at your aid, the Horsemen will occasionally cast Anti-Magic Shell on you and themselves at $s1% effectiveness.
+
+Name             : Pact of the Apocalypse (id=444083) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140374)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : When you take damage, $s1% of the damage is redirected to each active horsemen.
+
+Name             : Trollbane's Icy Fury (id=444097) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140397)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : $?a137006[Obliterate and Frostscythe]?s207311[Clawing Shadows][Scourge Strike] $?a137006[shatter][shatters] Trollbane's Chains of Ice when hit, dealing $444834s2 Shadowfrost damage to nearby enemies, and slowing them by $444834s1% for $444834d. Deals reduced damage beyond $s1 targets.
+
+Name             : Mawsworn Menace (id=444099) [Spell Family (15), Passive] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1140400)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1877 (Category) | Target: Self (1)
+                   Affected Spells (Category): Death and Decay (43265), Death's Due (324128)
+#2 (id=1140717)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1927 (Category) | Target: Self (1)
+                   Affected Spells (Category): Defile (152280)
+#3 (id=1158346)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Scourge Strike (55090), Clawing Shadows (207311), Vampiric Strike (433895)
+                   Family Flags: 59, 71
+#4 (id=1168098)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Obliterate (222024), Obliterate (325461), Death Knight Frost Class Set 2pc (393623), Obliterate (1264082), Obliterate (1264084)
+                   Family Flags: 7
+#5 (id=1252968)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Remorseless Winter (196770), Remorseless Winter (1233152)
+                   Family Flags: 122
+Description      : $?a137006[Obliterate deals $s4]?s207311[Clawing Shadows deals $s3][Scourge Strike deals $s3]% increased damage and $?s152280[the cooldown of your Defile is reduced by ${$s2/-1000}]?a137006[your Remorseless Winter lasts ${$s5/1000} sec longer][the cooldown of your Death and Decay is reduced by ${$s1/-1000} sec].
+
+Name             : Let Terror Reign (id=1265949) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 295
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1278042)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.33 | Target: Self (1)
+#2 (id=1278043)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 125 | Scaled Value: 125 | PvP Coefficient: 0.33 | Target: Self (1)
+Description      : $?c2[Casting Obliterate or Frostscythe orders Trollbane to cast his Obliterate or Frostscythe alongside you at $s1% effectiveness.][Casting Death Coil or Epidemic orders Whitemane to cast her Death Coil or Epidemic alongside you at $s2% effectiveness.]
+
+Name             : Ride or Die! (id=1265959) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 295
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1278058)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | PvP Coefficient: 0.66 | Target: Self (1)
+#2 (id=1278059)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | PvP Coefficient: 0.66 | Target: Self (1)
+Description      : $?c2[Pillar of Frost summons forth Trollbane for $s1 sec.][Dark Transformation summons forth Whitemane for $s2 sec.]
+
+Name             : Unholy Armaments (id=1265971) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 295
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1278079)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 5860 (Label) | Target: Self (1)
+                   Affected Spells (Label): Undeath (444633), Chains of Ice (444826), Heart Strike (445504), Obliterate (445507), Scourge Strike (445508), Scourge Strike (445509), Death Coil (445513), Epidemic (1237172), Death and Decay (1251951)
+#2 (id=1278083)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Misc Value 2: 5860 (Label) | Target: Self (1)
+                   Affected Spells (Label): Undeath (444633), Chains of Ice (444826), Heart Strike (445504), Obliterate (445507), Scourge Strike (445508), Scourge Strike (445509), Death Coil (445513), Epidemic (1237172), Death and Decay (1251951)
+#3 (id=1311179)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Attack Power Inheritence (2) | NPC ID: 26125 | Target: Self (1)
+#4 (id=1311180)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Spell Power Inheritence (3) | NPC ID: 26125 | Target: Self (1)
+#5 (id=1311181)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 20 | Scaled Value: 20 | Stat: Attack Power Inheritence (2) | NPC ID: 237409 | Target: Self (1)
+#6 (id=1311182)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 20 | Scaled Value: 20 | Stat: Spell Power Inheritence (3) | NPC ID: 237409 | Target: Self (1)
+#7 (id=1311183)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Attack Power Inheritence (2) | NPC ID: 99541 | Target: Self (1)
+#8 (id=1311184)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Spell Power Inheritence (3) | NPC ID: 99541 | Target: Self (1)
+#9 (id=1311745)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Festering Wound (195757), Putrefy (390220), Putrefy (1277016)
+                   Family Flags: 85, 112
+Description      : The abilities that Horsemen cast deal $s1% increased damage.$?c3[

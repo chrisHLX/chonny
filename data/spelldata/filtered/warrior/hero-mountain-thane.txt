@@ -1,0 +1,364 @@
+# Warrior — Mountain Thane Hero Talents
+# Extracted verbatim from warrior.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Storm Surge (id=275336) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=728321)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Avatar increases the damage of Thunder Clap by $107574s9% and reduces its cooldown by $107574s10%.
+
+Name             : Lightning Strikes (id=434969) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+                 : 3168: Gathering Clouds (436201 effect#1)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1125289)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Modified By: Gathering Clouds (436201 effect#1)
+#2 (id=1127180)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Damaging enemies with Thunder Clap, $?a137048[Revenge, ][Raging Blow, ]or Execute has a $s1% chance to also strike one with a lightning bolt, dealing $435791s1 Nature damage$?s436152[ and generating ${$436152s3/10} Rage][].
+
+Name             : Steadfast as the Peaks (id=434970) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1125291)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Sta | Target: Self (1)
+Description      : Stamina increased by $s1%.
+
+Name             : Thunder Blast (id=435607) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1126336)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#2 (id=1160106)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value 2: 3159 (Label) | Target: Self (1)
+                   Affected Spells (Label): Thunder Blast (435222)
+#3 (id=1191205)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Misc Value 2: 3159 (Label) | Target: Self (1)
+                   Affected Spells (Label): Thunder Blast (435222)
+Description      : Shield Slam and Bloodthirst have a $s1% chance to grant you Thunder Blast, stacking up to 2 charges.
+
+Name             : Ground Current (id=436148) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1127289)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Lightning Strikes also deal $460670s1 Nature damage to enemies near their target. Damage reduced beyond $460670s2 targets.
+
+Name             : Thorim's Might (id=436152) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1127296)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 12 | Misc Value 2: 3164 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lightning Strike (435791)
+#2 (id=1127299)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Revenge (6572), Raging Blow (85384), Raging Blow (96103), Execute Off-Hand (163558), Execute (260798), Execute (280849), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Crushing Blow (335098), Crushing Blow (335100), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174)
+                   Family Flags: 10, 45, 115, 116
+Description      : Lightning Strikes generate ${$s1/10} Rage.
+
+Name             : Storm Bolts (id=436162) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1127315)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Storm Bolt (107570)
+                   Family Flags: 105
+#2 (id=1127328)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1166311)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: 10000 | Scaled Value: 10000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Storm Bolt (107570)
+                   Family Flags: 105
+Description      : Storm Bolt also hits $s1 additional nearby $Ltarget:targets;, stunning them for $s2 sec, but its cooldown is increased by ${$s3/1000} sec.
+
+Name             : Gathering Clouds (id=436201) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1127378)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 3 | Misc Value 2: 3168 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lightning Strikes (434969)
+Description      : Your attacks trigger Lightning Strikes $s1% more often.
+
+Name             : Crashing Thunder (id=436707) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1128176)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 3164 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lightning Strike (435791)
+#2 (id=1128177)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 3159 (Label) | Target: Self (1)
+                   Affected Spells (Label): Thunder Blast (435222)
+#3 (id=1128178)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 3927 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lightning Strike Ground Current (460670)
+#4 (id=1128231)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+#5 (id=1128298)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 80 | Scaled Value: 80 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+#6 (id=1128310)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 2 (34)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 34 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+#7 (id=1128311)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 23 | Misc Value 2: 3177 (Label) | Target: Self (1)
+                   Affected Spells (Label): Barbaric Training (383082)
+#8 (id=1167204)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 32 | Misc Value 2: 3177 (Label) | Target: Self (1)
+                   Affected Spells (Label): Barbaric Training (383082)
+Description      : Stormstrike or Nature damage your abilities deal is increased by $s1%. Stormstrike damage ignores Armor.
+
+Name             : Strength of the Mountain (id=437068) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1128785)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Shield Slam (23922)
+                   Family Flags: 41
+#2 (id=1128786)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Demoralizing Shout (1160)
+                   Family Flags: 17
+#3 (id=1160301)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Demoralizing Shout (1160)
+                   Family Flags: 17
+#4 (id=1160302)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Bloodthirst (23881), Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Bloodbath (335096), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582)
+                   Family Flags: 42, 108
+Description      : Shield Slam damage increased by $s1%.$?a137048[
+
+Name             : Flashing Skies (id=437079) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1128804)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Thunder Blast calls down a Lightning Strike on an enemy it hits.
+
+Name             : Burst of Power (id=437118) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 15%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1128866)  : Apply Aura (6) | Proc Trigger Spell (42): Burst of Power
+                   Base Value: 2 | Scaled Value: 2 | Trigger Spell: 437121 | Target: Self (1)
+Description      : Lightning Strikes have a $h% chance to make your next $s1 $?a137048[Shield Slams][Bloodthirsts] have no cooldown$?a137050[, deal $437121s2% increased damage, and generate ${$437121s3/10} additional Rage][].
+
+Name             : Avatar of the Storm (id=437134) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+                 : 4595: Avatar of the Storm (437134 effect#4)
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1128890)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1128893)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#3 (id=1128894)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+                   Modified By: Avatar of the Storm (437134 effect#4)
+#4 (id=1210709)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Misc Value 2: 4595 (Label) | Target: Self (1)
+                   Affected Spells (Label): Avatar of the Storm (437134)
+Description      : Casting Avatar grants you $s1 charges of Thunder Blast and resets the cooldown of Thunder Clap.
+
+Name             : Keep Your Feet on the Ground (id=438590) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1131292)  : Apply Aura (6) | Proc Trigger Spell (42): Keep Your Feet on the Ground
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 438591 | Target: Self (1)
+#2 (id=1160360)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -2 | Scaled Value: -2 | Misc Value: 0x1 | Target: Self (1)
+                   Affected School(s): Physical
+Description      : Physical damage taken reduced by $s2%.
+
+Name             : Storm Shield (id=438597) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1131305)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Intervening a target grants them a shield for $438598d that absorbs magic damage equal to $s1 times your Armor.
+
+Name             : Snap Induction (id=456270) [Spell Family (4), Passive] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1160349)  : Apply Aura (6) | Proc Trigger Spell (42): Thunder Blast
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 435615 | Target: Self (1)
+Description      : Activating $?a137048[Demoralizing Shout][Recklessness] grants a charge of Thunder Blast.
+
+Name             : Conductivity (id=1270723) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283026)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 3164 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lightning Strike (435791)
+#2 (id=1283096)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 15 | Misc Value 2: 3164 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lightning Strike (435791)
+Description      : Lightning Strike damage increased by $s1% and critical strike damage increased by $s2%.
+
+Name             : Capacitance (id=1270724) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283027)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
+Description      : During Avatar, Thunder Blast extends Avatar's duration by ${$s1/1000}.1 sec.

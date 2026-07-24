@@ -1,0 +1,340 @@
+# Warrior — Colossus Hero Talents
+# Extracted verbatim from warrior.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Colossal Might (id=429634) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Update Passives on Apply/Remove (344), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1114009)  : Apply Aura (6) | Proc Trigger Spell (42): Colossal Might
+                   Base Value: 3 | Scaled Value: 3 | Trigger Spell: 440989 | Target: Self (1)
+Description      : Colossal Might increases damage dealt by your next Demolish by $440989s1%, stacking up to $440989u times.
+
+Name             : Dominance of the Colossus (id=429636) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114011)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 37 | Misc Value 2: 3306 (Label) | Target: Self (1)
+                   Affected Spells (Label): Colossal Might (440989)
+#2 (id=1135859)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Colossal Might stacks up to 10 times. If you would gain a stack of Colossal Might and are at max stacks, the cooldown of Demolish is reduced by $s2 sec.
+
+Name             : One Against Many (id=429637) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 4964: Protection Warrior (1258163 effect#16)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114012)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Modified By: Protection Warrior (1258163 effect#16)
+#2 (id=1135235)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Shockwave$?c1[, Cleave,][] and $?c1[Whirlwind][Revenge] deal $s1% more damage per target affected up to $s2.
+
+Name             : Martial Expert (id=429638) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114013)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+#2 (id=1168667)  : Apply Aura (6) | Modify Critical Block Amount (638)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Critical strike damage of your abilities is increased by $s1% and the amount of damage blocked by your critical blocks is increased by $s2%.
+
+Name             : Boneshaker (id=429639) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114014)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Shockwave (46968), Shockwave (132168), Shockwave (441668)
+                   Family Flags: 47
+Description      : Shockwave's stun duration is increased by ${$s1/1000} sec and reduces the movement speed of affected enemies by $458480s1% for $458480d after the stun ends.
+
+Name             : Tide of Battle (id=429641) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114016)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Colossal Might increases the damage of your $?c1[Overpower][Revenge] by $?c1[$440989s3][$440989s4]% per stack.
+
+Name             : Mountain of Muscle and Scars (id=429642) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114017)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+#2 (id=1135812)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+#3 (id=1135813)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#4 (id=1135814)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -5 | Scaled Value: -5 | PvP Coefficient: 0.6 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#5 (id=1135815)  : Apply Aura (6) | Scale% (Stacking) (61)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : You deal $s1% more damage and take $s4% less damage.
+
+Name             : No Stranger to Pain (id=429644) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114019)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 24 | Target: Self (1)
+                   Affected Spells: Ignore Pain (190456), Ignore Pain (1277297)
+                   Family Flags: 109
+Description      : Damage prevented by each use of Ignore Pain is increased by $s1%.
+
+Name             : Practiced Strikes (id=429647) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 4010
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1114022)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.6 | Target: Self (1)
+                   Affected Spells: Slam (1464), Mortal Strike (12294), Mortal Strike (339385), Heroic Strike (1269383)
+                   Family Flags: 21, 25
+#2 (id=1184820)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Cleave (845), Whirlwind (1680), Whirlwind Off-Hand (44949), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Whirlwind (411547), Cleave (458459)
+                   Family Flags: 22, 34
+#3 (id=1210713)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.6 | Target: Self (1)
+                   Affected Spells: Shield Slam (23922)
+                   Family Flags: 41
+#4 (id=1310830)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Revenge (6572), Thunder Blast (435222), Revenge (1215174)
+                   Family Flags: 7, 10
+#5 (id=1310831)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Shield Slam (23922)
+                   Family Flags: 41
+Description      : $?c1[Mortal Strike and Slam damage increased by $s1%.
+
+Name             : Precise Might (id=431548) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119404)  : Apply Aura (6) | Proc Trigger Spell (42): Colossal Might
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 440989 | Target: Self (1)
+Description      : $?c1[Mortal Strike][Shield Slam] critical strikes grant an additional stack of Colossal Might.
+
+Name             : Demolish (id=436358) [Spell Family (4)] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Range            : 5 yards
+GCD              : 1.5 seconds
+Duration         : 2 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken
+Affecting Spells : Protection Warrior (137048 effect#13), Colossal Might (440989 effect#1), Arms Warrior (1256919 effect#7)
+Family Flags     : 126
+Attributes       : Is Ability (4), Track Target in Cast (Player Only) (22), Is Channelled (34), Initiates Combat (Enables Auto-Attack) (41), Track Target in Channel (46), Aura Stays After Combat (57), No Aura Icon (60), Name in Channel Bar (61), Do Not Reset Combat Timers (81), Requires Main-Hand Weapon (106), Allow Aura While Dead (116), Can Proc From Procs (122), Ignore For Mod Time Rate (196), Delay Combat Timer During Cast (211), Haste Affects Duration (273), Melee Haste Affects Periodic (278), Allow Defense While Casting (337), Allow Defense While Channeling (338)
+Channel Interrupt: Interacting (11), Action (Delayed) (17), Transform (37)
+Effects          :
+#1 (id=1127631)  : Apply Aura (6) | Periodic Dummy (226): every 0.1 seconds
+                   Base Value: 8 | Scaled Value: 8 | Target: Targeted Enemy (6)
+#2 (id=1145550)  : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -200 | Scaled Value: -200 | Target: Self (1)
+#3 (id=1145551)  : Apply Aura (6) | Disable Abilities (263)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Charge (100), Taunt (355), Shield Wall (871), Shield Block (2565), Intervene (3411), Heroic Leap (6544), Last Stand (12975), Spell Reflection (23920), Heroic Leap (52174), Die by the Sword (118038), Intervene (147833), Ignore Pain (190456), Intercept (198304), Charge (198337), Intervene (316531), Spell Reflection (335255), Spell Reflection (385391), Shield Charge (385952), Shield Charge (385953), Interpose (1244088), Interpose (1244091), Ignore Pain (1277297)
+                   Family Flags: 0, 12, 13, 15, 33, 48, 51, 61, 93, 97, 109
+#4 (id=1145552)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#5 (id=1145553)  : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 12 | Target: Self (1)
+#6 (id=1145554)  : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 6 | Target: Self (1)
+#7 (id=1145555)  : Apply Aura (6) | Immunity Against External Movement (37)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 98 | Target: Self (1)
+#8 (id=1145556)  : Apply Aura (6) | Immunity Against External Movement (37)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 138 | Target: Self (1)
+#9 (id=1145557)  : Apply Aura (6) | Immunity Against External Movement (37)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 144 | Target: Self (1)
+#10 (id=1207286) : Apply Aura (6) | Creature Immunities (147)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 2142 | Target: Self (1)
+#11 (id=1242820) : Apply Aura (6) | Resist Forced Movement% (485)
+                   Base Value: -100 | Scaled Value: -100 | Value Multiplier: 1 | Target: Self (1)
+#12 (id=1246797) : Apply Aura (6) | Replace Animation (Set) (312)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1207 | Target: Self (1)
+#13 (id=1278010) : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 45 | Scaled Value: 45 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Demolish (436358), Demolish (440884), Demolish (440886), Demolish (440888)
+                   Family Flags: 126
+Description      : Unleash a series of precise and powerful strikes against your target, dealing ${$440884s1+$440886s1+$440888s1} damage to it, and $440888s1 damage to enemies within $440888A1 yds of it. Deals reduced damage beyond $s1 targets.
+
+Name             : Earthquaker (id=440992) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135201)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Shockwave (46968), Shockwave (132168), Shockwave (441668)
+                   Family Flags: 47
+Description      : Shockwave also knocks enemies into the air and its cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Veteran Vitality (id=440993) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 60 seconds
+Proc Chance      : 101%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135202)  : Apply Aura (6) | Proc Trigger Spell (42): Second Wind
+                   Base Value: 35 | Scaled Value: 35 | Trigger Spell: 441387 | Target: Self (1)
+Description      : When your health is brought below 35%, you gain a Second Wind, healing you for ${$441387s1*$441387t1*$441387d}% of your max health over $441387d.
+
+Name             : Arterial Bleed (id=440995) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135204)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Colossal Might increases the damage of your Rend and Deep Wounds by $440989s2% per stack.
+
+Name             : Decimator (id=1270704) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283007)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Demolish's final strike applies Deep Wounds to all targets at $s1% effectiveness.
+
+Name             : Cut to the Bone (id=1270709) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283012)  : Apply Aura (6) | Proc Trigger Spell (42): Cut to the Bone
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1270840 | Target: Self (1)
+Description      : $?c1[Mortal Strike][Shield Slam] critical strikes increase your Rend and Deep Wounds damage by $1270840s1% for $1270840d.
+
+Name             : Celeritous Conclusion (id=1270710) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1283013)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Demolish's final strike grants $1270843s1% Haste for $1270843d and increases the critical strike chance of your next $?c1[Mortal Strike][Shield Slam] by $1270846s1%.

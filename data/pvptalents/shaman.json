@@ -1,0 +1,470 @@
+{
+    "class": "Shaman",
+    "fetched_at": "2026-07-23T05:00:24+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Restoration": {
+            "spec_id": 264,
+            "pvp_talents": [
+                {
+                    "id": 708,
+                    "name": "Counterstrike Totem",
+                    "spell_id": 204331,
+                    "spell_name": "Counterstrike Totem",
+                    "description": "Summons a totem at your feet for 15 sec.\r\n\r\nWhenever enemies within 20 yards of the totem deal direct damage, the totem will deal 100% of the damage dealt back to attacker. ",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 714,
+                    "name": "Electrocute",
+                    "spell_id": 206642,
+                    "spell_name": "Electrocute",
+                    "description": "When you successfully Purge a beneficial effect, the enemy suffers 2,154 Nature damage over 3 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 715,
+                    "name": "Grounding Totem",
+                    "spell_id": 204336,
+                    "spell_name": "Grounding Totem",
+                    "description": "Summons a totem at your feet that will redirect all harmful spells cast within 30 yards on a nearby party or raid member to itself. Will not redirect area of effect spells. Lasts 3 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 3755,
+                    "name": "Rain Dance",
+                    "spell_id": 290250,
+                    "spell_name": "Rain Dance",
+                    "description": "Healing Rain is now instant, 50% more effective, and costs 60% less mana. ",
+                    "unlock_player_level": 21,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5437,
+                    "name": "Master of the Elements",
+                    "spell_id": 462375,
+                    "spell_name": "Master of the Elements",
+                    "description": "Casting Lava Burst increases the healing of your next Healing Wave by 30%, stacking up to 2 times.\r\n\r\nHealing Wave applies Flame Shock to a nearby enemy when empowered by Master of the Elements.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5567,
+                    "name": "Static Field Totem",
+                    "spell_id": 355580,
+                    "spell_name": "Static Field Totem",
+                    "description": "Summons a totem with 4% of your health at the target location for 6 sec that forms a circuit of electricity that enemies cannot pass through.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5576,
+                    "name": "Burrow",
+                    "spell_id": 409293,
+                    "spell_name": "Burrow",
+                    "description": "Burrow beneath the ground, becoming unattackable, removing movement impairing effects, and increasing your movement speed by 50% for 5 sec.\r\n\r\nWhen the effect ends, enemies within 6 yards are knocked in the air and take 2,508 Physical damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5704,
+                    "name": "Storm Conduit",
+                    "spell_id": 1217092,
+                    "spell_name": "Storm Conduit",
+                    "description": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5705,
+                    "name": "Totem of Wrath",
+                    "spell_id": 460697,
+                    "spell_name": "Totem of Wrath",
+                    "description": "Stormkeeper summons a totem at your feet for 15 sec that increases the critical effect of damage and healing spells of all nearby allies within 40 yards by 15% for 15 sec.\r\n",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5719,
+                    "name": "Call of Al'Akir",
+                    "spell_id": 1246131,
+                    "spell_name": "Call of Al'Akir",
+                    "description": "Nature's Swiftness now also affects Hex, but its cooldown is increased by 30 sec.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5723,
+                    "name": "Lightning Lasso",
+                    "spell_id": 305483,
+                    "spell_name": "Lightning Lasso",
+                    "description": "Grips the target in lightning, stunning and dealing 14,630 Nature damage over 5 sec while the target is lassoed. Can move while channeling.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 264,
+                    "playable_spec_name": "Restoration"
+                }
+            ]
+        },
+        "Enhancement": {
+            "spec_id": 263,
+            "pvp_talents": [
+                {
+                    "id": 722,
+                    "name": "Shamanism",
+                    "spell_id": 193876,
+                    "spell_name": "Shamanism",
+                    "description": "Your Heroism spell now has a 60 sec cooldown, but increases Haste by 15%, and only affects you and your friendly target when cast for 10 sec.\r\n\r\nIn addition, Heroism is no longer affected by Exhaustion.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                },
+                {
+                    "id": 3487,
+                    "name": "Totem of Wrath",
+                    "spell_id": 460697,
+                    "spell_name": "Totem of Wrath",
+                    "description": "Stormkeeper summons a totem at your feet for 15 sec that increases the critical effect of damage and healing spells of all nearby allies within 40 yards by 15% for 15 sec.\r\n",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                },
+                {
+                    "id": 3489,
+                    "name": "Counterstrike Totem",
+                    "spell_id": 204331,
+                    "spell_name": "Counterstrike Totem",
+                    "description": "Summons a totem at your feet for 15 sec.\r\n\r\nWhenever enemies within 20 yards of the totem deal direct damage, the totem will deal 100% of the damage dealt back to attacker. ",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                },
+                {
+                    "id": 3622,
+                    "name": "Grounding Totem",
+                    "spell_id": 204336,
+                    "spell_name": "Grounding Totem",
+                    "description": "Summons a totem at your feet that will redirect all harmful spells cast within 30 yards on a nearby party or raid member to itself. Will not redirect area of effect spells. Lasts 3 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                },
+                {
+                    "id": 5438,
+                    "name": "Static Field Totem",
+                    "spell_id": 355580,
+                    "spell_name": "Static Field Totem",
+                    "description": "Summons a totem with 4% of your health at the target location for 6 sec that forms a circuit of electricity that enemies cannot pass through.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                },
+                {
+                    "id": 5575,
+                    "name": "Burrow",
+                    "spell_id": 409293,
+                    "spell_name": "Burrow",
+                    "description": "Burrow beneath the ground, becoming unattackable, removing movement impairing effects, and increasing your movement speed by 50% for 5 sec.\r\n\r\nWhen the effect ends, enemies within 6 yards are knocked in the air and take 2,508 Physical damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                },
+                {
+                    "id": 5658,
+                    "name": "Electrocute",
+                    "spell_id": 206642,
+                    "spell_name": "Electrocute",
+                    "description": "When you successfully Purge a beneficial effect, the enemy suffers 2,154 Nature damage over 3 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                },
+                {
+                    "id": 5722,
+                    "name": "Lightning Lasso",
+                    "spell_id": 305483,
+                    "spell_name": "Lightning Lasso",
+                    "description": "Grips the target in lightning, stunning and dealing 14,630 Nature damage over 5 sec while the target is lassoed. Can move while channeling.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 263,
+                    "playable_spec_name": "Enhancement"
+                }
+            ]
+        },
+        "Elemental": {
+            "spec_id": 262,
+            "pvp_talents": [
+                {
+                    "id": 727,
+                    "name": "Static Field Totem",
+                    "spell_id": 355580,
+                    "spell_name": "Static Field Totem",
+                    "description": "Summons a totem with 4% of your health at the target location for 6 sec that forms a circuit of electricity that enemies cannot pass through.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 3488,
+                    "name": "Totem of Wrath",
+                    "spell_id": 460697,
+                    "spell_name": "Totem of Wrath",
+                    "description": "Stormkeeper summons a totem at your feet for 15 sec that increases the critical effect of damage and healing spells of all nearby allies within 40 yards by 15% for 15 sec.\r\n",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 3490,
+                    "name": "Counterstrike Totem",
+                    "spell_id": 204331,
+                    "spell_name": "Counterstrike Totem",
+                    "description": "Summons a totem at your feet for 15 sec.\r\n\r\nWhenever enemies within 20 yards of the totem deal direct damage, the totem will deal 100% of the damage dealt back to attacker. ",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 3620,
+                    "name": "Grounding Totem",
+                    "spell_id": 204336,
+                    "spell_name": "Grounding Totem",
+                    "description": "Summons a totem at your feet that will redirect all harmful spells cast within 30 yards on a nearby party or raid member to itself. Will not redirect area of effect spells. Lasts 3 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 5574,
+                    "name": "Burrow",
+                    "spell_id": 409293,
+                    "spell_name": "Burrow",
+                    "description": "Burrow beneath the ground, becoming unattackable, removing movement impairing effects, and increasing your movement speed by 50% for 5 sec.\r\n\r\nWhen the effect ends, enemies within 6 yards are knocked in the air and take 2,508 Physical damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 5659,
+                    "name": "Electrocute",
+                    "spell_id": 206642,
+                    "spell_name": "Electrocute",
+                    "description": "When you successfully Purge a beneficial effect, the enemy suffers 2,154 Nature damage over 3 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 5660,
+                    "name": "Shamanism",
+                    "spell_id": 193876,
+                    "spell_name": "Shamanism",
+                    "description": "Your Heroism spell now has a 60 sec cooldown, but increases Haste by 15%, and only affects you and your friendly target when cast for 10 sec.\r\n\r\nIn addition, Heroism is no longer affected by Exhaustion.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 5681,
+                    "name": "Storm Conduit",
+                    "spell_id": 1217092,
+                    "spell_name": "Storm Conduit",
+                    "description": "Casting Lightning Bolt or Chain Lightning reduces the cooldown of Astral Shift, Gust of Wind, Wind Shear, and Nature Totems by 1.0 sec.\r\n\r\nInterrupt duration reduced by 65% on Lightning Bolt and Chain Lightning casts.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                },
+                {
+                    "id": 5724,
+                    "name": "Lightning Lasso",
+                    "spell_id": 305483,
+                    "spell_name": "Lightning Lasso",
+                    "description": "Grips the target in lightning, stunning and dealing 14,630 Nature damage over 5 sec while the target is lassoed. Can move while channeling.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 262,
+                    "playable_spec_name": "Elemental"
+                }
+            ]
+        }
+    }
+}

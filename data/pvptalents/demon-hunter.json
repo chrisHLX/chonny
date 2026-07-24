@@ -1,0 +1,566 @@
+{
+    "class": "Demon Hunter",
+    "fetched_at": "2026-07-23T05:00:41+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Vengeance": {
+            "spec_id": 581,
+            "pvp_talents": [
+                {
+                    "id": 814,
+                    "name": "Cleansed by Flame",
+                    "spell_id": 205625,
+                    "spell_name": "Cleansed by Flame",
+                    "description": "Immolation Aura dispels a magical effect on you when cast.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 815,
+                    "name": "Everlasting Hunt",
+                    "spell_id": 205626,
+                    "spell_name": "Everlasting Hunt",
+                    "description": "Dealing damage increases your movement speed by 15% for 3 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 816,
+                    "name": "Jagged Spikes",
+                    "spell_id": 205627,
+                    "spell_name": "Jagged Spikes",
+                    "description": "While Demon Spikes is active, melee attacks against you cause Physical damage equal to 30% of the damage taken back to the attacker.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 819,
+                    "name": "Illidan's Grasp",
+                    "spell_id": 205630,
+                    "spell_name": "Illidan's Grasp",
+                    "description": "You strangle the target with demonic magic, stunning them in place and dealing 392 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 1220,
+                    "name": "Tormentor",
+                    "spell_id": 207029,
+                    "spell_name": "Tormentor",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 1948,
+                    "name": "Sigil Mastery",
+                    "spell_id": 211489,
+                    "spell_name": "Sigil Mastery",
+                    "description": "Reduces the cooldown of your Sigils by an additional 25%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 3423,
+                    "name": "Demonic Trample",
+                    "spell_id": 205629,
+                    "spell_name": "Demonic Trample",
+                    "description": "Transform to demon form, moving at 175% increased speed for 3 sec, knocking down all enemies in your path and dealing 5 Physical damage.\r\n\r\nDuring Demonic Trample you are unaffected by snares but cannot cast spells or use your normal attacks. Shares charges with Infernal Strike.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 3429,
+                    "name": "Reverse Magic",
+                    "spell_id": 205604,
+                    "spell_name": "Reverse Magic",
+                    "description": "Removes all harmful magical effects from yourself and all nearby allies within 10 yards, and sends them back to their original caster if possible.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 3430,
+                    "name": "Detainment",
+                    "spell_id": 205596,
+                    "spell_name": "Detainment",
+                    "description": "Imprison's PvP duration is increased by 1 sec, and targets become immune to damage and healing while imprisoned.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 3727,
+                    "name": "Unending Hatred",
+                    "spell_id": 213480,
+                    "spell_name": "Unending Hatred",
+                    "description": "Taking damage causes you to gain Fury based on the damage dealt.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 5434,
+                    "name": "Blood Moon",
+                    "spell_id": 355995,
+                    "spell_name": "Blood Moon",
+                    "description": "Consume Magic now affects all enemies within 8 yards of the target and generates a Lesser Soul Fragment. Each effect consumed has a 5% chance to upgrade to a Greater Soul.",
+                    "unlock_player_level": 42,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 5520,
+                    "name": "Cover of Darkness",
+                    "spell_id": 357419,
+                    "spell_name": "Cover of Darkness",
+                    "description": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 5521,
+                    "name": "Rain from Above",
+                    "spell_id": 206803,
+                    "spell_name": "Rain from Above",
+                    "description": "You fly into the air out of harm's way. While floating, you gain access to Fel Lance allowing you to deal damage to enemies below. ",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 5522,
+                    "name": "Glimpse",
+                    "spell_id": 354489,
+                    "spell_name": "Glimpse",
+                    "description": "Vengeful Retreat provides immunity to loss of control effects, and reduces damage taken by 25% until you land.",
+                    "unlock_player_level": 42,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                },
+                {
+                    "id": 5716,
+                    "name": "Lay In Wait",
+                    "spell_id": 1235091,
+                    "spell_name": "Lay In Wait",
+                    "description": "Sigil of Misery has 2 charges and now lays in wait for up to 90 sec at your selected location until an enemy approaches.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 581,
+                    "playable_spec_name": "Vengeance"
+                }
+            ]
+        },
+        "Havoc": {
+            "spec_id": 577,
+            "pvp_talents": [
+                {
+                    "id": 805,
+                    "name": "Cleansed by Flame",
+                    "spell_id": 205625,
+                    "spell_name": "Cleansed by Flame",
+                    "description": "Immolation Aura dispels a magical effect on you when cast.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 806,
+                    "name": "Reverse Magic",
+                    "spell_id": 205604,
+                    "spell_name": "Reverse Magic",
+                    "description": "Removes all harmful magical effects from yourself and all nearby allies within 10 yards, and sends them back to their original caster if possible.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 811,
+                    "name": "Rain from Above",
+                    "spell_id": 206803,
+                    "spell_name": "Rain from Above",
+                    "description": "You fly into the air out of harm's way. While floating, you gain access to Fel Lance allowing you to deal damage to enemies below. ",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 812,
+                    "name": "Detainment",
+                    "spell_id": 205596,
+                    "spell_name": "Detainment",
+                    "description": "Imprison's PvP duration is increased by 1 sec, and targets become immune to damage and healing while imprisoned.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 813,
+                    "name": "Glimpse",
+                    "spell_id": 354489,
+                    "spell_name": "Glimpse",
+                    "description": "Vengeful Retreat provides immunity to loss of control effects, and reduces damage taken by 25% until you land.",
+                    "unlock_player_level": 42,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 1206,
+                    "name": "Cover of Darkness",
+                    "spell_id": 357419,
+                    "spell_name": "Cover of Darkness",
+                    "description": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 1218,
+                    "name": "Unending Hatred",
+                    "spell_id": 213480,
+                    "spell_name": "Unending Hatred",
+                    "description": "Taking damage causes you to gain Fury based on the damage dealt.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 5433,
+                    "name": "Blood Moon",
+                    "spell_id": 355995,
+                    "spell_name": "Blood Moon",
+                    "description": "Consume Magic now affects all enemies within 8 yards of the target and generates a Lesser Soul Fragment. Each effect consumed has a 5% chance to upgrade to a Greater Soul.",
+                    "unlock_player_level": 42,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 5523,
+                    "name": "Sigil Mastery",
+                    "spell_id": 211489,
+                    "spell_name": "Sigil Mastery",
+                    "description": "Reduces the cooldown of your Sigils by an additional 25%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                },
+                {
+                    "id": 5691,
+                    "name": "Illidan's Grasp",
+                    "spell_id": 205630,
+                    "spell_name": "Illidan's Grasp",
+                    "description": "You strangle the target with demonic magic, stunning them in place and dealing 392 Shadow damage over 5 sec while the target is grasped. Can move while channeling.\r\n\r\nUse Illidan's Grasp again to toss the target to a location within 20 yards.",
+                    "unlock_player_level": 23,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 577,
+                    "playable_spec_name": "Havoc"
+                }
+            ]
+        },
+        "Devourer": {
+            "spec_id": 1480,
+            "pvp_talents": [
+                {
+                    "id": 5728,
+                    "name": "Inevitable End",
+                    "spell_id": 1261409,
+                    "spell_name": "Inevitable End",
+                    "description": "Collapsing Star can no longer be interrupted and its cast time is reduced by 25%.",
+                    "unlock_player_level": 15,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5729,
+                    "name": "Armor of Souls",
+                    "spell_id": 1261414,
+                    "spell_name": "Armor of Souls",
+                    "description": "Your Armor is increased by 100%. Taking damage has a 12% chance to generate a Soul Fragment.",
+                    "unlock_player_level": 20,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5730,
+                    "name": "Surrender to the Void",
+                    "spell_id": 1261423,
+                    "spell_name": "Surrender to the Void",
+                    "description": "Void Metamorphosis requires 50 additional souls.\r\n\r\nWhile in Void Metamorphosis, your damage is increased by 10% and effects that grant you Fury grant 100% additional Fury.",
+                    "unlock_player_level": 70,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5731,
+                    "name": "Cleansed by Flame",
+                    "spell_id": 205625,
+                    "spell_name": "Cleansed by Flame",
+                    "description": "Immolation Aura dispels a magical effect on you when cast.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5732,
+                    "name": "Cover of Darkness",
+                    "spell_id": 357419,
+                    "spell_name": "Cover of Darkness",
+                    "description": "The radius of Darkness is increased by 4 yds, and its duration by 2 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5733,
+                    "name": "Detainment",
+                    "spell_id": 205596,
+                    "spell_name": "Detainment",
+                    "description": "Imprison's PvP duration is increased by 1 sec, and targets become immune to damage and healing while imprisoned.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5734,
+                    "name": "Glimpse",
+                    "spell_id": 354489,
+                    "spell_name": "Glimpse",
+                    "description": "Vengeful Retreat provides immunity to loss of control effects, and reduces damage taken by 25% until you land.",
+                    "unlock_player_level": 42,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5735,
+                    "name": "Beckon",
+                    "spell_id": 1261697,
+                    "spell_name": "Beckon",
+                    "description": "Reap reduces the cast time of your next Consume by 100% and causes it to generate 1 additional Soul Fragment.",
+                    "unlock_player_level": 10,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                },
+                {
+                    "id": 5738,
+                    "name": "Reverse Magic",
+                    "spell_id": 205604,
+                    "spell_name": "Reverse Magic",
+                    "description": "Removes all harmful magical effects from yourself and all nearby allies within 10 yards, and sends them back to their original caster if possible.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 1480,
+                    "playable_spec_name": "Devourer"
+                }
+            ]
+        }
+    }
+}

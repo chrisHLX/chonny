@@ -1,0 +1,349 @@
+# Paladin — Herald of the Sun Hero Talents
+# Extracted verbatim from paladin.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Eternal Flame (id=156322) [Spell Family (10)] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=2, col=2, max_rank=1, req_points=1, replace="Word of Glory" (id=85673)]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : Magic
+Resource         : 3 Holy Power (9) (id=307068)
+Resource         : 10% Base Mana (0) (id=307069) w/ Retribution Paladin (id=137027)
+Resource         : 0.6% Base Mana (0) (id=307070) w/ Holy Paladin (id=137029)
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 16 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 741: Healing Spells
+Affecting Spells : Avenging Wrath (31884 effects: #1, #2), Sanctuary (105805 effect#5), Retribution Paladin (137027 effects: #8, #9), Holy Paladin (137029 effects: #1, #2, #10, #11), Beacon of Faith (156910 effect#3), Consecration (188370 effect#2), Divine Purpose (223819 effects: #1, #2, #5, #6), Sacred Dawn (243174 effect#1), Blessing of Dawn (337747 effects: #1, #2), Sentinel (389539 effects: #1, #2, #3), Luminous Force (394550 effect#1), Judge, Jury and Executioner (406157 effect#1), Divine Purpose (408458 effects: #1, #2), Retribution Paladin (412314 effect#9), Shining Righteousness (414445 effect#1), Initial Paladin (417383 effects: #3, #4), Holy Paladin (428076 effects: #1, #2, #15, #16), Gleaming Rays (431480 effects: #1, #2), Gleaming Rays (431481 effects: #1, #2), Avenging Wrath (454351 effects: #1, #2), Pure Light (454653 effect#1), Heightened Wrath (456759 effects: #1, #2), All in! (1216837 effect#1), Solar Wrath (1236972 effects: #1, #2), Seraphic Barrier (1241714 effect#2), Protection Paladin (1256936 effects: #3, #4), Retribution Paladin (1258011 effect#23), Rising Sunlight (1277651 effects: #1, #3), Paladin - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283662 effects: #1, #2), Paladin - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283663 effects: #1, #2)
+Family Flags     : 41, 46, 89, 115
+Attributes       : Not Shapeshifted (16), Include In Advanced Combat Log (72), Allow While Not Shapeshifted (caster form) (83), DoT Stacking Rule (103), Aura Never Bounces (148), Spell Haste Affects Periodic (173), Vehicle Immunity Category (218), Periodic Can Crit (265), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Non-secret Aura (506)
+Effects          :
+#1 (id=217570)   : Apply Aura (6) | Periodic Heal (8): every 2 seconds
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.1368 | Target: Targeted Ally (21)
+#2 (id=1119023)  : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 3.78 | Target: Targeted Ally (21)
+#3 (id=1169880)  : Dummy (3)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.6
+                   Modified By: Retribution Paladin (1258011 effect#23)
+Description      : Heals an ally for $s2 and an additional $o1 over $d.
+
+Name             : Dawnlight (id=431377) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 6787: Retribution Paladin (137027 effect#26)
+Internal Cooldown: 0.25 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119122)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Modified By: Retribution Paladin (137027 effect#26)
+#2 (id=1120205)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8000 | Scaled Value: 8000 | Target: Self (1)
+#3 (id=1120215)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#4 (id=1132852)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Casting $?c1[Holy Prism or Divine Toll]?c3[Wake of Ashes][] causes your next $s1 Holy Power spending abilities to apply Dawnlight on your target, dealing $431380o1 Radiant damage or $431381o1 healing over $431380d.
+
+Name             : Luminosity (id=431402) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119155)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Holy Shock (20473), Holy Shock (25912), Holy Shock (25914), Light of Dawn (85222)
+                   Family Flags: 21, 48, 82
+#2 (id=1119161)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Hammer of Wrath (24275), Divine Storm (53385), Hammer of Wrath (1241413), Hammer of Wrath (1279408)
+                   Family Flags: 39, 49
+Description      : $?c1[Critical Strike chance of Holy Shock and Light of Dawn increased by $s1%.]?c3[Critical Strike chance of Hammer of Wrath and Divine Storm increased by $s2%.][]
+
+Name             : Solar Grace (id=431404) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 6331: Retribution Paladin (137027 effect#21)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119163)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Modified By: Retribution Paladin (137027 effect#21)
+Description      : Haste is increased by $s1%.
+
+Name             : Will of the Dawn (id=431406) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Helpful Taken, Generic Hostile Spell Taken, Magic Heal Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119166)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
+#2 (id=1119264)  : Apply Aura (6) | Trigger Spell Based on Health% (468): Will of the Dawn
+                   Base Value: 80 | Scaled Value: 80 | Misc Value: 1 | Trigger Spell: 431467 | Target: Self (1)
+#3 (id=1119757)  : Apply Aura (6) | Proc Trigger Spell (42): Will of the Dawn
+                   Base Value: 35 | Scaled Value: 35 | Trigger Spell: 431752 | Target: Self (1)
+#4 (id=1161231)  : Apply Aura (6) | Proc Trigger Spell (42): Will of the Dawn
+                   Base Value: 35 | Scaled Value: 35 | Trigger Spell: 456779 | Target: Self (1)
+Description      : Movement speed increased by $431462s1% while above $s1% health.
+
+Name             : Lingering Radiance (id=431407) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119168)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6000 | Scaled Value: 6000 | Target: Self (1)
+Description      : Dawnlight leaves an Eternal Flame for ${$s1/1000} sec on allies or a Greater Judgment on enemies when it expires or is extended.
+
+Name             : Sun Sear (id=431413) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1119174)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $?c1[Holy Shock and Light of Dawn critical strikes cause the target to be healed for an additional $431415o1 over $431415d.]?c3[Hammer of Wrath and Divine Storm critical strikes cause the target to burn for an additional $431414o1 Radiant damage over $431414d.][]
+
+Name             : Illumine (id=431423) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119195)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Dawnlight reduces the movement speed of enemies by $431380s3% and increases the movement speed of allies by $431381s3%.
+
+Name             : Sun's Avatar (id=431425) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3865
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119200)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Dawnlight (431380), Dawnlight (431381)
+                   Family Flags: 1
+#2 (id=1119201)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1119204)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#4 (id=1119205)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#5 (id=1119683)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#6 (id=1120153)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#7 (id=1167611)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#8 (id=1242715)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#9 (id=1296876)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : You link to your Dawnlights within $s8 yds, causing $431911s1 Radiant damage to enemies or $431939s1 healing to allies that pass through the beams, reduced beyond $?c3[$s9][$s6] targets.
+
+Name             : Second Sunrise (id=431474) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 4716: Retribution Paladin (1258011 effect#20), Retribution Paladin (1258011 effect#21), Holy Paladin (1258016 effect#28), Holy Paladin (1258016 effect#29)
+Internal Cooldown: 1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119279)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Retribution Paladin (1258011 effect#20), Holy Paladin (1258016 effect#29)
+#2 (id=1119280)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Retribution Paladin (1258011 effect#21), Holy Paladin (1258016 effect#28)
+Description      : $?c1[Light of Dawn and Holy Shock have a $s1% chance to cast again at $s2% effectiveness.]?c3[Divine Storm and Hammer of Wrath have a $s1% chance to cast again at $s2% effectiveness.][]
+
+Name             : Gleaming Rays (id=431480) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119289)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Denounce (2812), Divine Storm (53385), Shield of the Righteous (53600), Light of Dawn (85222), Word of Glory (85673), Shield of the Righteous (132403), Eternal Flame (156322), Divine Storm (224239), Templar's Verdict (224266), Final Verdict (336872), Final Verdict (383328), Afterimage (391309), Shield of the Righteous (415091), Divine Storm (423593), Eternal Flame (461432)
+                   Family Flags: 44, 52, 78, 82, 88, 89, 91, 107
+#2 (id=1289968)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Eternal Flame (156322), Eternal Flame (461432)
+                   Family Flags: 89
+Description      : Your Holy Power spenders deal $s1% additional damage and healing.
+
+Name             : Morning Star (id=431482) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3087: Morning Star (431568 effect#1)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119291)  : Apply Aura (6) | Periodic Dummy (226): every 5 seconds
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Every ${$t1}.1 sec, your next Dawnlight's damage or healing is increased by $431539s1%, stacking up to $431539u times.
+
+Name             : Aurora (id=439760) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 2 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1133238)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1133239)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : After you cast $?c1[Holy Prism or Divine Toll]?c3[Wake of Ashes][], gain Divine Purpose.
+
+Name             : Blessing of An'she (id=445200) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Real PPM         : 2 (Haste multiplier)
+Proc Flags       : Periodic, Helpful Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1142004)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Holy Shock (20473), Holy Shock (25912), Holy Shock (25914)
+                   Family Flags: 21, 48
+Description      : $?c1[The healing and damage of Holy Shock is increased by $s1%.]?c3[Your damage and healing over time effects have a chance to increase the damage of your next Judgment by $445206s1%.][]
+
+Name             : Walk Into Light (id=1263782) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1274673)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1274955)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1297607)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : $?c3[You have a $s1% chance to gain Blessing of An'she and generate $s2 Holy Power after casting Avenging Wrath.
+
+Name             : Endless Gleam (id=1263787) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Magic Hostile Spell, Helpful Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1274682)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+#2 (id=1274683)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 300 | Scaled Value: 300 | Target: Self (1)
+#3 (id=1296898)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+Description      : $?c1[Dawnlight's duration is increased by ${$s1/1000}.1 sec when it heals an ally with full health.][Dawnlight's duration is increased by ${$s2/1000}.1 sec whenever struck by Divine Storm or Templar's Verdict.
+
+Name             : Born in Sunlight (id=1263920) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Holyfire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 1 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1274892)  : Apply Aura (6) | Proc Trigger Spell (42): Born in Sunlight
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1264050 | Target: Self (1)
+Description      : Dawnlight's critical strike chance is increased by $1264050s1% during Avenging Wrath.

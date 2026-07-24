@@ -1,0 +1,961 @@
+# Warlock — Destruction Spec Talents
+# Extracted verbatim from warlock.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 48 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Summon Infernal (desc=Guardian) (id=1122) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Fire
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=118)
+Range            : 30 yards
+GCD              : 1.5 seconds
+Travel Time      : 1 seconds
+Duration         : 0.25 seconds
+Cooldown         : 120 seconds
+Category         : 731 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 690: Major Cooldowns
+Category Cooldown: 120 seconds
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Crashing Chaos (277705 effect#2), Inferno (1280483 effect#1)
+Family Flags     : 50, 105
+Attributes       : Not Shapeshifted (16), No AutoCast (AI) (49), No Aura Icon (60), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Missile Speed is Delay (in sec) (292), Spellcast Override In Spellbook (310), No Summon Log (326), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=402)      : Summon Guardian (28)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 47319 | Misc Value 2: 1881 | Target: at Area (87)
+#2 (id=403)      : Trigger Missiles (32): Infernal Awakening
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 22703 | Radius: 10 yards | Target: at Area (87)
+#3 (id=268271)   : Trigger Missile Spell w/ Value (148): Summon Infernal
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 111685 | Target: at Area (87)
+Description      : Summons an Infernal from the Twisting Nether, impacting for $22703s1 Fire damage and stunning all enemies in the area for $22703d.
+
+Name             : Rain of Fire (id=5740) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=2, col=5, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Fire
+Spell Type       : Magic
+Resource         : 3 Soul Shard (7) (id=247)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Ritual of Ruin (364349 effects: #4, #5), Ritual of Ruin (387157 effect#5), Crashing Chaos (387356 effect#1), Destructive Rapidity (1244928 effect#1), Alythess's Ire (1244947 effect#1)
+Family Flags     : 124
+Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), No Threat (42), No Aura Icon (60), No Initial Threat (86), Extra Initial Period (169), Spell Haste Affects Periodic (173), No Aura Log (202), Haste Affects Duration (273), Don't close loot window (379), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=2039)     : Apply Aura in Area (27) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Radius: 8 yards | Target: at Area (87) -> at Dynamic Enemy in Area (28)
+#2 (id=2040)     : Create Area Trigger (353)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 5420 | Target: at Area (87)
+#3 (id=291291)   : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Calls down a rain of hellfire the target location, dealing ${$42223m1*8} Fire damage over $d to enemies in the area.
+
+Name             : Soul Fire (id=6353) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=9, col=1, max_rank=1, req_points=20, select_idx=200]
+Class            : Warlock
+School           : Fire
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=191498)
+Range            : 40 yards
+Cast Time        : 3 seconds
+GCD              : 1.5 seconds
+Velocity         : 24 yards/sec
+Travel Delay     : 0.1 seconds
+Cooldown         : 45 seconds
+Category         : 631 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Backdraft (117828 effects: #1, #2, #4), Affliction Warlock (137043 effects: #1, #2), Demonology Warlock (137044 effects: #1, #2), Destruction Warlock (137046 effects: #1, #2), Odr, Shawl of the Ymirjar (212173 effect#1), Norgannon's Foresight (236431 effect#1), Soul Fire (281440 effect#1), Reap and Sow (281494 effects: #1, #2), Wakener's Loyalty (281495 effects: #1, #2), Lessons of Space-Time (281496 effects: #1, #2), Relic of Demonic Synergy (337060 effects: #2, #3), Wrath of Consumption (337130 effect#1), Odr, Shawl of the Ymirjar (337164 effect#1), Ruin (387103 effect#1), Warlock Destruction Class Set 4pc (393704 effect#1), Umbrafire Embers (409652 effect#1), Infirmity (409765 effect#1), Flames of Xoroth (429657 effects: #1, #2), Xalan's Ferocity (440044 effects: #1, #2, #4), Summoner's Embrace (453105 effects: #1, #3), Demonic Brutality (453908 effect#1), Devastation (454735 effect#1), Emberstorm (454744 effect#1), Echo of the Azj'Aqir (455674 effect#1), Affliction Warlock (1256906 effects: #1, #2), Demonology Warlock (1256907 effects: #1, #2), Destruction Warlock (1256908 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 2pc (1283640 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 4pc (1283641 effects: #1, #2)
+Family Flags     : 49, 65
+Attributes       : Not Shapeshifted (16), Discount Power On Miss (59), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=2210)     : School Damage (2): fire
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 26.6717 | Target: Targeted Enemy (6)
+#2 (id=740054)   : Dummy (3)
+                   Base Value: 2000 | Scaled Value: 2000
+#3 (id=831295)   : Dummy (3)
+                   Base Value: 10000 | Scaled Value: 10000
+Description      : Burns the enemy's soul, dealing $s1 Fire damage and applying $?a445465[Wither][Immolate].
+
+Name             : Shadowburn (id=17877) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : Magic
+Resource         : 1 Soul Shard (7) (id=741)
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 5 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Affliction Warlock (137043 effects: #1, #2), Demonology Warlock (137044 effects: #1, #2), Destruction Warlock (137046 effects: #1, #2), Immolate (157736 effect#2), Flamelicked (185229 effect#1), Odr, Shawl of the Ymirjar (212173 effect#1), Norgannon's Foresight (236431 effect#1), Soul Fire (281440 effect#1), Reap and Sow (281494 effects: #1, #2), Wakener's Loyalty (281495 effects: #1, #2), Lessons of Space-Time (281496 effects: #1, #2), Relic of Demonic Synergy (337060 effects: #2, #3), Wrath of Consumption (337130 effect#1), Odr, Shawl of the Ymirjar (337164 effect#1), Ruin (387103 effect#1), Conflagration of Chaos (387109 effect#2), Crashing Chaos (387356 effect#1), Madness of the Azj'Aqir (387414 effect#1), Warlock Destruction Class Set 4pc (393704 effect#1), Umbrafire Embers (409652 effect#1), Infirmity (409765 effect#1), Demonic Art: Overlord (428524 effect#1), Flames of Xoroth (429657 effects: #1, #2), Demonic Art: Mother of Chaos (432794 effect#1), Demonic Art: Pit Lord (432795 effect#1), Xalan's Cruelty (440040 effects: #1, #3, #4), Xalan's Ferocity (440044 effects: #1, #2, #4), Wither (445474 effect#2), Summoner's Embrace (453105 effects: #1, #3), Demonic Brutality (453908 effect#1), Devastation (454735 effect#1), Echo of the Azj'Aqir (455674 effect#1), Fiendish Cruelty (1245664 effects: #1, #2), Affliction Warlock (1256906 effects: #1, #2), Demonology Warlock (1256907 effects: #1, #2), Destruction Warlock (1256908 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 2pc (1283640 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 4pc (1283641 effects: #1, #2)
+Family Flags     : 7, 49, 118
+Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=9474)     : School Damage (2): shadowflame
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 4.968 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+#2 (id=9475)     : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Targeted Enemy (6)
+#3 (id=831656)   : Dummy (3)
+                   Base Value: 50 | Scaled Value: 50
+#4 (id=1162782)  : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20 | Target: Targeted Enemy (6)
+Description      : Blasts a target for $s1 Shadowflame damage. Only usable on enemies that have less than $s4% health.
+
+Name             : Conflagrate (id=17962) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Fire
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=7367)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Charges          : 2 (12.96 seconds cooldown)
+Category         : 672 (Type 0x1): Warlock (137042 effect#2), Improved Conflagrate (231793 effect#1), Cinders of the Azj'Aqir (337166 effect#1), Cinders of the Azj'Aqir (337166 effect#2), Explosive Potential (388827 effect#1)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Affliction Warlock (137043 effects: #1, #2), Demonology Warlock (137044 effects: #1, #2), Destruction Warlock (137046 effects: #1, #2), Flamelicked (185229 effect#1), Odr, Shawl of the Ymirjar (212173 effect#1), Norgannon's Foresight (236431 effect#1), Flashover (267115 effect#3), Soul Fire (281440 effect#1), Reap and Sow (281494 effects: #1, #2), Wakener's Loyalty (281495 effects: #1, #2), Lessons of Space-Time (281496 effects: #1, #2), Relic of Demonic Synergy (337060 effects: #2, #3), Wrath of Consumption (337130 effect#1), Odr, Shawl of the Ymirjar (337164 effect#1), Ruin (387103 effect#1), Conflagration of Chaos (387109 effect#1), Warlock Destruction Class Set 4pc (393704 effect#1), Umbrafire Embers (409652 effect#1), Infirmity (409765 effect#1), Flames of Xoroth (429657 effects: #1, #2), Xalan's Ferocity (440044 effects: #1, #2, #4), Summoner's Embrace (453105 effects: #1, #3), Warlock Destruction 11.0 Class Set 2pc (453647 effect#2), Demonic Brutality (453908 effect#1), Devastation (454735 effect#1), Emberstorm (454744 effect#1), Echo of the Azj'Aqir (455674 effect#1), Roaring Blaze (1244310 effect#1), Affliction Warlock (1256906 effects: #1, #2), Demonology Warlock (1256907 effects: #1, #2), Destruction Warlock (1256908 effects: #1, #2), Warlock Destruction 12.0 Class Set 4pc (1264874 effect#2), Warlock - Midnight PrePatch - 11.2 Class Set 2pc (1283640 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 4pc (1283641 effects: #1, #2)
+Family Flags     : 49, 55, 118
+Attributes       : Not Shapeshifted (16), No AutoCast (AI) (49), Show Mechanic as Combat Text (213), Missile Speed is Delay (in sec) (292), Don't Cancel When All Effects are Disabled (353), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=9553)     : School Damage (2): fire
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.59309 | PvP Coefficient: 0.704 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+Description      : Triggers an explosion on the target, dealing $s1 Fire damage.$?s196406[
+
+Name             : Havoc (id=80240) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=300]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=3377)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 15 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Stacks           : 1 maximum
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell Taken
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Gloom of Nathreza (429899 effect#2), Improved Havoc (1244460 effects: #1, #2)
+Family Flags     : 20
+Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), No Threat (42), Always Hit (114), Aura Never Bounces (148), Limit N (165), Taps immediately (215), Ignore Caster Damage Modifiers (221), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Aura Interrupt   : Duel End (44)
+Effects          :
+#1 (id=68521)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Targeted Enemy (6)
+                   Modified By: Gloom of Nathreza (429899 effect#2), Improved Havoc (1244460 effect#2)
+Description      : Marks a target with Havoc for $d, causing your single target spells to also strike the Havoc victim for $s1% of the damage dealt.
+Tooltip          : Spells cast by the Warlock also hit this target for $s1% of the damage dealt.
+
+Name             : Grimoire of Sacrifice (id=108503) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=7, col=6, max_rank=1, req_points=8, select_idx=100]
+                 : Affliction [tree=spec, row=6, col=6, max_rank=1, req_points=8, select_idx=200]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Spell Level      : 1
+Range            : 50000 yards
+GCD              : 1.5 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Not Shapeshifted (16), No Immunities (29), No Threat (42), Require All Targets (58), No School Immunities (90), Can't Crit (93), Suppress Caster Procs (112), Do Not Display Range (126), No Partial Immunity (139), Ignore Healing Modifiers (219), Can Cause Interrupt (235), Aura Points On Client (268), Not In Spellbook Until Learned (269), Can Attack ImmunePC (287), Do Not Log Full Overheal (323), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Always Allow Negative Healing Percent Modifiers (442)
+Effects          :
+#1 (id=119640)   : Instant Kill (1)
+                   Base Value: 0 | Scaled Value: 0 | Target: Active Pet (5)
+#2 (id=124409)   : Trigger Spell (64): Grimoire of Sacrifice
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 196099 | Target: Self (1)
+Description      : Sacrifices your demon pet for power, gaining its command demon ability, and causing your spells to sometimes also deal $196100s1 additional Shadow damage.
+
+Name             : Chaos Bolt (id=116858) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Chromatic
+Spell Type       : Magic
+Resource         : 2 Soul Shard (7) (id=6087)
+Spell Level      : 10
+Range            : 40 yards
+Cast Time        : 3 seconds
+GCD              : 1.5 seconds
+Velocity         : 20 yards/sec
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Backdraft (117828 effects: #1, #2, #3), Affliction Warlock (137043 effects: #1, #2), Demonology Warlock (137044 effects: #1, #2), Destruction Warlock (137046 effects: #1, #2), Immolate (157736 effect#2), Flamelicked (185229 effect#1), Odr, Shawl of the Ymirjar (212173 effect#1), Norgannon's Foresight (236431 effect#1), Crashing Chaos (277706 effect#1), Chaotic Inferno (278748 effect#2), Soul Fire (281440 effects: #1, #2), Reap and Sow (281494 effects: #1, #2), Wakener's Loyalty (281495 effects: #1, #2), Lessons of Space-Time (281496 effects: #1, #2), Relic of Demonic Synergy (337060 effects: #2, #3), Wrath of Consumption (337130 effect#1), Odr, Shawl of the Ymirjar (337164 effect#1), Madness of the Azj'Aqir (337170 effects: #1, #2), Ritual of Ruin (364349 effects: #1, #2, #3), Ruin (387103 effect#1), Ritual of Ruin (387157 effects: #2, #3), Crashing Chaos (387356 effect#1), Madness of the Azj'Aqir (387409 effects: #1, #2), Warlock Destruction Class Set 4pc (393704 effect#1), Umbrafire Embers (409652 effect#1), Infirmity (409765 effect#1), Crashing Chaos (417282 effect#1), Demonic Art: Overlord (428524 effects: #1, #2), Flames of Xoroth (429657 effects: #1, #2), Demonic Art: Mother of Chaos (432794 effects: #1, #2), Demonic Art: Pit Lord (432795 effects: #1, #2), Ruination (433885 effect#1), Xalan's Cruelty (440040 effects: #1, #3, #4), Xalan's Ferocity (440044 effects: #1, #2, #4), Wither (445474 effect#2), Summoner's Embrace (453105 effects: #1, #3), Demonic Brutality (453908 effect#1), Devastation (454735 effect#1), Emberstorm (454744 effect#1), Improved Chaos Bolt (456951 effects: #1, #2), Chaotic Inferno (1244788 effect#1), Affliction Warlock (1256906 effects: #1, #2), Demonology Warlock (1256907 effects: #1, #2), Destruction Warlock (1256908 effects: #1, #2), Warlock Destruction 12.0 Class Set 2pc (1264873 effect#1), Through the Felvine (1266799 effect#4), Warlock - Midnight PrePatch - 11.2 Class Set 2pc (1283640 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 4pc (1283641 effects: #1, #2)
+Family Flags     : 45, 49, 118
+Attributes       : Not Shapeshifted (16), Discount Power On Miss (59), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=132079)   : School Damage (2): chromatic
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 4.08618 | PvP Coefficient: 1.98347 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+#2 (id=177448)   : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20 | Target: Targeted Enemy (6)
+#3 (id=283496)   : Energize Power% (137)
+                   Base Value: 0 | Scaled Value: 0 | Resource: mana | Target: Self (1)
+Description      : Unleashes a devastating blast of chaos, dealing a critical strike for ${2*$s1} Chaos damage. Damage is further increased by your critical strike chance.
+Variables        : $masteryMod=${$cond($gt($pl,79),1,0)}
+
+Name             : Cataclysm (id=152108) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=192761)
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Affliction Warlock (137043 effects: #1, #2), Demonology Warlock (137044 effects: #1, #2), Destruction Warlock (137046 effects: #1, #2), Flamelicked (185229 effect#1), Norgannon's Foresight (236431 effect#1), Soul Fire (281440 effect#1), Reap and Sow (281494 effects: #1, #2), Wakener's Loyalty (281495 effects: #1, #2), Lessons of Space-Time (281496 effects: #1, #2), Relic of Demonic Synergy (337060 effects: #2, #3), Wrath of Consumption (337130 effect#1), Ruin (387103 effect#1), Warlock Destruction Class Set 4pc (393704 effect#1), Umbrafire Embers (409652 effect#1), Infirmity (409765 effect#1), Xalan's Cruelty (440040 effect#1), Xalan's Ferocity (440044 effects: #1, #2, #4), Summoner's Embrace (453105 effects: #1, #3), Demonic Brutality (453908 effect#1), Devastation (454735 effect#1), Emberstorm (454744 effect#1), Echo of the Azj'Aqir (455674 effect#1), Affliction Warlock (1256906 effects: #1, #2), Demonology Warlock (1256907 effects: #1, #2), Destruction Warlock (1256908 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 2pc (1283640 effects: #1, #2), Warlock - Midnight PrePatch - 11.2 Class Set 4pc (1283641 effects: #1, #2)
+Family Flags     : 49, 72
+Attributes       : Not Shapeshifted (16), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=210584)   : School Damage (2): shadowflame
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.645 | Radius: 8 yards | Target: at Enemy in Area (16)
+Description      : Calls forth a cataclysm at the target location, dealing $s1 Shadowflame damage to all enemies within $A1 yards and afflicting them with $?a445465[Wither][Immolate].
+
+Name             : Backdraft (id=196406) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=3, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=288272)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 1 | Target: Self (1)
+#2 (id=753985)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 1 | Target: Self (1)
+Description      : Conflagrate reduces the cast time of your next Incinerate, Chaos Bolt, or Soul Fire by $117828s1%. Maximum $?s267115[$s2][$s1] charges.
+
+Name             : Fire and Brimstone (id=196408) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=288275)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 37 | Target: Self (1)
+#2 (id=708688)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Target: Self (1)
+#3 (id=871511)   : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 3 | Misc Value 2: 966 (Label) | Target: Self (1)
+                   Affected Spells (Label): Decimating Bolt (325299)
+#4 (id=871512)   : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 12 | Misc Value 2: 966 (Label) | Target: Self (1)
+                   Affected Spells (Label): Decimating Bolt (325299)
+#5 (id=1022928)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 3 | Misc Value 2: 1886 (Label) | Target: Self (1)
+#6 (id=1022929)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 12 | Misc Value 2: 1886 (Label) | Target: Self (1)
+Description      : Incinerate now also hits all enemies near your target for $s1% damage.
+
+Name             : Channel Demonfire (id=196447) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=9, col=7, max_rank=1, req_points=20, select_idx=100]
+Class            : Warlock
+School           : Fire
+Spell Type       : Magic
+Resource         : 1.5% Base Mana (0) (id=10566)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 3 seconds
+Cooldown         : 25 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 52
+                 : 292
+Affecting Spells : Improved Rain of Fire/Hellfire (24430 effect#1), Warlock (137042 effect#1), Norgannon's Foresight (236431 effect#1), Raging Demonfire (387166 effects: #1, #3)
+Family Flags     : 5
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), No Aura Icon (60), Name in Channel Bar (61), Spell Haste Affects Periodic (173), Haste Affects Duration (273), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13)
+Effects          :
+#1 (id=288342)   : Apply Aura (6) | Periodic Dummy (226): every 0.2 seconds
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Raging Demonfire (387166 effect#1)
+Description      : Launches $s1 bolts of felfire over $d at random targets afflicted by your $?a445465[Wither][Immolate] within $196449A1 yds. Each bolt deals $196448s1 Fire damage to the target and $196448s2 Fire damage to nearby enemies.
+
+Name             : Reverse Entropy (id=205148) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=7, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Real PPM         : 2.5
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=302855)   : Apply Aura (6) | Proc Trigger Spell (42): Reverse Entropy
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 266030 | Target: Self (1)
+Description      : Your spells have a chance to grant you $266030s1% Haste for $266030d.
+
+Name             : Improved Conflagrate (id=231793) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=349696)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 672 (Category) | Target: Self (1)
+                   Affected Spells (Category): Conflagrate (17962)
+Description      : Conflagrate gains an additional charge.
+
+Name             : Rain of Chaos (id=266086) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=710845)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : While your initial Infernal is active, every Soul Shard you spend has a $s1% chance to summon an additional Infernal that lasts $335236d.
+
+Name             : Internal Combustion (id=266134) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=7, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Combusting Engine (339986 effect#1)
+Family Flags     : 32
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=710940)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 1 | Target: Self (1)
+Description      : Chaos Bolt consumes up to $s1 sec of $?a445465[Wither's][Immolate's] damage over time effect on your target, instantly dealing that much damage.
+
+Name             : Ruin (id=387103) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=8, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1021674)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Immolate (348), Shadow Bolt (686), Agony (980), Soul Fire (6353), Shadowburn (17877), Conflagrate (17962), Immolation (20153), Infernal Awakening (22703), Seed of Corruption (27243), Seed of Corruption (27285), Incinerate (29722), Rain of Fire (42223), Haunt (48181), Siphon Life (63106), Hand of Gul'dan (86040), Chaos Bolt (116858), Corruption (146739), Cataclysm (152108), Immolate (157736), Grimoire of Sacrifice (196100), Implosion (196278), Channel Demonfire (196448), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Demonbolt (264178), Demonfire Blast (265279), Umbral Blaze (273526), Pandemic Invocation (289367), Scouring Tithe (312321), Unstable Affliction (316099), Impending Catastrophe (322167), Impending Catastrophe (322170), Malefic Rapture (324540), Decimating Bolt (325289), Soul Rot (325640), Decimating Bolt (327059), Decimating Bolt (327070), Decimating Bolt (327072), Soul Rot (331623), Deliberate Corruption (367831), Implosion (370371), Vile Taint (386931), Soul Rot (386997), Chaos Barrage (387985), Shadow Bolt (394238), Chaos Bolt (394246), Channel Demonfire (409890), Searing Bolt (423886), Wicked Cleave (432120), Chaos Salvo (432596), Felseeker (434404), Infernal Bolt (434506), Chaos Bolt (434589), Ruination (434636), Diabolic Bolt (438823), Felseeker (438973), Wither (445468), Wither (445474), Blackened Soul (445736), Malevolence (446285), Demonic Soul (449801), Wicked Reaping (449826), Soul Anathema (450538), Shared Fate (450593), Shadowbolt Volley (453176), Doom (460553), Doom (460555), Channel Demonfire (1217787), Unstable Affliction (1219045), Soul Swipe (1239714), Demonic Soul (1239715), Lake of Fire (1244890), Lake of Fire (1244918), Dark Harvest (1257065), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Unstable Affliction (1261176), Infernal Grudge (1264017), Echo of Sargeras (1265884), Soul Swipe (1269049), Manifested Avarice (1269050), Demonic Touch (1269221), Eye Explosion (1269800), Diabolic Gaze (1269886), Echo of Sargeras (1277879)
+                   Family Flags: 49
+Description      : Increases the critical strike damage of your Destruction spells by $s1%.
+
+Name             : Conflagration of Chaos (id=387108) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Aura Icon (60), No Aura Log (202), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1021683)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Conflagrate and Shadowburn have a $s1% chance to guarantee your next cast of either ability to critically strike, and increase its damage by your critical strike chance.
+
+Name             : Raging Demonfire (id=387166) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1021781)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Channel Demonfire (196447), Demonfire Flurry (1217731)
+                   Family Flags: 5
+#2 (id=1021782)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+#3 (id=1034584)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -12 | Scaled Value: -12 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Channel Demonfire (196447), Demonfire Flurry (1217731)
+                   Family Flags: 5
+Description      : Channel Demonfire fires an additional $s1 bolts. Each bolt increases the remaining duration of $?a445465[Wither][Immolate] on all targets hit by ${$s2/1000}.1 sec.
+
+Name             : Diabolic Embers (id=387173) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1021791)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Incinerate now generates $s1% additional Soul Shard Fragments.
+
+Name             : Ashen Remains (id=387252) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=5, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 1067
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1021930)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Immolate (157736), Immolate (193540), Immolate (228312), Wither (445474)
+                   Family Flags: 4
+Description      : Chaos Bolt, Shadowburn, and Incinerate deal $s1% increased damage to targets afflicted by $?a445465[Wither][Immolate].
+
+Name             : Flashpoint (id=387259) [Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1021938)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 0.5 | Misc Value: 3 | Misc Value 2: 1847 (Label) | Target: Self (1)
+                   Affected Spells (Label): Flashpoint (387263)
+#2 (id=1021945)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
+Description      : When your $?a445465[Wither][Immolate] deals periodic damage to a target above $s2% health, gain $387263s1% Haste for $387263d.
+
+Name             : Chaos Incarnate (id=387275) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1021959)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 70 | Scaled Value: 70 | Target: Self (1)
+Description      : Chaos Bolt, Rain of Fire, and Shadowburn always gain at least $s1% of the maximum benefit from your Mastery: Chaotic Energies.
+
+Name             : Backlash (id=387384) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=5, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 1853: Backlash (387384 effect#2)
+Internal Cooldown: 6 seconds
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1022135)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1022136)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Proc Chance (18)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 18 | Misc Value 2: 1853 (Label) | Target: Self (1)
+                   Affected Spells (Label): Backlash (387384)
+#3 (id=1022139)  : Apply Aura (6) | Proc Trigger Spell (42): Backlash
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 387385 | Target: Self (1)
+Description      : Increases your critical strike chance by $s1%.
+
+Name             : Mayhem (id=387506) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 2335: Bane of Havoc (200546 effect#3)
+Internal Cooldown: 5.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1022328)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#2 (id=1022329)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+#3 (id=1033388)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5000 | Scaled Value: 5000 | Target: Self (1)
+Description      : Your single target spells have a $s1% chance to apply $?a200546[Bane of Havoc below][Havoc to] a nearby enemy for ${$s3/1000}.1 sec.
+
+Name             : Explosive Potential (id=388827) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1024755)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -2000 | Scaled Value: -2000 | Misc Value: 672 (Category) | Target: Self (1)
+                   Affected Spells (Category): Conflagrate (17962)
+Description      : Reduces the cooldown of Conflagrate by ${$s1/-1000} sec.
+
+Name             : Scalding Flames (id=388832) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1024762)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Immolate (348), Wither (445468)
+                   Family Flags: 2
+#2 (id=1024763)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Immolate (157736), Immolate (193540), Immolate (228312), Wither (445474)
+                   Family Flags: 4
+#3 (id=1162878)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Immolate (157736), Immolate (193540), Immolate (228312), Wither (445474)
+                   Family Flags: 4
+Description      : Increases the damage of $?a445465[Wither][Immolate] by $s1% and its duration by ${$s3/1000} sec.
+
+Name             : Crashing Chaos (id=417234) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1088680)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1088806)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#3 (id=1088816)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Summon Infernal increases the damage of your next $s3 casts of Chaos Bolt by $s1% or your next $s3 casts of Rain of Fire by $s2%.
+
+Name             : Summoner's Embrace (id=453105) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=7, col=6, max_rank=1, req_points=8, select_idx=0]
+                 : Affliction [tree=spec, row=6, col=6, max_rank=1, req_points=8, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1154697)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Immolate (348), Shadow Bolt (686), Agony (980), Soul Fire (6353), Shadowburn (17877), Conflagrate (17962), Immolation (20153), Infernal Awakening (22703), Seed of Corruption (27243), Seed of Corruption (27285), Incinerate (29722), Rain of Fire (42223), Haunt (48181), Siphon Life (63106), Hand of Gul'dan (86040), Chaos Bolt (116858), Corruption (146739), Cataclysm (152108), Immolate (157736), Grimoire of Sacrifice (196100), Implosion (196278), Channel Demonfire (196448), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Demonbolt (264178), Demonfire Blast (265279), Umbral Blaze (273526), Pandemic Invocation (289367), Scouring Tithe (312321), Unstable Affliction (316099), Impending Catastrophe (322167), Impending Catastrophe (322170), Malefic Rapture (324540), Decimating Bolt (325289), Soul Rot (325640), Decimating Bolt (327059), Decimating Bolt (327070), Decimating Bolt (327072), Soul Rot (331623), Deliberate Corruption (367831), Implosion (370371), Vile Taint (386931), Soul Rot (386997), Chaos Barrage (387985), Shadow Bolt (394238), Chaos Bolt (394246), Channel Demonfire (409890), Searing Bolt (423886), Wicked Cleave (432120), Chaos Salvo (432596), Felseeker (434404), Infernal Bolt (434506), Chaos Bolt (434589), Ruination (434636), Diabolic Bolt (438823), Felseeker (438973), Wither (445468), Wither (445474), Blackened Soul (445736), Malevolence (446285), Demonic Soul (449801), Wicked Reaping (449826), Soul Anathema (450538), Shared Fate (450593), Shadowbolt Volley (453176), Doom (460553), Doom (460555), Channel Demonfire (1217787), Unstable Affliction (1219045), Soul Swipe (1239714), Demonic Soul (1239715), Lake of Fire (1244890), Lake of Fire (1244918), Dark Harvest (1257065), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Unstable Affliction (1261176), Infernal Grudge (1264017), Echo of Sargeras (1265884), Soul Swipe (1269049), Manifested Avarice (1269050), Demonic Touch (1269221), Eye Explosion (1269800), Diabolic Gaze (1269886), Echo of Sargeras (1277879)
+                   Family Flags: 49
+#2 (id=1154698)  : Apply Aura (6) | Modify Pet Damage Done% (429)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1154699)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Immolate (348), Shadow Bolt (686), Agony (980), Soul Fire (6353), Shadowburn (17877), Conflagrate (17962), Immolation (20153), Infernal Awakening (22703), Seed of Corruption (27243), Seed of Corruption (27285), Incinerate (29722), Rain of Fire (42223), Haunt (48181), Siphon Life (63106), Hand of Gul'dan (86040), Chaos Bolt (116858), Corruption (146739), Cataclysm (152108), Immolate (157736), Grimoire of Sacrifice (196100), Implosion (196278), Channel Demonfire (196448), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Demonbolt (264178), Demonfire Blast (265279), Umbral Blaze (273526), Pandemic Invocation (289367), Scouring Tithe (312321), Unstable Affliction (316099), Impending Catastrophe (322167), Impending Catastrophe (322170), Malefic Rapture (324540), Decimating Bolt (325289), Soul Rot (325640), Decimating Bolt (327059), Decimating Bolt (327070), Decimating Bolt (327072), Soul Rot (331623), Deliberate Corruption (367831), Implosion (370371), Vile Taint (386931), Soul Rot (386997), Chaos Barrage (387985), Shadow Bolt (394238), Chaos Bolt (394246), Channel Demonfire (409890), Searing Bolt (423886), Wicked Cleave (432120), Chaos Salvo (432596), Felseeker (434404), Infernal Bolt (434506), Chaos Bolt (434589), Ruination (434636), Diabolic Bolt (438823), Felseeker (438973), Wither (445468), Wither (445474), Blackened Soul (445736), Malevolence (446285), Demonic Soul (449801), Wicked Reaping (449826), Soul Anathema (450538), Shared Fate (450593), Shadowbolt Volley (453176), Doom (460553), Doom (460555), Channel Demonfire (1217787), Unstable Affliction (1219045), Soul Swipe (1239714), Demonic Soul (1239715), Lake of Fire (1244890), Lake of Fire (1244918), Dark Harvest (1257065), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Unstable Affliction (1261176), Infernal Grudge (1264017), Echo of Sargeras (1265884), Soul Swipe (1269049), Manifested Avarice (1269050), Demonic Touch (1269221), Eye Explosion (1269800), Diabolic Gaze (1269886), Echo of Sargeras (1277879)
+                   Family Flags: 49
+Description      : Increases the damage dealt by your spells and your demon by $s1%.
+
+Name             : Devastation (id=454735) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=8, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1157587)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Immolate (348), Shadow Bolt (686), Agony (980), Soul Fire (6353), Shadowburn (17877), Conflagrate (17962), Immolation (20153), Infernal Awakening (22703), Seed of Corruption (27243), Seed of Corruption (27285), Incinerate (29722), Rain of Fire (42223), Haunt (48181), Siphon Life (63106), Hand of Gul'dan (86040), Chaos Bolt (116858), Corruption (146739), Cataclysm (152108), Immolate (157736), Grimoire of Sacrifice (196100), Implosion (196278), Channel Demonfire (196448), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Demonbolt (264178), Demonfire Blast (265279), Umbral Blaze (273526), Pandemic Invocation (289367), Scouring Tithe (312321), Unstable Affliction (316099), Impending Catastrophe (322167), Impending Catastrophe (322170), Malefic Rapture (324540), Decimating Bolt (325289), Soul Rot (325640), Decimating Bolt (327059), Decimating Bolt (327070), Decimating Bolt (327072), Soul Rot (331623), Deliberate Corruption (367831), Implosion (370371), Vile Taint (386931), Soul Rot (386997), Chaos Barrage (387985), Shadow Bolt (394238), Chaos Bolt (394246), Channel Demonfire (409890), Searing Bolt (423886), Wicked Cleave (432120), Chaos Salvo (432596), Felseeker (434404), Infernal Bolt (434506), Chaos Bolt (434589), Ruination (434636), Diabolic Bolt (438823), Felseeker (438973), Wither (445468), Wither (445474), Blackened Soul (445736), Malevolence (446285), Demonic Soul (449801), Wicked Reaping (449826), Soul Anathema (450538), Shared Fate (450593), Shadowbolt Volley (453176), Doom (460553), Doom (460555), Channel Demonfire (1217787), Unstable Affliction (1219045), Soul Swipe (1239714), Demonic Soul (1239715), Lake of Fire (1244890), Lake of Fire (1244918), Dark Harvest (1257065), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Unstable Affliction (1261176), Infernal Grudge (1264017), Echo of Sargeras (1265884), Soul Swipe (1269049), Manifested Avarice (1269050), Demonic Touch (1269221), Eye Explosion (1269800), Diabolic Gaze (1269886), Echo of Sargeras (1277879)
+                   Family Flags: 49
+Description      : Increases the critical strike chance of your Destruction spells by $s1%.
+
+Name             : Emberstorm (id=454744) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1157601)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Affected Spells: Immolate (348), Soul Fire (6353), Conflagrate (17962), Incinerate (29722), Rain of Fire (42223), Chaos Bolt (116858), Cataclysm (152108), Channel Demonfire (196448), Incinerate (244670), Channel Demonfire (409890), Infernal Bolt (434506), Wither (445468), Channel Demonfire (1217787)
+                   Family Flags: 2, 15, 38, 45, 55, 65, 72, 92
+#2 (id=1157602)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Incinerate (29722), Incinerate (244670), Infernal Bolt (434506)
+                   Family Flags: 38
+#3 (id=1157716)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Immolate (157736), Immolate (193540), Immolate (228312), Wither (445474)
+                   Family Flags: 4
+Description      : Increases the damage done by your Fire spells by $s1% and reduces the cast time of your Incinerate spell by $s2%.
+
+Name             : Improved Chaos Bolt (id=456951) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161562)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Chaos Bolt (116858)
+                   Family Flags: 45
+#2 (id=1162751)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)
+                   Base Value: -500 | Scaled Value: -500 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Chaos Bolt (116858)
+                   Family Flags: 45
+Description      : Increases the damage of Chaos Bolt by $s1% and reduces its cast time by ${$s2/-1000}.1 sec.
+
+Name             : Demonfire Infusion (id=1214442) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=9, col=7, max_rank=1, req_points=20, select_idx=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1196631)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1196659)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#3 (id=1196660)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Periodic damage from $?a445465[Wither][Immolate] has a $s1% chance to fire a Demonfire bolt at $s3% increased effectiveness.
+
+Name             : Rain of Fire (id=1214467) [Spell Family (5)] 
+Talent Entry     : Destruction [tree=spec, row=2, col=5, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Fire
+Spell Type       : Magic
+Resource         : 3 Soul Shard (7) (id=309299)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Ritual of Ruin (364349 effects: #4, #5), Ritual of Ruin (387157 effect#5), Crashing Chaos (387356 effect#1), Destructive Rapidity (1244928 effect#1), Alythess's Ire (1244947 effect#1)
+Family Flags     : 124
+Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), No Threat (42), No Aura Icon (60), No Initial Threat (86), Extra Initial Period (169), Spell Haste Affects Periodic (173), No Aura Log (202), Haste Affects Duration (273), Don't close loot window (379), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=1196681)  : Apply Aura in Area (27) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Radius: 8 yards | Target: at Area (87) -> at Dynamic Enemy in Area (28)
+#2 (id=1196682)  : Create Area Trigger (353)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 5420 | Target: At Enemy (53)
+#3 (id=1196683)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Calls down a rain of hellfire upon your target, dealing ${$42223m1*8} Fire damage over $d to enemies in the area.
+
+Name             : Practiced Chaos (id=1244284) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1244953)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Increases Mastery by $s1%.
+
+Name             : Roaring Blaze (id=1244310) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=1244997)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Conflagrate (17962)
+                   Family Flags: 55
+#2 (id=1244998)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Increases Conflagrate damage by $s1%. 
+
+Name             : Improved Havoc (id=1244460) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1245222)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Havoc (80240), Bane of Havoc (200546), Bane of Havoc (200548)
+                   Family Flags: 20
+#2 (id=1245223)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Havoc (80240), Bane of Havoc (200546), Bane of Havoc (200548)
+                   Family Flags: 20
+Description      : Increases the duration of Havoc by ${$s1/1000} sec and increases the damage Havoc victims are dealt by an additional $s2%.
+
+Name             : Chaotic Inferno (id=1244788) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245606)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Chaos Bolt (116858)
+                   Family Flags: 45
+#2 (id=1245607)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#3 (id=1245617)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1244860 | Target: Self (1)
+Description      : Increases Chaos Bolt damage by $s1% and Chaos Bolt now has a $s2% chance to make your next Incinerate instant.
+
+Name             : Lake of Fire (id=1244877) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245642)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Cataclysm now leaves behind a lake of fire that deals ${$1244890s1*($1244885d/$1244885t2)} Fire damage to enemies within it over $1244885d.
+
+Name             : Destructive Rapidity (id=1244928) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245727)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Rain of Fire (5740), Rain of Fire (1214467)
+                   Family Flags: 124
+#2 (id=1245728)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Immolation (19483), Meteor Strike (171017), Meteor Strike (171152)
+                   Family Flags: 17
+Description      : Increases how quickly Rain of Fire deals damage by $s1% and how quickly your Infernal's Immolation deals damage by $s2%.
+
+Name             : Alythess's Ire (id=1244941) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245758)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Rain of Fire has a $s1% chance to reduce the cost of your next Rain of Fire within $1244947d by $1244947s2%.
+
+Name             : Avatar of Destruction (id=1245089) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=10, col=1, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245979)  : Apply Aura (6) | Proc Trigger Spell (42): Summon Overfiend
+                   Base Value: 60 | Scaled Value: 60 | Trigger Spell: 434587 | Target: Self (1)
+Description      : Casting Soul Fire summons an Overfiend.
+
+Name             : Fiendish Cruelty (id=1245633) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1246799)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Critical strikes dealt by Chaos Bolt, Conflagrate, or Incinerate have a $s1% chance to make your next cast of Shadowburn within $1245664d cost no Soul Shards and usable on any target regardless of health.
+
+Name             : Embers of Nihilam (id=1265770) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5671
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1277715)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Casting Incinerate has a chance to evoke an echo of the Dark Titan's power.
+
+Name             : Embers of Nihilam (id=1265772) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5671
+Proc Chance      : 100%
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1277717)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 3 | Misc Value 2: 5862 (Label) | Target: Self (1)
+                   Affected Spells (Label): Vision of Nihilam (1265939)
+#2 (id=1278081)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 12 | Misc Value 2: 5862 (Label) | Target: Self (1)
+                   Affected Spells (Label): Vision of Nihilam (1265939)
+Description      : Memories of the Titans' destruction flash in your mind when you evoke the Dark Titan's power, increasing critical strike by $s2% and haste by $s1% for $1265939d.
+
+Name             : Embers of Nihilam (id=1265774) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5671
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1277720)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1278026)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1301536)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+Description      : Casting Chaos Bolt, Shadowburn, or Rain of Fire evokes an echo of the Dark Titan's power at $s1%, $s2%, or $s3% effectiveness respectively.
+
+Name             : Inferno (id=1280483) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Destruction [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1293411)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Summon Infernal (1122), Infernal Awakening (22703), Blasphemous Existence (367819)
+                   Family Flags: 50
+#2 (id=1293416)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Reduces the cooldown of Summon Infernal by ${$s1/-1000}.1 sec and increases your Mastery by $s2%.
+
+Name             : Dimensional Rift (id=1280868) [Spell Family (5), Passive] 
+Talent Entry     : Destruction [tree=spec, row=9, col=1, max_rank=1, req_points=20, select_idx=100]
+Class            : Warlock
+School           : Chaos
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1293832)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Chaos Bolt and Shadowburn have a $s1% chance to rip open a hole in space and time, opening a random portal that damages your target:

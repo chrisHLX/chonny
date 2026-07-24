@@ -1,0 +1,1409 @@
+# Paladin — Class Talents
+# Extracted verbatim from paladin.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 69 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Lay on Hands (id=633) [Spell Family (10)] 
+Talent Entry     : Generic [free=(Holy, Protection), tree=class, row=1, col=2, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : Magic
+Spell Level      : 14
+Range            : 40 yards
+Cooldown         : 600 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 177
+                 : 292
+                 : 741: Healing Spells
+                 : 930
+Affecting Spells : Sanctuary (105805 effect#5), Unbreakable Spirit (114154 effect#1), Tyr's Hand of Faith (206380 effect#1), Sacred Dawn (243174 effect#1), Uther's Counsel (378425 effect#1), Empyreal Ward (387791 effect#2), Tirion's Devotion (414720 effect#1)
+Family Flags     : 15
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No AutoCast (AI) (49), Can't Crit (93), Vehicle Immunity Category (218), Ignore Healing Modifiers (219), Reset cooldown upon ending an encounter (333), Ignore PvP Power (365), Allow Class Ability Procs (416), Always Allow Negative Healing Percent Modifiers (442)
+Effects          :
+#1 (id=251)      : Heal Max Health% (67)
+                   Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 0.75 | Target: Targeted Ally (21)
+#2 (id=1031843)  : Direct Heal% (136)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.75 | Target: Targeted Ally (21)
+Description      : Heals a friendly target for an amount equal to $s2% your maximum health.$?a387791[
+
+Name             : Blessing of Protection (id=1022) [Spell Family (10)] 
+Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Holy
+Spell Type       : Magic
+Resource         : 3% Base Mana (0) (id=107)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 10 seconds
+Cooldown         : 1.5 seconds
+Charges          : 1 (300 seconds cooldown)
+Category         : 1392 (Type 0x1): Uther's Counsel (378425 effect#2), Improved Blessing of Protection (384909 effect#1)
+Category Flags   : Reset Charges on Encounter End (4)
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Mechanic         : Invulnerable
+Affecting Spells : Uther's Guard (207558 effect#2), Echoing Blessings (387801 effect#4), Blessed Calling (469770 effect#3)
+Family Flags     : 7
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Immunity Purges Effect (47), Allow Low Level Buff (67), Include In Advanced Combat Log (72), Fail on all targets immune (85), Remove Entering Arena (162), Vehicle Immunity Category (218), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), External Defensive (499), Big Defensive (512)
+Aura Interrupt   : Enter World (22)
+Effects          :
+#1 (id=378)      : Apply Aura (6) | School Immunity (39)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x1 | Target: Targeted Raid Member (57)
+                   Affected School(s): Physical
+#2 (id=379)      : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Raid Member (57)
+#3 (id=263966)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7e | Target: Targeted Raid Member (57)
+                   Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
+                   Modified By: Echoing Blessings (387801 effect#4)
+#4 (id=1184415)  : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Raid Member (57)
+                   Modified By: Blessed Calling (469770 effect#3)
+Description      : Blesses a party or raid member, granting immunity to Physical damage and harmful effects for $d.
+
+Name             : Blessing of Freedom (id=1044) [Spell Family (10)] 
+Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0, select_idx=300]
+Class            : Paladin
+School           : Holy
+Spell Type       : Magic
+Resource         : 1.4% Base Mana (0) (id=109)
+Spell Level      : 22
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Cooldown         : 1.5 seconds
+Charges          : 1 (25 seconds cooldown)
+Category         : 1390 (Type 0x1)
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 219
+                 : 292
+Affecting Spells : Unbound Freedom (199325 effect#1), Uther's Guard (207558 effect#2), Unbound Freedom (305394 effect#1), Echoing Blessings (387801 effect#3), Blessed Calling (469770 effect#2)
+Family Flags     : 4
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Immunity Purges Effect (47), No AutoCast (AI) (49), Include In Advanced Combat Log (72), Vehicle Immunity Category (218), Aura Points On Client (268), Allow Class Ability Procs (416), Important Spell (491)
+Effects          :
+#1 (id=383)      : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 7 | Target: Targeted Ally (21)
+#2 (id=384)      : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 11 | Target: Targeted Ally (21)
+#3 (id=293300)   : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
+                   Modified By: Unbound Freedom (199325 effect#1), Unbound Freedom (305394 effect#1), Echoing Blessings (387801 effect#3), Blessed Calling (469770 effect#2)
+Description      : Blesses a party or raid member, granting immunity to movement impairing effects $?s199325[and increasing movement speed by $199325m1% ][]for $d.
+Tooltip          : Immune to movement impairing effects. $?s199325[Movement speed increased by $199325m1%][]
+
+Name             : Blessing of Sacrifice (id=6940) [Spell Family (10)] 
+Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Holy
+Spell Type       : Magic
+Resource         : 1.4% Base Mana (0) (id=284)
+Spell Level      : 41
+Range            : 40 yards
+Duration         : 12 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 2655
+Affecting Spells : Blessing of Sacrifice (200327 effect#1), Uther's Guard (207558 effect#2), Sacrifice of the Just (384820 effect#1), Echoing Blessings (387801 effect#5), Blessed Calling (469770 effect#1)
+Family Flags     : 13
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Aura Cancel (31), Exclude Caster (51), Include In Advanced Combat Log (72), No Caster Aura Icon (187), Vehicle Immunity Category (218), Aura Points On Client (268), Do Not Log Absorb (348), Ignore Caster Absorb Modifiers (370), Ignore Target Absorb Modifiers (371), Hide Damage Absorb UI (380), Allow Class Ability Procs (416), External Defensive (499), Big Defensive (512)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=2515)     : Apply Aura (6) | Transfer Damage% (81)
+                   Base Value: 30 | Scaled Value: 30 | Value Multiplier: 1 | Misc Value: 127 | Target: Targeted Raid Member (57)
+#2 (id=2516)     : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 10 | Target: Self (1)
+                   Affected School(s): All
+#3 (id=348781)   : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20
+#4 (id=867794)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Raid Member (57)
+                   Affected School(s): All
+                   Modified By: Echoing Blessings (387801 effect#5)
+#5 (id=1183597)  : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Raid Member (57)
+                   Modified By: Blessed Calling (469770 effect#1)
+#6 (id=1183598)  : Dispel (38)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 3 | Target: Targeted Raid Member (57)
+#7 (id=1183599)  : Dispel (38)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 4 | Target: Targeted Raid Member (57)
+#8 (id=1183600)  : Apply Aura (6) | Disable Stealth (41)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Target: Targeted Raid Member (57)
+#9 (id=1184416)  : Apply Aura (6) | Disable Stealth (41)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Targeted Raid Member (57)
+Description      : Blesses a party or raid member, reducing their damage taken by $s1%, but you suffer ${100*$e1}% of damage prevented.
+
+Name             : Turn Evil (id=10326) [Spell Family (10)] 
+Talent Entry     : Generic [tree=class, row=2, col=7, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : Magic
+Resource         : 2.1% Base Mana (0) (id=400)
+Range            : 20 yards
+Max Targets      : 6
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 40 seconds
+Cooldown         : 15 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Mechanic         : Turn
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Affecting Spells : Wrench Evil (460720 effect#1), Stand Against Evil (469317 effect#2)
+Family Flags     : 96
+Attributes       : Not Shapeshifted (16), Heartbeat Resist (30), Can Proc From Procs (122), Limit N (165), Taps immediately (215), Doesn't Reset Swing Timer if Instant (217), Aura Points On Client (268), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416)
+Aura Interrupt   : Damage (Script) (27)
+Effects          :
+#2 (id=200198)   : Apply Aura (6) | Use Base Move Speed (191)
+                   Base Value: 7 | Scaled Value: 7 | Target: Targeted Enemy (6)
+Description      : The power of the Light compels an Undead, Aberration, or Demon target to flee for up to $d. Damage may break the effect. Lesser creatures have a chance to be destroyed. Only one target can be turned at a time.
+Tooltip          : Disoriented.
+
+Name             : Rebuke (id=96231) [Spell Family (10)] 
+Talent Entry     : Protection [tree=class, row=4, col=7, max_rank=1, req_points=0]
+                 : Retribution [tree=class, row=4, col=7, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : Melee
+Spell Level      : 27
+Range            : 5 yards
+Duration         : 5 seconds
+Cooldown         : 15 seconds
+Category         : 88 (Type 0x0): Quick Witted (382297 effect#1)
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 2835: Spatial Paradox (406789 effect#13)
+                 : 4252
+                 : 5901
+Category Cooldown: 15 seconds
+Affecting Spells : Protection Paladin (137028 effect#8), Holy Paladin (1258016 effect#2)
+Family Flags     : 84
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Discount Power On Miss (59), Completely Blocked (99), Taps immediately (215), No Attack Miss (249), Allow Class Ability Procs (416), Interrupts Current Cast (419)
+Effects          :
+#1 (id=102188)   : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Interrupt | Target: Targeted Enemy (6)
+Description      : Interrupts spellcasting and prevents any spell in that school from being cast for $d.
+
+Name             : Unbreakable Spirit (id=114154) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=127297)   : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Divine Protection (498), Lay on Hands (633), Divine Shield (642), Ardent Defender (31850), Ardent Defender (66235), Shield of Vengeance (184662), Protection of the Fallen Dragons (392255), Divine Protection (403876), Lay on Hands (471195)
+                   Family Flags: 15, 22, 72, 87, 118
+Description      : Reduces the cooldown of your Divine Shield, $?s184662[Shield of Vengeance, ][]$?s31850[Ardent Defender][Divine Protection], and Lay on Hands by $s1%.
+
+Name             : Blinding Light (id=115750) [Spell Family (10)] 
+Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Resource         : 1.2% Base Mana (0) (id=5750)
+GCD              : 1.5 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 181
+                 : 292
+Proc Chance      : 101%
+Affecting Spells : Light's Countenance (469325 effect#1)
+Family Flags     : 75
+Attributes       : Do Not Sheath (18), Cancels Auto Attack Combat (20), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=129792)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Emits dazzling light in all directions, blinding enemies within $105421A1 yds, causing them to wander disoriented for $105421d. Damage may cancel the effect.
+
+Name             : Light's Revocation (id=146956) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=7, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=198903)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 11 | Target: Self (1)
+#2 (id=200490)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 11 | Target: Self (1)
+#3 (id=1184237)  : Apply Aura (6) | Ignore Aura State (262)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Divine Shield (642), Protection of the Fallen Dragons (392255)
+                   Family Flags: 22
+Description      : Removing harmful effects with Divine Shield heals you for $s1% for each effect removed.  This heal cannot exceed ${$m1*$m2}% of your maximum health.
+
+Name             : Blessing of Dawn (id=183416) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful Taken, Magic Heal Taken, Helpful Periodic Taken
+Family Flags     : 119
+Attributes       : Passive (6), No Aura Icon (60), Not In Spellbook (143), Allow Cast While Channeling (308), Do Not Log Absorb (348), Ignore Caster Absorb Modifiers (370), Ignore Target Absorb Modifiers (371), Hide Damage Absorb UI (380), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=265639)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Target: Self (1) -> Self (1)
+#2 (id=311460)   : Apply Party Aura (35) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | SP Coefficient: 0.25 | Misc Value: 127 | Target: Self (1) -> Self (1)
+#3 (id=311461)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 85 | Scaled Value: 85
+#4 (id=311462)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30
+#5 (id=479667)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 75 | Scaled Value: 75
+#6 (id=725648)   : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 10 | Target: Self (1)
+                   Affected School(s): All
+#7 (id=1277563)  : Apply Aura (6) | Periodic Trigger Spell (23): Blessing of Dawn every 5 seconds
+                   Base Value: 5 | Scaled Value: 5 | Trigger Spell: 210372 | Target: Self (1)
+Description      : While you are above $s3% health, $s1% of all damage taken by allies within $210372a1 yds is redirected to you, up to a maximum of $<maxAbsorb> every $s1 sec.
+Tooltip          : $s1% of damage dealt to nearby allies is redirected to you, while you are above $s3% health.
+Variables        : $maxAbsorb=${$m7*$MHP/100}
+
+Name             : Divine Steed (id=190784) [Spell Family (10)] 
+Talent Entry     : Generic [free=(Holy, Protection), tree=class, row=3, col=4, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Cooldown         : 0.75 seconds
+Charges          : 1 (45 seconds cooldown)
+Category         : 1662 (Type 0x9): Cavalier (230332 effect#1), Gallant Steed (280189 effect#2), Divine Steed (317911 effect#1), Time Spiral (375253 effect#1), Time Spiral (375253 effect#2), Blessing of the Bronze (381752 effect#1), Divine Spurs (469409 effect#1)
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 219
+                 : 292
+                 : 373
+                 : 4638
+Affecting Spells : Steed of Glory (199542 effect#1), Seasoned Warhorse (376996 effect#1), Unrelenting Charger (432990 effect#1), Unrelenting Charger (442221 effect#1), Unrelenting Charger (442264 effects: #2, #3), Divine Spurs (469409 effect#2), Retribution Paladin (1258011 effect#9)
+Family Flags     : 36, 60
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), No AutoCast (AI) (49), Allow Equip While Casting (209), Aura Points On Client (268), This Mount is NOT at the account level (349), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=279734)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Leap atop your Charger for $221883d, increasing movement speed by $221883s4%. Usable while indoors or in combat.
+
+Name             : Holy Ritual (id=199422) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=4, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 118
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=293465)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Allies are healed for $199423s1 when you cast Blessing of Protection or Blessing of Sacrifice on them.
+
+Name             : Consecrated Ground (id=204054) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=7, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=301125)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=301126)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Consecration (204242), Consecration (413267)
+                   Family Flags: 43
+#3 (id=1070952)  : Apply Aura (6) | Add Percent Modifier (108): Spell Radius (6)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 6 | Target: Self (1)
+                   Affected Spells: Divine Hammer (198137)
+                   Family Flags: 25
+#4 (id=1070953)  : Dummy (3)
+                   Base Value: 25 | Scaled Value: 25
+#5 (id=1080985)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Radius (6)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 6 | Misc Value 2: 2664 (Label) | Target: Self (1)
+                   Affected Spells (Label): Consecration (81297), Golden Path (377129), Divine Guidance (1228455)
+Description      : Your Consecration is $s1% larger, and enemies within it have $s2% reduced movement speed.
+
+Name             : Cleanse Toxins (id=213644) [Spell Family (10)] 
+Talent Entry     : Protection, Retribution [tree=class, row=2, col=1, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : Magic
+Resource         : 10% Base Mana (0) (id=11319)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Cooldown         : 8 seconds
+Charges          : 1 (8 seconds cooldown)
+Category         : 1512 (Type 0x1)
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Category Cooldown: 8 seconds
+Family Flags     : 12
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow On Charmed Targets (201), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=316986)   : Dispel (38)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 4 | Target: Targeted Ally (21)
+#2 (id=316987)   : Dispel (38)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 3 | Target: Targeted Ally (21)
+Description      : Cleanses a friendly target, removing all Poison and Disease effects.
+
+Name             : Divine Purpose (id=223817) [Spell Family (10), Passive] 
+Talent Entry     : Holy [tree=class, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
+                 : Protection [tree=class, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=334765)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Holy Power spending abilities have a $s1% chance to make your next Holy Power spending ability free and deal $223819s2% increased damage and healing.
+
+Name             : Cavalier (id=230332) [Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=347617)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1662 (Category) | Target: Self (1)
+                   Affected Spells (Category): Divine Steed (190784)
+Description      : Divine Steed now has ${1+$m1} charges.
+
+Name             : Greater Judgment (id=231644) [Spell Family (10), Passive] 
+Talent Entry     : Holy [tree=class, row=3, col=6, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 2688
+Attributes       : Passive (6), Not In Spellbook (143), Only In Spellbook Until Learned (240), Do Not Log on Learn (355), Cooldown Shared With AI Group (418)
+Effects          :
+#1 (id=349470)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 483 | Scaled Value: 483 | PvP Coefficient: 0.3714 | Misc Value: 12 | Target: Self (1)
+Description      : Judgment deems the target unworthy, preventing the next $<shield> damage dealt by the target.
+
+Name             : Greater Judgment (id=231663) [Spell Family (10), Passive] 
+Talent Entry     : Protection, Retribution [free=(Retribution), tree=class, row=3, col=6, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 2589: Protection Paladin (137028 effect#16)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=349502)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
+                   Modified By: Protection Paladin (137028 effect#16)
+Description      : Judgment causes the target to take $s1% increased damage from your next Holy Power ability.
+
+Name             : Fist of Justice (id=234299) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=3, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=353965)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Hammer of Justice (853)
+                   Family Flags: 11
+Description      : Hammer of Justice's cooldown is reduced by ${$s1/-1000} sec.
+Variables        : $reduction=${$m1/10}
+
+Name             : Unbound Freedom (id=305394) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Retribution [tree=class, row=5, col=5, max_rank=1, req_points=8]
+                 : Protection [tree=class, row=5, col=5, max_rank=1, req_points=8]
+                 : Holy [tree=class, row=5, col=5, max_rank=1, req_points=8, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=782558)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Blessing of Freedom (1044)
+                   Family Flags: 4
+#2 (id=1070753)  : None (0)
+                   Base Value: 6 | Scaled Value: 6
+Description      : Blessing of Freedom increases movement speed by $m1%, and you gain Blessing of Freedom when cast on a friendly target.
+
+Name             : Healing Hands (id=326734) [Spell Family (10), Passive] 
+Talent Entry     : Retribution [tree=class, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=817890)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.5 | Target: Self (1)
+#2 (id=817891)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#3 (id=845536)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : The cooldown of Lay on Hands is reduced up to $s1%, based on the target's missing health.
+
+Name             : Divine Toll (id=375576) [Spell Family (10)] 
+Talent Entry     : Holy [tree=class, row=5, col=4, max_rank=1, req_points=8, select_idx=100]
+                 : Retribution [tree=class, row=5, col=4, max_rank=1, req_points=8]
+                 : Protection [tree=class, row=5, col=4, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Resource         : 3% Base Mana (0) (id=265377)
+Range            : 30 yards
+GCD              : 1.5 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 5350
+Affecting Spells : Avenging Wrath (31884 effects: #1, #2), Paladin (137026 effect#8), Retribution Paladin (137027 effects: #1, #2, #11, #12), Protection Paladin (137028 effects: #1, #2), Holy Paladin (137029 effects: #1, #2, #3, #4), Beacon of Faith (156910 effect#3), Divine Purpose (223819 effect#4), Avenging Wrath (231895 effects: #1, #2), Mastery: Highlord's Judgment (267316 effects: #1, #2), Blessing of Dawn (337747 effects: #1, #2), Quickened Invocation (379391 effect#1), Radiant Decree (383469 effect#3), Sentinel (389539 effects: #1, #2, #3), Luminous Force (394550 effect#1), Divine Purpose (408458 effect#4), Retribution Paladin (412314 effects: #1, #2), Initial Paladin (417383 effects: #1, #2, #3, #4), Holy Paladin (428076 effects: #1, #2, #3, #4), Avenging Wrath (454351 effects: #1, #2), Avenging Wrath (454373 effects: #1, #2), Rise From Ash (454693 effects: #1, #2), Heightened Wrath (456759 effects: #1, #2), Luck of the Draw! (1218114 effects: #1, #2), Protection Paladin (1256936 effects: #1, #2, #3, #4), Holy Paladin (1258016 effects: #7, #12), Rising Sunlight (1277651 effects: #1, #3), Paladin - Midnight PrePatch - 11.2 Class Set 2pc (1283659 effects: #1, #2), Paladin - Midnight PrePatch - 11.2 Class Set 4pc (1283660 effects: #1, #2), Paladin - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283662 effect#1), Paladin - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283663 effects: #1, #2)
+Triggered By     : Quickened Invocation (379391), Holy Paladin (1258016)
+Family Flags     : 27, 46, 65, 92
+Attributes       : Is Ability (4), No Threat (42), Not a Proc (105), Always AOE Line of Sight (186), Not In Spellbook Until Learned (269), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002104)  : Dummy (3) | Attributes: Don't Fail Spell On Targeting Failure (20)
+                   Base Value: 5 | Scaled Value: 5 | Target: Current Target (25)
+#2 (id=1002105)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 30 yards | Target: at Self (18) -> at Enemy in Area (16)
+#3 (id=1002106)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 30 yards | Target: at Self (18) -> At Ally in Area (31)
+#4 (id=1032593)  : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: holy_power | Target: Self (1)
+#5 (id=1033601)  : Dummy (3)
+                   Base Value: 1 | Scaled Value: 1
+#6 (id=1291910)  : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100
+Description      : Instantly cast $?a137029[Holy Shock at $375609s2% effectiveness]?a137028[Avenger's Shield]?a137027[Judgment][Holy Shock, Avenger's Shield, or Judgment] on up to $s1 targets within $A2 yds.$?c3[
+
+Name             : Golden Path (id=377128) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=23, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1004789)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1017735)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Consecration heals you and $s2 allies within it for $<points> every $26573t1 sec.
+Variables        : $points=${$377129s1}
+
+Name             : Quickened Invocation (id=379391) [Spell Family (10), Passive] 
+Talent Entry     : Protection [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+                 : Holy [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+                 : Retribution [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 6255: Retribution Paladin (137027 effect#22)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1008310)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Trigger Spell: 375576 | Target: Self (1)
+                   Affected Spells: Holy Prism (114165), Holy Prism (114852), Holy Prism (114871), Divine Toll (304971), Divine Toll (375576), Divine Resonance (386731), Divine Resonance (387896)
+                   Family Flags: 38, 90, 92
+                   Modified By: Retribution Paladin (137027 effect#22)
+#2 (id=1240965)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 2220 (Category) | Target: Self (1)
+                   Affected Spells (Category): Holy Bulwark (432459), Sacred Weapon (432472)
+Description      : $?c1[Divine Toll's, Holy Armament's, and Holy Prism's][Divine Toll's] cooldown is reduced by ${-$s1/1000} sec.
+
+Name             : Divine Resonance (id=384027) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Retribution [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Paladin
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Stacks           : 2 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016306)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Divine Resonance
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 384028 | Target: Self (1)
+Description      : $@spelldesc384028
+
+Name             : Sacrifice of the Just (id=384820) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=3, max_rank=1, req_points=8, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 2651: Holy Paladin (1258016 effect#23)
+Attributes       : Passive (6), Not In Spellbook (143), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017694)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Blessing of Sacrifice (6940)
+                   Family Flags: 13
+                   Modified By: Holy Paladin (1258016 effect#23)
+Description      : Reduces the cooldown of Blessing of Sacrifice by ${$m1/-1000} sec.
+
+Name             : Improved Blessing of Protection (id=384909) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=5, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017827)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 1392 (Category) | Target: Self (1)
+                   Affected Spells (Category): Blessing of Protection (1022), Blessing of Spellwarding (204018)
+Description      : Reduces the cooldown of Blessing of Protection$?c2[ and Blessing of Spellwarding][] by ${-$s1/1000} sec.
+
+Name             : Recompense (id=384914) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=3, max_rank=1, req_points=8, select_idx=200]
+Class            : Paladin
+School           : Holy
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Magic Heal
+Affecting Spells : Avenging Wrath (31884 effects: #1, #2), Retribution Paladin (137027 effects: #1, #2), Protection Paladin (137028 effects: #1, #2), Holy Paladin (137029 effects: #1, #2, #3, #4), Beacon of Faith (156910 effect#3), Avenging Wrath (231895 effects: #1, #2), Blessing of Dawn (337747 effects: #1, #2), Radiant Decree (383469 effect#3), Sentinel (389539 effects: #1, #2, #3), Luminous Force (394550 effect#1), Retribution Paladin (412314 effects: #1, #2), Initial Paladin (417383 effects: #1, #2, #3, #4), Holy Paladin (428076 effects: #1, #2, #3, #4), Avenging Wrath (454351 effects: #1, #2), Avenging Wrath (454373 effects: #1, #2), Rise From Ash (454693 effects: #1, #2), Heightened Wrath (456759 effects: #1, #2), Luck of the Draw! (1218114 effects: #1, #2), Protection Paladin (1256936 effects: #1, #2, #3, #4), Rising Sunlight (1277651 effects: #1, #3), Paladin - Midnight PrePatch - 11.2 Class Set 2pc (1283659 effects: #1, #2), Paladin - Midnight PrePatch - 11.2 Class Set 4pc (1283660 effects: #1, #2), Paladin - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283662 effect#1), Paladin - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283663 effects: #1, #2)
+Family Flags     : 46, 65
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017835)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1018168)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25
+#3 (id=1033121)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#4 (id=1033122)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : After your Blessing of Sacrifice ends, $s1% of the total damage it diverted is added to your next Judgment as bonus damage, or your next Word of Glory as bonus healing.
+
+Name             : Afterimage (id=385414) [Spell Family (10), Passive] 
+Talent Entry     : Holy [tree=class, row=3, col=2, max_rank=1, req_points=0]
+                 : Protection [tree=class, row=3, col=2, max_rank=1, req_points=0]
+                 : Retribution [tree=class, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1018609)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1018610)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1018611)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : After you spend $s3 Holy Power, your next Word of Glory echoes onto a nearby ally at $s1% effectiveness.
+
+Name             : Obduracy (id=385427) [Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(2, 4)]
+                 : Effect#2 [op=set, values=(-2, -4)]
+                 : Effect#3 [op=set, values=(2, 4)]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1018644)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1018645)  : Apply Aura (6) | Modify AoE Damage Taken% (229)
+                   Base Value: -2 | Scaled Value: -2 | Misc Value: 127 | Target: Self (1)
+#3 (id=1019001)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Speed increased by $s3% and damage taken from area of effect attacks reduced by $s2%.
+
+Name             : Seal of Might (id=385450) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=3, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(2, 4)]
+                 : Effect#2 [op=set, values=(2, 4)]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1018689)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Str | Stat: Int | Target: Self (1)
+#2 (id=1019007)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Mastery increased by $s2% and $?c1[Intellect][Strength] increased by $s1%.
+
+Name             : Holy Aegis (id=385515) [Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=2, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1018816)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1018817)  : Apply Aura (6) | Modify Base Resistance (142)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 1 | Target: Self (1)
+#3 (id=1027212)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Armor and critical strike chance increased by $s2%.
+
+Name             : Auras of the Resolute (id=385633) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [free=(Holy, Protection, Retribution), tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1019038)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Learn Concentration Aura, Devotion Aura, and Crusader Aura:
+
+Name             : Divine Resonance (id=386738) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Protection [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+                 : Holy [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Paladin
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Stacks           : 2 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1021024)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Divine Resonance
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 386732 | Target: Self (1)
+Description      : $@spelldesc386732
+
+Name             : Empyreal Ward (id=387791) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=2, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1022822)  : Apply Aura (6) | Proc Trigger Spell (42): Empyreal Ward
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 387792 | Target: Self (1)
+#2 (id=1187299)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332)
+                   Base Value: 471195 | Scaled Value: 471195 | Misc Value 2: 3 | Target: Self (1)
+                   Affected Spells: Lay on Hands (633), Lay on Hands (471195)
+                   Family Flags: 15
+Description      : Lay on Hands grants the target $387792s1% increased armor for $387792d and now ignores healing reduction effects.
+
+Name             : Echoing Blessings (id=387801) [Spell Family (10), Passive] 
+Talent Entry     : Holy [tree=class, row=5, col=5, max_rank=1, req_points=8, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1022838)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 10 | Target: Self (1)
+#2 (id=1022839)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 5 | Target: Self (1)
+#3 (id=1022840)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Blessing of Freedom (1044)
+                   Family Flags: 4
+#4 (id=1022841)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Blessing of Protection (1022), Blessing of Spellwarding (204018)
+                   Family Flags: 7
+#5 (id=1022842)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Blessing of Sacrifice (6940)
+                   Family Flags: 13
+#6 (id=1035080)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Blessing of Spellwarding (204018)
+                   Family Flags: 28
+Description      : Blessing of Freedom increases the target's movement speed by $s3%. $?s204018[Blessing of Spellwarding][Blessing of Protection] and Blessing of Sacrifice reduce the target's damage taken by $s4%. These effects linger for $394454d after the Blessing ends.
+
+Name             : Improved Cleanse (id=393024) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Holy [tree=class, row=2, col=1, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1031676)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Cleanse additionally removes all Disease and Poison effects.
+
+Name             : Sanctified Plates (id=402964) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 2602: Protection Paladin (137028 effect#14), Protection Paladin (137028 effect#31), Holy Paladin (1258016 effect#20), Holy Paladin (1258016 effect#21), Holy Paladin (1258016 effect#22)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1049636)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Sta | Target: Self (1)
+                   Modified By: Protection Paladin (137028 effect#31), Holy Paladin (1258016 effect#20)
+#2 (id=1049637)  : Apply Aura (6) | Modify AoE Damage Taken% (229)
+                   Base Value: -3 | Scaled Value: -3 | Misc Value: 127 | Target: Self (1)
+                   Modified By: Holy Paladin (1258016 effect#21)
+#3 (id=1052151)  : Apply Aura (6) | Modify Base Resistance (142)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 1 | Target: Self (1)
+                   Modified By: Protection Paladin (137028 effect#14), Holy Paladin (1258016 effect#22)
+Description      : Armor increased by $s3%, Stamina increased by $s1% and damage taken from area of effect attacks reduced by $s2%.
+
+Name             : Lightforged Blessing (id=403479) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Retribution [tree=class, row=8, col=1, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1050450)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1054915)  : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2
+Description      : Divine Storm heals you and up to $s2 nearby allies for $403460s1.
+
+Name             : Punishment (id=403530) [Spell Family (10), Passive] 
+Talent Entry     : Protection [tree=class, row=5, col=7, max_rank=1, req_points=8]
+                 : Retribution [tree=class, row=5, col=7, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1050522)  : Apply Party Aura (35) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1070938)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Successfully interrupting an enemy with Rebuke$?s31935[ or Avenger's Shield][] casts an extra $?s204019[Blessed Hammer]?s53595[Hammer of the Righteous]?s137029[Holy Shock][Crusader Strike].
+
+Name             : Guided Prayer (id=404357) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=3, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 60 seconds
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Allow Proc While Sitting (147), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1051840)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1053483)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+Description      : When your health is brought below $s1%, you instantly cast a free Word of Glory at $s2% effectiveness on yourself.
+
+Name             : Faith's Armor (id=406101) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=1, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow While Stealthed (37), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1054804)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spelldesc379017
+
+Name             : Lightforged Blessing (id=406468) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Protection [tree=class, row=8, col=1, max_rank=1, req_points=23]
+                 : Holy [tree=class, row=8, col=1, max_rank=1, req_points=23]
+                 : Holy, Protection [tree=class, row=8, col=1, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1055442)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1055443)  : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2
+#3 (id=1073747)  : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2
+Description      : $?s2812[Denounce][Shield of the Righteous] heals you and up to $s3 nearby allies for $403460s1.
+
+Name             : Divine Purpose (id=408459) [Spell Family (10), Passive] 
+Talent Entry     : Retribution [tree=class, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Can Proc From Procs (122), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1072597)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Holy Power spending abilities have a $s1% chance to make your next Holy Power spending ability free and deal $408458s2% increased damage and healing.
+
+Name             : Wrench Evil (id=460720) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=7, max_rank=1, req_points=0, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1168623)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Turn Evil (10326)
+                   Family Flags: 96
+Description      : Turn Evil's cast time is reduced by $s1%.
+
+Name             : Worthy Sacrifice (id=469279) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=1, req_points=23, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183516)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1183517)  : Apply Aura Raid (65) | Trigger Spell Based on Health% (468): Worthy Sacrifice
+                   Base Value: 35 | Scaled Value: 35 | Misc Value: 1 | Trigger Spell: 469283 | Radius: 40 yards | Target: Self (1)
+Description      : You automatically cast Blessing of Sacrifice onto an ally within $a2 yds when they are below $s2% health and you are not in a loss of control effect.
+
+Name             : Steed of Liberty (id=469304) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183571)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : Divine Steed also grants Blessing of Freedom for ${$s1/1000}.1 sec.
+
+Name             : Eye for an Eye (id=469309) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=6, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183578)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Melee and ranged attackers receive $469311s1 Holy damage each time they strike you during $?c2[Ardent Defender][Divine Protection] and Divine Shield.
+
+Name             : Stoicism (id=469316) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183591)  : Apply Aura (6) | Modify Mechanic Duration% (Stacking) (232)
+                   Base Value: -20 | Scaled Value: -20 | PvP Coefficient: 0.5 | Misc Value: 12 | Target: Self (1)
+Description      : The duration of stun effects on you is reduced by $s1%.
+
+Name             : Stand Against Evil (id=469317) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=7, max_rank=1, req_points=0, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183592)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1191494)  : Apply Aura (6) | Add Flat Modifier (107): Spell Chain Targets (17)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 17 | Target: Self (1)
+                   Affected Spells: Turn Evil (10326)
+                   Family Flags: 96
+Description      : Turn Evil now affects $s1 additional enemies.
+
+Name             : Righteous Protection (id=469321) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=1, req_points=23, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183596)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Blessing of Sacrifice now removes and prevents all Poison and Disease effects.
+
+Name             : Light's Countenance (id=469325) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=5, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183618)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Blinding Light (115750)
+                   Family Flags: 2, 75
+Description      : The cooldown of Blinding Light is reduced by ${$s2/-1000} sec.
+
+Name             : Sacred Strength (id=469337) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Retribution [tree=class, row=7, col=4, max_rank=1, req_points=8, select_idx=100]
+                 : Holy [tree=class, row=7, col=4, max_rank=1, req_points=8, select_idx=100]
+                 : Protection [tree=class, row=7, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183636)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Affected Spells: Denounce (2812), Divine Storm (53385), Shield of the Righteous (53600), Light of Dawn (85222), Word of Glory (85673), Ancient Fury (86704), Divine Storm (224239), Templar's Verdict (224266), Final Verdict (336872), Final Verdict (383328), Radiant Decree (383469), Intercession (391054), Afterimage (391309), Shield of the Righteous (415091), Divine Storm (423593), Hammer of Light (429826), Hammer of Light (1235934)
+                   Family Flags: 44, 52, 78, 82, 88, 91, 111, 112
+Description      : Holy Power spending abilities have $s1% increased damage and healing.
+
+Name             : Divine Spurs (id=469409) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=4, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183756)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1662 (Category) | Target: Self (1)
+                   Affected Spells (Category): Divine Steed (190784)
+#2 (id=1183757)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Divine Steed (190784), Divine Steed (221883), Divine Steed (221885), Divine Steed (221886), Divine Steed (221887), Divine Steed (254471), Divine Steed (254472), Divine Steed (254473), Divine Steed (254474), Divine Steed (276111), Divine Steed (276112), Divine Steed (294133), Divine Steed (363608), Divine Steed (453804), Divine Steed (1289616), Divine Steed (1289617)
+                   Family Flags: 36
+#3 (id=1190388)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 1 | Misc Value 2: 4172 (Label) | Target: Self (1)
+                   Affected Spells (Label): Steed of Glory (199544), Steed of Glory (199545)
+Description      : Divine Steed's cooldown is reduced by $s1%, but its duration is reduced by $s2%.
+
+Name             : A Just Reward (id=469411) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=1, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(1, 2)]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Unknown 37
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183762)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : After $?c1[Cleanse][Cleanse Toxins] successfully removes an effect from an ally, they are healed for ${$469413s1*$s1}.
+
+Name             : Lightbearer (id=469416) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful Taken, Magic Heal Taken, Helpful Periodic Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183768)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1183772)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : $s1% of all healing done to you from other sources heals up to $s2 nearby allies, divided evenly among them.
+
+Name             : Selfless Healer (id=469434) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=23, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 4088: Holy Paladin (1258016 effect#17), Holy Paladin (1258016 effect#18)
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183790)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Holy Paladin (1258016 effect#17)
+#2 (id=1183791)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Modified By: Holy Paladin (1258016 effect#18)
+Description      : Flash of Light $?c1[and Holy Light are][is] $s1% more effective on your allies and $s2% of the healing done also heals you.
+
+Name             : Inspired Guard (id=469439) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=6, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183797)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Ardent Defender (31850), Ardent Defender (66235)
+                   Family Flags: 87
+#2 (id=1183801)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Divine Protection (498), Divine Protection (403876)
+                   Family Flags: 72
+Description      : $?c2[Ardent Defender][Divine Protection] increases healing taken by $s1% for its duration.
+
+Name             : Holy Reprieve (id=469445) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=1, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183809)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Forbearance (25771)
+                   Family Flags: 71
+Description      : Your Forbearance's duration is reduced by ${$s1/-1000} sec.
+
+Name             : Divine Reach (id=469476) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1183850)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 6 | Target: Self (1)
+                   Affected Spells: Devotion Aura (465), Crusader Aura (32223), Retribution Aura (183435), Concentration Aura (317920)
+                   Family Flags: 6, 17, 26, 94
+#2 (id=1183851)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Radius (6)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 6 | Misc Value 2: 1155 (Label) | Target: Self (1)
+#3 (id=1183852)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 6 | Trigger Spell: 355575 | Target: Self (1)
+#4 (id=1183853)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 6 | Trigger Spell: 355867 | Target: Self (1)
+#5 (id=1183854)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Aura Mastery (31821), Aura Mastery (412629)
+                   Family Flags: 79
+Description      : The radius of your auras is increased by $s1 yds.
+
+Name             : Blessed Calling (id=469770) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1184322)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Blessing of Sacrifice (6940)
+                   Family Flags: 13
+#2 (id=1184417)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Blessing of Freedom (1044)
+                   Family Flags: 4
+#3 (id=1184418)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Blessing of Protection (1022), Blessing of Spellwarding (204018)
+                   Family Flags: 7
+#4 (id=1194086)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 33 | Target: Self (1)
+                   Family Flags: 8
+Description      : Allies affected by your Blessings have $s1% increased movement speed.
+
+Name             : Lead the Charge (id=469780) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=2, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 0.3 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1184334)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1184335)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -3000 | Scaled Value: -3000 | Target: Self (1)
+#3 (id=1184336)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+#4 (id=1184337)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Divine Steed reduces the cooldown of $s1 nearby ally's major movement ability by ${$s2/-1000}.1 sec.
+
+Name             : Hammer of Wrath (id=1241288) [Spell Family (10), Passive] 
+Talent Entry     : Generic [free=(Retribution), tree=class, row=1, col=6, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Holy
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1240195)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : During Avenging Wrath, Judgment is empowered into Hammer of Wrath.$?c3[
+
+Name             : Blessing of Dusk (id=1241945) [Spell Family (10), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 2344: Protection Paladin (137028 effect#32)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1241236)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Modified By: Protection Paladin (137028 effect#32)
+#2 (id=1277512)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+Description      : Damage taken reduced by up to $s1%, increasing as your health decreases.
+
+Name             : Vengeful Wrath (id=1241958) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=5, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(25, 50)]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1241255)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.4 | Target: Self (1)
+Description      : Hammer of Wrath deals up to $s1% additional damage based on its target's health. Lower health targets receive more damage.
+
+Name             : Shield of Vengeance (id=1261562) [Spell Family (10), Passive] 
+Talent Entry     : Retribution [tree=class, row=4, col=2, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1271379)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Divine Protection (498), Divine Protection (403876)
+                   Family Flags: 72
+Description      : Divine Protection reduces damage taken by an additional $s2% and casts Shield of Vengeance.
+
+Name             : Fear No Evil (id=1265541) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277368)  : Apply Aura (6) | Modify Mechanic Duration% (Stacking) (232)
+                   Base Value: -20 | Scaled Value: -20 | PvP Coefficient: 0.25 | Misc Value: 5 | Target: Self (1)
+#2 (id=1277369)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -60 | Scaled Value: -60 | PvP Coefficient: 0.25 | Target: Self (1)
+#3 (id=1277370)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -20 | Scaled Value: -20 | PvP Coefficient: 0.25 | Target: Self (1)
+Description      : Fear duration on you reduced by $s3%. This effect is increased to $s2% during Avenging Wrath.
+
+Name             : Brought to Light (id=1265549) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=2, max_rank=1, req_points=8]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Target Dies
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277381)  : Apply Aura (6) | Proc Trigger Spell (42): Brought to Light
+                   Base Value: 5 | Scaled Value: 5 | Trigger Spell: 1265595 | Target: Self (1)
+Description      : Killing an enemy that yields experience or honor causes you to explode with holy energy, healing up to $s1 nearby allies and yourself for $1265595s1, split evenly among them.
+
+Name             : Armory of Light (id=1277443) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Holy [tree=class, row=4, col=7, max_rank=1, req_points=0]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1289809)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: -10 | Target: Self (1)
+                   Affected School(s): All
+#2 (id=1289810)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#3 (id=1289811)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#4 (id=1289812)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#5 (id=1289813)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : While holding a shield, you have a $s2% chance to block incoming spells, reducing their damage by $s3%. 

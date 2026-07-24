@@ -1,0 +1,909 @@
+# Warrior — Fury Spec Talents
+# Extracted verbatim from warrior.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 42 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Recklessness (id=1719) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Duration         : 12 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 690: Major Cooldowns
+Affecting Spells : Warrior (137047 effect#2), Reckless Abandon (396749 effect#1), Rampaging Berserker (1269310 effect#1)
+Family Flags     : 4, 8
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Do Not Enforce Shapeshift Requirements (434)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=524)      : Apply Aura (6) | Modify Rage Generated From Auto Attacks (213)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=292217)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 10 yards | Target: Self (1)
+#3 (id=298936)   : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
+                   Modified By: Reckless Abandon (396749 effect#1)
+#4 (id=341514)   : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+#5 (id=737891)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Whirlwind (190411), War Machine (262232), Whirlwind (280715), Ancient Aftershock (326076), Ravager (334934)
+                   Family Flags: 20, 37, 39, 55, 76, 77, 124
+#6 (id=737893)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Charge (100), Slam (1464), Bloodthirst (23881), Shield Slam (23922), Raging Blow (85288), Avatar (107574), Whirlwind (190411), Charge (198337), Whirlwind (280715), Bloodbath (335096), Crushing Blow (335097), Annihilator (383915), Heroic Strike (1269383)
+                   Family Flags: 0, 21, 26, 32, 41, 42, 49, 53, 55, 69, 101, 106
+#7 (id=737894)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 3 (23)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Execute (5308), Bladestorm (50622), Bladestorm Off-Hand (95738), Execute (163201), Bladestorm (227847), Execute (280735), Execute (281000), Spear of Bastion (307871), Condemn (317349), Condemn (317485), Condemn (330325), Condemn (330334), Champion's Spear (376080), Bladestorm (446035), Champion's Spear (1271981), Champion's Leap (1271985)
+                   Family Flags: 46, 57, 59, 91
+#8 (id=737895)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 4 (32)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Bladestorm (50622), Bladestorm Off-Hand (95738), Bladestorm (227847), Conqueror's Banner (324143), Thunder Blast (435222), Bladestorm (446035)
+                   Family Flags: 7, 46, 88
+#9 (id=738384)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 5 (33)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Demoralizing Shout (1160), Shockwave (46968), Shockwave (132168), Odyn's Fury (385059), Shockwave (441668)
+                   Family Flags: 17, 47, 103
+#10 (id=1193952) : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Misc Value 2: 4748 (Label) | Target: Self (1)
+                   Affected Spells (Label): Cold Steel, Hot Blood (383978)
+#11 (id=1193953) : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Crushing Blow overrides Raging Blow
+                   Base Value: 335097 | Scaled Value: 335097 | Misc Value: 85288 | Target: Self (1)
+#12 (id=1201495) : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Bloodbath overrides Bloodthirst
+                   Base Value: 335096 | Scaled Value: 335096 | Misc Value: 23881 | Target: Self (1)
+#13 (id=1218720) : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Raging Blow (85384), Raging Blow (96103), Crushing Blow (335098), Crushing Blow (335100)
+                   Family Flags: 45
+#14 (id=1281154) : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582)
+                   Family Flags: 108
+#15 (id=1281155) : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582)
+                   Family Flags: 108
+Description      : Go berserk, increasing all Rage generation by $s1% and granting your abilities $s4% increased critical strike chance for $d.$?a396749[
+
+Name             : Improved Whirlwind (id=12950) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=4, col=7, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=5764)     : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Whirlwind $?s436707[and Thunder Clap cause][causes] your next $85739u single-target $lattack:attacks; to strike up to $85739s1 additional targets for $85739s2% damage.
+
+Name             : Bloodthirst (id=23881) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Range            : 5 yards
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 4.5 seconds
+Category         : 1837 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Category Cooldown: 4.5 seconds
+Stacks           : 1 maximum
+Proc Chance      : 101%
+Affecting Spells : Demoralizing Shout (1160 effect#3), Recklessness (1719 effects: #4, #6), Mastery: Unshackled Fury (76856 effects: #1, #2), Whirlwind (85739 effect#1), Avatar (107574 effects: #1, #4), Warrior (137047 effects: #1, #2), Protection Warrior (137048 effects: #1, #2), Arms Warrior (137049 effects: #1, #2), Fury Warrior (137050 effects: #1, #2), Colossus Smash (208086 effect#1), Fresh Meat (215568 effect#1), Bloody Rage (242952 effect#1), Bloody Rage (242953 effect#1), Glory (325787 effect#1), Will of the Berserker (335597 effect#1), Crushing Force (382764 effects: #3, #4), One-Handed Weapon Specialization (382895 effects: #1, #2), Two-Handed Weapon Specialization (382896 effects: #1, #2), Dual Wield Specialization (382900 effects: #1, #2), Deft Experience (383295 effect#1), Impale (383430 effect#1), Spite (383852 effects: #1, #2), Battle Stance (386164 effect#4), Cruelty (392931 effect#1), Bloodcraze (393951 effect#1), Vanguard's Determination (394056 effects: #1, #3), Strike Vulnerabilities (394173 effects: #1, #2), Merciless Assault (409983 effects: #1, #2, #3), Martial Expert (429638 effect#1), Mountain of Muscle and Scars (429642 effects: #1, #2), Strength of the Mountain (437068 effect#4), Burst of Power (437121 effects: #2, #3), Overwhelmed (445836 effect#1), Wrecked (447513 effects: #2, #3), Deep Thirst (455495 effect#1), Fierce Followthrough (458689 effect#2), Double Down (1216565 effects: #1, #2), Luck of the Draw! (1218163 effects: #1, #4), Arms Warrior (1256919 effects: #1, #2), Protection Warrior (1256935 effects: #1, #2), Fury Warrior (1257520 effects: #1, #2), Mastery: Master of Arms (1258398 effects: #1, #2), Master Tactician (1261216 effects: #1, #2), Scent of Blood (1265399 effect#1), Warrior - Midnight PrePatch - 11.2 Class Set 2pc (1283642 effects: #1, #2), Warrior - Midnight PrePatch - 11.2 Class Set 4pc (1283643 effects: #1, #2)
+Family Flags     : 8, 9, 18, 42
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Chain From Caster (76), Requires Main-Hand Weapon (106), Aura Points On Client (268), Enforce Facing on Primary Target Only (351), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=14120)    : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 4.24203 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+#2 (id=134421)   : Energize Power (30)
+                   Base Value: 80 | Scaled Value: 80 | Resource: rage | Target: Self (1)
+                   Modified By: Recklessness (1719 effect#6), Merciless Assault (409983 effect#1), Burst of Power (437121 effect#3)
+#3 (id=1277173)  : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Fresh Meat (215568 effect#1)
+Description      : Assault the target in a bloodthirsty craze, dealing $s1 Physical damage and restoring $117313s1% of your health.
+
+Name             : Sudden Death (id=29725) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=300]
+                 : Arms [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+                 : Fury [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 3 seconds
+Proc Chance      : 100%
+Real PPM         : 1.7 (Haste multiplier, /w Warrior Fury Set 4pc (id=393709): 4.25)
+Proc Flags       : Yellow Melee
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=19302)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : Your attacks have a chance to make your next $?a317320[Condemn][Execute] $?c1[cost no Rage, ][]be usable on any target regardless of their health$?c1[, and deal damage as if you spent $s1 Rage][].
+
+Name             : Raging Blow (id=85288) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=2, col=4, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Range            : 5 yards
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Charges          : 1 (8 seconds cooldown)
+Category         : 1672 (Type 0x1): Fury Warrior (137050 effect#7), Inner Rage (215573 effect#1), Frenzied Destruction (364554 effect#1), Improved Raging Blow (383854 effect#1)
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Stacks           : 1 maximum
+Proc Chance      : 101%
+Affecting Spells : Recklessness (1719 effect#6), Warrior (137047 effect#2), Double Down (1216569 effect#2)
+Family Flags     : 8, 106
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Requires Main-Hand Weapon (106), Requires Off-Hand Weapon (120), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=86443)    : Dummy (3) | Attributes: No Immunity (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Targeted Enemy (6)
+#2 (id=86559)    : Energize Power (30)
+                   Base Value: 120 | Scaled Value: 120 | Resource: rage | Target: Self (1)
+                   Modified By: Recklessness (1719 effect#6), Double Down (1216569 effect#2)
+#3 (id=244038)   : Trigger Spell (64): Raging Blow
+                   Base Value: 80 | Scaled Value: 80 | Delay: 50_ms | Trigger Spell: 96103 | Target: Targeted Enemy (6)
+#4 (id=317575)   : Trigger Spell (64): Raging Blow
+                   Base Value: 80 | Scaled Value: 80 | Delay: 100_ms | Trigger Spell: 85384 | Target: Targeted Enemy (6)
+Description      : A mighty blow with both weapons that deals a total of $<damage> Physical damage.$?s383854[
+
+Name             : Avatar (id=107574) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=10, col=6, max_rank=1, req_points=20, select_idx=100]
+                 : Protection [tree=spec, row=8, col=8, max_rank=1, req_points=20]
+                 : Arms [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Duration         : 20 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 771: Strive for Perfection (296320 effect#9)
+Affecting Spells : Recklessness (1719 effect#6), Warrior (137047 effect#2), Outburst (364639 effects: #1, #2)
+Family Flags     : 8, 32
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Allow While Sitting (27), No Threat (42), Immunity Purges Effect (47), Immunity to Hostile & Friendly Effects (48), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Unknown (465), Important Spell (491)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=118390)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.75 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+                   Modified By: Outburst (364639 effect#1)
+#2 (id=118391)   : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
+                   Modified By: Recklessness (1719 effect#6), Outburst (364639 effect#2)
+#3 (id=118664)   : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.75 | Target: Self (1)
+#4 (id=722361)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.75 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+#5 (id=728318)   : Apply Aura (6) | Scale% (Stacking) (61)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#6 (id=728319)   : Apply Aura (6) | Modify AoE Damage Taken% (229)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 127 | Target: Self (1)
+#7 (id=728320)   : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#8 (id=1169538)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -3 | Scaled Value: -3 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#9 (id=1193928)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+#10 (id=1193929) : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+Description      : Transform into a colossus, increasing all damage you deal by $s1% $?c1[and reducing damage you take from area of effect attacks by $s6% ]?c2[and increasing your movement speed by $s7% ]?c3[and reducing all damage you take by $s8% ][]for $d.
+Tooltip          : Damage done increased by $s1%.
+
+Name             : Enraged Regeneration (id=184364) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Duration         : 8 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 930
+                 : 952
+                 : 1284
+Affecting Spells : Bladestorm (227847 effect#3), Invigorating Fury (383468 effect#1), Honed Reflexes (391271 effect#1), Bladestorm (446035 effect#3)
+Family Flags     : 11, 64
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Immunity Purges Effect (47), Immunity to Hostile & Friendly Effects (48), Can't Crit (93), Suppress Caster Procs (112), Allow While Stunned (163), Ignore Healing Modifiers (219), Aura Points On Client (268), Not In Spellbook Until Learned (269), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Periodic Refresh Extends Duration (436), Always Allow Negative Healing Percent Modifiers (442), Important Spell (491), Big Defensive (512)
+Effects          :
+#1 (id=267211)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#2 (id=304657)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Bloodthirst Heal (117313)
+                   Family Flags: 80
+Description      : Reduces damage taken by $s1% and Bloodthirst restores an additional $s2% health for $d. Usable while stunned or incapacitated.
+Tooltip          : Damage taken reduced by $s1%. Bloodthirst restores an additional $s2% health.
+
+Name             : Rampage (id=184367) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=5, col=4, max_rank=1, req_points=8, replace="Slam" (id=1464)]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Resource         : 80 Rage (1) (id=10117)
+Range            : 5 yards
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Affecting Spells : Recklessness (1719 effects: #14, #15), Whirlwind (85739 effect#1), Warrior (137047 effect#2), Pulverizing Blows (275689 effect#1), Simmering Rage (278757 effect#2), Unbridled Ferocity (288056 effect#2), Warrior Fury 10.1 Class Set 2pc (405579 effects: #1, #2), Strength of the Mountain (437068 effect#4), Brutal Finish (446918 effect#2), Bloody Rampage (455490 effect#1), Winning Streak! (1216561 effect#1), Warrior Fury 12.0 Class Set 2pc (1264877 effect#1), Executioner's Wrath (1265575 effect#1), Rampaging Berserker (1269308 effect#1)
+Family Flags     : 8, 108, 123
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), Chain From Caster (76), Requires Main-Hand Weapon (106), Requires Off-Hand Weapon (120), No Cooldown On Tooltip (192), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=267214)   : Dummy (3)
+                   Base Value: 4 | Scaled Value: 4 | Target: Targeted Enemy (6)
+#2 (id=267215)   : Trigger Spell (64): Rampage
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 184707 | Target: Targeted Enemy (6)
+#3 (id=267216)   : Trigger Spell (64): Rampage
+                   Base Value: 0 | Scaled Value: 0 | Delay: 300_ms | Trigger Spell: 184709 | Target: Targeted Enemy (6)
+#4 (id=268060)   : Trigger Spell (64): Rampage
+                   Base Value: 0 | Scaled Value: 0 | Delay: 900_ms | Trigger Spell: 201364 | Target: Targeted Enemy (6)
+#5 (id=268061)   : Trigger Spell (64): Rampage
+                   Base Value: 0 | Scaled Value: 0 | Delay: 950_ms | Trigger Spell: 201363 | Target: Targeted Enemy (6)
+#6 (id=1277443)  : Trigger Spell (64): Rampaging Ruin
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1265579 | Target: Targeted Enemy (6)
+#7 (id=1277444)  : Trigger Spell (64): Rampaging Ruin
+                   Base Value: 0 | Scaled Value: 0 | Delay: 300_ms | Trigger Spell: 1265580 | Target: Targeted Enemy (6)
+#8 (id=1277445)  : Trigger Spell (64): Rampaging Ruin
+                   Base Value: 0 | Scaled Value: 0 | Delay: 900_ms | Trigger Spell: 1265581 | Target: Targeted Enemy (6)
+#9 (id=1277446)  : Trigger Spell (64): Rampaging Ruin
+                   Base Value: 0 | Scaled Value: 0 | Delay: 950_ms | Trigger Spell: 1265582 | Target: Targeted Enemy (6)
+#10 (id=1277487) : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Unleash a series of $s1 brutal strikes for a total of $<damage> Physical damage.$?a1265357[
+
+Name             : Massacre (id=206315) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=305084)   : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Execute overrides Execute
+                   Base Value: 280735 | Scaled Value: 280735 | Misc Value: 5308 | Target: Self (1)
+#2 (id=738457)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#3 (id=800237)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 1500 | Scaled Value: 1500 | Target: Self (1)
+#4 (id=835424)   : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Condemn overrides Condemn
+                   Base Value: 330325 | Scaled Value: 330325 | Misc Value: 317485 | Target: Self (1)
+Description      : $?a317320[Condemn][Execute] is usable on targets below $s2% health and its cooldown is reduced by ${$s3/1000}.1 sec.
+
+Name             : Warpaint (id=208154) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=307953)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: -10 | Scaled Value: -10 | PvP Coefficient: 0.5 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Enrage (184362)
+                   Family Flags: 58
+Description      : You take $s1% reduced damage while Enrage is active.
+
+Name             : Fresh Meat (id=215568) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=320532)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Bloodthirst (23881), Bloodbath (335096)
+                   Family Flags: 42
+Description      : Bloodthirst always Enrages you the first time you strike a target and it has a $s1% increased chance to trigger Enrage.
+
+Name             : Bladestorm (id=227847) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=10, col=6, max_rank=1, req_points=20, select_idx=200]
+                 : Arms [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 90 seconds
+Charges          : 1 (90 seconds cooldown)
+Category         : 2270 (Type 0x1)
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 690: Major Cooldowns
+Affecting Spells : Recklessness (1719 effects: #7, #8), Warrior (137047 effect#2), Fury Warrior (137050 effect#8), Unrelenting Onslaught (444780 effect#4), Arms Warrior (1256919 effect#3), Fury Warrior (1257520 effect#3)
+Family Flags     : 8, 46
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), No Skill Increase (36), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), Immunity Purges Effect (47), Requires Main-Hand Weapon (106), Extra Initial Period (169), Spell Haste Affects Periodic (173), Not In Spellbook Until Learned (269), Haste Affects Duration (273), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=342669)   : Apply Aura (6) | Periodic Trigger Spell (23): Bladestorm every 1 seconds
+                   Base Value: 8 | Scaled Value: 8 | Trigger Spell: 50622 | Target: Self (1)
+#2 (id=342670)   : Apply Aura (6) | Creature Immunities (147)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1733 | Target: Self (1)
+#3 (id=342671)   : Apply Aura (6) | Disable Abilities (263)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Taunt (355), Shield Wall (871), Demoralizing Shout (1160), Challenging Shout (1161), Shield Block (2565), Last Stand (12975), Berserker Rage (18499), Spell Reflection (23920), Rallying Cry (97462), Rallying Cry (97463), Die by the Sword (118038), Enraged Regeneration (184364), Ignore Pain (190456), Berserker Shout (384100), Spell Reflection (385391), Disrupting Shout (386071), Battle Stance (386164), Berserker Stance (386196), Defensive Stance (386208), Ignore Pain (1277297)
+                   Family Flags: 11
+                   Modified By: Recklessness (1719 effect#7)
+Description      : Become an unstoppable storm of destructive force, striking all nearby enemies for $<dmg> Physical damage over $d. Deals reduced damage beyond $s1 targets.
+
+Name             : Meat Cleaver (id=280392) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 3856
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=737898)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=737899)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Whirlwind $?s436707[and Thunder Clap deal][deals] $s1% additional damage when $?s436707[they hit][it hits] $s2 or more targets.
+
+Name             : Improved Execute (id=316402) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=800880)   : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Execute (5308), Execute (163201), Execute (280735), Execute (281000), Condemn (317349), Condemn (317485), Condemn (330325), Condemn (330334)
+                   Family Flags: 59
+#2 (id=800881)   : Apply Aura (6) | Modify Max Cost (63)
+                   Base Value: -200 | Scaled Value: -200 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Execute (5308), Execute (163201), Execute (280735), Execute (281000), Condemn (317349), Condemn (317485), Condemn (330325), Condemn (330334)
+                   Family Flags: 59
+#3 (id=1018721)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 200 | Scaled Value: 200 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Execute (5308), Execute (163201), Execute (280735), Execute (281000), Condemn (317349), Condemn (317485), Condemn (330325), Condemn (330334)
+                   Family Flags: 59
+Description      : Execute no longer costs Rage and now generates ${$s3/10} Rage.
+
+Name             : Frenzy (id=335077) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=831412)   : Apply Aura (6) | Trigger Spell with Value (231)
+                   Base Value: 2 | Scaled Value: 2 | Trigger Spell: 335082 | Target: Self (1)
+Description      : Rampage increases your haste by $s1% for $335082d. Multiple instances of this effect may overlap.
+
+Name             : Deft Experience (id=383295) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=8, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1015117)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Bloodthirst (23881), Bloodbath (335096)
+                   Family Flags: 42
+#2 (id=1025075)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+Description      : Bloodthirst's critical strike chance increased by $s1% and if you are Enraged, Bloodthirst extends your Enrage by ${$s2/1000}.1 sec. This extension is doubled if Bloodthirst critically strikes your primary target.
+
+Name             : Critical Thinking (id=383297) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=8, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1015120)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Raging Blow (85384), Raging Blow (96103), Crushing Blow (335098), Crushing Blow (335100)
+                   Family Flags: 45
+#2 (id=1025054)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Raging Blow (85384), Raging Blow (96103), Crushing Blow (335098), Crushing Blow (335100)
+                   Family Flags: 45
+Description      : Raging Blow's critical strike chance increased by $s1% and critical strike damage increased by $s2%.
+
+Name             : Invigorating Fury (id=383468) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1015428)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Enraged Regeneration (184364)
+                   Family Flags: 64
+#2 (id=1015444)  : Dummy (3)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Enraged Regeneration lasts ${$s1/1000} sec longer and instantly heals for $s2% of your maximum health.
+
+Name             : Focus in Chaos (id=383486) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=4, col=1, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), Do Not Display Range (126), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1015471)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : While Enraged, your auto-attacks can no longer miss.
+
+Name             : Frenzied Enrage (id=383848) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016024)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Enrage increases your haste by $184362s1% and your movement speed by $184362s2%.
+
+Name             : Spite (id=383852) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=6, col=2, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016029)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Bloodthirst (23881), Raging Blow (85384), Raging Blow (96103), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100)
+                   Family Flags: 42, 45
+#2 (id=1277163)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Bloodthirst (23881), Raging Blow (85384), Raging Blow (96103), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100)
+                   Family Flags: 42, 45
+Description      : Bloodthirst and Raging Blow damage increased by ${$s1/10}.1% and critical strike damage increased by ${$s2/10}.1%.
+
+Name             : Improved Raging Blow (id=383854) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016031)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1672 (Category) | Target: Self (1)
+                   Affected Spells (Category): Raging Blow (85288), Crushing Blow (335097)
+Description      : Raging Blow has ${$s1+1} charges and has a $85288s1% chance to instantly reset its own cooldown.
+
+Name             : Hack and Slash (id=383877) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016065)  : Apply Aura (6) | Proc Trigger Spell (42): Hack and Slash
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 383873 | Target: Self (1)
+Description      : Rampage has a $h% chance to refund a charge of Raging Blow.
+
+Name             : Vicious Contempt (id=383885) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016073)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Bloodthirst deals $s1% increased damage to enemies who are below $<threshold>% health.
+Variables        : $threshold=${35}
+
+Name             : Cold Steel, Hot Blood (id=383959) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Triggered By     : Gushing Wound (385042)
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1016198)  : Apply Aura (6) | Proc Trigger Spell (42): Cold Steel, Hot Blood
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 383978 | Target: Self (1)
+Description      : Bloodthirst critical strikes generate ${$383978s1/10} additional Rage and inflict a Gushing Wound that deals $385042o Bleed damage over $385042d and heals you for the damage dealt.
+
+Name             : Odyn's Fury (id=385059) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Max Targets      : Unlimited(-1)
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Affecting Spells : Demoralizing Shout (1160 effect#3), Recklessness (1719 effects: #4, #9), Mastery: Unshackled Fury (76856 effects: #1, #2), Avatar (107574 effects: #1, #4), Warrior (137047 effect#2), Protection Warrior (137048 effects: #1, #2), Arms Warrior (137049 effects: #1, #2), Fury Warrior (137050 effects: #1, #2), Shield Mastery (184927 effect#3), Colossus Smash (208086 effect#1), Glory (325787 effect#1), Will of the Berserker (335597 effect#1), One-Handed Weapon Specialization (382895 effects: #1, #2), Two-Handed Weapon Specialization (382896 effects: #1, #2), Dual Wield Specialization (382900 effects: #1, #2), Impale (383430 effect#1), Battle Stance (386164 effect#4), Vanguard's Determination (394056 effects: #1, #3), Strike Vulnerabilities (394173 effects: #1, #2), Martial Expert (429638 effect#1), Mountain of Muscle and Scars (429642 effects: #1, #2), Overwhelmed (445836 effect#1), Wrecked (447513 effects: #2, #3), Luck of the Draw! (1218163 effects: #1, #4), Arms Warrior (1256919 effects: #1, #2), Protection Warrior (1256935 effects: #1, #2), Fury Warrior (1257520 effects: #1, #2), Mastery: Master of Arms (1258398 effects: #1, #2), Master Tactician (1261216 effects: #1, #2), Warrior - Midnight PrePatch - 11.2 Class Set 2pc (1283642 effects: #1, #2), Warrior - Midnight PrePatch - 11.2 Class Set 4pc (1283643 effects: #1, #2)
+Family Flags     : 8, 9, 103
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Requires Main-Hand Weapon (106), Can Proc From Procs (122), Treat as Area Effect (175), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1018078)  : Trigger Spell (64): Odyn's Fury
+                   Base Value: 0 | Scaled Value: 0 | Delay: 100_ms | Trigger Spell: 385060 | Target: Self (1)
+                   Modified By: Shield Mastery (184927 effect#3)
+#2 (id=1018079)  : Trigger Spell (64): Odyn's Fury Off-Hand
+                   Base Value: 0 | Scaled Value: 0 | Delay: 200_ms | Trigger Spell: 385061 | Target: Self (1)
+#3 (id=1018086)  : Trigger Spell (64): Odyn's Fury
+                   Base Value: 0 | Scaled Value: 0 | Delay: 300_ms | Trigger Spell: 385062 | Target: Self (1)
+#4 (id=1018087)  : Trigger Spell (64): Odyn's Fury Off-Hand
+                   Base Value: 0 | Scaled Value: 0 | Delay: 400_ms | Trigger Spell: 385061 | Target: Self (1)
+#5 (id=1024239)  : Energize Power (30)
+                   Base Value: 200 | Scaled Value: 200 | Resource: rage | Target: Self (1)
+                   Modified By: Recklessness (1719 effect#9)
+#6 (id=1180325)  : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Unleashes your power, dealing $<dmg> Physical damage and an additional $385060o2 Bleed damage over $385060d to all enemies within $385060A2 yards. Deals reduced damage beyond $s6 targets.
+
+Name             : Bloodborne (id=385703) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019149)  : Apply Aura (6) | Proc Trigger Spell (42): Bloodborne
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1265406 | Target: Self (1)
+Description      : Bloodthirst causes your Bleeds to deal $1265406s1% additional damage for $1265406d.
+
+Name             : Cruelty (id=392931) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=6, col=6, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1031505)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Bloodthirst (23881), Raging Blow (85384), Raging Blow (96103), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100)
+                   Family Flags: 42, 45
+Description      : While Enraged, Bloodthirst and Raging Blow deal $s1% increased damage.
+
+Name             : Wrath and Fury (id=392936) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=7, col=7, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1031513)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1181491)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Raging Blow (85384), Raging Blow (96103), Crushing Blow (335098), Crushing Blow (335100)
+                   Family Flags: 45
+Description      : Raging Blow deals $386045s1% increased damage and while Enraged, Raging Blow has a $s1% increased chance to instantly reset its own cooldown.
+
+Name             : Bloodcraze (id=393950) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033213)  : Apply Aura (6) | Proc Trigger Spell (42): Bloodcraze
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 393951 | Target: Self (1)
+Description      : Raging Blow increases the damage of your next Bloodthirst by $393951s1%, stacking up to $393951u times.
+
+Name             : Reckless Abandon (id=396749) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1038325)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 500 | Scaled Value: 500 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Recklessness (1719)
+                   Family Flags: 4
+Description      : Activating Recklessness generates ${$s1/10} Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath.
+
+Name             : Powerful Enrage (id=440277) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1134052)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Enrage increases your mastery by $184362s5% and your Leech by $184362s6%.
+
+Name             : Deep Wounds (id=1261060) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=7, col=9, max_rank=1, req_points=8]
+                 : Arms [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+                 : Fury [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1270663)  : Apply Aura (6) | Proc Trigger Spell (42): Deep Wounds
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 262115 | Target: Self (1)
+Description      : Execute inflicts Deep Wounds on the target.
+
+Name             : Scent of Blood (id=1265355) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277074)  : Apply Aura (6) | Proc Trigger Spell (42): Scent of Blood
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1265399 | Target: Self (1)
+Description      : Rampage increases the damage of your next Bloodthirst by $1265399s1%, stacking up to $1265399u times.
+
+Name             : Ragedrinker (id=1265356) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277075)  : Apply Aura (6) | Proc Trigger Spell (42): Ragedrinker
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1265403 | Target: Self (1)
+#2 (id=1290235)  : Apply Aura (6) | Proc Trigger Spell (42): Bloodthirst Heal
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1283442 | Target: Self (1)
+Description      : Bloodthirst critical strikes restore $1283442s1% additional health and increase the damage of Raging Blow by $1265403s1% for $1265403d.
+
+Name             : Rampaging Ruin (id=1265357) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277076)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : While Improved Whirlwind is active Rampage instead strikes all targets in front of you for ${$1265579s1+$1265580s1+$1265581s1+$1265582s1} Physical damage. Deals reduced damage beyond $s1 targets.
+
+Name             : Surge of Adrenaline (id=1265359) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277078)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When Raging Blow resets its own cooldown, your auto-attack damage and speed is increased by $1265560s1% for $1265560d.
+
+Name             : Kill or Be Killed (id=1265361) [Spell Family (4), Passive] 
+Talent Entry     : Fury [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Absorb Cannot Be Ignore (214), Do Not Count For PvP Scoreboard (252), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277080)  : Apply Aura (6) | Absorb Overkill Damage From School (316)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 40 | Target: Self (1)
+                   Affected School(s): All
+Description      : When you would sustain fatal damage, you instead fly into an unstoppable rage, becoming unkillable and immune to movement-impairing effects for $1265600d as you seek revenge on your would-be killer.
+
+Name             : Executioner's Wrath (id=1265570) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1277415)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Execute (5308), Execute (163201), Execute (280735), Execute (281000), Condemn (317349), Condemn (317485), Condemn (330325), Condemn (330334)
+                   Family Flags: 59
+#2 (id=1277422)  : Apply Aura (6) | Proc Trigger Spell (42): Executioner's Wrath
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1265575 | Target: Self (1)
+Description      : Execute generates ${$s1/10} additional Rage and increases the damage of Rampage by $1265575s1% for $1265575d.
+
+Name             : Rampaging Berserker (id=1269308) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 5671
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1281054)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582)
+                   Family Flags: 108
+#2 (id=1281132)  : Apply Aura (6) | Proc Trigger Spell (42): Berserk
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1269349 | Target: Self (1)
+Description      : Rampage damage increased by $s1% and Rampage makes you go Berserk, increasing your Strength by $1269349s1% for $1269349d. Multiple applications of Berserk may overlap.
+
+Name             : Rampaging Berserker (id=1269309) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1281055)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -150 | Scaled Value: -150 | Target: Self (1)
+#2 (id=1281150)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Rampage's Rage cost is reduced by ${$s1/-10} and damage is increased by a further $s2% during Recklessness.
+
+Name             : Rampaging Berserker (id=1269310) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Fury [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 5671
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1281056)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Recklessness (1719)
+                   Family Flags: 4
+#2 (id=1294164)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Recklessness grants $s2 stacks of Berserk and duration of Recklessness increased by $s1%.

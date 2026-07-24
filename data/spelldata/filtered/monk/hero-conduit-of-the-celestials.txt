@@ -1,0 +1,402 @@
+# Monk — Conduit of the Celestials Hero Talents
+# Extracted verbatim from monk.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 20 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Invoke Xuen, the White Tiger (id=123904) [Spell Family (53)] 
+Talent Entry     : Conduit of the Celestials (Windwalker) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Monk
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 42
+Range            : 40 yards
+GCD              : 1 seconds
+Duration         : 20 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Affecting Spells : Invoke Niuzao, the Black Ox (132578 effect#4), Gift of the Celestials (388212 effects: #1, #2), Xuen's Bond (392986 effect#2), Efficient Training (450989 effect#6), Celestial Conduit (1248992 effect#1)
+Family Flags     : 3
+Attributes       : Not Shapeshifted (16), No AutoCast (AI) (49), No Aura Icon (60), Do Not Reset Combat Timers (81), Can Proc From Procs (122), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=156549)   : Summon Guardian (28)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 63508 | Misc Value 2: 3262 | Radius: 0 - 3 yards | Target: at Target (63) -> Random in Area (86)
+#2 (id=832829)   : Apply Aura (6) | Periodic Dummy (226): every 4 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1164752)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 3 | Misc Value 2: 3800 (Label) | Target: Self (1)
+                   Affected Spells (Label): Ferociousness (458623)
+#4 (id=1284544)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Fists of Fury (113656), Breath of Fire (115181), Fists of Fury (117418), Crackling Jade Lightning (117952), Keg Smash (121253), Flying Serpent Kick (123586), Zen Pulse (124081), Chi Wave (132467), Chi Burst (148135), Rushing Jade Wind (148187), Whirling Dragon Punch (158221), Rising Sun Kick (185099), Special Delivery (196733), Blackout Kick (205523), Stomp (227291), Blackout Kick (228649), Sunrise Technique (275673), Glory of the Dawn (288636), Exploding Keg (325153), Faeline Stomp (327264), Spinning Crane Kick (330903), Keg Smash (330911), Tiger Palm (331433), Chi Explosion (337342), Faeline Stomp (345727), Jadefire Stomp (388201), Jadefire Stomp (388207), Zen Pulse (388609), Exploding Keg (388867), Glory of the Dawn (392959), Chi Explosion (393056), Thunderfist (393566), Strike of the Windlord (395519), Strike of the Windlord (395521), Press the Advantage (418360), Celestial Conduit (443038), Courage of the White Tiger (443088), Strength of the Black Ox (443127), Flight of the Red Crane (443611), Flurry Strike (450617), Flurry Strike (451250), Whirling Dragon Punch (451767), Dual Threat (451839), Flurry of Xuen (452130), Courage of the White Tiger (457917), Rushing Wind Kick (468179), Glyph of Tiger Palm (468605), Slicing Winds (1217411), Stomp (1242373), Jadefire Stomp (1248815), Spinning Crane Kick (1250999), Empty the Cellar (1262765), Celestial Flames (1263667), Harmonic Surge (1271011), Zenith Stomp (1272696)
+                   Family Flags: 103
+#5 (id=1284545)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Fists of Fury (113656), Breath of Fire (115181), Fists of Fury (117418), Crackling Jade Lightning (117952), Keg Smash (121253), Flying Serpent Kick (123586), Zen Pulse (124081), Chi Wave (132467), Chi Burst (148135), Rushing Jade Wind (148187), Whirling Dragon Punch (158221), Rising Sun Kick (185099), Special Delivery (196733), Blackout Kick (205523), Stomp (227291), Blackout Kick (228649), Sunrise Technique (275673), Glory of the Dawn (288636), Exploding Keg (325153), Faeline Stomp (327264), Spinning Crane Kick (330903), Keg Smash (330911), Tiger Palm (331433), Chi Explosion (337342), Faeline Stomp (345727), Jadefire Stomp (388201), Jadefire Stomp (388207), Zen Pulse (388609), Exploding Keg (388867), Glory of the Dawn (392959), Chi Explosion (393056), Thunderfist (393566), Strike of the Windlord (395519), Strike of the Windlord (395521), Press the Advantage (418360), Celestial Conduit (443038), Courage of the White Tiger (443088), Strength of the Black Ox (443127), Flight of the Red Crane (443611), Flurry Strike (450617), Flurry Strike (451250), Whirling Dragon Punch (451767), Dual Threat (451839), Flurry of Xuen (452130), Courage of the White Tiger (457917), Rushing Wind Kick (468179), Glyph of Tiger Palm (468605), Slicing Winds (1217411), Stomp (1242373), Jadefire Stomp (1248815), Spinning Crane Kick (1250999), Empty the Cellar (1262765), Celestial Flames (1263667), Harmonic Surge (1271011), Zenith Stomp (1272696)
+                   Family Flags: 103
+Description      : Summons an effigy of Xuen, the White Tiger for $d. Xuen attacks your primary target, and strikes 3 enemies within $123996A1 yards every $123999t1 sec with Tiger Lightning for $123996s1 Nature damage.$?s323999[
+
+Name             : Xuen's Bond (id=392986) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Conduit of the Celestials (Windwalker) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269)
+Effects          :
+#1 (id=1031606)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1031607)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Invoke Xuen, the White Tiger (123904), Invoke Niuzao, the Black Ox (132578), Invoke Yu'lon, the Jade Serpent (322118), Invoke Chi-Ji, the Red Crane (325197), Invoke Niuzao, the Black Ox (395267)
+                   Family Flags: 3
+Description      : Invoke Xuen, the White Tiger's damage is increased by ${$s1}% and its cooldown is reduced by ${$s2/-1000} sec.
+
+Name             : Xuen's Guidance (id=442687) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1138070)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1138071)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Tiger Palm (100780), Tiger Palm (331433), Glyph of Tiger Palm (468605)
+                   Family Flags: 10
+Description      : Teachings of the Monastery has a $s1% chance to refund a charge when consumed. 
+
+Name             : Restore Balance (id=442719) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Mistweaver) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+                 : Conduit of the Celestials (Windwalker) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1138125)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $?c2[Healing increased by $322118s8% while Chi-Ji, the Red Crane or Yu'lon, the Jade Serpent is active.]?c3[Damage increased by $123904s4% while Xuen, the White Tiger is active.][]
+
+Name             : Temple Training (id=442743) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1138177)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+                   Affected Spells: Vivify (116670), Enveloping Mist (124682), Enveloping Breath (325209), Enveloping Breath (358560), Sheilun's Gift (399491)
+                   Family Flags: 26, 79, 114
+#2 (id=1138178)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Spinning Crane Kick (107270), Fists of Fury (117418)
+                   Family Flags: 8, 20
+#3 (id=1164522)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Vivify (116670), Enveloping Mist (124682), Enveloping Breath (325209), Enveloping Breath (358560)
+                   Family Flags: 26, 79
+Description      : $?c2[The healing of Enveloping Mist, Vivify, and Sheilun's Gift is increased by $s1%.]?c3[Fists of Fury and Spinning Crane Kick deal $s2% more damage.][]
+
+Name             : Niuzao's Protection (id=442747) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1138182)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Fortifying Brew grants you an absorb shield for $442749s2% of your maximum health.
+
+Name             : Celestial Conduit (id=443028) [Spell Family (53)] 
+Talent Entry     : Conduit of the Celestials (Mistweaver) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Monk
+School           : Nature
+Spell Type       : None
+Resource         : 5% Base Mana (0) (id=306481) w/ Mistweaver Monk (id=137024)
+GCD              : 0.75 seconds
+Duration         : 4 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+                 : 3378: Jade Sanctuary (443059 effect#1), Jade Sanctuary (443059 effect#2), Chi-Ji's Swiftness (443566 effect#1)
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Not Shapeshifted (16), Is Self Channelled (38), Can Proc From Procs (122), Allow Actions During Channel (160), Extra Initial Period (169), Spell Haste Affects Periodic (173), Aura Points On Client (268), Haste Affects Duration (273), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338), Unbreakable Channel (358), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1138648)  : Apply Aura (6) | Periodic Trigger Spell (23): Unknown(0) every 1 seconds
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+#2 (id=1138649)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Jade Sanctuary (443059 effect#1)
+#3 (id=1138676)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#4 (id=1138701)  : Direct Heal% (136)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Modified By: Jade Sanctuary (443059 effect#2)
+#5 (id=1138702)  : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Modified By: Chi-Ji's Swiftness (443566 effect#1)
+#6 (id=1138739)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#7 (id=1139554)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#8 (id=1160721)  : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 26 | Target: Self (1)
+Description      : $?c2[The August Celestials empower you, causing you to radiate ${$443039s1*$s7} healing onto up to $s3 injured allies and ${$443038s1*$s7} Nature damage onto enemies within $s6 yds over $d, reduced beyond $s3 targets.][The August Celestials empower you, causing you to radiate ${$443038s1*$s7} Nature damage onto enemies and ${$443039s1*$s7} healing onto up to $s3 injured allies within $443038A2 yds over $d, reduced beyond $s3 targets.]
+
+Name             : Jade Sanctuary (id=443059) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1138704)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 12 | Misc Value 2: 3378 (Label) | Target: Self (1)
+                   Affected Spells (Label): Celestial Conduit (443028)
+#2 (id=1138705)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Misc Value 2: 3378 (Label) | Target: Self (1)
+                   Affected Spells (Label): Celestial Conduit (443028)
+Description      : You heal for $s2% of your maximum health instantly when you activate Celestial Conduit and receive $s1% less damage for its duration. 
+
+Name             : Courage of the White Tiger (id=443087) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+                 : 3429: Windwalker Monk (1258122 effect#10), Mistweaver Monk (1258138 effect#23)
+Proc Chance      : 100%
+Real PPM         : 4 (Haste multiplier)
+Proc Flags       : Yellow Melee, Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122)
+Effects          :
+#1 (id=1138752)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1138753)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Modified By: Windwalker Monk (1258122 effect#10), Mistweaver Monk (1258138 effect#23)
+Description      : $?c2[Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for $457917s1 Physical damage, healing a nearby ally for $s2% of the damage done.]?c3[Tiger Palm has a chance to cause Xuen to claw your target for $457917s1 Physical damage, healing a nearby ally for $s2% of the damage done.][Xuen claws your target for $457917s1 Physical damage, healing a nearby ally for $s2% of the damage done.]
+
+Name             : Strength of the Black Ox (id=443110) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1138782)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1138783)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1162170)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : $?c2[After Xuen assists you, your next Enveloping Mist's cast time is reduced by $443112s1% and causes Niuzao to grant an absorb shield to $443113s3 nearby allies for $443113s1.]?c3[After Xuen assists you, your next Blackout Kick refunds $s3 stacks of Teachings of the Monastery and causes Niuzao to stomp at your target's location, dealing $443127s1 damage to nearby enemies, reduced beyond $s2 targets.][]
+
+Name             : Heart of the Jade Serpent (id=443294) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Internal Cooldown: 2 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122)
+Effects          :
+#1 (id=1139104)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8000 | Scaled Value: 8000 | Target: Self (1)
+Description      : $?c2[Thunder Focus Tea calls]?c3[Strike of the Windlord and Whirling Dragon Punch call][] upon Yu'lon to increase the cooldown recovery rate of $?c2[Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea]?c3[Fists of Fury, Strike of the Windlord, Rising Sun Kick, and Whirling Dragon Punch][] by $443421s2% for $?c2[${$s1/1000} sec]?c3[$443421d][].$?c3[ 
+
+Name             : Chi-Ji's Swiftness (id=443566) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1139568)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 5 (33)
+                   Base Value: 75 | Scaled Value: 75 | Misc Value: 33 | Misc Value 2: 3378 (Label) | Target: Self (1)
+                   Affected Spells (Label): Celestial Conduit (443028)
+Description      : Your movement speed is increased by $s1% during Celestial Conduit and by $443569s1% for $443569d after being assisted by any Celestial.
+
+Name             : Inner Compass (id=443571) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Extra Initial Period (169)
+Effects          :
+#1 (id=1139581)  : Apply Aura (6) | Periodic Dummy (226): every 8 seconds
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : You switch between alignments every $t1 sec, increasing a corresponding secondary stat by $443572s1%.
+
+Name             : Unity Within (id=443589) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1139615)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+Description      : Celestial Conduit can be recast once during its duration to call upon all of the August Celestials to assist you at $s1% effectiveness.
+
+Name             : Yu'lon's Knowledge (id=443625) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Mistweaver) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6)
+Effects          :
+#1 (id=1139686)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Rising Sun Kick (107428), Rising Sun Kick (185099), Glory of the Dawn (392959), Rushing Wind Kick (467307), Rushing Wind Kick (468179)
+                   Family Flags: 39
+Description      : Rising Sun Kick damage increased by $s1%.
+
+Name             : Celestial Conduit (id=1248989) [Spell Family (53), Passive] 
+Talent Entry     : Conduit of the Celestials (Windwalker) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1252210)  : Apply Aura (6) | Proc Trigger Spell (42): Celestial Conduit
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1248992 | Target: Self (1)
+Description      : After Invoking Xuen, the White Tiger you may cast Celestial Conduit within $1248992d.
+
+Name             : Yu'lon's Avatar (id=1262667) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 295
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Real PPM         : 1.5 (Haste multiplier)
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1273078)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+#2 (id=1273079)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.33 | Target: Self (1)
+Description      : $?c3[Heart of the Jade Serpent additionally triggers for ${$s1/1000} sec at $s2% effectiveness after you cast Zenith][Vivify and Sheilun's Gift have a chance to trigger Heart of the Jade Serpent for ${$s1/1000} sec at $s2% effectiveness].
+
+Name             : Flowing Wisdom (id=1262672) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1273083)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Heart of the Jade Serpent increases your haste by $443421s8% while active.
+
+Name             : Stampede of the Ancients (id=1262756) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Conduit of the Celestials (Mistweaver) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 295
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1273221)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 300 | Scaled Value: 300 | Target: Self (1)
+#2 (id=1273222)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 400 | Scaled Value: 400 | Target: Self (1)
+Description      : Strength of the Black Ox's effect is $?c3[$s1][$s2]% more effective on your primary target.
+
+Name             : Path of the Falling Star (id=1273154) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=3, col=4, max_rank=1, req_points=0]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1286580)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1286581)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Celestial Conduit's healing and damage is increased by $s1% when striking a single target.

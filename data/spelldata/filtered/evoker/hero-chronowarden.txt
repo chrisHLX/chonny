@@ -1,0 +1,297 @@
+# Evoker — Chronowarden Hero Talents
+# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 16 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Warp (desc=Bronze) (id=429483) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1113740)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1948 (Category) | Target: Self (1)
+                   Affected Spells (Category): Hover (358267), Spatial Paradox (406732)
+Description      : Hover now causes you to briefly warp out of existence and appear at your destination. Hover's cooldown is also reduced by ${$s1/-1000} sec.
+
+Name             : Chrono Flame (desc=Bronze) (id=431442) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 5137: Temporal Burst (431698 effect#11), Temporal Burst (431698 effect#12), Temporal Cycle (1237269 effect#11), Temporal Cycle (1237269 effect#12), Overclock (1260647 effect#2)
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic, Helpful Periodic
+Triggered By     : Temporal Burst (431698), Temporal Cycle (1237269), Overclock (1260647)
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Unknown (450)
+Effects          :
+#1 (id=1119238)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Temporal Burst (431698 effect#11), Temporal Cycle (1237269 effect#11)
+#2 (id=1119461)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1119462)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | SP Coefficient: 2 | Target: Self (1)
+                   Modified By: Temporal Burst (431698 effect#12), Temporal Cycle (1237269 effect#12), Overclock (1260647 effect#2)
+#4 (id=1119505)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332)
+                   Base Value: 431443 | Scaled Value: 431443 | Misc Value 2: 2 | Target: Self (1)
+                   Affected Spells: Living Flame (361469), Chrono Flames (431443)
+                   Family Flags: 52
+Description      : Living Flame is enhanced with Bronze magic, repeating $?c2[$s1%][$s3%] of the damage or healing you dealt to the target in the last $s2 sec as Arcane, up to $?s1260647[$<cap2>][$<cap>].
+Variables        : $cap=${($SP*2.5)*(1+$@versadmg)}
+$cap2=${($SP*3.5)*(1+$@versadmg)}
+
+Name             : Instability Matrix (desc=Bronze) (id=431484) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119297)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : Each time you cast an empower spell, unstable time magic reduces its cooldown by up to $s1 sec.
+
+Name             : Reverberations (desc=Bronze) (id=431615) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119510)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+#2 (id=1165092)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : $?c2[Verdant Embrace heals for an additional $s1% over $409895d.][Upheaval deals $s2% additional damage over $431620d.]
+
+Name             : Primacy (desc=Bronze) (id=431657) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119566)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1119567)  : None (0)
+                   Base Value: 9 | Scaled Value: 9
+Description      : For each $?c2[healing over time effect from Verdant Embrace][damage over time effect from Upheaval], gain $s1% haste, up to $s2%.
+
+Name             : Temporal Burst (desc=Bronze) (id=431695) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119624)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1119626)  : None (0)
+                   Base Value: 20 | Scaled Value: 20
+Description      : Tip the Scales overloads you with temporal energy, increasing your haste, movement speed, and cooldown recovery rate by ${$431698u*$431698s1}%, decreasing over $431698d.
+
+Name             : Nozdormu Adept (desc=Bronze) (id=431715) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119661)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Temporal Anomaly (373861), Temporal Anomaly (373862), Temporal Barrier (1291636)
+                   Family Flags: 45
+#2 (id=1119662)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -4000 | Scaled Value: -4000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Temporal Anomaly (373861), Temporal Anomaly (373862), Temporal Barrier (1291636)
+                   Family Flags: 45
+#3 (id=1283897)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -2000 | Scaled Value: -2000 | Misc Value: 2207 (Category) | Target: Self (1)
+                   Affected Spells (Category): Prescience (409311)
+#4 (id=1283898)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Prescience (409311)
+                   Family Flags: 73
+Description      : $?c2[Temporal Anomaly mana cost reduced by $s1% and cooldown reduced by ${$s2/-1000} sec.][Prescience cooldown reduced by ${$s3/-1000} sec and it grants $s4% additional critical strike chance.]
+
+Name             : Temporality (desc=Bronze) (id=431873) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1120028)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -20 | Scaled Value: -20 | Target: Self (1)
+Description      : Warp reduces damage taken by ${$s1/-1}%, starting high and reducing over $431872d.
+
+Name             : Double-time (desc=Bronze) (id=431874) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1120035)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1127405)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=1168563)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?c2[When Dream Breath or Fire Breath critically strike, their duration is extended by $s1 sec, up to a maximum of ${$s1*6} sec.][Ebon Might and Prescience gain a chance equal to your critical strike chance to grant $s2% additional stats.]
+
+Name             : Afterimage (desc=Bronze) (id=431875) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 5459: Temporal Burst (431698 effect#14)
+Proc Chance      : 101%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1120040)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Modified By: Temporal Burst (431698 effect#14)
+Description      : Empower spells send up to $s1 Chrono Flames to your targets.
+
+Name             : Time Convergence (desc=Bronze) (id=431984) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1120234)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 45 | Scaled Value: 45 | Target: Self (1)
+#2 (id=1120235)  : None (0)
+                   Base Value: 1 | Scaled Value: 1
+Description      : Non-defensive abilities with a $s1 second or longer cooldown grant $431991s1% Intellect for $431991d.
+
+Name             : Golden Opportunity (desc=Bronze) (id=432004) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1120263)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Echo (364343)
+                   Family Flags: 11
+#2 (id=1166967)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Prescience (409311)
+                   Family Flags: 73
+Description      : $?c2[Echo is $s1% more effective.][Prescience lasts $s2% longer.]
+
+Name             : Motes of Acceleration (desc=Bronze) (id=432008) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1120267)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Warp leaves a trail of Motes of Acceleration. Allies who come in contact with a mote gain 20% increased movement speed for 30 sec.
+
+Name             : Chronoboon (desc=Bronze) (id=1260484) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1269936)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Tip the Scales (370553)
+                   Family Flags: 82
+Description      : Tip the Scales' cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Overclock (desc=Bronze) (id=1260647) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1270090)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 40 | Scaled Value: 40 | Trigger Spell: 431442 | Target: Self (1)
+#2 (id=1270092)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 3 (23) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 23 | Misc Value 2: 5137 (Label) | Trigger Spell: 431442 | Target: Self (1)
+                   Affected Spells (Label): Chrono Flame (431442)
+Description      : Chrono Flames' maximum damage or healing is increased by $s1%, up to $<cap> Arcane.
+Variables        : $cap=${($SP*3.5)*(1+$@versadmg)}
+
+Name             : Chronal Dynamo (id=1291522) [Spell Family (224), Passive] 
+Talent Entry     : Chronowarden (Preservation) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1310930)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)
+                   Base Value: -200 | Scaled Value: -200 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Living Flame (361469), Chrono Flames (431443)
+                   Family Flags: 52
+#2 (id=1310931)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Living Flame's cast time is reduced by ${$s1/-1000}.1 sec, and it deals $s2% increased damage or healing when it is a non-instant cast.

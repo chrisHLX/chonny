@@ -1,0 +1,470 @@
+{
+    "class": "Priest",
+    "fetched_at": "2026-07-23T05:00:35+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Holy": {
+            "spec_id": 257,
+            "pvp_talents": [
+                {
+                    "id": 101,
+                    "name": "Psychic Shroud",
+                    "spell_id": 1246968,
+                    "spell_name": "Psychic Shroud",
+                    "description": "When your Psychic Scream affects 1 or more players, the next crowd control effect against you is prevented. Lasts 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 108,
+                    "name": "Sanctified Ground",
+                    "spell_id": 357481,
+                    "spell_name": "Sanctified Ground",
+                    "description": "Holy Word: Sanctify blesses the ground with divine light, causing all allies who stand within to be immune to all silence and interrupt effects. Lasts for 5 sec.",
+                    "unlock_player_level": 41,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 112,
+                    "name": "Greater Heal",
+                    "spell_id": 289666,
+                    "spell_name": "Greater Heal",
+                    "description": "An exceptional spell that heals an ally for 40% of their maximum health, ignoring healing reduction effects. ",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 124,
+                    "name": "Spirit of the Redeemer",
+                    "spell_id": 215982,
+                    "spell_name": "Spirit of the Redeemer",
+                    "description": "Your Spirit of Redemption is now an active ability with a 2 minute cooldown, but the duration is reduced by 9 sec and you will no longer enter Spirit of Redemption upon dying.",
+                    "unlock_player_level": 29,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 1927,
+                    "name": "Absolute Faith",
+                    "spell_id": 408853,
+                    "spell_name": "Absolute Faith",
+                    "description": "Leap of Faith also pulls the spirit of the 3 furthest allies within 40 yards and shields you and the affected allies for 2,851.",
+                    "unlock_player_level": 49,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5479,
+                    "name": "Purification",
+                    "spell_id": 196439,
+                    "spell_name": "Purification",
+                    "description": "Purify now has a maximum of 2 charges.\r\n\r\nRemoving harmful effects with Purify grants your target an absorption shield equal to 5% of their maximum health. Lasts 8 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5569,
+                    "name": "Phase Shift",
+                    "spell_id": 408557,
+                    "spell_name": "Phase Shift",
+                    "description": "Step into the shadows when you cast Fade, avoiding all attacks and spells for 1 sec.\r\n\r\nInterrupt effects are not affected by Phase Shift.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5634,
+                    "name": "Improved Mass Dispel",
+                    "spell_id": 426438,
+                    "spell_name": "Improved Mass Dispel",
+                    "description": "Reduces the cooldown of Mass Dispel by 60 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 257,
+                    "playable_spec_name": "Holy"
+                }
+            ]
+        },
+        "Discipline": {
+            "spec_id": 256,
+            "pvp_talents": [
+                {
+                    "id": 100,
+                    "name": "Purification",
+                    "spell_id": 196439,
+                    "spell_name": "Purification",
+                    "description": "Purify now has a maximum of 2 charges.\r\n\r\nRemoving harmful effects with Purify grants your target an absorption shield equal to 5% of their maximum health. Lasts 8 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 109,
+                    "name": "Trinity",
+                    "spell_id": 214205,
+                    "spell_name": "Trinity",
+                    "description": "Atonement duration increased by 10 sec.\r\n\r\nSmite, Penance, Mind Blast, and Void Blast have 10% reduced cast time when you have Atonement on 3 or more allies.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 111,
+                    "name": "Strength of Soul",
+                    "spell_id": 197535,
+                    "spell_name": "Strength of Soul",
+                    "description": "Your Power Word: Shield reduces all Physical damage taken by 15% while the shield persists.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 114,
+                    "name": "Ultimate Radiance",
+                    "spell_id": 236499,
+                    "spell_name": "Ultimate Radiance",
+                    "description": "Evangelism cooldown is reduced by 45 sec and Power Word: Radiance healing is increased by 15%.",
+                    "unlock_player_level": 23,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 123,
+                    "name": "Inner Light",
+                    "spell_id": 355897,
+                    "spell_name": "Inner Light",
+                    "description": " Inner Light: Healing spells cost 10% less mana.\r\n\r\nInner Shadow: Spell damage and Atonement healing increased by 10%.\r\n\r\nActivate to swap from one effect to the other, incurring a 6 sec cooldown.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 126,
+                    "name": "Dark Archangel",
+                    "spell_id": 1218211,
+                    "spell_name": "Dark Archangel",
+                    "description": "Casting Evangelism increases your damage, and the damage of all allies with your Atonement by 10% for 12 sec.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 5480,
+                    "name": "Absolute Faith",
+                    "spell_id": 408853,
+                    "spell_name": "Absolute Faith",
+                    "description": "Leap of Faith also pulls the spirit of the 3 furthest allies within 40 yards and shields you and the affected allies for 2,851.",
+                    "unlock_player_level": 49,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 5570,
+                    "name": "Phase Shift",
+                    "spell_id": 408557,
+                    "spell_name": "Phase Shift",
+                    "description": "Step into the shadows when you cast Fade, avoiding all attacks and spells for 1 sec.\r\n\r\nInterrupt effects are not affected by Phase Shift.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 5635,
+                    "name": "Improved Mass Dispel",
+                    "spell_id": 426438,
+                    "spell_name": "Improved Mass Dispel",
+                    "description": "Reduces the cooldown of Mass Dispel by 60 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 5640,
+                    "name": "Mindgames",
+                    "spell_id": 375901,
+                    "spell_name": "Mindgames",
+                    "description": "Assault an enemy's mind, dealing 1,131 Shadow damage and briefly reversing their perception of reality.\r\n\r\nFor 7 sec, the next 3,990 damage they deal will heal their target, and the next 3,990 healing they deal will damage their target.",
+                    "unlock_player_level": 44,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                },
+                {
+                    "id": 5721,
+                    "name": "Psychic Shroud",
+                    "spell_id": 1246968,
+                    "spell_name": "Psychic Shroud",
+                    "description": "When your Psychic Scream affects 1 or more players, the next crowd control effect against you is prevented. Lasts 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 256,
+                    "playable_spec_name": "Discipline"
+                }
+            ]
+        },
+        "Shadow": {
+            "spec_id": 258,
+            "pvp_talents": [
+                {
+                    "id": 106,
+                    "name": "Driven to Madness",
+                    "spell_id": 199259,
+                    "spell_name": "Driven to Madness",
+                    "description": "While Voidform is not active, being attacked will reduce the cooldown of Voidform by 3 sec.",
+                    "unlock_player_level": 23,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 113,
+                    "name": "Mind Trauma",
+                    "spell_id": 199445,
+                    "spell_name": "Mind Trauma",
+                    "description": "Siphon haste from enemies, stealing 2% haste per stack of Mind Trauma, stacking up to 9 times. Fully channeled Mind Flays grant 1 stack of Mind Trauma and fully channeled Void Torrents grant 3 stacks of Mind Trauma. Lasts 15 sec.\r\n\r\nYou can only gain 3 stacks of Mind Trauma from a single enemy.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 763,
+                    "name": "Psyfiend",
+                    "spell_id": 211522,
+                    "spell_name": "Psyfiend",
+                    "description": "Summons a Psyfiend with 1,222 health for 12 sec beside you to attack the target at range with Psyflay.\r\n\r\n Psyflay\r\nDeals up to 1% of the target's total health in Shadow damage every 0.9 sec. Also slows their movement speed by 50% and reduces healing received by 50%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 5447,
+                    "name": "Cascading Horrors",
+                    "spell_id": 357711,
+                    "spell_name": "Cascading Horrors",
+                    "description": "Void Eruption sends out slow-moving bolts of Shadow energy at random locations every 0.5 sec for 3 sec, dealing 293 Shadow damage to all targets within 8 yds, and causing them to flee in Horror for 2 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 5481,
+                    "name": "Absolute Faith",
+                    "spell_id": 408853,
+                    "spell_name": "Absolute Faith",
+                    "description": "Leap of Faith also pulls the spirit of the 3 furthest allies within 40 yards and shields you and the affected allies for 2,851.",
+                    "unlock_player_level": 49,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 5568,
+                    "name": "Phase Shift",
+                    "spell_id": 408557,
+                    "spell_name": "Phase Shift",
+                    "description": "Step into the shadows when you cast Fade, avoiding all attacks and spells for 1 sec.\r\n\r\nInterrupt effects are not affected by Phase Shift.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 5636,
+                    "name": "Improved Mass Dispel",
+                    "spell_id": 426438,
+                    "spell_name": "Improved Mass Dispel",
+                    "description": "Reduces the cooldown of Mass Dispel by 60 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 5638,
+                    "name": "Mindgames",
+                    "spell_id": 375901,
+                    "spell_name": "Mindgames",
+                    "description": "Assault an enemy's mind, dealing 1,125 Shadow damage and briefly reversing their perception of reality.\r\n\r\nFor 7 sec, the next 3,990 damage they deal will heal their target, and the next 3,990 healing they deal will damage their target.",
+                    "unlock_player_level": 44,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                },
+                {
+                    "id": 5720,
+                    "name": "Psychic Shroud",
+                    "spell_id": 1246968,
+                    "spell_name": "Psychic Shroud",
+                    "description": "When your Psychic Scream affects 1 or more players, the next crowd control effect against you is prevented. Lasts 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 258,
+                    "playable_spec_name": "Shadow"
+                }
+            ]
+        }
+    }
+}

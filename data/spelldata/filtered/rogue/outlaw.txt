@@ -1,0 +1,842 @@
+# Rogue — Outlaw Spec Talents
+# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 44 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Adrenaline Rush (id=13750) [Spell Family (8)] 
+Talent Entry     : Outlaw [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : Melee
+Duration         : 15 seconds
+Cooldown         : 180 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 184
+                 : 292
+                 : 690: Major Cooldowns
+                 : 1387
+                 : 2887: Underhanded Upper Hand (Adrenaline Rush) (424081 effect#1)
+Affecting Spells : Celerity (340087 effect#1), Lucky Coin (1248971 effect#2), Menacing Rush (1256630 effects: #1, #2), Heightened Rush (1259465 effect#1), Deadly Pursuit (1259614 effect#1)
+Family Flags     : 39
+Attributes       : Is Ability (4), Not Shapeshifted (16), Allow While Stealthed (37), No Threat (42), Suppress Target Procs (113), Extra Initial Period (169), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Important Spell (491)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=6149)     : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 75 | Scaled Value: 75 | Resource: energy | Target: Self (1)
+#2 (id=85451)    : Apply Aura (6) | Modify Ranged and Melee Auto Attack Speed% (342)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=165715)   : Apply Aura (6) | Add Flat Modifier (107): Spell Global Cooldown (21)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 21 | Target: Self (1)
+                   Affected Spells: Dispatch (2098), Shiv (5938), Ambush (8676), Blade Flurry (13877), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Blade Rush (271877), Blade Rush (271878), Blade Rush (271881), Blade Rush (271896), Between the Eyes (315341), Slice and Dice (315496), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Sepsis (328305), Sepsis (328306), Sinister Strike (341541), Echoing Reprimand (354835), Echoing Reprimand (354838), Keep It Rolling (381989), Ambush (385897), Blade Flurry (429951), Ambush (430023), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Dispatch (467059), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Roll the Bones (1214909)
+                   Family Flags: 9, 13, 18, 26, 29, 43, 60, 82, 98, 101, 111, 112, 113, 118
+#4 (id=762250)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Dispatch (2098), Ambush (8676), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Between the Eyes (315341), Sinister Strike (341541), Ambush (385897), Killing Spree (424556), Ambush (430023), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603)
+                   Family Flags: 9, 55, 98, 101, 111, 112
+                   Modified By: Menacing Rush (1256630 effect#1)
+#5 (id=840599)   : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 2941 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blade Flurry (331850), Blade Flurry (429951)
+                   Modified By: Celerity (340087 effect#1), Menacing Rush (1256630 effect#2)
+#6 (id=1158657)  : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 50 | Scaled Value: 50 | Resource: energy | Target: Self (1)
+#7 (id=1293534)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Increases your Energy regeneration rate by $s1%, your maximum Energy by $s6, and your attack speed by $s2% for $d.$?$s4>0[
+
+Name             : Ruthlessness (id=14161) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 27
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=6447)     : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Points Per Combo Point: 20 | Target: Self (1)
+Description      : Your finishing moves have a $b1% chance per combo point spent to grant a combo point.
+
+Name             : Fatal Flourish (id=35551) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 43
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 4265
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee
+Family Flags     : 58
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=25764)    : Apply Aura (6) | Proc Trigger Spell (42): Fatal Flourish
+                   Base Value: 25 | Scaled Value: 25 | Trigger Spell: 35546 | Target: Self (1)
+Description      : Your off-hand attacks and Pistol Shots have a $s1% chance to generate $35546s1 Energy.
+
+Name             : Killing Spree (id=51690) [Spell Family (8)] 
+Talent Entry     : Outlaw [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : Melee
+Resource         : 45 Energy (3) (id=305412)
+Resource         : 1 - 7 Combo Points (4) (id=305413)
+Spell Level      : 1
+Range            : 8 yards
+GCD              : 1 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 180 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 184
+                 : 292
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell
+Affecting Spells : Adrenaline Rush (13750 effect#4), Deeper Stratagem (193531 effects: #1, #4), Tight Spender (381621 effect#1), Devious Stratagem (394321 effects: #1, #4), Fazed (441224 effect#5), Disorienting Strikes (441274 effect#1), Flawless Form (441326 effects: #1, #2), Sanguine Stratagem (457512 effects: #1, #4), Crescendo of Violence (1259499 effects: #1, #2), Deadly Pursuit (1259614 effect#1), Cold Blood (1264297 effect#1), Deep Cuts (1267216 effects: #1, #2)
+Family Flags     : 55
+Attributes       : Is Ability (4), Not Shapeshifted (16), No Immunities (29), No Aura Cancel (31), Is Channelled (34), Is Self Channelled (38), Initiates Combat (Enables Auto-Attack) (41), Name in Channel Bar (61), PvP Enabling (96), Requires Main-Hand Weapon (106), Force Display Castbar (155), Extra Initial Period (169), Spell Haste Affects Periodic (173), Delay Combat Timer During Cast (211), Haste Affects Duration (273), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2)
+Effects          :
+#1 (id=44062)    : Apply Aura (6) | Periodic Dummy (226): every 0.5 seconds
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 3 | Target: Self (1)
+#2 (id=44063)    : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Finishing move that unleashes a barrage of gunfire, striking random enemies within $r yards for Physical damage. Number of strikes increased per combo point.
+
+Name             : Combat Potency (id=61329) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 37
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 4264
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=55169)    : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 16 | Scaled Value: 16 | Resource: energy | Target: Self (1)
+Description      : Increases your Energy regeneration rate by $s1%.
+
+Name             : Hit and Run (id=196922) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=289145)   : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 15 | Scaled Value: 15 | SP Coefficient: 0.25 | Target: Self (1)
+#2 (id=289146)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Target: Self (1)
+Description      : Movement speed increased by $s1%.
+
+Name             : Quick Draw (id=196938) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=289173)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Opportunity (195627)
+                   Family Flags: 108
+Description      : Opportunity increases the damage of Pistol Shot by an additional $s1%. Each charge of Opportunity consumed by Pistol Shot generates $1254567s1 combo $Lpoint:points;.
+
+Name             : Improved Between the Eyes (id=235484) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=355887)   : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.75 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Between the Eyes (315341)
+                   Family Flags: 111
+Description      : Critical strikes with Between the Eyes deal ${$s1/100+2}.1 times normal damage.
+
+Name             : Blinding Powder (id=256165) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=2, col=6, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=478576)   : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Blind (2094), Blind (427773)
+                   Family Flags: 24
+#2 (id=478577)   : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Blind (2094), Blind (427773)
+                   Family Flags: 24
+Description      : Reduces the cooldown of Blind by $s1% and increases its range by $s2 yds.
+
+Name             : Loaded Dice (id=256170) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=478588)   : Apply Aura (6) | Proc Trigger Spell (42): Loaded Dice
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 256171 | Target: Self (1)
+Description      : Activating Adrenaline Rush improves the result of your next Roll the Bones by one level.
+
+Name             : Retractable Hook (id=256188) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=2, col=6, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=478629)   : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 2303 (Category) | Target: Self (1)
+                   Affected Spells (Category): Grappling Hook (195457)
+Description      : Reduces the cooldown of Grappling Hook by ${$s1/-1000} sec.
+
+Name             : Blade Rush (id=271877) [Spell Family (8)] 
+Talent Entry     : Outlaw [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : Melee
+Range            : 20 yards
+GCD              : 1 seconds
+Requires weapon  : One-handed Axe, One-handed Mace, One-handed Sword, Fist Weapon
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Affecting Spells : Adrenaline Rush (13750 effect#3), Deadly Pursuit (1259614 effect#1), Rogue Outlaw 12.0 Class Set 2pc (1264858 effect#1), Rogue Outlaw 12.0 Class Set 4pc (1264859 effect#1)
+Family Flags     : 13
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), Initiates Combat (Enables Auto-Attack) (41), Requires Main-Hand Weapon (106), Always Line of Sight (185), Taps immediately (215), Attack on Charge to Unit (242), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=722352)   : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
+Description      : Charge to your target with your blades out, dealing ${$271881sw1*$271881s2/100} Physical damage to the target and $271881sw1 to all other nearby enemies. Damage reduced beyond $271881sw3 targets.
+
+Name             : Dancing Steel (id=272026) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=7, col=9, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=722596)   : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1712 (Category) | Target: Self (1)
+#2 (id=722597)   : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Blade Flurry (13877)
+                   Family Flags: 43
+#3 (id=722598)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Blade Flurry strikes $s3 additional enemies and its duration is increased by ${$s2/1000} sec.
+
+Name             : Opportunity (id=279876) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=1, col=5, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 12
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 5679: Skull and Crossbones (199603 effect#1), Keep Your Wits About You (288988 effect#1), Rogue Outlaw 10.2 Class Set 2pc (422907 effect#1), Destiny Defined (454435 effect#2), One of a Kind (1214933 effect#1), Double Trouble (1214934 effect#1), Triple Threat (1214935 effect#1), Jackpot (1214937 effect#1), Find an Opening (1259457 effect#1)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=736488)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 15 | Target: Self (1)
+                   Modified By: Skull and Crossbones (199603 effect#1), Keep Your Wits About You (288988 effect#1), Rogue Outlaw 10.2 Class Set 2pc (422907 effect#1), Destiny Defined (454435 effect#2), One of a Kind (1214933 effect#1), Double Trouble (1214934 effect#1), Triple Threat (1214935 effect#1), Jackpot (1214937 effect#1), Find an Opening (1259457 effect#1)
+Description      : Sinister Strike has a $s1% chance to hit an additional time and grant Opportunity.
+
+Name             : Thief's Versatility (id=381619) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=6, col=8, max_rank=1, req_points=8, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012573)  : Apply Aura (6) | Modify Versatility% (471)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Versatility increased by $s1%.
+
+Name             : Ace Up Your Sleeve (id=381828) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=7, col=7, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1012914)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Between the Eyes has a $s1% chance per combo point spent to grant $394120s1 combo points and reset its own cooldown.
+
+Name             : Sleight of Hand (id=381839) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1012937)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Roll the Bones has a $s1% increased chance of granting more powerful results.
+
+Name             : Audacity (id=381845) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012945)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Using Pistol Shot with Opportunity has a $279876s1% chance to make your next Ambush usable without Stealth.
+
+Name             : Fan the Hammer (id=381846) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=9, col=7, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(1, 2)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012946)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1013165)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Opportunity (195627)
+                   Family Flags: 108
+#3 (id=1046162)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : When you gain Opportunity, gain $m1 additional $Lcharge:charges;. Max ${$s2+1} charges.
+
+Name             : Combat Stamina (id=381877) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012995)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 3.6 | Stat: Sta | Target: Self (1)
+#2 (id=1092655)  : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3
+Description      : Stamina increased by $<stam>%.
+Variables        : $pvp=$?a134735[${$s2}][${1}]
+$stam=${$s1*$<pvp>}
+
+Name             : Deft Maneuvers (id=381878) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=4, col=7, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012996)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value 2: 2941 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blade Flurry (331850), Blade Flurry (429951)
+#2 (id=1034505)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1290426)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Blade Flurry (13877)
+                   Family Flags: 43
+Description      : Blade Flurry's initial damage is increased by $s1% and generates $m2 $Lcombo point:combo points; per target struck, but its Energy cost is increased by $s3.
+
+Name             : Heavy Hitter (id=381885) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=7, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+                 : Effect#4 [op=mul, values=(1, 2)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013004)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Gouge (1776), Cheap Shot (1833), Shiv (5938), Ambush (8676), Quaking Palm (107079), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Sepsis (328305), Sepsis (328306), Sinister Strike (341541), Echoing Reprimand (354835), Echoing Reprimand (354838), Ambush (385897), Ambush (430023), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672)
+                   Family Flags: 3, 9, 10, 26, 29, 82, 98, 101, 118
+#2 (id=1033553)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Gouge (1776), Cheap Shot (1833), Shiv (5938), Ambush (8676), Quaking Palm (107079), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Sepsis (328305), Sepsis (328306), Sinister Strike (341541), Echoing Reprimand (354835), Echoing Reprimand (354838), Ambush (385897), Ambush (430023), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672)
+                   Family Flags: 3, 9, 10, 26, 29, 82, 98, 101, 118
+#3 (id=1118464)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 3052 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blade Flurry (429951)
+#4 (id=1118465)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 3052 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blade Flurry (429951)
+Description      : Attacks that generate combo points deal $s1% increased damage.
+
+Name             : Keep It Rolling (id=381989) [Spell Family (8)] 
+Talent Entry     : Outlaw [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Cooldown         : 360 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Affecting Spells : Adrenaline Rush (13750 effect#3), Deeper Stratagem (193531 effect#1), Secret Stratagem (394320 effect#1), Deadly Pursuit (1259614 effect#1)
+Family Flags     : 113
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Allow While Stealthed (37), No Threat (42), Always Hit (114), Do Not Display Range (126), Not an Attack (194), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013170)  : Dummy (3)
+                   Base Value: 30000 | Scaled Value: 30000 | Target: Self (1)
+Description      : Increase the remaining duration of your active Roll the Bones combat enhancement by ${$s1/1000} sec.
+
+Name             : Summarily Dispatched (id=381990) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=9, col=3, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 5691: Between the Eyes (315341 effect#4)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013171)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1021261)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Dispatch (2098), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Dispatch (467059)
+                   Family Flags: 112
+                   Modified By: Between the Eyes (315341 effect#4)
+#3 (id=1021262)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14) | Attributes: Aura Points Stack (9)
+                   Base Value: -3 | Scaled Value: -3 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Dispatch (2098), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Dispatch (467059)
+                   Family Flags: 112
+Description      : Dispatch deals $s1% increased damage and costs $s3 less Energy. This damage bonus is increased by $315341s4% while your damage is enhanced by your Between the Eyes.
+
+Name             : Hidden Opportunity (id=383281) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1015086)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
+Description      : Ambush has a chance to grant Opportunity. Chance to trigger this effect is $s1% of the chance for Sinister Strike to grant Opportunity.
+
+Name             : Devious Stratagem (id=394321) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1033861)  : Apply Aura (6) | Modify Max Cost (63)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 17, 20, 32, 35, 44, 55, 81, 89, 92, 100, 111, 112, 116
+#2 (id=1033862)  : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
+#3 (id=1033863)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 4 | Target: Self (1)
+#4 (id=1033864)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Family Flags: 17, 32, 35, 44, 55, 81, 92, 111, 112
+#5 (id=1033865)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 20, 32, 44, 81, 95, 100
+Description      : Gain $s1 additional max combo point.
+
+Name             : Improved Adrenaline Rush (id=395422) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1035886)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Generate full combo points when you gain Adrenaline Rush.
+
+Name             : Precision Shot (id=428377) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 12
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1108645)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Pistol Shot (185763), Between the Eyes (315341)
+                   Family Flags: 101, 111
+#2 (id=1269112)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Pistol Shot (185763), Between the Eyes (315341)
+                   Family Flags: 101, 111
+Description      : Between the Eyes and Pistol Shot have $s1 yd increased range and deal $s2% increased damage.
+
+Name             : Acrobatic Strikes (id=455143) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1158368)  : Apply Aura (6) | Proc Trigger Spell (42): Acrobatic Strikes
+                   Base Value: 10 | Scaled Value: 10 | Trigger Spell: 455144 | Target: Self (1)
+Description      : Auto-attacks increase auto-attack damage by $455144s1% and movement speed by $455144s2% for $455144d, stacking up to $455144u times.
+
+Name             : Menacing Rush (id=1256630) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=8, col=5, max_rank=1, req_points=20, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 37
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1264218)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Adrenaline Rush (13750), Adrenaline Rush (186286), Adrenaline Rush (470680)
+                   Family Flags: 39
+#2 (id=1293533)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Adrenaline Rush (13750), Adrenaline Rush (186286), Adrenaline Rush (470680)
+                   Family Flags: 39
+Description      : Adrenaline Rush magnifies your precision and power, increasing the damage your combo point generating abilities and finishers deal by $s1%.
+
+Name             : Find an Opening (id=1259457) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268580)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Misc Value 2: 5679 (Label) | Target: Self (1)
+                   Affected Spells (Label): Opportunity (279876)
+Description      : Your chance for Sinister Strike to strike twice and grant Opportunity is increased by $s1%
+
+Name             : Heightened Rush (id=1259465) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=8, col=5, max_rank=1, req_points=20, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268591)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Adrenaline Rush (13750), Adrenaline Rush (186286), Adrenaline Rush (470680)
+                   Family Flags: 39
+Description      : Adrenaline Rush's duration is increased by ${$s1/1000} sec.
+
+Name             : Grand Melee (id=1259469) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=8, col=8, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268595)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Blade Flurry (13877)
+                   Family Flags: 43
+Description      : Blade Flurry causes your attacks to hit nearby enemies for an additional $s1% of their normal damage.
+
+Name             : Fast Action (id=1259480) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268613)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Between the Eyes (315341)
+                   Family Flags: 111
+Description      : The cooldown of Between the Eyes is reduced by ${-$s1/1000} sec.
+
+Name             : Dragon-Bone Dice (id=1259481) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268614)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 5707 (Label) | Target: Self (1)
+                   Affected Spells (Label): One of a Kind (1214933), Double Trouble (1214934), Triple Threat (1214935), Jackpot (1214937)
+#2 (id=1268617)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 23 | Misc Value 2: 5707 (Label) | Target: Self (1)
+                   Affected Spells (Label): One of a Kind (1214933), Double Trouble (1214934), Triple Threat (1214935), Jackpot (1214937)
+#3 (id=1268618)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Misc Value 2: 5707 (Label) | Target: Self (1)
+                   Affected Spells (Label): One of a Kind (1214933), Double Trouble (1214934), Triple Threat (1214935), Jackpot (1214937)
+#4 (id=1268619)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 5 (33)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 33 | Misc Value 2: 5707 (Label) | Target: Self (1)
+                   Affected Spells (Label): One of a Kind (1214933), Double Trouble (1214934), Triple Threat (1214935), Jackpot (1214937)
+Description      : The bonuses granted by your Roll the Bones are stronger.
+
+Name             : Zero In (id=1259485) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268623)  : Apply Aura (6) | Proc Trigger Spell (42): Zero In
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1259486 | Target: Self (1)
+Description      : Your auto-attack critical strikes increase the damage and critical strike chance of your next Between the Eyes by $1259486s1%, stacking up to $1259486u times.
+
+Name             : Flickering Steel (id=1259492) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=6, col=8, max_rank=1, req_points=8, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268634)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Ambush (8676), Sinister Strike (193315), Sinister Strike (197834), Sinister Strike (341541), Ambush (385897), Ambush (430023)
+                   Family Flags: 9, 98
+Description      : Sinister Strike and Ambush deal $s1% increased damage. They also generate $1259493s1 Energy when they grant you Opportunity.
+
+Name             : Expert Duelist (id=1259498) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268640)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Between the Eyes (315341)
+                   Family Flags: 111
+#2 (id=1269140)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Between the Eyes (315341)
+                   Family Flags: 111
+Description      : Between the Eyes increases your damage dealt by an additional $s1%.
+
+Name             : Crescendo of Violence (id=1259499) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268641)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Kidney Shot (408), Dispatch (2098), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Between the Eyes (315341), Eviscerate (328082), Killing Spree (424556), Kidney Shot (426589), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603), Eviscerate (1269205)
+                   Family Flags: 17, 21, 55, 111, 112
+#2 (id=1268643)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Kidney Shot (408), Dispatch (2098), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Between the Eyes (315341), Eviscerate (328082), Killing Spree (424556), Kidney Shot (426589), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603), Eviscerate (1269205)
+                   Family Flags: 17, 21, 55, 111, 112
+Description      : Your finishing moves deal $s1% increased damage.
+
+Name             : Deadly Pursuit (id=1259612) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1268755)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : After spending $s1 combo points, if you spend no combo points for $1259613d, abilities affected by Restless Blades will cool down $1259614s1% faster for $1259614d or until you spend a combo point.
+
+Name             : Gravedigger (id=1265861) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1277880)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 45 | Scaled Value: 45 | Target: Self (1)
+Description      : Between the Eyes has a $s1% chance to apply 2 stacks of its bonus to your damage dealt.
+
+Name             : Gravedigger (id=1265862) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=11, col=5, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#2 [op=set, values=(0, 100)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Rogue
+School           : Physical
+Spell Type       : Melee
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Between the Eyes (315341 effects: #2, #3), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Family Flags     : 54
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1277881)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1278072)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 5861 (Label) | Target: Self (1)
+                   Affected Spells (Label): Scoundrel Strike (1265918)
+#3 (id=1300374)  : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.5) | AP Coefficient: 1.6
+Description      : When you spend $s1 or more combo points on Dispatch, immediately strike your target with an underhanded Scoundrel Strike for $s3 Physical damage.
+
+Name             : Gravedigger (id=1265863) [Spell Family (8), Passive] 
+Talent Entry     : Outlaw [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=300]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1277882)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+#2 (id=1278006)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : When you Dispatch you have a $s1% chance per combo point spent to hide a bullet up your sleeve. When you've hidden $s2 bullets, your next Between the Eyes consumes them and costs no Energy, generates $1279356s1 combo points, and immediately resets its own cooldown.
+
+Name             : Preparation (id=1277933) [Spell Family (8)] 
+Talent Entry     : Outlaw [tree=spec, row=10, col=8, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+GCD              : 1 seconds
+Cooldown         : 240 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Is Ability (4), Do Not Sheath (18), Allow While Stealthed (37), Reset cooldown upon ending an encounter (333)
+Effects          :
+#1 (id=1290409)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Immediately reset the cooldowns of Adrenaline Rush, Between the Eyes, Blade Flurry, Blade Rush, and Killing Spree.

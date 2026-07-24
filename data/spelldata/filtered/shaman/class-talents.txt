@@ -1,0 +1,1324 @@
+# Shaman — Class Talents
+# Extracted verbatim from shaman.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 57 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Purge (id=370) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=7, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 1.6% Base Mana (0) (id=10997) w/ Restoration Shaman (id=137039)
+Resource         : 14% Base Mana (0) (id=305247) w/ Elemental Shaman (id=137040)
+Resource         : 14% Base Mana (0) (id=305248) w/ Enhancement Shaman (id=137041)
+Spell Level      : 10
+Range            : 30 yards
+GCD              : 1.5 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 88
+Attributes       : Not Shapeshifted (16), No Reflection (39), Taps immediately (215), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=149)      : Dispel (38)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1 | Target: Targeted Enemy (6)
+Description      : Purges the enemy target, removing $m1 beneficial Magic $leffect:effects;.$?(s147762&s51530)
+[ Successfully purging a target grants a stack of Maelstrom Weapon.][]
+
+Name             : Earth Shield (id=974) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=2, col=1, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=104) w/ Restoration Shaman (id=137039)
+Resource         : 5% Base Mana (0) (id=305249) w/ Elemental Shaman (id=137040)
+Resource         : 5% Base Mana (0) (id=305250) w/ Enhancement Shaman (id=137041)
+Spell Level      : 10
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 3600 seconds
+Category         : 1195 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 117
+                 : 292
+Internal Cooldown: 3 seconds
+Stacks           : 9 maximum
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Heal Taken, Magic Hostile Spell Taken
+Affecting Spells : Earthen Harmony (382020 effect#3), Earthen Communion (443441 effects: #1, #2), Reactive Warding (462454 effect#2), Therazane's Resilience (1217622 effects: #2, #3)
+Family Flags     : 42
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Combo on Block (Mainline: Dispel All Stacks) (62), DoT Stacking Rule (103), Allow Aura While Dead (116), Can Proc From Procs (122), Cannot Be Stolen (134), Allow Proc While Sitting (147), Limit N (165), Vehicle Immunity Category (218), Disable Aura While Dead (226), Can Proc From Suppressed Target Procs (254), Aura Points On Client (268), Allow Class Ability Procs (416), Do Not Consume Aura Stack On Proc (428), Non-secret Aura (506)
+Effects          :
+#1 (id=372)      : Apply Aura (6) | Modify Healing Taken% from Caster's Spells (283) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 20 | Scaled Value: 20 | Target: Targeted Ally (21)
+                   Affected Spells: Earth Shield (379), Chain Heal (1064), Healing Surge (8004), Healing Stream Totem (52042), Riptide (61295), Unleash Life (73685), Healing Rain (73921), Healing Wave (77472), Healing Tide (114942), Downpour (207778), Soothing Waters (273019), Serene Spirit (274416), Swelling Stream (275499), Overflowing Shores (278095), Spouting Spirits (279505), Pack Spirit (280205), Restorative Mists (294020), Surge of Earth (320747), Chain Harvest (320751), Vesper Totem (324522), Primordial Wave (327163), Fae Transfusion (328930), Vesper Totem (356791), Earthliving Weapon (382024), Overflowing Shores (383223), Tidal Reservoir (424464), Chain Heal (458357), Spouting Spirits (462384), Tidewaters (462425), Reactive Warding (462477), Insurance! (1215539), Insurance! (1215540), Stormstream Totem (1267745), Stormswell (1268684)
+                   Family Flags: 41
+#2 (id=756953)   : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
+#3 (id=1052535)  : Apply Aura (6) | Modify Damage Taken% (87) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Ally (21)
+                   Affected School(s): All
+                   Modified By: Earthen Harmony (382020 effect#3)
+Description      : Protects the target with an earthen shield, increasing your healing on them by $s1% and healing them for ${$379s1*(1+$s1/100)} when they take damage. This heal can only occur once every $?a462454[${$proccooldown+($462454s2/1000)}.1][$proccooldown] sec. $?a1217622[Lasts $d][Maximum $u charges].
+
+Name             : Chain Heal (id=1064) [Spell Family (11)] 
+Talent Entry     : Generic [free=(Restoration), tree=class, row=1, col=2, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 4.28% Base Mana (0) (id=111) w/ Restoration Shaman (id=137039)
+Resource         : 15% Base Mana (0) (id=305239) w/ Elemental Shaman (id=137040)
+Resource         : 15% Base Mana (0) (id=305240) w/ Enhancement Shaman (id=137041)
+Resource         : 15% Base Mana (0) (id=305241) w/ Initial Shaman (id=417374)
+Spell Level      : 21
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Earth Shield (974 effect#1), Tidal Waves (53390 effect#1), Healing Trance (60515 effect#1), Unleash Life (73685 effects: #2, #3), Mastery: Deep Healing (77226 effect#1), Spiritwalker's Grace (79206 effect#1), Ascendance (114052 effects: #9, #13, #16, #18), Restoration Shaman (137039 effects: #1, #2, #12), Elemental Shaman (137040 effect#15), Enhancement Shaman (137041 effect#19), Elemental Rebalancers (208777 effect#1), Jonat's Focus (210607 effect#1), Tidebringer (236502 effects: #1, #2), Ancestral Reach (263790 effect#1), Spiritwalker's Tidal Totem (335892 effects: #1, #2), Jonat's Natural Focus (335894 effect#1), Chains of Devastation (336737 effects: #1, #2), Elemental Fury (343190 effect#1), Heal the Soul (366779 effect#1), Nature's Swiftness (378081 effects: #1, #2, #4, #5), Nature's Fury (381655 effect#1), Earthliving Weapon (382024 effect#2), Flow of the Tides (382039 effect#2), Ancestral Reach (382732 effects: #1, #2), Undercurrent (383235 effects: #1, #2), Earth Shield (383648 effect#1), Overflowing Maelstrom (410681 effects: #1, #2), Initial Shaman (417374 effects: #3, #4), Maelstrom Supremacy (443447 effect#2), Ancestral Swiftness (443454 effects: #1, #2, #4, #5, #6), Whirling Air (453409 effect#1), Surging Currents (454376 effect#1), Amplification Core (456369 effects: #1, #2), Tidecaller's Guard (457496 effects: #2, #3), Earthsurge (457566 effect#1), Fate Reversal (1219323 effect#1), Calm Waters (1252841 effect#1), Restoration Shaman (1256945 effects: #1, #2), Windspeaker (1270447 effects: #1, #2), Boon of the Water Ascendant (1271192 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283657 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283658 effects: #1, #2)
+Triggered By     : Overflowing Maelstrom (410681)
+Family Flags     : 8, 41
+Attributes       : Not Shapeshifted (16), Doesn't Reset Swing Timer if Instant (217), Heal Prediction (280), Enforce Facing on Primary Target Only (351), Allow Class Ability Procs (416), Chain by Most Hit (440)
+Effects          :
+#1 (id=387)      : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 2.31 | PvP Coefficient: 1.2 | Chain Multiplier: 0.7 | Chain Targets: 4 | Target: Chain Heal Ally (45)
+#2 (id=219186)   : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30
+                   Modified By: Ascendance (114052 effect#18)
+#3 (id=1050689)  : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20
+Description      : Heals the friendly target for $s1, then jumps up to $?a236502[${$s3*(($236502s2/100)+1)}][$s3] yards to heal the $<jumps> most injured nearby allies. Healing is reduced by $s2% with each jump.
+Variables        : $jumps=${$x1-1}
+
+Name             : Tremor Totem (id=8143) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=23, select_idx=100]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 0.46% Base Mana (0) (id=331)
+Spell Level      : 47
+GCD              : 1 seconds
+Duration         : 10 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 1658: Totemic Focus (382201 effect#2)
+                 : 5952: Totemic Surge (381867 effect#1)
+Affecting Spells : Elemental Rebalancers (208777 effect#1), Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 15, 29, 57
+Attributes       : Is Ability (4), Not Shapeshifted (16), No Aura Icon (60), No Aura Log (202), Can Be Multi Cast (229), Ignore Totem Requirements for Casting (293), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=3317)     : Summon Guardian (28)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 5913 | Misc Value 2: 3406 | Target: Front Left of Self (44)
+Description      : Summons a totem at your feet that shakes the ground around it for $d, removing Fear, Charm and Sleep effects from party and raid members within $8146a1 yards.
+
+Name             : Nature's Guardian (id=30884) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=6, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 4016: Natural Harmony (443442 effect#3)
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Helpful Taken, Generic Hostile Spell Taken, Magic Heal Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Allow Proc While Sitting (147), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=20499)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Trigger Spell: 31616 | Target: Self (1)
+#2 (id=1177796)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 1706 (Label) | Target: Self (1)
+                   Affected Spells (Label): Nature's Guardian (31616)
+                   Modified By: Natural Harmony (443442 effect#3)
+Description      : When your health is brought below $s1%, you instantly heal for ${$31616s1*(1+$s2/100)}% of your maximum health. Cannot occur more than once every $445698d.
+
+Name             : Earthgrab Totem (id=51485) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=1, req_points=8, replace="Earthbind Totem" (id=2484)]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Resource         : 0.5% Base Mana (0) (id=5228)
+Spell Level      : 1
+Range            : 35 yards
+GCD              : 1 seconds
+Duration         : 20 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 1659: Totemic Focus (382201 effect#1)
+                 : 1660: Totemic Focus (382201 effect#3), Spatial Paradox (406789 effect#12), Oversized Totems (445026 effect#1)
+                 : 5952: Totemic Surge (381867 effect#1)
+Affecting Spells : Elemental Rebalancers (208777 effect#1), Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 15, 29
+Attributes       : Is Ability (4), Not Shapeshifted (16), No AutoCast (AI) (49), Not In Spellbook Until Learned (269), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Allow Class Ability Procs (416)
+Aura Interrupt   : Raid Encounter Start or M+ Start (40)
+Effects          :
+#1 (id=120544)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 8 yards | Target: at Area (87)
+#2 (id=287855)   : Summon Guardian (28)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 60561 | Misc Value 2: 3404 | Target: at Area (87)
+Description      : Summons a totem at the target location for $d. The totem pulses every $116943t1 sec, rooting all enemies within $64695A1 yards for $64695d. Enemies previously rooted by the totem instead suffer $116947s1% movement speed reduction.
+
+Name             : Lava Burst (id=51505) [Spell Family (11)] 
+Talent Entry     : Elemental, Restoration [free=(Elemental), tree=class, row=1, col=4, max_rank=1, req_points=0, replace="Primal Strike" (id=73899)]
+Class            : Shaman
+School           : Fire
+Spell Type       : Magic
+Resource         : 0.5% Base Mana (0) (id=11268)
+Spell Level      : 11
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Velocity         : 50 yards/sec
+Charges          : 1 (8 seconds cooldown)
+Category         : 1536 (Type 0x1): Echo of the Elements (333919 effect#1), Elemental Reverb (443418 effect#1)
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Elemental Fury (60188 effect#1), Mastery: Enhanced Elements (77223 effects: #1, #5), Lava Surge (77762 effects: #1, #2), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5, #17), Elemental Shaman (137040 effects: #1, #2, #21), Enhancement Shaman (137041 effects: #1, #2), Mastery: Elemental Overload (168534 effects: #3, #4), Flames of the Forefathers (264113 effect#1), Igneous Potential (279829 effect#2), Windspeaker's Lava Resurgence (336065 effect#1), Maelstrom (343725 effect#3), Fireheart (364523 effect#2), Improved Flametongue Weapon (382028 effect#1), Fire and Ice (382886 effect#1), Elemental Blast (394152 effect#1), Maelstrom of Elements (394677 effects: #1, #3), Elemental Weapons (408390 effects: #1, #2), Initial Shaman (417374 effects: #1, #2), Elemental Reverb (443418 effect#2), Ancestral Swiftness (443454 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Enhancement Shaman (1214207 effects: #1, #2), Jackpot! (1218612 effect#1), Elemental Shaman (1231772 effects: #1, #2, #5), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4, #12), Molten Wrath (1258843 effect#1), Elemental Resonance (1258895 effect#1), Purging Flames (1259471 effect#1), Feedback Loop (1270062 effect#1), Windspeaker (1270447 effects: #1, #2), Lava Flows (1273485 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
+Family Flags     : 39, 44, 56
+Attributes       : Not Shapeshifted (16), Allow Aura While Dead (116), Doesn't Reset Swing Timer if Instant (217), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=43841)    : Trigger Missiles (32): Lava Burst
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 285452 | Target: Targeted Enemy (6)
+#2 (id=845772)   : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: maelstrom | Target: Self (1)
+                   Modified By: Lava Surge (77762 effect#2), Maelstrom (343725 effect#3)
+Description      : Hurls molten lava at the target, dealing $285452s1 Fire damage. Lava Burst will always critically strike if the target is affected by Flame Shock and its damage is increased by your critical strike chance.$?a343725[
+
+Name             : Hex (desc=Frog) (id=51514) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=7, col=7, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 41
+Range            : 30 yards
+Cast Time        : 1.7 seconds
+GCD              : 1.5 seconds
+Duration         : 60 seconds
+Cooldown         : 30 seconds
+Category         : 1655 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 940
+Category Cooldown: 30 seconds
+Proc Chance      : 100%
+Mechanic         : Polymorph
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Affecting Spells : Spiritwalker's Grace (79206 effect#1), Voodoo Mastery (204268 effect#1), Nature's Swiftness (378081 effects: #6, #7), Ancestral Swiftness (443454 effects: #8, #9)
+Family Flags     : 47
+Attributes       : Not Shapeshifted (16), Cancels Auto Attack Combat (20), Heartbeat Resist (30), No Threat (42), Prevents Anim (50), Aura Stays After Combat (57), Cannot cast on tapped (70), PvP Enabling (96), Can Proc From Procs (122), Aura Bounce Fails Spell (157), Limit N (165), Taps immediately (215), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Aura Interrupt   : Leave World (19), Damage (Script) (27)
+Effects          :
+#1 (id=43856)    : Apply Aura (6) | Change Model (56)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 70495 | Misc Value 2: 9 | Target: Targeted Enemy (6)
+#2 (id=43857)    : Apply Aura (6) | Pacify Silence (60)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 127 | Target: Targeted Enemy (6)
+#3 (id=43858)    : Apply Aura (6) | Unknown(260)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 754 | Misc Value 2: 7 | Target: Targeted Enemy (6)
+#4 (id=756197)   : Apply Aura (6) | Disable Actions (321)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Transforms the enemy into a frog for $d. While hexed, the victim is incapacitated, and cannot attack or cast spells. Damage may cancel the effect. Limit 1. Only works on Humanoids and Beasts.
+Tooltip          : Incapacitated.
+
+Name             : Cleanse Spirit (id=51886) [Spell Family (11)] 
+Talent Entry     : Elemental, Enhancement [tree=class, row=6, col=3, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 10% Base Mana (0) (id=11325)
+Spell Level      : 18
+Range            : 40 yards
+GCD              : 1.5 seconds
+Cooldown         : 8 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 35
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow On Charmed Targets (201), Allow Class Ability Procs (416), Prevent Jumping During Precast (448)
+Effects          :
+#1 (id=44300)    : Dispel (38)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 2 | Target: Targeted Ally (21)
+Description      : Removes all Curse effects from a friendly target.
+
+Name             : Wind Shear (id=57994) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=4, col=7, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 12
+Range            : 30 yards
+Duration         : 4 seconds
+Cooldown         : 12 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 5901
+Affecting Spells : Shaman Shock Range Bonus (32973 effect#1), Restoration Shaman (137039 effect#9), Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 59
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Always Hit (114), Taps immediately (215), Allow Class Ability Procs (416), Interrupts Current Cast (419)
+Effects          :
+#1 (id=51296)    : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Interrupt | Target: Targeted Enemy (6)
+Description      : Disrupts the target's concentration with a burst of wind, interrupting spellcasting and preventing any spell in that school from being cast for $d.
+
+Name             : Spirit Walk (id=58875) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Spell Level      : 44
+Duration         : 8 seconds
+Cooldown         : 60 seconds
+Category         : 44 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 219
+                 : 292
+                 : 930
+                 : 1381: Blessing of the Bronze (381746 effect#1), Blessing of the Bronze (381749 effect#1), Blessing of the Bronze (381754 effect#1), Blessing of the Bronze (381756 effect#1), Blessing of the Bronze (381757 effect#1)
+                 : 4638
+Stance Mask      : 0x00008000
+Affecting Spells : Time Spiral (375256 effect#1)
+Family Flags     : 104
+Attributes       : Not Shapeshifted (16), Allow While Stealthed (37), No Threat (42), Allow While Not Shapeshifted (caster form) (83), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=52248)    : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+#2 (id=52249)    : Trigger Spell (64): Spirit Walk
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 58876 | Target: Self (1)
+Description      : Removes all movement impairing effects and increases your movement speed by $58875s1% for $58875d.
+Tooltip          : Increases movement speed by $s1%.
+
+Name             : Lava Lash (id=60103) [Spell Family (11)] 
+Talent Entry     : Enhancement [free=(Enhancement), tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Fire
+Spell Type       : Melee
+Resource         : 0.16% Base Mana (0) (id=215301)
+Spell Level      : 11
+Range            : 5 yards
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, One-handed Mace, One-handed Sword, Fist Weapon, Off Hand
+Cooldown         : 18 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 737
+Affecting Spells : Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwalker's Grace (79206 effect#1), Shaman (137038 effects: #2, #3), Restoration Shaman (137039 effects: #4, #5), Elemental Shaman (137040 effects: #1, #2), Enhancement Shaman (137041 effects: #1, #2), Mastery: Elemental Overload (168534 effects: #3, #4), Fire Elemental (188592 effects: #4, #5), Hot Hand (215785 effects: #1, #2), Molten Weapon (224125 effects: #1, #2), Molten Assault (334033 effects: #1, #2), Primal Lava Actuators (335896 effect#1), Fire and Ice (382886 effect#1), Lightning Strikes (384451 effect#1), Ashen Catalyst (390371 effect#1), Maelstrom of Elements (394677 effects: #1, #3), Elemental Weapons (408390 effects: #1, #2), Volcanic Strength (409833 effects: #1, #2), Initial Shaman (417374 effects: #1, #2), Shaman Enhancement 11.0 Class Set 2pc (454838 effect#1), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Lesser Fire Elemental (462992 effects: #4, #5), Enhancement Shaman (1214207 effects: #1, #2), Winning Streak! (1218616 effect#1), Elemental Shaman (1231772 effects: #1, #2), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effect#1), Totemic Momentum (1260644 effect#2), Shaman Enhancement 12.0 Class Set 2pc (1264864 effect#2), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
+Triggered By     : Ashen Catalyst (390371)
+Family Flags     : 39, 56, 66, 103
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Not a Proc (105), Requires Off-Hand Weapon (120), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=53784)    : School Damage (2): fire
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.0758 | PvP Coefficient: 0.96 | Target: Targeted Enemy (6)
+#2 (id=53785)    : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
+#3 (id=1033576)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+                   Modified By: Molten Assault (334033 effect#2)
+Description      : Charges your off-hand weapon with lava and burns your target, dealing $s1 Fire damage.
+
+Name             : Spiritwalker's Grace (id=79206) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=8, col=1, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 2.82% Base Mana (0) (id=3374)
+Spell Level      : 44
+Duration         : 15 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 1381: Blessing of the Bronze (381746 effect#1), Blessing of the Bronze (381749 effect#1), Blessing of the Bronze (381754 effect#1), Blessing of the Bronze (381756 effect#1), Blessing of the Bronze (381757 effect#1)
+                 : 4638
+Affecting Spells : Graceful Spirit (192088 effects: #1, #2), Time Spiral (375256 effect#1)
+Family Flags     : 93
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Allow Cast While Casting (135), Allow Cast While Channeling (308), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=68406)    : Apply Aura (6) | Cast while Moving (Whitelist) (330)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Earth Shield (379), Chain Heal (1064), Ghost Wolf (2645), Searing Bolt (3606), Healing Surge (8004), Earth Shock (8042), Flametongue Attack (10444), Windfury Attack (25504), Stormstrike (32175), Stormstrike Off-Hand (32176), Windfury Attack (33750), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Hex (51514), Healing Stream Totem (52042), Lava Lash (60103), Riptide (61295), Earthquake (61882), Unleash Life (73685), Healing Rain (73920), Healing Rain (73921), Healing Wave (77472), Earthquake (77478), Healing Tide (114942), Windstrike (115357), Windstrike Off-Hand (115360), Elemental Blast (117014), Elemental Blast Overload (120588), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Stormkeeper (191634), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Frost Shock (196840), Sundering (197214), Downpour (207778), Icefury (210714), Chain Lightning (211094), Ancestral Vision (212048), Lightning Bolt (214815), Lightning Bolt Overload (214816), Feral Lunge (215802), Icefury Overload (219271), Stormfury (269005), Soothing Waters (273019), Lightning Shield (273324), Strength of Earth (273466), Serene Spirit (274416), Lightning Conduit (275394), Swelling Stream (275499), Overflowing Shores (278095), Spouting Spirits (279505), Rumbling Tremors (279556), Pack Spirit (280205), Lava Burst (285452), Lava Burst Overload (285466), Tectonic Thunder (286967), Restorative Mists (294020), Earthquake (298762), Earthquake Overload (298765), Surge of Earth (320747), Chain Harvest (320751), Chain Harvest (320752), Vesper Totem (324522), Primordial Wave (327163), Fae Transfusion (328928), Fae Transfusion (328930), Earthquake (329801), Fire Nova (333977), Earthquake (336740), Ascendance (344548), Vesper Totem (356791), Acid Rain (378597), Earth Shock Overload (381725), Earthliving Weapon (382024), Stormkeeper (383009), Overflowing Shores (383223), Doom Winds (384352), Tidal Reservoir (424464), Tempest (452201), Awakening Storms (455130), Tremor (455622), Searing Volley (458147), Surging Bolt (458267), Chain Heal (458357), Spouting Spirits (462384), Tidewaters (462425), Reactive Warding (462477), Earthquake (462620), Thunderstrike (462763), Tempest Overload (463351), Doom Winds (466772), Ascendance (467263), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Insurance! (1215539), Insurance! (1215540), Primordial Fire (1218113), Primordial Frost (1218116), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101), Stormstream Totem (1267745), Stormswell (1268684)
+                   Family Flags: 0, 1, 7, 8, 11, 39, 41, 44, 47, 51, 62, 80, 83, 84, 92, 98, 111
+#2 (id=289427)   : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Modified By: Graceful Spirit (192088 effect#2)
+#3 (id=772568)   : Apply Aura (6) | Allow Casting while Moving For Spells (Label) (307)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 640 | Target: Self (1)
+                   Affected Spells (Label): Azerite Essences (640)
+#4 (id=816033)   : Apply Aura (6) | Allow Casting while Moving For Spells (Label) (307)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 888 | Target: Self (1)
+                   Affected Spells (Label): Chain Harvest (320674)
+#5 (id=871381)   : Apply Aura (6) | Allow Casting while Moving For Spells (Label) (307)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 981 | Target: Self (1)
+                   Affected Spells (Label): Fae Transfusion (328923)
+#6 (id=879143)   : Apply Aura (6) | Allow Casting while Moving For Spells (Label) (307)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1089 | Target: Self (1)
+                   Affected Spells (Label): Fleshcraft (324631)
+#7 (id=893523)   : Apply Aura (6) | Allow Casting while Moving For Spells (Label) (307)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 726 | Target: Self (1)
+                   Affected Spells (Label): Door of Shadows (300728)
+#8 (id=1079349)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Calls upon the guidance of the spirits for $d, permitting movement while casting Shaman spells. Castable while casting.$?a192088[ Increases movement speed by $192088s2%.][]
+Tooltip          : Able to move while casting all Shaman spells.
+
+Name             : Astral Shift (id=108271) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Spell Level      : 42
+Duration         : 12 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 930
+                 : 1284
+Affecting Spells : Astral Shift (263786 effect#1), Astral Bulwark (377933 effect#1), Planes Traveler (381647 effect#1)
+Family Flags     : 43
+Attributes       : Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491), Big Defensive (512)
+Effects          :
+#1 (id=119326)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Astral Shift (263786 effect#1), Astral Bulwark (377933 effect#1)
+Description      : Shift partially into the elemental planes, taking $s1% less damage for $d.
+Tooltip          : Damage taken reduced by $w1%.
+
+Name             : Totemic Projection (id=108287) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Range            : 40 yards
+Duration         : 1 seconds
+Cooldown         : 10 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=119344)   : Summon Guardian (28)
+                   Base Value: 0 | Scaled Value: 0 (delta=1) | Misc Value: 47319 | Misc Value 2: 1881 | Target: at Area (87)
+#2 (id=204731)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: at Area (87)
+Description      : Relocates your active totems to the specified location.
+
+Name             : Chain Lightning (id=188443) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=1, col=6, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 0.2% Base Mana (0) (id=192570)
+Spell Level      : 24
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Category         : 85 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Elemental Fury (60188 effect#1), Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5, #14), Elemental Shaman (137040 effects: #1, #2, #11, #19), Enhancement Shaman (137041 effects: #1, #2, #25), Storm Elemental (157299 effects: #3, #4), Primal Storm Elemental (157319 effects: #4, #5), Mastery: Elemental Overload (168534 effects: #3, #4), Maelstrom Weapon (187881 effects: #1, #2), Flame Shock (188389 effect#5), Stormkeeper (191634 effects: #1, #4), Stormkeeper (205495 effects: #1, #3), Al'Akir's Acrimony (208699 effect#1), Crackling Surge (224127 effects: #1, #2), Lightningburn (263792 effect#1), Tectonic Thunder (286976 effect#1), Chaining Storms (334308 effects: #1, #2), Chains of Devastation (336736 effects: #1, #2), Nature's Swiftness (378081 effects: #2, #3), Nature's Fury (381655 effect#1), Flash of Lightning (381936 effect#1), Stormkeeper (383009 effects: #1, #2), Maelstrom of Elements (394677 effects: #1, #3), Elemental Weapons (408390 effects: #1, #2), Crackling Thunder (409834 effect#2), Primal Fracture (410018 effect#2), Initial Shaman (417374 effects: #1, #2), Ancestral Swiftness (443454 effects: #2, #3), Stormcaller (454021 effects: #1, #2), Voltaic Surge (454919 effect#1), Arc Discharge (455097 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Storm Frenzy (462695 effects: #1, #2), Lightning Capacitor (462862 effects: #1, #2), Lesser Storm Elemental (462990 effects: #4, #5), Lesser Storm Elemental (462993 effects: #3, #4), Arc Discharge (470532 effects: #1, #2), Enhancement Shaman (1214207 effects: #1, #2, #7), Jackpot! (1218612 effect#1), Elemental Shaman (1231772 effects: #1, #2, #7), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effect#1), Thunder Capacitor (1262635 effect#1), Storm Unleashed (1262761 effect#1), Natural Gift (1264691 effects: #1, #2), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
+Family Flags     : 1, 39, 56, 126
+Attributes       : Not Shapeshifted (16), Doesn't Reset Swing Timer if Instant (217), Enforce Facing on Primary Target Only (351), Allow Class Ability Procs (416), Chain by Most Hit (440)
+Effects          :
+#1 (id=275203)   : School Damage (2): nature
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 0.73025 | Chain Multiplier: 1 | Chain Targets: 3 | Target: Targeted Enemy (6)
+#2 (id=325428)   : Dummy (3)
+                   Base Value: 4 | Scaled Value: 4
+Description      : Hurls a lightning bolt at the enemy, dealing $s1 Nature damage and then jumping to additional nearby enemies. Affects $x1 total targets$?a383303[
+
+Name             : Capacitor Totem (id=192058) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Resource         : 2% Base Mana (0) (id=10389)
+Spell Level      : 23
+Range            : 40 yards
+GCD              : 1 seconds
+Duration         : 3 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 1660: Totemic Focus (382201 effect#3), Spatial Paradox (406789 effect#12), Oversized Totems (445026 effect#1)
+                 : 5952: Totemic Surge (381867 effect#1)
+Affecting Spells : Elemental Rebalancers (208777 effect#1), Static Charge (265046 effect#1), Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 15, 29, 99
+Attributes       : Is Ability (4), Not Shapeshifted (16), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=281742)   : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8 | Radius: 8 yards | Target: at Area (87)
+#2 (id=324844)   : Summon Guardian (28)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 61245 | Misc Value 2: 3407 | Target: at Area (87)
+Description      : Summons a totem at the target location that gathers electrical energy from the surrounding air and explodes after $s2 sec, stunning all enemies within $118905A1 yards for $118905d.
+
+Name             : Gust of Wind (id=192063) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+GCD              : 1.5 seconds
+Cooldown         : 20 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 219
+                 : 292
+                 : 1381: Blessing of the Bronze (381746 effect#1), Blessing of the Bronze (381749 effect#1), Blessing of the Bronze (381754 effect#1), Blessing of the Bronze (381756 effect#1), Blessing of the Bronze (381757 effect#1)
+                 : 1783
+                 : 4638
+Affecting Spells : Time Spiral (375256 effect#1)
+Family Flags     : 17
+Attributes       : Do Not Sheath (18), No Immunities (29), No Threat (42), No School Immunities (90), Suppress Caster Procs (112), Do Not Display Range (126), Enable Procs from Suppressed Caster Procs (384), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=281749)   : Directional Knock (138)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 200 | Target: Self (1)
+Description      : A gust of wind hurls you forward.
+
+Name             : Wind Rush Totem (id=192077) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Resource         : 1% Base Mana (0) (id=307373)
+Range            : 40 yards
+GCD              : 1 seconds
+Duration         : 15 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 219
+                 : 292
+                 : 1658: Totemic Focus (382201 effect#2)
+                 : 1660: Totemic Focus (382201 effect#3), Spatial Paradox (406789 effect#12), Oversized Totems (445026 effect#1)
+                 : 3929: Ascending Air (462791 effect#1)
+Affecting Spells : Elemental Rebalancers (208777 effect#1), Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 15, 29
+Attributes       : Is Ability (4), Not Shapeshifted (16), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=281765)   : Summon Guardian (28)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 97285 | Misc Value 2: 3695 | Radius: 10 yards | Target: At Ally in Area (31)
+Description      : Summons a totem at the target location for $d, continually granting all allies who pass within $a1 yards $192082s1% increased movement speed for $192082d.
+
+Name             : Graceful Spirit (id=192088) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=1, max_rank=1, req_points=23, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=281779)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Spiritwalker's Grace (79206)
+                   Family Flags: 93
+#2 (id=289426)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Spiritwalker's Grace (79206)
+                   Family Flags: 93
+Description      : Reduces the cooldown of Spiritwalker's Grace by ${$m1/-1000} sec and increases your movement speed by $s2% while it is active.
+
+Name             : Frost Shock (id=196840) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=2, col=7, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Frost
+Spell Type       : Magic
+Resource         : 0.2% Base Mana (0) (id=215292)
+Spell Level      : 17
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Shaman Shock Range Bonus (32973 effect#1), Elemental Fury (60188 effect#1), Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5, #18), Elemental Shaman (137040 effects: #1, #2, #24), Enhancement Shaman (137041 effects: #1, #2, #8), Mastery: Elemental Overload (168534 effects: #3, #4), Icefury (210714 effect#2), Icy Edge (224126 effects: #1, #2), Maelstrom (343725 effect#10), Fire and Ice (382886 effect#1), Maelstrom of Elements (394677 effects: #1, #3), Elemental Weapons (408390 effects: #1, #2), Initial Shaman (417374 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Encasing Cold (462762 effect#1), Enhancement Shaman (1214207 effects: #1, #2, #10), Elemental Shaman (1231772 effects: #1, #2, #8), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effect#1), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
+Family Flags     : 24, 31, 39, 56
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=288995)   : School Damage (2): frost
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 0.7245 | Target: Targeted Enemy (6)
+#2 (id=288996)   : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -50 | Scaled Value: -50 | Mechanic: Snare | Target: Targeted Enemy (6)
+#3 (id=313061)   : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
+#4 (id=1182039)  : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: maelstrom | Target: Self (1)
+                   Modified By: Maelstrom (343725 effect#10)
+Description      : Chills the target with frost, causing $s1 Frost damage and reducing the target's movement speed by $s2% for $d.$?a343725&a210714[
+
+Name             : Earth Elemental (id=198103) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 37
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : Aura (infinite)
+Cooldown         : 180 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 930
+Affecting Spells : Everlasting Elements (462867 effect#1)
+Family Flags     : 54
+Attributes       : Not Shapeshifted (16), No Threat (42), No Aura Icon (60), Suppress Target Procs (113), Do Not Display Range (126), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=291153)   : Dummy (3) | Attributes: Don't Fail Spell On Targeting Failure (20)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=1018748)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Calls forth a $?a117013[Primal][Greater] Earth Elemental to protect you$?a1279819[, increasing your maximum health by $381755s1%][ and your allies, generating high threat and taunting enemies periodically] for $188616d.
+
+Name             : Voodoo Mastery (id=204268) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=301483)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Hex (51514)
+                   Family Flags: 47
+Description      : Your Hex target is slowed by $378080s1% during Hex and for $378080d after it ends.
+
+Name             : Spirit Wolf (id=260878) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 117
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=486335)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : While transformed into a Ghost Wolf, you gain $260881s1% increased movement speed and $260881s2% damage reduction every $260882t1 sec, stacking up to $260881u times.
+
+Name             : Static Charge (id=265046) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=4, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(-10000, -20000)]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=708963)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Capacitor Totem (192058)
+                   Family Flags: 99
+Description      : Reduces the cooldown of Capacitor Totem by ${$s1/-1000} sec.
+
+Name             : Windveil (id=355630) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=7, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=888867)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Interrupting a spell with Wind Shear reduces all spell damage taken by $355634s1% for $355634d.
+
+Name             : Astral Bulwark (id=377933) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=4, max_rank=1, req_points=0, select_idx=300]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1006097)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Astral Shift (108271)
+                   Family Flags: 43
+#2 (id=1038937)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Tempest (452201)
+                   Family Flags: 107
+Description      : Astral Shift reduces damage taken by an additional $s1%.
+
+Name             : Thunderous Paws (id=378075) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Internal Cooldown: 20 seconds
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1006338)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 3 | Misc Value 2: 1633 (Label) | Target: Self (1)
+                   Affected Spells (Label): Thunderous Paws (378076)
+#2 (id=1006339)  : Apply Aura (6) | Proc Trigger Spell (42): Thunderous Paws
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 378076 | Target: Self (1)
+Description      : Ghost Wolf removes snares and increases your movement speed by an additional $s1% for the first $338036d. May only occur once every $proccooldown sec.
+
+Name             : Spiritwalker's Aegis (id=378077) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=1, max_rank=1, req_points=23, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1006341)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When you cast Spiritwalker's Grace, you become immune to Silence and Interrupt effects for $378078d.
+
+Name             : Nature's Swiftness (id=378081) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Duration         : Aura (infinite)
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Affecting Spells : Call of Al'Akir (1246131 effect#1)
+Family Flags     : 65
+Attributes       : Do Not Sheath (18), Cooldown On Event (25), No Threat (42), No AutoCast (AI) (49), Suppress Caster Procs (112), Suppress Target Procs (113), Cannot Be Stolen (134), Aura Points On Client (268), Allow Class Ability Procs (416), Prevent Jumping During Precast (448)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=1006346)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Chain Heal (1064), Healing Surge (8004), Healing Rain (73920), Healing Wave (77472), Elemental Blast (117014), Tempest (452201)
+                   Family Flags: 7, 8, 51, 80, 84, 98, 107
+#2 (id=1006347)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Chain Heal (1064), Healing Surge (8004), Healing Rain (73920), Healing Wave (77472), Elemental Blast (117014), Lightning Bolt (188196), Chain Lightning (188443), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Tempest (452201)
+                   Family Flags: 0, 1, 7, 8, 51, 80, 84, 98, 107
+#3 (id=1038703)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Lightning Bolt (188196), Chain Lightning (188443), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816)
+                   Family Flags: 0, 1
+#4 (id=1088752)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 2 (34)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 34 | Target: Self (1)
+                   Affected Spells: Chain Heal (1064), Healing Surge (8004)
+                   Family Flags: 7, 8
+#5 (id=1088753)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 3 (39)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 39 | Target: Self (1)
+                   Affected Spells: Chain Heal (1064), Healing Surge (8004)
+                   Family Flags: 7, 8
+#6 (id=1247574)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Hex (51514)
+                   Family Flags: 47
+#7 (id=1247575)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Hex (51514)
+                   Family Flags: 47
+Description      : Your next healing or damaging Nature spell $?a1246131[or Hex ][]is instant cast and costs no mana.
+Tooltip          : Your next healing or damaging Nature spell $?a1246131[or Hex ][]is instant cast and costs no mana.
+
+Name             : Refreshing Waters (id=378211) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 1636: Elemental Shaman (137040 effect#8)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268)
+Effects          :
+#1 (id=1006529)  : Apply Aura (6) | Modify Healing Taken% from Caster's Spells (283)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Healing Surge (8004), Healing Wave (77472)
+                   Family Flags: 7, 80
+                   Modified By: Elemental Shaman (137040 effect#8)
+Description      : Your Healing $?a137039[Wave][Surge] is $s1% more effective on yourself.
+
+Name             : Greater Purge (id=378773) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=7, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 2.4% Base Mana (0) (id=265425) w/ Restoration Shaman (id=137039)
+Resource         : 21% Base Mana (0) (id=305245) w/ Elemental Shaman (id=137040)
+Resource         : 21% Base Mana (0) (id=305246) w/ Enhancement Shaman (id=137041)
+Spell Level      : 10
+Range            : 30 yards
+GCD              : 1.5 seconds
+Cooldown         : 12 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 88
+Attributes       : Not Shapeshifted (16), No Reflection (39), Taps immediately (215), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1007216)  : Dispel (38)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 1 | Target: Targeted Enemy (6)
+Description      : Purges the enemy target, removing $m1 beneficial Magic effects.
+
+Name             : Planes Traveler (id=381647) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1012616)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Astral Shift (108271)
+                   Family Flags: 43
+#2 (id=1016010)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Tempest (452201)
+                   Family Flags: 107
+Description      : Reduces the cooldown of Astral Shift by ${$s1/-1000} sec.
+
+Name             : Elemental Warding (id=381650) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=4, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3161
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1012622)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -8 | Scaled Value: -8 | Misc Value: 0x7e | Target: Self (1)
+                   Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
+Description      : Reduces all magic damage taken by $s1%.
+
+Name             : Nature's Fury (id=381655) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=4, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1012631)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Earth Shield (379), Chain Heal (1064), Healing Stream (5672), Healing Surge (8004), Earth Shock (8042), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Healing Stream Totem (52042), Riptide (61295), Unleash Life (73685), Healing Rain (73921), Healing Wave (77472), Restorative Mists (114083), Windlash (114089), Windlash Off-Hand (114093), Healing Tide (114942), Elemental Blast (117014), Elemental Blast Overload (120588), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Shield (192106), Lightning Shield (192109), Crash Lightning (195592), Deluge (200075), Downpour (207778), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Lightning Shield Overcharge (273323), Lightning Shield (273324), Healing Stream (273847), Restorative Mists (294020), Primordial Wave (326059), Lightning Shield (344174), Elemental Blast (344645), Earth Shock Overload (381725), Poison Cleansing (383014), Poison Cleansing (403922), Tempest (452201), Downpour (462603), Tempest Overload (463351), Flame Shock (470411), Primordial Storm (1218047), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Stormstream Totem (1267745), Stormstream Totem (1267765)
+                   Family Flags: 0, 1, 7, 8, 10, 13, 20, 25, 28, 33, 45, 51, 63, 64, 68, 70, 80, 85, 87, 94, 96, 97, 98, 106, 107, 108, 110
+#2 (id=1015761)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 7 | Misc Value 2: 1679 (Label) | Target: Self (1)
+                   Affected Spells (Label): Unleash Life (73685), Lightning Lasso (305484), Lightning Lasso (305485), Ascendance (344548), Earth Shock Overload (381725), Earthliving Weapon (382024), Tidewaters (409354), Awakening Storms (455130), Surging Bolt (458267), Tidewaters (462425), Ascendance (467263), Doom Winds (469270)
+Description      : Increases the critical strike chance of your Nature spells and abilities by $s1%.
+
+Name             : Brimming with Life (id=381689) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(8, 15)]
+                 : Effect#2 [op=set, values=(50, 100)]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1012683)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 8 | Scaled Value: 8 | Stat: Sta | Target: Self (1)
+#2 (id=1283600)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Misc Value 2: 5951 (Label) | Target: Self (1)
+                   Affected Spells (Label): Brimming with Life (381684)
+Description      : Stamina increased by $s1%.
+
+Name             : Totemic Surge (id=381867) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1012979)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Misc Value 2: 5952 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthbind Totem (2484), Tremor Totem (8143), Earthgrab Totem (51485), Capacitor Totem (192058), Poison Cleansing Totem (383013)
+#2 (id=1014666)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1569 (Category) | Target: Self (1)
+                   Affected Spells (Category): Healing Stream Totem (5394), Stormstream Totem (1267068)
+Description      : Reduces the cooldown of most totems by ${$s1/-1000} sec.
+
+Name             : Mana Spring (id=381930) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=3, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 10
+Max Scaling Level: 100
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Caster Aura Icon (187), No Aura Log (202)
+Effects          :
+#1 (id=1013069)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1035495)  : Apply Aura (6) | Periodic Dummy (226): every 1.5 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1306901)  : Apply Aura (6) | Dummy (4) | Scaling Class: Restore Health/Resource (-2)
+                   Base Value: 0 | Scaled Value: 125.0625 (coefficient=0.000667) | Target: Self (1)
+#4 (id=1306902)  : Apply Aura (6) | Dummy (4) | Scaling Class: Restore Health/Resource (-2)
+                   Base Value: 0 | Scaled Value: 187.5 (coefficient=0.001) | Target: Self (1)
+#5 (id=1306903)  : Apply Aura (6) | Dummy (4) | Scaling Class: Restore Health/Resource (-2)
+                   Base Value: 0 | Scaled Value: 187.5 (coefficient=0.001) | Target: Self (1)
+Description      : Your $?!s137041[Lava Burst][]$?s137039[ and Riptide][]$?s137041[Stormstrike][] casts restore $?a137040[$381931s1]?a137041[$404550s1][$404551s1] mana to you and $s1 allies nearest to you within $395192a1 yards.
+
+Name             : Ancestral Wolf Affinity (id=382197) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=3, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1013456)  : Apply Aura (6) | Modify Stance Mask (275)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Purge (370), Earthbind Totem (2484), Healing Stream Totem (5394), Tremor Totem (8143), Earthgrab Totem (51485), Cleanse Spirit (51886), Wind Shear (57994), Purify Spirit (77130), Spirit Link Totem (98008), Healing Tide Totem (108280), Capacitor Totem (192058), Wind Rush Totem (192077), Vesper Totem (324386), Greater Purge (378773), Poison Cleansing Totem (383013), Cleanse Spirit (440012), Surging Totem (444995), Stormstream Totem (1267068)
+                   Family Flags: 29, 35, 59, 88, 109
+Description      : Cleanse Spirit, Wind Shear, Purge, and totem casts no longer cancel Ghost Wolf.
+
+Name             : Totemic Focus (id=382201) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=6, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1013460)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 10000 | Scaled Value: 10000 | Misc Value: 1 | Misc Value 2: 1659 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthbind Totem (2484), Earthgrab Totem (51485)
+#2 (id=1013877)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 1658 (Label) | Target: Self (1)
+                   Affected Spells (Label): Healing Stream Totem (5394), Healing Stream (5672), Tremor Totem (8143), Wind Rush Totem (192077), Poison Cleansing Totem (383013), Poison Cleansing (383014), Stormstream Totem (1267068), Stormstream Totem (1267765)
+#3 (id=1013879)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Radius (6)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 6 | Misc Value 2: 1660 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthbind Totem (2484), Earthbind (3600), Searing Bolt (3606), Tremor Totem Effect (8146), Earthgrab Totem (51485), Healing Stream Totem (52042), Earthgrab (64695), Spirit Link Totem (98007), Spirit Link Totem (98008), Healing Tide (114942), Earthgrab (116943), Capacitor Totem (118905), Capacitor Totem (192058), Wind Rush Totem (192077), Poison Cleansing Totem (383013), Poison Cleansing (383014), Mana Spring (395197), Poison Cleansing (403922), Tremor (455622), Searing Volley (458147), Surging Bolt (458266), Surging Bolt (458267), Chain Heal (458357), Stormstream Totem (1267745)
+#4 (id=1164399)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Range (5)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 5 | Misc Value 2: 3795 (Label) | Target: Self (1)
+                   Affected Spells (Label): Chain Heal (458357)
+Description      : Increases the radius of your totem effects by $s3%.
+
+Name             : Winds of Al'Akir (id=382215) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(3, 6)]
+                 : Effect#2 [op=set, values=(5, 10)]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1013480)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1015849)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 1738 (Label) | Target: Self (1)
+                   Affected Spells (Label): Winds of Al'Akir (382216)
+Description      : Increases your movement speed by $s1% and the movement speed bonus of Ghost Wolf by an additional $s2%.
+
+Name             : Fire and Ice (id=382886) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=4, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1014459)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Flametongue Attack (10444), Lava Burst (51505), Lava Lash (60103), Elemental Blast (117014), Elemental Blast Overload (120588), Flame Shock (188389), Frost Shock (196840), Sundering (197214), Icefury (210714), Lava Burst (285452), Flametongue Weapon (318038), Flametongue Weapon (319778), Primordial Wave (326059), Fire Nova (333974), Elemental Blast (344645), Doom Winds (384352), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Flame Shock (470411), Primordial Storm (1218047)
+                   Family Flags: 2, 21, 25, 27, 28, 31, 34, 44, 66, 75, 98, 108, 119, 122
+#2 (id=1036888)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Flame Shock (188389), Flame Shock (470411)
+                   Family Flags: 28
+#3 (id=1036889)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 2379 (Label) | Target: Self (1)
+                   Affected Spells (Label): Fire Blast (57984), Meteor (117588), Immolate (118297)
+#4 (id=1036890)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Misc Value 2: 2379 (Label) | Target: Self (1)
+                   Affected Spells (Label): Fire Blast (57984), Meteor (117588), Immolate (118297)
+#5 (id=1177668)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 4014 (Label) | Target: Self (1)
+                   Affected Spells (Label): Searing Bolt (3606), Tremor (455622), Searing Volley (458147)
+#6 (id=1177669)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Misc Value 2: 4014 (Label) | Target: Self (1)
+                   Affected Spells (Label): Searing Bolt (3606), Tremor (455622), Searing Volley (458147)
+#7 (id=1182953)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 1175 (Label) | Target: Self (1)
+Description      : Increases all Fire and Frost damage you deal by $s1%.
+
+Name             : Elemental Orbit (id=383010) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=1, max_rank=1, req_points=0]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1014653)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Increases the number of Elemental Shields you can have active on yourself by 1.
+
+Name             : Poison Cleansing Totem (id=383013) [Spell Family (11)] 
+Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=23, select_idx=200]
+Class            : Shaman
+School           : Nature
+Spell Type       : Magic
+Resource         : 0.5% Base Mana (0) (id=265463)
+Spell Level      : 10
+Range            : 40 yards
+GCD              : 1 seconds
+Duration         : 6 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 1658: Totemic Focus (382201 effect#2)
+                 : 1660: Totemic Focus (382201 effect#3), Spatial Paradox (406789 effect#12), Oversized Totems (445026 effect#1)
+                 : 5952: Totemic Surge (381867 effect#1)
+Affecting Spells : Elemental Rebalancers (208777 effect#1), Ancestral Wolf Affinity (382197 effect#1)
+Family Flags     : 15, 29
+Attributes       : Is Ability (4), Not Shapeshifted (16), No Aura Icon (60), Can Be Multi Cast (229), Allow While Banished Aura State (299), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1014656)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0
+#2 (id=1014657)  : Summon Guardian (28)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 5923 | Misc Value 2: 5428 | Target: Front Left of Self (44)
+Description      : Summons a totem at your feet that removes all Poison effects from a nearby party or raid member within $403922a yards every $383014t1 sec for $d.
+
+Name             : Improved Purify Spirit (id=383016) [Passive, Hidden] 
+Talent Entry     : Restoration [tree=class, row=6, col=3, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1014662)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Purify Spirit additionally removes all Curse effects.
+
+Name             : Healing Stream Totem (id=392915) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=1, max_rank=1, req_points=0, override="Healing Stream Totem" (id=5394)]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Affecting Spells : Praetorian's Tidecallers (210604 effect#1), Tidecaller's Guard (457496 effect#1), Stormstream Totem (1267089 effect#1)
+Family Flags     : 6
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1031470)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1569 (Category) | Target: Self (1)
+                   Affected Spells (Category): Healing Stream Totem (5394), Stormstream Totem (1267068)
+#2 (id=1031471)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2062 (Category) | Target: Self (1)
+Description      : $@spelltooltip5394
+
+Name             : Elemental Resistance (id=462368) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=1, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1172067)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Healing from Healing Stream Totem reduces Fire, Frost, and Nature damage taken by $462568s1% for $462568d.
+
+Name             : Reactive Warding (id=462454) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=5, max_rank=1, req_points=23, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1172254)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1181661)  : Apply Aura (6) | Add Flat Modifier (107): Spell Proc Cooldown (38)
+                   Base Value: -1000 | Scaled Value: -1000 | Misc Value: 38 | Target: Self (1)
+                   Affected Spells: Earth Shield (974), Water Shield (52127), Water Shield (52128), Earth Shield (383648)
+                   Family Flags: 37, 42
+Description      : When refreshing Earth Shield, your target is healed for $462477s1 for each stack of Earth Shield they are missing.$?c3[
+
+Name             : Encasing Cold (id=462762) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=7, max_rank=1, req_points=0, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1172881)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: 15000 | Scaled Value: 15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Frost Shock (196840)
+                   Family Flags: 31
+Description      : Increases the cooldown of Frost Shock by ${$s1/1000} sec, but Frost Shock now freezes targets in place for $1258862d.
+
+Name             : Arctic Snowstorm (id=462764) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=7, max_rank=1, req_points=0, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1172887)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Enemies within $s1 yds of your Frost Shock are snared by $462765s1%.
+
+Name             : Ascending Air (id=462791) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=5, max_rank=1, req_points=8, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1172940)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Misc Value 2: 3929 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wind Rush Totem (192077)
+#2 (id=1172941)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Misc Value 2: 3930 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wind Rush (192082)
+Description      : Wind Rush Totem's cooldown is reduced by ${$s1/-1000} sec and its movement speed effect lasts an additional ${$s2/1000} sec.
+
+Name             : Enhanced Imbues (id=462796) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1172950)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 3 | Misc Value 2: 3931 (Label) | Target: Self (1)
+                   Affected Spells (Label): Improved Flametongue Weapon (382028)
+#2 (id=1172951)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Flametongue Attack (10444), Windfury Attack (25504), Windfury Attack (33750), Flametongue Weapon (318038), Flametongue Weapon (319778), Flametongue Attack (467386), Flametongue Attack (467390)
+                   Family Flags: 21, 23
+#3 (id=1172955)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Flametongue Attack (10444), Flametongue Weapon (318038), Flametongue Weapon (319778), Earthliving Weapon (382024), Flametongue Attack (467386), Flametongue Attack (467390)
+                   Family Flags: 21, 81
+#4 (id=1172963)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 12 | Misc Value 2: 3931 (Label) | Target: Self (1)
+                   Affected Spells (Label): Improved Flametongue Weapon (382028)
+#5 (id=1172964)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 3 (23)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 23 | Misc Value 2: 3931 (Label) | Target: Self (1)
+                   Affected Spells (Label): Improved Flametongue Weapon (382028)
+#6 (id=1172970)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 3932 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tidecaller's Guard (457496)
+#7 (id=1172971)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Misc Value 2: 3932 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tidecaller's Guard (457496)
+#8 (id=1172972)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Misc Value 2: 3932 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tidecaller's Guard (457496)
+#9 (id=1173766)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value 2: 3945 (Label) | Target: Self (1)
+                   Affected Spells (Label): Thunderstrike (462763)
+#10 (id=1175915) : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Flametongue Attack (10444), Flametongue Weapon (318038), Flametongue Weapon (319778), Earthliving Weapon (382024), Flametongue Attack (467386), Flametongue Attack (467390)
+                   Family Flags: 21, 81
+Description      : The effects of your weapon $?a137041[][and shield ]imbues are increased by $?c1[$s1]?c2[$s2]?c3[$s3][]%.
+
+Name             : Jet Stream (id=462817) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=5, max_rank=1, req_points=8, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1172997)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Misc Value 2: 3930 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wind Rush (192082)
+Description      : Wind Rush Totem's movement speed bonus is increased by $s1% and now removes snares.
+
+Name             : Therazane's Resilience (id=1217622) [Spell Family (11), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=5, max_rank=1, req_points=23, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 4331: Earthen Communion (443441 effect#4), Earthen Communion (443441 effect#5)
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1201811)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Earth Shield (379)
+                   Family Flags: 70
+#2 (id=1201813)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: -99 | Scaled Value: -99 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Earth Shield (974), Earth Shield (383648)
+                   Family Flags: 42
+                   Modified By: Earthen Communion (443441 effect#4)
+#3 (id=1201819)  : Apply Aura (6) | Add Flat Modifier (107): Spell Doses (31)
+                   Base Value: -99 | Scaled Value: -99 | Misc Value: 31 | Target: Self (1)
+                   Affected Spells: Earth Shield (974), Earth Shield (383648)
+                   Family Flags: 42
+                   Modified By: Earthen Communion (443441 effect#5)
+#4 (id=1201820)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Water Shield (52127), Water Shield (52128)
+                   Family Flags: 37
+#5 (id=1201821)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Water Shield (52127), Water Shield (52128)
+                   Family Flags: 37
+#6 (id=1201822)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: -99 | Scaled Value: -99 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Water Shield (52127), Water Shield (52128)
+                   Family Flags: 37
+#7 (id=1201823)  : Apply Aura (6) | Add Flat Modifier (107): Spell Doses (31)
+                   Base Value: -99 | Scaled Value: -99 | Misc Value: 31 | Target: Self (1)
+                   Affected Spells: Water Shield (52127), Water Shield (52128)
+                   Family Flags: 37
+#8 (id=1292248)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 800 | Scaled Value: 800 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Water Shield (52127), Water Shield (52128)
+                   Family Flags: 37
+Description      : Earth Shield $?c3[and Water Shield no longer lose charges and are][no longer loses charges and is] ${100+$s1}% effective.
+
+Name             : Instinctive Imbuements (id=1270350) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1282311)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Lightning Shield (192106), Lightning Shield (192109), Lightning Shield Overcharge (273323), Lightning Shield (273324), Lightning Shield (344174)
+                   Family Flags: 10
+#2 (id=1282316)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Water Shield (52127), Water Shield (52128)
+                   Family Flags: 37
+Description      : $?c3[Water][Lightning] Shield increases your $?c2[Agility][Intellect] by $s1%.
+
+Name             : Spiritual Awakening (id=1270375) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=5, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1282353)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Mastery increased by $s1%.
+
+Name             : Primordial Bond (id=1279819) [Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1292427)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Earth Elemental no longer taunts nearby enemies or generates threat and instead increases your maximum health by $381755s1% while active.

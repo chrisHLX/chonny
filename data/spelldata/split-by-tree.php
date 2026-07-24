@@ -5,8 +5,9 @@
  * Copies every spell record verbatim (all fields, all Effects, full Description/Tooltip
  * text) into one file per tree it belongs to — no summarizing, no field-dropping.
  *
- * Classification is driven entirely by each record's "Talent Entry" line(s):
- *   - none                         -> baseline.txt
+ * Classification is driven by each record's "Talent Entry" line(s):
+ *   - none                         -> baseline.txt (this includes PvP-talent records —
+ *                                      see note below)
  *   - tree=class                   -> class-talents.txt (regardless of the name prefix —
  *                                      some class-tree entries are labeled with a spec
  *                                      name instead of "Generic", e.g. Priest's Angel's
@@ -18,6 +19,20 @@
  * "Effect#2 [op=set, values=(1, 2)]", which are metadata on the same entry, not a
  * second tree assignment) — such records are copied verbatim into every file they
  * belong to.
+ *
+ * PvP talents were previously split into their own pvp-talents.txt category (detected via
+ * "(desc=PvP Talent)" on the Name line, since those records never carry a Talent Entry
+ * line and would otherwise land in baseline.txt undifferentiated from ordinary spells).
+ * That split existed purely to audit whether SimC's PvP-talent coverage was complete —
+ * which is how the missing Mage PvP talent Snowdrift was originally found. That audit
+ * question is now answered a better way: data/talenttrees/fetch-talent-trees.php pulls
+ * Blizzard's official PvP talent list directly, and data/pvptalents/diff-against-simc.php
+ * diffs it against this project's SimC-derived data — confirmed, across every class run so
+ * far, that SimC's PvP-talent coverage is broadly incomplete (e.g. Hunter: 1 SimC record
+ * vs. 26 from Blizzard), not just missing the occasional talent. With Blizzard's data now
+ * the authoritative source for PvP talents, the split-out category no longer pulls its
+ * weight — PvP-talent records fall back to baseline.txt like any other Talent-Entry-less
+ * record, same as before that fix was added.
  *
  * Usage:
  *   php split-by-tree.php <input-file> <output-dir> <class-label> --specs=A,B,C --heroes=X,Y,Z

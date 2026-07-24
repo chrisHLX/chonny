@@ -1,0 +1,307 @@
+# Mage — Sunfury Hero Talents
+# Extracted verbatim from mage.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Spellfire Spheres (id=448601) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 3512: Fire Mage (137019 effect#7)
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1147189)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+                   Modified By: Fire Mage (137019 effect#7)
+Description      : $?c1[Casting a damaging spell][Consuming Hot Streak] has a $s1% chance to conjure a Spellfire Sphere.
+
+Name             : Invocation: Arcane Phoenix (id=448658) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1147288)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When you cast $?c1[Arcane Surge][Combustion], summon an Arcane Phoenix to aid you in battle.
+
+Name             : Mana Cascade (id=449293) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148315)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $?c1[Casting Arcane Blast or Arcane Barrage][Consuming Hot Streak] grants you $?c1[${$449322s2/10}.1][${$449314s2/10}.1]% Haste for $449322d1. Stacks up to $449314u times. Multiple instances may overlap.
+
+Name             : Merely a Setback (id=449330) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148361)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1247373)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 90 | Scaled Value: 90 | Target: Self (1)
+Description      : The bonuses provided by your Barrier spells persist an additional $?c1[$449336d][$1246023d] after your Barrier is removed.$?c1[][
+
+Name             : Sunfury Execution (id=449349) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148404)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 5947 (Label) | Target: Self (1)
+                   Affected Spells (Label): Pyroclasm (269651)
+#2 (id=1154802)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?c2[Pyroclasm's damage bonus is increased by $s1% and Meteor grants Pyroclasm if talented.][Arcane Barrage deals $s2% increased damage to enemies affected by your Touch of the Magi.]
+
+Name             : Codex of the Sunstriders (id=449382) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148455)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1269781)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres.
+
+Name             : Glorious Incandescence (id=449394) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148470)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1151600)  : Dummy (3)
+                   Base Value: 1000 | Scaled Value: 1000
+#3 (id=1151651)  : Dummy (3)
+                   Base Value: 2000 | Scaled Value: 2000
+#4 (id=1169297)  : Dummy (3)
+                   Base Value: 6 | Scaled Value: 6
+#5 (id=1269665)  : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8
+#6 (id=1289173)  : Dummy (3)
+                   Base Value: 1 | Scaled Value: 1
+Description      : $?c2[Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of $s1 Meteorites on its target.][Arcane Barrage summons $s6 $LMeteorite:Meteorites; for every $s4 Arcane Salvo stacks consumed.]
+
+Name             : Savor the Moment (id=449412) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1148515)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 400 | Scaled Value: 400 | Misc Value: 23 | Misc Value 2: 3511 (Label) | Target: Self (1)
+                   Affected Spells (Label): Spellfire Sphere (448604)
+#2 (id=1148516)  : Dummy (3)
+                   Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
+Description      : When you cast $?c1[Arcane Surge][Combustion], its duration is extended by ${$s1/1000}.1 sec for each Spellfire Sphere you have, up to ${$s2/1000}.1 sec.
+
+Name             : Rondurmancy (id=449596) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148895)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 3513 (Label) | Target: Self (1)
+                   Affected Spells (Label): Spellfire Sphere (448604)
+#2 (id=1148896)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Spellfire Spheres can now stack up to $s2 times.
+
+Name             : Memory of Al'ar (id=449619) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5428
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148945)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+#2 (id=1151358)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+Description      : During $?c1[Arcane Surge][Combustion], you gain twice as many stacks of Mana Cascade.
+
+Name             : Lessons in Debilitation (id=449627) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1148957)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Arcane Phoenix has picked up a few tricks, and will Spellsteal when it is summoned and when it expires.
+
+Name             : Burden of Power (id=451035) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1151352)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Pyroblast (11366), Pyroblast (460475), Pyroblast (1262863)
+                   Family Flags: 22
+#2 (id=1261871)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Flamestrike (2120), Flamestrike (460476), Flamestrike (1254851)
+                   Family Flags: 2
+#3 (id=1261872)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451)
+                   Family Flags: 29
+#4 (id=1261873)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Arcane Pulse (1241462), Arcane Pulse (1243460)
+                   Family Flags: 18
+Description      : $?c1[Arcane Blast damage increased by $s3%.
+
+Name             : Explosive Potential (id=1246030) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1247389)  : Apply Aura (6) | Proc Trigger Spell (42): Explosive Potential
+                   Base Value: 8 | Scaled Value: 8 | Trigger Spell: 1246032 | Target: Self (1)
+Description      : After casting $?c1[Arcane Surge][Combustion], your next $?s212653[Shimmer][Blink] will cause a Blast Wave at your previous location, dealing $157981s1 Fire damage, knocking enemies back $s1 yds, and slowing them by $157981s2% for $157981d.
+
+Name             : Time Twist (id=1255166) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1261855)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 11 | Misc Value 2: 892 (Label) | Target: Self (1)
+                   Affected Spells (Label): Alter Time (108978), Alter Time (342245)
+Description      : The cooldown of Alter Time is reduced by ${-$s1/1000} sec.
+
+Name             : Ashes of Inspiration (id=1260272) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1269675)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When your Arcane Phoenix expires, it grants you Lesser Time Warp for $1260277d.
+
+Name             : Spellfire Salvo (id=1260616) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1270050)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 37 | Misc Value 2: 5271 (Label) | Target: Self (1)
+                   Affected Spells (Label): Arcane Salvo (1242974)
+#2 (id=1270118)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -1000 | Scaled Value: -1000 | Misc Value: 1500 (Category) | Target: Self (1)
+                   Affected Spells (Category): Fire Blast (108853), Fire Blast (319836)
+#3 (id=1270122)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 4137 (Label) | Target: Self (1)
+                   Affected Spells (Label): Meteorite (449569)
+Description      : $?c1[Arcane Salvo can stack $s1 additional times][Fire Blast cooldown reduced by ${-$s2/1000}.1 sec].
+
+Name             : Pyrocosm (id=1260673) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1270124)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1270125)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=1270126)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#4 (id=1270185)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+#5 (id=1289181)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?c1[Each wave of Arcane Missiles][Damage from Fireball] has a $?c1[$s1][$s2]% chance to summon a Meteorite.

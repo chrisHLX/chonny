@@ -1,0 +1,308 @@
+# Rogue — Fatebound Hero Talents
+# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Hand of Fate (id=452536) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.2 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1153776)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1153777)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1153778)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#4 (id=1170587)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#5 (id=1293838)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Fatebound Coin (Tails) (452538)
+                   Family Flags: 25
+Description      : Flip a Fatebound Coin each time a finishing move consumes $s1 or more combo points. Heads increases the damage of your attacks by ${$452923s4+$452923s1}%, lasting $452923d or until you flip Tails. Tails deals $452538s1 Cosmic damage to your target.
+
+Name             : Mean Streak (id=453428) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1155283)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 33 | Scaled Value: 33 | Target: Self (1)
+Description      : Fatebound Coins flipped by $?a137036[Dispatch][Envenom] are $s1% more likely to match the same face as the last flip.
+
+Name             : Edge Case (id=453457) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1155343)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Activating $?a137036[Adrenaline Rush][Deathmark] flips a Fatebound Coin and causes it to land on its edge, counting as both Heads and Tails.
+
+Name             : Tempted Fate (id=454286) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1156685)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1156686)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#3 (id=1156687)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#4 (id=1156688)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#5 (id=1156702)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+Description      : You have a $s2% chance to absorb $s1% of any damage taken.
+
+Name             : Deal Fate (id=454419) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1156934)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : $?a383281[Sinister Strike and Ambush generate]?a137036[Sinister Strike generates][Mutilate, Ambush, and Fan of Knives generate] $454421s1 additional combo point $?a383281[when they grant Opportunity]?a137036[when it grants Opportunity][when they trigger Seal Fate].
+
+Name             : Inexorable March (id=454432) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1156966)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 70 | Scaled Value: 70 | Target: Self (1)
+#2 (id=1156967)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : You cannot be slowed below $s1% of normal movement speed while your Fatebound Coin flips have an active streak of at least $s2 flips matching the same face.
+
+Name             : Death's Arrival (id=454433) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 4049: Outlaw Rogue (137036 effect#6)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1156968)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1179470)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: 5000 | Scaled Value: 5000 | PvP Coefficient: 2 | Misc Value: 1206 (Category) | Target: Self (1)
+                   Modified By: Outlaw Rogue (137036 effect#6)
+#3 (id=1179471)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: 5000 | Scaled Value: 5000 | PvP Coefficient: 2 | Misc Value: 2303 (Category) | Target: Self (1)
+                   Affected Spells (Category): Grappling Hook (195457)
+Description      : $?a137037[Shadowstep][Grappling Hook] may be used a second time within $457333d with no cooldown, but its total cooldown is increased by ${$s3/1000} sec.
+
+Name             : Destiny Defined (id=454435) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1156970)  : Apply Aura (6) | Add Flat Modifier (107): Spell Proc Chance (18)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 18 | Target: Self (1)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
+                   Family Flags: 14, 16, 28, 45, 68, 83
+#2 (id=1156971)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 5679 (Label) | Target: Self (1)
+                   Affected Spells (Label): Opportunity (279876)
+#3 (id=1156972)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?a137037[Weapon poisons have $s1% increased application chance][Sinister Strike has $s2% increased chance to strike an additional time and grant Opportunity] and your Fatebound Coins flipped have an additional $s3% chance to match the same face as the last flip. 
+
+Name             : Lucky Coin (id=1248970) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1252175)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 7 | Scaled Value: 7 | Target: Self (1)
+Description      : Every $s1 coin flips, keep a lucky coin that bends you towards your fate for $1248971d. Your Agility is increased by $1248971s1%, the damage and bonuses of Fatebound Coins are increased by $1248971s3%, and coin flips are $1248971s5% more likely to match the same face as the last flip.
+
+Name             : Overflowing Purse (id=1249190) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1252529)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1252530)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#3 (id=1252531)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : $?c2[Dispatch][Envenom] has a $?c2[$s2][$s3]% chance to flip $s1 Fatebound Coins.
+
+Name             : Delivered Doom (id=1249194) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1252537)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1252538)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?c1[Envenom deals][Dispatch and Between the Eyes deal] $s1% more damage when $?c1[it consumes][they consume] $s2 or more combo points.
+
+Name             : Chosen's Revelry (id=1249201) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1252552)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Flipping a Fatebound Coin restores $1249202s1 health.
+
+Name             : Rush to the Inevitable (id=1249204) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1252563)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1252564)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1252568)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#4 (id=1267065)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Gain $?c1[$s1][$s2] Energy every time you flip a Fatebound Coin. Gain $?c1[$s3][$s4] Energy for Coins that land on their edge.
+
+Name             : Fate Intertwined (id=1249215) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1252593)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 5421 (Label) | Target: Self (1)
+                   Affected Spells (Label): Caustic Spatter (421976)
+#2 (id=1252594)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Blade Flurry (13877)
+                   Family Flags: 43
+Description      : $?c1[Caustic Spatter][Blade Flurry] causes an additional $?c1[$s1% of Nature][$s2% of attack] damage dealt to be dealt to affected enemies.
+
+Name             : Ravenholdt Mint (id=1276809) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288797)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1288798)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+                   Affected Spells: Fatebound Coin (Tails) (452538)
+                   Family Flags: 25
+Description      : Flipping Heads increases damage by an additional $s1%. Damage dealt by flipping Tails is increased by $s2%.
+
+Name             : Controlled Chaos (id=1276816) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288808)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : After flipping a Fatebound Coin that ends a streak of $s1 or more, flip another that matches the same face.
+
+Name             : Sometimes Lucky (id=1277030) [Spell Family (8), Passive] 
+Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1289167)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Critical strike chance increased by $s1%.

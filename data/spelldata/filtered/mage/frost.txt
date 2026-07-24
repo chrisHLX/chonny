@@ -1,0 +1,886 @@
+# Mage — Frost Spec Talents
+# Extracted verbatim from mage.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 46 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Ice Lance (id=30455) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=1, col=4, max_rank=1, req_points=0, replace="Fire Blast" (id=319836)]
+Class            : Mage
+School           : Frost
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=6406)
+Spell Level      : 10
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 47 yards/sec
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Shatterlance (185058 effect#1), Magtheridon's Might (214404 effect#1), Whiteout (278541 effect#3), Radiant Spark Vulnerability (307454 effect#1), Mastery: Icicles (321684 effect#3), Mage Frost Class Set 2pc (393657 effect#1), Mage Frost 10.1 Class Set 2pc (405536 effect#1), Frostfire Infusion (431166 effects: #3, #4), Mage Frost 11.0 Class Set 2pc (453719 effect#1), Mastery: Freeze and Shatter (1246752 effects: #2, #4)
+Triggered By     : Fingers of Frost (44544)
+Family Flags     : 17, 104
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Redirection (35), No Reflection (39), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=20036)    : Server Side Script (77)
+                   Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 0.5 | Chain Targets: 1 | Target: Targeted Enemy (6)
+Description      : Quickly fling a shard of ice at the target, dealing $228598s1 Frost damage.
+
+Name             : Summon Water Elemental (id=31687) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=9, col=5, max_rank=1, req_points=20, select_idx=100]
+Class            : Mage
+School           : Frost
+Spell Type       : Magic
+Resource         : 3% Base Mana (0) (id=1269)
+Spell Level      : 12
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : Aura (infinite)
+Cooldown         : 15 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Family Flags     : 43
+Attributes       : Not Shapeshifted (16), No Aura Cancel (31), Dismiss Pet First (32), No Threat (42), No AutoCast (AI) (49), No Aura Icon (60), No Aura Log (202), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=21314)    : Summon Pet (56) | Attributes: Position is facing relative (1)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 78116 | Radius: 2 yards | Target: Left of Self (50)
+#2 (id=1020296)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Summons a Water Elemental to follow and fight for you.
+
+Name             : Flurry (id=44614) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+Class            : Mage
+School           : Frost
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=2096)
+Spell Level      : 19
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 50 yards/sec
+Charges          : 2 (30 seconds cooldown)
+Category         : 2031 (Type 0x1): Frost Mage (137020 effect#5)
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Splitting Ice (56377 effect#1), Pyrotechnics (157644 effect#1), Brain Freeze (190446 effect#2), Improved Flurry (1247769 effect#1)
+Triggered By     : Brain Freeze (190446)
+Family Flags     : 44
+Attributes       : Not Shapeshifted (16), No Threat (42), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=36562)    : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+                   Modified By: Improved Flurry (1247769 effect#1)
+#2 (id=376737)   : Trigger Spell (64): Flurry
+                   Base Value: 0 | Scaled Value: 0 (delta=0.1) | Trigger Spell: 228596 | Target: Targeted Enemy (6)
+#3 (id=1248928)  : Trigger Spell (64): Flurry
+                   Base Value: 0 | Scaled Value: 0 (delta=0.1) | Delay: 400_ms | Trigger Spell: 228596 | Target: Targeted Enemy (6)
+#4 (id=1248929)  : Trigger Spell (64): Flurry
+                   Base Value: 0 | Scaled Value: 0 (delta=0.1) | Delay: 800_ms | Trigger Spell: 228596 | Target: Targeted Enemy (6)
+#5 (id=1289745)  : Trigger Spell (64): Flurry
+                   Base Value: 0 | Scaled Value: 0 (delta=0.1) | Delay: 1200_ms | Trigger Spell: 228596 | Target: Targeted Enemy (6)
+Description      : Unleash a flurry of ice, striking the target $s1 times for a total of ${$228354s1*$s1} $?a1248002[Frostfire][Frost] damage.
+
+Name             : Splitting Ice (id=56377) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=49437)    : Apply Aura (6) | Add Flat Modifier (107): Spell Chain Targets (17)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 17 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Flurry (44614), Glacial Spike (199786), Frostfire Bolt (431044)
+                   Family Flags: 44, 57
+#2 (id=136440)   : Dummy (3)
+                   Base Value: 80 | Scaled Value: 80 | PvP Coefficient: 0.25
+#3 (id=1273428)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Chain Targets (17)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 17 | Misc Value 2: 5429 (Label) | Target: Self (1)
+                   Affected Spells (Label): Pyroblast (1262863)
+Description      : Your Flurry and $?s431044[Frostfire Bolt][Frostbolt] spells strike $s1 additional target at $s2% effectiveness.
+
+Name             : Frozen Orb (id=84714) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Mage
+School           : Frost
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=5476)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 20 yards/sec
+Duration         : 15 seconds
+Cooldown         : 60 seconds
+Category         : 1269 (Type 0x0): Spellfrost Teachings (471742 effect#1)
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Category Cooldown: 60 seconds
+Affecting Spells : Splintering Orbs (444256 effect#3)
+Family Flags     : 93
+Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), No Aura Icon (60), Ignore Line of Sight (66), No Initial Threat (86), No Aura Log (202), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=85616)    : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0
+#2 (id=1179964)  : Create Area Trigger (179)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 8661 | Target: Front of Self (47)
+#3 (id=1263823)  : Create Area Trigger (179)
+                   Base Value: 40 | Scaled Value: 40 | Misc Value: 34996 | Target: Front of Self (47)
+#4 (id=1316259)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Current Target (25)
+Description      : Launches an orb of swirling ice in front of you, dealing up to ${20*$84721s1} Frost damage to all enemies it passes through over $d. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond $84721s2 targets.
+
+Name             : Fingers of Frost (id=112965) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Frozen Touch (205030 effect#1)
+Family Flags     : 126
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=125628)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Frozen Touch (205030 effect#1)
+#2 (id=129889)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.5
+#3 (id=133111)   : Dummy (3)
+                   Base Value: 10 | Scaled Value: 10
+#4 (id=163932)   : Dummy (3)
+                   Base Value: 25 | Scaled Value: 25
+Description      : $?s431044[Frostfire Bolt][Frostbolt] has a $s1% chance to grant a charge of Fingers of Frost.
+
+Name             : Blizzard (id=190356) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=2, col=3, max_rank=1, req_points=0, select_idx=100]
+Class            : Mage
+School           : Frost
+Spell Type       : Magic
+Resource         : 2.5% Base Mana (0) (id=10321)
+Spell Level      : 12
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Duration         : 12 seconds
+Cooldown         : 12 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Mage (137018 effect#1), Freezing Rain (270232 effect#1), Freezing Rain (270233 effect#2), Radiant Spark Vulnerability (307454 effect#1), Mastery: Icicles (321684 effect#1), Frostfire Infusion (431166 effects: #3, #4), Signature Spell (470021 effect#4), Mastery: Freeze and Shatter (1246752 effects: #1, #3), Glacial Attunement (1247759 effect#1), Dualcasting Adept (1248014 effect#6)
+Family Flags     : 7, 98
+Attributes       : Not Shapeshifted (16), No Threat (42), Spell Haste Affects Periodic (173), Haste Affects Duration (273), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Turning (5), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=278845)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 12 yards | Target: at Area (87) -> at Enemy in Area (16)
+#2 (id=278849)   : Create Area Trigger (179)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 4658 | Radius: 0 - 12 yards | Target: at Area (87) -> at Enemy in Area (16)
+Description      : Ice shards pelt the target area, dealing ${$190357m1*8} Frost damage over $d and reducing movement speed by $12486s1% for $12486d.
+
+Name             : Brain Freeze (id=190447) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Frozen Touch (205030 effect#2), Frostfire Infusion (431166 effect#1), Archmage's Wrath (444968 effect#4)
+Family Flags     : 79
+Attributes       : Passive (6), Do Not Sheath (18), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=279088)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Modified By: Frozen Touch (205030 effect#2), Frostfire Infusion (431166 effect#1), Archmage's Wrath (444968 effect#4)
+Description      : $?s431044[Frostfire Bolt][Frostbolt] has a $m1% chance to reset the remaining cooldown on Flurry and cause your next Flurry to deal $190446s2% increased damage.
+
+Name             : Ray of Frost (id=205021) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=191644)
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 4 seconds
+Charges          : 1 (60 seconds cooldown)
+Category         : 2459 (Type 0x1): Hand of Frost (1263249 effect#2)
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Fire Mage (137019 effects: #1, #2), Frost Mage (137020 effects: #1, #2), Arcane Mage (137021 effects: #1, #2), Combustion (190319 effects: #1, #3, #4), Lonely Winter (205024 effects: #1, #2), Ray of Frost (208141 effects: #1, #2), Norgannon's Foresight (236380 effect#1), Radiant Spark Vulnerability (307454 effect#1), Mastery: Icicles (321684 effect#2), Deathborne (324220 effects: #2, #7), Siphoned Malice (337090 effects: #1, #2), Arcane Surge (365362 effects: #1, #2), Touch of Ice (394994 effects: #1, #2), Charring Embers (408665 effect#1), Arcane Overload (409022 effect#1), Numbing Blast (417490 effect#1), Searing Rage (424285 effect#1), Forethought (424293 effects: #1, #2), Frostfire Infusion (431166 effects: #3, #4), Archmage's Wrath (444968 effect#2), Spellfire Sphere (448604 effects: #1, #2), Fire's Ire (450831 effect#2), Charring Embers (453122 effect#1), Blessing of the Phoenix (455134 effect#1), Molten Fury (458910 effect#1), Clarity (1216178 effects: #1, #2), Rollin' Hot (1219035 effects: #1, #2), Charm of Aegwynn (1244105 effect#1), Mastery: Freeze and Shatter (1246752 effects: #1, #3), Frigid Focus (1247055 effect#1), Comet Storm! (1247778 effect#1), Arcane Mage (1256909 effects: #1, #2), Fire Mage (1256911 effects: #1, #2), Frost Mage (1256913 effects: #1, #2), Hand of Frost (1263249 effect#3), Hand of Frost (1263263 effects: #1, #2), Mage - Midnight PrePatch - 11.2 Class Set 2pc (1283634 effects: #1, #2), Mage - Midnight PrePatch - 11.2 Class Set 4pc (1283635 effects: #1, #2)
+Family Flags     : 3, 20, 56
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Track Target in Channel (46), Name in Channel Bar (61), Bouncy Chain Missiles (146), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Haste Affects Duration (273), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=302648)   : Apply Aura (6) | Periodic Damage (3): frost every 0.5 seconds
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 4.5 | PvP Coefficient: 0.576 | Target: Targeted Enemy (6)
+                   Modified By: Ray of Frost (208141 effect#2), Rollin' Hot (1219035 effect#2)
+Description      : Channel an icy beam at the enemy for $d, dealing $s1 Frost damage every ${$t1}.2 sec.
+
+Name             : Lonely Winter (id=205024) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=5, max_rank=1, req_points=20, select_idx=200]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=302651)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Affected Spells: Cone of Cold (120), Frost Nova (122), Fireball (133), Arcane Explosion (1449), Flamestrike (2120), Scorch (2948), Arcane Missiles (7268), Pyroblast (11366), Arcane Blast (30451), Dragon's Breath (31661), Arcane Barrage (44425), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Nether Tempest (114923), Nether Tempest (114954), Icicle (148022), Meteor (153564), Comet Storm (153596), Arcane Orb (153640), Meteor Burn (155158), Supernova (157980), Blast Wave (157981), Ice Nova (157997), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Living Bomb (217694), Arcane Assault (225119), Flurry (228354), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Frost Nova (235235), Blazing Barrier (235314), Time and Space (240689), Living Bomb (244813), Ebonbolt (257538), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Trailing Embers (277703), Glacial Assault (279856), Radiant Spark (307443), Tormenting Backlash (317589), Fire Blast (319836), Agonizing Backlash (320035), Pyroblast (321712), Shifting Power (325130), Glacial Fragments (327498), Arcane Echo (342232), Tormenting Backlash (342375), Meteor (351140), Arcane Surge (365350), Glacial Assault (379029), Blast Wave (389631), Arcane Explosion (414381), Frostfire Infusion (431171), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438671), Living Bomb (438672), Living Bomb (438674), Frost Splinter (443722), Arcane Splinter (443763), Volatile Magic (444966), Volatile Magic (444967), Archmage's Wrath (444968), Meteorite (449559), Meteorite (449560), Meteorite Burn (449561), Meteorite (449569), Greater Pyroblast (450421), Pyroblast (450461), Flamestrike (450462), Arcane Barrage (450499), Living Bomb (453251), Arcane Surge (453326), Meteorite (456139), Pyroblast (460475), Flamestrike (460476), Frigid Pulse (460623), Arcane Explosion (461508), Living Bomb (464884), Frostfire Bolt (468655), Frostbolt Volley (1216910), Glacial Spike (1236211), Arcane Pulse (1241462), Arcane Pulse (1243460), Shatter (1246949), Freezing Winds (1247554), Cinderstorm (1254024), Flamestrike (1254851), Hand of Frost (1262769), Glacial Spike (1262862), Pyroblast (1262863), Conflagration (1271173), Burnout (1271335), Winter's End (1280757)
+                   Family Flags: 3
+#2 (id=1249030)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Cone of Cold (120), Frost Nova (122), Fireball (133), Arcane Explosion (1449), Flamestrike (2120), Scorch (2948), Arcane Missiles (7268), Pyroblast (11366), Arcane Blast (30451), Dragon's Breath (31661), Arcane Barrage (44425), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Nether Tempest (114923), Nether Tempest (114954), Icicle (148022), Meteor (153564), Comet Storm (153596), Arcane Orb (153640), Meteor Burn (155158), Supernova (157980), Blast Wave (157981), Ice Nova (157997), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Living Bomb (217694), Arcane Assault (225119), Flurry (228354), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Frost Nova (235235), Blazing Barrier (235314), Time and Space (240689), Living Bomb (244813), Ebonbolt (257538), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Trailing Embers (277703), Glacial Assault (279856), Radiant Spark (307443), Tormenting Backlash (317589), Fire Blast (319836), Agonizing Backlash (320035), Pyroblast (321712), Shifting Power (325130), Glacial Fragments (327498), Arcane Echo (342232), Tormenting Backlash (342375), Meteor (351140), Arcane Surge (365350), Glacial Assault (379029), Blast Wave (389631), Arcane Explosion (414381), Frostfire Infusion (431171), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438671), Living Bomb (438672), Living Bomb (438674), Frost Splinter (443722), Arcane Splinter (443763), Volatile Magic (444966), Volatile Magic (444967), Archmage's Wrath (444968), Meteorite (449559), Meteorite (449560), Meteorite Burn (449561), Meteorite (449569), Greater Pyroblast (450421), Pyroblast (450461), Flamestrike (450462), Arcane Barrage (450499), Living Bomb (453251), Arcane Surge (453326), Meteorite (456139), Pyroblast (460475), Flamestrike (460476), Frigid Pulse (460623), Arcane Explosion (461508), Living Bomb (464884), Frostfire Bolt (468655), Frostbolt Volley (1216910), Glacial Spike (1236211), Arcane Pulse (1241462), Arcane Pulse (1243460), Shatter (1246949), Freezing Winds (1247554), Cinderstorm (1254024), Flamestrike (1254851), Hand of Frost (1262769), Glacial Spike (1262862), Pyroblast (1262863), Conflagration (1271173), Burnout (1271335), Winter's End (1280757)
+                   Family Flags: 3
+Description      : Spell damage increased by $s1%.
+
+Name             : Frozen Touch (id=205030) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Spell Level      : 1
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=302657)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Fingers of Frost (112965)
+                   Family Flags: 126
+#2 (id=1090101)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Brain Freeze (190447)
+                   Family Flags: 79
+Description      : Frostbolt grants you Fingers of Frost $s1% more often and Brain Freeze $s2% more often.
+
+Name             : Cold Snap (id=235219) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Spell Level      : 10
+Cooldown         : 300 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Radiant Spark Vulnerability (307454 effect#1)
+Family Flags     : 34
+Attributes       : Not Shapeshifted (16), No Immunities (29), No School Immunities (90), No Partial Immunity (139), Allow While Stunned (163), Reset cooldown upon ending an encounter (333), Allow While Stunned by Stun Mechanic (378), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=355540)   : Server Side Script (77)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Resets the cooldown of your Ice Barrier, Frost Nova, $?a417493[][Cone of Cold, ]Ice Cold, and Ice Block.
+
+Name             : Freezing Rain (id=270233) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=719016)   : Apply Aura (6) | Proc Trigger Spell (42): Freezing Rain
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 270232 | Target: Self (1)
+#2 (id=1273219)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Blizzard (190356), Blizzard (190357), Freezing Winds (1247554), Blizzard (1248829)
+                   Family Flags: 7
+Description      : Frozen Orb makes Blizzard instant cast.
+
+Name             : Wintertide (id=378406) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=7, col=6, max_rank=1, req_points=8, select_idx=200]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1006796)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Frozen Orb has a $s1% chance to grant Brain Freeze.
+
+Name             : Fractured Frost (id=378448) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5381
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1006852)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1248963)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Ice Lance strikes $s1 additional $Ltarget:targets; at $s2% effectiveness, preferring enemies with more stacks of Freezing.
+
+Name             : Piercing Cold (id=378919) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Aura Icon (60), No Aura Log (202), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1007421)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Flurry (228354), Flurry (228596), Frostbolt (228597), Glacial Spike (228600), Frostfire Bolt (468655)
+                   Family Flags: 5, 102
+Description      : $?s431044[Frostfire Bolt][Frostbolt] and Flurry critical strike damage increased by $s1%.
+
+Name             : Glacial Assault (id=378947) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Triggered By     : Glacial Assault (379029)
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1007461)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+#2 (id=1250183)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Flurry has a $s1% chance each hit to call down an icy comet, crashing into your target and nearby enemies for $379029s1 Frost damage.
+
+Name             : Flash Freeze (id=379993) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5380: Flash Freeze (379993 effect#1)
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1009493)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Proc Chance (18)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 18 | Misc Value 2: 5380 (Label) | Target: Self (1)
+                   Affected Spells (Label): Flash Freeze (379993)
+#2 (id=1009494)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 44544 | Target: Self (1)
+Description      : Casting Glacial Spike has a $s1% chance to grant you Fingers of Frost.
+
+Name             : Everlasting Frost (id=385167) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1018231)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1293681)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Casting Frozen Orb grants $s1 $Lstack:stacks; of Fingers of Frost.
+
+Name             : Winter's Blessing (id=417489) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1089136)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 3 | Scaled Value: 3 | PvP Coefficient: 0.5 | Target: Self (1)
+#2 (id=1089137)  : Apply Aura (6) | Modify Combat Rating Multiplier (405)
+                   Base Value: 5 | Scaled Value: 5 | Rating: Haste | Target: Self (1)
+Description      : Your Haste is increased by $s1%.
+
+Name             : Splintering Ray (id=418733) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1091267)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1248773)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Ray of Frost deals $s1% of its damage to $s2 nearby enemies.
+
+Name             : Permafrost Lances (id=460590) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1168391)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Frozen Orb increases Shatter's damage by $455122s1% for its duration.
+
+Name             : Freezing Winds (id=1216953) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Can Proc From Procs (122), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1200685)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Shattering enemies inside your Blizzard increases Shatter's area damage by $s1%.
+
+Name             : Glacial Bulwark (id=1244110) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Only In Spellbook Until Learned (240)
+Effects          :
+#1 (id=1244686)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1560 (Category) | Target: Self (1)
+                   Affected Spells (Category): Ice Block (45438), Ice Cold (414658)
+#2 (id=1244696)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 471 (Category) | Target: Self (1)
+                   Affected Spells (Category): Ice Barrier (11426)
+Description      : Ice Block and Ice Barrier now have an additional charge.
+
+Name             : Improved Shatter (id=1246811) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1248582)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Chance (7)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Shatter (1246949), Winter's End (1280757)
+                   Family Flags: 35
+Description      : Shatter damage has a $s1% increased chance to critically strike.
+
+Name             : Icicles (id=1246832) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Mastery: Icicles (76613 effect#3), Flash Freeze (288164 effect#2), Radiant Spark Vulnerability (307454 effect#1), Hailstones (1247742 effect#1)
+Family Flags     : 115
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Spell Haste Affects Periodic (173), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1248613)  : Apply Aura (6) | Periodic Dummy (226): every 6 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1248734)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : While in combat, Frost crystallizes around you, generating an Icicle every ${$t1}.1 sec. Upon generating $s2 Icicles, $?s431044[Frostfire Bolt][Frostbolt] upgrades to Glacial Spike for its next cast.
+
+Name             : Deep Shatter (id=1247025) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1248938)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1248939)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Shatter (1246949), Winter's End (1280757)
+                   Family Flags: 35
+#3 (id=1248940)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Shatter's critical strike damage is increased by $s1% of your critical strike chance.
+
+Name             : Frigid Focus (id=1247055) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1248987)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Ray of Frost (205021)
+                   Family Flags: 56
+Description      : Ray of Frost damage increased by $s1%.
+
+Name             : Cone of Frost (id=1247090) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1249033)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1249038)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?a157997[Ice Nova][Cone of Cold] now applies $s1 $Lstack:stacks; of Freezing to up to $s2 enemies.
+
+Name             : Crystalline Refraction (id=1247544) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1249861)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Ray of Frost generates $s1 $Lstack:stacks; of Fingers of Frost over its duration.
+
+Name             : Thermal Void (id=1247729) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1250144)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Trigger Spell: 1247730 | Target: Self (1)
+#2 (id=1289765)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Trigger Spell: 1247730 | Target: Self (1)
+Description      : Consuming Brain Freeze has a $s1% chance to cause your next Ice Lance to Shatter $1246769s4 additional stacks of Freezing.
+
+Name             : Hailstones (id=1247742) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1250168)  : Apply Aura (6) | Add Flat Modifier (107): Spell Tick Time (19)
+                   Base Value: -1000 | Scaled Value: -1000 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Icicle (148022), Icicles (1246832)
+                   Family Flags: 115
+Description      : The time it takes to generate an Icicle is reduced by ${-$s1/1000}.1 sec.
+
+Name             : Rimecaster (id=1247743) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=8, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1250170)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Frostbolt (228597), Glacial Spike (228600), Frostfire Bolt (468655)
+                   Family Flags: 5
+Description      : $?s431044[Frostfire Bolt][Frostbolt] and Glacial Spike damage increased by $s1%.
+
+Name             : Glacial Attunement (id=1247759) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=8, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1250197)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Blizzard (190356), Blizzard (190357), Flurry (228354), Flurry (228596), Freezing Winds (1247554), Blizzard (1248829)
+                   Family Flags: 7, 102
+Description      : Flurry and Blizzard damage increased by $s1%.
+
+Name             : Improved Flurry (id=1247769) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=2, max_rank=1, req_points=20]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1250209)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Flurry (44614)
+                   Family Flags: 44
+Description      : Flurry fires $s1 additional $Lmissile:missiles;.
+
+Name             : Comet Storm (id=1247777) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1250224)  : Apply Aura (6) | Proc Trigger Spell (42): Comet Storm!
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1247778 | Target: Self (1)
+Description      : Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to ${7*$153596s1} Frost damage to all enemies within $153596A1 yds of its impacts.
+
+Name             : Glaciate (id=1247798) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1250248)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1250249)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : When Ice Lance Shatters a stack of Freezing, the cooldown of Ray of Frost is reduced by ${$s2/1000}.2 sec.
+
+Name             : Heart of Ice (id=1247799) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1250250)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 32 | Misc Value 2: 5382 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shatter (1246769)
+Description      : Ice Lance Shatters $s1 additional $Lstack:stacks; of Freezing.
+
+Name             : Frostbite (id=1248825) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=3, col=3, max_rank=1, req_points=0]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5448
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1252004)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1254357)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : When $?s431044[Frostfire Bolt][Frostbolt] critically strikes, it applies $s1 additional $Lstack:stacks; of Freezing.
+
+Name             : Blizzard (id=1248829) [Spell Family (3)] 
+Talent Entry     : Frost [tree=spec, row=2, col=3, max_rank=1, req_points=0, select_idx=200]
+Class            : Mage
+School           : Frost
+Spell Type       : Magic
+Resource         : 2.5% Base Mana (0) (id=311268)
+Spell Level      : 12
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Duration         : 12 seconds
+Cooldown         : 12 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Mage (137018 effect#1), Freezing Rain (270232 effect#1), Freezing Rain (270233 effect#2), Radiant Spark Vulnerability (307454 effect#1), Mastery: Icicles (321684 effect#1), Frostfire Infusion (431166 effects: #3, #4), Signature Spell (470021 effect#4), Mastery: Freeze and Shatter (1246752 effects: #1, #3), Glacial Attunement (1247759 effect#1), Dualcasting Adept (1248014 effect#6)
+Family Flags     : 7, 98
+Attributes       : Not Shapeshifted (16), No Threat (42), Spell Haste Affects Periodic (173), Not In Spellbook Until Learned (269), Haste Affects Duration (273), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Turning (5), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=1252008)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 12 yards | Target: At Enemy (53)
+#2 (id=1252009)  : Create Area Trigger (179)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 4658 | Radius: 0 - 12 yards | Target: at Area (87) -> at Enemy in Area (16)
+Description      : Ice shards pelt the target area, dealing ${$190357m1*8} Frost damage over $d and reducing movement speed by $12486s1% for $12486d.
+
+Name             : Hand of Frost (id=1262935) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1273463)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1273469)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Shattering an enemy has a $s1% chance to summon a Hand of Frost to pursue your target, dealing $1262769s1 Frost damage and applying $s2 $Lstack:stacks; of Freezing on contact.
+
+Name             : Hand of Frost (id=1262981) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1273517)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1273518)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Misc Value 2: 5786 (Label) | Target: Self (1)
+                   Affected Spells (Label): Hand of Frost (1263263)
+#3 (id=1273809)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Misc Value 2: 5786 (Label) | Target: Self (1)
+                   Affected Spells (Label): Hand of Frost (1263263)
+Description      : Each stack of Freezing you Shatter increases your chance to summon a Hand of Frost by an additional ${$s1/10}.1%.
+
+Name             : Hand of Frost (id=1263249) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1273786)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1273787)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2459 (Category) | Target: Self (1)
+                   Affected Spells (Category): Ray of Frost (205021)
+#3 (id=1273788)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Ray of Frost (205021)
+                   Family Flags: 56
+Description      : Ray of Frost summons $s1 Hands of Frost over its duration.
+
+Name             : Glacial Chill (id=1280779) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=100]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1293730)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Misc Value 2: 5382 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shatter (1246769)
+#2 (id=1294845)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Glacial Spike (228600), Glacial Spike (1236209), Glacial Spike (1236211), Glacial Spike (1262860), Glacial Spike (1262862)
+                   Family Flags: 64
+Description      : Glacial Spike deals $s2% increased damage and applies $s1 additional $Lstack:stacks; of Freezing.
+
+Name             : Glacial Shatter (id=1280780) [Spell Family (3), Passive] 
+Talent Entry     : Frost [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=200]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1293731)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Glacial Spike no longer applies Freezing, and instead Shatters $s1 $Lstack:stacks; of Freezing.
+
+Name             : White Out (id=1281638) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frost [tree=spec, row=7, col=6, max_rank=1, req_points=8, select_idx=300]
+Class            : Mage
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1294837)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+#2 (id=1294838)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Ice Lance reduces the cooldown of Frozen Orb by ${$s1/1000}.1 sec, increased by ${$s2/1000}.1 sec for each stack of Freezing Shattered.

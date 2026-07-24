@@ -1,0 +1,2906 @@
+{
+    "generated_at": "2026-07-23T05:09:08+00:00",
+    "summary": [
+        {
+            "class": "Druid",
+            "simc_file_found": true,
+            "blizzard_total": 48,
+            "simc_total": 14,
+            "missing_count": 41,
+            "simc_only_count": 7,
+            "match_rate_pct": 14.6
+        },
+        {
+            "class": "Demon Hunter",
+            "simc_file_found": false,
+            "blizzard_total": 34,
+            "simc_total": 0,
+            "missing_count": 34,
+            "simc_only_count": 0,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Warrior",
+            "simc_file_found": false,
+            "blizzard_total": 33,
+            "simc_total": 0,
+            "missing_count": 33,
+            "simc_only_count": 0,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Evoker",
+            "simc_file_found": false,
+            "blizzard_total": 31,
+            "simc_total": 0,
+            "missing_count": 31,
+            "simc_only_count": 0,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Death Knight",
+            "simc_file_found": false,
+            "blizzard_total": 30,
+            "simc_total": 0,
+            "missing_count": 30,
+            "simc_only_count": 0,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Paladin",
+            "simc_file_found": true,
+            "blizzard_total": 34,
+            "simc_total": 15,
+            "missing_count": 29,
+            "simc_only_count": 9,
+            "match_rate_pct": 14.7
+        },
+        {
+            "class": "Priest",
+            "simc_file_found": true,
+            "blizzard_total": 28,
+            "simc_total": 5,
+            "missing_count": 28,
+            "simc_only_count": 5,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Shaman",
+            "simc_file_found": false,
+            "blizzard_total": 28,
+            "simc_total": 0,
+            "missing_count": 28,
+            "simc_only_count": 0,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Warlock",
+            "simc_file_found": false,
+            "blizzard_total": 28,
+            "simc_total": 0,
+            "missing_count": 28,
+            "simc_only_count": 0,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Monk",
+            "simc_file_found": false,
+            "blizzard_total": 27,
+            "simc_total": 0,
+            "missing_count": 27,
+            "simc_only_count": 0,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Hunter",
+            "simc_file_found": true,
+            "blizzard_total": 26,
+            "simc_total": 1,
+            "missing_count": 26,
+            "simc_only_count": 1,
+            "match_rate_pct": 0
+        },
+        {
+            "class": "Rogue",
+            "simc_file_found": true,
+            "blizzard_total": 33,
+            "simc_total": 6,
+            "missing_count": 22,
+            "simc_only_count": 1,
+            "match_rate_pct": 33.3
+        },
+        {
+            "class": "Mage",
+            "simc_file_found": true,
+            "blizzard_total": 28,
+            "simc_total": 8,
+            "missing_count": 21,
+            "simc_only_count": 5,
+            "match_rate_pct": 25
+        }
+    ],
+    "classes": {
+        "Death Knight": {
+            "simc_file_found": false,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/deathknight/pvp-talents.txt",
+            "blizzard_total": 30,
+            "simc_total": 0,
+            "missing_count": 30,
+            "simc_only_count": 0,
+            "match_rate_pct": 0,
+            "specs": {
+                "Blood": {
+                    "blizzard_count": 10,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 204,
+                            "name": "Rot and Wither",
+                            "spell_id": 202727,
+                            "spell_name": "Rot and Wither"
+                        },
+                        {
+                            "talent_id": 206,
+                            "name": "Strangulate",
+                            "spell_id": 47476,
+                            "spell_name": "Strangulate"
+                        },
+                        {
+                            "talent_id": 608,
+                            "name": "Last Dance",
+                            "spell_id": 233412,
+                            "spell_name": "Last Dance"
+                        },
+                        {
+                            "talent_id": 609,
+                            "name": "Death Chain",
+                            "spell_id": 203173,
+                            "spell_name": "Death Chain"
+                        },
+                        {
+                            "talent_id": 841,
+                            "name": "Murderous Intent",
+                            "spell_id": 207018,
+                            "spell_name": "Murderous Intent"
+                        },
+                        {
+                            "talent_id": 3441,
+                            "name": "Decomposing Aura",
+                            "spell_id": 199720,
+                            "spell_name": "Decomposing Aura"
+                        },
+                        {
+                            "talent_id": 3511,
+                            "name": "Dark Simulacrum",
+                            "spell_id": 77606,
+                            "spell_name": "Dark Simulacrum"
+                        },
+                        {
+                            "talent_id": 5587,
+                            "name": "Bloodforged Armor",
+                            "spell_id": 410301,
+                            "spell_name": "Bloodforged Armor"
+                        },
+                        {
+                            "talent_id": 5592,
+                            "name": "Spellwarden",
+                            "spell_id": 410320,
+                            "spell_name": "Spellwarden"
+                        },
+                        {
+                            "talent_id": 5712,
+                            "name": "Price of Progress",
+                            "spell_id": 1233429,
+                            "spell_name": "Price of Progress"
+                        }
+                    ]
+                },
+                "Unholy": {
+                    "blizzard_count": 10,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 40,
+                            "name": "Life and Death",
+                            "spell_id": 288855,
+                            "spell_name": "Life and Death"
+                        },
+                        {
+                            "talent_id": 41,
+                            "name": "Dark Simulacrum",
+                            "spell_id": 77606,
+                            "spell_name": "Dark Simulacrum"
+                        },
+                        {
+                            "talent_id": 149,
+                            "name": "Necrotic Wounds",
+                            "spell_id": 356520,
+                            "spell_name": "Necrotic Wounds"
+                        },
+                        {
+                            "talent_id": 152,
+                            "name": "Zombify",
+                            "spell_id": 210128,
+                            "spell_name": "Zombify"
+                        },
+                        {
+                            "talent_id": 3746,
+                            "name": "Stitchmaster",
+                            "spell_id": 1281529,
+                            "spell_name": "Stitchmaster"
+                        },
+                        {
+                            "talent_id": 5430,
+                            "name": "Strangulate",
+                            "spell_id": 47476,
+                            "spell_name": "Strangulate"
+                        },
+                        {
+                            "talent_id": 5436,
+                            "name": "Doomburst",
+                            "spell_id": 356512,
+                            "spell_name": "Doomburst"
+                        },
+                        {
+                            "talent_id": 5511,
+                            "name": "Rot and Wither",
+                            "spell_id": 202727,
+                            "spell_name": "Rot and Wither"
+                        },
+                        {
+                            "talent_id": 5585,
+                            "name": "Bloodforged Armor",
+                            "spell_id": 410301,
+                            "spell_name": "Bloodforged Armor"
+                        },
+                        {
+                            "talent_id": 5590,
+                            "name": "Spellwarden",
+                            "spell_id": 410320,
+                            "spell_name": "Spellwarden"
+                        }
+                    ]
+                },
+                "Frost": {
+                    "blizzard_count": 10,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 701,
+                            "name": "Deathchill",
+                            "spell_id": 204080,
+                            "spell_name": "Deathchill"
+                        },
+                        {
+                            "talent_id": 702,
+                            "name": "Delirium",
+                            "spell_id": 233396,
+                            "spell_name": "Delirium"
+                        },
+                        {
+                            "talent_id": 3439,
+                            "name": "Shroud of Winter",
+                            "spell_id": 199719,
+                            "spell_name": "Shroud of Winter"
+                        },
+                        {
+                            "talent_id": 3512,
+                            "name": "Dark Simulacrum",
+                            "spell_id": 77606,
+                            "spell_name": "Dark Simulacrum"
+                        },
+                        {
+                            "talent_id": 5429,
+                            "name": "Strangulate",
+                            "spell_id": 47476,
+                            "spell_name": "Strangulate"
+                        },
+                        {
+                            "talent_id": 5435,
+                            "name": "Bitter Chill",
+                            "spell_id": 356470,
+                            "spell_name": "Bitter Chill"
+                        },
+                        {
+                            "talent_id": 5510,
+                            "name": "Rot and Wither",
+                            "spell_id": 202727,
+                            "spell_name": "Rot and Wither"
+                        },
+                        {
+                            "talent_id": 5586,
+                            "name": "Bloodforged Armor",
+                            "spell_id": 410301,
+                            "spell_name": "Bloodforged Armor"
+                        },
+                        {
+                            "talent_id": 5591,
+                            "name": "Spellwarden",
+                            "spell_id": 410320,
+                            "spell_name": "Spellwarden"
+                        },
+                        {
+                            "talent_id": 5693,
+                            "name": "Death's Cold Embrace",
+                            "spell_id": 1218603,
+                            "spell_name": "Death's Cold Embrace"
+                        }
+                    ]
+                }
+            },
+            "simc_only": []
+        },
+        "Demon Hunter": {
+            "simc_file_found": false,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/demonhunter/pvp-talents.txt",
+            "blizzard_total": 34,
+            "simc_total": 0,
+            "missing_count": 34,
+            "simc_only_count": 0,
+            "match_rate_pct": 0,
+            "specs": {
+                "Vengeance": {
+                    "blizzard_count": 15,
+                    "missing_count": 15,
+                    "missing": [
+                        {
+                            "talent_id": 814,
+                            "name": "Cleansed by Flame",
+                            "spell_id": 205625,
+                            "spell_name": "Cleansed by Flame"
+                        },
+                        {
+                            "talent_id": 815,
+                            "name": "Everlasting Hunt",
+                            "spell_id": 205626,
+                            "spell_name": "Everlasting Hunt"
+                        },
+                        {
+                            "talent_id": 816,
+                            "name": "Jagged Spikes",
+                            "spell_id": 205627,
+                            "spell_name": "Jagged Spikes"
+                        },
+                        {
+                            "talent_id": 819,
+                            "name": "Illidan's Grasp",
+                            "spell_id": 205630,
+                            "spell_name": "Illidan's Grasp"
+                        },
+                        {
+                            "talent_id": 1220,
+                            "name": "Tormentor",
+                            "spell_id": 207029,
+                            "spell_name": "Tormentor"
+                        },
+                        {
+                            "talent_id": 1948,
+                            "name": "Sigil Mastery",
+                            "spell_id": 211489,
+                            "spell_name": "Sigil Mastery"
+                        },
+                        {
+                            "talent_id": 3423,
+                            "name": "Demonic Trample",
+                            "spell_id": 205629,
+                            "spell_name": "Demonic Trample"
+                        },
+                        {
+                            "talent_id": 3429,
+                            "name": "Reverse Magic",
+                            "spell_id": 205604,
+                            "spell_name": "Reverse Magic"
+                        },
+                        {
+                            "talent_id": 3430,
+                            "name": "Detainment",
+                            "spell_id": 205596,
+                            "spell_name": "Detainment"
+                        },
+                        {
+                            "talent_id": 3727,
+                            "name": "Unending Hatred",
+                            "spell_id": 213480,
+                            "spell_name": "Unending Hatred"
+                        },
+                        {
+                            "talent_id": 5434,
+                            "name": "Blood Moon",
+                            "spell_id": 355995,
+                            "spell_name": "Blood Moon"
+                        },
+                        {
+                            "talent_id": 5520,
+                            "name": "Cover of Darkness",
+                            "spell_id": 357419,
+                            "spell_name": "Cover of Darkness"
+                        },
+                        {
+                            "talent_id": 5521,
+                            "name": "Rain from Above",
+                            "spell_id": 206803,
+                            "spell_name": "Rain from Above"
+                        },
+                        {
+                            "talent_id": 5522,
+                            "name": "Glimpse",
+                            "spell_id": 354489,
+                            "spell_name": "Glimpse"
+                        },
+                        {
+                            "talent_id": 5716,
+                            "name": "Lay In Wait",
+                            "spell_id": 1235091,
+                            "spell_name": "Lay In Wait"
+                        }
+                    ]
+                },
+                "Havoc": {
+                    "blizzard_count": 10,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 805,
+                            "name": "Cleansed by Flame",
+                            "spell_id": 205625,
+                            "spell_name": "Cleansed by Flame"
+                        },
+                        {
+                            "talent_id": 806,
+                            "name": "Reverse Magic",
+                            "spell_id": 205604,
+                            "spell_name": "Reverse Magic"
+                        },
+                        {
+                            "talent_id": 811,
+                            "name": "Rain from Above",
+                            "spell_id": 206803,
+                            "spell_name": "Rain from Above"
+                        },
+                        {
+                            "talent_id": 812,
+                            "name": "Detainment",
+                            "spell_id": 205596,
+                            "spell_name": "Detainment"
+                        },
+                        {
+                            "talent_id": 813,
+                            "name": "Glimpse",
+                            "spell_id": 354489,
+                            "spell_name": "Glimpse"
+                        },
+                        {
+                            "talent_id": 1206,
+                            "name": "Cover of Darkness",
+                            "spell_id": 357419,
+                            "spell_name": "Cover of Darkness"
+                        },
+                        {
+                            "talent_id": 1218,
+                            "name": "Unending Hatred",
+                            "spell_id": 213480,
+                            "spell_name": "Unending Hatred"
+                        },
+                        {
+                            "talent_id": 5433,
+                            "name": "Blood Moon",
+                            "spell_id": 355995,
+                            "spell_name": "Blood Moon"
+                        },
+                        {
+                            "talent_id": 5523,
+                            "name": "Sigil Mastery",
+                            "spell_id": 211489,
+                            "spell_name": "Sigil Mastery"
+                        },
+                        {
+                            "talent_id": 5691,
+                            "name": "Illidan's Grasp",
+                            "spell_id": 205630,
+                            "spell_name": "Illidan's Grasp"
+                        }
+                    ]
+                },
+                "Devourer": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 5728,
+                            "name": "Inevitable End",
+                            "spell_id": 1261409,
+                            "spell_name": "Inevitable End"
+                        },
+                        {
+                            "talent_id": 5729,
+                            "name": "Armor of Souls",
+                            "spell_id": 1261414,
+                            "spell_name": "Armor of Souls"
+                        },
+                        {
+                            "talent_id": 5730,
+                            "name": "Surrender to the Void",
+                            "spell_id": 1261423,
+                            "spell_name": "Surrender to the Void"
+                        },
+                        {
+                            "talent_id": 5731,
+                            "name": "Cleansed by Flame",
+                            "spell_id": 205625,
+                            "spell_name": "Cleansed by Flame"
+                        },
+                        {
+                            "talent_id": 5732,
+                            "name": "Cover of Darkness",
+                            "spell_id": 357419,
+                            "spell_name": "Cover of Darkness"
+                        },
+                        {
+                            "talent_id": 5733,
+                            "name": "Detainment",
+                            "spell_id": 205596,
+                            "spell_name": "Detainment"
+                        },
+                        {
+                            "talent_id": 5734,
+                            "name": "Glimpse",
+                            "spell_id": 354489,
+                            "spell_name": "Glimpse"
+                        },
+                        {
+                            "talent_id": 5735,
+                            "name": "Beckon",
+                            "spell_id": 1261697,
+                            "spell_name": "Beckon"
+                        },
+                        {
+                            "talent_id": 5738,
+                            "name": "Reverse Magic",
+                            "spell_id": 205604,
+                            "spell_name": "Reverse Magic"
+                        }
+                    ]
+                }
+            },
+            "simc_only": []
+        },
+        "Druid": {
+            "simc_file_found": true,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/druid/pvp-talents.txt",
+            "blizzard_total": 48,
+            "simc_total": 14,
+            "missing_count": 41,
+            "simc_only_count": 7,
+            "match_rate_pct": 14.6,
+            "specs": {
+                "Balance": {
+                    "blizzard_count": 15,
+                    "missing_count": 12,
+                    "missing": [
+                        {
+                            "talent_id": 180,
+                            "name": "Celestial Guardian",
+                            "spell_id": 233754,
+                            "spell_name": "Celestial Guardian"
+                        },
+                        {
+                            "talent_id": 182,
+                            "name": "Crescent Burn",
+                            "spell_id": 200567,
+                            "spell_name": "Crescent Burn"
+                        },
+                        {
+                            "talent_id": 184,
+                            "name": "Moon and Stars",
+                            "spell_id": 233750,
+                            "spell_name": "Moon and Stars"
+                        },
+                        {
+                            "talent_id": 185,
+                            "name": "Moonkin Aura",
+                            "spell_id": 209740,
+                            "spell_name": "Moonkin Aura"
+                        },
+                        {
+                            "talent_id": 822,
+                            "name": "Dying Stars",
+                            "spell_id": 410544,
+                            "spell_name": "Dying Stars"
+                        },
+                        {
+                            "talent_id": 834,
+                            "name": "Deep Roots",
+                            "spell_id": 233755,
+                            "spell_name": "Deep Roots"
+                        },
+                        {
+                            "talent_id": 836,
+                            "name": "Faerie Swarm",
+                            "spell_id": 209749,
+                            "spell_name": "Faerie Swarm"
+                        },
+                        {
+                            "talent_id": 3058,
+                            "name": "Star Burst",
+                            "spell_id": 356517,
+                            "spell_name": "Star Burst"
+                        },
+                        {
+                            "talent_id": 3728,
+                            "name": "Protector of the Grove",
+                            "spell_id": 209730,
+                            "spell_name": "Protector of the Grove"
+                        },
+                        {
+                            "talent_id": 5383,
+                            "name": "High Winds",
+                            "spell_id": 200931,
+                            "spell_name": "High Winds"
+                        },
+                        {
+                            "talent_id": 5515,
+                            "name": "Malorne's Swiftness",
+                            "spell_id": 236147,
+                            "spell_name": "Malorne's Swiftness"
+                        },
+                        {
+                            "talent_id": 5646,
+                            "name": "Tireless Pursuit",
+                            "spell_id": 377801,
+                            "spell_name": "Tireless Pursuit"
+                        }
+                    ]
+                },
+                "Restoration": {
+                    "blizzard_count": 10,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 59,
+                            "name": "Disentanglement",
+                            "spell_id": 233673,
+                            "spell_name": "Disentanglement"
+                        },
+                        {
+                            "talent_id": 692,
+                            "name": "Entangling Bark",
+                            "spell_id": 247543,
+                            "spell_name": "Entangling Bark"
+                        },
+                        {
+                            "talent_id": 700,
+                            "name": "Deep Roots",
+                            "spell_id": 233755,
+                            "spell_name": "Deep Roots"
+                        },
+                        {
+                            "talent_id": 838,
+                            "name": "High Winds",
+                            "spell_id": 200931,
+                            "spell_name": "High Winds"
+                        },
+                        {
+                            "talent_id": 1215,
+                            "name": "Early Spring",
+                            "spell_id": 203624,
+                            "spell_name": "Early Spring"
+                        },
+                        {
+                            "talent_id": 5514,
+                            "name": "Malorne's Swiftness",
+                            "spell_id": 236147,
+                            "spell_name": "Malorne's Swiftness"
+                        },
+                        {
+                            "talent_id": 5649,
+                            "name": "Tireless Pursuit",
+                            "spell_id": 377801,
+                            "spell_name": "Tireless Pursuit"
+                        },
+                        {
+                            "talent_id": 5668,
+                            "name": "Call of Ohn'ahra",
+                            "spell_id": 1246126,
+                            "spell_name": "Call of Ohn'ahra"
+                        },
+                        {
+                            "talent_id": 5687,
+                            "name": "Forest Guardian",
+                            "spell_id": 1217474,
+                            "spell_name": "Forest Guardian"
+                        }
+                    ]
+                },
+                "Feral": {
+                    "blizzard_count": 11,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 203,
+                            "name": "Freedom of the Herd",
+                            "spell_id": 213200,
+                            "spell_name": "Freedom of the Herd"
+                        },
+                        {
+                            "talent_id": 601,
+                            "name": "Malorne's Swiftness",
+                            "spell_id": 236012,
+                            "spell_name": "Malorne's Swiftness"
+                        },
+                        {
+                            "talent_id": 611,
+                            "name": "Ferocious Wound",
+                            "spell_id": 236020,
+                            "spell_name": "Ferocious Wound"
+                        },
+                        {
+                            "talent_id": 612,
+                            "name": "Fresh Wound",
+                            "spell_id": 203224,
+                            "spell_name": "Fresh Wound"
+                        },
+                        {
+                            "talent_id": 620,
+                            "name": "Wicked Claws",
+                            "spell_id": 203242,
+                            "spell_name": "Wicked Claws"
+                        },
+                        {
+                            "talent_id": 820,
+                            "name": "Savage Momentum",
+                            "spell_id": 205673,
+                            "spell_name": "Savage Momentum"
+                        },
+                        {
+                            "talent_id": 3751,
+                            "name": "Leader of the Pack",
+                            "spell_id": 202626,
+                            "spell_name": "Leader of the Pack"
+                        },
+                        {
+                            "talent_id": 5384,
+                            "name": "High Winds",
+                            "spell_id": 200931,
+                            "spell_name": "High Winds"
+                        },
+                        {
+                            "talent_id": 5647,
+                            "name": "Tireless Pursuit",
+                            "spell_id": 377801,
+                            "spell_name": "Tireless Pursuit"
+                        }
+                    ]
+                },
+                "Guardian": {
+                    "blizzard_count": 12,
+                    "missing_count": 11,
+                    "missing": [
+                        {
+                            "talent_id": 51,
+                            "name": "Den Mother",
+                            "spell_id": 236180,
+                            "spell_name": "Den Mother"
+                        },
+                        {
+                            "talent_id": 52,
+                            "name": "Demoralizing Roar",
+                            "spell_id": 201664,
+                            "spell_name": "Demoralizing Roar"
+                        },
+                        {
+                            "talent_id": 194,
+                            "name": "Charging Bash",
+                            "spell_id": 228431,
+                            "spell_name": "Charging Bash"
+                        },
+                        {
+                            "talent_id": 195,
+                            "name": "Entangling Claws",
+                            "spell_id": 202226,
+                            "spell_name": "Entangling Claws"
+                        },
+                        {
+                            "talent_id": 196,
+                            "name": "Overrun",
+                            "spell_id": 202246,
+                            "spell_name": "Overrun"
+                        },
+                        {
+                            "talent_id": 197,
+                            "name": "Emerald Slumber",
+                            "spell_id": 329042,
+                            "spell_name": "Emerald Slumber"
+                        },
+                        {
+                            "talent_id": 842,
+                            "name": "Alpha Challenge",
+                            "spell_id": 207017,
+                            "spell_name": "Alpha Challenge"
+                        },
+                        {
+                            "talent_id": 1237,
+                            "name": "Malorne's Swiftness",
+                            "spell_id": 236147,
+                            "spell_name": "Malorne's Swiftness"
+                        },
+                        {
+                            "talent_id": 3750,
+                            "name": "Freedom of the Herd",
+                            "spell_id": 213200,
+                            "spell_name": "Freedom of the Herd"
+                        },
+                        {
+                            "talent_id": 5410,
+                            "name": "Grove Protection",
+                            "spell_id": 354654,
+                            "spell_name": "Grove Protection"
+                        },
+                        {
+                            "talent_id": 5648,
+                            "name": "Tireless Pursuit",
+                            "spell_id": 377801,
+                            "spell_name": "Tireless Pursuit"
+                        }
+                    ]
+                }
+            },
+            "simc_only": [
+                {
+                    "simc_spell_id": 202110,
+                    "name": "Sharpened Claws"
+                },
+                {
+                    "simc_spell_id": 203399,
+                    "name": "Reactive Resin"
+                },
+                {
+                    "simc_spell_id": 203406,
+                    "name": "Reactive Resin"
+                },
+                {
+                    "simc_spell_id": 203407,
+                    "name": "Reactive Resin"
+                },
+                {
+                    "simc_spell_id": 279943,
+                    "name": "Sharpened Claws"
+                },
+                {
+                    "simc_spell_id": 473919,
+                    "name": "Blossom Burst"
+                },
+                {
+                    "simc_spell_id": 474149,
+                    "name": "Mass Blooming"
+                }
+            ]
+        },
+        "Evoker": {
+            "simc_file_found": false,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/evoker/pvp-talents.txt",
+            "blizzard_total": 31,
+            "simc_total": 0,
+            "missing_count": 31,
+            "simc_only_count": 0,
+            "match_rate_pct": 0,
+            "specs": {
+                "Augmentation": {
+                    "blizzard_count": 11,
+                    "missing_count": 11,
+                    "missing": [
+                        {
+                            "talent_id": 5454,
+                            "name": "Seismic Slam",
+                            "spell_id": 408543,
+                            "spell_name": "Seismic Slam"
+                        },
+                        {
+                            "talent_id": 5557,
+                            "name": "Divide and Conquer",
+                            "spell_id": 384689,
+                            "spell_name": "Divide and Conquer"
+                        },
+                        {
+                            "talent_id": 5558,
+                            "name": "Nullifying Shroud",
+                            "spell_id": 1241352,
+                            "spell_name": "Nullifying Shroud"
+                        },
+                        {
+                            "talent_id": 5560,
+                            "name": "Unburdened Flight",
+                            "spell_id": 378437,
+                            "spell_name": "Unburdened Flight"
+                        },
+                        {
+                            "talent_id": 5561,
+                            "name": "Scouring Flame",
+                            "spell_id": 378438,
+                            "spell_name": "Scouring Flame"
+                        },
+                        {
+                            "talent_id": 5562,
+                            "name": "Swoop Up",
+                            "spell_id": 370388,
+                            "spell_name": "Swoop Up"
+                        },
+                        {
+                            "talent_id": 5563,
+                            "name": "Obsidian Mettle",
+                            "spell_id": 378444,
+                            "spell_name": "Obsidian Mettle"
+                        },
+                        {
+                            "talent_id": 5564,
+                            "name": "Chrono Loop",
+                            "spell_id": 383005,
+                            "spell_name": "Chrono Loop"
+                        },
+                        {
+                            "talent_id": 5612,
+                            "name": "Born in Flame",
+                            "spell_id": 414937,
+                            "spell_name": "Born in Flame"
+                        },
+                        {
+                            "talent_id": 5615,
+                            "name": "Dreamwalker's Embrace",
+                            "spell_id": 415651,
+                            "spell_name": "Dreamwalker's Embrace"
+                        },
+                        {
+                            "talent_id": 5619,
+                            "name": "Time Stop",
+                            "spell_id": 378441,
+                            "spell_name": "Time Stop"
+                        }
+                    ]
+                },
+                "Preservation": {
+                    "blizzard_count": 11,
+                    "missing_count": 11,
+                    "missing": [
+                        {
+                            "talent_id": 5455,
+                            "name": "Chrono Loop",
+                            "spell_id": 383005,
+                            "spell_name": "Chrono Loop"
+                        },
+                        {
+                            "talent_id": 5459,
+                            "name": "Obsidian Mettle",
+                            "spell_id": 378444,
+                            "spell_name": "Obsidian Mettle"
+                        },
+                        {
+                            "talent_id": 5461,
+                            "name": "Scouring Flame",
+                            "spell_id": 378438,
+                            "spell_name": "Scouring Flame"
+                        },
+                        {
+                            "talent_id": 5463,
+                            "name": "Time Stop",
+                            "spell_id": 378441,
+                            "spell_name": "Time Stop"
+                        },
+                        {
+                            "talent_id": 5465,
+                            "name": "Swoop Up",
+                            "spell_id": 370388,
+                            "spell_name": "Swoop Up"
+                        },
+                        {
+                            "talent_id": 5468,
+                            "name": "Nullifying Shroud",
+                            "spell_id": 1241352,
+                            "spell_name": "Nullifying Shroud"
+                        },
+                        {
+                            "talent_id": 5470,
+                            "name": "Unburdened Flight",
+                            "spell_id": 378437,
+                            "spell_name": "Unburdened Flight"
+                        },
+                        {
+                            "talent_id": 5595,
+                            "name": "Divide and Conquer",
+                            "spell_id": 384689,
+                            "spell_name": "Divide and Conquer"
+                        },
+                        {
+                            "talent_id": 5616,
+                            "name": "Dreamwalker's Embrace",
+                            "spell_id": 415651,
+                            "spell_name": "Dreamwalker's Embrace"
+                        },
+                        {
+                            "talent_id": 5711,
+                            "name": "Dream Projection",
+                            "spell_id": 377509,
+                            "spell_name": "Dream Projection"
+                        },
+                        {
+                            "talent_id": 5718,
+                            "name": "Emerald Communion",
+                            "spell_id": 370960,
+                            "spell_name": "Emerald Communion"
+                        }
+                    ]
+                },
+                "Devastation": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 5456,
+                            "name": "Chrono Loop",
+                            "spell_id": 383005,
+                            "spell_name": "Chrono Loop"
+                        },
+                        {
+                            "talent_id": 5460,
+                            "name": "Obsidian Mettle",
+                            "spell_id": 378444,
+                            "spell_name": "Obsidian Mettle"
+                        },
+                        {
+                            "talent_id": 5462,
+                            "name": "Scouring Flame",
+                            "spell_id": 378438,
+                            "spell_name": "Scouring Flame"
+                        },
+                        {
+                            "talent_id": 5464,
+                            "name": "Time Stop",
+                            "spell_id": 378441,
+                            "spell_name": "Time Stop"
+                        },
+                        {
+                            "talent_id": 5466,
+                            "name": "Swoop Up",
+                            "spell_id": 370388,
+                            "spell_name": "Swoop Up"
+                        },
+                        {
+                            "talent_id": 5467,
+                            "name": "Nullifying Shroud",
+                            "spell_id": 1241352,
+                            "spell_name": "Nullifying Shroud"
+                        },
+                        {
+                            "talent_id": 5469,
+                            "name": "Unburdened Flight",
+                            "spell_id": 378437,
+                            "spell_name": "Unburdened Flight"
+                        },
+                        {
+                            "talent_id": 5556,
+                            "name": "Divide and Conquer",
+                            "spell_id": 384689,
+                            "spell_name": "Divide and Conquer"
+                        },
+                        {
+                            "talent_id": 5617,
+                            "name": "Dreamwalker's Embrace",
+                            "spell_id": 415651,
+                            "spell_name": "Dreamwalker's Embrace"
+                        }
+                    ]
+                }
+            },
+            "simc_only": []
+        },
+        "Hunter": {
+            "simc_file_found": true,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/hunter/pvp-talents.txt",
+            "blizzard_total": 26,
+            "simc_total": 1,
+            "missing_count": 26,
+            "simc_only_count": 1,
+            "match_rate_pct": 0,
+            "specs": {
+                "Marksmanship": {
+                    "blizzard_count": 8,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 651,
+                            "name": "Survival Tactics",
+                            "spell_id": 202746,
+                            "spell_name": "Survival Tactics"
+                        },
+                        {
+                            "talent_id": 653,
+                            "name": "Chimaeral Sting",
+                            "spell_id": 356719,
+                            "spell_name": "Chimaeral Sting"
+                        },
+                        {
+                            "talent_id": 659,
+                            "name": "Ranger's Finesse",
+                            "spell_id": 248443,
+                            "spell_name": "Ranger's Finesse"
+                        },
+                        {
+                            "talent_id": 660,
+                            "name": "Sniper's Advantage",
+                            "spell_id": 1217102,
+                            "spell_name": "Sniper's Advantage"
+                        },
+                        {
+                            "talent_id": 3729,
+                            "name": "Hunting Pack",
+                            "spell_id": 203235,
+                            "spell_name": "Hunting Pack"
+                        },
+                        {
+                            "talent_id": 5440,
+                            "name": "Consecutive Concussion",
+                            "spell_id": 357018,
+                            "spell_name": "Consecutive Concussion"
+                        },
+                        {
+                            "talent_id": 5533,
+                            "name": "Diamond Ice",
+                            "spell_id": 203340,
+                            "spell_name": "Diamond Ice"
+                        },
+                        {
+                            "talent_id": 5700,
+                            "name": "Aspect of the Fox",
+                            "spell_id": 1219162,
+                            "spell_name": "Aspect of the Fox"
+                        }
+                    ]
+                },
+                "Survival": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 661,
+                            "name": "Hunting Pack",
+                            "spell_id": 203235,
+                            "spell_name": "Hunting Pack"
+                        },
+                        {
+                            "talent_id": 662,
+                            "name": "Mending Bandage",
+                            "spell_id": 212640,
+                            "spell_name": "Mending Bandage"
+                        },
+                        {
+                            "talent_id": 664,
+                            "name": "Sticky Tar Bomb",
+                            "spell_id": 407028,
+                            "spell_name": "Sticky Tar Bomb"
+                        },
+                        {
+                            "talent_id": 665,
+                            "name": "Tracker's Net",
+                            "spell_id": 212638,
+                            "spell_name": "Tracker's Net"
+                        },
+                        {
+                            "talent_id": 686,
+                            "name": "Diamond Ice",
+                            "spell_id": 203340,
+                            "spell_name": "Diamond Ice"
+                        },
+                        {
+                            "talent_id": 3607,
+                            "name": "Survival Tactics",
+                            "spell_id": 202746,
+                            "spell_name": "Survival Tactics"
+                        },
+                        {
+                            "talent_id": 3609,
+                            "name": "Chimaeral Sting",
+                            "spell_id": 356719,
+                            "spell_name": "Chimaeral Sting"
+                        },
+                        {
+                            "talent_id": 5443,
+                            "name": "Wild Kingdom",
+                            "spell_id": 356707,
+                            "spell_name": "Wild Kingdom"
+                        },
+                        {
+                            "talent_id": 5532,
+                            "name": "Interlope",
+                            "spell_id": 248518,
+                            "spell_name": "Interlope"
+                        }
+                    ]
+                },
+                "Beast Mastery": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 693,
+                            "name": "The Beast Within",
+                            "spell_id": 356976,
+                            "spell_name": "The Beast Within"
+                        },
+                        {
+                            "talent_id": 824,
+                            "name": "Dire Beast: Hawk",
+                            "spell_id": 208652,
+                            "spell_name": "Dire Beast: Hawk"
+                        },
+                        {
+                            "talent_id": 1214,
+                            "name": "Interlope",
+                            "spell_id": 248518,
+                            "spell_name": "Interlope"
+                        },
+                        {
+                            "talent_id": 3599,
+                            "name": "Survival Tactics",
+                            "spell_id": 202746,
+                            "spell_name": "Survival Tactics"
+                        },
+                        {
+                            "talent_id": 3604,
+                            "name": "Chimaeral Sting",
+                            "spell_id": 356719,
+                            "spell_name": "Chimaeral Sting"
+                        },
+                        {
+                            "talent_id": 3730,
+                            "name": "Hunting Pack",
+                            "spell_id": 203235,
+                            "spell_name": "Hunting Pack"
+                        },
+                        {
+                            "talent_id": 5441,
+                            "name": "Wild Kingdom",
+                            "spell_id": 356707,
+                            "spell_name": "Wild Kingdom"
+                        },
+                        {
+                            "talent_id": 5444,
+                            "name": "Kindred Beasts",
+                            "spell_id": 356962,
+                            "spell_name": "Kindred Beasts"
+                        },
+                        {
+                            "talent_id": 5534,
+                            "name": "Diamond Ice",
+                            "spell_id": 203340,
+                            "spell_name": "Diamond Ice"
+                        }
+                    ]
+                }
+            },
+            "simc_only": [
+                {
+                    "simc_spell_id": 278454,
+                    "name": "Roar of Sacrifice"
+                }
+            ]
+        },
+        "Mage": {
+            "simc_file_found": true,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/mage/pvp-talents.txt",
+            "blizzard_total": 28,
+            "simc_total": 8,
+            "missing_count": 21,
+            "simc_only_count": 5,
+            "match_rate_pct": 25,
+            "specs": {
+                "Frost": {
+                    "blizzard_count": 10,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 66,
+                            "name": "Icy Feet",
+                            "spell_id": 407581,
+                            "spell_name": "Icy Feet"
+                        },
+                        {
+                            "talent_id": 632,
+                            "name": "Concentrated Coolness",
+                            "spell_id": 198148,
+                            "spell_name": "Concentrated Coolness"
+                        },
+                        {
+                            "talent_id": 5490,
+                            "name": "Ring of Fire",
+                            "spell_id": 353082,
+                            "spell_name": "Ring of Fire"
+                        },
+                        {
+                            "talent_id": 5496,
+                            "name": "Frost Bomb",
+                            "spell_id": 390612,
+                            "spell_name": "Frost Bomb"
+                        },
+                        {
+                            "talent_id": 5497,
+                            "name": "Snowdrift",
+                            "spell_id": 389794,
+                            "spell_name": "Snowdrift"
+                        },
+                        {
+                            "talent_id": 5581,
+                            "name": "Master Shepherd",
+                            "spell_id": 410248,
+                            "spell_name": "Master Shepherd"
+                        },
+                        {
+                            "talent_id": 5600,
+                            "name": "Ethereal Blink",
+                            "spell_id": 410939,
+                            "spell_name": "Ethereal Blink"
+                        },
+                        {
+                            "talent_id": 5708,
+                            "name": "Overpowered Barrier",
+                            "spell_id": 1220739,
+                            "spell_name": "Overpowered Barrier"
+                        }
+                    ]
+                },
+                "Fire": {
+                    "blizzard_count": 9,
+                    "missing_count": 7,
+                    "missing": [
+                        {
+                            "talent_id": 644,
+                            "name": "World in Flames",
+                            "spell_id": 203280,
+                            "spell_name": "World in Flames"
+                        },
+                        {
+                            "talent_id": 648,
+                            "name": "Greater Pyroblast",
+                            "spell_id": 203286,
+                            "spell_name": "Greater Pyroblast"
+                        },
+                        {
+                            "talent_id": 5389,
+                            "name": "Ring of Fire",
+                            "spell_id": 353082,
+                            "spell_name": "Ring of Fire"
+                        },
+                        {
+                            "talent_id": 5495,
+                            "name": "Glass Cannon",
+                            "spell_id": 390428,
+                            "spell_name": "Glass Cannon"
+                        },
+                        {
+                            "talent_id": 5588,
+                            "name": "Master Shepherd",
+                            "spell_id": 410248,
+                            "spell_name": "Master Shepherd"
+                        },
+                        {
+                            "talent_id": 5602,
+                            "name": "Ethereal Blink",
+                            "spell_id": 410939,
+                            "spell_name": "Ethereal Blink"
+                        },
+                        {
+                            "talent_id": 5706,
+                            "name": "Overpowered Barrier",
+                            "spell_id": 1220739,
+                            "spell_name": "Overpowered Barrier"
+                        }
+                    ]
+                },
+                "Arcane": {
+                    "blizzard_count": 9,
+                    "missing_count": 6,
+                    "missing": [
+                        {
+                            "talent_id": 5397,
+                            "name": "Arcanosphere",
+                            "spell_id": 353128,
+                            "spell_name": "Arcanosphere"
+                        },
+                        {
+                            "talent_id": 5491,
+                            "name": "Ring of Fire",
+                            "spell_id": 353082,
+                            "spell_name": "Ring of Fire"
+                        },
+                        {
+                            "talent_id": 5589,
+                            "name": "Master Shepherd",
+                            "spell_id": 410248,
+                            "spell_name": "Master Shepherd"
+                        },
+                        {
+                            "talent_id": 5601,
+                            "name": "Ethereal Blink",
+                            "spell_id": 410939,
+                            "spell_name": "Ethereal Blink"
+                        },
+                        {
+                            "talent_id": 5661,
+                            "name": "Chrono Shift",
+                            "spell_id": 235711,
+                            "spell_name": "Chrono Shift"
+                        },
+                        {
+                            "talent_id": 5707,
+                            "name": "Overpowered Barrier",
+                            "spell_id": 1220739,
+                            "spell_name": "Overpowered Barrier"
+                        }
+                    ]
+                }
+            },
+            "simc_only": [
+                {
+                    "simc_spell_id": 198062,
+                    "name": "Netherwind Armor"
+                },
+                {
+                    "simc_spell_id": 198144,
+                    "name": "Ice Form"
+                },
+                {
+                    "simc_spell_id": 198146,
+                    "name": "Crushing Jets"
+                },
+                {
+                    "simc_spell_id": 210476,
+                    "name": "Master of Escape"
+                },
+                {
+                    "simc_spell_id": 276743,
+                    "name": "Clearcasting"
+                }
+            ]
+        },
+        "Monk": {
+            "simc_file_found": false,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/monk/pvp-talents.txt",
+            "blizzard_total": 27,
+            "simc_total": 0,
+            "missing_count": 27,
+            "simc_only_count": 0,
+            "match_rate_pct": 0,
+            "specs": {
+                "Windwalker": {
+                    "blizzard_count": 8,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 77,
+                            "name": "Ride the Wind",
+                            "spell_id": 201372,
+                            "spell_name": "Ride the Wind"
+                        },
+                        {
+                            "talent_id": 3052,
+                            "name": "Grapple Weapon",
+                            "spell_id": 233759,
+                            "spell_name": "Grapple Weapon"
+                        },
+                        {
+                            "talent_id": 3737,
+                            "name": "Wind Waker",
+                            "spell_id": 357633,
+                            "spell_name": "Wind Waker"
+                        },
+                        {
+                            "talent_id": 3744,
+                            "name": "Predestination",
+                            "spell_id": 345829,
+                            "spell_name": "Predestination"
+                        },
+                        {
+                            "talent_id": 3745,
+                            "name": "Turbo Fists",
+                            "spell_id": 287681,
+                            "spell_name": "Turbo Fists"
+                        },
+                        {
+                            "talent_id": 5448,
+                            "name": "Perpetual Paralysis",
+                            "spell_id": 357495,
+                            "spell_name": "Perpetual Paralysis"
+                        },
+                        {
+                            "talent_id": 5641,
+                            "name": "Absolute Serenity",
+                            "spell_id": 455945,
+                            "spell_name": "Absolute Serenity"
+                        },
+                        {
+                            "talent_id": 5643,
+                            "name": "Rising Dragon Sweep",
+                            "spell_id": 460276,
+                            "spell_name": "Rising Dragon Sweep"
+                        }
+                    ]
+                },
+                "Mistweaver": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 70,
+                            "name": "Eminence",
+                            "spell_id": 353584,
+                            "spell_name": "Eminence"
+                        },
+                        {
+                            "talent_id": 679,
+                            "name": "Counteract Magic",
+                            "spell_id": 353502,
+                            "spell_name": "Counteract Magic"
+                        },
+                        {
+                            "talent_id": 683,
+                            "name": "Healing Spheres",
+                            "spell_id": 1243418,
+                            "spell_name": "Healing Spheres"
+                        },
+                        {
+                            "talent_id": 1928,
+                            "name": "Zen Focus Tea",
+                            "spell_id": 468430,
+                            "spell_name": "Zen Focus Tea"
+                        },
+                        {
+                            "talent_id": 5395,
+                            "name": "Peaceweaver",
+                            "spell_id": 353313,
+                            "spell_name": "Peaceweaver"
+                        },
+                        {
+                            "talent_id": 5398,
+                            "name": "Dematerialize",
+                            "spell_id": 353361,
+                            "spell_name": "Dematerialize"
+                        },
+                        {
+                            "talent_id": 5539,
+                            "name": "Mighty Ox Kick",
+                            "spell_id": 202370,
+                            "spell_name": "Mighty Ox Kick"
+                        },
+                        {
+                            "talent_id": 5603,
+                            "name": "Zen Spheres",
+                            "spell_id": 1243554,
+                            "spell_name": "Zen Spheres"
+                        },
+                        {
+                            "talent_id": 5642,
+                            "name": "Absolute Serenity",
+                            "spell_id": 455945,
+                            "spell_name": "Absolute Serenity"
+                        }
+                    ]
+                },
+                "Brewmaster": {
+                    "blizzard_count": 10,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 666,
+                            "name": "Microbrew",
+                            "spell_id": 202107,
+                            "spell_name": "Microbrew"
+                        },
+                        {
+                            "talent_id": 667,
+                            "name": "Hot Trub",
+                            "spell_id": 410346,
+                            "spell_name": "Hot Trub"
+                        },
+                        {
+                            "talent_id": 669,
+                            "name": "Avert Harm",
+                            "spell_id": 202162,
+                            "spell_name": "Avert Harm"
+                        },
+                        {
+                            "talent_id": 670,
+                            "name": "Nimble Brew",
+                            "spell_id": 354540,
+                            "spell_name": "Nimble Brew"
+                        },
+                        {
+                            "talent_id": 672,
+                            "name": "Double Barrel",
+                            "spell_id": 202335,
+                            "spell_name": "Double Barrel"
+                        },
+                        {
+                            "talent_id": 673,
+                            "name": "Mighty Ox Kick",
+                            "spell_id": 202370,
+                            "spell_name": "Mighty Ox Kick"
+                        },
+                        {
+                            "talent_id": 765,
+                            "name": "Eerie Fermentation",
+                            "spell_id": 205147,
+                            "spell_name": "Eerie Fermentation"
+                        },
+                        {
+                            "talent_id": 843,
+                            "name": "Admonishment",
+                            "spell_id": 207025,
+                            "spell_name": "Admonishment"
+                        },
+                        {
+                            "talent_id": 1958,
+                            "name": "Niuzao's Essence",
+                            "spell_id": 232876,
+                            "spell_name": "Niuzao's Essence"
+                        },
+                        {
+                            "talent_id": 5541,
+                            "name": "Dematerialize",
+                            "spell_id": 353361,
+                            "spell_name": "Dematerialize"
+                        }
+                    ]
+                }
+            },
+            "simc_only": []
+        },
+        "Paladin": {
+            "simc_file_found": true,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/paladin/pvp-talents.txt",
+            "blizzard_total": 34,
+            "simc_total": 15,
+            "missing_count": 29,
+            "simc_only_count": 9,
+            "match_rate_pct": 14.7,
+            "specs": {
+                "Protection": {
+                    "blizzard_count": 13,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 90,
+                            "name": "Hallowed Ground",
+                            "spell_id": 216868,
+                            "spell_name": "Hallowed Ground"
+                        },
+                        {
+                            "talent_id": 92,
+                            "name": "Sacred Duty",
+                            "spell_id": 216853,
+                            "spell_name": "Sacred Duty"
+                        },
+                        {
+                            "talent_id": 97,
+                            "name": "Guarded by the Light",
+                            "spell_id": 216855,
+                            "spell_name": "Guarded by the Light"
+                        },
+                        {
+                            "talent_id": 844,
+                            "name": "Inquisition",
+                            "spell_id": 207028,
+                            "spell_name": "Inquisition"
+                        },
+                        {
+                            "talent_id": 860,
+                            "name": "Warrior of Light",
+                            "spell_id": 210341,
+                            "spell_name": "Warrior of Light"
+                        },
+                        {
+                            "talent_id": 861,
+                            "name": "Shield of Virtue",
+                            "spell_id": 215652,
+                            "spell_name": "Shield of Virtue"
+                        },
+                        {
+                            "talent_id": 5582,
+                            "name": "Searing Glare",
+                            "spell_id": 410126,
+                            "spell_name": "Searing Glare"
+                        },
+                        {
+                            "talent_id": 5664,
+                            "name": "Bear the Burden",
+                            "spell_id": 468454,
+                            "spell_name": "Bear the Burden"
+                        },
+                        {
+                            "talent_id": 5667,
+                            "name": "Spellbreaker",
+                            "spell_id": 469895,
+                            "spell_name": "Spellbreaker"
+                        },
+                        {
+                            "talent_id": 5677,
+                            "name": "Shining Revelation",
+                            "spell_id": 936051,
+                            "spell_name": "Shining Revelation"
+                        }
+                    ]
+                },
+                "Holy": {
+                    "blizzard_count": 12,
+                    "missing_count": 11,
+                    "missing": [
+                        {
+                            "talent_id": 85,
+                            "name": "Ultimate Sacrifice",
+                            "spell_id": 199452,
+                            "spell_name": "Ultimate Sacrifice"
+                        },
+                        {
+                            "talent_id": 86,
+                            "name": "Darkest before the Dawn",
+                            "spell_id": 210378,
+                            "spell_name": "Darkest before the Dawn"
+                        },
+                        {
+                            "talent_id": 87,
+                            "name": "Spreading the Word",
+                            "spell_id": 199456,
+                            "spell_name": "Spreading the Word"
+                        },
+                        {
+                            "talent_id": 640,
+                            "name": "Divine Vision",
+                            "spell_id": 199324,
+                            "spell_name": "Divine Vision"
+                        },
+                        {
+                            "talent_id": 642,
+                            "name": "Cleanse the Weak",
+                            "spell_id": 199330,
+                            "spell_name": "Cleanse the Weak"
+                        },
+                        {
+                            "talent_id": 5583,
+                            "name": "Searing Glare",
+                            "spell_id": 410126,
+                            "spell_name": "Searing Glare"
+                        },
+                        {
+                            "talent_id": 5618,
+                            "name": "Denounce",
+                            "spell_id": 2812,
+                            "spell_name": "Denounce"
+                        },
+                        {
+                            "talent_id": 5663,
+                            "name": "Divine Plea",
+                            "spell_id": 415244,
+                            "spell_name": "Divine Plea"
+                        },
+                        {
+                            "talent_id": 5665,
+                            "name": "Spellbreaker",
+                            "spell_id": 469895,
+                            "spell_name": "Spellbreaker"
+                        },
+                        {
+                            "talent_id": 5676,
+                            "name": "Shining Revelation",
+                            "spell_id": 936051,
+                            "spell_name": "Shining Revelation"
+                        },
+                        {
+                            "talent_id": 5692,
+                            "name": "Blessing of Spellwarding",
+                            "spell_id": 204018,
+                            "spell_name": "Blessing of Spellwarding"
+                        }
+                    ]
+                },
+                "Retribution": {
+                    "blizzard_count": 9,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 752,
+                            "name": "Blessing of Sanctuary",
+                            "spell_id": 210256,
+                            "spell_name": "Blessing of Sanctuary"
+                        },
+                        {
+                            "talent_id": 753,
+                            "name": "Ultimate Retribution",
+                            "spell_id": 355614,
+                            "spell_name": "Ultimate Retribution"
+                        },
+                        {
+                            "talent_id": 5535,
+                            "name": "Hallowed Ground",
+                            "spell_id": 216868,
+                            "spell_name": "Hallowed Ground"
+                        },
+                        {
+                            "talent_id": 5572,
+                            "name": "Spreading the Word",
+                            "spell_id": 199456,
+                            "spell_name": "Spreading the Word"
+                        },
+                        {
+                            "talent_id": 5573,
+                            "name": "Blessing of Spellwarding",
+                            "spell_id": 204018,
+                            "spell_name": "Blessing of Spellwarding"
+                        },
+                        {
+                            "talent_id": 5584,
+                            "name": "Searing Glare",
+                            "spell_id": 410126,
+                            "spell_name": "Searing Glare"
+                        },
+                        {
+                            "talent_id": 5666,
+                            "name": "Spellbreaker",
+                            "spell_id": 469895,
+                            "spell_name": "Spellbreaker"
+                        },
+                        {
+                            "talent_id": 5675,
+                            "name": "Shining Revelation",
+                            "spell_id": 936051,
+                            "spell_name": "Shining Revelation"
+                        }
+                    ]
+                }
+            },
+            "simc_only": [
+                {
+                    "simc_spell_id": 199325,
+                    "name": "Unbound Freedom"
+                },
+                {
+                    "simc_spell_id": 199423,
+                    "name": "Holy Ritual"
+                },
+                {
+                    "simc_spell_id": 208770,
+                    "name": "Cleansed by Flame"
+                },
+                {
+                    "simc_spell_id": 228050,
+                    "name": "Divine Shield"
+                },
+                {
+                    "simc_spell_id": 346500,
+                    "name": "Pillars of the Dark Portal"
+                },
+                {
+                    "simc_spell_id": 355858,
+                    "name": "Judgments of the Pure"
+                },
+                {
+                    "simc_spell_id": 355867,
+                    "name": "Judgments of the Pure"
+                },
+                {
+                    "simc_spell_id": 356047,
+                    "name": "Judgments of the Pure"
+                },
+                {
+                    "simc_spell_id": 1293918,
+                    "name": "Divine Shield"
+                }
+            ]
+        },
+        "Priest": {
+            "simc_file_found": true,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/priest/pvp-talents.txt",
+            "blizzard_total": 28,
+            "simc_total": 5,
+            "missing_count": 28,
+            "simc_only_count": 5,
+            "match_rate_pct": 0,
+            "specs": {
+                "Holy": {
+                    "blizzard_count": 8,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 101,
+                            "name": "Psychic Shroud",
+                            "spell_id": 1246968,
+                            "spell_name": "Psychic Shroud"
+                        },
+                        {
+                            "talent_id": 108,
+                            "name": "Sanctified Ground",
+                            "spell_id": 357481,
+                            "spell_name": "Sanctified Ground"
+                        },
+                        {
+                            "talent_id": 112,
+                            "name": "Greater Heal",
+                            "spell_id": 289666,
+                            "spell_name": "Greater Heal"
+                        },
+                        {
+                            "talent_id": 124,
+                            "name": "Spirit of the Redeemer",
+                            "spell_id": 215982,
+                            "spell_name": "Spirit of the Redeemer"
+                        },
+                        {
+                            "talent_id": 1927,
+                            "name": "Absolute Faith",
+                            "spell_id": 408853,
+                            "spell_name": "Absolute Faith"
+                        },
+                        {
+                            "talent_id": 5479,
+                            "name": "Purification",
+                            "spell_id": 196439,
+                            "spell_name": "Purification"
+                        },
+                        {
+                            "talent_id": 5569,
+                            "name": "Phase Shift",
+                            "spell_id": 408557,
+                            "spell_name": "Phase Shift"
+                        },
+                        {
+                            "talent_id": 5634,
+                            "name": "Improved Mass Dispel",
+                            "spell_id": 426438,
+                            "spell_name": "Improved Mass Dispel"
+                        }
+                    ]
+                },
+                "Discipline": {
+                    "blizzard_count": 11,
+                    "missing_count": 11,
+                    "missing": [
+                        {
+                            "talent_id": 100,
+                            "name": "Purification",
+                            "spell_id": 196439,
+                            "spell_name": "Purification"
+                        },
+                        {
+                            "talent_id": 109,
+                            "name": "Trinity",
+                            "spell_id": 214205,
+                            "spell_name": "Trinity"
+                        },
+                        {
+                            "talent_id": 111,
+                            "name": "Strength of Soul",
+                            "spell_id": 197535,
+                            "spell_name": "Strength of Soul"
+                        },
+                        {
+                            "talent_id": 114,
+                            "name": "Ultimate Radiance",
+                            "spell_id": 236499,
+                            "spell_name": "Ultimate Radiance"
+                        },
+                        {
+                            "talent_id": 123,
+                            "name": "Inner Light",
+                            "spell_id": 355897,
+                            "spell_name": "Inner Light"
+                        },
+                        {
+                            "talent_id": 126,
+                            "name": "Dark Archangel",
+                            "spell_id": 1218211,
+                            "spell_name": "Dark Archangel"
+                        },
+                        {
+                            "talent_id": 5480,
+                            "name": "Absolute Faith",
+                            "spell_id": 408853,
+                            "spell_name": "Absolute Faith"
+                        },
+                        {
+                            "talent_id": 5570,
+                            "name": "Phase Shift",
+                            "spell_id": 408557,
+                            "spell_name": "Phase Shift"
+                        },
+                        {
+                            "talent_id": 5635,
+                            "name": "Improved Mass Dispel",
+                            "spell_id": 426438,
+                            "spell_name": "Improved Mass Dispel"
+                        },
+                        {
+                            "talent_id": 5640,
+                            "name": "Mindgames",
+                            "spell_id": 375901,
+                            "spell_name": "Mindgames"
+                        },
+                        {
+                            "talent_id": 5721,
+                            "name": "Psychic Shroud",
+                            "spell_id": 1246968,
+                            "spell_name": "Psychic Shroud"
+                        }
+                    ]
+                },
+                "Shadow": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 106,
+                            "name": "Driven to Madness",
+                            "spell_id": 199259,
+                            "spell_name": "Driven to Madness"
+                        },
+                        {
+                            "talent_id": 113,
+                            "name": "Mind Trauma",
+                            "spell_id": 199445,
+                            "spell_name": "Mind Trauma"
+                        },
+                        {
+                            "talent_id": 763,
+                            "name": "Psyfiend",
+                            "spell_id": 211522,
+                            "spell_name": "Psyfiend"
+                        },
+                        {
+                            "talent_id": 5447,
+                            "name": "Cascading Horrors",
+                            "spell_id": 357711,
+                            "spell_name": "Cascading Horrors"
+                        },
+                        {
+                            "talent_id": 5481,
+                            "name": "Absolute Faith",
+                            "spell_id": 408853,
+                            "spell_name": "Absolute Faith"
+                        },
+                        {
+                            "talent_id": 5568,
+                            "name": "Phase Shift",
+                            "spell_id": 408557,
+                            "spell_name": "Phase Shift"
+                        },
+                        {
+                            "talent_id": 5636,
+                            "name": "Improved Mass Dispel",
+                            "spell_id": 426438,
+                            "spell_name": "Improved Mass Dispel"
+                        },
+                        {
+                            "talent_id": 5638,
+                            "name": "Mindgames",
+                            "spell_id": 375901,
+                            "spell_name": "Mindgames"
+                        },
+                        {
+                            "talent_id": 5720,
+                            "name": "Psychic Shroud",
+                            "spell_id": 1246968,
+                            "spell_name": "Psychic Shroud"
+                        }
+                    ]
+                }
+            },
+            "simc_only": [
+                {
+                    "simc_spell_id": 196818,
+                    "name": "Holy Fire"
+                },
+                {
+                    "simc_spell_id": 199397,
+                    "name": "Vampiric Embrace"
+                },
+                {
+                    "simc_spell_id": 199435,
+                    "name": "Luminescence"
+                },
+                {
+                    "simc_spell_id": 213610,
+                    "name": "Holy Ward"
+                },
+                {
+                    "simc_spell_id": 215769,
+                    "name": "Spirit of Redemption"
+                }
+            ]
+        },
+        "Rogue": {
+            "simc_file_found": true,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/rogue/pvp-talents.txt",
+            "blizzard_total": 33,
+            "simc_total": 6,
+            "missing_count": 22,
+            "simc_only_count": 1,
+            "match_rate_pct": 33.3,
+            "specs": {
+                "Outlaw": {
+                    "blizzard_count": 11,
+                    "missing_count": 7,
+                    "missing": [
+                        {
+                            "talent_id": 138,
+                            "name": "Control is King",
+                            "spell_id": 354406,
+                            "spell_name": "Control is King"
+                        },
+                        {
+                            "talent_id": 145,
+                            "name": "Dismantle",
+                            "spell_id": 207777,
+                            "spell_name": "Dismantle"
+                        },
+                        {
+                            "talent_id": 853,
+                            "name": "Boarding Party",
+                            "spell_id": 209752,
+                            "spell_name": "Boarding Party"
+                        },
+                        {
+                            "talent_id": 3421,
+                            "name": "Turn the Tables",
+                            "spell_id": 198020,
+                            "spell_name": "Turn the Tables"
+                        },
+                        {
+                            "talent_id": 3619,
+                            "name": "Death from Above",
+                            "spell_id": 269513,
+                            "spell_name": "Death from Above"
+                        },
+                        {
+                            "talent_id": 5549,
+                            "name": "Dagger in the Dark",
+                            "spell_id": 198675,
+                            "spell_name": "Dagger in the Dark"
+                        },
+                        {
+                            "talent_id": 5699,
+                            "name": "Preemptive Maneuver",
+                            "spell_id": 1219122,
+                            "spell_name": "Preemptive Maneuver"
+                        }
+                    ]
+                },
+                "Assassination": {
+                    "blizzard_count": 11,
+                    "missing_count": 7,
+                    "missing": [
+                        {
+                            "talent_id": 141,
+                            "name": "Creeping Venom",
+                            "spell_id": 354895,
+                            "spell_name": "Creeping Venom"
+                        },
+                        {
+                            "talent_id": 147,
+                            "name": "System Shock",
+                            "spell_id": 198145,
+                            "spell_name": "System Shock"
+                        },
+                        {
+                            "talent_id": 3479,
+                            "name": "Death from Above",
+                            "spell_id": 269513,
+                            "spell_name": "Death from Above"
+                        },
+                        {
+                            "talent_id": 5405,
+                            "name": "Dismantle",
+                            "spell_id": 207777,
+                            "spell_name": "Dismantle"
+                        },
+                        {
+                            "talent_id": 5530,
+                            "name": "Control is King",
+                            "spell_id": 354406,
+                            "spell_name": "Control is King"
+                        },
+                        {
+                            "talent_id": 5550,
+                            "name": "Dagger in the Dark",
+                            "spell_id": 198675,
+                            "spell_name": "Dagger in the Dark"
+                        },
+                        {
+                            "talent_id": 5697,
+                            "name": "Preemptive Maneuver",
+                            "spell_id": 1219122,
+                            "spell_name": "Preemptive Maneuver"
+                        }
+                    ]
+                },
+                "Subtlety": {
+                    "blizzard_count": 11,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 146,
+                            "name": "Thief's Bargain",
+                            "spell_id": 354825,
+                            "spell_name": "Thief's Bargain"
+                        },
+                        {
+                            "talent_id": 846,
+                            "name": "Dagger in the Dark",
+                            "spell_id": 198675,
+                            "spell_name": "Dagger in the Dark"
+                        },
+                        {
+                            "talent_id": 856,
+                            "name": "Silhouette",
+                            "spell_id": 197899,
+                            "spell_name": "Silhouette"
+                        },
+                        {
+                            "talent_id": 3462,
+                            "name": "Death from Above",
+                            "spell_id": 269513,
+                            "spell_name": "Death from Above"
+                        },
+                        {
+                            "talent_id": 5406,
+                            "name": "Dismantle",
+                            "spell_id": 207777,
+                            "spell_name": "Dismantle"
+                        },
+                        {
+                            "talent_id": 5411,
+                            "name": "Distracting Mirage",
+                            "spell_id": 354661,
+                            "spell_name": "Distracting Mirage"
+                        },
+                        {
+                            "talent_id": 5529,
+                            "name": "Control is King",
+                            "spell_id": 354406,
+                            "spell_name": "Control is King"
+                        },
+                        {
+                            "talent_id": 5698,
+                            "name": "Preemptive Maneuver",
+                            "spell_id": 1219122,
+                            "spell_name": "Preemptive Maneuver"
+                        }
+                    ]
+                }
+            },
+            "simc_only": [
+                {
+                    "simc_spell_id": 212205,
+                    "name": "Create: Crimson Vial"
+                }
+            ]
+        },
+        "Shaman": {
+            "simc_file_found": false,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/shaman/pvp-talents.txt",
+            "blizzard_total": 28,
+            "simc_total": 0,
+            "missing_count": 28,
+            "simc_only_count": 0,
+            "match_rate_pct": 0,
+            "specs": {
+                "Restoration": {
+                    "blizzard_count": 11,
+                    "missing_count": 11,
+                    "missing": [
+                        {
+                            "talent_id": 708,
+                            "name": "Counterstrike Totem",
+                            "spell_id": 204331,
+                            "spell_name": "Counterstrike Totem"
+                        },
+                        {
+                            "talent_id": 714,
+                            "name": "Electrocute",
+                            "spell_id": 206642,
+                            "spell_name": "Electrocute"
+                        },
+                        {
+                            "talent_id": 715,
+                            "name": "Grounding Totem",
+                            "spell_id": 204336,
+                            "spell_name": "Grounding Totem"
+                        },
+                        {
+                            "talent_id": 3755,
+                            "name": "Rain Dance",
+                            "spell_id": 290250,
+                            "spell_name": "Rain Dance"
+                        },
+                        {
+                            "talent_id": 5437,
+                            "name": "Master of the Elements",
+                            "spell_id": 462375,
+                            "spell_name": "Master of the Elements"
+                        },
+                        {
+                            "talent_id": 5567,
+                            "name": "Static Field Totem",
+                            "spell_id": 355580,
+                            "spell_name": "Static Field Totem"
+                        },
+                        {
+                            "talent_id": 5576,
+                            "name": "Burrow",
+                            "spell_id": 409293,
+                            "spell_name": "Burrow"
+                        },
+                        {
+                            "talent_id": 5704,
+                            "name": "Storm Conduit",
+                            "spell_id": 1217092,
+                            "spell_name": "Storm Conduit"
+                        },
+                        {
+                            "talent_id": 5705,
+                            "name": "Totem of Wrath",
+                            "spell_id": 460697,
+                            "spell_name": "Totem of Wrath"
+                        },
+                        {
+                            "talent_id": 5719,
+                            "name": "Call of Al'Akir",
+                            "spell_id": 1246131,
+                            "spell_name": "Call of Al'Akir"
+                        },
+                        {
+                            "talent_id": 5723,
+                            "name": "Lightning Lasso",
+                            "spell_id": 305483,
+                            "spell_name": "Lightning Lasso"
+                        }
+                    ]
+                },
+                "Enhancement": {
+                    "blizzard_count": 8,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 722,
+                            "name": "Shamanism",
+                            "spell_id": 193876,
+                            "spell_name": "Shamanism"
+                        },
+                        {
+                            "talent_id": 3487,
+                            "name": "Totem of Wrath",
+                            "spell_id": 460697,
+                            "spell_name": "Totem of Wrath"
+                        },
+                        {
+                            "talent_id": 3489,
+                            "name": "Counterstrike Totem",
+                            "spell_id": 204331,
+                            "spell_name": "Counterstrike Totem"
+                        },
+                        {
+                            "talent_id": 3622,
+                            "name": "Grounding Totem",
+                            "spell_id": 204336,
+                            "spell_name": "Grounding Totem"
+                        },
+                        {
+                            "talent_id": 5438,
+                            "name": "Static Field Totem",
+                            "spell_id": 355580,
+                            "spell_name": "Static Field Totem"
+                        },
+                        {
+                            "talent_id": 5575,
+                            "name": "Burrow",
+                            "spell_id": 409293,
+                            "spell_name": "Burrow"
+                        },
+                        {
+                            "talent_id": 5658,
+                            "name": "Electrocute",
+                            "spell_id": 206642,
+                            "spell_name": "Electrocute"
+                        },
+                        {
+                            "talent_id": 5722,
+                            "name": "Lightning Lasso",
+                            "spell_id": 305483,
+                            "spell_name": "Lightning Lasso"
+                        }
+                    ]
+                },
+                "Elemental": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 727,
+                            "name": "Static Field Totem",
+                            "spell_id": 355580,
+                            "spell_name": "Static Field Totem"
+                        },
+                        {
+                            "talent_id": 3488,
+                            "name": "Totem of Wrath",
+                            "spell_id": 460697,
+                            "spell_name": "Totem of Wrath"
+                        },
+                        {
+                            "talent_id": 3490,
+                            "name": "Counterstrike Totem",
+                            "spell_id": 204331,
+                            "spell_name": "Counterstrike Totem"
+                        },
+                        {
+                            "talent_id": 3620,
+                            "name": "Grounding Totem",
+                            "spell_id": 204336,
+                            "spell_name": "Grounding Totem"
+                        },
+                        {
+                            "talent_id": 5574,
+                            "name": "Burrow",
+                            "spell_id": 409293,
+                            "spell_name": "Burrow"
+                        },
+                        {
+                            "talent_id": 5659,
+                            "name": "Electrocute",
+                            "spell_id": 206642,
+                            "spell_name": "Electrocute"
+                        },
+                        {
+                            "talent_id": 5660,
+                            "name": "Shamanism",
+                            "spell_id": 193876,
+                            "spell_name": "Shamanism"
+                        },
+                        {
+                            "talent_id": 5681,
+                            "name": "Storm Conduit",
+                            "spell_id": 1217092,
+                            "spell_name": "Storm Conduit"
+                        },
+                        {
+                            "talent_id": 5724,
+                            "name": "Lightning Lasso",
+                            "spell_id": 305483,
+                            "spell_name": "Lightning Lasso"
+                        }
+                    ]
+                }
+            },
+            "simc_only": []
+        },
+        "Warlock": {
+            "simc_file_found": false,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/warlock/pvp-talents.txt",
+            "blizzard_total": 28,
+            "simc_total": 0,
+            "missing_count": 28,
+            "simc_only_count": 0,
+            "match_rate_pct": 0,
+            "specs": {
+                "Affliction": {
+                    "blizzard_count": 11,
+                    "missing_count": 11,
+                    "missing": [
+                        {
+                            "talent_id": 15,
+                            "name": "Gateway Mastery",
+                            "spell_id": 248855,
+                            "spell_name": "Gateway Mastery"
+                        },
+                        {
+                            "talent_id": 16,
+                            "name": "Rot and Decay",
+                            "spell_id": 212371,
+                            "spell_name": "Rot and Decay"
+                        },
+                        {
+                            "talent_id": 18,
+                            "name": "Nether Ward",
+                            "spell_id": 212295,
+                            "spell_name": "Nether Ward"
+                        },
+                        {
+                            "talent_id": 19,
+                            "name": "Essence Drain",
+                            "spell_id": 221711,
+                            "spell_name": "Essence Drain"
+                        },
+                        {
+                            "talent_id": 5386,
+                            "name": "Jinx",
+                            "spell_id": 426352,
+                            "spell_name": "Jinx"
+                        },
+                        {
+                            "talent_id": 5392,
+                            "name": "Shadow Rift",
+                            "spell_id": 353294,
+                            "spell_name": "Shadow Rift"
+                        },
+                        {
+                            "talent_id": 5546,
+                            "name": "Bonds of Fel",
+                            "spell_id": 353753,
+                            "spell_name": "Bonds of Fel"
+                        },
+                        {
+                            "talent_id": 5579,
+                            "name": "Impish Instincts",
+                            "spell_id": 409835,
+                            "spell_name": "Impish Instincts"
+                        },
+                        {
+                            "talent_id": 5608,
+                            "name": "Soul Rip",
+                            "spell_id": 410598,
+                            "spell_name": "Soul Rip"
+                        },
+                        {
+                            "talent_id": 5662,
+                            "name": "Soul Swap",
+                            "spell_id": 386951,
+                            "spell_name": "Soul Swap"
+                        },
+                        {
+                            "talent_id": 5695,
+                            "name": "Bloodstones",
+                            "spell_id": 1218692,
+                            "spell_name": "Bloodstones"
+                        }
+                    ]
+                },
+                "Destruction": {
+                    "blizzard_count": 9,
+                    "missing_count": 9,
+                    "missing": [
+                        {
+                            "talent_id": 157,
+                            "name": "Fel Fissure",
+                            "spell_id": 200586,
+                            "spell_name": "Fel Fissure"
+                        },
+                        {
+                            "talent_id": 164,
+                            "name": "Bane of Havoc",
+                            "spell_id": 461917,
+                            "spell_name": "Bane of Havoc"
+                        },
+                        {
+                            "talent_id": 3508,
+                            "name": "Nether Ward",
+                            "spell_id": 212295,
+                            "spell_name": "Nether Ward"
+                        },
+                        {
+                            "talent_id": 5382,
+                            "name": "Gateway Mastery",
+                            "spell_id": 248855,
+                            "spell_name": "Gateway Mastery"
+                        },
+                        {
+                            "talent_id": 5393,
+                            "name": "Shadow Rift",
+                            "spell_id": 353294,
+                            "spell_name": "Shadow Rift"
+                        },
+                        {
+                            "talent_id": 5401,
+                            "name": "Bonds of Fel",
+                            "spell_id": 353753,
+                            "spell_name": "Bonds of Fel"
+                        },
+                        {
+                            "talent_id": 5580,
+                            "name": "Impish Instincts",
+                            "spell_id": 409835,
+                            "spell_name": "Impish Instincts"
+                        },
+                        {
+                            "talent_id": 5607,
+                            "name": "Soul Rip",
+                            "spell_id": 410598,
+                            "spell_name": "Soul Rip"
+                        },
+                        {
+                            "talent_id": 5696,
+                            "name": "Bloodstones",
+                            "spell_id": 1218692,
+                            "spell_name": "Bloodstones"
+                        }
+                    ]
+                },
+                "Demonology": {
+                    "blizzard_count": 8,
+                    "missing_count": 8,
+                    "missing": [
+                        {
+                            "talent_id": 162,
+                            "name": "Call Fel Lord",
+                            "spell_id": 212459,
+                            "spell_name": "Call Fel Lord"
+                        },
+                        {
+                            "talent_id": 3506,
+                            "name": "Gateway Mastery",
+                            "spell_id": 248855,
+                            "spell_name": "Gateway Mastery"
+                        },
+                        {
+                            "talent_id": 3624,
+                            "name": "Nether Ward",
+                            "spell_id": 212295,
+                            "spell_name": "Nether Ward"
+                        },
+                        {
+                            "talent_id": 5394,
+                            "name": "Shadow Rift",
+                            "spell_id": 353294,
+                            "spell_name": "Shadow Rift"
+                        },
+                        {
+                            "talent_id": 5545,
+                            "name": "Bonds of Fel",
+                            "spell_id": 353753,
+                            "spell_name": "Bonds of Fel"
+                        },
+                        {
+                            "talent_id": 5577,
+                            "name": "Impish Instincts",
+                            "spell_id": 409835,
+                            "spell_name": "Impish Instincts"
+                        },
+                        {
+                            "talent_id": 5606,
+                            "name": "Soul Rip",
+                            "spell_id": 410598,
+                            "spell_name": "Soul Rip"
+                        },
+                        {
+                            "talent_id": 5694,
+                            "name": "Bloodstones",
+                            "spell_id": 1218692,
+                            "spell_name": "Bloodstones"
+                        }
+                    ]
+                }
+            },
+            "simc_only": []
+        },
+        "Warrior": {
+            "simc_file_found": false,
+            "simc_path": "C:\\Users\\chris\\Herd\\chonny/data/spelldata/filtered/warrior/pvp-talents.txt",
+            "blizzard_total": 33,
+            "simc_total": 0,
+            "missing_count": 33,
+            "simc_only_count": 0,
+            "match_rate_pct": 0,
+            "specs": {
+                "Protection": {
+                    "blizzard_count": 13,
+                    "missing_count": 13,
+                    "missing": [
+                        {
+                            "talent_id": 24,
+                            "name": "Disarm",
+                            "spell_id": 236077,
+                            "spell_name": "Disarm"
+                        },
+                        {
+                            "talent_id": 168,
+                            "name": "Bodyguard",
+                            "spell_id": 213871,
+                            "spell_name": "Bodyguard"
+                        },
+                        {
+                            "talent_id": 171,
+                            "name": "Morale Killer",
+                            "spell_id": 199023,
+                            "spell_name": "Morale Killer"
+                        },
+                        {
+                            "talent_id": 173,
+                            "name": "Shield Bash",
+                            "spell_id": 198912,
+                            "spell_name": "Shield Bash"
+                        },
+                        {
+                            "talent_id": 175,
+                            "name": "Thunderstruck",
+                            "spell_id": 199045,
+                            "spell_name": "Thunderstruck"
+                        },
+                        {
+                            "talent_id": 831,
+                            "name": "Dragon Charge",
+                            "spell_id": 206572,
+                            "spell_name": "Dragon Charge"
+                        },
+                        {
+                            "talent_id": 833,
+                            "name": "Rebound",
+                            "spell_id": 213915,
+                            "spell_name": "Rebound"
+                        },
+                        {
+                            "talent_id": 845,
+                            "name": "Oppressor",
+                            "spell_id": 205800,
+                            "spell_name": "Oppressor"
+                        },
+                        {
+                            "talent_id": 5374,
+                            "name": "Demolition",
+                            "spell_id": 329033,
+                            "spell_name": "Demolition"
+                        },
+                        {
+                            "talent_id": 5626,
+                            "name": "Safeguard",
+                            "spell_id": 424654,
+                            "spell_name": "Safeguard"
+                        },
+                        {
+                            "talent_id": 5627,
+                            "name": "Storm of Destruction",
+                            "spell_id": 236308,
+                            "spell_name": "Storm of Destruction"
+                        },
+                        {
+                            "talent_id": 5703,
+                            "name": "Berserker Roar",
+                            "spell_id": 1227751,
+                            "spell_name": "Berserker Roar"
+                        },
+                        {
+                            "talent_id": 5715,
+                            "name": "Power Through Adversity",
+                            "spell_id": 1234791,
+                            "spell_name": "Power Through Adversity"
+                        }
+                    ]
+                },
+                "Fury": {
+                    "blizzard_count": 10,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 177,
+                            "name": "Enduring Rage",
+                            "spell_id": 411764,
+                            "spell_name": "Enduring Rage"
+                        },
+                        {
+                            "talent_id": 179,
+                            "name": "Death Wish",
+                            "spell_id": 199261,
+                            "spell_name": "Death Wish"
+                        },
+                        {
+                            "talent_id": 3528,
+                            "name": "Master and Commander",
+                            "spell_id": 235941,
+                            "spell_name": "Master and Commander"
+                        },
+                        {
+                            "talent_id": 3533,
+                            "name": "Disarm",
+                            "spell_id": 236077,
+                            "spell_name": "Disarm"
+                        },
+                        {
+                            "talent_id": 3735,
+                            "name": "Slaughterhouse",
+                            "spell_id": 352998,
+                            "spell_name": "Slaughterhouse"
+                        },
+                        {
+                            "talent_id": 5373,
+                            "name": "Demolition",
+                            "spell_id": 329033,
+                            "spell_name": "Demolition"
+                        },
+                        {
+                            "talent_id": 5548,
+                            "name": "Rebound",
+                            "spell_id": 213915,
+                            "spell_name": "Rebound"
+                        },
+                        {
+                            "talent_id": 5624,
+                            "name": "Safeguard",
+                            "spell_id": 424654,
+                            "spell_name": "Safeguard"
+                        },
+                        {
+                            "talent_id": 5678,
+                            "name": "Dragon Charge",
+                            "spell_id": 206572,
+                            "spell_name": "Dragon Charge"
+                        },
+                        {
+                            "talent_id": 5702,
+                            "name": "Berserker Roar",
+                            "spell_id": 1227751,
+                            "spell_name": "Berserker Roar"
+                        }
+                    ]
+                },
+                "Arms": {
+                    "blizzard_count": 10,
+                    "missing_count": 10,
+                    "missing": [
+                        {
+                            "talent_id": 28,
+                            "name": "Master and Commander",
+                            "spell_id": 235941,
+                            "spell_name": "Master and Commander"
+                        },
+                        {
+                            "talent_id": 31,
+                            "name": "Storm of Destruction",
+                            "spell_id": 236308,
+                            "spell_name": "Storm of Destruction"
+                        },
+                        {
+                            "talent_id": 33,
+                            "name": "Sharpen Blade",
+                            "spell_id": 1219165,
+                            "spell_name": "Sharpen Blade"
+                        },
+                        {
+                            "talent_id": 34,
+                            "name": "Duel",
+                            "spell_id": 236273,
+                            "spell_name": "Duel"
+                        },
+                        {
+                            "talent_id": 3534,
+                            "name": "Disarm",
+                            "spell_id": 236077,
+                            "spell_name": "Disarm"
+                        },
+                        {
+                            "talent_id": 5372,
+                            "name": "Demolition",
+                            "spell_id": 329033,
+                            "spell_name": "Demolition"
+                        },
+                        {
+                            "talent_id": 5547,
+                            "name": "Rebound",
+                            "spell_id": 213915,
+                            "spell_name": "Rebound"
+                        },
+                        {
+                            "talent_id": 5625,
+                            "name": "Safeguard",
+                            "spell_id": 424654,
+                            "spell_name": "Safeguard"
+                        },
+                        {
+                            "talent_id": 5679,
+                            "name": "Dragon Charge",
+                            "spell_id": 206572,
+                            "spell_name": "Dragon Charge"
+                        },
+                        {
+                            "talent_id": 5701,
+                            "name": "Berserker Roar",
+                            "spell_id": 1227751,
+                            "spell_name": "Berserker Roar"
+                        }
+                    ]
+                }
+            },
+            "simc_only": []
+        }
+    }
+}

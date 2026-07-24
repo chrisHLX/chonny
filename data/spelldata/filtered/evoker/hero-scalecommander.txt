@@ -1,0 +1,326 @@
+# Evoker — Scalecommander Hero Talents
+# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Maneuverability (desc=Black) (id=433871) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1123470)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 433874 | Scaled Value: 433874 | Target: Self (1)
+#2 (id=1123471)  : None (0)
+                   Base Value: 20 | Scaled Value: 20
+Description      : $?s403631[Breath of Eons][Deep Breath] can now be steered in your desired direction.
+
+Name             : Bombardments (desc=Black) (id=434300) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1124234)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 434473 | Target: Self (1)
+#2 (id=1124235)  : None (0)
+                   Base Value: 20 | Scaled Value: 20
+Description      : $?c1[Mass Disintegrate][Mass Eruption] marks your primary target for destruction for the next $434473d.
+
+Name             : Mass Disintegrate (desc=Black) (id=436335) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+                 : 5098: Concentrated Power (1261448 effect#1)
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1127595)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | SP Coefficient: 2 | Target: Self (1)
+                   Modified By: Concentrated Power (1261448 effect#1)
+#2 (id=1127596)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | SP Coefficient: 2 | Target: Self (1)
+Description      : Empower spells cause your next Disintegrate to strike up to $s1 targets. When striking fewer than $s1 targets, Disintegrate damage is increased by $s2% for each missing target.
+
+Name             : Mass Eruption (desc=Black) (id=438587) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Augmentation) [tree=hero, row=1, col=1, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1131288)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | SP Coefficient: 2 | Target: Self (1)
+#2 (id=1131289)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | SP Coefficient: 2 | Target: Self (1)
+Description      : Empower spells cause your next Eruption to strike up to $s1 targets. When striking less than $s1 targets, Eruption damage is increased by $s2% for each missing target.
+
+Name             : Melt Armor (desc=Black) (id=441176) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135465)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1135466)  : None (0)
+                   Base Value: 20 | Scaled Value: 20
+Description      : $?s403631[Breath of Eons][Deep Breath] causes enemies to take $s2% increased damage from Bombardments and Essence abilities for $441172d.$?c1[
+
+Name             : Hardened Scales (desc=Black) (id=441180) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=100]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135477)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Obsidian Scales (363916)
+                   Family Flags: 39
+Description      : Obsidian Scales reduces damage taken by an additional ${$s1/-1}%.
+
+Name             : Menacing Presence (desc=Black) (id=441181) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=200]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135484)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 441201 | Target: Self (1)
+Description      : Knocking enemies up or backwards reduces their damage done to you by $s1% for $441201d.
+
+Name             : Wingleader (desc=Black) (id=441206) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135533)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+#2 (id=1135534)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1500 | Scaled Value: 1500 | Target: Self (1)
+#3 (id=1302605)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
+#4 (id=1302606)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : Bombardments reduce the cooldown of $?c1[Deep Breath by ${$s1/1000}.1 sec for each target struck, up to ${$s2/1000}.1 sec.][Breath of Eons by ${$s3/1000}.1 sec for each target struck, up to ${$s4/1000}.1 sec.]
+
+Name             : Extended Battle (desc=Black) (id=441212) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=100]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135541)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Essence abilities extend Bombardments by $s1 sec.
+
+Name             : Diverted Power (desc=Black) (id=441219) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=200]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135552)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Bombardments have a chance to generate Essence Burst.
+
+Name             : Onslaught (desc=Black) (id=441245) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135585)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Entering combat grants a charge of Burnout, causing your next Living Flame to cast instantly.
+
+Name             : Unrelenting Siege (desc=Black) (id=441246) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=3, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135586)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1135587)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : For each second you are in combat, Azure Strike, Living Flame, and $?c1[Disintegrate][Eruption] deal $s1% increased damage, up to $s2%.
+
+Name             : Nimble Flyer (desc=Black) (id=441253) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135598)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Hover (358267)
+                   Family Flags: 13
+Description      : While Hovering, damage taken from area of effect attacks is reduced by ${$s1/-1}%.
+
+Name             : Slipstream (desc=Black) (id=441257) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135603)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -10 | Scaled Value: -10 | Target: Self (1)
+Description      : $?s403631[Breath of Eons][Deep Breath] resets a charge of Hover.
+
+Name             : Might of the Black Dragonflight (desc=Black) (id=441705) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+                 : 6370: Devastation Evoker (1286123 effect#14), Devastation Evoker (1286123 effect#15)
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1136330)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value 2: 1468 (Label) | Target: Self (1)
+                   Affected Spells (Label): Black Evoker Spells (1468)
+                   Modified By: Devastation Evoker (1286123 effect#14)
+#2 (id=1164468)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Misc Value 2: 1468 (Label) | Target: Self (1)
+                   Affected Spells (Label): Black Evoker Spells (1468)
+                   Modified By: Devastation Evoker (1286123 effect#15)
+Description      : Black spells deal $s1% increased damage.
+
+Name             : Command Squadron (desc=Black) (id=1260745) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1270237)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1270238)  : None (0)
+                   Base Value: 2 | Scaled Value: 2
+#3 (id=1271165)  : None (0)
+                   Base Value: 8 | Scaled Value: 8
+Description      : While flying during $?s403631[Breath of Eons][Deep Breath] you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing $1236970s1 Fire damage to nearby enemies up to $s3 times.
+
+Name             : Concentrated Power (desc=Black) (id=1261448) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1271228)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Misc Value 2: 5098 (Label) | Trigger Spell: 436336 | Target: Self (1)
+                   Affected Spells (Label): Mass Disintegrate (436335), Mass Disintegrate (436336), Mass Eruption (438588)
+Description      : $?c1[Mass Disintegrate][Mass Eruption] strikes $s1 additional $Ltarget:targets;.
+
+Name             : Refined Essence (desc=Black) (id=1261452) [Spell Family (224), Passive] 
+Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 3022
+                 : 6371: Devastation Evoker (1286123 effect#12), Devastation Evoker (1286123 effect#13)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1271235)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 436336 | Target: Self (1)
+                   Affected Spells: Pyre (357211), Pyre (357212), Eruption (395160), Eruption (438653), Pyre (1236970), Eruption (1259172)
+                   Family Flags: 5, 54
+                   Modified By: Devastation Evoker (1286123 effect#12)
+#2 (id=1271236)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Disintegrate (356995)
+                   Family Flags: 6
+                   Modified By: Devastation Evoker (1286123 effect#13)
+Description      : Essence abilities deal $s1% additional damage.

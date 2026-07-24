@@ -1,0 +1,314 @@
+# Rogue — Deathstalker Hero Talents
+# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Ethereal Cloak (id=457022) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161655)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Cloak of Shadows (31224)
+                   Family Flags: 48
+Description      : Cloak of Shadows duration increased by ${$s1/1000} sec.
+
+Name             : Bait and Switch (id=457034) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161684)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Evasion (5277)
+                   Family Flags: 5
+#2 (id=1252137)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Cloak of Shadows (31224)
+                   Family Flags: 48
+Description      : Evasion reduces magical damage taken by ${-$s1}%. 
+
+Name             : Deathstalker's Mark (id=457052) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161714)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1161759)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?c1[Garrote][Shadowstrike] applies $s1 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death.
+
+Name             : Hunt Them Down (id=457054) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : White Melee
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161716)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Auto-attacks against Marked targets deal an additional $457193s1 Plague damage.
+
+Name             : Singular Focus (id=457055) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Allow While Stealthed (37), Not an Action (92), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Can Proc from Suppressed Caster Procs (385)
+Effects          :
+#1 (id=1161717)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Damage dealt to targets other than your Marked target deals $s1% Plague damage to your Marked target.
+
+Name             : Lingering Darkness (id=457056) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161718)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : After $?c1[Deathmark][Shadow Blades] expires, gain $?c1[$457273s1][$457273s2]% increased $?c1[Nature][Shadow] damage for $457273d.
+
+Name             : Shadewalker (id=457057) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161719)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -3000 | Scaled Value: -3000 | Target: Self (1)
+Description      : Each time you consume a stack of Deathstalker's Mark, reduce the cooldown of Shadowstep by ${$s1/-1000} sec.
+
+Name             : Darkest Night (id=457058) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161720)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When you consume the final Deathstalker's Mark from a target or your target dies, gain $457280s1 Energy and Darkest Night, causing your next $?c1[Envenom][Eviscerate] cast with 5 or more combo points to critically strike, deal $457280s2% additional damage, and apply $457280s3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active.
+
+Name             : Symbolic Victory (id=457062) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161726)  : Apply Aura (6) | Proc Trigger Spell (42): Symbolic Victory
+                   Base Value: 18 | Scaled Value: 18 | Trigger Spell: 457167 | Target: Self (1)
+Description      : $?a137037 [Kingsbane][Shadow Dance] additionally increases the damage of your next $?a137037 [two Envenoms][Eviscerate or Black Powder] by $?a137037[$457167s1][$457167s2]%.
+
+Name             : Shroud of Night (id=457063) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161727)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Shroud of Concealment (114018)
+                   Family Flags: 71
+Description      : Shroud of Concealment duration increased by ${$s1/1000} sec.
+
+Name             : Momentum of Despair (id=457067) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161731)  : Apply Aura (6) | Proc Trigger Spell (42): Momentum of Despair
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 457115 | Target: Self (1)
+Description      : If you have critically struck with $?c1[Fan of Knives][Shuriken Storm], increase the critical strike chance of $?c1[Fan of Knives][Shuriken Storm] and $?c1[Crimson Tempest][Black Powder] by $457115s1% and critical strike damage by $457115s2% for $457115d.
+
+Name             : Follow the Blood (id=457068) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+                 : 5175
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1161732)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1161758)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1296699)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : $?c1[Fan of Knives][Shuriken Storm] and $?c1[Crimson Tempest][Black Powder] deal $?c1[$s1][$s3]% additional damage while $?c1[$s2 or more enemies are afflicted with Rupture][Find Weakness is active].
+
+Name             : Unshakeable Drive (id=1248774) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1251929)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When you consume an application of Deathstalker's Mark, the damage of your next $?c1[Ambush or Mutilate]?s200758[Gloomblade][Backstab] is increased by $1248775s1%$?c1[][ or Shadowstrike increased by $1248775s2%].
+
+Name             : Corrupt the Blood (id=1248785) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1251944)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Rupture (360826), Rupture (394031), Rupture (1270203)
+                   Family Flags: 20
+#2 (id=1294570)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Misc Value 2: 6113 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathstalker's Mark (457157), Deathstalker's Mark (1273061)
+Description      : $?c1[Rupture][Deathstalker's Mark] damage increased by $?c1[$s1][$s2]%.
+
+Name             : Clear the Witnesses (id=1248793) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1251953)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+                   Affected Spells: Fan of Knives (51723), Shuriken Storm (197835), Shuriken Storm (1269340)
+                   Family Flags: 50, 127
+Description      : $?c1[Fan of Knives][Shuriken Storm] damage increased by $s1%.
+
+Name             : Precise Killer (id=1272989) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286332)  : Apply Aura (6) | Modify Crit Damage Done% (163)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#2 (id=1304312)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Critical strike damage bonus increased by $s2%.
+
+Name             : Quietus Celeris (id=1273017) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286381)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+#2 (id=1286403)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Deathstalker's Mark has a ${$s1/$s2*100}% chance to immediately consume a stack when applied.
+
+Name             : Mass Casualty (id=1273035) [Spell Family (8), Passive] 
+Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286408)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1286409)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+Description      : Deathstalker's Mark deals $?c1[$s1][$s2]% of its normal damage to all other enemies within 8 yds $?c1[that are afflicted by Rupture][when a stack is consumed by Black Powder].

@@ -1,0 +1,906 @@
+# Death Knight — Blood Spec Talents
+# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 44 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Dancing Rune Weapon (id=49028) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : Magic
+Spell Level      : 34
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 930
+Proc Chance      : 100%
+Stance Mask      : 0x01000000
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic
+Affecting Spells : Insatiable Blade (377637 effect#1), Everlasting Bond (377668 effects: #1, #2)
+Family Flags     : 30
+Attributes       : Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), No Aura Icon (60), Allow While Not Shapeshifted (caster form) (83), No Proc Equip Requirement (97), Requires Main-Hand Weapon (106), Always Hit (114), Can Proc From Procs (122), No Aura Log (202), No Attack Miss (249), Allow Cast While Channeling (308), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Important Spell (491)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=41134)    : Summon Guardian (28)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 27893 | Misc Value 2: 3242 | Radius: 2 yards | Target: Enemy in Area around Caster (151)
+                   Modified By: Everlasting Bond (377668 effect#1)
+#2 (id=41135)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 50707 | Scaled Value: 50707 | Trigger Spell: 1206 | Target: Self (1)
+#3 (id=41136)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Current Target (25)
+#4 (id=734380)   : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Summons a rune weapon for $81256d that mirrors your melee attacks and bolsters your defenses.
+
+Name             : Blood Boil (id=50842) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : Magic
+Spell Level      : 17
+GCD              : 1.5 seconds
+Charges          : 2 (7.5 seconds cooldown)
+Category         : 1611 (Type 0x1): Death Knight (137005 effect#3)
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 881
+                 : 2397
+Stance Mask      : 0x01000000
+Affecting Spells : Blood Plague (55078 effect#4), Frost Fever (55095 effect#2), Blood Shield (77535 effects: #2, #3), Might of the Frozen Wastes (81333 effect#2), Frost Death Knight (137006 effects: #1, #2), Unholy Death Knight (137007 effects: #1, #2), Blood Death Knight (137008 effects: #1, #2), Virulent Plague (191587 effect#3), War (327096 effect#1), Deep Frost (373934 effect#1), Brittle (374557 effect#1), Sanguine Ground (391459 effects: #1, #3), Vigorous Lifeblood (394570 effects: #1, #2), Ghoulish Infusion (394899 effects: #1, #3), Death Knight Blood 10.1 Class Set 2pc (405499 effect#1), Lingering Chill (410879 effect#1), Chilling Rage (424165 effects: #1, #2), Amplify Damage (424949 effects: #1, #2), Ashen Decay (425719 effect#2), Bind in Darkness (440031 effects: #2, #3), Luck of the Draw! (1218601 effects: #1, #2), Dread Plague (1240996 effect#2), Infected Claws (1241786 effect#2), Frost Death Knight (1256915 effects: #1, #2), Blood Death Knight (1256916 effects: #1, #2), Unholy Death Knight (1256918 effects: #1, #2), Dance of Midnight (1264407 effects: #1, #2), Death Knight Blood 12.0 Class Set 2pc (1264799 effect#1), Boiling Point (1265968 effect#1), Death Knight - Midnight PrePatch - 11.2 Class Set 2pc (1283621 effects: #1, #2), Death Knight - Midnight PrePatch - 11.2 Class Set 4pc (1283622 effects: #1, #2)
+Family Flags     : 18, 43, 48
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Allow While Not Shapeshifted (caster form) (83), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=43101)    : School Damage (2): shadow | Attributes: Always AOE Line of Sight (5), Area Effects Use Target Radius (17)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.64 | Radius: 0 - 10 yards | Target: at Self (18) -> at Enemy in Area (16)
+Description      : Deals $s1 Shadow damage$?s212744[ to all enemies within $A1 yds.][ and infects all enemies within $A1 yds with Blood Plague.
+
+Name             : Vampiric Blood (id=55233) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=3, col=3, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Duration         : 10 seconds
+Cooldown         : 90 seconds
+Category         : 1641 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 930
+                 : 1284
+Stance Mask      : 0x01000000
+Affecting Spells : Improved Vampiric Blood (317133 effects: #1, #2, #3), Vampiric Aura (334547 effects: #2, #3)
+Family Flags     : 35
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Allow While Not Shapeshifted (caster form) (83), Allow Cast While Channeling (308), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Important Spell (491), Big Defensive (512)
+Effects          :
+#1 (id=48161)    : Apply Aura (6) | Modify Healing Received% (118)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Improved Vampiric Blood (317133 effect#1)
+#2 (id=48162)    : Apply Aura (6) | Increase Health (34)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=359059)   : Apply Aura (6) | Modify Absorb% Received (422)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Improved Vampiric Blood (317133 effect#2)
+#4 (id=734281)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#5 (id=880877)   : Apply Aura (6) | Modify Leech% (443)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Modified By: Vampiric Aura (334547 effect#3)
+Description      : Embrace your undeath, increasing your maximum health by $s4% and increasing all healing and absorbs received by $s1% for $d.
+Tooltip          : Maximum health increased by $s4%. Healing and absorbs received increased by $s1%.
+
+Name             : Gorefiend's Grasp (id=108199) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=6, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : Magic
+Spell Level      : 32
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 10 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 3798
+Stance Mask      : 0x01000000
+Affecting Spells : Tightening Grasp (206970 effect#1)
+Family Flags     : 26
+Attributes       : Not Shapeshifted (16), No AutoCast (AI) (49), No Aura Icon (60), Allow While Not Shapeshifted (caster form) (83), No Aura Log (202), Reset cooldown upon ending an encounter (333), Enforce Facing on Primary Target Only (351), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=119238)   : Server Side Script (77)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Knockback | Target: Current Target (25)
+#2 (id=192367)   : Server Side Script (77)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 15 yards | Mechanic: Knockback | Target: at Target (63) -> at Enemy in Area (16)
+#3 (id=204723)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 15 yards | Mechanic: Knockback | Target: at Target (63) -> at Enemy in Area (16)
+Description      : Shadowy tendrils coil around all enemies within $A2 yards of a hostile or friendly target, pulling them to the target's location and Silencing them for $374776d.
+
+Name             : Purgatory (id=114556) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Absorb Cannot Be Ignore (214), Do Not Count For PvP Scoreboard (252), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=127901)   : Apply Aura (6) | Absorb Overkill Damage From School (316)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 40 | Target: Self (1)
+                   Affected School(s): All
+Description      : An unholy pact that prevents fatal damage, instead absorbing incoming healing equal to the damage prevented, lasting $116888d.
+
+Name             : Rapid Decomposition (id=194662) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 2780
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=285787)   : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Death and Decay (43265), Blood Plague (55078), Defile (152280), Defile (169018), Death's Due (324128), Death's Due (324164), Death's Due (324165), Death and Decay (444474), Consumption (1263872)
+                   Family Flags: 5, 57
+#2 (id=725985)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#3 (id=801034)   : Apply Aura (6) | Add Percent Modifier (108): Spell Amplitude (27)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 27 | Target: Self (1)
+                   Affected Spells: Blood Plague (55078), Consumption (1263872)
+                   Family Flags: 57
+Description      : Your Blood Plague and Death and Decay deal damage $s2% more often.
+
+Name             : Marrowrend (id=195182) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : Melee
+Resource         : 2 Rune (5) (id=10513)
+Resource         : -20 Runic Power (6) (id=10671)
+Spell Level      : 11
+Range            : 5 yards
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 881
+                 : 2397
+Stance Mask      : 0x01000000
+Affecting Spells : Blood Plague (55078 effect#4), Frost Fever (55095 effect#2), Blood Shield (77535 effects: #2, #3), Might of the Frozen Wastes (81333 effect#2), Death Knight (137005 effect#2), Frost Death Knight (137006 effects: #1, #2), Unholy Death Knight (137007 effects: #1, #2), Blood Death Knight (137008 effects: #1, #2), Unholy Coil (184897 effect#2), Virulent Plague (191587 effect#3), War (327096 effect#1), Deep Frost (373934 effect#1), Brittle (374557 effect#1), Sanguine Ground (391459 effects: #1, #3), Vigorous Lifeblood (394570 effects: #1, #2), Ghoulish Infusion (394899 effects: #1, #3), Lingering Chill (410879 effect#1), Chilling Rage (424165 effects: #1, #2), Amplify Damage (424949 effects: #1, #2), Ashen Decay (425719 effect#2), Exterminate (441416 effect#2), Exterminate (447954 effect#2), Luck of the Draw! (1218601 effects: #1, #2), Dread Plague (1240996 effect#2), Infected Claws (1241786 effect#2), Frost Death Knight (1256915 effects: #1, #2), Blood Death Knight (1256916 effects: #1, #2), Unholy Death Knight (1256918 effects: #1, #2), Dance of Midnight (1264407 effects: #1, #2), Death Knight - Midnight PrePatch - 11.2 Class Set 2pc (1283621 effects: #1, #2), Death Knight - Midnight PrePatch - 11.2 Class Set 4pc (1283622 effects: #1, #2)
+Triggered By     : Bone Shield (195181)
+Family Flags     : 43, 117, 127
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Allow While Not Shapeshifted (caster form) (83), Requires Main-Hand Weapon (106), Melee Chain Targeting (172), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=286507)   : Dummy (3)
+                   Base Value: 1 | Scaled Value: 1 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+#2 (id=286508)   : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.471 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+#3 (id=286519)   : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+Description      : Smash the target, dealing $s2 Physical damage and generating $s3 charges of Bone Shield.
+
+Name             : Bloodworms (id=195679) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Real PPM         : 5
+Proc Flags       : White Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=287219)   : Apply Aura (6) | Proc Trigger Spell (42): Bloodworm
+                   Base Value: 30 | Scaled Value: 30 | Trigger Spell: 196361 | Target: Self (1)
+#2 (id=306026)   : Apply Aura (6) | Trigger Spell Based on Health% (468): Bloodworms
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 1 | Trigger Spell: 197531 | Target: Self (1)
+#3 (id=327477)   : Dummy (3)
+                   Base Value: 15 | Scaled Value: 15
+Description      : Your auto attacks have a chance to summon a Bloodworm.
+
+Name             : Red Thirst (id=205723) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=303972)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
+#2 (id=303973)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Reduces the cooldown on Vampiric Blood by ${$s1/1000}.1 sec per $s2 Runic Power spent.
+
+Name             : Heart Strike (id=206930) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=1, col=4, max_rank=1, req_points=0, replace="Rune Strike" (id=316239)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : Melee
+Resource         : 1 Rune (5) (id=11004)
+Resource         : -15 Runic Power (6) (id=11005)
+Resource         : 0% - 10% Health (-2) (id=11006) w/ Blood for Blood (id=202846)
+Resource         : 0% - 3% Health (-2) (id=232320) w/ Blood for Blood (id=356456)
+Spell Level      : 10
+Range            : 5 yards
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Category         : 1207 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 881
+                 : 2397
+Stance Mask      : 0x01000000
+Affecting Spells : Blood Plague (55078 effects: #3, #4), Frost Fever (55095 effect#2), Blood Shield (77535 effects: #2, #3), Might of the Frozen Wastes (81333 effect#2), Death Knight (137005 effect#2), Frost Death Knight (137006 effects: #1, #2), Unholy Death Knight (137007 effects: #1, #2), Blood Death Knight (137008 effects: #1, #2), Death and Decay (188290 effect#3), Virulent Plague (191587 effect#3), Blood for Blood (202846 effect#1), Heart Strike (316575 effect#1), War (327096 effect#1), Blood for Blood (356456 effect#1), Deep Frost (373934 effect#1), Brittle (374557 effect#1), Improved Heart Strike (374717 effect#1), Sanguine Ground (391459 effects: #1, #3), Vigorous Lifeblood (394570 effects: #1, #2), Ghoulish Infusion (394899 effects: #1, #3), Death Knight Blood 10.1 Class Set 2pc (405499 effect#1), Lingering Chill (410879 effect#1), Chilling Rage (424165 effects: #1, #2), Amplify Damage (424949 effects: #1, #2), Ashen Decay (425719 effect#2), Vampiric Strike (433899 effect#1), Gift of the San'layn (434153 effect#3), Luck of the Draw! (1218601 effects: #1, #2), Dread Plague (1240996 effect#2), Infected Claws (1241786 effect#2), Frost Death Knight (1256915 effects: #1, #2), Blood Death Knight (1256916 effects: #1, #2), Unholy Death Knight (1256918 effects: #1, #2), Dance of Midnight (1264407 effects: #1, #2), Dance of Midnight (1264568 effects: #1, #2), Death Knight - Midnight PrePatch - 11.2 Class Set 2pc (1283621 effects: #1, #2), Death Knight - Midnight PrePatch - 11.2 Class Set 4pc (1283622 effects: #1, #2)
+Family Flags     : 24, 43, 127
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Allow While Not Shapeshifted (caster form) (83), Requires Main-Hand Weapon (106), Melee Chain Targeting (172), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=306039)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 1 | Chain Targets: 2 | Target: Targeted Enemy (6)
+#2 (id=306040)   : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.57334 | Chain Multiplier: 1 | Chain Targets: 2 | Target: Targeted Enemy (6)
+#3 (id=306041)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#4 (id=312174)   : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3
+#5 (id=321496)   : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -20 | Scaled Value: -20 | Chain Multiplier: 1 | Mechanic: Snare | Chain Targets: 2 | Target: Targeted Enemy (6)
+Description      : Instantly strike the target and 1 other nearby enemy, causing $s2 Physical damage, and reducing enemies' movement speed by $s5% for $d$?s316575[
+
+Name             : Foul Bulwark (id=206974) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=306111)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Bone Shield (195181)
+                   Family Flags: 38
+Description      : Each charge of Bone Shield increases your maximum health by $<increase>%.
+Variables        : $increase=${$s1}
+
+Name             : Ossuary (id=219786) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=327512)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=330791)   : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 100 | Scaled Value: 100 | Resource: runic_power | Target: Self (1)
+Description      : While you have at least $s1 Bone Shield charges, the cost of Death Strike is reduced by ${$219788m1/-10} Runic Power.
+
+Name             : Heartbreaker (id=221536) [Passive] 
+Talent Entry     : Blood [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : Melee
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=330519)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Heart Strike generates ${$210738s1/10} additional Runic Power per target hit.
+
+Name             : Hemostasis (id=273946) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : Melee
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=725973)   : Apply Aura (6) | Proc Trigger Spell (42): Hemostasis
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 273947 | Target: Self (1)
+Description      : Each enemy hit by Blood Boil increases the damage and healing done by your next Death Strike by $273947s1%, stacking up to $273947u times.
+
+Name             : Voracious (id=273953) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 2778
+Proc Chance      : 101%
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=725981)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=802888)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Death Strike (49998), Death Strike Off-Hand (66188)
+                   Family Flags: 4
+#3 (id=802889)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 3 (23)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Death Strike (49998), Death Strike Off-Hand (66188)
+                   Family Flags: 4
+Description      : Death Strike's healing is increased by $s2% and grants you $274009s1% Leech for $274009d.
+
+Name             : Improved Vampiric Blood (id=317133) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=4, col=3, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(5, 10)]
+                 : Effect#2 [op=set, values=(5, 10)]
+                 : Effect#3 [op=set, values=(2000, 4000)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=802114)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Vampiric Blood (55233)
+                   Family Flags: 35
+#2 (id=802160)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Vampiric Blood (55233)
+                   Family Flags: 35
+#3 (id=802162)   : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Vampiric Blood (55233), Umbilicus Eternus (391519)
+                   Family Flags: 35, 103
+Description      : Vampiric Blood's healing and absorb amount is increased by $s1% and duration by ${$s3/1000} sec.
+
+Name             : Relish in Blood (id=317610) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=802865)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : While Crimson Scourge is active, your next Death and Decay heals you for $317614s1 health per Bone Shield charge and you immediately gain ${$317614s2/10} Runic Power.
+
+Name             : Improved Bone Shield (id=374715) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 2777
+Attributes       : Passive (6), Not In Spellbook (143), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000710)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Bone Shield (195181)
+                   Family Flags: 38
+#2 (id=1259987)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Bone Shield (195181)
+                   Family Flags: 38
+Description      : Bone Shield increases your Haste by $s1% and it can stack $s2 additional times.
+
+Name             : Improved Heart Strike (id=374717) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=4, col=5, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(15, 30)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000714)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Heart Strike (206930), Heart Strike (228645), Vampiric Strike (433895), Heart Strike (460501)
+                   Family Flags: 24
+Description      : Heart Strike damage increased by $s1%.
+
+Name             : Perseverance of the Ebon Blade (id=374747) [Passive] 
+Talent Entry     : Blood [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000757)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When Crimson Scourge is consumed, you gain $374748s1% Versatility for $374748d.
+
+Name             : Leeching Strike (id=377629) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1005578)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Heart Strike heals you for ${$s1/100}.2% health for each enemy hit while affected by Blood Plague.
+
+Name             : Insatiable Blade (id=377637) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 2781
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1005589)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Dancing Rune Weapon (49028), Dancing Rune Weapon (1237128)
+                   Family Flags: 30
+#2 (id=1005590)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Dancing Rune Weapon's cooldown is reduced by ${$s1/-1000} sec and now generates $s2 Bone Shield charges.
+
+Name             : Everlasting Bond (id=377668) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1005634)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Dancing Rune Weapon (49028), Dancing Rune Weapon (1237128)
+                   Family Flags: 30
+#2 (id=1028512)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Dancing Rune Weapon (49028), Dancing Rune Weapon (81256), Dancing Rune Weapon (1237128), Dance of Midnight (1264407)
+                   Family Flags: 30, 74
+Description      : Summons $s1 additional copy of Dancing Rune Weapon and increases its duration by ${$s2/1000} sec.
+
+Name             : Blood Feast (id=391386) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=7, col=7, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028868)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Anti-Magic Shell heals you for $s1% of the damage it absorbs.
+
+Name             : Iron Heart (id=391395) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028878)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Blood Shield (77535), Death Knight (137005)
+                   Family Flags: 70
+#2 (id=1028879)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Blood Shield (77535), Death Knight (137005)
+                   Family Flags: 70
+Description      : Blood Shield's duration is increased by ${$s1/1000} sec and it absorbs $s2% more damage.
+
+Name             : Bloodshot (id=391398) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028887)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Blood Shield (77535), Death Knight (137005)
+                   Family Flags: 70
+#2 (id=1291997)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Blood Shield (77535), Death Knight (137005)
+                   Family Flags: 70
+Description      : While Blood Shield is active, you deal $s1% increased damage.
+
+Name             : Sanguine Ground (id=391458) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1028994)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+Description      : You deal $391459s1% more damage and receive $391459s2% more healing while standing in your Death and Decay.
+
+Name             : Coagulopathy (id=391477) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029025)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Blood Plague (55078), Consumption (1263872)
+                   Family Flags: 57
+#2 (id=1029049)  : Apply Aura (6) | Proc Trigger Spell (42): Coagulopathy
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 391481 | Target: Self (1)
+Description      : Enemies affected by Blood Plague take $s1% increased damage from you and Death Strike increases the damage of your Blood Plague by $391481s1% for $391481d, stacking up to $391481u times.
+
+Name             : Umbilicus Eternus (id=391517) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful, Magic Heal, Helpful Periodic
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1029083)  : Apply Aura (6) | Proc Trigger Spell (42): Umbilicus Eternus
+                   Base Value: 5 | Scaled Value: 5 | Trigger Spell: 391519 | Target: Self (1)
+Description      : After Vampiric Blood expires, you absorb damage equal to $s1 times the damage your Blood Plague dealt during Vampiric Blood.
+
+Name             : Bone Collector (id=458572) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : Melee
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1164650)  : Apply Aura (6) | Proc Trigger Spell (42): Bone Shield
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 195181 | Target: Self (1)
+Description      : When you would pull an enemy generate $s1 charge of Bone Shield.
+
+Name             : Carnage (id=458752) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Real PPM         : 1.1 (Haste multiplier)
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1164979)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -50 | Scaled Value: -50 | Target: Self (1)
+Description      : Consumption now contributes to your Mastery: Blood Shield.
+
+Name             : Bloodied Blade (id=458753) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : White Melee Taken, Yellow Melee Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1164980)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+Description      : Parrying an attack grants you a charge of Bloodied Blade, increasing your Strength by ${$460499s1/10}.1%, up to ${$460499u*$460499s1/10}.1% for $460499d.
+
+Name             : Abomination Limb (id=1263569) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=6, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Range            : 20 yards
+GCD              : 1.5 seconds
+Duration         : 12 seconds
+Cooldown         : 120 seconds
+Category         : 2040 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 1078: Abomination's Frenzy (353447 effect#1)
+Category Cooldown: 120 seconds
+Stance Mask      : 0x01000000
+Affecting Spells : Death Knight (137005 effect#2)
+Family Flags     : 127
+Attributes       : Is Ability (4), Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Can Proc From Procs (122), Extra Initial Period (169), Not In Spellbook Until Learned (269), Missile Speed is Delay (in sec) (292), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Unknown (450)
+Effects          :
+#1 (id=1274311)  : Apply Aura (6) | Periodic Trigger Spell (23): Abomination Limb every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1263566 | Target: Self (1)
+#2 (id=1274312)  : Apply Aura (6) | Periodic Trigger Spell (23): Unknown(0) every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1274313)  : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8
+Description      : Sprout an additional limb, pulling enemies further than $1263566s3 yds from you every $t1 sec.  
+
+Name             : Blood Mist (id=1263743) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=9, col=2, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1274612)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for $1263729d, increasing your Parry by $1263729s2%. 
+
+Name             : Sanguinary Burst (id=1263781) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1274672)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : When Blood Mist ends it deals $1263786s1 Shadow damage to $1263786i nearby enemies, healing you for ${$1263786e*100}% of the damage dealt. The damage is increased by $1263789s1% for every $s1 Runic Power spent while Blood Mist was active.
+
+Name             : Consumption (id=1263824) [Spell Family (15)] 
+Talent Entry     : Blood [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Range            : 5 yards
+GCD              : 0.5 seconds
+Duration         : 2 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Family Flags     : 125
+Attributes       : Is Self Channelled (38), No Aura Icon (60), Name in Channel Bar (61), Do Not Display Range (126), Force Display Castbar (155), Allow Actions During Channel (160), Do Not Consume Resources (197), Not In Spellbook Until Learned (269), Haste Affects Duration (273), Do Not Display Power Cost (303), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338)
+Channel Interrupt: Sheathing (10), Interacting (11), Attacking (13), Action (Delayed) (17)
+Effects          :
+#1 (id=1274730)  : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1274731)  : Dummy (3)
+                   Base Value: 25 | Scaled Value: 25
+#3 (id=1274732)  : Dummy (3)
+                   Base Value: 50 | Scaled Value: 50
+#4 (id=1274733)  : Dummy (3)
+                   Base Value: 75 | Scaled Value: 75
+#5 (id=1274734)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#6 (id=1274735)  : Dummy (3)
+                   Base Value: 10 | Scaled Value: 10
+#7 (id=1274736)  : Dummy (3)
+                   Base Value: 15 | Scaled Value: 15
+#8 (id=1274737)  : Dummy (3)
+                   Base Value: 8000 | Scaled Value: 8000
+#9 (id=1274738)  : Dummy (3)
+                   Base Value: 4000 | Scaled Value: 4000
+#10 (id=1274739) : Dummy (3)
+                   Base Value: 2000 | Scaled Value: 2000
+#11 (id=1274792) : Trigger Spell (64): Consumption
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1263861 | Target: Self (1)
+Description      : Empower the runes in your weapon, reducing the damage you take over the duration and unleashing a devastating attack that deals $1263825s1 Shadow damage and consumes up to $s4% of your Blood Plague instantly from enemies in front of you.
+
+Name             : Deadly Reach (id=1264235) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275439)  : Apply Aura (6) | Add Flat Modifier (107): Spell Chain Targets (17)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 17 | Target: Self (1)
+                   Affected Spells: Death Strike (49998), Death Strike Off-Hand (66188)
+                   Family Flags: 4
+Description      : Death Strike hits an additional $s1 enemies at ${$49998f1*100}% effectiveness.
+
+Name             : Lifeblood (id=1264296) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275562)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1275605)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5000 | Scaled Value: 5000
+#3 (id=1275606)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1000 | Scaled Value: 1000
+Description      : Death Strike heals for an additional $s1% of its healing over $1264304d. 
+
+Name             : Dance of Midnight (id=1264351) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275658)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When you consume a Rune you have a chance to call a Dancing Rune Weapon to your aid for $1264353d.
+
+Name             : Dance of Midnight (id=1264405) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=set, values=(3, 6)]
+                 : Effect#2 [op=set, values=(3, 6)]
+                 : Effect#3 [op=set, values=(3, 6)]
+                 : Effect#4 [op=set, values=(4, 4)]
+                 : Effect#5 [op=set, values=(3, 6)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275733)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 3 | Misc Value 2: 5821 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dance of Midnight (1264407)
+#2 (id=1275768)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 12 | Misc Value 2: 5821 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dance of Midnight (1264407)
+#3 (id=1275769)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 23 | Misc Value 2: 5821 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dance of Midnight (1264407)
+#4 (id=1275770)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 32 | Misc Value 2: 5821 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dance of Midnight (1264407)
+#5 (id=1299771)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 5 (33)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 33 | Misc Value 2: 5821 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dance of Midnight (1264407)
+Description      : For each Dancing Rune Weapon active your damage is increased by $s1% and your damage taken is reduced by $s4%.
+
+Name             : Dance of Midnight (id=1264506) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Internal Cooldown: 3 seconds
+Proc Chance      : 101%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1275911)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : While Dancing Rune Weapon is active, Parrying an attack has a chance to make your next Heart Strike cost no Runes and deal 150% increased damage.
+
+Name             : Boiling Point (id=1265790) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1277757)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Heart Strike has a chance to make your next Blood Boil empowered, dealing $1265968s1% increased damage and echoing after $s1 sec.
+
+Name             : Plague Infusion (id=1265869) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Blood [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Internal Cooldown: 1 seconds
+Proc Chance      : 101%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1277889)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -250 | Scaled Value: -250 | Target: Self (1)
+Description      : Your Blood Plague critical hits have a chance to reduce the cooldown of your Blood Boil by ${$s1/-1000}.2 sec. 
+
+Name             : Bloody Reflection (id=1279633) [Spell Family (15), Passive] 
+Talent Entry     : Blood [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1292137)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 65 | Scaled Value: 65 | Target: Self (1)
+#2 (id=1292149)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 23 | Misc Value 2: 1959 (Label) | Target: Self (1)
+                   Affected Spells (Label): Mastery: Blood Shield (77513)
+Description      : While Blood Shield is active, taking direct damage reflects $1279656s1 Shadow damage back to the attacker. Blood Shield can now absorb up to $s1% of your maximum health.

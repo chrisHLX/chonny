@@ -1,0 +1,822 @@
+# Mage — Arcane Spec Talents
+# Extracted verbatim from mage.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 43 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Arcane Missiles (id=5143) [Spell Family (3)] 
+Talent Entry     : Arcane [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Resource         : 15% Base Mana (0) (id=191467)
+Spell Level      : 13
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 2.5 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Rule of Threes (187292 effect#1), Amplification (236628 effect#1), Clearcasting (263725 effect#1), Rule of Threes (264774 effect#1), Clearcasting (276743 effect#1), Clearcasting (277726 effects: #3, #4), Radiant Spark Vulnerability (307454 effect#1), Concentrated Power (414379 effects: #1, #2)
+Family Flags     : 11
+Attributes       : Not Shapeshifted (16), No Immunities (29), Is Channelled (34), No Reflection (39), No Threat (42), Track Target in Channel (46), Require All Targets (58), No Aura Icon (60), Name in Channel Bar (61), Force Display Castbar (155), Extra Initial Period (169), Spell Haste Affects Periodic (173), No Aura Log (202), Haste Affects Duration (273), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=1818)     : Apply Aura (6) | Periodic Dummy (226): every 0.625 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=1819)     : Apply Aura (6) | Periodic Trigger Spell (23): Unknown(0) every 0.625 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=88858)    : Apply Aura (6) | Add Percent Modifier (108): Spell Pushback (9)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 9 | Target: Self (1)
+                   Affected Spells: Arcane Missiles (5143)
+                   Family Flags: 11
+#4 (id=1242863)  : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : |cFFFFFFFFRequires Clearcasting|r
+Launches ${($d/$t1)+1} waves of Arcane Missiles at the enemy over $5143d, causing a total of ${($d/$t1)*$7268s1} Arcane damage.
+
+Name             : Evocation (id=12051) [Spell Family (3)] 
+Talent Entry     : Arcane [tree=spec, row=8, col=2, max_rank=1, req_points=20, select_idx=100]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Spell Level      : 27
+GCD              : 1.5 seconds
+Duration         : 3 seconds
+Charges          : 1 (45 seconds cooldown)
+Category         : 1671 (Type 0x1): Gravity Spiral (235273 effect#1)
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Slipstream (236457 effect#1)
+Family Flags     : 26, 67
+Attributes       : Not Shapeshifted (16), Is Self Channelled (38), No Threat (42), Suppress Caster Procs (112), Extra Initial Period (169), Spell Haste Affects Periodic (173), Aura Points On Client (268), Haste Affects Duration (273), Enable Procs from Suppressed Caster Procs (384), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14)
+Effects          :
+#1 (id=5141)     : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 1500 | Scaled Value: 1500 | Resource: mana | Target: Self (1)
+#2 (id=827873)   : Apply Aura (6) | Periodic Dummy (226): every 0.5 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1242884)  : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Increases your mana regeneration by $s1% for $d.
+Tooltip          : Mana regeneration increased by $s1%.
+
+Name             : Arcane Orb (id=153626) [Spell Family (3)] 
+Talent Entry     : Arcane [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Resource         : 1% Base Mana (0) (id=9139)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 30 yards/sec
+Duration         : 2.5 seconds
+Charges          : 1 (20 seconds cooldown)
+Category         : 2045 (Type 0x1): Charged Orb (384651 effect#1)
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 52
+                 : 292
+Affecting Spells : Radiant Spark Vulnerability (307454 effect#1)
+Family Flags     : 71
+Attributes       : Not Shapeshifted (16), Bypass Visibility Check (320), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=212907)   : Create Area Trigger (179)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 1612 | Target: at Self (18) -> at Enemy in Area (16)
+#2 (id=293313)   : Energize Power (30)
+                   Base Value: 1 | Scaled Value: 1 | Resource: none | Target: Self (1)
+#3 (id=1179899)  : Create Area Trigger (179)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 34990 | Target: at Self (18) -> at Enemy in Area (16)
+Description      : Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing $153640s1 Arcane damage to enemies it passes through.
+
+Name             : Arcane Familiar (id=205022) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not Shapeshifted (16), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=302649)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=358357)   : Apply Aura (6)
+                   Base Value: 0 | Scaled Value: 0
+Description      : Casting Arcane Intellect summons a Familiar that attacks your enemies and increases your maximum mana by $210126s1% for $210126d.
+
+Name             : Presence of Mind (id=205025) [Spell Family (3)] 
+Talent Entry     : Arcane [tree=spec, row=5, col=3, max_rank=1, req_points=8, select_idx=100]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Duration         : Aura (infinite)
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Stacks           : 2 initial, 2 maximum
+Proc Chance      : 100%
+Proc Flags       : White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Family Flags     : 37
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Cooldown On Event (25), No Threat (42), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=302652)   : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451)
+                   Family Flags: 29
+#2 (id=1090214)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Causes your next $n Arcane $LBlast:Blasts; to be instant cast$?a134735[ and deal $s2% of normal damage][].
+Tooltip          : Arcane Blast is instant cast.
+
+Name             : Resonance (id=205028) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=302655)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Arcane Barrage deals $s1% increased damage per target it hits beyond the first.
+
+Name             : Arcing Cleave (id=231564) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Mage
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=349282)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Arcane Charge (36032)
+                   Family Flags: 66
+#2 (id=1212059)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : For each Arcane Charge, Arcane Barrage hits $s1 additional nearby $Ltarget:targets; for $s2% damage.
+
+Name             : Slipstream (id=236457) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=5, col=3, max_rank=1, req_points=8, select_idx=200]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=357621)   : Apply Aura (6) | Cast while Moving (Whitelist) (330)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Evocation (12051)
+                   Family Flags: 26
+Description      : Arcane Missiles and Evocation can now be channeled while moving.
+
+Name             : Amplification (id=236628) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=357924)   : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Arcane Missiles (5143)
+                   Family Flags: 11
+#2 (id=740007)   : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2
+Description      : Arcane Missiles fires $s2 additional $lmissile:missiles;.
+
+Name             : Reverberate (id=281482) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=740025)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1243653)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Arcane Pulse has a $s1% chance to repeat its explosion at $s2% effectiveness.
+
+Name             : Enlightened (id=321387) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Do Not Log on Learn (355)
+Effects          :
+#1 (id=809068)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Arcane damage dealt is increased based on your current mana, up to $1217242s2% at full mana.$?a1243926[][
+
+Name             : Improved Clearcasting (id=321420) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=809130)   : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 895 (Label) | Target: Self (1)
+                   Affected Spells (Label): Clearcasting (263725)
+Description      : Clearcasting can stack up to $s1 additional times.
+
+Name             : Touch of the Magi (id=321507) [Spell Family (3)] 
+Talent Entry     : Arcane [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Resource         : 5% Base Mana (0) (id=192607)
+Range            : 40 yards
+Cooldown         : 0.5 seconds
+Charges          : 1 (45 seconds cooldown)
+Category         : 2449 (Type 0x1)
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 3616
+Stacks           : 1 maximum
+Proc Chance      : 101%
+Affecting Spells : Mastery: Savant (190740 effect#5)
+Family Flags     : 80
+Attributes       : Not Shapeshifted (16), Limit N (165), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=809255)   : Trigger Spell w/ Value (142): Touch of the Magi
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 4 | Trigger Spell: 210824 | Target: Targeted Enemy (6)
+#2 (id=843108)   : Energize Power (30)
+                   Base Value: 4 | Scaled Value: 4 | Resource: none | Target: Self (1)
+Description      : Applies Touch of the Magi to your current target, accumulating $s1% of the damage you deal to the target for $210824d, and then exploding for that amount of Arcane damage to the target and reduced damage to all nearby enemies.
+
+Name             : Mana Adept (id=321526) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=8, col=2, max_rank=1, req_points=20, select_idx=200]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Spell Level      : 20
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Include In Advanced Combat Log (72), Do Not Log on Learn (355)
+Effects          :
+#1 (id=809283)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+Description      : Arcane Barrage grants you ${$s1/100}.1% of your maximum mana per Arcane Charge spent.
+
+Name             : Arcane Echo (id=342231) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=300]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=843143)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#2 (id=1016400)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 1749 (Label) | Target: Self (1)
+                   Affected Spells (Label): Arcane Echo (342232)
+#3 (id=1227296)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Direct damage you deal to enemies affected by $?s461264[Nether Flux][Touch of the Magi], causes an explosion that deals $?s461264[${$342232s1*$s3}][$342232s1] Arcane damage to all nearby enemies. Deals reduced damage beyond $s1 targets.
+
+Name             : Arcane Surge (id=365350) [Spell Family (3)] 
+Talent Entry     : Arcane [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+Class            : Mage
+School           : Arcane
+Spell Type       : Magic
+Resource         : 1 - 2.9e+06 Base Mana (0) (id=232593)
+Spell Level      : 10
+Range            : 40 yards
+Cast Time        : 2.5 seconds
+GCD              : 1.5 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 690: Major Cooldowns
+Affecting Spells : Fire Mage (137019 effects: #1, #2), Frost Mage (137020 effects: #1, #2), Arcane Mage (137021 effects: #1, #2), Combustion (190319 effects: #1, #3, #4), Mastery: Savant (190740 effect#5), Lonely Winter (205024 effects: #1, #2), Norgannon's Foresight (236380 effect#1), Deathborne (324220 effects: #2, #7), Siphoned Malice (337090 effects: #1, #2), Arcane Surge (365362 effects: #1, #2), Touch of Ice (394994 effects: #1, #2), Charring Embers (408665 effect#1), Arcane Overload (409022 effect#1), Numbing Blast (417490 effect#1), Searing Rage (424285 effect#1), Forethought (424293 effects: #1, #2), Archmage's Wrath (444968 effect#1), Spellfire Sphere (448604 effects: #1, #2), Fire's Ire (450831 effect#2), Charring Embers (453122 effect#1), Mage Arcane 11.0 Class Set 4pc (453724 effect#1), Blessing of the Phoenix (455134 effect#1), Molten Fury (458910 effect#1), Clarity (1216178 effects: #1, #2), Rollin' Hot (1219035 effects: #1, #2), Nether Flux (1233452 effect#1), Charm of Aegwynn (1244105 effect#1), Arcane Mage (1256909 effects: #1, #2), Fire Mage (1256911 effects: #1, #2), Frost Mage (1256913 effects: #1, #2), Hand of Frost (1263263 effects: #1, #2), Mage Arcane 12.0 Class Set 4pc (1264833 effect#1), Mage - Midnight PrePatch - 11.2 Class Set 2pc (1283634 effects: #1, #2), Mage - Midnight PrePatch - 11.2 Class Set 4pc (1283635 effects: #1, #2)
+Family Flags     : 3, 107
+Attributes       : Not Shapeshifted (16), Allow Class Ability Procs (416), Important Spell (491)
+Effects          :
+#1 (id=906196)   : School Damage (2): arcane
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 3.72 | PvP Coefficient: 1.4 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+                   Modified By: Rollin' Hot (1219035 effect#2)
+#2 (id=1015339)  : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2 | Target: Targeted Enemy (6)
+                   Modified By: Rollin' Hot (1219035 effect#2)
+#3 (id=1109604)  : Dummy (3)
+                   Base Value: 8 | Scaled Value: 8
+                   Modified By: Rollin' Hot (1219035 effect#2)
+Description      : Expend all of your current mana to annihilate your enemy target and nearby enemies for up to $?a457521[${$s1*$s2*($457521s1/100+1)}][${$s1*$s2}] Arcane damage based on Mana spent. Deals reduced damage beyond $s3 targets.
+
+Name             : Impetus (id=383676) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=7, col=7, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1015738)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451), Arcane Pulse (1241462), Arcane Pulse (1243460)
+                   Family Flags: 18, 29
+Description      : Arcane Blast and Arcane Pulse generate an additional Arcane Charge.
+
+Name             : Arcane Tempo (id=383980) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1016232)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Your Haste is increased by $s1%.
+
+Name             : Illuminated Thoughts (id=384060) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1016369)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Clearcasting (79684)
+                   Family Flags: 13
+Description      : Clearcasting has a $s1% increased chance to proc.
+
+Name             : Arcane Salvo (id=384452) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5450
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017075)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 7 | Scaled Value: 7 | Target: Self (1)
+#2 (id=1254378)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Each wave of Arcane Missiles increases the damage of Arcane Barrage by $1242974s1%, up to ${$1242974s1*$1242974u}%.
+
+Name             : Prodigious Savant (id=384612) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=9, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017321)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Arcane Charge (36032)
+                   Family Flags: 66
+#2 (id=1017322)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Arcane Charge (36032)
+                   Family Flags: 66
+Description      : Arcane Charges increase the damage of Arcane Blast, Arcane Pulse, and Arcane Barrage by an additional $s1%.
+
+Name             : Charged Orb (id=384651) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017397)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2045 (Category) | Target: Self (1)
+                   Affected Spells (Category): Arcane Orb (153626)
+#2 (id=1180889)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Arcane Orb (153640)
+                   Family Flags: 83
+Description      : Arcane Orb gains $s1 additional charge. Arcane Orb damage increased by $s2%.
+
+Name             : Orb Barrage (id=384858) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1017755)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1170601)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Arcane Barrage has a $s1% chance per stack of Arcane Salvo to launch an Arcane Orb in front of you at $s2% effectiveness.
+
+Name             : Concentrated Power (id=414379) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1083380)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Arcane Missiles (5143)
+                   Family Flags: 11
+#2 (id=1242867)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Arcane Missiles (5143)
+                   Family Flags: 11
+Description      : Arcane Missiles channels $s1% faster.
+
+Name             : Eureka (id=452198) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1153175)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Arcane Missiles (7268)
+                   Family Flags: 21
+Description      : When a spell consumes Clearcasting, its damage is increased by $s1%.
+
+Name             : Energized Familiar (id=452997) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1154517)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1243968)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : During Arcane Surge, your Familiar fires $s1 bolts instead of 1.
+
+Name             : Mana Bomb (id=457521) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1162774)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Arcane Surge's damage is increased by an additional $s1% based on your mana spent.
+
+Name             : High Voltage (id=461248) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=10, col=1, max_rank=1, req_points=20, select_idx=100]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1169541)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1266043)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Arcane Missiles (7268)
+                   Family Flags: 21
+Description      : Each wave of Arcane Missiles has a $s1% chance to grant you $461524s1 Arcane Charge.
+
+Name             : Charged Missiles (id=461251) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=10, col=1, max_rank=1, req_points=20, select_idx=200]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1169549)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : Each wave of Arcane Missiles will consume an Arcane Charge to increase its damage by $s1%.
+
+Name             : Focusing Crystal (id=461257) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1169567)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1244112)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Each wave of Arcane Missiles has a $s1% chance to grant $s2 additional $Lstack:stacks; of Arcane Salvo.
+
+Name             : Consortium's Bauble (id=461260) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1169575)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451)
+                   Family Flags: 29
+#2 (id=1169576)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451)
+                   Family Flags: 29
+Description      : Reduces Arcane Blast's mana cost by $s1% and increases its damage by $s2%.
+
+Name             : Intuition (id=1223798) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226), Can Proc from Suppressed Caster Procs (385)
+Effects          :
+#1 (id=1212061)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Upon reaching maximum stacks of Arcane Salvo, your next Arcane Barrage deals $s1% increased damage.
+
+Name             : Arcane Pulse (id=1241462) [Spell Family (3)] 
+Talent Entry     : Arcane [tree=spec, row=4, col=2, max_rank=1, req_points=0, replace="Arcane Explosion" (id=1449)]
+Class            : Mage
+School           : Arcane
+Spell Type       : Magic
+Resource         : 4% Base Mana (0) (id=310993)
+Spell Level      : 6
+Range            : 40 yards
+Cast Time        : 2.25 seconds
+GCD              : 1.5 seconds
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Arcane Charge (36032 effects: #1, #4, #5, #6), Fire Mage (137019 effects: #1, #2), Frost Mage (137020 effects: #1, #2), Arcane Mage (137021 effects: #1, #2), Combustion (190319 effects: #1, #3, #4), Lonely Winter (205024 effects: #1, #2), Norgannon's Foresight (236380 effect#1), Deathborne (324220 effects: #2, #7), Siphoned Malice (337090 effects: #1, #2), Arcane Surge (365362 effects: #1, #2), Impetus (383676 effect#1), Touch of Ice (394994 effects: #1, #2), Charring Embers (408665 effect#1), Arcane Overload (409022 effect#1), Numbing Blast (417490 effect#1), Searing Rage (424285 effect#1), Forethought (424293 effects: #1, #2), Spellfire Sphere (448604 effects: #1, #2), Fire's Ire (450831 effect#2), Burden of Power (451035 effect#4), Burden of Power (451049 effect#4), Charring Embers (453122 effect#1), Blessing of the Phoenix (455134 effect#1), Molten Fury (458910 effect#1), Signature Spell (470021 effect#3), Clarity (1216178 effects: #1, #2), Rollin' Hot (1219035 effects: #1, #2), Overflowing Insight (1243542 effects: #1, #2), Charm of Aegwynn (1244105 effect#1), Arcane Mage (1256909 effects: #1, #2), Fire Mage (1256911 effects: #1, #2), Frost Mage (1256913 effects: #1, #2), Hand of Frost (1263263 effects: #1, #2), Mage Arcane 12.0 Class Set 4pc (1264833 effect#1), Mage - Midnight PrePatch - 11.2 Class Set 2pc (1283634 effects: #1, #2), Mage - Midnight PrePatch - 11.2 Class Set 4pc (1283635 effects: #1, #2)
+Family Flags     : 3, 18
+Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1240465)  : School Damage (2): arcane
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 0.91 | Radius: 0 - 2 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+                   Modified By: Rollin' Hot (1219035 effect#2)
+#2 (id=1240466)  : Energize Power (30)
+                   Base Value: 1 | Scaled Value: 1 | Resource: none | Target: Self (1)
+                   Modified By: Impetus (383676 effect#1), Rollin' Hot (1219035 effect#2)
+#3 (id=1243579)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+                   Modified By: Rollin' Hot (1219035 effect#2)
+Description      : A pulse of Arcane magic erupts from underneath your target, dealing $s1 Arcane damage to all enemies within $A1 yds. Damage reduced beyond $s3 targets.
+
+Name             : Aether Attunement (id=1243307) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=7, col=3, max_rank=2, req_points=8]
+                 : Effect#2 [op=set, values=(2, 4)]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 2848
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1243421)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1243422)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Arcane Missiles now damages ${$s2} additional targets at $s1% effectiveness.
+
+Name             : Orb Mastery (id=1243435) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 2848
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1243629)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1243631)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Casting Arcane Orb while you have Clearcasting causes you to fire $s1 additional Arcane $lOrb:Orbs; at $s2% effectiveness.
+
+Name             : Aegwynn's Technique (id=1243507) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1243731)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -5 | Scaled Value: -5 | Target: Self (1)
+Description      : Casting Touch of the Magi grants Clearcasting.
+
+Name             : Overflowing Insight (id=1243542) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1243798)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451), Arcane Pulse (1241462), Arcane Pulse (1243460)
+                   Family Flags: 18, 29
+#2 (id=1243799)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451), Arcane Pulse (1241462), Arcane Pulse (1243460)
+                   Family Flags: 18, 29
+Description      : The damage of Arcane Blast and Arcane Pulse are increased by $s1%, but their mana costs are increased by $s2%.
+
+Name             : Expanded Mind (id=1243557) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Arcane [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1243832)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1302686)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Casting Arcane Blast or Arcane Pulse grants $s1 $Lstack:stacks; of Arcane Salvo.
+
+Name             : Arcane Singularity (id=1244001) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=9, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1244522)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 2 | Scaled Value: 2 | PvP Coefficient: 0.5 | Misc Value: 3 | Misc Value 2: 5271 (Label) | Target: Self (1)
+                   Affected Spells (Label): Arcane Salvo (1242974)
+Description      : Arcane Salvo damage bonus increased by $s1%.
+
+Name             : Overpowered Missiles (id=1244329) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Mage
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1245023)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1289135)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1289165)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Gaining Clearcasting has a $s1% chance to cause your next Arcane Missiles to be Overpowered, causing it to deal $1277009s1% increased damage, generate maximum stacks of Arcane Salvo, and strike $1277009s2 additional $Ltarget:targets; at $1243307s1% effectiveness.
+
+Name             : Touch of the Archmage (id=1257942) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1266123)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 6261 (Label) | Target: Self (1)
+                   Affected Spells (Label): Touch of the Magi (210824)
+Description      : Touch of the Magi increases the damage your target receives from you by $s1%.
+
+Name             : Touch of the Archmage (id=1257947) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5673: Fired Up (1257348 effect#2), Fired Up (1257349 effect#1)
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1266129)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Arcane Charge (36032)
+                   Family Flags: 66
+#2 (id=1266137)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Arcane Charge (36032)
+                   Family Flags: 66
+                   Modified By: Fired Up (1257349 effect#1)
+#3 (id=1297584)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Arcane Missiles (7268)
+                   Family Flags: 21
+                   Modified By: Fired Up (1257348 effect#2)
+Description      : Arcane Charges further increase the damage of Arcane Blast, Arcane Pulse, and Arcane Barrage by $s1%.
+
+Name             : Touch of the Archmage (id=1257950) [Spell Family (3), Passive] 
+Talent Entry     : Arcane [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1266132)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+#2 (id=1266152)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : When Touch of the Magi explodes, it leaves behind a pulsing rune on its target, dealing $s1% of its damage over $1258134d to nearby enemies. Damage is increased by $s2% on your initial Touch of the Magi target.

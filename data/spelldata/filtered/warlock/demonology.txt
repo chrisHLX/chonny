@@ -1,0 +1,793 @@
+# Warlock — Demonology Spec Talents
+# Extracted verbatim from warlock.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 44 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Summon Felguard (desc=Summon) (id=30146) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1 Soul Shard (7) (id=1188)
+Cast Time        : 6 seconds
+GCD              : 1.5 seconds
+Duration         : Aura (infinite)
+Category         : 1363 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Fel Domination (333889 effects: #1, #2), Master Summoner (1240189 effect#1)
+Family Flags     : 30
+Attributes       : Dismiss Pet First (32), No AutoCast (AI) (49), No Reagent Cost With Aura (161), Recast On Resummon (238), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=19732)    : Summon Pet (56)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 17252 | Target: Summoner in Area (32)
+Description      : Summons a Felguard under your command as a powerful melee combatant.
+
+Name             : Call Dreadstalkers (id=104316) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Resource         : 2 Soul Shard (7) (id=10440)
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Cooldown         : 20 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5543
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Warlock Demonology 12.0 Class Set 4pc (1264872 effect#2), Demonic Calling (1276947 effects: #2, #3)
+Family Flags     : 25
+Attributes       : Not Shapeshifted (16), Always Hit (114), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=113738)   : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2 | Target: Targeted Enemy (6)
+Description      : Summons $s1 ferocious Dreadstalkers to attack the target for $193332d.
+
+Name             : Implosion (id=196277) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : Magic
+Range            : 40 yards
+GCD              : 1.5 seconds
+Cooldown         : 15 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Mastery: Master Demonologist (77219 effect#2), Norgannon's Foresight (236431 effect#1), Wicked Maw (270569 effects: #1, #2), Flames of Xoroth (429657 effects: #1, #2)
+Family Flags     : 46
+Attributes       : Not Shapeshifted (16), Not a Proc (105), Do Not Display Range (126), Can Target Untargetable (216), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=288083)   : Dummy (3)
+                   Base Value: 6 | Scaled Value: 6 | Target: Targeted Enemy (6)
+#2 (id=302944)   : Dummy (3)
+                   Base Value: 50 | Scaled Value: 50 | Radius: 100 yards | Target: Self and Summons in Area (120)
+Description      : Demonic forces suck $s1 of your Wild Imps toward the target, and then cause them to violently explode, dealing $196278s2 Shadowflame damage to all enemies within $196278A3 yards.
+
+Name             : Dreadlash (id=264078) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Spell Level      : 10
+Range            : 40 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not Shapeshifted (16), No Reflection (39), Do Not Display Range (126), No Partial Immunity (139), Not In Spellbook (143), Do Not Display Duration (170), Do Not Log on Learn (355)
+Effects          :
+#1 (id=707240)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : When your Dreadstalkers charge into battle, their Dreadbite attack now hits all targets within $271971A1 yards and deals $s1% more damage.
+
+Name             : Power Siphon (id=264130) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Range            : 100 yards
+GCD              : 1.5 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 3683
+Affecting Spells : Norgannon's Foresight (236431 effect#1)
+Family Flags     : 14
+Attributes       : Not Shapeshifted (16), Ignore Line of Sight (66), Do Not Display Range (126), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=707327)   : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2 | Radius: 40 yards | Target: Self and Summons in Area (120)
+Description      : Instantly sacrifice up to $s1 Wild Imps, generating $s1 charges of Demonic Core that cause Demonbolt to deal $334581s1% additional damage.
+
+Name             : Summon Demonic Tyrant (id=265187) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=191505)
+Range            : 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Duration         : 15 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 690: Major Cooldowns
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Soulbound Tyrant (334585 effect#1), Master Summoner (1240189 effect#1), Reign of Tyranny (1276748 effect#1)
+Family Flags     : 81
+Attributes       : Not Shapeshifted (16), No Aura Icon (60), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416), Important Spell (491)
+Effects          :
+#1 (id=709184)   : Summon Guardian (28)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 135002 | Misc Value 2: 4255 | Radius: 5 yards | Target: Front Left of Self (44)
+#2 (id=830602)   : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: soul_shard | Target: Self (1)
+                   Modified By: Soulbound Tyrant (334585 effect#1)
+#3 (id=1107331)  : None (0)
+                   Base Value: 10 | Scaled Value: 10
+#4 (id=1275199)  : Summon Guardian (28)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 250289 | Misc Value 2: 4255 | Radius: 5 yards | Target: Front Left of Self (44)
+#5 (id=1302061)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Summon a Demonic Tyrant that damages your target for $d. 
+
+Name             : Sacrificed Souls (id=267214) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Physical
+Spell Type       : Melee
+Spell Level      : 1
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not Shapeshifted (16), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=713716)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Shadow Bolt and Demonbolt deal $s1% additional damage per demon you have summoned.
+
+Name             : Inner Demons (id=267216) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not Shapeshifted (16), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=713718)   : Apply Aura (6) | Periodic Dummy (226): every 12 seconds
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=715033)   : Dummy (3)
+                   Base Value: 15 | Scaled Value: 15
+Description      : You passively summon a Wild Imp to fight for you every $t1 sec.
+
+Name             : Demonic Knowledge (id=386185) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=8, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(8, 15)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1020076)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+Description      : Hand of Gul'dan has a $s1% chance to generate a charge of Demonic Core.
+
+Name             : Carnivorous Stalkers (id=386194) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=5, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1020093)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Your Dreadstalkers' attacks have a $s1% chance to trigger an additional Dreadbite.
+
+Name             : Imp-erator (id=416230) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1086513)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Fel Firebolt (104318), Diabolic Bolt (438823)
+                   Family Flags: 12
+Description      : Increases the critical strike chance of your Wild Imp's Fel Firebolt by $s1%.
+
+Name             : Demoniac (id=426115) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=2, col=3, max_rank=1, req_points=0, override="Demoniac" (id=426115)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1104391)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Grants access to the following abilities:
+
+Name             : Spiteful Reconstitution (id=428394) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1109104)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Demonbolt (264178)
+                   Family Flags: 70
+Description      : Increases Demonbolt damage by $s1% and consuming a Demonic Core has a chance to summon a Wild Imp.
+
+Name             : Flametouched (id=453699) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1155699)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Misc Value 2: 3620 (Label) | Target: Self (1)
+                   Affected Spells (Label): Ferocity of F'harg (453704)
+#2 (id=1155706)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 3620 (Label) | Target: Self (1)
+                   Affected Spells (Label): Ferocity of F'harg (453704)
+Description      : Increases the attack speed of your Dreadstalkers by $s1% and their critical strike chance by $s2%.
+
+Name             : Rune of Shadows (id=453744) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=5, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1155757)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Shadow Bolt (686), Infernal Bolt (434506), Malefic Grasp (1261153)
+                   Family Flags: 0
+#2 (id=1156199)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Shadow Bolt (686), Infernal Bolt (434506), Malefic Grasp (1261153)
+                   Family Flags: 0
+Description      : Reduces the cast time of Shadow Bolt by $s1% and increases its damage by $s2%.
+
+Name             : Improved Demonic Tactics (id=453800) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1155845)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Increases the critical strike chance of your primary demon by $s1% of your critical strike chance.
+
+Name             : Demonic Brutality (id=453908) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1156060)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 15 | Radius: 100 yards | Target: Self and Summons in Area (120)
+                   Affected Spells: Immolate (348), Shadow Bolt (686), Agony (980), Soul Fire (6353), Shadowburn (17877), Conflagrate (17962), Immolation (20153), Infernal Awakening (22703), Seed of Corruption (27243), Seed of Corruption (27285), Incinerate (29722), Rain of Fire (42223), Haunt (48181), Siphon Life (63106), Hand of Gul'dan (86040), Chaos Bolt (116858), Corruption (146739), Cataclysm (152108), Immolate (157736), Grimoire of Sacrifice (196100), Implosion (196278), Channel Demonfire (196448), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Demonbolt (264178), Demonfire Blast (265279), Umbral Blaze (273526), Pandemic Invocation (289367), Scouring Tithe (312321), Unstable Affliction (316099), Impending Catastrophe (322167), Impending Catastrophe (322170), Malefic Rapture (324540), Decimating Bolt (325289), Soul Rot (325640), Decimating Bolt (327059), Decimating Bolt (327070), Decimating Bolt (327072), Soul Rot (331623), Deliberate Corruption (367831), Implosion (370371), Vile Taint (386931), Soul Rot (386997), Chaos Barrage (387985), Shadow Bolt (394238), Chaos Bolt (394246), Channel Demonfire (409890), Searing Bolt (423886), Wicked Cleave (432120), Chaos Salvo (432596), Felseeker (434404), Infernal Bolt (434506), Chaos Bolt (434589), Ruination (434636), Diabolic Bolt (438823), Felseeker (438973), Wither (445468), Wither (445474), Blackened Soul (445736), Malevolence (446285), Demonic Soul (449801), Wicked Reaping (449826), Soul Anathema (450538), Shared Fate (450593), Shadowbolt Volley (453176), Doom (460553), Doom (460555), Channel Demonfire (1217787), Unstable Affliction (1219045), Soul Swipe (1239714), Demonic Soul (1239715), Lake of Fire (1244890), Lake of Fire (1244918), Dark Harvest (1257065), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Unstable Affliction (1261176), Infernal Grudge (1264017), Echo of Sargeras (1265884), Soul Swipe (1269049), Manifested Avarice (1269050), Demonic Touch (1269221), Eye Explosion (1269800), Diabolic Gaze (1269886), Echo of Sargeras (1277879)
+                   Family Flags: 49
+#2 (id=1288714)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Damaging critical strikes dealt by you and your demons deal ${$s1+200}% damage instead of the usual 200%.
+
+Name             : Mark of Shatug (id=455449) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=10, col=7, max_rank=1, req_points=20, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1158894)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332)
+                   Base Value: 455465 | Scaled Value: 455465 | Target: Self (1)
+                   Affected Spells: Summon Gloomhound (455465), Summon Charhound (455476), Summon Vilefiend (1251781)
+                   Family Flags: 114
+Description      : Your Summon Vilefiend becomes Summon Gloomhound and learns the following ability:
+
+Name             : Mark of F'harg (id=455450) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=10, col=7, max_rank=1, req_points=20, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1158895)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332)
+                   Base Value: 455476 | Scaled Value: 455476 | Target: Self (1)
+                   Affected Spells: Summon Gloomhound (455465), Summon Charhound (455476), Summon Vilefiend (1251781)
+                   Family Flags: 114
+Description      : Your Summon Vilefiend becomes Summon Charhound and learns the following ability:
+
+Name             : Doom (id=460551) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Norgannon's Foresight (236431 effect#1)
+Family Flags     : 33
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1168312)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+#2 (id=1168313)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : When Demonbolt consumes a Demonic Core it inflicts impending doom upon the target, dealing $460555s1 Shadow damage to enemies within $460555a1 yds of its target after $460553d or when removed. Damage is reduced beyond $s2 targets.
+
+Name             : Master Summoner (id=1240189) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1238364)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)
+                   Base Value: -500 | Scaled Value: -500 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Summon Felguard (30146), Summon Demonic Tyrant (265187)
+                   Family Flags: 30, 81
+#2 (id=1238365)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Increases Mastery by $s2% and reduces the cast time of your Summon Demonic Tyrant and Summon Felguard by ${$s1/-1000}.1 sec.
+
+Name             : Hand of Gul'dan (id=1250273) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=1, col=4, max_rank=1, req_points=0, replace="Corruption" (id=172), override="Hand of Gul'dan" (id=105174)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1254313)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spelldesc105174
+
+Name             : Fel Intellect (id=1250372) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=3, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1254442)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Int | Target: Self (1)
+Description      : Increases your Intellect by $s1%.
+
+Name             : Practiced Rituals (id=1250375) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1254446)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Increases your Mastery by $s1%.
+
+Name             : Imp Gang Boss (id=1250768) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1255001)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Hand of Gul'dan now empowers $s1 of the Wild Imps it summons, increasing its damage dealt by $1250772s2%.
+
+Name             : Hellbent Commander (id=1250897) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1255166)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Your demons deal ${$1281559s1}.1% increased damage for each demon you control.
+
+Name             : Antoran Armaments (id=1250921) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1255229)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Demonic Tyrant is equipped with armor forged within Antorus, increasing their armor by $1251000s1%. While summoned, your Demonic Tyrant now assaults enemies with powerful melee attacks.
+
+Name             : Summon Vilefiend (id=1251778) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1256573)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Call Dreadstalkers also summons a Vilefiend that assists you in combat for $1251781d.
+
+Name             : Fel Armaments (id=1263935) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1274908)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1311804)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 11 | Misc Value 2: 1851 (Label) | Target: Self (1)
+                   Affected Spells (Label): Felstorm (89751), Felstorm (89753)
+Description      : The cooldown of your Felguard's Felstorm is reduced by ${$1263938s1/-1000} sec and damage dealt to your primary demon is reduced by $1263938s2%.
+
+Name             : Infernal Rapidity (id=1263941) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1274921)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1274928)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+Description      : When your Wild Imps cast Fel Firebolt, they have $s1% chance to instantly cast another Fel Firebolt at $s2% effectiveness.
+
+Name             : Dominion of Argus (id=1276163) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5671
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1287832)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Summoning your Demonic Tyrant leaves open a portal to Argus for $1276166d, causing every $s1 casts of Hand of Gul'dan to summon a subjugated demon that serves you for $1276182d.
+
+Name             : Dominion of Argus (id=1276190) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5671
+Proc Chance      : 100%
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1287869)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Misc Value 2: 6012 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dominion of Argus (1276166)
+#2 (id=1287870)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Hand of Gul'dan (86040), Hand of Gul'dan (196282), Totem Mastery (226772)
+                   Family Flags: 86
+Description      : Increases the duration of Dominion of Argus by ${$s1/1000} sec and increases damage dealt by Hand of Gul'dan by $s2%.
+
+Name             : Dominion of Argus (id=1276222) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 5671
+Proc Chance      : 100%
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1287914)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1287930)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Misc Value 2: 6013 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dominion of Argus: Antoran Jailer (1276182), Dominion of Argus: Doommaiden (1276282), Dominion of Argus: Antoran Inquisitor (1276283), Dominion of Argus: Lady Sacrolash (1282501), Dominion of Argus: Grand Warlock Alythess (1282502)
+Description      : While Dominion of Argus is active, Hand of Gul'dan refunds ${$1276318s1/10} $lSoul Shard:Soul Shards;.
+
+Name             : Dominant Hand (id=1276433) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288204)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Increases damage dealt by Hand of Gul'dan to its main target by $s1%.
+
+Name             : Grimoire: Imp Lord (id=1276452) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=9, col=5, max_rank=1, req_points=20, select_idx=100]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1 Soul Shard (7) (id=312764)
+Spell Level      : 1
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 20 seconds
+Cooldown         : 120 seconds
+Category         : 1336 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 6015: Stabilized Portals (1276661 effect#2)
+Category Cooldown: 120 seconds
+Attributes       : No Reflection (39), No AutoCast (AI) (49), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1288224)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=1290246)  : Summon Guardian (28)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 258584 | Misc Value 2: 6629 | Radius: 8 yards | Target: at Random (72)
+Description      : Summons an Imp Lord to assist you in combat for $d and will remove 1 harmful effect from you when summoned. 
+
+Name             : Grimoire: Fel Ravager (id=1276467) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=9, col=5, max_rank=1, req_points=20, select_idx=200]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Resource         : 1 Soul Shard (7) (id=312765)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 20 seconds
+Cooldown         : 120 seconds
+Category         : 1336 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 6016: Stabilized Portals (1276661 effect#3)
+Category Cooldown: 120 seconds
+Attributes       : No Reflection (39), No AutoCast (AI) (49), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1288226)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=1288227)  : Summon Guardian (28)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 258587 | Misc Value 2: 6628 | Radius: 5 yards | Target: Summoner in Area (32)
+Description      : Summons a Fel Ravager to assist you in combat for $d and will purge 1 beneficial magic effect from an enemy.
+
+Name             : Stabilized Portals (id=1276661) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288569)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Summon Gloomhound (455465), Summon Charhound (455476), Summon Vilefiend (1251781)
+                   Family Flags: 114
+#2 (id=1288570)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 6015 (Label) | Target: Self (1)
+                   Affected Spells (Label): Grimoire: Imp Lord (1276452)
+#3 (id=1288571)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 6016 (Label) | Target: Self (1)
+                   Affected Spells (Label): Grimoire: Fel Ravager (1276467)
+Description      : Increases the duration of your Summon Vilefiend, Grimoire: Imp Lord, and Grimoire: Fel Ravager by ${$s1/1000} sec.
+
+Name             : Summon Doomguard (id=1276672) [Spell Family (5)] 
+Talent Entry     : Demonology [tree=spec, row=10, col=1, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Resource         : 1 Soul Shard (7) (id=312779)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 12 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : No Reflection (39), No AutoCast (AI) (49), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1288585)  : Summon Guardian (28)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 250785 | Misc Value 2: 5970 | Radius: 5 yards | Target: Summoner in Area (32)
+#2 (id=1288586)  : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3 | Target: Targeted Enemy (6)
+Description      : Summons a Doomguard to assist you in combat for $d. Consuming a Demonic Core reduces the cooldown of Summon Doomguard by $s2 sec.
+
+Name             : Tyrant's Oblation (id=1276746) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288724)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Demonic Tyrant also empowers you while active, increasing your haste by $1276767s1%.
+
+Name             : Reign of Tyranny (id=1276748) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288726)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Summon Demonic Tyrant (265187)
+                   Family Flags: 81
+#2 (id=1288756)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 5000 | Scaled Value: 5000 | Misc Value: 1 | Misc Value 2: 6018 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tyrant's Oblation (1276767)
+Description      : Your Demonic Tyrant lasts an additional ${$s1/1000} sec and extends the duration of your Dreadstalkers by 15 sec when summoned.
+
+Name             : Demonic Calling (id=1276947) [Spell Family (5), Passive] 
+Talent Entry     : Demonology [tree=spec, row=8, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1289009)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1289010)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Call Dreadstalkers (104316), Call Dreadstalkers (193331), Call Dreadstalkers (193332), Call Dreadstalkers (196273), Call Dreadstalkers (196274), Call Dreadstalkers (196281), Call Dreadstalkers (364750), Call Dreadstalkers (364751), Call Dreadstalkers (464880), Call Greater Dreadstalker (1217615), Infernal Houndmaster (1251704)
+                   Family Flags: 25
+#3 (id=1289011)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Call Dreadstalkers (104316), Call Dreadstalkers (193331), Call Dreadstalkers (193332), Call Dreadstalkers (196273), Call Dreadstalkers (196274), Call Dreadstalkers (196281), Call Dreadstalkers (364750), Call Dreadstalkers (364751), Call Dreadstalkers (464880), Call Greater Dreadstalker (1217615), Infernal Houndmaster (1251704)
+                   Family Flags: 25
+Description      : Call Dreadstalkers costs $s1 less $lSoul Shard:Soul Shards; and its cast time is reduced by $s3%.
+
+Name             : Blighted Maw (id=1276956) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Shadowstorm
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1289022)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : The fangs of your Dreadstalkers are coated in corrosive bile, causing Dreadbite to deal additional damage equal to $s1% of damage dealt as Plague damage.
+
+Name             : Empowered Felstorm (id=1279575) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1292053)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value 2: 1851 (Label) | Radius: 100 yards | Target: Self and Summons in Area (120)
+                   Affected Spells (Label): Felstorm (89751), Felstorm (89753)
+#2 (id=1292069)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Misc Value 2: 1851 (Label) | Radius: 100 yards | Target: Self and Summons in Area (120)
+                   Affected Spells (Label): Felstorm (89751), Felstorm (89753)
+Description      : Increases the damage of your Felguard's Felstorm by $s1% and its duration by ${$s2/1000}.1 sec.
+
+Name             : To Hell and Back (id=1281511) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Demonology [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Warlock
+School           : Shadowflame
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1294672)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1294675)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Power Siphon and Implosion summon $s1 Imp Gang Boss for every $s2 Wild Imps sacrificed. Wild Imps summoned this way gain Unstable Soul.

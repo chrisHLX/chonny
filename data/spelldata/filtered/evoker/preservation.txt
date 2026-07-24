@@ -1,0 +1,984 @@
+# Evoker — Preservation Spec Talents
+# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 48 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Dream Breath (desc=Green) (id=355936) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Resource         : 4.9% Base Mana (0) (id=232309)
+GCD              : 0.5 seconds
+Duration         : 2.5 seconds
+Cooldown         : 1 seconds
+Charges          : 1 (30 seconds cooldown)
+Category         : 2054 (Type 0x1): Spiritual Clarity (376150 effect#1), Flow State (390148 effect#11), Temporal Burst (431698 effect#16), Legacy of the Lifebinder (1264269 effect#2)
+Category Flags   : Unknown (7)
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1466: Green Evoker Spells
+Affecting Spells : Temporal Compression (362877 effect#1), Tip the Scales (370553 effects: #1, #2), Flow State (390148 effect#14), Burning Adrenaline (444020 effect#1)
+Family Flags     : 25
+Attributes       : Not Shapeshifted (16), Is Self Channelled (38), No Aura Icon (60), Name in Channel Bar (61), Force Display Castbar (155), Haste Affects Duration (273), Allow Class Ability Procs (416), Do Not Allow "Disable Movement Interrupt" (443)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12)
+Effects          :
+#1 (id=889431)   : Apply Aura (6) | Area Trigger (395)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 24231 | Target: Self (1)
+#2 (id=905039)   : Apply Aura (6) | Area Trigger (395)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 24297 | Target: Self (1)
+#3 (id=996450)   : Dummy (3)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#4 (id=1237470)  : Apply Aura (6) | Creature Immunities (147)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1808 | Target: Self (1)
+Description      : Inhale, gathering the power of the Dream. Release to exhale, healing yourself and $s1 injured allies in a $s3 yd cone in front of you for ${$355941s3+$355941s1*$<sOneTick>}.
+
+Name             : Time Dilation (desc=Bronze) (id=357170) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Resource         : 2.2% Base Mana (0) (id=232449)
+Range            : 30 yards
+Duration         : 8 seconds
+Cooldown         : 1 seconds
+Charges          : 1 (60 seconds cooldown)
+Category         : 2411 (Type 0x1): Just in Time (376204 effect#1), Just in Time (376204 effect#2), Flow State (390148 effect#5), Temporal Burst (431698 effect#13)
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Affecting Spells : Timeless Magic (376240 effects: #1, #2)
+Family Flags     : 19
+Attributes       : Include In Advanced Combat Log (72), Absorb Cannot Be Ignore (214), Vehicle Immunity Category (218), Do Not Count For PvP Scoreboard (252), Aura Points On Client (268), Hide Damage Absorb UI (380), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), External Defensive (499), Big Defensive (512)
+Effects          :
+#1 (id=891504)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Targeted Ally (21)
+#2 (id=891505)   : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: -10 | Target: Targeted Ally (21)
+                   Affected School(s): All
+Description      : Stretch time around an ally for the next $d, causing $s1% of damage they would take to instead be dealt over $d.$?s363899[
+
+Name             : Fluttering Seedlings (id=359793) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=5, col=3, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Stacks           : 1 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=896464)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=915976)   : Dummy (3) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 40 | Scaled Value: 40
+#3 (id=1311273)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Emerald Blossom sends out $s1 flying $Lseedling:seedlings; when it bursts, plus up to $s3 additional seedlings if Emerald Blossom heals fewer than $355916s2 allies.
+
+Name             : Dream Flight (desc=Green) (id=359816) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Nature
+Spell Type       : Magic
+Resource         : 4% Base Mana (0) (id=232519)
+Range            : 15 - 50 yards
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 991
+                 : 1216: Evoker Spells
+                 : 1466: Green Evoker Spells
+                 : 2695: Spatial Paradox (406732 effect#8), Spatial Paradox (406789 effect#8)
+Affecting Spells : Recall (387642 effect#2)
+Triggered By     : Dream Flight (362362)
+Family Flags     : 37
+Attributes       : Not Shapeshifted (16), No Aura Cancel (31), Aura Points On Client (268), Spellcast Override In Spellbook (310), Reset cooldown upon ending an encounter (333), Ignore Caster Absorb Modifiers (370), Cheap Missile AOI (374), Allow Class Ability Procs (416), Unknown (458)
+Effects          :
+#1 (id=896508)   : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100 | Radius: 6 yards | Target: at Area (87)
+#2 (id=896509)   : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -200 | Scaled Value: -200 | Target: Self (1)
+#3 (id=896510)   : Apply Aura (6) | Disable Abilities (263)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#4 (id=1017557)  : Apply Aura (6) | Creature Immunities (147)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 2360 | Target: Self (1)
+#5 (id=1017558)  : Apply Aura (6) | Disable Gravity (488)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#6 (id=1104271)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#7 (id=1153734)  : Apply Aura (6) | Resist Forced Movement% (485)
+                   Base Value: -100 | Scaled Value: -100 | Target: Self (1)
+#8 (id=1164338)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#9 (id=1242481)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+Description      : Take in a deep breath and fly to the targeted location, healing all allies in your path for $363502s2 immediately, and $363502o1 over $363502d, reduced beyond $s8 targets.
+
+Name             : Temporal Compression (id=362874) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful, Magic Heal, Helpful Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416), Do Not Consume Aura Stack On Proc (428)
+Effects          :
+#1 (id=901887)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=901888)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Each cast of a Bronze spell causes your next empower spell to reach maximum level in $s1% less time, stacking up to $362877u times.
+
+Name             : Rewind (desc=Bronze) (id=363534) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Resource         : 5.5% Base Mana (0) (id=264565)
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 4 seconds
+Charges          : 1 (240 seconds cooldown)
+Category         : 2035 (Type 0x1): Temporal Artificer (381922 effect#1), Flow State (390148 effect#7), Temporal Burst (431698 effect#7), Temporal Cycle (1237269 effect#7)
+Category Flags   : Reset Charges on Encounter End (4), Reset Coooldown on Encounter End (5)
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+                 : 2706: Spatial Paradox (406732 effect#11), Spatial Paradox (406789 effect#10)
+Affecting Spells : Tempo Charged (1237978 effect#2)
+Family Flags     : 29
+Attributes       : Not Shapeshifted (16), Ignore Line of Sight (66), Can't Crit (93), Extra Initial Period (169), Spell Haste Affects Periodic (173), Ignore Healing Modifiers (219), Aura Points On Client (268), Haste Affects Duration (273), Reset cooldown upon ending an encounter (333), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=902963)   : Apply Aura (6) | Periodic Heal (8): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.4 | Radius: 0 - 40 yards | Target: Source (22) -> Ally in Area (30)
+#2 (id=902964)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#3 (id=1012965)  : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30
+#4 (id=1013052)  : Dummy (3)
+                   Base Value: 200 | Scaled Value: 200
+Description      : Rewind $?s376210[${$s3/2}%][$s3%] of damage taken in the last $s2 seconds by all allies within $a1 yds. Always heals for at least $<min>.
+
+Name             : Echo (desc=Bronze) (id=364343) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Resource         : 2 Essence (19) (id=232564)
+Resource         : 1.9% Base Mana (0) (id=232652)
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 15 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 741: Healing Spells
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Affecting Spells : Devastation Evoker (356809 effects: #5, #6), Preservation Evoker (356810 effects: #1, #2), Initial Evoker (356816 effects: #5, #6), Hover (358267 effect#5), Essence Burst (369299 effects: #1, #2, #3), Honed Aggression (371038 effect#1), Time Lord (372527 effect#1), Timeless Magic (376240 effects: #1, #3), Attuned to the Dream (376930 effects: #1, #2), Boon of the Covenants (387169 effects: #1, #2), Hover (393271 effect#1), Augmentation Evoker (396186 effects: #5, #6), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Temporal Burst (431698 effect#15), Golden Opportunity (432004 effect#1), Melt Armor (441172 effect#2), Arcane Reach (454983 effect#1), Tempo Charged (1237978 effect#1), Inner Flame (1242747 effect#1), Preservation Evoker (1256944 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283653 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283654 effects: #1, #2)
+Family Flags     : 1, 2, 3, 11, 38
+Attributes       : Not Shapeshifted (16), Aura Expires Offline (130), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416), Unknown (456), Non-secret Aura (506)
+Effects          :
+#1 (id=904256)   : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 2.4 | Target: Targeted Ally (21)
+#2 (id=904257)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 70 | Scaled Value: 70 | Target: Targeted Ally (21)
+                   Modified By: Essence Burst (369299 effect#3), Time Lord (372527 effect#1), Golden Opportunity (432004 effect#1)
+Description      : Wrap an ally with temporal energy, healing them for $s1 and causing your next healing spell to cast an additional time on that ally at ${$ceil($s2)}% of normal healing. Essence spells cannot be Echoed.
+Tooltip          : When $@auracaster casts a healing spell, $w2% of the healing will be replicated.
+
+Name             : Reversion (desc=Bronze) (id=366155) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Resource         : 2.2% Base Mana (0) (id=232600)
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 12 seconds
+Charges          : 2 (9 seconds cooldown)
+Category         : 2010 (Type 0x1): Preservation Evoker (356810 effect#11), Flow State (390148 effect#6), Temporal Burst (431698 effect#6), Temporal Cycle (1237269 effect#6)
+Labels           : 16: Class Spells
+                 : 292
+                 : 741: Healing Spells
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Stacks           : 1 maximum
+Proc Chance      : 100%
+Proc Flags       : Helpful Periodic Taken
+Affecting Spells : Devastation Evoker (356809 effects: #5, #6), Preservation Evoker (356810 effects: #1, #2), Initial Evoker (356816 effects: #5, #6), Honed Aggression (371038 effect#1), Grace Period (376239 effect#1), Timeless Magic (376240 effects: #1, #2), Attuned to the Dream (376930 effects: #1, #2), Boon of the Covenants (387169 effects: #1, #2), Time Bender (394544 effect#1), Augmentation Evoker (396186 effects: #5, #6), Evoker Preservation 11.0 Class Set 2pc (453673 effect#1), Arcane Reach (454983 effect#1), Tempo Charged (1237978 effects: #1, #2), Inner Flame (1242747 effect#1), Preservation Evoker (1256944 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283653 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283654 effects: #1, #2)
+Family Flags     : 1, 8
+Attributes       : Not Shapeshifted (16), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Non-secret Aura (506)
+Effects          :
+#1 (id=907578)   : Apply Aura (6) | Periodic Heal (8): every 2 seconds | Attributes: Suppress Points Stacking (6)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.4275 | Target: Targeted Ally (21)
+#2 (id=1003140)  : Apply Aura (6) | Modify Healing Taken% from Caster (504)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
+                   Modified By: Grace Period (376239 effect#1)
+#3 (id=1264301)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Ally (21)
+                   Affected School(s): All
+Description      : Reverse an ally's injuries, $?s378196[instantly healing them for $378196s1% of damage taken in the last $378196s2 sec and an additional][healing them for] $o1 over $d.
+
+Name             : Time of Need (id=368412) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), No Aura Icon (60), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=912785)   : Apply Aura Raid (65) | Trigger Spell Based on Health% (468): Time of Need
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 1 | Trigger Spell: 368435 | Radius: 25 yards | Target: Self (1)
+#2 (id=997898)   : Dummy (3)
+                   Base Value: 60 | Scaled Value: 60
+Description      : When you or an ally fall below $s1% health, a version of yourself enters your timeline and heals them for $<amount>. Your alternate self continues healing for $368415d before returning to their timeline.
+
+Name             : Essence Burst (id=369297) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=914510)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1118029)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Living Flame has a $s1% chance, and Reversion has a $s2% chance to make your next Essence ability free.$?s375722[ Stacks $359618u times.][]
+
+Name             : Power Nexus (id=369908) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+                 : Preservation [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+                 : Devastation [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=915679)   : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 1 | Scaled Value: 1 | Resource: essence | Target: Self (1)
+Description      : Increases your maximum Essence to $<max>.
+Variables        : $max=${6}
+
+Name             : Field of Dreams (id=370062) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Stacks           : 1 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=916004)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Every other Emerald Blossom has a $s1% chance for one of your Fluttering Seedlings to grow into a new Emerald Blossom.
+
+Name             : Stasis (desc=Bronze) (id=370537) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=300]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Resource         : 4% Base Mana (0) (id=264563)
+Duration         : Aura (infinite)
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Stacks           : 3 maximum
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful, Magic Heal, Helpful Periodic
+Family Flags     : 17
+Attributes       : Not Shapeshifted (16), Cooldown On Event (25), No Threat (42), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Aura Interrupt   : Leave Arena or Battleground (45)
+Effects          :
+#1 (id=981929)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=981930)   : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30
+Description      : Causes your next ${$s1*3} helpful spells to be duplicated and stored in a time lock. You may reactivate Stasis any time within $s2 sec to quickly unleash their magic.
+Tooltip          : Your next $s1 healing $Lspell:spells; will be held in a time lock.
+
+Name             : Renewing Breath (id=371257) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=9, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=983030)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+#2 (id=1037650)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+Description      : Dream Breath healing is increased by $s1%.
+
+Name             : Life-Giver's Flame (id=371426) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=983265)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
+#2 (id=1030563)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+#3 (id=1084490)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Fire Breath and Deep Breath heal $s3 nearby injured allies for $s1% of damage done to up to $s2 targets, split evenly among them.
+
+Name             : Energy Loop (id=372233) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1465: Blue Evoker Spells
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=996738)   : Apply Aura (6) | Proc Trigger Spell (42): Energy Loop
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 372234 | Target: Self (1)
+#2 (id=1019959)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 35 | Scaled Value: 35 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Disintegrate (356995)
+                   Family Flags: 6
+Description      : Disintegrate deals $s2% more damage and generates ${$372234s1*4} mana over its duration.
+
+Name             : Time Lord (id=372527) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=6, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(25, 50)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=997216)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Echo (364343)
+                   Family Flags: 11
+Description      : Echo replicates $s1% more healing.
+
+Name             : Lifebind (id=373270) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Spell Level      : 4
+Range            : 50000 yards
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Sheath (18), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=998372)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+Description      : Verdant Embrace temporarily bonds your life with an ally, causing your healing on either partner to heal the other for $s1% of the amount. Lasts $373267d.
+
+Name             : Call of Ysera (id=373834) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Spell Level      : 4
+Range            : 50000 yards
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Sheath (18), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=999319)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+#2 (id=999320)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Living Flame (361509)
+                   Family Flags: 22
+#3 (id=1280297)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+Description      : Dream Breath healing increased by $s1%, and Living Flame healing increased by $s2%.
+
+Name             : Temporal Anomaly (desc=Bronze) (id=373861) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Resource         : 7.5% Base Mana (0) (id=265379)
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 4 seconds
+Cooldown         : 15 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+                 : 6229: Tempo Charged (1237978 effect#3)
+Affecting Spells : Preservation Evoker (356810 effect#12), Hover (358267 effect#5), Timeless Magic (376240 effects: #1, #2), Hover (393271 effect#1), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Nozdormu Adept (431715 effects: #1, #2), Tempo Charged (1237978 effect#1)
+Family Flags     : 2, 45
+Attributes       : Not Shapeshifted (16), No Aura Icon (60), Spell Haste Affects Periodic (173), Haste Affects Duration (273), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=999377)   : Create Area Trigger (179)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 25294 | Target: Front of Self (47)
+#2 (id=1044076)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Modified By: Tempo Charged (1237978 effect#3)
+#3 (id=1179965)  : Create Area Trigger (179)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 34997 | Target: Front of Self (47)
+#4 (id=1314376)  : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Send forward a vortex of temporal energy, absorbing $<shield> damage on you and any allies in its path. Absorption is reduced beyond $s2 targets.
+
+Name             : Essence Attunement (id=375722) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+                 : Preservation [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+                 : Devastation [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002322)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Essence Burst (359618), Essence Burst (369299), Essence Burst (392268), Essence Burst (417402)
+                   Family Flags: 43
+Description      : Essence Burst stacks ${$s1+1} times.
+
+Name             : Font of Magic (id=375783) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002399)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Fire Breath overrides Fire Breath
+                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 2 | Target: Self (1)
+#2 (id=1013727)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Dream Breath overrides Dream Breath
+                   Base Value: 382614 | Scaled Value: 382614 | Misc Value: 355936 | Misc Value 2: 2 | Target: Self (1)
+#3 (id=1014188)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Spiritbloom overrides Spiritbloom
+                   Base Value: 382731 | Scaled Value: 382731 | Misc Value: 367226 | Misc Value 2: 2 | Target: Self (1)
+Description      : Your empower spells' maximum level is increased by 1.
+
+Name             : Empath (id=376138) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=6, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002983)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Empower spells increase your Essence regeneration rate by $370840s1% for $370840d.
+
+Name             : Spiritual Clarity (id=376150) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=6, col=1, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1003006)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 2054 (Category) | Target: Self (1)
+                   Affected Spells (Category): Dream Breath (355936), Dream Breath (382614)
+Description      : Dream Breath's cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Lifeforce Mender (id=376179) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=9, col=4, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1003052)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value 2: 1464 (Label) | Target: Self (1)
+                   Affected Spells (Label): Red Evoker Spells (1464)
+#2 (id=1018690)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Misc Value 2: 1464 (Label) | Target: Self (1)
+                   Affected Spells (Label): Red Evoker Spells (1464)
+Description      : Red spells deal $s1% additional damage and healing.
+
+Name             : Just in Time (id=376204) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=5, col=6, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1003091)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2411 (Category) | Target: Self (1)
+                   Affected Spells (Category): Time Dilation (357170)
+#2 (id=1237458)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 2411 (Category) | Target: Self (1)
+                   Affected Spells (Category): Time Dilation (357170)
+Description      : Time Dilation gains an additional charge, and its cooldown is reduced by ${$s2/-1000} sec.
+
+Name             : Delay Harm (id=376207) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=5, col=6, max_rank=1, req_points=8, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1003094)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : $s1% of delayed damage from Time Dilation is absorbed.
+Variables        : $base=${50}
+
+Name             : Nozdormu's Teachings (id=376237) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1003137)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Temporal Anomaly reduces the cooldowns of your empower spells by $s1 sec.
+
+Name             : Grace Period (id=376239) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1003139)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Reversion (366155), Reversion (367364)
+                   Family Flags: 8
+Description      : Your healing is increased by $s1% on targets with your Reversion.
+
+Name             : Timeless Magic (id=376240) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=9, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1003142)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Time Dilation (357170), Echo (364343), Reversion (366155), Reversion (367364), Temporal Anomaly (373861), Temporal Anomaly (373862), Temporal Barrier (1291636)
+                   Family Flags: 8, 11, 19, 45
+#2 (id=1123492)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Time Dilation (357170), Reversion (366155), Reversion (367364), Temporal Anomaly (373861), Temporal Anomaly (373862), Temporal Barrier (1291636)
+                   Family Flags: 8, 19, 45
+#3 (id=1126539)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 2 (34)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 34 | Target: Self (1)
+                   Affected Spells: Echo (364343)
+                   Family Flags: 11
+Description      : Reversion, Time Dilation, Echo, and $?s1291636[Temporal Barrier][Temporal Anomaly] last $s1% longer and cost $s2% less mana.
+
+Name             : Spark of Insight (id=377099) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=8, col=1, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1004751)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Consuming a full Temporal Compression grants you Essence Burst.
+
+Name             : Exhilarating Burst (id=377100) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=6, col=2, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(30, 60)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1004752)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Each time you gain Essence Burst, your critical heals are ${$s1+200}% effective instead of the usual 200% for $377102d.
+
+Name             : Golden Hour (desc=Bronze) (id=378196) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1006509)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1006510)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Reversion instantly heals the target for $s1% of damage taken in the last $s2 sec.
+
+Name             : Ouroboros (id=381921) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013056)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -10 | Scaled Value: -10 | Target: Self (1)
+Description      : Casting Echo grants one stack of Ouroboros, increasing the healing of your next Emerald Blossom by $387350s1%, stacking up to $387350u times.
+
+Name             : Temporal Artificer (id=381922) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013058)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 2035 (Category) | Target: Self (1)
+                   Affected Spells (Category): Rewind (363534)
+Description      : Rewind's cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Flow State (id=385696) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=6, col=6, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(5, 10)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1019137)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Empower spells cause time to flow $s1% faster for you, increasing movement speed, cooldown recharge rate, and cast speed. Lasts $390148d.
+
+Name             : Lifespark (id=443177) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Preservation [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 292
+                 : 295
+                 : 2317
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Helpful Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1138908)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Trigger Spell: 394552 | Target: Self (1)
+#2 (id=1138909)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Reversion healing has a chance to cause your next Living Flame to cast instantly and deal $s2% increased healing or damage. Stacks up to $394552u charges.
+
+Name             : Titan's Gift (id=443264) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1139060)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#2 (id=1139068)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+Description      : Essence Burst increases the effectiveness of your next Essence ability by $s1%.
+
+Name             : Tempo Charged (id=1237978) [Spell Family (224), Passive, Hidden] 
+Talent Entry     : Preservation [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1234901)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Echo (364343), Reversion (366155), Reversion (367364), Temporal Anomaly (373861), Temporal Anomaly (373862), Temporal Barrier (1291636)
+                   Family Flags: 8, 11, 45
+#2 (id=1283597)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rewind (363534), Reversion (366155), Reversion (367364)
+                   Family Flags: 8, 29
+#3 (id=1294408)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 6229 (Label) | Target: Self (1)
+                   Affected Spells (Label): Temporal Anomaly (373861), Temporal Barrier (1291636)
+#4 (id=1319670)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 24 | Target: Self (1)
+                   Affected Spells: Temporal Barrier (1291636)
+                   Family Flags: 90
+Description      : Bronze healing and absorption increased by $s1%.
+
+Name             : Unshakable (id=1239581) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1237466)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Fire Breath (357209), Spiritbloom (367230), Spiritbloom (367231), Dream Breath (376788), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 21, 27, 35
+#2 (id=1237467)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Fire Breath (357209), Spiritbloom (367230), Spiritbloom (367231), Dream Breath (376788), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 21, 27, 35
+Description      : Your empower spells are $s1% more effective. While charging a healing empower spell, you cannot be knocked back.
+
+Name             : Dream Simulacrum (id=1241669) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=10, col=1, max_rank=1, req_points=20, select_idx=100]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Spell Level      : 4
+Range            : 50000 yards
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Sheath (18), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1240792)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Verdant Embrace (361195)
+                   Family Flags: 36
+#2 (id=1240793)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Verdant Embrace healing is increased by $s1%. In addition, it no longer causes you to leap to your target, instead sending forth a Dream Simulacrum.
+
+Name             : Wings of Liberty (id=1241704) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=10, col=1, max_rank=1, req_points=20, select_idx=200]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Spell Level      : 4
+Range            : 50000 yards
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Do Not Sheath (18), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1240843)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2471 (Category) | Target: Self (1)
+                   Affected Spells (Category): Verdant Embrace (360995)
+Description      : Verdant Embrace gains an additional charge.
+
+Name             : Twin Echoes (desc=Bronze) (id=1242031) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1241354)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1241355)  : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100
+Description      : Casting Emerald Blossom causes your next Echo to cast on an additional ally within $s1 yards at $s2% effectiveness. Stacks up to $1242759u charges.
+
+Name             : Inner Flame (id=1242745) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1242428)  : Apply Aura (6) | Proc Trigger Spell (42): Inner Flame
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1242747 | Target: Self (1)
+#2 (id=1242438)  : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20
+#3 (id=1242439)  : Dummy (3)
+                   Base Value: 15 | Scaled Value: 15
+Description      : Casting Dream Flight or Stasis increases your healing over time by $1242747s1% and causes Living Flame and Reversion to have a $1242747s2% increased chance to grant Essence Burst. Lasts $?s359816[$s2][$s3] sec.
+
+Name             : Merithra's Blessing (id=1256577) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 20%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1264146)  : Apply Aura (6) | Proc Trigger Spell (42): Merithra's Blessing
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1256579 | Target: Self (1)
+Description      : Essence abilities have a chance to infuse your next Reversion with the power of the Green Dragonflight, upgrading it to Merithra's Blessing:
+
+Name             : Merithra's Blessing (id=1256682) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=300]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1264311)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Reversion protects allies, reversing ${$s1/10}.1% of all damage taken and healing them instead.
+
+Name             : Merithra's Blessing (id=1256689) [Spell Family (224), Passive] 
+Talent Entry     : Preservation [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=400]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1264326)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 250 | Scaled Value: 250 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+#2 (id=1264327)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Dream Breath's instant healing is increased by $s1% and Dream Breath has a $s2% chance to grant Merithra's Blessing.
+
+Name             : Temporal Barrier (desc=Bronze) (id=1291636) [Spell Family (224)] 
+Talent Entry     : Preservation [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=100, replace="Temporal Anomaly" (id=373861)]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Resource         : 7.5% Base Mana (0) (id=313386)
+Range            : 30 yards
+Max Targets      : 5
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 15 seconds
+Cooldown         : 15 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+                 : 6229: Tempo Charged (1237978 effect#3)
+Affecting Spells : Preservation Evoker (356810 effect#12), Hover (358267 effect#5), Timeless Magic (376240 effects: #1, #2), Hover (393271 effect#1), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Nozdormu Adept (431715 effects: #1, #2), Tempo Charged (1237978 effects: #1, #4)
+Family Flags     : 2, 45, 90
+Attributes       : Limit N (165), Spell Haste Affects Periodic (173), Aura Points On Client (268), Haste Affects Duration (273), Missile Speed is Delay (in sec) (292), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1311112)  : Apply Aura (6) | Absorb Damage (69) | Attributes: Aura Points Stack (9)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 9 | Misc Value: 0x7f | Radius: 0 - 40 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
+                   Affected School(s): All
+#2 (id=1311705)  : Dummy (3)
+                   Base Value: 4 | Scaled Value: 4
+                   Modified By: Tempo Charged (1237978 effect#3)
+#3 (id=1314379)  : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30
+Description      : Send out a ripple of temporal energy, absorbing $s1 damage and applying Echo at $s3% effectiveness on your target and up to $s2 allies within $a1 yds.
+Tooltip          : Absorbing $w1 damage.
+Variables        : $shield=${$SP*6*(1+$@versadmg)}

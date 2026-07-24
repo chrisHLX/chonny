@@ -1,0 +1,357 @@
+# Mage — Spellslinger Hero Talents
+# Extracted verbatim from mage.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Splintering Sorcery (id=443739) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1139840)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1156844)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1211972)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : $?c1[Casting Arcane Blast or Arcane Pulse][Casting Frostbolt or Flurry] conjures $?c1[an Arcane][a Frost] Splinter.
+$?c1[
+$@spellicon443763$@spellname443763:
+$@spelldesc443763
+]
+[
+$@spellicon443722$@spellname443722:
+$@spelldesc443722
+]
+
+Name             : Splinterstorm (id=443783) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1139899)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#2 (id=1141727)  : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100
+#3 (id=1250329)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : $?c1[Casting Arcane Surge generates $s1 Arcane Splinters][Each time Ray of Frost damages one or more enemies, it generates $s3 Frost $LSplinter:Splinters;].
+
+Name             : Splintering Orbs (id=444256) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 6322: Frost Mage (137020 effect#9), Arcane Mage (137021 effect#7)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1140588)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1141267)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0
+#3 (id=1141870)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Frozen Orb (84714), Frozen Orb (84721), Arcane Orb (153640)
+                   Family Flags: 78, 83, 93
+                   Modified By: Frost Mage (137020 effect#9), Arcane Mage (137021 effect#7)
+#4 (id=1155530)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#5 (id=1190182)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#6 (id=1190183)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Enemies damaged by your $?c1[Arcane Orb][Frozen Orb] conjure $?c1[$s4 Arcane][$s5 Frost] $LSplinter:Splinters;, up to $?c1[$s1][$s6].
+
+Name             : Controlled Instincts (id=444483) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1140957)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1141440)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1141441)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 1 | Trigger Spell: 114923 | Target: Self (1)
+#4 (id=1141731)  : Dummy (3)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+#5 (id=1141732)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?c1[$s1%][$s4%] of the direct damage dealt by $?c1[an Arcane Splinter][a Frost Splinter] is also dealt to nearby enemies. Damage reduced beyond $s5 targets.
+
+Name             : Shifting Shards (id=444675) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141230)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Gaining $?c1[Clearcasting][Brain Freeze] conjures $s1 $?c1[Arcane][Frost] $lSplinter:Splinters;.
+
+Name             : Force of Will (id=444719) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141290)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1243908)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1250309)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : $?c1[Casting Arcane Barrage conjures an Arcane Splinter for every $s1 Arcane Salvo stacks consumed][Ice Lance conjures a Frost Splinter for every $s3 Freezing stacks Shattered from its primary target].
+
+Name             : Slippery Slinging (id=444752) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141347)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : You have $s1% increased movement speed during Alter Time$?a236457[ and Evocation][].
+
+Name             : Look Again (id=444756) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141352)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : While in combat, Blink summons a Mirror Image at your previous location.
+
+Name             : Phantasmal Image (id=444784) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141382)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1141403)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Misc Value 2: 3672 (Label) | Target: Self (1)
+                   Affected Spells (Label): Mirror Image (55342)
+Description      : Your Mirror Image summons $s2 extra $Lclone:clones;.
+
+Name             : Reactive Barrier (id=444827) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141448)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Your $?c1[Prismatic][Ice] Barrier can absorb up to $s1% more damage based on your missing Health.
+
+Name             : Archmage's Wrath (id=444968) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Mage
+School           : Arcane
+Spell Type       : Magic
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Fire Mage (137019 effects: #1, #2), Frost Mage (137020 effects: #1, #2), Arcane Mage (137021 effects: #1, #2), Combustion (190319 effects: #1, #3, #4), Lonely Winter (205024 effects: #1, #2), Norgannon's Foresight (236380 effect#1), Deathborne (324220 effects: #2, #7), Siphoned Malice (337090 effects: #1, #2), Arcane Surge (365362 effects: #1, #2), Touch of Ice (394994 effects: #1, #2), Charring Embers (408665 effect#1), Arcane Overload (409022 effect#1), Numbing Blast (417490 effect#1), Searing Rage (424285 effect#1), Forethought (424293 effects: #1, #2), Spellfire Sphere (448604 effects: #1, #2), Fire's Ire (450831 effect#2), Charring Embers (453122 effect#1), Blessing of the Phoenix (455134 effect#1), Molten Fury (458910 effect#1), Clarity (1216178 effects: #1, #2), Rollin' Hot (1219035 effects: #1, #2), Charm of Aegwynn (1244105 effect#1), Arcane Mage (1256909 effects: #1, #2), Fire Mage (1256911 effects: #1, #2), Frost Mage (1256913 effects: #1, #2), Hand of Frost (1263263 effects: #1, #2), Mage - Midnight PrePatch - 11.2 Class Set 2pc (1283634 effects: #1, #2), Mage - Midnight PrePatch - 11.2 Class Set 4pc (1283635 effects: #1, #2)
+Family Flags     : 3
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1141665)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Arcane Surge (365350)
+                   Family Flags: 107
+                   Modified By: Rollin' Hot (1219035 effect#2)
+#2 (id=1141771)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Ray of Frost (205021)
+                   Family Flags: 56
+                   Modified By: Rollin' Hot (1219035 effect#2)
+#3 (id=1293029)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Clearcasting (79684)
+                   Family Flags: 13
+                   Modified By: Rollin' Hot (1219035 effect#2)
+#4 (id=1293030)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Brain Freeze (190447)
+                   Family Flags: 79
+                   Modified By: Rollin' Hot (1219035 effect#2)
+Description      : $?c1[Arcane Surge][Ray of Frost] damage increased by $?c1[$s1][$s2]%.
+
+Name             : Spellfrost Teachings (id=444986) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1141696)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 250 | Scaled Value: 250 | Target: Self (1)
+#2 (id=1210399)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 250 | Scaled Value: 250 | Target: Self (1)
+Description      : Direct damage from $?c1[Arcane][Frost] Splinters reduces the cooldown of $?c1[Arcane][Frozen] Orb by $?c1[${$s1/1000}.2][${$s2/1000}.2] sec.
+
+Name             : Signature Spell (id=470021) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1184804)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#2 (id=1184805)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1283580)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Arcane Blast (30451), Arcane Pulse (1241462), Arcane Pulse (1243460)
+                   Family Flags: 18, 29
+#4 (id=1283581)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Blizzard (190356), Blizzard (190357), Frostbolt (228597), Glacial Spike (228600), Frostfire Bolt (468655), Freezing Winds (1247554), Blizzard (1248829)
+                   Family Flags: 5, 7
+Description      : $?c1[Arcane Blast and Arcane Pulse damage increased by $s3%.
+
+Name             : Infused Splinters (id=1261080) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1270699)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1270700)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#3 (id=1270701)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#4 (id=1270702)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Direct damage from $?c1[Arcane][Frost] Splinters have a $?c1[$s1][$s2]% chance to $?c1[grant $s3 $Lstack:stacks; Arcane Salvo][apply $s4 $Lstack:stacks; of Freezing].$?c1[
+
+Name             : Polished Focus (id=1261082) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1270704)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1270705)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1270706)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 32 | Misc Value 2: 5382 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shatter (1246769)
+#4 (id=1283577)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Arcane Barrage (44425)
+                   Family Flags: 47
+#5 (id=1283578)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Shatter (1246949), Winter's End (1280757)
+                   Family Flags: 35
+Description      : $?c1[Casting Arcane Barrage while at $s1 or more Arcane Salvo stacks refunds $s2 Arcane Salvo $Lstack:stacks;.
+
+Name             : Attuned Familiar (id=1261106) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
+Effects          :
+#1 (id=1270730)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1270731)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : $?c1[Your Arcane Familiar has a $s1% chance to conjure a Splinter alongside its Arcane Assault][Your Water Elemental has a $s2% chance to conjure a Splinter alongside its Waterbolt].
+
+Name             : Augury Abounds (id=1280165) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1292979)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1293395)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Conjuring one or more $?c1[Arcane][Frost] Splinters has a $s1% chance to conjure a burst of $s2 $?c1[Arcane][Frost] $LSplinter:Splinters;.

@@ -1,0 +1,1028 @@
+# Evoker — Augmentation Spec Talents
+# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 52 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Quell (id=351338) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+                 : Devastation [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : Ranged
+Range            : 25 yards
+Duration         : 6 seconds
+Cooldown         : 20 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 5901
+Family Flags     : 33
+Attributes       : Not Shapeshifted (16), Always Hit (114), Taps immediately (215), Allow Class Ability Procs (416), Interrupts Current Cast (419)
+Effects          :
+#1 (id=881542)   : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Interrupt | Target: Targeted Enemy (6)
+Description      : Interrupt an enemy's spellcasting and prevent any spell from that school of magic from being cast for $d.
+
+Name             : Blistering Scales (desc=Black) (id=360827) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : Magic
+Range            : 25 yards
+Max Targets      : 1
+GCD              : 1.5 seconds
+Duration         : 3600 seconds
+Cooldown         : 30 seconds
+Category         : 2133 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 292
+                 : 930
+                 : 1216: Evoker Spells
+                 : 1468: Black Evoker Spells
+Category Cooldown: 30 seconds
+Stacks           : 15 initial, 15 maximum
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken
+Affecting Spells : Hover (358267 effect#5), Hover (393271 effect#1), Mastery: Timewalker (406380 effect#2), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Regenerative Chitin (406907 effect#1), Evoker Augmentation 10.0 Class Set 2pc (415222 effects: #1, #2), Arcane Reach (454983 effect#1)
+Family Flags     : 2, 67, 68
+Attributes       : Combo on Block (Mainline: Dispel All Stacks) (62), DoT Stacking Rule (103), Can Proc From Procs (122), Cannot Be Stolen (134), Allow Proc While Sitting (147), Limit N (165), Implied Targeting (171), Vehicle Immunity Category (218), Aura Points On Client (268), Allow Class Ability Procs (416), Non-secret Aura (506)
+Aura Interrupt   : Leave World (19), Enter World (22), Change Specialization (38)
+Effects          :
+#1 (id=898191)   : Apply Aura (6) | Resistance (22) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Targeted Ally (21)
+                   Modified By: Evoker Augmentation 10.0 Class Set 2pc (415222 effect#1)
+#2 (id=1049581)  : Apply Aura (6) | Modify Base Resistance (142) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 1 | Target: Targeted Ally (21)
+                   Modified By: Evoker Augmentation 10.0 Class Set 2pc (415222 effect#2)
+Description      : Protect an ally with $?s406907[][$n ]explosive dragonscales, increasing their Armor by $<perc>% of your own.
+
+Name             : Power Nexus (id=369908) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+                 : Preservation [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+                 : Devastation [tree=spec, row=4, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=915679)   : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 1 | Scaled Value: 1 | Resource: essence | Target: Self (1)
+Description      : Increases your maximum Essence to $<max>.
+Variables        : $max=${6}
+
+Name             : Essence Attunement (id=375722) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=5, max_rank=1, req_points=0]
+                 : Preservation [tree=spec, row=4, col=4, max_rank=1, req_points=0]
+                 : Devastation [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002322)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Essence Burst (359618), Essence Burst (369299), Essence Burst (392268), Essence Burst (417402)
+                   Family Flags: 43
+Description      : Essence Burst stacks ${$s1+1} times.
+
+Name             : Hoarded Power (id=375796) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1002415)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Essence Burst has a $s1% chance to not be consumed.
+
+Name             : Ebon Might (desc=Black) (id=395152) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=305323)
+Max Targets      : 30
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 10 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1468: Black Evoker Spells
+Affecting Spells : Hover (358267 effect#5), Hover (393271 effect#1), Close as Clutchmates (396043 effects: #1, #2), Mastery: Timewalker (406380 effect#2), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Evoker Augmentation 10.1 Class Set 4pc (414878 effect#1), Arcane Reach (454983 effect#4)
+Family Flags     : 2, 56, 65, 67
+Attributes       : No Aura Cancel (31), Exclude Caster (51), Ignore Line of Sight (66), Only On Player (104), Limit N (165), Aura Points On Client (268), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Non-secret Aura (506)
+Aura Interrupt   : Leave World (19), Change Specialization (38), Raid Encounter Start or M+ Start (40), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=1035393)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 8 | Scaled Value: 8 | Radius: 0 - 500 yards | Target: at Self (18) -> At Ally in Area (31)
+                   Modified By: Close as Clutchmates (396043 effect#1), Evoker Augmentation 10.1 Class Set 4pc (414878 effect#1)
+#2 (id=1035394)  : Apply Aura (6) | Modify Stat With Support Triggers (540)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Radius: 0 - 500 yards | Target: at Self (18) -> At Ally in Area (31)
+#3 (id=1248097)  : Dummy (3)
+                   Base Value: 2 | Scaled Value: 2
+Description      : Increase all damage dealing allies' primary stat by $<amount>% of your own and increase your own damage by $395296s1% for $d.
+
+Name             : Eruption (desc=Black) (id=395160) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=2, col=3, max_rank=1, req_points=0, replace="Disintegrate" (id=356995)]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : Magic
+Resource         : 3 Essence (19) (id=265672)
+Range            : 25 yards
+Cast Time        : 2.5 seconds
+GCD              : 1.5 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1468: Black Evoker Spells
+Affecting Spells : Devastation Evoker (356809 effects: #1, #2), Preservation Evoker (356810 effects: #3, #4), Initial Evoker (356816 effects: #3, #4), Hover (358267 effect#5), Natural Convergence (369913 effect#3), Spellweaver's Dominance (370845 effect#1), Honed Aggression (371038 effect#1), Boon of the Covenants (387169 effects: #1, #2), Essence Burst (392268 effects: #1, #2, #3, #5), Hover (393271 effect#1), Ebon Might (395296 effects: #1, #6), Augmentation Evoker (396186 effects: #1, #2), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Volcanism (406904 effect#1), Evoker Augmentation 10.0 Class Set 4pc (415221 effects: #1, #2), Emerald Trance (424155 effects: #1, #2), Emerald Trance (424402 effects: #1, #2), Temporal Burst (431698 effect#15), Melt Armor (441172 effect#2), Unrelenting Siege (441248 effects: #1, #3), Volcanic Upsurge (456142 effect#1), Imminent Destruction (459574 effect#1), Augmentation Evoker (1256942 effects: #1, #2), Devastation Evoker (1256943 effects: #1, #2), Preservation Evoker (1256944 effects: #3, #4), Duplicate (1259171 effect#3), Refined Essence (1261452 effect#1), Evoker Augmentation 12.0 Class Set 2pc (1264819 effect#1), Rising Fury (1271783 effects: #2, #3), Risen Fury (1271799 effects: #2, #3), Evoker - Midnight PrePatch - 11.2 Class Set 2pc (1283651 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 4pc (1283652 effects: #1, #2)
+Family Flags     : 0, 2, 3, 38, 54
+Attributes       : Spellcast Override In Spellbook (310), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1035409)  : School Damage (2): firestorm | Attributes: Always AOE Line of Sight (5)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 2.8 | PvP Coefficient: 1.4375 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+Description      : Cause a violent eruption beneath an enemy's feet, dealing $s1 Volcanic damage split between them and nearby enemies.$?s395153[
+
+Name             : Essence Burst (id=396187) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1037198)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your Living Flame has a $376872s1% chance, and your Azure Strike has a $375721s1% chance, to make your next Eruption $?s414969[or Emerald Blossom ][]cost no Essence.$?s375722[ Stacks $359618u times.][]
+
+Name             : Upheaval (desc=Black) (id=396286) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Range            : 25 yards
+GCD              : 0.5 seconds
+Duration         : 2.5 seconds
+Cooldown         : 40 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1468: Black Evoker Spells
+Affecting Spells : Tip the Scales (370553 effects: #1, #2), Ebon Might (395296 effect#4), Font of Magic (408083 effect#3), Unyielding Domain (412733 effect#2)
+Family Flags     : 59
+Attributes       : Not Shapeshifted (16), No Immunities (29), Is Channelled (34), Is Self Channelled (38), No Threat (42), Aura Stays After Combat (57), No Aura Icon (60), Name in Channel Bar (61), Include In Advanced Combat Log (72), Always Hit (114), Force Display Castbar (155), No Aura Log (202), Haste Affects Duration (273), Always Require PvP Target Match (430), Do Not Allow "Disable Movement Interrupt" (443)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12)
+Effects          :
+#1 (id=1037390)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=1037391)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Gather earthen power beneath your enemy's feet and send them hurtling upwards, dealing $396288s2 Volcanic damage to the target and nearby enemies.$?s395153[
+
+Name             : Draconic Attunements (id=403208) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=6, col=4, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1050024)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1050164)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Learn to attune yourself to the essence of the Black or Bronze Dragonflights:
+
+Name             : Breath of Eons (desc=Bronze) (id=403631) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=4, col=4, max_rank=1, req_points=0, replace="Deep Breath" (id=357210)]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Range            : 15 - 50 yards
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 930
+                 : 991
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+                 : 2695: Spatial Paradox (406732 effect#8), Spatial Paradox (406789 effect#8)
+Affecting Spells : Recall (403760 effect#2), Recall (455962 effect#1)
+Triggered By     : Breath of Eons (403758)
+Family Flags     : 63
+Attributes       : Not Shapeshifted (16), No Aura Cancel (31), Always Line of Sight (185), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Cheap Missile AOI (374), Face Destination (395), Allow Class Ability Procs (416), Unknown (458)
+Effects          :
+#1 (id=1050694)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 6 yards | Target: at Area (87)
+#2 (id=1050695)  : Apply Aura (6) | Disable Abilities (263)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1050696)  : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -200 | Scaled Value: -200 | Target: Self (1)
+#4 (id=1050697)  : Apply Aura (6) | Creature Immunities (147)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 2360 | Target: Self (1)
+#5 (id=1050698)  : Apply Aura (6) | Disable Gravity (488)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#6 (id=1153733)  : Apply Aura (6) | Resist Forced Movement% (485)
+                   Base Value: -100 | Scaled Value: -100 | Target: Self (1)
+Description      : Fly to the targeted location, exposing a $@spellname409560 on enemies in your path for $409560d$?s395153[ and granting Ebon Might for ${$395153s3/1000} sec.][.]
+
+Name             : Defy Fate (id=404195) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=4, col=6, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Is Ability (4), Passive (6), Instant Target Procs (115), Not In Spellbook (143), Absorb Cannot Be Ignore (214), Do Not Count For PvP Scoreboard (252), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1051607)  : Apply Aura (6) | Absorb Overkill Damage From School (316)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 30 | Target: Self (1)
+                   Affected School(s): All
+Description      : Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one.
+
+Name             : Time Skip (desc=Bronze) (id=404977) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=9, col=4, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Arcane
+Spell Type       : Magic
+GCD              : 1.5 seconds
+Duration         : 2 seconds
+Cooldown         : 180 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Affecting Spells : Hover (358267 effect#5), Hover (393271 effect#1), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Tomorrow, Today (412723 effect#1)
+Family Flags     : 2, 72
+Attributes       : Is Self Channelled (38), Name in Channel Bar (61), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Action (Delayed) (17)
+Effects          :
+#1 (id=1052871)  : Apply Aura (6) | Modify Cooldown Recharge Rate% (Label) (143)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1216 (Label) | Target: Self (1)
+                   Affected Spells (Label): Evoker Spells (1216)
+#2 (id=1052872)  : Apply Aura (6) | Modify Charge Cooldown Recharge Rate% (Category) (148)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1948 (Category) | Target: Self (1)
+                   Affected Spells (Category): Hover (358267), Spatial Paradox (406732)
+#3 (id=1052874)  : Apply Aura (6) | Modify Charge Cooldown Recharge Rate% (Category) (148)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 2100 (Category) | Target: Self (1)
+                   Affected Spells (Category): Obsidian Scales (363916)
+#4 (id=1080806)  : Apply Aura (6) | Modify Cooldown Recharge Rate% (Label) (143)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1425 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wing Buffet (357214)
+#5 (id=1080807)  : Apply Aura (6) | Modify Cooldown Recharge Rate% (Label) (143)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1523 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tail Swipe (368970)
+#6 (id=1080808)  : Apply Aura (6) | Modify Cooldown Recharge Rate% (Label) (143)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1862 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soar (369536)
+#7 (id=1109328)  : Apply Aura (6) | Modify Charge Cooldown Recharge Rate% (Category) (148)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 2207 (Category) | Target: Self (1)
+                   Affected Spells (Category): Prescience (409311)
+#8 (id=1294447)  : Apply Aura (6) | Modify Charge Cooldown Recharge Rate% (Category) (148)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 2456 (Category) | Target: Self (1)
+                   Affected Spells (Category): Fire Breath (357208), Fire Breath (382266)
+Description      : Surge forward in time, causing your cooldowns to recover $s1% faster for $d.
+Tooltip          : Surging forward in time, causing your cooldowns to recover $s1% faster.
+
+Name             : Ricocheting Pyroclast (id=406659) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=3, max_rank=1, req_points=0]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1055733)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1055734)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Eruption deals $s1% more damage per enemy struck, up to ${$s2*$s1}%.
+
+Name             : Volcanism (id=406904) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1070005)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -1 | Scaled Value: -1 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Eruption (395160), Eruption (438653), Eruption (1259172)
+                   Family Flags: 54
+Description      : Eruption's Essence cost is reduced by $s1.
+
+Name             : Regenerative Chitin (id=406907) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1070011)  : Apply Aura (6) | Add Flat Modifier (107): Spell Initial Stacks (4)
+                   Base Value: -16 | Scaled Value: -16 | Misc Value: 4 | Target: Self (1)
+                   Affected Spells: Blistering Scales (360827)
+                   Family Flags: 68
+#2 (id=1070020)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=1080863)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Blistering Scales no longer loses charges and deals $s2% more damage.
+
+Name             : Aspects' Favor (id=407243) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=4, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(1, 2)]
+                 : Effect#2 [op=set, values=(15, 30)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1070580)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1073926)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Obsidian Scales activates Black Attunement, and amplifies it to increase maximum health by $<blacktotal>% for $407254d.
+
+Name             : Pupil of Alexstrasza (id=407814) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=6, max_rank=1, req_points=0, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1071586)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1071587)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : When cast at an enemy, Living Flame strikes $s1 additional enemy for $s2% damage.
+
+Name             : Plot the Future (id=407866) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1071677)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : $?s403631[Breath of Eons][Deep Breath] grants you Fury of the Aspects for $s1 sec after you land, without causing Exhaustion.
+
+Name             : Anachronism (id=407869) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1071680)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+Description      : Prescience has a $s1% chance to grant Essence Burst.
+
+Name             : Accretion (id=407876) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=9, col=2, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1071692)  : Apply Aura (6) | Proc Trigger Spell (42): Accretion
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 411932 | Target: Self (1)
+Description      : Eruption reduces the remaining cooldown of Upheaval by ${$411932s1/-1000}.1 sec.
+
+Name             : Tectonic Locus (id=408002) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=1, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1071872)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.3 | Target: Self (1)
+#2 (id=1071873)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 4 (32)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Upheaval (396288)
+                   Family Flags: 58
+Description      : Upheaval deals $s1% increased damage to the primary target, and launches them higher.
+
+Name             : Momentum Shift (id=408004) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1071876)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Consuming Essence Burst grants you $s1% Intellect for $408005d. Stacks up to $408005u times.
+
+Name             : Font of Magic (id=408083) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1072001)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Fire Breath overrides Fire Breath
+                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 2 | Target: Self (1)
+#2 (id=1072002)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Upheaval overrides Upheaval
+                   Base Value: 408092 | Scaled Value: 408092 | Misc Value: 396286 | Misc Value 2: 2 | Target: Self (1)
+#3 (id=1072003)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Fire Breath (357208), Fire Breath (382266), Upheaval (396286), Upheaval (408092)
+                   Family Flags: 15, 59
+Description      : Your empower spells' maximum level is increased by 1, and they reach maximum empower level $s3% faster.
+
+Name             : Bestow Weyrnstone (desc=Bronze) (id=408233) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Arcane
+Spell Type       : Magic
+Range            : 25 yards
+Cast Time        : 3 seconds
+GCD              : 1.5 seconds
+Duration         : 10 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+                 : 3885: Arcane Reach (454983 effect#3)
+Affecting Spells : Hover (358267 effect#5), Hover (393271 effect#1), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3)
+Family Flags     : 2
+Attributes       : Is Ability (4), Exclude Caster (51), No Aura Icon (60), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1072219)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Raid Member (57)
+Description      : Conjure a pair of Weyrnstones, one for your target ally and one for yourself. Only one ally may bear your Weyrnstone at a time.
+
+Name             : Ignition Rush (id=408775) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=1, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1073109)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Essence Burst (359618), Essence Burst (369299), Essence Burst (392268), Essence Burst (417402)
+                   Family Flags: 43
+#2 (id=1080155)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Essence Burst (359618), Essence Burst (369299), Essence Burst (392268), Essence Burst (417402)
+                   Family Flags: 43
+#3 (id=1255225)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Essence Burst reduces the cast time of Eruption by $s1% and increases its damage by $s3%.
+
+Name             : Motes of Possibility (id=409267) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 25%
+Proc Flags       : Magic Hostile Spell
+Affecting Spells : Clairvoyant (1250914 effects: #1, #2)
+Family Flags     : 84
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1073977)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Modified By: Clairvoyant (1250914 effect#2)
+Description      : Eruption has a $s1% chance to form a mote of diverted essence near you. Allies who comes in contact with the mote gain a random buff from your arsenal.
+
+Name             : Prescience (desc=Bronze) (id=409311) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Arcane
+Spell Type       : Magic
+Range            : 25 yards
+Max Targets      : 1
+GCD              : 1.5 seconds
+Charges          : 2 (12 seconds cooldown)
+Category         : 2207 (Type 0x1): Time Skip (404977 effect#7), Interwoven Threads (412713 effect#7), Nozdormu Adept (431715 effect#3)
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Affecting Spells : Mastery: Timewalker (406380 effect#2), Spatial Paradox (406732 effect#7), Spatial Paradox (406789 effect#7), Nozdormu Adept (431715 effect#4), Golden Opportunity (432004 effect#2), Arcane Reach (454983 effects: #1, #4)
+Family Flags     : 67, 73
+Attributes       : Only On Player (104), Allow Class Ability Procs (416)
+Aura Interrupt   : Raid Encounter Start or M+ Start (40)
+Effects          :
+#1 (id=1074054)  : Dummy (3) | Attributes: Add Target (Dest) Combat Reach to AOE (11)
+                   Base Value: 3 | Scaled Value: 3 | Radius: 0 - 26.5 yards | Target: at Self (18) -> At Ally in Area (31)
+                   Modified By: Nozdormu Adept (431715 effect#4)
+#2 (id=1080811)  : Dummy (3) | Attributes: Don't Fail Spell On Targeting Failure (20)
+                   Base Value: 25 | Scaled Value: 25 | Target: Targeted Ally (21)
+Description      : Grant an ally the gift of foresight, increasing their critical strike chance by $s1% $?s412774[and occasionally copying their damage and healing spells at $412774s1% power ][]for $410089d.
+
+Name             : Reactive Hide (id=409329) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=8, col=1, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Firestorm
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1074083)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Each time Blistering Scales explodes it deals $410256s1% more damage for $410256d, stacking $410256u times.
+
+Name             : Chrono Ward (id=409676) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=4, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1074701)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1085116)  : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30
+Description      : When allies deal damage with Temporal Wounds, they gain a shield for $s1% of the damage dealt. Absorption cannot exceed $s2% of your maximum health.
+
+Name             : Perilous Fate (id=410253) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=4, max_rank=1, req_points=8, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1075734)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Breath of Eons reduces enemies' movement speed by $439606s1%, and reduces their attack speed by $439606s2%, for $439606d.
+
+Name             : Overlord (id=410260) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1075745)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1166280)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : $?s403631[Breath of Eons][Deep Breath] casts an Eruption at the first $s1 enemies struck. These Eruptions have a $s2% chance to create a Mote of Possibility.
+
+Name             : Inferno's Blessing (id=410261) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1075747)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Fire Breath grants the inferno's blessing for $410263d to you and a nearby ally, giving their damaging attacks and spells a high chance to deal an additional $<dmg> Fire damage.
+Variables        : $coeff=${2.69}
+$meTalent=$?s1291457[${1+($1291457s1/100)}][${1}]
+$dmg=${$INT*$<coeff>*$<meTalent>*(1+$@versadmg)*$pctD}
+
+Name             : Molten Blood (id=410643) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1076504)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When cast, Blistering Scales grants the target a shield that absorbs up to $<shield> damage for $410651d based on their missing health. Lower health targets gain a larger shield.
+Variables        : $shield=${$SP*12*(1+$@versadmg)}
+
+Name             : Symbiotic Bloom (id=410685) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=7, max_rank=2, req_points=8]
+                 : Effect#1 [op=set, values=(3, 6)]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Proc Chance      : 101%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1076572)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 3 | Misc Value 2: 2663 (Label) | Target: Self (1)
+                   Affected Spells (Label): Symbiotic Bloom (410686)
+Description      : Emerald Blossom increases targets' healing received by $s1% for $410686d.
+
+Name             : Prolong Life (id=410687) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=8, col=7, max_rank=1, req_points=20, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1076574)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Your effects that extend Ebon Might also extend Symbiotic Bloom.
+
+Name             : Echoing Strike (id=410784) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=3, col=6, max_rank=1, req_points=0, select_idx=200]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1076792)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1166734)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Azure Strike (362969), Azure Sweep (1265872)
+                   Family Flags: 12
+Description      : Azure Strike deals $s2% increased damage and has a $s1% chance per target hit to echo, casting again.
+
+Name             : Timelessness (desc=Bronze) (id=412710) [Spell Family (224)] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Arcane
+Spell Type       : Magic
+Range            : 25 yards
+Max Targets      : 1
+GCD              : 1.5 seconds
+Duration         : 3600 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+                 : 3885: Arcane Reach (454983 effect#3)
+Affecting Spells : Mastery: Timewalker (406380 effect#2)
+Family Flags     : 67
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No AutoCast (AI) (49), Include In Advanced Combat Log (72), Allow Aura While Dead (116), Cannot Be Stolen (134), Limit N (165), Not On Player Controlled NPC (168), Vehicle Immunity Category (218), Use Target's Level for Spell Scaling (264), Aura Points On Client (268), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1080324)  : Apply Aura (6) | Threat (10)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 127 | Target: Targeted Raid Member (57)
+Description      : Enchant an ally to appear out of sync with the normal flow of time, reducing threat they generate by $s1% for $d. Less effective on tank-specialized allies. 
+
+Name             : Interwoven Threads (desc=Bronze) (id=412713) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=10, col=4, max_rank=1, req_points=20, select_idx=200, replace="Time Skip" (id=404977)]
+Class            : Evoker
+School           : Arcane
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1080328)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Cooldown (11)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 11 | Misc Value 2: 1216 (Label) | Target: Self (1)
+                   Affected Spells (Label): Evoker Spells (1216)
+#2 (id=1080329)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 1948 (Category) | Target: Self (1)
+                   Affected Spells (Category): Hover (358267), Spatial Paradox (406732)
+#3 (id=1080330)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 2100 (Category) | Target: Self (1)
+                   Affected Spells (Category): Obsidian Scales (363916)
+#4 (id=1080803)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Cooldown (11)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 11 | Misc Value 2: 1425 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wing Buffet (357214)
+#5 (id=1080804)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Cooldown (11)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 11 | Misc Value 2: 1523 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tail Swipe (368970)
+#6 (id=1080805)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Cooldown (11)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 11 | Misc Value 2: 1862 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soar (369536)
+#7 (id=1113202)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 2207 (Category) | Target: Self (1)
+                   Affected Spells (Category): Prescience (409311)
+#8 (id=1294448)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 2456 (Category) | Target: Self (1)
+                   Affected Spells (Category): Fire Breath (357208), Fire Breath (382266)
+Description      : The cooldowns of your spells are reduced by $s1%.
+
+Name             : Tomorrow, Today (id=412723) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=10, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Evoker
+School           : Arcane
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1080343)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Time Skip (404977)
+                   Family Flags: 72
+Description      : Time Skip channels for ${$s1/1000} sec longer.
+
+Name             : Unyielding Domain (id=412733) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1080361)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Upheaval (396288)
+                   Family Flags: 58
+#2 (id=1080362)  : Apply Aura (6) | Modify Melee Crit Damage Taken from Attacker (203)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Upheaval (396286), Upheaval (408092)
+                   Family Flags: 59
+Description      : Upheaval cannot be interrupted, and has an additional $s1% chance to critically strike.
+
+Name             : Fate Mirror (desc=Bronze) (id=412774) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+                 : 1467: Bronze Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1080428)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Prescience grants the ally a chance for their spells and abilities to echo their damage or healing, dealing $s1% of the amount again.
+Variables        : $doses=${50}
+
+Name             : Dream of Spring (id=414969) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=8, col=7, max_rank=1, req_points=20, select_idx=200]
+Class            : Evoker
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1084503)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Emerald Blossom (355913), Emerald Blossom (373766)
+                   Family Flags: 10
+#2 (id=1084504)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1084506)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Emerald Blossom (355913), Emerald Blossom (373766)
+                   Family Flags: 10
+#4 (id=1084557)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+                   Affected Spells: Emerald Blossom (355916), Fluttering Seedlings (361361)
+                   Family Flags: 49
+#5 (id=1089041)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 3 (39)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 39 | Target: Self (1)
+                   Affected Spells: Emerald Blossom (355913), Emerald Blossom (373766)
+                   Family Flags: 10
+Description      : Emerald Blossom no longer has a cooldown, deals $s4% increased healing, and increases the duration of your active Ebon Might effects by $s2 sec, but costs $s1 Essence.
+
+Name             : Arcane Reach (id=454983) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416), Do Not Consume Aura Stack On Proc (428)
+Effects          :
+#1 (id=1158019)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Emerald Blossom (355913), Emerald Blossom (355916), Dream Breath (355941), Blistering Scales (360827), Verdant Embrace (360995), Verdant Embrace (361195), Fluttering Seedlings (361361), Living Flame (361469), Living Flame (361509), Dream Flight (363502), Echo (364343), Expunge (365585), Reversion (366155), Spiritbloom (367230), Spiritbloom (367231), Reversion (367364), Source of Magic (369459), Lifebind (373267), Lifebind (373268), Emerald Blossom (373766), Temporal Anomaly (373862), Cauterizing Flame (374251), Dream Breath (376788), Panacea (387763), Defy Fate (404381), Prescience (409311), Spiritbloom (409894), Verdant Embrace (409895), Molten Blood (410651), Chrono Flames (431443), Insurance! (1215550), Insurance! (1215553), Merithra's Blessing (1256581), Twin Flame (1265991)
+                   Family Flags: 1, 10, 24, 52, 57, 61, 68, 73, 74, 79, 80
+#2 (id=1158020)  : Apply Aura (6) | Modify Attacker Ranged Crit Chance (188)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1169792)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Range (5)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 5 | Misc Value 2: 3885 (Label) | Target: Self (1)
+                   Affected Spells (Label): Bestow Weyrnstone (408233), Timelessness (412710)
+#4 (id=1181805)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 6 | Target: Self (1)
+                   Affected Spells: Ebon Might (395152), Ebon Might (395296), Prescience (409311), Ebon Might (426404)
+                   Family Flags: 65, 66, 73
+Description      : The range of your helpful magics is increased by $s1 yards.
+
+Name             : Rumbling Earth (id=459120) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=10, col=1, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1165630)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1165631)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Upheaval causes an aftershock at its location, dealing $s1% of its damage $s2 additional $Ltime:times;.
+
+Name             : Imminent Destruction (id=459537) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1166426)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : $?s403631[Breath of Eons][Deep Breath] reduces the Essence cost of your next $s1 Eruptions by $459574s1.
+
+Name             : Clairvoyant (id=1250914) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1255209)  : Apply Aura (6) | Add Flat Modifier (107): Spell Proc Chance (18)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 18 | Target: Self (1)
+                   Affected Spells: Motes of Possibility (409267)
+                   Family Flags: 84
+#2 (id=1255221)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Motes of Possibility (409267)
+                   Family Flags: 84
+Description      : Motes of Possibility may now grant Prescience to allies and have a $s1% increased chance to activate.
+
+Name             : Duplicate (id=1259173) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), No Aura Icon (60), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1268126)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Breath of Eons summons a version of you from the future to assist you in battle, lasting $1259171d. Your duplicate casts Eruption, Fire Breath, and Upheaval.
+
+Name             : Duplicate (id=1259174) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), No Aura Icon (60), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1268127)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Any time you extend Ebon Might, your duplicate is also extended, equal to $s1% of the amount you extended Ebon Might by.
+
+Name             : Duplicate (id=1259175) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), No Aura Icon (60), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1268129)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+#2 (id=1268130)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : While your duplicate is active, your Ebon Might grants $s1% additional stats and Upheaval and Eruption deal $1259171s3% increased damage.
+
+Name             : Improved Defy Fate (id=1268881) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Evoker
+School           : Arcane
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1280418)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Defy Fate (404381)
+                   Family Flags: 86
+#2 (id=1280419)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1280420)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Affected Spells: Defy Fate (404381)
+                   Family Flags: 86
+#4 (id=1280421)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Empty Hourglass (404369)
+                   Family Flags: 87
+Description      : Defy Fate healing increased by $s1% and its cooldown is reduced by $s2 min.
+
+Name             : Mighty Inferno (id=1291457) [Spell Family (224), Passive] 
+Talent Entry     : Augmentation [tree=spec, row=10, col=7, max_rank=1, req_points=20]
+Class            : Evoker
+School           : Fire
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 292
+                 : 1216: Evoker Spells
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1310827)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : Inferno's Blessing's damage is increased by $s1%, and your effects that extend Ebon Might also extend Inferno's Blessing.

@@ -1,0 +1,550 @@
+{
+    "class": "Rogue",
+    "fetched_at": "2026-07-23T05:00:39+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Outlaw": {
+            "spec_id": 260,
+            "pvp_talents": [
+                {
+                    "id": 129,
+                    "name": "Maneuverability",
+                    "spell_id": 197000,
+                    "spell_name": "Maneuverability",
+                    "description": "Sprint has 50% reduced cooldown and 50% reduced duration.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 138,
+                    "name": "Control is King",
+                    "spell_id": 354406,
+                    "spell_name": "Control is King",
+                    "description": "Cheap Shot grants Slice and Dice for 15 sec and Kidney Shot restores 10 Energy per combo point spent.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 139,
+                    "name": "Drink Up Me Hearties",
+                    "spell_id": 354425,
+                    "spell_name": "Drink Up Me Hearties",
+                    "description": "Crimson Vial restores 5% additional maximum health and grants 60% of its healing to allies within 15 yds.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 145,
+                    "name": "Dismantle",
+                    "spell_id": 207777,
+                    "spell_name": "Dismantle",
+                    "description": "Disarm the enemy, preventing the use of any weapons or shield for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 853,
+                    "name": "Boarding Party",
+                    "spell_id": 209752,
+                    "spell_name": "Boarding Party",
+                    "description": "Between the Eyes increases the movement speed of all friendly players within 15 yards by 30% for 6 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 1208,
+                    "name": "Thick as Thieves",
+                    "spell_id": 221622,
+                    "spell_name": "Thick as Thieves",
+                    "description": "Tricks of the Trade now increases the friendly target's damage by 15% for 6 sec.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 3421,
+                    "name": "Turn the Tables",
+                    "spell_id": 198020,
+                    "spell_name": "Turn the Tables",
+                    "description": "After coming out of a stun, you deal 10% increased damage for 12 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 3483,
+                    "name": "Smoke Bomb",
+                    "spell_id": 212182,
+                    "spell_name": "Smoke Bomb",
+                    "description": "Creates a cloud of thick smoke in an 8 yard radius around the Rogue for 5 sec. Enemies are unable to target into or out of the smoke cloud. ",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 3619,
+                    "name": "Death from Above",
+                    "spell_id": 269513,
+                    "spell_name": "Death from Above",
+                    "description": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 5549,
+                    "name": "Dagger in the Dark",
+                    "spell_id": 198675,
+                    "spell_name": "Dagger in the Dark",
+                    "description": "Each second while Stealth is active, nearby enemies within 12 yards take an additional 2% damage from you for 10 sec. Stacks up to 6 times.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                },
+                {
+                    "id": 5699,
+                    "name": "Preemptive Maneuver",
+                    "spell_id": 1219122,
+                    "spell_name": "Preemptive Maneuver",
+                    "description": "Feint decreases your damage taken by an additional 40% while stunned and its energy cost is reduced by 30%.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 260,
+                    "playable_spec_name": "Outlaw"
+                }
+            ]
+        },
+        "Assassination": {
+            "spec_id": 259,
+            "pvp_talents": [
+                {
+                    "id": 141,
+                    "name": "Creeping Venom",
+                    "spell_id": 354895,
+                    "spell_name": "Creeping Venom",
+                    "description": "Your Envenom applies Creeping Venom, reducing the target's movement speed by 5% for 4 sec.  Creeping Venom is reapplied when the target moves. Max 18 stacks.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 147,
+                    "name": "System Shock",
+                    "spell_id": 198145,
+                    "spell_name": "System Shock",
+                    "description": "Casting Envenom with at least 5 combo points on a target afflicted by your Garrote, Rupture, and lethal poison deals 10 Nature damage, and reduces their movement speed by 90% for 2 sec.",
+                    "unlock_player_level": 22,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 830,
+                    "name": "Hemotoxin",
+                    "spell_id": 354124,
+                    "spell_name": "Hemotoxin",
+                    "description": "Shiv also reduces the target's healing received by 30% for 8 sec.",
+                    "unlock_player_level": 58,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 3448,
+                    "name": "Maneuverability",
+                    "spell_id": 197000,
+                    "spell_name": "Maneuverability",
+                    "description": "Sprint has 50% reduced cooldown and 50% reduced duration.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 3479,
+                    "name": "Death from Above",
+                    "spell_id": 269513,
+                    "spell_name": "Death from Above",
+                    "description": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 3480,
+                    "name": "Smoke Bomb",
+                    "spell_id": 212182,
+                    "spell_name": "Smoke Bomb",
+                    "description": "Creates a cloud of thick smoke in an 8 yard radius around the Rogue for 5 sec. Enemies are unable to target into or out of the smoke cloud. ",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 5405,
+                    "name": "Dismantle",
+                    "spell_id": 207777,
+                    "spell_name": "Dismantle",
+                    "description": "Disarm the enemy, preventing the use of any weapons or shield for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 5408,
+                    "name": "Thick as Thieves",
+                    "spell_id": 221622,
+                    "spell_name": "Thick as Thieves",
+                    "description": "Tricks of the Trade now increases the friendly target's damage by 15% for 6 sec.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 5530,
+                    "name": "Control is King",
+                    "spell_id": 354406,
+                    "spell_name": "Control is King",
+                    "description": "Cheap Shot grants Slice and Dice for 15 sec and Kidney Shot restores 10 Energy per combo point spent.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 5550,
+                    "name": "Dagger in the Dark",
+                    "spell_id": 198675,
+                    "spell_name": "Dagger in the Dark",
+                    "description": "Each second while Stealth is active, nearby enemies within 12 yards take an additional 2% damage from you for 10 sec. Stacks up to 6 times.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                },
+                {
+                    "id": 5697,
+                    "name": "Preemptive Maneuver",
+                    "spell_id": 1219122,
+                    "spell_name": "Preemptive Maneuver",
+                    "description": "Feint decreases your damage taken by an additional 40% while stunned and its energy cost is reduced by 30%.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 259,
+                    "playable_spec_name": "Assassination"
+                }
+            ]
+        },
+        "Subtlety": {
+            "spec_id": 261,
+            "pvp_talents": [
+                {
+                    "id": 146,
+                    "name": "Thief's Bargain",
+                    "spell_id": 354825,
+                    "spell_name": "Thief's Bargain",
+                    "description": "The cooldowns of Shadow Blades, Vanish, and Feint are reduced by 20%, but using one reduces your damage by 10% for 6 sec.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 846,
+                    "name": "Dagger in the Dark",
+                    "spell_id": 198675,
+                    "spell_name": "Dagger in the Dark",
+                    "description": "Each second while Stealth is active, nearby enemies within 12 yards take an additional 2% damage from you for 10 sec. Stacks up to 6 times.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 856,
+                    "name": "Silhouette",
+                    "spell_id": 197899,
+                    "spell_name": "Silhouette",
+                    "description": "Shadowstep's cooldown is reduced by 67% when cast on a friendly target.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 1209,
+                    "name": "Smoke Bomb",
+                    "spell_id": 359053,
+                    "spell_name": "Smoke Bomb",
+                    "description": "Creates a cloud of thick smoke in an 8 yard radius around the Rogue for 5 sec. Enemies are unable to target into or out of the smoke cloud. ",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 3447,
+                    "name": "Maneuverability",
+                    "spell_id": 197000,
+                    "spell_name": "Maneuverability",
+                    "description": "Sprint has 50% reduced cooldown and 50% reduced duration.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 3462,
+                    "name": "Death from Above",
+                    "spell_id": 269513,
+                    "spell_name": "Death from Above",
+                    "description": "Finishing move that empowers your weapons with energy to perform a deadly attack.\r\n\r\nYou leap into the air and Eviscerate your target on the way back down, with such force that it has a 15% stronger effect.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 5406,
+                    "name": "Dismantle",
+                    "spell_id": 207777,
+                    "spell_name": "Dismantle",
+                    "description": "Disarm the enemy, preventing the use of any weapons or shield for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 5409,
+                    "name": "Thick as Thieves",
+                    "spell_id": 221622,
+                    "spell_name": "Thick as Thieves",
+                    "description": "Tricks of the Trade now increases the friendly target's damage by 15% for 6 sec.",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 5411,
+                    "name": "Distracting Mirage",
+                    "spell_id": 354661,
+                    "spell_name": "Distracting Mirage",
+                    "description": "Distract slows affected enemies by 60% and creates a Mirage that follows an enemy for 8 sec. Reactivate Distract to teleport to your Mirage's location. ",
+                    "unlock_player_level": 48,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 5529,
+                    "name": "Control is King",
+                    "spell_id": 354406,
+                    "spell_name": "Control is King",
+                    "description": "Cheap Shot grants Slice and Dice for 15 sec and Kidney Shot restores 10 Energy per combo point spent.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                },
+                {
+                    "id": 5698,
+                    "name": "Preemptive Maneuver",
+                    "spell_id": 1219122,
+                    "spell_name": "Preemptive Maneuver",
+                    "description": "Feint decreases your damage taken by an additional 40% while stunned and its energy cost is reduced by 30%.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 261,
+                    "playable_spec_name": "Subtlety"
+                }
+            ]
+        }
+    }
+}

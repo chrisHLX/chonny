@@ -1,0 +1,316 @@
+# Monk — Shado-Pan Hero Talents
+# Extracted verbatim from monk.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Flurry Strikes (id=450615) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Monk
+School           : Nature
+Spell Type       : Magic
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 5097: Invoke Niuzao, the Black Ox (132578 effect#7), Invoke Niuzao, the Black Ox (132578 effect#8), Zenith (1249625 effect#5), Zenith (1249625 effect#6), Zenith (1249625 effect#11), Zenith (1249625 effect#12)
+Proc Chance      : 101%
+Proc Flags       : White Melee, Yellow Melee, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Not Shapeshifted (16), No Threat (42), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416), Always Allow Negative Healing Percent Modifiers (442)
+Effects          :
+#1 (id=1150629)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1151332)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+                   Modified By: Invoke Niuzao, the Black Ox (132578 effect#8), Zenith (1249625 effect#6), Zenith (1249625 effect#12)
+#3 (id=1167368)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#4 (id=1167369)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#5 (id=1167370)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 625 | Scaled Value: 625 | Target: Self (1)
+                   Modified By: Invoke Niuzao, the Black Ox (132578 effect#7), Zenith (1249625 effect#5), Zenith (1249625 effect#11)
+Description      : Your auto attacks have a chance to generate $s1-$s2 Flurry Charges. When you cast $?c3[Fists of Fury][Keg Smash], unleash all Flurry Charges, dealing $450617s1 Physical damage per charge. 
+Variables        : $value=${($AP*($450615s5/100)*(1+$@versadmg))}
+
+Name             : Pride of Pandaria (id=450979) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151259)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Misc Value 2: 3560 (Label) | Target: Self (1)
+                   Affected Spells (Label): Flurry Strike (450617)
+#2 (id=1303217)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Misc Value 2: 5669 (Label) | Target: Self (1)
+                   Affected Spells (Label): Flurry Strike (451250)
+Description      : Flurry Strikes have $s1% additional chance to critically strike.
+
+Name             : High Impact (id=450982) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151262)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Enemies who die within $451037d of being damaged by a Flurry Strike explode, dealing $451039s1 physical damage to uncontrolled enemies within $451039a1 yds.
+
+Name             : Against All Odds (id=450986) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151268)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 4 | Scaled Value: 4 | Stat: Agi | Target: Self (1)
+Description      : Your agility is increased by $s1%.
+
+Name             : Veteran's Eye (id=450987) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151269)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Haste increased by $s1%.
+
+Name             : One Versus Many (id=450988) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151270)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1151622)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Fists of Fury (117418)
+                   Family Flags: 20
+#3 (id=1151623)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+                   Affected Spells: Keg Smash (121253)
+                   Family Flags: 57
+Description      : Auto attack critical strikes generate double the amount of Flurry Charges.
+
+Name             : Efficient Training (id=450989) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 5146: Windwalker Monk (1258122 effect#16), Windwalker Monk (1258122 effect#17)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151271)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Tiger Palm (100780), Expel Harm (115129), Crackling Jade Lightning (117952), Keg Smash (121253), Tiger Palm (331433), Glyph of Tiger Palm (468605)
+                   Family Flags: 10, 32, 57, 74
+                   Modified By: Windwalker Monk (1258122 effect#16)
+#2 (id=1151635)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Tiger Palm (100780), Expel Harm (115129), Crackling Jade Lightning (117952), Keg Smash (121253), Tiger Palm (331433), Glyph of Tiger Palm (468605)
+                   Family Flags: 10, 32, 57, 74
+                   Modified By: Windwalker Monk (1258122 effect#17)
+#3 (id=1151637)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#4 (id=1151638)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 1592 (Category) | Target: Self (1)
+                   Affected Spells (Category): Zenith (1249625)
+#5 (id=1151757)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Spinning Crane Kick (101546), Spinning Crane Kick (107270), Spinning Crane Kick (322729)
+                   Family Flags: 8, 63
+#6 (id=1289290)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -25000 | Scaled Value: -25000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Invoke Xuen, the White Tiger (123904), Invoke Niuzao, the Black Ox (132578), Invoke Yu'lon, the Jade Serpent (322118), Invoke Chi-Ji, the Red Crane (325197), Invoke Niuzao, the Black Ox (395267)
+                   Family Flags: 3
+Description      : Energy spenders deal an additional $s1% damage.
+The cooldown of $?c1[Invoke Niuzao, the Black Ox is reduced by ${$s6/-1000} sec][Zenith is reduced by ${$s4/-1000} sec].
+
+Name             : Martial Precision (id=450990) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151272)  : Apply Aura (6) | Modify Target Armor% (280)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : Your attacks penetrate $s1% armor.
+
+Name             : Whirling Steel (id=450991) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Internal Cooldown: 180 seconds
+Proc Chance      : 101%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Helpful Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151273)  : Apply Aura (6) | Proc Trigger Spell (42): Whirling Steel
+                   Base Value: 50 | Scaled Value: 50 | Trigger Spell: 451214 | Target: Self (1)
+Description      : When your health drops below $s1%, summon Whirling Steel, increasing your parry chance and avoidance by $451214s1% for $451214d.
+
+Name             : Predictive Training (id=450992) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151274)  : Apply Aura (6) | Proc Trigger Spell (42): Predictive Training
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 451230 | Target: Self (1)
+Description      : When you dodge or parry an attack, reduce all damage taken by $451230s1% for the next $451230d.
+
+Name             : Vigilant Watch (id=450993) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1151275)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Blackout Kick (100784), Blackout Kick (205523), Blackout Kick (228649)
+                   Family Flags: 4
+Description      : Blackout Kick deals an additional $s1% critical damage.
+
+Name             : Stand Ready (id=1262603) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 295
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1272970)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1272971)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 70 | Scaled Value: 70 | Target: Self (1)
+Description      : Activating $?c1[Invoke Niuzao, the Black Ox][Zenith] instantly grants $s1 stacks of Flurry Strikes that trigger on your next attack at $s2% effectiveness.
+
+Name             : Weapons of the Wall (id=1262610) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 295
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1272983)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value 2: 6058 (Label) | Target: Self (1)
+                   Affected Spells (Label): Zenith Stomp (1272696)
+#2 (id=1272984)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value 2: 2369 (Label) | Target: Self (1)
+                   Affected Spells (Label): Stomp (227291), Stomp (1242373)
+Description      : $?c1[Invoke Niuzao, the Black Ox's stomp damage increased by $s2%][Zenith Stomp damage increased by $s1%].
+
+Name             : Shado Over the Battlefield (id=1262612) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1272992)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#2 (id=1286191)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : Flurry Strikes deal $451250s1 Nature damage to all enemies within $451250a yds, reduced beyond $s2 targets.
+
+Name             : Wisdom of the Wall (id=1272821) [Spell Family (53), Passive] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 6422: Brewmaster Monk (1258153 effect#19)
+Internal Cooldown: 1 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1286132)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+                   Modified By: Brewmaster Monk (1258153 effect#19)
+Description      : $?c1[Invoke Niuzao, the Black Ox][Zenith] causes $?c1[Breath of Fire][Rising Sun Kick and Spinning Crane Kick] to launch $s1 Flurry Strikes.
+
+Name             : Combat Stance (id=1272844) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1286163)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 1365 (Category) | Target: Self (1)
+                   Affected Spells (Category): Roll (109132), Chi Torpedo (115008), Roll (361138)
+Description      : The cooldown of Roll is decreased by $s1%.
+
+Name             : Initiator's Edge (id=1272849) [Spell Family (53), Passive, Hidden] 
+Talent Entry     : Shado-Pan (Brewmaster, Windwalker) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Monk
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1286172)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Movement speed is increased by $1272850s1% for the first $1272850d of combat.

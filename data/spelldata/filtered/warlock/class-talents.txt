@@ -1,0 +1,968 @@
+# Warlock — Class Talents
+# Extracted verbatim from warlock.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 47 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Banish (id=710) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=4, col=1, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1.5% Base Mana (0) (id=87)
+Spell Level      : 46
+Range            : 30 yards
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 30 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Mechanic         : Banish
+Affecting Spells : Norgannon's Foresight (236431 effect#1)
+Family Flags     : 59
+Attributes       : Not Shapeshifted (16), Heartbeat Resist (30), No Threat (42), Immunity to Hostile & Friendly Effects (48), Aura Stays After Combat (57), Cannot cast on tapped (70), Limit N (165), Taps immediately (215), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Effects          :
+#1 (id=283)      : Apply Aura (6) | Stun (12)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=284)      : Apply Aura (6) | School Immunity (39)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Enemy (6)
+                   Affected School(s): All
+#3 (id=285)      : Apply Aura (6) | Modify Healing Received% (118)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 0x7f | Target: Targeted Enemy (6)
+                   Affected School(s): All
+Description      : Banishes an enemy Demon, Aberration$?s386651[, Undead][], or Elemental, preventing any action for $d. Limit 1. Casting Banish again on the target will cancel the effect.
+Tooltip          : Invulnerable, but unable to act.
+
+Name             : Curse of Tongues (id=1714) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=137)
+Resource         : 0 Soul Shard (7) (id=305627)
+Spell Level      : 34
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 60 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Affecting Spells : Norgannon's Foresight (236431 effect#1)
+Family Flags     : 102
+Attributes       : Not Shapeshifted (16), Aura Bounce Fails Spell (157), Taps immediately (215), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Nameplate Enemy Debuffs (426)
+Effects          :
+#1 (id=521)      : Apply Aura (6) | Modify Spell Haste% (355)
+                   Base Value: -30 | Scaled Value: -30 | PvP Coefficient: 0.3334 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+#2 (id=522)      : Apply Aura (6) | Unknown(75)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 8 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+Description      : Forces the target to speak in Demonic, increasing the casting time of all spells by $s1% for $d.$?s103112[
+
+Name             : Howl of Terror (id=5484) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=8, col=6, max_rank=1, req_points=23, select_idx=100]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1.8% Base Mana (0) (id=305301)
+Spell Level      : 1
+Max Targets      : 5
+GCD              : 1.5 seconds
+Duration         : 20 seconds
+Cooldown         : 40 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 117
+                 : 292
+Proc Chance      : 100%
+Mechanic         : Flee
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Annihilan's Bellow (429072 effects: #1, #2), Oppressive Darkness (1270255 effects: #3, #4)
+Family Flags     : 35
+Attributes       : Not Shapeshifted (16), Heartbeat Resist (30), No Redirection (35), No Reflection (39), No AutoCast (AI) (49), Can Proc From Procs (122), Taps immediately (215), Can Proc From Suppressed Target Procs (254), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Aura Interrupt   : Damage (Script) (27)
+Effects          :
+#1 (id=1964)     : Apply Aura (6) | Fear (7)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1 | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
+#2 (id=315916)   : Apply Aura (6) | Use Base Move Speed (191)
+                   Base Value: 4 | Scaled Value: 4 | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
+Description      : Let loose a terrifying howl, causing $?a1270255[${$i+$1270255s4}][$i] enemies within $A1 yds to flee in fear, disorienting them for $d. Damage may cancel the effect.
+Tooltip          : Disoriented.
+
+Name             : Mortal Coil (id=6789) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=4, col=7, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=10554)
+Spell Level      : 1
+Range            : 20 yards
+GCD              : 1.5 seconds
+Velocity         : 24 yards/sec
+Duration         : 3 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Affecting Spells : Odr, Shawl of the Ymirjar (212173 effect#1), Norgannon's Foresight (236431 effect#1), Odr, Shawl of the Ymirjar (337164 effect#1), Xalan's Cruelty (440040 effects: #1, #3, #4), Improved Mortal Coil (1265816 effect#1)
+Family Flags     : 19, 118
+Attributes       : Not Shapeshifted (16), No AutoCast (AI) (49), Not In Spellbook Until Learned (269), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Effects          :
+#1 (id=2449)     : Apply Aura (6) | Fear (7)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value: 1 | Mechanic: Horrify | Target: Targeted Enemy (6)
+#2 (id=2450)     : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#3 (id=149417)   : Trigger Missiles (32): Mortal Coil
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 108396
+#4 (id=200196)   : Apply Aura (6) | Use Base Move Speed (191)
+                   Base Value: 7 | Scaled Value: 7 | Mechanic: Horrify | Target: Targeted Enemy (6)
+Description      : Horrifies an enemy target into fleeing, incapacitating for $6789d and healing you for $108396m1% of maximum health.
+Tooltip          : Incapacitated.
+
+Name             : Shadowfury (id=30283) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=8, col=6, max_rank=1, req_points=23, select_idx=200]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=192757)
+Spell Level      : 38
+Range            : 35 yards
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 3 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Mechanic         : Stun
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Oppressive Darkness (1270255 effects: #1, #2)
+Family Flags     : 44
+Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), No AutoCast (AI) (49), Not In Spellbook Until Learned (269), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Aura Interrupt   : Leave World (19), Enter World (22)
+Effects          :
+#1 (id=19880)    : Apply Aura (6) | Stun (12)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 8 yards | Target: at Enemy in Area (16)
+Description      : Stuns all enemies within $a1 yds for $d.
+Tooltip          : Stunned.
+
+Name             : Horrify (id=56244) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=49271)    : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Fear overrides Fear
+                   Base Value: 130616 | Scaled Value: 130616 | Misc Value: 118699 | Misc Value 2: 2 | Target: Self (1)
+Description      : Your Fear causes the target to tremble in place instead of fleeing in fear.
+
+Name             : Soul Leech (id=108370) [Spell Family (5), Passive] 
+Talent Entry     : Generic [tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Spell Level      : 10
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Affecting Spells : Demon Skin (219272 effect#2), Norgannon's Foresight (236431 effect#1), Infernal Bulwark (434561 effect#1), Illhoof's Design (440070 effect#2), Fortified Soul (1271694 effect#1)
+Family Flags     : 68
+Attributes       : Is Ability (4), Passive (6), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=119452)   : Apply Player/Pet Aura (202) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Radius: 100 yards | Target: Self (1)
+#2 (id=326363)   : Apply Player/Pet Aura (202) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Radius: 100 yards | Target: Self (1)
+                   Modified By: Demon Skin (219272 effect#2), Infernal Bulwark (434561 effect#1), Illhoof's Design (440070 effect#2), Fortified Soul (1271694 effect#1)
+Description      : All single-target damage done by you and your minions grants you and your pet shadowy shields that absorb $s1% of the damage dealt$?s219272[][ for $108366d], up to $s2% of maximum health.
+
+Name             : Soul Link (id=108415) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=3, max_rank=2, req_points=23]
+                 : Effect#1 [op=mul, values=(1, 1)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not Shapeshifted (16), Do Not Sheath (18), Ignore Line of Sight (66), Suppress Caster Procs (112), Do Not Display Range (126), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), No Client Fail While Stunned, Fleeing, Confused (244), Not In Spellbook Until Learned (269), Do Not Log Absorb (348), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=119506)   : Dummy (3)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1168501)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Soul Link (108446), Soul Link (108447), Fel Synergy (389372)
+                   Family Flags: 78
+#3 (id=1168508)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
+Description      : $s2% of all damage you take is taken by your demon pet instead. $?a137044[][
+
+Name             : Dark Pact (id=108416) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Duration         : 20 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+                 : 1819: Ichor of Devils (386664 effect#1), Ichor of Devils (386664 effect#2), Frequent Donor (386686 effect#1)
+Attributes       : Not Shapeshifted (16), Allow While Sitting (27), Allow While Stealthed (37), Allow While Invisible (78), Do Not Display Range (126), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Do Not Consume Resources (197), Allow While Charmed (261), Aura Points On Client (268), Not In Spellbook Until Learned (269), Ignore Target Absorb Modifiers (371), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=119507)   : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#2 (id=180660)   : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Modified By: Ichor of Devils (386664 effect#1)
+#3 (id=728489)   : Dummy (3)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+                   Modified By: Ichor of Devils (386664 effect#2)
+#4 (id=817750)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 5
+#5 (id=1138612)  : Apply Aura (6) | Periodic Heal (8): every 1 seconds
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.64583 | PvP Coefficient: 1.6 | Target: Self (1)
+Description      : Sacrifices $s2% of your current health to shield you for $s3% of the sacrificed health plus an additional $<points> for $d. Usable while suffering from control impairing effects.
+Tooltip          : Absorbs $w1 damage.
+Variables        : $points=${$SP*2.5}
+
+Name             : Burning Rush (id=111400) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=1, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Fire
+Spell Type       : None
+GCD              : 1.5 seconds
+Duration         : Aura (infinite)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 219
+                 : 292
+                 : 1218
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Fiendish Stride (386110 effects: #1, #2)
+Family Flags     : 61
+Attributes       : Not Shapeshifted (16), No Threat (42), Include In Advanced Combat Log (72), Suppress Caster Procs (112), Suppress Target Procs (113), Ignore Damage Taken Modifiers (136), Ignore Caster Damage Modifiers (221), Ignore Damage Cancels Aura Interrupt (394), Ignore Damage Absorb (400), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
+Aura Interrupt   : Mount (17), Leave World (19), Swimming (33)
+Effects          :
+#1 (id=123718)   : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 50 | Scaled Value: 50 | SP Coefficient: 0.25 | Target: Self (1)
+                   Modified By: Fiendish Stride (386110 effect#2)
+#2 (id=128744)   : Apply Aura (6) | Periodic Max Health% Damage (89)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+                   Modified By: Fiendish Stride (386110 effect#1)
+#3 (id=181888)   : Apply Aura (6) | Modify Min Speed% (305)
+                   Base Value: 100 | Scaled Value: 100 | SP Coefficient: 0.25 | Target: Self (1)
+Description      : Increases your movement speed by $s1%, but also damages you for $s2% of your maximum health every $t2 sec. Movement impairing effects may not reduce you below $s3% of normal movement speed. Lasts $d.
+Tooltip          : Movement speed increased by $s1%.
+
+Name             : Demonic Gateway (id=111771) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=8, col=4, max_rank=1, req_points=23]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 10% Base Mana (0) (id=5421)
+Spell Level      : 49
+Range            : 10 - 40 yards
+Cast Time        : 2 seconds
+GCD              : 1.5 seconds
+Duration         : 0.001 seconds
+Cooldown         : 10 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Pillars of the Dark Portal (217519 effect#1), Norgannon's Foresight (236431 effect#1), Gateway Mastery (248855 effects: #1, #2), Pillars of the Dark Portal (337065 effect#1), Soulburn (387626 effect#3), Frequent Traveler (1265801 effect#1)
+Family Flags     : 57
+Attributes       : Not Shapeshifted (16), No AutoCast (AI) (49), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), No Summon Log (326), Cheap Missile AOI (374), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=124273)   : Summon Guardian (28)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 47319 | Misc Value 2: 4991 | Target: at Area (87)
+#2 (id=126943)   : Dummy (3)
+                   Base Value: 60 | Scaled Value: 60
+Description      : Creates a demonic gateway between two locations. Activating the gateway transports the user to the other gateway. Each player can use a Demonic Gateway only once per $<GatewayCooldown> sec.
+Variables        : $GatewayCooldown=$?a248855 [${$113942d-30}][${$113942d}]
+
+Name             : Demon Skin (id=219272) [Spell Family (5), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=3, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(1.2, 2.4)]
+                 : Effect#2 [op=set, values=(5, 10)]
+                 : Effect#4 [op=set, values=(45, 90)]
+Class            : Warlock
+School           : Physical
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Affecting Spells : Improved Rain of Fire/Hellfire (24430 effect#1), Norgannon's Foresight (236431 effect#1)
+Family Flags     : 6
+Attributes       : Is Ability (4), Passive (6), Not an Action (92), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=326663)   : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=326664)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Soul Leech (108370)
+                   Family Flags: 68
+#3 (id=326678)   : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: -15001 | Scaled Value: -15001 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Soul Leech (108366)
+                   Family Flags: 13
+#4 (id=1104809)  : Apply Aura (6) | Modify Base Resistance (142)
+                   Base Value: 45 | Scaled Value: 45 | PvP Coefficient: 1.3 | Misc Value: 1 | Target: Self (1)
+Description      : Your Soul Leech absorption now passively recharges at a rate of ${$s1/10}.1% of maximum health every $t1 sec, and may now absorb an additional $s2% of maximum health.
+
+Name             : Demonic Circle (id=268358) [Spell Family (5), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=191574)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Hide Passive From Tooltip (451)
+Effects          :
+#1 (id=715784)   : Apply Aura (6) | Unknown(195)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 48018 | Target: Self (1)
+#2 (id=1030546)  : Apply Aura (6) | Unknown(195)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 48020 | Target: Self (1)
+Description      : $@spelldesc48018
+
+Name             : Demonic Embrace (id=288843) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=752810)   : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 2 | Stat: Sta | Target: Self (1)
+Description      : Stamina increased by $s1%.
+
+Name             : Strength of Will (id=317138) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=2, max_rank=1, req_points=23, select_idx=100]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=802123)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Unending Resolve (104773)
+                   Family Flags: 54
+Description      : Unending Resolve reduces damage taken by an additional $s1%.
+
+Name             : Fel Domination (id=333889) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=1, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Duration         : 15 seconds
+Cooldown         : 180 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Affecting Spells : Norgannon's Foresight (236431 effect#1), Fel Pact (386113 effect#1), Eternal Servitude (449707 effect#1)
+Family Flags     : 123
+Attributes       : Not Shapeshifted (16), No AutoCast (AI) (49), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=829470)   : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -90 | Scaled Value: -90 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Summon Imp (688), Summon Felhunter (691), Summon Voidwalker (697), Summon Felguard (30146), Summon Sayaad (366222)
+                   Family Flags: 26, 27, 28, 29, 30, 96, 97, 98, 99, 100
+#2 (id=869636)   : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Summon Imp (688), Summon Felhunter (691), Summon Voidwalker (697), Summon Felguard (30146), Summon Sayaad (366222)
+                   Family Flags: 26, 27, 28, 29, 30, 96, 97, 98, 99, 100
+Description      : Your next Imp, Voidwalker, Incubus, Succubus, Felhunter, or Felguard Summon spell is free and has its casting time reduced by $s1%.
+
+Name             : Curse of Exhaustion (id=334275) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1% Base Mana (0) (id=305302)
+Resource         : 0 Soul Shard (7) (id=305626)
+Spell Level      : 12
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 12 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Mechanic         : Snare
+Affecting Spells : Norgannon's Foresight (236431 effect#1)
+Family Flags     : 113
+Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Nameplate Enemy Debuffs (426)
+Effects          :
+#1 (id=830121)   : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -50 | Scaled Value: -50 | SP Coefficient: 1 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+Description      : Reduces the target's movement speed by $s1% for $d.
+
+Name             : Teachings of the Black Harvest (id=385881) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1019437)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1021257)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Misc Value 2: 1825 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shadow Bulwark (17767), Shadow Bulwark (119907)
+#3 (id=1021264)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Misc Value 2: 1826 (Label) | Target: Self (1)
+                   Affected Spells (Label): Devour Magic (19505)
+#4 (id=1021267)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 11 | Misc Value 2: 1827 (Label) | Radius: 100 yards | Target: Self and Summons in Area (120)
+                   Affected Spells (Label): Seduction (6358), Seduction (119909)
+#5 (id=1021271)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 12 | Misc Value 2: 1827 (Label) | Target: Self (1)
+                   Affected Spells (Label): Seduction (6358), Seduction (119909)
+#6 (id=1021280)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Misc Value 2: 1828 (Label) | Target: Self (1)
+                   Affected Spells (Label): Pursuit (30151)
+#7 (id=1021281)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Range (5)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 5 | Misc Value 2: 1828 (Label) | Target: Self (1)
+                   Affected Spells (Label): Pursuit (30151)
+Description      : Your primary pets gain a bonus effect.
+
+Name             : Soulburn (id=385899) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Resource         : 1 Soul Shard (7) (id=265551)
+Cooldown         : 6 seconds
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1019464)  : Trigger Spell (64): Soulburn
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 387626 | Target: Self (1)
+Description      : Consumes a Soul Shard, unlocking the hidden power of your spells.
+
+Name             : Fiendish Stride (id=386110) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1019945)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Burning Rush (111400)
+                   Family Flags: 61
+#2 (id=1019946)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Burning Rush (111400)
+                   Family Flags: 61
+Description      : Reduces the damage dealt by Burning Rush by ${$abs($s1)}%. Burning Rush increases your movement speed by an additional $s2%.
+
+Name             : Fel Pact (id=386113) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=2, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1019960)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Fel Domination (333889)
+                   Family Flags: 123
+Description      : Reduces the cooldown of Fel Domination by ${$s1/-1000} sec.
+
+Name             : Fel Armor (id=386124) [Spell Family (5), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(5, 10)]
+                 : Effect#3 [op=set, values=(-1.5, -3)]
+                 : Effect#4 [op=set, values=(15, 30)]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019976)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1019977)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#3 (id=1020181)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -1.5 | Scaled Value: -1.5 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#4 (id=1022803)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : When Soul Leech absorbs damage, $s1% of damage taken is absorbed and spread out over $387847d.
+
+Name             : Demonic Fortitude (id=386617) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1020827)  : Apply Aura (6) | Increase Health% (133)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1174067)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Health (1) | NPC ID: 416 | Target: Self (1)
+#3 (id=1174068)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Health (1) | NPC ID: 17252 | Target: Self (1)
+#4 (id=1174069)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Health (1) | NPC ID: 417 | Target: Self (1)
+#5 (id=1174070)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Health (1) | NPC ID: 1860 | Target: Self (1)
+#6 (id=1174071)  : Apply Aura (6) | Modify Pet Stat (382)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Health (1) | NPC ID: 1863 | Target: Self (1)
+Description      : Increases you and your pets' maximum health by $s1%.
+
+Name             : Nightmare (id=386648) [Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1020874)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Increases the amount of damage required to break your fear effects by $s1%.
+
+Name             : Dark Accord (id=386659) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=2, max_rank=1, req_points=23, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Aura Icon (60), No Aura Log (202), Aura Points On Client (268), Spellcast Override In Spellbook (310), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1020893)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -45000 | Scaled Value: -45000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Unending Resolve (104773)
+                   Family Flags: 67
+Description      : Reduces the cooldown of Unending Resolve by ${$s1/-1000} sec.
+
+Name             : Ichor of Devils (id=386664) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1020904)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 12 | Misc Value 2: 1819 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dark Pact (108416)
+#2 (id=1020905)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 3 (23)
+                   Base Value: 300 | Scaled Value: 300 | Misc Value: 23 | Misc Value 2: 1819 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dark Pact (108416)
+#3 (id=1020928)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5
+Description      : Dark Pact sacrifices only $s3% of your current health for the same shield value.
+
+Name             : Frequent Donor (id=386686) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=1, max_rank=1, req_points=8, select_idx=200]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1020935)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Misc Value 2: 1819 (Label) | Target: Self (1)
+                   Affected Spells (Label): Dark Pact (108416)
+Description      : Reduces the cooldown of Dark Pact by ${$s1/-1000} sec.
+
+Name             : Pact of Gluttony (id=386689) [Spell Family (5), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=23]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1020941)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Healthstones you conjure for yourself are now Demonic Healthstones and can be used multiple times in combat. Demonic Healthstones cannot be traded.
+
+Name             : Fel Synergy (id=389367) [Spell Family (5), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=5, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(8, 15)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Not Shapeshifted (16), Do Not Sheath (18), Ignore Line of Sight (66), Suppress Caster Procs (112), Do Not Display Range (126), Not In Spellbook (143), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), No Client Fail While Stunned, Fleeing, Confused (244), Do Not Log Absorb (348), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1025594)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Soul Link (108446), Soul Link (108447), Fel Synergy (389372)
+                   Family Flags: 78
+#2 (id=1168510)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Soul Link (108446), Soul Link (108447), Fel Synergy (389372)
+                   Family Flags: 78
+Description      : Soul Leech also heals you for $s1% and your pet for $s2% of the absorption it grants.
+
+Name             : Demonic Resilience (id=389590) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8]
+                 : Effect#1 [op=set, values=(-2, -4)]
+                 : Effect#2 [op=set, values=(-2, -4)]
+                 : Effect#3 [op=set, values=(-8, -15)]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Icon (60), Do Not Display Range (126)
+Effects          :
+#1 (id=1025919)  : Apply Aura (6) | Modify Attacker Melee Crit Chance (187)
+                   Base Value: -2 | Scaled Value: -2 | Target: Self (1)
+#2 (id=1025920)  : Apply Aura (6) | Modify Attacker Crit Chance (197)
+                   Base Value: -2 | Scaled Value: -2 | Target: Self (1)
+#3 (id=1025921)  : Apply Aura Pet (174) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: -8 | Scaled Value: -8 | PvP Coefficient: 1.667 | Misc Value: 32 | Misc Value 2: 2357 (Label) | Radius: 100 yards | Target: Self (1)
+                   Affected Spells (Label): Avoidance (32233)
+Description      : Reduces the chance you will be critically struck by $s1%. All damage your primary demon takes is reduced by $s3%.
+
+Name             : Abyss Walker (id=389609) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=4, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal, Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1025951)  : Apply Aura (6) | Proc Trigger Spell (42): Abyss Walker
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 389614 | Target: Self (1)
+Description      : Using Demonic Circle: Teleport or your Demonic Gateway reduces all damage you take by $389614s1% for $389614d.
+
+Name             : Swift Artifice (id=452902) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=1, max_rank=1, req_points=23]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1154383)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Create Healthstone (6201), Soulstone (20707)
+                   Family Flags: 56, 110
+Description      : Reduces the cast time of Soulstone and Create Healthstone by $s1%.
+
+Name             : Blight of Weakness (id=1265799) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23, select_idx=100, override="Blight of Weakness" (id=1271748)]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1277773)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spelldesc1271748
+
+Name             : Frequent Traveler (id=1265801) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=23]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1277779)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)
+                   Base Value: -500 | Scaled Value: -500 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Demonic Gateway (111771), Demonic Gateway (113886), Demonic Gateway (113890)
+                   Family Flags: 57
+Description      : Reduces the cast time of Demonic Gateway by ${$s1/-1000}.1 sec and you can now use Demonic Gateways twice before triggering a cooldown.
+
+Name             : Infernal Beneficiary (id=1265810) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=6, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1277793)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 400 | Scaled Value: 400 | Target: Self (1)
+Description      : Healing done by Drain Life also heals your primary demon at $s1% effectiveness.
+
+Name             : Foul Mouth (id=1265813) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=2, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1277796)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1284582)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 99 | Scaled Value: 99 | Target: Self (1)
+Description      : Casting Curse of Exhaustion, Curse of Tongues, or $?a440057[Curse of the Satyr][Curse of Weakness] now curses all enemies within $s1 yds of the target.
+
+Name             : Improved Mortal Coil (id=1265816) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=7, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1277799)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Mortal Coil (6789)
+                   Family Flags: 19
+#2 (id=1282213)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effects (8)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 8 | Misc Value 2: 5920 (Label) | Target: Self (1)
+                   Affected Spells (Label): Mortal Coil (108396)
+Description      : Increases the range of Mortal Coil by $s1 yds and Mortal Coil now heals for an additional $s2% of maximum health.
+
+Name             : Oppressive Darkness (id=1270255) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=23]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1282169)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Shadowfury (30283)
+                   Family Flags: 44
+#2 (id=1282170)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 6 | Target: Self (1)
+                   Affected Spells: Shadowfury (30283)
+                   Family Flags: 44
+#3 (id=1282171)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Howl of Terror (5484)
+                   Family Flags: 35
+#4 (id=1282172)  : Apply Aura (6) | Add Flat Modifier (107): Spell Max Targets (40)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 40 | Target: Self (1)
+                   Affected Spells: Howl of Terror (5484)
+                   Family Flags: 35
+Description      : Reduces the cooldown of Shadowfury by ${$s1/-1000} sec and increases its radius by $s2 yds.
+
+Name             : Pact of the Nathrezim (id=1270690) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=5, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1282990)  : Apply Aura (6) | Modify Leech% (443)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Increases your Leech by $s1%.
+
+Name             : Pact of the Satyr (id=1270691) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1282991)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Increases your haste by $s1%.
+
+Name             : Pact of the Annihilan (id=1270693) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1282994)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Increases your critical strike chance by $s1%.
+
+Name             : Pact of the Eredar (id=1270695) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=3, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1282996)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Int | Target: Self (1)
+Description      : Increases your Intellect by $s1%.
+
+Name             : Gorefiend's Avarice (id=1270701) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=7, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), No Aura Cancel (31), No Threat (42), Not an Action (92), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Can Proc From Procs (122), Suppress Weapon Procs (151), Allow While Riding Vehicle (204), Aura Points On Client (268)
+Effects          :
+#1 (id=1283003)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Drain Life (234153)
+                   Family Flags: 3
+#2 (id=1283004)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Drain Life (234153)
+                   Family Flags: 3
+Description      : Drain Life now channels ${$s1*-2}% faster and restores health ${$s1*-2}% faster.
+
+Name             : Empowered Drain Life (id=1271689) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=7, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1284551)  : Apply Aura (6) | Add Flat Modifier (107): Spell Amplitude (27)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 27 | Target: Self (1)
+                   Affected Spells: Drain Life (234153)
+                   Family Flags: 3
+#2 (id=1284554)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Drain Life heals for an additional ${$s1*100}% of damage dealt and grants Soul Leech equal to $s2% of damage dealt.
+
+Name             : Fortified Soul (id=1271694) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1284563)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Soul Leech (108370)
+                   Family Flags: 68
+Description      : Soul Leech may now absorb an additional ${$s1}% of your maximum health.
+
+Name             : Empowered Healthstone (id=1271699) [Spell Family (5), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=1, req_points=8]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Display Range (126)
+Effects          :
+#1 (id=1284570)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Healthstone (6262), Demonic Healthstone (452930)
+                   Family Flags: 16
+#2 (id=1284571)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Healthstones heal you for an additional $s1% additional health.
+
+Name             : Blight of Tongues (id=1271802) [Spell Family (5)] 
+Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23, select_idx=200]
+Class            : Warlock
+School           : Shadow
+Spell Type       : None
+Range            : 40 yards
+GCD              : 1.5 seconds
+Duration         : 12 seconds
+Cooldown         : 120 seconds
+Category         : 2475 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Category Cooldown: 120 seconds
+Attributes       : Not Shapeshifted (16), No Threat (42), Not In Spellbook Until Learned (269), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1284756)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=1284757)  : Create Area Trigger (179)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 40854 | Target: at Self (18) -> Targeted Enemy (6)
+Description      : Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within $1272123a1 yds, increasing their casting time of all spells by $1272122s1% for $1272122d.

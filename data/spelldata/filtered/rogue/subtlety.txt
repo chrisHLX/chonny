@@ -1,0 +1,933 @@
+# Rogue — Subtlety Spec Talents
+# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 48 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Relentless Strikes (id=58423) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=5, col=6, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=51794)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+Description      : Your finishing moves generate $98440s2 Energy per combo point spent.
+
+Name             : Find Weakness (id=91023) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=1, col=4, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=94451)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Your Stealth abilities allow you to see the flaws in enemies' defenses, causing your attacks to ignore $s1% armor for $316220d.
+
+Name             : Shadow Focus (id=108209) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=5, col=4, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=119249)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 14 | Target: Self (1)
+Description      : Abilities deal $112942m1% more damage while Stealth or Shadow Dance is active.
+
+Name             : Shadow Blades (id=121471) [Spell Family (8)] 
+Talent Entry     : Subtlety [tree=spec, row=2, col=4, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 42
+Duration         : 16 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 690: Major Cooldowns
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Affecting Spells : Deeper Daggers (341550 effect#1), Veiltouched (382017 effects: #1, #2), Dark Brew (382504 effects: #2, #3), Deeper Daggers (382517 effects: #1, #2), Deeper Daggers (383405 effects: #1, #2), Death Perception (469642 effect#3), Winning Streak! (1218143 effects: #2, #3), Rogue Subtlety 12.0 Class Set 4pc (1264861 effects: #1, #2)
+Family Flags     : 78
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow While Stealthed (37), Can Proc From Procs (122), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Important Spell (491)
+Effects          :
+#1 (id=150585)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.25 | Target: Self (1)
+                   Modified By: Rogue Subtlety 12.0 Class Set 4pc (1264861 effect#2)
+#2 (id=150619)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Mutilate (1329), Gouge (1776), Cheap Shot (1833), Ambush (8676), Quaking Palm (107079), Shuriken Toss (114014), Shadowstrike (185438), Poisoned Knife (185565), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Gloomblade (200758), Flagellation (323654), Sinister Strike (341541), Shadowstrike (345121), Flagellation (384631), Ambush (385897), Ambush (430023), Gloomblade (1269214), Shadowstrike (1269336), Shuriken Toss (1269343)
+                   Family Flags: 3, 9, 10, 19, 53, 75, 98, 101, 104, 109, 124
+#3 (id=150620)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 3 (23)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Backstab (53), Garrote (703), Shiv (5938), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Echoing Reprimand (354835), Echoing Reprimand (354838), Garrote (360830), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Backstab (1269209)
+                   Family Flags: 2, 8, 29, 82
+#4 (id=902463)   : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 3 | Misc Value 2: 2942 (Label) | Target: Self (1)
+                   Affected Spells (Label): Goremaw's Bite (426593)
+#5 (id=1291976)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Kidney Shot (408), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Kidney Shot (426589), Coup de Grace (441776), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Family Flags: 17, 21, 32, 44, 92
+                   Modified By: Death Perception (469642 effect#3)
+Description      : Draws upon surrounding shadows to empower your weapons, causing your attacks to deal $s1% additional damage as Shadow and causing your combo point generating abilities to generate double combo points for $d.
+Tooltip          : Attacks deal $w1% additional damage as Shadow and combo point generating attacks generate double combo points.
+
+Name             : Deepening Shadows (id=185314) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 41
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 5969: Deepening Shadows (1271702 effect#4)
+Family Flags     : 88
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416), Unknown (450)
+Effects          :
+#1 (id=269038)   : Apply Aura (6) | Cast Linked Spell w/ Value (285): Deepening Shadows
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1271702 | Target: Self (1)
+                   Modified By: Deepening Shadows (1271702 effect#4)
+Description      : Shadow Dance duration is increased by $1271702s3% of your Haste stat.
+
+Name             : Weaponmaster (id=193537) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 6070: Replicating Shadows (382506 effect#2)
+Internal Cooldown: 0.5 seconds
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Proc cooldown on a per target basis (330), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=283933)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Replicating Shadows (382506 effect#2)
+#2 (id=1078845)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : $?s200758[Gloomblade][Backstab] and Shadowstrike have a $s1% chance to create a Shadow Clone that repeats the attack for $s2% of normal damage as Shadow.
+
+Name             : Master of Shadows (id=196976) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=289229)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Gain ${$196980s1*$196980d/$196980t1+$196980s2} Energy over $196980d when you enter Stealth or activate Shadow Dance.
+
+Name             : Gloomblade (id=200758) [Spell Family (8)] 
+Talent Entry     : Subtlety [tree=spec, row=5, col=3, max_rank=1, req_points=8, replace="Backstab" (id=53)]
+Class            : Rogue
+School           : Shadow
+Spell Type       : Melee
+Resource         : 40 Energy (3) (id=10797)
+Spell Level      : 1
+Range            : 5 yards
+GCD              : 1 seconds
+Requires weapon  : Dagger
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Shadow Focus (112942 effects: #1, #2), Shadow Blades (121471 effect#2), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Symbols of Death (227151 effect#1), Gloomblade (246332 effect#1), The First of the Dead (248210 effect#2), Perforate (277720 effect#1), Inevitability (278683 effect#3), Between the Eyes (315341 effects: #2, #3), Improved Backstab (319949 effect#2), Master Assassin's Mark (340094 effect#1), The Rotten (341134 effects: #1, #3), Deathly Shadows (341202 effects: #1, #2), Deeper Daggers (341550 effect#1), Deathly Shadows (350964 effects: #1, #2), Deadly Precision (381542 effect#1), Veiltouched (382017 effects: #1, #2), Lethality (382238 effect#2), Dark Brew (382504 effects: #2, #3), Deeper Daggers (382517 effects: #1, #2), Deeper Daggers (383405 effects: #1, #2), Danse Macabre (393969 effects: #1, #2), The Rotten (394203 effects: #1, #3, #4), Perforated Veins (394254 effect#1), Honed Blades (394894 effects: #1, #2), Perforated Veins (426602 effect#1), Fazed (441224 effects: #1, #4), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Winning Streak! (1218143 effects: #2, #3), Unshakeable Drive (1248775 effect#1), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Find Weakness (1264521 effect#3), Ancient Arts (1268936 effects: #2, #3), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Family Flags     : 54, 109, 123
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Require All Targets (58), Discount Power On Miss (59), Initiate Combat Post-Cast (Enables Auto-Attack) (84), Requires Main-Hand Weapon (106), Allow Class Ability Procs (416)
+Aura Interrupt   : Raid Encounter Start or M+ Start (40)
+Effects          :
+#1 (id=295616)   : School Damage (2): shadow
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.23 | PvP Coefficient: 1.74 | Target: Targeted Enemy (6)
+#2 (id=295617)   : Energize Power (30)
+                   Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
+                   Modified By: Shadow Blades (121471 effect#2), The First of the Dead (248210 effect#2), The Rotten (341134 effect#1), The Rotten (394203 effect#1)
+Description      : Punctures your target with your shadow-infused blade for $s1 Shadow damage, bypassing armor.$?s319949[ Critical strikes apply Find Weakness for $319949s1 sec.][]
+
+Name             : Dark Shadow (id=245687) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=9, col=4, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(5, 10)]
+                 : Effect#2 [op=set, values=(5, 10)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=373906)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.6667 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Shadow Dance (185313)
+                   Family Flags: 103
+#2 (id=1291859)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.6667 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Shadow Dance (185313)
+                   Family Flags: 103
+Description      : Shadow Dance increases all ability damage by $s2%, and Shadowstrike and Shuriken Storm damage by an additional $s1%.
+
+Name             : Shot in the Dark (id=257505) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=4, col=3, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=480742)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 5 | Target: Self (1)
+Description      : After using Vanish or Shadow Dance, your next Cheap Shot is free and ignores its cooldown.
+
+Name             : Night Terrors (id=277953) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=4, col=7, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=733395)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 5 | Target: Self (1)
+Description      : Shuriken Storm reduces enemies' movement speed by $206760s1% for $206760d.
+
+Name             : Improved Backstab (id=319949) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=806752)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1013868)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7
+                   Affected Spells: Backstab (53), Gloomblade (200758), Backstab (1269209), Gloomblade (1269214)
+                   Family Flags: 2, 109
+Description      : $?s200758[Gloomblade][Backstab] has $s2% increased critical strike chance.
+
+Name             : Improved Shuriken Storm (id=319951) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=806754)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=887574)   : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Shuriken Storm (197835), Shuriken Storm (1269340)
+                   Family Flags: 127
+Description      : Shuriken Storm has $s2% increased critical strike chance.
+
+Name             : Premeditation (id=343160) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=844764)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 7 | Scaled Value: 7 | Target: Self (1)
+Description      : After entering Stealth, your next combo point generating ability generates full combo points.
+
+Name             : The Rotten (id=382015) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013203)  : Apply Aura (6) | Proc Trigger Spell (42): The Rotten
+                   Base Value: 2 | Scaled Value: 2 | Trigger Spell: 394203 | Target: Self (1)
+Description      : After activating Shadow Dance, your next $@switch<$s1>[attack][$s1 attacks] that $@switch<$s1>[generates][generate] combo points $@switch<$s1>[deals][deal] $394203s3% increased damage.
+
+Name             : Veiltouched (id=382017) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013205)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Flagellation (323654), Slaughter Poison (323660), Sepsis (328305), Sepsis (328306), Flagellation (345316), Echoing Reprimand (354835), Echoing Reprimand (354838), Flagellation (384631), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Flagellation (394757), Goremaw's Bite (426591), Goremaw's Bite (426592), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Implacable Strikes (1265794), Gloomblade (1269214), Goremaw's Bite (1269217)
+                   Family Flags: 15, 16, 28, 67, 78, 82, 97, 109, 118, 124
+#2 (id=1083888)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Flagellation (323654), Slaughter Poison (323660), Sepsis (328305), Sepsis (328306), Flagellation (345316), Echoing Reprimand (354835), Echoing Reprimand (354838), Flagellation (384631), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Flagellation (394757), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Implacable Strikes (1265794), Gloomblade (1269214)
+                   Family Flags: 15, 16, 28, 78, 82, 97, 109, 118, 124
+#3 (id=1083890)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 2696 (Label) | Target: Self (1)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+#4 (id=1083891)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Misc Value 2: 2696 (Label) | Target: Self (1)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+#5 (id=1183438)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Misc Value 2: 3936 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
+#6 (id=1183439)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 3936 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
+Description      : Your abilities deal $s1% increased magic damage.
+
+Name             : Quick Decisions (id=382503) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013869)  : Apply Aura (6) | Add Percent Modifier (108): Spell Range (5)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Grappling Hook (195457)
+                   Family Flags: 41, 102
+#2 (id=1013870)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1013871)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1206 (Category) | Target: Self (1)
+Description      : Shadowstep's cooldown is reduced by $s3%, and its maximum range is increased by $s1%.
+
+Name             : Dark Brew (id=382504) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013872)  : Apply Aura (6) | Modify Spell School (220)
+                   Base Value: 1 | Scaled Value: 1 | School: shadow | Target: Self (1)
+                   Affected Spells: Rupture (1943), Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Double Dose (273009), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Sepsis (328305), Sepsis (328306), Numbing Poison (359078), Rupture (360826), Amplifying Poison (383414), Atrophic Poison (392388), Mutilated Flesh (394021), Rupture (394031), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Implacable Strikes (1265794), Rupture (1270203)
+                   Family Flags: 16, 20, 28, 51, 97, 118, 120, 126
+#2 (id=1013873)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Deadly Poison (2818), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8680), Crippling Poison (115196), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315585), Flagellation (323654), Sepsis (328305), Sepsis (328306), Flagellation (345316), Numbing Poison (359078), Rupture (360826), Amplifying Poison (383414), Flagellation (384631), Atrophic Poison (392388), Mutilated Flesh (394021), Rupture (394031), Deadly Poison (394324), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Flagellation (394757), Goremaw's Bite (426591), Goremaw's Bite (426592), Implacable Strikes (1265794), Gloomblade (1269214), Goremaw's Bite (1269217), Rupture (1270203)
+                   Family Flags: 15, 20, 51, 67, 78, 97, 109, 118, 124, 126
+#3 (id=1083909)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Deadly Poison (2818), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8680), Crippling Poison (115196), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315585), Flagellation (323654), Sepsis (328305), Sepsis (328306), Flagellation (345316), Numbing Poison (359078), Rupture (360826), Amplifying Poison (383414), Flagellation (384631), Atrophic Poison (392388), Mutilated Flesh (394021), Rupture (394031), Deadly Poison (394324), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Flagellation (394757), Implacable Strikes (1265794), Gloomblade (1269214), Rupture (1270203)
+                   Family Flags: 15, 20, 51, 78, 97, 109, 118, 124, 126
+#4 (id=1083910)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 2696 (Label) | Target: Self (1)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+#5 (id=1083911)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 2696 (Label) | Target: Self (1)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+#6 (id=1173487)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 3936 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
+#7 (id=1173488)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 3936 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
+#8 (id=1291924)  : Apply Aura (6) | Add Flat Modifier (107): Spell Proc Chance (18)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 18 | Target: Self (1)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
+                   Family Flags: 14, 16, 28, 45, 68, 83
+Description      : Your weapon poisons have $s8% increased application chance and now deal damage as Shadow instead of Nature.
+
+Name             : The First Dance (id=382505) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013874)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Remaining out of combat for $470677d increases the duration of your next Shadow Dance by ${$470678s1/1000} sec.
+
+Name             : Replicating Shadows (id=382506) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=7, col=7, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Proc cooldown on a per target basis (330), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013875)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.333333 | Target: Self (1)
+                   Affected Spells: Secret Technique (282449), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 122
+#2 (id=1013876)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 6070 (Label) | Target: Self (1)
+                   Affected Spells (Label): Weaponmaster (193537), Shuriken Tornado (1264764), Ancient Arts (1268932)
+Description      : Shadow Clones deal $s1% increased damage and your effects that have a chance to create them have $s2% additional chance to occur.
+
+Name             : Shrouded in Darkness (id=382507) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=4, col=1, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013878)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 12 | Misc Value 2: 2360 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shroud of Concealment (114018), Shroud of Concealment (115834)
+Description      : Shroud of Concealment increases the movement speed of allies by $s1% and leaving its area no longer cancels the effect.
+
+Name             : Planned Execution (id=382508) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=6, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013881)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Shadow Dance increases the critical strike damage bonus of your abilities by $185313s9%.
+
+Name             : Shadowed Finishers (id=382511) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013889)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Eviscerate and Black Powder deal an additional $s1% damage as Shadow while Find Weakness is active.
+
+Name             : Improved Find Weakness (id=382512) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013890)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 874 (Label) | Target: Self (1)
+                   Affected Spells (Label): Find Weakness (316220), Find Weakness (1264521)
+Description      : Find Weakness causes your attacks to ignore an additional $s1% armor.
+
+Name             : Fade to Nothing (id=382514) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=4, col=5, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013895)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Movement speed increased by $386237s1% and damage taken reduced by $386237s2% for $386237d after gaining Stealth, Vanish, or Shadow Dance.
+
+Name             : Cloaked in Shadows (id=382515) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=4, col=5, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013898)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 18 | Scaled Value: 18 | Target: Self (1)
+Description      : Vanish grants you a shield for $386165d, absorbing damage equal to $s1% of your maximum health.
+
+Name             : Deeper Daggers (id=382517) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013901)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+                   Affected Spells: Shadow Blades (121471), Gloomblade (200758), Shadow Blades (279043), Flagellation (323654), Flagellation (345316), Flagellation (384631), Flagellation (394757), Goremaw's Bite (426591), Goremaw's Bite (426592), Gloomblade (1269214), Goremaw's Bite (1269217)
+                   Family Flags: 15, 67, 78, 109, 124
+#2 (id=1276141)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Shadow Blades (121471), Gloomblade (200758), Shadow Blades (279043), Flagellation (323654), Flagellation (345316), Flagellation (384631), Flagellation (394757), Gloomblade (1269214)
+                   Family Flags: 15, 78, 109, 124
+#3 (id=1276142)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value 2: 2696 (Label) | Target: Self (1)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+#4 (id=1276143)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Misc Value 2: 2696 (Label) | Target: Self (1)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+#5 (id=1276144)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value 2: 3936 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
+#6 (id=1276145)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Misc Value 2: 3936 (Label) | Target: Self (1)
+                   Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
+Description      : Shadow damage increased by $383405s1%.
+
+Name             : Perforated Veins (id=382518) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1013902)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=1276197)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?s200758[Gloomblade][Backstab], Shuriken Storm, and Shadowstrike have $1264521s3% increased damage while Find Weakness is active.
+
+Name             : Lingering Shadow (id=382524) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=8, col=4, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013909)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1013910)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 37 | Misc Value 2: 2333 (Label) | Target: Self (1)
+                   Affected Spells (Label): Lingering Shadow (385960)
+#3 (id=1019867)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 18 | Scaled Value: 18 | Target: Self (1)
+Description      : After Shadow Dance ends, $?s200758[Gloomblade][Backstab] deals an additional $s1% damage as Shadow, fading by ${$s1/$s3}.1% per sec.
+
+Name             : Finality (id=382525) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=9, col=6, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(15, 30)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013911)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.5 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Eviscerate (196819), Eviscerate (245691), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Coup de Grace (441776), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Eviscerate (1269205), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 17, 20, 44
+#2 (id=1013912)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Eviscerate and Black Powder have $s1% increased critical strike damage bonus.
+
+Name             : Danse Macabre (id=382528) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=10, col=4, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, White Ranged, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013915)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : While Shadow Dance is active, each different attack that generates or spends combo points lashes out at the target, dealing $1264397s1 Shadow damage.
+
+Name             : Silent Storm (id=385722) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1019185)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Gaining Stealth, Vanish, or Shadow Dance causes your next Shuriken Storm to have $385727s1% increased chance to critically strike.
+
+Name             : Secret Stratagem (id=394320) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=6, col=6, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1033856)  : Apply Aura (6) | Modify Max Cost (63)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Keep It Rolling (381989), Rupture (394031), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Roll the Bones (1214909), Crimson Tempest (1247227), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 17, 20, 32, 35, 44, 81, 89, 92, 100, 111, 112, 113, 116
+#2 (id=1033857)  : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
+#3 (id=1033858)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 4 | Target: Self (1)
+#4 (id=1033859)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Dispatch (2098), Envenom (32645), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Crimson Tempest (1247227), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Family Flags: 17, 32, 35, 44, 81, 92, 111, 112
+#5 (id=1033860)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 20, 32, 44, 81, 95, 100
+#6 (id=1105233)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 2943 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shadow Techniques (196911)
+Description      : Gain $s1 additional max combo point.
+
+Name             : Double Dance (id=394930) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=6, col=3, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 22
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1034993)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1615 (Category) | Target: Self (1)
+                   Affected Spells (Category): Shadow Dance (185313)
+Description      : Shadow Dance has $s1 additional charge.
+
+Name             : Warning Signs (id=426555) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=6, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1105122)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Shadow Dance increases attack speed by $185313s8%.
+
+Name             : Ephemeral Bond (id=426563) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 46
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1105137)  : Apply Aura (6) | Modify Healing Received% (118)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#2 (id=1115206)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 3 | Misc Value 2: 3057 (Label) | Target: Self (1)
+                   Affected Spells (Label): Soothing Darkness (393970), Soothing Darkness (393971)
+#3 (id=1115210)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 3 | Misc Value 2: 173 (Label) | Target: Self (1)
+                   Affected Spells (Label): Crimson Vial (185311), Crimson Vial (212198), Crimson Vial (354494)
+Description      : Increases healing received by $s1%.
+
+Name             : Goremaw's Bite (id=426591) [Spell Family (8)] 
+Talent Entry     : Subtlety [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : Melee
+Resource         : 25 Energy (3) (id=305640)
+Range            : 5 yards
+GCD              : 1 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Affecting Spells : Deadly Precision (381542 effect#1), Veiltouched (382017 effect#1), Lethality (382238 effect#2), Dark Brew (382504 effect#2), Deeper Daggers (382517 effect#1), Deeper Daggers (383405 effect#1), The Rotten (394203 effects: #3, #4), Perforated Veins (394254 effect#1), Perforated Veins (426602 effect#1), Fazed (441224 effect#4), Winning Streak! (1218143 effect#2)
+Family Flags     : 67
+Attributes       : Initiates Combat (Enables Auto-Attack) (41), No Attack Parry (248), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1105220)  : Trigger Spell (64): Goremaw's Bite
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 426592 | Target: Targeted Enemy (6)
+#2 (id=1105221)  : Trigger Spell (64): Goremaw's Bite
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 426593 | Target: Self (1)
+Description      : Lashes out at the target, inflicting $426592s1 Shadow damage and causing your next $426593u finishing moves to cost no Energy.
+
+Name             : Shadowcraft (id=426594) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=10, col=3, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1105228)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1105229)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1109359)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : While Shadow Dance is active, your Shadow Techniques triggers $s3% more frequently, stores $m2 additional combo $Lpoint:points;, and generates $s1 additional Energy.
+
+Name             : Terrifying Pace (id=428387) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=4, col=7, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143)
+Effects          :
+#1 (id=1108661)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Shuriken Storm increases your movement speed by $428389s1% for $428389d when striking $s1 or more enemies.
+
+Name             : Exhilarating Execution (id=428486) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=4, col=3, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), No Aura Cancel (31), Can Proc From Procs (122), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Only Proc From Class Abilities (415), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1109351)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1109352)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Your finishing moves heal you for $s1% of damage done. At full health gain shielding instead, absorbing up to $s2% of your maximum health.
+
+Name             : Death Perception (id=469642) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=9, col=2, max_rank=2, req_points=20]
+                 : Effect#1 [op=set, values=(5, 10)]
+                 : Effect#2 [op=set, values=(5, 10)]
+                 : Effect#3 [op=set, values=(5, 10)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1184111)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.6 | Misc Value: 12 | Misc Value 2: 874 (Label) | Target: Self (1)
+                   Affected Spells (Label): Find Weakness (316220), Find Weakness (1264521)
+#2 (id=1190163)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.6 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Shadow Dance (185313)
+                   Family Flags: 103
+#3 (id=1190167)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.6 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Shadow Blades (121471), Shadow Blades (279043)
+                   Family Flags: 78
+Description      : Find Weakness increases the damage of finishing moves by $s1%.
+
+Name             : Shuriken Tornado (id=1264764) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=6, col=7, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 6070: Replicating Shadows (382506 effect#2)
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1276342)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Replicating Shadows (382506 effect#2)
+#2 (id=1276343)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Shuriken Storm has a $s1% chance to create a Shadow Clone that repeats the attack for $s2% of normal damage as Shadow.
+
+Name             : Potent Powder (id=1265952) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1278047)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#2 (id=1278048)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Black Powder deals increased damage equal to $s1% of your Mastery when it spends $s2 or more combo points.
+
+Name             : Ancient Arts (id=1268932) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 6070: Replicating Shadows (382506 effect#2)
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1280500)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Replicating Shadows (382506 effect#2)
+#2 (id=1280501)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Damaging attacks that expend Shadow Techniques to generate combo points have a $s1% chance per stack expended to create a Shadow Clone that repeats the attack for $s2% of normal damage as Shadow.
+
+Name             : Ancient Arts (id=1268936) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1280507)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1282156)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061)
+                   Family Flags: 123
+#3 (id=1282157)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061)
+                   Family Flags: 123
+Description      : Shadow damage increased by $s2%.
+
+Name             : Ancient Arts (id=1268939) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1280510)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : After attacks that generate combo points, if $s1 or more stacks of Shadow Techniques remain, your next damaging finishing move will expend them to generate combo points up to your max.
+
+Name             : Improved Secret Technique (id=1279444) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1291943)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Secret Technique (1269560)
+                   Family Flags: 32
+#2 (id=1291973)  : Apply Aura (6) | Modify Pet Damage Done% (429)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#3 (id=1291974)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Secret Technique damage increased by $s1%.
+
+Name             : Umbral Edge (id=1281468) [Spell Family (8), Passive] 
+Talent Entry     : Subtlety [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Not In Spellbook (143), Proc cooldown on a per target basis (330), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1294596)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Secret Technique (282449), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 122
+#2 (id=1294597)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : Shadow Clones deal $s1% increased damage.

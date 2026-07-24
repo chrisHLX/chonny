@@ -1,0 +1,666 @@
+# Evoker Spell Index
+
+One line per spell record; each lists every file it appears in.
+
+- **[DNT] Activate GCD (id=359115) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Aberrant Spellforge (id=452037) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Aberrant Spellforge (id=452059) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Aberrant Spellforge (id=452062) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Accretion (id=407876) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Accretion (id=411932) [Spell Family (224)]** — `baseline.txt`
+- **Aerial Bombardment (desc=Black) (id=440263) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Aerial Bombardment (desc=Black) (id=440283) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Aerial Mastery (id=365933) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Afterimage (desc=Bronze) (id=431875) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Anachronism (id=407869) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Ancient Flame (id=369990) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Ancient Flame (id=375583) [Spell Family (224)]** — `baseline.txt`
+- **Animosity (id=375797) [Spell Family (224), Passive]** — `devastation.txt`
+- **Arcane Intensity (desc=Blue) (id=375618) [Spell Family (224), Passive]** — `devastation.txt`
+- **Arcane Reach (id=454983) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Ashes in Motion (id=1264365) [Spell Family (224), Passive]** — `hero-flameshaper.txt`
+- **Aspects' Favor (id=407243) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Attuned to the Dream (id=376930) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Augmentation Evoker (id=1256942) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Augmentation Evoker (id=396186) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Augmentation Evoker (id=462074) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Azerite Surge (id=451940)** — `baseline.txt`
+- **Azure Celerity (id=1219723) [Spell Family (224), Passive]** — `devastation.txt`
+- **Azure Essence Burst (id=375721) [Spell Family (224), Passive]** — `devastation.txt`
+- **Azure Strike (desc=Blue) (id=362969) [Spell Family (224)]** — `baseline.txt`
+- **Azure Strike (id=355627) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Azure Sweep (desc=Blue) (id=1265872) [Spell Family (224)]** — `baseline.txt`
+- **Azure Sweep (id=1265867) [Spell Family (224), Passive]** — `devastation.txt`
+- **Azure Sweep (id=1265871) [Spell Family (224)]** — `baseline.txt`
+- **Azure Sweep (id=1279796) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Battle Fatigue (id=134732) [Passive, Hidden]** — `baseline.txt`
+- **Bestow Weyrnstone (desc=Blue) (id=410513) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Bestow Weyrnstone (desc=Bronze) (id=408233) [Spell Family (224)]** — `augmentation.txt`
+- **Bestow Weyrnstone (id=410318) [Spell Family (224)]** — `baseline.txt`
+- **Bestow Weyrnstone (id=410334) [Spell Family (224)]** — `baseline.txt`
+- **Bestow Weyrnstone (id=410502) [Spell Family (224)]** — `baseline.txt`
+- **Bestow Weyrnstone (id=410508) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Black Aspect's Favor (id=407254) [Spell Family (224)]** — `baseline.txt`
+- **Black Attunement (desc=Black) (id=403264) [Spell Family (224)]** — `baseline.txt`
+- **Black Attunement (id=403295) [Spell Family (224)]** — `baseline.txt`
+- **Blast Furnace (id=375510) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Blazing Shards (id=409848) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=364342) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381732) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381741) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381746) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381748) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381749) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381750) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381751) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381752) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381753) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381754) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381756) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381757) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=381758) [Spell Family (224)]** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=432652)** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=432655)** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=432658)** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=432674)** — `baseline.txt`
+- **Blessing of the Bronze (desc=Bronze) (id=442744)** — `baseline.txt`
+- **Blessing of the Bronze Highlight (id=1271912) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Blistering Scales (desc=Black) (id=360827) [Spell Family (224)]** — `augmentation.txt`
+- **Blistering Scales (desc=Black) (id=360828) [Spell Family (224)]** — `baseline.txt`
+- **Bombardments (desc=Black) (id=434300) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Bombardments (desc=Black) (id=434481) [Spell Family (224)]** — `baseline.txt`
+- **Bombardments (id=434473) [Spell Family (224)]** — `baseline.txt`
+- **Bombardments (id=441661) [Spell Family (224)]** — `baseline.txt`
+- **Bombardments (id=442161) [Spell Family (224)]** — `baseline.txt`
+- **Bombardments (id=443788) [Spell Family (224)]** — `baseline.txt`
+- **Boon of the Covenants (id=387168) [Spell Family (224)]** — `baseline.txt`
+- **Boon of the Covenants (id=387169) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Bountiful Bloom (id=370886) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Breath of Eons (desc=Bronze) (id=403631) [Spell Family (224)]** — `augmentation.txt`
+- **Breath of Eons (desc=Bronze) (id=403755) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Breath of Eons (desc=Bronze) (id=403758) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Breath of Eons (desc=Bronze) (id=442204) [Spell Family (224)]** — `baseline.txt`
+- **Breath of Eons (id=409632) [Spell Family (224)]** — `baseline.txt`
+- **Breath of Eons (id=409990) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Bronze Aspect's Favor (id=407244) [Spell Family (224)]** — `baseline.txt`
+- **Bronze Attunement (desc=Bronze) (id=403265) [Spell Family (224)]** — `baseline.txt`
+- **Bronze Attunement (id=403296) [Spell Family (224)]** — `baseline.txt`
+- **Burning Adrenaline (desc=Red) (id=444020) [Spell Family (224), Passive]** — `hero-flameshaper.txt`
+- **Burnout (id=375801) [Spell Family (224), Passive]** — `devastation.txt`
+- **Burnout (id=375802) [Spell Family (224)]** — `baseline.txt`
+- **Call of Ysera (id=373834) [Spell Family (224), Passive]** — `preservation.txt`
+- **Catalyze (id=386283) [Spell Family (224), Passive]** — `devastation.txt`
+- **Causality (id=375777) [Spell Family (224), Passive]** — `devastation.txt`
+- **Cauterizing Flame (desc=Red) (id=374251) [Spell Family (224)]** — `class-talents.txt`
+- **Chaotic Dragonrage (id=408127) [Spell Family (224)]** — `baseline.txt`
+- **Charged Blast (desc=Blue) (id=370454) [Spell Family (224)]** — `baseline.txt`
+- **Charged Blast (id=370455) [Spell Family (224), Passive, Hidden]** — `devastation.txt`
+- **Chi Torpedo (id=115008) [Spell Family (53)]** — `class-talents.txt`
+- **Chi Torpedo (id=119085) [Spell Family (53)]** — `baseline.txt`
+- **Chronal Dynamo (id=1291522) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Chrono Flame (desc=Bronze) (id=431442) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Chrono Flame (desc=Red) (id=431483) [Spell Family (224)]** — `baseline.txt`
+- **Chrono Flame (desc=Red) (id=431582) [Spell Family (224)]** — `baseline.txt`
+- **Chrono Flame (desc=Red) (id=431583) [Spell Family (224)]** — `baseline.txt`
+- **Chrono Flame (desc=Red) (id=431584) [Spell Family (224)]** — `baseline.txt`
+- **Chrono Flames (desc=Bronze) (id=431443) [Spell Family (224)]** — `baseline.txt`
+- **Chrono Flames (id=1237591) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Chrono Ward (id=409676) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Chrono Ward (id=409678) [Spell Family (224)]** — `baseline.txt`
+- **Chronoboon (desc=Bronze) (id=1260484) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Clairvoyant (id=1250914) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Clobbering Sweep (id=375443) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Close as Clutchmates (id=396043) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Command Squadron (desc=Black) (id=1260745) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Concentrated Power (desc=Black) (id=1261448) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Conduit of Flame (desc=Red) (id=444843) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Consume Flame (desc=Red) (id=444088) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Consume Flame (desc=Red) (id=444089) [Spell Family (224)]** — `baseline.txt`
+- **Consume Flame (desc=Red) (id=445495) [Spell Family (224)]** — `baseline.txt`
+- **Decharge Essence [DNT] (id=392523) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Deep Breath (desc=Black) (id=1236943) [Spell Family (224)]** — `baseline.txt`
+- **Deep Breath (desc=Black) (id=1247728) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Deep Breath (desc=Black) (id=353759) [Spell Family (224)]** — `baseline.txt`
+- **Deep Breath (desc=Black) (id=357210) [Spell Family (224)]** — `baseline.txt`
+- **Deep Breath (desc=Black) (id=362010) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Deep Breath (desc=Black) (id=362019) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Deep Breath (desc=Black) (id=433874) [Spell Family (224)]** — `baseline.txt`
+- **Deep Exhalation (id=1264321) [Spell Family (224), Passive]** — `hero-flameshaper.txt`
+- **Defy Fate (id=404195) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Defy Fate (id=404196) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Defy Fate (id=404381) [Spell Family (224)]** — `baseline.txt`
+- **Delay Harm (id=1239574) [Spell Family (224)]** — `baseline.txt`
+- **Delay Harm (id=376207) [Spell Family (224), Passive]** — `preservation.txt`
+- **Devastation Evoker (id=1256943) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Devastation Evoker (id=1286123) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Devastation Evoker (id=356809) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Devastation Evoker (id=462076) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Disintegrate (desc=Blue) (id=1236949) [Spell Family (224)]** — `baseline.txt`
+- **Disintegrate (desc=Blue) (id=356995) [Spell Family (224)]** — `baseline.txt`
+- **Disintegrate (desc=Blue) (id=369819) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Diverted Power (desc=Black) (id=441219) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Divide and Conquer (desc=PvP Talent) (id=384691) [Spell Family (224)]** — `baseline.txt`
+- **Divide and Conquer (desc=PvP Talent) (id=403727) [Spell Family (224)]** — `baseline.txt`
+- **Double-time (desc=Bronze) (id=431874) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Double-time (desc=Bronze) (id=460688) [Spell Family (224)]** — `baseline.txt`
+- **Draconic Attunements (id=403208) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Draconic Instincts (desc=Red) (id=445958) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Draconic Instincts (desc=Red) (id=445959) [Spell Family (224)]** — `baseline.txt`
+- **Draconic Legacy (id=376166) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Dragonrage (desc=Red) (id=375087) [Spell Family (224)]** — `devastation.txt`
+- **Dragonrage (id=375088) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Dream Breath (desc=Green) (id=355936) [Spell Family (224)]** — `preservation.txt`
+- **Dream Breath (desc=Green) (id=382614) [Spell Family (224)]** — `baseline.txt`
+- **Dream Breath (id=355941) [Spell Family (224)]** — `baseline.txt`
+- **Dream Breath (id=376788) [Spell Family (224)]** — `baseline.txt`
+- **Dream Catalyst (id=371258) [Spell Family (224)]** — `baseline.txt`
+- **Dream Flight (desc=Green) (id=359816) [Spell Family (224)]** — `preservation.txt`
+- **Dream Flight (desc=Green) (id=363502) [Spell Family (224)]** — `baseline.txt`
+- **Dream Flight (id=362361) [Spell Family (224)]** — `baseline.txt`
+- **Dream Flight (id=362362) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Dream of Spring (id=414969) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Dream Simulacrum (id=1241669) [Spell Family (224), Passive]** — `preservation.txt`
+- **Duplicate (id=1259171) [Spell Family (224)]** — `baseline.txt`
+- **Duplicate (id=1259173) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Duplicate (id=1259174) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Duplicate (id=1259175) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Ebon Might (desc=Black) (id=395152) [Spell Family (224)]** — `augmentation.txt`
+- **Ebon Might (desc=Black) (id=395296) [Spell Family (224)]** — `baseline.txt`
+- **Ebon Might (desc=Black) (id=413654)** — `baseline.txt`
+- **Ebon Might (desc=Black) (id=423803)** — `baseline.txt`
+- **Ebon Might (desc=Black) (id=426404) [Spell Family (224)]** — `baseline.txt`
+- **Ebon Might (id=412707) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Echo (desc=Bronze) (id=364343) [Spell Family (224)]** — `preservation.txt`
+- **Echoing Strike (id=410784) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Emerald Blossom (desc=Green) (id=355913) [Spell Family (224)]** — `baseline.txt`
+- **Emerald Blossom (desc=Green) (id=355916) [Spell Family (224)]** — `baseline.txt`
+- **Emerald Blossom (desc=Green) (id=373766) [Spell Family (224)]** — `baseline.txt`
+- **Emerald Blossom (id=365261) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Emerald Trance (id=424155) [Spell Family (224)]** — `baseline.txt`
+- **Emerald Trance (id=424402) [Spell Family (224)]** — `baseline.txt`
+- **Empath (id=370840) [Spell Family (224)]** — `baseline.txt`
+- **Empath (id=376138) [Spell Family (224), Passive]** — `preservation.txt`
+- **Empty Hourglass (id=404369) [Spell Family (224)]** — `baseline.txt`
+- **Energizing Flame (id=400006) [Spell Family (224), Passive]** — `baseline.txt`
+- **Energy Loop (id=372233) [Spell Family (224), Passive]** — `preservation.txt`
+- **Energy Loop (id=372234) [Spell Family (224)]** — `baseline.txt`
+- **Engulfing Blaze (id=370837) [Spell Family (224), Passive]** — `devastation.txt`
+- **Enkindle (desc=Red) (id=444016) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Enkindle (id=444017) [Spell Family (224)]** — `baseline.txt`
+- **Enkindle (id=445740) [Spell Family (224)]** — `baseline.txt`
+- **Enkindled (id=375554) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Eruption (desc=Black) (id=1259172) [Spell Family (224)]** — `baseline.txt`
+- **Eruption (desc=Black) (id=395160) [Spell Family (224)]** — `augmentation.txt`
+- **Eruption (desc=Black) (id=424428) [Spell Family (224)]** — `baseline.txt`
+- **Eruption (desc=Black) (id=438653) [Spell Family (224)]** — `baseline.txt`
+- **Essence Attunement (id=375722) [Spell Family (224), Passive]** — `augmentation.txt`, `preservation.txt`, `devastation.txt`
+- **Essence Burst (id=359565) [Spell Family (224), Passive]** — `baseline.txt`
+- **Essence Burst (id=359618) [Spell Family (224)]** — `baseline.txt`
+- **Essence Burst (id=361519) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Essence Burst (id=369297) [Spell Family (224), Passive]** — `preservation.txt`
+- **Essence Burst (id=369299) [Spell Family (224)]** — `baseline.txt`
+- **Essence Burst (id=392268) [Spell Family (224)]** — `baseline.txt`
+- **Essence Burst (id=396187) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Essence Burst (id=417402) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Essence Burst (id=430835)** — `baseline.txt`
+- **Essence Gathering (id=409896) [Spell Family (224)]** — `baseline.txt`
+- **Essence Rush (id=409899) [Spell Family (224)]** — `baseline.txt`
+- **Essence Well (desc=Red) (id=1265993) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Eternity Surge (desc=Blue) (id=359073) [Spell Family (224)]** — `devastation.txt`
+- **Eternity Surge (desc=Blue) (id=359077) [Spell Family (224)]** — `baseline.txt`
+- **Eternity Surge (desc=Blue) (id=382411) [Spell Family (224)]** — `baseline.txt`
+- **Eternity Surge (desc=Blue) (id=431192)** — `baseline.txt`
+- **Eternity's Span (id=375757) [Spell Family (224), Passive]** — `devastation.txt`
+- **Event Horizon (id=411164) [Spell Family (224), Passive]** — `devastation.txt`
+- **Evoker (id=462075) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker - Midnight PrePatch - 11.2 Class Set 2pc (id=1283651) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker - Midnight PrePatch - 11.2 Class Set 2pc - Healing (id=1283653) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker - Midnight PrePatch - 11.2 Class Set 4pc (id=1283652) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker - Midnight PrePatch - 11.2 Class Set 4pc - Healing (id=1283654) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 10.0 Class Set 2pc (id=415222) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 10.0 Class Set 4pc (id=415221) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 10.1 Class Set 2pc (id=414877) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 10.1 Class Set 4pc (id=414878) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 10.2 Class Set 2pc (id=422868) [Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 10.2 Class Set 4pc (id=422869) [Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 11.0 Class Set 2pc (id=453672) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 11.0 Class Set 4pc (id=453671) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 11.0 Class Set 4pc (id=456220) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Evoker Augmentation 11.0 Class Set 4pc (id=456221) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Evoker Augmentation 11.1 Class Set 2pc (id=1215689) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 11.1 Class Set 4pc (id=1215691) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 12.0 Class Set 2pc (id=1264819) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 12.0 Class Set 4pc (id=1264820) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 10.1 Class Set 2pc (id=405518) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 10.1 Class Set 4pc (id=405519) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 10.2 Class Set 2pc (id=422870) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 10.2 Class Set 4pc (id=422871) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 11.0 Class Set 2pc (id=453676) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 11.0 Class Set 4pc (id=453675) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 11.1 Class Set 2pc (id=1215687) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 11.1 Class Set 4pc (id=1215692) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 12.0 Class Set 2pc (id=1264821) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 12.0 Class Set 4pc (id=1264822) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation Class Set 2pc (id=393642) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation Class Set 4pc (id=393643) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 10.1 Class Set 2pc (id=405520) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 10.1 Class Set 4pc (id=405522) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 10.2 Class Set 2pc (id=422872) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 10.2 Class Set 4pc (id=422873) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 11.0 Class Set 2pc (id=453673) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 11.0 Class Set 4pc (id=453674) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 11.1 Class Set 2pc (id=1215549) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 11.1 Class Set 4pc (id=1215610) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 12.0 Class Set 2pc (id=1264823) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 12.0 Class Set 4pc (id=1264824) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation Class Set 2pc (id=393644) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation Class Set 4pc (id=393645) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Exhilarating Burst (id=377100) [Spell Family (224), Passive]** — `preservation.txt`
+- **Exhilarating Burst (id=377102) [Spell Family (224)]** — `baseline.txt`
+- **Expanded Lungs (desc=Red) (id=444845) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Expunge (desc=Green) (id=365585) [Spell Family (224)]** — `class-talents.txt`
+- **Extended Battle (desc=Black) (id=441212) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Extended Flight (id=375517) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Exuberance (id=375542) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Eye of Infinity (id=411165) [Spell Family (224), Passive]** — `devastation.txt`
+- **Fate Mirror (desc=Bronze) (id=404908) [Spell Family (224)]** — `baseline.txt`
+- **Fate Mirror (desc=Bronze) (id=412774) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Fate Mirror (desc=Bronze) (id=413786) [Spell Family (224)]** — `baseline.txt`
+- **Fate Weaver (id=424325) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Feed the Flames (id=369846) [Spell Family (224), Passive]** — `devastation.txt`
+- **Feed the Flames (id=405874) [Spell Family (224)]** — `baseline.txt`
+- **Feed the Flames (id=411288) [Spell Family (224)]** — `baseline.txt`
+- **Feed the Flames (id=411299) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Field of Dreams (id=370062) [Spell Family (224), Passive]** — `preservation.txt`
+- **Fire Breath (desc=Red) (id=1283718)** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=1283719)** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=357208) [Spell Family (224)]** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=357209) [Spell Family (224)]** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=366903) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=366904) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=366905) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=382266) [Spell Family (224)]** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=431164)** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=431165)** — `baseline.txt`
+- **Fire Breath (desc=Red) (id=444249) [Spell Family (224)]** — `baseline.txt`
+- **Fire Breath (id=367106)** — `baseline.txt`
+- **Fire Breath (id=367995)** — `baseline.txt`
+- **Fire Breath (id=369416)** — `baseline.txt`
+- **Fire Torrent (desc=Red) (id=1265992) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Firestorm (desc=Red) (id=368847) [Spell Family (224)]** — `baseline.txt`
+- **Firestorm (desc=Red) (id=369372) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Firestorm (desc=Red) (id=369374) [Spell Family (224)]** — `baseline.txt`
+- **Firestorm (desc=Red) (id=456657) [Spell Family (224)]** — `baseline.txt`
+- **Flow State (id=385696) [Spell Family (224), Passive]** — `preservation.txt`
+- **Flow State (id=390148) [Spell Family (224)]** — `baseline.txt`
+- **Fluttering Seedlings (id=359793) [Spell Family (224), Passive]** — `preservation.txt`
+- **Fluttering Seedlings (id=361361) [Spell Family (224)]** — `baseline.txt`
+- **Foci of Life (id=375574) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Font of Magic (id=375783) [Spell Family (224), Passive]** — `preservation.txt`
+- **Font of Magic (id=408083) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Font of Magic (id=411212) [Spell Family (224), Passive]** — `devastation.txt`
+- **Forger of Mountains (id=375528) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Fragile Echoes (id=429020) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Full Belly (id=377087) [Spell Family (224)]** — `baseline.txt`
+- **Fulminous Roar (desc=Red) (id=1218447) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Fury of the Aspects (id=390386) [Spell Family (224)]** — `baseline.txt`
+- **FX Poison Wave Test - SK [DNT] (desc=Black) (id=439253)** — `baseline.txt`
+- **Golden Hour (desc=Bronze) (id=378196) [Spell Family (224), Passive]** — `preservation.txt`
+- **Golden Hour (desc=Bronze) (id=378213) [Spell Family (224)]** — `baseline.txt`
+- **Golden Opportunity (desc=Bronze) (id=432004) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Grace Period (id=376239) [Spell Family (224), Passive]** — `preservation.txt`
+- **Hardened Scales (desc=Black) (id=441180) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Heat Wave (id=375725) [Spell Family (224), Passive]** — `devastation.txt`
+- **Heavy Dilation (id=363145) [Spell Family (224)]** — `baseline.txt`
+- **Heavy Wingbeats (id=368838) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Hoarded Power (id=375796) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Honed Aggression (id=371038) [Spell Family (224), Passive]** — `devastation.txt`
+- **Hover (id=357302) [Spell Family (224)]** — `baseline.txt`
+- **Hover (id=357332) [Spell Family (224)]** — `baseline.txt`
+- **Hover (id=357377) [Spell Family (224)]** — `baseline.txt`
+- **Hover (id=357379) [Spell Family (224)]** — `baseline.txt`
+- **Hover (id=358267) [Spell Family (224)]** — `baseline.txt`
+- **Hover (id=358268) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Hover (id=372563) [Spell Family (224)]** — `baseline.txt`
+- **Hover (id=393271) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Hover (id=394784) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Igneous Crucible (id=372954) [Spell Family (224)]** — `baseline.txt`
+- **Igneous Crucible (id=372956) [Spell Family (224)]** — `baseline.txt`
+- **Ignition Rush (id=408775) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Imminent Destruction (id=370781) [Spell Family (224), Passive]** — `devastation.txt`
+- **Imminent Destruction (id=411055) [Spell Family (224)]** — `baseline.txt`
+- **Imminent Destruction (id=459537) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Imminent Destruction (id=459574) [Spell Family (224)]** — `baseline.txt`
+- **Improved Defy Fate (id=1268881) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Improved Emerald Blossom (id=365262) [Spell Family (224), Passive]** — `baseline.txt`
+- **Inferno's Blessing (id=410261) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Inferno's Blessing (id=410263) [Spell Family (224)]** — `baseline.txt`
+- **Inferno's Blessing (id=410265) [Spell Family (224)]** — `baseline.txt`
+- **Inherent Resistance (id=375544) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Initial Evoker (id=356816) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Innate Magic (id=375520) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Inner Flame (id=1242745) [Spell Family (224), Passive]** — `preservation.txt`
+- **Inner Flame (id=1242747) [Spell Family (224)]** — `baseline.txt`
+- **Inner Radiance (id=386405) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Instability Matrix (desc=Bronze) (id=431484) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Instinctive Arcana (id=376164) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Insurance! (id=1215550) [Spell Family (224)]** — `baseline.txt`
+- **Insurance! (id=1215553) [Spell Family (224)]** — `baseline.txt`
+- **Interwoven Threads (desc=Bronze) (id=412713) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Iridescence (id=370867) [Spell Family (224), Passive]** — `devastation.txt`
+- **Iridescence: Blue (id=386399) [Spell Family (224)]** — `baseline.txt`
+- **Iridescence: Blue (id=399370) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Iridescence: Red (id=386353) [Spell Family (224)]** — `baseline.txt`
+- **Jackpot! (id=1217769) [Spell Family (224)]** — `baseline.txt`
+- **Just in Time (id=376204) [Spell Family (224), Passive]** — `preservation.txt`
+- **Landslide (desc=Black) (id=355689) [Spell Family (224)]** — `baseline.txt`
+- **Landslide (desc=Black) (id=358385) [Spell Family (224)]** — `class-talents.txt`
+- **Landslide (desc=Black) (id=363800) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Landslide (desc=Black) (id=414253)** — `baseline.txt`
+- **Landslide (desc=Black) (id=414255) [Hidden]** — `baseline.txt`
+- **Landslide (id=414257)** — `baseline.txt`
+- **Lay Waste (id=371034) [Spell Family (224), Passive]** — `devastation.txt`
+- **Leaping Flames (id=369939) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Leaping Flames (id=370901) [Spell Family (224)]** — `baseline.txt`
+- **Leaping Flames (id=370917) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Legacy of the Lifebinder (desc=Red) (id=1264269) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Life-Giver's Flame (id=371426) [Spell Family (224), Passive]** — `preservation.txt`
+- **Life-Giver's Flame (id=371441) [Spell Family (224)]** — `baseline.txt`
+- **Lifebind (id=373267) [Spell Family (224)]** — `baseline.txt`
+- **Lifebind (id=373268) [Spell Family (224)]** — `baseline.txt`
+- **Lifebind (id=373270) [Spell Family (224), Passive]** — `preservation.txt`
+- **Lifecinders (desc=Red) (id=444322) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Lifecinders (desc=Red) (id=444323) [Spell Family (224)]** — `baseline.txt`
+- **Lifeforce Mender (id=376179) [Spell Family (224), Passive]** — `preservation.txt`
+- **Lifespark (id=394552) [Spell Family (224)]** — `baseline.txt`
+- **Lifespark (id=443176) [Spell Family (224)]** — `baseline.txt`
+- **Lifespark (id=443177) [Spell Family (224), Passive, Hidden]** — `preservation.txt`
+- **Light Dilation (id=363143) [Spell Family (224)]** — `baseline.txt`
+- **Light's Hand (id=1223935)** — `baseline.txt`
+- **Limitless Potential (id=394402) [Spell Family (224)]** — `baseline.txt`
+- **Living Flame (desc=Red) (id=361469) [Spell Family (224)]** — `baseline.txt`
+- **Living Flame (desc=Red) (id=361500) [Spell Family (224)]** — `baseline.txt`
+- **Living Flame (desc=Red) (id=361509) [Spell Family (224)]** — `baseline.txt`
+- **Living Flame (desc=Red) (id=430806)** — `baseline.txt`
+- **Living Flame (desc=Red) (id=430817)** — `baseline.txt`
+- **Living Flame (id=364664)** — `baseline.txt`
+- **Living Flame (id=369398)** — `baseline.txt`
+- **Living Flame (id=370260)** — `baseline.txt`
+- **Living Flame (id=377277)** — `baseline.txt`
+- **Living Flame (id=383880)** — `baseline.txt`
+- **Living Flame (id=385757)** — `baseline.txt`
+- **Living Flame (id=399787)** — `baseline.txt`
+- **Lush Growth (id=375561) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Mail Specialization (desc=Passive) (id=366524) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Maneuverability (desc=Black) (id=433871) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Mass Disintegrate (desc=Black) (id=436335) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Mass Disintegrate (desc=Black) (id=436336) [Spell Family (224)]** — `baseline.txt`
+- **Mass Eruption (desc=Black) (id=438587) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Mass Eruption (desc=Black) (id=438588) [Spell Family (224)]** — `baseline.txt`
+- **Mass Return (desc=Bronze) (id=361178) [Spell Family (224)]** — `baseline.txt`
+- **Mastery: Giantkiller (id=362980) [Spell Family (224), Passive]** — `baseline.txt`
+- **Mastery: Life-Binder (id=363510) [Spell Family (224), Passive]** — `baseline.txt`
+- **Mastery: Timewalker (id=406380) [Spell Family (224), Passive]** — `baseline.txt`
+- **Medium Dilation (id=363144) [Spell Family (224)]** — `baseline.txt`
+- **Melt Armor (desc=Black) (id=441172) [Spell Family (224)]** — `baseline.txt`
+- **Melt Armor (desc=Black) (id=441176) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Menacing Presence (desc=Black) (id=441181) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Menacing Presence (desc=Black) (id=441201) [Spell Family (224)]** — `baseline.txt`
+- **Merithra's Blessing (desc=Green) (id=1256581) [Spell Family (224)]** — `baseline.txt`
+- **Merithra's Blessing (desc=Green) (id=1256688) [Spell Family (224)]** — `baseline.txt`
+- **Merithra's Blessing (id=1256577) [Spell Family (224), Passive]** — `preservation.txt`
+- **Merithra's Blessing (id=1256579) [Spell Family (224)]** — `baseline.txt`
+- **Merithra's Blessing (id=1256682) [Spell Family (224), Passive]** — `preservation.txt`
+- **Merithra's Blessing (id=1256689) [Spell Family (224), Passive]** — `preservation.txt`
+- **Might of the Black Dragonflight (desc=Black) (id=441705) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Mighty Inferno (id=1291457) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Molten Blood (id=410643) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Molten Blood (id=410651) [Spell Family (224)]** — `baseline.txt`
+- **Momentum Shift (id=408004) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Momentum Shift (id=408005) [Spell Family (224)]** — `baseline.txt`
+- **Motes of Acceleration (desc=Bronze) (id=432008) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Motes of Acceleration (desc=Bronze) (id=432060) [Spell Family (224)]** — `baseline.txt`
+- **Motes of Acceleration (desc=Bronze) (id=432061) [Spell Family (224)]** — `baseline.txt`
+- **Motes of Acceleration (desc=Bronze) (id=432101) [Spell Family (224)]** — `baseline.txt`
+- **Motes of Possibility (id=409267) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Motes of Possibility (id=409274) [Spell Family (224)]** — `baseline.txt`
+- **Motes of Possibility (id=419934) [Spell Family (224)]** — `baseline.txt`
+- **Motes of Possibility (id=419954) [Spell Family (224)]** — `baseline.txt`
+- **Natural Convergence (id=369913) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Naturalize (desc=Green) (id=360823) [Spell Family (224)]** — `baseline.txt`
+- **Nimble Flyer (desc=Black) (id=441253) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Nourishing Sands (id=406041) [Spell Family (224), Passive]** — `baseline.txt`
+- **Nourishing Sands (id=406043) [Spell Family (224)]** — `baseline.txt`
+- **Nourishing Sands (id=406054) [Spell Family (224)]** — `baseline.txt`
+- **Nozdormu Adept (desc=Bronze) (id=431715) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Nozdormu's Teachings (id=376237) [Spell Family (224), Passive]** — `preservation.txt`
+- **Obsidian Bulwark (id=375406) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Obsidian Scales (desc=Black) (id=363916) [Spell Family (224)]** — `class-talents.txt`
+- **Obsidian Shards (id=409776) [Spell Family (224)]** — `baseline.txt`
+- **Onslaught (desc=Black) (id=441245) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Onyx Legacy (id=386348) [Spell Family (224), Passive]** — `devastation.txt`
+- **Oppressing Roar (desc=Black) (id=372048) [Spell Family (224)]** — `class-talents.txt`
+- **Oppressing Roar (desc=Black) (id=406971) [Spell Family (224)]** — `baseline.txt`
+- **Ouroboros (id=381921) [Spell Family (224), Passive]** — `preservation.txt`
+- **Ouroboros (id=387350) [Spell Family (224)]** — `baseline.txt`
+- **Overawe (id=374346) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Overclock (desc=Bronze) (id=1260647) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Overlord (id=410260) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Panacea (desc=Green) (id=387761) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Panacea (desc=Green) (id=387763) [Spell Family (224)]** — `baseline.txt`
+- **Perilous Fate (desc=Bronze) (id=439606) [Spell Family (224)]** — `baseline.txt`
+- **Perilous Fate (id=410253) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Permeating Chill (id=370898) [Spell Family (224)]** — `baseline.txt`
+- **Permeating Chill (id=381773) [Spell Family (224), Passive]** — `baseline.txt`
+- **Plot the Future (id=407866) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Potent Mana (id=418101) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Power Nexus (id=369908) [Spell Family (224), Passive]** — `augmentation.txt`, `preservation.txt`, `devastation.txt`
+- **Power Swell (id=370839) [Spell Family (224), Passive]** — `devastation.txt`
+- **Power Swell (id=376850) [Spell Family (224)]** — `baseline.txt`
+- **Prescience (desc=Bronze) (id=409311) [Spell Family (224)]** — `augmentation.txt`
+- **Prescience (desc=Bronze) (id=410089) [Spell Family (224)]** — `baseline.txt`
+- **Preservation Evoker (id=1256944) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Preservation Evoker (id=356810) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Preservation Evoker (id=462078) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Primacy (desc=Bronze) (id=431654) [Spell Family (224)]** — `baseline.txt`
+- **Primacy (desc=Bronze) (id=431657) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Prolong Life (id=410687) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Protracted Talons (id=369909) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Pupil of Alexstrasza (id=407814) [Spell Family (224), Passive]** — `augmentation.txt`
+- **PvP Rules Enabled (HARDCODED) (id=134735) [Hidden]** — `baseline.txt`
+- **PvP Rules Enabled for Dummy (id=178806)** — `baseline.txt`
+- **PvP Rules Enabled for Dummy (id=228695) [Hidden]** — `baseline.txt`
+- **Pyre (desc=Red) (id=1236970) [Spell Family (224)]** — `baseline.txt`
+- **Pyre (desc=Red) (id=357211) [Spell Family (224)]** — `devastation.txt`
+- **Pyre (desc=Red) (id=357212) [Spell Family (224)]** — `baseline.txt`
+- **Pyre (desc=Red) (id=431151)** — `baseline.txt`
+- **Pyre (id=393568) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Pyre (id=431152) [Hidden]** — `baseline.txt`
+- **Quell (id=351338) [Spell Family (224)]** — `augmentation.txt`, `devastation.txt`
+- **Reactive Hide (id=409329) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Reactive Hide (id=410256) [Spell Family (224)]** — `baseline.txt`
+- **Recall (desc=Bronze) (id=371807) [Spell Family (224)]** — `baseline.txt`
+- **Recall (desc=Bronze) (id=387642) [Spell Family (224)]** — `baseline.txt`
+- **Recall (desc=Bronze) (id=403760) [Spell Family (224)]** — `baseline.txt`
+- **Recall (desc=Bronze) (id=455962) [Spell Family (224)]** — `baseline.txt`
+- **Recall (desc=Bronze) (id=471078) [Spell Family (3), Hidden]** — `baseline.txt`
+- **Recall (id=371806) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Recall (id=371817) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Recall (id=371838) [Spell Family (224)]** — `baseline.txt`
+- **Recuperate (id=1231411)** — `baseline.txt`
+- **Recuperate (id=1231418)** — `baseline.txt`
+- **Refined Essence (desc=Black) (id=1261452) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Regenerative Chitin (id=406907) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Regenerative Magic (id=387787) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Renewing Blaze (desc=Red) (id=374348) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Renewing Blaze (desc=Red) (id=374349) [Spell Family (224)]** — `baseline.txt`
+- **Renewing Breath (id=371257) [Spell Family (224), Passive]** — `preservation.txt`
+- **Renewing Breath (id=381923) [Spell Family (224)]** — `baseline.txt`
+- **Rescue (id=370665) [Spell Family (224)]** — `class-talents.txt`
+- **Reverberations (desc=Bronze) (id=431615) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Reversion (desc=Bronze) (id=366155) [Spell Family (224)]** — `preservation.txt`
+- **Reversion (desc=Bronze) (id=367364) [Spell Family (224)]** — `baseline.txt`
+- **Rewind (desc=Bronze) (id=363534) [Spell Family (224)]** — `preservation.txt`
+- **Ricocheting Pyroclast (id=406659) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Risen Fury (id=1271799) [Spell Family (224)]** — `baseline.txt`
+- **Rising Fury (id=1271687) [Spell Family (224), Passive, Hidden]** — `devastation.txt`
+- **Rising Fury (id=1271783) [Spell Family (224)]** — `baseline.txt`
+- **Rising Fury (id=1271788) [Spell Family (224), Passive, Hidden]** — `devastation.txt`
+- **Rising Fury (id=1271796) [Spell Family (224), Passive, Hidden]** — `devastation.txt`
+- **Ruby Embers (id=365937) [Spell Family (224), Passive]** — `devastation.txt`
+- **Ruby Essence Burst (id=376872) [Spell Family (224), Passive]** — `devastation.txt`
+- **Rumbling Earth (id=459120) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Sands of Time (id=395153) [Spell Family (224), Passive]** — `baseline.txt`
+- **Sands of Time (id=413525) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Scarlet Adaptation (id=372469) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Scarlet Adaptation (id=372470) [Spell Family (224)]** — `baseline.txt`
+- **Scintillation (id=370821) [Spell Family (224), Passive]** — `devastation.txt`
+- **Scorching Embers (id=370819) [Spell Family (224), Passive]** — `devastation.txt`
+- **Sense Power (id=361021) [Spell Family (224)]** — `baseline.txt`
+- **Sense Power (id=361022) [Spell Family (224)]** — `baseline.txt`
+- **Shape of Flame (desc=Red) (id=445074) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Shape of Flame (desc=Red) (id=445134) [Spell Family (224)]** — `baseline.txt`
+- **Shattering Star (desc=Blue) (id=1265804) [Spell Family (224)]** — `baseline.txt`
+- **Shattering Stars (id=1265802) [Spell Family (224), Passive]** — `devastation.txt`
+- **Shifting Sands (id=413984) [Spell Family (224)]** — `baseline.txt`
+- **Shimmer (id=212653) [Spell Family (3)]** — `class-talents.txt`
+- **Single-Button Assistant (id=1229376)** — `baseline.txt`
+- **Sleep Walk (desc=Green) (id=360806) [Spell Family (224)]** — `class-talents.txt`
+- **Slipstream (desc=Black) (id=441257) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Source of Magic (desc=Blue) (id=369459) [Spell Family (224)]** — `class-talents.txt`
+- **Source of Magic (desc=Blue) (id=372571) [Spell Family (224)]** — `baseline.txt`
+- **Source of Magic (desc=Blue) (id=372581) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Spark of Insight (id=377099) [Spell Family (224), Passive]** — `preservation.txt`
+- **Spatial Paradox (desc=Bronze) (id=406732) [Spell Family (224)]** — `class-talents.txt`
+- **Spatial Paradox (desc=Bronze) (id=406789) [Spell Family (224)]** — `baseline.txt`
+- **Spatial Paradox (desc=Bronze) (id=407497) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Spellweaver's Dominance (id=370845) [Spell Family (224), Passive]** — `devastation.txt`
+- **Spiritbloom (desc=Green) (id=367226) [Spell Family (224)]** — `baseline.txt`
+- **Spiritbloom (desc=Green) (id=382731) [Spell Family (224)]** — `baseline.txt`
+- **Spiritbloom (id=367230) [Spell Family (224)]** — `baseline.txt`
+- **Spiritbloom (id=367231) [Spell Family (224)]** — `baseline.txt`
+- **Spiritbloom (id=409894) [Spell Family (224)]** — `baseline.txt`
+- **Spiritual Clarity (id=376150) [Spell Family (224), Passive]** — `preservation.txt`
+- **Star Salvo (id=1265826) [Spell Family (224), Passive]** — `devastation.txt`
+- **Stasis (desc=Bronze) (id=370537) [Spell Family (224)]** — `preservation.txt`
+- **Stasis (desc=Bronze) (id=370564) [Spell Family (224)]** — `baseline.txt`
+- **Strafing Run (id=1266151) [Spell Family (224), Passive]** — `devastation.txt`
+- **Strafing Run (id=1266165) [Spell Family (224)]** — `baseline.txt`
+- **Stretch Time (id=410352) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Stretch Time (id=410355) [Spell Family (224)]** — `baseline.txt`
+- **Stretch Time (id=413924) [Spell Family (224)]** — `baseline.txt`
+- **Stretch Time (id=414356) [Spell Family (224)]** — `baseline.txt`
+- **Strike from Above (id=1267206) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Sun's Avatar (id=431910) [Spell Family (10)]** — `baseline.txt`
+- **Symbiotic Bloom (id=410685) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Symbiotic Bloom (id=410686) [Spell Family (224)]** — `baseline.txt`
+- **Tail Swipe (desc=Racial) (id=368970) [Spell Family (224)]** — `baseline.txt`
+- **Tailwind (id=375556) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Tailwind (id=378105) [Spell Family (224)]** — `baseline.txt`
+- **Tectonic Locus (id=408002) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Tempered Scales (id=396571) [Spell Family (224), Passive]** — `baseline.txt`
+- **Tempest Barrier (id=382289) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
+- **Tempest Barrier (id=382290) [Spell Family (3)]** — `baseline.txt`
+- **Tempo Charged (id=1237978) [Spell Family (224), Passive, Hidden]** — `preservation.txt`
+- **Temporal Anomaly (desc=Bronze) (id=373861) [Spell Family (224)]** — `preservation.txt`
+- **Temporal Anomaly (desc=Bronze) (id=373862) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Artificer (id=381922) [Spell Family (224), Passive]** — `preservation.txt`
+- **Temporal Barrier (desc=Bronze) (id=1291636) [Spell Family (224)]** — `preservation.txt`
+- **Temporal Burst (desc=Bronze) (id=431695) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Temporal Burst (desc=Bronze) (id=431698) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Compression (id=362874) [Spell Family (224), Passive]** — `preservation.txt`
+- **Temporal Compression (id=362877) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Cycle (desc=Bronze) (id=1237269) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Wound (desc=Bronze) (id=409560) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Wound (desc=Bronze) (id=409722) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Wound (desc=Bronze) (id=409992) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Wound (desc=Bronze) (id=409993) [Spell Family (224)]** — `baseline.txt`
+- **Temporal Wound (desc=Bronze) (id=409994) [Spell Family (224)]** — `baseline.txt`
+- **Temporality (desc=Bronze) (id=431872) [Spell Family (224)]** — `baseline.txt`
+- **Temporality (desc=Bronze) (id=431873) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Terror of the Skies (desc=Black) (id=372245) [Spell Family (224)]** — `baseline.txt`
+- **Terror of the Skies (id=371032) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Thread of Fate (desc=Bronze) (id=431716) [Spell Family (224)]** — `baseline.txt`
+- **Thread of Fate (desc=Bronze) (id=432895) [Spell Family (224)]** — `baseline.txt`
+- **Thread of Fate (desc=Bronze) (id=432896) [Spell Family (224)]** — `baseline.txt`
+- **Tiger Dash (id=252216) [Spell Family (7)]** — `class-talents.txt`
+- **Time Bender (id=394544) [Spell Family (224)]** — `baseline.txt`
+- **Time Convergence (desc=Bronze) (id=431984) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Time Convergence (desc=Bronze) (id=431991) [Spell Family (224)]** — `baseline.txt`
+- **Time Dilation (desc=Bronze) (id=357170) [Spell Family (224)]** — `preservation.txt`
+- **Time Dilation (id=361029) [Spell Family (224)]** — `baseline.txt`
+- **Time Lord (id=372527) [Spell Family (224), Passive]** — `preservation.txt`
+- **Time of Need (id=368412) [Spell Family (224), Passive]** — `preservation.txt`
+- **Time of Need (id=368415) [Spell Family (224)]** — `baseline.txt`
+- **Time of Need (id=368435) [Spell Family (224)]** — `baseline.txt`
+- **Time Skip (desc=Bronze) (id=404977) [Spell Family (224)]** — `augmentation.txt`
+- **Time Spiral (desc=Bronze) (id=374968) [Spell Family (224)]** — `class-talents.txt`
+- **Time Spiral (id=375226) [Spell Family (15)]** — `baseline.txt`
+- **Time Spiral (id=375229) [Spell Family (107)]** — `baseline.txt`
+- **Time Spiral (id=375230) [Spell Family (7)]** — `baseline.txt`
+- **Time Spiral (id=375234) [Spell Family (224)]** — `baseline.txt`
+- **Time Spiral (id=375238) [Spell Family (9)]** — `baseline.txt`
+- **Time Spiral (id=375240) [Spell Family (3)]** — `baseline.txt`
+- **Time Spiral (id=375252) [Spell Family (53)]** — `baseline.txt`
+- **Time Spiral (id=375253) [Spell Family (10)]** — `baseline.txt`
+- **Time Spiral (id=375254) [Spell Family (6)]** — `baseline.txt`
+- **Time Spiral (id=375255) [Spell Family (8)]** — `baseline.txt`
+- **Time Spiral (id=375256) [Spell Family (11)]** — `baseline.txt`
+- **Time Spiral (id=375257) [Spell Family (5)]** — `baseline.txt`
+- **Time Spiral (id=375258) [Spell Family (4)]** — `baseline.txt`
+- **Timeless Magic (id=376240) [Spell Family (224), Passive]** — `preservation.txt`
+- **Timelessness (desc=Bronze) (id=412710) [Spell Family (224)]** — `augmentation.txt`
+- **Timelessness (desc=Bronze) (id=412712) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Tip the Scales (desc=Bronze) (id=370553) [Spell Family (224)]** — `class-talents.txt`
+- **Titan's Gift (id=443264) [Spell Family (224), Passive]** — `preservation.txt`
+- **Titanic Precision (desc=Red) (id=445625) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Titanic Wrath (id=386272) [Spell Family (224), Passive]** — `devastation.txt`
+- **Titanic Wrath (id=397870) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Tomorrow, Today (id=412723) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Trailblazer (desc=Red) (id=444849) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Trembling Earth (id=424368) [Spell Family (224)]** — `baseline.txt`
+- **Twin Echoes (desc=Bronze) (id=1242031) [Spell Family (224), Passive]** — `preservation.txt`
+- **Twin Echoes (desc=Bronze) (id=1242759) [Spell Family (224)]** — `baseline.txt`
+- **Twin Flame (desc=Red) (id=1265979) [Spell Family (224), Passive, Hidden]** — `hero-flameshaper.txt`
+- **Twin Flame (id=1265980) [Spell Family (224)]** — `baseline.txt`
+- **Twin Flame (id=1265991) [Spell Family (224)]** — `baseline.txt`
+- **Twin Guardian (id=370888) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Twin Guardian (id=370889) [Spell Family (224)]** — `baseline.txt`
+- **Tyranny (id=376888) [Spell Family (224), Passive]** — `devastation.txt`
+- **Unity (id=387431) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Unravel (desc=Blue) (id=1264378) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Unravel (desc=Blue) (id=1264379) [Spell Family (224)]** — `baseline.txt`
+- **Unrelenting Siege (desc=Black) (id=441246) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Unrelenting Siege (desc=Black) (id=441248) [Spell Family (224)]** — `baseline.txt`
+- **Unshakable (id=1239581) [Spell Family (224), Passive]** — `preservation.txt`
+- **Unyielding Domain (id=412733) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Upheaval (desc=Black) (id=396286) [Spell Family (224)]** — `augmentation.txt`
+- **Upheaval (desc=Black) (id=396288) [Spell Family (224)]** — `baseline.txt`
+- **Upheaval (desc=Black) (id=408092) [Spell Family (224)]** — `baseline.txt`
+- **Upheaval (desc=Black) (id=431620) [Spell Family (224)]** — `baseline.txt`
+- **Upheaval (id=1219253) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Upheaval (id=1219254) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Upheaval (id=1219255) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Upheaval (id=1219257) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Upheaval (id=410295) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Upheaval (id=410296) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Upheaval (id=410297) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Upheaval (id=410298) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Verdant Embrace (desc=Green) (id=360995) [Spell Family (224)]** — `class-talents.txt`
+- **Verdant Embrace (id=361195) [Spell Family (224)]** — `baseline.txt`
+- **Verdant Embrace (id=409895) [Spell Family (224)]** — `baseline.txt`
+- **Volatility (id=369089) [Spell Family (224), Passive]** — `devastation.txt`
+- **Volatility (id=369090) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Volatility (id=369091) [Spell Family (224), Hidden]** — `baseline.txt`
+- **Volcanic Upsurge (id=456142) [Spell Family (224)]** — `baseline.txt`
+- **Volcanism (id=406904) [Spell Family (224), Passive]** — `augmentation.txt`
+- **Walloping Blow (id=387341) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Walloping Blow (id=387344) [Spell Family (224)]** — `baseline.txt`
+- **Warp (desc=Bronze) (id=429459)** — `baseline.txt`
+- **Warp (desc=Bronze) (id=429460)** — `baseline.txt`
+- **Warp (desc=Bronze) (id=429483) [Spell Family (224), Passive]** — `hero-chronowarden.txt`
+- **Warp (desc=Bronze) (id=436036)** — `baseline.txt`
+- **Warp (desc=Bronze) (id=436065)** — `baseline.txt`
+- **Wingleader (desc=Black) (id=441206) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
+- **Wings of Liberty (id=1241704) [Spell Family (224), Passive]** — `preservation.txt`
+- **Zephyr (id=374227) [Spell Family (224)]** — `class-talents.txt`

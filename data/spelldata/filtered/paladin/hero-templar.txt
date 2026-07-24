@@ -1,0 +1,301 @@
+# Paladin — Templar Hero Talents
+# Extracted verbatim from paladin.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Light's Deliverance (id=425518) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1103397)  : Apply Aura (6) | Proc Trigger Spell (42): Light's Deliverance
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 433674 | Target: Self (1)
+#2 (id=1146237)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 1 | Scaled Value: 1 | Trigger Spell: 433674 | Target: Self (1)
+Description      : You gain a stack of Light's Deliverance when you call down an Empyrean Hammer.
+
+Name             : Light's Guidance (id=427445) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Hide Passive From Tooltip (451)
+Effects          :
+#1 (id=1106892)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 427441 | Target: Self (1)
+#2 (id=1119184)  : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1119193)  : Dummy (3)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+#4 (id=1119213)  : Dummy (3)
+                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+Description      : $?a137028[Divine Toll][Wake of Ashes] is replaced with $@spellname427453 for $427441d after it is cast.
+
+Name             : Zealous Vindication (id=431463) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119263)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Hammer of Light instantly calls down $s1 Empyrean Hammers on your target when it is cast.
+
+Name             : Shake the Heavens (id=431533) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 3022
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119381)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : After casting Hammer of Light, you call down an Empyrean Hammer on a nearby target every $431536T sec, for $431536d.
+
+Name             : Wrathful Descent (id=431551) [Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 4200: Retribution Paladin (1258011 effect#18)
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119408)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=1123101)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Modified By: Retribution Paladin (1258011 effect#18)
+#3 (id=1123102)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : When Empyrean Hammer critically strikes, $s2% of its damage is dealt to nearby enemies.
+
+Name             : Higher Calling (id=431687) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119613)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : $?a137028[Crusader Strike, Hammer of Wrath and Judgment][Crusader Strike, Hammer of Wrath and Blade of Justice] extend the duration of Shake the Heavens by $s1 sec.
+
+Name             : Sacrosanct Crusade (id=431730) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Internal Cooldown: 5 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1119699)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1170606)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#3 (id=1170607)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#4 (id=1171027)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#5 (id=1171028)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#6 (id=1171029)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : $?a137028[Divine Toll][Wake of Ashes] surrounds you with a Holy barrier for $?a137028[$s1][$s4]% of your maximum health.
+
+Name             : Hammerfall (id=432463) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1121178)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $?a137028[Shield of the Righteous and Word of Glory]?s383328[Final Verdict][Templar's Verdict]$?a137027[ and Divine Storm][] calls down an Empyrean Hammer on a nearby enemy.
+
+Name             : Endless Wrath (id=432615) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1121463)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Misc Value 2: 3086 (Label) | Target: Self (1)
+                   Affected Spells (Label): Empyrean Hammer (431398)
+Description      : Empyrean Hammer has a $s1% increased chance to critically strike.
+
+Name             : Undisputed Ruling (id=432626) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 3022
+Internal Cooldown: 1 seconds
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1121476)  : Apply Aura (6) | Proc Trigger Spell (42): Undisputed Ruling
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 432629 | Target: Self (1)
+Description      : Hammer of Light $?a137028[grants Shield of the Righteous, erupts a Consecration beneath its target][applies Judgment to its targets], and increases your Haste by $432629s1% for $432629d.
+
+Name             : Divine Hammer (id=432929) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1121950)  : Apply Aura (6) | Proc Trigger Spell (42): Divine Hammer
+                   Base Value: 100 | Scaled Value: 100 | Trigger Spell: 198034 | Target: Self (1)
+#2 (id=1123066)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#3 (id=1123071)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#4 (id=1123072)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Divine Toll summons Divine Hammers that spin around you for $198034d.
+
+Name             : Sanctification (id=432977) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1122007)  : Apply Aura (6) | Proc Trigger Spell (42)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Casting Judgment increases the damage of Empyrean Hammer by $433671s1% for $433671d.
+
+Name             : Unrelenting Charger (id=432990) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1122024)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Divine Steed (190784), Divine Steed (221883), Divine Steed (221885), Divine Steed (221886), Divine Steed (221887), Divine Steed (254471), Divine Steed (254472), Divine Steed (254473), Divine Steed (254474), Divine Steed (276111), Divine Steed (276112), Divine Steed (294133), Divine Steed (363608), Divine Steed (453804), Divine Steed (1289616), Divine Steed (1289617)
+                   Family Flags: 36
+Description      : Divine Steed lasts ${$s1/1000} sec longer and increases your movement speed by an additional $442221s1% for the first $442221d.
+
+Name             : Bonds of Fellowship (id=432992) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1122028)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : You receive 20% less damage from Blessing of Sacrifice and each time its target takes damage, you gain 4% movement speed up to a maximum of 40%.
+
+Name             : Divine Exaction (id=1260429) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=5, max_rank=1, req_points=1, select_idx=100]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 6716
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Hide Passive From Tooltip (451)
+Effects          :
+#1 (id=1269864)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#2 (id=1270010)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 150 | Scaled Value: 150 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Divine Toll casts $s1 additional $ltime:times; on your target at $s2% effectiveness.
+Variables        : $dmg=${$198137s1*$ceil($198034d/$198034t1)}
+
+Name             : Light's Judicator (id=1261525) [Spell Family (10), Passive, Hidden] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 50%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1271321)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.33 | Misc Value: 15 | Misc Value 2: 3086 (Label) | Target: Self (1)
+                   Affected Spells (Label): Empyrean Hammer (431398)
+#2 (id=1271322)  : Apply Aura (6) | Proc Trigger Spell (42): Light's Deliverance
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 433674 | Target: Self (1)
+Description      : Empyrean Hammer deals $s1% increased critical strike damage and its critical strikes have $h% chance to grant an additional stack of Light's Deliverance.
+
+Name             : Seal of the Templar (id=1263252) [Spell Family (10), Passive] 
+Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=5, max_rank=1, req_points=1, select_idx=200]
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 6226: Protection Paladin (137028 effect#30)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Hide Passive From Tooltip (451)
+Effects          :
+#1 (id=1273793)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Templar's Verdict (224266), Final Verdict (336872), Final Verdict (383328)
+                   Family Flags: 44
+#2 (id=1273806)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Affected Spells: Judgment (275779), Paladin Protection 10.2 Class Set 2pc (422895)
+                   Family Flags: 3
+#3 (id=1295163)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Hammer of Wrath (24275), Hammer of Wrath (1241413), Hammer of Wrath (1279408)
+                   Family Flags: 39
+                   Modified By: Protection Paladin (137028 effect#30)
+Description      : $?a137028[Judgment]?s383328[Final Verdict][Templar's Verdict] damage increased by $?a137028[$s2%][$s1%].

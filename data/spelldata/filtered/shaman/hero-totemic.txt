@@ -1,0 +1,376 @@
+# Shaman — Totemic Hero Talents
+# Extracted verbatim from shaman.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Whirling Elements (id=445024) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141749)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Elemental motes orbit around your Surging Totem. Your abilities consume the motes for enhanced effects. 
+
+Name             : Totemic Rebound (id=445025) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Real PPM         : 10 (Haste multiplier)
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143)
+Effects          :
+#1 (id=1141750)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : $?a137041[Lightning Bolt, Chain Lightning and Elemental Blast has a chance to unleash a Surging Bolt at your Surging Totem, increasing the totem's damage by $458269s1%, and then redirecting the bolt to your target for $458267s1 Nature damage. The damage bonus effect can stack.][Chain Heal now jumps to a nearby totem within $458357A3 yards once it reaches its last target, causing the totem to cast Chain Heal on an injured ally within $458357r yards for $458357s1. Jumps to $s1 nearby targets within $458357A3 yards.]
+
+Name             : Oversized Totems (id=445026) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141751)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Radius (6)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 6 | Misc Value 2: 1660 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthbind Totem (2484), Earthbind (3600), Searing Bolt (3606), Tremor Totem Effect (8146), Earthgrab Totem (51485), Healing Stream Totem (52042), Earthgrab (64695), Spirit Link Totem (98007), Spirit Link Totem (98008), Healing Tide (114942), Earthgrab (116943), Capacitor Totem (118905), Capacitor Totem (192058), Wind Rush Totem (192077), Poison Cleansing Totem (383013), Poison Cleansing (383014), Mana Spring (395197), Poison Cleansing (403922), Tremor (455622), Searing Volley (458147), Surging Bolt (458266), Surging Bolt (458267), Chain Heal (458357), Stormstream Totem (1267745)
+#2 (id=1164397)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Range (5)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 5 | Misc Value 2: 3795 (Label)
+                   Affected Spells (Label): Chain Heal (458357)
+#3 (id=1177818)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 3 | Misc Value 2: 4017 (Label) | Target: Self (1)
+#4 (id=1177837)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 12 | Misc Value 2: 4019 (Label) | Target: Self (1)
+#5 (id=1177838)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 12 | Misc Value 2: 4020 (Label) | Target: Self (1)
+Description      : Increases the size and radius of your totems by $458016s2%, and the health of your totems by $458016s1%.
+
+Name             : Swift Recall (id=445027) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141752)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -5000 | Scaled Value: -5000 | Target: Self (1)
+Description      : Successfully removing a harmful effect with Tremor Totem or Poison Cleansing Totem, or controlling an enemy with Capacitor Totem or Earthgrab Totem reduces the cooldown of the totem used by $/1000;s1 sec.
+
+Name             : Imbuement Mastery (id=445028) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1141753)  : Apply Aura (6) | Add Flat Modifier (107): Spell Proc Chance (18)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 18 | Target: Self (1)
+                   Affected Spells: Windfury Weapon (33757), Windfury Weapon (319773)
+                   Family Flags: 72
+#2 (id=1160429)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+                   Affected Spells: Windfury Attack (25504), Windfury Attack (33750)
+                   Family Flags: 23
+#3 (id=1160430)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 1677 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthliving Weapon (382024)
+#4 (id=1180595)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#5 (id=1180731)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 300 | Scaled Value: 300 | Target: Self (1)
+Description      : $?a137041[Increases the chance for Windfury Weapon to trigger by $s1% and increases its damage by $s2%.
+
+Name             : Amplification Core (id=445029) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141754)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : While Surging Totem is active, your damage and healing done is increased by $456369s1%.
+
+Name             : Oversurge (id=445030) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+                 : 4046
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141755)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 150 | Scaled Value: 150 | Target: Self (1)
+#2 (id=1203217)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Surging Totem $?a462110[heals for $s1% more][deals $s2% more damage] while Ascendance or Healing Tide Totem is active.
+
+Name             : Wind Barrier (id=445031) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141756)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+Description      : If you have a totem active, your totem grants you a shield absorbing ${$mhp*$s1/100} damage for $457387d every $457390d.
+
+Name             : Pulse Capacitor (id=445032) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141757)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 18 | Scaled Value: 18 | Misc Value 2: 3704 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tremor (455622)
+#2 (id=1161195)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Healing Rain (73921), Deluge (200075)
+                   Family Flags: 87
+#3 (id=1164497)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 18 | Scaled Value: 18 | Misc Value 2: 3791 (Label) | Target: Self (1)
+                   Affected Spells (Label): Surging Bolt (458267)
+Description      : $?a137041[Increases the damage of Surging Totem by $s1%.][Increases the healing done by Surging Totem by $s2%.]
+
+Name             : Supportive Imbuements (id=445033) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141758)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Flametongue Attack (10444), Flametongue Weapon (318038), Flametongue Weapon (319778), Flametongue Attack (467386), Flametongue Attack (467390)
+                   Family Flags: 21
+#2 (id=1162736)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Flametongue Attack (10444), Flametongue Weapon (318038), Flametongue Weapon (319778), Flametongue Attack (467386), Flametongue Attack (467390)
+                   Family Flags: 21
+Description      : $?a137041[Increases the critical strike chance of Flametongue Weapon by $s1%, and its critical strike damage by $s2%.][Learn a new weapon imbue, Tidecaller's Guard.
+
+Name             : Lively Totems (id=445034) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1141759)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 458101 | Target: Self (1)
+#2 (id=1164067)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=1180357)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?a137041[Lava Lash has a chance to summon a Searing Totem to hurl Searing Bolts that deal $3606s1 Fire damage to a nearby enemy. Lasts $458101d.
+
+Name             : Splitstream (id=445035) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143)
+Effects          :
+#1 (id=1141760)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
+#2 (id=1164017)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Healing Tide (114942)
+                   Family Flags: 110
+#3 (id=1164018)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : $?a137041[While Hot Hand is active Lava Lash shatters the earth, causing a Sundering at $s1% effectiveness.][Your Healing Stream Totems heals an additional ally at $s3% effectiveness.
+
+Name             : Totemic Coordination (id=445036) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1141761)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Misc Value 2: 3783 (Label) | Target: Self (1)
+                   Affected Spells (Label): Searing Bolt (3606), Searing Volley (458147)
+#2 (id=1164013)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 15 | Misc Value 2: 3783 (Label) | Target: Self (1)
+                   Affected Spells (Label): Searing Bolt (3606), Searing Volley (458147)
+#3 (id=1164099)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value 2: 3795 (Label) | Target: Self (1)
+                   Affected Spells (Label): Chain Heal (458357)
+Description      : $?a137041[Increases the critical strike chance of your Searing Totem's attacks by $s1%, and its critical strike damage by $s2%.][Chain Heals from Lively Totem and Totemic Rebound are $s3% more effective.]
+
+Name             : Earthsurge (id=455590) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1159161)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 125 | Scaled Value: 125 | Target: Self (1)
+#2 (id=1177979)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#3 (id=1283981)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 1677 (Label) | Target: Self (1)
+                   Affected Spells (Label): Earthliving Weapon (382024)
+Description      : $?a137041[Casting Sundering within $s2 yards of your Surging Totem causes it to create a Tremor at $s1% effectiveness at the target area.][Allies affected by your Earthliving effect receive $s3% increased healing from you.]
+
+Name             : Surging Totem (id=455630) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=1, col=3, max_rank=1, req_points=1, override="Surging Totem" (id=444995)]
+Class            : Shaman
+School           : Nature
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Spellcast Override In Spellbook (310)
+Effects          :
+#1 (id=1159241)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1159242)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#3 (id=1159243)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Healing Rain (73921), Deluge (200075)
+                   Family Flags: 87
+#4 (id=1159244)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#5 (id=1172996)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+                   Affected Spells: Downpour (207778), Downpour (462603)
+                   Family Flags: 33
+#6 (id=1173195)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value 2: 1707 (Label) | Target: Self (1)
+                   Affected Spells (Label): Overflowing Shores (383223)
+#7 (id=1173764)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value 2: 3944 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tidewaters (462425)
+#8 (id=1174467)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 8000 | Scaled Value: 8000 | Misc Value: 1 | Misc Value 2: 3956 (Label) | Target: Self (1)
+                   Affected Spells (Label): Downpour (462488)
+#9 (id=1178687)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value 2: 2676 (Label) | Target: Self (1)
+                   Affected Spells (Label): Acid Rain (378597)
+
+Name             : Totemic Momentum (id=1260644) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1270087)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+#2 (id=1273838)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10
+                   Affected Spells: Lava Lash (60103)
+                   Family Flags: 66
+#3 (id=1282760)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -3000 | Scaled Value: -3000 | Misc Value: 1569 (Category) | Target: Self (1)
+                   Affected Spells (Category): Healing Stream Totem (5394), Stormstream Totem (1267068)
+Description      : $?c2[Lava Lash damage increased by $s2%.
+
+Name             : Primal Catalyst (id=1260874) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1270450)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 150 | Scaled Value: 150 | PvP Coefficient: 0.334 | Target: Self (1)
+#2 (id=1270451)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+Description      : $?c2[After casting Surging Totem, your next Lava Lash casts again at $s1% effectiveness.][Healing Stream Totem and Healing Tide Totem healing has a $s2% chance to apply Earthliving to allies it heals.]
+
+Name             : Elemental Attunement (id=1263288) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Allow Entering Arena (149), Disable Aura While Dead (226)
+Effects          :
+#1 (id=1273848)  : Apply Aura (6) | Modify Mastery% (318)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Mastery increased by $s1%.

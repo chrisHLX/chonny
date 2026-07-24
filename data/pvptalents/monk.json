@@ -1,0 +1,454 @@
+{
+    "class": "Monk",
+    "fetched_at": "2026-07-23T05:00:48+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Windwalker": {
+            "spec_id": 269,
+            "pvp_talents": [
+                {
+                    "id": 77,
+                    "name": "Ride the Wind",
+                    "spell_id": 201372,
+                    "spell_name": "Ride the Wind",
+                    "description": "Flying Serpent Kick clears all snares from you when used and forms a path of wind in its wake, causing all allies who stand in it to have 30% increased movement speed and to be immune to movement slowing effects.",
+                    "unlock_player_level": 21,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                },
+                {
+                    "id": 3052,
+                    "name": "Grapple Weapon",
+                    "spell_id": 233759,
+                    "spell_name": "Grapple Weapon",
+                    "description": "You fire off a rope spear, grappling the target's weapons and shield, returning them to you for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                },
+                {
+                    "id": 3737,
+                    "name": "Wind Waker",
+                    "spell_id": 357633,
+                    "spell_name": "Wind Waker",
+                    "description": "Your movement enhancing abilities increases Windwalking on allies by 10%, stacking 2 additional times. Movement impairing effects are removed at 3 stacks.",
+                    "unlock_player_level": 20,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                },
+                {
+                    "id": 3744,
+                    "name": "Predestination",
+                    "spell_id": 345829,
+                    "spell_name": "Predestination",
+                    "description": "Killing a player with Touch of Death reduces the remaining cooldown of Touch of Karma by 60 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                },
+                {
+                    "id": 3745,
+                    "name": "Turbo Fists",
+                    "spell_id": 287681,
+                    "spell_name": "Turbo Fists",
+                    "description": "Fists of Fury now reduces all targets movement speed by 90%, and you Parry all attacks while channelling Fists of Fury.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                },
+                {
+                    "id": 5448,
+                    "name": "Perpetual Paralysis",
+                    "spell_id": 357495,
+                    "spell_name": "Perpetual Paralysis",
+                    "description": "Paralysis range reduced by 5 yards, but spreads to 2 new enemies when removed.",
+                    "unlock_player_level": 22,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                },
+                {
+                    "id": 5641,
+                    "name": "Absolute Serenity",
+                    "spell_id": 455945,
+                    "spell_name": "Absolute Serenity",
+                    "description": "Celestial Conduit now prevents all crowd control for its duration.",
+                    "unlock_player_level": 71,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                },
+                {
+                    "id": 5643,
+                    "name": "Rising Dragon Sweep",
+                    "spell_id": 460276,
+                    "spell_name": "Rising Dragon Sweep",
+                    "description": "Whirling Dragon Punch knocks enemies up into the air and causes them to fall slowly until they reach the ground.",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 269,
+                    "playable_spec_name": "Windwalker"
+                }
+            ]
+        },
+        "Mistweaver": {
+            "spec_id": 270,
+            "pvp_talents": [
+                {
+                    "id": 70,
+                    "name": "Eminence",
+                    "spell_id": 353584,
+                    "spell_name": "Eminence",
+                    "description": "Transcendence: Transfer can now be cast if you are stunned. Cooldown reduced by 15 sec if you are not.",
+                    "unlock_player_level": 32,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 679,
+                    "name": "Counteract Magic",
+                    "spell_id": 353502,
+                    "spell_name": "Counteract Magic",
+                    "description": "Removing hostile magic effects from a target increases the healing they receive from you by 10% for 10 sec, stacking up to 3 times.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 683,
+                    "name": "Healing Spheres",
+                    "spell_id": 1243418,
+                    "spell_name": "Healing Spheres",
+                    "description": "Your healing has a chance to coalesces a Healing Sphere out of the mists at your target's location after 1.5 sec. If allies walk through it, they consume the sphere, healing themselves for 1,734 and dispelling all harmful periodic magic effects.\r\n\r\nMaximum of 3 Healing Spheres can be active by the Monk at any given time.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 1928,
+                    "name": "Zen Focus Tea",
+                    "spell_id": 468430,
+                    "spell_name": "Zen Focus Tea",
+                    "description": "Thunder Focus Tea provides immunity to Silence and Interrupt effects for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 5395,
+                    "name": "Peaceweaver",
+                    "spell_id": 353313,
+                    "spell_name": "Peaceweaver",
+                    "description": "Revival's cooldown is reduced by 16%, and provides immunity to magical damage and harmful effects for 2 sec.",
+                    "unlock_player_level": 49,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 5398,
+                    "name": "Dematerialize",
+                    "spell_id": 353361,
+                    "spell_name": "Dematerialize",
+                    "description": "Demateralize into mist while stunned, reducing damage taken by 30%. Each second you remain stunned reduces this bonus by 10%.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 5539,
+                    "name": "Mighty Ox Kick",
+                    "spell_id": 202370,
+                    "spell_name": "Mighty Ox Kick",
+                    "description": "You perform a Mighty Ox Kick, hurling your enemy a distance behind you.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 5603,
+                    "name": "Zen Spheres",
+                    "spell_id": 1243554,
+                    "spell_name": "Zen Spheres",
+                    "description": "Soothing Mist, Crackling Jade Lightning, and Rising Sun Kick form a sphere of Hope or Despair above their targets. Only one of each sphere can be active at a time.\r\n\r\n Sphere of Hope: Increases your healing done to the target by 10%.\r\n Sphere of Despair: Target deals 3% less damage and takes 10% increased damage from all sources.\r\n",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                },
+                {
+                    "id": 5642,
+                    "name": "Absolute Serenity",
+                    "spell_id": 455945,
+                    "spell_name": "Absolute Serenity",
+                    "description": "Celestial Conduit now prevents all crowd control for its duration.",
+                    "unlock_player_level": 71,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 270,
+                    "playable_spec_name": "Mistweaver"
+                }
+            ]
+        },
+        "Brewmaster": {
+            "spec_id": 268,
+            "pvp_talents": [
+                {
+                    "id": 666,
+                    "name": "Microbrew",
+                    "spell_id": 202107,
+                    "spell_name": "Microbrew",
+                    "description": "Reduces the cooldown of Fortifying Brew by 50%.",
+                    "unlock_player_level": 28,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 667,
+                    "name": "Hot Trub",
+                    "spell_id": 410346,
+                    "spell_name": "Hot Trub",
+                    "description": "Purifying Brew deals 20% of cleared damage split among nearby enemies. After clearing 100% of your maximum health in Stagger damage, your next Breath of Fire incapacitates targets for 4 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 669,
+                    "name": "Avert Harm",
+                    "spell_id": 202162,
+                    "spell_name": "Avert Harm",
+                    "description": "Guard the 4 closest players within 15 yards for 15 sec, allowing you to Stagger 20% of damage they take.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 670,
+                    "name": "Nimble Brew",
+                    "spell_id": 354540,
+                    "spell_name": "Nimble Brew",
+                    "description": "Douse allies in the targeted area with Nimble Brew, preventing the next full loss of control effect within 8 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 672,
+                    "name": "Double Barrel",
+                    "spell_id": 202335,
+                    "spell_name": "Double Barrel",
+                    "description": "Your next Keg Smash deals 50% additional damage, and stuns all targets it hits for 3 sec.",
+                    "unlock_player_level": 21,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 673,
+                    "name": "Mighty Ox Kick",
+                    "spell_id": 202370,
+                    "spell_name": "Mighty Ox Kick",
+                    "description": "You perform a Mighty Ox Kick, hurling your enemy a distance behind you.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 765,
+                    "name": "Eerie Fermentation",
+                    "spell_id": 205147,
+                    "spell_name": "Eerie Fermentation",
+                    "description": "You gain up to 30% movement speed  and 15% magical damage reduction based on your current level of Stagger.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 843,
+                    "name": "Admonishment",
+                    "spell_id": 207025,
+                    "spell_name": "Admonishment",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 1958,
+                    "name": "Niuzao's Essence",
+                    "spell_id": 232876,
+                    "spell_name": "Niuzao's Essence",
+                    "description": "Drinking a Purifying Brew, Celestial Brew, Fortifying Brew, or casting Roll will dispel all snares affecting you.",
+                    "unlock_player_level": 23,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                },
+                {
+                    "id": 5541,
+                    "name": "Dematerialize",
+                    "spell_id": 353361,
+                    "spell_name": "Dematerialize",
+                    "description": "Demateralize into mist while stunned, reducing damage taken by 30%. Each second you remain stunned reduces this bonus by 10%.",
+                    "unlock_player_level": 35,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 268,
+                    "playable_spec_name": "Brewmaster"
+                }
+            ]
+        }
+    }
+}

@@ -101,6 +101,7 @@ class DatabaseSeeder extends Seeder
         // SubjectContextSeeder (Group 1A) for the module_context_option tag.
         $this->call([
             DiscPriestOracleModuleSeeder::class,
+            DiscPriestFadeDeathTimingModuleSeeder::class,
         ]);
 
         // ========== TRAITS ==========

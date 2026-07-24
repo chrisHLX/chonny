@@ -901,7 +901,42 @@ Separate from AI-generated learning modules, this is a **human/Haiku-authored, o
 
 **Schema:** no changes needed to author these. A future per-page `last_checked_at` (or similar verification-status column) on `module_pages` is anticipated for the patch-verification workflow described above, but is deliberately deferred until that workflow is actually built — see the module's own review notes for the reasoning.
 
-**Status:** template locked, two pilot modules drafted (Arms Warrior — AI-researched draft, not yet seeded to DB; Discipline Priest (Oracle) — seeded via `DiscPriestOracleModuleSeeder`, `database/seeders/DiscPriestOracleModuleSeeder.php`, registered in `DatabaseSeeder`). The Discipline Priest module is the first built via the **expertise-capture** authoring path (see `VISION.md`): structured directly from a Gladiator-rated player's own dictation rather than AI/guide-researched, with a 5-page structure adapted to what the dictation actually contained (Build/Path Identity, Core Cooldowns, Priority Cooldowns, Matchup/Situational Notes, Weaknesses) rather than forced into the original 6-page/8-page template shape. Ambiguous or hedged facts from the dictation are preserved and flagged in the page content ("stated with uncertainty — verify") rather than resolved by AI guesswork. Module is seeded `published = false` (no recall questions yet — a separate, later authoring stage) and tagged via `module_context_option` to Priest → Discipline. Scaling to the remaining WoW specs, SC2 races, LoL roles, and Poker archetypes is future work.
+**Status:** template locked, three pilot modules drafted via the expertise-capture path (Discipline Priest (Oracle) and Feral Druid (Wildstalker), both dictated by a Gladiator-rated player; Arms Warrior — AI-researched draft, not yet seeded to DB). Discipline Priest is seeded via `DiscPriestOracleModuleSeeder` and **is** registered in `DatabaseSeeder`. Feral Druid is seeded via `FeralDruidWildstalkerModuleSeeder` but is **not** currently called from `DatabaseSeeder` — the file exists but nothing invokes it, so it's likely not actually in the DB unless someone ran it manually (`php artisan db:seed --class=FeralDruidWildstalkerModuleSeeder`). Confirmed 2026-07-22 while investigating why a Feral-declared user wasn't routing to it — flagged here rather than silently fixed, since whether to wire it up is entangled with the open question below. Both dictated modules are structured directly from the player's own dictation rather than AI/guide-researched, with page structures adapted to what the dictation actually contained rather than forced into the original 6-page/8-page template shape. Ambiguous or hedged facts from the dictation are preserved and flagged in the page content ("stated with uncertainty — verify") rather than resolved by AI guesswork. Both are seeded `published = false` (no recall questions yet — a separate, later authoring stage) and tagged via `module_context_option` to their Spec option. Scaling to the remaining WoW specs, SC2 races, LoL roles, and Poker archetypes is future work.
+
+### Definition (resolved 2026-07-22): what a canonical module actually is
+
+A canonical module is **the trusted, teachable representation of a subject** — produced by reconciling objective reference data with expert judgment — so it can power every feature that needs that domain's knowledge, not just serve as a one-off lesson: diagnostic question variants, recall questions, flashcards, review-content/explanation generation, validating AI answers against ground truth, diffing across game patches, and grounding future expert interviews.
+
+It has three inputs, not one:
+```
+Raw Game Data                Expert Mental Model
+(spells, talents,            (win conditions, priorities,
+ cooldowns, hero talents,  +  burst windows, matchups,
+ resource generation,         common mistakes, decision
+ mechanics — what             rules — what actually
+ objectively exists)          matters)
+                 \            /
+                  AI Calibration
+        (reconciles the two: detects omissions,
+         detects factual inaccuracies in the expert's
+         account, asks follow-up questions, produces
+         one coherent teaching model)
+                       ↓
+              Canonical Module
+```
+
+"Canonical" doesn't mean perfect or final — it means grounded in objective data, reviewed by an expert, and internally consistent, so a *later* expert reviewing it is correcting an existing trusted baseline ("I'd change the opener") rather than rebuilding from a blank page.
+
+**Process shift this formalises:** originally a canonical module was just "expert writes the module." The intended pipeline is fuller: raw structured data (e.g. SimulationCraft) → knowledge extraction → expert interview → gap/inaccuracy detection → expert review → canonical module. The structured data is a safety net so the expert isn't expected to recall every exact number — they supply judgment, the reference data supplies facts, AI reconciles the two.
+
+**Why this exists for MindCollector specifically:** the diagnostic identifies a gap ("weak at cooldown trading") and the platform needs somewhere real to point the player — not "go watch a YouTube guide" but a specific, trusted module ("Cooldown Trading for Discipline Priest") that exists because the expert knowledge behind it has already been captured and calibrated against real data.
+
+**Re-reading the two pilots against this definition** (corrects the completeness-only read from the earlier version of this note): the two aren't equally short of the goal, and not in the way "which one has more content" suggests.
+- **Feral Druid (Wildstalker)** already went through part of the real pipeline — its seeder docblock records that SimulationCraft data (`data/spelldata/filtered/druid/...`) was used to *correct* several of the player's dictated cooldown numbers (Feral Frenzy, Skull Bash, Wild Charge, Ursol's Vortex, Berserk) before seeding. That's the raw-data-reconciliation step actually happening, even done informally/by hand rather than via a repeatable process.
+- **Discipline Priest (Oracle)** has not gone through that step at all — its docblock says explicitly "not AI-generated, not verified against guides." It's pure expert dictation, organised but never cross-checked against any raw data source.
+- So: on completeness of content, Disc Priest reads closer to "done" (per the earlier note); on **process** — the actual definition above — Feral is the one closer to what a canonical module is supposed to be, and Disc Priest is the one missing a step. Both observations are true and describe different gaps — don't collapse them into a single "which pilot is better" ranking.
+
+**What's still open:** no repeatable pipeline exists yet for the Raw Data + AI Calibration steps — the SimulationCraft cross-check for Feral was done ad hoc by hand, not via any tool/service. That needs designing (what raw data source per subject, what the AI gap-detection/follow-up-question step actually looks like as a feature) before authoring the next canonical module, so each new one doesn't repeat that ad hoc process manually. Do not revise the Feral or Disc Priest pilot content until that pipeline exists — running Disc Priest through it retroactively is the natural next step once it does.
 
 ## Module Route Binding
 Module uses `slug` as its route key — always pass the model 

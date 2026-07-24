@@ -1,0 +1,566 @@
+{
+    "class": "Paladin",
+    "fetched_at": "2026-07-23T05:00:33+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Protection": {
+            "spec_id": 66,
+            "pvp_talents": [
+                {
+                    "id": 90,
+                    "name": "Hallowed Ground",
+                    "spell_id": 216868,
+                    "spell_name": "Hallowed Ground",
+                    "description": "Your Consecration clears and suppresses all snare effects on allies within its area of effect.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 91,
+                    "name": "Steed of Glory",
+                    "spell_id": 199542,
+                    "spell_name": "Steed of Glory",
+                    "description": "Your Divine Steed lasts for an additional 2 sec.\r\n\r\nWhile active you become immune to movement impairing effects, and you knock back enemies that you move through.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 92,
+                    "name": "Sacred Duty",
+                    "spell_id": 216853,
+                    "spell_name": "Sacred Duty",
+                    "description": "Reduces the cooldown of your Blessing of Protection and Blessing of Sacrifice by 33%.",
+                    "unlock_player_level": 32,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 94,
+                    "name": "Guardian of the Forgotten Queen",
+                    "spell_id": 228049,
+                    "spell_name": "Guardian of the Forgotten Queen",
+                    "description": "Empowers the friendly target with the spirit of the forgotten queen, causing the target to be immune to all damage for until canceled.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 97,
+                    "name": "Guarded by the Light",
+                    "spell_id": 216855,
+                    "spell_name": "Guarded by the Light",
+                    "description": "Your Flash of Light reduces all damage the target receives by 10% for 6 sec. Stacks up to 2 times.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 844,
+                    "name": "Inquisition",
+                    "spell_id": 207028,
+                    "spell_name": "Inquisition",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 860,
+                    "name": "Warrior of Light",
+                    "spell_id": 210341,
+                    "spell_name": "Warrior of Light",
+                    "description": "Increases the damage done by your Shield of the Righteous by 30%, but reduces armor granted by 30%.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 861,
+                    "name": "Shield of Virtue",
+                    "spell_id": 215652,
+                    "spell_name": "Shield of Virtue",
+                    "description": "When activated, your next Avenger's Shield will interrupt and silence all enemies within 8 yds of the target.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 3474,
+                    "name": "Luminescence",
+                    "spell_id": 556606,
+                    "spell_name": "Luminescence",
+                    "description": "Lightbearer's healing transfer is increased by up to 150% based on your current health. Lower health heals allies for more.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5582,
+                    "name": "Searing Glare",
+                    "spell_id": 410126,
+                    "spell_name": "Searing Glare",
+                    "description": "Call upon the light to blind enemy players in a 25 yd cone, causing enemies to miss their spells and attacks for 4 sec.",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5664,
+                    "name": "Bear the Burden",
+                    "spell_id": 468454,
+                    "spell_name": "Bear the Burden",
+                    "description": "Word of Glory's mana cost is reduced by 100% and now reduces the cooldown of Blessing of Freedom by 4 sec when cast, but its healing is reduced by 50% when cast on allies.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5667,
+                    "name": "Spellbreaker",
+                    "spell_id": 469895,
+                    "spell_name": "Spellbreaker",
+                    "description": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5677,
+                    "name": "Shining Revelation",
+                    "spell_id": 936051,
+                    "spell_name": "Shining Revelation",
+                    "description": "The light reveals all enemies in stealth or invisible to you while under the effects of Divine Shield. This effect lingers for 20 sec after Divine Shield fades.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 66,
+                    "playable_spec_name": "Protection"
+                }
+            ]
+        },
+        "Holy": {
+            "spec_id": 65,
+            "pvp_talents": [
+                {
+                    "id": 85,
+                    "name": "Ultimate Sacrifice",
+                    "spell_id": 199452,
+                    "spell_name": "Ultimate Sacrifice",
+                    "description": "Your Blessing of Sacrifice now transfers 100% of all damage to you into a damage over time effect, but lasts 6 sec and no longer cancels when you are below 20% health.",
+                    "unlock_player_level": 41,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 86,
+                    "name": "Darkest before the Dawn",
+                    "spell_id": 210378,
+                    "spell_name": "Darkest before the Dawn",
+                    "description": "Every 5 sec the healing done by your next Light of Dawn is increased by 20%. Stacks up to 5 times.",
+                    "unlock_player_level": 34,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 87,
+                    "name": "Spreading the Word",
+                    "spell_id": 199456,
+                    "spell_name": "Spreading the Word",
+                    "description": "Your allies affected by your Aura gain an effect after you cast Blessing of Protection or Blessing of Freedom.\r\n\r\n Blessing of Protection\r\nPhysical damage reduced by 30% for 6 sec.\r\n\r\n Blessing of Freedom\r\nCleared of all movement impairing effects.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 640,
+                    "name": "Divine Vision",
+                    "spell_id": 199324,
+                    "spell_name": "Divine Vision",
+                    "description": "Increases the range of your Aura by 30 yards and reduces the cooldown of Aura Mastery by 30 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 642,
+                    "name": "Cleanse the Weak",
+                    "spell_id": 199330,
+                    "spell_name": "Cleanse the Weak",
+                    "description": "When you Cleanse an ally, 1 ally within 40 yds is dispelled of the same effects, but the cooldown of Cleanse is increased by 4 sec.\r\n\r\nHealing allies with your Flash of Light or Holy Light will cleanse all Diseases and Poisons from the target.",
+                    "unlock_player_level": 27,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5583,
+                    "name": "Searing Glare",
+                    "spell_id": 410126,
+                    "spell_name": "Searing Glare",
+                    "description": "Call upon the light to blind enemy players in a 25 yd cone, causing enemies to miss their spells and attacks for 4 sec.",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5618,
+                    "name": "Denounce",
+                    "spell_id": 2812,
+                    "spell_name": "Denounce",
+                    "description": "Casts down the enemy with a bolt of Holy Light, causing 2,899 Holy damage and preventing the target from causing critical effects for the next 8 sec.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5663,
+                    "name": "Divine Plea",
+                    "spell_id": 415244,
+                    "spell_name": "Divine Plea",
+                    "description": "After casting Aura Mastery, you restore 6,428 Mana over 30 sec, but your healing and damage is decreased by 30%.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5665,
+                    "name": "Spellbreaker",
+                    "spell_id": 469895,
+                    "spell_name": "Spellbreaker",
+                    "description": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5674,
+                    "name": "Luminescence",
+                    "spell_id": 556606,
+                    "spell_name": "Luminescence",
+                    "description": "Lightbearer's healing transfer is increased by up to 150% based on your current health. Lower health heals allies for more.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5676,
+                    "name": "Shining Revelation",
+                    "spell_id": 936051,
+                    "spell_name": "Shining Revelation",
+                    "description": "The light reveals all enemies in stealth or invisible to you while under the effects of Divine Shield. This effect lingers for 20 sec after Divine Shield fades.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                },
+                {
+                    "id": 5692,
+                    "name": "Blessing of Spellwarding",
+                    "spell_id": 204018,
+                    "spell_name": "Blessing of Spellwarding",
+                    "description": "Blesses a party or raid member, granting immunity to magical damage and harmful effects for 10 sec.\r\n\r\nCannot be used on a target with Forbearance. Causes Forbearance for 30 sec.\r\n\r\nShares a cooldown with Blessing of Protection.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 65,
+                    "playable_spec_name": "Holy"
+                }
+            ]
+        },
+        "Retribution": {
+            "spec_id": 70,
+            "pvp_talents": [
+                {
+                    "id": 81,
+                    "name": "Luminescence",
+                    "spell_id": 556606,
+                    "spell_name": "Luminescence",
+                    "description": "Lightbearer's healing transfer is increased by up to 150% based on your current health. Lower health heals allies for more.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 752,
+                    "name": "Blessing of Sanctuary",
+                    "spell_id": 210256,
+                    "spell_name": "Blessing of Sanctuary",
+                    "description": "Instantly removes all stun, silence, fear and horror effects from the friendly target and reduces the duration of future such effects by 60% for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 753,
+                    "name": "Ultimate Retribution",
+                    "spell_id": 355614,
+                    "spell_name": "Ultimate Retribution",
+                    "description": "Mark an enemy player for retribution after they kill an ally within your active Aura. If the marked enemy is slain within 12 sec, cast Redemption on the fallen ally.",
+                    "unlock_player_level": 38,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 5535,
+                    "name": "Hallowed Ground",
+                    "spell_id": 216868,
+                    "spell_name": "Hallowed Ground",
+                    "description": "Your Consecration clears and suppresses all snare effects on allies within its area of effect.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 5572,
+                    "name": "Spreading the Word",
+                    "spell_id": 199456,
+                    "spell_name": "Spreading the Word",
+                    "description": "Your allies affected by your Aura gain an effect after you cast Blessing of Protection or Blessing of Freedom.\r\n\r\n Blessing of Protection\r\nPhysical damage reduced by 30% for 6 sec.\r\n\r\n Blessing of Freedom\r\nCleared of all movement impairing effects.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 5573,
+                    "name": "Blessing of Spellwarding",
+                    "spell_id": 204018,
+                    "spell_name": "Blessing of Spellwarding",
+                    "description": "Blesses a party or raid member, granting immunity to magical damage and harmful effects for 10 sec.\r\n\r\nCannot be used on a target with Forbearance. Causes Forbearance for 30 sec.\r\n\r\nShares a cooldown with Blessing of Protection.",
+                    "unlock_player_level": 25,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 5584,
+                    "name": "Searing Glare",
+                    "spell_id": 410126,
+                    "spell_name": "Searing Glare",
+                    "description": "Call upon the light to blind enemy players in a 25 yd cone, causing enemies to miss their spells and attacks for 4 sec.",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 5666,
+                    "name": "Spellbreaker",
+                    "spell_id": 469895,
+                    "spell_name": "Spellbreaker",
+                    "description": "Eye for an Eye can now also trigger at 100% effectiveness from direct Magic damage.",
+                    "unlock_player_level": 60,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                },
+                {
+                    "id": 5675,
+                    "name": "Shining Revelation",
+                    "spell_id": 936051,
+                    "spell_name": "Shining Revelation",
+                    "description": "The light reveals all enemies in stealth or invisible to you while under the effects of Divine Shield. This effect lingers for 20 sec after Divine Shield fades.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 70,
+                    "playable_spec_name": "Retribution"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,995 @@
+# Rogue — Class Talents
+# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 50 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Gouge (id=1776) [Spell Family (8)] 
+Talent Entry     : Generic [tree=class, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : Melee
+Resource         : 25 Energy (3) (id=142)
+Spell Level      : 46
+Range            : 5 yards
+GCD              : 1 seconds
+Duration         : 4 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 25 seconds
+Category         : 33 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 184
+                 : 292
+Category Cooldown: 25 seconds
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Mechanic         : Incapacitate
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Affecting Spells : Shadow Blades (121471 effect#2), Broadside (193356 effect#2), Heavy Hitter (381885 effects: #1, #2), Lethality (382238 effect#2), Danse Macabre (393969 effects: #1, #2), Fazed (441224 effect#4)
+Family Flags     : 3
+Attributes       : Is Ability (4), Wearer Casts Proc Trigger (11), Not Shapeshifted (16), Do Not Sheath (18), Cancels Auto Attack Combat (20), Prevents Anim (50), Require All Targets (58), Discount Power On Miss (59), No Proc Equip Requirement (97), Completely Blocked (99), Requires Main-Hand Weapon (106), Can Proc From Procs (122), Suppress Weapon Procs (151), Show Mechanic as Combat Text (213), Aura Points On Client (268), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Aura Interrupt   : Damage (Script) (27)
+Effects          :
+#1 (id=538)      : Apply Aura (6) | Stun (12)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=169690)   : Energize Power (30)
+                   Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
+                   Modified By: Shadow Blades (121471 effect#2), Broadside (193356 effect#2)
+Description      : Gouges the eyes of an enemy target, incapacitating for $d. Damage may interrupt the effect.
+
+Name             : Blind (id=2094) [Spell Family (8)] 
+Talent Entry     : Generic [free=(Outlaw), tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : Ranged
+Spell Level      : 39
+Range            : 15 yards
+GCD              : 1 seconds
+Duration         : 60 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 184
+                 : 292
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Mechanic         : Disorient
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Affecting Spells : Airborne Irritant (200733 effects: #1, #2), Blinding Powder (256165 effects: #1, #2), Don't Be Suspicious (441415 effect#1)
+Family Flags     : 24
+Attributes       : Is Ability (4), Not Shapeshifted (16), Cancels Auto Attack Combat (20), Heartbeat Resist (30), Allow While Stealthed (37), No Threat (42), Aura Stays After Combat (57), PvP Enabling (96), Suppress Caster Procs (112), Can Proc From Procs (122), Aura Never Bounces (148), Taps immediately (215), No Attack Dodge (247), Can Proc From Suppressed Target Procs (254), Aura Points On Client (268), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Reset cooldown upon ending an encounter (333), Enable Procs from Suppressed Caster Procs (384), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Aura Interrupt   : Leave World (19), Enter World (22), Damage (Script) (27)
+Effects          :
+#1 (id=616)      : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -60 | Scaled Value: -60 | Target: Targeted Enemy (6)
+Description      : Blinds the target, causing it to wander disoriented for $d. Damage may interrupt the effect. Limit 1.
+Tooltip          : Disoriented.
+
+Name             : Evasion (id=5277) [Spell Family (8)] 
+Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 21
+Duration         : 10 seconds
+Cooldown         : 120 seconds
+Category         : 66 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Category Cooldown: 120 seconds
+Affecting Spells : Elusiveness (79008 effect#2), Bait and Switch (457034 effect#1)
+Family Flags     : 5
+Attributes       : Is Ability (4), Not Shapeshifted (16), No Threat (42), Not an Action (92), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491)
+Effects          :
+#1 (id=1892)     : Apply Aura (6) | Modify Dodge% (49)
+                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+#2 (id=1018820)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Elusiveness (79008 effect#2)
+#3 (id=1161687)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7e | Target: Self (1)
+                   Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
+                   Modified By: Bait and Switch (457034 effect#1)
+Description      : Increases your dodge chance by ${$s1/2}% for $d.$?a344363[ Dodging an attack while Evasion is active will trigger Mastery: Main Gauche.][]
+Tooltip          : Dodge chance increased by ${$w1/2}%.$?a344363[ Dodging an attack while Evasion is active will trigger Mastery: Main Gauche.][]$?a457034[ Magical damage taken reduced by $w3%.][]
+
+Name             : Numbing Poison (id=5761) [Spell Family (8)] 
+Talent Entry     : Generic [tree=class, row=6, col=2, max_rank=1, req_points=8, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 54
+Cast Time        : 1.5 seconds
+Duration         : 3600 seconds
+Requires weapon  : One-handed Axe, One-handed Mace, One-handed Sword, Fist Weapon, Dagger
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 870
+Proc Chance      : 30%
+Proc Flags       : White Melee, Yellow Melee, Yellow Ranged
+Affecting Spells : Envenom (32645 effects: #2, #5), Master Poisoner (378436 effects: #1, #2), Virulent Poisons (381543 effect#1), Improved Poisons (381624 effect#1), Dragon-Tempered Blades (381801 effect#2), Dark Brew (382504 effect#8), Fatal Concoction (392384 effect#1), Poisoned Edges (409587 effects: #1, #3), Natureblight (426568 effects: #2, #3), Destiny Defined (454435 effect#1), Vile Tincture (458475 effects: #1, #2)
+Family Flags     : 64, 83
+Attributes       : Is Ability (4), Not Shapeshifted (16), Allow While Stealthed (37), No AutoCast (AI) (49), Instant Target Procs (115), Allow Aura While Dead (116), Allow Entering Arena (149), Allow Class Ability Procs (416), Non-secret Aura (506)
+Effects          :
+#1 (id=2044)     : Apply Aura (6) | Proc Trigger Spell (42): Numbing Poison
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 5760 | Target: Self (1)
+                   Modified By: Master Poisoner (378436 effect#1)
+Description      : Coats your weapons with a Non-Lethal Poison that lasts for $d. Each strike has a $5761h% chance of poisoning the enemy, clouding their mind and slowing their attack and casting speed by $5760s1% for $5760d.
+Tooltip          : Each strike has a chance of poisoning the enemy, slowing their attack and spellcasting by $5760s1% for $5760d.
+
+Name             : Shiv (id=5938) [Spell Family (8)] 
+Talent Entry     : Generic [free=(Assassination), tree=class, row=1, col=2, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : Melee
+Resource         : 30 Energy (3) (id=251)
+Spell Level      : 32
+Range            : 5 yards
+GCD              : 1 seconds
+Requires weapon  : One-handed Axe, One-handed Mace, One-handed Sword, Fist Weapon, Dagger
+Charges          : 1 (30 seconds cooldown)
+Category         : 2086 (Type 0x1): Toxic Stiletto (1267182 effect#2)
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Affecting Spells : Adrenaline Rush (13750 effect#3), Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Shadow Focus (112942 effects: #1, #2), Shadow Blades (121471 effect#3), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Broadside (193356 effects: #3, #4), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Symbols of Death (227151 effect#1), Toxic Blade (245389 effect#1), Between the Eyes (315341 effects: #2, #3), Shiv (319504 effect#1), Tiny Toxic Blade (340078 effects: #1, #2), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Deadly Precision (381542 effect#1), Heavy Hitter (381885 effects: #1, #2), Lethality (382238 effect#2), Danse Macabre (393969 effects: #1, #2), The Rotten (394203 effects: #3, #4), Perforated Veins (394254 effect#1), Arterial Precision (400783 effects: #2, #3), Perforated Veins (426602 effect#1), Fazed (441224 effects: #1, #4), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Toxic Stiletto (1267182 effects: #1, #3), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Family Flags     : 29, 54
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Chain From Caster (76), Requires Off-Hand Weapon (120), Do Not Chain To Crowd-Controlled Targets (200), No Attack Parry (248), Enforce Facing on Primary Target Only (351), Allow Class Ability Procs (416), Chain by Most Hit (440)
+Effects          :
+#1 (id=2076)     : School Damage (2): physical
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.254 | Target: Targeted Enemy (6)
+#2 (id=806022)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#3 (id=806133)   : Energize Power (30)
+                   Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
+                   Modified By: Shadow Blades (121471 effect#3), Broadside (193356 effect#3)
+#4 (id=872827)   : Dispel (38)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 9 | Target: Targeted Enemy (6)
+Description      : Attack with your $?s319032[poisoned blades][off-hand], dealing $sw1 Physical damage, dispelling all enrage effects and applying a concentrated form of your $?a3408[Crippling Poison, reducing movement speed by $115196s1% for $115196d.]?a5761[Numbing Poison, reducing casting speed by $359078s1% for $359078d.][]$?(!a3408&!a5761)[active Non-Lethal poison.][]$?(a319032&a400783)[
+
+Name             : Vigor (id=14983) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(50, 100)]
+                 : Effect#2 [op=set, values=(5, 10)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=7052)     : Apply Aura (6) | Increase Resource (35)
+                   Base Value: 50 | Scaled Value: 50 | SP Coefficient: 0.25 | Resource: energy | Target: Self (1)
+#2 (id=295620)   : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Resource: energy | Target: Self (1)
+Description      : Increases your maximum Energy by $s1 and Energy regeneration by $s2%.
+
+Name             : Cloak of Shadows (id=31224) [Spell Family (8)] 
+Talent Entry     : Generic [free=(Subtlety), tree=class, row=1, col=6, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 47
+Duration         : 5 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 930
+Affecting Spells : Ethereal Cloak (457022 effect#1), Bait and Switch (457034 effect#2)
+Family Flags     : 48
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Allow While Stealthed (37), No Threat (42), No AutoCast (AI) (49), Not an Action (92), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491), Big Defensive (512)
+Effects          :
+#1 (id=20791)    : Apply Aura (6) | Modify Attacker Spell Hit Chance (186)
+                   Base Value: -200 | Scaled Value: -200 | Misc Value: 126 | Target: Self (1)
+#2 (id=20792)    : Trigger Spell (64): Cloak of Shadows
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 35729 | Target: Self (1)
+#3 (id=1161692)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x1 | Target: Self (1)
+                   Affected School(s): Physical
+                   Modified By: Bait and Switch (457034 effect#2)
+Description      : Provides a moment of magic immunity, instantly removing all harmful spell effects. The cloak lingers, causing you to resist harmful spells for $d.
+Tooltip          : Resisting all harmful spells.$?a457034[ Physical damage taken reduced by $w3%.][]
+
+Name             : Cheat Death (id=31230) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Family Flags     : 42
+Attributes       : Is Ability (4), Passive (6), Instant Target Procs (115), Not In Spellbook (143), Absorb Cannot Be Ignore (214), Do Not Count For PvP Scoreboard (252), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=20803)    : Apply Aura (6) | Absorb Overkill Damage From School (316)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 30 | Target: Self (1)
+                   Affected School(s): All
+#2 (id=789239)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 7 | Scaled Value: 7 | Misc Value: 127 | Misc Value 2: 30 | Target: Self (1)
+Description      : Fatal attacks instead reduce you to $s2% of your maximum health. For $45182d afterward, you take $45182s1% reduced damage. Cannot trigger more often than once per $45181d.
+
+Name             : Tricks of the Trade (id=57934) [Spell Family (8)] 
+Talent Entry     : Generic [tree=class, row=3, col=6, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 48
+Range            : 100 yards
+Duration         : 30 seconds
+Cooldown         : 30 seconds
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 180
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged
+Affecting Spells : So Tricky (441403 effect#3)
+Family Flags     : 49
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Cooldown On Event (25), Allow While Stealthed (37), No Threat (42), Exclude Caster (51), Require All Targets (58), Allow Low Level Buff (67), Only On Player (104), Aura Points On Client (268), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=51254)    : Redirect Threat (130)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 36000 | Target: Targeted Raid Member (57)
+#2 (id=51255)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=344026)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Targeted Raid Member (57)
+Description      : $?s221622[Increases the target's damage by $221622m1%, and redirects][Redirects] all threat you cause to the targeted party or raid member, beginning with your next damaging attack within the next $d and lasting $59628d.
+Tooltip          : Threat redirected from Rogue.
+
+Name             : Elusiveness (id=79008) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=68339)    : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: -20 | Scaled Value: -20 | SP Coefficient: 0.25 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Feint (1966)
+                   Family Flags: 27
+#2 (id=1018818)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: -20 | Scaled Value: -20 | SP Coefficient: 0.25 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Evasion (5277)
+                   Family Flags: 5
+Description      : Evasion also reduces damage taken by $s2%, and Feint also reduces non-area-of-effect damage taken by $s1%.
+
+Name             : Subterfuge (id=108208) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=6, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(115191, 115191)]
+                 : Effect#2 [op=set, values=(3000, 6000)]
+                 : Effect#3 [op=set, values=(-100, -100)]
+                 : Effect#4 [op=set, values=(2000, 4000)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), No Aura Cancel (31), Not an Action (92), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=119248)   : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Stealth overrides Stealth
+                   Base Value: 115191 | Scaled Value: 115191 | Misc Value: 1784 | Trigger Spell: 1784 | Target: Self (1)
+                   Affected Spells: Stealth (1784), Stealth (115191)
+                   Family Flags: 22
+#2 (id=322830)   : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 2890 (Label) | Target: Self (1)
+                   Affected Spells (Label): Subterfuge (115192), Indiscriminate Carnage (385747), Improved Garrote (392401), Take 'em by Surprise (430035)
+#3 (id=370946)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Vanish (11327)
+                   Family Flags: 96
+#4 (id=1277119)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
+Description      : Abilities requiring Stealth can be used for $?a137035[${$s4/1000}][${$s2/1000}] sec after Stealth breaks.
+
+Name             : Deeper Stratagem (id=193531) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=5, max_rank=1, req_points=23]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=283924)   : Apply Aura (6) | Modify Max Cost (63)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Keep It Rolling (381989), Rupture (394031), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Roll the Bones (1214909), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 17, 20, 32, 35, 44, 55, 81, 89, 92, 100, 111, 112, 113, 116
+#2 (id=283925)   : Apply Aura (6) | Modify Max Resource (418)
+                   Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
+#3 (id=297518)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 4 | Target: Self (1)
+#4 (id=315625)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Affected Spells: Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Family Flags: 17, 32, 35, 44, 55, 81, 92, 111, 112
+#5 (id=315626)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 20, 32, 44, 81, 95, 100
+#6 (id=1105232)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 2943 (Label) | Target: Self (1)
+                   Affected Spells (Label): Shadow Techniques (196911)
+Description      : Gain $s1 additional max combo point.
+
+Name             : Alacrity (id=193539) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(15, 30)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=283935)   : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 14 | Target: Self (1)
+#2 (id=342821)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 14 | Points Per Combo Point: 20 | Target: Self (1)
+Description      : Haste increased by ${$s1/10}.1%.
+
+Name             : Iron Stomach (id=193546) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=3, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=283945)   : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Crimson Vial (185311), Crimson Vial (212198), Crimson Vial (354494)
+                   Family Flags: 99
+Description      : Increases the healing you receive from Crimson Vial, healing potions, and healthstones by $s1%.
+
+Name             : Airborne Irritant (id=200733) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=295581)   : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Blind (2094), Blind (427773)
+                   Family Flags: 24
+#2 (id=1102512)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -70 | Scaled Value: -70 | PvP Coefficient: 0.5 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Blind (2094), Blind (427773)
+                   Family Flags: 24
+Description      : Blind has $s1% reduced cooldown, $s2% reduced duration, and applies to all nearby enemies.
+
+Name             : Improved Sprint (id=231691) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=7, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 31
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=349535)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Sprint (2983)
+                   Family Flags: 6
+Description      : Reduces the cooldown of Sprint by ${$m1/-1000} sec.
+
+Name             : Deadened Nerves (id=231719) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=4, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 46
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=349578)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 0x1 | Target: Self (1)
+                   Affected School(s): Physical
+Description      : Physical damage taken reduced by $s1%.
+
+Name             : Leeching Poison (id=280716) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=2, max_rank=1, req_points=23]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=738428)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Adds a Leeching effect to your Lethal poisons, granting you ${$108211s1}.1% Leech.
+
+Name             : Improved Wound Poison (id=319066) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=1, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 44
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=805307)   : Apply Aura (6) | Add Flat Modifier (107): Spell Max Stacks (37)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Target: Self (1)
+                   Affected Spells: Wound Poison (8680), Wound Poison (394327)
+                   Family Flags: 120
+Description      : Wound Poison can now stack $s1 additional times.
+
+Name             : Nimble Fingers (id=378427) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1006824)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Feint (1966), Crimson Vial (185311), Crimson Vial (212198), Crimson Vial (354494)
+                   Family Flags: 27, 99
+Description      : Energy cost of Feint and Crimson Vial reduced by $s1.
+
+Name             : Master Poisoner (id=378436) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=2, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1006836)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Leeching Poison (108211), Crippling Poison (115196), Numbing Poison (359078), Atrophic Poison (381637), Atrophic Poison (392388)
+                   Family Flags: 14, 45, 73, 83
+#2 (id=1006837)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Crippling Poison (115196), Wound Poison (394327)
+                   Family Flags: 28, 83
+#3 (id=1021237)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Trigger Spell: 381664 | Target: Self (1)
+Description      : Increases the non-damaging effects of your weapon poisons by $s1%.
+
+Name             : Shadowrunner (id=378807) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=7, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1007260)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Stealth (1784), Vanish (11327), Stealth (115191), Shadow Dance (185422)
+                   Family Flags: 22, 57, 96
+#2 (id=1158525)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Misc Value 2: 3671 (Label) | Target: Self (1)
+                   Affected Spells (Label): Subterfuge (115192)
+Description      : While Stealth or Shadow Dance is active, you move $s1% faster.
+
+Name             : Fleet Footed (id=378813) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=3, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 4
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Family Flags     : 106
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1007271)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Movement speed increased by $s1%.
+
+Name             : Recuperator (id=378996) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=4, max_rank=1, req_points=23]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1007533)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Misc Value 2: 2945 (Label) | Target: Self (1)
+                   Affected Spells (Label): Slice and Dice (426605)
+Description      : Slice and Dice heals you for up to $s1% of your maximum health per $426605t sec.
+
+Name             : Blackjack (id=379005) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=6, max_rank=1, req_points=0, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1007544)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Enemies have $394119s1% reduced damage and healing for $394119d after Blind or Sap's effect on them ends.
+
+Name             : Deadly Precision (id=381542) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012451)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Backstab (53), Garrote (703), Sinister Strike (1752), Mutilate (5374), Shiv (5938), Ambush (8676), Mutilate (27576), Fan of Knives (51723), Shuriken Toss (114014), Shadowstrike (185438), Poisoned Knife (185565), Pistol Shot (185763), Sinister Strike (193315), Opportunity (195627), Sinister Strike (197834), Shuriken Storm (197835), Gloomblade (200758), Toxic Blade (245388), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Serrated Bone Spike (324073), Serrated Bone Spike (324074), Sepsis (328305), Sepsis (328306), Serrated Bone Spike (328547), Sinister Strike (341541), Shadowstrike (345121), Echoing Reprimand (354835), Echoing Reprimand (354838), Garrote (360830), Kingsbane (385627), Ambush (385897), Goremaw's Bite (426591), Goremaw's Bite (426592), Ambush (430023), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Crimson Tempest (1247227), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343)
+                   Family Flags: 1, 2, 8, 9, 26, 29, 33, 34, 36, 50, 67, 75, 81, 82, 85, 98, 101, 104, 108, 109, 115, 118, 119, 127
+#2 (id=1118463)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 7 | Misc Value 2: 3052 (Label)
+                   Affected Spells (Label): Blade Flurry (429951)
+Description      : Increases the critical strike chance of your attacks that generate combo points by $s1%.
+
+Name             : Virulent Poisons (id=381543) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012452)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Amplifying Poison (381664), Amplifying Poison (383414), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
+                   Family Flags: 16, 28, 68, 83
+#2 (id=1012453)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Deadly Poison (113780), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326)
+                   Family Flags: 16
+Description      : Increases the damage of your weapon poisons by $s1%.
+
+Name             : Improved Ambush (id=381620) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012574)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Ambush (8676), Ambush (385897), Ambush (430023)
+                   Family Flags: 9
+#2 (id=1291948)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+                   Affected Spells: Shadowstrike (185438), Shadowstrike (345121), Shadowstrike (1269336)
+                   Family Flags: 104
+Description      : $?s185438[Shadowstrike damage increased by $s2%][Ambush generates $s1 additional combo point].
+
+Name             : Tight Spender (id=381621) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1012575)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -6 | Scaled Value: -6 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Kidney Shot (408), Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Kidney Shot (426589), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 17, 18, 20, 21, 32, 35, 44, 55, 89, 92, 111, 112
+Description      : Energy cost of finishing moves reduced by $s1%.
+
+Name             : Atrophic Poison (id=381637) [Spell Family (8)] 
+Talent Entry     : Generic [tree=class, row=6, col=2, max_rank=1, req_points=8, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Cast Time        : 1.5 seconds
+Duration         : 3600 seconds
+Requires weapon  : One-handed Axe, One-handed Mace, One-handed Sword, Fist Weapon, Dagger
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 870
+Proc Chance      : 30%
+Proc Flags       : White Melee, Yellow Melee, Yellow Ranged
+Affecting Spells : Envenom (32645 effects: #2, #5), Master Poisoner (378436 effect#1), Improved Poisons (381624 effect#1), Dragon-Tempered Blades (381801 effect#2), Dark Brew (382504 effect#8), Poisoned Edges (409587 effects: #1, #3), Natureblight (426568 effects: #2, #3), Destiny Defined (454435 effect#1), Vile Tincture (458475 effects: #1, #2)
+Family Flags     : 45, 64
+Attributes       : Is Ability (4), Not Shapeshifted (16), Allow While Stealthed (37), No AutoCast (AI) (49), Instant Target Procs (115), Allow Aura While Dead (116), Allow Entering Arena (149), Aura Points On Client (268), Allow Class Ability Procs (416), Non-secret Aura (506)
+Effects          :
+#1 (id=1012605)  : Apply Aura (6) | Proc Trigger Spell (42): Atrophic Poison
+                   Base Value: 3 | Scaled Value: 3 | Trigger Spell: 392388 | Target: Self (1)
+                   Modified By: Master Poisoner (378436 effect#1)
+Description      : Coats your weapons with a Non-Lethal Poison that lasts for $d. Each strike has a $h% chance of poisoning the enemy, reducing their damage by ${$392388s1*-1}.1% for $392388d.
+Tooltip          : Each strike has a chance of poisoning the enemy, reducing their damage by ${$392388s1*-1}.1% for $392388d.
+
+Name             : Swift Slasher (id=381988) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=7, col=4, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013168)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Slice and Dice (315496)
+                   Family Flags: 18
+#2 (id=1104030)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Slice and Dice grants additional attack speed equal to $s2% of your Haste.
+
+Name             : Lethality (id=382238) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(1, 2)]
+                 : Effect#2 [op=set, values=(10, 20)]
+                 : Effect#3 [op=set, values=(10, 20)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013522)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1013523)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Backstab (53), Garrote (703), Mutilate (1329), Sinister Strike (1752), Gouge (1776), Mutilate (5374), Shiv (5938), Ambush (8676), Mutilate (27576), Fan of Knives (51723), Quaking Palm (107079), Shuriken Toss (114014), Shadowstrike (185438), Poisoned Knife (185565), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Shuriken Storm (197835), Gloomblade (200758), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Serrated Bone Spike (324073), Serrated Bone Spike (324074), Sepsis (328305), Sepsis (328306), Serrated Bone Spike (328547), Sinister Strike (341541), Shadowstrike (345121), Echoing Reprimand (354835), Echoing Reprimand (354838), Garrote (360830), Kingsbane (385627), Ambush (385897), Goremaw's Bite (426591), Goremaw's Bite (426592), Ambush (430023), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Crimson Tempest (1247227), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343)
+                   Family Flags: 1, 2, 3, 8, 9, 26, 29, 33, 34, 50, 53, 67, 75, 81, 82, 98, 101, 104, 109, 115, 118, 119, 127
+#3 (id=1114575)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 15 | Misc Value 2: 3052 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blade Flurry (429951)
+Description      : Critical strike chance increased by $s1%. Critical strike damage bonus of your attacks that generate combo points increased by $s2%.
+
+Name             : Cold Blooded Killer (id=382245) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=3, max_rank=1, req_points=23]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.1 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Family Flags     : 38
+Attributes       : Passive (6), Allow While Stealthed (37), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013535)  : Apply Aura (6) | Proc Trigger Spell (42): Cold Blood
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1264297 | Target: Self (1)
+Description      : Critically striking with an attack that generates combo points increases the critical strike chance of your next finishing move by $1264297s1%.
+
+Name             : Without a Trace (id=382513) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1013894)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2058 (Category) | Target: Self (1)
+                   Affected Spells (Category): Vanish (1856)
+Description      : Vanish has $s1 additional $lcharge:charges;.
+
+Name             : Soothing Darkness (id=393970) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=6, max_rank=1, req_points=23]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 117
+                 : 292
+                 : 3057: Ephemeral Bond (426563 effect#2)
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1033247)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Modified By: Ephemeral Bond (426563 effect#2)
+Description      : You are healed for ${$393971s1*($393971d/$393971t)}% of your maximum health over $393971d after activating Vanish.
+
+Name             : Thrill Seeking (id=394931) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1034994)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1206 (Category) | Target: Self (1)
+#2 (id=1184073)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2303 (Category) | Target: Self (1)
+                   Affected Spells (Category): Grappling Hook (195457)
+Description      : $?a137036[Grappling Hook][Shadowstep] has $s1 additional charge.
+
+Name             : Unbreakable Stride (id=400804) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 4
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Family Flags     : 106
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1046145)  : Apply Aura (6) | Modify Mechanic Duration% (Stacking) (232)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 11 | Target: Self (1)
+Description      : Reduces the duration of movement slowing effects $s1%.
+
+Name             : Graceful Guile (id=423647) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 46
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1099803)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2190 (Category) | Target: Self (1)
+                   Affected Spells (Category): Feint (1966)
+Description      : Feint has $m1 additional $Lcharge:charges;.
+
+Name             : Stillshroud (id=423662) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=5, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 46
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1099824)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Shroud of Concealment (114018)
+                   Family Flags: 71
+Description      : Shroud of Concealment has $s1% reduced cooldown.
+
+Name             : Featherfoot (id=423683) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=7, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 31
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1099856)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Sprint (2983)
+                   Family Flags: 6
+#2 (id=1099857)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Sprint (2983)
+                   Family Flags: 6
+Description      : Sprint increases movement speed by an additional $s1% and has ${$s2/1000} sec increased duration.
+
+Name             : Superior Mixture (id=423701) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=1, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 31
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1099907)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | PvP Coefficient: 0.5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (359078)
+                   Family Flags: 14
+Description      : Crippling Poison reduces movement speed by an additional $s1%.
+
+Name             : Thistle Tea (id=469779) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=23, override="Thistle Tea" (id=381623)]
+Class            : Rogue
+School           : Physical
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+Attributes       : Passive (6), Allow While Stealthed (37), Do Not Display Range (126), Not In Spellbook (143), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Visible only to caster (conversations only) (343)
+Aura Interrupt   : Raid Encounter Start or M+ Start (40)
+Effects          :
+#1 (id=1184332)  : Apply Aura (6) | Trigger Spell Based on Resource Amount (396): Thistle Tea
+                   Base Value: 30 | Scaled Value: 30 | Resource: energy | Misc Value 2: 1 | Trigger Spell: 381623 | Target: Self (1)
+#2 (id=1184346)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : $@spelldesc381623
+
+Name             : Supercharger (id=470347) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=2, req_points=23]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 5519
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1185469)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1185470)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : $?a137035[Shadow Dance]?a137036[Adrenaline Rush][Kingsbane] supercharges $m1 combo $Lpoint:points;.
+
+Name             : Forced Induction (id=470668) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1186193)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Increase the bonus granted when a damaging finishing move consumes a supercharged combo point by $s1.
+
+Name             : Echoing Reprimand (id=470669) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1186194)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : After consuming a supercharged combo point, your next $?s200758[Gloomblade]?a137035[Backstab]?a137036[Sinister Strike][Mutilate] also strikes the target with an Echoing Reprimand dealing $470672s1 Physical damage.
+
+Name             : Toxic Stiletto (id=1267182) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=1, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280028)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Shiv (5938)
+                   Family Flags: 29
+#2 (id=1280029)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -15000 | Scaled Value: -15000 | Misc Value: 2086 (Category) | Target: Self (1)
+                   Affected Spells (Category): Shiv (5938)
+#3 (id=1280030)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Shiv (5938)
+                   Family Flags: 29
+Description      : Shiv's Energy cost is reduced by $s1, its cooldown is reduced by ${-$s2/1000} sec, and its range is increased by $s3 yds.
+
+Name             : Quick Fingers (id=1267210) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280072)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Agi | Target: Self (1)
+Description      : Increases your Agility by $s1%.
+
+Name             : Deep Cuts (id=1267216) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280081)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+                   Affected Spells: Kidney Shot (408), Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Kidney Shot (426589), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 17, 20, 21, 32, 35, 44, 55, 92, 111, 112
+#2 (id=1280082)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Kidney Shot (408), Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Kidney Shot (426589), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Family Flags: 17, 20, 21, 32, 35, 44, 55, 92, 111, 112
+Description      : Your finishing moves deal $s1% increased damage.
+
+Name             : Danger Sense (id=1267220) [Spell Family (8), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=2, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1280087)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: -10 | Target: Self (1)
+                   Affected School(s): All
+#2 (id=1280088)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+#3 (id=1280089)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : You have a $s2% chance to partially evade any damage dealt to you, reducing the damage it deals by $s3%.
+
+Name             : Sanguine Vial (id=1293135) [Spell Family (8), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=4, max_rank=1, req_points=8]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 5
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Killing Blow
+Attributes       : Passive (6), Do Not Log (8), Not In Spellbook (143)
+Effects          :
+#1 (id=1313594)  : Apply Aura (6) | Proc Trigger Spell (42): Sanguine Vial
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1293138 | Target: Self (1)
+#2 (id=1313602)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -15000 | Scaled Value: -15000 | Target: Self (1)
+Description      : When you deal the killing blow to a target that yields experience or honor, the cooldown of Crimson Vial is reduced by ${-$s2/1000} sec and your next use heals $1293149s1% of your health instantly.

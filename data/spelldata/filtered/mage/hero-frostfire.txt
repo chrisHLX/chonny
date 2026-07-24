@@ -1,0 +1,380 @@
+# Mage — Frostfire Hero Talents
+# Extracted verbatim from mage.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 17 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Frostfire Bolt (id=431044) [Spell Family (3)] 
+Talent Entry     : Frostfire (Frost) [tree=hero, row=1, col=3, max_rank=1, req_points=1, replace="Frostbolt" (id=116)]
+                 : Frostfire (Fire) [tree=hero, row=1, col=3, max_rank=1, req_points=1, replace="Fireball" (id=133)]
+Class            : Mage
+School           : Frostfire
+Spell Type       : Magic
+Resource         : 2% Base Mana (0) (id=305878)
+Range            : 40 yards
+Cast Time        : 1.75 seconds
+GCD              : 1.5 seconds
+Velocity         : 40 yards/sec
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Affecting Spells : Splitting Ice (56377 effect#1), Pyrotechnics (157644 effect#1), Flame Accelerant (203275 effects: #1, #2), Flame Accelerant (203278 effects: #1, #2), Duplicative Incineration (278538 effect#2), Radiant Spark Vulnerability (307454 effect#1), Deathborne (324220 effects: #3, #5), Slick Ice (327509 effects: #1, #2), Mage Fire Class Set 4pc (393656 effects: #1, #2, #3), Overflowing Energy (394195 effect#1), Thermal Conditioning (431117 effect#1), Frostfire Empowerment (431177 effect#2), Flame Accelerant (453283 effect#2), Master of Flame (1217750 effect#1), Glacial Spike! (1222865 effects: #1, #2)
+Family Flags     : 0, 57, 92
+Attributes       : Not Shapeshifted (16), Spell Haste Affects Periodic (173), Do Not Chain To Crowd-Controlled Targets (200), Periodic Can Crit (265), Aura Points On Client (268), Rolling Periodic (334), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1118526)  : Trigger Missiles (32): Frostfire Bolt
+                   Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 1 | Trigger Spell: 468655 | Chain Targets: 1 | Target: Targeted Enemy (6)
+Description      : Launches a bolt of frostfire at the enemy, causing $468655s1 Frostfire damage, slowing movement speed by $205708s1%, and causing an additional $468655o2 Frostfire damage over $468655d.$?a1246769[
+
+Name             : Imbued Warding (id=431066) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118573)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.6 | Target: Self (1)
+#2 (id=1118721)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.6 | Target: Self (1)
+Description      : $?c2[Blazing Barrier also casts an Ice Barrier at $s1% effectiveness.]?c3[Ice Barrier also casts a Blazing Barrier at $s2% effectiveness.][]
+
+Name             : Elemental Affinity (id=431067) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118575)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Cone of Cold (120), Frost Nova (122), Ring of Frost (82691), Ring of Frost (113724), Ring of Frost (136511), Ring of Frost (140384), Ice Nova (157997), Frost Nova (235235), Icebind (397252)
+                   Family Flags: 6, 9, 70, 119
+#2 (id=1118576)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 1452 (Category) | Target: Self (1)
+#3 (id=1118816)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Dragon's Breath (31661), Fire Blast (108853), Blast Wave (157981), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Blast Wave (389631)
+                   Family Flags: 1, 23, 38, 116
+#4 (id=1142492)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+#5 (id=1163206)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 1588 (Category) | Target: Self (1)
+                   Affected Spells (Category): Frost Nova (122)
+#6 (id=1186283)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Cooldown (11)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 11 | Misc Value 2: 1327 (Label) | Target: Self (1)
+                   Affected Spells (Label): Ice Wall (352278)
+Description      : $?c2[The cooldown of Frost spells with a base cooldown shorter than $s4 minutes is reduced by $s1%.]?c3[The cooldown of Fire spells is reduced by $s3%.][]
+
+Name             : Isothermic Core (id=431095) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118612)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 150 | Scaled Value: 150 | Target: Self (1)
+#2 (id=1131295)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 300 | Scaled Value: 300 | PvP Coefficient: 0.6667 | Target: Self (1)
+Description      : $?a137019[Meteor now also calls down a Comet Storm, dealing ${$438609s1*7} Frost damage to nearby enemies]?a137020[Comet Storm now also calls down a Meteor, dealing $351140s1 Fire damage to nearby enemies. Damage reduced beyond 8 targets.
+
+Name             : Flame and Frost (id=431112) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118636)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : $?a137020[Ice Block and Ice Cold reset the cooldowns of your Fire spells.]?a137019[Cauterize resets the cooldown of your Frost spells with a base cooldown shorter than $s1 minutes when it activates.][Ice Block and Ice Cold reset the cooldowns of your Fire spells.
+
+Name             : Thermal Conditioning (id=431117) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118645)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cast Time (10)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 10 | Target: Self (1)
+                   Affected Spells: Frostfire Bolt (431044)
+                   Family Flags: 92
+Description      : Frostfire Bolt's cast time is reduced by $s1%.
+
+Name             : Meltdown (id=431131) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118668)  : Apply Aura (6) | Periodic Dummy (226): every 0.25 seconds
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1118707)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : You melt slightly out of your Ice Block and Ice Cold, allowing you to move slowly during Ice Block and increasing your movement speed over time.
+
+Name             : Frostfire Infusion (id=431166) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1118755)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Brain Freeze (190447)
+                   Family Flags: 79
+#2 (id=1250444)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Chance (7)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Frostbolt (228597), Glacial Spike (228600), Frostfire Bolt (468655)
+                   Family Flags: 5
+#3 (id=1252409)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Scorch (1254311), Flamestrike (1254851), Ignite (1262887), Winter's End (1280757)
+                   Family Flags: 1, 2, 4, 5, 7, 9, 17, 27, 28, 35, 38, 48, 52, 56, 78, 82, 88, 96, 102, 119, 120
+#4 (id=1252410)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 4 | Scaled Value: 4 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Glacial Spike (1236209), Glacial Spike (1236211), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Scorch (1254311), Flamestrike (1254851), Glacial Spike (1262860), Glacial Spike (1262862), Ignite (1262887), Winter's End (1280757)
+                   Family Flags: 1, 2, 4, 5, 7, 9, 17, 27, 28, 35, 38, 48, 52, 56, 64, 78, 82, 88, 96, 102, 119, 120
+Description      : $?a137020[Frostfire Bolt has an additional $s1% chance to grant Brain Freeze]?a137019[Frostfire Bolt's critical strike chance is increased by $s2%.][Frostfire Bolt has and additional $s1% chance to grant Brain Freeze and its critical strike chance is increased by $s2%].
+
+Name             : Frostfire Empowerment (id=431176) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+                 : 5384: Severe Temperatures (431189 effect#2)
+Stacks           : 1 maximum
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118781)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
+#2 (id=1118782)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Modified By: Severe Temperatures (431189 effect#2)
+#3 (id=1250572)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#4 (id=1254332)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#5 (id=1286321)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#6 (id=1296950)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.5 | Target: Self (1)
+Description      : Casting Frostfire spells has a $s3% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal $431177s3% increased damage, explode for $s2% of its damage to nearby enemies. Damage reduced beyond $s5 targets.$?c2[][
+
+Name             : Flash Freezeburn (id=431178) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118785)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Glacial Spike (228600), Glacial Spike (1236209), Glacial Spike (1236211), Glacial Spike (1262860), Glacial Spike (1262862)
+                   Family Flags: 64
+#2 (id=1290718)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#3 (id=1290719)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#4 (id=1290720)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Meteor (153564), Meteor (351140), Meteor (438607), Meteor (438608), Meteorite (449560), Meteorite (449569)
+                   Family Flags: 96
+#5 (id=1290723)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Meteor (153561), Meteor (153564), Meteor Burn (155158), Meteor (351140), Meteor (438607), Meteor (438608), Meteorite (449560), Meteorite Burn (449561), Meteorite (449569)
+                   Family Flags: 122
+Description      : $?a137020[Glacial Spike damage increased by $s1% and it now explodes on impact, dealing $s2% of its damage to up to $s3 nearby enemies.
+
+Name             : Severe Temperatures (id=431189) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1118809)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Misc Value 2: 4891 (Label) | Target: Self (1)
+                   Affected Spells (Label): Frostfire Empowerment (431177)
+#2 (id=1250573)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Misc Value 2: 5384 (Label) | Target: Self (1)
+                   Affected Spells (Label): Frostfire Empowerment (431176)
+#3 (id=1250574)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : Frostfire Empowerment stacks $s1 additional $Ltime:times; and it causes Frostfire Bolt to explode for an additional $s2% of its damage.
+
+Name             : Heat Sink (id=1248002) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1250555)  : Apply Aura (6) | Modify Spell School (220)
+                   Base Value: 0 | Scaled Value: 0 | School: frostfire | Target: Self (1)
+                   Affected Spells: Fire Blast (108853), Flurry (228354), Flurry (228596), Fire Blast (319836)
+                   Family Flags: 1, 102
+#2 (id=1250556)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Fire Blast (108853), Fire Blast (319836)
+                   Family Flags: 1
+#3 (id=1250557)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Affected Spells: Flurry (228354), Flurry (228596)
+                   Family Flags: 102
+Description      : $?a137020[Flurry]?a137019[Fire Blast][Flurry and Fire Blast] now $?a137020[deals]?a137019[deals][deal] Frostfire damage and $?a137020[its]?a137019[its][their] damage is increased by $?a137020[$s3%]?a137019[$s2%][$s2%].
+
+Name             : Dualcasting Adept (id=1248014) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1250585)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Dragon's Breath (31661), Fire Blast (108853), Meteor (153564), Flurry (228354), Flurry (228596), Frostbolt (228597), Glacial Spike (228600), Fire Blast (319836), Meteor (351140), Meteor (438607), Meteor (438608), Meteorite (449560), Meteorite (449569), Frostfire Bolt (468655)
+                   Family Flags: 1, 5, 23, 88, 96, 102
+#2 (id=1250586)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 15 | Target: Self (1)
+                   Affected Spells: Frostbolt (116), Cone of Cold (120), Frost Nova (122), Fire Blast (108853), Comet Storm (153595), Comet Storm (153596), Ice Nova (157997), Frostbolt (228597), Glacial Spike (228600), Comet Storm (228601), Frost Nova (235235), Fire Blast (319836), Comet Storm (438609), Frostfire Bolt (468655)
+                   Family Flags: 1, 5, 6, 9, 119, 120
+#3 (id=1250593)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Affected Spells: Shatter (1246949), Winter's End (1280757)
+                   Family Flags: 35
+#4 (id=1250594)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Pyroblast (11366), Pyroblast (460475), Pyroblast (1262863)
+                   Family Flags: 22
+#5 (id=1261863)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Flamestrike (2120), Flamestrike (460476), Flamestrike (1254851)
+                   Family Flags: 2
+#6 (id=1261864)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Blizzard (190356), Blizzard (190357), Freezing Winds (1247554), Blizzard (1248829)
+                   Family Flags: 7
+Description      : Your $?a137020[Fire]?a137019[Frost][Frost and Fire] spells deal $?a137020[$s1]?a137019[$s2][$s1]% increased critical strike damage.
+
+Name             : Blast Radius (id=1248016) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1250595)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Meteor (153564), Meteor (351140), Meteor (438607), Meteor (438608), Meteorite (449560), Meteorite (449569)
+                   Family Flags: 96
+#2 (id=1250596)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Comet Storm (153595), Comet Storm (153596), Comet Storm (228601), Comet Storm (438609)
+                   Family Flags: 120
+#3 (id=1250597)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Meteor (153564), Meteor (351140), Meteor (438607), Meteor (438608), Meteorite (449560), Meteorite (449569)
+                   Family Flags: 96
+#4 (id=1250598)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Comet Storm (153595), Comet Storm (153596), Comet Storm (228601), Comet Storm (438609)
+                   Family Flags: 120
+Description      : $?a137020[Comet Storm damage increased by $s2%.
+
+Name             : Duality (id=1262843) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1273340)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : $?c2[Casting Pyroblast has a $s2% chance to also cast a Glacial Spike, dealing $1262862s1 Frost damage][Casting Glacial Spike also casts a Pyroblast, dealing $1262863s1 Fire damage].
+
+Name             : Molten Chill (id=1262844) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1273341)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1273342)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?c3[Your Frostfire spells apply Ignite, dealing an additional $s1% of their damage over $1262887d][Your Frostfire spells apply Ignite at $s2% increased effectiveness].
+
+Name             : Elemental Conduit (id=1262845) [Spell Family (3), Passive, Hidden] 
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Mage
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 17: Mage Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1273343)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#2 (id=1273344)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : $?c2[Comet Storm and Glacial Spike now apply Ignite][Meteor and Pyroblast now apply Ignite].

@@ -1,0 +1,984 @@
+# Death Knight — Class Talents
+# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 46 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Raise Dead (id=46585) [Spell Family (15)] 
+Talent Entry     : Generic [free=(Unholy), tree=class, row=1, col=6, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 12
+Range            : 30 yards
+Duration         : 60 seconds
+Cooldown         : 120 seconds
+Category         : 1245 (Type 0x0)
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Category Cooldown: 120 seconds
+Stance Mask      : 0x01000000
+Affecting Spells : Death's Messenger (437122 effect#1)
+Family Flags     : 12
+Attributes       : Not Shapeshifted (16), No Threat (42), No Aura Icon (60), Allow Dead Target (64), Allow While Not Shapeshifted (caster form) (83), Suppress Target Procs (113), Spellcast Override In Spellbook (310), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=38713)    : Summon Guardian (28)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 26125 | Misc Value 2: 4973 | Radius: 0 - 5 yards | Target: at Self (18) -> at Radius in Area (91)
+Description      : Raises a $?s58640[geist][ghoul] to fight by your side.  You can have a maximum of one $?s58640[geist][ghoul] at a time. Lasts $46585d.
+
+Name             : Mind Freeze (id=47528) [Spell Family (15)] 
+Talent Entry     : Generic [tree=class, row=3, col=1, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Frost
+Spell Type       : Magic
+Resource         : 0 Runic Power (6) (id=5841)
+Spell Level      : 7
+Range            : 15 yards
+Duration         : 5 seconds
+Cooldown         : 15 seconds
+Category         : 88 (Type 0x0): Quick Witted (382297 effect#1)
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 5901
+Category Cooldown: 15 seconds
+Stance Mask      : 0x01000000
+Family Flags     : 10
+Attributes       : Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Allow While Not Shapeshifted (caster form) (83), Always Hit (114), Taps immediately (215), Allow Class Ability Procs (416), Interrupts Current Cast (419)
+Effects          :
+#1 (id=39737)    : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Mechanic: Interrupt | Target: Targeted Enemy (6)
+Description      : Smash the target's mind with cold, interrupting spellcasting and preventing any spell in that school from being cast for $d.
+
+Name             : Veteran of the Third War (id=48263) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=4, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 8
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Affecting Spells : Frost Death Knight (137006 effect#7), Unholy Death Knight (137007 effect#6), Veteran of the Third War (316714 effects: #1, #2, #3)
+Family Flags     : 107
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Aura Interrupt   : Login (29)
+Effects          :
+#1 (id=40417)    : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Misc Value: 2 | Stat: Sta | Target: Self (1)
+                   Modified By: Frost Death Knight (137006 effect#7), Unholy Death Knight (137007 effect#6), Veteran of the Third War (316714 effect#1)
+#2 (id=40418)    : Apply Aura (6) | Add Percent Modifier (108): Spell Generated Threat (2)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 2 | Target: Self (1)
+                   Affected Spells: Death Coil (47633), Unholy Strength (53365), Bonestorm (194844), Bonestorm (196528)
+                   Family Flags: 31, 106, 109
+#3 (id=884937)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Veteran of the Third War (316714 effect#2)
+Description      : Stamina increased by $s1%.
+$?s316714[Damage taken reduced by $s3%.][]
+
+Name             : Death Pact (id=48743) [Spell Family (15)] 
+Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Duration         : 15 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Stance Mask      : 0x01000000
+Affecting Spells : Death Defiance (1266818 effects: #1, #2)
+Family Flags     : 19
+Attributes       : Not Shapeshifted (16), Aura Is Debuff (26), No Immunities (29), No Threat (42), No AutoCast (AI) (49), Exclude Caster (51), Ignore Line of Sight (66), Allow While Not Shapeshifted (caster form) (83), Can't Crit (93), Allow Aura While Dead (116), No Harmful Threat (132), Ignore Damage Taken Modifiers (136), Ignore Target Requirements (181), Ignore Healing Modifiers (219), Ignore Caster Damage Modifiers (221), Ignore Sanctuary (263), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Always Allow Negative Healing Percent Modifiers (442)
+Effects          :
+#1 (id=40903)    : Direct Heal% (136)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#2 (id=214260)   : Apply Aura (6) | Absorb Healing (301)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 127 | Target: Self (1)
+#3 (id=729346)   : Dummy (3)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#4 (id=1279501)  : Apply Aura (6) | Modify Healing Received% (118)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Death Defiance (1266818 effect#2)
+Description      : Create a death pact that heals you for $s1% of your maximum health, but absorbs incoming healing equal to $s3% of your max health for $d.
+Tooltip          : The next $w2 healing received will be absorbed. $?$W4>0[Healing received increased by $w4%.][]
+
+Name             : Icebound Fortitude (id=48792) [Spell Family (15)] 
+Talent Entry     : Generic [free=(Frost), tree=class, row=1, col=2, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 38
+Duration         : 8 seconds
+Cooldown         : 120 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 930
+                 : 1284
+Proc Chance      : 100%
+Stance Mask      : 0x01000000
+Proc Flags       : Killing Blow, White Melee, White Melee Taken, Yellow Melee, Yellow Melee Taken, White Ranged Taken, Yellow Ranged, Yellow Ranged Taken, Generic Helpful, Generic Helpful Taken, Generic Hostile Spell, Generic Hostile Spell Taken, Magic Heal, Magic Heal Taken, Magic Hostile Spell, Magic Hostile Spell Taken, Periodic, Periodic Taken, Helpful Periodic, Helpful Periodic Taken
+Affecting Spells : Cold Hearted (288425 effect#2)
+Family Flags     : 20
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Immunity Purges Effect (47), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Allow Cast While Channeling (308), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Important Spell (491), Big Defensive (512)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=40963)    : Apply Aura (6) | Mechanic Immunity (77)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 12 | Target: Self (1)
+#2 (id=40964)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#3 (id=40965)    : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -30 | Scaled Value: -30 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#4 (id=276635)   : Apply Aura (6) | Modify Healing Taken% from Caster's Spells (283)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+                   Affected Spells: Death Strike (45470), Lifeblood (1264304)
+                   Family Flags: 66
+Description      : Your blood freezes, granting immunity to Stun effects and reducing all damage you take by $s3% for $d.
+Tooltip          : Damage taken reduced by $w3%.
+Immune to Stun effects.
+
+Name             : Death Strike (id=49998) [Spell Family (15)] 
+Talent Entry     : Generic [free=(Blood), tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : Melee
+Resource         : 45 Runic Power (6) (id=6268)
+Spell Level      : 4
+Range            : 5 yards
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 823: Will to Survive (312922 effect#2)
+                 : 881
+                 : 2397
+Stance Mask      : 0x01000000
+Affecting Spells : Blood Plague (55078 effect#4), Frost Fever (55095 effect#2), Blood Shield (77535 effects: #2, #3), Might of the Frozen Wastes (81333 effect#2), Dark Succor (101568 effect#2), Death Knight (137005 effect#2), Frost Death Knight (137006 effects: #1, #2), Unholy Death Knight (137007 effects: #1, #2), Blood Death Knight (137008 effects: #1, #2, #18), Virulent Plague (191587 effect#3), Ossuary (219788 effect#1), Death March (235556 effect#2), Haemostasis (235559 effect#1), Hemostasis (273947 effect#1), Voracious (273953 effects: #2, #3), War (327096 effect#1), Death's Certainty (334898 effect#2), Deep Frost (373934 effect#1), Improved Death Strike (374277 effects: #1, #2, #3), Brittle (374557 effect#1), Heartrend (377656 effect#2), Sanguine Ground (391459 effects: #1, #3), Vigorous Lifeblood (394570 effects: #1, #2), Ghoulish Infusion (394899 effects: #1, #3), Lingering Chill (410879 effect#1), Chilling Rage (424165 effects: #1, #2), Amplify Damage (424949 effects: #1, #2), Ashen Decay (425719 effect#2), Essence of the Blood Queen (433925 effect#2), Death Knight Frost 11.0 Class Set 2pc (453634 effect#1), Blood Draw (454871 effect#2), Luck of the Draw! (1218601 effects: #1, #2, #4, #5), Dread Plague (1240996 effect#2), Infected Claws (1241786 effect#2), Frost Death Knight (1256915 effects: #1, #2), Blood Death Knight (1256916 effects: #1, #2, #4), Unholy Death Knight (1256918 effects: #1, #2), Deadly Reach (1264235 effect#1), Dance of Midnight (1264407 effects: #1, #2), Death Knight Blood 12.0 Class Set 4pc (1264800 effect#1), Deathly Blows (1265932 effect#3), Death Knight - Midnight PrePatch - 11.2 Class Set 2pc (1283621 effects: #1, #2), Death Knight - Midnight PrePatch - 11.2 Class Set 4pc (1283622 effects: #1, #2)
+Family Flags     : 4, 43, 127
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Chain From Caster (76), Allow While Not Shapeshifted (caster form) (83), Requires Main-Hand Weapon (106), Do Not Chain To Crowd-Controlled Targets (200), Allow Class Ability Procs (416), Chain by Most Hit (440)
+Effects          :
+#1 (id=42113)    : School Damage (2): physical | Attributes: Unknown(28)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.5312 | Chain Multiplier: 0.75 | Chain Targets: 1 | Target: Targeted Enemy (6)
+#2 (id=42114)    : Dummy (3)
+                   Base Value: 20 | Scaled Value: 20 | Target: Targeted Enemy (6)
+                   Modified By: Voracious (273953 effect#2), Improved Death Strike (374277 effect#1)
+#3 (id=287354)   : Dummy (3)
+                   Base Value: 7 | Scaled Value: 7 | Target: Targeted Enemy (6)
+                   Modified By: Voracious (273953 effect#3), Improved Death Strike (374277 effect#2)
+#4 (id=331353)   : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Target: Targeted Enemy (6)
+Description      : Focuses dark power into a strike$?s137006[ with both weapons, that deals a total of ${$s1+$66188s1}][ that deals $s1] Physical damage and heals you for ${$s2}.2% of all damage taken in the last $s4 sec, minimum ${$s3}.1% of maximum health.
+
+Name             : Anti-Magic Zone (id=51052) [Spell Family (15)] 
+Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Range            : 30 yards
+GCD              : 1.5 seconds
+Duration         : 6 seconds
+Cooldown         : 240 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 118
+                 : 292
+                 : 930
+Proc Chance      : 101%
+Stance Mask      : 0x01000000
+Affecting Spells : Assimilation (374383 effects: #1, #2)
+Family Flags     : 51
+Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow While Not Shapeshifted (caster form) (83), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=43332)    : Create Area Trigger (179)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1193 | Radius: 8 yards | Target: At Ally in Area (31)
+Description      : Places an Anti-Magic Zone for $d, reducing the magic damage taken by party or raid members by $145629m1%.
+Variables        : $absorb=${$MHP*1.5*(1+$@versadmg)}
+
+Name             : Control Undead (id=111673) [Spell Family (15)] 
+Talent Entry     : Generic [tree=class, row=3, col=6, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : Magic
+Resource         : 1 Rune (5) (id=6266)
+Resource         : -10 Runic Power (6) (id=10661)
+Spell Level      : 37
+Range            : 30 yards
+Cast Time        : 1.5 seconds
+GCD              : 1.5 seconds
+Duration         : 300 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Stance Mask      : 0x01000000
+Mechanic         : Charm
+Attributes       : Not Shapeshifted (16), Heartbeat Resist (30), Dismiss Pet First (32), No Threat (42), No AutoCast (AI) (49), Cannot cast on tapped (70), Allow While Not Shapeshifted (caster form) (83), No Partial Immunity (139), Aura Bounce Fails Spell (157), Not On Player (167), Taps immediately (215), Allow Class Ability Procs (416)
+Aura Interrupt   : Seamless Transfer (48)
+Effects          :
+#1 (id=124129)   : Apply Aura (6) | Charm (6)
+                   Base Value: 38 | Scaled Value: 91 | Points Per Level: 1 | Misc Value: 1 | Target: Targeted Enemy (6)
+#2 (id=124130)   : Apply Aura (6) | Modify Damage Done% (79)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Enemy (6)
+                   Affected School(s): All
+Description      : Dominates the target undead creature up to level $s1, forcing it to do your bidding for $d.
+Tooltip          : Controlled.
+
+Name             : Icy Talons (id=194878) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Frost
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell, Periodic, Helpful Periodic, Cast Successful
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=286061)   : Apply Aura (6) | Trigger Spell with Value (231)
+                   Base Value: 6 | Scaled Value: 6 | Trigger Spell: 194879 | Target: Self (1)
+Description      : Your Runic Power spending abilities increase your melee attack speed by $s1% for $194879d, stacking up to $194879u times.
+
+Name             : Anti-Magic Barrier (id=205727) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : None
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 2782
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=303981)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -20000 | Scaled Value: -20000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Anti-Magic Shell (48707), Anti-Magic Shell (444740), Anti-Magic Shell (444741), Lesser Anti-Magic Shell (454863)
+                   Family Flags: 17
+#2 (id=726022)   : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: 40 | Scaled Value: 40 | PvP Coefficient: 0.5 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Anti-Magic Shell (48707), Anti-Magic Shell (444740), Anti-Magic Shell (444741), Lesser Anti-Magic Shell (454863)
+                   Family Flags: 17
+#3 (id=726131)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : Reduces the cooldown of Anti-Magic Shell by ${$s1/-1000} sec and increases its duration and amount absorbed by $s2%.
+
+Name             : Will of the Necropolis (id=206967) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=6, max_rank=2, req_points=23]
+                 : Effect#2 [op=set, values=(20, 35)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=306100)   : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: -10 | Target: Self (1)
+                   Affected School(s): All
+#2 (id=306101)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Target: Self (1)
+#3 (id=306102)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Damage taken below $s3% Health is reduced by $s2%.
+
+Name             : Runic Attenuation (id=207104) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=2, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 100%
+Real PPM         : 10.8 (Haste multiplier)
+Proc Flags       : White Melee
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=306302)   : Apply Aura (6) | Proc Trigger Spell (42): Runic Attenuation
+                   Base Value: 5 | Scaled Value: 5 | Trigger Spell: 221322 | Target: Self (1)
+Description      : Auto attacks have a chance to generate ${$221322s1/10} Runic Power.
+
+Name             : Blinding Sleet (id=207167) [Spell Family (15)] 
+Talent Entry     : Generic [tree=class, row=3, col=2, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Frost
+Spell Type       : Magic
+Spell Level      : 1
+Cone Angle       : 90 degrees
+GCD              : 1.5 seconds
+Duration         : 5 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Stacks           : 1 initial, 1 maximum
+Proc Chance      : 100%
+Stance Mask      : 0x01000000
+Mechanic         : Disorient
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken
+Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), Allow While Not Shapeshifted (caster form) (83), Can Proc From Procs (122), Show Mechanic as Combat Text (213), Aura Points On Client (268), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Area Effects Use Target Radius (328), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Aura Interrupt   : Damage (Script) (27)
+Effects          :
+#1 (id=306388)   : Apply Aura (6) | Confuse (5)
+                   Base Value: 1 | Scaled Value: 1 | Radius: 12 yards | Target: Enemies in Cone to Targeted Enemy (104)
+#2 (id=306389)   : Apply Aura (6) | Decrease Movement Speed% (33)
+                   Base Value: -60 | Scaled Value: -60 | Radius: 12 yards | Target: Enemies in Cone to Targeted Enemy (104)
+Description      : Targets in a cone in front of you are blinded, causing them to wander disoriented for $d. Damage may cancel the effect.
+
+Name             : Permafrost (id=207200) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+                 : 4360: Frost Death Knight (137006 effect#9), Unholy Death Knight (137007 effect#7), Frigid Resolve (1265859 effect#1), Frigid Resolve (1265859 effect#2)
+Proc Chance      : 100%
+Proc Flags       : White Melee
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=306445)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Modified By: Frost Death Knight (137006 effect#9), Unholy Death Knight (137007 effect#7), Frigid Resolve (1265859 effect#1), Frigid Resolve (1265859 effect#2)
+Description      : Your auto attack damage grants you an absorb shield equal to $s1% of the damage dealt.
+
+Name             : Wraith Walk (id=212552) [Spell Family (15)] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 25
+GCD              : 1.5 seconds
+Duration         : 4 seconds
+Cooldown         : 60 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 219
+                 : 292
+                 : 329
+Stance Mask      : 0x01000000
+Affecting Spells : Death Knight (137005 effect#2), Vampiric Speed (434028 effect#1)
+Family Flags     : 32, 127
+Attributes       : Is Ability (4), Not Shapeshifted (16), Allow Cast While Dead (23), Is Channelled (34), Is Self Channelled (38), No Threat (42), Name in Channel Bar (61), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
+Channel Interrupt: Damage (2), Attacking (13)
+Effects          :
+#1 (id=315117)   : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 70 | Scaled Value: 70 | Target: Self (1)
+                   Modified By: Vampiric Speed (434028 effect#1)
+#2 (id=315118)   : Apply Aura (6) | Modify Min Speed% (305)
+                   Base Value: 170 | Scaled Value: 170 | Value Multiplier: 1 | Target: Self (1)
+#3 (id=315121)   : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#4 (id=315362)   : Trigger Spell (64): Wraith Walk
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 212654 | Target: Self (1)
+#5 (id=315371)   : Apply Aura (6) | Levitate (106)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#6 (id=334744)   : Apply Aura (6) | Modify Aggro Distance (152)
+                   Base Value: -5 | Scaled Value: -5 | Target: Self (1)
+#7 (id=756394)   : None (0)
+                   Base Value: 100 | Scaled Value: 100
+Description      : Embrace the power of the Shadowlands, removing all root effects and increasing your movement speed by $s1% for $d. Taking any action cancels the effect.
+
+Name             : Asphyxiate (id=221562) [Spell Family (15)] 
+Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=1, req_points=8, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : Magic
+Spell Level      : 21
+Range            : 20 yards
+GCD              : 1.5 seconds
+Duration         : 5 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Stance Mask      : 0x01000000
+Mechanic         : Stun
+Family Flags     : 84
+Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Display Large Aura Icon On Unit Frames (Boss Aura) (286), Allow Class Ability Procs (416), Nameplate Enemy Debuffs (426)
+Effects          :
+#1 (id=330559)   : Apply Aura (6) | Modify Stun Effects - Disable Gravity (298)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Lifts the enemy target off the ground, crushing their throat with dark energy and stunning them for $d.
+Tooltip          : Stunned.
+
+Name             : Grip of the Dead (id=273952) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=7, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Aura Interrupt   : Change Specialization (38), Change Talent (46), Change Glyph (47)
+Effects          :
+#1 (id=725979)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 90 | Scaled Value: 90 | Target: Self (1)
+#2 (id=725980)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : $?s152280[Defile][Death and Decay] reduces the movement speed of enemies within its area by $s1%, decaying by $s2% every sec.
+
+Name             : Death's Reach (id=276079) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=1, req_points=8, select_idx=200]
+Class            : Death Knight
+School           : Shadow
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Killing Blow
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=729509)   : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Death Grip (49575), Death Grip (49576), Abomination Limb (323950), Abomination Limb (335486), Death Grip (359098), Abomination Limb (383315), Abomination Limb (431048)
+                   Family Flags: 25
+Description      : Increases the range of Death Grip by $s1 yds.
+
+Name             : Cleaving Strikes (id=316916) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=2, col=6, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Only In Spellbook Until Learned (240), Do Not Log on Learn (355)
+Effects          :
+#1 (id=801745)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Death and Decay (188290)
+                   Family Flags: 118
+#2 (id=999768)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000
+#3 (id=999771)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Remorseless Winter (196770), Remorseless Winter (1233152)
+                   Family Flags: 122
+#4 (id=1157672)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Scourge Strike (55090), Festering Strike (85948), Clawing Shadows (207311), Vampiric Strike (433895), Festering Scythe (458128), Festering Strike (1240994)
+                   Family Flags: 59, 73
+Description      : $?a137006[Frostscythe deals $s3% increased damage during Remorseless Winter.][]$?a137008[Heart Strike hits up to $s1][]$?a137007[Scourge Strike and Festering Strike deal $s4% increased damage.][]$?a137008[ additional enemies while you remain in Death and Decay.
+
+Name             : Death's Echo (id=356367) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=5, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 118
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Update Passives on Apply/Remove (344), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=890190)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1877 (Category) | Target: Self (1)
+                   Affected Spells (Category): Death and Decay (43265), Death's Due (324128)
+#2 (id=890191)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1428 (Category) | Target: Self (1)
+                   Affected Spells (Category): Death Grip (49576)
+#3 (id=890197)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1941 (Category) | Target: Self (1)
+                   Affected Spells (Category): Death's Advance (48265), Death Charge (444347)
+#4 (id=894343)   : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1927 (Category) | Target: Self (1)
+                   Affected Spells (Category): Defile (152280)
+#5 (id=1296421)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 1 | Misc Value 2: 6242 (Label) | Target: Self (1)
+Description      : Death's Advance, Death and Decay, and Death Grip have $s1 additional charge.
+
+Name             : Proliferating Chill (id=373930) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=2, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : Magic
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow during spell override (404)
+Effects          :
+#1 (id=999499)   : Apply Aura (6) | Add Flat Modifier (107): Spell Chain Targets (17)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 17 | Target: Self (1)
+                   Affected Spells: Chains of Ice (45524)
+                   Family Flags: 2
+#2 (id=1031071)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Chain Targets (17)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 17 | Misc Value 2: 2300 (Label) | Target: Self (1)
+Description      : Chains of Ice affects $s1 additional nearby enemy.
+
+Name             : Blood Scent (id=374030) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=4, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=999657)   : Apply Aura (6) | Modify Leech% (443)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Increases Leech by $s1%.
+
+Name             : Suppression (id=374049) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=2, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Hostile Spell Taken, Magic Hostile Spell Taken
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Aura Points On Client (268), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=999681)   : Apply Aura (6) | Modify AoE Damage Taken% (229)
+                   Base Value: -3 | Scaled Value: -3 | Misc Value: 127 | Target: Self (1)
+#2 (id=999745)   : Dummy (3)
+                   Base Value: 3 | Scaled Value: 3
+#3 (id=1157847)  : Apply Aura (6) | Proc Trigger Spell (42): Suppression
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 454886 | Target: Self (1)
+Description      : Damage taken from area of effect attacks reduced by $s1%. When suffering a loss of control effect, this bonus is increased by an additional $454886s1% for $454886d.
+
+Name             : Unholy Bond (id=374261) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000038)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 961 (Label) | Target: Self (1)
+                   Affected Spells (Label): Razorice (51714), Unholy Strength (53365), Stoneskin Gargoyle (62157), Rune of Sanguination (326808), Rune of Spellwarding (326867), Lethargy (326868), Rune of Hysteria (326918), Rune of Unending Thirst (326984), Famine (327092), Pestilence (327093), Death (327095), War (327096)
+#2 (id=1000039)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Misc Value 2: 962 (Label) | Target: Self (1)
+                   Affected Spells (Label): Unholy Strength (53365), Stoneskin Gargoyle (62157), Rune of Spellwarding (326867), Rune of Hysteria (326913), Unending Thirst (326982), Rune of Unending Thirst (326984), Pestilence (327093), War (327096), Rune of Hysteria (333113)
+#3 (id=1000040)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Misc Value 2: 963 (Label) | Target: Self (1)
+                   Affected Spells (Label): Rune of Unending Thirst (326984), War (327096)
+#4 (id=1049099)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Affected Spells: Razorice (50401)
+                   Family Flags: 104
+#5 (id=1296009)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Misc Value 2: 961 (Label) | Target: Self (1)
+                   Affected Spells (Label): Razorice (51714), Unholy Strength (53365), Stoneskin Gargoyle (62157), Rune of Sanguination (326808), Rune of Spellwarding (326867), Lethargy (326868), Rune of Hysteria (326918), Rune of Unending Thirst (326984), Famine (327092), Pestilence (327093), Death (327095), War (327096)
+Description      : Increases the effectiveness of your Runeforge effects by $s1%.
+
+Name             : Unholy Momentum (id=374265) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=5, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(2, 4)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000044)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Increases Haste by $s1%.
+
+Name             : Improved Death Strike (id=374277) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=2, col=4, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1000060)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+                   Base Value: 60 | Scaled Value: 60 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Death Strike (49998), Death Strike Off-Hand (66188)
+                   Family Flags: 4
+#2 (id=1000061)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 3 (23)
+                   Base Value: 60 | Scaled Value: 60 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Death Strike (49998), Death Strike Off-Hand (66188)
+                   Family Flags: 4
+#3 (id=1000062)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Death Strike (49998), Death Strike Off-Hand (66188)
+                   Family Flags: 4
+#4 (id=1000063)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#5 (id=1012454)  : Apply Aura (6) | Dummy (4)
+                   Base Value: -50 | Scaled Value: -50 | Target: Self (1)
+Description      : Death Strike's cost is reduced by $?a137008[${$s5/-10}][${$s3/-10}], and its healing is increased by $?a137008[$s4%][$s1%].
+
+Name             : Assimilation (id=374383) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=6, col=4, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000205)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Anti-Magic Zone (51052), Anti-Magic Zone (145629), Anti-Magic Zone (332831), Anti-Magic Zone (357030)
+                   Family Flags: 51
+#2 (id=1245953)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Anti-Magic Zone (51052), Anti-Magic Zone (145629), Anti-Magic Zone (332831), Anti-Magic Zone (357030)
+                   Family Flags: 51
+Description      : The cooldown of Anti-Magic Zone is reduced by ${$s1/-1000} sec and its duration is increased by ${$s2/1000} sec.
+
+Name             : Brittle (id=374504) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=6, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 15%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000381)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Your diseases have a chance to weaken your enemy causing your attacks against them to deal $374557s1% increased damage for $374557d.
+
+Name             : Rune Mastery (id=374574) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=2, req_points=23]
+                 : Effect#1 [op=set, values=(3, 6)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000477)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 3 | Misc Value 2: 1927 (Label) | Target: Self (1)
+                   Affected Spells (Label): Rune Mastery (374585)
+Description      : Consuming a Rune has a chance to increase your Strength by $s1% for $374585d.
+
+Name             : Blood Draw (id=374598) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=8, col=7, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Aura Points On Client (268), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1000517)  : Apply Aura (6) | Trigger Spell Based on Health% (468): Blood Draw
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 1 | Trigger Spell: 374606 | Target: Self (1)
+#2 (id=1026270)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Misc Value 2: 1926 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blood Draw (374609)
+#3 (id=1152870)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#4 (id=1157828)  : Apply Aura (6) | Trigger Spell Based on Health% (468): Blood Draw
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 1 | Trigger Spell: 454871 | Target: Self (1)
+Description      : When you fall below $s1% health you drain $374606s1 health from nearby enemies, the damage you take is reduced by $454871s1% and your Death Strike cost is reduced by ${$454871s2/-10} for $454871d.
+
+Name             : Coldthirst (id=378848) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=4, col=1, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1007330)  : Apply Aura (6) | Proc Trigger Spell (42): Coldthirst
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 378849 | Target: Self (1)
+Description      : Successfully interrupting an enemy with Mind Freeze grants ${$378849s1/10} Runic Power and reduces its cooldown by ${$378849s2/-1000} sec.
+
+Name             : Unholy Endurance (id=389682) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1026074)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Lichborne (49039), Lichborne (50397)
+                   Family Flags: 36
+#2 (id=1259894)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Lichborne (49039), Lichborne (50397)
+                   Family Flags: 36
+Description      : Increases Lichborne duration by ${$s1/1000} sec and reduces the cooldown by ${$s2/-1000} sec. 
+
+Name             : March of Darkness (id=391546) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029125)  : Apply Aura (6) | Trigger Spell with Value (231)
+                   Base Value: 25 | Scaled Value: 25 | Trigger Spell: 391547 | Target: Self (1)
+Description      : Death's Advance grants an additional $s1% movement speed over the first $338093d.$?s1233429[
+
+Name             : Insidious Chill (id=391566) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Melee
+Attributes       : Passive (6), Allow Aura While Dead (116), Not In Spellbook (143), Disable Aura While Dead (226), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1029154)  : Apply Aura (6) | Trigger Spell with Value (231)
+                   Base Value: -5 | Scaled Value: -5 | Trigger Spell: 391568 | Target: Self (1)
+Description      : Your auto-attacks reduce the target's auto-attack speed by $s1% for $391568d, stacking up to $391568u times.
+
+Name             : Gloom Ward (id=391571) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=3, col=3, max_rank=2, req_points=0]
+                 : Effect#1 [op=set, values=(15, 30)]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+                 : 2776
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1029161)  : Apply Aura (6) | Modify Absorb% Received (422)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+Description      : Absorbs are $s1% more effective on you. 
+
+Name             : Enfeeble (id=392566) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=3, col=7, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Allow Aura While Dead (116), Not In Spellbook (143), Disable Aura While Dead (226), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1030872)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Your ghoul's attacks have a chance to apply Enfeeble, reducing the enemies movement speed by $392490s1% and the damage they deal to you by $392490s2% for $392490d.
+
+Name             : Ice Prison (id=454786) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1157674)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+#2 (id=1157675)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: 12000 | Scaled Value: 12000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Chains of Ice (45524)
+                   Family Flags: 2
+Description      : Chains of Ice now also roots enemies for $454787d but its cooldown is increased to ${$s2/1000} sec.
+
+Name             : Runic Protection (id=454788) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1157681)  : Apply Aura (6) | Modify Armor% (101)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 1 | Target: Self (1)
+#2 (id=1157682)  : Apply Aura (6) | Modify Attacker Melee Crit Chance (187)
+                   Base Value: -3 | Scaled Value: -3 | Target: Self (1)
+#3 (id=1157683)  : Apply Aura (6) | Modify Attacker Crit Chance (197)
+                   Base Value: -3 | Scaled Value: -3 | Target: Self (1)
+Description      : Your chance to be critically struck is reduced by $s2% and your Armor is increased by $s1%.
+
+Name             : Subduing Grasp (id=454822) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1157751)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : When you would pull an enemy, the damage they deal to you is reduced by $454824s1% for $454824d.
+
+Name             : Osmosis (id=454835) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=8, col=1, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1157767)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Anti-Magic Shell (48707), Anti-Magic Shell (444740), Anti-Magic Shell (444741), Lesser Anti-Magic Shell (454863)
+                   Family Flags: 17
+Description      : Anti-Magic Shell increases healing received by $s1%.
+
+Name             : Null Magic (id=454842) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=1, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+                 : 4361: Frost Death Knight (137006 effect#8), Unholy Death Knight (137007 effect#8)
+Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1157778)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -8 | Scaled Value: -8 | PvP Coefficient: 0.6 | Misc Value: 0x7e | Target: Self (1)
+                   Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
+                   Modified By: Frost Death Knight (137006 effect#8), Unholy Death Knight (137007 effect#8)
+#2 (id=1157779)  : Apply Aura (6) | Modify Debuff Duration% (245)
+                   Base Value: -35 | Scaled Value: -35 | PvP Coefficient: 0.29 | Misc Value: 1 | Target: Self (1)
+Description      : Magic damage taken is reduced by $s1% and the duration of harmful Magic effects against you are reduced by $s2%.
+
+Name             : Vestigial Shell (id=454851) [Spell Family (15), Passive, Hidden] 
+Talent Entry     : Generic [tree=class, row=10, col=7, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1157792)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+Description      : Casting Anti-Magic Shell grants $454863i nearby allies a Lesser Anti-Magic Shell that Absorbs up to $454863s1 magic damage and reduces the duration of harmful Magic effects against them by $454863s2%. 
+
+Name             : Unyielding Will (id=457574) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=10, col=3, max_rank=1, req_points=23]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Generic Helpful, Magic Heal
+Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1162885)  : Apply Aura (6) | Proc Trigger Spell (42): Unyielding Will
+                   Base Value: 15 | Scaled Value: 15 | Trigger Spell: 457575 | Target: Self (1)
+#2 (id=1162886)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: 20000 | Scaled Value: 20000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Anti-Magic Shell (48707), Anti-Magic Shell (444740), Anti-Magic Shell (444741), Lesser Anti-Magic Shell (454863)
+                   Family Flags: 17
+Description      : Anti-Magic Shell now removes all harmful magical effects when activated, but its cooldown is increased by ${$s2/1000} sec.
+
+Name             : Death Defiance (id=1266818) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=5, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1279505)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
+                   Base Value: -30000 | Scaled Value: -30000 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Death Pact (48743)
+                   Family Flags: 19
+#2 (id=1279506)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Death Pact (48743)
+                   Family Flags: 19
+Description      : The cooldown of Death Pact is reduced by ${$s1/-1000} sec, and you receive $s2% increased healing while its healing absorb is active.
+
+Name             : Death Notes (id=1266819) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=5, col=3, max_rank=1, req_points=8]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 117
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1279507)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -300 | Scaled Value: -300 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Raise Ally (61999)
+                   Family Flags: 63
+Description      : Raise Ally costs ${$s1/-10} less Runic Power.
+
+Name             : Blood Bond (id=1267028) [Spell Family (15), Passive] 
+Talent Entry     : Generic [tree=class, row=4, col=7, max_rank=1, req_points=0]
+Class            : Death Knight
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 27: Death Knight Spells
+                 : 292
+Attributes       : Passive (6), Allow Aura While Dead (116), Not In Spellbook (143), Disable Aura While Dead (226), Aura Points On Client (268), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1279778)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : While you are below $s1% health, your Ghoul sacrifices $1267032s1% of its maximum health to heal you for $1277365s2% of your maximum health every sec.

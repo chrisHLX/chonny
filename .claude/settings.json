@@ -21,7 +21,11 @@
       "PowerShell(Get-ChildItem:*)",
       "PowerShell(Select-String:*)",
       "Bash(Get-Content:*)",
-      "Read(//c/Users/chris/Herd/chonny/**)"
+      "Read(//c/Users/chris/Herd/chonny/**)",
+      "Bash(python -c ' *)",
+      "Bash(git status *)",
+      "Bash(python -)",
+      "Bash(grep -v \"\\\\.php$\")"
     ],
     "additionalDirectories": []
   }

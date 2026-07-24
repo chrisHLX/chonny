@@ -1,0 +1,335 @@
+# Rogue — Trickster Hero Talents
+# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 18 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Unseen Blade (id=441146) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 0.75 seconds
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1135423)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 10000 | Scaled Value: 10000 | Target: Self (1)
+Description      : $?a137036[Sinister Strike]?s200758[Gloomblade][Backstab] and $?a137036[Ambush][Shadowstrike] now also strike with an Unseen Blade dealing $441144s1 damage. Targets struck are Fazed for $441224d.
+
+Name             : Smoke (id=441247) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135589)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 23 | Misc Value 2: 3301 (Label) | Target: Self (1)
+                   Affected Spells (Label): Fazed (441224)
+Description      : You take $s1% reduced damage from Fazed targets.
+
+Name             : Mirrors (id=441250) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135594)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Feint (1966)
+                   Family Flags: 27
+Description      : Feint reduces damage taken from area-of-effect attacks by an additional $s1%
+
+Name             : Devious Distractions (id=441263) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1135612)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : $?a137036[Killing Spree][Secret Technique] applies Fazed to any targets struck.
+
+Name             : Surprising Strikes (id=441273) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135628)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 50 | Scaled Value: 50 | Misc Value: 32 | Misc Value 2: 3301 (Label) | Target: Self (1)
+                   Affected Spells (Label): Fazed (441224)
+Description      : Attacks that generate combo points deal $s1% increased critical strike damage to Fazed targets.
+
+Name             : Disorienting Strikes (id=441274) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135629)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Killing Spree (424556), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603)
+                   Family Flags: 55
+#2 (id=1166333)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1304361)  : Apply Aura (6) | Modify Recharge Time% (Category) (454)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 2461 (Category) | Target: Self (1)
+                   Affected Spells (Category): Secret Technique (280719)
+Description      : $?a137036[Killing Spree][Secret Technique] has $s1% reduced cooldown and allows your next $s2 strikes of Unseen Blade to ignore its cooldown.
+
+Name             : Flawless Form (id=441321) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1135712)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Unseen Blade and $?a137036[Killing Spree][Secret Technique] increase the damage of your finishing moves by $441326s1% for $441326d. Max $441326u stacks.
+
+Name             : Thousand Cuts (id=441346) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Real PPM         : 4.5 (Haste multiplier)
+Proc Flags       : White Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135747)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Slice and Dice (315496)
+                   Family Flags: 18
+Description      : Slice and Dice grants $s1% additional attack speed and gives your auto-attacks a chance to refresh your opportunity to strike with Unseen Blade.
+
+Name             : Flickerstrike (id=441359) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 58
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Internal Cooldown: 5 seconds
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Helpful Taken, Generic Hostile Spell Taken, Magic Hostile Spell Taken, Periodic Taken
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135766)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+Description      : Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade.
+
+Name             : Nimble Flurry (id=441367) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee, Yellow Ranged
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1135777)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 23 | Misc Value 2: 3303 (Label) | Target: Self (1)
+                   Affected Spells (Label): Flawless Form (441326)
+#2 (id=1166348)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 7 | Scaled Value: 7 | Target: Self (1)
+#3 (id=1166349)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : $?a137036[Blade Flurry damage is increased by $s1%][Your auto-attacks, Unseen Blade, and Coup de Grace also strike up to $s2 nearby enemies for $s3% of normal damage] while Flawless Form is active.
+
+Name             : No Scruples (id=441398) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135822)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 5 (33)
+                   Base Value: 12 | Scaled Value: 12 | Misc Value: 33 | Misc Value 2: 3301 (Label) | Target: Self (1)
+                   Affected Spells (Label): Fazed (441224)
+Description      : Finishing moves have $s1% increased chance to critically strike Fazed targets.
+
+Name             : So Tricky (id=441403) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135836)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#2 (id=1135837)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: 3594000 | Scaled Value: 3594000 | Misc Value: 1 | Misc Value 2: 3304 (Label) | Target: Self (1)
+                   Affected Spells (Label): Tricks of the Trade (59628)
+#3 (id=1212570)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332)
+                   Base Value: 1224098 | Scaled Value: 1224098 | Target: Self (1)
+                   Affected Spells: Tricks of the Trade (57934), Tricks of the Trade (1224098)
+                   Family Flags: 49
+Description      : Tricks of the Trade's threat redirect duration is increased to $m1 $Lhour:min;.
+
+Name             : Don't Be Suspicious (id=441415) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135856)  : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Blind (2094), Shroud of Concealment (114018), Blind (427773)
+                   Family Flags: 24, 71
+#2 (id=1135857)  : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
+                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.5 | Misc Value: 5 | Target: Self (1)
+                   Affected Spells: Sap (6770)
+                   Family Flags: 7, 31
+Description      : Blind and Shroud of Concealment have $s1% reduced cooldown.
+
+Name             : Coup de Grace (id=441423) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135877)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+#2 (id=1135878)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1166350)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : After $441786s1 strikes with Unseen Blade, your next $?a137036[Dispatch][Eviscerate] will be performed as a Coup de Grace, functioning as if it had consumed $s3 additional combo points, and granting you $s2 stacks of Flawless Form.
+
+Name             : Cloud Cover (id=441429) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Spell Level      : 1
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1135886)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6000 | Scaled Value: 6000 | Target: Self (1)
+#2 (id=1313710)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6000 | Scaled Value: 6000 | Target: Self (1)
+Description      : Activating $?a137036[Adrenaline Rush][Shadow Blades] creates a cloud of smoke for $441587d, allowing attacks from within the cloud to apply Fazed, stacking up to $441640m2 additional $Ltime:times;.
+
+Name             : Hoodwink (id=1276626) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288498)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 3 | Misc Value 2: 3301 (Label) | Target: Self (1)
+                   Affected Spells (Label): Fazed (441224)
+#2 (id=1288499)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 12 | Misc Value 2: 3301 (Label) | Target: Self (1)
+                   Affected Spells (Label): Fazed (441224)
+Description      : Fazed increases damage taken by an additional $s1%.
+
+Name             : Flashing Steel (id=1276630) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288504)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Duration (1)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1 | Misc Value 2: 6014 (Label) | Target: Self (1)
+                   Affected Spells (Label): Unseen Blade (459485)
+#2 (id=1288505)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Unseen Blade may now occur once every ${20-($s1/-1000)} sec and has $s2% chance to strike twice.
+
+Name             : Clever Combatant (id=1276679) [Spell Family (8), Passive] 
+Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+                 : 3022
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1288596)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Pistol Shot (185763)
+                   Family Flags: 101
+#2 (id=1288597)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
+                   Affected Spells: Shuriken Storm (197835), Shuriken Storm (1269340)
+                   Family Flags: 127
+Description      : $?c2[Pistol Shot][Shuriken Storm] has $?c2[$s1][$s2]% increased critical strike chance and now triggers Unseen Blade when available.

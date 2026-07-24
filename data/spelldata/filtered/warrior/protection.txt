@@ -1,0 +1,962 @@
+# Warrior — Protection Spec Talents
+# Extracted verbatim from warrior.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# 47 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Shield Wall (id=871) [Spell Family (4)] 
+Talent Entry     : Protection [tree=spec, row=5, col=5, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Duration         : 8 seconds
+Cooldown         : 8 seconds
+Charges          : 1 (180 seconds cooldown)
+Category         : 1929 (Type 0x1): Unbreakable Will (335629 effect#2), Honed Reflexes (391271 effect#4), Defender's Aegis (397103 effect#1), Defender's Aegis (397103 effect#2)
+Category Flags   : Reset Charges on Encounter End (4)
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 930
+                 : 952
+                 : 1284
+Affecting Spells : Neltharion's Fury (203524 effect#4), Bladestorm (222634 effect#3), Bladestorm (227847 effect#3), Honed Reflexes (391271 effect#1), Demolish (436358 effect#3), Bladestorm (446035 effect#3)
+Family Flags     : 11, 13
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), No AutoCast (AI) (49), Aura Points On Client (268), Allow Class Ability Procs (416), Important Spell (491), Big Defensive (512)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=364)      : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -40 | Scaled Value: -40 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+Description      : Reduces all damage you take by $s1% for $d.
+Tooltip          : All damage taken reduced by $w1%.
+
+Name             : Demoralizing Shout (id=1160) [Spell Family (4)] 
+Talent Entry     : Protection [tree=spec, row=2, col=3, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : Magic
+GCD              : 1.5 seconds
+Duration         : 8 seconds
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 948
+Proc Chance      : 101%
+Affecting Spells : Recklessness (1719 effect#9), Warrior (137047 effect#2), Morale Killer (199023 effect#2), Booming Voice (202743 effects: #1, #2, #3), Neltharion's Fury (203524 effect#4), Bladestorm (222634 effect#3), Bladestorm (227847 effect#3), Thunderlord (385840 effect#3), Strength of the Mountain (437068 effects: #2, #3), Bladestorm (446035 effect#3), Resonant Voice (1243660 effect#1)
+Family Flags     : 8, 11, 17, 70
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Always Hit (114), Taps immediately (215), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Aura Interrupt   : Raid Encounter Start or M+ Start (40)
+Effects          :
+#1 (id=423)      : Apply Aura (6) | Modify Damage Done% to Caster (269)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 0x7f | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
+                   Affected School(s): All
+                   Modified By: Strength of the Mountain (437068 effect#2)
+#2 (id=159300)   : Apply Aura (6) | Modify Damage Done% (79)
+                   Base Value: -25 | Scaled Value: -25 | Misc Value: 0x7f | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
+                   Affected School(s): All
+                   Modified By: Strength of the Mountain (437068 effect#3)
+#3 (id=292881)   : Apply Aura (6) | Modify Damage Taken% from Caster's Spells (271)
+                   Base Value: 0 | Scaled Value: 0 | PvP Coefficient: 0.5 | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+                   Modified By: Booming Voice (202743 effect#2)
+#4 (id=298857)   : Apply Aura (6) | Modify Auto Attack Damage Taken% from Caster (343)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
+                   Modified By: Booming Voice (202743 effect#3)
+#5 (id=298858)   : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
+                   Modified By: Recklessness (1719 effect#9), Booming Voice (202743 effect#1)
+Description      : $?s199023[Demoralizes all enemies within $A2 yards, reducing the damage they do by $s2% for $d.][Demoralizes all enemies within $A2 yards, reducing the damage they deal to you by $s1% for $d.]$?s202743[
+
+Name             : Revenge (id=6572) [Spell Family (4)] 
+Talent Entry     : Protection [tree=spec, row=2, col=7, max_rank=1, req_points=0, replace="Slam" (id=1464)]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Resource         : 20 Rage (1) (id=11771)
+Range            : 5 yards
+Cone Angle       : 110 degrees
+GCD              : 1.5 seconds
+Requires weapon  : One-handed Axe, One-handed Mace, One-handed Sword, Fist Weapon
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 881
+Affecting Spells : Demoralizing Shout (1160 effect#3), Recklessness (1719 effect#4), Revenge! (5302 effects: #1, #2), Mastery: Unshackled Fury (76856 effects: #1, #2), Avatar (107574 effects: #1, #4), Warrior (137047 effects: #1, #2), Protection Warrior (137048 effects: #1, #2), Arms Warrior (137049 effects: #1, #2), Fury Warrior (137050 effects: #1, #2), Colossus Smash (208086 effect#1), Ravager (228920 effect#5), Callous Reprisal (278760 effect#2), Glory (325787 effect#1), Will of the Berserker (335597 effect#1), Seismic Reverberation (335759 effect#1), One-Handed Weapon Specialization (382895 effects: #1, #2), Two-Handed Weapon Specialization (382896 effects: #1, #2), Dual Wield Specialization (382900 effects: #1, #2), Barbaric Training (383082 effects: #7, #8), Impale (383430 effect#1), Battle Stance (386164 effect#4), Vanguard's Determination (394056 effects: #1, #3), Strike Vulnerabilities (394173 effects: #1, #2), Martial Expert (429638 effect#1), Mountain of Muscle and Scars (429642 effects: #1, #2), Practiced Strikes (429647 effect#4), Thorim's Might (436152 effect#2), Colossal Might (440989 effect#4), Overwhelmed (445836 effect#1), Wrecked (447513 effects: #2, #3), Brutal Follow-Up (455501 effect#1), Luck of the Draw! (1218163 effects: #1, #4), Arms Warrior (1256919 effects: #1, #2), Protection Warrior (1256935 effects: #1, #2), Fury Warrior (1257520 effects: #1, #2), Mastery: Master of Arms (1258398 effects: #1, #2), Master Tactician (1261216 effects: #1, #2), Warrior Protection 12.0 Class Set 4pc (1264880 effect#1), Devastating Focus (1277983 effect#1), Warrior - Midnight PrePatch - 11.2 Class Set 2pc (1283642 effects: #1, #2), Warrior - Midnight PrePatch - 11.2 Class Set 4pc (1283643 effects: #1, #2)
+Family Flags     : 8, 9, 10, 18
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Requires Main-Hand Weapon (106), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=2316)     : School Damage (2): physical | Attributes: Add Target (Dest) Combat Reach to AOE (11), Area Effects Use Target Radius (17)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.3472 | Radius: 8 yards | Target: Enemies in Cone to Targeted Enemy (104)
+Description      : Swing in a wide arc, dealing $s1 Physical damage to all enemies in front of you. Deals reduced damage beyond $<cap> targets.
+
+Name             : Sudden Death (id=29725) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=300]
+                 : Arms [tree=spec, row=2, col=5, max_rank=1, req_points=0]
+                 : Fury [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 3 seconds
+Proc Chance      : 100%
+Real PPM         : 1.7 (Haste multiplier, /w Warrior Fury Set 4pc (id=393709): 4.25)
+Proc Flags       : Yellow Melee
+Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=19302)    : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+Description      : Your attacks have a chance to make your next $?a317320[Condemn][Execute] $?c1[cost no Rage, ][]be usable on any target regardless of their health$?c1[, and deal damage as if you spent $s1 Rage][].
+
+Name             : Avatar (id=107574) [Spell Family (4)] 
+Talent Entry     : Fury [tree=spec, row=10, col=6, max_rank=1, req_points=20, select_idx=100]
+                 : Protection [tree=spec, row=8, col=8, max_rank=1, req_points=20]
+                 : Arms [tree=spec, row=10, col=6, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Duration         : 20 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 690: Major Cooldowns
+                 : 771: Strive for Perfection (296320 effect#9)
+Affecting Spells : Recklessness (1719 effect#6), Warrior (137047 effect#2), Outburst (364639 effects: #1, #2)
+Family Flags     : 8, 32
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Allow While Sitting (27), No Threat (42), Immunity Purges Effect (47), Immunity to Hostile & Friendly Effects (48), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Unknown (465), Important Spell (491)
+Aura Interrupt   : Raid Encounter End or M+ Start (41)
+Effects          :
+#1 (id=118390)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.75 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+                   Modified By: Outburst (364639 effect#1)
+#2 (id=118391)   : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
+                   Modified By: Recklessness (1719 effect#6), Outburst (364639 effect#2)
+#3 (id=118664)   : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.75 | Target: Self (1)
+#4 (id=722361)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.75 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rend (772), Cleave (845), Slam (1464), Hamstring (1715), Thunder Clap (6343), Revenge (6572), Overpower (7384), Mortal Strike (12294), Devastate (20243), Bloodthirst (23881), Shield Slam (23922), Victory Rush (34428), Whirlwind Off-Hand (44949), Shockwave (46968), Bladestorm (50622), Heroic Leap (52174), Heroic Throw (57755), Shattering Throw (64382), Raging Blow (85384), Bladestorm Off-Hand (95738), Raging Blow (96103), Storm Bolt (107570), Bloodbath (113344), Charge (126664), Ravager (156287), Execute Off-Hand (163558), Colossus Smash (167105), Rampage (184707), Rampage (184709), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Rampage (201363), Rampage (201364), Impending Victory (202168), Rampage (218617), Devastator (236282), Execute (260798), Deep Wounds (262115), Warbreaker (262161), Seismic Wave (278497), Iron Fortress (279142), Execute (280849), Reckless Flurry (283810), Gushing Wound (288091), Spear of Bastion (307871), Dreadnaught (315961), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Ancient Aftershock (325886), Ancient Aftershock (326062), Repulsive Pennant (333860), Bloodbath (335096), Crushing Blow (335098), Crushing Blow (335100), Mortal Strike (339385), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Nature's Fury (354163), Champion's Spear (376080), Fatal Mark (383706), Annihilator (383915), Wrecking Throw (384110), Gushing Wound (385042), Odyn's Fury (385059), Odyn's Fury (385060), Odyn's Fury Off-Hand (385061), Odyn's Fury (385062), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Tough as Nails (385890), Shield Charge (385954), Rend (388539), Shattering Throw (394352), Wrecking Throw (394354), Earthen Smash (410219), Whirlwind (411547), Crushing Advance (411703), Thunder Blast (435222), Lightning Strike (435791), Demolish (440884), Demolish (440886), Demolish (440888), Slayer's Strike (445579), Reap the Storm (446005), Cleave (458459), Lightning Strike Ground Current (460670), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582), Heroic Strike (1269383), Phalanx (1270116), Champion's Leap (1271985)
+                   Family Flags: 9
+#5 (id=728318)   : Apply Aura (6) | Scale% (Stacking) (61)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#6 (id=728319)   : Apply Aura (6) | Modify AoE Damage Taken% (229)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 127 | Target: Self (1)
+#7 (id=728320)   : Apply Aura (6) | Increase Speed% (31)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#8 (id=1169538)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: -3 | Scaled Value: -3 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+#9 (id=1193928)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+#10 (id=1193929) : Apply Aura (6) | Add Percent Modifier (108): Spell Cooldown (11)
+                   Base Value: -50 | Scaled Value: -50 | Misc Value: 11 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+Description      : Transform into a colossus, increasing all damage you deal by $s1% $?c1[and reducing damage you take from area of effect attacks by $s6% ]?c2[and increasing your movement speed by $s7% ]?c3[and reducing all damage you take by $s8% ][]for $d.
+Tooltip          : Damage done increased by $s1%.
+
+Name             : Ignore Pain (id=190456) [Spell Family (4)] 
+Talent Entry     : Protection [tree=spec, row=1, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Resource         : 35 Rage (1) (id=10534)
+Duration         : 12 seconds
+Cooldown         : 1 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Affecting Spells : Protection Warrior (137048 effect#7), Shield Mastery (184927 effect#2), Neltharion's Fury (203524 effect#4), Bladestorm (227847 effect#3), Bloodsport (279172 effect#3), No Stranger to Pain (429644 effect#1), Demolish (436358 effect#3), Bladestorm (446035 effect#3)
+Family Flags     : 11, 109
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=279107)   : Apply Aura (6) | Absorb Damage (69) | Attributes: Aura Points Stack (9)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 12.8993 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Bloodsport (279172 effect#3)
+#2 (id=299580)   : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#3 (id=342429)   : Apply Aura (6) | Modify Base Resistance (142) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+                   Modified By: Shield Mastery (184927 effect#2)
+#4 (id=1104288)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Fight through the pain, ignoring $s2% of damage taken $?c1[for $d sec or ][]until ${($s1)*(1+$@versadmg)} damage has been prevented.$?c3[
+
+Name             : Indomitable (id=202095) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=9, col=5, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 2726
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=297836)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+#2 (id=801270)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 150 | Scaled Value: 150 | Target: Self (1)
+#3 (id=801429)   : Apply Aura (6) | Increase Health% (133)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : Your maximum health is increased by $s3% and every ${$s2/10} Rage you spend heals you for ${$s1/10}% of your maximum health.
+
+Name             : Best Served Cold (id=202560) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=5, col=8, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Internal Cooldown: 0.5 seconds
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=298626)   : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 4989 (Label) | Target: Self (1)
+                   Affected Spells (Label): Revenge! (5302)
+#2 (id=1229277)  : Apply Aura (6) | Proc Trigger Spell (42): Best Served Cold
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1234772 | Target: Self (1)
+#3 (id=1275695)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+Description      : Your dodges and parries make your Revenge cost no Rage $s3% more frequently and increase the damage your free Revenges deal by $s1%. Revenge increases the damage of your next Thunder Clap by $1234772s1%.
+
+Name             : Into the Fray (id=202603) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=8, col=2, max_rank=1, req_points=20, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=298697)   : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Description      : You gain $202602s1% Haste for each enemy or ally within $s1 yards, up to ${$202602s1*$202602u}% Haste.
+
+Name             : Booming Voice (id=202743) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=9, col=3, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=298923)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: 200 | Scaled Value: 200 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Demoralizing Shout (1160)
+                   Family Flags: 17
+#2 (id=298924)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Demoralizing Shout (1160)
+                   Family Flags: 17
+#3 (id=298925)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Demoralizing Shout (1160)
+                   Family Flags: 17
+Description      : Demoralizing Shout also generates ${$m1/10} Rage and increases damage you deal to affected targets by $s2%.
+
+Name             : Heavy Repercussions (id=203177) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=8, col=2, max_rank=1, req_points=20, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=299587)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Misc Value: 11 | Target: Self (1)
+#2 (id=299588)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Shield Slam (23922)
+                   Family Flags: 41
+Description      : Shield Slam generates ${$s2/10} more Rage and extends the duration of Shield Block by ${$m1/100}.1 sec.
+
+Name             : Ravager (id=228920) [Spell Family (4)] 
+Talent Entry     : Protection [tree=spec, row=10, col=8, max_rank=1, req_points=20, select_idx=300]
+                 : Arms [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Range            : 40 yards
+GCD              : 1.5 seconds
+Velocity         : 30 yards/sec
+Duration         : 12 seconds
+Requires weapon  : One-handed Axe, Two-handed Axe, One-handed Mace, Two-handed Mace, Polearm, One-handed Sword, Two-handed Sword, Staff, Fist Weapon, Dagger, Spear
+Cooldown         : 90 seconds
+Charges          : 1 (90 seconds cooldown)
+Category         : 2073 (Type 0x1)
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 52
+                 : 292
+                 : 690: Major Cooldowns
+                 : 881
+Affecting Spells : Warrior (137047 effect#2)
+Family Flags     : 8, 107
+Attributes       : Is Ability (4), Not Shapeshifted (16), No Aura Cancel (31), No Aura Log (202), Aura Points On Client (268), Haste Affects Duration (273), Melee Haste Affects Periodic (278), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
+Aura Interrupt   : Leave World (19)
+Effects          :
+#1 (id=345047)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+#2 (id=345048)   : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: At Enemy (53)
+#3 (id=345049)   : Apply Aura (6) | Periodic Dummy (226): every 2 seconds
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#4 (id=1286499)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Cleave (845), Whirlwind (1680), Whirlwind Off-Hand (44949), Whirlwind (199658), Whirlwind (199667), Whirlwind (199850), Whirlwind Off-Hand (199851), Whirlwind (199852), Whirlwind (347360), Whirlwind Off-Hand (347362), Whirlwind (347363), Whirlwind (385228), Whirlwind (385233), Whirlwind Off-Hand (385234), Whirlwind (411547), Cleave (458459)
+                   Family Flags: 22, 34
+#5 (id=1286500)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Revenge (6572), Thunder Blast (435222), Revenge (1215174)
+                   Family Flags: 7, 10
+Description      : Throws a whirling weapon at your target that chases nearby enemies, inflicting $<damage> Physical damage to all enemies over $d. Deals reduced damage beyond $156287s2 targets.
+
+Name             : Devastator (id=236279) [Passive] 
+Talent Entry     : Protection [tree=spec, row=3, col=8, max_rank=1, req_points=0, replace="Devastate" (id=20243)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : White Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=357205)   : Apply Aura (6) | Proc Trigger Spell (42): Devastator
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 236282 | Target: Self (1)
+#2 (id=357212)   : Dummy (3)
+                   Base Value: 25 | Scaled Value: 25
+Description      : Your auto-attacks deal an additional $236282s1 Physical damage and have a $s2% chance to reset the remaining cooldown on Shield Slam.
+Variables        : $mult=${($max(0,$min($pl-12,8))*8.5+241)/309}
+
+Name             : Punish (id=275334) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=6, col=8, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=728315)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Affected Spells: Shield Slam (23922)
+                   Family Flags: 41
+#2 (id=728316)   : Apply Aura (6) | Proc Trigger Spell (42): Punish
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 275335 | Target: Self (1)
+Description      : Shield Slam deals $s1% increased damage and reduces enemies' damage against you by $275335s1% for $275335d. Multiple punishments may overlap.
+
+Name             : Massacre (id=281001) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Arms [tree=spec, row=7, col=5, max_rank=1, req_points=8]
+                 : Protection [tree=spec, row=9, col=1, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=738985)   : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Execute overrides Execute
+                   Base Value: 281000 | Scaled Value: 281000 | Misc Value: 163201 | Target: Self (1)
+#2 (id=738986)   : Apply Aura (6) | Dummy (4)
+                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
+#3 (id=835434)   : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Condemn overrides Condemn
+                   Base Value: 330334 | Scaled Value: 330334 | Misc Value: 317349 | Target: Self (1)
+Description      : $?a317320[Condemn][Execute] is usable on targets below $s2% health.
+
+Name             : Fueled by Violence (id=383103) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Arms [tree=spec, row=3, col=3, max_rank=1, req_points=0, select_idx=100]
+                 : Protection [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 2670: Protection Warrior (137048 effect#6)
+Proc Chance      : 100%
+Proc Flags       : Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1014807)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 85 | Scaled Value: 85 | Target: Self (1)
+                   Modified By: Protection Warrior (137048 effect#6)
+Description      : You are healed for $s1% of the Bleed damage dealt by Rend and Deep Wounds.
+
+Name             : Brutal Vitality (id=384036) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=5, col=2, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 2728
+Proc Chance      : 100%
+Proc Flags       : White Melee, Yellow Melee, White Ranged, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Not In Spellbook Until Learned (269), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
+Effects          :
+#1 (id=1016319)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#2 (id=1236983)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : $s1% of damage you deal adds to your active Ignore Pain or the next Ignore Pain you activate.
+
+Name             : Strategist (id=384041) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=4, col=5, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016328)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Devastate, Thunder Clap, Revenge, and Execute have a $236279s2% chance to reset the remaining cooldown on Shield Slam.
+
+Name             : Enduring Alacrity (id=384063) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=8, col=7, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016376)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Sta | Target: Self (1)
+#2 (id=1016377)  : Apply Aura (6) | Modify All Haste% (193)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+#3 (id=1022037)  : Apply Aura (6) | Modify Armor% (101)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+Description      : Increases Stamina by $s1% and your Haste by $s2%.
+
+Name             : Focused Vigor (id=384067) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=8, col=3, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016383)  : Apply Aura (6) | Modify Total Stat% (137)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Str | Target: Self (1)
+#2 (id=1016384)  : Apply Aura (6) | Modify Critical Strike% (290)
+                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
+#3 (id=1022025)  : Apply Aura (6) | Modify Armor% (101)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
+Description      : Increases Strength by $s1% and your critical strike chance by $s2%.
+
+Name             : Impenetrable Wall (id=384072) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=6, col=3, max_rank=1, req_points=8, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016391)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 11 | Target: Self (1)
+Description      : Shield Slam reduces the remaining cooldown of Shield Wall by $s1 sec.
+
+Name             : Bloodsurge (id=384361) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Arms [tree=spec, row=4, col=2, max_rank=1, req_points=0]
+                 : Protection [tree=spec, row=5, col=7, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Spell Haste Affects Periodic (173), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1016921)  : Apply Aura (6) | Periodic Dummy (226): every 3 seconds
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : Damage from Rend has a chance to generate ${$384362s1/10} Rage.
+
+Name             : Bloodborne (id=385704) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019150)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Rend (772), Deep Wounds (262115), Rend (388539)
+                   Family Flags: 5, 19
+Description      : Your Deep Wounds and Rend deal $s1% increased damage.
+
+Name             : Thunderlord (id=385840) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=6, col=2, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Include In Advanced Combat Log (72), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019361)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 1500 | Scaled Value: 1500 | Misc Value: 11 | Target: Self (1)
+#2 (id=1019362)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 11 | Target: Self (1)
+#3 (id=1019367)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 6
+                   Affected Spells: Demoralizing Shout (1160)
+                   Family Flags: 17
+Description      : Increases the radius of Demoralizing Shout by $s3 yards.
+
+Name             : Tough as Nails (id=385888) [Passive] 
+Talent Entry     : Protection [tree=spec, row=7, col=1, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Hostile Spell Taken
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019448)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Blocking an attack deals $385890s1 Physical damage to the attacker. Critical blocks deal double damage.
+
+Name             : Shield Charge (id=385952) [Spell Family (4)] 
+Talent Entry     : Protection [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Range            : 25 yards
+GCD              : 1.5 seconds
+Requires armor   : Shield 
+Cooldown         : 45 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 219
+                 : 292
+Affecting Spells : Warrior (137047 effect#2), Demolish (436358 effect#3)
+Family Flags     : 8, 93
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Immunities (29), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), Always Hit (114), No Cast Log (128), Taps immediately (215), Attack on Charge to Unit (242), Aura Points On Client (268), Allow Class Ability Procs (416), Always Require PvP Target Match (430)
+Effects          :
+#1 (id=1019546)  : Dummy (3)
+                   Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
+Description      : Charge to an enemy with your shield, granting you Shield Block and dealing $385954s1 Physical damage to it and $385954s2 Physical damage to all enemies within 10 yards.
+
+Name             : Shield Specialization (id=386011) [Passive] 
+Talent Entry     : Protection [tree=spec, row=8, col=5, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+                 : 2730
+Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019768)  : Apply Aura (6) | Modify Block% (51)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#2 (id=1019769)  : Apply Aura (6) | Modify Block Value% (272)
+                   Base Value: 16 | Scaled Value: 16 | Target: Self (1)
+Description      : Increases Block chance by $s1% and your Block value by $s2%.
+
+Name             : Enduring Defenses (id=386027) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=7, col=5, max_rank=2, req_points=8]
+                 : Effect#1 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019796)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Shield Block (2565), Shield Block (132404)
+                   Family Flags: 12, 83
+Description      : Shield Block lasts ${$s1/1000} sec longer.
+
+Name             : Brace For Impact (id=386030) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=3, col=2, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1019801)  : Apply Aura (6) | Proc Trigger Spell (42): Brace For Impact
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 386029 | Target: Self (1)
+Description      : Using Shield Slam increases the damage of Shield Slam by $386029s1% and the block value of your shield by $386029s2% for $386029d. Stacking up to $386029u times.
+
+Name             : Disrupting Shout (id=386071) [Spell Family (4)] 
+Talent Entry     : Protection [tree=spec, row=4, col=3, max_rank=1, req_points=0, replace="Challenging Shout" (id=1161)]
+Class            : Warrior
+School           : Physical
+Spell Type       : Melee
+Duration         : 6 seconds
+Cooldown         : 90 seconds
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 948
+Proc Chance      : 101%
+Mechanic         : Taunt
+Affecting Spells : Bladestorm (227847 effect#3), Bladestorm (446035 effect#3), Resonant Voice (1243660 effect#1)
+Family Flags     : 11, 70, 75
+Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No School Immunities (90), Always Hit (114), Suppress Weapon Procs (151), Taps immediately (215), No Attack Dodge (247), No Attack Parry (248), No Attack Block (256), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
+Effects          :
+#1 (id=1019880)  : Taunt (114)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 14 yards | Target: Source (22) -> Enemy in Area (15)
+#2 (id=1019881)  : Apply Aura (6) | Taunt (11)
+                   Base Value: 800 | Scaled Value: 800 | Radius: 0 - 14 yards | Target: Source (22) -> Enemy in Area (15)
+#3 (id=1020162)  : Interrupt Cast (68)
+                   Base Value: 0 | Scaled Value: 0 | Radius: 0 - 14 yards | Mechanic: Interrupt | Target: Source (22) -> Enemy in Area (15)
+Description      : Taunts all enemies within $A1 yds to attack you for $d, interrupts all spellcasting within $A1 yds and prevents any spell in that school from being cast for $d. Increases the threat you generate against the target by $s2%.
+
+Name             : Battle-Scarred Veteran (id=386394) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1020426)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#2 (id=1160634)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: -10 | Target: Self (1)
+                   Affected School(s): All
+Description      : When your health is brought below $s1%, you take $386397s1% less damage for $386397d and healing you receive is increased by $386397s2%.
+
+Name             : Violent Outburst (id=386477) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=9, col=7, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 25: Warrior Spells
+                 : 117
+                 : 292
+                 : 2727
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic
+Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1020571)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 250 | Scaled Value: 250 | Target: Self (1)
+Description      : Every $s1 rage you spend triggers a Violent Outburst, causing your next Shield Slam to deal $386478s1% increased damage, generate $386478s2% more Rage and grant Ignore Pain.
+
+Name             : Instigate (id=394311) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=5, col=3, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Family Flags     : 121
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1033834)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value 2: 2348 (Label) | Target: Self (1)
+                   Affected Spells (Label): Devastate (20243)
+#2 (id=1033835)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Misc Value 2: 2348 (Label) | Target: Self (1)
+                   Affected Spells (Label): Devastate (20243)
+#3 (id=1033836)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 2349 (Label) | Target: Self (1)
+                   Affected Spells (Label): Devastator (236282)
+#4 (id=1033837)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Misc Value 2: 2349 (Label) | Target: Self (1)
+                   Affected Spells (Label): Devastator (236282)
+Description      : Devastate deals $s1% increased damage and generates ${$s2/10} Rage.
+
+Name             : Defender's Aegis (id=397103) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=6, col=3, max_rank=1, req_points=8, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1039070)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -60000 | Scaled Value: -60000 | Misc Value: 1929 (Category) | Target: Self (1)
+                   Affected Spells (Category): Shield Wall (871)
+#2 (id=1039071)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 1929 (Category) | Target: Self (1)
+                   Affected Spells (Category): Shield Wall (871)
+Description      : Shield Wall gains $s2 additional charge and its cooldown is reduced by ${$s1/-1000} sec.
+
+Name             : Fight Through the Flames (id=452494) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=3, col=6, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1153689)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
+                   Base Value: -6 | Scaled Value: -6 | Misc Value: 23 | Misc Value 2: 2796 (Label) | Target: Self (1)
+                   Affected Spells (Label): Defensive Stance (386208)
+Description      : Defensive Stance additionally reduces magic damage you take by $s1%.
+
+Name             : Armor Specialization (id=1234769) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=3, col=4, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1229260)  : Apply Aura (6) | Modify Armor% (101)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 1 | Target: Self (1)
+Description      : Armor increased by $s1%.
+
+Name             : Hunker Down (id=1235022) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=6, col=1, max_rank=1, req_points=8, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1229770)  : Apply Aura (6) | Modify AoE Damage Taken% (229)
+                   Base Value: -2 | Scaled Value: -2 | Misc Value: 127 | Target: Self (1)
+#2 (id=1229771)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Misc Value 2: 4000 (Label) | Target: Self (1)
+                   Affected Spells (Label): Spell Reflection (385391)
+Description      : Damage you take from area of effect attacks is reduced by $s1%. Spell Reflection reduces magic damage taken by an additional $s2%.
+
+Name             : Spellbreaker (id=1235023) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=6, col=1, max_rank=1, req_points=8, select_idx=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1229772)  : Apply Aura (6) | Absorb Damage (69)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7e | Misc Value 2: -10 | Target: Self (1)
+                   Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
+#2 (id=1229773)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
+#3 (id=1229776)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+Description      : You have a $s2% chance to disrupt magic damage dealt to you, reducing the damage it deals by $s3%.
+
+Name             : Unyielding Stance (id=1235047) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=7, col=8, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1229810)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
+                   Base Value: -4 | Scaled Value: -4 | Misc Value: 3 | Misc Value 2: 2796 (Label) | Target: Self (1)
+                   Affected Spells (Label): Defensive Stance (386208)
+Description      : Defensive Stance reduces damage taken by an additional $s1%.
+
+Name             : Heavy Handed (id=1235088) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=9, col=9, max_rank=1, req_points=20]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1229890)  : Apply Aura (6) | Add Flat Modifier (107): Spell Chain Targets (17)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 17 | Target: Self (1)
+                   Affected Spells: Execute (260798), Execute (280849), Condemn (317483), Condemn (317488), Arms Execute FX Test (463815), Fury Execute FX Test (463816)
+                   Family Flags: 116
+#2 (id=1229891)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 70 | Scaled Value: 70 | Target: Self (1)
+Description      : Execute hits up to $s1 additional $Ltarget:targets; for $s2% damage.
+
+Name             : Whirling Blade (id=1235113) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=10, col=8, max_rank=1, req_points=20, select_idx=200]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Real PPM         : 5
+Proc Flags       : White Melee, Yellow Melee, Generic Hostile Spell
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1229933)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
+Description      : Your attacks have a chance to target a nearby enemy with Ravager for ${$s1/1000} sec.
+
+Name             : Last Stand (id=1243659) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=6, col=5, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful
+Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1243997)  : Apply Aura (6) | Proc Trigger Spell (42): Last Stand
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 12975 | Target: Self (1)
+Description      : Activating Shield Wall increases your maximum health by $12975s1% for $12975d and instantly heals you for that amount.
+
+Name             : Deep Wounds (id=1261060) [Spell Family (4), Passive] 
+Talent Entry     : Protection [tree=spec, row=7, col=9, max_rank=1, req_points=8]
+                 : Arms [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+                 : Fury [tree=spec, row=6, col=1, max_rank=1, req_points=8]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1270663)  : Apply Aura (6) | Proc Trigger Spell (42): Deep Wounds
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 262115 | Target: Self (1)
+Description      : Execute inflicts Deep Wounds on the target.
+
+Name             : Devastating Focus (id=1264330) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=4, col=7, max_rank=1, req_points=0]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1275626)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : You focus on the target struck by your Devastator, dealing $1277983s1% additional Revenge damage to them.
+
+Name             : Phalanx (id=1269311) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=100]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 5671
+Proc Chance      : 101%
+Proc Flags       : Yellow Melee
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1281057)  : Apply Aura (6) | Proc Trigger Spell (42): Phalanx
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1278009 | Target: Self (1)
+Description      : Thunder Clap causes your next Shield Slam to deal $1278009s1% additional damage and unleash a wave of force, dealing $1270116s1 Physical damage to all enemies in front of you.
+
+Name             : Phalanx (id=1269312) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=11, col=5, max_rank=2, req_points=20, select_idx=200]
+                 : Effect#1 [op=mul, values=(1, 2)]
+                 : Effect#2 [op=mul, values=(1, 2)]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 5671
+Stacks           : 2 maximum
+Proc Chance      : 101%
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1281058)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
+                   Family Flags: 7
+#2 (id=1282007)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 5918 (Label) | Target: Self (1)
+                   Affected Spells (Label): Phalanx (1270116)
+Description      : Damage dealt by Thunder Clap and Phalanx's wave of force is increased by $s1%.
+
+Name             : Phalanx (id=1269313) [Spell Family (4), Passive, Hidden] 
+Talent Entry     : Protection [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=300]
+Class            : Warrior
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 25: Warrior Spells
+                 : 292
+                 : 5671
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook Until Learned (269), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1281059)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Shield Block (132404)
+                   Family Flags: 83
+#2 (id=1282008)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 32 | Target: Self (1)
+                   Affected Spells: Shield Block (132404)
+                   Family Flags: 83
+Description      : While Shield Block is active, Shield Slam deals 10% additional damage and has a 20% increased chance to critically strike.

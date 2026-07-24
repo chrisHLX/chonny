@@ -1,0 +1,550 @@
+{
+    "class": "Warrior",
+    "fetched_at": "2026-07-23T05:00:29+00:00",
+    "source": "Blizzard Game Data API (static-us, en_US)",
+    "specs": {
+        "Protection": {
+            "spec_id": 73,
+            "pvp_talents": [
+                {
+                    "id": 24,
+                    "name": "Disarm",
+                    "spell_id": 236077,
+                    "spell_name": "Disarm",
+                    "description": "Disarm the enemy's weapons and shield for 5 sec. Disarmed creatures deal significantly reduced damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 168,
+                    "name": "Bodyguard",
+                    "spell_id": 213871,
+                    "spell_name": "Bodyguard",
+                    "description": "Protect an ally, causing 40% of all Physical damage they take to be transfered to you. When the target takes Physical damage, your Shield Slam cooldown has a 30% chance to be reset. Bodyguard is cancelled if the target is further than 20 yards from you. Lasts 1 min.\r\n\r\nOnly one target can be Bodyguarded at a time.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 171,
+                    "name": "Morale Killer",
+                    "spell_id": 199023,
+                    "spell_name": "Morale Killer",
+                    "description": "Reduces the cooldown of Demoralizing Shout by 15 sec, and Demoralizing Shout now reduces the damage enemies deal to all targets, not just you.",
+                    "unlock_player_level": 27,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 173,
+                    "name": "Shield Bash",
+                    "spell_id": 198912,
+                    "spell_name": "Shield Bash",
+                    "description": "When Shield Slam is used on targets that are casting, it reduces their damage done by 15% for 8 sec and the cooldown is instantly reset.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 175,
+                    "name": "Thunderstruck",
+                    "spell_id": 199045,
+                    "spell_name": "Thunderstruck",
+                    "description": "After casting Avatar, Shockwave, or Stormbolt, your next Thunder Clap roots all targets it damages for 4 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 831,
+                    "name": "Dragon Charge",
+                    "spell_id": 206572,
+                    "spell_name": "Dragon Charge",
+                    "description": "Run at high speed at a distance in front of you. All enemies in your path will take 24 Physical damage and be knocked back.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 833,
+                    "name": "Rebound",
+                    "spell_id": 213915,
+                    "spell_name": "Rebound",
+                    "description": "Spell Reflection reflects the next 2 incoming spells cast on you and reflected spells deal 100% extra damage to the attacker.\r\n\r\nSpell Reflection's cooldown is increased by 10 sec.",
+                    "unlock_player_level": 47,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 845,
+                    "name": "Oppressor",
+                    "spell_id": 205800,
+                    "spell_name": "Oppressor",
+                    "description": "You focus the assault on this target, increasing their damage taken by 3% for 6 sec. Each unique player that attacks the target increases the damage taken by an additional 3%, stacking up to 5 times.\r\n\r\nYour melee attacks refresh the duration of Focused Assault.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5374,
+                    "name": "Demolition",
+                    "spell_id": 329033,
+                    "spell_name": "Demolition",
+                    "description": "Reduces the cooldown of your Shattering Throw or Wrecking Throw by 50% and increases its damage to absorb shields by an additional 250%.",
+                    "unlock_player_level": 41,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5626,
+                    "name": "Safeguard",
+                    "spell_id": 424654,
+                    "spell_name": "Safeguard",
+                    "description": "Intervene now has 2 charges and reduces the ally's damage taken by 20% for 5 sec.\r\n\r\nIntervene's cooldown is increased by 10 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5627,
+                    "name": "Storm of Destruction",
+                    "spell_id": 236308,
+                    "spell_name": "Storm of Destruction",
+                    "description": "Bladestorm, Ravager, and Demolish now snare all targets you hit by 60% for 6 sec and decrease their healing taken by 50% for 10 sec.",
+                    "unlock_player_level": 38,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5703,
+                    "name": "Berserker Roar",
+                    "spell_id": 1227751,
+                    "spell_name": "Berserker Roar",
+                    "description": "Berserker Shout also reduces the duration of the next crowd control effect within 5 sec by 50% on group members within 12 yds.\r\n",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                },
+                {
+                    "id": 5715,
+                    "name": "Power Through Adversity",
+                    "spell_id": 1234791,
+                    "spell_name": "Power Through Adversity",
+                    "description": "Second Wind reduces damage taken by 10% to 40%, with larger attacks being reduced by more.\r\n\r\nWhile Shield Wall is active, healing reductions do not apply to you.",
+                    "unlock_player_level": 50,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 73,
+                    "playable_spec_name": "Protection"
+                }
+            ]
+        },
+        "Fury": {
+            "spec_id": 72,
+            "pvp_talents": [
+                {
+                    "id": 177,
+                    "name": "Enduring Rage",
+                    "spell_id": 411764,
+                    "spell_name": "Enduring Rage",
+                    "description": "You have a chance to become Enraged while you are suffering movement impairing effects.\r\n\r\nSuffering loss of control effects have a chance to grant you Recklessness for 5 sec.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 179,
+                    "name": "Death Wish",
+                    "spell_id": 199261,
+                    "spell_name": "Death Wish",
+                    "description": "Increases your damage taken and done by 10% for 15 sec at the cost of 10% of your health. Stacks up to 5 times.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 3528,
+                    "name": "Master and Commander",
+                    "spell_id": 235941,
+                    "spell_name": "Master and Commander",
+                    "description": "Cooldown of Rallying Cry reduced by 120 sec.",
+                    "unlock_player_level": 46,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 3533,
+                    "name": "Disarm",
+                    "spell_id": 236077,
+                    "spell_name": "Disarm",
+                    "description": "Disarm the enemy's weapons and shield for 5 sec. Disarmed creatures deal significantly reduced damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 3735,
+                    "name": "Slaughterhouse",
+                    "spell_id": 352998,
+                    "spell_name": "Slaughterhouse",
+                    "description": "Rampage and Odyn's Fury damage reduce healing the target receives by 3% for 12 sec, stacking up to 12 times.",
+                    "unlock_player_level": 36,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 5373,
+                    "name": "Demolition",
+                    "spell_id": 329033,
+                    "spell_name": "Demolition",
+                    "description": "Reduces the cooldown of your Shattering Throw or Wrecking Throw by 50% and increases its damage to absorb shields by an additional 250%.",
+                    "unlock_player_level": 41,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 5548,
+                    "name": "Rebound",
+                    "spell_id": 213915,
+                    "spell_name": "Rebound",
+                    "description": "Spell Reflection reflects the next 2 incoming spells cast on you and reflected spells deal 100% extra damage to the attacker.\r\n\r\nSpell Reflection's cooldown is increased by 10 sec.",
+                    "unlock_player_level": 47,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 5624,
+                    "name": "Safeguard",
+                    "spell_id": 424654,
+                    "spell_name": "Safeguard",
+                    "description": "Intervene now has 2 charges and reduces the ally's damage taken by 20% for 5 sec.\r\n\r\nIntervene's cooldown is increased by 10 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 5678,
+                    "name": "Dragon Charge",
+                    "spell_id": 206572,
+                    "spell_name": "Dragon Charge",
+                    "description": "Run at high speed at a distance in front of you. All enemies in your path will take 24 Physical damage and be knocked back.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                },
+                {
+                    "id": 5702,
+                    "name": "Berserker Roar",
+                    "spell_id": 1227751,
+                    "spell_name": "Berserker Roar",
+                    "description": "Berserker Shout also reduces the duration of the next crowd control effect within 5 sec by 50% on group members within 12 yds.\r\n",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 72,
+                    "playable_spec_name": "Fury"
+                }
+            ]
+        },
+        "Arms": {
+            "spec_id": 71,
+            "pvp_talents": [
+                {
+                    "id": 28,
+                    "name": "Master and Commander",
+                    "spell_id": 235941,
+                    "spell_name": "Master and Commander",
+                    "description": "Cooldown of Rallying Cry reduced by 120 sec.",
+                    "unlock_player_level": 46,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 31,
+                    "name": "Storm of Destruction",
+                    "spell_id": 236308,
+                    "spell_name": "Storm of Destruction",
+                    "description": "Bladestorm, Ravager, and Demolish now snare all targets you hit by 60% for 6 sec and decrease their healing taken by 50% for 10 sec.",
+                    "unlock_player_level": 38,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 33,
+                    "name": "Sharpen Blade",
+                    "spell_id": 1219165,
+                    "spell_name": "Sharpen Blade",
+                    "description": "Colossus Smash causes your next Mortal Strike to deal 15% increased damage and reduce healing taken by 50% for 4 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 34,
+                    "name": "Duel",
+                    "spell_id": 236273,
+                    "spell_name": "Duel",
+                    "description": "You challenge the target to a duel. While challenged, all damage you and the target deal to all targets other than each other is reduced by 50%. Lasts 12 sec.",
+                    "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 3534,
+                    "name": "Disarm",
+                    "spell_id": 236077,
+                    "spell_name": "Disarm",
+                    "description": "Disarm the enemy's weapons and shield for 5 sec. Disarmed creatures deal significantly reduced damage.",
+                    "unlock_player_level": 0,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 5372,
+                    "name": "Demolition",
+                    "spell_id": 329033,
+                    "spell_name": "Demolition",
+                    "description": "Reduces the cooldown of your Shattering Throw or Wrecking Throw by 50% and increases its damage to absorb shields by an additional 250%.",
+                    "unlock_player_level": 41,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 5547,
+                    "name": "Rebound",
+                    "spell_id": 213915,
+                    "spell_name": "Rebound",
+                    "description": "Spell Reflection reflects the next 2 incoming spells cast on you and reflected spells deal 100% extra damage to the attacker.\r\n\r\nSpell Reflection's cooldown is increased by 10 sec.",
+                    "unlock_player_level": 47,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 5625,
+                    "name": "Safeguard",
+                    "spell_id": 424654,
+                    "spell_name": "Safeguard",
+                    "description": "Intervene now has 2 charges and reduces the ally's damage taken by 20% for 5 sec.\r\n\r\nIntervene's cooldown is increased by 10 sec.",
+                    "unlock_player_level": 39,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 5679,
+                    "name": "Dragon Charge",
+                    "spell_id": 206572,
+                    "spell_name": "Dragon Charge",
+                    "description": "Run at high speed at a distance in front of you. All enemies in your path will take 24 Physical damage and be knocked back.",
+                    "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                },
+                {
+                    "id": 5701,
+                    "name": "Berserker Roar",
+                    "spell_id": 1227751,
+                    "spell_name": "Berserker Roar",
+                    "description": "Berserker Shout also reduces the duration of the next crowd control effect within 5 sec by 50% on group members within 12 yds.\r\n",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 71,
+                    "playable_spec_name": "Arms"
+                }
+            ]
+        }
+    }
+}
