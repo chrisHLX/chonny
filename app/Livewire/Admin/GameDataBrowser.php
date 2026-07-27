@@ -35,9 +35,13 @@ class GameDataBrowser extends Component
 
     public function updatedSpecId(): void
     {
-        // Hero trees are class-scoped, not spec-scoped, so heroTreeId deliberately survives a
-        // spec change — a user comparing hero-talent access across specs of the same class
-        // shouldn't have that selection reset out from under them.
+        // Hero trees are now spec-scoped (talent_tree_specializations — see game-data.md) —
+        // clear the current selection if it isn't actually available to the newly selected
+        // spec, rather than silently continuing to show hero talents from a tree the new spec
+        // can't access. $this->heroTrees is computed fresh here since specId is already updated.
+        if ($this->heroTreeId && !$this->heroTrees->contains('id', $this->heroTreeId)) {
+            $this->heroTreeId = null;
+        }
     }
 
     private function currentPatch(): ?Patch
@@ -75,13 +79,21 @@ class GameDataBrowser extends Component
     {
         $patch = $this->currentPatch();
 
-        if (!$this->classId || !$patch) {
+        if (!$this->classId || !$this->specId || !$patch) {
             return collect();
         }
+
+        // Hero trees are class-wide in talent_trees (spec_id is always null there) but
+        // spec-restricted in reality (a hero tree belongs to exactly two specs by game
+        // design) — talent_tree_specializations is the real source of that restriction,
+        // since Blizzard's own Game Data API doesn't scope hero_talent_trees by spec at
+        // all (confirmed live, 2026-07-25 — see game-data.md).
+        $specId = $this->specId;
 
         return TalentTree::where('class_id', $this->classId)
             ->where('patch_id', $patch->id)
             ->where('type', 'hero')
+            ->whereHas('specializations', fn ($q) => $q->where('specializations.id', $specId))
             ->orderBy('name')
             ->get();
     }
@@ -93,7 +105,7 @@ class GameDataBrowser extends Component
 
     private function spellEagerLoads(): array
     {
-        return ['effects', 'outgoingRelationships.targetSpell', 'incomingRelationships.sourceSpell'];
+        return ['effects', 'outgoingRelationships.targetSpell', 'incomingRelationships.sourceSpell', 'classAvailability'];
     }
 
     /**
@@ -118,15 +130,66 @@ class GameDataBrowser extends Component
     {
         $patch = $this->currentPatch();
 
-        if (!$this->classId || !$patch) {
+        if (!$this->classId || !$this->specId || !$patch) {
             return collect();
         }
 
+        $specId = $this->specId;
+
+        // Predates resolveBaselineSpecIds() (see game-data.md) — baseline.txt used to be
+        // uniformly spec_id=null, so filtering on it here would've been a no-op. Now that
+        // spec_id is refined per-record from the Class: field, this must actually filter by
+        // it, the same way getTopCooldownSpellsProperty() already correctly does — otherwise
+        // a spec-restricted baseline spell (e.g. Shadow-only Vampiric Embrace) shows under
+        // every spec of the class regardless of the correct data underneath it.
         return Spell::where('patch_id', $patch->id)
-            ->whereHas('classAvailability', fn ($q) => $q->where('class_id', $this->classId)->where('source', 'baseline'))
+            ->whereHas('classAvailability', function ($q) use ($specId) {
+                $q->where('class_id', $this->classId)
+                    ->where('source', 'baseline')
+                    ->where(fn ($q2) => $q2->whereNull('spec_id')->orWhere('spec_id', $specId));
+            })
             ->with($this->spellEagerLoads())
             ->orderBy('name')
             ->get();
+    }
+
+    /**
+     * Top 10 highest-cooldown spells available to the selected class/spec, from baseline or
+     * talent sources only (pvp_talent excluded — those already have their own section below).
+     * A spell_class_availability row's spec_id is null for class-wide availability (baseline,
+     * class talents, hero talents — classifyFileSource() assigns all three null) or set to a
+     * specific spec for spec-file talents (e.g. discipline.txt) — both are included here, which
+     * is also why the source label below can only say "Baseline" or "Talent": the schema doesn't
+     * distinguish class/hero/spec talents from each other once spec_id is null.
+     *
+     * @return Collection<int, array{spell: Spell, source: string}>
+     */
+    public function getTopCooldownSpellsProperty(): Collection
+    {
+        $patch = $this->currentPatch();
+
+        if (!$this->classId || !$this->specId || !$patch) {
+            return collect();
+        }
+
+        $classId = $this->classId;
+        $specId = $this->specId;
+
+        return Spell::where('patch_id', $patch->id)
+            ->whereNotNull('cooldown_seconds')
+            ->whereHas('classAvailability', function ($q) use ($classId, $specId) {
+                $q->where('class_id', $classId)
+                    ->whereIn('source', ['baseline', 'talent'])
+                    ->where(fn ($q2) => $q2->whereNull('spec_id')->orWhere('spec_id', $specId));
+            })
+            ->with($this->spellEagerLoads())
+            ->orderByDesc('cooldown_seconds')
+            ->limit(10)
+            ->get()
+            ->map(fn (Spell $spell) => [
+                'spell' => $spell,
+                'source' => $spell->classAvailability->contains('source', 'baseline') ? 'Baseline' : 'Talent',
+            ]);
     }
 
     public function getClassTalentTreeProperty(): ?TalentTree
@@ -247,6 +310,7 @@ class GameDataBrowser extends Component
             'heroTrees' => $this->heroTrees,
             'selectedHeroTree' => $this->selectedHeroTree,
             'baselineSpells' => $this->baselineSpells,
+            'topCooldownSpells' => $this->topCooldownSpells,
             'classTalentTree' => $this->classTalentTree,
             'classTalentNodes' => $this->classTalentNodes,
             'specTalentTree' => $this->specTalentTree,

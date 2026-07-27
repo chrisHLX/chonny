@@ -24,6 +24,13 @@ class Specialization extends Model
         return $this->hasMany(TalentTree::class, 'spec_id');
     }
 
+    /** Hero trees this spec can pick from — always via talent_tree_specializations, never spec_id
+     *  (hero trees are class-wide with spec_id null; see TalentTreeSpecialization's docblock). */
+    public function heroTalentTrees()
+    {
+        return $this->belongsToMany(TalentTree::class, 'talent_tree_specializations');
+    }
+
     public function pvpTalents()
     {
         return $this->hasMany(PvpTalent::class, 'spec_id');

@@ -12,11 +12,16 @@
         <span class="text-[11px] text-ink-subtle">{{ $spells->count() }} spell(s)</span>
     </div>
 
-    <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-3">
-        @forelse ($spells as $spell)
-            <x-admin.game-spell-card :spell="$spell" :source="$source"/>
-        @empty
-            <p class="text-[12px] text-ink-subtle">No spells found.</p>
-        @endforelse
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <x-admin.spell-table-head/>
+            <tbody>
+                @forelse ($spells as $spell)
+                    <x-admin.game-spell-card :spell="$spell" :source="$source"/>
+                @empty
+                    <tr><td colspan="4" class="px-5 py-4 text-[12px] text-ink-subtle">No spells found.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </div>

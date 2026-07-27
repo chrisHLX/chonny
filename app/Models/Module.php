@@ -102,4 +102,17 @@ class Module extends Model
         return $this->belongsToMany(SubjectContextOption::class, 'module_context_option');
     }
 
+    /** WoW class/spec/hero-tree this module's "Spells" reference section is about, if any. */
+    public function gameBuild()
+    {
+        return $this->hasOne(ModuleGameBuild::class);
+    }
+
+    /** Curated list of spells this module's prose actually names — see module_spell_references
+     *  migration. Full detail for each is always resolved live, never stored here. */
+    public function spellReferences()
+    {
+        return $this->belongsToMany(Spell::class, 'module_spell_references');
+    }
+
 }

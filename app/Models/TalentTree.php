@@ -36,6 +36,12 @@ class TalentTree extends Model
         return $this->hasMany(TalentNode::class);
     }
 
+    /** For hero trees specifically — the (exactly two, by game design) specs it's available to. */
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class, 'talent_tree_specializations');
+    }
+
     public function game(): ?Game
     {
         return $this->patch?->game;

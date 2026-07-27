@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Structural spell-to-spell relationship (e.g. "Improved Power Word: Shield modifies Power Word:
- * Shield"), derived at import time from the source data's own effect-level "Modified By" /
- * "Affecting Spells" references — never inferred from free-text description parsing.
+ * Structural spell-to-spell relationship, derived at import time from the source data's own
+ * explicit spell_id references — never inferred from free-text description parsing.
+ * `relationship_type` is one of:
+ * - 'modifies' — effect-value modifier (e.g. "Improved Power Word: Shield modifies Power Word:
+ *   Shield"), from "Modified By" / "Affecting Spells".
+ * - 'modifies_charges' — charge-count modifier (e.g. "Protector of the Frail grants Pain
+ *   Suppression an extra charge"), from "Category" / "Affected Spells (Category)".
+ * - 'replaces' — action-bar spell replacement (e.g. "Beacon of Virtue replaces Beacon of
+ *   Light"), from a Talent Entry line's replace="<name>" (id=<id>) annotation.
  */
 class SpellRelationship extends Model
 {

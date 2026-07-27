@@ -98,10 +98,29 @@
                             </button>
                         @endif
                     @else
-                        <a href="{{ route('register') }}"
-                           class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
-                            Sign up to start training
-                        </a>
+                        @if (is_null($module->parent_id))
+                            {{-- Guests can take the quiz directly at modules.quiz without an
+                                 account — ModuleQuizController::show() already lets a guest
+                                 through for any published, non-child module and QuizRunner
+                                 already has full guestMode support (session-scored, ends on
+                                 a sign-up CTA screen). Gated on parent_id here to match that
+                                 controller's own guard exactly — a versioned child module
+                                 would otherwise promise "no signup" and then redirect to
+                                 login anyway. --}}
+                            <a href="{{ route('modules.quiz', $module) }}"
+                               class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                                Try it — no signup required
+                            </a>
+                            <a href="{{ route('register') }}"
+                               class="text-[12px] text-ink-subtle hover:text-ink transition-colors">
+                                Sign up to save your progress
+                            </a>
+                        @else
+                            <a href="{{ route('register') }}"
+                               class="inline-flex items-center px-4 py-2 text-[13px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors">
+                                Sign up to start training
+                            </a>
+                        @endif
                         <a href="{{ route('login') }}"
                            class="text-[12px] text-ink-subtle hover:text-ink transition-colors">
                             Already have an account?
@@ -378,6 +397,95 @@
                     </div>
                 @endforeach
 
+            </div>
+        @endif
+
+        {{-- Spells reference — always live, never stored content (see ModuleSpellReferenceService
+             and ModuleGameBuild's docblock for why this isn't a ModulePage). Curated list of
+             spells actually named in the guide above, each enriched with what modifies/enhances
+             it, computed fresh from the current game data on every load. --}}
+        @if (!empty($this->moduleSpellReferences))
+            <div class="linear-card overflow-hidden">
+                <div class="px-5 py-4 border-b border-line">
+                    <p class="page-section-title">Spells</p>
+                    <p class="text-[11px] text-ink-subtle mt-0.5">
+                        Full detail for every ability named in this guide, plus what modifies or enhances each one — pulled live from the current game data, not frozen at authoring time.
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-line-strong">
+                                <th class="pl-5 pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Spell</th>
+                                <th class="pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Description</th>
+                                <th class="pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">CD</th>
+                                <th class="pr-5 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">What Modifies/Enhances It</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($this->moduleSpellReferences as $entry)
+                                @php
+                                    $spell = $entry['spell'];
+                                    $cooldownDisplay = $spell->cooldown_seconds !== null
+                                        ? rtrim(rtrim(number_format((float) $spell->cooldown_seconds, 2), '0'), '.').'s'
+                                        : null;
+                                    $relTypeBadge = fn (string $type) => match ($type) {
+                                        'modifies_charges' => 'badge-amber',
+                                        'replaces' => 'badge-green',
+                                        'mentions' => 'badge-gray',
+                                        default => 'badge-blue',
+                                    };
+                                    $relTypeLabel = fn (string $type) => match ($type) {
+                                        'modifies_charges' => 'Charges',
+                                        'replaces' => 'Replaces',
+                                        'mentions' => 'Proc',
+                                        'modifies' => 'Effect',
+                                        default => \Illuminate\Support\Str::headline($type),
+                                    };
+                                @endphp
+                                <tr class="border-b border-line align-top">
+                                    <td class="pl-5 pr-4 py-3 min-w-[10rem]">
+                                        <p class="text-[13px] font-semibold text-ink">{{ $spell->name }}</p>
+                                        <span class="text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</span>
+                                    </td>
+                                    <td class="pr-4 py-3 text-[12px] text-ink-muted max-w-md">
+                                        {{ $entry['description']['text'] ?: '—' }}
+                                        @if ($entry['description']['uncertain'])
+                                            <span class="text-[10px] text-ink-subtle italic block mt-0.5">Some values above vary by condition or aren't fully known — check in-game.</span>
+                                        @endif
+                                    </td>
+                                    <td class="pr-4 py-3 text-[12px] text-ink whitespace-nowrap">
+                                        {{ $cooldownDisplay ?? '—' }}
+                                        @if ($spell->charges !== null && $spell->charges > 1)
+                                            <span class="text-ink-subtle">&middot; {{ $spell->charges }} charges</span>
+                                        @endif
+                                    </td>
+                                    <td class="pr-5 py-3 text-[12px]">
+                                        @forelse ($entry['modifiers']['named'] as $mod)
+                                            <div class="mb-1 last:mb-0 flex items-center gap-1.5 flex-wrap">
+                                                <span class="{{ $relTypeBadge($mod['relationship_type']) }}">{{ $relTypeLabel($mod['relationship_type']) }}</span>
+                                                <span class="text-ink-muted">{{ $mod['spell']->name }}</span>
+                                            </div>
+                                        @empty
+                                            <span class="text-ink-subtle">—</span>
+                                        @endforelse
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                @if (!empty($this->baselineModifierNames))
+                    <div class="px-5 py-3 border-t border-line bg-surface-2">
+                        <p class="text-[10px] text-ink-subtle">
+                            <span class="font-semibold uppercase tracking-wide">Also affected by baseline class passives</span>
+                            (apply broadly, not specific to any one ability above):
+                            {{ implode(', ', $this->baselineModifierNames) }}
+                        </p>
+                    </div>
+                @endif
             </div>
         @endif
 

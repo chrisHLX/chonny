@@ -3,6 +3,7 @@
 namespace App\Livewire\Modules;
 
 use Livewire\Component;
+use App\Http\Services\ModuleSpellReferenceService;
 use App\Models\Module;
 use App\Models\Pipeline;
 use App\Models\SubjectContent;
@@ -54,6 +55,9 @@ class Show extends Component
             'proficiencies',
             'tags',
             'creator',
+            'gameBuild.gameClass',
+            'gameBuild.specialization',
+            'gameBuild.heroTalentTree',
         ]);
 
         return view('livewire.modules.show')
@@ -305,6 +309,55 @@ class Show extends Component
             ])
             ->values()
             ->toArray();
+    }
+
+    /**
+     * The module's curated "Spells" reference section, if this module has a declared
+     * ModuleGameBuild (see DiscPriestOracleModuleSeeder). Always computed live from whatever's
+     * currently in spells/spell_relationships — never a stored snapshot, so it can't go stale
+     * the way frozen prose could when a patch changes a number (see ModuleSpellReferenceService).
+     *
+     * @return array<int, array{spell: \App\Models\Spell, description: array{text: string, uncertain: bool}, modifiers: array{named: \Illuminate\Support\Collection, baseline: \Illuminate\Support\Collection}}>
+     */
+    public function getModuleSpellReferencesProperty(): array
+    {
+        $build = $this->module->gameBuild;
+
+        if (!$build) {
+            return [];
+        }
+
+        $service = new ModuleSpellReferenceService();
+
+        return $this->module->spellReferences()
+            ->with(['effects', 'incomingRelationships.sourceSpell'])
+            ->orderBy('name')
+            ->get()
+            ->map(fn ($spell) => [
+                'spell' => $spell,
+                'description' => $service->resolveDescription($spell, $build),
+                'modifiers' => $service->modifiersFor($spell, $build),
+            ])
+            ->all();
+    }
+
+    /**
+     * Deduplicated across every mentioned spell — shown once at the bottom of the Spells
+     * section rather than repeated under each individual spell (user's explicit call,
+     * 2026-07-25): these generic class-wide passives (e.g. "Priest", "Discipline Priest")
+     * would otherwise show up as noise under nearly every single row.
+     *
+     * @return array<int, string>
+     */
+    public function getBaselineModifierNamesProperty(): array
+    {
+        return collect($this->moduleSpellReferences)
+            ->flatMap(fn ($entry) => $entry['modifiers']['baseline'])
+            ->pluck('spell.name')
+            ->unique()
+            ->sort()
+            ->values()
+            ->all();
     }
 
     public function getSubjectResearchProperty(): \Illuminate\Support\Collection

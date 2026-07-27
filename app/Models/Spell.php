@@ -13,6 +13,20 @@ class Spell extends Model
         'name',
         'school',
         'description',
+        'charges',
+        'cooldown_seconds',
+        'duration_seconds',
+    ];
+
+    // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL
+    // returns the decimal column as a string ("180.00") while the parser fills a PHP float
+    // (180.0), so every spell with a cooldown was flagged dirty on every single import run.
+    // Casting both sides through the same type before comparison is what makes upsertTrack()'s
+    // dirty-check (and therefore idempotency) actually work for these columns.
+    protected $casts = [
+        'charges' => 'integer',
+        'cooldown_seconds' => 'decimal:2',
+        'duration_seconds' => 'decimal:2',
     ];
 
     public function patch()

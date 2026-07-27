@@ -34,8 +34,8 @@
 
                 <div>
                     <label class="text-[11px] text-ink-subtle uppercase tracking-wide mb-1 block">Hero Talent Tree (optional)</label>
-                    <select wire:model.live="heroTreeId" class="form-select w-full" @if (!$classId) disabled @endif>
-                        <option value="">— None —</option>
+                    <select wire:model.live="heroTreeId" class="form-select w-full" @if (!$specId) disabled @endif>
+                        <option value="">{{ $specId ? '— None —' : '— Select a specialization first —' }}</option>
                         @foreach ($heroTrees as $tree)
                             <option value="{{ $tree->id }}">{{ $tree->name }}</option>
                         @endforeach
@@ -72,6 +72,31 @@
                 @endif
             </div>
 
+            {{-- Top Cooldowns --}}
+            <div class="linear-card overflow-hidden">
+                <div class="px-5 py-4 border-b border-line flex items-center justify-between">
+                    <div>
+                        <p class="text-[13px] font-semibold text-ink">Top Cooldowns</p>
+                        <p class="text-[11px] text-ink-subtle mt-0.5">
+                            Top 10 highest-cooldown spells available to {{ $selectedSpec->name }} (baseline + talent sources), longest first.
+                        </p>
+                    </div>
+                    <span class="text-[11px] text-ink-subtle">{{ $topCooldownSpells->count() }} spell(s)</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <x-admin.spell-table-head/>
+                        <tbody>
+                            @forelse ($topCooldownSpells as $tagged)
+                                <x-admin.game-spell-card :spell="$tagged['spell']" :source="$tagged['source']"/>
+                            @empty
+                                <tr><td colspan="4" class="px-5 py-4 text-[12px] text-ink-subtle">No spells with a recorded cooldown for {{ $selectedSpec->name }}.</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             {{-- Baseline Abilities --}}
             <x-admin.spell-section
                 title="Baseline Abilities"
@@ -97,18 +122,23 @@
                     <p class="text-[13px] font-semibold text-ink">PvP Talents</p>
                     <span class="text-[11px] text-ink-subtle">{{ $pvpTalents->count() }} talent(s)</span>
                 </div>
-                <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-3">
-                    @forelse ($pvpTalents as $pvpTalent)
-                        @if ($pvpTalent->spell)
-                            <x-admin.game-spell-card
-                                :spell="$pvpTalent->spell"
-                                source="PvP Talent"
-                                :context="'Unlocks at level '.$pvpTalent->unlock_level"
-                            />
-                        @endif
-                    @empty
-                        <p class="text-[12px] text-ink-subtle">No PvP talents found for {{ $selectedSpec->name }}.</p>
-                    @endforelse
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <x-admin.spell-table-head/>
+                        <tbody>
+                            @forelse ($pvpTalents as $pvpTalent)
+                                @if ($pvpTalent->spell)
+                                    <x-admin.game-spell-card
+                                        :spell="$pvpTalent->spell"
+                                        source="PvP Talent"
+                                        :context="'Unlocks at level '.$pvpTalent->unlock_level"
+                                    />
+                                @endif
+                            @empty
+                                <tr><td colspan="4" class="px-5 py-4 text-[12px] text-ink-subtle">No PvP talents found for {{ $selectedSpec->name }}.</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -122,10 +152,15 @@
                             whose description mentions the word "passive"; expect false negatives, not a source of truth.
                         </p>
                     </div>
-                    <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-3">
-                        @foreach ($passiveLikeSpells as $tagged)
-                            <x-admin.game-spell-card :spell="$tagged['spell']" :source="$tagged['source']"/>
-                        @endforeach
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <x-admin.spell-table-head/>
+                            <tbody>
+                                @foreach ($passiveLikeSpells as $tagged)
+                                    <x-admin.game-spell-card :spell="$tagged['spell']" :source="$tagged['source']"/>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             @endif
