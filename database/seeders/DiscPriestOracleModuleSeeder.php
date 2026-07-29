@@ -128,6 +128,13 @@ class DiscPriestOracleModuleSeeder extends Seeder
      * deliberately test what the module's own prose says, not the unconfirmed
      * correction — do not silently "fix" this number here.
      *
+     * See knowledge-gaps.md (repo root) for the full, growing list of gaps found by
+     * cross-referencing this module's prose against imported spell data — Ultimate
+     * Penitence above is one entry among several (Weal and Woe, Inner Focus, Borrowed
+     * Time, Evangelism's true 150% burst value, Inner Shadow/Focused Power vs.
+     * Atonement, Penance heal-vs-damage math). None of those are reflected in
+     * pages()/questions() here — same "flag, don't silently fix" rule.
+     *
      * @return array<int, array{question: string, type: string, difficulty: string, skill_type: string, answer: array, concepts: array<int, string>}>
      */
     private function questions(): array
