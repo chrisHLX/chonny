@@ -151,7 +151,8 @@ Route::post('/modules/{module}/assign', [ModuleController::class, 'assign'])->na
 // Ai Requests Page
 Route::get('/ai_requests', [AiController::class, 'index'])->name('ai_requests.index');
 Route::post('/modules/{module}/generate-landing-page', [ModuleController::class, 'generateLandingPage'])->name('modules.generateLandingPage')->middleware('auth');
-Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page')->middleware('auth');
+// Module content page — public, no auth required (mirrors modules.show)
+Route::get('/modules/{module}/page', [ModuleController::class, 'page'])->name('modules.page');
 
 Route::post('/modules/{module}/assign-next-step', [ModuleController::class, 'assignNextStep'])
     ->name('modules.assign-next-step')
