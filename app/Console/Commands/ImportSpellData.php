@@ -21,6 +21,7 @@ use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use JsonException;
 
@@ -37,11 +38,14 @@ use JsonException;
  * Safe to re-run: every row is written via upsertTrack(), keyed on each table's natural unique
  * constraint — re-running against unchanged source files produces zero writes.
  *
- * spell_relationships carries three distinct relationship_type values: 'modifies' (effect-value
+ * spell_relationships carries four distinct relationship_type values: 'modifies' (effect-value
  * modifiers, from Affecting Spells/Modified By — importRelationships()), 'modifies_charges'
- * (charge-count modifiers, from Category/Affected Spells (Category) — importCategoryRelationships()),
- * and 'replaces' (action-bar spell replacement, from Talent Entry's replace= annotation —
- * importReplacesRelationships()).
+ * (charge-count/cooldown-duration modifiers, from Category/Affected Spells (Category) —
+ * importCategoryRelationships()), 'replaces' (action-bar spell replacement, from Talent Entry's
+ * replace= annotation — importReplacesRelationships()), and 'modifies_cooldown' (cooldown
+ * modifiers parsed from PvP talent free-text descriptions — importPvpTalentRelationships(), the
+ * one relationship type sourced from prose rather than a structured field, since pvptalents JSON
+ * carries no spell_id references at all).
  *
  * spell_class_availability.spec_id for baseline.txt records is refined per-record from each
  * record's own "Class:" field (see resolveBaselineSpecIds()) rather than trusting the filename
@@ -91,6 +95,13 @@ class ImportSpellData extends Command
     private int $categoryRelationshipSkips = 0;
 
     private int $replacesRelationshipSkips = 0;
+
+    /** @var array<int, array{spell_id: int, description: string, class_id: int}> pvp talent spells pending description-parse, retained for the relationship pass */
+    private array $pendingPvpTalentRecords = [];
+
+    private int $pvpTalentRelationshipSkips = 0;
+
+    private int $pvpTalentRelationshipMatches = 0;
 
     private int $heroTreeSpecSkips = 0;
 
@@ -151,6 +162,7 @@ class ImportSpellData extends Command
         $this->importRelationships();
         $this->importCategoryRelationships();
         $this->importReplacesRelationships();
+        $this->importPvpTalentRelationships();
         $this->resolveDescriptionReferences();
 
         $this->printSummary();
@@ -554,6 +566,14 @@ class ImportSpellData extends Command
                     'spec_id' => $spec->id,
                     'source' => 'pvp_talent',
                 ], [], 'spell_class_availability');
+
+                if (!empty($pvpTalent['description'])) {
+                    $this->pendingPvpTalentRecords[] = [
+                        'spell_id' => $pvpTalent['spell_id'],
+                        'description' => $pvpTalent['description'],
+                        'class_id' => $class->id,
+                    ];
+                }
             }
         }
     }
@@ -607,6 +627,17 @@ class ImportSpellData extends Command
      * class docblock — so both directions are read here and de-duped in memory before writing,
      * making the pass robust to either side of a pair being incomplete in the dump. Run once at
      * the end for the same cross-class reason as importRelationships().
+     *
+     * Magnitude (modifier_value/modifier_unit): only the source's own "Affected Spells
+     * (Category)" effect direction carries a value (base_value on that effect) — the target's
+     * "Category:" line never does. When a pair is discovered via that direction, its effect's
+     * type/base_value is retained and, for the one effect type with a verified conversion in
+     * this dataset ("Modify Recharge Time (Category)" — confirmed via the Mind Blast worked
+     * example in game-data.md: Base Value 19000 == 19 seconds, base_value/1000), written as a
+     * flat-seconds modifier. Every other Category effect type (see game-data.md's "modifies_charges
+     * is a coarser label" note — 7 other types with unverified unit semantics) is left with
+     * modifier_value = null — still recorded and shown descriptively, just not computed. Do not
+     * add more conversions here without a hand-verified worked example first — see that note.
      */
     private function importCategoryRelationships(): void
     {
@@ -614,17 +645,20 @@ class ImportSpellData extends Command
 
         foreach ($this->pendingRelationshipRecords as $record) {
             foreach (array_keys($record['category_refs']) as $sourceExternalId) {
-                $pairs[$sourceExternalId.'|'.$record['spell_id']] = true;
+                $key = $sourceExternalId.'|'.$record['spell_id'];
+                $pairs[$key] ??= null;
             }
 
             foreach ($record['effects'] as $effect) {
                 foreach (array_keys($effect['affects_category']) as $targetExternalId) {
-                    $pairs[$record['spell_id'].'|'.$targetExternalId] = true;
+                    // The magnitude-bearing direction — always wins over a bare category_refs
+                    // sighting of the same pair (see docblock above).
+                    $pairs[$record['spell_id'].'|'.$targetExternalId] = $effect;
                 }
             }
         }
 
-        foreach (array_keys($pairs) as $pair) {
+        foreach ($pairs as $pair => $effect) {
             [$sourceExternalId, $targetExternalId] = array_map('intval', explode('|', $pair));
 
             $source = $this->spellIndex[$sourceExternalId] ?? null;
@@ -636,11 +670,17 @@ class ImportSpellData extends Command
                 continue;
             }
 
+            $values = [];
+            if ($effect !== null && $effect['type'] === 'Modify Recharge Time (Category)' && $effect['base_value'] !== null) {
+                $values['modifier_value'] = $effect['base_value'] / 1000;
+                $values['modifier_unit'] = 'seconds';
+            }
+
             $this->upsertTrack(SpellRelationship::class, [
                 'source_spell_id' => $source->id,
                 'target_spell_id' => $target->id,
                 'relationship_type' => 'modifies_charges',
-            ], [], 'spell_relationships');
+            ], $values, 'spell_relationships');
         }
     }
 
@@ -679,6 +719,95 @@ class ImportSpellData extends Command
                 ], [], 'spell_relationships');
             }
         }
+    }
+
+    /**
+     * Populates spell_relationships (relationship_type = 'modifies_cooldown') by regex-parsing
+     * PvP talent descriptions for the one confirmed phrasing shape — e.g. Ultimate Radiance's
+     * "Evangelism cooldown is reduced by 45 sec and Power Word: Radiance healing is increased by
+     * 15%." yields one match (Evangelism, -45 seconds); the healing clause is not this shape and
+     * is correctly ignored. Unlike the other three relationship passes, PvP talent JSON carries
+     * no structured spell_id references at all (see class docblock) — this is the one
+     * relationship type sourced from free text, so it stays deliberately conservative: only the
+     * two known "cooldown is reduced/increased by N sec/%" shapes are matched, everything else
+     * is logged and skipped rather than guessed. Run once at the end, after every class's spells
+     * (and therefore every class's own Spell rows) exist, since name resolution below queries the
+     * DB directly rather than the in-memory spellIndex (which is keyed by spell_id, not name).
+     */
+    private function importPvpTalentRelationships(): void
+    {
+        foreach ($this->pendingPvpTalentRecords as $record) {
+            $source = $this->spellIndex[$record['spell_id']] ?? null;
+
+            if (!$source) {
+                $this->pvpTalentRelationshipSkips++;
+
+                continue;
+            }
+
+            if (!preg_match_all(
+                '/([A-Z][\w:\'\- ]*?) cooldown is (reduced|increased) by ([\d.]+)\s*(sec(?:onds)?|%)/i',
+                $record['description'],
+                $matches,
+                PREG_SET_ORDER
+            )) {
+                continue;
+            }
+
+            foreach ($matches as $match) {
+                $name = trim($match[1]);
+                $sign = strtolower($match[2]) === 'reduced' ? -1 : 1;
+                $magnitude = (float) $match[3];
+                $unit = str_contains($match[4], '%') ? 'percent' : 'seconds';
+
+                $target = $this->resolvePvpTalentTargetSpell($name, $record['class_id']);
+
+                if (!$target || $target->id === $source->id) {
+                    $this->pvpTalentRelationshipSkips++;
+                    Log::warning('ImportSpellData: could not resolve pvp talent cooldown-modifier target spell', [
+                        'pvp_talent_spell_id' => $record['spell_id'],
+                        'target_name' => $name,
+                        'class_id' => $record['class_id'],
+                    ]);
+
+                    continue;
+                }
+
+                $this->pvpTalentRelationshipMatches++;
+
+                $this->upsertTrack(SpellRelationship::class, [
+                    'source_spell_id' => $source->id,
+                    'target_spell_id' => $target->id,
+                    'relationship_type' => 'modifies_cooldown',
+                ], [
+                    'description' => $match[0],
+                    'modifier_value' => $sign * $magnitude,
+                    'modifier_unit' => $unit,
+                ], 'spell_relationships');
+            }
+        }
+    }
+
+    /**
+     * Resolves a name parsed out of a PvP talent description to a real Spell, scoped to the
+     * talent's own class (a PvP talent can only affect a spell its own class actually has).
+     * Not expected to be perfect on a duplicate-name collision — same "not a system failure"
+     * posture as ModuleSpellReferenceService::resolveSpellByName(), which this mirrors in
+     * miniature: prefer a class-scoped match that actually carries cooldown/charge data (the
+     * spell most likely to be a real cooldown target), else the first match.
+     */
+    private function resolvePvpTalentTargetSpell(string $name, int $classId): ?Spell
+    {
+        $candidates = Spell::where('name', $name)
+            ->whereHas('classAvailability', fn ($q) => $q->where('class_id', $classId))
+            ->get();
+
+        if ($candidates->isEmpty()) {
+            return null;
+        }
+
+        return $candidates->first(fn (Spell $c) => $c->cooldown_seconds !== null || $c->charges !== null)
+            ?? $candidates->first();
     }
 
     /**
@@ -894,6 +1023,10 @@ class ImportSpellData extends Command
 
         if ($this->descriptionRefSkips > 0) {
             $this->comment("Left {$this->descriptionRefSkips} description(s) unresolved — the referenced spell wasn't found, or the reference chain exceeded the 5-hop limit.");
+        }
+
+        if ($this->pvpTalentRelationshipMatches > 0 || $this->pvpTalentRelationshipSkips > 0) {
+            $this->comment("PvP talent cooldown modifiers: {$this->pvpTalentRelationshipMatches} matched, {$this->pvpTalentRelationshipSkips} skipped (target spell not resolved).");
         }
     }
 }

@@ -25,6 +25,7 @@ use App\Livewire\Admin\WeakAreas;
 use App\Livewire\Admin\LogViewer;
 use App\Livewire\Admin\DiagnosticStats;
 use App\Livewire\Admin\GameDataBrowser;
+use App\Livewire\Admin\TalentBuildEditor;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PipelineController;
 use App\Http\Controllers\FeedbackController;
@@ -182,6 +183,7 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
     Route::get('/diagnostic-stats', DiagnosticStats::class)->name('diagnostic-stats');
     Route::get('/logs', LogViewer::class)->name('logs');
     Route::get('/game-data', GameDataBrowser::class)->name('game-data');
+    Route::get('/talent-builds', TalentBuildEditor::class)->name('talent-builds');
 });
 
 

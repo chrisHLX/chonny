@@ -25,7 +25,16 @@
       "Bash(python -c ' *)",
       "Bash(git status *)",
       "Bash(python -)",
-      "Bash(grep -v \"\\\\.php$\")"
+      "Bash(grep -v \"\\\\.php$\")",
+      "Bash(curl -s \"https://api.github.com/repos/Gethe/wow-ui-source/git/trees/live?recursive=1\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_PlayerSpells/ClassTalents/Blizzard_ClassTalentImportExport.lua\" -o /tmp/talent_import_export.lua)",
+      "Read(//tmp/**)",
+      "Bash(curl -s \"https://api.github.com/repos/Gethe/wow-ui-source/git/trees/live?recursive=1\" -o /tmp/tree.json)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXMLBase/ExportUtil.lua\" -o /tmp/export_util.lua)",
+      "PowerShell(php \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\a2a1048d-0d42-4bdf-91b2-22d0bf9676c5\\\\scratchpad\\\\decode_test.php\")",
+      "PowerShell(php -l app/Http/Services/BlizzardTalentStringCodec.php)",
+      "PowerShell(php -l tests/Feature/Services/BlizzardTalentStringCodecTest.php)",
+      "PowerShell(vendor\\\\bin\\\\pest.bat tests/Feature/Services/BlizzardTalentStringCodecTest.php 2>&1)"
     ],
     "additionalDirectories": []
   }

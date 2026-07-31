@@ -16,10 +16,12 @@ class TalentBuild extends Model
         'name',
         'share_slug',
         'is_public',
+        'is_default',
     ];
 
     protected $casts = [
         'is_public' => 'boolean',
+        'is_default' => 'boolean',
     ];
 
     public function specialization()
@@ -40,6 +42,11 @@ class TalentBuild extends Model
     public function choices()
     {
         return $this->hasMany(TalentBuildChoice::class);
+    }
+
+    public function pvpChoices()
+    {
+        return $this->hasMany(TalentBuildPvpChoice::class);
     }
 
     public function game(): ?Game

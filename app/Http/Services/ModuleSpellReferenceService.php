@@ -7,6 +7,7 @@ use App\Models\ModuleGameBuild;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\SpellEffect;
+use App\Models\SpellRelationship;
 use App\Models\TalentTree;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -150,10 +151,15 @@ class ModuleSpellReferenceService
 
     /**
      * The build's full candidate universe — same scoping as GameDataBrowser's Top Cooldowns/
-     * Baseline Abilities properties (baseline/talent spell_class_availability, spec_id null or
-     * matching, plus this build's hero tree's talent_node_entries). Used both to scope which
-     * incoming relationships count as "in this build" and as the search space for the textual
-     * mention scan in modifiersFor().
+     * Baseline Abilities properties (baseline/talent/pvp_talent spell_class_availability, spec_id
+     * null or matching, plus this build's hero tree's talent_node_entries). Used both to scope
+     * which incoming relationships count as "in this build" and as the search space for the
+     * textual mention scan in modifiersFor().
+     *
+     * 'pvp_talent' was added to the source list 2026-07-30 alongside the new modifies_cooldown
+     * relationship type (see ImportSpellData::importPvpTalentRelationships()) — without it, a
+     * PvP talent's own spell (e.g. Ultimate Radiance) could never appear as a candidate source
+     * here at all, silently dropping every PvP-talent-derived modifier regardless of selection.
      *
      * @return Collection<int, int> spell ids
      */
@@ -171,7 +177,7 @@ class ModuleSpellReferenceService
 
         $availabilityIds = Spell::whereHas('classAvailability', function ($q) use ($classId, $specId) {
             $q->where('class_id', $classId)
-                ->whereIn('source', ['baseline', 'talent'])
+                ->whereIn('source', ['baseline', 'talent', 'pvp_talent'])
                 ->where(fn ($q2) => $q2->whereNull('spec_id')->orWhere('spec_id', $specId));
         })->pluck('id');
 
@@ -216,10 +222,18 @@ class ModuleSpellReferenceService
      * class docblock. A spell from an opponent class therefore gets modifiers scoped to ITS OWN
      * class's baseline/spec-agnostic kit, not incorrectly checked against the module's build.
      *
+     * Since 2026-07-30, the 'named' bucket also requires the candidate to be in
+     * $selectedSpellIds — a talent that's a valid kit member but not currently selected no
+     * longer shows as if it were actively applying (see TalentSelectionService, which resolves
+     * what "currently selected" means for a user/guest). Pass an empty collection to get the
+     * old, selection-blind "everything possible" behavior. The 'baseline' bucket (always-on
+     * class passives) is deliberately NOT gated — those aren't optional picks.
+     *
      * @return array{named: Collection, baseline: Collection}
      */
-    public function modifiersFor(Spell $spell, ModuleGameBuild $build): array
+    public function modifiersFor(Spell $spell, ModuleGameBuild $build, ?Collection $selectedSpellIds = null): array
     {
+        $selectedSpellIds ??= collect();
         $context = $this->resolveKitContext($spell, $build);
         $kitIds = $this->buildKitSpellIdsFor($context['class_id'], $context['spec_id'], $context['hero_tree_id']);
         $isBaseline = $this->genericBaselineAuraCheckerFor($context['class_id'], $context['spec_id']);
@@ -229,18 +243,30 @@ class ModuleSpellReferenceService
         $baseline = collect();
         $seenIds = collect([$spell->id]);
 
-        $classify = function (Spell $candidate, string $relationshipType) use (
-            &$named, &$baseline, $isBaseline, $context, $treeIds
+        $classify = function (Spell $candidate, string $relationshipType, ?SpellRelationship $rel = null) use (
+            &$named, &$baseline, $isBaseline, $context, $treeIds, $selectedSpellIds
         ) {
             if ($this->isKnownJunk($candidate)) {
                 return;
             }
 
-            $entry = ['spell' => $candidate, 'relationship_type' => $relationshipType];
+            $entry = [
+                'spell' => $candidate,
+                'relationship_type' => $relationshipType,
+                'modifier_value' => $rel?->modifier_value,
+                'modifier_unit' => $rel?->modifier_unit,
+            ];
 
             if ($isBaseline($candidate)) {
                 $baseline->push($entry);
 
+                return;
+            }
+
+            if (!$selectedSpellIds->contains($candidate->id)) {
+                // Not currently selected — still a real, possible modifier, just not applying
+                // right now. Dropped from 'named' rather than shown as if it were active; see
+                // effectiveCooldown() for the same selection gate applied to the computed number.
                 return;
             }
 
@@ -259,7 +285,7 @@ class ModuleSpellReferenceService
             }
 
             $seenIds->push($source->id);
-            $classify($source, $rel->relationship_type);
+            $classify($source, $rel->relationship_type, $rel);
         }
 
         $textCandidateIds = $kitIds->diff($seenIds);
@@ -277,6 +303,45 @@ class ModuleSpellReferenceService
         return [
             'named' => $named->values(),
             'baseline' => $baseline->values(),
+        ];
+    }
+
+    /**
+     * Computes $spell's effective cooldown given which talents are actually selected —
+     * $spell->cooldown_seconds (the base value) with every selected, magnitude-bearing modifier
+     * applied: flat seconds first, then percent (the layering order validated by hand against a
+     * real in-game report in game-data.md's Mind Blast worked example). Modifiers without a
+     * computable magnitude (modifier_value/modifier_unit null — see SpellRelationship's
+     * docblock) still show up in modifiersFor()'s 'named' list descriptively, they just don't
+     * change this number — never guessed.
+     *
+     * @return array{seconds: ?float, base_seconds: ?float, applied: Collection}
+     */
+    public function effectiveCooldown(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds): array
+    {
+        $base = $spell->cooldown_seconds !== null ? (float) $spell->cooldown_seconds : null;
+
+        if ($base === null || $selectedSpellIds->isEmpty()) {
+            return ['seconds' => $base, 'base_seconds' => $base, 'applied' => collect()];
+        }
+
+        $named = $this->modifiersFor($spell, $build, $selectedSpellIds)['named']
+            ->filter(fn (array $entry) => $entry['modifier_value'] !== null && $entry['modifier_unit'] !== null);
+
+        $seconds = $base;
+
+        foreach ($named->where('modifier_unit', 'seconds') as $entry) {
+            $seconds += (float) $entry['modifier_value'];
+        }
+
+        foreach ($named->where('modifier_unit', 'percent') as $entry) {
+            $seconds *= 1 + ((float) $entry['modifier_value'] / 100);
+        }
+
+        return [
+            'seconds' => max($seconds, 0.0),
+            'base_seconds' => $base,
+            'applied' => $named->values(),
         ];
     }
 

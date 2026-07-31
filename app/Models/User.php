@@ -109,6 +109,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UserSubjectContext::class);
     }
 
+    public function talentBuilds()
+    {
+        return $this->hasMany(TalentBuild::class);
+    }
+
     public function axisMastery()
     {
         return $this->hasMany(UserAxisMastery::class);

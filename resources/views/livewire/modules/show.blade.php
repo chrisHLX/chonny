@@ -400,6 +400,16 @@
             </div>
         @endif
 
+        {{-- Talent picker — drives which modifiers/cooldowns below are actually "on". Only shown
+             for modules with a declared ModuleGameBuild. Guests get a component-state-only
+             preview (nothing persisted); authenticated users auto-save per spec and it's reused
+             everywhere else for that spec (see TalentSelectionService). --}}
+        @if ($module->gameBuild)
+            <livewire:talent-selector
+                :spec-id="$module->gameBuild->specialization_id"
+                :key="'talent-selector-'.$module->id" />
+        @endif
+
         {{-- Spells reference — always live, never stored content (see ModuleSpellReferenceService
              and ModuleGameBuild's docblock for why this isn't a ModulePage). Curated list of
              spells actually named in the guide above, each enriched with what modifies/enhances
@@ -427,17 +437,22 @@
                             @foreach ($this->moduleSpellReferences as $entry)
                                 @php
                                     $spell = $entry['spell'];
-                                    $cooldownDisplay = $spell->cooldown_seconds !== null
-                                        ? rtrim(rtrim(number_format((float) $spell->cooldown_seconds, 2), '0'), '.').'s'
-                                        : null;
+                                    $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
+                                    $cooldown = $entry['cooldown'];
+                                    $cooldownDisplay = $cooldown['seconds'] !== null ? $fmtSeconds($cooldown['seconds']) : null;
+                                    $cooldownChanged = $cooldown['seconds'] !== null
+                                        && $cooldown['base_seconds'] !== null
+                                        && round($cooldown['seconds'], 2) !== round($cooldown['base_seconds'], 2);
                                     $relTypeBadge = fn (string $type) => match ($type) {
                                         'modifies_charges' => 'badge-amber',
+                                        'modifies_cooldown' => 'badge-amber',
                                         'replaces' => 'badge-green',
                                         'mentions' => 'badge-gray',
                                         default => 'badge-blue',
                                     };
                                     $relTypeLabel = fn (string $type) => match ($type) {
                                         'modifies_charges' => 'Charges',
+                                        'modifies_cooldown' => 'Cooldown',
                                         'replaces' => 'Replaces',
                                         'mentions' => 'Proc',
                                         'modifies' => 'Effect',
@@ -457,6 +472,9 @@
                                     </td>
                                     <td class="pr-4 py-3 text-[12px] text-ink whitespace-nowrap">
                                         {{ $cooldownDisplay ?? '—' }}
+                                        @if ($cooldownChanged)
+                                            <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $fmtSeconds($cooldown['base_seconds']) }}</span>
+                                        @endif
                                         @if ($spell->charges !== null && $spell->charges > 1)
                                             <span class="text-ink-subtle">&middot; {{ $spell->charges }} charges</span>
                                         @endif
@@ -466,6 +484,11 @@
                                             <div class="mb-1 last:mb-0 flex items-center gap-1.5 flex-wrap">
                                                 <span class="{{ $relTypeBadge($mod['relationship_type']) }}">{{ $relTypeLabel($mod['relationship_type']) }}</span>
                                                 <span class="text-ink-muted">{{ $mod['spell']->name }}</span>
+                                                @if ($mod['modifier_value'] !== null && $mod['modifier_unit'] !== null)
+                                                    <span class="text-[10px] text-gold">
+                                                        {{ $mod['modifier_value'] > 0 ? '+' : '' }}{{ rtrim(rtrim(number_format((float) $mod['modifier_value'], 2), '0'), '.') }}{{ $mod['modifier_unit'] === 'percent' ? '%' : 's' }}
+                                                    </span>
+                                                @endif
                                             </div>
                                         @empty
                                             <span class="text-ink-subtle">—</span>

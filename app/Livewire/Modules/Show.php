@@ -4,6 +4,7 @@ namespace App\Livewire\Modules;
 
 use Livewire\Component;
 use App\Http\Services\ModuleSpellReferenceService;
+use App\Http\Services\TalentSelectionService;
 use App\Models\Module;
 use App\Models\Pipeline;
 use App\Models\SubjectContent;
@@ -12,6 +13,7 @@ use App\Models\UserConceptMastery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Livewire\Attributes\On;
 
 class Show extends Component
 {
@@ -19,6 +21,9 @@ class Show extends Component
     public bool $enrolled = false;
     public ?array $userModule = null;
     public ?int $activePipelineId = null;
+
+    /** Which talents are currently selected (see TalentSelector) — feeds getModuleSpellReferencesProperty()'s effective-cooldown computation. Seeded from the resolved active build on mount, kept live via the 'talents-changed' event dispatched by <livewire:talent-selector>. */
+    public array $selectedSpellIds = [];
 
     public function mount(Module $module): void
     {
@@ -42,6 +47,29 @@ class Show extends Component
             ->whereIn('status', ['running', 'pending'])
             ->latest('id')
             ->first()?->id;
+
+        $this->initSelectedSpellIds();
+    }
+
+    /** Seeds $selectedSpellIds from the resolved active build (user's saved build, else the spec's default, else nothing) so the initial render already reflects it, before any TalentSelector interaction. No-op for modules with no ModuleGameBuild. */
+    private function initSelectedSpellIds(): void
+    {
+        $build = $this->module->gameBuild;
+
+        if (!$build) {
+            return;
+        }
+
+        $service = app(TalentSelectionService::class);
+        $activeBuild = $service->resolveActiveBuild(Auth::user(), $build->specialization_id);
+        $this->selectedSpellIds = $service->selectedSpellIds($activeBuild)->all();
+    }
+
+    /** @param array<int, int> $selectedSpellIds */
+    #[On('talents-changed')]
+    public function onTalentsChanged(array $selectedSpellIds = []): void
+    {
+        $this->selectedSpellIds = $selectedSpellIds;
     }
 
     public function render()
@@ -317,7 +345,11 @@ class Show extends Component
      * currently in spells/spell_relationships — never a stored snapshot, so it can't go stale
      * the way frozen prose could when a patch changes a number (see ModuleSpellReferenceService).
      *
-     * @return array<int, array{spell: \App\Models\Spell, description: array{text: string, uncertain: bool}, modifiers: array{named: \Illuminate\Support\Collection, baseline: \Illuminate\Support\Collection}}>
+     * 'modifiers'/'cooldown' are both gated by $selectedSpellIds (see TalentSelectionService) —
+     * a talent that's merely possible for the class/spec but not currently selected no longer
+     * shows as an applying modifier or changes the computed cooldown.
+     *
+     * @return array<int, array{spell: \App\Models\Spell, description: array{text: string, uncertain: bool}, modifiers: array{named: \Illuminate\Support\Collection, baseline: \Illuminate\Support\Collection}, cooldown: array{seconds: ?float, base_seconds: ?float, applied: \Illuminate\Support\Collection}}>
      */
     public function getModuleSpellReferencesProperty(): array
     {
@@ -328,6 +360,7 @@ class Show extends Component
         }
 
         $service = new ModuleSpellReferenceService();
+        $selected = collect($this->selectedSpellIds);
 
         return $this->module->spellReferences()
             ->with(['effects', 'incomingRelationships.sourceSpell'])
@@ -336,7 +369,8 @@ class Show extends Component
             ->map(fn ($spell) => [
                 'spell' => $spell,
                 'description' => $service->resolveDescription($spell, $build),
-                'modifiers' => $service->modifiersFor($spell, $build),
+                'modifiers' => $service->modifiersFor($spell, $build, $selected),
+                'cooldown' => $service->effectiveCooldown($spell, $build, $selected),
             ])
             ->all();
     }
