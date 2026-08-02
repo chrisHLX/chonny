@@ -393,25 +393,6 @@ class Show extends Component
             ->all();
     }
 
-    /**
-     * Deduplicated across every mentioned spell — shown once at the bottom of the Spells
-     * section rather than repeated under each individual spell (user's explicit call,
-     * 2026-07-25): these generic class-wide passives (e.g. "Priest", "Discipline Priest")
-     * would otherwise show up as noise under nearly every single row.
-     *
-     * @return array<int, string>
-     */
-    public function getBaselineModifierNamesProperty(): array
-    {
-        return collect($this->moduleSpellReferences)
-            ->flatMap(fn ($entry) => $entry['modifiers']['baseline'])
-            ->pluck('spell.name')
-            ->unique()
-            ->sort()
-            ->values()
-            ->all();
-    }
-
     public function getSubjectResearchProperty(): \Illuminate\Support\Collection
     {
         return SubjectContent::where('subject_id', $this->module->subject_id)

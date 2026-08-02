@@ -36,6 +36,7 @@ use App\Livewire\Modules\Show;
 use App\Livewire\QuizPage;
 use App\Livewire\ModuleSelector;
 use App\Livewire\JobDashboard;
+use App\Livewire\SpellExplorer;
 
 // STRIPE
 Route::post('/checkout/session', [StripeController::class, 'create'])
@@ -105,6 +106,8 @@ Route::post('/questions', [QuestionController::class, 'store'])->name('questions
 //create and store modules
 Route::get('modules', Index::class)->name('modules.index');
 //Route::get('modules', [ModuleController::class, 'index'])->name('modules.index')->middleware('auth');
+
+Route::get('/spells', SpellExplorer::class)->name('spells.explore');
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');
