@@ -169,6 +169,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Enemy (6)
                    Affected School(s): All
 Description      : A word of darkness that causes $?a390707[${$s1*(1+$390707s1/100)}][$s1] Shadow damage instantly, and an additional $?a390707[${$o2*(1+$390707s1/100)}][$o2] Shadow damage over $d.$?s137033[
+
+|cFFFFFFFFGenerates ${$m3/100} Insanity.|r][]
+Tooltip          : Suffering $w2 Shadow damage every $t2 sec.
 
 Name             : Levitate (id=1706) [Spell Family (6)] 
 Class            : Priest
@@ -370,6 +373,9 @@ Effects          :
 #4 (id=623774)   : Dummy (3)
                    Base Value: 6 | Scaled Value: 6
 Description      : Assaults the target's mind with Shadow energy, causing $o1 Shadow damage over $d and slowing their movement speed by $s2%.
+
+|cFFFFFFFFGenerates ${$s4*$s3/100} Insanity over the duration.|r
+Tooltip          : Movement speed slowed by $s2% and taking Shadow damage every $t1 sec.
 
 Name             : Silence (id=15487) [Spell Family (6)] 
 Class            : Shadow Priest
@@ -437,6 +443,10 @@ Effects          :
 #3 (id=1286692)  : Remove Aura (203): Power Word: Fortitude Highlight
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1271911 | Radius: 100 yards | Target: Targeted Ally or Raid (118)
 Description      : Infuses the target with vitality, increasing their Stamina by $s1% for $d.
+
+If the target is in your party or raid, all party and raid members will be affected.
+Tooltip          : Stamina increased by $w1%.$?$w2>0[
+Magic damage taken reduced by $w2%.][]
 
 Name             : Holy Nova (id=23455) [Spell Family (6)] 
 Class            : Priest
@@ -649,6 +659,9 @@ Effects          :
 #4 (id=841601)   : School Damage (2): shadow
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 3.04343 | PvP Coefficient: 0.75 | Target: Targeted Enemy (6)
 Description      : A touch of darkness that causes $34914o2 Shadow damage over $34914d, and heals you for ${$e2*100}% of damage dealt. If Vampiric Touch is dispelled, the dispeller flees in Horror for $87204d.
+
+|cFFFFFFFFGenerates ${$m3/100} Insanity.|r
+Tooltip          : Suffering $w2 Shadow damage every $t2 sec.
 
 Name             : Healing Trance (id=37706) [Spell Family (6)] 
 School           : Physical
@@ -774,6 +787,14 @@ Effects          :
 #1 (id=39751)    : Dummy (3)
                    Base Value: 120 | Scaled Value: 120 | Target: Current Target (25)
 Description      : Launches a volley of holy light at the target, causing $<penancedamage> Holy damage to an enemy or $<penancehealing> healing to an ally over $47758d. Castable while moving.
+
+When you heal with Penance, everyone with your Atonement is healed for $197419s2.
+Variables        : $castigation=$?a193134[${1}][${0}]
+$harsh=$?a373183[${$373180s2}][${0}]
+$darkside=$?a198069[${1+($198069s1/100)}][${1}]
+$balanceofthings=$?a390706[${1+($390706s1/100)}][${1}]
+$penancedamage=${$47666s1*$<darkside>*$<balanceofthings>*(3+$<castigation>+$<harsh>)}
+$penancehealing=${$47750s1*$<darkside>*(3+$<castigation>+$<harsh>)}
 
 Name             : Dispersion (id=47585) [Spell Family (6)] 
 Class            : Shadow Priest
@@ -810,6 +831,19 @@ Effects          :
 #8 (id=1028312)  : Apply Aura (6) | Dummy (4)
                    Base Value: 7 | Scaled Value: 7 | Misc Value: 23 | Target: Self (1)
 Description      : Disperse into pure shadow energy, reducing all damage taken by $s1% for $d and healing you for $<heal>% of your maximum health over its duration, but you are unable to attack or cast spells.
+
+Increases movement speed by $s4% and makes you immune to all movement impairing effects.
+
+Castable while stunned, feared, or silenced. 
+Tooltip          : Damage taken reduced by $s1%. Healing for $<heal>% of maximum health.
+
+Cannot attack or cast spells.
+
+Movement speed increased by $s4% and immune to all movement impairing effects.
+Variables        : $intang=$?a288733[${$288733s2}][${0}]
+$alteration=$?a453729[${$453729s2/1000}][${0}]
+$heal=${($s5+$<intang>)*($<alteration>+$d)/$d}
+$intangheal=${($s2*($<alteration>+$47585d)/$47585d)}
 
 Name             : Penance (id=47666) [Spell Family (6)] 
 Class            : Priest
@@ -978,6 +1012,10 @@ Effects          :
 #1 (id=57920)    : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 8152 | Target: Self (1)
 Description      : Flash Heal reduces the cooldown of Holy Word: Serenity by $2050s2 sec.
+
+Prayer of Healing reduces the cooldown on Holy Word: Sanctify by $34861s3 sec.
+
+Smite and Holy Nova reduce the cooldown of Holy Word: Chastise by $88625s2 sec.
 
 Name             : Divine Hymn (id=64844) [Spell Family (6)] 
 Class            : Priest
@@ -1080,6 +1118,8 @@ Effects          :
                    Affected Spells: Renew (139)
                    Family Flags: 6
 Description      : Your direct healing spells heal for an additional ${$77485s1}.1% over $77489d.
+
+Increases the healing of Renew by ${$s3}.1%.
 
 Name             : Mastery: Madness (id=77486) [Spell Family (6), Passive] 
 School           : Physical
@@ -1671,6 +1711,12 @@ Effects          :
 #5 (id=1175923)  : Dummy (3)
                    Base Value: 31 | Scaled Value: 31 | Target: at Self (18)
 Description      : Throw a Divine Star forward $s2 yds, healing allies in its path for $110745s1 and dealing $<shadowdstardamage> Shadow damage to enemies. After reaching its destination, the Divine Star returns to you, healing allies and damaging enemies in its path again. Healing reduced beyond $s1 targets.$?s137033[
+
+|cFFFFFFFFGenerates ${$m3/100} Insanity.|r][]
+Variables        : $twilightholytoshadow=$?a390707[${(1+$390707s1/100)}][${1}]
+$shadowcov=$?a322105[${(1+$322105s1/100)}][${1}]
+$darkascension=$?a391109[${(1+$391109s1/100)}][${1}]
+$shadowdstardamage=${$390845s1*$<twilightholytoshadow>*$<shadowcov>*$<darkascension>}
 
 Name             : Divine Star (id=122128) [Spell Family (6)] 
 Class            : Priest
@@ -1715,6 +1761,8 @@ Effects          :
 #3 (id=1107468)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Current Target (25)
 Description      : Summons a Mindbender to attack the target for $d. 
+
+|cFFFFFFFFGenerates ${$123051m1/100}.1% Mana each time the Mindbender attacks.|r
 
 Name             : Mana Leech (id=123051) 
 Class            : Priest
@@ -1773,6 +1821,8 @@ Effects          :
 #1 (id=160187)   : Server Side Script (77)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
 Description      : Compels a friendly target to confess a secret.
+
+Or maybe it's just subtle mind control.
 
 Name             : The Val'kyr (id=126695) 
 Class            : Priest
@@ -2343,6 +2393,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | Value Multiplier: 1 | SP Coefficient: 17.8125 | Target: Targeted Ally (21)
                    Modified By: Devout Spirit (319919 effect#1)
 Description      : Wraps an ally in shadows which heal for $s1, but at a price.
+
+The ally will take ${$s1/20} damage every $187464t1 sec, until they have taken ${$s1/2} total damage from all sources, or leave combat.
 
 Name             : Shadow Mend (id=186439) [Spell Family (6)] 
 Class            : Priest
@@ -2473,6 +2525,9 @@ Effects          :
 #3 (id=1072056)  : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: -30 | Scaled Value: -30 | Mechanic: Snare | Target: Targeted Enemy (6)
 Description      : Assaults the target's mind with Shadow energy, causing $o1 Shadow damage over $d and slowing their movement speed by $s3%.
+
+|cFFFFFFFFGenerates ${$s2*$377358s1/100} Insanity over the duration.|r
+Tooltip          : $?$w3=0[Taking][Movement speed slowed by $w3% and taking] $s1 Shadow damage every $t1 sec.
 
 Name             : Mind Flay (id=193635) [Spell Family (6)] 
 Class            : Priest
@@ -2909,6 +2964,8 @@ Effects          :
 #3 (id=1034688)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Summons a Mindbender to attack the target for $d.
+
+|cFFFFFFFFGenerates ${$200010s1/100} Insanity each time the Mindbender attacks.|r
 
 Name             : Holy Word: Chastise (id=200196) [Spell Family (6)] 
 Class            : Priest
@@ -3052,6 +3109,11 @@ Effects          :
 #2 (id=302734)   : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Raise your dagger into the sky, channeling a torrent of void energy into the target for $o Shadow damage over $d. Insanity does not drain during this channel.
+
+Requires Voidform.
+Tooltip          : Dealing $s1 Shadow damage to the target every $t sec.
+
+Insanity drain temporarily stopped.
 
 Name             : Void Bolt (id=205448) [Spell Family (6)] 
 Class            : Priest
@@ -3080,6 +3142,11 @@ Effects          :
 #4 (id=845538)   : Server Side Script (77)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Sends a bolt of pure void energy at the enemy, causing $s2 Shadow damage$?s193225[, refreshing the duration of Devouring Plague on the target][]$?a231688[ and extending the duration of Shadow Word: Pain and Vampiric Touch on all nearby targets by $<ext> sec][]. 
+
+Requires Voidform.
+
+|cFFFFFFFFGenerates $/100;s3 Insanity.|r
+Variables        : $ext=${$231688s1/1000} sec
 
 Name             : Id (id=205477) [Passive] 
 Class            : Priest
@@ -3294,6 +3361,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc211317
 Tooltip          : The power of Light recently revived you.
+
+You have recently benefited from Spirit of Redemption and cannot benefit from it again.
 
 Name             : Archbishop Benedictus' Restitution (id=211336) 
 Class            : Priest
@@ -3631,6 +3700,11 @@ Effects          :
 #3 (id=361545)   : Apply Aura (6) | Restore Power (85)
                    Base Value: 5000 | Scaled Value: 5000 | Misc Value: 13 | Target: Self (1)
 Description      : Drink from the dark potion to surrender your mind to the Void.
+
+For the next $d, you generate ${$s2/100} Insanity every second.
+
+Only usable on the Broken Isles and Argus.
+Tooltip          : Generating ${$s2/100} Insanity every second.
 
 Name             : Essence of the Light (id=220356) [Spell Family (6)] 
 School           : Holy
@@ -3643,6 +3717,9 @@ Effects          :
 #1 (id=328538)   : Apply Aura Raid (65) | Periodic Heal% (20): every 2 seconds
                    Base Value: 5 | Scaled Value: 5 | Radius: 100 yards | Target: Self (1)
 Description      : Release the energy of the Light, causing all party members to heal for $s1% of their maximum health every $t sec.
+
+Only usable on the Broken Isles and Argus.
+Tooltip          : Healing for $s1% of maximum health every $t sec.
 
 Name             : Body and Soul (id=224098) [Spell Family (6)] 
 Class            : Priest
@@ -3801,6 +3878,9 @@ Effects          :
 #2 (id=706425)   : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Twists your Shadowform with the powers of the Void for $194249d, increasing your spell damage by $194249s1% and replaces Void Eruption with $@spellname1242173.
+
+$@spellicon1242173 $@spellname1242173
+$@spelldesc1242173
 
 Name             : Void Bolt (id=228266) [Spell Family (6), Passive, Hidden] 
 Class            : Priest
@@ -3816,6 +3896,8 @@ Effects          :
 #1 (id=343567)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : For the duration of Voidform, your Void Eruption ability is replaced by Void Bolt:
+
+$@spelltooltip205448
 
 Name             : Void Eruption (id=228360) [Spell Family (6)] 
 Class            : Priest
@@ -4243,6 +4325,10 @@ Effects          :
 #1 (id=463961)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Gain one of the following talents based on your specialization:
+
+|cFFFFFFFFDiscipline:|r Twist of Fate
+|cFFFFFFFFHoly:|r Surge of Light
+|cFFFFFFFFShadow:|r Twist of Fate
 
 Name             : Soul of the High Priest (id=247593) [Spell Family (6), Passive] 
 School           : Physical
@@ -5429,6 +5515,8 @@ Effects          :
                    Affected Spells (Label): Smite (425529)
 Description      : $@spelldesc314867
 Tooltip          : Shadow spells damage and healing increased by $w2%. 
+
+Halo, Divine Star, and Penance are converted to Shadow spells.
 
 Name             : Mindgames (desc=Venthyr) (id=323673) [Spell Family (6)] 
 Class            : Priest
@@ -5467,6 +5555,16 @@ Effects          :
 #7 (id=872982)   : Trigger Spell (64): Mindgames
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 323705 | Target: Self (1)
 Description      : Assault an enemy's mind, dealing ${$s1*$m3/100} Shadow damage and briefly reversing their perception of reality.
+
+$?c3[For $d, the next $<damage> damage they deal will heal their target, and the next $<healing> healing they deal will damage their target.
+
+|cFFFFFFFFReversed damage and healing generate up to ${$323706s2*2} Insanity.|r]
+][For $d, the next $<damage> damage they deal will heal their target, and the next $<healing> healing they deal will damage their target.
+
+|cFFFFFFFFReversed damage and healing restore up to ${$323706s3*2}% mana.|r]
+Tooltip          : The next $w2 damage and $w5 healing dealt will be reversed.
+Variables        : $damage=${($SPS*$s2/100)*(1+$@versadmg)*$m3/100}
+$healing=${($SPS*$s5/100)*(1+$@versadmg)*$m3/100}
 
 Name             : Mindgames (id=323701) [Spell Family (6), Hidden] 
 Class            : Priest
@@ -5567,6 +5665,10 @@ Effects          :
 #2 (id=844015)   : Trigger Missiles (32): Unholy Transfusion
                    Base Value: 6 | Scaled Value: 6 | Trigger Spell: 325203 | Target: at Target (63)
 Description      : An explosion of dark energy infects enemies within $325203A1 yds with Unholy Transfusion, and heals allies for up to $347788s1 based on number of targets.
+
+|TInterface\ICONS\Spell_AnimaMaldraxxus_Debuff.blp:24|t |cFFFFFFFFUnholy Tranfusion|r
+$@spelldesc325203
+Tooltip          : Attackers siphon $325118s1 health.
 
 Name             : Boon of the Ascended (desc=Kyrian) (id=325013) [Spell Family (6)] 
 Class            : Priest
@@ -5611,6 +5713,11 @@ Effects          :
                    Affected Spells: Ascended Nova (325020), Ascended Blast (325283), Ascended Eruption (325326), Ascended Eruption (347625)
                    Family Flags: 109
 Description      : Draw upon the power of the Ascended for $d, granting you access to $@spellname325020, replacing $?c3[$@spellname15407][$@spellname585] with $@spellname325283, and increasing movement speed by $s3%.
+
+Upon expiration, releases an $@spellname325326:
+
+$@spelldesc325326
+Tooltip          : Empowered to cast $@spellname325020 and $@spellname325283. Damage and healing of Ascended Eruption increased by $w5%.
 
 Name             : Ascended Nova (id=325020) [Spell Family (6)] 
 Class            : Priest
@@ -5635,6 +5742,8 @@ Effects          :
 #3 (id=815723)   : Dummy (3)
                    Base Value: 1 | Scaled Value: 1
 Description      : Release a powerful burst of anima, dealing up to $s1 Arcane damage, based on the number of enemies, and $325041s1 healing to up to $325041s2 allies within $A1 yds.
+
+Grants $s3 $lstack:stacks; of Boon of the Ascended for each target damaged.
 
 Name             : Ascended Nova (id=325041) [Spell Family (6)] 
 Class            : Priest
@@ -5730,6 +5839,8 @@ Effects          :
 #3 (id=815724)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5 | Target: Targeted Enemy (6)
 Description      : Blasts the enemy with pure Anima, causing $s1 Arcane damage and healing a nearby ally for $s2% of the damage done.
+
+Grants $s3 $lstack:stacks; of Boon of the Ascended.
 
 Name             : Ascended Blast (desc=Kyrian) (id=325315) [Spell Family (6)] 
 Class            : Priest
@@ -5794,6 +5905,13 @@ Effects          :
 #2 (id=892376)   : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Call forth three faerie guardians to attend your targets for $d.
+
+$@spellname342132: Any direct attacks against the target restore ${$327703s1/100}.1% Mana or ${$327703s2/100} Insanity. Follows your Shadow Word: Pain.
+
+$@spellname327694: Reduces damage taken by $327694s1%. Follows your Power Word: Shield.
+
+$@spellname327710: Increases the cooldown recovery rate of your target's major ability by $327710s1%. Follows your $?c2[Flash Heal][Shadow Mend].
+Tooltip          : Commanding faerie guardians.
 
 Name             : Guardian Faerie (desc=Night Fae) (id=327694) [Spell Family (6)] 
 Class            : Priest
@@ -5817,6 +5935,8 @@ Effects          :
                    Affected School(s): All
 Description      : $@spelldesc327661
 Tooltip          : Reduces damage taken by $s1%.
+
+Follows $@auracaster's Power Word: Shield.
 
 Name             : Wrathful Faerie (desc=Night Fae) (id=327703) [Spell Family (6)] 
 Class            : Priest
@@ -5874,6 +5994,8 @@ Effects          :
                    Affected Spells (Category): Revival (115310), Restoral (388615)
 Description      : $@spelldesc327661
 Tooltip          : The cooldown of a major ability recovers $s1% faster.
+
+Follows $@auracaster's $?c2[Flash Heal][Shadow Mend].
 
 Name             : Phantasm (id=335986) [Spell Family (6)] 
 Class            : Priest
@@ -6317,6 +6439,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc341804
 
+Tooltip          : Increase the healing of your next Flash Heal by $w1%.
+
 Name             : Wrathful Faerie (desc=Night Fae) (id=342132) [Spell Family (6)] 
 Class            : Priest
 School           : Nature
@@ -6338,6 +6462,10 @@ Effects          :
 #1 (id=842979)   : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Targeted Enemy (6)
 Description      : $@spelldesc327661
+
+Tooltip          : Direct damage on this target restores ${$327703s1/100}.1% Mana or ${$327703s2/100} Insanity to $@auracaster.
+
+Follows $@auracaster's Shadow Word: Pain.
 
 Name             : Talbadar's Stratagem (id=342415) [Spell Family (6), Passive] 
 Class            : Priest
@@ -6510,6 +6638,9 @@ Effects          :
 #2 (id=869354)   : Dummy (3)
                    Base Value: 6 | Scaled Value: 6
 Description      : Corrosive shadow energy radiates from the target, dealing ${$49821s2*$s2} Shadow damage over $48045d to all enemies within $49821a2 yards of the target.$?s137033[
+
+|cFFFFFFFFGenerates ${$s2*$208232s1/100} Insanity over the duration per target hit.|r][]
+Tooltip          : Causing Shadow damage to all targets within $49821a2 yards every $t1 sec.
 
 Name             : Shadow Weaving (id=346111) [Spell Family (6)] 
 Class            : Priest
@@ -6642,6 +6773,12 @@ Effects          :
 #4 (id=1045831)  : Apply Aura (6) | Override Triggered Action Spell (Misc w/ Base) (333): Inner Shadow overrides Inner Light
                    Base Value: 355898 | Scaled Value: 355898 | Misc Value: 355897 | Misc Value 2: 2 | Target: Self (1)
 Description      : $?s355897[Embrace the light, reducing the mana cost of healing spells by $s1%.][$@spellicon355897 Inner Light: Healing spells cost $355897s1% less mana.
+
+$@spellicon355898$@spellname355898: Spell damage and Atonement healing increased by $355898s1%.
+
+Activate to swap from one effect to the other, incurring a $<cooldown> sec cooldown.]
+Tooltip          : Reduces mana cost of healing spells by $s1%.
+Variables        : $cooldown=${6}
 
 Name             : Inner Shadow (id=355898) [Spell Family (6)] 
 Class            : Priest
@@ -6729,6 +6866,8 @@ Effects          :
 #1 (id=890234)   : Apply Aura (6) | Proc Trigger Spell (42): Bwonsamdi's Pact
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 356959 | Target: Self (1)
 Description      : Enter a pact with the Death Loa, calling forth a haunted mask that lingers on a target until Fae Guardians ends.
+
+|CFFffffffHaunted Mask:|r Copies the benefit of the current faerie on its target. Follows your Direct Mask.
 
 Name             : Shadow Word: Manipulation (id=356392) [Spell Family (6), Hidden] 
 School           : Shadow
@@ -6787,6 +6926,8 @@ Effects          :
 #1 (id=891136)   : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Direct Mask overrides Fae Guardians
                    Base Value: 356532 | Scaled Value: 356532 | Misc Value: 327661 | Target: Self (1)
 Description      : Enter a pact with the Death Loa, calling forth a haunted mask that lingers on a target until Fae Guardians ends.
+
+$@spellname356908: Copies the benefit of the current faerie on the target. Follows your Direct Mask.
 
 Name             : Haunted Mask (desc=Night Fae) (id=356968) 
 School           : Nature
@@ -7606,6 +7747,13 @@ Effects          :
 #8 (id=1045449)  : Energize Power (30)
                    Base Value: 1000 | Scaled Value: 1000 | Resource: insanity | Target: Self (1)
 Description      : Assault an enemy's mind, dealing ${$s1*$m3/100} Shadow damage and briefly reversing their perception of reality.
+
+For $d, the next $<damage> damage they deal will heal their target, and the next $<healing> healing they deal will damage their target.$?s137033[
+
+|cFFFFFFFFGenerates ${$m8/100} Insanity.|r][]
+Tooltip          : The next $w2 damage and $w5 healing dealt will be reversed.
+Variables        : $damage=${($SPS*$s2/100)*(1+$@versadmg)*$m3/100}
+$healing=${($SPS*$s5/100)*(1+$@versadmg)*$m3/100}
 
 Name             : Mindgames (id=375902) [Spell Family (6), Hidden] 
 Class            : Priest
@@ -7822,6 +7970,10 @@ Effects          :
 #1 (id=1027716)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Casting a healing spell activates $@spellname355897: Healing spells cost 5% less mana.
+
+Casting a Shadow spell activates $@spellname355898: Spell damage and Atonement healing increased by 5%.
+
+Only one effect may be active at a time.
 
 Name             : Twilight Equilibrium (id=390706) [Spell Family (6)] 
 Class            : Priest
@@ -8080,6 +8232,9 @@ Effects          :
 #6 (id=1156177)  : Energize Power (30)
                    Base Value: 3000 | Scaled Value: 3000 | Resource: insanity | Target: Self (1)
 Description      : Increases your non-periodic Shadow damage by $s1% for $d.
+
+|cFFFFFFFFGenerates ${$m6/100} Insanity.|r
+Tooltip          : Your non-periodic Shadow damage is increased by $w1%$?$w2>0[ and all damage is increased by $w2%][]. $?s341240[Critical strike chance increased by ${$W4}.1%.][]
 
 Name             : Holy Mending (id=391154) [Spell Family (6), Passive, Hidden] 
 Class            : Priest
@@ -8183,6 +8338,9 @@ Effects          :
 #4 (id=1028900)  : Dummy (3)
                    Base Value: 4 | Scaled Value: 4
 Description      : Assaults the target's mind with Shadow energy, causing $o1 Shadow damage over $d and slowing their movement speed by $s2%.
+
+|cFFFFFFFFGenerates ${$s4*$s3/100} Insanity over the duration.|r
+Tooltip          : Movement speed slowed by $s2% and taking Shadow damage every $t1 sec.
 
 Name             : Divine Image (id=392990) [Spell Family (6)] 
 Class            : Paladin, Priest
@@ -8447,6 +8605,9 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5
                    Modified By: Subservient Shadows (1228516 effect#4)
 Description      : Corrosive shadow energy radiates from the target, dealing ${$394979s2*$s2} Shadow damage over $d to all enemies within $394979a2 yards of the target. Damage reduced beyond $394979s3 targets.
+
+|cFFFFFFFFGenerates ${$s2*$377358s1/100} Insanity over the duration.|r
+Tooltip          : Causing $394979s2 Shadow damage to all targets within $394979a2 yards every $t1 sec.
 
 Name             : Mind Sear (id=394979) [Spell Family (6)] 
 Class            : Priest
@@ -8836,6 +8997,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc405558
 
+Tooltip          : Every $409502u casts of Devouring Plague increases the damage of Shadowy Apparitions conjured within the next $410871d by $410871s1%.
+
 Name             : Radiant Providence (id=410638) [Spell Family (6)] 
 Class            : Priest
 School           : Physical
@@ -8879,6 +9042,8 @@ Effects          :
 #1 (id=1076950)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
                    Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : $@spelldesc405558
+
+Tooltip          : The damage of conjured Shadowy Apparitions is increased by $s1%.
 
 Name             : Priest Holy 10.1 Class Set 2pc (id=411097) [Spell Family (6), Hidden] 
 Class            : Priest
@@ -9292,6 +9457,8 @@ Effects          :
                    Affected School(s): Physical
 Description      : $@spelldesc45243
 Tooltip          : All magical damage taken reduced by $w1%.
+
+All physical damage taken reduced by $w2%.
 
 Name             : Clairvoyance (id=428940) [Spell Family (6), Passive, Hidden] 
 Class            : Priest
@@ -9306,6 +9473,9 @@ Effects          :
 #1 (id=1112690)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Casting Premonition of Solace invokes Clairvoyance, expanding your mind and opening up all possibilities of the future.
+
+$@spellicon440725 |cFFFFFFFF$@spellname440725|r
+$@spelldesc440725
 
 Name             : Morning Star (id=431568) [Spell Family (10), Hidden] 
 Class            : Paladin
@@ -9333,6 +9503,11 @@ Effects          :
 #1 (id=1120482)  : Jump Charge (254)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 852 | Target: Self (1) -> at Self (18)
 Description      : Ascend into the air and unleash a massive barrage of Penance bolts, causing $<penancedamage> Holy damage to enemies or $<penancehealing> healing to allies over $421434d.
+
+While ascended, gain a shield for $s1% of your health. In addition, you are unaffected by knockbacks or crowd control effects.
+Tooltip          : Absorbing $w3 damage.
+Variables        : $penancedamage=${$421543s1>*($421434d/$421434t2)}
+$penancehealing=${$421544s1>*($421434d/$421434t2)}
 
 Name             : Blessing of the Forge (id=434255) [Spell Family (10), Hidden] 
 Class            : Paladin, Priest
@@ -9648,6 +9823,9 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8
                    Modified By: Void Infusion (450612 effect#1)
 Description      : Sends a blast of cosmic void energy at the enemy, causing $s1 Shadow damage.$?c3[
+
+|cFFFFFFFFGenerates ${$c/100*-1} Insanity.|r][]
+Variables        : $ext=${$231688s1/1000} sec
 
 Name             : Void Blast (id=450404) [Spell Family (6), Hidden] 
 Class            : Priest
@@ -9710,6 +9888,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: insanity | Target: Self (1)
                    Modified By: Shadow Priest (137033 effect#6), Shadowy Insight (375981 effect#3), Void Infusion (450612 effect#1)
 Description      : Sends a blast of cosmic void energy at the enemy, causing $s1 Shadow damage.$?c3[
+
+|cFFFFFFFFGenerates ${$s2/100} Insanity.|r][]
+Variables        : $ext=${$231688s1/1000} sec
 
 Name             : No Escape (id=451210) [Spell Family (6)] 
 Class            : Priest
@@ -9749,6 +9930,10 @@ Effects          :
 #1 (id=1151696)  : Summon Guardian (28)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 224466 | Misc Value 2: 5123 | Target: at Area (87)
 Description      : Summon a Voidwraith that casts Void Flay from afar. Void Flay deals bonus damage to high health enemies, up to a maximum of $451435s2% if they are full health.$?s137033[
+
+|cFFFFFFFFGenerates ${$262485s1/100} Insanity each time the Voidwraith attacks.|r][
+
+|cFFFFFFFFGenerates ${$34433s4/10}.1% Mana each time the Voidwraith attacks.|r]
 
 Name             : Void Flay (id=451435) [Spell Family (6)] 
 Class            : Priest
@@ -10099,6 +10284,8 @@ Effects          :
                    Family Flags: 10, 28
 Description      : $@spelldesc453845
 Tooltip          : Receiving $w1% increased healing from $@auracaster.$?$w2>0[
+
+Additionally, Holy Word healing taken from $@auracaster increased by $w2%.][]
 
 Name             : Shock Pulse (id=453848) [Spell Family (6)] 
 Class            : Priest
@@ -10148,6 +10335,8 @@ Effects          :
                    Family Flags: 87
 Description      : $@spelldesc453845
 Tooltip          : $?$w1>0[Receiving $w1% increased damage from $@auracaster. ][]$?$w2<0[Movement speed reduced by $w2%.][]$?$w3>0[
+
+Additionally, Devouring Plague damage taken from $@auracaster increased by $w3%.][]
 
 Name             : Incessant Screams (id=453936) [Spell Family (6)] 
 Class            : Priest
@@ -10437,6 +10626,8 @@ Effects          :
                    Base Value: 40 | Scaled Value: 40 | Target: Targeted Ally (21)
 Description      : $@spelldesc1215319
 Tooltip          : Healing $s1 every $t sec.
+
+|cFFFFFFFFInsurance!|r is consumed to heal for $1215354s1 if brought below $s2% health.
 
 Name             : Insurance! (id=1215354) [Spell Family (6)] 
 Class            : Priest
@@ -10498,6 +10689,8 @@ Effects          :
                    Base Value: 40 | Scaled Value: 40 | Target: Targeted Ally (21)
 Description      : $@spelldesc1215500
 Tooltip          : Healing $s1 every $t sec.
+
+|cFFFFFFFFInsurance!|r is consumed to heal for $1215505s1 if brought below $s2% health.
 
 Name             : Priest Discipline 11.1 Class Set 4pc (id=1215621) [Spell Family (6), Passive, Hidden] 
 Class            : Priest
@@ -10673,6 +10866,8 @@ Effects          :
 #1 (id=1220649)  : Dummy (3)
                    Base Value: 25 | Scaled Value: 25 | Target: Current Target (25)
 Description      : Casts damaging abilities for use in combat, rotating through them based on priority.
+
+The global cooldown of abilities used through the Single-Button Assistant is $s1% longer.
 
 Name             : Recuperate (id=1231411) 
 Class            : Warrior, Paladin, Hunter, Rogue, Priest, Death Knight, Shaman, Mage, Warlock, Monk, Druid, Demon Hunter, Evoker
@@ -10968,6 +11163,8 @@ Effects          :
 #3 (id=1241737)  : Dummy (3)
                    Base Value: 1 | Scaled Value: 1
 Description      : Releases a volley of pure void energy, firing $s1 bolts at your target and $s3 $L:bolts;bolt at all enemies within 10 yards of your target for $1242189s1 Shadow damage.
+
+|cFFFFFFFFGenerates ${$m2/100} Insanity.|r
 
 Name             : Void Volley (id=1242189) [Spell Family (6)] 
 Class            : Priest

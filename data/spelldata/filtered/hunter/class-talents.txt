@@ -54,6 +54,11 @@ Effects          :
                    Base Value: -50 | Scaled Value: -50 | Target: Targeted Enemy (6)
                    Modified By: Improved Snaring (1268868 effect#2)
 Description      : Dazes the target, slowing movement speed by $s1% for $d.$?a137015[
+
+Cobra Shot will increase the duration of Concussive Shot on the target by ${$56641m3/10}.1 sec.]?a137016[
+
+Steady Shot will increase the duration of Concussive Shot on the target by ${$56641m3/10}.1 sec.][]
+Tooltip          : Movement slowed by $w1%.
 
 Name             : Intimidation (id=19577) [Spell Family (9)] 
 Talent Entry     : Beast Mastery [tree=class, row=8, col=2, max_rank=1, req_points=23]
@@ -152,6 +157,9 @@ Effects          :
 #3 (id=1279850)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Value Multiplier: 1 | Misc Value: 127 | Target: Targeted Ally (21)
 Description      : Instructs your pet to protect a friendly target, reducing their damage taken by $s1%, but $s2% of all damage taken by that target is transferred to your pet. 
+
+Lasts $d or until your pet's health drops below $s3%.
+Tooltip          : Damage taken reduced by $s1% but damage is transferred to Hunter's pet.
 
 Name             : Posthaste (id=109215) [Spell Family (9), Passive] 
 Talent Entry     : Generic [tree=class, row=1, col=6, max_rank=1, req_points=0]
@@ -191,6 +199,8 @@ Effects          :
 #2 (id=133047)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5 | Radius: 5 yards | Target: at Area (87)
 Description      : Fires a magical projectile, tethering the enemy and any other enemies within $s2 yds for $d, stunning them for $117526d if they move more than $s2 yds from the arrow.$?s321468[
+
+Targets stunned by Binding Shot deal $321469s1% less damage to you for $321469d after the effect ends.][]
 
 Name             : Counter Shot (id=147362) [Spell Family (9)] 
 Talent Entry     : Beast Mastery [tree=class, row=4, col=4, max_rank=1, req_points=0]
@@ -648,6 +658,8 @@ Effects          :
 #3 (id=1166405)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Your damage over time effects deal $s1% increased damage.
+
+This effect is increased by $s2% on targets below $s3% health.
 
 Name             : Trigger Finger (id=459534) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=2, req_points=8]
@@ -702,6 +714,8 @@ Effects          :
                    Affected Spells: Misdirection (34477)
                    Family Flags: 33
 Description      : When Misdirection targets your pet, it reduces the damage they take by $459547s1% for $459547d.
+
+The cooldown of Misdirection is reduced by ${-$s1/1000} sec.
 
 Name             : Kodo Tranquilizer (id=459983) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=6, col=1, max_rank=1, req_points=8, select_idx=100]
@@ -773,6 +787,11 @@ Effects          :
 #1 (id=1194052)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Your Spotting Eagle descends from the skies, stunning your target for $24394d.$?s321468[
+
+Targets stunned by Intimidation deal $321469s1% less damage to you for $321469d after the effect ends.][]
+
+This ability does not require line of sight when used against players.
+Tooltip          : Stuns the target for $24394d.
 
 Name             : Touch of Grass (id=1258402) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=2, req_points=8]
@@ -933,6 +952,8 @@ Effects          :
                    Base Value: -10 | Scaled Value: -10 | Misc Value: 3 | Misc Value 2: 5872 (Label) | Target: Self (1)
                    Affected Spells (Label): Concussive Shot (5116)
 Description      : Wing Clip slows an additional ${-$s1}%.
+
+Concussive Shot slows an additional ${-$s2}%.
 
 Name             : Combat Experience (id=1268871) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=3, col=3, max_rank=1, req_points=0]

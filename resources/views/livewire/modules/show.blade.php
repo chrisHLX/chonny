@@ -354,7 +354,13 @@
         {{-- Module content pages --}}
         @if (!empty($this->allPagesHtml))
             @php $pages = $this->allPagesHtml; $multiPage = count($pages) > 1; @endphp
-            <div class="linear-card overflow-hidden" x-data="{ activeTab: 0 }">
+            {{-- wire:key added 2026-08-01, defensive hardening alongside the TalentSelector
+                 hero-tree-picker removal (see that component's $moduleHeroTreeId docblock) —
+                 gives this Alpine-stateful (x-data) subtree a stable identity across a full
+                 Modules\Show re-render, so Livewire's morph can't misalign it with a sibling
+                 whose structure changed that render (e.g. the Spells table below, whose row
+                 count/content changes substantially once talents are selected). --}}
+            <div class="linear-card overflow-hidden" x-data="{ activeTab: 0 }" wire:key="module-pages-{{ $module->id }}">
 
                 {{-- Tab bar (only when multiple pages) --}}
                 @if ($multiPage)
@@ -400,14 +406,20 @@
             </div>
         @endif
 
-        {{-- Talent picker — drives which modifiers/cooldowns below are actually "on". Only shown
-             for modules with a declared ModuleGameBuild. Guests get a component-state-only
-             preview (nothing persisted); authenticated users auto-save per spec and it's reused
-             everywhere else for that spec (see TalentSelectionService). --}}
-        @if ($module->gameBuild)
-            <livewire:talent-selector
-                :spec-id="$module->gameBuild->specialization_id"
-                :key="'talent-selector-'.$module->id" />
+        {{-- Talent picker removed from module pages 2026-08-01 — a saved build is a cross-module,
+             per-user-per-spec preference (TalentSelectionService), not something that belongs
+             embedded in any one module's page; it also fully removes the only interaction on
+             this page that dispatched 'talents-changed' and triggered the DOM-morph bug (see
+             TalentSelector's $moduleHeroTreeId docblock). The Spells section below still reflects
+             whatever build is currently resolved for the viewer (Modules\Show::initSelectedSpellIds()
+             — user's saved build, else the spec's admin default, else base/unmodified data) —
+             just read-only here now. @TODO: link to wherever the picker's new home ends up living. --}}
+        @if ($module->gameBuild && $this->selectedSpellIds !== [])
+            <div class="linear-card p-4 flex items-center justify-between gap-3">
+                <p class="text-[12px] text-ink-muted">
+                    Cooldowns and charges below reflect this guide's {{ $module->gameBuild->specialization?->name }} talent build.
+                </p>
+            </div>
         @endif
 
         {{-- Spells reference — always live, never stored content (see ModuleSpellReferenceService
@@ -434,7 +446,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($this->moduleSpellReferences as $entry)
+                            {{-- Heuristic grouping (ModuleSpellReferenceService::categorize()) — view-layer
+                                 only, computed from each spell's own spell_effects, not authoritative for
+                                 every multi-purpose spell. See that method's docblock. --}}
+                            @php
+                                $groupedSpellRefs = collect($this->moduleSpellReferences)->groupBy('category');
+                                $spellCategoryOrder = ['Crowd Control', 'Defensive', 'Utility', 'Offensive', 'Other'];
+                            @endphp
+                            @foreach ($spellCategoryOrder as $spellCategoryName)
+                                @continue(!$groupedSpellRefs->has($spellCategoryName))
+                                <tr class="bg-surface-2">
+                                    <td colspan="4" class="pl-5 pr-4 py-1.5 text-[10px] uppercase tracking-wide text-gold font-semibold border-b border-line-strong">
+                                        {{ $spellCategoryName }}
+                                    </td>
+                                </tr>
+                                @foreach ($groupedSpellRefs->get($spellCategoryName) as $entry)
                                 @php
                                     $spell = $entry['spell'];
                                     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
@@ -443,9 +469,16 @@
                                     $cooldownChanged = $cooldown['seconds'] !== null
                                         && $cooldown['base_seconds'] !== null
                                         && round($cooldown['seconds'], 2) !== round($cooldown['base_seconds'], 2);
+                                    $charges = $entry['charges'];
+                                    $chargesChanged = $charges['charges'] !== null
+                                        && $charges['base_charges'] !== null
+                                        && $charges['charges'] !== $charges['base_charges'];
                                     $relTypeBadge = fn (string $type) => match ($type) {
                                         'modifies_charges' => 'badge-amber',
                                         'modifies_cooldown' => 'badge-amber',
+                                        'modifies_charge_rate' => 'badge-amber',
+                                        'hasted_cooldown' => 'badge-blue',
+                                        'bypasses_cooldown' => 'badge-blue',
                                         'replaces' => 'badge-green',
                                         'mentions' => 'badge-gray',
                                         default => 'badge-blue',
@@ -453,10 +486,23 @@
                                     $relTypeLabel = fn (string $type) => match ($type) {
                                         'modifies_charges' => 'Charges',
                                         'modifies_cooldown' => 'Cooldown',
+                                        'modifies_charge_rate' => 'Charge Rate',
+                                        'hasted_cooldown' => 'Haste-Scaled',
+                                        'bypasses_cooldown' => 'Bypasses CD',
                                         'replaces' => 'Replaces',
                                         'mentions' => 'Proc',
                                         'modifies' => 'Effect',
                                         default => \Illuminate\Support\Str::headline($type),
+                                    };
+                                    $fmtModifierValue = function (array $mod) {
+                                        $sign = $mod['modifier_value'] > 0 ? '+' : '';
+                                        $number = rtrim(rtrim(number_format((float) $mod['modifier_value'], 2), '0'), '.');
+
+                                        return match ($mod['modifier_unit']) {
+                                            'percent' => "{$sign}{$number}%",
+                                            'charges' => "{$sign}{$number} ".(abs((float) $mod['modifier_value']) === 1.0 ? 'charge' : 'charges'),
+                                            default => "{$sign}{$number}s",
+                                        };
                                     };
                                 @endphp
                                 <tr class="border-b border-line align-top">
@@ -475,8 +521,13 @@
                                         @if ($cooldownChanged)
                                             <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $fmtSeconds($cooldown['base_seconds']) }}</span>
                                         @endif
-                                        @if ($spell->charges !== null && $spell->charges > 1)
-                                            <span class="text-ink-subtle">&middot; {{ $spell->charges }} charges</span>
+                                        @if ($charges['charges'] !== null && $charges['charges'] > 1)
+                                            <span class="text-ink-subtle">
+                                                &middot; {{ $charges['charges'] }} charges
+                                                @if ($chargesChanged)
+                                                    <span class="text-[10px] line-through">({{ $charges['base_charges'] }})</span>
+                                                @endif
+                                            </span>
                                         @endif
                                     </td>
                                     <td class="pr-5 py-3 text-[12px]">
@@ -485,9 +536,7 @@
                                                 <span class="{{ $relTypeBadge($mod['relationship_type']) }}">{{ $relTypeLabel($mod['relationship_type']) }}</span>
                                                 <span class="text-ink-muted">{{ $mod['spell']->name }}</span>
                                                 @if ($mod['modifier_value'] !== null && $mod['modifier_unit'] !== null)
-                                                    <span class="text-[10px] text-gold">
-                                                        {{ $mod['modifier_value'] > 0 ? '+' : '' }}{{ rtrim(rtrim(number_format((float) $mod['modifier_value'], 2), '0'), '.') }}{{ $mod['modifier_unit'] === 'percent' ? '%' : 's' }}
-                                                    </span>
+                                                    <span class="text-[10px] text-gold">{{ $fmtModifierValue($mod) }}</span>
                                                 @endif
                                             </div>
                                         @empty
@@ -495,6 +544,7 @@
                                         @endforelse
                                     </td>
                                 </tr>
+                                @endforeach
                             @endforeach
                         </tbody>
                     </table>

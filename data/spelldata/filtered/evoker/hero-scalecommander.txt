@@ -18,6 +18,10 @@ Effects          :
 #2 (id=1123471)  : None (0)
                    Base Value: 20 | Scaled Value: 20
 Description      : $?s403631[Breath of Eons][Deep Breath] can now be steered in your desired direction.
+
+In addition, $?s403631[Breath of Eons][Deep Breath] burns targets for $441172o1 Volcanic damage over $441172d.$?c1[
+
+The duration of this effect is extended when Deep Breath is cast multiple times.][]
 
 Name             : Bombardments (desc=Black) (id=434300) [Spell Family (224), Passive] 
 Talent Entry     : Scalecommander (Devastation) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
@@ -35,6 +39,10 @@ Effects          :
 #2 (id=1124235)  : None (0)
                    Base Value: 20 | Scaled Value: 20
 Description      : $?c1[Mass Disintegrate][Mass Eruption] marks your primary target for destruction for the next $434473d.
+
+You and your allies have a chance to trigger a Bombardment when attacking marked targets, dealing $<dmg> Volcanic damage split amongst all nearby enemies.
+Variables        : $MotBD=$?s441705[${1+($441705s1/100)}][${1}]
+$dmg=${$INT*4.75*(1+$@versadmg)*$pctD*$<MotBD>}
 
 Name             : Mass Disintegrate (desc=Black) (id=436335) [Spell Family (224), Passive] 
 Talent Entry     : Scalecommander (Devastation) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
@@ -88,6 +96,8 @@ Effects          :
 #2 (id=1135466)  : None (0)
                    Base Value: 20 | Scaled Value: 20
 Description      : $?s403631[Breath of Eons][Deep Breath] causes enemies to take $s2% increased damage from Bombardments and Essence abilities for $441172d.$?c1[
+
+The duration of this effect is extended when Deep Breath is cast multiple times.][]
 
 Name             : Hardened Scales (desc=Black) (id=441180) [Spell Family (224), Passive] 
 Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=100]

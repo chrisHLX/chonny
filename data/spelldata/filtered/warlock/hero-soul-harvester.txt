@@ -43,6 +43,8 @@ Effects          :
 #5 (id=1150461)  : Apply Aura (6) | Trigger Spell Based on Resource Amount (396): Demonic Soul
                    Base Value: 50 | Scaled Value: 50 | Resource: soul_shard | Trigger Spell: 450510 | Target: Self (1)
 Description      : A demonic entity now inhabits your soul, allowing you to detect if a Soul Shard has a Succulent Soul when it's generated.
+
+Consuming a Succulent Soul unleashes your demonic soul, dealing $449801s1 Shadow damage to all enemies within $449801a1 yds of the target. Damage reduced beyond 8 targets.
 
 Name             : Necrolyte Teachings (id=449620) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
@@ -85,6 +87,8 @@ Effects          :
 #1 (id=1148953)  : Apply Aura (6) | Proc Trigger Spell (42): Soul Anathema
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 450538 | Target: Self (1)
 Description      : Unleashing your demonic soul bestows a fiendish entity unto the soul of its targets, dealing $450538o1 Shadow damage over $450538d.
+
+If this effect is reapplied, any remaining damage will be added to the new Soul Anathema.
 
 Name             : Demoniac's Fervor (id=449629) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
@@ -120,6 +124,8 @@ Effects          :
 #2 (id=1151732)  : None (0)
                    Base Value: 40 | Scaled Value: 40
 Description      : Damage dealt by your demonic soul is increased by $s1%.
+
+Consuming $?s137043[Nightfall][Demonic Core] feeds the demonic entity within you, causing it to appear and deal $?s137043[$449826s1][${$449826s1*($s2/100)}] Shadow damage to your target.
 
 Name             : Quietus (id=449634) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
@@ -141,6 +147,8 @@ Effects          :
                    Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Misc Value 2: 3545 (Label) | Target: Self (1)
                    Affected Spells (Label): Soul Anathema (450538)
 Description      : Soul Anathema damage increased by $s1% and is dealt $s2% faster.
+
+Consuming $?s137043[Nightfall][Demonic Core] activates Shared Fate or Feast of Souls.
 
 Name             : Sataiel's Volition (id=449637) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
@@ -227,6 +235,8 @@ Effects          :
 #1 (id=1149138)  : Apply Aura (6) | Proc Trigger Spell (42): Marked Soul
                    Base Value: 8 | Scaled Value: 8 | Trigger Spell: 450629 | Target: Self (1)
 Description      : When you kill a target, its tortured soul is flung into a nearby enemy for $450591d. This effect inflicts $450593s1 Shadow damage to enemies within $450593a1 yds every $450591t1 sec.
+
+Deals reduced damage beyond $s1 targets.
 
 Name             : Feast of Souls (id=449706) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
@@ -273,6 +283,9 @@ Effects          :
 #1 (id=1280427)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Each Succulent Soul consumed has an increasing chance to unleash the Demonic Soul within you, enabling it to assault your enemies for $1269042d.
+
+$@spellicon1269049 $@spellname1269049
+$@spelldesc1269049
 
 Name             : Shared Vessel (id=1268889) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
@@ -289,6 +302,8 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
                    Modified By: Manifested Demonic Soul (1269042 effect#2)
 Description      : Increases your Mastery by $s1%.
+
+This effect is doubled while the demonic entity is aiding you in combat.
 
 Name             : Eternal Hunger (id=1268903) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Soul Harvester (Affliction, Demonology) [tree=hero, row=4, col=5, max_rank=1, req_points=0]

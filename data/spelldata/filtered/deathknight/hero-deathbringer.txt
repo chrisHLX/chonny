@@ -20,6 +20,8 @@ Effects          :
 #3 (id=1183171)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Reaper's Mark initial strike grants $?a137008][$s3 charges of Bone Shield][Killing Machine].
+
+Reaper's Mark explosion deals up to $s1% increased damage based on your target's missing health.
 
 Name             : Dark Talons (id=436687) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -40,6 +42,8 @@ Effects          :
 #2 (id=1132666)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : $?a137008[Marrowrend and Heart Strike have][Consuming Killing Machine or Rime has] a $s1% chance to grant $s2 stacks of Icy Talons and increase its maximum stacks by the same amount for 6 sec.
+
+Runic Power spending abilities count as Shadowfrost while Icy Talons is active.
 
 Name             : Death's Messenger (id=437122) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
@@ -106,6 +110,10 @@ Effects          :
 #4 (id=1173983)  : School Damage (2): shadowfrost | Attributes: Chain from Initial Target (7), Enforce Line of Sight To Chain Targets (16)
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 3.12 | PvP Coefficient: 0.6 | Target: Targeted Enemy (6)
 Description      : Viciously slice into the soul of your enemy, dealing $?a137008[$s1][$s4] Shadowfrost damage and applying Reaper's Mark.
+
+Each time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After $434765d or reaching $434765u stacks, the mark explodes, dealing $?a137008[$436304s1][$436304s2] damage per stack.
+
+Reaper's Mark travels to an unmarked enemy nearby if the target dies.
 
 Name             : Wave of Souls (id=439851) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
@@ -121,6 +129,8 @@ Effects          :
 #1 (id=1133388)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing $?a137008[$435802s1][$435802s2] Shadowfrost damage both ways to all enemies caught in its path.
+
+Wave of Souls critical strikes cause enemies to take $443404s1% increased Shadowfrost damage for $443404d, stacking up to 2 times, and it is always a critical strike on its way back.
 
 Name             : Expelling Shield (id=439948) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -167,6 +177,8 @@ Effects          :
 #4 (id=1183142)  : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | Trigger Spell: 443532 | Target: Self (1)
 Description      : $?a137008[Blood Boil deals $s3% increased damage][Rime empowered Howling Blast deals $s4% increased damage to its main target], and is now Shadowfrost.
+
+Shadowfrost damage applies 2 stacks to Reaper's Mark and 4 stacks when it is a critical strike.
 
 Name             : Rune Carved Plates (id=440282) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -211,6 +223,8 @@ Effects          :
 #4 (id=1139665)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : When you suffer a damaging effect equal to $s1% of your maximum health, you instantly cast Death Pact at $s3% effectiveness. May only occur every $s2 min.
+
+When a Reaper's Mark explodes, the cooldowns of this effect and Death Pact are reduced by $s4 sec.
 
 Name             : Exterminate (id=441378) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -241,6 +255,8 @@ Effects          :
 #6 (id=1233545)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : After Reaper's Mark explodes, your next $s3 $?a137008[$LMarrowrend:Marrowrends;][$LObliterate:Obliterates; or $LFrostscythe:Frostscythes;] cost $s4 $LRune:Runes; and summon $s1 $Lscythe:scythes; to strike your enemies.
+
+The first scythe strikes your target for $?a137008[$441424s1][$441424s2] Shadowfrost damage $?c2[and has a $s6% chance to grant Killing Machine,][and] the second scythe strikes all enemies around your target for $?a137008[$441426s1][$441426s2] Shadowfrost damage$?(a441894&a137008)[ and applies Blood Plague]?(a441894&$a137006)[ and applies Frost Fever][]. Deals reduced damage beyond $s5 targets.
 
 Name             : Wither Away (id=441894) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
@@ -293,6 +309,8 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
                    Modified By: Frost Death Knight (137006 effect#10)
 Description      : If no enemies are struck by Soul Rupture, you gain $469169s1% Strength for $469169d.
+
+Wave of Souls is $s2% more effective on the main target of your Reaper's Mark.
 
 Name             : Reaper's Onslaught (id=469870) [Spell Family (15), Passive] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
@@ -344,6 +362,8 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value 2: 3305 (Label) | Target: Self (1)
                    Affected Spells (Label): Reaper's Mark (436304)
 Description      : Reaper's Mark deals $s7% increased damage.
+
+Casting $?c1?[Dancing Rune Weapon][Reaper's Mark] grants $?c1?[$s4][$s1] $Lstack:stacks; of Exterminate with $?c1?[$s5][$s2]% first scythe and $?c1?[$s6][$s3]% second scythe effectiveness.
 
 Name             : Frigid Resolve (id=1265859) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
@@ -367,6 +387,9 @@ Effects          :
 #3 (id=1279096)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : The effectiveness of Permafrost is increased by $?c1[$s1][$s2]%$?c1[ and Exterminate grants Permafrost equal to $s3% of the damage dealt.]?c2[.][]
+
+$@spellicon207200$@spellname207200
+$@spelldesc207200
 
 Name             : Deathly Blows (id=1265932) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
@@ -396,3 +419,5 @@ Effects          :
 #4 (id=1297344)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : $?c2[Frost Strike damage is increased by $s1% and Glacial Advance damage is increased by $s2%.
+
+Reaper's Mark grants $s4 charges of Bonegrinder if it is known.]?c1[Death Strike damage increased by $s3%.][]

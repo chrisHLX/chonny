@@ -118,6 +118,9 @@ Effects          :
 #3 (id=1193565)  : Dummy (3)
                    Base Value: 1 | Scaled Value: 1 | Target: Targeted Enemy (6)
 Description      : Shoot a stream of $s1 shots at your target over $d, dealing a total of ${$m1*$257045sw1} Physical damage. Usable while moving.
+
+|cFFFFFFFFEach shot generates $263585s1 Focus.|r
+Tooltip          : Being targeted by Rapid Fire.
 
 Name             : Trick Shots (id=257621) [Spell Family (9), Passive] 
 Talent Entry     : Marksmanship [tree=spec, row=4, col=6, max_rank=1, req_points=0, select_idx=100]
@@ -166,6 +169,8 @@ Effects          :
 #2 (id=1311981)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : Aimed Shot causes your next Arcane Shot or Multi-Shot to deal $260242s1% more damage and cost $260242s3% less Focus.
+
+Precise Shots benefits $?a466932[Black Arrow][Kill Shot]'s damage at $s2% effectiveness.
 
 Name             : Volley (id=260243) [Spell Family (9)] 
 Talent Entry     : Marksmanship [tree=spec, row=9, col=5, max_rank=1, req_points=20]
@@ -272,6 +277,17 @@ Effects          :
                    Affected Spells: Aimed Shot (19434)
                    Family Flags: 17
 Description      : Increases your critical strike chance by $s3% and critical strike damage by $s4% for $d.
+
+$@spellicon19434 $@spellname19434
+Cooldown recovers $s2% faster$?a471366[, cast time reduced by $471366s1%, and Focus cost reduced $471366s2%.][.]
+
+$@spellicon257044 $@spellname257044
+Cooldown recovers $s1% faster.$?(a1253599&a470943)[
+
+|cFFFFFFFFApplies Sentinel's Mark.|r]?(!a1253599&a470943)[
+
+|cFFFFFFFFApplies Spotter's Mark.|r][]
+Tooltip          : Critical strike chance increased by $s3% and critical strike damage increased by $s4%. Aimed Shot recovers its cooldown $s2% faster and Rapid Fire recovers its cooldown $s1% faster$?a471366[, the cast time of Aimed Shot by $471366s1%, and the Focus cost of Aimed Shot by $471366s2%.][.]
 
 Name             : Deadeye (id=321460) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=7, col=2, max_rank=1, req_points=8, select_idx=200]
@@ -312,6 +328,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
                    Modified By: Soul Drinker (469638 effect#4)
 Description      : $?c2[Aimed Shot][Kill Command] has a $?c1[$s2]?c2[$s1][$s3]% chance to grant Deathblow.
+
+$@spellicon378770 $@spellname378770
+The cooldown of $?a466932[Black Arrow][Kill Shot] is reset. $@spellaura378770
 
 Name             : Focused Aim (id=378767) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=9, col=1, max_rank=1, req_points=20]
@@ -349,6 +368,8 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 3 | Misc Value 2: 4938 (Label) | Target: Self (1)
                    Affected Spells (Label): Aspect of the Hydra (470945)
 Description      : Trick Shots now causes Aimed Shot and Rapid Fire to ricochet to $s1 additional $Ltarget:targets;.
+
+Aspect of the Hydra's damage bonus is increased by $s3%.
 
 Name             : Bulletstorm (id=389019) [Spell Family (9), Passive] 
 Talent Entry     : Marksmanship [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -367,6 +388,8 @@ Effects          :
 #1 (id=1025065)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Damage from Rapid Fire increases the damage of Aimed Shot by $389020s1% for $389020d, stacking up to $389020u times.
+
+New stacks do not refresh duration and are removed upon casting Rapid Fire.
 
 Name             : Surging Shots (id=391559) [Spell Family (9), Passive] 
 Talent Entry     : Marksmanship [tree=spec, row=4, col=2, max_rank=1, req_points=0]
@@ -406,6 +429,9 @@ Effects          :
 #1 (id=1045506)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Volley now also applies Explosive Shot to up to $s1 $Ltarget:targets; hit.
+
+$@spellicon212431 $@spellname212431
+$@spelldesc212431
 
 Name             : Penetrating Shots (id=459783) [Spell Family (9), Passive] 
 Talent Entry     : Marksmanship [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -449,6 +475,8 @@ Effects          :
                    Affected Spells: Rapid Fire (257044)
                    Family Flags: 118
 Description      : Rapid Fire shoots $s2 additional shots.
+
+Aimed Shot grants $1279347s1% increased movement speed for $1279347d, decaying rapidly over its duration.
 
 Name             : Small Game Hunter (id=459802) [Spell Family (9), Passive] 
 Talent Entry     : Marksmanship [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -485,6 +513,11 @@ Effects          :
                    Affected Spells: Spotter's Mark (466872), Spotter's Mark (1215057), Sentinel's Mark (1253601), Sentinel's Mark (1266960)
                    Family Flags: 117
 Description      : The damage bonus of Spotter's Mark is increased by $s1%.
+
+Additionally, your Eagle learns how to Fetch.
+
+$@spellicon466872 $@spellname466872
+Damaging an enemy with abilities empowered by Precise Shots has a $1219616s1% chance to apply Spotter's Mark to the primary target, causing your next Aimed Shot to deal $466872s1% increased damage to the target.
 
 Name             : Feathered Frenzy (id=470943) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=7, col=4, max_rank=1, req_points=8]
@@ -499,6 +532,8 @@ Effects          :
 #1 (id=1186801)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Trueshot sends your $?a1253599[Sentinel Owl][Spotting Eagle] into a frenzy, instantly applying $?a1253599[Sentinel's Mark][Spotter's Mark] to your target. 
+
+During Trueshot, your chance to apply $?a1253599[Sentinel's Mark][Spotter's Mark] is increased by $s1%.
 
 Name             : Aspect of the Hydra (id=470945) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=4, col=6, max_rank=1, req_points=0, select_idx=200]
@@ -645,6 +680,8 @@ Effects          :
                    Affected Spells: Rapid Fire (257045), Rapid Fire (460496)
                    Family Flags: 3
 Description      : Aimed Shot deals $s1% increased damage.
+
+Rapid Fire deals $s2% increased damage.
 
 Name             : Double Tap (id=473370) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=10, col=4, max_rank=1, req_points=20]
@@ -716,6 +753,8 @@ Effects          :
 #3 (id=1192490)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Consuming Precise Shots has a $s3% to grant Precise Shots.
+
+The damage bonus of Precise Shots is increased by an additional $s1%.
 
 Name             : Cunning (id=474440) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=5, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -735,6 +774,12 @@ Effects          :
 #2 (id=1194146)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : Your Spotting Eagle gains the Cunning specialization, granting you Master's Call and Pathfinding.
+
+$@spellicon53271 $@spellname53271
+$@spelldesc53271
+
+$@spellicon264656 $@spellname264656
+Your movement speed is increased by $s2%.
 
 Name             : Tenacious (id=474456) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=5, col=4, max_rank=1, req_points=8, select_idx=100]
@@ -750,6 +795,12 @@ Effects          :
 #1 (id=1194133)  : Apply Aura (6) | Increase Health% (133)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Your Spotting Eagle gains the Tenacity specialization, granting you Endurance Training and Air Superiority.
+
+$@spellicon264662 $@spellname264662
+You gain $s2% increased maximum health.
+
+$@spellicon470937 $@spellname470937
+$@spelldesc470937
 
 Name             : Unerring Vision (id=474738) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
@@ -787,6 +838,8 @@ Effects          :
 #1 (id=1211164)  : Apply Aura (6) | Modify Pet Damage Done% (429)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Regain access to Call Pet.
+
+While outdoors, your pet deals $s1% increased damage and takes $s2% reduced damage.
 
 Name             : Unmatched Precision (id=1232955) [Spell Family (9), Passive] 
 Talent Entry     : Marksmanship [tree=spec, row=8, col=2, max_rank=2, req_points=20]
@@ -861,6 +914,8 @@ Effects          :
 #4 (id=1289923)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : Aimed Shot's critical strike damage is increased by $s4% of your critical strike chance.
+
+The damage of your other ranged abilities is increased by $s2%.
 
 Name             : Take Aim (id=1273132) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
@@ -883,6 +938,8 @@ Effects          :
 #3 (id=1289906)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Rapid Fire damage increased by $s1%.
+
+Each shot fired from Rapid Fire reduces the cooldown of Aimed Shot by ${$s2/1000}.2 sec.
 
 Name             : Focus Fire (id=1277546) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=9, col=7, max_rank=1, req_points=20]
@@ -911,6 +968,8 @@ Effects          :
 #1 (id=1289933)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : When Rapid Fire begins and finishes channeling, it releases an Arcane Shot at $s1% effectiveness.
+
+If your target is $?a466932[above 80% health or below 20%][below 20%] health, Rapid Fire instead releases $?a466932[Black Arrow][Kill Shot]s.
 
 Name             : Critical Precision (id=1277572) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Marksmanship [tree=spec, row=6, col=5, max_rank=1, req_points=8]

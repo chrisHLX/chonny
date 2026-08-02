@@ -16,6 +16,16 @@ Effects          :
 #1 (id=1141749)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Elemental motes orbit around your Surging Totem. Your abilities consume the motes for enhanced effects. 
+
+$?a137041[|cFFFFFFFFAir:|r $@spelldesc453409
+
+|cFFFFFFFFEarth:|r $@spelldesc453406
+
+|cFFFFFFFFFire:|r $@spelldesc453405][|cFFFFFFFFWater:|r $@spelldesc453407
+
+|cFFFFFFFFAir:|r $@spelldesc453409
+
+|cFFFFFFFFEarth:|r $@spelldesc453406]
 
 Name             : Totemic Rebound (id=445025) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
@@ -74,6 +84,8 @@ Effects          :
 #1 (id=1141752)  : Apply Aura (6) | Dummy (4)
                    Base Value: -5000 | Scaled Value: -5000 | Target: Self (1)
 Description      : Successfully removing a harmful effect with Tremor Totem or Poison Cleansing Totem, or controlling an enemy with Capacitor Totem or Earthgrab Totem reduces the cooldown of the totem used by $/1000;s1 sec.
+
+Cannot occur more than once every $457676d per totem.
 
 Name             : Imbuement Mastery (id=445028) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -102,6 +114,8 @@ Effects          :
 #5 (id=1180731)  : Apply Aura (6) | Dummy (4)
                    Base Value: 300 | Scaled Value: 300 | Target: Self (1)
 Description      : $?a137041[Increases the chance for Windfury Weapon to trigger by $s1% and increases its damage by $s2%.
+
+When Flametongue Weapon triggers from Windfury Weapon attacks, it has a chance to gather a whirl of flame around the target, dealing $s5% of its damage to all nearby enemies.][Increases the duration of your Earthliving effect by ${$s3/1000} sec.]
 
 Name             : Amplification Core (id=445029) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -196,6 +210,9 @@ Effects          :
                    Affected Spells: Flametongue Attack (10444), Flametongue Weapon (318038), Flametongue Weapon (319778), Flametongue Attack (467386), Flametongue Attack (467390)
                    Family Flags: 21
 Description      : $?a137041[Increases the critical strike chance of Flametongue Weapon by $s1%, and its critical strike damage by $s2%.][Learn a new weapon imbue, Tidecaller's Guard.
+
+$@spellicon457481 $@spellname457481
+$@spelldesc457481 ]
 
 Name             : Lively Totems (id=445034) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
@@ -217,6 +234,8 @@ Effects          :
 #3 (id=1180357)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : $?a137041[Lava Lash has a chance to summon a Searing Totem to hurl Searing Bolts that deal $3606s1 Fire damage to a nearby enemy. Lasts $458101d.
+
+Lava Lash and Voltaic Blaze cause your Searing Totems to shoot a Searing Volley at up to $s3 nearby enemies for $458147s1 Fire damage.][When you summon a Healing Tide Totem, Healing Stream Totem, or Spirit Link Totem you cast a free instant Chain Heal at $458221s2% effectiveness.]
 
 Name             : Splitstream (id=445035) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
@@ -238,6 +257,8 @@ Effects          :
 #3 (id=1164018)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : $?a137041[While Hot Hand is active Lava Lash shatters the earth, causing a Sundering at $s1% effectiveness.][Your Healing Stream Totems heals an additional ally at $s3% effectiveness.
+
+Healing Tide Totem healing increased by $s2%.]
 
 Name             : Totemic Coordination (id=445036) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
@@ -341,6 +362,8 @@ Effects          :
                    Base Value: -3000 | Scaled Value: -3000 | Misc Value: 1569 (Category) | Target: Self (1)
                    Affected Spells (Category): Healing Stream Totem (5394), Stormstream Totem (1267068)
 Description      : $?c2[Lava Lash damage increased by $s2%.
+
+Each stack of Maelstrom Weapon consumed increases the duration of an active Hot Hand by ${$s1/1000}.2 sec.][Reduces the cooldown of Healing Stream Totem by ${$s3/-1000} sec.]
 
 Name             : Primal Catalyst (id=1260874) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=4, col=5, max_rank=1, req_points=1]

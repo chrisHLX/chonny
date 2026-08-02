@@ -39,7 +39,10 @@ class ModuleSpellReferenceService
 {
     /**
      * Resolves a spell name to a concrete Spell for this build, disambiguating the same way
-     * validated by hand against real data (Warrior Arms spot-check, 2026-07-25): prefer a copy
+     * validated by hand against real data (Warrior Arms spot-check, 2026-07-25; the
+     * not_in_spellbook step below added 2026-08-01 after a Priest Spellbook cross-check found
+     * Penance/Ultimate Penitence each resolve to several same-name spell_id records): first drop
+     * internal SimC sub-spells when a real one exists (preferVisible()), then prefer a copy
      * that's an actual talent pick in one of this build's own trees (zero ambiguity), then a
      * copy whose availability row matches this spec specifically, then one that actually
      * carries cooldown/charge data, else just the first. Not expected to be perfect — a wrong
@@ -59,6 +62,8 @@ class ModuleSpellReferenceService
         if ($candidates->isEmpty()) {
             return $this->resolveSpellByNameAnyClass($name);
         }
+
+        $candidates = $this->preferVisible($candidates);
 
         if ($candidates->count() === 1) {
             return $candidates->first();
@@ -90,6 +95,27 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Narrows a same-name candidate set to only the "real", player-facing spells when at least
+     * one exists — found 2026-08-01 by cross-checking the in-game Spellbook UI against this data:
+     * Penance and Ultimate Penitence are each actually several spell_id records sharing one
+     * display name (the real talent plus internal damage-bolt/heal-bolt/visual-effect helper
+     * spells with no independent meaning), and without this step a curated module spell
+     * reference could resolve to one of the hidden duplicates instead of the real ability. Never
+     * drops every candidate down to zero — if everything sharing this name is flagged
+     * not_in_spellbook (shouldn't happen for a name a module author would ever curate, but not
+     * assumed), the original set is returned unchanged rather than resolving to nothing.
+     *
+     * @param  Collection<int, Spell>  $candidates
+     * @return Collection<int, Spell>
+     */
+    private function preferVisible(Collection $candidates): Collection
+    {
+        $visible = $candidates->reject(fn (Spell $c) => $c->not_in_spellbook);
+
+        return $visible->isNotEmpty() ? $visible : $candidates;
+    }
+
+    /**
      * Fallback when a mentioned spell doesn't belong to the module's own class at all — an
      * opponent's ability documented for matchup timing (e.g. Hammer of Justice on a
      * Discipline Priest module). Matches purely by name across every class's spell data.
@@ -110,12 +136,33 @@ class ModuleSpellReferenceService
             return null;
         }
 
-        if ($candidates->count() > 1) {
-            Log::warning('ModuleSpellReferenceService: ambiguous cross-class spell name match, using first', [
-                'name' => $name,
-                'candidate_ids' => $candidates->pluck('id')->all(),
-            ]);
+        $candidates = $this->preferVisible($candidates);
+
+        if ($candidates->count() === 1) {
+            return $candidates->first();
         }
+
+        // Added 2026-08-02, mirroring resolveSpellByName()'s own-class disambiguation chain:
+        // prefer a candidate with real cooldown/charges data over one without. Found via a real
+        // module reference resolving Hunter's "Intimidation" to spell_id 24394 (an internal
+        // pet-stun effect referenced only inside the real ability's own description text, no
+        // cooldown) instead of 19577 (the real talent — has a Talent Entry, Cooldown: 60
+        // seconds) — and "Freezing Trap" to 3355 (the stun aura applied once trapped, no
+        // cooldown) instead of 187650 (the real throw ability, Cooldown: 30 seconds). Neither
+        // wrong candidate is flagged not_in_spellbook, so preferVisible() above can't catch this
+        // class of duplicate — this fallback previously had no equivalent to the own-class
+        // path's $withCooldown tier at all.
+        $withCooldown = $candidates->first(
+            fn (Spell $c) => $c->cooldown_seconds !== null || $c->charges !== null
+        );
+        if ($withCooldown) {
+            return $withCooldown;
+        }
+
+        Log::warning('ModuleSpellReferenceService: ambiguous cross-class spell name match, using first', [
+            'name' => $name,
+            'candidate_ids' => $candidates->pluck('id')->all(),
+        ]);
 
         return $candidates->first();
     }
@@ -280,10 +327,22 @@ class ModuleSpellReferenceService
         foreach ($spell->incomingRelationships as $rel) {
             $source = $rel->sourceSpell;
 
-            if (!$source || $seenIds->contains($source->id) || !$kitIds->contains($source->id)) {
+            if (!$source || !$kitIds->contains($source->id)) {
                 continue;
             }
 
+            // $seenIds is still populated here (even though it's no longer used to gate this
+            // loop) so the later text-scan pass below doesn't re-detect a source spell that's
+            // already been found structurally. Fixed 2026-08-02: this used to also gate the loop
+            // above (`$seenIds->contains($source->id)` as a skip condition), which meant a
+            // source spell's FIRST relationship row to $spell won and every other row from that
+            // same source (a different relationship_type — e.g. a generic 'modifies' row from
+            // the Affecting-Spells pass alongside a magnitude-bearing 'modifies_cooldown' row
+            // from the Category pass) was silently dropped. Confirmed on Discipline Priest ->
+            // Mind Blast: two real rows exist (id 30352 'modifies', id 46366 'modifies_cooldown'
+            // +19s) and only the first was ever classified. A source spell having multiple
+            // distinct relationship types to the same target is a normal, expected pattern, not
+            // a duplicate to collapse.
             $seenIds->push($source->id);
             $classify($source, $rel->relationship_type, $rel);
         }
@@ -308,39 +367,129 @@ class ModuleSpellReferenceService
 
     /**
      * Computes $spell's effective cooldown given which talents are actually selected —
-     * $spell->cooldown_seconds (the base value) with every selected, magnitude-bearing modifier
-     * applied: flat seconds first, then percent (the layering order validated by hand against a
-     * real in-game report in game-data.md's Mind Blast worked example). Modifiers without a
-     * computable magnitude (modifier_value/modifier_unit null — see SpellRelationship's
-     * docblock) still show up in modifiersFor()'s 'named' list descriptively, they just don't
-     * change this number — never guessed.
+     * $spell->cooldown_seconds (the base value) with every selected, magnitude-bearing
+     * 'modifies_cooldown' modifier applied: flat seconds first, then percent (the layering order
+     * validated by hand against a real in-game report in game-data.md's Mind Blast worked
+     * example). Modifiers without a computable magnitude (modifier_value/modifier_unit null —
+     * see SpellRelationship's docblock) still show up in modifiersFor()'s 'named' list
+     * descriptively, they just don't change this number — never guessed.
      *
      * @return array{seconds: ?float, base_seconds: ?float, applied: Collection}
      */
     public function effectiveCooldown(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds): array
     {
         $base = $spell->cooldown_seconds !== null ? (float) $spell->cooldown_seconds : null;
+        $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_cooldown', 'seconds');
 
+        return ['seconds' => $result['value'], 'base_seconds' => $result['base'], 'applied' => $result['applied']];
+    }
+
+    /**
+     * Best-effort display grouping (Crowd Control / Defensive / Utility / Offensive / Other) for
+     * the Spells table — added 2026-08-02, purely a view-layer heuristic over each spell's
+     * already-captured `spell_effects.type` strings ($spell->effects must be eager-loaded by the
+     * caller). No new data, no parser changes, nothing written anywhere.
+     *
+     * Deliberately NOT authoritative — spot-checked against real spells before shipping (same
+     * "verify before trusting" posture as everywhere else in this codebase) and several
+     * multi-purpose spells genuinely don't fit one bucket cleanly: Avatar carries both a damage%
+     * buff and a damage-taken% reduction; Fade mixes a threat-drop (Utility) with a damage-taken%
+     * dip. Checked in priority order below — the first matching bucket wins — CC first since a
+     * Stun/Fear/Root effect is the least ambiguous signal available, Other last as the catch-all
+     * for anything that doesn't match any keyword (a passive/proc-only spell, mostly).
+     *
+     * @return string One of: 'Crowd Control', 'Defensive', 'Utility', 'Offensive', 'Other'
+     */
+    public function categorize(Spell $spell): string
+    {
+        $types = $spell->effects->pluck('type')->implode(' | ');
+
+        return match (true) {
+            (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror/i', $types) => 'Crowd Control',
+            (bool) preg_match('/Damage Taken%|Absorb|Immunity|Block%|Parry%|Dodge%|Damage Reduction/i', $types) => 'Defensive',
+            (bool) preg_match('/Dispel|Increase Speed%|Threat Reduction|Aggro/i', $types) => 'Utility',
+            (bool) preg_match('/School Damage|Damage Done%|Energize/i', $types) => 'Offensive',
+            default => 'Other',
+        };
+    }
+
+    /**
+     * The charge-count counterpart to effectiveCooldown(), added 2026-08-01 alongside
+     * ImportSpellData's modifies_charges split (see game-data.md and SpellRelationship's
+     * docblock) — $spell->charges (the base value) with every selected, magnitude-bearing
+     * 'modifies_charges' modifier applied (e.g. Protector of the Frail granting Pain Suppression
+     * +1 charge). Same "flag, don't guess" posture: a modifier with no computable magnitude still
+     * shows up in modifiersFor()'s 'named' list descriptively without changing this number.
+     *
+     * @return array{charges: ?int, base_charges: ?int, applied: Collection}
+     */
+    public function effectiveCharges(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds): array
+    {
+        $base = $spell->charges !== null ? (float) $spell->charges : null;
+        $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_charges', 'charges');
+
+        return [
+            'charges' => $result['value'] !== null ? (int) round($result['value']) : null,
+            'base_charges' => $spell->charges,
+            'applied' => $result['applied'],
+        ];
+    }
+
+    /**
+     * Shared implementation behind effectiveCooldown()/effectiveCharges() — both are the same
+     * shape (start from a spell's base value for one scalar field, apply every selected,
+     * magnitude-bearing modifier of one relationship_type: flat unit first, then percent) and
+     * previously existed only as effectiveCooldown(), copy-pasted rather than generalized. Only
+     * two relationship_types currently ever carry a magnitude (see SpellRelationship's docblock),
+     * so the percent branch is presently inert for 'modifies_charges' — kept for whenever a
+     * percent-based charge-rate conversion (e.g. 'modifies_charge_rate') is eventually verified
+     * and threaded through, so that case doesn't need a third copy-pasted method.
+     *
+     * @return array{value: ?float, base: ?float, applied: Collection}
+     */
+    private function effectiveScalarValue(
+        Spell $spell,
+        ModuleGameBuild $build,
+        Collection $selectedSpellIds,
+        ?float $base,
+        string $relationshipType,
+        string $flatUnit
+    ): array {
         if ($base === null || $selectedSpellIds->isEmpty()) {
-            return ['seconds' => $base, 'base_seconds' => $base, 'applied' => collect()];
+            return ['value' => $base, 'base' => $base, 'applied' => collect()];
         }
 
-        $named = $this->modifiersFor($spell, $build, $selectedSpellIds)['named']
-            ->filter(fn (array $entry) => $entry['modifier_value'] !== null && $entry['modifier_unit'] !== null);
+        $modifiers = $this->modifiersFor($spell, $build, $selectedSpellIds);
 
-        $seconds = $base;
+        // Fixed 2026-08-02: this used to read only ['named'], silently excluding
+        // ['baseline'] — the generic always-on class/spec identity passives (e.g. "Discipline
+        // Priest"). That's backwards: 'baseline' entries apply unconditionally (no talent
+        // selection needed — you have them by virtue of being that spec), which makes them the
+        // *safest* category to include, not the one to drop. Confirmed on Mind Blast: its
+        // Discipline-only cooldown override (+19s, "Modify Recharge Time (Category)" on the
+        // always-on Discipline Priest passive) never reached this sum, so effectiveCooldown()
+        // returned the spell's raw 9s base — the number every viewer of the Discipline Priest
+        // Oracle module was actually shown — even though 28s (9 base + 19 baseline) is correct.
+        // The relationship_type/modifier_unit filter below is unchanged and applies identically
+        // to both buckets, so this doesn't relax which modifiers can contribute — only where
+        // they're allowed to come from.
+        $named = $modifiers['named']->merge($modifiers['baseline'])
+            ->filter(fn (array $entry) => $entry['relationship_type'] === $relationshipType
+                && $entry['modifier_value'] !== null && $entry['modifier_unit'] !== null);
 
-        foreach ($named->where('modifier_unit', 'seconds') as $entry) {
-            $seconds += (float) $entry['modifier_value'];
+        $value = $base;
+
+        foreach ($named->where('modifier_unit', $flatUnit) as $entry) {
+            $value += (float) $entry['modifier_value'];
         }
 
         foreach ($named->where('modifier_unit', 'percent') as $entry) {
-            $seconds *= 1 + ((float) $entry['modifier_value'] / 100);
+            $value *= 1 + ((float) $entry['modifier_value'] / 100);
         }
 
         return [
-            'seconds' => max($seconds, 0.0),
-            'base_seconds' => $base,
+            'value' => max($value, 0.0),
+            'base' => $base,
             'applied' => $named->values(),
         ];
     }

@@ -215,7 +215,7 @@ One line per spell record; each lists every file it appears in.
 - **Crusading Strikes (id=404542) [Spell Family (10), Passive]** — `retribution.txt`
 - **Crusading Strikes (id=406834) [Spell Family (10)]** — `baseline.txt`
 - **Crusading Strikes (id=408385) [Spell Family (10)]** — `baseline.txt`
-- **Dash of Chaos (id=427794) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
+- **Dash of Chaos (id=427794) [Spell Family (107), Passive, Hidden]** — `havoc.txt`
 - **Dawn Will Come (id=363674) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Dawn Will Come (id=364306) [Spell Family (10)]** — `baseline.txt`
 - **Dawn Will Come (id=364468) [Spell Family (10), Passive, Hidden]** — `baseline.txt`

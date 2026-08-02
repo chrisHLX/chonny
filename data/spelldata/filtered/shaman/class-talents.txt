@@ -61,6 +61,11 @@ Effects          :
                    Affected School(s): All
                    Modified By: Earthen Harmony (382020 effect#3)
 Description      : Protects the target with an earthen shield, increasing your healing on them by $s1% and healing them for ${$379s1*(1+$s1/100)} when they take damage. This heal can only occur once every $?a462454[${$proccooldown+($462454s2/1000)}.1][$proccooldown] sec. $?a1217622[Lasts $d][Maximum $u charges].
+
+$?s383010[Earth Shield can only be placed on the Shaman and one other target at a time. The Shaman can have up to two Elemental Shields active on them.][Earth Shield can only be placed on one target at a time. Only one Elemental Shield can be active on the Shaman.]
+Tooltip          : $?$w3!=0[Damage taken reduced by $w3%.
+
+][]Heals for ${$w2*(1+$w1/100)} upon taking damage.
 
 Name             : Chain Heal (id=1064) [Spell Family (11)] 
 Talent Entry     : Generic [free=(Restoration), tree=class, row=1, col=2, max_rank=1, req_points=0]
@@ -191,6 +196,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: maelstrom | Target: Self (1)
                    Modified By: Lava Surge (77762 effect#2), Maelstrom (343725 effect#3)
 Description      : Hurls molten lava at the target, dealing $285452s1 Fire damage. Lava Burst will always critically strike if the target is affected by Flame Shock and its damage is increased by your critical strike chance.$?a343725[
+
+|cFFFFFFFFGenerates $343725s3 Maelstrom.|r][]
 
 Name             : Hex (desc=Frog) (id=51514) [Spell Family (11)] 
 Talent Entry     : Generic [tree=class, row=7, col=7, max_rank=1, req_points=8]
@@ -326,6 +333,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
                    Modified By: Molten Assault (334033 effect#2)
 Description      : Charges your off-hand weapon with lava and burns your target, dealing $s1 Fire damage.
+
+Damage is increased by $s2% if your offhand weapon is imbued with Flametongue Weapon. $?s334033[Lava Lash will spread Flame Shock from your target to $s3 nearby targets.][]$?s334046[
+
+Lava Lash increases the damage of Flame Shock on its target by $334168s1% for $334168d.][]
 
 Name             : Spiritwalker's Grace (id=79206) [Spell Family (11)] 
 Talent Entry     : Generic [tree=class, row=8, col=1, max_rank=1, req_points=23]
@@ -439,6 +450,12 @@ Effects          :
 #2 (id=325428)   : Dummy (3)
                    Base Value: 4 | Scaled Value: 4
 Description      : Hurls a lightning bolt at the enemy, dealing $s1 Nature damage and then jumping to additional nearby enemies. Affects $x1 total targets$?a383303[
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased cast speed and damage.|r]?a187880[
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased cast speed.|r][]$?a343725[
+
+|cFFFFFFFFGenerates $343725s5 Maelstrom per target hit.|r][]
 
 Name             : Capacitor Totem (id=192058) [Spell Family (11)] 
 Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8]
@@ -560,6 +577,11 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: maelstrom | Target: Self (1)
                    Modified By: Maelstrom (343725 effect#10)
 Description      : Chills the target with frost, causing $s1 Frost damage and reducing the target's movement speed by $s2% for $d.$?a343725&a210714[
+
+|cFFFFFFFFGenerates ${$343725s10+$343725s7} Maelstrom.|r]?a343725[
+
+|cFFFFFFFFGenerates $343725s10 Maelstrom.|r][]
+Tooltip          : Movement speed reduced by $s2%.
 
 Name             : Earth Elemental (id=198103) [Spell Family (11)] 
 Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8]
@@ -600,6 +622,8 @@ Effects          :
                    Affected Spells: Hex (51514)
                    Family Flags: 47
 Description      : Your Hex target is slowed by $378080s1% during Hex and for $378080d after it ends.
+
+Reduces the cooldown of Hex by ${($m1/1000)*-1} sec.
 
 Name             : Spirit Wolf (id=260878) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0, select_idx=100]
@@ -870,6 +894,8 @@ Effects          :
                    Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Misc Value 2: 5951 (Label) | Target: Self (1)
                    Affected Spells (Label): Brimming with Life (381684)
 Description      : Stamina increased by $s1%.
+
+While you are at full health, Reincarnation cools down $s2% faster.
 
 Name             : Totemic Surge (id=381867) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23]
@@ -914,6 +940,8 @@ Effects          :
 #5 (id=1306903)  : Apply Aura (6) | Dummy (4) | Scaling Class: Restore Health/Resource (-2)
                    Base Value: 0 | Scaled Value: 187.5 (coefficient=0.001) | Target: Self (1)
 Description      : Your $?!s137041[Lava Burst][]$?s137039[ and Riptide][]$?s137041[Stormstrike][] casts restore $?a137040[$381931s1]?a137041[$404550s1][$404551s1] mana to you and $s1 allies nearest to you within $395192a1 yards.
+
+Allies can only benefit from one Shaman's Mana Spring effect at a time, prioritizing healers.
 
 Name             : Ancestral Wolf Affinity (id=382197) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=2, col=3, max_rank=1, req_points=0]
@@ -954,6 +982,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 5 | Misc Value 2: 3795 (Label) | Target: Self (1)
                    Affected Spells (Label): Chain Heal (458357)
 Description      : Increases the radius of your totem effects by $s3%.
+
+Increases the duration of your Earthbind and Earthgrab Totems by ${$s1/1000} sec.
+
+Increases the duration of your $?s157153[Cloudburst][Healing Stream], Tremor, Poison Cleansing, $?s137039[Ancestral Protection, Earthen Wall, ][]and Wind Rush Totems by ${$s2/1000}.1 sec.
 
 Name             : Winds of Al'Akir (id=382215) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=2, req_points=0]
@@ -1021,6 +1053,8 @@ Effects          :
 #1 (id=1014653)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Increases the number of Elemental Shields you can have active on yourself by 1.
+
+You can have Earth Shield on yourself and one ally at the same time.
 
 Name             : Poison Cleansing Totem (id=383013) [Spell Family (11)] 
 Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=23, select_idx=200]
@@ -1113,6 +1147,10 @@ Effects          :
                    Affected Spells: Earth Shield (974), Water Shield (52127), Water Shield (52128), Earth Shield (383648)
                    Family Flags: 37, 42
 Description      : When refreshing Earth Shield, your target is healed for $462477s1 for each stack of Earth Shield they are missing.$?c3[
+
+When refreshing Water Shield, you are refunded $462479s1 mana for each stack of Water Shield missing.][]
+
+Additionally, Earth Shield$?c3[ and Water Shield][] can consume charges ${$s2/-1000}.1 sec faster.
 
 Name             : Encasing Cold (id=462762) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=3, col=7, max_rank=1, req_points=0, select_idx=100]
@@ -1294,6 +1332,8 @@ Effects          :
                    Affected Spells: Water Shield (52127), Water Shield (52128)
                    Family Flags: 37
 Description      : $?c3[Water][Lightning] Shield increases your $?c2[Agility][Intellect] by $s1%.
+
+Casting $?c3[Water][Lightning] Shield now applies your weapon imbuements. Earth Shield is also applied if you have the Elemental Orbit talent.
 
 Name             : Spiritual Awakening (id=1270375) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=5, col=5, max_rank=1, req_points=8]

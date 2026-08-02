@@ -38,14 +38,21 @@ use JsonException;
  * Safe to re-run: every row is written via upsertTrack(), keyed on each table's natural unique
  * constraint — re-running against unchanged source files produces zero writes.
  *
- * spell_relationships carries four distinct relationship_type values: 'modifies' (effect-value
- * modifiers, from Affecting Spells/Modified By — importRelationships()), 'modifies_charges'
- * (charge-count/cooldown-duration modifiers, from Category/Affected Spells (Category) —
- * importCategoryRelationships()), 'replaces' (action-bar spell replacement, from Talent Entry's
- * replace= annotation — importReplacesRelationships()), and 'modifies_cooldown' (cooldown
- * modifiers parsed from PvP talent free-text descriptions — importPvpTalentRelationships(), the
- * one relationship type sourced from prose rather than a structured field, since pvptalents JSON
- * carries no spell_id references at all).
+ * spell_relationships carries these relationship_type values: 'modifies' (effect-value modifiers,
+ * from Affecting Spells/Modified By — importRelationships()), 'replaces' (action-bar spell
+ * replacement, from Talent Entry's replace= annotation — importReplacesRelationships()), and five
+ * values from the "Category"/"Affected Spells (Category)" structural pair
+ * (importCategoryRelationships(), split by categoryRelationshipMapping() as of 2026-08-01 — see
+ * game-data.md's "modifies_charges is a coarser label" finding): 'modifies_charges' (charge-count
+ * grants, "Modify Cooldown Charge (Category)" only — computed, +N charges), 'modifies_cooldown'
+ * (cooldown-duration modifiers — shared with the PvP-talent-sourced case below; only the flat-
+ * seconds "Modify Recharge Time (Category)" variant is computed, the percent/non-charge variants
+ * are descriptive-only), 'modifies_charge_rate' (charge recharge-rate modifiers, descriptive-only),
+ * 'hasted_cooldown' (haste-scaling tags, descriptive-only), and 'bypasses_cooldown' (conditional
+ * cooldown-bypass tags, descriptive-only). 'modifies_cooldown' is also written by
+ * importPvpTalentRelationships() — cooldown modifiers parsed from PvP talent free-text
+ * descriptions, the one relationship type sourced from prose rather than a structured field, since
+ * pvptalents JSON carries no spell_id references at all.
  *
  * spell_class_availability.spec_id for baseline.txt records is refined per-record from each
  * record's own "Class:" field (see resolveBaselineSpecIds()) rather than trusting the filename
@@ -296,6 +303,33 @@ class ImportSpellData extends Command
     }
 
     /**
+     * Resolves a class-tree talent's free=(...) spec-name list (see SpellDataFileParser) to spec
+     * ids — the parallel narrowing to resolveBaselineSpecIds() above, but for the tree=class case:
+     * Blizzard sometimes restricts a shared class-tree talent to a subset of the class's specs
+     * (e.g. Mind Blast: Discipline and Shadow, never Holy), found 2026-08-01 by cross-checking
+     * the in-game Spellbook UI against this data — Mind Blast was importing as class-wide because
+     * nothing read this annotation at all before this fix. Falls back to [null] (class-wide,
+     * the exact previous behavior) if none of the named specs resolve — same "never guess
+     * narrower than confidently supported" posture as resolveBaselineSpecIds().
+     *
+     * @param  array<int, string>  $freeSpecs
+     * @param  array<string, Specialization>  $classSpecs
+     * @return array<int, ?int>
+     */
+    private function resolveFreeSpecIds(array $freeSpecs, array $classSpecs): array
+    {
+        $specIds = [];
+
+        foreach ($freeSpecs as $specName) {
+            if (isset($classSpecs[$specName])) {
+                $specIds[] = $classSpecs[$specName]->id;
+            }
+        }
+
+        return $specIds === [] ? [null] : array_values(array_unique($specIds));
+    }
+
+    /**
      * @param  array<string, Specialization>  $classSpecs
      * @return array<int, array> parsed spell records keyed by external spell_id
      */
@@ -318,9 +352,11 @@ class ImportSpellData extends Command
                 // Vampiric Embrace) alongside genuinely universal ones. Each baseline record's
                 // own "Class:" field can disambiguate; other sources (talent files, hero trees)
                 // are already correctly attributed by classifyFileSource() and skip this.
-                $specIds = $source === 'baseline'
-                    ? $this->resolveBaselineSpecIds($record['class_field'], $class->name, $classSpecs)
-                    : [$specId];
+                $specIds = match (true) {
+                    $source === 'baseline' => $this->resolveBaselineSpecIds($record['class_field'], $class->name, $classSpecs),
+                    !empty($record['free_specs']) => $this->resolveFreeSpecIds($record['free_specs'], $classSpecs),
+                    default => [$specId],
+                };
 
                 foreach ($specIds as $resolvedSpecId) {
                     $key = $source.'|'.($resolvedSpecId ?? 'null');
@@ -336,6 +372,7 @@ class ImportSpellData extends Command
                 'charges' => $record['charges'],
                 'cooldown_seconds' => $record['cooldown_seconds'],
                 'duration_seconds' => $record['duration_seconds'],
+                'not_in_spellbook' => $record['not_in_spellbook'],
             ];
 
             // A pointer-form record (description_ref !== null) always parses to description=null
@@ -618,26 +655,27 @@ class ImportSpellData extends Command
     }
 
     /**
-     * Populates spell_relationships (relationship_type = 'modifies_charges') from the structural
-     * "Category" (spell-level) and "Affected Spells (Category)" (effect-level) references
-     * captured by SpellDataFileParser — the charge-count equivalent of importRelationships()'s
-     * effect-value modifiers above. Unlike Affecting Spells/Modified By, the two ends of a
-     * category relationship live on *different* records (the target's own Category: line names
-     * its source(s); the source's own effect names its target(s)) — see SpellDataFileParser's
-     * class docblock — so both directions are read here and de-duped in memory before writing,
-     * making the pass robust to either side of a pair being incomplete in the dump. Run once at
-     * the end for the same cross-class reason as importRelationships().
+     * Populates spell_relationships from the structural "Category" (spell-level) and "Affected
+     * Spells (Category)" (effect-level) references captured by SpellDataFileParser — the
+     * charge/cooldown-category equivalent of importRelationships()'s effect-value modifiers
+     * above. Unlike Affecting Spells/Modified By, the two ends of a category relationship live on
+     * *different* records (the target's own Category: line names its source(s); the source's own
+     * effect names its target(s)) — see SpellDataFileParser's class docblock — so both directions
+     * are read here and de-duped in memory before writing, making the pass robust to either side
+     * of a pair being incomplete in the dump. Run once at the end for the same cross-class reason
+     * as importRelationships().
      *
-     * Magnitude (modifier_value/modifier_unit): only the source's own "Affected Spells
-     * (Category)" effect direction carries a value (base_value on that effect) — the target's
-     * "Category:" line never does. When a pair is discovered via that direction, its effect's
-     * type/base_value is retained and, for the one effect type with a verified conversion in
-     * this dataset ("Modify Recharge Time (Category)" — confirmed via the Mind Blast worked
-     * example in game-data.md: Base Value 19000 == 19 seconds, base_value/1000), written as a
-     * flat-seconds modifier. Every other Category effect type (see game-data.md's "modifies_charges
-     * is a coarser label" note — 7 other types with unverified unit semantics) is left with
-     * modifier_value = null — still recorded and shown descriptively, just not computed. Do not
-     * add more conversions here without a hand-verified worked example first — see that note.
+     * relationship_type/magnitude: only the source's own "Affected Spells (Category)" effect
+     * direction carries the effect's own type/base_value — the target's "Category:" line never
+     * does. Split by categoryRelationshipMapping() (see there — this is the fix for
+     * game-data.md's "modifies_charges is a coarser label than the data actually supports"
+     * finding, 2026-07-24, fixed 2026-08-01): "Category:"/"Affected Spells (Category)" is the
+     * shared textual marker for 8 distinct SimC effect types, previously all lumped under
+     * 'modifies_charges' regardless of which — meaning most rows tagged 'modifies_charges' before
+     * this fix were actually cooldown-duration/rate/haste modifiers, not charge-count grants.
+     * When a pair is only known via the non-magnitude-bearing "Category:" direction (no matching
+     * effect found), the type can't be determined and falls back to the original 'modifies_charges'
+     * label with no magnitude — see categoryRelationshipMapping()'s default case.
      */
     private function importCategoryRelationships(): void
     {
@@ -670,18 +708,86 @@ class ImportSpellData extends Command
                 continue;
             }
 
+            $mapping = $this->categoryRelationshipMapping($effect);
+
             $values = [];
-            if ($effect !== null && $effect['type'] === 'Modify Recharge Time (Category)' && $effect['base_value'] !== null) {
-                $values['modifier_value'] = $effect['base_value'] / 1000;
-                $values['modifier_unit'] = 'seconds';
+            if ($mapping['value'] !== null && $mapping['unit'] !== null) {
+                $values['modifier_value'] = $mapping['value'];
+                $values['modifier_unit'] = $mapping['unit'];
             }
 
             $this->upsertTrack(SpellRelationship::class, [
                 'source_spell_id' => $source->id,
                 'target_spell_id' => $target->id,
-                'relationship_type' => 'modifies_charges',
+                'relationship_type' => $mapping['type'],
             ], $values, 'spell_relationships');
         }
+    }
+
+    /**
+     * Maps a Category effect's own type string (SpellEffect.type, e.g. "Modify Cooldown Charge
+     * (Category)") to the correctly-split relationship_type and, only where confidently derivable
+     * from a hand-verified worked example, a computed magnitude — see game-data.md's effect-type
+     * table for the full 8-way breakdown this replaces the single 'modifies_charges' label with.
+     *
+     * Only two of the eight convert to a magnitude:
+     * - "Modify Cooldown Charge (Category)" -> +N charges (verified: Pain Suppression/Protector
+     *   of the Frail, Base Value 1 == +1 charge, matching that talent's own Description text).
+     * - "Modify Recharge Time (Category)" -> flat seconds (verified: the Mind Blast worked
+     *   example, Base Value 19000 == 19 seconds, base_value/1000).
+     * Every other type gets a correctly distinct relationship_type but no fabricated magnitude —
+     * same "flag, don't guess" posture as everywhere else in this importer. Do not add more
+     * conversions here without a hand-verified worked example first.
+     *
+     * @param  ?array{type: ?string, base_value: ?float}  $effect
+     * @return array{type: string, value: ?float, unit: ?string}
+     */
+    private function categoryRelationshipMapping(?array $effect): array
+    {
+        $effectType = $effect['type'] ?? null;
+        $baseValue = $effect['base_value'] ?? null;
+
+        return match ($effectType) {
+            'Modify Cooldown Charge (Category)' => [
+                'type' => 'modifies_charges',
+                'value' => $baseValue,
+                'unit' => $baseValue !== null ? 'charges' : null,
+            ],
+            'Modify Recharge Time (Category)' => [
+                'type' => 'modifies_cooldown',
+                'value' => $baseValue !== null ? $baseValue / 1000 : null,
+                'unit' => $baseValue !== null ? 'seconds' : null,
+            ],
+            'Modify Recharge Time% (Category)', 'Modify Cooldown Time (Category)' => [
+                'type' => 'modifies_cooldown',
+                'value' => null,
+                'unit' => null,
+            ],
+            'Modify Charge Cooldown Recharge Rate% (Category)' => [
+                'type' => 'modifies_charge_rate',
+                'value' => null,
+                'unit' => null,
+            ],
+            'Hasted Cooldown Duration (Category)', 'Hasted Cooldown Regeneration (Category)' => [
+                'type' => 'hasted_cooldown',
+                'value' => null,
+                'unit' => null,
+            ],
+            'Ignore Spell Charge Cooldown (Category)' => [
+                'type' => 'bypasses_cooldown',
+                'value' => null,
+                'unit' => null,
+            ],
+            // Type unknown — only the target-side "Category:" ref exists for this pair, with no
+            // matching source-side "Affected Spells (Category)" effect to identify it (see
+            // importCategoryRelationships()'s de-dup comment above). Falls back to the original,
+            // pre-split label rather than guessing which of the 8 specific types it is.
+            default => [
+                'type' => 'modifies_charges',
+                'value' => null,
+                'unit' => null,
+            ],
+        };
     }
 
     /**

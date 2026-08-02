@@ -28,6 +28,8 @@ Effects          :
                    Affected Spells: Fatebound Coin (Tails) (452538)
                    Family Flags: 25
 Description      : Flip a Fatebound Coin each time a finishing move consumes $s1 or more combo points. Heads increases the damage of your attacks by ${$452923s4+$452923s1}%, lasting $452923d or until you flip Tails. Tails deals $452538s1 Cosmic damage to your target.
+
+For each time the same face is flipped in a row, Heads increases damage by an additional $452923s1% and Tails increases its damage by $452917s1%.
 
 Name             : Mean Streak (id=453428) [Spell Family (8), Passive] 
 Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
@@ -168,6 +170,8 @@ Effects          :
 #1 (id=1252175)  : Apply Aura (6) | Dummy (4)
                    Base Value: 7 | Scaled Value: 7 | Target: Self (1)
 Description      : Every $s1 coin flips, keep a lucky coin that bends you towards your fate for $1248971d. Your Agility is increased by $1248971s1%, the damage and bonuses of Fatebound Coins are increased by $1248971s3%, and coin flips are $1248971s5% more likely to match the same face as the last flip.
+
+Coin flips do not count toward finding a lucky coin while you have a lucky coin.
 
 Name             : Overflowing Purse (id=1249190) [Spell Family (8), Passive] 
 Talent Entry     : Fatebound (Assassination, Outlaw) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]

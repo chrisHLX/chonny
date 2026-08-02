@@ -54,6 +54,10 @@ Effects          :
 #3 (id=1318124)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Every $s1 Slayer's Strikes you gain Sudden Death.
+
+Using Sudden Death accelerates your next Bladestorm, striking 1 additional time (max $445606u). Bladestorm's total duration is unchanged.
+
+Sudden Death has a $s2% chance to trigger Reap the Storm at $s3% effectiveness.
 
 Name             : Death Drive (id=444770) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
@@ -170,6 +174,8 @@ Effects          :
 #1 (id=1141374)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Charge increases your movement speed by $446044s1% for $446044d.
+
+Charge removes all movement impairing effects, this effect cannot occur more than once every $458386d.
 
 Name             : Vicious Agility (id=444777) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -246,6 +252,10 @@ Effects          :
                    Affected Spells: Bladestorm (50622), Bladestorm Off-Hand (95738), Bladestorm (227847), Bladestorm (446035)
                    Family Flags: 46
 Description      : Using Sudden Death causes you to both reduce the cooldown of Bladestorm by $s1 sec and apply $s2 stack of Overwhelmed to your primary target per stack of Executioner you have.
+
+You can use Pummel and Storm Bolt while Bladestorming.
+
+Bladestorm damage increased by $s4%.
 
 Name             : Brutal Finish (id=446085) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]

@@ -19,6 +19,8 @@ Effects          :
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
                    Modified By: Blood Death Knight (137008 effect#13)
 Description      : Your Death Coil$?a137007[, Epidemic][] and Death Strike have a $s1% chance to make your next $?a137008[Heart Strike]?s207311[Clawing Shadows][Scourge Strike] become Vampiric Strike.
+
+Vampiric Strike heals you for $?a137008[$434422s2][$434422s3]% of your maximum health and grants you Essence of the Blood Queen, increasing your Haste by ${$433925s1/10}.1%, up to ${$433925s1*$433925u/10}.1% for $433925d.
 
 Name             : Newly Turned (id=433934) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -61,6 +63,8 @@ Effects          :
 #2 (id=1123741)  : Apply Aura (6) | Proc Trigger Spell (42): Vampiric Speed
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 434029
 Description      : Death's Advance and Wraith Walk movement speed bonuses are increased by $s1%.
+
+Activating Death's Advance or Wraith Walk increases $434029s2 nearby allies movement speed by $434029s1% for $434029d.
 
 Name             : Blood-Soaked Ground (id=434033) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -120,6 +124,8 @@ Effects          :
 #2 (id=1123914)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 Description      : Your Leech is increased by $s1%.
+
+While Lichborne is active, the Leech bonus of this effect is increased by $434105s1%, and it affects $s2 allies within 12 yds. 
 
 Name             : Bloody Fortitude (id=434136) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -139,6 +145,8 @@ Effects          :
 #2 (id=1123921)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Icebound Fortitude reduces all damage you take by up to an additional $s1% based on your missing health.
+
+Killing an enemy that yields experience or honor reduces the cooldown of Icebound Fortitude by $s2 sec.
 
 Name             : Infliction of Sorrow (id=434143) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
@@ -187,6 +195,8 @@ Effects          :
 #2 (id=1123957)  : Apply Aura (6) | Dummy (4)
                    Base Value: 400 | Scaled Value: 400 | Target: Self (1)
 Description      : Vampiric Strike and $?a137008[Heart Strike]?s207311[Clawing Shadows][Scourge Strike] cause your targets to take $458478s1% increased Shadow damage, up to ${$458478s1*$458478U}% for $458478d.
+
+Vampiric Strike benefits from Incite Terror at $s2% effectiveness.
 
 Name             : Gift of the San'layn (id=434152) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -198,6 +208,8 @@ Effects          :
 #1 (id=1123958)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : While $?a137008[Dancing Rune Weapon][Dark Transformation] is active you gain Gift of the San'layn.
+
+Gift of the San'layn increases the effectiveness of your Essence of the Blood Queen by $?a137007[$434153s1][$434153s4]%, and Vampiric Strike replaces your $?a137008[Heart Strike]?s207311[Clawing Shadows][Scourge Strike] for the duration.
 
 Name             : Visceral Strength (id=434157) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
@@ -235,6 +247,8 @@ Effects          :
 #3 (id=1176842)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : $?a137008[Dancing Rune Weapon]?s275699[Apocalypse][Dark Transformation] summons a Blood Beast to attack your enemy for $434237d.
+
+Each time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing $?a137007[$s2][$s1]% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond $s3 targets.
 
 Name             : Pact of the San'layn (id=434261) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
@@ -329,6 +343,8 @@ Effects          :
                    Affected Spells: Festering Wound (194311), Dread Plague (1240996), Dread Plague (Erupt) (1241171), Dread Plague (1242564)
                    Family Flags: 119
 Description      : Essence of the Blood Queen additionally increases your Mastery by $?c3[${$s1/10}.1][${$s3/10}.1]% per stack.
+
+$?c3[Dread Plague deals $s5% and Virulent Plague deals $s3%][Blood Plague deals $s4%] increased damage.
 
 Name             : Transfusion (id=1265574) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
@@ -345,6 +361,8 @@ Effects          :
 #1 (id=1277419)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Vampiric Strike increases the damage of $?c3[the Lesser Ghoul it summons][your Dancing Rune Weapons] by $?c3[$1280386s1%.][$1236822s3% for $1236822d. 
+
+Multiple applications may overlap.]
 
 Name             : Inevitable (id=1280658) [Spell Family (15), Passive] 
 Talent Entry     : San'layn (Blood, Unholy) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -361,3 +379,5 @@ Effects          :
 #2 (id=1293649)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : $?a137008[Blood Plague deals up to $s2%][Your plagues deal up to $s1%] increased damage based on the target's missing health.$?a137007[
+
+Vampiric Strike grants maximum stacks of Clawing Shadows.][]

@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Module;
 use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\TalentBuild;
@@ -14,12 +15,17 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
- * The single place that resolves "what talents are selected" for a user+spec, and reads/writes
- * that selection. A TalentBuild is the full loadout — PvE tree picks (talent_build_choices) plus
- * PvP talent picks (talent_build_pvp_choices) — scoped per (user_id, spec_id): one saved build
- * per spec, reused across every module/page for that spec (not per-module — see the "Talent-aware
- * spell data" plan). Feeds ModuleSpellReferenceService, which needs to know which talents are
- * actually selected (not just "possible for this spec") to compute an effective cooldown.
+ * The single place that resolves "what talents are selected", and reads/writes that selection. A
+ * TalentBuild is the full loadout — PvE tree picks (talent_build_choices) plus PvP talent picks
+ * (talent_build_pvp_choices) — scoped one of three ways: per (user_id, spec_id) (one saved build
+ * per person per spec, reused across every module/page for that spec), as the spec-wide admin
+ * default (is_default = true, user_id = null), or — added 2026-08-01 — per module_id (a specific
+ * module's own curated talents, e.g. imported from a real Blizzard export string via
+ * TalentSelector's import flow). Feeds ModuleSpellReferenceService, which needs to know which
+ * talents are actually selected (not just "possible for this spec") to compute an effective
+ * cooldown/charge count. Resolution order for a given module (see
+ * Modules\Show::initSelectedSpellIds()): that module's own linked build, if any and non-empty →
+ * resolveActiveBuild() (user's own build → spec's admin default → empty).
  */
 class TalentSelectionService
 {
@@ -123,6 +129,35 @@ class TalentSelectionService
                 'pvp_talent_id' => $pvpTalentId,
             ]);
         }
+    }
+
+    /**
+     * The build linked to one specific module, if any — takes priority over a viewer's own
+     * build and the spec's admin default (see Modules\Show::initSelectedSpellIds()). Returns
+     * null both when no such build exists yet and when one exists but has no choices at all (an
+     * empty linked build is equivalent to "not linked" for resolution purposes — same "empty
+     * shell falls back" behavior resolveActiveBuild() already has for the unsaved-shell case).
+     */
+    public function resolveBuildForModule(Module $module): ?TalentBuild
+    {
+        $build = TalentBuild::where('module_id', $module->id)->first();
+
+        if (!$build || ($build->choices()->doesntExist() && $build->pvpChoices()->doesntExist())) {
+            return null;
+        }
+
+        return $build;
+    }
+
+    /** Lazily gets-or-creates the module-linked build — used when curating a module's talents (e.g. importing a Blizzard string into it), never just from a viewer loading the page. */
+    public function getOrCreateModuleBuild(Module $module, int $specId, ?int $patchId = null): TalentBuild
+    {
+        $patchId ??= $this->currentPatchIdForSpec($specId);
+
+        return TalentBuild::firstOrCreate(
+            ['module_id' => $module->id],
+            ['spec_id' => $specId, 'patch_id' => $patchId, 'name' => $module->name, 'share_slug' => (string) Str::uuid()]
+        );
     }
 
     /** Finds or creates the (user_id = null, is_default = true) build for a spec+patch — the admin-curated "meta" loadout editors write to via TalentBuildEditor/TalentSelector's isDefaultEditor mode. */

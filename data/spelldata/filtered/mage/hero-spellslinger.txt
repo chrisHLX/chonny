@@ -47,6 +47,8 @@ Effects          :
 #3 (id=1250329)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : $?c1[Casting Arcane Surge generates $s1 Arcane Splinters][Each time Ray of Frost damages one or more enemies, it generates $s3 Frost $LSplinter:Splinters;].
+
+$?c1[During Arcane Surge, your chance to conjure an additional Arcane Splinter is increased to $s2%][For $1247908d after casting Ray of Frost, your chance to conjure an additional Frost Splinter is increased to $s2%].
 
 Name             : Splintering Orbs (id=444256) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
@@ -75,6 +77,8 @@ Effects          :
 #6 (id=1190183)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 Description      : Enemies damaged by your $?c1[Arcane Orb][Frozen Orb] conjure $?c1[$s4 Arcane][$s5 Frost] $LSplinter:Splinters;, up to $?c1[$s1][$s6].
+
+$?c1[Arcane Orb][Frozen Orb] damage is increased by $s3%.
 
 Name             : Controlled Instincts (id=444483) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
@@ -192,6 +196,8 @@ Effects          :
 #1 (id=1141448)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : Your $?c1[Prismatic][Ice] Barrier can absorb up to $s1% more damage based on your missing Health.
+
+Max effectiveness when under $s1% health.
 
 Name             : Archmage's Wrath (id=444968) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -227,6 +233,8 @@ Effects          :
                    Family Flags: 79
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : $?c1[Arcane Surge][Ray of Frost] damage increased by $?c1[$s1][$s2]%.
+
+Your chance to gain $?c1[Clearcasting][Brain Freeze from Frostbolt] is increased by $?c1[$s3][$s4]%.
 
 Name             : Spellfrost Teachings (id=444986) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
@@ -269,6 +277,10 @@ Effects          :
                    Affected Spells: Frostbolt (116), Blizzard (190356), Blizzard (190357), Frostbolt (228597), Glacial Spike (228600), Frostfire Bolt (468655), Freezing Winds (1247554), Blizzard (1248829)
                    Family Flags: 5, 7
 Description      : $?c1[Arcane Blast and Arcane Pulse damage increased by $s3%.
+
+Casting Touch of the Magi conjures $s1 Arcane Splinters][Frostbolt and Blizzard damage increased by $s4%.
+
+Glacial Spike conjures $s2 additional Frost Splinters].
 
 Name             : Infused Splinters (id=1261080) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
@@ -291,6 +303,9 @@ Effects          :
 #4 (id=1270702)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Direct damage from $?c1[Arcane][Frost] Splinters have a $?c1[$s1][$s2]% chance to $?c1[grant $s3 $Lstack:stacks; Arcane Salvo][apply $s4 $Lstack:stacks; of Freezing].$?c1[
+
+$@spellicon1242974 $@spellname1242974
+$@spellaura1242974][]
 
 Name             : Polished Focus (id=1261082) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
@@ -318,6 +333,10 @@ Effects          :
                    Affected Spells: Shatter (1246949), Winter's End (1280757)
                    Family Flags: 35
 Description      : $?c1[Casting Arcane Barrage while at $s1 or more Arcane Salvo stacks refunds $s2 Arcane Salvo $Lstack:stacks;.
+
+Arcane Barrage damage increased by $s4%.][Ice Lance Shatters $s3 additional $Lstack:stacks; of Freezing.
+
+Shatter damage increased by $s5%.]
 
 Name             : Attuned Familiar (id=1261106) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Spellslinger (Arcane, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=1, select_idx=100]

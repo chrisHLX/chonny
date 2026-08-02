@@ -43,6 +43,13 @@ Effects          :
 #7 (id=1293534)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Increases your Energy regeneration rate by $s1%, your maximum Energy by $s6, and your attack speed by $s2% for $d.$?$s4>0[
+
+Damage of combo point generating abilities and finishers increased by $s4%.][]
+
+Tooltip          : Energy regeneration increased by $w1%.
+Maximum Energy increased by $w6.
+Attack speed increased by $w2%.
+$?$w4>0[Damage of combo point generating abilities and finishers increased by $w4%.][]
 
 Name             : Ruthlessness (id=14161) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=6, col=2, max_rank=1, req_points=8]
@@ -107,6 +114,18 @@ Effects          :
 #2 (id=44063)    : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : Finishing move that unleashes a barrage of gunfire, striking random enemies within $r yards for Physical damage. Number of strikes increased per combo point.
+
+Restores $1235074m2 combo $Lpoint:points; every ${$t1}.2 sec.
+
+   1 point  : ${$<dmg>*2} over ${$424556d}.2 sec
+   2 points: ${$<dmg>*3} over ${$424556d*2}.2 sec
+   3 points: ${$<dmg>*4} over ${$424556d*3}.2 sec
+   4 points: ${$<dmg>*5} over ${$424556d*4}.2 sec
+   5 points: ${$<dmg>*6} over ${$424556d*5}.2 sec$?s193531|((s394320|s394321)&!s193531)[
+   6 points: ${$<dmg>*7} over ${$424556d*6}.2 sec][]$?s193531&(s394320|s394321)[
+   7 points: ${$<dmg>*8} over ${$424556d*7}.2 sec][]
+Tooltip          : Blasting nearby enemies every ${$t1}.2 sec.
+Variables        : $dmg=${$57841s2+$57842s1}
 
 Name             : Combat Potency (id=61329) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=3, col=6, max_rank=1, req_points=0]
@@ -242,6 +261,10 @@ Effects          :
 #1 (id=722352)   : Dummy (3)
                    Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
 Description      : Charge to your target with your blades out, dealing ${$271881sw1*$271881s2/100} Physical damage to the target and $271881sw1 to all other nearby enemies. Damage reduced beyond $271881sw3 targets.
+
+While Blade Flurry is active, damage to non-primary targets is increased by $s1%.
+
+|cFFFFFFFFGenerates ${$271896s1*$271896d/$271896t1} Energy over $271896d.
 
 Name             : Dancing Steel (id=272026) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=7, col=9, max_rank=1, req_points=8]
@@ -279,6 +302,9 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 15 | Target: Self (1)
                    Modified By: Skull and Crossbones (199603 effect#1), Keep Your Wits About You (288988 effect#1), Rogue Outlaw 10.2 Class Set 2pc (422907 effect#1), Destiny Defined (454435 effect#2), One of a Kind (1214933 effect#1), Double Trouble (1214934 effect#1), Triple Threat (1214935 effect#1), Jackpot (1214937 effect#1), Find an Opening (1259457 effect#1)
 Description      : Sinister Strike has a $s1% chance to hit an additional time and grant Opportunity.
+
+$@spellicon195627 $@spellname195627
+Your next Pistol Shot costs $195627s1% less Energy and deals $195627s2% increased damage.
 
 Name             : Thief's Versatility (id=381619) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=6, col=8, max_rank=1, req_points=8, select_idx=100]
@@ -338,6 +364,8 @@ Effects          :
 #1 (id=1012945)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Using Pistol Shot with Opportunity has a $279876s1% chance to make your next Ambush usable without Stealth.
+
+Chance to trigger this effect matches the chance for Sinister Strike to grant Opportunity.
 
 Name             : Fan the Hammer (id=381846) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=9, col=7, max_rank=2, req_points=20]
@@ -362,6 +390,8 @@ Effects          :
 #3 (id=1046162)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : When you gain Opportunity, gain $m1 additional $Lcharge:charges;. Max ${$s2+1} charges.
+
+Pistol Shot consumes $m1 additional $Lcharge:charges; of Opportunity to fire $m1 additional $Lbullet:bullets;. Additional shots deal $s3% reduced damage.
 
 Name             : Combat Stamina (id=381877) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -519,6 +549,8 @@ Effects          :
                    Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
                    Family Flags: 20, 32, 44, 81, 95, 100
 Description      : Gain $s1 additional max combo point.
+
+Your finishing moves that consume more than $s3 combo points have increased effects, and your finishing moves deal $s4% increased damage.
 
 Name             : Improved Adrenaline Rush (id=395422) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -678,6 +710,11 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 33 | Misc Value 2: 5707 (Label) | Target: Self (1)
                    Affected Spells (Label): One of a Kind (1214933), Double Trouble (1214934), Triple Threat (1214935), Jackpot (1214937)
 Description      : The bonuses granted by your Roll the Bones are stronger.
+
+Bonuses to chance for Sinister Strike to strike twice are $s1% greater.
+Bonuses to Sinister Strike and Ambush damage are $s2% greater.
+Bonuses to Restless Blades cooldown reduction are $s3% greater.
+Jackpot's bonus to critical strike chance is $s4% greater.
 
 Name             : Zero In (id=1259485) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=8, col=6, max_rank=1, req_points=20]

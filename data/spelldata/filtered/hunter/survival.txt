@@ -47,6 +47,16 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Resource: focus | Target: Self (1)
                    Modified By: Deadly Duo (397568 effect#2), Invigorating Pulse (450379 effect#1), Flanker's Advantage (459964 effect#1)
 Description      : Give the command to kill, causing your pet to savagely deal $259277s1 Physical damage to the enemy.$?a260285[
+
+Increases the damage of your next non-Kill Command ability by $260286s1%.][]
+
+|cFFFFFFFFGenerates $s2 Focus.|r
+Variables        : $beastMasterTalent=$?s378007[${1+($378007s1/100)}][${1}]
+$impKC=$?s378010[${1+($378010s1/100)}][${1}]
+$killerCompanion=$?s378955[${1+($378955s1/100)}][${1}]
+$ferocity=$?s378916[${1+($378916s1/100)}][${1}]
+$mastery=${1+$263135m3/100}
+$damage=${$ap*$<mastery>*$<beastMasterTalent>*$<impKC>*$<ferocity>*$<killerCompanion>*(1+$@versadmg)*(1+($137017s1/100))}
 
 Name             : Wildfire Bomb (id=259495) [Spell Family (9)] 
 Talent Entry     : Survival [tree=spec, row=2, col=3, max_rank=1, req_points=0]
@@ -76,6 +86,8 @@ Effects          :
                    Base Value: 80 | Scaled Value: 80 | Target: Targeted Enemy (6)
                    Modified By: Contained Explosion (426344 effect#1)
 Description      : Hurl a bomb at the target, exploding for $265157s1 Fire damage in a cone and coating enemies in wildfire, scorching them for $269747o1 Fire damage over $269747d. Deals reduced damage beyond $s2 targets.
+
+Deals $s3% increased damage to your primary target.
 
 Name             : Bloodseeker (id=260248) [Spell Family (9), Passive] 
 Talent Entry     : Survival [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -174,6 +186,8 @@ Effects          :
 #4 (id=1311171)  : Apply Aura (6) | Modify Total Stat% (137)
                    Base Value: 2 | Scaled Value: 2 | Stat: Agi | Target: Self (1)
 Description      : The damage of your auto-attacks is increased by $s1%.
+
+Your Agility is increased by $s2%, increased by an additional $s3% while dual-wielding.
 
 Name             : Explosives Expert (id=378937) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=8, col=2, max_rank=2, req_points=20]
@@ -264,6 +278,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 2454 (Category) | Target: Self (1)
                    Affected Spells (Category): Flamefang Pitch (1251592)
 Description      : Flamefang Pitch gains $s2 additional $Lcharge:charges;. 
+
+Throwing your Flamefang Pitch grants $s1 $Lcharge:charges; of Wildfire Bomb.
 
 Name             : Outland Venom (id=459939) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=7, col=7, max_rank=1, req_points=8]
@@ -318,6 +334,8 @@ Effects          :
                    Affected Spells: Kill Command (259277)
                    Family Flags: 37
 Description      : Kill Command damage increased by $s2%.
+
+Kill Command reduces the cooldown of Wildfire Bomb by ${$s1/1000}.1 sec.
 
 Name             : Blackrock Munitions (id=462036) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=7, col=5, max_rank=1, req_points=8, select_idx=200]
@@ -375,6 +393,11 @@ Effects          :
 #6 (id=1267297)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : You and your pet leap to your target and strike as one, dealing ${$1253862s1+$1253859s1} Physical damage$?a1256938[ to your target and up to $1256938s2 nearby enemies][]. Your pet frees itself from roots when it leaps.
+
+For the next $d, the damage dealt by you and your pet is increased by $s1%$?a1256938[ and your attack speed is increased by $s4%][].
+
+|cFFFFFFFFGenerates $1258571s1 Focus$?a1272139[ and $1272139s1 $Lstack:stacks; of Tip of the Spear][].|r
+Tooltip          : Damage dealt by you and your pet is increased by $s1%$?a1256938[ and your attack speed is increased by $s4%][].
 
 Name             : Flamefang Pitch (id=1251592) [Spell Family (9)] 
 Talent Entry     : Survival [tree=spec, row=9, col=2, max_rank=1, req_points=20]
@@ -402,6 +425,8 @@ Effects          :
 #3 (id=1256434)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8
 Description      : Toss a fiery concoction that explodes violently upon reaching its destination, dealing $1251595s1 Fire damage to enemies in its area. Damage reduced beyond $s3 targets.
+
+After landing, your Flamefang Pitch ignites nearby terrain, dealing ${$1251614s1*$1251610d} Fire damage to enemies in its area over $1251610d.
 
 Name             : Strike as One (id=1251717) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=4, col=6, max_rank=1, req_points=0]
@@ -422,6 +447,8 @@ Effects          :
 #2 (id=1290939)  : Apply Aura (6) | Modify Pet Damage Done% (429)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Consuming Tip of the Spear provokes your pet to attack your target, dealing $1251779s1 Physical damage.
+
+All damage dealt by your pet is increased by $s2%.
 
 Name             : Two Against Many (id=1251718) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -509,6 +536,8 @@ Effects          :
 #2 (id=1270891)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Your Boomstick's damage is increased by $s1% when striking a single target.
+
+Each additional target reduces this bonus by $s2%.
 
 Name             : Wildfire Imbuement (id=1252943) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=10, col=3, max_rank=1, req_points=20]
@@ -604,6 +633,9 @@ Effects          :
 #1 (id=1260094)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Damaging one or more enemies with your Boomstick grants you $s1 $Lstack:stacks; of Mongoose Fury.
+
+$@spellicon259388 $@spellname259388
+$@spellaura259388
 
 Name             : Flanked (id=1256938) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=10, col=4, max_rank=1, req_points=20]
@@ -629,6 +661,8 @@ Effects          :
                    Affected Spells: Takedown (1250646), Takedown (1253859), Takedown (1253862)
                    Family Flags: 84
 Description      : Takedown damage increased by $s1% and it now strikes $s2 additional nearby targets.
+
+During Takedown, your attack speed is increased by $s3%.
 
 Name             : Vulnerability (id=1257011) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=7, col=5, max_rank=1, req_points=8, select_idx=100]
@@ -694,6 +728,8 @@ Effects          :
                    Affected Spells: Raptor Strike (186270), Scorching Wildfire (259587), Violent Reaction (260231), Wildfire Bomb (265157), Raptor Strike (265189), Wildfire Bomb (269747), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Internal Bleeding (270343), Volatile Bomb (271048), Volatile Bomb (271049), Wildfire Bomb (1253171), Raptor Swipe (1262293), Raptor Swipe (1262343)
                    Family Flags: 22, 80
 Description      : Raptor Strike, Wildfire Bomb, and Raptor Swipe damage increased by $s1%.
+
+Raptor Swipe deals $s2% increased damage to its primary target.
 
 Name             : Raptor Swipe (id=1259019) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Survival [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -712,6 +748,8 @@ Effects          :
 #2 (id=1286709)  : Apply Aura (6) | Dummy (4)
                    Base Value: 300 | Scaled Value: 300 | Target: Self (1)
 Description      : Raptor Strike now has a $s1% chance to upgrade itself to a Raptor Swipe.
+
+Raptor Swipes that benefit from Tip of the Spear provoke an additional Strike as One at $s2% effectiveness.
 
 Name             : Boomstick (id=1261193) [Spell Family (9)] 
 Talent Entry     : Survival [tree=spec, row=4, col=4, max_rank=1, req_points=0]
@@ -797,6 +835,8 @@ Effects          :
 #2 (id=1272749)  : Apply Aura (6) | Modify Combat Rating Multiplier (405)
                    Base Value: 5 | Scaled Value: 5 | Rating: Mastery | Target: Self (1)
 Description      : Mastery increased by $s1%.
+
+You gain $s2% increased Mastery from all Mastery sources.
 
 Name             : Quick Reload (id=1272136) [Spell Family (9), Passive] 
 Talent Entry     : Survival [tree=spec, row=5, col=4, max_rank=1, req_points=8]
@@ -846,3 +886,5 @@ Effects          :
                    Affected Spells: Tip of the Spear (260286), Tip of the Spear (460852), Tip of the Spear (471536), Tip of the Spear (1280140)
                    Family Flags: 61
 Description      : Kill Command grants $s1 additional $Lstack:stacks; of Tip of the Spear.
+
+Tip of the Spear's damage bonus is increased by $s2%.

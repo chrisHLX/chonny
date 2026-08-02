@@ -54,6 +54,19 @@ Effects          :
 #1 (id=311)      : Apply Aura (6) | Periodic Heal (8): every 3 seconds
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.803 | Target: Targeted Ally (21)
 Description      : Heals the target for $o1 over $d.$?s155675[
+
+You can apply Rejuvenation twice to the same target.][]$?s33891[
+
+|C0033AA11Tree of Life: Healing increased by $5420s5% and Mana cost reduced by $5420s4%.|R][]
+Tooltip          : Healing $w1 every $t1 sec.
+Variables        : $mult=${1}
+$mstrshape=$?s48411[${1+0.01*$48411m1}][${1}]
+$gotem1=$?s51179[${1+0.01*$51179m1}][${1}]
+$gotem2=$?s51180[${1+0.01*$51180m1}][${$<gotem1>}]
+$gotem3=$?s51181[${1+0.01*$51181m1}][${$<gotem2>}]
+$tol=$?a5420[${1+0.01+$5420m1}][${1}]
+$gift=$?s87305[${1.25}][${1}]
+$bloom=${$<gift>*$<genesis3>*$<mstrshape>*$<gotem3>*$<tol>}
 
 Name             : Rip (id=1079) [Spell Family (7)] 
 Talent Entry     : Generic [free=(Feral), tree=class, row=3, col=2, max_rank=1, req_points=0]
@@ -88,6 +101,14 @@ Effects          :
                    Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274838), Primal Wrath (285381), Adaptive Swarm (325733), Adaptive Swarm (325748), Rampant Ferocity (391710), Thrash (405233), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812), Frantic Frenzy (1244079), Chomp (1244258), Unseen Slash (1263890), Unseen Swipe (1263908), Twin Claw (1271636), Unseen Slash (1271863)
                    Family Flags: 22, 98
 Description      : Finishing move that causes Bleed damage over time. Lasts longer per combo point.
+
+   1 point  : ${$o1*2/6} over ${$d*2/6} sec
+   2 points: ${$o1*3/6} over ${$d*3/6} sec
+   3 points: ${$o1*4/6} over ${$d*4/6} sec
+   4 points: ${$o1*5/6} over ${$d*5/6} sec
+   5 points: ${$o1*6/6} over ${$d*6/6} sec
+Tooltip          : Bleeding for $w1 damage every $t1 sec.
+Variables        : $rip=${$s1}
 
 Name             : Rake (id=1822) [Spell Family (7)] 
 Talent Entry     : Generic [free=(Feral), tree=class, row=1, col=2, max_rank=1, req_points=0]
@@ -118,6 +139,12 @@ Effects          :
 #4 (id=310505)   : Dummy (3)
                    Base Value: 60 | Scaled Value: 60 | Target: Targeted Enemy (6)
 Description      : Rake the target for $s1 Bleed damage and an additional $155722o1 Bleed damage over $155722d.$?s48484[ Reduces the target's movement speed by $58180s1% for $58180d.][]$?a231052[ 
+
+While stealthed, Rake will also stun the target for $163505d and deal $s4% increased damage.][]$?a405834[ 
+
+While stealthed, Rake will also stun the target for $163505d and deal $s4% increased damage.][]
+
+|cFFFFFFFFAwards $s2 combo $lpoint:points;.|r
 
 Name             : Hibernate (id=2637) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=4, col=6, max_rank=1, req_points=0]
@@ -259,6 +286,14 @@ Effects          :
 #2 (id=784041)   : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 0.144 | Radius: 0 - 5 yards | Target: At Enemy (53) -> at Enemy in Area (16)
 Description      : Finishing move that causes Physical damage and stuns the target. Damage and duration increased per combo point:
+
+   1 point  : ${$s2*1} damage, 1 sec
+   2 points: ${$s2*2} damage, 2 sec
+   3 points: ${$s2*3} damage, 3 sec
+   4 points: ${$s2*4} damage, 4 sec
+   5 points: ${$s2*5} damage, 5 sec
+Tooltip          : Stunned.
+Variables        : $mult=$?p61252[${4}][${2}]
 
 Name             : Frenzied Regeneration (id=22842) [Spell Family (7)] 
 Talent Entry     : Generic [free=(Guardian), tree=class, row=1, col=4, max_rank=1, req_points=0]
@@ -348,6 +383,15 @@ Effects          :
 #14 (id=1271777) : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Heart of the Wild overrides Heart of the Wild
                    Base Value: 1261870 | Scaled Value: 1261870 | Misc Value: 1261867 | Misc Value 2: 3 | Trigger Spell: 1261870 | Target: Self (1)
 Description      : Shapeshift into $?s114301[Astral Form][Moonkin Form], increasing the damage of your spells by $s9% and your armor by $m3%, and granting protection from Polymorph effects.$?a231042[
+
+While in this form, single-target attacks against you have a $h% chance to make your next Starfire instant.][]
+
+The act of shapeshifting frees you from movement impairing effects.
+Tooltip          : Spell damage increased by $s9%.
+Immune to Polymorph effects.$?$w3>0[
+Armor increased by $w3%.][]$?$w12<0[
+
+Arcane damage taken reduced by $w13% and all other magic damage taken reduced by $w12%.][]
 
 Name             : Innervate (id=29166) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=10, col=8, max_rank=1, req_points=23]
@@ -369,6 +413,9 @@ Effects          :
 #1 (id=18680)    : Apply Aura (6) | Modify Mana Cost% (423)
                    Base Value: -100 | Scaled Value: -100 | Target: Targeted Ally (21)
 Description      : Infuse a friendly healer with energy, allowing them to cast spells without spending mana for $d.$?s326228[
+
+If cast on somebody else, you gain the effect at $326228s1% effectiveness.][]
+Tooltip          : Mana costs reduced $w1%.
 
 Name             : Cyclone (id=33786) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8, select_idx=200]
@@ -458,6 +505,9 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5
                    Modified By: Improved Wild Growth (328025 effect#1)
 Description      : Heals up to $s2 injured allies within $A1 yards of the target for $o1 over $d. Healing starts high and declines over the duration.$?s33891[
+
+|C0033AA11Tree of Life: Affects $33891s3 additional $ltarget:targets;.|R][]
+Tooltip          : Heals $w1 damage every $t1 sec.
 
 Name             : Starsurge (id=78674) [Spell Family (7)] 
 Talent Entry     : Balance [free=(Balance), tree=class, row=2, col=9, max_rank=1, req_points=0]
@@ -506,6 +556,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: astral_power | Target: Self (1)
                    Modified By: Eclipse (Solar) (48517 effect#5), Astral Power (197911 effect#3)
 Description      : A quick beam of solar light burns the enemy $?s231050[and all enemies within $164815A2 yards ][]for $164815s1 Nature damage and then an additional $164815o2 Nature damage over $164815d.$?s137013[
+
+|cFFFFFFFFGenerates ${$m3/10} Astral Power.|r][]
 
 Name             : Mass Entanglement (id=102359) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=7, col=8, max_rank=1, req_points=8, select_idx=100]
@@ -727,6 +779,8 @@ Effects          :
                    Affected Spells: Mangle (33917)
                    Family Flags: 38
 Description      : While in Cat Form, when you critically strike with an attack that generates a combo point, you gain an additional combo point. Damage over time cannot trigger this effect.
+
+Mangle critical strike damage increased by $s2%.
 
 Name             : Ironfur (id=192081) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=4, col=4, max_rank=1, req_points=0]
@@ -786,6 +840,8 @@ Effects          :
 #5 (id=1081718)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Radius: 0 - 8 yards | Target: Targeted Enemy (6)
 Description      : Call down a burst of energy, causing $s1 Arcane damage to the target, and $?a429523[${($m1*$m3/100)/(1+$429523s1/100)}][${$m1*$m3/100}] Arcane damage to all other enemies within $A1 yards. Deals reduced damage beyond $s5 targets.
+
+|cFFFFFFFFGenerates ${$m2/10} Astral Power.|r
 
 Name             : Astral Influence (id=197524) [Spell Family (7), Passive] 
 Talent Entry     : Generic [tree=class, row=5, col=8, max_rank=1, req_points=8]
@@ -872,6 +928,11 @@ Effects          :
                    Affected Spells: Wrath (5176), Starsurge (78674), Fungal Growth (81281), Wild Mushroom (88751), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Wrath (190984), Starfall (191037), Starfire (194153), Starsurge (197626), Starfire (197628), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (211545), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Lunar Shrapnel (279641), Thorns (305496), Adaptive Swarm (325733), Star Burst (356474), Orbital Strike (361237), Fury of Elune (365640), Goldrinn's Fang (394047), Fury of Elune (394111), Star Burst (406430), Crashing Star (408310), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Meteorites (1240913), Solar Bolt (1261573), Lunar Bolt (1263137), Starsurge (1271222), Shooting Stars (1272339), Sunseeker Mushroom (1280212), Fungal Growth (1280213), Starfall (1286243)
                    Family Flags: 18
 Description      : Shapeshift into $?s114301[Astral Form][Moonkin Form], increasing the damage of your spells by $s7% and your armor by $m3%, and granting protection from Polymorph effects.
+
+The act of shapeshifting frees you from movement impairing effects.
+Tooltip          : Spell damage increased by $s7%.
+Immune to Polymorph effects.$?$w3>0[
+Armor increased by $w3%.][]
 
 Name             : Starsurge (id=197626) [Spell Family (7)] 
 Talent Entry     : Feral, Guardian, Restoration [tree=class, row=2, col=9, max_rank=1, req_points=0]
@@ -959,6 +1020,8 @@ Effects          :
 #2 (id=317209)   : Dummy (3)
                    Base Value: 20 | Scaled Value: 20 | Radius: 0 - 8 yards | Target: Source (22) -> Enemy in Area (15)
 Description      : Swipe nearby enemies, inflicting Physical damage. Damage varies by shapeshift form.$?s137011[
+
+|cFFFFFFFFAwards $s1 combo $lpoint:points;.|r][]
 
 Name             : Lingering Healing (id=231040) [Spell Family (7), Passive] 
 Talent Entry     : Generic [tree=class, row=7, col=6, max_rank=1, req_points=8]
@@ -977,6 +1040,8 @@ Effects          :
 #2 (id=1194457)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
 Description      : Rejuvenation's duration is increased by ${$s1/1000} sec.
+
+Regrowth's duration is increased by ${$s2/1000} sec when cast on yourself.
 
 Name             : Tiger Dash (id=252216) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=1, req_points=8, select_idx=200, replace="Dash" (id=1850)]
@@ -1122,6 +1187,11 @@ Effects          :
 #1 (id=1007518)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : You gain $s1% of a stat while in each form:
+
+No Form: Haste
+Cat Form: Critical Strike
+Bear Form: Versatility
+Moonkin Form: Mastery
 
 Name             : Matted Fur (id=385786) [Spell Family (7), Passive] 
 Talent Entry     : Generic [tree=class, row=7, col=4, max_rank=2, req_points=8]
@@ -1226,6 +1296,8 @@ Effects          :
                    Affected Spells: Bear Form Passive (1178)
                    Family Flags: 122
 Description      : Stamina increased by $s1%.
+
+Stamina in Bear Form is increased by an additional $s2%.
 
 Name             : Instincts of the Claw (id=449184) [Spell Family (7), Passive] 
 Talent Entry     : Generic [tree=class, row=8, col=4, max_rank=1, req_points=23]
@@ -1294,6 +1366,10 @@ Effects          :
                    Affected Spells: Rake (1822), Shred (5221), Mangle (33917), Skull Bash (93985), Skull Bash (106839), Rake (155722)
                    Family Flags: 12, 15, 25, 38
 Description      : Shred, Rake, and Skull Bash can be used in any form and shift you into Cat Form, if necessary. 
+
+Mangle can be used in any form and shifts you into Bear Form. 
+
+Wrath and Starfire shift you into Moonkin Form, if known.
 
 Name             : Starlight Conduit (id=451211) [Spell Family (7), Passive] 
 Talent Entry     : Generic [tree=class, row=6, col=9, max_rank=1, req_points=8]
@@ -1317,6 +1393,8 @@ Effects          :
                    Base Value: -50 | Scaled Value: -50 | Misc Value: 14 | Misc Value 2: 3558 (Label) | Target: Self (1)
                    Affected Spells (Label): Starsurge (197626)
 Description      : Wrath, Starsurge, and Starfire damage increased by $s1%. $?!a137013[
+
+Starsurge's cooldown is reduced by ${-$s2/1000} sec and its mana cost is reduced by $s3%.][]
 
 Name             : Grievous Wounds (id=474526) [Spell Family (7), Passive] 
 Talent Entry     : Generic [tree=class, row=2, col=1, max_rank=1, req_points=0]
@@ -1414,6 +1492,8 @@ Effects          :
 #3 (id=1194482)  : Dummy (3)
                    Base Value: 30 | Scaled Value: 30
 Description      : When a hit deals more than $s2% of your maximum health, instantly heal for $474683s1% of your health.
+
+This effect cannot occur more than once every $s3 seconds.
 
 Name             : Symbiotic Relationship (id=474750) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=23]
@@ -1466,6 +1546,11 @@ Effects          :
 #1 (id=1225958)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : You gain a bonus while in each form inspired by the breadth of your Druidic knowledge:
+
+No Form: $378989s2% Magic Damage
+Cat Form: $378990s2% Stamina
+Bear Form: $378991s2% Movement Speed
+Moonkin Form: $378992s2% Area damage taken reduction
 
 Name             : Heart of the Wild (id=1261867) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=10, col=5, max_rank=1, req_points=23]
@@ -1494,6 +1579,18 @@ Effects          :
 #5 (id=1272455)  : Apply Aura (6) | Dummy (4)
                    Base Value: 600 | Scaled Value: 600 | Target: Self (1)
 Description      : Perform a powerful off-role ability depending on your currently active shapeshift form.$?c4[][
+
+|cFFFFFFFFNon-shapeshifted:|r
+Empowered Wild Growth that heals up to $48438s2 injured allies within $48438A1 yards of the target for ${$48438o1*$s4/100} over $48438d.]$?c1[]?c2[][
+
+|cFFFFFFFFCat Form:|r
+Unleash an empowered Feral Frenzy, clawing your target $274837m2 times for ${$274837m2*$274838s1*$s2/100} Physical damage and an additional ${$274837m2*$s2/100*$274838s3*$274838d/$274838t3} Bleed damage over $274838d. Awards 5 combo points.
+
+|cFFFFFFFFMoonkin Form:|r
+Call down waves of empowered falling stars upon enemies within $50286A1 yds, dealing ${54*$191037s1} Astral damage over $191034d.]$?c3[][
+
+|cFFFFFFFFBear Form:|r
+Increase your maximum health by $1261872s1% for $1261872d.]
 
 Name             : Gift of the Wild (id=1262034) [Spell Family (7), Passive] 
 Talent Entry     : Generic [tree=class, row=8, col=8, max_rank=1, req_points=23]

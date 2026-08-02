@@ -21,6 +21,8 @@ Effects          :
 #1 (id=3248)     : School Damage (2): nature
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 7.90005 | PvP Coefficient: 0.8326 | Target: Targeted Enemy (6)
 Description      : Instantly shocks the target with concussive force, causing $s1 Nature damage.$?a190493[
+
+Earth Shock will consume all stacks of Fulmination to deal extra Nature damage to your target.][]
 
 Name             : Master of the Elements (id=16166) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=3, col=6, max_rank=1, req_points=0, select_idx=200]
@@ -92,6 +94,8 @@ Effects          :
 #4 (id=1014496)  : Dummy (3)
                    Base Value: 6 | Scaled Value: 6 | Radius: 8 yards | Target: at Area (87) -> at Enemy in Area (16)
 Description      : Causes the earth within $a1 yards of the target location to tremble and break, dealing ${$s4*$77478s1} Nature damage over $d and has a $77478s2% chance to knock the enemy down. Multiple uses of Earthquake may overlap.
+
+|cFFFFFFFFThis spell is cast at a selected location.|r
 
 Name             : Ascendance (id=114050) [Spell Family (11)] 
 Talent Entry     : Elemental [tree=spec, row=8, col=4, max_rank=1, req_points=20]
@@ -213,6 +217,13 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2
                    Modified By: Shaman Elemental 12.0 Class Set 4pc (1264863 effect#3)
 Description      : Charge yourself with lightning, causing your next $s5 Lightning Bolts to deal $s2% more damage, and also causes your next $s5 Lightning Bolts or Chain Lightings to be instant cast and trigger an Elemental Overload on every target.$?a1264863[
+
+Additionally, increases Lightning Bolt and Chain Lightning damage by ${$1264863s2}.1%.][]$?a1264762[
+
+|cFFFFFFFFGenerates $1264762s2 Maelstrom.|r][]
+Tooltip          : Your next Lightning Bolt will deal $s2% increased damage, and your next Lightning Bolt or Chain Lightning will be instant cast and cause an Elemental Overload to trigger on every target hit.$?a1264863[
+
+Additionally, increases Lightning Bolt and Chain Lightning damage by ${$W4}.1%.][]
 
 Name             : Fury of the Storms (id=191717) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=5, col=5, max_rank=1, req_points=8, select_idx=100]
@@ -267,6 +278,8 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Modified By: Enhancement Shaman (137041 effect#12), Charged Conduit (468625 effect#2)
 Description      : $?s454009[Tempest, ][]$?s137040[Earth Shock, Elemental Blast, and Earthquake][Lightning Bolt and Chain Lightning] make your target a Lightning Rod for $197209d.
+ 
+Lightning Rods take $s2% of all damage you deal with $?s454009[Tempest, Lightning Bolt,][Lightning Bolt] and Chain Lightning.
 
 Name             : Aftershock (id=273221) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -360,6 +373,8 @@ Effects          :
 #1 (id=1006598)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Ascendance summons a $?a117013[Primal][Greater] Fire Elemental to rain destruction on your enemies for $188592d. 
+
+While the Fire Elemental is active, Flame Shock deals damage ${100*(1/(1+$188592s2/100)-1)}% faster, and newly applied Flame Shocks last $188592s3% longer.
 
 Name             : Flames of the Cauldron (id=378266) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -383,6 +398,8 @@ Effects          :
                    Base Value: -1500 | Scaled Value: -1500 | PvP Coefficient: 2 | Misc Value: 11 | Misc Value 2: 4143 (Label) | Target: Self (1)
                    Affected Spells (Label): Voltaic Blaze (470057), Voltaic Blaze (1259101)
 Description      : Reduces the cooldown of Flame Shock and Voltaic Blaze by ${$s2/-1000}.1 sec.
+
+Flame Shock deals damage ${100*(1/(1+$m1/100)-1)}% faster.
 
 Name             : Swelling Maelstrom (id=381707) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -401,6 +418,8 @@ Effects          :
                    Affected Spells: Earth Shock (8042), Earthquake (61882), Earthquake (77478), Elemental Blast (117014), Elemental Blast Overload (120588), Earthquake (298762), Earthquake Overload (298765), Earthquake (329801), Earthquake (336740), Elemental Blast (344645), Earth Shock Overload (381725), Earthquake (462620)
                    Family Flags: 20, 83, 98, 108
 Description      : Increases your maximum Maelstrom by $s1.
+
+Increases Earth Shock, Elemental Blast, and Earthquake damage by $s2%.
 
 Name             : Eye of the Storm (id=381708) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=8, col=3, max_rank=1, req_points=20]
@@ -431,6 +450,8 @@ Effects          :
                    Base Value: -10 | Scaled Value: -10 | Misc Value: 32 | Target: Self (1)
                    Family Flags: 46
 Description      : Reduces the Maelstrom cost of Earth Shock and Earthquake by $s1.
+
+Reduces the Maelstrom cost of Elemental Blast by $s3.
 
 Name             : Mountains Will Fall (id=381726) [Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -445,6 +466,8 @@ Effects          :
 #1 (id=1012743)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Earth Shock, Elemental Blast, and Earthquake can trigger your Mastery: Elemental Overload at $s1% effectiveness.
+
+Overloaded Earthquakes do not knock enemies down.
 
 Name             : Searing Flames (id=381782) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=6, col=6, max_rank=1, req_points=8]
@@ -583,6 +606,8 @@ Effects          :
 #5 (id=1176623)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Causes the earth within $a1 yards of your target to tremble and break, dealing ${$s4*$77478s1} Nature damage over $d and has a $77478s2% chance to knock the enemy down. Multiple uses of Earthquake may overlap.
+
+|cFFFFFFFFThis spell is cast at your target.|r
 
 Name             : Storm Frenzy (id=462695) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=5, col=2, max_rank=1, req_points=8]
@@ -678,6 +703,8 @@ Effects          :
 #3 (id=1173080)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : While a Fire Elemental is active, your Fire damage dealt is increased by $188592s4%.
+
+While a Storm Elemental is active, your Nature damage dealt is increased by $157299s4%.
 
 Name             : Everlasting Elements (id=462867) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -780,6 +807,10 @@ Effects          :
 #4 (id=1267980)  : Dummy (3)
                    Base Value: 5 | Scaled Value: 5 | Target: Targeted Enemy (6)
 Description      : Instantly shocks the target and $s4 enemies within $A1 yds with blazing thunder, applying Flame Shock and dealing $1259101s1 Nature damage. Always critically strikes.$?a343725[
+
+|cFFFFFFFFGenerates $343725s14 Maelstrom.|r][
+
+Generates $s2 $Lstack:stacks; of Maelstrom Weapon.]
 
 Name             : Molten Wrath (id=1258843) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=3, col=6, max_rank=1, req_points=0, select_idx=100]
@@ -817,6 +848,9 @@ Effects          :
                    Affected Spells (Label): Elemental Resonance (1258895)
 Description      : $@spellicon1258895 $@spellname1258895
 All elemental damage is increased by an additional $s3%.
+
+$@spellicon462757 $@spellname462757
+Increases the chance for Thunderstrikes to occur by $s2% and increases Thunderstrike damage by $s1%.
 
 Name             : Elemental Resonance (id=1258895) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=6, col=3, max_rank=1, req_points=8, select_idx=100]
@@ -889,6 +923,8 @@ Effects          :
 #3 (id=1282107)  : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Voltaic Blaze unleashes volcanic rage, causing your next Lava Burst to also fire at $s3 additional targets with your Flame Shock at $1259491s1% effectiveness with reduced Maelstrom generation.
+
+Lava Burst damage increased by $s1%.
 
 Name             : Crackling Fury (id=1269215) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=10, col=6, max_rank=2, req_points=20]
@@ -1016,3 +1052,5 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 32 | Misc Value 2: 1748 (Label) | Target: Self (1)
                    Affected Spells (Label): Maelstrom (343725)
 Description      : Lava Burst damage increased by $s1%.
+
+Lava Burst and Lava Burst Overload generate $s2 additional Maelstrom.

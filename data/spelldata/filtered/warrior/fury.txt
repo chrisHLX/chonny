@@ -69,6 +69,10 @@ Effects          :
                    Affected Spells: Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582)
                    Family Flags: 108
 Description      : Go berserk, increasing all Rage generation by $s1% and granting your abilities $s4% increased critical strike chance for $d.$?a396749[
+
+|cFFFFFFFFGenerates ${$s3/10} Rage.|r][]
+Tooltip          : Rage generation increased by $w1%.
+Critical strike chance of all abilities increased by $w4%.
 
 Name             : Improved Whirlwind (id=12950) [Spell Family (4), Passive] 
 Talent Entry     : Fury [tree=spec, row=4, col=7, max_rank=1, req_points=0]
@@ -83,6 +87,12 @@ Effects          :
 #1 (id=5764)     : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Whirlwind $?s436707[and Thunder Clap cause][causes] your next $85739u single-target $lattack:attacks; to strike up to $85739s1 additional targets for $85739s2% damage.
+
+Whirlwind generates $190411s1 Rage plus an additional $190411s2 per target hit. Maximum $<maxRage> Rage.
+
+If you know Rend, Whirlwind inflicts Rend on all targets.
+Variables        : $damage=${$199667s1+$44949s1+(2*($199852s1+$199851s1))}
+$maxRage=${$190411s1+($190411s2*$190411s3)}
 
 Name             : Bloodthirst (id=23881) [Spell Family (4)] 
 Talent Entry     : Fury [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -113,6 +123,9 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
                    Modified By: Fresh Meat (215568 effect#1)
 Description      : Assault the target in a bloodthirsty craze, dealing $s1 Physical damage and restoring $117313s1% of your health.
+
+|cFFFFFFFFGenerates ${$s2/10} Rage and has a $s3% chance to Enrage you.|r
+Variables        : $mult=${($max(0,$min($pl-10,10))*8+137)/217}
 
 Name             : Sudden Death (id=29725) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Protection [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=300]
@@ -163,6 +176,11 @@ Effects          :
 #4 (id=317575)   : Trigger Spell (64): Raging Blow
                    Base Value: 80 | Scaled Value: 80 | Delay: 100_ms | Trigger Spell: 85384 | Target: Targeted Enemy (6)
 Description      : A mighty blow with both weapons that deals a total of $<damage> Physical damage.$?s383854[
+
+Raging Blow has a $s1% chance to instantly reset its own cooldown.][]
+
+|cFFFFFFFFGenerates ${$m2/10} Rage.|r
+Variables        : $damage=${$96103s1+$85384s1}
 
 Name             : Avatar (id=107574) [Spell Family (4)] 
 Talent Entry     : Fury [tree=spec, row=10, col=6, max_rank=1, req_points=20, select_idx=100]
@@ -281,6 +299,12 @@ Effects          :
 #10 (id=1277487) : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : Unleash a series of $s1 brutal strikes for a total of $<damage> Physical damage.$?a1265357[
+
+While Improved Whirlwind is active, you instead deal $<aoedamage> Physical damage to all enemies in front of you. Deals reduced damage beyond $s10 targets.][]
+
+|cFFFFFFFFEnrages you.|r
+Variables        : $damage=${$184707s1+$184709s1+$201364s1+$201363s1}
+$aoedamage=${$1265579s1+$1265580s1+$1265581s1+$1265582s1}
 
 Name             : Massacre (id=206315) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Fury [tree=spec, row=5, col=1, max_rank=1, req_points=8]
@@ -364,6 +388,13 @@ Effects          :
                    Family Flags: 11
                    Modified By: Recklessness (1719 effect#7)
 Description      : Become an unstoppable storm of destructive force, striking all nearby enemies for $<dmg> Physical damage over $d. Deals reduced damage beyond $s1 targets.
+
+You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks.
+$?c2[
+|cFFFFFFFFGenerates ${$50622s3/10} Rage on each strike.|r][]
+Tooltip          : Dealing damage to all nearby enemies every $t1 sec.
+Immune to crowd control.
+Variables        : $dmg=$?c2[${(1+($d/$t))*($50622sw1+($95738sw1/2))}][${(1+($d/$t))*$50622sw1}]
 
 Name             : Meat Cleaver (id=280392) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Fury [tree=spec, row=6, col=7, max_rank=1, req_points=8]
@@ -630,6 +661,10 @@ Effects          :
 #6 (id=1180325)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : Unleashes your power, dealing $<dmg> Physical damage and an additional $385060o2 Bleed damage over $385060d to all enemies within $385060A2 yards. Deals reduced damage beyond $s6 targets.
+
+|cFFFFFFFFEnrages you and generates ${$s5/10} Rage.|r
+
+Variables        : $dmg=${$385060sw1+$385062sw1+$385061sw1+$385061sw1}
 
 Name             : Bloodborne (id=385703) [Spell Family (4), Passive] 
 Talent Entry     : Fury [tree=spec, row=9, col=5, max_rank=1, req_points=20]
@@ -714,6 +749,12 @@ Effects          :
                    Affected Spells: Recklessness (1719)
                    Family Flags: 4
 Description      : Activating Recklessness generates ${$s1/10} Rage and while Recklessness is active, Raging Blow and Bloodthirst are upgraded to Crushing Blow and Bloodbath.
+
+$@spellicon335097 $@spellname335097
+Deals increased damage and deals $1719s13% additional critical strike damage.
+
+$@spellicon335096 $@spellname335096
+Deals increased damage and wounds the target to suffer $113344o1 Bleed damage over $113344d. Using Bloodbath on a target affected by Bloodbath extends the bleed by $113344d.
 
 Name             : Powerful Enrage (id=440277) [Spell Family (4), Passive] 
 Talent Entry     : Fury [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -746,6 +787,9 @@ Effects          :
 #1 (id=1270663)  : Apply Aura (6) | Proc Trigger Spell (42): Deep Wounds
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 262115 | Target: Self (1)
 Description      : Execute inflicts Deep Wounds on the target.
+
+$@spellicon262115 $@spellname262115
+$@spelldesc262115
 
 Name             : Scent of Blood (id=1265355) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Fury [tree=spec, row=6, col=3, max_rank=1, req_points=8]
@@ -825,6 +869,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 40 | Target: Self (1)
                    Affected School(s): All
 Description      : When you would sustain fatal damage, you instead fly into an unstoppable rage, becoming unkillable and immune to movement-impairing effects for $1265600d as you seek revenge on your would-be killer.
+
+If you kill your killer in that time, you emerge from your blind rage triumphant, with at least $1265600s5% of your max health intact. If you are not victorious, you die.
+
+This effect can only occur once every $1265598d and if your killer is alive when you sustain fatal damage.
 
 Name             : Executioner's Wrath (id=1265570) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Fury [tree=spec, row=10, col=2, max_rank=1, req_points=20]

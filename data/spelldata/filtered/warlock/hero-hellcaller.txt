@@ -85,6 +85,8 @@ Effects          :
 #3 (id=1142441)  : None (0)
                    Base Value: 20 | Scaled Value: 20
 Description      : Spending Soul Shards on damaging spells will further corrupt enemies affected by your Wither, increasing its stack count by $s1.
+
+Each time Wither gains a stack it has a chance to collapse, consuming a stack every $445731t1 sec to deal $445736s1 Shadowflame damage to its host until 1 stack remains.
 
 Name             : Xalan's Ferocity (id=440044) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
@@ -150,6 +152,8 @@ Effects          :
                    Affected Spells: Corruption (172), Immolate (348), Corruption (146739), Immolate (157736), Immolate (193540), Immolate (228312), Deliberate Corruption (367831), Wither (445468), Wither (445474), Corruption (1261158), Wither (1279686)
                    Family Flags: 1, 2, 4
 Description      : Critical strike damage dealt by Wither is increased by $s1%. 
+
+Wither has a chance to gain a stack when it critically strikes. Stacks gained this way do not activate Blackened Soul.
 
 Name             : Mark of Xavius (id=440046) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
@@ -179,6 +183,8 @@ Effects          :
                    Affected Spells: Immolate (348), Wither (445468)
                    Family Flags: 2
 Description      : $?s980[Agony damage increased by $s1%.][Wither damage increased by $s2%.]
+
+Blackened Soul deals $s3% increased damage per stack of Wither.
 
 Name             : Hatefury Rituals (id=440048) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
@@ -235,6 +241,8 @@ Effects          :
 #3 (id=1143971)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : After Wither reaches $s1 stacks or when its host reaches $s2% health, Wither deals $445736s1 Shadowflame damage to its host every $445731t1 sec until 1 stack remains.
+
+When Blackened Soul deals damage, you have a chance to gain $?s137046[$s3 stacks of Flashpoint][Shard Instability].
 
 Name             : Curse of the Satyr (id=440057) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
@@ -253,6 +261,9 @@ Effects          :
                    Affected Spells: Curse of Weakness (702), Curse of the Satyr (442804)
                    Family Flags: 109
 Description      : Curse of Weakness is empowered and transforms into Curse of the Satyr.
+
+$@spellicon442804 $@spellname442804
+$@spelldesc442804
 
 Name             : Aura of Enfeeblement (id=440059) [Spell Family (5), Passive] 
 Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=200]
@@ -357,6 +368,8 @@ Effects          :
                    Family Flags: 92
                    Modified By: Malevolence (442726 effect#4)
 Description      : Increases the damage of $?a137043[Unstable Affliction by $s1][Chaos Bolt by $s4]% and $?a137043[Seed of Corruption by $s3][Rain of Fire by $s5]%.
+
+This effect is doubled while Malevolence is active.
 
 Name             : Alzzin's Iniquity (id=1266803) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=4, col=5, max_rank=1, req_points=0]

@@ -510,6 +510,32 @@ Effects          :
 #2 (id=996449)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Inhale, stoking your inner flame. Release to exhale, burning enemies in a cone in front of you for ${$<dmI>+$<doI>} Fire damage, reduced beyond 5 targets.$?s395153[
+
+Increases the duration of your active Ebon Might effects by ${$395153s2/1000} sec.][]
+
+Empowering causes more of the damage to be dealt immediately instead of over time.
+
+|cFFFFFFFFI:|r   Deals $<dmI> damage instantly and $<doI> over $<duI> sec.
+
+|cFFFFFFFFII:|r  Deals $<dmII> damage instantly and $<doII> over $<duII> sec.
+
+|cFFFFFFFFIII:|r Deals $<dmIII> damage instantly and $<doIII> over $<duIII> sec.
+Variables        : $bD=$?s375510[${$375510s1}][${0}]
+$bF=$?s375510[${$375510s1/2}][${0}]
+$bE=$?s1264321[${$1264321s1}][${0}]
+$dE=$?s1264321[${$1264321s1/2}][${0}]
+$dmI=${$357209s1}
+$doI=${$357209o2*(10+$<bF>+$<dE>)}
+$duI=${20+$<bD>+$<bE>}
+$dmII=${$357209s1+($357209o2*3)}
+$doII=${$357209o2*(7+$<bF>+$<dE>)}
+$duII=${14+$<bD>+$<bE>}
+$dmIII=${$357209s1+($357209o2*6)}
+$doIII=${$357209o2*(4+$<bF>+$<dE>)}
+$duIII=${8+$<bD>+$<bE>}
+$dmIV=${$357209s1+($357209o2*9)}
+$doIV=${$357209o2*(1+$<bF>+$<dE>)}
+$duIV=${2+$<bD>+$<bE>}
 
 Name             : Fire Breath (desc=Red) (id=357209) [Spell Family (224)] 
 Class            : Evoker
@@ -584,6 +610,11 @@ Effects          :
 #6 (id=1153732)  : Apply Aura (6) | Resist Forced Movement% (485)
                    Base Value: -100 | Scaled Value: -100 | Target: Self (1)
 Description      : Take in a deep breath and fly to the targeted location, spewing molten cinders dealing $353759o1 Volcanic damage to enemies in your path.
+
+Removes all root effects. You are immune to movement impairing and loss of control effects while flying.$?s395153[
+
+Increases the duration of your active Ebon Might effects by ${$395153s3/1000} sec.][]
+Tooltip          : Spewing molten cinders. Immune to crowd control.
 
 Name             : Pyre (desc=Red) (id=357212) [Spell Family (224)] 
 Class            : Evoker
@@ -772,6 +803,15 @@ Effects          :
 #12 (id=1135599) : Apply Aura (6) | Resist Dispel (235)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Launch yourself and gain $s2% increased movement speed for $<dura> sec.
+
+Allows Evoker spells to be cast while moving and is castable while casting. Does not affect empowered spells.
+Tooltip          : Movement speed increased by $w2%.$?e0[ Area damage taken reduced by $s1%.][]
+
+Evoker spells may be cast while moving. Does not affect empowered spells.$?e9[
+
+Immune to movement speed reduction effects.][]
+Variables        : $flight=$?a375517[${$375517s1/1000}][${0}]
+$dura=$?a406380[${6*(1+$406380s2/100)+$<flight>}.1][${6+$<flight>}]
 
 Name             : Hover (id=358268) [Spell Family (224), Hidden] 
 Class            : Evoker
@@ -1277,6 +1317,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc357170
 Tooltip          : $w1 damage is being dilated every $361029t1 sec.
+
+Damage Remaining: $w2
 
 Name             : Medium Dilation (id=363144) [Spell Family (224)] 
 Class            : Evoker
@@ -1297,6 +1339,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc357170
 Tooltip          : $w1 damage is being dilated every $361029t1 sec.
+
+Damage Remaining: $w2
 
 Name             : Heavy Dilation (id=363145) [Spell Family (224)] 
 Class            : Evoker
@@ -1317,6 +1361,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc357170
 Tooltip          : $w1 damage is being dilated every $361029t1 sec.
+
+Damage Remaining: $w2
 
 Name             : Dream Flight (desc=Green) (id=363502) [Spell Family (224)] 
 Class            : Evoker
@@ -1562,6 +1608,13 @@ Effects          :
 #2 (id=910749)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
 Description      : Divert spiritual energy, healing an ally for $367230s1. Jumps to injured allies within $<range> yds when empowered.
+
+|cFFFFFFFFI:|r   Heals one ally.
+
+|cFFFFFFFFII:|r  Heals a second ally.
+
+|cFFFFFFFFIII:|r Heals a third ally.
+Variables        : $range=${30}
 
 Name             : Spiritbloom (id=367230) [Spell Family (224)] 
 Class            : Evoker
@@ -3190,6 +3243,24 @@ Effects          :
 #2 (id=1013561)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc357208
+
+|cFFFFFFFFIV:|r Deals $<dmIV> damage instantly and $<doIV> over $<duIV> sec.
+Variables        : $bD=$?s375510[${$375510s1}][${0}]
+$bF=$?s375510[${$375510s1/2}][${0}]
+$bE=$?s1264321[${$1264321s1}][${0}]
+$dE=$?s1264321[${$1264321s1/2}][${0}]
+$dmI=${$357209s1}
+$doI=${$357209o2*(10+$<bF>+$<dE>)}
+$duI=${20+$<bD>+$<bE>}
+$dmII=${$357209s1+($357209o2*3)}
+$doII=${$357209o2*(7+$<bF>+$<dE>)}
+$duII=${14+$<bD>+$<bE>}
+$dmIII=${$357209s1+($357209o2*6)}
+$doIII=${$357209o2*(4+$<bF>+$<dE>)}
+$duIII=${8+$<bD>+$<bE>}
+$dmIV=${$357209s1+($357209o2*9)}
+$doIV=${$357209o2*(1+$<bF>+$<dE>)}
+$duIV=${2+$<bD>+$<bE>}
 
 Name             : Tempest Barrier (id=382289) [Spell Family (3), Passive, Hidden] 
 Class            : Mage, Evoker
@@ -3245,6 +3316,15 @@ Effects          :
 #2 (id=1013724)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Focus your energies to release a salvo of pure magic, dealing $<dmg> Spellfrost damage to an enemy. Damages additional enemies within $s1 yds when empowered.
+
+|cFFFFFFFFI:|r   Damages $?s375757[2 enemies][1 enemy].
+
+|cFFFFFFFFII:|r  Damages $?s375757[4 enemies][2 enemies].
+
+|cFFFFFFFFIII:|r Damages $?s375757[6 enemies][3 enemies].
+
+|cFFFFFFFFIV:|r Damages $?s375757[8 enemies][4 enemies].
+Variables        : $dmg=${$359077s2}
 
 Name             : Dream Breath (desc=Green) (id=382614) [Spell Family (224)] 
 Class            : Evoker
@@ -3275,6 +3355,22 @@ Effects          :
 #4 (id=1237472)  : Apply Aura (6) | Creature Immunities (147)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 1808 | Target: Self (1)
 Description      : $@spelldesc355936
+
+|cFFFFFFFFIV:|r Heals ${$355941s3+$355941s1*6} instantly and ${$355941s1*$<sFourTick>} over $<sFourDur> sec.
+Variables        : $deepExDur=$?s1264321[${$1264321s2/1000}][${0}]
+$deepExTicks=$?s1264321[${$1264321s2/2000}][${0}]
+$sOneHeal=${2*$355941s1}
+$sTwoHeal=${2.25*$355941s1}
+$sThreeHeal=${2.5*$355941s1}
+$sFourHeal=${2.75*$355941s1}
+$sOneTick=${8+$<deepExTicks>}
+$sTwoTick=${6+$<deepExTicks>}
+$sThreeTick=${4+$<deepExTicks>}
+$sFourTick=${2+$<deepExTicks>}
+$sOneDur=${16+$<deepExDur>}
+$sTwoDur=${12+$<deepExDur>}
+$sThreeDur=${8+$<deepExDur>}
+$sFourDur=${4+$<deepExDur>}
 
 Name             : Spiritbloom (desc=Green) (id=382731) [Spell Family (224)] 
 Class            : Evoker
@@ -3299,6 +3395,15 @@ Effects          :
 #2 (id=1014218)  : Dummy (3) | Attributes: Don't Fail Spell On Targeting Failure (20)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
 Description      : Divert spiritual energy, healing an ally for $367230s1. Jumps to injured allies within $<range> yards when empowered.
+
+|cFFFFFFFFI:|r   Heals one ally.
+
+|cFFFFFFFFII:|r  Heals a second ally.
+
+|cFFFFFFFFIII:|r Heals a third ally.
+
+|cFFFFFFFFIV:|r Heals a fourth ally.
+Variables        : $range=${30}
 
 Name             : Living Flame (id=383880) 
 Class            : Evoker
@@ -3403,6 +3508,9 @@ Effects          :
 #2 (id=1021785)  : Apply Aura (6) | Modify Versatility% (471)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Call upon the Covenants of the Shadowlands to aid you, restoring $s1 health and increasing your Versatility by $s2% for $d.
+
+|cFFFFFFFFPassive:|r The Covenants have granted you a portion of their power, increasing your damage and healing by ${$387169s1}.1%.
+Tooltip          : Versatility increased by $w2%.
 
 Name             : Boon of the Covenants (id=387169) [Spell Family (224), Passive, Hidden] 
 Class            : Evoker
@@ -3604,6 +3712,9 @@ Effects          :
 #2 (id=1027170)  : Apply Aura (6) | Scale% (Stacking) (61)
                    Base Value: 30 | Scaled Value: 30 | Radius: 50000 yards | Target: Raid in Area (56)
 Description      : Increases haste by $s1% for all party and raid members for $d.
+
+Allies receiving this effect will become Exhausted and unable to benefit from Fury of the Aspects or similar effects again for $57723d.
+Tooltip          : Haste increased by $w1%.
 
 Name             : Essence Burst (id=392268) [Spell Family (224)] 
 Class            : Evoker
@@ -3859,6 +3970,12 @@ Effects          :
 #4 (id=1084165)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : $@spellname395160 $?s414969[or $@spellname355913 ][]increases the duration of your active Ebon Might effects by ${$s1/1000} sec.
+
+Your empower spells increase the duration of your active Ebon Might effects by ${$s2/1000} sec.
+
+$?s403631[$@spellname403631][$@spellname357210] increases the duration of your active Ebon Might effects by ${$s3/1000} sec.
+
+This effect can critically strike, increasing the duration of Ebon Might by an additional $s4%.
 
 Name             : Ebon Might (desc=Black) (id=395296) [Spell Family (224)] 
 Class            : Evoker
@@ -4517,6 +4634,8 @@ Effects          :
 #3 (id=1083344)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 413984 | Target: Self (1)
 Description      : Casting an empower spell grants Shifting Sands to $s3 $Lally:allies;, preferring damage dealers, increasing their Versatility by ${$413984s1}.1% for $413984d.
+
+The durations of Shifting Sands, Breath of Eons, and your other helpful auras are increased by ${$s2}.1%.
 
 Name             : Spatial Paradox (desc=Bronze) (id=406789) [Spell Family (224)] 
 Class            : Evoker
@@ -4628,6 +4747,9 @@ Effects          :
 #19 (id=1070143) : Apply Aura (6) | Modify Mechanic Duration% (Stacking) (232)
                    Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.6 | Misc Value: 26 | Radius: 30 yards | Target: Enemies in Cone to Targeted Enemy (104)
 Description      : Let out a bone-shaking roar at enemies in a cone in front of you, increasing the duration of crowd controls that affect them by $s2% in the next $d.
+
+Removes $s1 Enrage effect from each enemy.
+Tooltip          : The duration of incoming crowd control effects are increased by $s2%.
 
 Name             : Bronze Aspect's Favor (id=407244) [Spell Family (224)] 
 Class            : Evoker
@@ -4724,6 +4846,12 @@ Effects          :
 #2 (id=1072016)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : $@spelldesc396286
+
+|cFFFFFFFFIV:|r $<radiusIV> yd radius.
+Variables        : $radiusI=${3}
+$radiusII=${6}
+$radiusIII=${9}
+$radiusIV=${12}
 
 Name             : Chaotic Dragonrage (id=408127) [Spell Family (224)] 
 School           : Physical
@@ -5034,6 +5162,8 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10
 Description      : $@spelldesc409311
 Tooltip          : $?$W1>0[$@auracaster is increasing your critical strike chance by $w1%.][]$?e0&e1[
+
+][]$?e1[Your abilities have a chance to echo $412774s1% of their damage and healing.][]
 
 Name             : Reactive Hide (id=410256) [Spell Family (224)] 
 Class            : Evoker
@@ -5405,6 +5535,11 @@ Effects          :
                    Affected School(s): Fire, Nature
 Description      : $@spelldesc395152
 
+Tooltip          : $pri increased by $s2.
+Variables        : $stat=${$INT*($s1/100)}
+$classset=$?s414878[${$414878s1)}][${0}]
+$amount=${$s1+$<classset>}.1
+
 Name             : Fate Mirror (desc=Bronze) (id=413786) [Spell Family (224)] 
 Class            : Evoker
 School           : Arcane
@@ -5521,6 +5656,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc410352
 Tooltip          : $w1 stretched damage is being dealt every $413924t1 sec.
+
+Damage Remaining: $w2
 
 Name             : Evoker Augmentation 10.1 Class Set 2pc (id=414877) [Spell Family (224), Passive, Hidden] 
 Class            : Evoker
@@ -5767,6 +5904,11 @@ Effects          :
                    Base Value: 200 | Scaled Value: 200 | Misc Value: 0xc | Radius: 0 - 100 yards | Target: at Self (18) -> At Ally in Area (31)
                    Affected School(s): Fire, Nature
 Description      : $@spelldesc395152
+
+Tooltip          : $pri increased by $s2.
+Variables        : $stat=${$INT*($s1/100)}
+$classset=$?s414878[${$414878s1)}][${0}]
+$amount=${$s1+$<classset>}.1
 
 Name             : Emerald Trance (id=424155) [Spell Family (224)] 
 Class            : Evoker
@@ -6107,6 +6249,11 @@ Effects          :
 #1 (id=1119239)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Current Target (25)
 Description      : Twist Chrono Flames toward your target, $?c2[healing an ally for $361509s1 or dealing $361500s1 Fire damage to an enemy.][dealing $361500s1 Fire damage to an enemy or healing an ally for $361509s1.]
+
+Bronze magic repeats $?c2[$431442s1%][$431442s3%] of the damage or healing you dealt to the target in the last $431442s2 sec as Arcane, up to $<cap>.
+
+Variables        : $cap=${($SP*2.5)*(1+$@versadmg)}
+$cap2=${($SP*3.5)*(1+$@versadmg)}
 
 Name             : Chrono Flame (desc=Red) (id=431483) [Spell Family (224)] 
 Class            : Evoker
@@ -6534,6 +6681,11 @@ Effects          :
 #12 (id=1184753) : Apply Aura (6) | Modify Min Speed% (305)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Take in a deep breath and fly forward, spewing molten cinders dealing $353759o1 Volcanic damage to enemies in your path.
+
+Removes all root effects. You are immune to movement impairing and loss of control effects while flying.$?s395153[
+
+Increases the duration of your active Ebon Might effects by ${$395153s3/1000} sec.][]
+Tooltip          : Spewing molten cinders. Immune to crowd control.
 
 Name             : Bombardments (id=434473) [Spell Family (224)] 
 Class            : Evoker
@@ -6587,6 +6739,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc358267
 
+Variables        : $flight=$?a375517[${$375517s1/1000}][${0}]
+$dura=$?a406380[${6*(1+$406380s2/100)+$<flight>}.1][${6+$<flight>}]
+
 Name             : Warp (desc=Bronze) (id=436065) 
 Class            : Evoker
 School           : Arcane
@@ -6603,6 +6758,9 @@ Effects          :
 #2 (id=1127165)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc358267
+
+Variables        : $flight=$?a375517[${$375517s1/1000}][${0}]
+$dura=$?a406380[${6*(1+$406380s2/100)+$<flight>}.1][${6+$<flight>}]
 
 Name             : Mass Disintegrate (desc=Black) (id=436336) [Spell Family (224)] 
 Class            : Evoker
@@ -6888,6 +7046,12 @@ Effects          :
 #12 (id=1184754) : Apply Aura (6) | Modify Min Speed% (305)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Fly forward, exposing a $@spellname409560 on enemies in your path for $409560d$?s395153[ and granting Ebon Might for ${$395153s3/1000} sec.][.]
+
+Removes roots and grants immunity to movement impairing and loss of control effects while flying.
+
+$@spellicon409560 $@spellname409560
+$409560s1% of damage dealt by allies affected by Ebon Might is copied as additional Arcane damage to enemies.
+Tooltip          : Exposing Temporal Wounds on enemies in your path. Immune to crowd control.
 
 Name             : Blessing of the Bronze (desc=Bronze) (id=442744) 
 Class            : Evoker
@@ -7537,6 +7701,8 @@ Effects          :
                    Base Value: 40 | Scaled Value: 40 | Target: Targeted Ally (21)
 Description      : $@spelldesc1215549
 Tooltip          : Healing $s1 every $t sec.
+
+|cFFFFFFFFInsurance!|r is consumed to heal for $1215553s1 if brought below $s2% health.
 
 Name             : Insurance! (id=1215553) [Spell Family (224)] 
 Class            : Evoker
@@ -7757,6 +7923,8 @@ Effects          :
 #1 (id=1220649)  : Dummy (3)
                    Base Value: 25 | Scaled Value: 25 | Target: Current Target (25)
 Description      : Casts damaging abilities for use in combat, rotating through them based on priority.
+
+The global cooldown of abilities used through the Single-Button Assistant is $s1% longer.
 
 Name             : Recuperate (id=1231411) 
 Class            : Warrior, Paladin, Hunter, Rogue, Priest, Death Knight, Shaman, Mage, Warlock, Monk, Druid, Demon Hunter, Evoker
@@ -7824,6 +7992,11 @@ Effects          :
 #7 (id=1233367)  : Apply Aura (6) | Modify Min Speed% (305)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Take in a deep breath and fly forward, spewing molten cinders dealing $353759o1 Volcanic damage to enemies in your path.
+
+Removes all root effects. You are immune to movement impairing and loss of control effects while flying.$?s395153[
+
+Increases the duration of your active Ebon Might effects by ${$395153s3/1000} sec.][]
+Tooltip          : Spewing molten cinders. Immune to crowd control.
 
 Name             : Disintegrate (desc=Blue) (id=1236949) [Spell Family (224)] 
 Class            : Evoker
@@ -8200,6 +8373,8 @@ Effects          :
 #1 (id=1268125)  : School Damage (2): firestorm | Attributes: Always AOE Line of Sight (5)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 2 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
 Description      : Cause a violent eruption beneath an enemy's feet, dealing $s1 Volcanic damage split between them and nearby enemies.$?s395153[
+
+Increases the duration of your active Ebon Might effects by ${$395153s1/1000} sec.][]
 
 Name             : Unravel (desc=Blue) (id=1264379) [Spell Family (224)] 
 Class            : Evoker
@@ -8510,6 +8685,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc1271788
 Tooltip          : Haste increased by ${$w1}.1%.$?$w3>0[ Damage increased by $w3%][]
+
+Generating Essence Burst every $t4 sec.
 
 Name             : Blessing of the Bronze Highlight (id=1271912) [Spell Family (224), Hidden] 
 Class            : Evoker

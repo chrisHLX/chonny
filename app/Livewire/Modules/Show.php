@@ -13,7 +13,6 @@ use App\Models\UserConceptMastery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Livewire\Attributes\On;
 
 class Show extends Component
 {
@@ -22,7 +21,15 @@ class Show extends Component
     public ?array $userModule = null;
     public ?int $activePipelineId = null;
 
-    /** Which talents are currently selected (see TalentSelector) — feeds getModuleSpellReferencesProperty()'s effective-cooldown computation. Seeded from the resolved active build on mount, kept live via the 'talents-changed' event dispatched by <livewire:talent-selector>. */
+    /**
+     * Which talents are currently selected — feeds getModuleSpellReferencesProperty()'s
+     * effective-cooldown/charges computation. Seeded once from the resolved active build on
+     * mount and static for the page load (a saved build is a cross-module preference, edited
+     * elsewhere — see TalentSelectionService — not something this page has a live picker for
+     * as of 2026-08-01, when the embedded <livewire:talent-selector> was removed). The
+     * 'talents-changed' listener that used to keep this reactive was removed alongside it —
+     * nothing on this page dispatches that event anymore.
+     */
     public array $selectedSpellIds = [];
 
     public function mount(Module $module): void
@@ -51,7 +58,14 @@ class Show extends Component
         $this->initSelectedSpellIds();
     }
 
-    /** Seeds $selectedSpellIds from the resolved active build (user's saved build, else the spec's default, else nothing) so the initial render already reflects it, before any TalentSelector interaction. No-op for modules with no ModuleGameBuild. */
+    /**
+     * Seeds $selectedSpellIds so the page already reflects the right talents with no picker on
+     * this page anymore (see the 2026-08-01 removal note above `render()`). Resolution order:
+     * this module's own linked build (TalentSelectionService::resolveBuildForModule() — a
+     * content author's deliberate choice for this specific guide, e.g. imported from a real
+     * Blizzard export string) → the viewer's own saved build → the spec's admin default → empty.
+     * No-op for modules with no ModuleGameBuild.
+     */
     private function initSelectedSpellIds(): void
     {
         $build = $this->module->gameBuild;
@@ -61,15 +75,16 @@ class Show extends Component
         }
 
         $service = app(TalentSelectionService::class);
+
+        $moduleBuild = $service->resolveBuildForModule($this->module);
+        if ($moduleBuild) {
+            $this->selectedSpellIds = $service->selectedSpellIds($moduleBuild)->all();
+
+            return;
+        }
+
         $activeBuild = $service->resolveActiveBuild(Auth::user(), $build->specialization_id);
         $this->selectedSpellIds = $service->selectedSpellIds($activeBuild)->all();
-    }
-
-    /** @param array<int, int> $selectedSpellIds */
-    #[On('talents-changed')]
-    public function onTalentsChanged(array $selectedSpellIds = []): void
-    {
-        $this->selectedSpellIds = $selectedSpellIds;
     }
 
     public function render()
@@ -345,11 +360,12 @@ class Show extends Component
      * currently in spells/spell_relationships — never a stored snapshot, so it can't go stale
      * the way frozen prose could when a patch changes a number (see ModuleSpellReferenceService).
      *
-     * 'modifiers'/'cooldown' are both gated by $selectedSpellIds (see TalentSelectionService) —
-     * a talent that's merely possible for the class/spec but not currently selected no longer
-     * shows as an applying modifier or changes the computed cooldown.
+     * 'modifiers'/'cooldown'/'charges' are all gated by $selectedSpellIds (see
+     * TalentSelectionService) — a talent that's merely possible for the class/spec but not
+     * currently selected no longer shows as an applying modifier or changes the computed
+     * cooldown/charge count.
      *
-     * @return array<int, array{spell: \App\Models\Spell, description: array{text: string, uncertain: bool}, modifiers: array{named: \Illuminate\Support\Collection, baseline: \Illuminate\Support\Collection}, cooldown: array{seconds: ?float, base_seconds: ?float, applied: \Illuminate\Support\Collection}}>
+     * @return array<int, array{spell: \App\Models\Spell, category: string, description: array{text: string, uncertain: bool}, modifiers: array{named: \Illuminate\Support\Collection, baseline: \Illuminate\Support\Collection}, cooldown: array{seconds: ?float, base_seconds: ?float, applied: \Illuminate\Support\Collection}, charges: array{charges: ?int, base_charges: ?int, applied: \Illuminate\Support\Collection}}>
      */
     public function getModuleSpellReferencesProperty(): array
     {
@@ -368,9 +384,11 @@ class Show extends Component
             ->get()
             ->map(fn ($spell) => [
                 'spell' => $spell,
+                'category' => $service->categorize($spell),
                 'description' => $service->resolveDescription($spell, $build),
                 'modifiers' => $service->modifiersFor($spell, $build, $selected),
                 'cooldown' => $service->effectiveCooldown($spell, $build, $selected),
+                'charges' => $service->effectiveCharges($spell, $build, $selected),
             ])
             ->all();
     }

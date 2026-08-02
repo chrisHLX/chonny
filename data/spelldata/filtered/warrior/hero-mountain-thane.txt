@@ -34,6 +34,8 @@ Effects          :
 #2 (id=1127180)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Damaging enemies with Thunder Clap, $?a137048[Revenge, ][Raging Blow, ]or Execute has a $s1% chance to also strike one with a lightning bolt, dealing $435791s1 Nature damage$?s436152[ and generating ${$436152s3/10} Rage][].
+
+Lightning Strikes occur $s2% more often during Avatar.
 
 Name             : Steadfast as the Peaks (id=434970) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -49,6 +51,8 @@ Effects          :
 #1 (id=1125291)  : Apply Aura (6) | Modify Total Stat% (137)
                    Base Value: 5 | Scaled Value: 5 | Stat: Sta | Target: Self (1)
 Description      : Stamina increased by $s1%.
+
+$?s202168[Impending Victory][Victory Rush] increases your maximum health by $437152s3% for $437152d. When this health increase expires, you heal for any amount of the original $?s202168[Impending Victory][Victory Rush] that healed you in excess of your full health.
 
 Name             : Thunder Blast (id=435607) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
@@ -72,6 +76,9 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Misc Value 2: 3159 (Label) | Target: Self (1)
                    Affected Spells (Label): Thunder Blast (435222)
 Description      : Shield Slam and Bloodthirst have a $s1% chance to grant you Thunder Blast, stacking up to 2 charges.
+
+$@spellicon435222|cFFFFFFFF$@spellname435222|r
+Your next Thunder Clap becomes a Thunder Blast that deals $435222s1 Stormstrike damage and generates ${$435222s4/10} Rage.
 
 Name             : Ground Current (id=436148) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
@@ -107,6 +114,8 @@ Effects          :
                    Affected Spells: Revenge (6572), Raging Blow (85384), Raging Blow (96103), Execute Off-Hand (163558), Execute (260798), Execute (280849), Condemn (317483), Condemn (317488), Condemn Off-Hand (317489), Crushing Blow (335098), Crushing Blow (335100), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817), Revenge (1215174)
                    Family Flags: 10, 45, 115, 116
 Description      : Lightning Strikes generate ${$s1/10} Rage.
+
+$?a137048[Revenge][Raging Blow] and Execute damage increased by $s2%.
 
 Name             : Storm Bolts (id=436162) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
@@ -188,6 +197,10 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 32 | Misc Value 2: 3177 (Label) | Target: Self (1)
                    Affected Spells (Label): Barbaric Training (383082)
 Description      : Stormstrike or Nature damage your abilities deal is increased by $s1%. Stormstrike damage ignores Armor.
+
+Thunder Clap damage increased by $s4%$?a137050[, no longer costs Rage, and now generates ${$s5/10} Rage][].$?a137050[
+
+Improved Whirlwind, Meat Cleaver, and Barbaric Training affect Thunder Clap in addition to Whirlwind.][]
 
 Name             : Strength of the Mountain (id=437068) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
@@ -217,6 +230,10 @@ Effects          :
                    Affected Spells: Bloodthirst (23881), Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Bloodbath (335096), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582)
                    Family Flags: 42, 108
 Description      : Shield Slam damage increased by $s1%.$?a137048[
+
+Demoralizing Shout reduces damage enemies deal to you by an additional ${-$s2}%.][
+
+Bloodthirst and Rampage damage increased by $s4%.]
 
 Name             : Flashing Skies (id=437079) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -276,6 +293,11 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Misc Value 2: 4595 (Label) | Target: Self (1)
                    Affected Spells (Label): Avatar of the Storm (437134)
 Description      : Casting Avatar grants you $s1 charges of Thunder Blast and resets the cooldown of Thunder Clap.
+
+While Avatar is not active, Lightning Strikes have a $s2% chance to grant you Avatar for $s3 secs.
+
+$@spellicon435222|cFFFFFFFF$@spellname435222|r
+Your next Thunder Clap becomes a Thunder Blast that deals Stormstrike damage.
 
 Name             : Keep Your Feet on the Ground (id=438590) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -297,6 +319,8 @@ Effects          :
                    Base Value: -2 | Scaled Value: -2 | Misc Value: 0x1 | Target: Self (1)
                    Affected School(s): Physical
 Description      : Physical damage taken reduced by $s2%.
+
+Thunder Blast reduces damage you take by $438591s1% for $438591d.
 
 Name             : Storm Shield (id=438597) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]

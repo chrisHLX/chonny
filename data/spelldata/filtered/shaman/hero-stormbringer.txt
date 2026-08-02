@@ -24,6 +24,8 @@ Effects          :
 #3 (id=1156241)  : Apply Aura (6) | Dummy (4)
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
 Description      : $?s137040[Each Maelstrom spent has a ${$s1/100}.2% chance to upgrade][Each Maelstrom Weapon spent has a ${$s2/100}.2% chance to upgrade] your next Lightning Bolt to Tempest.
+
+$@spelltooltip452201
 
 Name             : Stormcaller (id=454021) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
@@ -92,6 +94,9 @@ Effects          :
 #2 (id=1276808)  : Apply Aura (6) | Dummy (4)
                    Base Value: 12000 | Scaled Value: 12000 | Target: Self (1)
 Description      : $?s137040[Reduces the cooldown of Stormkeeper by ${$s1/-1000} sec.][Doom Winds summons a Nature Feral Spirit for ${$s2/1000} sec.
+
+$@spellicon469314$@spellname469314
+An Elemental Spirit infused with Nature magic, granting the summoner with $224125s1% increased Nature damage and $224125s3% Physical damage for ${$s2/1000} sec.]
 
 Name             : Nature's Protection (id=454027) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=100]
@@ -147,6 +152,8 @@ Effects          :
 #2 (id=1180815)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Spending $?s137040[Maelstrom][Maelstrom Weapon stacks] grants you $454394s1% haste for $454394d.
+
+Multiple applications may overlap.
 
 Name             : Voltaic Surge (id=454919) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -200,6 +207,8 @@ Effects          :
 #1 (id=1158280)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : $?s137040[Casting Tempest grants a charge of Stormkeeper.][Tempest causes your next Chain Lightning to be instant cast, deal $455097s2% increased damage, and cast an additional time.
+
+Can accumulate up to $470532U charges.]
 
 Name             : Supercharge (id=455110) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=200]
@@ -240,6 +249,9 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Modified By: Enhancement Shaman (137041 effect#12), Charged Conduit (468625 effect#2)
 Description      : $?s137040[Lightning Rod targets now also take $s2% of the damage that Tempest deals, and Tempest also applies Lightning Rod effect.][Gain the effects of the Lightning Rod talent:
+
+$@spellicon210689 $@spellname210689
+$@spelldesc210689]
 
 Name             : Awakening Storms (id=455129) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -283,6 +295,8 @@ Effects          :
 #3 (id=1181762)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : You have a chance to get struck by lightning, increasing your movement speed by $468226s2% for $468226d. The effectiveness is increased to $s3% in outdoor areas.
+
+You call down a Thunderstorm when you Reincarnate.
 
 Name             : Descending Skies (id=1264688) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Stormbringer (Elemental, Enhancement) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
@@ -350,3 +364,5 @@ Effects          :
                    Affected Spells: Windfury Attack (25504), Windfury Attack (33750)
                    Family Flags: 23
 Description      : $?c1[Storm Elemental lasts ${$s1/1000} sec longer, and Stormkeeper generates $s2 Maelstrom.][Windfury Weapon damage increased by $s3%.
+
+When Crash Lightning hits a single enemy, it activates Windfury Weapon.]

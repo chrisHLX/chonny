@@ -28,6 +28,9 @@ Effects          :
 #3 (id=1296389)  : Energize Power (30)
                    Base Value: 400 | Scaled Value: 400 | Resource: runic_power | Target: Self (1)
 Description      : Summons a legion of $?a134735[${$s1/2}][$s1] empowered Lesser Ghouls that last for $1282535d$?s1242608[ and an Abomination]?s1242147[ and a Gargoyle][] to swarm your enemies.
+
+|cFFFFFFFFGenerates ${$s3/10} Runic Power.|r
+Tooltip          : Summoning the Army of the Dead.
 
 Name             : Sudden Doom (id=49530) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -78,6 +81,8 @@ Effects          :
 #2 (id=48019)    : Dummy (3)
                    Base Value: 35 | Scaled Value: 35 | Target: Targeted Enemy (6)
 Description      : An unholy strike that deals $s1 Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at $s2% effectiveness.
+
+Applies Virulent Plague or spreads it to a nearby enemy.
 
 Name             : Outbreak (id=77575) [Spell Family (15)] 
 Talent Entry     : Unholy [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -103,6 +108,12 @@ Effects          :
 #2 (id=818973)   : Trigger Spell (64): Virulent Plague
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 191587 | Target: Targeted Enemy (6)
 Description      : Inflicts the target with Dread Plague and Virulent Plague.
+
+$@spellicon1240996$@spellname1240996
+$@spelldesc1240996
+
+$@spellicon191587$@spellname191587
+$@spelldesc191587
 
 Name             : All Will Serve (id=194916) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=7, col=7, max_rank=1, req_points=8]
@@ -121,6 +132,9 @@ Effects          :
 #2 (id=1237110)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 11 | Target: Self (1)
 Description      : Raise Dead summons an additional skeletal archer at your command that shoots Blighted Arrows.
+
+$@spellicon1239356$@spellname1239356
+$@spelldesc1239356
 
 Name             : Ebon Fever (id=207269) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=5, col=1, max_rank=1, req_points=8]
@@ -192,6 +206,8 @@ Effects          :
 #3 (id=1282078)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2500 | Scaled Value: 2500 | Target: Self (1)
 Description      : Sudden Doom triggers $s2% more often and can accumulate up to ${$m1+1} charges.
+
+Summoning a Lesser Ghoul with Scourge Strike reduces the cooldown of Putrefy by ${$s3/1000}.1 sec.
 
 Name             : Necromancer's Cunning (id=288848) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Unholy [tree=spec, row=4, col=6, max_rank=1, req_points=0]
@@ -240,6 +256,10 @@ Effects          :
 #3 (id=1310993)  : Dummy (3)
                    Base Value: 2 | Scaled Value: 2 | Target: Targeted Enemy (6)
 Description      : Rupture the soul of your enemy, dealing $s1 Shadowfrost damage and causing the foe to take $1241521s1% increased damage from your diseases and minions for $1241521d.
+
+Only usable on enemies below $s2% maximum health.
+
+|cFFFFFFFFConsumes up to $s3 available $lcharge:charges; to cast Putrefy.|r
 
 Name             : Unholy Aura (id=377440) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=9, col=5, max_rank=2, req_points=20]
@@ -277,6 +297,8 @@ Effects          :
 #3 (id=1283841)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : Scourge Strike, Festering Strike, and Death Coil deal $s1% additional damage to enemies below $s2% health.
+
+Dark Transformation resets Soul Reaper's cooldown and allows it to be used on any target.
 
 Name             : Putrid Echoes (id=377580) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Unholy [tree=spec, row=8, col=4, max_rank=1, req_points=20]
@@ -334,6 +356,8 @@ Effects          :
 #1 (id=1005517)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Spending Runic Power increases your Strength by $?A134735[${$S1/100}.2][${$s1/100}.2]% for $377591d.
+
+Multiple applications may overlap.
 
 Name             : Morbidity (id=377592) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=7, col=1, max_rank=1, req_points=8]
@@ -455,6 +479,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Misc Value 2: 6041 (Label) | Target: Self (1)
                    Affected Spells (Label): Lesser Ghoul (275430), Lesser Ghoul (1277098), Lesser Ghoul (1282535)
 Description      : Dark Transformation empowers your $?s207349[Dark Arbiter][Gargoyle], Abomination, Magus and Lesser Ghouls for $390264d, increasing their damage by $s2%.
+
+The duration of Lesser Ghouls are increased by $s1% of your Mastery.
 
 Name             : Coil of Devastation (id=390270) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Unholy [tree=spec, row=6, col=3, max_rank=1, req_points=8]
@@ -593,6 +619,9 @@ Effects          :
                    Base Value: -500 | Scaled Value: -500 | Misc Value: 21 | Misc Value 2: 5916 (Label) | Target: Self (1)
                    Affected Spells (Label): Festering Strike (85948)
 Description      : Festering Strike now follows up with a Festering Scythe that costs no Runes.
+
+$@spellicon458128$@spellname458128
+$@spelldesc458128
 
 Name             : Dark Transformation (id=1233448) [Spell Family (15)] 
 Talent Entry     : Unholy [tree=spec, row=3, col=6, max_rank=1, req_points=0]
@@ -623,6 +652,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: energy | Target: Active Pet (5)
                    Modified By: Dark Transformation (325554 effect#1)
 Description      : Corrupt and evolve your Ghoul into a Monstrosity, greatly empowering its abilities for $d.
+
+Death Coil and Epidemic extends the duration of this effect by ${$390268s1/1000}.1 sec.
+Tooltip          : $?$w2>0[Transformed into an undead monstrosity.][Gassy.]
+Damage dealt increased by $w1%.
 
 Name             : Grave Mastery (id=1238900) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Unholy [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -671,6 +704,8 @@ Effects          :
                    Affected Spells: Scourge Strike (55090), Clawing Shadows (207311), Vampiric Strike (433895)
                    Family Flags: 59
 Description      : Shadows guide your strikes, increasing the damage of your Scourge Strike by $s1%, and causing it to grant you Clawing Shadows up to $1241569u times.
+
+For each stack of Clawing Shadows, your Scourge Strike chains to an additional enemy. Each subsequent chain deals $s3% reduced damage.
 
 Name             : Outnumber (id=1241705) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=10, col=6, max_rank=1, req_points=20]
@@ -686,6 +721,9 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Misc Value 2: 5318 (Label) | Target: Self (1)
                    Affected Spells (Label): Lesser Ghoul (1242998)
 Description      : Each Lesser Ghoul increases the damage of your permanent Ghoul by $s1%, and Dark Transformation additionally empowers the Claw attacks of your Lesser Ghouls to Sweeping Claws.
+
+$@spellicon91778$@spellname91778
+$@spelldesc91778
 
 Name             : Unholy Devotion (id=1241858) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -702,6 +740,8 @@ Effects          :
 #1 (id=1241096)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Putrefy causes your permanent Ghoul to go on an unholy frenzy, increasing its attack speed and energy regeneration by $1270491s1% for $1270491d.
+
+Multiple applications may overlap.
 
 Name             : Summon Gargoyle (id=1242147) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -720,6 +760,8 @@ Effects          :
 #2 (id=1289274)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Army of the Dead now summons a Gargoyle into the battlefield to bombard your enemies for $61777d.
+
+The Gargoyle gains $211947s1% increased damage for every $49206s4 Runic Power you spend and always critically strikes.
 
 Name             : Forbidden Knowledge (id=1242158) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
@@ -738,6 +780,12 @@ Effects          :
 #2 (id=1241675)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for $1242223d.
+
+$@spellicon1242174$@spellname1242174
+$@spelldesc1242174
+
+$@spellicon383269$@spellname383269
+$@spelldesc383269
 
 Name             : Scourging (id=1242604) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=9, col=2, max_rank=2, req_points=20]
@@ -759,6 +807,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Misc Value 2: 6095 (Label) | Target: Self (1)
                    Affected Spells (Label): Clawing Shadows (1241569)
 Description      : Scourge Strike now causes your Plagues to erupt at ${$s2+$s1}% effectiveness.
+
+Clawing Shadows can now stack $s3 additional times.
 
 Name             : Raise Abomination (id=1242608) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=100]
@@ -816,6 +866,8 @@ Effects          :
 #2 (id=1261024)  : Apply Aura (6) | Dummy (4)
                    Base Value: 35 | Scaled Value: 35 | Target: Self (1)
 Description      : The explosion effect of Putrefy extends the duration of your plagues by ${$s1/1000}.1 sec and deals $s2% of the damage they would deal over that time instantly.
+
+Putrefy now applies your plagues to unaffected targets.
 
 Name             : Forbidden Knowledge (id=1256565) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
@@ -833,6 +885,8 @@ Effects          :
 #2 (id=1264140)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Putrefy causes your next $s2 Scourge $LStrike:Strikes; to summon a Lesser Ghoul, and grants you $s1% Mastery for $1256576d.
+
+Multiple applications may overlap.
 
 Name             : Forbidden Knowledge (id=1256566) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -855,6 +909,8 @@ Effects          :
 #4 (id=1296429)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : Each Magus of the Dead under your command increases the damage of Necrotic Coil and Graveyard by $s4%.
+
+Dread Plague has a $s3% chance to rouse the dead, causing a Lesser Ghoul to unearth and leap at the target to Putrefy at $s2% effectiveness.
 
 Name             : Reanimation (id=1256813) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=10, col=4, max_rank=1, req_points=20]
@@ -879,6 +935,8 @@ Effects          :
                    Base Value: 25 | Scaled Value: 25 | Misc Value 2: 5664 (Label) | Target: Self (1)
                    Affected Spells (Label): Frostbolt (317792)
 Description      : When you Putrefy a Lesser Ghoul, it has a $s1% chance to reanimate as a Magus of the Dead who hurls Frostbolts and Shadow Bolts at your foes for ${$s2/1000} sec.
+
+Magus of the Dead Frostbolts and Shadow Bolts deal $s3% increased damage.
 
 Name             : Blightfall (id=1271974) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=10, col=2, max_rank=1, req_points=20]
@@ -899,6 +957,9 @@ Effects          :
 #3 (id=1293674)  : Apply Aura (6) | Proc Trigger Spell (42): Blightfall
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 1271975 | Target: Self (1)
 Description      : Dark Transformation grants access to Blightfall.
+
+$@spellicon1271967$@spellname1271967
+$@spelldesc1271967
 
 Name             : Cycle of Death (id=1290864) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=6, col=2, max_rank=1, req_points=8]
@@ -919,3 +980,5 @@ Effects          :
 #3 (id=1310224)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
 Description      : Putrefy reduces the cooldown of Death and Decay by ${$s1/1000}.1 sec.
+
+Death and Decay reduces the cooldown of Putrefy by ${$s2/1000}.1 sec for each enemy it damages, up to ${$s3/1000}.1 sec.

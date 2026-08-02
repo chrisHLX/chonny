@@ -30,6 +30,8 @@ Effects          :
 #3 (id=268271)   : Trigger Missile Spell w/ Value (148): Summon Infernal
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 111685 | Target: at Area (87)
 Description      : Summons an Infernal from the Twisting Nether, impacting for $22703s1 Fire damage and stunning all enemies in the area for $22703d.
+
+The Infernal will serve you for $111685d, dealing ${$20153s1*(100+$137046s3)/100} damage to all nearby enemies every $19483t1 sec and generating $264365s1 Soul Shard Fragment every $264364t1 sec.
 
 Name             : Rain of Fire (id=5740) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=2, col=5, max_rank=1, req_points=0, select_idx=100]
@@ -55,6 +57,9 @@ Effects          :
 #3 (id=291291)   : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Calls down a rain of hellfire the target location, dealing ${$42223m1*8} Fire damage over $d to enemies in the area.
+
+|cFFFFFFFFThis spell is cast at a selected location.|r
+Tooltip          : $42223s1 Fire damage every $5740t2 sec.
 
 Name             : Soul Fire (id=6353) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=9, col=1, max_rank=1, req_points=20, select_idx=200]
@@ -83,6 +88,9 @@ Effects          :
 #3 (id=831295)   : Dummy (3)
                    Base Value: 10000 | Scaled Value: 10000
 Description      : Burns the enemy's soul, dealing $s1 Fire damage and applying $?a445465[Wither][Immolate].
+
+|cFFFFFFFFGenerates ${$281490s1/10} Soul Shard.|r
+Variables        : $cdr=${$s2/1000}
 
 Name             : Shadowburn (id=17877) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=5, col=1, max_rank=1, req_points=8]
@@ -110,6 +118,9 @@ Effects          :
 #4 (id=1162782)  : Dummy (3)
                    Base Value: 20 | Scaled Value: 20 | Target: Targeted Enemy (6)
 Description      : Blasts a target for $s1 Shadowflame damage. Only usable on enemies that have less than $s4% health.
+
+|cFFFFFFFFRestores ${$245731s1/10} Soul Shard and refunds a charge if the target dies within $d.|r
+Tooltip          : If the target dies and yields experience or honor, Shadowburn restores ${$245731s1/10} Soul Shard and refunds a charge.
 
 Name             : Conflagrate (id=17962) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=2, col=3, max_rank=1, req_points=0]
@@ -131,6 +142,10 @@ Effects          :
 #1 (id=9553)     : School Damage (2): fire
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.59309 | PvP Coefficient: 0.704 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Triggers an explosion on the target, dealing $s1 Fire damage.$?s196406[
+
+Reduces the cast time of your next Incinerate or Chaos Bolt by $117828s1% for $117828d.][]
+
+|cFFFFFFFFGenerates $245330s1 Soul Shard Fragments.|r
 
 Name             : Havoc (id=80240) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=300]
@@ -179,6 +194,8 @@ Effects          :
 #2 (id=124409)   : Trigger Spell (64): Grimoire of Sacrifice
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 196099 | Target: Self (1)
 Description      : Sacrifices your demon pet for power, gaining its command demon ability, and causing your spells to sometimes also deal $196100s1 additional Shadow damage.
+
+Lasts $196099d or until you summon a demon pet.
 
 Name             : Chaos Bolt (id=116858) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -460,6 +477,8 @@ Effects          :
 #2 (id=1021945)  : Apply Aura (6) | Dummy (4)
                    Base Value: 80 | Scaled Value: 80 | Target: Self (1)
 Description      : When your $?a445465[Wither][Immolate] deals periodic damage to a target above $s2% health, gain $387263s1% Haste for $387263d.
+
+Stacks up to $387263U times.
 
 Name             : Chaos Incarnate (id=387275) [Spell Family (5), Passive] 
 Talent Entry     : Destruction [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -498,6 +517,8 @@ Effects          :
 #3 (id=1022139)  : Apply Aura (6) | Proc Trigger Spell (42): Backlash
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 387385 | Target: Self (1)
 Description      : Increases your critical strike chance by $s1%.
+
+Physical attacks against you have a $s2% chance to make your next Incinerate instant cast. This effect can only occur once every $proccooldown sec.
 
 Name             : Mayhem (id=387506) [Spell Family (5), Passive] 
 Talent Entry     : Destruction [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -520,6 +541,10 @@ Effects          :
 #3 (id=1033388)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5000 | Scaled Value: 5000 | Target: Self (1)
 Description      : Your single target spells have a $s1% chance to apply $?a200546[Bane of Havoc below][Havoc to] a nearby enemy for ${$s3/1000}.1 sec.
+
+$?a200546[$@spellicon200546 $@spellname200546
+Curses the ground with a demonic bane, causing all of your single target spells to also strike targets marked with the bane for $80240s1% of the damage dealt. Lasts ${$s3/1000}.1 sec.][$@spellicon80240 $@spellname80240
+Marks a target with Havoc for ${$s3/1000}.1 sec, causing your single target spells to also strike the Havoc victim for $80240s1% of the damage dealt.]
 
 Name             : Explosive Potential (id=388827) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Destruction [tree=spec, row=4, col=2, max_rank=1, req_points=0]
@@ -683,6 +708,8 @@ Effects          :
 #3 (id=1196660)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Periodic damage from $?a445465[Wither][Immolate] has a $s1% chance to fire a Demonfire bolt at $s3% increased effectiveness.
+
+Incinerate has a $s2% chance to fire a Demonfire bolt at $s3% increased effectiveness.
 
 Name             : Rain of Fire (id=1214467) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=2, col=5, max_rank=1, req_points=0, select_idx=200]
@@ -708,6 +735,9 @@ Effects          :
 #3 (id=1196683)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Calls down a rain of hellfire upon your target, dealing ${$42223m1*8} Fire damage over $d to enemies in the area.
+
+|cFFFFFFFFThis spell is cast at your target.|r
+Tooltip          : $42223s1 Fire damage every $5740t2 sec.
 
 Name             : Practiced Chaos (id=1244284) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Destruction [tree=spec, row=3, col=5, max_rank=1, req_points=0]
@@ -740,6 +770,8 @@ Effects          :
 #2 (id=1244998)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Increases Conflagrate damage by $s1%. 
+
+Conflagrate now erupts the target's $?a445465[Wither][Immolate], spreading it up to $s2 nearby enemies.
 
 Name             : Improved Havoc (id=1244460) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Destruction [tree=spec, row=5, col=4, max_rank=1, req_points=8]
@@ -796,6 +828,8 @@ Effects          :
 #1 (id=1245642)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Cataclysm now leaves behind a lake of fire that deals ${$1244890s1*($1244885d/$1244885t2)} Fire damage to enemies within it over $1244885d.
+
+$?a445465[Wither][Immolate] deals $1244918s1% increased damage to enemies within the lake of fire.
 
 Name             : Destructive Rapidity (id=1244928) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Destruction [tree=spec, row=8, col=5, max_rank=1, req_points=20]
@@ -848,6 +882,11 @@ Effects          :
 #1 (id=1245979)  : Apply Aura (6) | Proc Trigger Spell (42): Summon Overfiend
                    Base Value: 60 | Scaled Value: 60 | Trigger Spell: 434587 | Target: Self (1)
 Description      : Casting Soul Fire summons an Overfiend.
+
+Opening a Dimensional Rift has a chance to summon an Overfiend instead.
+
+$@spellicon434587 $@spellname434587
+$@spelldesc434587
 
 Name             : Fiendish Cruelty (id=1245633) [Spell Family (5), Passive] 
 Talent Entry     : Destruction [tree=spec, row=6, col=1, max_rank=1, req_points=8]
@@ -881,6 +920,9 @@ Effects          :
 #1 (id=1277715)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Casting Incinerate has a chance to evoke an echo of the Dark Titan's power.
+
+$@spellicon1265884 $@spellname1265884
+$@spelldesc1265884
 
 Name             : Embers of Nihilam (id=1265772) [Spell Family (5), Passive] 
 Talent Entry     : Destruction [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
@@ -925,6 +967,8 @@ Effects          :
 #3 (id=1301536)  : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | Target: Self (1)
 Description      : Casting Chaos Bolt, Shadowburn, or Rain of Fire evokes an echo of the Dark Titan's power at $s1%, $s2%, or $s3% effectiveness respectively.
+
+If no target is found, a random target suffering from your $?a445465[Wither][Immolate] will be selected.
 
 Name             : Inferno (id=1280483) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Destruction [tree=spec, row=10, col=3, max_rank=1, req_points=20]
@@ -959,3 +1003,14 @@ Effects          :
 #1 (id=1293832)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Chaos Bolt and Shadowburn have a $s1% chance to rip open a hole in space and time, opening a random portal that damages your target:
+
+$@spellicon394235$@spellname394235
+$@spelldesc394235
+
+$@spellicon387979$@spellname387979
+$@spelldesc387979
+
+$@spellicon394243$@spellname394243
+$@spelldesc394243
+
+|cFFFFFFFFGenerates $s2 Soul Shard Fragments.|r

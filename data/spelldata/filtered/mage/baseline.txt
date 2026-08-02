@@ -1,6 +1,6 @@
 # Mage — Baseline (no talent tree)
 # Extracted verbatim from mage.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
-# 691 spell record(s). Mechanical regroup only — no content altered.
+# 686 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Invisibility (id=66) [Spell Family (3)] 
 Class            : Mage
@@ -27,6 +27,9 @@ Effects          :
 #3 (id=40)       : None (0)
                    Base Value: 100 | Scaled Value: 100
 Description      : Turns you invisible over $66d, reducing threat each second. While invisible, you are untargetable by enemies. Lasts $32612d. Taking any action cancels the effect.$?a382293[
+
+Increases your movement speed by $382293s1% for $337278d.][]
+Tooltip          : Fading.
 
 Name             : Frostbolt (id=116) [Spell Family (3)] 
 Class            : Mage
@@ -48,6 +51,8 @@ Effects          :
 #1 (id=75)       : Trigger Missiles (32): Frostbolt | Attributes: Chain from Initial Target (7), Add Target (Dest) Combat Reach to AOE (11), Area Effects Use Target Radius (17)
                    Base Value: 1 | Scaled Value: 1 | Chain Multiplier: 0.8 | Trigger Spell: 228597 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Launches a bolt of frost at the enemy, causing $228597s1 Frost damage and slowing movement speed by $205708s1% for $205708d.$?a1246769[
+
+|CFFffffffApplies $1246769s1 $lstack:stacks; of Freezing.|R][]
 
 Name             : Cone of Cold (id=120) [Spell Family (3)] 
 Class            : Mage
@@ -140,6 +145,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.88125 | PvP Coefficient: 2.592 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Throws a fiery ball that causes $s1 Fire damage.$?a157642[
+
+Each time your Fireball fails to critically strike a target, it gains a stacking $157644s1% increased critical strike chance. Effect ends when Fireball critically strikes.][]
 
 Name             : Arcane Explosion (id=1449) [Spell Family (3)] 
 Class            : Mage
@@ -165,6 +172,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Resource: none | Target: Self (1)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Causes an explosion of magic around the caster, dealing $s2 Arcane damage to all enemies within $A2 yards.$?a137021[
+
+|cFFFFFFFFGenerates $s1 Arcane Charge if any targets are hit.|r][]
 
 Name             : Arcane Intellect (id=1459) [Spell Family (3)] 
 Class            : Mage
@@ -186,6 +195,9 @@ Effects          :
 #2 (id=1286688)  : Remove Aura (203): Arcane Intellect Highlight
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1271907 | Radius: 100 yards | Target: Targeted Ally or Raid (118)
 Description      : Infuses the target with brilliance, increasing their Intellect by $s1% for $d.  
+
+If the target is in your party or raid, all party and raid members will be affected.
+Tooltip          : Intellect increased by $w1%.
 
 Name             : Blink (id=1953) [Spell Family (3)] 
 Class            : Mage
@@ -215,6 +227,9 @@ Effects          :
 #3 (id=594)      : Apply Aura (6) | Mechanic Immunity (77)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value: 7 | Target: Self (1)
 Description      : Teleports you forward $A1 yds or until reaching an obstacle, and frees you from all stuns and bonds.$?a382289[
+
+Gain a shield that absorbs $382289s1% of your maximum health for $382290d after you Blink.][]
+Tooltip          : Blinking.
 
 Name             : Counterspell (id=2139) [Spell Family (3)] 
 Class            : Mage
@@ -351,6 +366,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
                    Modified By: Ignition (1254756 effect#1), Wildfire (1254828 effect#1)
 Description      : Your target burns for an additional ${$s1}.1% over $12654d of the total direct damage caused by your Fireball, Fire Blast,  Pyroblast$?s153561[, Meteor][], and Flamestrike. If this effect is reapplied, any remaining damage will be added to the new Ignite.$?a1254756[
+
+Fire Blast causes $s1% of your Ignite to spread to $s5 nearby $Lenemy:enemies;.][]
 
 Name             : Fireball (id=13438) [Spell Family (3)] 
 School           : Fire
@@ -823,6 +840,10 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Resource: none | Target: Self (1)
                    Modified By: Impetus (383676 effect#1), Rollin' Hot (1219035 effect#2)
 Description      : Blasts the target with energy, dealing $30451s1 Arcane damage.
+
+Each Arcane Charge increases damage by $36032s1% and mana cost by $36032s5%, and reduces cast time by $36032s4%.
+
+|cFFFFFFFFGenerates $s2 Arcane $lCharge:Charges;.|r
 
 Name             : Waterbolt (id=31707) [Spell Family (3)] 
 Class            : Mage
@@ -951,6 +972,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc114664
 Tooltip          : Increases the damage of Arcane Blast, Arcane Missiles, Arcane Explosion, and Arcane Barrage by $36032w1%.
+
+Increases the mana cost of Arcane Blast by $36032w2%$?{$w5<0}[, and reduces the cast time of Arcane Blast by $w5%.][.]
+
+Increases the number of targets hit by Arcane Barrage for 50% damage by $36032w3.
 
 Name             : World Breaker (id=36111) [Spell Family (3)] 
 School           : Physical
@@ -1051,6 +1076,10 @@ Effects          :
                    Base Value: 40 | Scaled Value: 40 | Chain Multiplier: 1 | Target: Targeted Enemy (6)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Launches bolts of arcane energy at the enemy target, causing $s1 Arcane damage. 
+
+For each Arcane Charge, deals $36032s2% additional damage$?a321526[, grants you ${$321526s1/100}.1% of your maximum mana,][]$?a231564[ and hits $231564s1 additional nearby $Ltarget:targets; for $231564s2% of its damage][].
+
+|cFFFFFFFFConsumes all Arcane Charges.|r
 
 Name             : Pyroblast Clearcasting Driver (id=44448) [Spell Family (3), Passive, Hidden] 
 Class            : Fire Mage
@@ -1084,6 +1113,9 @@ Effects          :
 #1 (id=36371)    : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : The target becomes a Living Bomb, taking $217694o1 Fire damage over $217694d, and then exploding to deal an additional $44461s2 Fire damage to the target and reduced damage to all other enemies within $44461A2 yds.
+
+Other enemies hit by this explosion also become a Living Bomb, but this effect cannot spread further.
+Tooltip          : Causes $w1 Fire damage every $t1 sec. After $d, the target explodes, causing $w2 Fire damage to the target and all other enemies within $44461A2 yards$?$w3>0[, and spreading Living Bomb][].
 
 Name             : Living Bomb (id=44461) [Spell Family (3)] 
 Class            : Mage
@@ -1314,6 +1346,14 @@ Effects          :
                    Affected Spells: Frozen Orb (84721)
                    Family Flags: 78
 Description      : Casting Frostbolt$?a381244[, Ice Lance,][] or Flurry grants you an Icicle. Casting Ice Lance causes all Icicles stored to begin launching at the target, each dealing $148022s1 Frost damage.$?a379049[
+
+Frostbolt and Flurry have a $379049s2% chance to generate $379049s1 Icicles.][]
+
+Up to $s2 Icicles can be stored. Any excess Icicles gained will be automatically launched.
+
+Increases the damage of Frozen Orb, Blizzard,$?a443739[ Frost Splinters,][] and Comet Storm by $321684s1%.
+
+Increases the damage of Ice Lance, Glacial Spike, and Ray of Frost by $321684s2%.
 
 Name             : Clearcasting (id=79684) [Spell Family (3), Passive] 
 Class            : Arcane Mage
@@ -1366,6 +1406,13 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
                    Modified By: Echoes of Elisande (320919 effect#1)
 Description      : Warp the flow of time, increasing haste by $s1% $?a320919[and time rate by $s4% ][]for all party and raid members for $d.
+
+Allies will be unable to benefit from Bloodlust, Heroism, or Time Warp again for $57724d.$?a320920[
+
+When the effect ends, all affected players are frozen in time for $356346d.][]
+Tooltip          : Haste increased by $w1%. $?$W4>0[Time rate increased by $w4%.][]$?$W3=1[
+
+When the effect ends, all affected players are frozen in time for $356346d.][]
 
 Name             : Temporal Displacement (id=80354) 
 Class            : Mage
@@ -1520,6 +1567,8 @@ Effects          :
 #2 (id=90298)    : Trigger Spell (64): Arcane Charge
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 36032 | Target: Self (1)
 Description      : Blasts the target with energy, dealing $30451s1 Arcane damage. Generates an Arcane Charge.
+
+Arcane Blast's damage is increased by $36032s1% per Arcane Charge, and its mana cost is increased by $36032s2% per Arcane Charge.
 
 Name             : Wizardry (desc=Passive) (id=89744) [Passive, Hidden] 
 Class            : Mage
@@ -1689,6 +1738,9 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Target: Targeted Enemy (6)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Places a Nether Tempest on the target which deals $114923o1 Arcane damage over $114923d to the target and nearby enemies within 10 yds. Limit 1 target. Deals reduced damage to secondary targets.
+
+Damage increased by $36032s1% per Arcane Charge.
+Tooltip          : Deals $w1 Arcane damage and an additional $w1 Arcane damage to all enemies within $114954A1 yards every $t sec.
 
 Name             : Nether Tempest (id=114954) [Spell Family (3)] 
 Class            : Mage
@@ -2756,6 +2808,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.1 | Misc Value 2: 3408 (Label) | Target: Self (1)
                    Affected Spells (Label): Frost Splinter (443722), Arcane Splinter (443763)
 Description      : Increases your Mana regeneration rate and maximum Mana by ${$m1}.1%.
+
+Arcane Charges increase the damage of Arcane Blast by an additional ${$m2}.1% and Arcane Barrage by ${$m3}.1%.
+
+Increases all other Arcane damage by ${$s5}.1%
 
 Name             : Molten Skin (id=194315) [Spell Family (3), Passive] 
 Class            : Mage
@@ -2856,6 +2912,8 @@ Effects          :
 #1 (id=286705)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Tooltip          : Increases the mana cost of Arcane Blast by $36032w2%$?{$w5<0}[, and reduces the cast time of Arcane Blast by $w5%.][.]
+
+Increases the number of targets hit by Arcane Barrage for 50% damage by $36032w3.
 
 Name             : Black Icicle (id=195609) [Spell Family (3)] 
 Class            : Mage
@@ -2913,6 +2971,8 @@ Effects          :
 #4 (id=1222905)  : Apply Aura (6) | Periodic Dummy (226): every 0.5 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Unleash a flurry of disruptive magic onto your target, stealing a beneficial magic effect every ${$t2}.1 sec for $d.
+
+Castable while moving, but movement speed is reduced by $s3% while channeling.
 
 Name             : Ice Form (desc=PvP Talent) (id=198144) [Spell Family (3)] 
 School           : Frost
@@ -2981,6 +3041,8 @@ Effects          :
 #1 (id=294013)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 0.8 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Conjures a massive spike of ice that impales your target, dealing $228600s1 damage and slowing the target's movement speed by $205708s1% for $205708d.
+
+$?a1280780[|CFFffffffShatters $1280780s1 $lstack:stacks; of Freezing.|R][|CFFffffffApplies $1246769s3 $lstack:stacks; of Freezing.|R]
 
 Name             : Glacial Spike! (id=199844) 
 Class            : Mage
@@ -4157,6 +4219,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc208213
 Tooltip          : You recently moved.
+
+Stay still in order to gain Norgannon's Foresight.
 
 Name             : Ice Time (id=235227) [Spell Family (3), Passive] 
 School           : Frost
@@ -4459,6 +4523,10 @@ Effects          :
 #1 (id=463897)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Gain one of the following talents based on your specialization:
+
+|cFFFFFFFFArcane:|r Amplification
+|cFFFFFFFFFire:|r Flame On
+|cFFFFFFFFFrost:|r Frozen Touch
 
 Name             : Soul of the Archmage (id=247554) [Spell Family (3), Passive] 
 School           : Physical
@@ -5232,6 +5300,8 @@ Effects          :
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : $@spelldesc277656
 
+Tooltip          : Suffering $w1 Fire damage every $t1 sec.
+
 Name             : Clearcasting (id=277726) [Spell Family (3), Hidden] 
 Class            : Mage
 School           : Physical
@@ -5724,6 +5794,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Conjure a radiant spark that causes $s1 Arcane damage instantly, and an additional $o2 damage over $d.
+
+The target takes $307454s1% increased damage from your direct damage spells, stacking each time they are struck. This effect ends after $307454u spells.
+
+Tooltip          : Suffering $w2 Arcane damage every $t2 sec.
 
 Name             : Radiant Spark Vulnerability (id=307454) [Spell Family (3)] 
 Class            : Mage
@@ -5787,6 +5861,9 @@ Effects          :
 #4 (id=843436)   : Apply Aura (6) | Periodic Trigger Spell (23): Fae Tendrils every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 342373 | Target: Self (1)
 Description      : Draw power from the ground beneath, dealing ${$325130s1*$d/$t} Nature damage over $d to enemies within $325130A1 yds. 
+
+While channeling, your Mage ability cooldowns are reduced by ${-$s2/1000*$d/$t} sec over $d.
+Tooltip          : Every $t1 sec, deal $325130s1 Nature damage to enemies within $325130A1 yds and reduce the remaining cooldown of your abilities by ${-$s2/1000} sec.
 
 Name             : Mirrors of Torment (desc=Venthyr) (id=314793) [Spell Family (3)] 
 Class            : Mage
@@ -5817,6 +5894,13 @@ Effects          :
 #2 (id=871274)   : Dummy (3)
                    Base Value: 6 | Scaled Value: 6
 Description      : Conjure $n mirrors to torment the enemy for $d. Whenever the target attacks, casts a spell, or uses an ability, a mirror is consumed to inflict $320035s1 Shadow damage and their movement and cast speed are slowed by $320035s3%. This effect cannot be triggered more often than once per $345977d.
+
+The final mirror will instead inflict $317589s1 Shadow damage to the enemy, Rooting and Silencing them for $317589d.
+
+Whenever a mirror is consumed $?c1[you gain Clearcasting][]$?c2[your Fire Blast cooldown is reduced by $s2 sec][]$?c3[you gain Brain Freeze][].
+Tooltip          : Attacking, casting a spell or ability, consumes a mirror to inflict Shadow damage and reduce cast and movement speed by $320035s3%. 
+
+Your final mirror will instead Root and Silence you for $317589d.
 
 Name             : Tormenting Backlash (id=317589) [Spell Family (3)] 
 Class            : Mage
@@ -5867,6 +5951,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 0.828 | Target: Targeted Enemy (6)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Blasts the enemy for $s1 Fire damage.$?a231568[
+
+|cFFFFFFFFFire:|r Always deals a critical strike.][]
 
 Name             : Agonizing Backlash (id=320035) [Spell Family (3)] 
 Class            : Mage
@@ -6112,6 +6198,9 @@ Effects          :
                    Affected Spells: Cone of Cold (120), Frost Nova (122), Fireball (133), Arcane Explosion (1449), Flamestrike (2120), Scorch (2948), Arcane Missiles (7268), Pyroblast (11366), Arcane Blast (30451), Dragon's Breath (31661), Arcane Barrage (44425), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Nether Tempest (114923), Nether Tempest (114954), Icicle (148022), Meteor (153564), Comet Storm (153596), Arcane Orb (153640), Meteor Burn (155158), Supernova (157980), Blast Wave (157981), Ice Nova (157997), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Living Bomb (217694), Arcane Assault (225119), Flurry (228354), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Frost Nova (235235), Blazing Barrier (235314), Time and Space (240689), Living Bomb (244813), Ebonbolt (257538), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Trailing Embers (277703), Glacial Assault (279856), Radiant Spark (307443), Tormenting Backlash (317589), Fire Blast (319836), Agonizing Backlash (320035), Pyroblast (321712), Shifting Power (325130), Glacial Fragments (327498), Arcane Echo (342232), Tormenting Backlash (342375), Meteor (351140), Arcane Surge (365350), Glacial Assault (379029), Blast Wave (389631), Arcane Explosion (414381), Frostfire Infusion (431171), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438671), Living Bomb (438672), Living Bomb (438674), Frost Splinter (443722), Arcane Splinter (443763), Volatile Magic (444966), Volatile Magic (444967), Archmage's Wrath (444968), Meteorite (449559), Meteorite (449560), Meteorite Burn (449561), Meteorite (449569), Greater Pyroblast (450421), Pyroblast (450461), Flamestrike (450462), Arcane Barrage (450499), Living Bomb (453251), Arcane Surge (453326), Meteorite (456139), Pyroblast (460475), Flamestrike (460476), Frigid Pulse (460623), Arcane Explosion (461508), Living Bomb (464884), Frostfire Bolt (468655), Frostbolt Volley (1216910), Glacial Spike (1236211), Arcane Pulse (1241462), Arcane Pulse (1243460), Shatter (1246949), Freezing Winds (1247554), Cinderstorm (1254024), Flamestrike (1254851), Hand of Frost (1262769), Glacial Spike (1262862), Pyroblast (1262863), Conflagration (1271173), Burnout (1271335), Winter's End (1280757)
                    Family Flags: 3
 Description      : Transform into a powerful skeletal mage for $d. 
+
+While in the form of a skeletal mage, your Frostbolt, Fireball, and Arcane Blast hit up to $s4 enemies near your target and your spell damage is increased by $s2%.
+Tooltip          : Transformed into a powerful skeletal mage, greatly enhancing your Frostbolt, Fireball, and Arcane Blast and increasing your spell damage by $w2%.
 
 Name             : Shifting Power (desc=Night Fae) (id=325130) [Spell Family (3)] 
 Class            : Mage
@@ -7771,6 +7860,8 @@ Effects          :
 #1 (id=1016039)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : While Combustion is not active, consuming Hot Streak has a low chance to cause all Pyroblasts and Flamestrikes to have no cast time and be guaranteed critical strikes for $383874d. 
+
+Each cast of Pyroblast or Flamestrike during Hyperthermia increases the damage of Pyroblast and Flamestrike by $1242220s1%, up to ${$1242220u*$1242220s1}%.
 
 Name             : Hyperthermia (id=383874) [Spell Family (3)] 
 Class            : Mage
@@ -8641,6 +8732,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Resource: none | Target: Self (1)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Causes an explosion of magic around the caster, dealing $s2 Arcane damage to all enemies within $A2 yards.$?a137021[
+
+|cFFFFFFFFGenerates $s1 Arcane Charge if any targets are hit.|r][]
 
 Name             : Displacement (id=414462) 
 Class            : Mage
@@ -8694,6 +8787,11 @@ Effects          :
 #9 (id=1118706)  : Apply Aura (6) | Increase Speed% (31)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Your blood runs cold, reducing all damage you take by $s8% for $d.$?a382292[
+
+While Ice Cold is active, you heal for ${$382292s1*10}% of your maximum health over the duration.][]
+
+Causes Hypothermia, preventing you from recasting Ice Cold for $41425d.
+Tooltip          : Damage taken reduced by $s8%.
 
 Name             : Improved Mass Invisibility (desc=PvP Talent) (id=415945) [Spell Family (3), Passive] 
 Class            : Mage
@@ -8748,6 +8846,8 @@ Effects          :
 #3 (id=1093835)  : Dummy (3)
                    Base Value: 3 | Scaled Value: 3
 Description      : Cone of Cold's cooldown is increased to $s2 sec and if Cone of Cold hits $s3 or more enemies it resets the cooldown of Frozen Orb and Comet Storm. In addition, Cone of Cold applies Winter's Chill to all enemies hit.
+
+Cone of Cold's cooldown can no longer be reduced by your cooldown reduction effects.
 
 Name             : Splintering Ray (id=418735) [Spell Family (3)] 
 Class            : Mage
@@ -9302,6 +9402,8 @@ Effects          :
 #1 (id=1131421)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : The target becomes a Living Bomb, taking $438672o1 Fire damage over $438672d, and then exploding to deal an additional $438674s2 Fire damage to the target and reduced damage to all other enemies within $438674A2 yds.
+
+Other enemies hit by this explosion also become a Living Bomb, but this effect cannot spread further.
 
 Name             : Living Bomb (id=438674) [Spell Family (3)] 
 Class            : Mage
@@ -9759,6 +9861,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 2.4 | Target: Targeted Enemy (6)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Hurls an immense fiery boulder that causes $s1 Fire damage$?a321711[ and an additional $321712o2 Fire damage over $321712d][].$?a383669[
+
+Pyroblast's initial damage is increased by $383669s1% when the target is above $383669s3% health or below $383669s2% health.][]
 
 Name             : Flamestrike (id=450462) [Spell Family (3)] 
 Class            : Mage
@@ -9784,6 +9888,9 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Calls down a pillar of fire, burning all enemies within the area for $s1 Fire damage. Deals reduced damage beyond $s2 targets.$?a205037[
+
+Leaves behind a patch of flames that burns enemies within it for ${8*$205472s1} Fire damage over $205470d.][]
+Tooltip          : Movement speed slowed by $s2%.
 
 Name             : Arcane Barrage (id=450499) [Spell Family (3)] 
 Class            : Mage
@@ -9825,6 +9932,9 @@ Effects          :
 #2 (id=1270209)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Arcane Barrage grants Clearcasting and generates $s1 Arcane Charges.
+
+Each cast of Arcane Barrage grants $s2 stacks of Arcane Salvo and casting Arcane Barrage does not consume Arcane Salvo.
+Tooltip          : Arcane Barrage grants Clearcasting, $s2 stacks of Arcane Salvo, and generates $s1 Arcane Charges.
 
 Name             : Burden of Power (id=451049) [Spell Family (3)] 
 Class            : Mage
@@ -10048,6 +10158,8 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Expend all of your current mana to annihilate your enemy target and nearby enemies for up to ${$s1*$s2} Arcane damage based on Mana spent. Deals reduced damage beyond $s3 targets.
+
+For the next $365362d, your Mana regeneration is increased by $365362s3% and spell damage is increased by $365362s1%.
 
 Name             : Fire's Ire (id=453385) [Spell Family (3)] 
 Class            : Mage
@@ -10403,6 +10515,9 @@ Effects          :
 #1 (id=1163201)  : Leap (29)
                    Base Value: 0 | Scaled Value: 0 | Radius: 0 - 6 yards | Target: Self (1) -> at Radius (73)
 Description      : Teleports you $A1 yds or until reaching an obstacle in a random direction.
+
+Only usable in delves and outdoors in Khaz Algar.
+Tooltip          : Blinking.
 
 Name             : Spellfrost Teachings (id=458411) [Spell Family (3)] 
 Class            : Mage
@@ -10510,6 +10625,9 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Calls down a pillar of fire, burning all enemies within the area for $s1 Fire damage. Deals reduced damage beyond $s2 targets.$?a205037[
+
+Leaves behind a patch of flames that burns enemies within it for ${8*$205472s1} Fire damage over $205470d.][]
+Tooltip          : Movement speed slowed by $s2%.
 
 Name             : Spellfrost Teachings (id=460568) [Spell Family (3), Hidden] 
 Class            : Mage
@@ -10563,6 +10681,8 @@ Effects          :
 #2 (id=1169589)  : Trigger Spell (64): Nether Flux
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1233443 | Target: Self (1)
 Description      : Brand your target, increasing the damage they receive from your next targeted spell by $1233452s1%.
+
+|cFFFFFFFFGenerates $1233443s1 Arcane Charges.|r
 
 Name             : Arcane Explosion (id=461508) [Spell Family (3)] 
 Class            : Mage
@@ -10587,6 +10707,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Causes an explosion of magic around the caster, dealing $s2 Arcane damage to all enemies within $A2 yards.$?a137021[
+
+|cFFFFFFFFGenerates $s1 Arcane Charge if any targets are hit.|r][]
 
 Name             : High Voltage (id=461524) [Spell Family (3)] 
 Class            : Mage
@@ -11299,6 +11421,8 @@ Effects          :
 #1 (id=1220649)  : Dummy (3)
                    Base Value: 25 | Scaled Value: 25 | Target: Current Target (25)
 Description      : Casts damaging abilities for use in combat, rotating through them based on priority.
+
+The global cooldown of abilities used through the Single-Button Assistant is $s1% longer.
 
 Name             : Recuperate (id=1231411) 
 Class            : Warrior, Paladin, Hunter, Rogue, Priest, Death Knight, Shaman, Mage, Warlock, Monk, Druid, Demon Hunter, Evoker
@@ -11411,6 +11535,11 @@ Effects          :
 #1 (id=1231966)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 0.8 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Conjures a massive spike of ice, and merges your current Icicles into it. It impales your target, dealing $228600s1 damage plus all of the damage stored in your Icicles, and freezes the target in place for $228600d. Damage may interrupt the freeze effect.
+
+Requires 5 Icicles to cast.
+
+|cFFFFFFFFPassive:|r Ice Lance no longer launches Icicles.
+Tooltip          : Frozen in place.
 
 Name             : Glacial Spike (id=1236211) [Spell Family (3)] 
 Class            : Mage
@@ -11478,6 +11607,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 44425 | Target: Self (1)
 Description      : $@spelldesc384452
 Tooltip          : Increases the damage of your next Arcane Barrage by $s1%.$?a384858[
+
+Arcane Barrage has a ${$s2*$384858s1 }% chance to also fire an Arcane Orb.][]
 
 Name             : Arcane Pulse (id=1243460) [Spell Family (3)] 
 Class            : Mage
@@ -11504,6 +11635,10 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : A pulse of Arcane magic erupts from underneath your target, dealing $s2 Arcane damage to all enemies within $A2 yds. Damage reduced beyond $s3 targets.
+
+Each Arcane Charge increases damage by $36032s1%, radius by $36032s6 yds, and mana cost by $36032s5%.$?a137021[
+
+|cFFFFFFFFGenerates $s1 Arcane Charge.|r][]
 
 Name             : Draught of Power (id=1243926) [Spell Family (3), Passive] 
 Class            : Mage
@@ -11622,6 +11757,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.6 | Misc Value 2: 5945 (Label) | Target: Self (1)
                    Affected Spells (Label): Glacial Assault (379029)
 Description      : Spells that Freeze your enemies deal $s1% increased damage.
+
+Spells that Shatter your enemies deal $s2% increased damage.
 
 Name             : Shatter (id=1246769) [Spell Family (3), Passive] 
 Class            : Frost Mage
@@ -11648,6 +11785,8 @@ Effects          :
 #5 (id=1252026)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Damage from Frostbolt and Flurry applies Freezing to their targets. Stacks up to $1221389u times.
+
+Damage from Ice Lance shatters your enemies, consuming $s4 $Lstack:stacks; of Freezing and dealing $1246949s1 Frost damage for each stack removed.
 
 Name             : Shatter (id=1246949) [Spell Family (3)] 
 Class            : Mage
@@ -11772,59 +11911,6 @@ Effects          :
 Description      : $@spelldesc443783
 Tooltip          : Any time you would generates a Frost Splinter, you have a $443783s2% chance to generate an additional Frost Splinter.
 
-Name             : Voidfall (id=1253304) [Spell Family (107), Passive] 
-Talent Entry     : Annihilator (Generic) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
-Class            : Mage, Demon Hunter
-School           : None
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 66: Demon Hunter Spells
-                 : 292
-                 : 5650
-Proc Chance      : 100%
-Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
-Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
-Effects          :
-#1 (id=1258980)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
-#2 (id=1258981)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 8 | Scaled Value: 8 | Target: Self (1)
-#3 (id=1258982)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 35 | Scaled Value: 35 | Target: Self (1)
-Description      : $?a212613[Fracture][Consume] has a $s3% chance to grant $m1 $Lstack:stacks; of Voidfall.
-
-Name             : Path to Oblivion (id=1253399) [Spell Family (107), Passive] 
-Talent Entry     : Annihilator (Generic) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
-Class            : Mage, Demon Hunter
-School           : None
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 66: Demon Hunter Spells
-                 : 292
-Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
-Effects          :
-#1 (id=1259124)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value: 32 | Misc Value 2: 5652 (Label) | Target: Self (1)
-                   Affected Spells (Label): Voidfall (1256301), Voidfall (1256302), Voidfall (1256322)
-Description      : Each stack of Voidfall grants $s1% increased movement speed.
-
-Name             : Swift Erasure (id=1253668) [Spell Family (107), Passive] 
-Talent Entry     : Annihilator (Generic) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
-Class            : Mage, Demon Hunter
-School           : None
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 66: Demon Hunter Spells
-                 : 292
-                 : 5812: Devourer Demon Hunter (1213636 effect#8)
-Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
-Effects          :
-#1 (id=1259589)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Misc Value 2: 5652 (Label) | Target: Self (1)
-                   Affected Spells (Label): Voidfall (1256301), Voidfall (1256302), Voidfall (1256322)
-                   Modified By: Devourer Demon Hunter (1213636 effect#8)
-Description      : Each stack of Voidfall grants $s1% Haste.
-
 Name             : Cinderstorm (id=1254024) [Spell Family (3)] 
 Class            : Mage
 School           : Fire
@@ -11858,21 +11944,6 @@ Effects          :
 #1 (id=1260666)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Fireball always critically strikes when it damages an enemy below $s1% health.
-
-Name             : Phase Shift (id=1256245) [Spell Family (107), Passive] 
-Talent Entry     : Annihilator (Generic) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
-Class            : Mage, Demon Hunter
-School           : None
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 66: Demon Hunter Spells
-                 : 292
-Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
-Effects          :
-#1 (id=1263659)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
-                   Base Value: -2 | Scaled Value: -2 | Misc Value: 12 | Misc Value 2: 5652 (Label) | Target: Self (1)
-                   Affected Spells (Label): Voidfall (1256301), Voidfall (1256302), Voidfall (1256322)
-Description      : Each stack of Voidfall grants $s1% reduced damage taken.
 
 Name             : Voidfall (id=1256301) [Spell Family (107)] 
 Class            : Mage, Demon Hunter
@@ -11975,20 +12046,6 @@ Effects          :
 #1 (id=1263764)  : School Damage (2): shadowflame
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 5.4 | Radius: 0 - 8 yards | Target: at Area (87) -> at Enemy in Area (16)
 Description      : $@spelldesc1253304
-
-Name             : Dark Matter (id=1256307) [Spell Family (107), Passive] 
-Talent Entry     : Annihilator (Generic) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
-Class            : Mage, Demon Hunter
-School           : None
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 66: Demon Hunter Spells
-                 : 292
-Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
-Effects          :
-#1 (id=1263765)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
-Description      : Your first $?a212613[Spirit Bomb][Collapsing Star] after $?a212613[entering demon form][casting Void Metamorphosis] causes a $?a212613[Shadowflame][Cosmic] meteor shower to assault the area, dealing $?a212613[${$1264130s1*($s1)} Shadowflame][${$1264129s1*($s1)} Cosmic] damage over ${$s1/2} sec.
 
 Name             : Voidfall (id=1256322) [Spell Family (107)] 
 Class            : Mage, Demon Hunter

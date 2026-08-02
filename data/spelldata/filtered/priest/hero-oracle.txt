@@ -50,6 +50,10 @@ Effects          :
                    Affected Spells: Holy Fire (14914), Encroaching Shadows (204215)
                    Family Flags: 20
 Description      : $?a137032[Power Word: Shield absorbs $s2% additional damage.
+
+All damage dealt by Penance, Smite and Holy Nova increased by $s3%.][Increases the healing done by Prayer of Mending by $s1%.
+
+All damage dealt by Smite, Holy Fire and Holy Nova increased by $s4%.]
 
 Name             : Save the Day (id=440669) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
@@ -83,6 +87,8 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Misc Value 2: 3799 (Label) | Target: Self (1)
                    Affected Spells (Label): Angelic Feather (121557)
 Description      : Your Angelic Feathers increase movement speed by an additional $s2%.
+
+When an ally walks through your Angelic Feather, you are also granted $s1% of its effect.
 
 Name             : Preemptive Care (id=440671) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
@@ -190,6 +196,12 @@ Effects          :
 #2 (id=1134871)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : $?a137032[Power Word: Shield casts apply $s1 $Lstack:stacks; of Prayer of Mending to your target.
+
+$@spellicon33076 $@spellname33076
+$@spelldesc33076][Casting Prayer of Mending applies Power Word: Shield to your target.
+
+$@spellicon1246768 $@spellname1246768
+$@spelldesc1246768]
 
 Name             : Desperate Measures (id=458718) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=200]
@@ -208,6 +220,8 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 3801 (Label) | Target: Self (1)
                    Affected Spells (Label): Angelic Bulwark (108945)
 Description      : Desperate Prayer lasts an additional ${$s1/1000} sec.
+
+Angelic Bulwark's absorption effect is increased by $s2% of your maximum health.
 
 Name             : Prompt Prognosis (id=1246799) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=4, col=2, max_rank=1, req_points=0]

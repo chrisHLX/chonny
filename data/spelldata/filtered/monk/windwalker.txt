@@ -40,6 +40,12 @@ Description      : Pummels all targets in front of you, dealing ${5*$117418s1} P
 Variables        : $stnc=$?a103985[${1.05*(1+$@versadmg)}][${1.0*(1+$@versadmg)}]
 $dwm=$?a108561|a115697[${1}][${0.857143}]
 $offm=$?a108561|a115697[${0}][${1}]
+
+$offlow=$?s121278[${$mwb/2/$mws}][${$owb/2/$ows}]
+$offhigh=$?s121278[${$MWB/2/$mws}][${$OWB/2/$ows}]
+
+$low=${$<stnc>*($<dwm>*(($mwb)/($MWS)+$<offm>*$<offlow>)+$AP/3.5-1)}
+$high=${$<stnc>*($<dwm>*(($MWB)/($MWS)+$<offm>*$<offhigh>)+$AP/3.5+1)}
 
 Name             : Ascension (id=115396) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=3, col=7, max_rank=1, req_points=0]
@@ -77,6 +83,10 @@ Effects          :
                    Base Value: 12 | Scaled Value: 12 | Misc Value: 8 | Target: Self (1)
                    Modified By: Mistweaver Monk (1258138 effect#10)
 Description      : Tiger Palm causes your next Blackout Kick to strike an additional time dealing $228649s1 Physical damage, stacking up to $202090u.
+
+Blackout Kick has a $s1% chance to reset the remaining cooldown on Rising Sun Kick.
+
+$?a210802[Each additional Blackout Kick restores ${$210803m1/100}.2% mana.][]
 
 Name             : Combat Wisdom (id=121817) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=2, col=5, max_rank=1, req_points=0, replace="Expel Harm" (id=322101)]
@@ -93,6 +103,11 @@ Effects          :
 #2 (id=623380)   : Apply Aura (6) | Periodic Dummy (226): every 15 seconds
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : While out of combat, your Chi balances to $s1 instead of depleting to empty.
+
+Every $t1 sec, your next Tiger Palm also casts Expel Harm.
+
+$@spellicon451968 $@spellname451968
+$@spelldesc451968
 
 Name             : Combo Breaker (id=137384) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=6, col=7, max_rank=1, req_points=8]
@@ -135,6 +150,17 @@ Effects          :
 #2 (id=288846)   : Directional Knockback (144)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1) -> at Self (18)
 Description      : Performs a devastating whirling upward strike, dealing ${3*$158221s1} damage to all nearby enemies and an additional $451767s1 damage to the first target struck. Damage reduced beyond $s1 targets.
+
+Only usable while both Fists of Fury and Rising Sun Kick are on cooldown.
+Variables        : $stnc=$?a103985[${1.05*(1+$@versadmg)}][${1.0*(1+$@versadmg)}]
+$dwm=$?a108561|a115697[${1}][${0.857143}]
+$offm=$?a108561|a115697[${0}][${1}]
+
+$offlow=$?s121278[${$mwb/2/$mws}][${$owb/2/$ows}]
+$offhigh=$?s121278[${$MWB/2/$mws}][${$OWB/2/$ows}]
+
+$low=${$<stnc>*($<dwm>*(($mwb)/($MWS)+$<offm>*$<offlow>)+$AP/3.5-1)}
+$high=${$<stnc>*($<dwm>*(($MWB)/($MWS)+$<offm>*$<offhigh>)+$AP/3.5+1)}
 
 Name             : Hit Combo (id=196740) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=5, col=6, max_rank=1, req_points=8]
@@ -273,6 +299,8 @@ Effects          :
                    Affected Spells: Touch of Death (322109), Touch of Death (322111)
                    Family Flags: 40
 Description      : The cooldown of Touch of Death is reduced by ${$s2/-1000} sec.
+
+Touch of Death deals an additional $s1% damage.
 
 Name             : Drinking Horn Cover (id=391370) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Windwalker [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
@@ -412,6 +440,8 @@ Effects          :
 #1 (id=1031605)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 Description      : Strike of the Windlord and Whirling Dragon Punch grant you $s1 stacks of Thunderfist and an additional stack for each additional enemy struck. 
+
+Thunderfist discharges upon melee strikes, dealing $393566s1 Nature damage.
 
 Name             : Xuen's Battlegear (id=392993) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -437,6 +467,10 @@ Effects          :
 #5 (id=1310868)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2500 | Scaled Value: 2500 | PvP Coefficient: 0.5 | Misc Value: 5 | Target: Self (1)
 Description      : Rising Sun Kick critical strikes reduce the cooldown of Fists of Fury by ${$m2/1000} sec.
+
+Spinning Crane Kick reduces the cooldown of Fists of Fury by ${$s4/1000}.1 sec for each unique target struck, up to ${$s5/1000}.1 sec.
+
+The critical strike chance of Rising Sun Kick is increased by $s1%.
 
 Name             : Path of Jade (id=392994) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Windwalker [tree=spec, row=10, col=9, max_rank=1, req_points=20, select_idx=100]
@@ -487,6 +521,8 @@ Effects          :
 #1 (id=1151789)  : Apply Aura (6) | Proc Trigger Spell (42): Momentum Boost
                    Base Value: 100 | Scaled Value: 100 | Trigger Spell: 451297 | Target: Self (1)
 Description      : Fists of Fury's damage is increased by $s1% of your haste and Fists of Fury does $451297s1% more damage each time it deals damage, resetting when Fists of Fury ends.
+
+Your auto attack speed is increased by $451298s1% for $451298d after Fists of Fury ends.
 
 Name             : Brawler's Intensity (id=451485) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=5, col=8, max_rank=1, req_points=8]
@@ -580,6 +616,8 @@ Effects          :
 #4 (id=1152741)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | PvP Coefficient: 0.75 | Target: Self (1)
 Description      : Strike of the Windlord and Whirling Dragon Punch grant $s1 stacks of Teachings of the Monastery.
+
+Teachings of the Monastery can now stack up to $s4 times.
 
 Name             : Singularly Focused Jade (id=451573) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=10, col=9, max_rank=1, req_points=20, select_idx=200]
@@ -657,6 +695,8 @@ Effects          :
 #2 (id=1160527)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Your spells and abilities have a chance to activate Flurry of Xuen, unleashing a barrage of deadly swipes to deal ${$452130s1*$s1} Physical damage in a $452130A1 yd cone, damage reduced beyond $s2 targets.
+
+Invoking Xuen, the White Tiger activates Flurry of Xuen.
 
 Name             : Memory of the Monastery (id=454969) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=8, col=7, max_rank=1, req_points=20]
@@ -739,6 +779,8 @@ Effects          :
 #3 (id=1203485)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Envelop yourself in razor-sharp winds, then lunge forward dealing $1217411s1 Nature damage to enemies in your path. Damage reduced beyond $s3 enemies.
+
+Hold to increase lunge distance.
 
 Name             : Skyfire Heel (id=1248704) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=10, col=2, max_rank=1, req_points=20]
@@ -759,6 +801,8 @@ Effects          :
 #3 (id=1251815)  : Apply Aura (6) | Area Trigger (395)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 39078 | Target: Self (1)
 Description      : Rising Sun Kick's critical strike chance is increased by $1248705s1% for each nearby enemy, up to $s3 enemies.
+
+$s1% of Rising Sun Kick's damage splashes onto nearby enemies. Damage is reduced beyond $s2 targets.
 
 Name             : Crashing Fists (id=1248747) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=6, col=3, max_rank=1, req_points=8, select_idx=200]
@@ -891,6 +935,11 @@ Effects          :
 #14 (id=1310823) : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Zenith Stomp overrides Zenith
                    Base Value: 1272696 | Scaled Value: 1272696 | Misc Value: 1249625 | Target: Self (1)
 Description      : Chi costs are reduced by $s7 and Blackout Kick reduces the cooldown of affected abilities by an additional ${$s3/1000} sec for $d.
+
+Activating Zenith resets the remaining cooldown on Rising Sun Kick.
+Tooltip          : Chi costs are reduced by $w7 and Blackout Kick reduces the cooldown of affected abilities by an additional ${$w3/1000} sec.$?$w1>0[
+
+Critical strike chance increased by $w1%.][]
 
 Name             : Obsidian Spiral (id=1249832) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=6, col=6, max_rank=1, req_points=8]
@@ -959,6 +1008,9 @@ Effects          :
 #1 (id=1254684)  : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | Target: Self (1)
 Description      : After consuming Blackout Kick!, Rising Sun Kick has a $s1% chance to become Rushing Wind Kick.
+
+$@spellicon467307$@spellname467307:
+$@spelldesc467307
 
 Name             : Tigereye Brew (id=1261703) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Windwalker [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=200]
@@ -980,6 +1032,8 @@ Effects          :
 #3 (id=1310900)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Every $s2 Chi spent generates Tigereye Brew. Zenith consumes up to $s3 Tigereye Brew stacks to increase your critical strike chance for its duration by $1261724s1% per stack.
+
+Generates quickly up to $s1 stacks while out of combat and may generate up to a maximum of $1261724u stacks.
 
 Name             : Tigereye Brew (id=1261844) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Windwalker [tree=spec, row=11, col=5, max_rank=2, req_points=20, select_idx=300]
@@ -1014,6 +1068,9 @@ Effects          :
 #1 (id=1271735)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Zenith now grants access to $s1 additional Zenith Stomps.
+
+$@spellicon1272696 $@spellname1272696:
+$@spelldesc1272696
 
 Name             : Universal Energy (id=1272175) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=spec, row=8, col=6, max_rank=1, req_points=20]

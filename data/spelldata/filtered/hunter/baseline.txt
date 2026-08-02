@@ -45,6 +45,11 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 2 | Target: Active Pet (5)
                    Modified By: Wilderness Medicine (343242 effect#1)
 Description      : Heals your pet for $<total>% of its total health over $d.$?s343242[
+
+Each time Mend Pet heals your pet, it has a $343242s2% chance to dispel a harmful magic effect from your pet.][]
+Tooltip          : Heals $w1% of the pet's health every $t1 sec.$?s343242[
+Each time Mend Pet heals your pet, you have a $343242s2% chance to dispel a harmful magic effect from your pet.][]
+Variables        : $total=${$m1*5}
 
 Name             : Dual Wield (desc=Passive) (id=674) [Passive] 
 Class            : Frost Death Knight, Warrior, Hunter, Rogue, Monk, Demon Hunter
@@ -171,6 +176,11 @@ Effects          :
 #2 (id=481)      : Apply Aura (6) | Periodic Trigger Spell (23): Tame Beast every 6 seconds
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 13481 | Target: Self (1)
 Description      : $?a166615[|CFFFF2020You must dismiss your current pet before you can tame another one.|CFFFFD200
+
+][]Tames a beast to be your companion. If you lose the beast's attention for any reason, the taming process will fail.
+
+You must dismiss any active beast companions and have an empty Call Pet slot before you can begin taming a new beast. Only Beast Mastery specialized Hunters can tame Exotic Beasts.
+Tooltip          : Taming a pet.
 
 Name             : Feed Pet (id=1539) 
 Class            : Hunter
@@ -252,6 +262,8 @@ Effects          :
 #2 (id=101372)   : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 0.756 | Radius: 0 - 8 yards | Target: At Enemy (53) -> at Enemy in Area (16)
 Description      : Fires several missiles, hitting all nearby enemies within $A2 yds of your current target for $s2 Physical damage$?s115939[ and triggering Beast Cleave][]. Deals reduced damage beyond $s1 targets.$?s19434[
+
+|cFFFFFFFFGenerates $213363s1 Focus per target hit.|r][]
 
 Name             : Growl (desc=Basic Ability) (id=2649) [Spell Family (9)] 
 Class            : Monk
@@ -366,6 +378,8 @@ Effects          :
 #2 (id=2548)     : Trigger Spell (64): Feed Pet - Visual
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 51284 | Target: Active Pet (5)
 Description      : Feeds your pet the selected item, instantly restoring $1539s1% of its total health. Not usable in combat.
+
+You may use the Beast Lore ability to identify what types of foods your pet will eat.
 
 Name             : Pet Damage (id=8875) [Spell Family (9), Passive, Hidden] 
 Class            : Monk
@@ -693,6 +707,9 @@ Effects          :
 #1 (id=14663)    : Trigger Spell (64): Mortal Wounds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 115804 | Target: Targeted Enemy (6)
 Description      : The Carrion Bird screeches, causing Mortal Wounds on the target.
+
+|Tinterface\icons\ability_criticalstrike.blp:24|t |cFFFFFFFFMortal Wounds|r
+Grievously wounds the target, reducing the effectiveness of any healing received for $115804d.
 
 Name             : Improved Feign Death (id=24432) [Spell Family (9), Passive, Hidden] 
 School           : Physical
@@ -1031,6 +1048,8 @@ Effects          :
 #1 (id=45831)    : Dummy (3) | Attributes: Area Effects Use Target Radius (17)
                    Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 1 | Chain Targets: 2 | Target: Targeted Enemy (6)
 Description      : A two-headed shot that hits your primary target and another nearby target, dealing $171457sw2 Nature damage to one and $171454sw2 Frost damage to the other.$?s137015[
+
+|cFFFFFFFFGenerates $204304s1 Focus for each target hit.|r][]
 
 Name             : Exotic Beasts (id=53270) [Spell Family (9), Passive] 
 Class            : Beast Mastery Hunter
@@ -1106,6 +1125,8 @@ Effects          :
                    Modified By: Masterful Call (1268705 effect#2)
 Description      : Remove all root and movement impairing effects on the target, and cause them to be immune to all such effects for $d.
 Tooltip          : Immune to root and movement impairing effects.$?a1268705[
+
+Movement speed increased by $w4%.][]
 
 Name             : Frost Breath (desc=Special Ability) (id=54644) [Spell Family (9)] 
 Class            : Hunter
@@ -1151,6 +1172,10 @@ Effects          :
 #1 (id=47525)    : Trigger Spell (64): Mortal Wounds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 115804 | Target: Targeted Enemy (6)
 Description      : The Devilsaur ferociously bites the enemy, causing the Mortal Wounds effect.
+
+|Tinterface\icons\ability_criticalstrike.blp:24|t |cFFFFFFFFMortal Wounds|r
+Grievously wounds the target, reducing the effectiveness of any healing received for $115804d.
+Tooltip          : Healing effects received reduced by $w1%.
 
 Name             : Froststorm Breath (id=54689) [Spell Family (9)] 
 Class            : Hunter
@@ -1198,6 +1223,10 @@ Effects          :
 #3 (id=752564)   : Dummy (3)
                    Base Value: 30 | Scaled Value: 30
 Description      : A steady shot that causes $s1 Physical damage.$?c2[ Reduces the cooldown of Aimed Shot by ${$s2/1000}.1 sec.][]
+
+Usable while moving.
+
+|cFFFFFFFFGenerates $77443s1 Focus.|r
 
 Name             : Glyph of Lesser Proportion (id=57870) [Spell Family (9), Passive, Hidden] 
 Class            : Hunter
@@ -1682,6 +1711,8 @@ Effects          :
 #1 (id=120764)   : Direct Heal% (136)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Heals you for $s1% and your pet for $128594s1% of maximum health.$?s385539[
+
+Exhilaration heals you for an additional ${$385539s1}.1% of your maximum health over $385540d.][]
 
 Name             : Mortal Wounds (id=115804) 
 Class            : Warrior, Hunter, Monk, Demon Hunter
@@ -2367,6 +2398,8 @@ Effects          :
 #3 (id=224305)   : Dummy (3)
                    Base Value: 120 | Scaled Value: 120
 Description      : When falling below $s2% health, the Clefthoof's skin will thicken, granting $160058s1% reduced incoming damage for $160058d.
+
+This effect can only occur once every $s3 sec.
 
 Name             : Thick Hide (desc=Special Ability) (id=160058) [Spell Family (9)] 
 Class            : Hunter
@@ -2409,6 +2442,9 @@ Effects          :
 #1 (id=224310)   : Trigger Spell (64): Mortal Wounds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 115804 | Target: Targeted Enemy (6)
 Description      : The Scorpion lashes out with its tail, stinging the target and causing the Mortal Wounds effect.
+
+|Tinterface\icons\ability_criticalstrike.blp:24|t |cFFFFFFFFMortal Wounds|r
+Grievously wounds the target, reducing the effectiveness of any healing received for $115804d.
 
 Name             : Tendon Rip (desc=Special Ability) (id=160065) [Spell Family (9)] 
 Class            : Hunter
@@ -2537,6 +2573,8 @@ Effects          :
 #1 (id=228154)   : Trigger Missiles (32): Steel Trap
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 162496 | Radius: 3 yards | Target: at Area (87)
 Description      : Hurls a Steel Trap to the target location that snaps shut on the first enemy that approaches, immobilizing them for $162480d and causing them to bleed for $162487o1 damage over $162487d. 
+
+Damage other than Steel Trap may break the immobilization effect. Trap will exist for $162496d. Limit 1.
 
 Name             : Steel Trap (id=162496) [Spell Family (9)] 
 Class            : Hunter
@@ -2696,6 +2734,9 @@ Effects          :
 #1 (id=269119)   : School Damage (2): arcane
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.723 | PvP Coefficient: 1.62 | Target: Targeted Enemy (6)
 Description      : A quick shot that causes $sw2 Arcane damage.$?s260393[
+
+Arcane Shot has a $260393h% chance to reduce the cooldown of Rapid Fire by ${$260393m1/10}.1 sec.][]
+Variables        : $mult=${($max(0,$min($pl-10,10))*5+80)/130}
 
 Name             : Wild Call (id=185791) [Spell Family (9), Hidden] 
 School           : Physical
@@ -4042,6 +4083,9 @@ Effects          :
 #3 (id=740188)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Attack all nearby enemies in a flurry of strikes, inflicting $s1 Physical damage to nearby enemies$?s459868[ and $459870o1 damage over $459870d][]. Deals reduced damage beyond $s3 targets.$?s294029[
+
+Reduces the remaining cooldown on Wildfire Bomb by $<cdr> sec for each target hit, up to ${($s3*$s2)/1000}.1 sec.][]
+Variables        : $cdr=${$s2/1000}
 
 Name             : Nesingwary's Trapping Treads (id=212574) [Spell Family (9), Passive] 
 School           : Physical
@@ -4259,6 +4303,8 @@ Effects          :
 #1 (id=326830)   : Summon Guardian (28)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 110355 | Misc Value 2: 3874 | Radius: 8 yards | Target: Back of Self (48)
 Description      : When you are below $214848s1% health, a massive eagle comes to your aid for $d. 
+
+This can only occur once every $219380d.
 
 Name             : Call to the Eagles (id=219377) [Spell Family (9)] 
 School           : Physical
@@ -4301,6 +4347,9 @@ Effects          :
                    Base Value: 100000000 | Scaled Value: 1e+08 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 Description      : Bestows the Blessing of the Light on use. If you should take fatal damage, the Light will restore you to full health and knock back any surrounding enemies.
+
+Only usable on the Broken Isles and Argus.
+Tooltip          : Protected from fatal damage by the Light.
 
 Name             : Protection of the Light (id=220073) [Spell Family (9)] 
 School           : Holy
@@ -4361,6 +4410,9 @@ Effects          :
                    Base Value: 100000000 | Scaled Value: 1e+08 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 Description      : Activate the rune to gain a Shroud of Darkness. If you should take fatal damage, the darkness will restore you to full health and knock back any surrounding enemies.
+
+Only usable on the Broken Isles and Argus.
+Tooltip          : Protected from fatal damage by the darkness.
 
 Name             : Shroud of Darkness (id=220111) [Spell Family (9)] 
 School           : Shadow
@@ -4420,6 +4472,8 @@ Effects          :
 #2 (id=328210)   : Summon Guardian (28)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 110701 | Misc Value 2: 3881 | Radius: 3 yards | Target: Left of Self (50)
 Description      : Call forth two tendrils from the void to smash all enemies in front of you in a $220116A1 yard area for $220116s1 Shadow damage.
+
+Only usable on the Broken Isles and Argus.
 
 Name             : Dark Smash (id=220116) [Spell Family (9)] 
 School           : Shadow
@@ -4443,6 +4497,8 @@ Effects          :
 #1 (id=328280)   : Create Area Trigger (179) | Attributes: Position is facing relative (1)
                    Base Value: 4 | Scaled Value: 4 | Misc Value: 7978 | Radius: 3 yards | Target: Right of Self (49)
 Description      : Focus the light of the Naaru to burn all enemies within $220166A1 yards for $220166s1 Holy damage two times over $s1 sec.
+
+Only usable on the Broken Isles and Argus.
 
 Name             : Searing Light (id=220166) [Spell Family (9)] 
 School           : Holy
@@ -4465,6 +4521,10 @@ Effects          :
 #1 (id=328323)   : Summon Guardian (28)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 110744 | Misc Value 2: 3881 | Radius: 3 yards | Target: Right of Self (49)
 Description      : Summon a Lightspawn to fight alongside you for $d.
+
+The Lightspawn is very durable and will taunt all nearby enemies.
+
+Only usable on the Broken Isles and Argus.
 
 Name             : Threat Buff (id=220209) [Spell Family (9), Hidden] 
 School           : Physical
@@ -4488,6 +4548,10 @@ Effects          :
 #1 (id=328449)   : Summon Guardian (28)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 110774 | Misc Value 2: 3881 | Radius: 3 yards | Target: Right of Self (49)
 Description      : Summon a Faceless One to fight alongside you for $d.
+
+The Faceless One is very durable and will taunt all nearby enemies.
+
+Only usable on the Broken Isles and Argus.
 
 Name             : Zevrim's Hunger (id=224550) [Spell Family (9), Passive] 
 School           : Physical
@@ -4691,6 +4755,8 @@ Effects          :
 #2 (id=1168716)  : Dummy (3)
                    Base Value: 1 | Scaled Value: 1
 Description      : Hurls a fire trap to the target location that explodes when an enemy approaches, causing $236777s2 Fire damage and knocking all enemies away. Limit $s2. Trap will exist for $236775d.$?s321468[
+
+Targets knocked back by High Explosive Trap deal $321469s1% less damage to you for $321469d after being knocked back.][]
 
 Name             : High Explosive Trap (id=236777) [Spell Family (9)] 
 School           : Fire
@@ -4803,6 +4869,10 @@ Effects          :
 #1 (id=377174)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Gain one of the following talents based on your specialization:
+
+|cFFFFFFFFBeast Mastery:|r Thrill of the Hunt
+|cFFFFFFFFMarksmanship:|r Lock and Load
+|cFFFFFFFFSurvival:|r Viper's Venom
 
 Name             : Soul of the Huntmaster (id=247530) [Spell Family (9), Passive] 
 School           : Physical
@@ -4992,6 +5062,11 @@ Effects          :
 #5 (id=1109121)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20000 | Scaled Value: 20000 | Target: Targeted Enemy (6)
 Description      : Apply Hunter's Mark to the target, causing the target to always be seen and tracked by the Hunter.
+
+Hunter's Mark increases the target's damage taken by $s1%. Can only be applied to a target at a time.
+Tooltip          : Damage taken increased by $s1%.
+
+Can always be seen and tracked by the Hunter.
 
 Name             : Multi-Shot (id=257620) [Spell Family (9)] 
 Class            : Marksmanship Hunter
@@ -5016,6 +5091,8 @@ Effects          :
 #2 (id=1193792)  : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.816 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
 Description      : Fires several missiles, hitting your current target and all enemies within $A2 yards for $s2 Physical damage. Deals reduced damage beyond $2643s1 targets.$?s260393[
+
+Multi-Shot has a $260393h% chance to reduce the cooldown of Rapid Fire by ${$260393m1/10}.1 sec.][]
 
 Name             : Trick Shots (id=257622) [Spell Family (9)] 
 Class            : Hunter
@@ -5141,6 +5218,9 @@ Effects          :
 #1 (id=483863)   : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.7573 | Target: Targeted Enemy (6)
 Description      : A brutal attack that deals $s1 Physical damage and grants you Mongoose Fury.
+
+|cFFFFFFFFMongoose Fury|r
+Increases the damage of Mongoose Bite by $259388s1% $?s385737[and the chance for Kill Command to reset by $259388s2% ][]for $259388d, stacking up to $259388u times.
 
 Name             : Mongoose Fury (id=259388) [Spell Family (9)] 
 Class            : Hunter
@@ -5167,6 +5247,8 @@ Effects          :
                    Modified By: Bloody Claws (385737 effect#1)
 Description      : $@spelldesc1252708
 Tooltip          : Raptor Strike damage increased by $s1%.$?a385737[
+
+Strike as One damage increased by $s2%.][]
 
 Name             : Chakrams (id=259398) [Spell Family (9)] 
 Class            : Hunter
@@ -5660,6 +5742,9 @@ Effects          :
 #1 (id=706861)   : Trigger Spell (64): Mortal Wounds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 115804 | Target: Targeted Enemy (6)
 Description      : The Hyena sinks its fangs into the target, infecting the target with Mortal Wounds.
+
+|Tinterface\icons\ability_criticalstrike.blp:24|t |cFFFFFFFFMortal Wounds|r
+Grievously wounds the target, reducing the effectiveness of any healing received for $115804d.
 
 Name             : Savage Rend (desc=Special Ability) (id=263854) [Spell Family (9)] 
 Class            : Hunter
@@ -5681,6 +5766,9 @@ Effects          :
 #1 (id=706862)   : Trigger Spell (64): Mortal Wounds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 115804 | Target: Targeted Enemy (6)
 Description      : The Raptor slashes deep into the target, causing Mortal Wounds.
+
+|Tinterface\icons\ability_criticalstrike.blp:24|t |cFFFFFFFFMortal Wounds|r
+Grievously wounds the target, reducing the effectiveness of any healing received for $115804d.
 
 Name             : Ravage (desc=Special Ability) (id=263857) [Spell Family (9)] 
 Class            : Hunter
@@ -5702,6 +5790,9 @@ Effects          :
 #1 (id=706867)   : Trigger Spell (64): Mortal Wounds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 115804 | Target: Targeted Enemy (6)
 Description      : The Ravager tears into the enemy,  causing the Mortal Wounds effect.
+
+|Tinterface\icons\ability_criticalstrike.blp:24|t |cFFFFFFFFMortal Wounds|r
+Grievously wounds the target, reducing the effectiveness of any healing received for $115804d.
 
 Name             : Toxic Sting (desc=Special Ability) (id=263858) [Spell Family (9)] 
 Class            : Hunter
@@ -5723,6 +5814,9 @@ Effects          :
 #1 (id=706868)   : Trigger Spell (64): Mortal Wounds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 115804 | Target: Targeted Enemy (6)
 Description      : The Wasp dives in and stings the target, causing the Mortal Wounds effect.
+
+|Tinterface\icons\ability_criticalstrike.blp:24|t |cFFFFFFFFMortal Wounds|r
+Grievously wounds the target, reducing the effectiveness of any healing received for $115804d.
 
 Name             : Obsidian Skin (desc=Special Ability) (id=263867) [Spell Family (9)] 
 Class            : Hunter
@@ -5876,6 +5970,8 @@ Effects          :
 #3 (id=706993)   : Dummy (3)
                    Base Value: 120 | Scaled Value: 120
 Description      : When falling below $s2% health, the Bear's fur will thicken, granting $160058s1% reduced incoming damage for $160058d.
+
+This effect can only occur once every $s3 sec.
 
 Name             : Silverback (desc=Special Ability) (id=263938) [Spell Family (9)] 
 Class            : Hunter
@@ -5922,6 +6018,8 @@ Effects          :
 #3 (id=707000)   : Dummy (3)
                    Base Value: 120 | Scaled Value: 120
 Description      : When falling below $s2% health, the Gorilla will shrug off attacks, granting $160058s1% reduced incoming damage for $160058d.
+
+This effect can only occur once every $s3 sec.
 
 Name             : Winged Agility (desc=Special Ability) (id=264360) [Spell Family (9)] 
 Class            : Hunter
@@ -6029,6 +6127,9 @@ Effects          :
 #2 (id=708376)   : Apply Aura (6) | Scale% (Stacking) (61)
                    Base Value: 20 | Scaled Value: 20 | Radius: 50000 yards | Target: Raid in Area (56)
 Description      : Increases haste by $s1% for all party and raid members for $d.
+
+Allies receiving this effect will become Sated and unable to benefit from Primal Rage or similar effects again for $57724d.
+Tooltip          : Haste increased by $s1%.
 
 Name             : Wildfire Bomb (id=265157) [Spell Family (9)] 
 Class            : Hunter
@@ -6105,6 +6206,9 @@ Effects          :
 #1 (id=710469)   : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.7573 | Target: Targeted Enemy (6)
 Description      : A brutal attack that deals $sw1 Physical damage and grants you Mongoose Fury.
+
+|cFFFFFFFFMongoose Fury|r
+Increases the damage of Mongoose Bite by $259388s1% for $259388d, stacking up to $259388u times. Successive attacks do not increase duration.
 
 Name             : Chakrams (id=267666) [Spell Family (9)] 
 Class            : Hunter
@@ -6224,6 +6328,13 @@ Effects          :
 #3 (id=1258361)  : Energize Power (30)
                    Base Value: 50 | Scaled Value: 50 | Resource: focus | Target: Self (1)
 Description      : You and your pet leap to the target and strike it as one, dealing a total of $<damage> Physical damage.$?a1252931[
+
+Flanking Strike generates $1252931s1 stacks of Tip of the Spear.][]
+
+|cFFFFFFFFGenerates $s3 Focus.|r
+Variables        : $petDamage=${$ap*($s1/100)*(1+$@versadmg)}
+$hunterDamage=${$269752s1}
+$damage=${$<petDamage>+$<hunterDamage>}
 
 Name             : Flanking Strike (id=269752) [Spell Family (9)] 
 Class            : Hunter
@@ -6299,6 +6410,10 @@ Effects          :
 #2 (id=719185)   : Dummy (3)
                    Base Value: 100 | Scaled Value: 100
 Description      : Hurl a bomb at the target, exploding for $270329s1 Fire damage in a cone and coating enemies in pheromones, causing them to suffer $270332o1 Fire damage over $270332d. Deals reduced damage beyond $259495s2 targets.
+
+Deals $259495s3% increased damage to your primary target.
+
+Kill Command has a $s2% chance to reset against targets coated with Pheromone Bomb.
 
 Name             : Pheromone Bomb (id=270327) [Spell Family (9)] 
 Class            : Hunter
@@ -6371,6 +6486,10 @@ Effects          :
 #1 (id=719199)   : Trigger Missiles (32): Shrapnel Bomb
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 270336 | Target: Targeted Enemy (6)
 Description      : Hurl a bomb at the target, exploding for $270338s1 Fire damage in a cone and impaling enemies with burning shrapnel, scorching them for $270339o1 Fire damage over $270339d. Deals reduced damage beyond $259495s2 targets.
+
+Deals $259495s3% increased damage to your primary target.
+
+$?s259387[Mongoose Bite][Raptor Strike] and $?s212436[Butchery][Carve] apply Internal Bleeding, causing $270343o1 damage over $270343d. Internal Bleeding stacks up to $270343u times.
 
 Name             : Shrapnel Bomb (id=270336) [Spell Family (9)] 
 Class            : Hunter
@@ -6499,6 +6618,12 @@ Effects          :
 #2 (id=1019298)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Lace your Wildfire Bomb with extra reagents, randomly giving it one of the following enhancements each time you throw it:
+
+|cFFFFFFFFShrapnel Bomb: |rShrapnel pierces the targets, causing $?s259387[Mongoose Bite][Raptor Strike] and $?s212436[Butchery][Carve] to apply a bleed for $270343d that stacks up to $270343u times.
+
+|cFFFFFFFFPheromone Bomb: |rKill Command has a $270323s2% chance to reset against targets coated with Pheromones.
+
+|cFFFFFFFFVolatile Bomb: |rReacts violently with poison, causing an extra $260231s1 Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to $s2 targets.
 
 Name             : Pheromone Bomb (id=271015) [Spell Family (9)] 
 Class            : Hunter
@@ -6561,6 +6686,10 @@ Effects          :
 #1 (id=721011)   : Trigger Missiles (32): Volatile Bomb
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 271047 | Target: Targeted Enemy (6)
 Description      : Hurl a bomb at the target, exploding for $271048s1 Fire damage in a cone and coating enemies in volatile wildfire, scorching them for $271049o1 Fire damage over $271049d. Deals reduced damage beyond $259495s2 targets.
+
+Deals $259495s3% increased damage to your primary target.
+
+Volatile Bomb reacts violently with poison, causing an extra $260231s1 Fire damage against enemies suffering from your Serpent Sting, and applies Serpent Sting to up to $271014s2 targets.
 
 Name             : Volatile Bomb (id=271047) [Spell Family (9)] 
 Class            : Hunter
@@ -6679,6 +6808,10 @@ Effects          :
 #1 (id=723668)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Commands your pet to perform its unique ability. This ability will transform based on the specialization of your active pet. 
+
+Ferocity: $@spellname264667
+Tenacity: $@spellname388035
+Cunning: $@spellname53271
 
 Name             : Primal Rage (desc=Command Pet Ability) (id=272678) [Spell Family (9)] 
 Class            : Hunter
@@ -7474,6 +7607,8 @@ Effects          :
 #1 (id=787669)   : Trigger Missiles (32): Resonating Arrow
                    Base Value: 100 | Scaled Value: 100 | Trigger Spell: 308495 | Radius: 15 yards | Target: at Enemy in Area (16)
 Description      : Fire a resonating arrow to the target location that deals $308495s1 Arcane damage to any enemy in the area, and fill the area with echoing anima for $308495d. The effect causes your attacks to ignore line of sight to enemies in the area, and you have $308498s1% increased critical strike chance against them. 
+
+Leaving the area of echoing anima will still allow the hunter to ignore line of sight towards the enemy for ${$308495s3/1000} sec.
 
 Name             : Resonating Arrow (desc=Kyrian) (id=308495) [Spell Family (9)] 
 Class            : Hunter
@@ -7700,6 +7835,8 @@ Effects          :
 #3 (id=1230680)  : Dummy (3)
                    Base Value: 10 | Scaled Value: 10 | Target: Targeted Enemy (6)
 Description      : Bestial Wrath provokes your pets to tear into your target, causing your target to bleed for $321538s1 damage over $321538d.
+
+Damage from Bloodshed has a $s3% chance to summon Dire Beasts.
 
 Name             : Bloodshed (id=321538) [Spell Family (9)] 
 Class            : Hunter
@@ -7813,6 +7950,8 @@ Effects          :
 #4 (id=815070)   : Dummy (3)
                    Base Value: 3 | Scaled Value: 3
 Description      : Throw a deadly chakram at your current target that will rapidly deal $325037s1 Shadow damage $x times, bouncing to other targets if they are nearby. Enemies struck by Death Chakram take $361756s1% more Physical damage from you and your pet for $361756d.
+
+Each time the chakram deals damage, its damage is increased by $s3% and you generate $s4 Focus.
 
 Name             : Death Chakram (id=325037) [Spell Family (9)] 
 Class            : Hunter
@@ -7878,6 +8017,8 @@ Effects          :
 #1 (id=820283)   : Trigger Missiles (32): Wild Spirits
                    Base Value: -50 | Scaled Value: -50 | Trigger Spell: 328837 | Radius: 12 yards | Target: at Enemy in Area (16)
 Description      : Evoke the energy of Wild Spirits at the target location, dealing $328837s3 Nature damage and apply Wild Mark to all enemy targets within the area for $328837d.
+
+While the Wild Spirits are active, each damaging ability you or your pet use against a target in the area will strike up to $328757I nearby targets for $328757s1 Nature damage.
 
 Name             : Wild Mark (desc=Night Fae) (id=328275) [Spell Family (9)] 
 Class            : Hunter
@@ -8500,6 +8641,8 @@ Effects          :
                    Family Flags: 3
 Description      : $@spelldesc339924
 
+Tooltip          : Your next Rapid Fire deals ${$339924W1}.1% increased damage per shot.
+
 Name             : Strength of the Pack (id=341222) [Spell Family (9), Passive, Hidden] 
 Class            : Hunter
 School           : Physical
@@ -8552,6 +8695,8 @@ Effects          :
 #1 (id=842821)   : Dummy (3) | Attributes: Area Effects Use Target Radius (17)
                    Base Value: 50 | Scaled Value: 50 | Chain Multiplier: 1 | Chain Targets: 2 | Target: Targeted Enemy (6)
 Description      : A two-headed shot that hits your primary target for $344120sw1 Nature damage and another nearby target for ${$344121sw1*($s1/100)} Frost damage.$?s260393[
+
+Chimaera Shot has a $260393h% chance to reduce the cooldown of Rapid Fire by ${$260393m1/10}.1 sec.][]
 
 Name             : Streamline (id=342076) [Spell Family (9)] 
 Class            : Hunter
@@ -8996,6 +9141,14 @@ Effects          :
                    Affected Spells: Multi-Shot (2643), Aimed Shot (19434), Kill Command (34026), Kill Shot (53351), Steady Shot (56641), A Murder of Crows (131900), Steel Trap (162487), Chimaera Shot (171454), Chimaera Shot (171457), Arcane Shot (185358), Raptor Strike (186270), Wind Arrow (191043), Hatchet Toss (193265), Cobra Shot (193455), Stomp (199530), Stampede (201594), Fury of the Eagle (203413), Butchery (212436), Explosive Shot (212680), Barbed Shot (217200), Rapid Fire (257045), Multi-Shot (257620), Mongoose Bite (259387), Chakrams (259398), Kill Command (259489), Flanking Strike (259516), Scorching Wildfire (259587), Violent Reaction (260231), Volley (260247), Rapid Fire (263585), Wildfire Bomb (265157), Raptor Strike (265189), Mongoose Bite (265888), Chakrams (267666), Wildfire Bomb (269747), Flanking Strike (269751), Flanking Strike (269752), Explosive Shot (269850), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Volatile Bomb (271048), Volatile Bomb (271049), Harpoon (271625), Wildfire Cluster (272745), Latent Poison (273289), Multi-Shot (278565), Resonating Arrow (308495), Kill Shot (320976), Bloodshed (321530), Flayed Shot (324149), Death Chakram (325028), Death Chakram (325037), Wild Spirits (328757), Wild Spirits (328837), Wildfire Cluster (336899), Chimaera Shot (344120), Chimaera Shot (344121), Wailing Arrow (354831), Wailing Arrow (355589), Wailing Arrow (355596), Coordinated Assault (360969), Death Chakram (361756), Latent Poison (378016), Spearhead (378957), Wailing Arrow (392058), Wailing Arrow (392060), Wailing Arrow (392061), Wailing Arrow (398388), Shadow Surge (444269), Spearhead (459690), Merciless Blow (459870), Rapid Fire (460496), Black Arrow (466930), Bleak Powder (467914), Black Arrow (468037), Boar Charge (471936), Boar Charge (471938), Rend Flesh (471999), Bleak Powder (472084), Merciless Blow (1217375), Spearhead (1221386), Flamefang Pitch (1251595), Flamefang Pitch (1251614), Hemorrhaging Strikes (1251683), Wildfire Imbuement (1252966), Sic 'Em (1253138), Wildfire Bomb (1253171), Lunar Storm (1253733), Takedown (1253859), Takedown (1253862), Rupturing Blow (1256931), Boomstick (1261215), Raptor Swipe (1262293), Raptor Swipe (1262343), Sticky Bomb (1262390), Moonlight Chakram (1264949), Moonlight Chakram (1266081), Twilight Requiem (1266096), Let Fly! (1271682)
                    Family Flags: 106
 Description      : You and your pet charge your enemy, striking them for a combined $<combinedDmg> Physical damage. You and your pet's bond is then strengthened for $d, causing you and your pet to deal $s2% increased damage.
+
+While Coordinated Assault is active, Kill Command's chance to reset its cooldown is increased by $s1%.
+Tooltip          : You and your pet's bond is strengthened, increasing you and your pet's damage by $s2% and increasing your chance to reset Kill Command's cooldown.$?a459922[
+
+Kill Command is generating $459962s4 additional stack of Tip of the Spear, your Haste is increased by $459962s1%, and Tip of the Spear's damage bonus is increased by $459962s2%.][]
+Variables        : $playerDmg=${$360969s1}
+$petDmg=${$360969s1*0.6}
+$combinedDmg=${$<playerDmg>+$<petDmg>}
 
 Name             : Bestial Pact (id=360955) [Spell Family (9)] 
 Class            : Hunter
@@ -9144,6 +9297,9 @@ Effects          :
                    Family Flags: 25
 Description      : $@spelldesc360952
 Tooltip          : Your next ability is empowered.
+
+$@spellname259495: Initial damage increased by $w2%.
+$@spellname320976: Applies Bleeding Gash to your target.
 
 Name             : Death Chakram (id=361756) [Spell Family (9)] 
 Class            : Hunter
@@ -9525,6 +9681,11 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 4055 (Label) | Target: Self (1)
                    Affected Spells (Label): Deathblow (343248)
 Description      : Aimed Shot now has a $s2% chance and Rapid Fire now has a $s1% chance to grant Deathblow.
+
+$?a466932[Black Arrow][Kill Shot] critical strike damage is increased by $s3%.
+
+$@spellicon378770 $@spellname378770
+The cooldown of $?a466932[Black Arrow][Kill Shot] is reset. $@spellaura378770
 
 Name             : Deathblow (id=378770) [Spell Family (9)] 
 Class            : Hunter
@@ -9713,6 +9874,8 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 23 | Misc Value 2: 5898 (Label) | Target: Self (1)
 Description      : $@spelldesc272679
 
+Tooltip          : Damage taken reduced by $s1%.
+
 Name             : Murloc Stampede (id=388694) [Hidden] 
 Class            : Hunter
 School           : Shadow
@@ -9898,6 +10061,8 @@ Effects          :
 #2 (id=1167100)  : Trigger Missiles (32): Wailing Arrow
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.85 | Trigger Spell: 392061 | Target: Targeted Enemy (6)
 Description      : Fire an enchanted arrow, dealing $392058s1 Shadow damage to your target and an additional $392058s2 Shadow damage to all enemies within $392058A2 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for $392061d.
+
+|cFFFFFFFFGrants Deathblow.|r
 
 Name             : Wailing Arrow (id=392061) [Spell Family (9)] 
 Class            : Hunter
@@ -10481,6 +10646,8 @@ Effects          :
 #2 (id=1171156)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Aimed Shot coalesces $s1 Wind $LArrow:Arrows; that shoot your target for $191043s1 Physical damage.
+
+Each time Rapid Fire deals damage, there is a 5% chance to coalesce a Wind Arrow at your target.
 
 Name             : Legacy of the Windrunners (id=406449) [Spell Family (9)] 
 Class            : Hunter
@@ -11158,6 +11325,8 @@ Effects          :
                    Affected School(s): All
 Description      : $@spelldesc459546
 
+Tooltip          : Damage taken reduced by $w1%
+
 Name             : Laceration (id=459555) [Spell Family (9), Hidden] 
 Class            : Hunter
 School           : Nature
@@ -11192,6 +11361,8 @@ Effects          :
 #1 (id=1166464)  : Apply Aura (6) | Periodic Damage (3): physical every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Mechanic: Bleed | Target: Targeted Enemy (6)
 Description      : $@spelldesc459552
+
+Tooltip          : Bleeding for $w1 damage every $t sec.
 
 Name             : Spearhead (id=459690) [Spell Family (9)] 
 Class            : Hunter
@@ -11740,6 +11911,11 @@ Effects          :
 #2 (id=1179784)  : Apply Aura (6) | Scale% (Stacking) (61)
                    Base Value: 20 | Scaled Value: 20 | Radius: 50000 yards | Target: Raid in Area (56)
 Description      : Your Eagle descends from the skies with a screech, giving the signal to attack.
+
+Increases haste by $s1% for all party and raid members for $d.
+
+Allies receiving this effect will become Sated and unable to benefit from Harrier's Cry or similar effects again for $57724d.
+Tooltip          : Haste increased by $s1%.
 
 Name             : Withering Fire (id=466991) [Spell Family (9)] 
 Class            : Hunter
@@ -12290,6 +12466,8 @@ Effects          :
 #1 (id=1190378)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc471876
+
+Tooltip          : Your next Kill Command deals $?c1[$472358s1][$472358s4]% increased damage and summons a Bear.
 
 Name             : Ursine Fury (id=472478) [Spell Family (9)] 
 Class            : Hunter
@@ -12858,6 +13036,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1218004 | Target: Current Target (25)
 Description      : $@spelldesc1215644
 Tooltip          : Infused with a powerful mutagen, causing auto-attacks to deal $1218004s1 Nature damage to up to $1218004i nearby enemies. 
+
+Each strike reduces the cooldown of Bestial Wrath by $${1218004s2/100}.2 sec.
 
 Name             : Potent Mutagen (id=1218004) [Spell Family (9)] 
 Class            : Hunter
@@ -12918,6 +13098,11 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : |cFFFFFFFFReplaces Call Pet|r
 Gain the aid of a Spotting Eagle. 
+
+Damaging an enemy with an ability empowered by Precise Shots has a $s1% chance to cause your Spotting Eagle to rapidly descend from the skies and mark your primary target.
+
+$@spellicon466872 $@spellname466872
+$@spellaura466872
 
 Name             : Spearhead (id=1221386) [Spell Family (9)] 
 Class            : Hunter
@@ -13013,6 +13198,8 @@ Effects          :
 #1 (id=1220649)  : Dummy (3)
                    Base Value: 25 | Scaled Value: 25 | Target: Current Target (25)
 Description      : Casts damaging abilities for use in combat, rotating through them based on priority.
+
+The global cooldown of abilities used through the Single-Button Assistant is $s1% longer.
 
 Name             : Recuperate (id=1231411) 
 Class            : Warrior, Paladin, Hunter, Rogue, Priest, Death Knight, Shaman, Mage, Warlock, Monk, Druid, Demon Hunter, Evoker
@@ -14567,6 +14754,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : $@spelldesc1273128
 Tooltip          : Bleeding for $w1 damage every $t1  sec.$?$w2>0[
+
+Damage taken from $@auracaster increased by $w2%.][]
 
 Name             : Raptor Swipe! (id=1273155) [Spell Family (9)] 
 Class            : Hunter

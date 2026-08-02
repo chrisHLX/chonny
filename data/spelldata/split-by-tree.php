@@ -35,103 +35,30 @@
  * record, same as before that fix was added.
  *
  * Usage:
- *   php split-by-tree.php <input-file> <output-dir> <class-label> --specs=A,B,C --heroes=X,Y,Z
+ *   php split-by-tree.php <input-file> <output-dir> [class-label] [--specs=A,B,C] [--heroes=X,Y,Z]
  *
- * Spec/hero tree names are class-specific and not baked in here on purpose — verify
- * them for the class you're splitting (same diligence as confirming any other spell
- * fact) rather than assuming names carried over from another class.
+ * --specs/--heroes are optional as of 2026-08-01 — see deriveTreeNames() below. class-label is
+ * also optional, defaulting to the input filename's basename. Explicit --specs/--heroes still
+ * work exactly as before and take priority when given (e.g. to deliberately narrow the set) —
+ * auto-derivation only fills in whichever one is omitted.
  */
 
-$input      = $argv[1] ?? null;
-$outputDir  = $argv[2] ?? null;
-$classLabel = $argv[3] ?? null;
-
-$specNames = [];
-$heroNames = [];
-foreach (array_slice($argv, 4) as $arg) {
-    if (preg_match('/^--specs=(.+)$/', $arg, $m)) {
-        $specNames = array_map('trim', explode(',', $m[1]));
-    } elseif (preg_match('/^--heroes=(.+)$/', $arg, $m)) {
-        $heroNames = array_map('trim', explode(',', $m[1]));
-    }
-}
-
-if (!$input || !$outputDir || !$classLabel || !is_file($input) || empty($specNames) || empty($heroNames)) {
-    fwrite(STDERR, "Usage: php split-by-tree.php <input-file> <output-dir> <class-label> --specs=A,B,C --heroes=X,Y,Z\n");
-    exit(1);
-}
-
-// Filesystem-safe key for names that may contain spaces/apostrophes (hero tree names
-// especially — e.g. "Elune's Chosen", "Druid of the Claw" — unlike single-word spec names).
-function slug(string $name): string
+/**
+ * Every "Talent Entry" value on a record's block, including continuation lines that carry their
+ * own "tree=" annotation (not to be confused with per-rank effect-scaling continuation lines
+ * like "Effect#2 [op=set, values=(1, 2)]", which attach to the same entry rather than declaring
+ * a second one) — shared by deriveTreeNames() below and the main classification loop, so there's
+ * exactly one place that knows how to walk this field.
+ *
+ * @return array<int, string>
+ */
+function collectTalentEntryLines(array $block): array
 {
-    $s = strtolower($name);
-    $s = preg_replace("/['\x{2019}]/u", '', $s);   // drop apostrophes rather than hyphenate them
-    $s = preg_replace('/[^a-z0-9]+/', '-', $s);     // everything else non-alphanumeric -> hyphen
-    return trim($s, '-');
-}
-
-$categoryFiles = ['baseline' => 'baseline.txt', 'class-talents' => 'class-talents.txt'];
-$titles        = ['baseline' => 'Baseline (no talent tree)', 'class-talents' => 'Class Talents'];
-foreach ($specNames as $spec) {
-    $key = slug($spec);
-    $categoryFiles[$key] = "{$key}.txt";
-    $titles[$key]        = "{$spec} Spec Talents";
-}
-foreach ($heroNames as $hero) {
-    $key = 'hero-' . slug($hero);
-    $categoryFiles[$key] = "{$key}.txt";
-    $titles[$key]        = "{$hero} Hero Talents";
-}
-
-$raw   = file_get_contents($input);
-$lines = explode("\n", $raw);
-
-// First line is the SimC header banner, not part of any record.
-$headerLine = array_shift($lines);
-
-// Split remaining lines into blank-line-separated blocks. Each non-empty block is one
-// spell record (starts with a "Name             : ..." line).
-$blocks = [];
-$current = [];
-foreach ($lines as $line) {
-    if (trim($line) === '') {
-        if (!empty($current)) {
-            $blocks[] = $current;
-            $current  = [];
-        }
-        continue;
-    }
-    $current[] = $line;
-}
-if (!empty($current)) {
-    $blocks[] = $current;
-}
-
-$grouped   = array_fill_keys(array_keys($categoryFiles), []);
-$index     = []; // name => [categories]
-$anomalies = [];
-
-foreach ($blocks as $block) {
-    if (!preg_match('/^Name\s*:\s*(.*)$/', $block[0], $m)) {
-        // Not a spell record (shouldn't happen after the header line is removed).
-        continue;
-    }
-    $name = trim($m[1]);
-
-    // Walk the block collecting every Talent Entry value, including continuation
-    // lines (lines starting with whitespace immediately after a Talent Entry line —
-    // same continuation style the dump uses for Labels/Resource/etc).
     $talentEntryLines = [];
     $lastFieldIsTalentEntry = false;
 
     foreach ($block as $line) {
         if (preg_match('/^\s/', $line)) {
-            // Continuation of whatever field preceded it. Under Talent Entry, a
-            // continuation is only a genuine second tree assignment if it contains
-            // "tree=" — otherwise it's per-rank effect scaling metadata attached to
-            // the same entry (e.g. "Effect#2 [op=set, values=(1, 2)]" on a multi-rank
-            // talent), not a separate tree/path assignment, and must not be classified.
             if ($lastFieldIsTalentEntry && preg_match('/^\s*:\s*(.*)$/', $line, $cm)) {
                 $value = trim($cm[1]);
                 if (str_contains($value, 'tree=')) {
@@ -148,6 +75,175 @@ foreach ($blocks as $block) {
             $lastFieldIsTalentEntry = false;
         }
     }
+
+    return $talentEntryLines;
+}
+
+/**
+ * Auto-derives the --specs/--heroes name lists directly from the input when not explicitly
+ * given, added 2026-08-01 so regenerating filtered files doesn't require hand-typing (and
+ * risking mistyping) each class's exact spec/hero tree names before every run — the same
+ * base-name recognition the classification loop below needs anyway, run once up front to build
+ * an exhaustive allowlist instead of requiring one to be supplied from memory.
+ *
+ * tree=spec entries' name part is the spec name verbatim, no suffix (confirmed across every
+ * class checked so far). tree=hero entries carry a trailing "(SpecList)" qualifier (e.g.
+ * "Archon (Holy)") that must be stripped to recover just the hero tree's own name — see
+ * game-data.md's "Hero-tree-to-spec mapping" section, which already relies on this exact
+ * qualifier for a different purpose.
+ *
+ * @param  array<int, array<int, string>>  $blocks
+ * @return array{specs: array<int, string>, heroes: array<int, string>}
+ */
+function deriveTreeNames(array $blocks): array
+{
+    $specs = [];
+    $heroes = [];
+
+    foreach ($blocks as $block) {
+        foreach (collectTalentEntryLines($block) as $entry) {
+            if (!preg_match('/^(.*)\s\[([^\]]*)\]$/', $entry, $em)) {
+                continue;
+            }
+            if (!preg_match('/tree=(\w+)/', $em[2], $trm)) {
+                continue;
+            }
+
+            $namePart = trim($em[1]);
+
+            if ($trm[1] === 'spec') {
+                $specs[] = $namePart;
+            } elseif ($trm[1] === 'hero') {
+                // Strip a trailing "(SpecList)" qualifier, e.g. "Archon (Holy)" -> "Archon".
+                $heroes[] = trim(preg_replace('/\s*\([^)]*\)$/', '', $namePart));
+            }
+        }
+    }
+
+    sort($specs);
+    sort($heroes);
+
+    return ['specs' => array_values(array_unique($specs)), 'heroes' => array_values(array_unique($heroes))];
+}
+
+// Flags are recognized by their "--" prefix regardless of position, so making class-label
+// optional (2026-08-01) can't accidentally swallow a "--specs=..."/"--heroes=..." flag into the
+// class-label slot — every remaining, non-flag argument is positional, in order.
+$positional = [];
+$specNames  = [];
+$heroNames  = [];
+foreach (array_slice($argv, 1) as $arg) {
+    if (preg_match('/^--specs=(.+)$/', $arg, $m)) {
+        $specNames = array_map('trim', explode(',', $m[1]));
+    } elseif (preg_match('/^--heroes=(.+)$/', $arg, $m)) {
+        $heroNames = array_map('trim', explode(',', $m[1]));
+    } else {
+        $positional[] = $arg;
+    }
+}
+
+$input      = $positional[0] ?? null;
+$outputDir  = $positional[1] ?? null;
+$classLabel = $positional[2] ?? null;
+
+if (!$input || !$outputDir || !is_file($input)) {
+    fwrite(STDERR, "Usage: php split-by-tree.php <input-file> <output-dir> [class-label] [--specs=A,B,C] [--heroes=X,Y,Z]\n");
+    exit(1);
+}
+
+if ($classLabel === null) {
+    // No explicit class-label given — fall back to the input filename, e.g. "priest.txt" ->
+    // "Priest". Purely cosmetic (banner/title text only, never used for classification), so an
+    // imperfect guess here (e.g. "Deathknight" instead of "Death Knight") is not a correctness
+    // risk — pass one explicitly if the exact display casing matters.
+    $classLabel = ucfirst(pathinfo($input, PATHINFO_FILENAME));
+}
+
+// Filesystem-safe key for names that may contain spaces/apostrophes (hero tree names
+// especially — e.g. "Elune's Chosen", "Druid of the Claw" — unlike single-word spec names).
+function slug(string $name): string
+{
+    $s = strtolower($name);
+    $s = preg_replace("/['\x{2019}]/u", '', $s);   // drop apostrophes rather than hyphenate them
+    $s = preg_replace('/[^a-z0-9]+/', '-', $s);     // everything else non-alphanumeric -> hyphen
+    return trim($s, '-');
+}
+
+$raw   = file_get_contents($input);
+$lines = explode("\n", $raw);
+
+// First line is the SimC header banner, not part of any record.
+$headerLine = array_shift($lines);
+
+// Split lines into per-record blocks, delimited ONLY by a "Name             : ..." line
+// starting a new record — NOT by blank lines. Fixed 2026-08-01: blank lines are also used
+// *within* a single record to separate paragraphs in a multi-paragraph Description/Tooltip
+// (e.g. Protector of the Frail's Description has a second paragraph — "Power Word: Shield
+// reduces the cooldown of Pain Suppression by ..." — after a blank line, describing a real
+// mechanic with no other structural representation anywhere in the data). The previous
+// blank-line-delimited splitting treated that blank line as the record boundary, silently
+// dropping the continuation paragraph as an unrecognized, non-"Name:"-prefixed orphan block
+// (confirmed systemic: dozens of records per class file across every class checked, not a
+// one-off). "Name :" is the same unambiguous record-start signal
+// SpellDataFileParser::parseContent() itself already relies on — never used as a field-value
+// prefix elsewhere in this dataset. Trailing blank lines are trimmed off each collected block
+// (trimTrailingBlankLines()) purely for output tidiness; blank lines *within* a block are left
+// untouched, preserving "no content altered" for the block's actual body.
+function trimTrailingBlankLines(array $block): array
+{
+    while (!empty($block) && trim(end($block)) === '') {
+        array_pop($block);
+    }
+
+    return $block;
+}
+
+$blocks = [];
+$current = [];
+foreach ($lines as $line) {
+    if (preg_match('/^Name\s*:/', $line) && !empty($current)) {
+        $blocks[] = trimTrailingBlankLines($current);
+        $current  = [];
+    }
+    $current[] = $line;
+}
+if (!empty($current)) {
+    $blocks[] = trimTrailingBlankLines($current);
+}
+
+if (empty($specNames) || empty($heroNames)) {
+    $derived = deriveTreeNames($blocks);
+    $specNames = empty($specNames) ? $derived['specs'] : $specNames;
+    $heroNames = empty($heroNames) ? $derived['heroes'] : $heroNames;
+    fwrite(STDOUT, "Auto-derived from data — specs: " . implode(', ', $specNames) . "\n");
+    fwrite(STDOUT, "Auto-derived from data — heroes: " . implode(', ', $heroNames) . "\n\n");
+}
+
+$categoryFiles = ['baseline' => 'baseline.txt', 'class-talents' => 'class-talents.txt'];
+$titles        = ['baseline' => 'Baseline (no talent tree)', 'class-talents' => 'Class Talents'];
+foreach ($specNames as $spec) {
+    $key = slug($spec);
+    $categoryFiles[$key] = "{$key}.txt";
+    $titles[$key]        = "{$spec} Spec Talents";
+}
+foreach ($heroNames as $hero) {
+    $key = 'hero-' . slug($hero);
+    $categoryFiles[$key] = "{$key}.txt";
+    $titles[$key]        = "{$hero} Hero Talents";
+}
+
+$grouped   = array_fill_keys(array_keys($categoryFiles), []);
+$index     = []; // name => [categories]
+$anomalies = [];
+
+foreach ($blocks as $block) {
+    if (!preg_match('/^Name\s*:\s*(.*)$/', $block[0], $m)) {
+        // Not a spell record (shouldn't happen after the header line is removed).
+        continue;
+    }
+    $name = trim($m[1]);
+
+    $talentEntryLines = collectTalentEntryLines($block);
 
     $recordText = implode("\n", $block);
     $destinations = [];

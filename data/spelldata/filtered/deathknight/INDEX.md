@@ -62,7 +62,7 @@ One line per spell record; each lists every file it appears in.
 - **Army of the Dead (id=42651) [Spell Family (15)]** — `baseline.txt`
 - **Ashen Decay (id=425719) [Spell Family (15)]** — `baseline.txt`
 - **Ashen Decay (id=425721) [Spell Family (15)]** — `baseline.txt`
-- **Aspect of the Beast (id=191384) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Aspect of the Beast (id=191384) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
 - **Asphyxiate (id=221562) [Spell Family (15)]** — `class-talents.txt`
 - **Assimilation (id=374383) [Spell Family (15), Passive, Hidden]** — `class-talents.txt`
 - **Assimilation (id=374407)** — `baseline.txt`
@@ -975,7 +975,7 @@ One line per spell record; each lists every file it appears in.
 - **Toravon's Whiteout Bindings (id=205658) [Spell Family (15), Passive]** — `baseline.txt`
 - **Toravon's Whiteout Bindings (id=205659) [Spell Family (15)]** — `baseline.txt`
 - **Toxic Accumulator (id=333388) [Spell Family (15)]** — `baseline.txt`
-- **Training Expert (id=378209) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Training Expert (id=378209) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
 - **Transfusion (id=1265574) [Spell Family (15), Passive, Hidden]** — `hero-sanlayn.txt`
 - **Transfusion (id=1265577)** — `baseline.txt`
 - **Transfusion (id=1280386)** — `baseline.txt`

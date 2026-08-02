@@ -20,6 +20,18 @@ Effects          :
 #2 (id=1286325)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
 Description      : Spending Runes has a chance to call forth the aid of a Horsemen for $454390d.
+
+|cFFFFFFFFMograine|R
+Casts Death and Decay at his location that follows his position and extends the duration of your diseases by ${$s2/1000}.1 sec whenever it deals damage.
+
+|cFFFFFFFFWhitemane|R
+Casts Undeath on your target dealing $444633s1 Shadowfrost damage per stack every $444633t sec, for $444633d. Each time Undeath deals damage it gains a stack. Cannot be refreshed.
+
+|cFFFFFFFFTrollbane|R
+Casts Chains of Ice on your target slowing their movement speed by $444834s1% and increasing the damage they take from you by 5% for 8 sec.
+
+|cFFFFFFFFNazgrim|R
+While Nazgrim is active you gain Apocalyptic Conquest, increasing your Strength by $444763s1%.
 
 Name             : On a Paler Horse (id=444008) [Spell Family (15), Passive] 
 Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -50,6 +62,8 @@ Effects          :
 #1 (id=1140259)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Death Charge overrides Death's Advance
                    Base Value: 444347 | Scaled Value: 444347 | Misc Value: 48265 | Target: Self (1)
 Description      : Call upon your Death Charger to break free of movement impairment effects.
+
+For $444347d, while upon your Death Charger your movement speed is increased by $444347s5%, you cannot be slowed below $444347s10% of normal speed, and you are immune to forced movement effects and knockbacks.
 
 Name             : Whitemane's Famine (id=444033) [Spell Family (15), Passive] 
 Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
@@ -138,6 +152,8 @@ Effects          :
 #2 (id=1141404)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : If an enemy dies while Nazgrim is active, the strength of Apocalyptic Conquest is increased by $s1%.
+
+Additionally, each Rune you spend increase its value by $s2%.
 
 Name             : Fury of the Horsemen (id=444069) [Spell Family (15), Passive] 
 Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -189,6 +205,8 @@ Effects          :
 #1 (id=1140361)  : Apply Aura (6) | Dummy (4)
                    Base Value: 80 | Scaled Value: 80 | Target: Self (1)
 Description      : While at your aid, the Horsemen will occasionally cast Anti-Magic Shell on you and themselves at $s1% effectiveness.
+
+You may only benefit from this effect every $451777d.
 
 Name             : Pact of the Apocalypse (id=444083) [Spell Family (15), Passive] 
 Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -324,3 +342,5 @@ Effects          :
                    Affected Spells: Festering Wound (195757), Putrefy (390220), Putrefy (1277016)
                    Family Flags: 85, 112
 Description      : The abilities that Horsemen cast deal $s1% increased damage.$?c3[
+
+Your Ghoul and skeletal archer deals $s3% and Lesser Ghouls deal $s5% increased damage][].

@@ -19,7 +19,7 @@ Raw WoW reference data pulled from SimulationCraft-format spell dumps and the Bl
 | Table | What it links |
 |---|---|
 | `spells` / `spell_effects` | Canonical spell record + effect breakdown, from spelldata. `spells.charges`/`spells.cooldown_seconds`/`spells.duration_seconds` are nullable scalars (a spell has at most one Charges-or-Cooldown line and at most one finite Duration line in the dump) — null means "not present/finite in the dump" ("Duration: Aura (infinite)" also parses to null), not zero. `duration_seconds` exists specifically to resolve the "$d" tooltip token in descriptions — see `ModuleSpellReferenceService` |
-| `spell_class_availability` | Many-to-many: which spells are available to which class/spec, tagged with `source` (`baseline`/`talent`/`pvp_talent`). For `talent`/`pvp_talent` rows, `spec_id` is filename-derived via `classifyFileSource()`. For `baseline` rows, `spec_id` is refined per-record by `resolveBaselineSpecIds()` from that record's own `Class:` field — see note below |
+| `spell_class_availability` | Many-to-many: which spells are available to which class/spec, tagged with `source` (`baseline`/`talent`/`pvp_talent`). For `talent`/`pvp_talent` rows, `spec_id` is filename-derived via `classifyFileSource()` — *except* a `tree=class` talent whose own Talent Entry line carries a `free=(SpecA, SpecB)` annotation, which `resolveFreeSpecIds()` narrows the same way baseline records get narrowed (see below and the "Class-availability gaps" section further down). For `baseline` rows, `spec_id` is refined per-record by `resolveBaselineSpecIds()` from that record's own `Class:` field — see note below |
 | `talent_trees` / `talent_nodes` / `talent_node_entries` / `talent_node_edges` | Talent tree structure (class/spec/hero trees), from talenttrees JSON, entries point at `spells.id` |
 | `pvp_talents` | Spec + spell + unlock level, from pvptalents JSON |
 | `spell_relationships` | Three `relationship_type` values, all spell_id-to-spell_id and cross-class-aware: **`modifies`** (effect-value modifiers, from `affecting_spells`/`modified_by`, built by `importRelationships()`), **`modifies_charges`** (charge-count modifiers, from `category_refs`/`affects_category`, built by `importCategoryRelationships()`), and **`replaces`** (action-bar spell replacement, from `replaces_refs`, built by `importReplacesRelationships()`) |
@@ -138,10 +138,107 @@ Every write goes through `upsertTrack()`, keyed on each table's natural unique c
 1. `spells.cooldown_seconds` is a `decimal(8,2)` column with no Eloquent cast — MySQL returns it as a string ("180.00") while the parser fills a PHP float (180.0), and `upsertTrack()`'s `isDirty()` falls back to `strcmp()` for uncast numeric attributes, so it never matched. Fixed with explicit `$casts` on `Spell` (`charges` → `integer`, `cooldown_seconds` → `decimal:2`).
 2. **Bigger effect, pre-existing:** `importClassSpells()` used to unconditionally write `description` from the freshly-parsed record — but a pointer-form record (`description_ref !== null`) always parses to `description = null` (re-parsing the same file can never yield anything else; resolving the pointer needs the full cross-class index that only exists after `resolveDescriptionReferences()` runs at the end). So every run, the main pass clobbered a previously-resolved description back to `null`, and the final pass wrote the real text back — a permanent Updated/Updated flap on ~44% of the dataset that never reached Unchanged. Fixed by omitting the `description` key entirely from `importClassSpells()`'s write when `description_ref !== null`, leaving an already-resolved value alone.
 
+## `split-by-tree.php` was silently truncating multi-paragraph descriptions (found and fixed 2026-08-01)
+
+Found while chasing why Pain Suppression didn't show 2 charges in the browser even after selecting Protector of the Frail (see the `modifies_charges` split below — that alone wasn't the whole story). The **raw** dump for Protector of the Frail (`data/spelldata/raw/priest.txt:9259-9261`) has a Description with two paragraphs:
+
+```
+Description      : Pain Suppression gains an additional charge.
+
+Power Word: Shield reduces the cooldown of Pain Suppression by ${$abs($s2/1000)} sec.
+```
+
+The second paragraph — a real mechanic (effect #2, `Base Value: -3000`, with **no** structural `Category:`/`Affected Spells (Category)` representation anywhere, unlike the charge grant in effect #3) — was completely absent from the **filtered** file (`filtered/priest/discipline.txt`), which jumps straight from the first sentence to the next `Name:` record.
+
+**Root cause:** `split-by-tree.php` split the raw dump into records purely on blank lines. SimC's dump also uses blank lines to separate paragraphs *within* a single Description/Tooltip, not exclusively between records. When a Description had an internal paragraph break, the splitter flushed the record early; the orphaned continuation-paragraph became its own "block" that didn't start with `Name :`, silently failed the record-shape check, and was dropped with no anomaly logged.
+
+**Scope — checked every class's raw dump, conservative count only** (continuation paragraph itself ends in a period *and* is immediately followed by the next `Name :` record — misses 3+ paragraph cases and ones followed by `Tooltip :`):
+
+| Class | Truncated records |
+|---|---|
+| Priest | 15 |
+| Deathknight | 36 |
+| Paladin | 28 |
+| Druid | 19 |
+| Warrior | 14 |
+
+Systemic, not Priest-specific — several hundred records across all twelve classes by extrapolation. Sample of what else was being lost (priest alone): `"Prayer of Healing reduces the cooldown on Holy Word: Sanctify by $34861s3 sec."`, `"Talents that affect Holy Word: Sanctify instead affect Holy Word: Serenity."` (a redirect relationship with no `relationship_type` equivalent today), `"Can accumulate up to $390993U charges."` (Lightweaver).
+
+**Fix, two layers:**
+1. `split-by-tree.php` — block boundaries are now driven only by a line matching `/^Name\s*:/` (the same signal `SpellDataFileParser::parseContent()` already uses), never by a bare blank line. Trailing blank lines are trimmed per block for tidiness; blank lines *within* a block are left untouched.
+2. `SpellDataFileParser` — even with the text surviving the split, the parser's `Description` handling only ever captured the single line immediately after `Description :`. Now tracks `$inDescriptionContinuation`: after a literal (non-pointer) Description line, every following non-blank line is space-joined onto the same `description` value until a recognized field, `Tooltip :`, `Effects:`, or the next `Name :` record ends it. Scoped to literal-text descriptions only — a `$@spelldesc<id>` pointer has no local text yet to append onto (resolved separately, cross-record, by `resolveDescriptionReferences()`).
+
+**Deliberately not built in this pass:** an automated extraction of these now-visible continuation sentences into new `spell_relationships` rows (e.g. turning "X reduces Y's cooldown by N sec" into a structured `modifies_cooldown` row the way `importPvpTalentRelationships()` already does for PvP talent prose). The recovered text is now visible wherever a spell's own description renders (e.g. Protector of the Frail's row in a module's Spells section), which is itself the honest, non-guessed improvement — turning arbitrary recovered prose into new structured relationships needs its own confirmed phrasing patterns first, same discipline as the PvP-talent regex, not blanket pattern-matching over newly-unlocked free text.
+
+**Re-import note:** regenerating `filtered/*.txt` via `split-by-tree.php` and re-running `import:spelldata` will pick up the recovered text automatically (`spells.description` is a plain `upsertTrack()`-managed column, updates in place — no stale-row caveat here, unlike the relabeling below).
+
+## `modifies_charges` split into correctly-typed relationships (fixed 2026-08-01)
+
+Closes the gap flagged 2026-07-24 above ("`modifies_charges` is a coarser label than the data actually supports") — `ImportSpellData::categoryRelationshipMapping()` now maps each of the 8 Category effect types to its own `relationship_type`, rather than lumping all of them under `modifies_charges`:
+
+| Effect type | New `relationship_type` | Magnitude computed? |
+|---|---|---|
+| Modify Cooldown Charge (Category) | `modifies_charges` | Yes — `+N charges` (verified: Pain Suppression/Protector of the Frail, `Base Value: 1` == +1 charge) |
+| Modify Recharge Time (Category) | `modifies_cooldown` | Yes — flat seconds (verified: the Mind Blast worked example, `base_value/1000`) |
+| Modify Recharge Time% (Category) | `modifies_cooldown` | No — not yet verified |
+| Modify Cooldown Time (Category) | `modifies_cooldown` | No — not yet verified |
+| Modify Charge Cooldown Recharge Rate% (Category) | `modifies_charge_rate` (new) | No |
+| Hasted Cooldown Duration (Category) | `hasted_cooldown` (new) | No — always-on mechanical tag, not a per-talent modifier |
+| Hasted Cooldown Regeneration (Category) | `hasted_cooldown` (new) | No |
+| Ignore Spell Charge Cooldown (Category) | `bypasses_cooldown` (new) | No |
+
+When a pair is only known via the non-magnitude-bearing "Category:" direction (no matching source-side effect found — see `importCategoryRelationships()`'s de-dup comment), the type can't be determined and falls back to the original `modifies_charges` label with no magnitude, same as before this fix.
+
+`ModuleSpellReferenceService` gained `effectiveCharges()` alongside `effectiveCooldown()` — both are now thin wrappers around a shared private `effectiveScalarValue()` (previously `effectiveCooldown()`'s logic was copy-paste-able but not generalized). Each filters `modifiersFor()`'s `'named'` list to its own `relationship_type` before applying flat-then-percent, so a spell with both a `charges`-unit and a `seconds`-unit selected modifier can't cross-contaminate the other's computation. `Modules\Show::getModuleSpellReferencesProperty()` and the Spells table now show a computed effective charge count (with a struck-through "was N" indicator, matching how a changed cooldown already renders) instead of the raw, talent-blind `spells.charges` column.
+
+**Re-import note — stale rows will remain:** `relationship_type` is part of `spell_relationships`' unique key (`source_spell_id`, `target_spell_id`, `relationship_type`). Re-running `import:spelldata` in place after this change will **insert** new correctly-typed rows alongside the old `modifies_charges` rows for the ~305/460 pairs that get relabeled — it won't delete the stale ones (`upsertTrack()` only creates/updates, never deletes), so `modifies_charges` would still show the old, wrong entries duplicated next to the new, correct ones. Run `migrate:fresh` + re-import rather than importing in place onto an already-populated DB, same precedent as the `baseline.txt` spec-filtering fix above.
+
+## Class-availability gaps found by cross-checking the real in-game Spellbook (fixed 2026-08-01)
+
+Pulled real screenshots of the in-game Priest Spellbook (the "Priest" page — always-known abilities — and the "Discipline" page — spec-only baseline abilities) and cross-checked every name against `spell_class_availability`, the same "trusted external list, enrich from there" pattern as the Arms Warrior spot-check above. Most of it matched cleanly (both pages' spells resolved to the right `spec_id`/`NULL` split), but three real, distinct problems surfaced:
+
+**1. Mind Blast was importing as class-wide when it should be Discipline+Shadow only.** Its raw record has a `Talent Entry` line with a `free=(Discipline, Shadow)` annotation — Blizzard's own signal that this shared class-tree talent is auto-granted to only those two specs, never Holy. Confirmed nothing in `SpellDataFileParser` or `ImportSpellData` parsed or used `free=(...)` at all before this fix — every `tree=class` talent was written as `spec_id = NULL` regardless. Not Priest-specific: `free=` appears in every class's raw dump (1–12 occurrences per class, 0 for Warlock).
+
+**Fixed:** `SpellDataFileParser` now captures `free_specs` from any `Talent Entry` line/continuation that has both `tree=class` and a `free=(...)` clause (matched independent of line prefix, the same trick already used for `replace="..."` — confirmed `free=` never appears outside a Talent Entry line anywhere in the dataset). `ImportSpellData::resolveFreeSpecIds()` resolves those names to spec ids and narrows `spell_class_availability`, the same way `resolveBaselineSpecIds()` already narrows baseline.txt records via `Class:` — same "never guess narrower than confidently supported" fallback to `[null]` when a name doesn't resolve.
+
+**2. Penance and Ultimate Penitence are each several spell_id records sharing one display name — only one is the real, player-facing talent.** Queried the DB: "Penance" is 11 distinct `spells` rows, not one; only 2 correctly resolve to Discipline. Checked the raw data for the other 9 — every one has a bare, unqualified `Class : Priest` (never "Discipline Priest"), and most carry `Not In Spellbook (143)` in Attributes. Same pattern on Ultimate Penitence: of its 4 spell_ids, 3 (`421434`, `421543`, `421544` — the channel-visual effect, the damage bolt, the heal bolt) are `Not In Spellbook` internal sub-components; only `421453` is the real, selectable talent.
+
+This is **not** a `resolveBaselineSpecIds()` bug — its conservative fallback (documented, deliberate: never guess a narrower spec than the data confidently supports) is working exactly as designed; these sub-spells' own `Class:` field genuinely doesn't say "Discipline Priest." The actual gap was that nothing recognized `Not In Spellbook` as the signal that a same-name duplicate is internal noise, not a second real ability.
+
+**Fixed:** `SpellDataFileParser` now captures `not_in_spellbook` from each record's own `Attributes` line. `ModuleSpellReferenceService::preferVisible()` (called from both `resolveSpellByName()` and `resolveSpellByNameAnyClass()`) narrows a same-name candidate set to non-hidden spells first, whenever at least one exists — never drops every candidate to zero. Verified against the real data post-fix: `resolveSpellByName('Penance', ...)` now resolves to `47540` (the real one) instead of risking one of the 9 internal duplicates; `resolveSpellByName('Ultimate Penitence', ...)` resolves to `421453`.
+
+**Re-import required** — both fixes change how existing rows are classified (a new `spec_id` for Mind Blast-shaped talents; a new `not_in_spellbook` column), so `migrate:fresh` + re-import is needed rather than an in-place re-import, same caveat as every other classification fix in this document. Verified end-to-end after the rebuild: Mind Blast now shows exactly `Discipline` + `Shadow` availability rows (no `NULL`, no `Holy`); the Discipline Priest Oracle module's Spells table still renders correctly (Pain Suppression's `180s · 2 charges` fix from earlier the same day survived the rebuild).
+
+## `not_in_spellbook` misses a second phrasing: "Do Not Display (Spellbook, ...)" (found 2026-08-02, FIXED 2026-08-02)
+
+The 2026-08-01 `not_in_spellbook` fix (see above) only recognized the literal string `Not In Spellbook (143)`. A live diff run of the spellbook-verifier pipeline (`spellbook-verifier.md`) against a real Discipline Priest's in-game export flagged `spell_id 197419` ("Penance") as a `NOT_IN_SPELLBOOK_CANDIDATE` — correctly available per `spell_class_availability` (Discipline baseline), correctly absent from the real spellbook export, but its `spells.not_in_spellbook` was `false`. Its raw record (`data/spelldata/filtered/priest/baseline.txt:2822`) explains why:
+
+```
+Name       : Penance (id=197419) [Spell Family (6), Passive, Hidden]
+Attributes : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
+```
+
+`Do Not Display (Spellbook, Aura Icon, Combat Log)` is semantically the same signal as `Not In Spellbook` (this is an internal Atonement-healing sub-effect of the real Penance, not a second player-facing ability — same shape as the 9 already-caught Penance duplicates) but a different literal phrase, so the existing regex/string match didn't catch it. The real, player-facing Penance (`spell_id 47540`) is unaffected and correctly resolves — this is the same kind of internal-duplicate noise the 2026-08-01 fix already handles for 9 other Penance rows, just a 10th one with different wording.
+
+**Fixed same day**, bundled with the `not_in_spellbook` false-positive fix below (both touch the same `SpellDataFileParser` line) — `not_in_spellbook` now also matches `Do Not Display (Spellbook`. Verified only one exact variant of this phrase exists across the whole dataset (3511 occurrences, `grep`-checked for stray variants first) — no ambiguity risk from the broader match. The earlier note here about this being out of scope for the spellbook-verifier plan no longer applies — this fix landed as part of a separate investigation (a module's Hunter spell references resolving to the wrong duplicate spell, see below), which touched the same parser code for an unrelated, more serious reason.
+
+## `not_in_spellbook` had a systemic false-positive: "Not In Spellbook Until Learned" ≠ "Not In Spellbook" (found and fixed 2026-08-02)
+
+Found while investigating why a Discipline Priest matchup-timing module showed no cooldown for Hunter's Intimidation and Freezing Trap (both real, well-known abilities with real cooldowns). Traced to `ModuleSpellReferenceService::resolveSpellByName()` resolving to the wrong one of several same-named `spells` rows — the same duplicate-name shape as Penance/Ultimate Penitence, but with a different, more serious root cause this time.
+
+**The wrong candidate wasn't marked hidden by design — it was marked hidden by a bug.** Hunter's real "Intimidation" (`spell_id 19577` — has its own `Talent Entry` for Beast Mastery/Survival and `Cooldown: 60 seconds`) had `not_in_spellbook = true`, which made `ModuleSpellReferenceService::preferVisible()` wrongly exclude it in favor of `spell_id 24394` (an internal pet-stun-effect sub-spell referenced only inside 19577's own description text, no cooldown at all). Same story for Freezing Trap: the real throw-able ability (`spell_id 187650`, `Cooldown: 30 seconds`, has real travel/velocity mechanics) was correctly visible, but only by luck — the module still resolved to `spell_id 3355` (the stun-aura effect applied once trapped, no cooldown) because `resolveSpellByNameAnyClass()` (the cross-class opponent-ability fallback) had no equivalent to `resolveSpellByName()`'s own-class `$withCooldown` disambiguation tier — just `preferVisible()` then `->first()`. Fixed by adding the same `$withCooldown` tier to the any-class fallback.
+
+**But why was 19577 — a real, legitimate talent — marked `not_in_spellbook = true` at all?** Its `Attributes` line contains `Not In Spellbook Until Learned (269)` — a real Blizzard attribute, but a *different* one (different numeric code) from the genuine hide-this-spell marker `Not In Spellbook (143)`. `SpellDataFileParser`'s check was `str_contains($m[1], 'Not In Spellbook')` — a bare substring match that also matched the `... Until Learned (269)` variant, which is true of nearly every real, normal talent (you don't have any un-learned talent "in your spellbook" — that's not a hidden-duplicate signal, it's baseline talent-tree behavior). Quantified across the full dataset before fixing: **646** occurrences of `Not In Spellbook Until Learned (269)` were being conflated with **2777** genuine `Not In Spellbook (143)` occurrences — a real, systemic false-positive affecting every class, not a Hunter-specific edge case.
+
+**Fixed:** the check now matches the exact `Not In Spellbook (143)` string (numeric code included), not a bare substring. Bundled in the same fix: the `Do Not Display (Spellbook, ...)` phrasing from the entry above.
+
+**Re-imported and re-verified end-to-end** (same `migrate:fresh` + re-import + re-seed requirement as every other classification fix in this document): Intimidation now resolves to `spell_id 19577` (`cd=60`, `hidden=false`), Freezing Trap to `spell_id 187650` (`cd=30`, `hidden=false`). Also re-verified nothing regressed on the Discipline Priest Oracle module: Mind Blast still `28s`, Evangelism still `45s` (Ultimate Radiance applied) after rebuilding both `TalentBuild`s from the same real captured loadout string and PvP selections.
+
 ## Not yet built
 
 - An equivalent import path for a non-WoW game — the flat-file *reader* (`SpellDataFileParser`, `classifyFileSource()`) is SimC/WoW-shaped by necessity of the source data; the schema underneath (`spells`, `spell_effects`, etc.) is intentionally game-agnostic (see `games` table), so a future game would need its own parser/import-command variant reusing the same tables, not a rewrite of this one.
-- Splitting `modifies_charges` by actual effect type (see above) — deliberately deferred, not forgotten.
+- Verified magnitude conversions for `Modify Recharge Time% (Category)`, `Modify Cooldown Time (Category)`, and `Modify Charge Cooldown Recharge Rate% (Category)` — correctly typed now, but no computed number until a hand-verified worked example exists for each (see above).
+- Automated extraction of recovered multi-paragraph description text into new structured `spell_relationships` rows (see above) — currently just visible as prose, not structured.
 - Hero-tree attribution for baseline pet/summon spells via embedded `$<id>` description tokens, and filtering `getTopCooldownSpellsProperty()` by the selected `heroTreeId` (see above).
 - Threading `talent_nodes.type`/`CHOICE` context into the Top Cooldowns section (see above).
 - Any automation of the trusted-ability-list matching pattern (see above) — currently a validated-by-hand approach, not a built feature.

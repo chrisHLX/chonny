@@ -38,6 +38,8 @@ Effects          :
 #9 (id=1293371)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Store vitality from $?a137023[$s1%][$s2%] of your damage dealt and $?a137023[$s3%][$s4%] of your $?a137023[effective ][]healing.$?a137024[ Vitality stored from overhealing is reduced.][]
+
+For $450711d after casting $?a137023[Celestial Brew or Celestial Infusion][Thunder Focus Tea] your spells and abilities draw upon the stored vitality to deal $s6% additional $?a137023[damage over $450763d][healing over $450769d].
 
 Name             : Coalescence (id=450529) [Spell Family (53), Passive] 
 Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -58,6 +60,10 @@ Effects          :
 #3 (id=1293357)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : When Aspect of Harmony $?a450870[deals damage or heals]?a137023[deals damage][heals], it has a chance to spread to a nearby $?a450870[target]?a137023[enemy][ally]. When you directly $?a450870[attack or heal]?a137023[attack][heal] an affected target, it has a chance to intensify, withdrawing additional vitality to increase its effect by up to $450508s9%.
+
+$?a137023[Keg Smash][Vivify] no longer contributes vitality. While Aspect of Harmony is not active, $?a137023[Keg Smash][Vivify] instead draws on available vitality to deal an additional $s2% $?a137023[damage over $1292919d][healing over $1292922d].
+
+Vitality stored by other abilities is increased by $s3%.
 
 Name             : Purified Spirit (id=450867) [Spell Family (53), Passive] 
 Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -307,6 +313,9 @@ Effects          :
 #8 (id=1306318)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Casting $?s322507[Celestial Brew]?s1241059[Celestial Infusion][Thunder Focus Tea] grants $?c1[$s5][$s6] $Lcharge:charges; of Potential Energy. Your next cast of Tiger Palm or Vivify consumes all charges of Potential Energy to cause a Harmonic Surge.
+
+$@spellicon1271011$@spellname1271011:
+$@spelldesc1271011
 
 Name             : Potential Energy (id=1271048) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Master of Harmony (Brewmaster, Mistweaver) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
@@ -348,3 +357,6 @@ Effects          :
                    Affected Spells (Label): Press the Advantage (418359)
 Description      : $?a388023[Ancient Teachings transfers an additional $s1% damage to healing.][$@spellicon196736 Blackout Combo:
 Increases Tiger Palm damage by an additional $s2% and Keg Smash reduces the cooldown on your Brews by an additional ${$s3/1000}.1 sec.
+
+$@spellicon418359  Press the Advantage:
+Nature damage dealt by your main hand auto-attacks is increased by $s4% and they now reduce the cooldown on your Brews by an additional ${$s5/1000}.2 sec.]

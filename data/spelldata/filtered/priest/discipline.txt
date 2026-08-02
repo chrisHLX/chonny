@@ -53,6 +53,13 @@ Effects          :
                    Base Value: 40 | Scaled Value: 40 | Target: Self (1)
                    Modified By: Discipline Priest (137032 effect#24)
 Description      : Shadow Word: Death has a $s3% chance to summon a Shadowfiend for $s1 sec when damaging targets below $s2% health.
+
+$@spellicon1280172 $@spellname1280172
+Summons a Shadowfiend to attack your target for $1280172d.$?c3[
+
+|cFFFFFFFFGenerates ${$200010s1/100} Insanity each time the Shadowfiend attacks.|r][
+
+|cFFFFFFFFGenerates ${$343727m1/10}.1% mana each time the Shadowfiend attacks.|r]
 
 Name             : Divine Aegis (id=47515) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Discipline [tree=spec, row=9, col=2, max_rank=1, req_points=20]
@@ -112,6 +119,8 @@ Effects          :
 #2 (id=178045)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Power Word: Shield, Flash Heal, Plea, Penance, and Power Word: Radiance apply Atonement to your target for $194384d.
+
+Your spell damage heals all targets affected by Atonement for $s1% of the damage done. Healing is reduced when healing more than $s2 targets.
 
 Name             : Castigation (id=193134) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Discipline [tree=spec, row=6, col=3, max_rank=1, req_points=8]
@@ -387,6 +396,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 2105 (Category) | Target: Self (1)
                    Affected Spells (Category): Pain Suppression (33206)
 Description      : Pain Suppression gains an additional charge.
+
+Power Word: Shield reduces the cooldown of Pain Suppression by ${$abs($s2/1000)} sec.
 
 Name             : Indemnity (id=373049) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Discipline [tree=spec, row=6, col=4, max_rank=1, req_points=8]
@@ -590,6 +601,8 @@ Effects          :
 #1 (id=1027854)  : Apply Aura (6) | Proc Trigger Spell (42): Weal and Woe
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 390787 | Target: Self (1)
 Description      : Your Penance bolts increase the absorb of your next Power Word: Shield by $390787s2%.
+
+Stacks up to $390787U times.
 
 Name             : Expiation (id=390832) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Discipline [tree=spec, row=10, col=6, max_rank=2, req_points=20]
@@ -635,6 +648,11 @@ Effects          :
 #4 (id=1120477)  : Apply Aura (6) | Mechanic Immunity (77)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 7 | Target: Self (1)
 Description      : Ascend into the air and unleash a massive barrage of Penance bolts, causing $<penancedamage> Holy damage to enemies or $<penancehealing> healing to allies over $421434d.
+
+While ascended, gain a shield for $s1% of your health. In addition, you are unaffected by knockbacks or crowd control effects.
+Tooltip          : Absorbing $w3 damage.
+Variables        : $penancedamage=${$421543s1>*($421434d/$421434t2)}
+$penancehealing=${$421544s1>*($421434d/$421434t2)}
 
 Name             : Divine Procession (id=472361) [Spell Family (6), Passive] 
 Talent Entry     : Discipline [tree=spec, row=8, col=1, max_rank=1, req_points=8]
@@ -795,6 +813,9 @@ Effects          :
 #1 (id=1257296)  : Apply Aura (6) | Proc Trigger Spell (42): Shadow Mend
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1252217 | Target: Self (1)
 Description      : Shadow Word: Pain damage has a chance to upgrade your next $@spellname2061 to $@spellname186263. Stacks up to $1252217u charges.
+
+$@spellicon186263 $@spellname186263:
+$@spelldesc186263
 
 Name             : Master the Darkness (id=1253590) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Discipline [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
@@ -811,6 +832,17 @@ Effects          :
 #1 (id=1259448)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Penance has a high chance to upgrade Power Word: Shield into $@spellname1253593.
+
+$@spellicon1253593 $@spellname1253593:
+$@spelldesc1253593
+
+
+Variables        : $castigation=$?a193134[${1}][${0}]
+$harsh=$?a373183[${$373180s2}][${0}]
+$darkside=$?a198069[${1+($198069s1/100)}][${1}]
+$balanceofthings=$?a390706[${1+($390706s1/100)}][${1}]
+$penancedamage=${$47666s1*$<darkside>*$<balanceofthings>*(3+$<castigation>+$<harsh>)}
+$penancehealing=${$47750s1*$<darkside>*(3+$<castigation>+$<harsh>)}
 
 Name             : Greater Smite (id=1253724) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Discipline [tree=spec, row=9, col=1, max_rank=2, req_points=20]
@@ -910,3 +942,5 @@ Effects          :
 #1 (id=1292925)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Evangelism summons a Mindbender to attack a nearby target for $123040d.
+
+|cFFFFFFFFGenerates ${$123051m1/100}.1% Mana each time the Mindbender attacks.|r

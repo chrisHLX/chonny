@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\Specialization;
 use App\Models\TalentNode;
 use App\Models\TalentNodeEntry;
+use App\Models\TalentTree;
 use Illuminate\Support\Collection;
 
 /**
@@ -25,15 +26,17 @@ use Illuminate\Support\Collection;
  *   hash validates against a native-code hash we cannot compute — Blizzard's own client
  *   explicitly sanctions third-party tools skipping it ("can be omitted and zero-filled, which
  *   will ignore the extra validation"), so it's read and discarded here, never checked.
- * - Content: one bit per talent node, in ascending order by Blizzard's internal node ID, across
- *   the WHOLE CLASS's trait tree (every spec's spec-tree nodes and every hero tree's nodes for
- *   that class — not just the spec being imported into). Per node: is-selected (1 bit) → if
- *   selected: is-purchased (1 bit) → if purchased: is-partially-ranked (1 bit) [+ 6 bits
- *   ranks-purchased] → is-choice-node (1 bit) [+ 2 bits choice-index].
+ * - Content: one bit per talent node, ordered per orderedNodesForSpec() below — NOT (as an
+ *   earlier version of this class assumed) a single global sort by external_node_id across
+ *   every tree for the whole class. That assumption was found to be the actual bug, not a
+ *   correct reading of the format — see that method's docblock for the fix and how it was
+ *   confirmed. Per node: is-selected (1 bit) → if selected: is-purchased (1 bit) → if purchased:
+ *   is-partially-ranked (1 bit) [+ 6 bits ranks-purchased] → is-choice-node (1 bit) [+ 2 bits
+ *   choice-index].
  * - PvP talents are not part of this format at all — a Blizzard string can never set PvP picks.
  *
- * Two assumptions this class makes that could not be fully verified without real imported data
- * on hand while building it — flagged here rather than silently trusted, and mitigated by
+ * Assumptions this class makes that could not be fully verified without real imported data on
+ * hand while building it — flagged here rather than silently trusted, and mitigated by
  * TalentSelector's preview-before-apply flow (nothing is written to talent_builds until a human
  * confirms the decoded spell names look right):
  * 1. Choice-node index -> talent_node_entries mapping: resolved via entries sorted by `id` ASC
@@ -44,6 +47,10 @@ use Illuminate\Support\Collection;
  * 2. Hero-tree-selection nodes need no special-casing at the bit level (the choice flag is
  *    self-describing in the stream, not derived from our own stored node type) — confirmed by
  *    reading the source, not yet cross-checked against real decoded output.
+ * 3. The relative order between multiple hero trees available to one spec (e.g. Oracle vs.
+ *    Voidweaver for Discipline) — ordered by TalentTree.id as a deterministic tie-break, per
+ *    orderedNodesForSpec()'s docblock. Not yet verified against a string that selects hero-tree
+ *    nodes deep enough for the wrong order to matter.
  */
 class BlizzardTalentStringCodec
 {
@@ -106,13 +113,7 @@ class BlizzardTalentStringCodec
             }
         }
 
-        $nodes = TalentNode::whereHas(
-            'talentTree',
-            fn ($q) => $q->where('class_id', $targetSpec->class_id)->where('patch_id', $patchId)
-        )
-            ->orderBy('external_node_id')
-            ->with(['entries.spell', 'talentTree'])
-            ->get();
+        $nodes = $this->orderedNodesForSpec($targetSpec, $patchId);
 
         $selections = collect();
         $warnings = [];
@@ -159,6 +160,54 @@ class BlizzardTalentStringCodec
         }
 
         return ['selections' => $selections, 'warnings' => $warnings];
+    }
+
+    /**
+     * The node sequence Blizzard's bitstream is packed against. Fixed 2026-08-01 after a real
+     * import string decoded to an impossible result — talents selected from Holy AND Shadow AND
+     * Discipline simultaneously, which can never happen in a genuine export. The previous version
+     * queried every node across the whole class (all three specs' trees + all hero trees) and
+     * sorted them in one global pass by `external_node_id` — but `external_node_id` is only
+     * unique WITHIN one tree, not globally: id 94691, for example, exists identically in Priest's
+     * class tree, Holy tree, Discipline tree, AND Oracle hero tree simultaneously (confirmed
+     * directly in data/talenttrees/priest.json at four separate byte offsets — not an import
+     * artifact, Blizzard's own Game Data API genuinely reuses node-id numbering per tree). A
+     * single cross-tree sort by that column is therefore not meaningful at all, which is what
+     * produced the impossible cross-spec result.
+     *
+     * Correct order, empirically verified against a real string (now correctly resolves
+     * Protector of the Frail, a specific expected Discipline talent, which the old ordering never
+     * did): class tree nodes (own external_node_id order), then the TARGET spec's own tree nodes
+     * only (own order) — never any other spec's tree — then every hero tree available to that
+     * spec (own order per tree, trees ordered by TalentTree.id — see assumption #3 in the class
+     * docblock for the one part of this still not fully verified).
+     */
+    private function orderedNodesForSpec(Specialization $targetSpec, int $patchId): Collection
+    {
+        $classNodes = TalentNode::whereHas(
+            'talentTree',
+            fn ($q) => $q->where('class_id', $targetSpec->class_id)->where('patch_id', $patchId)->where('type', 'class')
+        )->with('entries.spell')->orderBy('external_node_id')->get();
+
+        $specNodes = TalentNode::whereHas(
+            'talentTree',
+            fn ($q) => $q->where('spec_id', $targetSpec->id)->where('patch_id', $patchId)->where('type', 'spec')
+        )->with('entries.spell')->orderBy('external_node_id')->get();
+
+        $heroTrees = TalentTree::where('patch_id', $patchId)
+            ->where('type', 'hero')
+            ->whereHas('specializations', fn ($q) => $q->where('specializations.id', $targetSpec->id))
+            ->orderBy('id')
+            ->get();
+
+        $heroNodes = collect();
+        foreach ($heroTrees as $tree) {
+            $heroNodes = $heroNodes->concat(
+                $tree->nodes()->with('entries.spell')->orderBy('external_node_id')->get()
+            );
+        }
+
+        return $classNodes->concat($specNodes)->concat($heroNodes)->values();
     }
 
     /**

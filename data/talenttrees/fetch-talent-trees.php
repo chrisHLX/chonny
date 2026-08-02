@@ -29,6 +29,14 @@
  *     URL, so they're extracted with a regex.
  *   - GET /data/wow/talent-tree/{treeId} (no spec) returns the CLASS talent tree —
  *     `talent_nodes` — shared across every spec of that class. Fetched once per class.
+ *     CORRECTION 2026-08-02: this endpoint's `talent_nodes` is NOT limited to the class-wide
+ *     baseline the way it reads above — confirmed live (re-fetched, not a stale artifact) that
+ *     it also includes nearly every one of the class's own spec nodes (Priest: 226 returned vs.
+ *     208 total real spec nodes, with all 208 duplicated inside it, identical embedded
+ *     spell_name/talent_name content — not a coincidental id collision). See the
+ *     "Blizzard's bare class-tree endpoint..." comment below, where this is filtered back out
+ *     before writing the output file. Whether this is a Midnight-expansion API/data-model change
+ *     or the endpoint always behaved this way is unconfirmed.
  *   - GET /data/wow/talent-tree/{treeId}/playable-specialization/{specId} returns that
  *     spec's own `spec_talent_nodes` plus `hero_talent_trees[]` (each with its own
  *     `hero_talent_nodes`). It also echoes `class_talent_nodes`, which is intentionally
@@ -414,6 +422,29 @@ if (!$skipTrees) {
                 'hero_talent_tree_ids' => $heroTreeIds,
             ];
         }
+
+        // Blizzard's bare class-tree endpoint (fetched above, GET /data/wow/talent-tree/{treeId}
+        // with no spec segment) does NOT return only the class-wide baseline the way the docblock
+        // above assumed when this script was written — confirmed 2026-08-02 by cross-referencing
+        // a real character's exported spellbook against an imported Discipline Priest build: for
+        // every one of 13 classes checked, nearly every spec node is ALSO present in
+        // class_talents.nodes, not as a coincidental id collision but with identical embedded
+        // spell_name/talent_name content (e.g. Priest: 226 class nodes vs 208 total spec nodes,
+        // with all 208 duplicated inside the class list). A node's appearance in a spec's own
+        // fetch is authoritative over its appearance in this bloated class-tree response, so
+        // anything already claimed by a spec is filtered back out here. Whether this is a
+        // Midnight-expansion API/data-model change or always worked this way isn't known — this
+        // filter is defensive regardless of which.
+        $specNodeIds = [];
+        foreach ($specs as $spec) {
+            foreach ($spec['nodes'] as $node) {
+                $specNodeIds[$node['id']] = true;
+            }
+        }
+        $classNodes = array_values(array_filter(
+            $classNodes,
+            fn (array $node) => !isset($specNodeIds[$node['id']])
+        ));
 
         $output = [
             'class'             => $className,

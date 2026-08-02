@@ -125,6 +125,10 @@ Effects          :
 #2 (id=869186)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Blast the target with a frigid wind, dealing ${$s1*$<CAP>/$AP} $?s204088[Frost damage and applying Frost Fever to the target.][Frost damage to that foe, and reduced damage to all other enemies within $237680A1 yards, infecting all targets with Frost Fever.]
+
+$@spellicon55095 |cFFFFFFFF$@spellname55095|r
+$@spelldesc55095
+Variables        : $CAP=$?$OWB==0[${$AP*0.98}][${($AP+$OAP)*2/3}]--2H, DW
 
 Name             : Killing Machine (id=51128) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=3, col=2, max_rank=1, req_points=0]
@@ -188,6 +192,8 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : The power of frost increases your Strength by $s1% for $d.
 Tooltip          : Strength increased by $w1%.$?e5[
+
+Increases Remorseless Winter's damage by $w5%, its radius by $w6%, but movement speed is reduced.][]
 
 Name             : Gathering Storm (id=194912) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -222,6 +228,8 @@ Effects          :
 #2 (id=1275073)  : Apply Aura (6) | Dummy (4)
                    Base Value: 300 | Scaled Value: 300 | PvP Coefficient: 0.25 | Misc Value: 15 | Target: Self (1)
 Description      : When Frost Strike damages an enemy with $51714u stacks of Razorice it will consume them to deal an additional $s1% damage.
+
+Frostbane consumes the Razorice on your main target to deal an additional $s2% damage.
 
 Name             : Murderous Efficiency (id=207061) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=6, col=2, max_rank=1, req_points=8]
@@ -293,6 +301,8 @@ Effects          :
 #6 (id=1220540)  : Dummy (3) | Attributes: Add Target (Dest) Combat Reach to AOE (11), Area Effects Use Target Radius (17)
                    Base Value: 3 | Scaled Value: 3 | Radius: 8 yards | Target: Enemies in Cone to Targeted Enemy (104)
 Description      : A sweeping attack that strikes all enemies in front of you for $s2 Frost damage. Deals reduced damage beyond $s5 targets. 
+
+Consumes Killing Machine to have its critical strikes deal $s3 times the normal damage.
 
 Name             : Inexorable Assault (id=253593) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=5, col=1, max_rank=1, req_points=8]
@@ -309,6 +319,8 @@ Effects          :
 #1 (id=474096)   : Apply Aura (6) | Periodic Dummy (226): every 4 seconds | Attributes: Suppress Points Stacking (6)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Gain Inexorable Assault every $t1 sec, stacking up to $253595u times.
+
+$?s207230[Obliterate and Frostscythe consume][Obliterate consumes] up to $s1 stacks, dealing an additional $253597s1 Frost damage for each stack consumed.
 
 Name             : Frostwyrm's Fury (id=279302) [Spell Family (15)] 
 Talent Entry     : Frost [tree=spec, row=7, col=4, max_rank=1, req_points=8]
@@ -351,6 +363,9 @@ Effects          :
 #3 (id=1168502)  : Dummy (3)
                    Base Value: 15 | Scaled Value: 15
 Description      : During Pillar of Frost, Frost Strike$?s194913[, Glacial Advance,][] and Howling Blast always grant Killing Machine and have a $s2% chance to generate a Rune.
+
+Additionally during Pillar of Frost, Empower Rune Weapon causes your next Obliterate or Frostscythe to cost no Runes.
+Tooltip          : Frost Strike$?s194913[, Glacial Advance,][] and Howling Blast grant Killing Machine and have a $s2% chance to generate a Rune.
 
 Name             : Runic Overflow (id=316803) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=4, col=3, max_rank=2, req_points=0]
@@ -386,6 +401,8 @@ Effects          :
 #2 (id=1222921)  : Apply Aura (6) | Modify Power Regen (110)
                    Base Value: 10 | Scaled Value: 10 | Resource: rune | Target: Self (1)
 Description      : Increases your maximum Runic Power by ${$s1/10}.
+
+Increases Rune regeneration rate by $s2%.
 
 Name             : Everfrost (id=376938) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Frost [tree=spec, row=7, col=6, max_rank=1, req_points=8]
@@ -404,6 +421,8 @@ Effects          :
 #2 (id=1226018)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Rime empowered Howling Blast deals $s2% increased damage to secondary targets.
+
+Remorseless Winter deals $s1% increased damage to enemies it hits, stacking up to $376974u times.
 
 Name             : Biting Cold (id=377056) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=4, col=6, max_rank=1, req_points=0]
@@ -522,6 +541,8 @@ Effects          :
 #2 (id=1004950)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : Pillar of Frost now summons a Remorseless Winter that lasts ${$1233152d-$196770d} sec longer.
+
+Each enemy Remorseless Winter damages grants you ${$377253s1*$mastery}% Mastery, up to ${$s2*$mastery*$377253u}% for $287338d.
 
 Name             : Icebreaker (id=392950) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=8, col=6, max_rank=2, req_points=20]
@@ -554,6 +575,8 @@ Effects          :
 #2 (id=1160263)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Your auto attack damage is increased by $s2%. 
+
+This amount is increased for each stack of Icy Talons you have and it can stack up to $s1 additional times.
 
 Name             : Icy Death Torrent (id=435010) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -599,6 +622,9 @@ Effects          :
 #6 (id=1236222)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 15 | Target: Self (1)
 Description      : Each foe struck with Glacial Advance has a chance to transform your next Frost Strike into Frostbane. The chance increases with the number of Razorice stacks on the target.
+
+$@spellicon1228433$@spellname1228433
+$@spelldesc1228433
 
 Name             : Arctic Assault (id=456230) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Frost [tree=spec, row=4, col=2, max_rank=1, req_points=0]
@@ -686,6 +712,8 @@ Effects          :
                    Affected Spells: Killing Machine (51124)
                    Family Flags: 100
 Description      : Obliterate and Frostscythe consume all Killing Machines to deal $s2% increased critical strike damage and grant ${$1230916s1/10}.1% Haste for $1230916d for each stack consumed.
+
+Multiple applications may overlap.
 
 Name             : Howling Blades (id=1230223) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=7, col=1, max_rank=1, req_points=8]
@@ -718,6 +746,8 @@ Effects          :
 #1 (id=1221752)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Frost Strike and Glacial Advance now cause your next Frost Strike and Glacial Advance to deal $1230273s1% increased damage and cost ${$1230273s2/10} more Runic Power. 
+
+This effect stacks until the next Runic Empowerment.
 
 Name             : Northwinds (id=1230284) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=7, col=7, max_rank=1, req_points=8]
@@ -734,6 +764,8 @@ Effects          :
                    Affected Spells: Rime (59052)
                    Family Flags: 82
 Description      : Howling Blast now hits an additional target with maximum effectiveness. 
+
+Rime increases Howling Blast damage done by an additional $s1%.
 
 Name             : Frostreaper (id=1230301) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -761,6 +793,8 @@ Effects          :
                    Affected Spells: Obliterate (222024), Obliterate (325461), Death Knight Frost Class Set 2pc (393623), Obliterate (1264082), Obliterate (1264084)
                    Family Flags: 7
 Description      : Obliterate deals $s4% increased damage and has a chance to tether the souls of its target and a nearby enemy to yours.
+
+Frost Strike severs the tethers, dealing $1233619s1 Shadowfrost damage to both foes.
 
 Name             : Frostbound Will (id=1238680) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Frost [tree=spec, row=4, col=4, max_rank=1, req_points=0]
@@ -808,6 +842,10 @@ Effects          :
 #3 (id=1253350)  : Apply Aura (6) | Dummy (4)
                    Base Value: 800 | Scaled Value: 800 | Target: Self (1)
 Description      : Call upon Sindragosa's aid in battle for $d, continuously dealing ${$155166s2*$<CAP>/$AP} Frost damage every $t1 sec to enemies in a cone in front of you. Consuming Killing Machine or Rime increases the duration by ${$s3/1000}.1 sec. Deals reduced damage to secondary targets.
+
+|cFFFFFFFFGrants a charge of Empower Rune Weapon at the start and 2 Runes at the end.|r
+Tooltip          : Continuously dealing Frost damage every $t1 sec to enemies in a cone in front of you.
+Variables        : $CAP=$?$OWB==0[${$AP*0.98}][${($AP+$OAP)*2/3}]--2H, DW
 
 Name             : Chosen of Frostbrood (id=1265632) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
@@ -847,6 +885,8 @@ Effects          :
                    Base Value: 4 | Scaled Value: 4 | Misc Value: 3 | Misc Value 2: 1623 (Label) | Target: Self (1)
                    Affected Spells (Label): Enduring Strength (377195)
 Description      : Frostwyrm's Fury extends the duration of an active Pillar of Frost by ${$s1/1000}.1 sec.
+
+Enduring Strength grants an additional $s2% Strength.
 
 Name             : Chosen of Frostbrood (id=1265637) [Spell Family (15), Passive] 
 Talent Entry     : Frost [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -876,3 +916,5 @@ Effects          :
                    Affected Spells: Empower Rune Weapon (47568), Howling Blast (49184), Razorice (50401), Frost Fever (55095), Frost Strike Off-Hand (66196), Breath of Sindragosa (155166), Glacial Advance (195975), Remorseless Winter (196771), Chill Streak (204167), Avalanche (207150), Frostscythe (207230), Frost Strike (222026), Howling Blast (237680), Inexorable Assault (253597), Glacial Contagion (274074), Echoing Howl (275918), Frostwyrm's Fury (279303), Frostwhelp's Indignation (287320), Frost Strike (325464), Soul Reaper (343294), Soul Reaper (343295), Frostwhelp's Aid (377245), Frostwyrm's Fury (410790), Wave of Souls (435802), Reaper's Mark (436304), Icy Death Torrent (439539), Reaper's Mark (439843), Exterminate (441424), Exterminate (441426), Undeath (444633), Chains of Ice (444826), Trollbane's Icy Fury (444834), Soul Reaper (448229), Cryogenic Chamber (456371), Frostbane (1228433), Frostbane (1228436), Frostbane (1228443), Howling Blades (1231082), Howling Blades (1231083), Breath of Sindragosa (1231316), Frostreaper (1233619), Frostscythe (1237388), Obliterate (1264082), Obliterate Off-Hand (1264083), Obliterate (1264084)
                    Family Flags: 120
 Description      : All Frost damage increased by $s3%.
+
+Frostwyrm's Fury deals $s1% increased damage. After the Frostwyrm flies away, you may cast Frostwyrm's Fury again to recall it at $s2% effectiveness.

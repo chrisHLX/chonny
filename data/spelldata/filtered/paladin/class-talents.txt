@@ -25,6 +25,10 @@ Effects          :
 #2 (id=1031843)  : Direct Heal% (136)
                    Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.75 | Target: Targeted Ally (21)
 Description      : Heals a friendly target for an amount equal to $s2% your maximum health.$?a387791[
+
+Grants the target $387792s1% increased armor for $387792d.][]
+
+Cannot be used on a target with Forbearance. Causes Forbearance for $25771d.
 
 Name             : Blessing of Protection (id=1022) [Spell Family (10)] 
 Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8]
@@ -61,6 +65,13 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Raid Member (57)
                    Modified By: Blessed Calling (469770 effect#3)
 Description      : Blesses a party or raid member, granting immunity to Physical damage and harmful effects for $d.
+
+Cannot be used on a target with Forbearance. Causes Forbearance for $25771d.$?c2[
+
+Shares a cooldown with Blessing of Spellwarding.][]
+Tooltip          : Immune to Physical damage and harmful effects.$?a469770[
+
+Movement speed increased by $w4%.][]
 
 Name             : Blessing of Freedom (id=1044) [Spell Family (10)] 
 Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0, select_idx=300]
@@ -135,6 +146,11 @@ Effects          :
 #9 (id=1184416)  : Apply Aura (6) | Disable Stealth (41)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Targeted Raid Member (57)
 Description      : Blesses a party or raid member, reducing their damage taken by $s1%, but you suffer ${100*$e1}% of damage prevented.
+
+Last $d, or until transferred damage would cause you to fall below $s3% health.
+Tooltip          : $?$w1>0[$w1% of damage taken is redirected to $@auracaster.][Taking ${$s1*$e1}% of damage taken by target ally.]$?a469770[
+
+Movement speed increased by $w5%.][]
 
 Name             : Turn Evil (id=10326) [Spell Family (10)] 
 Talent Entry     : Generic [tree=class, row=2, col=7, max_rank=1, req_points=0]
@@ -246,6 +262,8 @@ Effects          :
                    Affected Spells: Divine Shield (642), Protection of the Fallen Dragons (392255)
                    Family Flags: 22
 Description      : Removing harmful effects with Divine Shield heals you for $s1% for each effect removed.  This heal cannot exceed ${$m1*$m2}% of your maximum health.
+
+Divine Shield may now be cast while Forbearance is active.
 
 Name             : Blessing of Dawn (id=183416) [Spell Family (10), Passive] 
 Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=23]
@@ -418,6 +436,8 @@ Effects          :
                    Base Value: 483 | Scaled Value: 483 | PvP Coefficient: 0.3714 | Misc Value: 12 | Target: Self (1)
 Description      : Judgment deems the target unworthy, preventing the next $<shield> damage dealt by the target.
 
+Variables        : $shield=${($SPS*$231644s1/100)*(1+$@versadmg)}
+
 Name             : Greater Judgment (id=231663) [Spell Family (10), Passive] 
 Talent Entry     : Protection, Retribution [free=(Retribution), tree=class, row=3, col=6, max_rank=1, req_points=0]
 Class            : Paladin
@@ -433,6 +453,8 @@ Effects          :
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
                    Modified By: Protection Paladin (137028 effect#16)
 Description      : Judgment causes the target to take $s1% increased damage from your next Holy Power ability.
+
+Multiple applications may overlap.
 
 Name             : Fist of Justice (id=234299) [Spell Family (10), Passive] 
 Talent Entry     : Generic [tree=class, row=2, col=3, max_rank=1, req_points=0]
@@ -490,6 +512,8 @@ Effects          :
 #3 (id=845536)   : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : The cooldown of Lay on Hands is reduced up to $s1%, based on the target's missing health.
+
+Word of Glory's healing is increased by up to $m3% on yourself, based on your missing health.
 
 Name             : Divine Toll (id=375576) [Spell Family (10)] 
 Talent Entry     : Holy [tree=class, row=5, col=4, max_rank=1, req_points=8, select_idx=100]
@@ -524,6 +548,10 @@ Effects          :
 #6 (id=1291910)  : Dummy (3)
                    Base Value: 100 | Scaled Value: 100
 Description      : Instantly cast $?a137029[Holy Shock at $375609s2% effectiveness]?a137028[Avenger's Shield]?a137027[Judgment][Holy Shock, Avenger's Shield, or Judgment] on up to $s1 targets within $A2 yds.$?c3[
+
+Divine Toll's Judgment deals $s6% increased damage.][]$?c2[
+
+Generates $s5 Holy Power per target hit.][]
 
 Name             : Golden Path (id=377128) [Spell Family (10), Passive] 
 Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=23, select_idx=100]
@@ -637,6 +665,8 @@ Effects          :
 #4 (id=1033122)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : After your Blessing of Sacrifice ends, $s1% of the total damage it diverted is added to your next Judgment as bonus damage, or your next Word of Glory as bonus healing.
+
+This effect's bonus damage cannot exceed $s3% of your maximum health and its bonus healing cannot exceed $s4% of your maximum health.
 
 Name             : Afterimage (id=385414) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=class, row=3, col=2, max_rank=1, req_points=0]
@@ -730,6 +760,15 @@ Effects          :
 #1 (id=1019038)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Learn Concentration Aura, Devotion Aura, and Crusader Aura:
+
+$@spellicon317920$@spellname317920:
+$@spelldesc317920
+
+$@spellicon465 $@spellname465:
+$@spelldesc465
+
+$@spellicon32223 $@spellname32223:
+$@spelldesc32223
 
 Name             : Divine Resonance (id=386738) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Protection [tree=class, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
@@ -893,6 +932,8 @@ Effects          :
 #2 (id=1053483)  : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | Target: Self (1)
 Description      : When your health is brought below $s1%, you instantly cast a free Word of Glory at $s2% effectiveness on yourself.
+
+Cannot occur more than once every $proccooldown sec.
 
 Name             : Faith's Armor (id=406101) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=9, col=1, max_rank=1, req_points=23]
@@ -979,6 +1020,8 @@ Effects          :
 #2 (id=1183517)  : Apply Aura Raid (65) | Trigger Spell Based on Health% (468): Worthy Sacrifice
                    Base Value: 35 | Scaled Value: 35 | Misc Value: 1 | Trigger Spell: 469283 | Radius: 40 yards | Target: Self (1)
 Description      : You automatically cast Blessing of Sacrifice onto an ally within $a2 yds when they are below $s2% health and you are not in a loss of control effect.
+
+This effect activates $s1% of Blessing of Sacrifice's cooldown.
 
 Name             : Steed of Liberty (id=469304) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0, select_idx=200]
@@ -996,6 +1039,9 @@ Effects          :
 #1 (id=1183571)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
 Description      : Divine Steed also grants Blessing of Freedom for ${$s1/1000}.1 sec.
+
+$@spellicon1044 $@spellname1044:
+$@spelldesc1044
 
 Name             : Eye for an Eye (id=469309) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=9, col=6, max_rank=1, req_points=23]
@@ -1284,6 +1330,8 @@ Effects          :
 #4 (id=1184337)  : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Divine Steed reduces the cooldown of $s1 nearby ally's major movement ability by ${$s2/-1000}.1 sec.
+
+Your movement speed is increased by $s4%.
 
 Name             : Hammer of Wrath (id=1241288) [Spell Family (10), Passive] 
 Talent Entry     : Generic [free=(Retribution), tree=class, row=1, col=6, max_rank=1, req_points=0]
@@ -1300,6 +1348,12 @@ Effects          :
 #1 (id=1240195)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : During Avenging Wrath, Judgment is empowered into Hammer of Wrath.$?c3[
+
+$@spellicon24275$@spellname24275
+$@spelldesc24275][
+
+$@spellicon1241413 $@spellname1241413
+$@spelldesc1241413]
 
 Name             : Blessing of Dusk (id=1241945) [Spell Family (10), Passive] 
 Talent Entry     : Generic [tree=class, row=10, col=6, max_rank=1, req_points=23]
@@ -1350,6 +1404,9 @@ Effects          :
                    Affected Spells: Divine Protection (498), Divine Protection (403876)
                    Family Flags: 72
 Description      : Divine Protection reduces damage taken by an additional $s2% and casts Shield of Vengeance.
+
+$@spellicon184662$@spellname184662
+$@spelldesc184662
 
 Name             : Fear No Evil (id=1265541) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8]
@@ -1407,3 +1464,5 @@ Effects          :
 #5 (id=1289813)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : While holding a shield, you have a $s2% chance to block incoming spells, reducing their damage by $s3%. 
+
+Without a shield, you have a $s4% chance to parry incoming melee attacks, reducing their damage by $s5%.

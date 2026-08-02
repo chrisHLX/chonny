@@ -23,6 +23,8 @@ Effects          :
 #1 (id=1118526)  : Trigger Missiles (32): Frostfire Bolt
                    Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 1 | Trigger Spell: 468655 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Launches a bolt of frostfire at the enemy, causing $468655s1 Frostfire damage, slowing movement speed by $205708s1%, and causing an additional $468655o2 Frostfire damage over $468655d.$?a1246769[
+
+|CFFffffffApplies $1246769s1 $lstack:stacks; of Freezing.|R][]
 
 Name             : Imbued Warding (id=431066) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -87,6 +89,10 @@ Effects          :
 #2 (id=1131295)  : Apply Aura (6) | Dummy (4)
                    Base Value: 300 | Scaled Value: 300 | PvP Coefficient: 0.6667 | Target: Self (1)
 Description      : $?a137019[Meteor now also calls down a Comet Storm, dealing ${$438609s1*7} Frost damage to nearby enemies]?a137020[Comet Storm now also calls down a Meteor, dealing $351140s1 Fire damage to nearby enemies. Damage reduced beyond 8 targets.
+
+Damage from Meteor Shatters $1246769s5 stacks of Freezing][Meteor now also calls down a Comet Storm, dealing ${$438609s1*7} Frost damage to nearby enemies.
+
+Comet Storm now also calls down a Meteor, dealing $351140s1 Fire damage to nearby enemies].
 
 Name             : Flame and Frost (id=431112) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -101,6 +107,8 @@ Effects          :
 #1 (id=1118636)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 Description      : $?a137020[Ice Block and Ice Cold reset the cooldowns of your Fire spells.]?a137019[Cauterize resets the cooldown of your Frost spells with a base cooldown shorter than $s1 minutes when it activates.][Ice Block and Ice Cold reset the cooldowns of your Fire spells.
+
+Cauterize resets the cooldown of your Frost spells with a base cooldown shorter than $s1 minutes when it activates.]
 
 Name             : Thermal Conditioning (id=431117) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -133,6 +141,8 @@ Effects          :
 #2 (id=1118707)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 Description      : You melt slightly out of your Ice Block and Ice Cold, allowing you to move slowly during Ice Block and increasing your movement speed over time.
+
+Ice Block and Ice Cold trigger a Blazing Barrier when they end.
 
 Name             : Frostfire Infusion (id=431166) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -161,6 +171,8 @@ Effects          :
                    Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Glacial Spike (1236209), Glacial Spike (1236211), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Scorch (1254311), Flamestrike (1254851), Glacial Spike (1262860), Glacial Spike (1262862), Ignite (1262887), Winter's End (1280757)
                    Family Flags: 1, 2, 4, 5, 7, 9, 17, 27, 28, 35, 38, 48, 52, 56, 64, 78, 82, 88, 96, 102, 119, 120
 Description      : $?a137020[Frostfire Bolt has an additional $s1% chance to grant Brain Freeze]?a137019[Frostfire Bolt's critical strike chance is increased by $s2%.][Frostfire Bolt has and additional $s1% chance to grant Brain Freeze and its critical strike chance is increased by $s2%].
+
+The damage of your Frost spells and Fire spells are increased by $s3%.
 
 Name             : Frostfire Empowerment (id=431176) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
@@ -190,6 +202,8 @@ Effects          :
 #6 (id=1296950)  : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : Casting Frostfire spells has a $s3% chance to activate Frostfire Empowerment, causing your next Frostfire Bolt to be instant cast, deal $431177s3% increased damage, explode for $s2% of its damage to nearby enemies. Damage reduced beyond $s5 targets.$?c2[][
+
+Damage from Frostfire Empowerment applies $s4 $Lstack:stacks; of Freezing.]
 
 Name             : Flash Freezeburn (id=431178) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
@@ -220,6 +234,10 @@ Effects          :
                    Affected Spells: Meteor (153561), Meteor (153564), Meteor Burn (155158), Meteor (351140), Meteor (438607), Meteor (438608), Meteorite (449560), Meteorite Burn (449561), Meteorite (449569)
                    Family Flags: 122
 Description      : $?a137020[Glacial Spike damage increased by $s1% and it now explodes on impact, dealing $s2% of its damage to up to $s3 nearby enemies.
+
+Additionally, Glacial Spike now grants Frostfire Empowerment][Meteor's damage is increased by $s4%.
+
+Meteor now grants Frostfire Empowerment].
 
 Name             : Severe Temperatures (id=431189) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=200]
@@ -300,6 +318,12 @@ Effects          :
                    Affected Spells: Blizzard (190356), Blizzard (190357), Freezing Winds (1247554), Blizzard (1248829)
                    Family Flags: 7
 Description      : Your $?a137020[Fire]?a137019[Frost][Frost and Fire] spells deal $?a137020[$s1]?a137019[$s2][$s1]% increased critical strike damage.
+
+$?a137020[Shatter damage increased by $s3%.
+
+Blizzard damage increased by $s6%.]?a137019[Pyroblast damage increased by $s4%.
+
+Flamestrike damage increased by $s5%.][Ice Lance and Pyroblast  have their damage increased by $s3%.]
 
 Name             : Blast Radius (id=1248016) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
@@ -328,6 +352,10 @@ Effects          :
                    Affected Spells: Comet Storm (153595), Comet Storm (153596), Comet Storm (228601), Comet Storm (438609)
                    Family Flags: 120
 Description      : $?a137020[Comet Storm damage increased by $s2%.
+
+Meteor damage increased by $s1%.]?a137019[Meteor damage increased by $s3%.
+
+Comet Storm damage increased by $s4%.][The damage of Meteor and Comet Storm is increased.]
 
 Name             : Duality (id=1262843) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
@@ -378,3 +406,5 @@ Effects          :
 #2 (id=1273344)  : Apply Aura (6) | Modify All Haste% (193)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : $?c2[Comet Storm and Glacial Spike now apply Ignite][Meteor and Pyroblast now apply Ignite].
+
+Your Haste is increased by $s2%.

@@ -18,6 +18,10 @@ Effects          :
 #1 (id=1136143)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Your auto-attacks have a chance to make your next $?a137010[Maul][Ferocious Bite] become Ravage.
+
+$?a137010[$@spellicon441605|cFFFFFFFF$@spellname441605|r
+$@spelldesc441605]$?a137011[$@spellicon441591|cFFFFFFFF$@spellname441591|r
+$@spelldesc441591]
 
 Name             : Fount of Strength (id=441675) [Spell Family (7), Passive] 
 Talent Entry     : Druid of the Claw (Feral, Guardian) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
@@ -37,6 +41,8 @@ Effects          :
 #3 (id=1138014)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Your maximum Energy and Rage are increased by $s1.
+
+Frenzied Regeneration also increases your maximum health by $s3%.
 
 Name             : Wildshape Mastery (id=441678) [Spell Family (7), Passive] 
 Talent Entry     : Druid of the Claw (Feral, Guardian) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
@@ -54,6 +60,10 @@ Effects          :
 #1 (id=1136296)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Ironfur and Frenzied Regeneration persist in Cat Form.$?!c3[
+
+When transforming from Bear to Cat Form, you retain $441685s1% of your Bear Form armor and health for $441685d.][]
+
+For $441686d after entering Bear Form, you heal for $441686s1% of damage taken over $441688d. 
 
 Name             : Empowered Shapeshifting (id=441689) [Spell Family (7), Passive] 
 Talent Entry     : Druid of the Claw (Feral, Guardian) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -91,6 +101,10 @@ Effects          :
                    Affected Spells: Mangle (33917)
                    Family Flags: 38
 Description      : Frenzied Regeneration can be cast in Cat Form for $s2 Energy.
+
+Bear Form reduces magic damage you take by ${-$s4}%.
+
+Shred and $?s202028[Brutal Slash][Swipe] damage increased by $s5%. Mangle damage increased by $s6%.
 
 Name             : Wildpower Surge (id=441691) [Spell Family (7), Passive] 
 Talent Entry     : Druid of the Claw (Feral, Guardian) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
@@ -126,6 +140,8 @@ Effects          :
 #1 (id=1136533)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Ravage also inflicts a Bleed that causes $?a137011[$441812s1][$451177s1] damage over $441812d and saps its victims' strength, reducing damage they deal to you by $?a137011[$441812s2][$451177s2]%.
+
+Dreadful Wound is not affected by Circle of Life and Death. $?a137011[If a Dreadful Wound benefiting from Tiger's Fury is re-applied, the new Dreadful Wound deals damage as if Tiger's Fury was active.][]
 
 Name             : Ruthless Aggression (id=441814) [Spell Family (7), Passive] 
 Talent Entry     : Druid of the Claw (Feral, Guardian) [tree=hero, row=3, col=5, max_rank=1, req_points=1, select_idx=100]
@@ -160,6 +176,8 @@ Effects          :
 #1 (id=1136553)  : Apply Aura (6) | Proc Trigger Spell (42): Killing Strikes
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 441825 | Target: Self (1)
 Description      : Ravage increases your Agility by $441825s1% and the armor granted by Ironfur by $441825s2% for $441825d.
+
+Your first $?a137011[Tiger's Fury][Mangle] after entering combat makes your next $?a137011[Ferocious Bite][Maul] become Ravage.
 
 Name             : Aggravate Wounds (id=441829) [Spell Family (7), Passive] 
 Talent Entry     : Druid of the Claw (Feral, Guardian) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
@@ -283,6 +301,8 @@ Effects          :
 #6 (id=1284883)  : Apply Aura (6) | Proc Trigger Spell (42): Strike for the Heart
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 458724 | Target: Self (1)
 Description      : $?c2[Shred, Swipe, and Rake damage increased by $s1% and their critical strike chance is increased by $s3%.][Mangle damage increased by $s4% and its critical strike chance is increased by $s5%.]
+
+$?c3[Mangle heals you for $458724s1% of maximum health.][]
 
 Name             : Tear Down the Mighty (id=441846) [Spell Family (7), Passive] 
 Talent Entry     : Druid of the Claw (Feral, Guardian) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]

@@ -18,6 +18,8 @@ Effects          :
 #1 (id=1114009)  : Apply Aura (6) | Proc Trigger Spell (42): Colossal Might
                    Base Value: 3 | Scaled Value: 3 | Trigger Spell: 440989 | Target: Self (1)
 Description      : Colossal Might increases damage dealt by your next Demolish by $440989s1%, stacking up to $440989u times.
+
+$?c1[Mortal Strike][Shield Slam] grants a stack of Colossal Might and $?c1[Cleave][Revenge] grants a stack of Colossal Might when it strikes $s1 or more targets.
 
 Name             : Dominance of the Colossus (id=429636) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
@@ -35,6 +37,8 @@ Effects          :
 #2 (id=1135859)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Colossal Might stacks up to 10 times. If you would gain a stack of Colossal Might and are at max stacks, the cooldown of Demolish is reduced by $s2 sec.
+
+Enemies affected by Demolish take up to ${$447513s2*$447513u*0.1}% more damage from you and deal up to ${$447513s1*$447513u*-0.1}% less damage to you for $447513d based on the number of stacks of Colossal Might consumed by Demolish.
 
 Name             : One Against Many (id=429637) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
@@ -128,6 +132,8 @@ Effects          :
 #5 (id=1135815)  : Apply Aura (6) | Scale% (Stacking) (61)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : You deal $s1% more damage and take $s4% less damage.
+
+Size increased by $s5%.
 
 Name             : No Stranger to Pain (id=429644) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -177,6 +183,12 @@ Effects          :
                    Affected Spells: Shield Slam (23922)
                    Family Flags: 41
 Description      : $?c1[Mortal Strike and Slam damage increased by $s1%.
+
+Cleave and Whirlwind damage increased by $s2%][Shield Slam damage increased by $s3%.
+
+Revenge and Thunder Clap damage increased by $s4%].$?c3[
+
+Shield Slam generates an additional ${$s5/10} Rage.][]
 
 Name             : Precise Might (id=431548) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
@@ -246,6 +258,10 @@ Effects          :
                    Affected Spells: Demolish (436358), Demolish (440884), Demolish (440886), Demolish (440888)
                    Family Flags: 126
 Description      : Unleash a series of precise and powerful strikes against your target, dealing ${$440884s1+$440886s1+$440888s1} damage to it, and $440888s1 damage to enemies within $440888A1 yds of it. Deals reduced damage beyond $s1 targets.
+
+While channeling Demolish, you take $s4% less damage and are immune to stuns, knockbacks, and forced movement effects.
+
+You can block, parry, dodge, and use certain defensive abilities while channeling Demolish.
 
 Name             : Earthquaker (id=440992) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -279,6 +295,8 @@ Effects          :
 #1 (id=1135202)  : Apply Aura (6) | Proc Trigger Spell (42): Second Wind
                    Base Value: 35 | Scaled Value: 35 | Trigger Spell: 441387 | Target: Self (1)
 Description      : When your health is brought below 35%, you gain a Second Wind, healing you for ${$441387s1*$441387t1*$441387d}% of your max health over $441387d.
+
+This effect cannot occur more than once every $proccooldown sec.
 
 Name             : Arterial Bleed (id=440995) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=200]

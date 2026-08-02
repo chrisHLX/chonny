@@ -37,6 +37,8 @@ Effects          :
 #1 (id=43915)    : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 7 | Target: Self (1)
 Description      : Casting Riptide grants $s1 $Lstack:stacks; of Tidal Waves. Tidal Waves reduces the cast time of your next Healing Wave or Chain Heal by $53390s1%.
+
+Can accumulate up to $53390U stacks.
 
 Name             : Riptide (id=61295) [Spell Family (11)] 
 Talent Entry     : Restoration [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -101,6 +103,9 @@ Effects          :
                    Affected Spells: Chain Heal (1064), Healing Wave (77472)
                    Family Flags: 8, 80
 Description      : Unleash elemental forces of Life, healing a friendly target for $s1.
+
+Increases the healing of your next Riptide, Chain Heal, or Healing Wave by $s2% and reduces its cast time by $s3%.
+Tooltip          : Increases the healing of your next Riptide, Chain Heal, or Healing Wave by $w2% and reduces its cast time by $w3%.
 
 Name             : Healing Rain (id=73920) [Spell Family (11)] 
 Talent Entry     : Restoration [tree=spec, row=2, col=3, max_rank=1, req_points=0]
@@ -192,6 +197,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
                    Modified By: Preeminence (462443 effect#3)
 Description      : Summons a totem at your feet for $d, which pulses every $t2 sec, healing all party or raid members within $114942A1 yards for $114942s1.
+
+Healing reduced beyond $s1 targets.
 
 Name             : Ascendance (id=114052) [Spell Family (11)] 
 Talent Entry     : Restoration [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -247,6 +254,11 @@ Effects          :
                    Affected Spells: Chain Heal (1064)
                    Family Flags: 8
 Description      : Immediately heals for $294020s1 split between allies within $294020A1 yds and transforms into a Water Ascendant for $d.
+
+While ascended, Chain Heal jumps to $s9 additional allies with $s17% healing reduced for all jumps, Healing Wave always critical heals and heals $s14 additional $Lally:allies; at $s15% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by $s16%.
+Tooltip          : Transformed into a powerful Water Ascendant. Chain Heal jumps to $s9 additional allies with no healing reduced per jump, Healing Wave always critical heals and heals $s14 additional $Lally:allies; at $s15% effectiveness, and the mana cost of Chain Heal and Healing Wave is reduced by $s16%.$?a462443[
+
+Haste increased by $w3%.][]
 
 Name             : Torrent (id=200072) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Restoration [tree=spec, row=6, col=4, max_rank=1, req_points=8]
@@ -347,6 +359,11 @@ Effects          :
 #4 (id=1006633)  : Apply Aura (6) | Dummy (4)
                    Base Value: 7 | Scaled Value: 7 | Target: Self (1)
 Description      : $?a137039[Casting Riptide]?a137040[Each Maelstrom spent][Each stack of Maelstrom Weapon consumed] has a $?a137039[$s4]?a137040[${$s2/100}.2][${$s3/10}.1]% chance to activate Ascendance for ${$m1/1000}.1 sec.
+
+$?a137039[$@spellicon114052 $@spellname114052
+$@spelldesc114052]?a137040[$@spellicon114050 $@spellname114050
+$@spelldesc114050][$@spellicon114051 $@spellname114051
+Transform into an Air Ascendant for $114051d and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by $114051s9%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a $114089r yd range.]
 
 Name             : Acid Rain (id=378443) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Restoration [tree=spec, row=3, col=3, max_rank=1, req_points=0]
@@ -532,6 +549,8 @@ Effects          :
                    Affected Spells: Earthliving Weapon (382024)
                    Family Flags: 81
 Description      : Earthliving receives $s1% additional benefit from Mastery: Deep Healing.
+
+Healing Wave always triggers Earthliving on its target.
 
 Name             : Living Stream (id=382482) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Restoration [tree=spec, row=4, col=7, max_rank=1, req_points=0]
@@ -705,6 +724,9 @@ Effects          :
 #1 (id=1172315)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Casting $?a455630[Surging Totem][Healing Rain] grants a use of Downpour for $462488d.
+
+$@spellicon207778 $@spellname207778
+$@spelldesc207778
 
 Name             : White Water (id=462587) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Restoration [tree=spec, row=5, col=4, max_rank=1, req_points=8]

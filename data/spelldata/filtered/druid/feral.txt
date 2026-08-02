@@ -51,6 +51,8 @@ Effects          :
 #1 (id=8554)     : Apply Aura (6) | Proc Trigger Spell (42): Clearcasting
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Trigger Spell: 135700 | Target: Self (1)
 Description      : Your auto attacks have a $?s236068[high ][]chance to cause a Clearcasting state, making your next Shred or $?s202028[Brutal Slash][Swipe] cost no Energy$?s236068[ and deal $236068s4% more damage][].$?s236068[
+
+Clearcasting can accumulate up to ${$s135700u+$236068s1} charges.][] 
 
 Name             : Infected Wounds (id=48484) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=6, col=7, max_rank=1, req_points=8]
@@ -147,6 +149,17 @@ Effects          :
 #6 (id=1149783)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
                    Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.6667 | Target: Self (1)
 Description      : An improved Cat Form that grants all of your known Berserk effects and lasts $d. You may shapeshift in and out of this improved Cat Form for its duration. During Incarnation:
+
+Energy cost of all Cat Form abilities is reduced by $s3%, and Prowl can be used once while in combat.$?s343223[
+
+Generate $343216s1 combo $lpoint:points; every $t1 sec. Combo point generating abilities generate $106951s2 additional combo $lpoint:points;. Finishing moves restore up to $405189u combo points generated over the cap.
+
+All attack and ability damage is increased by $s4%.][]
+
+
+Tooltip          : Energy costs reduced by $w3%.$?s343223[
+
+Generate $343216s1 combo $lpoint:points; every $t1 sec. Combo point generating abilities generate $106951s2 additional combo $lpoint:points;. Finishing moves restore up to $405189u combo points generated over the cap. All attack and ability damage is increased by $s4%.][]
 
 Name             : Lunar Inspiration (id=155580) [Passive] 
 Talent Entry     : Feral [tree=spec, row=10, col=2, max_rank=1, req_points=20, select_idx=100]
@@ -203,6 +216,8 @@ Effects          :
 #2 (id=1149399)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Predator
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 449864 | Target: Self (1)
 Description      : Tiger's Fury lasts ${$s1/1000} additional seconds.
+
+Your combo point-generating abilities' direct damage is increased by $449864s2% of your Haste.
 
 Name             : Sabertooth (id=202031) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=4, col=3, max_rank=1, req_points=0]
@@ -224,6 +239,8 @@ Effects          :
 #2 (id=753677)   : Apply Aura (6) | Dummy (4)
                    Base Value: 6 | Scaled Value: 6 | PvP Coefficient: 0.6 | Target: Self (1)
 Description      : Ferocious Bite deals $s1% increased damage.
+
+For each Combo Point spent, Ferocious Bite's primary target takes $s2% increased damage from your Cat Form bleed and other periodic abilities for $391722d.
 
 Name             : Merciless Claws (id=231063) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=3, col=2, max_rank=1, req_points=0]
@@ -291,6 +308,8 @@ Effects          :
 #2 (id=727433)   : Apply Aura (6) | Periodic Dummy (226): every 0.2 seconds
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Unleash a furious frenzy, clawing your target $m2 times for ${$274838s1*$m2} Physical damage and an additional ${$m2*$274838s3*$274838d/$274838t3} Bleed damage over $274838d.
+
+|cFFFFFFFFAwards $s1 combo points.|r
 
 Name             : Primal Wrath (id=285381) [Spell Family (7)] 
 Talent Entry     : Feral [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -315,6 +334,12 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2
                    Modified By: Circle of Life and Death (338657 effect#5), Veinripper (391978 effect#2), Circle of Life and Death (400320 effect#5), Liveliness (426702 effect#3)
 Description      : Finishing move that deals instant damage and applies Rip to all enemies within $A1 yards. Lasts longer per combo point.
+
+   1 point  : ${$s1*2} plus Rip for ${$s2*2} sec
+   2 points: ${$s1*3} plus Rip for ${$s2*3} sec
+   3 points: ${$s1*4} plus Rip for ${$s2*4} sec
+   4 points: ${$s1*5} plus Rip for ${$s2*5} sec
+   5 points: ${$s1*6} plus Rip for ${$s2*6} sec
 
 Name             : Berserk (id=343223) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=6, col=4, max_rank=1, req_points=8, override="Berserk" (id=106951)]
@@ -400,6 +425,8 @@ Effects          :
 #1 (id=1027835)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0
 Description      : While stealthed, Rake will also stun the target for $163505d, and deal $1822s4% increased damage for its full duration.
+
+While stealthed, Shred deals $5221s3% increased damage, has double the chance to critically strike, and generates $343232s1 additional combo $lpoint:points;.
 
 Name             : Wild Slashes (id=390864) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=7, col=3, max_rank=1, req_points=8]
@@ -554,6 +581,9 @@ Effects          :
                    Affected Spells: Swiftmend (18562)
                    Family Flags: 33, 123
 Description      : Call upon the spirits for an eruption of energy, channeling a rapid flurry of $s2 Druid spells and abilities over $d.$?s391538[ Chance to use an exceptional spell or ability is increased.][]
+
+You will cast $?a24858|a197625[Starsurge, Starfall,]?a768[Ferocious Bite, Shred,]?a5487[Mangle, Ironfur,][Wild Growth, Swiftmend,] Moonfire, Wrath, Regrowth, Rejuvenation, Rake, and Thrash on appropriate nearby targets, favoring your current shapeshift form.
+Tooltip          : Every ${$t1}.2 sec, casting $?a24858|a197625[Starsurge, Starfall,]?a768[Ferocious Bite, Shred,]?a5487[Mangle, Ironfur,][Wild Growth, Swiftmend,] Moonfire, Wrath, Regrowth, Rejuvenation, Rake or Thrash on appropriate nearby targets.
 
 Name             : Ashamane's Guidance (id=391548) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=10, col=4, max_rank=1, req_points=20]
@@ -569,6 +599,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spellicon102543$@spellname102543
 $@spelldesc1244546
+
+$@spellicon391528 $@spellname391528
+Convoke the Spirits' cooldown is reduced by ${($abs($391538s4)/120000)*100}% and its duration and number of spells cast is reduced by $391538s1%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.
 
 Name             : Double-Clawed Rake (id=391700) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=3, col=6, max_rank=1, req_points=0]
@@ -624,6 +657,8 @@ Effects          :
                    Affected Spells: Tiger's Fury (5217)
                    Family Flags: 75
 Description      : Tiger's Fury causes your next $391873n finishing $Lmove:moves; to restore $391874s1 combo $Lpoint:points;.
+
+Tiger's Fury also increases the periodic damage of your bleeds $?a155580[and Moonfire ][]by an additional $s3% for their full duration.
 
 Name             : Frantic Momentum (id=391875) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=8, col=4, max_rank=2, req_points=20]
@@ -791,6 +826,8 @@ Effects          :
 #2 (id=1244702)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Unleash a furious frenzy, flickering to nearby targets in front of you $s1 times and clawing all enemies around them for $1244079s1 Physical damage and an additional ${$1244079s3*$1244079d/$1244079t3} Bleed damage over $1244079d.
+
+|cFFFFFFFFAwards $s1 combo points.|r
 
 Name             : Chomp (id=1244258) [Spell Family (7)] 
 Talent Entry     : Feral [tree=spec, row=10, col=2, max_rank=1, req_points=20, select_idx=200]
@@ -812,6 +849,8 @@ Effects          :
 #1 (id=1244916)  : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 9 | Target: Targeted Enemy (6)
 Description      : Chomp your target, causing $s1 Physical damage. Chomp critical strikes deal ${$1244292s3/100+2} times normal damage.
+
+Chomp can only be used when you fall below ${$1244292s1+1}% Energy or for ${$1244393s1/1000} seconds afterward.
 
 Name             : Blood Spattered (id=1244532) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -917,6 +956,12 @@ Effects          :
 #2 (id=1274912)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : When you Ferocious Bite, you have a $s1% chance per combo point spent to flicker to an enemy within $s2 yds and deliver an Unseen Attack. Unseen Attack damage is reduced if less than 5 combo points and ${$22568c+$22568s2} Energy are spent on Ferocious Bite.
+
+$@spellicon1263827 $@spellname1263827
+$@spelldesc1263827
+
+$@spellicon1263902 $@spellname1263902
+$@spelldesc1263902
 
 Name             : Unseen Predator (id=1263658) [Spell Family (7), Passive] 
 Talent Entry     : Feral [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]

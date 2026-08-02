@@ -133,6 +133,10 @@ Effects          :
 #5 (id=1302061)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Summon a Demonic Tyrant that damages your target for $d. 
+
+Damage dealt by Demonic Tyrant is increased by $1276788s1% for each Wild Imp and Dreadstalker active.$?s334585[
+
+|cFFFFFFFFGenerates ${$s2/10} Soul Shards.|r][]
 
 Name             : Sacrificed Souls (id=267214) [Spell Family (5), Passive] 
 Talent Entry     : Demonology [tree=spec, row=8, col=3, max_rank=1, req_points=20]
@@ -227,6 +231,12 @@ Effects          :
 #1 (id=1104391)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Grants access to the following abilities:
+
+$@spellicon264178 $@spellname264178
+$@spelldesc264178
+
+$@spellicon267102 $@spellname267102
+$@spelldesc267102
 
 Name             : Spiteful Reconstitution (id=428394) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=7, col=2, max_rank=1, req_points=8]
@@ -332,6 +342,9 @@ Effects          :
                    Affected Spells: Summon Gloomhound (455465), Summon Charhound (455476), Summon Vilefiend (1251781)
                    Family Flags: 114
 Description      : Your Summon Vilefiend becomes Summon Gloomhound and learns the following ability:
+
+$@spellicon455489 $@spellname455489
+$@spelldesc455489
 
 Name             : Mark of F'harg (id=455450) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=10, col=7, max_rank=1, req_points=20, select_idx=200]
@@ -348,6 +361,9 @@ Effects          :
                    Affected Spells: Summon Gloomhound (455465), Summon Charhound (455476), Summon Vilefiend (1251781)
                    Family Flags: 114
 Description      : Your Summon Vilefiend becomes Summon Charhound and learns the following ability:
+
+$@spellicon428453 $@spellname428453
+$@spelldesc428453
 
 Name             : Doom (id=460551) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=9, col=1, max_rank=1, req_points=20]
@@ -366,6 +382,8 @@ Effects          :
 #2 (id=1168313)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : When Demonbolt consumes a Demonic Core it inflicts impending doom upon the target, dealing $460555s1 Shadow damage to enemies within $460555a1 yds of its target after $460553d or when removed. Damage is reduced beyond $s2 targets.
+
+Hand of Gul'dan reduces the duration of Doom by ${$s1/1000} sec.
 
 Name             : Master Summoner (id=1240189) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=8, col=5, max_rank=1, req_points=20]
@@ -470,6 +488,9 @@ Effects          :
 #1 (id=1255229)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Your Demonic Tyrant is equipped with armor forged within Antorus, increasing their armor by $1251000s1%. While summoned, your Demonic Tyrant now assaults enemies with powerful melee attacks.
+
+$@spellicon1264093 $@spellname1264093
+$@spelldesc1264093
 
 Name             : Summon Vilefiend (id=1251778) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=9, col=7, max_rank=1, req_points=20]
@@ -578,6 +599,8 @@ Effects          :
                    Base Value: 4000 | Scaled Value: 4000 | Misc Value: 1 | Misc Value 2: 6013 (Label) | Target: Self (1)
                    Affected Spells (Label): Dominion of Argus: Antoran Jailer (1276182), Dominion of Argus: Doommaiden (1276282), Dominion of Argus: Antoran Inquisitor (1276283), Dominion of Argus: Lady Sacrolash (1282501), Dominion of Argus: Grand Warlock Alythess (1282502)
 Description      : While Dominion of Argus is active, Hand of Gul'dan refunds ${$1276318s1/10} $lSoul Shard:Soul Shards;.
+
+Demons summoned by Dominion of Argus last an additional ${$s2/1000} sec.
 
 Name             : Dominant Hand (id=1276433) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=3, col=2, max_rank=1, req_points=0]
@@ -617,6 +640,8 @@ Effects          :
 #2 (id=1290246)  : Summon Guardian (28)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 258584 | Misc Value 2: 6629 | Radius: 8 yards | Target: at Random (72)
 Description      : Summons an Imp Lord to assist you in combat for $d and will remove 1 harmful effect from you when summoned. 
+
+Transforms into Singe Magic while on cooldown.
 
 Name             : Grimoire: Fel Ravager (id=1276467) [Spell Family (5)] 
 Talent Entry     : Demonology [tree=spec, row=9, col=5, max_rank=1, req_points=20, select_idx=200]
@@ -641,6 +666,8 @@ Effects          :
 #2 (id=1288227)  : Summon Guardian (28)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 258587 | Misc Value 2: 6628 | Radius: 5 yards | Target: Summoner in Area (32)
 Description      : Summons a Fel Ravager to assist you in combat for $d and will purge 1 beneficial magic effect from an enemy.
+
+Turns into Devour Magic while on cooldown. 
 
 Name             : Stabilized Portals (id=1276661) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=10, col=5, max_rank=1, req_points=20]
@@ -684,6 +711,9 @@ Effects          :
 #2 (id=1288586)  : Dummy (3)
                    Base Value: 3 | Scaled Value: 3 | Target: Targeted Enemy (6)
 Description      : Summons a Doomguard to assist you in combat for $d. Consuming a Demonic Core reduces the cooldown of Summon Doomguard by $s2 sec.
+
+$@spellicon1251989 $@spellname1251989
+$@spelldesc1251989
 
 Name             : Tyrant's Oblation (id=1276746) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Demonology [tree=spec, row=7, col=3, max_rank=1, req_points=8]
@@ -791,3 +821,6 @@ Effects          :
 #2 (id=1294675)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Power Siphon and Implosion summon $s1 Imp Gang Boss for every $s2 Wild Imps sacrificed. Wild Imps summoned this way gain Unstable Soul.
+
+$@spellicon1281512 $@spellname1281512
+$@spelldesc1281512

@@ -37,6 +37,8 @@ Effects          :
                    Affected Spells: Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Fists of Fury (113656), Breath of Fire (115181), Fists of Fury (117418), Crackling Jade Lightning (117952), Keg Smash (121253), Flying Serpent Kick (123586), Zen Pulse (124081), Chi Wave (132467), Chi Burst (148135), Rushing Jade Wind (148187), Whirling Dragon Punch (158221), Rising Sun Kick (185099), Special Delivery (196733), Blackout Kick (205523), Stomp (227291), Blackout Kick (228649), Sunrise Technique (275673), Glory of the Dawn (288636), Exploding Keg (325153), Faeline Stomp (327264), Spinning Crane Kick (330903), Keg Smash (330911), Tiger Palm (331433), Chi Explosion (337342), Faeline Stomp (345727), Jadefire Stomp (388201), Jadefire Stomp (388207), Zen Pulse (388609), Exploding Keg (388867), Glory of the Dawn (392959), Chi Explosion (393056), Thunderfist (393566), Strike of the Windlord (395519), Strike of the Windlord (395521), Press the Advantage (418360), Celestial Conduit (443038), Courage of the White Tiger (443088), Strength of the Black Ox (443127), Flight of the Red Crane (443611), Flurry Strike (450617), Flurry Strike (451250), Whirling Dragon Punch (451767), Dual Threat (451839), Flurry of Xuen (452130), Courage of the White Tiger (457917), Rushing Wind Kick (468179), Glyph of Tiger Palm (468605), Slicing Winds (1217411), Stomp (1242373), Jadefire Stomp (1248815), Spinning Crane Kick (1250999), Empty the Cellar (1262765), Celestial Flames (1263667), Harmonic Surge (1271011), Zenith Stomp (1272696)
                    Family Flags: 103
 Description      : Summons an effigy of Xuen, the White Tiger for $d. Xuen attacks your primary target, and strikes 3 enemies within $123996A1 yards every $123999t1 sec with Tiger Lightning for $123996s1 Nature damage.$?s323999[
+
+Every $323999s1 sec, Xuen strikes your enemies with Empowered Tiger Lightning dealing $323999s2% of the damage you have dealt to those targets in the last $323999s1 sec.][]
 
 Name             : Xuen's Bond (id=392986) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Conduit of the Celestials (Windwalker) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -74,6 +76,8 @@ Effects          :
                    Affected Spells: Tiger Palm (100780), Tiger Palm (331433), Glyph of Tiger Palm (468605)
                    Family Flags: 10
 Description      : Teachings of the Monastery has a $s1% chance to refund a charge when consumed. 
+
+The damage of Tiger Palm is increased by $s2%.
 
 Name             : Restore Balance (id=442719) [Spell Family (53), Passive] 
 Talent Entry     : Conduit of the Celestials (Mistweaver) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -172,6 +176,14 @@ Effects          :
 #8 (id=1160721)  : Apply Aura (6) | Mechanic Immunity (77)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 26 | Target: Self (1)
 Description      : $?c2[The August Celestials empower you, causing you to radiate ${$443039s1*$s7} healing onto up to $s3 injured allies and ${$443038s1*$s7} Nature damage onto enemies within $s6 yds over $d, reduced beyond $s3 targets.][The August Celestials empower you, causing you to radiate ${$443038s1*$s7} Nature damage onto enemies and ${$443039s1*$s7} healing onto up to $s3 injured allies within $443038A2 yds over $d, reduced beyond $s3 targets.]
+
+You may move while channeling, but casting other healing or damaging spells cancels this effect.
+
+Tooltip          : Channeling the power of the August Celestials, $?c2[healing $s3 nearby allies.]?c3[damaging nearby enemies.][]$?a443059[
+
+Damage taken reduced by $w2%.][]$?a443566[
+
+Movement speed increased by $w5%.][]
 
 Name             : Jade Sanctuary (id=443059) [Spell Family (53), Passive] 
 Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=4, col=1, max_rank=1, req_points=0, select_idx=200]
@@ -191,6 +203,8 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 32 | Misc Value 2: 3378 (Label) | Target: Self (1)
                    Affected Spells (Label): Celestial Conduit (443028)
 Description      : You heal for $s2% of your maximum health instantly when you activate Celestial Conduit and receive $s1% less damage for its duration. 
+
+This effect lingers for an additional $448508d after Celestial Conduit ends.
 
 Name             : Courage of the White Tiger (id=443087) [Spell Family (53), Passive] 
 Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
@@ -213,6 +227,8 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
                    Modified By: Windwalker Monk (1258122 effect#10), Mistweaver Monk (1258138 effect#23)
 Description      : $?c2[Tiger Palm, Vivify, and Sheilun's Gift have a chance to cause Xuen to claw a nearby enemy for $457917s1 Physical damage, healing a nearby ally for $s2% of the damage done.]?c3[Tiger Palm has a chance to cause Xuen to claw your target for $457917s1 Physical damage, healing a nearby ally for $s2% of the damage done.][Xuen claws your target for $457917s1 Physical damage, healing a nearby ally for $s2% of the damage done.]
+
+$?c2[Invoke Yu'lon, the Jade Serpent or Invoke Chi-Ji, the Red Crane]?c3[Invoke Xuen, the White Tiger][Invoking a celestial] guarantees your next cast activates this effect.
 
 Name             : Strength of the Black Ox (id=443110) [Spell Family (53), Passive] 
 Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
@@ -250,6 +266,8 @@ Effects          :
 #1 (id=1139104)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8000 | Scaled Value: 8000 | Target: Self (1)
 Description      : $?c2[Thunder Focus Tea calls]?c3[Strike of the Windlord and Whirling Dragon Punch call][] upon Yu'lon to increase the cooldown recovery rate of $?c2[Renewing Mist, Rising Sun Kick, Life Cocoon, and Thunder Focus Tea]?c3[Fists of Fury, Strike of the Windlord, Rising Sun Kick, and Whirling Dragon Punch][] by $443421s2% for $?c2[${$s1/1000} sec]?c3[$443421d][].$?c3[ 
+
+The channel time of Fists of Fury is reduced by $443421s5% while Yu'lon is active.][]
 
 Name             : Chi-Ji's Swiftness (id=443566) [Spell Family (53), Passive] 
 Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
@@ -283,6 +301,18 @@ Effects          :
 #1 (id=1139581)  : Apply Aura (6) | Periodic Dummy (226): every 8 seconds
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : You switch between alignments every $t1 sec, increasing a corresponding secondary stat by $443572s1%.
+
+|cFFFFFFFFCrane Stance|r:
+Haste
+
+|cFFFFFFFFTiger Stance|r:
+Critical Strike
+
+|cFFFFFFFFOx Stance|r:
+Versatility
+
+|cFFFFFFFFSerpent Stance|r: 
+Mastery
 
 Name             : Unity Within (id=443589) [Spell Family (53), Passive] 
 Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
@@ -298,6 +328,8 @@ Effects          :
 #1 (id=1139615)  : Apply Aura (6) | Dummy (4)
                    Base Value: 200 | Scaled Value: 200 | Target: Self (1)
 Description      : Celestial Conduit can be recast once during its duration to call upon all of the August Celestials to assist you at $s1% effectiveness.
+
+Unity Within is automatically cast when Celestial Conduit ends if not used before expiration.
 
 Name             : Yu'lon's Knowledge (id=443625) [Spell Family (53), Passive] 
 Talent Entry     : Conduit of the Celestials (Mistweaver) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -331,6 +363,9 @@ Effects          :
 #1 (id=1252210)  : Apply Aura (6) | Proc Trigger Spell (42): Celestial Conduit
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1248992 | Target: Self (1)
 Description      : After Invoking Xuen, the White Tiger you may cast Celestial Conduit within $1248992d.
+
+$@spellicon443028 $@spellname443028:
+$@spelldesc443028
 
 Name             : Yu'lon's Avatar (id=1262667) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Conduit of the Celestials (Windwalker, Mistweaver) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
@@ -400,3 +435,5 @@ Effects          :
 #2 (id=1286581)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Celestial Conduit's healing and damage is increased by $s1% when striking a single target.
+
+Each addtional target reduces this bonus by $s2%.

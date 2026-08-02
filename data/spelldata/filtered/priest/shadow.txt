@@ -25,6 +25,13 @@ Effects          :
                    Base Value: 40 | Scaled Value: 40 | Target: Self (1)
                    Modified By: Discipline Priest (137032 effect#24)
 Description      : Shadow Word: Death has a $s3% chance to summon a Shadowfiend for $s1 sec when damaging targets below $s2% health.
+
+$@spellicon1280172 $@spellname1280172
+Summons a Shadowfiend to attack your target for $1280172d.$?c3[
+
+|cFFFFFFFFGenerates ${$200010s1/100} Insanity each time the Shadowfiend attacks.|r][
+
+|cFFFFFFFFGenerates ${$343727m1/10}.1% mana each time the Shadowfiend attacks.|r]
 
 Name             : Auspicious Spirits (id=155271) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=8, col=5, max_rank=1, req_points=20]
@@ -61,6 +68,8 @@ Effects          :
 #1 (id=293563)   : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : Your direct damage spells inflict $s1% of their damage on all other targets afflicted by your Vampiric Touch within $199486A2 yards.
+
+Does not apply to damage from Shadowy Apparitions, Shadow Word: Pain, and Vampiric Touch.
 
 Name             : Voidform (id=228260) [Spell Family (6)] 
 Talent Entry     : Shadow [tree=spec, row=5, col=4, max_rank=1, req_points=8]
@@ -85,6 +94,11 @@ Effects          :
 #2 (id=1033519)  : Dummy (3)
                    Base Value: 3000 | Scaled Value: 3000
 Description      : Bombards your target with a Void Volley and twists your Shadowform with void magic, increasing your spell damage by $194249s1% for $194249d. 
+
+This spell is replaced with Void Volley while Voidform is active.
+
+$@spellicon1242173 $@spellname1242173
+$@spelldesc1242173
 
 Name             : Misery (id=238558) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -144,6 +158,8 @@ Effects          :
 #3 (id=810232)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 322098 | Target: Self (1)
 Description      : If a target dies within $322098d after being struck by Shadow Word: Death, generate ${$321973s1/100} Insanity.
+
+When Shadow Word: Death fails to kill a target below $s2% health, its cooldown is reset. Cannot occur more than once every $390628d.
 
 Name             : Shadow Word: Madness (id=335467) [Spell Family (6)] 
 Talent Entry     : Shadow [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -171,6 +187,9 @@ Effects          :
 #3 (id=832088)   : Apply Aura (6) | Periodic Health Leech (53): every 2 seconds
                    Base Value: 0 | Scaled Value: 0 | Value Multiplier: 0.3 | SP Coefficient: 2.275 | PvP Coefficient: 0.875 | Target: Targeted Enemy (6)
 Description      : A word of madness haunts the target's mind, dealing $s1 Shadow damage instantly plus an additional $o3 Shadow damage over $d. Heals you for ${$e1*100}% of damage dealt.
+
+When reapplied to a target, all remaining damage is added to the new effect.
+Tooltip          : Suffering $w3 Shadow damage every $t3 sec.
 
 Name             : Improved Voidform (id=341240) [Spell Family (6), Passive] 
 Talent Entry     : Shadow [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=100]
@@ -257,6 +276,9 @@ Effects          :
 #2 (id=998388)   : Apply Aura (6) | Proc Trigger Spell (42): Idol of Yogg-Saron
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 373276 | Target: Self (1)
 Description      : After conjuring Shadowy Apparitions, gain a stack of Idol of Yogg-Saron. At $s1 stacks, you summon a Thing from Beyond that casts Void Spike at nearby enemies for $373277d.
+
+$@spellicon373279 $@spellname373279
+$@spelldesc373279
 
 Name             : Idol of N'Zoth (id=373280) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=10, col=3, max_rank=1, req_points=20]
@@ -275,6 +297,10 @@ Effects          :
 #2 (id=1242971)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : You create Horrific Visions when casting harmful spells on enemies.
+
+At $s1 stacks of Horrific Visions, your target sees a nightmare, dealing $1243105s1 Shadow damage and granting you ${$1243113o1/100} Insanity over $1243113s2 sec.
+
+At $s2 stacks, your target witnesses a vision of N'Zoth, dealing $1243106s1 Shadow damage and granting you ${$1243114o1/100} Insanity over $1243114s2 sec.
 
 Name             : Idol of Y'Shaarj (id=373310) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=10, col=1, max_rank=1, req_points=20]
@@ -407,6 +433,12 @@ Effects          :
 #1 (id=1005136)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Misc Value: 11 | Target: Self (1)
 Description      : Mind Flay has a chance to spawn a Void Tendril that channels Mind Flay or Void Lasher that channels Mind Sear at your target.
+
+$@spellicon193473 $@spellname193473
+$@spelldesc193473
+
+$@spellicon394976 $@spellname394976
+$@spelldesc394976
 
 Name             : Shattered Psyche (id=391090) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=6, col=7, max_rank=1, req_points=8]
@@ -426,6 +458,8 @@ Effects          :
 #2 (id=1070947)  : Apply Aura (6) | Proc Trigger Spell (42): Shattered Psyche
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 391092 | Target: Self (1)
 Description      : Mind Flay damage increases the critical strike chance of Mind Blast by $s1%, stacking up to $391092U times.
+
+Lasts $391092d.
 
 Name             : Dark Evangelism (id=391099) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=6, col=6, max_rank=1, req_points=8]
@@ -497,6 +531,8 @@ Effects          :
 #1 (id=1028678)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Your Shadow Word: Pain damage has a chance to create Shadowy Apparitions that float towards all targets afflicted by your Vampiric Touch. 
+
+Critical strikes increase the chance by $s1%.
 
 Name             : Surge of Insanity (id=391399) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=4, col=5, max_rank=1, req_points=0]
@@ -544,6 +580,8 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 5419 (Label) | Target: Self (1)
                    Affected Spells (Label): Shadowfiend (34433)
 Description      : Shadow Word: Death damage increased by $s1%.
+
+Shadow Word: Death gains its damage and talent bonuses against targets below ${$s2+$s3}% health instead of $s3%.
 
 Name             : Thought Harvester (id=406788) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=3, col=3, max_rank=1, req_points=0]
@@ -666,6 +704,10 @@ Effects          :
 #3 (id=1226998)  : Dummy (3)
                    Base Value: 6 | Scaled Value: 6 | Misc Value: 700 | Target: Targeted Enemy (6)
 Description      : Summons a massive shadowy appendage to slam the ground, dealing $1227621s1 Shadow damage in front of you and $s1 yds around your target.
+
+Applies Vampiric Touch to up to $s3 enemies, prioritizing ones without Vampiric Touch.
+
+|cFFFFFFFFGenerates $/100;s2 Insanity.
 
 Name             : Subservient Shadows (id=1228516) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=7, col=1, max_rank=1, req_points=8]
@@ -717,6 +759,11 @@ Effects          :
 #1 (id=1221868)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 200174 | Target: Self (1)
 Description      : Casting Voidform summons a Mindbender for $200174d.
+
+$@spellicon200174 $@spellname200174
+Summons a shadowy fiend to attack your target.
+
+|cFFFFFFFFGenerates ${$200010s1/100} Insanity each time the Mindbender attacks.|r
 
 Name             : Ancient Madness (id=1231346) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -736,6 +783,8 @@ Effects          :
 #3 (id=1292055)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : Casting Shadow Word: Madness increases the duration of Voidform by ${$228260s2/1000}.1 sec.
+
+Each time this occurs during Voidform, its effectiveness is reduced by $s3%.
 
 Name             : Death's Torment (id=1240364) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -903,6 +952,9 @@ Effects          :
 #2 (id=1275207)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Shadowy Apparitions have a $s2% chance to spawn as Void Apparitions that release a $@spellname1264177 at their target and deal $s1% increased damage.
+
+$@spellicon1264177 $@spellname1264177
+$@spelldesc1264177
 
 Name             : Void Apparitions (id=1264107) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -920,6 +972,18 @@ Effects          :
 #1 (id=1275210)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Tentacle Slam has a $s1% chance to activate an effect from one of your Idols.
+
+$@spellicon373310 $@spellname373310
+Summons a Shadowfiend.
+
+$@spellicon373280 $@spellname373280
+Your target witnesses a nightmare or vision of N'Zoth.
+
+$@spellicon373273 $@spellname373273
+Summons a Thing From Beyond.
+
+$@spellicon377349 $@spellname377349
+Summons a Void Tendril or Void Lasher.
 
 Name             : Invoked Nightmare (id=1279350) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -978,6 +1042,8 @@ Effects          :
 #3 (id=1291807)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Tentacle Slam deals $s2% increased damage and Void Volley deals $s1% increased damage.
+
+When Voidform ends, you can cast Void Volley $1279437U additional $Ltime:times; within $1279437d.
 
 Name             : Haunting Shadows (id=1279355) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Shadow [tree=spec, row=5, col=5, max_rank=1, req_points=8]
@@ -998,3 +1064,5 @@ Effects          :
 #2 (id=1291815)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
 Description      : Shadowy Apparition damage increased by $s1%.
+
+When Shadowy Apparitions deal damage, they extend the duration of your Shadow Word: Pain and Vampiric Touch on the target by ${$s2/1000}.1 sec.

@@ -36,6 +36,8 @@ Effects          :
 #4 (id=734380)   : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : Summons a rune weapon for $81256d that mirrors your melee attacks and bolsters your defenses.
+
+While active, you gain $81256s1% parry chance.
 
 Name             : Blood Boil (id=50842) [Spell Family (15)] 
 Talent Entry     : Blood [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -59,6 +61,9 @@ Effects          :
 #1 (id=43101)    : School Damage (2): shadow | Attributes: Always AOE Line of Sight (5), Area Effects Use Target Radius (17)
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.64 | Radius: 0 - 10 yards | Target: at Self (18) -> at Enemy in Area (16)
 Description      : Deals $s1 Shadow damage$?s212744[ to all enemies within $A1 yds.][ and infects all enemies within $A1 yds with Blood Plague.
+
+$@spellicon55078 |cFFFFFFFF$@spellname55078|r
+$@spelldesc55078]
 
 Name             : Vampiric Blood (id=55233) [Spell Family (15)] 
 Talent Entry     : Blood [tree=spec, row=3, col=3, max_rank=1, req_points=0]
@@ -137,6 +142,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 40 | Target: Self (1)
                    Affected School(s): All
 Description      : An unholy pact that prevents fatal damage, instead absorbing incoming healing equal to the damage prevented, lasting $116888d.
+
+If any healing absorption remains when this effect expires, you will die. This effect may only occur every $123981d.
 
 Name             : Rapid Decomposition (id=194662) [Spell Family (15), Passive] 
 Talent Entry     : Blood [tree=spec, row=6, col=6, max_rank=1, req_points=8]
@@ -161,6 +168,8 @@ Effects          :
                    Affected Spells: Blood Plague (55078), Consumption (1263872)
                    Family Flags: 57
 Description      : Your Blood Plague and Death and Decay deal damage $s2% more often.
+
+Additionally, your Blood Plague leeches $s3% more Health.
 
 Name             : Marrowrend (id=195182) [Spell Family (15)] 
 Talent Entry     : Blood [tree=spec, row=2, col=3, max_rank=1, req_points=0]
@@ -191,6 +200,9 @@ Effects          :
 #3 (id=286519)   : Dummy (3)
                    Base Value: 3 | Scaled Value: 3 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Smash the target, dealing $s2 Physical damage and generating $s3 charges of Bone Shield.
+
+$@spellicon195181 |cFFFFFFFF$@spellname195181|r
+$@spelldesc195181
 
 Name             : Bloodworms (id=195679) [Spell Family (15), Passive] 
 Talent Entry     : Blood [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -212,6 +224,10 @@ Effects          :
 #3 (id=327477)   : Dummy (3)
                    Base Value: 15 | Scaled Value: 15
 Description      : Your auto attacks have a chance to summon a Bloodworm.
+
+Bloodworms deal minor damage to your target for $198494d and then burst, healing you for $s3% of your missing health.
+
+If you drop below $s2% health, your Bloodworms will immediately burst and heal you.
 
 Name             : Red Thirst (id=205723) [Spell Family (15), Passive] 
 Talent Entry     : Blood [tree=spec, row=9, col=6, max_rank=1, req_points=20]
@@ -265,6 +281,9 @@ Effects          :
 #5 (id=321496)   : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: -20 | Scaled Value: -20 | Chain Multiplier: 1 | Mechanic: Snare | Chain Targets: 2 | Target: Targeted Enemy (6)
 Description      : Instantly strike the target and 1 other nearby enemy, causing $s2 Physical damage, and reducing enemies' movement speed by $s5% for $d$?s316575[
+
+|cFFFFFFFFGenerates $s3 bonus Runic Power][]$?s221536[, plus ${$210738s1/10} Runic Power per additional enemy struck][].|r
+Tooltip          : Movement speed reduced by $s5%.
 
 Name             : Foul Bulwark (id=206974) [Spell Family (15), Passive] 
 Talent Entry     : Blood [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -299,6 +318,8 @@ Effects          :
 #2 (id=330791)   : Apply Aura (6) | Modify Max Resource (418)
                    Base Value: 100 | Scaled Value: 100 | Resource: runic_power | Target: Self (1)
 Description      : While you have at least $s1 Bone Shield charges, the cost of Death Strike is reduced by ${$219788m1/-10} Runic Power.
+
+Additionally, your maximum Runic Power is increased by ${$m2/10}.
 
 Name             : Heartbreaker (id=221536) [Passive] 
 Talent Entry     : Blood [tree=spec, row=5, col=2, max_rank=1, req_points=8]
@@ -623,6 +644,9 @@ Effects          :
 #1 (id=1164650)  : Apply Aura (6) | Proc Trigger Spell (42): Bone Shield
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 195181 | Target: Self (1)
 Description      : When you would pull an enemy generate $s1 charge of Bone Shield.
+
+$@spellicon195181 |cFFFFFFFF$@spellname195181|r
+$@spelldesc195181
 
 Name             : Carnage (id=458752) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Blood [tree=spec, row=10, col=5, max_rank=1, req_points=20]
@@ -640,6 +664,8 @@ Effects          :
 #1 (id=1164979)  : Apply Aura (6) | Dummy (4)
                    Base Value: -50 | Scaled Value: -50 | Target: Self (1)
 Description      : Consumption now contributes to your Mastery: Blood Shield.
+
+Each time an enemy strikes your Blood Shield, the cooldown of Consumption has chance to be reset.
 
 Name             : Bloodied Blade (id=458753) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Blood [tree=spec, row=8, col=5, max_rank=1, req_points=20]
@@ -657,6 +683,8 @@ Effects          :
 #1 (id=1164980)  : Apply Aura (6) | Dummy (4)
                    Base Value: 200 | Scaled Value: 200 | Target: Self (1)
 Description      : Parrying an attack grants you a charge of Bloodied Blade, increasing your Strength by ${$460499s1/10}.1%, up to ${$460499u*$460499s1/10}.1% for $460499d.
+
+At $460499U stacks, your next parry consumes all charges to unleash a Heart Strike at ${100+$s1}% effectiveness, and increases your Strength by $460500s1% for $460500d.
 
 Name             : Abomination Limb (id=1263569) [Spell Family (15)] 
 Talent Entry     : Blood [tree=spec, row=6, col=2, max_rank=1, req_points=8, select_idx=200]
@@ -685,6 +713,9 @@ Effects          :
 #3 (id=1274313)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8
 Description      : Sprout an additional limb, pulling enemies further than $1263566s3 yds from you every $t1 sec.  
+
+The same enemy can only be pulled once every $1263566d.
+Tooltip          : Pulling enemies to your location every $t1 sec.
 
 Name             : Blood Mist (id=1263743) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Blood [tree=spec, row=9, col=2, max_rank=1, req_points=20]
@@ -699,6 +730,8 @@ Effects          :
 #1 (id=1274612)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : When you cast Dancing Rune Weapon, you become enveloped in a blood mist that surrounds you for $1263729d, increasing your Parry by $1263729s2%. 
+
+Deals $1263752s1 Shadow damage every $1263729t1 sec to enemies within $1263752A1 yds. Every time it deals damage you gain ${$1263774s1/10} Runic Power, up to a maximum of ${$1263774s1/10*$1263729s3} Runic Power. Deals reduced damage beyond $1263729s4 targets.
 
 Name             : Sanguinary Burst (id=1263781) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Blood [tree=spec, row=10, col=2, max_rank=1, req_points=20]
@@ -753,6 +786,12 @@ Effects          :
 #11 (id=1274792) : Trigger Spell (64): Consumption
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1263861 | Target: Self (1)
 Description      : Empower the runes in your weapon, reducing the damage you take over the duration and unleashing a devastating attack that deals $1263825s1 Shadow damage and consumes up to $s4% of your Blood Plague instantly from enemies in front of you.
+
+|cFFFFFFFFI:|r Consumes up to $s2% of your Blood Plague. While empowering, your damage taken is reduced by $s5% and an additional ${$s8/1000} sec after empowering.
+
+|cFFFFFFFFII:|r Consumes up to $s3% of your Blood Plague. While empowering, your damage taken is reduced by $s6% and an additional ${$s9/1000} sec after empowering.
+
+|cFFFFFFFFIII:|r Consumes up to $s4% of your Blood Plague. While empowering, your damage taken is reduced by $s7% and an additional ${$s10/1000} sec after empowering.
 
 Name             : Deadly Reach (id=1264235) [Spell Family (15), Passive] 
 Talent Entry     : Blood [tree=spec, row=6, col=5, max_rank=1, req_points=8]

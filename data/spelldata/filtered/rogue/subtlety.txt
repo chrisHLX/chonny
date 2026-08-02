@@ -105,6 +105,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1271702 | Target: Self (1)
                    Modified By: Deepening Shadows (1271702 effect#4)
 Description      : Shadow Dance duration is increased by $1271702s3% of your Haste stat.
+
+Current bonus duration: ${$s1/1000}.2 sec
 
 Name             : Weaponmaster (id=193537) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=6, col=1, max_rank=1, req_points=8]
@@ -164,6 +166,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
                    Modified By: Shadow Blades (121471 effect#2), The First of the Dead (248210 effect#2), The Rotten (341134 effect#1), The Rotten (394203 effect#1)
 Description      : Punctures your target with your shadow-infused blade for $s1 Shadow damage, bypassing armor.$?s319949[ Critical strikes apply Find Weakness for $319949s1 sec.][]
+
+|cFFFFFFFFAwards $s2 combo $lpoint:points;.|r
 
 Name             : Dark Shadow (id=245687) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=9, col=4, max_rank=2, req_points=20]
@@ -234,6 +238,8 @@ Effects          :
                    Affected Spells: Backstab (53), Gloomblade (200758), Backstab (1269209), Gloomblade (1269214)
                    Family Flags: 2, 109
 Description      : $?s200758[Gloomblade][Backstab] has $s2% increased critical strike chance.
+
+While behind your target, Backstab critical strikes grant Find Weakness for $s1 sec.
 
 Name             : Improved Shuriken Storm (id=319951) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -252,6 +258,8 @@ Effects          :
                    Affected Spells: Shuriken Storm (197835), Shuriken Storm (1269340)
                    Family Flags: 127
 Description      : Shuriken Storm has $s2% increased critical strike chance.
+
+Shuriken Storm critical strikes grant Find Weakness for $s1 sec.
 
 Name             : Premeditation (id=343160) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=3, col=2, max_rank=1, req_points=0]
@@ -374,6 +382,8 @@ Effects          :
                    Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
                    Family Flags: 14, 16, 28, 45, 68, 83
 Description      : Your weapon poisons have $s8% increased application chance and now deal damage as Shadow instead of Nature.
+
+Shadow damage increased by $s2%.
 
 Name             : The First Dance (id=382505) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=7, col=3, max_rank=1, req_points=8]
@@ -647,6 +657,8 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 2943 (Label) | Target: Self (1)
                    Affected Spells (Label): Shadow Techniques (196911)
 Description      : Gain $s1 additional max combo point.
+
+Your finishing moves that consume more than $s3 combo points have increased effects, and your finishing moves deal $s4% increased damage.
 
 Name             : Double Dance (id=394930) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=6, col=3, max_rank=1, req_points=8]
@@ -721,6 +733,8 @@ Effects          :
 #2 (id=1105221)  : Trigger Spell (64): Goremaw's Bite
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 426593 | Target: Self (1)
 Description      : Lashes out at the target, inflicting $426592s1 Shadow damage and causing your next $426593u finishing moves to cost no Energy.
+
+|cFFFFFFFFAwards $426593s1 combo $lpoint:points;.|r
 
 Name             : Shadowcraft (id=426594) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=10, col=3, max_rank=1, req_points=20]
@@ -797,6 +811,10 @@ Effects          :
                    Affected Spells: Shadow Blades (121471), Shadow Blades (279043)
                    Family Flags: 78
 Description      : Find Weakness increases the damage of finishing moves by $s1%.
+
+Shadow Dance increases the damage of finishing moves by $s2%.
+
+Shadow Blades increases the damage of finishing moves by $s3%.
 
 Name             : Shuriken Tornado (id=1264764) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=6, col=7, max_rank=1, req_points=8]
@@ -877,6 +895,8 @@ Effects          :
                    Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061)
                    Family Flags: 123
 Description      : Shadow damage increased by $s2%.
+
+Shadow Clones have a $s1% chance to trigger Shadow Techniques' effect.
 
 Name             : Ancient Arts (id=1268939) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -931,3 +951,7 @@ Effects          :
 #2 (id=1294597)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Shadow Clones deal $s1% increased damage.
+
+Cheap Shot creates a Shadow Clone to Shadowstrike the target for $s2% of normal damage as Shadow.
+
+Kidney Shot creates a Shadow Clone to Eviscerate the target for $s2% of normal damage as Shadow.

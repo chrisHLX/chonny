@@ -16,6 +16,10 @@ Effects          :
                    Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1948 (Category) | Target: Self (1)
                    Affected Spells (Category): Hover (358267), Spatial Paradox (406732)
 Description      : Hover now causes you to briefly warp out of existence and appear at your destination. Hover's cooldown is also reduced by ${$s1/-1000} sec.
+
+Hover continues to allow Evoker spells to be cast while moving.
+Variables        : $flight=$?a375517[${$375517s1/1000}][${0}]
+$dura=$?a406380[${6*(1+$406380s2/100)+$<flight>}.1][${6+$<flight>}]
 
 Name             : Chrono Flame (desc=Bronze) (id=431442) [Spell Family (224), Passive] 
 Talent Entry     : Chronowarden (Preservation) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
@@ -205,6 +209,8 @@ Effects          :
 #2 (id=1120235)  : None (0)
                    Base Value: 1 | Scaled Value: 1
 Description      : Non-defensive abilities with a $s1 second or longer cooldown grant $431991s1% Intellect for $431991d.
+
+Essence spells extend the duration by $s2 sec.
 
 Name             : Golden Opportunity (desc=Bronze) (id=432004) [Spell Family (224), Passive] 
 Talent Entry     : Chronowarden (Preservation) [tree=hero, row=4, col=5, max_rank=1, req_points=1]

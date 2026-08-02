@@ -12,7 +12,11 @@
             <p class="text-[11px] text-ink-subtle mt-0.5">Pick your talents to see accurate cooldowns and modifiers below.</p>
         </div>
 
-        @if ($heroTrees->isNotEmpty())
+        @if ($moduleHeroTreeId)
+            {{-- This guide only covers one hero tree — no picker needed, see TalentSelector's
+                 $moduleHeroTreeId docblock. Shown as a fact about the content, not a choice. --}}
+            <span class="badge-gray">{{ $selectedHeroTree?->name ?? 'Hero Talent' }}</span>
+        @elseif ($heroTrees->isNotEmpty())
             <select wire:model.live="heroTreeId" class="form-select text-[12px] py-1.5">
                 <option value="">Choose Hero Talent…</option>
                 @foreach ($heroTrees as $tree)

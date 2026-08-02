@@ -24,6 +24,8 @@ Effects          :
 #1 (id=128879)   : School Damage (2): fire | Attributes: Add Target (Dest) Combat Reach to AOE (11), Area Effects Use Target Radius (17)
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1 | PvP Coefficient: 1.35 | Radius: 12 yards | Target: Enemies in Cone to Targeted Enemy (104)
 Description      : Breathe fire on targets in front of you, causing $s1 Fire damage. Deals reduced damage to secondary targets.
+
+Targets affected by Keg Smash will also burn, taking $123725o1 Fire damage and dealing $123725s2% reduced damage to you for $123725d.
 
 Name             : Black Ox Brew (id=115399) [Spell Family (53)] 
 Talent Entry     : Brewmaster [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -71,6 +73,12 @@ Tooltip          : Dealing physical damage to nearby enemies every $116847t1 sec
 Variables        : $stnc=$?a103985[${1.05*(1+$@versadmg)}][${1.0*(1+$@versadmg)}]
 $dwm=$?a108561|a115697[${1}][${0.857143}]
 $offm=$?a108561|a115697[${0}][${1}]
+
+$offlow=$?s121278[${$mwb/2/$mws}][${$owb/2/$ows}]
+$offhigh=$?s121278[${$MWB/2/$mws}][${$OWB/2/$ows}]
+
+$low=${$<stnc>*($<dwm>*(($mwb)/($MWS)+$<offm>*$<offlow>)+$AP/3.5-1)}
+$high=${$<stnc>*($<dwm>*(($MWB)/($MWS)+$<offm>*$<offhigh>)+$AP/3.5+1)}
 
 Name             : Purifying Brew (id=119582) [Spell Family (53)] 
 Talent Entry     : Brewmaster [tree=spec, row=2, col=4, max_rank=1, req_points=0]
@@ -135,6 +143,19 @@ Effects          :
 #8 (id=1276353)  : Dummy (3)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Smash a keg of brew, dealing ${$s2*(1+$s8/100)} Physical damage to your primary target and $s2 Physical damage to all other enemies within $A2 yds, and reducing their movement speed by $m3% for $d. Deals reduced damage beyond $s7 targets.$?a322120[
+
+Grants Shuffle for $s6 sec and reduces the remaining cooldown on your Brews by $s4 sec.][]
+Tooltip          : $?$w3!=0[Movement speed reduced by $w3%.
+][]Drenched in brew, vulnerable to Breath of Fire.
+Variables        : $stnc=$?a103985[${1.05*(1+$@versadmg)}][${1.0*(1+$@versadmg)}]
+$dwm=$?a108561|a115697[${1}][${0.857143}]
+$offm=$?a108561|a115697[${0}][${1}]
+
+$offlow=$?s121278[${$mwb/2/$mws}][${$owb/2/$ows}]
+$offhigh=$?s121278[${$MWB/2/$mws}][${$OWB/2/$ows}]
+
+$low=${$<stnc>*($<dwm>*(($mwb)/($MWS)+$<offm>*$<offlow>)+$AP/3.5-1)}
+$high=${$<stnc>*($<dwm>*(($MWB)/($MWS)+$<offm>*$<offhigh>)+$AP/3.5+1)}
 
 Name             : Gift of the Ox (id=124502) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=4, col=3, max_rank=1, req_points=0]
@@ -152,6 +173,9 @@ Effects          :
 #2 (id=1026541)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : When you take damage, you have a chance to summon a Healing Sphere.
+
+$@spellicon224863$@spellname224863:
+$@spelldesc224863
 
 Name             : Invoke Niuzao, the Black Ox (id=132578) [Spell Family (53)] 
 Talent Entry     : Brewmaster [tree=spec, row=9, col=8, max_rank=1, req_points=20]
@@ -196,6 +220,9 @@ Effects          :
                    Base Value: -120 | Scaled Value: -120 | Misc Value: 12 | Misc Value 2: 5097 (Label) | Target: Self (1)
                    Affected Spells (Label): Flurry Strikes (450615)
 Description      : Summons an effigy of Niuzao, the Black Ox for $d that attacks your primary target and Stomps when you cast Blackout Kick, damaging all nearby enemies.
+
+While active, $s2% of damage delayed by Stagger is instead Staggered by Niuzao, and Niuzao is healed for $s5% of your purified Stagger.
+Tooltip          : Niuzao is staggering $s2% of the Monk's Stagger damage.
 
 Name             : Special Delivery (id=196730) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=4, col=5, max_rank=1, req_points=0, select_idx=100]
@@ -215,6 +242,12 @@ Description      : Drinking from your Brews has a $h% chance to toss a keg high 
 Variables        : $stnc=$?a103985[${1.05*(1+$@versadmg)}][${1.0*(1+$@versadmg)}]
 $dwm=$?a108561|a115697[${1}][${0.857143}]
 $offm=$?a108561|a115697[${0}][${1}]
+
+$offlow=$?s121278[${$mwb/2/$mws}][${$owb/2/$ows}]
+$offhigh=$?s121278[${$MWB/2/$mws}][${$OWB/2/$ows}]
+
+$low=${$<stnc>*($<dwm>*(($mwb)/($MWS)+$<offm>*$<offlow>)+$AP/3.5-1)}
+$high=${$<stnc>*($<dwm>*(($MWB)/($MWS)+$<offm>*$<offhigh>)+$AP/3.5+1)}
 
 Name             : Blackout Combo (id=196736) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=8, col=5, max_rank=1, req_points=20, select_idx=200]
@@ -241,6 +274,10 @@ Effects          :
 #6 (id=1022294)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Blackout Kick also empowers your next ability:
+
+$@spellicon100780 Tiger Palm: Damage increased by $228563s1%.
+
+$@spellicon121253 Keg Smash: Reduces the remaining cooldown on your Brews by $s3 additional sec.
 
 Name             : High Tolerance (id=196737) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=8, col=3, max_rank=2, req_points=20]
@@ -264,6 +301,8 @@ Effects          :
 #3 (id=344134)   : Apply Aura (6) | Dummy (4)
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
 Description      : Stagger is $s1% more effective at delaying damage.
+
+Purifying Brew refunds ${$s3/1000}.1 sec of its cooldown if cast at $@spellname1260619.
 
 Name             : Bob and Weave (id=280515) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=100]
@@ -298,6 +337,10 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
                    Modified By: Fortifying Brew (120954 effect#5), High Tolerance (196737 effect#2), Shuffle (215479 effect#1), Ironskin Brew (322119 effect#1)
 Description      : Niuzao's teachings allow you to shuffle during combat, increasing the effectiveness of your |CFFffffffStagger|R by $s1%.
+
+Shuffle is granted by attacking enemies with your Keg Smash, Blackout Kick, and Spinning Crane Kick.
+
+$@spellicon115069 $@spellname115069: $@spelldesc115069 
 
 Name             : Celestial Brew (id=322507) [Spell Family (53)] 
 Talent Entry     : Brewmaster [tree=spec, row=5, col=3, max_rank=1, req_points=8, select_idx=100]
@@ -359,6 +402,8 @@ Effects          :
                    Base Value: 50 | Scaled Value: 50 | Misc Value: 33 | Misc Value 2: 2355 (Label) | Target: Self (1)
                    Affected Spells (Label): Fortifying Brew (120954)
 Description      : Fortifying Brew increases |CFFffffffStagger|R effectiveness by $s1% while active.
+
+Combines with other Fortifying Brew effects.
 
 Name             : Light Brewing (id=325093) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=6, col=6, max_rank=1, req_points=8, select_idx=100]
@@ -408,6 +453,9 @@ Effects          :
 #4 (id=1024392)  : Apply Aura (6) | Proc Trigger Spell (42): Exploding Keg
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 0.2 | Trigger Spell: 388867 | Target: Self (1)
 Description      : Hurls a flaming keg at the target location, dealing $s1 Fire damage to nearby enemies, causing your attacks against them to deal $388867s1 additional Fire damage, and causing their melee attacks to deal $s2% reduced damage for the next $d.
+
+Resets the cooldown of Keg Smash.
+Tooltip          : Misses melee attacks.
 
 Name             : Improved Blackout Kick (id=383695) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=3, col=6, max_rank=1, req_points=0]
@@ -624,6 +672,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Your damaging abilities have $@switch<$s1>[a][an increased] chance to invoke Niuzao, causing him to charge to your target's location and Stomp, dealing $1242373s1 Physical damage to your target and reduced damage to secondary targets.
 
+Variables        : $chance=$?${$s1>1}[an increased ][a ]
+
 Name             : Fluidity of Motion (id=387230) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=5, col=6, max_rank=1, req_points=8, select_idx=200]
 Class            : Monk
@@ -774,6 +824,9 @@ Effects          :
 #1 (id=1045829)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Blackout Kick has a chance to summon a Healing Sphere.
+
+$@spellicon224863$@spellname224863:
+$@spelldesc224863
 
 Name             : Press the Advantage (id=418359) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Brewmaster [tree=spec, row=8, col=5, max_rank=1, req_points=20, select_idx=100, replace="Tiger Palm" (id=100780)]
@@ -798,6 +851,8 @@ Effects          :
 #4 (id=1090895)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: -50 | Scaled Value: -50 | Misc Value: 22 | Misc Value 2: 2759 (Label) | Target: Self (1)
 Description      : Your main hand auto attacks reduce the cooldown on your Brews by ${$s2/1000}.2 sec and block your target's chi, dealing $418360s1 additional Nature damage.
+
+After $418361u attacks, the next casts Tiger Palm at $418361s2% effectiveness.
 
 Name             : August Blessing (id=454483) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=3, col=3, max_rank=1, req_points=0]
@@ -999,6 +1054,9 @@ Effects          :
 #1 (id=1273013)  : Apply Aura (6) | Proc Trigger Spell (42): Awakening Spirit
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1263631 | Target: Self (1)
 Description      : Purifying Brew also surrounds you with protective energies for $1263631d. 
+
+When |CFFffffffStaggered|R damage would be dealt to you, you instead absorb up to $1263631s2%, until $<absorb> has been prevented.
+Variables        : $absorb=${($AP*6)*(1+$@versadmg)}
 
 Name             : Vital Flame (id=1262659) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=200]
@@ -1065,6 +1123,12 @@ Effects          :
 #2 (id=1273968)  : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Drinking from Brews has a $h% chance to coat you with Celestial Flames for $325190d. While Celestial Flames is active:
+
+$@spellicon196730 $@spellname196730:
+Kegs thrown by Special Delivery are ignited and splash upon landing, dealing $1263667s1 Fire damage to up to 5 nearby enemies.
+
+$@spellicon116847 $@spellname116847:
+Rushing Jade Wind becomes a firestorm, increasing its radius by $1263641s2% and causing it to deal Fire damage.
 
 Name             : Bring Me Another (id=1265129) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=200]
@@ -1105,6 +1169,8 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 5841 (Label) | Target: Self (1)
                    Affected Spells (Label): Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Keg Smash (121253), Stomp (227291), Empty Barrel (1265133)
 Description      : Gaining an Empty Barrel resets the cooldown of Keg Smash and makes its next cast cost $s2% less energy. 
+
+Physical damage dealt increased by $s1%.
 
 Name             : Bring Me Another (id=1265141) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=11, col=5, max_rank=1, req_points=20, select_idx=400]
@@ -1123,3 +1189,8 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100 | Misc Value 2: 5843 (Label) | Target: Self (1)
                    Affected Spells (Label): Empty Barrel (1265133)
 Description      : When you cast Fortifying Brew or $?s1241059[Celestial Infusion][Celestial Brew] you tap a fresh keg, granting yourself and $s1 nearby $Lally:allies; a refreshing drink, and leaving you with an Empty Barrel.
+
+Empty Barrels deal $s2% increased damage.
+
+$@spellicon1265140 $@spellname1265140:
+$@spelldesc1265140

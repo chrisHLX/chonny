@@ -87,6 +87,8 @@ Effects          :
 #3 (id=1179899)  : Create Area Trigger (179)
                    Base Value: 100 | Scaled Value: 100 | Misc Value: 34990 | Target: at Self (18) -> at Enemy in Area (16)
 Description      : Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing $153640s1 Arcane damage to enemies it passes through.
+
+|cFFFFFFFFGrants 1 Arcane Charge when cast and every time it deals damage.|r
 
 Name             : Arcane Familiar (id=205022) [Spell Family (3), Passive] 
 Talent Entry     : Arcane [tree=spec, row=5, col=5, max_rank=1, req_points=8]
@@ -228,6 +230,8 @@ Effects          :
 #1 (id=809068)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Arcane damage dealt is increased based on your current mana, up to $1217242s2% at full mana.$?a1243926[][
+
+Mana Regen is increased based on your current mana, up to $1217242s3% when out of mana.]
 
 Name             : Improved Clearcasting (id=321420) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Arcane [tree=spec, row=3, col=4, max_rank=1, req_points=0]
@@ -269,6 +273,8 @@ Effects          :
 #2 (id=843108)   : Energize Power (30)
                    Base Value: 4 | Scaled Value: 4 | Resource: none | Target: Self (1)
 Description      : Applies Touch of the Magi to your current target, accumulating $s1% of the damage you deal to the target for $210824d, and then exploding for that amount of Arcane damage to the target and reduced damage to all nearby enemies.
+
+|cFFFFFFFFGenerates $s2 Arcane Charges.|r
 
 Name             : Mana Adept (id=321526) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Arcane [tree=spec, row=8, col=2, max_rank=1, req_points=20, select_idx=200]
@@ -334,6 +340,10 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Expend all of your current mana to annihilate your enemy target and nearby enemies for up to $?a457521[${$s1*$s2*($457521s1/100+1)}][${$s1*$s2}] Arcane damage based on Mana spent. Deals reduced damage beyond $s3 targets.
+
+For the next $365362d, your Mana regeneration is increased by $365362s3% and spell damage is increased by $365362s1%.
+
+|cFFFFFFFFGenerates Clearcasting.|r
 
 Name             : Impetus (id=383676) [Spell Family (3), Passive] 
 Talent Entry     : Arcane [tree=spec, row=7, col=7, max_rank=1, req_points=8]
@@ -506,6 +516,8 @@ Effects          :
 #2 (id=1243968)  : Apply Aura (6) | Dummy (4)
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
 Description      : During Arcane Surge, your Familiar fires $s1 bolts instead of 1.
+
+Damage from your Arcane Familiar has a $s2% chance to grant you up to $454020s1% of your maximum mana.
 
 Name             : Mana Bomb (id=457521) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Arcane [tree=spec, row=5, col=4, max_rank=1, req_points=8]
@@ -538,6 +550,8 @@ Effects          :
                    Affected Spells: Arcane Missiles (7268)
                    Family Flags: 21
 Description      : Each wave of Arcane Missiles has a $s1% chance to grant you $461524s1 Arcane Charge.
+
+Arcane Missiles damage increased by $s2%.
 
 Name             : Charged Missiles (id=461251) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Arcane [tree=spec, row=10, col=1, max_rank=1, req_points=20, select_idx=200]
@@ -630,6 +644,10 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : A pulse of Arcane magic erupts from underneath your target, dealing $s1 Arcane damage to all enemies within $A1 yds. Damage reduced beyond $s3 targets.
+
+Each Arcane Charge increases damage by $36032s1%, radius by $36032s6 yds, and mana cost by $36032s5%.$?a137021[
+
+|cFFFFFFFFGenerates $s2 Arcane $LCharge:Charges;.|r][]
 
 Name             : Aether Attunement (id=1243307) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Arcane [tree=spec, row=7, col=3, max_rank=2, req_points=8]
@@ -665,6 +683,8 @@ Effects          :
 #2 (id=1243631)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Casting Arcane Orb while you have Clearcasting causes you to fire $s1 additional Arcane $lOrb:Orbs; at $s2% effectiveness.
+
+Casting Arcane Orb now consumes Clearcasting.
 
 Name             : Aegwynn's Technique (id=1243507) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Arcane [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -719,6 +739,8 @@ Effects          :
 #2 (id=1302686)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Casting Arcane Blast or Arcane Pulse grants $s1 $Lstack:stacks; of Arcane Salvo.
+
+Casting Arcane Orb grants $s2 $Lstack:stacks; of Arcane Salvo.
 
 Name             : Arcane Singularity (id=1244001) [Spell Family (3), Passive] 
 Talent Entry     : Arcane [tree=spec, row=9, col=6, max_rank=2, req_points=20]
@@ -735,6 +757,9 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | PvP Coefficient: 0.5 | Misc Value: 3 | Misc Value 2: 5271 (Label) | Target: Self (1)
                    Affected Spells (Label): Arcane Salvo (1242974)
 Description      : Arcane Salvo damage bonus increased by $s1%.
+
+$@spellicon1242974 $@spellname1242974:
+Increases the damage of your next Arcane Barrage by $1242974s1%.
 
 Name             : Overpowered Missiles (id=1244329) [Spell Family (3), Passive] 
 Talent Entry     : Arcane [tree=spec, row=10, col=4, max_rank=1, req_points=20]
@@ -803,6 +828,8 @@ Effects          :
                    Family Flags: 21
                    Modified By: Fired Up (1257348 effect#2)
 Description      : Arcane Charges further increase the damage of Arcane Blast, Arcane Pulse, and Arcane Barrage by $s1%.
+
+Arcane Missiles damage increased by $s3%.
 
 Name             : Touch of the Archmage (id=1257950) [Spell Family (3), Passive] 
 Talent Entry     : Arcane [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]

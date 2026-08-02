@@ -69,6 +69,10 @@ Effects          :
 #7 (id=1317269)  : Apply Aura (6) | Dummy (4)
                    Base Value: 115 | Scaled Value: 115 | Target: Self (1)
 Description      : $?c1[Disintegrate damage consumes ${$s2/1000}.1 sec of Fire Breath from enemies it damages, detonating it for $s4% of the amount consumed.
+
+Pyre damage consumes ${$s3/1000} sec of Fire Breath from enemies it damages, detonating it for $s7% of the amount consumed.][Verdant Embrace healing consumes ${$s5/1000} sec of Dream Breath from allies it heals, detonating it and healing them for $s6% of the amount consumed.
+
+Emerald Blossom healing consumes ${$s1/1000} sec of Dream Breath from allies it heals, detonating it and healing them for $s6% of the amount consumed.]
 
 Name             : Lifecinders (desc=Red) (id=444322) [Spell Family (224), Passive, Hidden] 
 Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -242,6 +246,8 @@ Effects          :
                    Affected Spells: Dream Breath (355941), Dream Breath (376788)
                    Family Flags: 21
 Description      : Fire Breath's damage over time lasts $s1 sec longer.$?c2[
+
+Dream Breath's heal over time lasts ${$s2/1000} sec longer.][]
 
 Name             : Ashes in Motion (id=1264365) [Spell Family (224), Passive] 
 Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=2, max_rank=1, req_points=0]

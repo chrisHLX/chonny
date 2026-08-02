@@ -23,6 +23,8 @@ Effects          :
 #4 (id=1260224)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : $?s137044[Spending a Soul Shard on a damaging spell grants Diabolic Ritual for $431944d. While Diabolic Ritual is active, each Soul Shard spent on a damaging spell reduces its duration by $s1 sec.][Casting Chaos Bolt, Rain of Fire, or Shadowburn grants Diabolic Ritual for $431944d. If Diabolic Ritual is already active, its duration is reduced by $s2 sec instead.]
+
+When Diabolic Ritual expires you gain Demonic Art, causing your next $?s137044[Hand of Gul'dan][Chaos Bolt, Rain of Fire, or Shadowburn] to summon an Overlord, Mother of Chaos, or Pit Lord that unleashes a devastating attack against your enemies.
 
 Name             : Cloven Souls (id=428517) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
@@ -51,6 +53,9 @@ Effects          :
 #1 (id=1109414)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Mother of Chaos empowers your next $?s137044[Shadow Bolt][Incinerate] to become Infernal Bolt.
+
+$@spellicon434506 $@spellname434506
+$@spelldesc434506
 
 Name             : Ruination (id=428522) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
@@ -65,6 +70,9 @@ Effects          :
 #1 (id=1109419)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Summoning a Pit Lord causes your next $?s137044[Hand of Gul'dan][Chaos Bolt] to become Ruination.
+
+$@spellicon434635 $@spellname434635
+$@spelldesc434635
 
 Name             : Soul-Etched Circles (id=428911) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
@@ -199,6 +207,8 @@ Effects          :
 #3 (id=1181010)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Demonic Art increases the damage of your next $?s137044[Hand of Gul'dan][Chaos Bolt, Rain of Fire, or Shadowburn] by $s1% and reduces its cast time by $s2%.
+
+$?s137044[][Casting Chaos Bolt reduces the duration of Diabolic Ritual by $s3 additional sec.]
 
 Name             : Gloom of Nathreza (id=429899) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
@@ -263,6 +273,8 @@ Effects          :
 #1 (id=1280218)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : You summon a Diabolic Oculus, up to $1269643u, each time the duration of Diabolic Ritual is reduced by one of your spells.
+
+Diabolic Oculi explode when consuming Demonic Art, dealing $1269800s1 Fire damage to all enemies within $1269800a1 yds of the target. Damage reduced beyond $s1 targets.
 
 Name             : Looks That Kill (id=1268713) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
@@ -277,6 +289,9 @@ Effects          :
 #1 (id=1280227)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Your Diabolic Oculi now cast Diabolic Gaze at your primary demon's target every 1 sec while active.
+
+$@spellicon1269892 $@spellname1269892
+$@spelldesc1269892
 
 Name             : Mind's Eyes (id=1268716) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Diabolist (Demonology, Destruction) [tree=hero, row=4, col=5, max_rank=1, req_points=0]

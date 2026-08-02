@@ -64,6 +64,14 @@ Effects          :
 #13 (id=1283539) : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Call upon the Light to become an avatar of retribution, $?s53376&c2[causing Judgment to generate $53376s3 additional Holy Power, ]?s53376&c3[each Holy Power spent causing you to explode with Holy light for $326731s1 damage to nearby enemies, ][]increasing your damage, healing, and critical strike chance by $s2%$?s1253598[ and Haste by $s11%][] for $d.$?s1253598[
+
+Each Holy Power spent increases Haste by an additional $1253598s1%, up to $1253598s2%.][]
+Tooltip          : Damage, healing, and critical strike chance increased by $w2%. $?a53376&a137028[Judgment generates $53376s3 additional Holy Power.]?a53376[Each Holy Power spent deals $326731s1 Holy damage to nearby enemies.][]$?s1253598[
+Haste increased by $w11%.][]
+Variables        : $pvp=$?a134735[${0.75}][${1}]}
+$retribution=$?a137027[${1.00*$<pvp>}][${1}]
+$damage=$?a137027[${$s2*$<retribution>}][$s2]
+$crit=$?a137027[${$s4*$<retribution>}][$s4]
 
 Name             : Divine Storm (id=53385) [Spell Family (10)] 
 Talent Entry     : Retribution [tree=spec, row=2, col=3, max_rank=1, req_points=0]
@@ -90,6 +98,8 @@ Effects          :
 #4 (id=1070946)  : Trigger Spell (64): Lightforged Blessing
                    Base Value: 0 | Scaled Value: 0 | Delay: 200_ms | Trigger Spell: 407467 | Target: Self (1)
 Description      : Unleashes a whirl of divine energy, dealing $?s405289[${$s1*1.05} Radiant][$s1 Holy] damage to all nearby enemies. 
+
+Deals reduced damage beyond $s2 targets.
 
 Name             : Blade of Justice (id=184575) [Spell Family (10)] 
 Talent Entry     : Retribution [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -118,6 +128,8 @@ Effects          :
 #3 (id=1051842)  : Trigger Spell (64): Blade of Justice
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 404358 | Target: Targeted Enemy (6)
 Description      : $?s403826[Pierce enemies][Pierce an enemy] with a blade of light, dealing $s1 Holy damage$?s403826[ to your target and $404358s1 Holy damage to nearby enemies.][.]
+
+|cFFFFFFFFGenerates $s2 Holy Power.|r
 
 Name             : Wake of Ashes (id=255937) [Spell Family (10)] 
 Talent Entry     : Retribution [tree=spec, row=8, col=4, max_rank=1, req_points=20]
@@ -148,6 +160,10 @@ Effects          :
 #5 (id=1053567)  : Trigger Spell (64): Wake of Ashes
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | Delay: 900_ms | Trigger Spell: 405350 | Target: Self (1)
 Description      : Lash out at your enemies, dealing $s1 Radiant damage to all enemies within $a1 yds in front of you, and applying $@spellname403695, burning the targets for an additional ${$403695s2*($403695d/$403695t+1)} damage over $403695d.
+
+Demon and Undead enemies are also stunned for $255941d.
+
+|cFFFFFFFFGenerates $s2 Holy Power.
 
 Name             : Empyrean Power (id=326732) [Spell Family (10), Passive] 
 Talent Entry     : Retribution [tree=spec, row=7, col=1, max_rank=1, req_points=8]
@@ -197,6 +213,12 @@ Effects          :
 #5 (id=1259245)  : Trigger Spell (64): Execution Sentence
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1260251 | Target: At Enemy (53) -> at Area (87)
 Description      : Unleash a heavenly blast around the target, dealing $343721s2 Holy damage to all enemies nearby, and call down a hammer that slowly falls from the sky upon the target. 
+
+After $d, they suffer $s2% of the Holy damage you dealt to all targets affected by the initial blast during that time.
+Tooltip          : Sentenced to suffer $s2% of the damage your abilities deal to targets effected as Holy damage.
+Variables        : $Mastery=$?a267316[${1+$267316s1/100}][${1}]
+$DP=$?a223819[${1+$223819s2/100}][${1}]
+$mult=${$<Mastery>*$<DP>}
 
 Name             : Sanctify (id=382536) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Retribution [tree=spec, row=5, col=5, max_rank=1, req_points=8]
@@ -253,6 +275,8 @@ Effects          :
 #2 (id=1015175)  : Dummy (3)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Unleashes a powerful weapon strike that deals $s1 $?s403664[Holystrike][Holy] damage to an enemy target,
+
+Final Verdict has a $s2% chance to reset the cooldown of Judgment.
 
 Name             : Holy Blade (id=383342) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Retribution [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=200]
@@ -365,6 +389,8 @@ Effects          :
                    Affected Spells: Blade of Justice (184575), Templar's Verdict (224266), Final Verdict (336872), Final Verdict (383328), Expurgation (383344), Blade of Justice (404358)
                    Family Flags: 44, 88, 126
 Description      : $?s383328[Final Verdict][Templar's Verdict] and Blade of Justice deal $s4% increased damage.
+
+The range of $?s383328[Final Verdict and ][]Blade of Justice is increased to $s3 yds.
 
 Name             : Blessed Champion (id=403010) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Retribution [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -423,6 +449,8 @@ Effects          :
                    Affected Spells: Judgment (20271), Hammer of Wrath (24275), Judgment (197277), Judgment (214222), Judgment (275773), Judgment (275779), Boundless Judgment (383970), Judgment (383991), Judgment (406957), Hammer of Wrath (1241413), Hammer of Wrath (1279408)
                    Family Flags: 23, 39
 Description      : Judgment deals $s2% increased damage and increases your movement speed by $20271s2% for $20271d.
+
+If you have Greater Judgment, Judgment slows enemies by $408383s1% for $408383d.
 
 Name             : Zealot's Fervor (id=403509) [Spell Family (10), Passive] 
 Talent Entry     : Retribution [tree=spec, row=6, col=3, max_rank=2, req_points=8]
@@ -486,6 +514,8 @@ Effects          :
 #1 (id=1051019)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Blade of Justice now hits nearby enemies for $404358s1 Holy damage. 
+
+Deals reduced damage beyond 5 targets.
 
 Name             : Light of Justice (id=404436) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Retribution [tree=spec, row=3, col=3, max_rank=1, req_points=0, select_idx=200]
@@ -611,6 +641,8 @@ Effects          :
 #2 (id=1144489)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Your auto attacks have a $s1% chance to reset the cooldown of Blade of Justice$?s1261113[ and increase the damage of its next cast by $406086s2%.][.]
+
+Critical strikes increase the chance by an additional $s2%.
 
 Name             : Heart of the Crusader (id=406154) [Spell Family (10), Passive] 
 Talent Entry     : Retribution [tree=spec, row=6, col=5, max_rank=2, req_points=8]
@@ -661,6 +693,8 @@ Effects          :
 #2 (id=1070012)  : Apply Aura (6) | Proc Trigger Spell (42): Judge, Jury and Executioner
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1253174 | Target: Self (1)
 Description      : Holy Power spending abilities deal $s1% increased damage.
+
+After casting Execution Sentence, your next $1253174u Holy Power $lability:abilities; will refund $lits:their; Holy Power cost.
 
 Name             : Holy Flames (id=406545) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Retribution [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -696,6 +730,8 @@ Effects          :
                    Base Value: -1 | Scaled Value: -1 | Misc Value: 1627 (Category) | Target: Self (1)
                    Affected Spells (Category): Crusader Strike (35395), Templar Strike (407480), Crusader Strike (1279187)
 Description      : Crusader Strike loses a charge but is now a combo ability.
+
+Templar Strike slashes an enemy for $407480s1 Radiant damage and gets followed up by Templar Slash that deals $406647s1 Radiant damage. Templar Slash always critically strikes.
 
 Name             : Divine Wrath (id=406872) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Retribution [tree=spec, row=8, col=6, max_rank=2, req_points=20]
@@ -746,6 +782,8 @@ Effects          :
 #2 (id=1144167)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : When Truth's Wake critically strikes, its duration is extended by $s1 sec.
+
+Your other damage over time effects deal $s2% increased damage to targets affected by Truth's Wake. 
 
 Name             : Radiant Glory (id=458359) [Spell Family (10), Passive] 
 Talent Entry     : Retribution [tree=spec, row=10, col=3, max_rank=1, req_points=20]
@@ -764,6 +802,9 @@ Effects          :
 #2 (id=1171273)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Radiant Glory overrides Avenging Wrath
                    Base Value: 462048 | Scaled Value: 462048 | Misc Value: 31884 | Target: Self (1)
 Description      : $?s231895[Crusade][Avenging Wrath] is replaced with Radiant Glory.
+
+$@spellicon458359$@spellname458359
+Wake of Ashes activates $?s231895[Crusade for $454373d][Avenging Wrath for $454351d].
 
 Name             : Crusade (id=1253598) [Spell Family (10), Passive] 
 Talent Entry     : Retribution [tree=spec, row=10, col=6, max_rank=1, req_points=20]
@@ -783,6 +824,8 @@ Effects          :
 #2 (id=1259496)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Avenging Wrath now grants you $s1% Haste.
+
+Each Holy Power spent during Avenging Wrath increases Haste by an additional $s1%, up to $s2%.
 
 Name             : Light Within (id=1261111) [Spell Family (10), Passive] 
 Talent Entry     : Retribution [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]

@@ -25,6 +25,8 @@ Effects          :
 #2 (id=1145338)  : Energize Power (30)
                    Base Value: 1 | Scaled Value: 1 | Resource: holy_power | Target: Self (1)
 Description      : Triggers a burst of Light on the target, dealing $25912s1 Holy damage to an enemy, or $25914s1 healing to an ally.$?s272906[  Has an additional $272906s1% critical strike chance.][]
+
+|cFFFFFFFFGenerates $s2 Holy Power.
 
 Name             : Aura Mastery (id=31821) [Spell Family (10)] 
 Talent Entry     : Holy [tree=spec, row=3, col=5, max_rank=1, req_points=0]
@@ -60,6 +62,13 @@ Effects          :
 #6 (id=1091898)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 20 | Scaled Value: 20 | Misc Value 2: 2748 (Label) | Target: Self (1) -> Self (1)
 Description      : Empowers your chosen aura for $d.
+
+$@spellname465: Damage reduction increased to ${-$s1-$465s2}%.
+
+$@spellname32223: Mount speed bonus increased to ${$s2+$32223s4}%.
+
+$@spellname317920: Affected allies immune to interrupts and silences.
+Tooltip          : Aura effectiveness increased.
 
 Name             : Avenging Wrath (id=31884) [Spell Family (10)] 
 Talent Entry     : Protection [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=100, override="Avenging Wrath" (id=31884)]
@@ -123,6 +132,14 @@ Effects          :
 #13 (id=1283539) : Apply Aura (6) | Increase Movement Speed% (Stacking) (129)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Call upon the Light to become an avatar of retribution, $?s53376&c2[causing Judgment to generate $53376s3 additional Holy Power, ]?s53376&c3[each Holy Power spent causing you to explode with Holy light for $326731s1 damage to nearby enemies, ][]increasing your damage, healing, and critical strike chance by $s2%$?s1253598[ and Haste by $s11%][] for $d.$?s1253598[
+
+Each Holy Power spent increases Haste by an additional $1253598s1%, up to $1253598s2%.][]
+Tooltip          : Damage, healing, and critical strike chance increased by $w2%. $?a53376&a137028[Judgment generates $53376s3 additional Holy Power.]?a53376[Each Holy Power spent deals $326731s1 Holy damage to nearby enemies.][]$?s1253598[
+Haste increased by $w11%.][]
+Variables        : $pvp=$?a134735[${0.75}][${1}]}
+$retribution=$?a137027[${1.00*$<pvp>}][${1}]
+$damage=$?a137027[${$s2*$<retribution>}][$s2]
+$crit=$?a137027[${$s4*$<retribution>}][$s4]
 
 Name             : Sanctified Wrath (id=53376) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=9, col=5, max_rank=1, req_points=20, select_idx=100]
@@ -163,6 +180,9 @@ Effects          :
 #1 (id=46235)    : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Trigger Spell: 54149 | Target: Self (1)
 Description      : Your Holy Shocks have a $s1% chance to empower your next spell cast:
+
+$@spellname19750: healing increased by $54149s1% and becomes instant cast.
+$@spellname275773: Greater Judgment prevents an additional ${$54149s4-100}% damage dealt by the target and generates $54149s6 additional Holy Power.
 
 Name             : Light of Dawn (id=85222) [Spell Family (10)] 
 Talent Entry     : Holy [tree=spec, row=2, col=6, max_rank=1, req_points=0]
@@ -230,6 +250,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
 Description      : Mark a second target as a Beacon, mimicking the effects of Beacon of Light. Your heals will now heal both of your Beacons, but at $s4% reduced effectiveness.
 Tooltip          : Healed whenever the Paladin directly heals a nearby ally.$?e4[
+
+Damage taken reduced by $w5%.][]$?e5[
+
+Healed for $w6 every $t6 sec.][]
 
 Name             : Saved by the Light (id=157047) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=6, col=4, max_rank=1, req_points=8]
@@ -314,6 +338,11 @@ Effects          :
 #4 (id=1241123)  : Apply Aura (6) | Periodic Dummy (226): every 3 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Ally (21)
 Description      : Apply a Beacon of Light to your target and $s2 injured allies within $A2 yds for $d.
+
+All affected allies will be healed for $53651s1% of the amount of your other healing done.
+Tooltip          : Healed whenever the Paladin heals a nearby ally.$?e2[
+
+Damage taken reduced by $w3%.][]
 
 Name             : Protection of Tyr (id=200430) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=5, col=5, max_rank=1, req_points=8, select_idx=200]
@@ -490,6 +519,8 @@ Effects          :
 #3 (id=1083387)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Veneration
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 414411 | Target: Self (1)
 Description      : Judgment grants an absorb shield on up to $s2 injured allies for $414411s2% of the damage done, split evenly among them.
+
+Flash of Light and Holy Light critical strikes reset the cooldown of Judgment.
 
 Name             : Imbued Infusions (id=392961) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -520,6 +551,8 @@ Effects          :
 #1 (id=1031610)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Your Holy Words summon an image of a Naaru at your side. For $392990d, whenever you cast a healing or damaging spell, the Naaru will cast a similar spell.
+
+If an image has already been summoned, that image is empowered instead.
 
 Name             : Avenging Crusader (id=394088) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=8, col=6, max_rank=1, req_points=20, select_idx=200, override="Avenging Crusader" (id=216331)]
@@ -534,6 +567,8 @@ Effects          :
 #1 (id=1033459)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : You become the ultimate crusader of light for $216331d. Crusader Strike and Judgment cool down $216331s2% faster and heal up to $216331s6 injured allies for $216331s5% of the damage they deal.
+
+If |cFFFFFFFFAvenging Wrath |ris known, also increases Judgment, Crusader Strike, and auto-attack damage by $216331s1%.
 
 Name             : Light's Conviction (id=414073) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=3, col=3, max_rank=1, req_points=0]
@@ -565,6 +600,8 @@ Effects          :
 #1 (id=1082917)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Judgment has a $s1% chance to cast Consecration at the target's location.
+
+The limit on Consecration does not apply to this effect.
 
 Name             : Awakening (id=414195) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=9, col=5, max_rank=1, req_points=20, select_idx=200]
@@ -589,6 +626,8 @@ Effects          :
 #4 (id=1090691)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 Description      : While in combat, your Holy Power spenders have a $s1% chance to cause your next Judgment to deal $414193s1% increased damage and critically strike.
+
+Activating Avenging Wrath activates Awakening.
 
 Name             : Shining Righteousness (id=414443) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=6, col=8, max_rank=1, req_points=8]
@@ -605,6 +644,8 @@ Effects          :
 #2 (id=1083502)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Shining Righteousness
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 414450 | Target: Self (1)
 Description      : $?s2812[Denounce][Shield of the Righteous] deals $414448s1 damage to its first target struck.
+
+$?s2812[Denounce][Shield of the Righteous] now has a $s1% chance to activate Divine Purpose if talented.
 
 Name             : Tirion's Devotion (id=414720) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=7, col=2, max_rank=1, req_points=8]
@@ -698,6 +739,8 @@ Effects          :
 #5 (id=1173398)  : Apply Aura (6) | Trigger Spell Based on Health% (468): Bestow Light
                    Base Value: 69 | Scaled Value: 69 | Misc Value: 1 | Trigger Spell: 448086 | Target: Self (1)
 Description      : Light of the Martyr's health threshold is reduced to ${$s4+$s1}% and increases Holy Shock's healing by an additional $448087s1% for every $t2 sec Light of the Martyr is active, stacking up to $448087u times.
+
+While below ${$s4+$s1}% health, the light urgently heals you for $448086s1 every $448086t1 sec.
 
 Name             : Light's Protection (id=461243) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=6, col=6, max_rank=1, req_points=8]
@@ -817,6 +860,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spellicon156910 $@spellname156910:
 Allies with Beacon of Light or Beacon of Faith are healed for $53563s5 every $53563t5 sec.
+
+$@spellicon200025 $@spellname200025:
+Beacon of Virtue instantly heals allies for $1232617s1.
 
 Name             : Tyr's Deliverance (id=1241275) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=10, col=6, max_rank=1, req_points=20, select_idx=100]
@@ -834,6 +880,8 @@ Effects          :
 #1 (id=1240176)  : Apply Aura (6) | Proc Trigger Spell (42): Tyr's Deliverance
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 200652 | Target: Self (1)
 Description      : Activating Avenging Wrath releases the Light within yourself, healing $200652s2 injured allies instantly and an injured ally every $200652t1 sec within $200653A1 yds for $200654s1.
+
+Allies healed also receive $200654s2% increased healing from your Holy Light, Flash of Light, and Holy Shock spells for $200654d. 
 
 Name             : Empyrean Legacy (id=1241358) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=8, col=3, max_rank=1, req_points=20]
@@ -885,6 +933,8 @@ Effects          :
                    Affected Spells: Avenging Crusader (216331)
                    Family Flags: 102
 Description      : Avenging Wrath's cooldown is reduced by ${$s1/-1000} sec, but its duration is reduced by ${$s2/-1000}.1 sec.
+
+Avenging Crusader's cooldown is reduced by ${$s3/-1000}.1 sec, but its duration is reduced by ${$s4/-1000}.1 sec.
 
 Name             : Ringing of the Heavens (id=1241542) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=4, col=4, max_rank=1, req_points=0]
@@ -982,6 +1032,8 @@ Effects          :
 #4 (id=1281942)  : Apply Aura (6) | Cast Linked Spell w/ Value (285): Beacon of the Savior
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1270083 | Target: Self (1)
 Description      : While in combat, apply a Beacon of the Savior to the lowest health ally within $s1 yds that causes your direct healing on others to also heal that ally for $s2% of the amount healed.
+
+Beacon of the Savior transfers to the lowest health ally within $s1 yds if it heals a target past maximum health or if an ally drops below $1270083s4% health.
 
 Name             : Beacon of the Savior (id=1245367) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=11, col=5, max_rank=2, req_points=20, select_idx=200]
@@ -1019,6 +1071,8 @@ Effects          :
 #1 (id=1246374)  : Apply Aura (6) | Periodic Dummy (226): every 8 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Every $t1 sec or when Beacon of the Savior transfers to a new injured target, they are granted an absorb shield that prevents the next $1245369s1 damage and reduces damage taken by $1245369s2% for $1245369d.
+
+Beacon of the Savior now additionally follows the target of your Holy Light and Flash of Light spells once every $proccooldown sec.
 
 Name             : Divine Favor (id=1270916) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -1057,6 +1111,8 @@ Effects          :
 #3 (id=1283587)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : While Avenging Wrath is not active, you gain $s1% Mastery.
+
+While Avenging Wrath is active, you gain $s2% movement speed.
 
 Name             : Divine Overload (id=1271077) [Spell Family (10), Passive] 
 Talent Entry     : Holy [tree=spec, row=9, col=9, max_rank=1, req_points=20]

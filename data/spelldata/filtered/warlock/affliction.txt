@@ -27,6 +27,9 @@ Effects          :
 #2 (id=198244)   : Apply Aura (6) | Periodic Dummy (226): every 2 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Inflicts increasing agony on the target, causing up to ${$s1*$d/$t1*$u} Shadow damage over $d. Damage starts low and increases over the duration. Refreshing Agony maintains its current damage level.
+
+|cFFFFFFFFAgony damage sometimes generates 1 Soul Shard.|r
+Tooltip          : Suffering $w1 Shadow damage every $t1 sec. Damage increases over time.
 
 Name             : Seed of Corruption (id=27243) [Spell Family (5)] 
 Talent Entry     : Affliction [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -58,6 +61,11 @@ Effects          :
 #4 (id=1269049)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Target: Targeted Enemy (6)
 Description      : Embeds a demon seed in the enemy target that will explode after $d, dealing $27285s1 Shadow damage to all enemies within $27285A1 yards and applying $?a445465[Wither][Corruption] to them. Damage reduced beyond $s4 targets.
+
+The seed will detonate early if the target is hit by other detonations, or takes ${$SPS*$s1/100} damage from your spells.
+Tooltip          : Embeded with a demon seed that will soon explode, dealing Shadow damage to the caster's enemies within $27285A1 yards, and applying Corruption to them.
+
+The seed will detonate early if the target is hit by other detonations, or takes $w3 damage from your spells.
 
 Name             : Haunt (id=48181) [Spell Family (5)] 
 Talent Entry     : Affliction [tree=spec, row=3, col=4, max_rank=1, req_points=0]
@@ -94,6 +102,9 @@ Effects          :
 #5 (id=1273044)  : Apply Aura (6) | Periodic Trigger Spell (23): Unknown(0) every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : A ghostly soul haunts a single target, dealing $s1 Shadow damage and increasing your damage dealt to the target by $s2% for $d.
+
+$?a1261984[While active, Haunt deals ${$1262710s1*($48181d/$48181t5)} Shadow damage to its host and ${$1262710x1-1} enemies within $1278047a1 yards suffering from your Corruption or Wither.][] If the target dies, Haunt's cooldown is reset.
+Tooltip          : Taking $s2% increased damage from the Warlock. $?e4[Suffering ${$1262710s1*($48181d/$48181t5)} Shadow damage.][] Haunt's cooldown will be reset on death.
 
 Name             : Grimoire of Sacrifice (id=108503) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=7, col=6, max_rank=1, req_points=8, select_idx=100]
@@ -115,6 +126,8 @@ Effects          :
 #2 (id=124409)   : Trigger Spell (64): Grimoire of Sacrifice
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 196099 | Target: Self (1)
 Description      : Sacrifices your demon pet for power, gaining its command demon ability, and causing your spells to sometimes also deal $196100s1 additional Shadow damage.
+
+Lasts $196099d or until you summon a demon pet.
 
 Name             : Nightfall (id=108558) [Spell Family (5), Passive] 
 Talent Entry     : Affliction [tree=spec, row=3, col=2, max_rank=1, req_points=0]
@@ -129,6 +142,8 @@ Effects          :
 #1 (id=119700)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $?a445465[Wither][Corruption] damage has a chance to cause your next $?a388667[Drain Soul][Shadow Bolt] or Malefic Grasp to deal $264571s2% increased damage. 
+
+$?a388667[Drain Soul and Malefic Grasp channel $264571s3% faster while affected.][Shadow Bolt is instant cast and Malefic Grasp channels $264571s3% faster when affected.]
 
 Name             : Absolute Corruption (id=196103) [Spell Family (5), Passive] 
 Talent Entry     : Affliction [tree=spec, row=4, col=6, max_rank=1, req_points=0, select_idx=100]
@@ -151,6 +166,8 @@ Effects          :
                    Affected Spells: Corruption (172), Corruption (146739), Deliberate Corruption (367831), Wither (445468), Wither (445474), Corruption (1261158), Wither (1279686)
                    Family Flags: 1
 Description      : $?a445465[Wither][Corruption] is now permanent and deals $s2% increased damage.
+
+Duration reduced to $s1 sec against players.
 
 Name             : Sow the Seeds (id=196226) [Spell Family (5), Passive] 
 Talent Entry     : Affliction [tree=spec, row=10, col=7, max_rank=1, req_points=20]
@@ -195,6 +212,9 @@ Effects          :
 #4 (id=734780)   : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Summons a Darkglare from the Twisting Nether that increases the damage of your Agony, $?a445465[Wither][Corruption], and Unstable Affliction by $1280663s1% while active.
+
+The Darkglare will serve you for $d, blasting its target for $205231s1 Shadow damage, increased by $s3% for every damage over time effect you have active on their current target.
+Tooltip          : Summons a Darkglare from the Twisting Nether that blasts its target for Shadow damage, dealing increased damage for every damage over time effect you have active on their current target.
 
 Name             : Death's Embrace (id=234876) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Affliction [tree=spec, row=10, col=4, max_rank=1, req_points=20]
@@ -490,6 +510,11 @@ Effects          :
 #1 (id=1264780)  : Apply Aura (6) | Periodic Trigger Spell (23): Dark Harvest every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1257065 | Target: Self (1)
 Description      : Consume the life force of each target afflicted by your damaging periodic effects, dealing ${$1257065s1*(1+ $d/$t1)} Shadowflame damage over $d.
+
+Damage dealt by Dark Harvest heals you for ${$1257065e1*100}% of damage done.
+Tooltip          : Consuming the life force of each target afflicted by your damaging periodic effects, dealing ${$1257065s1*(1+ $d/$t1)} Shadowflame damage over $d.
+
+Damage dealt by Dark Harvest heals you for ${$1257065e1*100}% of damage done.
 
 Name             : Unstable Affliction (id=1259790) [Spell Family (5)] 
 Talent Entry     : Affliction [tree=spec, row=2, col=3, max_rank=1, req_points=0]
@@ -521,6 +546,13 @@ Effects          :
 #4 (id=1305448)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
                    Base Value: 15 | Scaled Value: 15 | Target: Targeted Enemy (6)
 Description      : Afflicts the target with $o2 Shadow damage over $d. Multiple uses of this ability may overlap.
+
+If dispelled, deals ${$m2*$s1/100} damage to the dispeller and silences them for $196364d. This damage is increased by $s3% per stack on the target.
+
+|cFFFFFFFFGenerates $231791m1 Soul $LShard:Shards; if the target dies while afflicted.|r
+Tooltip          : Suffering $w2 Shadow damage every $t2 sec. 
+
+If dispelled, causes ${(($w2*$s1/100)*(1+($w3-$w4)/100))*$w4/$w3} damage to the dispeller and silence them for $196364d.
 
 Name             : Practiced Pestilence (id=1259811) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Affliction [tree=spec, row=6, col=2, max_rank=1, req_points=8]
@@ -726,6 +758,9 @@ Effects          :
 #1 (id=1270758)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : While Darkglare is active, your $?a388667[Drain Soul][Shadow Bolt] becomes Malefic Grasp. 
+
+$@spellicon1261153 $@spellname1261153
+$@spelldesc1261153
 
 Name             : Shadow of Nathreza (id=1261984) [Spell Family (5), Passive] 
 Talent Entry     : Affliction [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=100]
@@ -744,6 +779,8 @@ Effects          :
 #1 (id=1271962)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Haunt now calls upon a demonic soul from within the Twisting Nether to haunt your target.
+
+The soul is unstable and ravenous, dealing ${$1262710s1*($48181d/$48181t5)} Shadow damage to its host and ${$1262710x1-1} enemies within $1278047a1 yards suffering from your $?a445465[Wither][Corruption] over its duration.
 
 Name             : Shadow of Nathreza (id=1261990) [Spell Family (5), Passive] 
 Talent Entry     : Affliction [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
@@ -794,6 +831,9 @@ Effects          :
 #1 (id=1271975)  : Apply Aura (6) | Proc Trigger Spell (42): Summon Desperate Soul
                    Base Value: 10 | Scaled Value: 10 | Trigger Spell: 1262094 | Target: Self (1)
 Description      : Damage dealt by Haunt has a chance to release the demonic soul haunting its target. When released, it unleashes a devastating attack before being banished back to Nathreza.
+
+$@spellicon1262028 $@spellname1262028
+$@spelldesc1262028
 
 Name             : Niskaran Methods (id=1279510) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Affliction [tree=spec, row=8, col=3, max_rank=1, req_points=20]
@@ -857,3 +897,5 @@ Effects          :
                    Affected Spells: Eye Beam (205231)
                    Family Flags: 90
 Description      : Adorns your Darkglare with armor forged from within Antorus, increasing their armor by $1280940s1%. 
+
+Eye Beam now jumps to up to $s1 additional targets within $s2 yards and deals $s3% increased damage.

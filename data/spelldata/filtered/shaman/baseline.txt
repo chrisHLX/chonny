@@ -157,6 +157,12 @@ Effects          :
 #1 (id=1925)     : Summon Guardian (28)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 3527 | Misc Value 2: 3402 | Target: Back Right of Self (42)
 Description      : Summons a totem at your feet for $d that heals $?s147074[two injured party or raid members][an injured party or raid member] within $52042A1 yards for $52042s1 every $5672t1 sec.
+
+If you already know $?s157153[$@spellname157153][$@spellname5394], instead gain $392915s1 additional $Lcharge:charges; of $?s157153[$@spellname157153][$@spellname5394].
+Variables        : $purification=$?s16213[${1.95}][${1.0}]
+$soothe=$?s16205[${1.50}]?s16187[${1.25}][${1.0}]
+$rushing=$?s147074[${1.15}][${1.0}]
+$bonus=${$<purification>*$<soothe>*$<rushing>*(1+$@versadmg)}
 
 Name             : Healing Stream (id=5672) [Spell Family (11)] 
 Class            : Shaman
@@ -232,6 +238,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 11 | Target: Targeted Ally (21)
                    Modified By: Devout Spirit (319919 effect#1)
 Description      : A quick surge of healing energy that restores $s1 of a friendly target's health.$?a410673[
+
+|cFFFFFFFFConsumes Stormweaver for increased cast speed and healing.|r][]
 
 Name             : Tremor Totem Effect (id=8146) [Spell Family (11)] 
 Class            : Shaman
@@ -305,6 +313,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 400 | Target: Self (1)
                    Modified By: Elemental Assault (210853 effect#3)
 Description      : Energizes both your weapons with lightning and delivers a massive blow to your target, dealing a total of ${$32175sw1+$32176sw1} Physical damage.$?s210853[
+
+Stormstrike has a $s4% chance to generate $210853m2 $Lstack:stacks; of Maelstrom Weapon.][]
 
 Name             : Reincarnation (desc=Passive) (id=20608) [Spell Family (11), Passive] 
 Class            : Shaman
@@ -326,6 +336,8 @@ Effects          :
 #2 (id=332743)   : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30
 Description      : Allows you to resurrect yourself upon death with $21169s1% health and mana. This effect can occur only once every $s2 minutes.$?a381689[
+
+While you are at full health, Reincarnation cools down $381689s2% faster.][]
 
 Name             : Energized Shield (id=24499) [Spell Family (11)] 
 School           : Nature
@@ -709,6 +721,9 @@ Effects          :
 #1 (id=43877)    : Dummy (3) | Attributes: Don't Fail Spell On Targeting Failure (20)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Summons two $?s262624[Elemental ][]Spirit $?s147783[Raptors][Wolves] that aid you in battle for $228562d. They are immune to movement-impairing effects, and each $?s262624[Elemental ][]Feral Spirit summoned grants you $?s262624[$224125s1%][$392375s1%] increased Physical$?s262624[ and $224125s1% increased Fire, Frost, or Nature][] damage dealt by your abilities.
+
+Feral Spirit generates one stack of Maelstrom Weapon immediately, and one stack every $333957t1 sec for $333957d.
+Variables        : $percent=$?s63271[${$58877m1*1.4}][${$58877m1}]
 
 Name             : Healing Stream Totem (id=52042) [Spell Family (11)] 
 Class            : Shaman
@@ -758,6 +773,12 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Stat: Int | Target: Self (1)
                    Modified By: Instinctive Imbuements (1270350 effect#2)
 Description      : The caster is surrounded by globes of water, granting $s2 mana per 5 sec. When a melee attack hits the caster, the caster regains $?s382033[${($382033s5/100+1)*$52128s1}][$52128s1]% of their mana. This effect can only occur once every $?a462454[${$proccooldown+($462454s2/1000)}.1][$proccooldown] sec. 
+
+$?s383010[The Shaman can have up to two Elemental Shields active on them.][Only one of your Elemental Shields can be active on you at once.]
+Tooltip          : Grants $w2 mana per 5 sec.
+Melee attacks against you trigger additional mana restoration.$?$w3>0[
+
+Intellect increased by $w3%.][]
 
 Name             : Water Shield (id=52128) [Spell Family (11)] 
 Class            : Shaman
@@ -1110,6 +1131,9 @@ Effects          :
                    Affected Spells: Searing Bolt (3606), Flametongue Attack (10444), Lava Burst (51505), Lava Lash (60103), Earthquake (77478), Elemental Blast (117014), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Frost Shock (196840), Sundering (197214), Chain Lightning (211094), Lightning Shield (273324), Strength of Earth (273466), Lightning Conduit (275394), Lava Burst (285452), Lightning Lasso (305484), Lightning Lasso (305485), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Tempest (452201), Awakening Storms (455130), Tremor (455622), Searing Volley (458147), Surging Bolt (458267), Tempest Overload (463351), Ascendance (467263), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Fire (1218113), Primordial Frost (1218116), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
                    Family Flags: 56
 Description      : Increases your chance to trigger Stormsurge and Windfury Weapon by ${$m3}.2%, and increases all Fire, Frost, and Nature damage you deal by ${$77223m1}.1%.$?s201845[
+
+$@spellicon201845 $@spellname201845
+$@spelldesc201845][]
 
 Name             : Mastery: Deep Healing (id=77226) [Spell Family (11), Passive] 
 Class            : Restoration Shaman
@@ -2359,6 +2383,9 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 Description      : Call down a lightning strike on an enemy, dealing $s1 Nature damage, and leaving the Storm Elemental charged with energy for $d.
+
+While charged, the Storm Elemental's damage is increased by $s2%.
+Tooltip          : Damage done increased by $w2%.
 
 Name             : Stormfury (id=157375) [Spell Family (11)] 
 Class            : Shaman
@@ -2384,6 +2411,12 @@ Effects          :
 #3 (id=899571)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Channel the energy of the storms at your target, causing $269005s1 Nature damage to all enemies within $269005A1 yards every $t1 sec. Deals reduced damage beyond $s3 targets.
+
+The damage of this ability increases by $s2% every time it deals damage.
+Tooltip          : Suffering $<damage> Nature damage every $t1 sec.
+
+Damage increases by $s2% every $t1 sec.
+Variables        : $damage=${0.1*($SP*1.8)*(1+$@versadmg)*(1+0.01*$137040m3)}
 
 Name             : Critical Strikes (desc=Passive) (id=157444) [Passive, Hidden] 
 Class            : Enhancement Shaman
@@ -2429,6 +2462,8 @@ Effects          :
 #6 (id=1181697)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.684 | PvP Coefficient: 1.3 | Target: Self (1)
 Description      : All Elemental damage increased by ${$s3}.1%.
+
+Your Lightning Bolt,$?s454009[ Tempest,][] Lava Burst, and Chain Lightning casts have a ${$s1}.1% chance to trigger a second cast on the same target, dealing $s2% of normal damage and generating less Maelstrom.
 
 Name             : Earthen Rage (id=170377) [Spell Family (11), Hidden] 
 Class            : Shaman
@@ -2693,6 +2728,12 @@ Effects          :
 #1 (id=274643)   : School Damage (2): nature
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 1.311 | Target: Targeted Enemy (6)
 Description      : Hurls a bolt of lightning at the target, dealing $s1 Nature damage.$?a343725[
+
+|cFFFFFFFFGenerates $343725s1 Maelstrom.|r]?a383303[
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased cast speed and damage.|r]?a187880[
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased cast speed.|r][]
 
 Name             : Flame Shock (id=188389) [Spell Family (11)] 
 Class            : Shaman
@@ -2730,6 +2771,13 @@ Effects          :
                    Family Flags: 0, 1, 20, 63, 64, 83, 96, 98, 107, 108
                    Modified By: Inferno Arc (1259047 effect#1)
 Description      : Sears the target with fire, causing $s1 Volcanic damage and then an additional $o2 Volcanic damage over $d.
+
+Flame Shock can be applied to a maximum of $I targets.$?a137039[][
+
+If Flame Shock is dispelled, a volcanic eruption wells up beneath the dispeller, exploding for $204395s1 Volcanic damage and knocking them into the air.]$?a343725[
+
+|cFFFFFFFFGenerates $343725s11 Maelstrom.|r][]
+Tooltip          : Suffering $w2 Volcanic damage every $t2 sec.
 
 Name             : Stormstrike (id=188435) 
 Class            : Shaman
@@ -2860,6 +2908,10 @@ Effects          :
 #1 (id=279203)   : Apply Aura (6) | Proc Trigger Spell (42): Fulmination
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.1 | Trigger Spell: 260111 | Target: Self (1)
 Description      : Lightning Bolt, Lava Burst, Chain Lighting, and their Overload spells have a $h% chance to generate a stack of Fulmination, up to $260111u stacks. 
+
+Earth Shock $?s117014[and Elemental Blast ][]will discharge all stacks of Fulmination on the target, causing an extra $260113s1 Nature damage per stack of Fulmination.
+
+Earthquake's cast time is reduced by $s2% per stack of Fulmination, and Earthquake deals $s3% more damage for each stack of Fulmination.
 
 Name             : Lightning Blast (id=191726) [Spell Family (11)] 
 Class            : Shaman
@@ -2980,6 +3032,13 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
                    Modified By: Surging Shields (382033 effect#1)
 Description      : Surround yourself with a shield of lightning for $d.
+
+Melee attackers have a $h% chance to suffer $192109s1 Nature damage$?a137041[ and have a $s3% chance to generate a stack of Maelstrom Weapon]?a137040[ and have a $s4% chance to generate $s5 Maelstrom][].
+
+$?s383010[The Shaman can have up to two Elemental Shields active on them.][Only one Elemental Shield can be active on the Shaman at a time.]
+Tooltip          : Chance to deal $192109s1 Nature damage when you take melee damage$?a137041[ and have a $s3% chance to generate a stack of Maelstrom Weapon]?a137040[ and have a $s4% chance to generate $s5 Maelstrom][].$?$w4>0[
+
+$pri increased by $w4%.][]
 
 Name             : Lightning Shield (id=192109) [Spell Family (11)] 
 Class            : Shaman
@@ -3038,6 +3097,8 @@ Effects          :
 #2 (id=1018767)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Calls forth a Greater Storm Elemental to hurl gusts of wind at your enemies for $157299d.
+
+While the Storm Elemental is active, casting Lightning Bolt$?a454009[, Tempest,][] or Chain Lightning increases your haste by $263806s1%, stacking up to $263806u times.
 
 Name             : Stormlash (id=195222) [Spell Family (11)] 
 Class            : Shaman
@@ -3196,6 +3257,9 @@ Effects          :
 #2 (id=811561)   : Dummy (3)
                    Base Value: 100 | Scaled Value: 100
 Description      : Calls forth a Greater Fire Elemental to rain destruction on your enemies for $188592d. 
+
+While the Fire Elemental is active, Flame Shock deals damage ${100*(1/(1+$188592s2/100)-1)}% faster, and newly applied Flame Shocks last $188592s3% longer.
+Tooltip          : $188592s2%
 
 Name             : Converging Storms (id=198300) [Spell Family (11)] 
 Class            : Shaman
@@ -3994,6 +4058,9 @@ Effects          :
 #4 (id=1173035)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
 Description      : Hurls frigid ice at the target, dealing $s1 Frost damage and causing your next Frost Shock to deal $s2% increased damage, damage $s4 additional $Ltarget:targets;, and generate $343725s7 additional Maelstrom.
+
+|cFFFFFFFFGenerates $343725s8 Maelstrom.|r
+Tooltip          : Frost Shock damage increased by $w2%.
 
 Name             : Crashing Storm (id=210797) [Spell Family (3)] 
 Class            : Shaman
@@ -4358,6 +4425,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: maelstrom | Target: Self (1)
                    Modified By: Maelstrom (343725 effect#9), Primal Fracture (410018 effect#7)
 Description      : Hurls frigid ice at the target, dealing $?a382032[${$s1*($382032s1+$168534s2)/100}][${$s1*$168534s2/100}] Frost damage.
+
+|cFFFFFFFFGenerates $s2 Maelstrom.|r
 
 Name             : Stormbringer (id=222251) 
 Class            : Shaman
@@ -4402,6 +4471,8 @@ Effects          :
                    Family Flags: 58
 Description      : $@spelldesc262624
 Tooltip          : Increases Fire damage dealt from your abilities by $s1%.
+
+Increases Physical damage dealt from your abilities by $s3%.
 
 Name             : Icy Edge (id=224126) [Spell Family (11)] 
 Class            : Shaman
@@ -4434,6 +4505,10 @@ Effects          :
                    Family Flags: 58
 Description      : $@spelldesc262624
 Tooltip          : Increases Frost damage dealt from your abilities by $s1%.
+
+Increases Physical damage dealt from your abilities by $s3%.
+Variables        : $mastery=$?s77223[${1+0.01*$77223m1}][${1}]
+$damage=${($AP*0.35)*(1+($137041s1/100))*$<mastery>*(1+$@versadmg)}
 
 Name             : Crackling Surge (id=224127) [Spell Family (11)] 
 Class            : Shaman
@@ -4469,6 +4544,8 @@ Effects          :
                    Family Flags: 58
 Description      : $@spelldesc262624
 Tooltip          : Increases Nature damage dealt from your abilities by $s1%.
+
+Increases Physical damage dealt from your abilities by $s3%.
 
 Name             : Pristine Proto-Scale Girdle (id=224837) [Spell Family (11), Passive] 
 School           : Fire
@@ -4841,6 +4918,10 @@ Effects          :
 #1 (id=463968)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Gain one of the following talents based on your specialization:
+
+|cFFFFFFFFElemental:|r Echo of the Elements
+|cFFFFFFFFEnhancement:|r Landslide
+|cFFFFFFFFRestoration:|r Echo of the Elements
 
 Name             : Soul of the Farseer (id=247600) [Spell Family (11), Passive] 
 School           : Physical
@@ -4979,6 +5060,8 @@ Effects          :
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
 Description      : $@spelldesc190493
 Tooltip          : Your next Earth Shock $?s117014[or Elemental Blast ][]will deal an additional ${$s1*$260113s1} Nature damage to the target.
+
+Your next Earthquake's cast time is reduced by ${$min(-$s2,100)}%, and your next Earthquake's damage is increased by $s3%.
 
 Name             : Master of the Elements (id=260734) [Spell Family (11)] 
 Class            : Shaman
@@ -6106,6 +6189,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: maelstrom | Target: Self (1)
                    Modified By: Maelstrom (343725 effect#4)
 Description      : Hurls molten lava at the target, dealing $?a382032[${$s1*($382032s1+$168534s2)/100}][${$s1*$168534s2/100}] Fire damage. Lava Burst will always critically strike if the target is affected by Flame Shock.
+
+Generates $343725s4 Maelstrom.|r
 
 Name             : Tectonic Thunder (id=286967) [Spell Family (11)] 
 Class            : Shaman
@@ -6597,6 +6682,10 @@ Effects          :
 #2 (id=807997)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Radius: 0 - 20 yards | Target: at Target (63) -> at any in Area (8)
 Description      : Send a wave of anima at the target, which then jumps to additional nearby targets. Deals $320752s1 Shadow damage to up to 5 enemies, and restores $320751s1 health to up to 5 allies.
+
+For each target critically struck, the cooldown of Chain Harvest is reduced by 5 sec.$?s168534[
+
+Generates $368583s1 Maelstrom per target damaged or healed.][]
 
 Name             : Surge of Earth (id=320746) [Spell Family (11)] 
 Class            : Shaman
@@ -6786,6 +6875,8 @@ Effects          :
 #7 (id=814138)   : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Vesper Totem overrides Vesper Totem
                    Base Value: 324519 | Scaled Value: 324519 | Misc Value: 324386 | Target: Self (1)
 Description      : Summon a totem at the target location for $d. Your next $s2 damage spells or abilities will cause the totem to radiate $324520s1 Arcane damage to up to $324520I enemies near the totem, and your next $s4 healing spells will heal up to $s6 allies near the totem for $324522s1 health.
+
+Casting this ability again while the totem is active will relocate the totem.
 
 Name             : Vesper Totem (desc=Kyrian) (id=324519) [Spell Family (11)] 
 Class            : Shaman
@@ -6891,6 +6982,8 @@ Effects          :
 #4 (id=871501)   : Dummy (3)
                    Base Value: 150 | Scaled Value: 150 | Target: Current Target (25)
 Description      : Blast your target with a Primordial Wave, dealing $327162s1 Shadow damage and apply Flame Shock to an enemy, or $?a137039[heal an ally for $327163s1 and apply Riptide to them][heal an ally for $327163s1].
+
+Your next $?a137040[Lava Burst]?a137041[Lightning Bolt][Healing Wave] will also hit all targets affected by your $?a137040|a137041[Flame Shock][Riptide] for $?a137039[$s2%]?a137040[$s3%][$s4%] of normal $?a137039[healing][damage].
 
 Name             : Primordial Wave (desc=Necrolord) (id=327161) [Spell Family (11), Hidden] 
 Class            : Shaman
@@ -6986,6 +7079,10 @@ Effects          :
 #4 (id=871384)   : Dummy (3)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Transfer the life force of up to $328928I enemies in the targeted area, dealing ${($328928s1*$d/$t2) + $328928s1} Nature damage evenly split to each enemy target over $d. $?a137041[
+
+Fully channeling Fae Transfusion generates $s4 $Lstack:stacks; of Maelstrom Weapon.][]
+
+Pressing Fae Transfusion again within $328933d will release $s1% of all damage from Fae Transfusion, healing up to $328930s2 allies within $328930A1 yds.
 
 Name             : Fae Transfusion (desc=Night Fae) (id=328928) [Spell Family (11)] 
 Class            : Shaman
@@ -7381,6 +7478,8 @@ Effects          :
 #1 (id=832819)   : Apply Aura (6) | Proc Trigger Spell (42): Doom Winds
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 335903 | Target: Self (1)
 Description      : Dropping Windfury Totem grants you $335903s1% chance to gain Windfury Weapon and increases Windfury Weapon damage by $335903s3% for $335903d. 
+
+This can only occur once every $335904d.
 
 Name             : Doom Winds (id=335903) [Spell Family (11)] 
 School           : Physical
@@ -8649,6 +8748,8 @@ Effects          :
                    Modified By: Earthsurge (455590 effect#3)
 Description      : $@spelldesc382021
 Tooltip          : Heals $w1 every $t1 sec.$?$w2>0[
+
+Receiving $w2% increased healing from $@auracaster.][]
 
 Name             : Improved Flametongue Weapon (id=382027) [Spell Family (11), Passive, Hidden] 
 Class            : Shaman
@@ -8720,6 +8821,10 @@ Effects          :
 #5 (id=1013230)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Increases the damage dealt by Lightning Shield by $s3%$?s137040[ and causes it to generate an additional $s1 Maelstrom when triggered][]$?s137041[ and it has an additional $s2% chance to trigger Maelstrom Weapon when triggered][].
+
+Increases the healing done by Earth Shield by $s4%.
+
+$?s137039[Increases the amount of mana recovered when Water Shield is triggered by $s5%.][]
 
 Name             : Surging Elements (id=382043) [Spell Family (11)] 
 Class            : Shaman
@@ -8941,6 +9046,8 @@ Effects          :
                    Modified By: Earthen Harmony (382020 effect#3)
 Description      : $@spelldesc974
 Tooltip          : $?$w3!=0[Damage taken reduced by $w3%.
+
+][]Heals for ${$w2*(1+$w1/100)} upon taking damage.
 
 Name             : Static Accumulation (id=384437) [Spell Family (11), Hidden] 
 Class            : Shaman
@@ -10144,6 +10251,9 @@ Effects          :
                    Affected Spells: Hex (51514)
                    Family Flags: 47
 Description      : Your next healing or damaging spell$?a1246131[ or Hex][] is instant, costs no mana, and deals $s6% increased damage and healing.
+
+If you know Nature's Swiftness, it is replaced by Ancestral Swiftness and causes Ancestral Swiftness to call an Ancestor to your side for $445624d.
+Tooltip          : Your next healing or damaging spell $?a1246131[or Hex ][]is instant, costs no mana, and deals $s6% increased damage and healing.
 
 Name             : Hydrobubble (id=444490) [Spell Family (11)] 
 Class            : Shaman
@@ -10167,6 +10277,9 @@ Effects          :
 #3 (id=1145492)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Chain Heal Ally (45)
 Description      : Surrounds your target in a protective water bubble for $d.
+
+The shield absorbs the next $?a443449[${$s1*(1+$443449s1/100)}][$s1] incoming damage, but the absorb amount decays fully over its duration.
+Tooltip          : Absorbs $w1 damage.
 
 Name             : Surging Totem (id=444995) [Spell Family (11)] 
 Class            : Shaman
@@ -10192,6 +10305,8 @@ Effects          :
 #2 (id=1174985)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Radius: 10 yards | Target: at Area (87)
 Description      : $?a137039[Summons a totem at the target location that maintains Healing Rain with $455630s3% increased effectiveness for $d.
+
+|cFFFFFFFFReplaces Healing Rain.|r][Summons a totem at the target location that creates a Tremor immediately and every $455593t1 sec for $455622s1 Flamestrike damage. Damage reduced beyond $455622s2 targets. Lasts $d.]
 
 Name             : Call of the Ancestors (id=445624) [Spell Family (11)] 
 Class            : Shaman
@@ -10271,6 +10386,8 @@ Effects          :
                    Modified By: Ancestral Influence (1270446 effect#1)
 Description      : $@spelldesc443450
 Tooltip          : An Ancestor is at your side. Whenever you cast a spell, the Ancestor will cast a similar spell.$?$W2>0[
+
+Intellect increased by ${$W2}.1%.][]
 
 Name             : Lava Burst (id=447419) [Spell Family (11)] 
 Class            : Shaman
@@ -10454,6 +10571,10 @@ Effects          :
 #3 (id=1184273)  : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Calls down a tremendous lightning strike that deals $s1 Nature damage to your target and ${$m1*$m2/100} Nature damage to enemies within $A1 yds of your target. Damage reduced beyond $s3 targets.$?a383303[
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased cast speed and damage.|r]?a187880[
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased cast speed.|r][]
 
 Name             : Whirling Fire (id=453405) [Spell Family (11)] 
 Class            : Shaman
@@ -10955,6 +11076,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 7528 | Target: Self (1)
 Description      : $@spelldesc457481
 Tooltip          : Your healing done is increased by $w1%.
+
+Healing Stream Totem lasts an additional ${$w2/1000} sec.
 
 Name             : Tidecaller's Guard (id=457496) [Spell Family (11)] 
 Class            : Shaman
@@ -10987,6 +11110,8 @@ Effects          :
                    Modified By: Enhanced Imbues (462796 effect#8)
 Description      : $@spelldesc457481
 Tooltip          : Your healing done is increased by ${$w2}.1%.
+
+Healing Stream Totem lasts an additional ${$w1/1000}.1 sec.
 
 Name             : Earthsurge (id=457566) [Spell Family (11)] 
 Class            : Shaman
@@ -11561,6 +11686,9 @@ Effects          :
 #2 (id=1286687)  : Remove Aura (203): Skyfury Highlight
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1271904 | Radius: 100 yards | Target: Targeted Ally or Raid (118)
 Description      : Harness the fury of the Windlord to grant a target ally $s1% Mastery and empower their auto attacks to have a $h% chance to instantly strike again for $d.
+
+If the target is in your party or raid, all party and raid members will be affected.
+Tooltip          : Mastery increased by $w1% and auto attacks have a $h% chance to instantly strike again.
 
 Name             : Lesser Storm Elemental (id=462990) [Spell Family (11)] 
 Class            : Shaman
@@ -11801,6 +11929,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 384437 | Target: Self (1)
 Description      : $@spelldesc384352
 
+Tooltip          : Chance to activate Windfury Weapon increased to ${$319773h}.1%.
+Damage dealt by Windfury Weapon increased by $s2%.
+
 Name             : Ascendance (id=467263) [Spell Family (11)] 
 Class            : Shaman
 School           : Nature
@@ -11831,6 +11962,8 @@ Effects          :
 #1 (id=1180316)  : Apply Aura (6) | Dummy (4)
                    Base Value: 40 | Scaled Value: 40 | Target: Self (1)
 Description      : Sundering grants you Hot Hand for 8 sec.
+
+While Hot Hand is active, Lava Lash casts Sundering at $s1% effectiveness. Sundering cast from this effect does not incapacitate.
 
 Name             : Sundering (id=467283) [Spell Family (11)] 
 Class            : Shaman
@@ -12310,6 +12443,8 @@ Effects          :
                    Base Value: 40 | Scaled Value: 40 | Target: Targeted Ally (21)
 Description      : $@spelldesc1215538
 Tooltip          : Healing $s1 every $t sec.
+
+|cFFFFFFFFInsurance!|r is consumed to heal for $1215540s1 if brought below $s2% health.
 
 Name             : Insurance! (id=1215540) [Spell Family (11)] 
 Class            : Shaman
@@ -12441,6 +12576,8 @@ Effects          :
 #3 (id=1202696)  : Trigger Spell (64): Primordial Lightning
                    Base Value: 0 | Scaled Value: 0 | Delay: 600_ms | Trigger Spell: 1218118 | Target: Self (1)
 Description      : Devastate nearby enemies with a Primordial Storm, dealing $1218113s1 Flamestrike, $1218116s1 Froststrike, $1218118s1 Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at 100% effectiveness. Deals reduced damage beyond $1218047s3 targets.
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased damage.|r
 
 Name             : Primordial Fire (id=1218113) [Spell Family (11)] 
 Class            : Shaman
@@ -12677,6 +12814,11 @@ Effects          :
 #10 (id=1205240) : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : Transform into a Flame Ascendant for $d, instantly casting a Flame Shock and a $s10% effectiveness Lava Burst at up to $s7 nearby enemies.
+
+While ascended, Elemental Overload damage is increased by $s8% and spells affected by your Mastery: Elemental Overload cause $s9 additional Elemental $LOverload:Overloads;.
+Tooltip          : Transformed into a powerful Fire Ascendant, empowering your Mastery: Elemental Overload.$?$w3>0[
+
+Haste increased by $w3%.][]
 
 Name             : Storm Lunge (id=1221246) [Spell Family (11)] 
 Class            : Shaman
@@ -12778,6 +12920,8 @@ Effects          :
 #1 (id=1220649)  : Dummy (3)
                    Base Value: 25 | Scaled Value: 25 | Target: Current Target (25)
 Description      : Casts damaging abilities for use in combat, rotating through them based on priority.
+
+The global cooldown of abilities used through the Single-Button Assistant is $s1% longer.
 
 Name             : Recuperate (id=1231411) 
 Class            : Warrior, Paladin, Hunter, Rogue, Priest, Death Knight, Shaman, Mage, Warlock, Monk, Druid, Demon Hunter, Evoker
@@ -13037,6 +13181,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc187874
 Tooltip          : Stormstrike and Lava Lash deal an additional $195592s1 damage split between up to $195592i targets in front of you.$?s1252373[
+
+Auto-attack speed increased by $w2%.][]$?s1264865[
+
+Mastery increased by ${$w3*$mastery}%][]
 
 Name             : Crash Lightning (Unleashed) (id=1252431) [Spell Family (11)] 
 Class            : Shaman
@@ -13077,6 +13225,9 @@ Effects          :
 #1 (id=1257587)  : Create Area Trigger (179)
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | Misc Value: 39415 | Target: at Self (18)
 Description      : Electrocutes all enemies in front of you, dealing ${$s1*$<CAP>/$AP} Nature damage. 
+
+Enhances your weapons for $187878d, causing Stormstrike and Lava Lash to discharge ${$195592s1*$<CAP>/$AP} Nature damage up to $195592i enemies in front of you. $?s1252373[Multiple applications may overlap.][]
+Variables        : $CAP=$?$OWB==0[${$AP*0.98}][${($AP+$OAP)*2/3}]--2H, DW
 
 Name             : Restoration Shaman (id=1256945) [Spell Family (11), Passive, Hidden] 
 Class            : Restoration Shaman

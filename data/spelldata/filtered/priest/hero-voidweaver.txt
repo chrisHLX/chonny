@@ -31,6 +31,12 @@ Effects          :
                    Base Value: -100 | Scaled Value: -100 | Misc Value: 3678 (Label) | Target: Self (1)
                    Affected Spells (Label): Entropic Rift (447445), Voidheart (449887)
 Description      : Channel a torrent of void energy into the target, dealing $o Shadow damage over $d and tearing open an $@spellname447444.
+
+$@spellicon447444 $@spellname447444
+$@spelldesc447444
+
+|cFFFFFFFFGenerates ${$289577s1*$289577s2/100} Insanity over the duration.|r
+Tooltip          : Dealing $s1 Shadow damage to the target every $t1 sec.
 
 Name             : Entropic Rift (id=447444) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Voidweaver (Discipline) [free=(Discipline), tree=hero, row=1, col=3, max_rank=1, req_points=0]
@@ -99,6 +105,8 @@ Effects          :
 #4 (id=1157290)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Each time $?c3[you cast Shadow Word: Madness][Penance damages or heals], Entropic Rift is empowered, increasing its damage and size by $?c1[$s4][$s3]%.
+
+After Entropic Rift ends it collapses, dealing $448405s1 Shadow damage split amongst enemy targets within $448405a1 yds.
 
 Name             : Voidheart (id=449880) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
@@ -173,6 +181,11 @@ Effects          :
 #2 (id=1150586)  : None (0)
                    Base Value: 2 | Scaled Value: 2
 Description      : Entropic Rift upgrades $?c3[Mind Blast][Smite] into Void Blast while it is active.
+
+$?c1[$@spellname450215:
+$@spelldesc450215][$@spellname450983:
+$@spelldesc450983]
+Variables        : $ext=${$231688s1/1000} sec
 
 Name             : Void Infusion (id=450612) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
@@ -242,6 +255,9 @@ Effects          :
 #1 (id=1151694)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : When Entropic Rift ends, a Voidwraith is summoned from the collapsed rift for $451235d.
+
+$@spellicon451235$@spellname451235
+$@spelldesc451235
 
 Name             : Void Leech (id=451311) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Voidweaver (Discipline, Shadow) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=100]

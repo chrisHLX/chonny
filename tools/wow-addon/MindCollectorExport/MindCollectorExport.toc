@@ -1,0 +1,16 @@
+## Interface: 120007
+## Title: MindCollectorExport
+## Notes: Exports spellbook/talent state to SavedVariables for MindCollector's spellbook verifier pipeline.
+## Author: MindCollector
+## Version: 0.1.0-unverified
+## SavedVariables: MindCollectorExportDB
+
+# UPDATED 2026-08-02: was 110107 (a stale The War Within / 11.0.x guess) — the account this was
+# tested on is on Midnight (12.0.x; the imported spell data itself is tagged patch 12.0.7.68887),
+# a full expansion ahead, and "Load out of date AddOns" does not reliably override a gap that
+# large (see: https://us.forums.blizzard.com/en/wow/t/load-out-of-date-addons-toggle-doesnt-actually-work/1629278).
+# The addon silently never loaded — no error, no slash command — despite showing checked in the
+# AddOn List. If 120007 still doesn't match exactly, run /dump GetBuildInfo() in-game and set
+# this to (interfaceVersion) from the third return value, or (tocversion) from the fourth.
+
+main.lua

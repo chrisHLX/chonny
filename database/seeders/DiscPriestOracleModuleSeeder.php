@@ -278,44 +278,12 @@ class DiscPriestOracleModuleSeeder extends Seeder
                 'concepts' => ['Cooldown Management'],
             ],
             [
-                'question'   => 'Which five cooldowns make up the condensed "priority cooldowns" list on the Priority Cooldowns page?',
-                'type'       => 'mcq',
-                'difficulty' => 'medium',
-                'skill_type' => 'recall',
-                'answer'     => [
-                    'correct' => 'Evangelism, Pain Suppression, Fade, Fear, Trinket',
-                    'options' => [
-                        'Evangelism, Pain Suppression, Fade, Fear, Trinket',
-                        'Evangelism, Penance, Desperate Prayer, Mind Blast, Trinket',
-                        'Pain Suppression, Angelic Bulwark, Fade, Fear, Purify',
-                        'Evangelism, Pain Suppression, Mass Dispel, Fear, Ultimate Penitence',
-                    ],
-                ],
-                'concepts' => ['Cooldown Management', 'Role Fundamentals'],
-            ],
-            [
                 'question'   => 'True or False: According to the module\'s Team-Awareness Caveat, Life Grip should only ever be used defensively, never offensively.',
                 'type'       => 'true_false',
                 'difficulty' => 'medium',
                 'skill_type' => 'recall',
                 'answer'     => ['correct' => false],
                 'concepts' => ['Team Composition', 'Awareness & Tracking'],
-            ],
-            [
-                'question'   => 'The enemy team opens a CC chain on you, one effect after another, while your Fear is still on cooldown from earlier. Using the Priority Cooldowns rotation, place your defensive responses in the order they happen.',
-                'type'       => 'ordering',
-                'difficulty' => 'hard',
-                'skill_type' => 'application',
-                'answer'     => [
-                    'steps' => [
-                        'The chain opens with a stun — use Pain Suppression, since it still works while you\'re stunned',
-                        'Burst-heal the damage you took during that stun with Evangelism',
-                        'The second CC lands — break it with your Trinket',
-                        'A third CC follows — avoid it with Fade or Shadow Word: Death',
-                        'Fear comes off cooldown too late to help this chain — it\'s saved for a separate, situational moment instead',
-                    ],
-                ],
-                'concepts' => ['Cooldown Management', 'Crowd Control'],
             ],
             [
                 'question'   => 'Your team is facing a Rogue composition and expects Smoke Bomb during the fight. Which Ultimate Ability swap does the module recommend?',

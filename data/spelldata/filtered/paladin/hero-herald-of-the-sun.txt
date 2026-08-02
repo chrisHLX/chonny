@@ -30,6 +30,9 @@ Effects          :
                    Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.6
                    Modified By: Retribution Paladin (1258011 effect#23)
 Description      : Heals an ally for $s2 and an additional $o1 over $d.
+
+Healing increased by $s3% when cast on self.
+Tooltip          : Healing $w1 health every $t1 sec.
 
 Name             : Dawnlight (id=431377) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
@@ -55,6 +58,10 @@ Effects          :
 #4 (id=1132852)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Casting $?c1[Holy Prism or Divine Toll]?c3[Wake of Ashes][] causes your next $s1 Holy Power spending abilities to apply Dawnlight on your target, dealing $431380o1 Radiant damage or $431381o1 healing over $431380d.
+
+$431581s1% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond $431581s2 targets.$?c1[
+
+Dawnlight's healing does not transfer to Beacon of Light.][]
 
 Name             : Luminosity (id=431402) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
@@ -113,6 +120,8 @@ Effects          :
 #4 (id=1161231)  : Apply Aura (6) | Proc Trigger Spell (42): Will of the Dawn
                    Base Value: 35 | Scaled Value: 35 | Trigger Spell: 456779 | Target: Self (1)
 Description      : Movement speed increased by $431462s1% while above $s1% health.
+
+When your health is brought below $s3%, your movement speed is increased by $431752s1% for $431752d. Cannot occur more than once every $456779d.
 
 Name             : Lingering Radiance (id=431407) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=200]
@@ -248,6 +257,8 @@ Effects          :
 #1 (id=1119291)  : Apply Aura (6) | Periodic Dummy (226): every 5 seconds
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Every ${$t1}.1 sec, your next Dawnlight's damage or healing is increased by $431539s1%, stacking up to $431539u times.
+
+Morning Star stacks twice as fast while out of combat.
 
 Name             : Aurora (id=439760) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -267,6 +278,10 @@ Effects          :
 #2 (id=1133239)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : After you cast $?c1[Holy Prism or Divine Toll]?c3[Wake of Ashes][], gain Divine Purpose.
+
+$?c1[$@spellicon223819 $@spellname223819
+$@spellaura223819]?c3[$@spellicon408458 $@spellname408458
+$@spellaura408458][]
 
 Name             : Blessing of An'she (id=445200) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -308,6 +323,8 @@ Effects          :
 #3 (id=1297607)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : $?c3[You have a $s1% chance to gain Blessing of An'she and generate $s2 Holy Power after casting Avenging Wrath.
+
+During Avenging Wrath, Hammer of Wrath casts Blade of Justice at $s3% effectiveness.][Infusion of Light occurs $s4% more often during Avenging Wrath.]
 
 Name             : Endless Gleam (id=1263787) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
@@ -329,6 +346,8 @@ Effects          :
 #3 (id=1296898)  : Apply Aura (6) | Dummy (4)
                    Base Value: 500 | Scaled Value: 500 | Target: Self (1)
 Description      : $?c1[Dawnlight's duration is increased by ${$s1/1000}.1 sec when it heals an ally with full health.][Dawnlight's duration is increased by ${$s2/1000}.1 sec whenever struck by Divine Storm or Templar's Verdict.
+
+When 2 Dawnlights are struck by Divine Storm, their durations are extended by an additional ${$s3/1000}.1 sec.]
 
 Name             : Born in Sunlight (id=1263920) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=4, col=5, max_rank=1, req_points=1]

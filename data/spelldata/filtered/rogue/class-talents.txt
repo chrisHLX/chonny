@@ -35,6 +35,11 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
                    Modified By: Shadow Blades (121471 effect#2), Broadside (193356 effect#2)
 Description      : Gouges the eyes of an enemy target, incapacitating for $d. Damage may interrupt the effect.
+
+Must be in front of your target.
+
+|cFFFFFFFFAwards $s2 combo $lpoint:points;.|r
+Tooltip          : Incapacitated.
 
 Name             : Blind (id=2094) [Spell Family (8)] 
 Talent Entry     : Generic [free=(Outlaw), tree=class, row=1, col=4, max_rank=1, req_points=0]
@@ -148,6 +153,14 @@ Effects          :
 #4 (id=872827)   : Dispel (38)
                    Base Value: 100 | Scaled Value: 100 | Misc Value: 9 | Target: Targeted Enemy (6)
 Description      : Attack with your $?s319032[poisoned blades][off-hand], dealing $sw1 Physical damage, dispelling all enrage effects and applying a concentrated form of your $?a3408[Crippling Poison, reducing movement speed by $115196s1% for $115196d.]?a5761[Numbing Poison, reducing casting speed by $359078s1% for $359078d.][]$?(!a3408&!a5761)[active Non-Lethal poison.][]$?(a319032&a400783)[
+
+Your Nature and Bleed ]?a319032[
+
+Your Nature ]?a400783[
+
+Your Bleed ][]$?(a400783|a319032)[damage done to the target is increased by $319504s1% for $319504d.][]$?a354124[ The target's healing received is reduced by $1291471S1% for $1291471d.][]
+
+|cFFFFFFFFAwards $s3 combo $lpoint:points;.|r
 
 Name             : Vigor (id=14983) [Spell Family (8), Passive] 
 Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=2, req_points=23]
@@ -290,6 +303,8 @@ Effects          :
 #4 (id=1277119)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2000 | Scaled Value: 2000 | Target: Self (1)
 Description      : Abilities requiring Stealth can be used for $?a137035[${$s4/1000}][${$s2/1000}] sec after Stealth breaks.
+
+Combat benefits requiring Stealth persist for an additional $?a137035[${$s4/1000}][${$s2/1000}] sec after Stealth breaks.
 
 Name             : Deeper Stratagem (id=193531) [Spell Family (8), Passive] 
 Talent Entry     : Generic [tree=class, row=10, col=5, max_rank=1, req_points=23]
@@ -321,6 +336,8 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 2943 (Label) | Target: Self (1)
                    Affected Spells (Label): Shadow Techniques (196911)
 Description      : Gain $s1 additional max combo point.
+
+Your finishing moves that consume more than $s3 combo points have increased effects, and your finishing moves deal $s4% increased damage.
 
 Name             : Alacrity (id=193539) [Spell Family (8), Passive] 
 Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=2, req_points=23]
@@ -870,6 +887,8 @@ Effects          :
 #2 (id=1185470)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : $?a137035[Shadow Dance]?a137036[Adrenaline Rush][Kingsbane] supercharges $m1 combo $Lpoint:points;.
+
+Damaging finishing moves consume a supercharged combo point to function as if they spent $m2 additional combo $Lpoint:points;.
 
 Name             : Forced Induction (id=470668) [Spell Family (8), Passive] 
 Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=200]

@@ -54,6 +54,8 @@ Effects          :
 #2 (id=709474)   : Dummy (3)
                    Base Value: 6 | Scaled Value: 6
 Description      : Perform a miracle, healing an ally for $s1.
+
+|cFFFFFFFFCooldown reduced by $s2 sec when you cast Flash Heal$?a1246517[ or Prayer of Healing][].|r
 
 Name             : Holy Word: Sanctify (id=34861) [Spell Family (6)] 
 Talent Entry     : Holy [tree=spec, row=2, col=3, max_rank=1, req_points=0]
@@ -83,6 +85,8 @@ Effects          :
 #4 (id=709476)   : Dummy (3)
                    Base Value: 2 | Scaled Value: 2
 Description      : Releases miraculous light at a target location, healing up to $s2 allies within $a1 yds for $s1.
+
+|cFFFFFFFFCooldown reduced by $s3 sec when you cast Prayer of Healing.|r
 
 Name             : Guardian Spirit (id=47788) [Spell Family (6)] 
 Talent Entry     : Holy [tree=spec, row=2, col=4, max_rank=1, req_points=0]
@@ -111,6 +115,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: 20 | Target: Targeted Ally (21)
                    Affected School(s): All
 Description      : Calls upon a guardian spirit to watch over the friendly target for $d, increasing healing received by $s1%. If the target would die, the Spirit sacrifices itself and restores the target to $s2% health.
+
+Castable while stunned. Cannot save the target from massive damage.
+Tooltip          : Increased healing received by $w1%$?$w1<100[ and will prevent 1 killing blow][].
 
 Name             : Divine Hymn (id=64843) [Spell Family (6)] 
 Talent Entry     : Holy [tree=spec, row=5, col=4, max_rank=1, req_points=8]
@@ -145,6 +152,9 @@ Effects          :
 #5 (id=1164215)  : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Heals all party or raid members within $64844A1 yards for ${5*$64844s1} over $d. Each heal increases all targets' healing taken by $64844s2% for $64844d, stacking.
+
+Healing reduced beyond $s5 targets.
+Tooltip          : Healing all nearby party or raid members.
 
 Name             : Holy Word: Chastise (id=88625) [Spell Family (6)] 
 Talent Entry     : Holy [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -169,6 +179,8 @@ Effects          :
 #2 (id=709477)   : Dummy (3)
                    Base Value: 4 | Scaled Value: 4
 Description      : Chastises the target for $s1 Holy damage and $?s200199[stuns][incapacitates] them for $?s200199[$200200d][$200196d].$?s63733[
+
+|cFFFFFFFFCooldown reduced by $s2 sec when you cast Smite or Holy Nova.|r][]
 
 Name             : Enlightenment (id=193155) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=5, col=5, max_rank=1, req_points=8]
@@ -197,6 +209,9 @@ Effects          :
 #1 (id=283376)   : Apply Aura (6) | Dummy (4)
                    Base Value: 12 | Scaled Value: 12 | Misc Value: 8 | Target: Self (1)
 Description      : Your Prayer of Mending has a $s1% chance to leave a Renew on each target it heals.
+
+$@spellicon139 $@spellname139
+$@spelldesc139
 
 Name             : Afterlife (id=196707) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=4, col=4, max_rank=1, req_points=0]
@@ -303,6 +318,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $?s235587[Gain a charge][Reset the cooldown] of your Holy Words, and enter a pure Holy form for $d, increasing the cooldown reductions to your Holy Words by $s1% and reducing their cost by $s6%.
 Tooltip          : Effects that reduce Holy Word cooldowns increased by $s1%. Cost of Holy Words reduced by $s6%.$?$w3>0[
+
+All healing done increased by $w3%. ][]$?$w5>0[ Heal and Prayer of Healing are instant and heal for $s5% more.][]
 
 Name             : Censure (id=200199) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=3, col=5, max_rank=1, req_points=0]
@@ -332,6 +349,8 @@ Effects          :
 #1 (id=294728)   : Apply Aura (6) | Dummy (4)
                    Base Value: 60 | Scaled Value: 60 | Target: Self (1)
 Description      : When Guardian Spirit saves the target from death, it does not expire.
+
+When Guardian Spirit expires without saving the target from death, reduce its remaining cooldown to $s1 seconds.
 
 Name             : Miracle Worker (id=235587) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=8, col=3, max_rank=1, req_points=20]
@@ -403,6 +422,8 @@ Effects          :
 #3 (id=1045307)  : Apply Aura (6) | Dummy (4)
                    Base Value: 75 | Scaled Value: 75 | Target: Self (1)
 Description      : Increases the damage of Holy Fire by $s1%.
+
+Holy Fire deals $s3% of its initial damage to all nearby enemies within $400370A1 yards of your target. Damage reduced beyond $400370s2 targets.
 
 Name             : Gales of Song (id=372370) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=6, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -438,6 +459,8 @@ Effects          :
 #1 (id=997345)   : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Holy Word: Chastise causes your next $s1 casts of Holy Fire to be instant, cost no mana, and incur no cooldown.
+
+Refreshing Holy Fire on a target now extends its duration by $14914d.
 
 Name             : Crisis Management (id=390954) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=9, col=1, max_rank=1, req_points=20]
@@ -513,6 +536,8 @@ Effects          :
 #1 (id=1028206)  : Apply Aura (6) | Proc Trigger Spell (42): Lightweaver
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 390993 | Target: Self (1)
 Description      : Flash Heal reduces the cast time of your next Prayer of Healing within $390993d by $390993s2% and increases its healing done by $390993s1%.
+
+Can accumulate up to $390993U charges.
 
 Name             : Voice of Harmony (id=390994) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=4, col=5, max_rank=1, req_points=0]
@@ -531,6 +556,10 @@ Effects          :
 #3 (id=1165298)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4 | Scaled Value: 4 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : Prayer of Mending $?S120517&?a1246517[and creating a Halo ][]reduces the cooldown of Holy Word: Serenity by $s2 sec.
+
+$?S120517&!?a1246517[Creating a Halo reduces the cooldown of Holy Word: Sanctify by $s1 sec.
+
+][]Holy Fire reduces the cooldown of Holy Word: Chastise by $s3 sec.
 
 Name             : Restitution (id=391124) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=3, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -621,6 +650,8 @@ Effects          :
 #1 (id=1031610)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Your Holy Words summon an image of a Naaru at your side. For $392990d, whenever you cast a healing or damaging spell, the Naaru will cast a similar spell.
+
+If an image has already been summoned, that image is empowered instead.
 
 Name             : Epiphany (id=414553) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=10, col=6, max_rank=1, req_points=20]
@@ -675,6 +706,11 @@ Effects          :
 #3 (id=1189055)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Holy Word: Serenity applies ${$s1/1000} sec of Renew to its target.
+
+$?a1246517[Ultimate Serenity][Holy Word: Sanctify] applies $?a440671[${$s2/1000}.1][${$s2/1000}] sec of Renew to allies it heals.
+
+$@spellicon139 $@spellname139
+Fill the target with faith in the light, healing for $?a440671[${$139o1*$s1/15000/(1+$440671s2/100)}.1][${$139o1*$s1/15000}] over ${$s1/1000} sec.
 
 Name             : Light in the Darkness (id=471668) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=9, col=3, max_rank=2, req_points=20]
@@ -702,6 +738,8 @@ Effects          :
 #3 (id=1189402)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Radius (6)
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 6 | Misc Value 2: 4163 (Label) | Target: Self (1)
 Description      : Increases the healing done by Holy Word: Serenity$?a1246517[ by $s1%.][ and Holy Word: Sanctify by $s1%.
+
+Increases the radius of Holy Word: Sanctify by $s2%.]
 
 Name             : Divinity (id=1215241) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -724,6 +762,8 @@ Effects          :
 #3 (id=1199683)  : Apply Aura (6) | Proc Trigger Spell (42): Divinity
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1216314 | Target: Self (1)
 Description      : Your healing is increased by $s1% while Apotheosis is active.
+
+Casting Apotheosis causes your next $1216314U Prayer of Healing casts to be instant and heal for $1216314s2% more.
 
 Name             : Eternal Sanctity (id=1215245) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
@@ -804,6 +844,8 @@ Effects          :
 #3 (id=1254727)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Increases the healing done by Holy Word: Serenity by $s2% and causes it to heal $1250581s2 nearby injured allies within $1250581A1 yards for $s3% of its healing done.
+
+Talents that affect Holy Word: Sanctify instead affect Holy Word: Serenity.
 
 Name             : Efficient Prayers (id=1247131) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Holy [tree=spec, row=6, col=1, max_rank=1, req_points=8]
@@ -954,6 +996,8 @@ Effects          :
                    Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
                    Family Flags: 0
 Description      : Cosmic Ripple healing increased by $s1%.
+
+All healing done increased by $s2%.
 
 Name             : Benediction (id=1262760) [Spell Family (6), Passive] 
 Talent Entry     : Holy [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=400]
@@ -969,3 +1013,5 @@ Effects          :
 #1 (id=1273228)  : Apply Aura (6) | Dummy (4)
                    Base Value: 75 | Scaled Value: 75 | Target: Self (1)
 Description      : Each pulse of Divine Hymn emits a Cosmic Ripple at $s1% effectiveness.
+
+During Apotheosis, Flash Heal is upgraded to Benediction.

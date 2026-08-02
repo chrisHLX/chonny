@@ -24,6 +24,15 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10
                    Modified By: Survival Hunter (137017 effect#9)
 Description      : While in combat, every $471877d your next Kill Command summons the aid of a Beast.
+
+$@spellicon471881 Wyvern
+A Wyvern descends from the skies, letting out a battle cry that increases the damage of you and your pets by ${$471881s1*$s3}% for $471881d.
+
+$@spellicon471936 Boar
+A Boar charges through your target $s2 $Ltime:times;, dealing $471938s1 damage to nearby enemies and an additional $471936s1 physical damage to its primary target. Damage reduced beyond $471938s2 targets.
+
+$@spellicon471993 Bear
+A Bear leaps into the fray, rending the flesh of your enemies, dealing $471999o1 damage over $471999d to up to $471999s2 nearby enemies.
 
 Name             : Dire Summons (id=472352) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
@@ -48,6 +57,8 @@ Effects          :
 #4 (id=1190430)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
 Description      : Kill Command reduces the cooldown of Howl of the Pack Leader by $?c1[${$s1/1000}.1][${$s2/1000}.1] sec.
+
+$?s259387[Mongoose Bite]?a137017[Raptor Strike][Cobra Shot] reduces the cooldown of Howl of the Pack Leader by $?c1[${$s3/1000}.1][${$s4/1000}.1] sec.
 
 Name             : Better Together (id=472357) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
@@ -73,6 +84,8 @@ Effects          :
                    Affected Spells: Barbed Shot (217200), Frenzy (217207), Frenzy (272795)
                    Family Flags: 78
 Description      : Damage dealt by your pet$?c1[s][] is increased by $?c1[$s1][$s2]%.
+
+$?c1[Barbed Shot damage increased by $s4%][Raptor Strike damage increased by $s3%].
 
 Name             : Pack Mentality (id=472358) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
@@ -94,6 +107,8 @@ Effects          :
 #3 (id=1190446)  : Apply Aura (6) | Dummy (4)
                    Base Value: 6000 | Scaled Value: 6000 | Target: Self (1)
 Description      : Howl of the Pack Leader increases the damage of your Kill Command by $s1%.
+
+Summoning a Beast reduces the cooldown of $?c1[Barbed Shot][Wildfire Bomb] by $?c1[${$s2/1000}.1][${$s3/1000}.1] sec.
 
 Name             : Ursine Fury (id=472476) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -148,6 +163,8 @@ Effects          :
 #5 (id=1296668)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Your pet's attacks increase your Wyvern's damage bonus by $471881s1%, up to $s1%.
+
+Casting $?c1[Kill Command][Wildfire Bomb] extends the duration of your Wyvern by $?c1[${$s2/1000}.1][${$s3/1000}.1] sec, up to $?c1[$s4][$s5] additional sec.
 
 Name             : Hogstrider (id=472639) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
@@ -165,6 +182,8 @@ Effects          :
 #1 (id=1190877)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : $?c1[When your Boar deals damage, the damage of your next Cobra Shot is increased by $472640s1%.
+
+Each additional enemy damaged by your Boar causes Cobra Shot to strike $472640s3 additional $Ltarget:targets;, up to $472640u][Each time your Boar deals damage, the damage of your next Boomstick is increased by $472640s2%, up to ${$472640s2*$472640u}%].
 
 Name             : No Mercy (id=472660) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -257,6 +276,8 @@ Effects          :
 #2 (id=1311163)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Your mastery is increased by $s1%.$?c3[
+
+Wildfire Bomb deals an additional $s2% increased damage to its primary target.][]
 
 Name             : Lethal Barbs (id=1264781) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
@@ -280,6 +301,8 @@ Effects          :
 #3 (id=1276378)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Your $?c1[auto shot][auto attacks] grant$?c1[s][] $1264783s1 Focus to you and your pet.
+
+$?c1[Auto shot][Auto attack] damage increased by $?c1[$s2][$s3]%.
 
 Name             : Wyvern's Gaze (id=1264792) [Spell Family (9), Passive] 
 Talent Entry     : Pack Leader (Beast Mastery, Survival) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]

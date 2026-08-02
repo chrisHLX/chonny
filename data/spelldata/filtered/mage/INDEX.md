@@ -218,7 +218,7 @@ One line per spell record; each lists every file it appears in.
 - **Dalaran Brilliance (id=292848) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Dalaran Brilliance (id=292849)** — `baseline.txt`
 - **Darckli's Dragonfire Diadem (id=207547) [Spell Family (3), Passive]** — `baseline.txt`
-- **Dark Matter (id=1256307) [Spell Family (107), Passive]** — `baseline.txt`
+- **Dark Matter (id=1256307) [Spell Family (107), Passive]** — `hero-annihilator.txt`
 - **Death's Fathom (id=354294) [Spell Family (3), Hidden]** — `baseline.txt`
 - **Death's Fathom (id=364855) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Deathborne (desc=Necrolord) (id=324220) [Spell Family (3)]** — `baseline.txt`
@@ -698,13 +698,13 @@ One line per spell record; each lists every file it appears in.
 - **Overpowered Missiles (id=1277009) [Spell Family (3)]** — `baseline.txt`
 - **Packed Ice (id=272969) [Spell Family (3), Hidden]** — `baseline.txt`
 - **Packed Ice (id=272970) [Spell Family (3)]** — `baseline.txt`
-- **Path to Oblivion (id=1253399) [Spell Family (107), Passive]** — `baseline.txt`
+- **Path to Oblivion (id=1253399) [Spell Family (107), Passive]** — `hero-annihilator.txt`
 - **Permafrost Bauble (id=1265517) [Spell Family (3), Passive]** — `class-talents.txt`
 - **Permafrost Lances (id=455122) [Spell Family (3)]** — `baseline.txt`
 - **Permafrost Lances (id=460590) [Spell Family (3), Passive]** — `frost.txt`
 - **Persistent Shield (id=26467) [Spell Family (3)]** — `baseline.txt`
 - **Phantasmal Image (id=444784) [Spell Family (3), Passive, Hidden]** — `hero-spellslinger.txt`
-- **Phase Shift (id=1256245) [Spell Family (107), Passive]** — `baseline.txt`
+- **Phase Shift (id=1256245) [Spell Family (107), Passive]** — `hero-annihilator.txt`
 - **Phoenix Reborn (id=1219304) [Spell Family (3)]** — `baseline.txt`
 - **Phoenix Reborn (id=1219305) [Spell Family (3)]** — `baseline.txt`
 - **Phoenix's Flames (desc=Artifact) (id=194466) [Spell Family (3)]** — `baseline.txt`
@@ -846,7 +846,7 @@ One line per spell record; each lists every file it appears in.
 - **Sun King's Blessing (id=383886) [Spell Family (3), Passive]** — `baseline.txt`
 - **Sunfury Execution (id=449349) [Spell Family (3), Passive, Hidden]** — `hero-sunfury.txt`
 - **Supernova (id=157980) [Spell Family (3)]** — `class-talents.txt`
-- **Swift Erasure (id=1253668) [Spell Family (107), Passive]** — `baseline.txt`
+- **Swift Erasure (id=1253668) [Spell Family (107), Passive]** — `hero-annihilator.txt`
 - **Teleport (id=343127) [Spell Family (3)]** — `baseline.txt`
 - **Tempest Barrier (id=382289) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Tempest Barrier (id=382290) [Spell Family (3)]** — `baseline.txt`
@@ -895,7 +895,7 @@ One line per spell record; each lists every file it appears in.
 - **Unstable Magic (id=157978) [Spell Family (3)]** — `baseline.txt`
 - **Unstable Magic (id=157979) [Spell Family (3)]** — `baseline.txt`
 - **Vengeance Demon Hunter (id=212613) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
-- **Voidfall (id=1253304) [Spell Family (107), Passive]** — `baseline.txt`
+- **Voidfall (id=1253304) [Spell Family (107), Passive]** — `hero-annihilator.txt`
 - **Voidfall (id=1256301) [Spell Family (107)]** — `baseline.txt`
 - **Voidfall (id=1256322) [Spell Family (107)]** — `baseline.txt`
 - **Voidfall Meteor (id=1256303) [Spell Family (107)]** — `baseline.txt`

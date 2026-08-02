@@ -69,6 +69,9 @@ Effects          :
 #1 (id=118198)   : Trigger Spell (64): Rising Sun Kick
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 185099 | Target: Targeted Enemy (6)
 Description      : Kick upwards, dealing $?s137025[${$185099s1*$<CAP>/$AP}][$185099s1] Physical damage$?s128595[, and reducing the effectiveness of healing on the target for $115804d][].$?a388847[
+
+Applies Renewing Mist for $388847s1 seconds to an ally within $388847r yds][]
+Variables        : $CAP=$?$OWB==0[${$AP*0.98}][${($AP+$OAP)*2/3}]--2H, DW
 
 Name             : Chi Torpedo (id=115008) [Spell Family (53)] 
 Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=1, req_points=8, select_idx=200, replace="Roll" (id=109132)]
@@ -134,6 +137,8 @@ Effects          :
 #5 (id=140824)   : Apply Aura (6) | Dummy (4)
                    Base Value: 58 | Scaled Value: 58 | Misc Value: 23 | Misc Value 2: 2 | Target: Self (1)
 Description      : You shrug off attacks, delaying a portion of Physical damage based on your Agility, instead taking it over $124273d. Affects magical attacks at $s5% effectiveness.$?s383714[
+
+$@spelldesc383714][]
 
 Name             : Paralysis (id=115078) [Spell Family (53)] 
 Talent Entry     : Generic [free=(Brewmaster, Windwalker, Mistweaver), tree=class, row=1, col=4, max_rank=1, req_points=0]
@@ -222,6 +227,11 @@ Effects          :
                    Affected Spells: Vivify (116670), Enveloping Mist (124682), Enveloping Breath (325209), Enveloping Breath (358560), Sheilun's Gift (399491)
                    Family Flags: 26, 79, 114
 Description      : Heals the target for $o1 over $d. While channeling, Enveloping Mist$?s227344[, Surging Mist,][]$?s124081[, Zen Pulse,][] and Vivify may be cast instantly on the target.$?a440008[
+
+Follows the target of your Enveloping Mist and Vivify.][]
+Tooltip          : Healing for $w1 every $t1 sec.$?a388681[
+
+Damage taken reduced by $w2%.][]
 
 Name             : Summon Jade Serpent Statue (id=115313) [Spell Family (53)] 
 Talent Entry     : Mistweaver [tree=class, row=8, col=4, max_rank=1, req_points=23, select_idx=200]
@@ -264,6 +274,8 @@ Effects          :
 #2 (id=129081)   : None (0)
                    Base Value: 30 | Scaled Value: 30
 Description      : Summons a Black Ox Statue at the target location for $d, pulsing threat to all enemies within $163178A1 yards.
+
+You may cast Provoke on the statue to taunt all enemies near the statue.
 
 Name             : Disable (id=116095) [Spell Family (53)] 
 Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0, select_idx=200]
@@ -394,6 +406,12 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Hurls a torrent of Chi energy up to $460485s1 yds forward, dealing $148135s1 Nature damage to all enemies, and $130654s1 healing to the Monk and all allies in its path. Healing and damage reduced beyond $s1 targets.
 $?c1[
+
+Casting Chi Burst does not prevent avoiding attacks.][]
+Variables        : $dmgMult=$?a103985[${1.1}][${1.0}]
+$healMult=$?a115070[${1.2}][${1.0}]
+$damage=${$148135m1+$<dmgMult>*$AP*2.75*(1+$@versadmg)}
+$healing=${$130654m1+$<healMult>*$AP*4.125*(1+$@versadmg)}
 
 Name             : Windwalking (id=157411) [Spell Family (53), Passive] 
 Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=23]
@@ -672,6 +690,10 @@ Effects          :
 #1 (id=1024731)  : Apply Aura (6) | Proc Trigger Spell (42): Vivacious Vivification
                    Base Value: 15 | Scaled Value: 15 | Trigger Spell: 392883 | Target: Self (1)
 Description      : After casting $?a137023[Keg Smash][Rising Sun Kick], your next $?s399491[Sheilun's Gift][Vivify] becomes instant cast.$?c1[
+
+This effect also reduces the energy cost of Vivify by $392883s3%.]?c3[
+
+This effect also reduces the energy cost of Vivify by $392883s3%.][]
 
 Name             : Expeditious Fortification (id=388813) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=1, req_points=23, select_idx=200]
@@ -748,6 +770,10 @@ Effects          :
                    Base Value: -20 | Scaled Value: -20 | Misc Value: 12 | Misc Value 2: 2355 (Label) | Target: Self (1)
                    Affected Spells (Label): Fortifying Brew (120954)
 Description      : Turns your skin to stone for $120954d, increasing your current and maximum health by $<health>% and reducing all damage you take by $<damage>%.
+
+Combines with other Fortifying Brew effects.
+Variables        : $health=$?s322960[${$115203s1}][${$115203s1}]
+$damage=$?c1[${$115203s2*-1}][${$115203s2*-1}]
 
 Name             : Save Them All (id=389579) [Spell Family (53), Passive] 
 Talent Entry     : Generic [tree=class, row=8, col=1, max_rank=1, req_points=23]
@@ -1093,6 +1119,8 @@ Effects          :
                    Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 3533 (Label) | Target: Self (1)
                    Affected Spells (Label): Crashing Momentum (450342)
 Description      : The range of Disable is increased by $s1 yds.
+ 
+The duration of Crashing Momentum is increased by ${$s3/1000} sec and its snare now reduces movement speed by an additional $s2%.
 
 Name             : Bounding Agility (id=450520) [Spell Family (53), Passive] 
 Talent Entry     : Generic [tree=class, row=3, col=3, max_rank=1, req_points=0]
@@ -1163,6 +1191,12 @@ Effects          :
 #5 (id=1150588)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 35 | Scaled Value: 35 | Target: Self (1)
 Description      : You gain a bonus effect based on your current health.
+
+Above $s1% health: Movement speed increased by $450574s1%. This bonus stacks with similar effects.
+
+Between $s1% and $s2% health: Damage taken reduced by $450572s1%.
+
+Below $s2% health: Healing received increased by $450571s1%. 
 
 Name             : Spirit's Essence (id=450595) [Spell Family (53), Passive] 
 Talent Entry     : Generic [tree=class, row=6, col=5, max_rank=1, req_points=8]
@@ -1424,6 +1458,8 @@ Effects          :
 #1 (id=1285948)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Activating Zenith causes you to release a powerful stomp, dealing $1272696s1 Nature damage to nearby enemies, reduced beyond $s1 targets.
+
+|cFFFFFFFFGenerates $1272696s2 Chi.
 
 Name             : Tiger Fang (id=1272781) [Spell Family (53), Passive] 
 Talent Entry     : Windwalker [tree=class, row=5, col=2, max_rank=1, req_points=8]

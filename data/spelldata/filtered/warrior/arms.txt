@@ -49,6 +49,14 @@ Effects          :
 #1 (id=2780)     : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 3.85614 | PvP Coefficient: 1.08 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Overpower the enemy, dealing $s1 Physical damage. Cannot be blocked, dodged, or parried.$?s316440&s845[
+
+Increases the damage of your next Mortal Strike or Cleave by $s2%, stacking up to $u times]?s316440[
+
+Increases the damage of your next Mortal Strike by $s2%, stacking up to $u times.][]$?s400801[
+
+|cFFFFFFFFGenerates ${$7384s3/10} Rage.][]
+
+Tooltip          : Your next Mortal Strike $?s845[or Cleave ][]will deal $w2% increased damage.
 
 Name             : Mortal Strike (id=12294) [Spell Family (4)] 
 Talent Entry     : Arms [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -196,6 +204,8 @@ Effects          :
 #3 (id=1270765)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : Smash the ground and shatter the armor of all enemies within $A1 yds, dealing $s1 Physical damage and increasing damage you deal to them by $208086s1% for $208086d. Deals reduced damage beyond $s3 targets.$?a1261048[
+
+|cFFFFFFFFGenerates ${$1261048s2/10} Rage.|r][]
 
 Name             : Tactician (id=184783) [Spell Family (4), Passive] 
 Talent Entry     : Arms [tree=spec, row=5, col=2, max_rank=1, req_points=8]
@@ -264,6 +274,13 @@ Effects          :
                    Family Flags: 11
                    Modified By: Recklessness (1719 effect#7)
 Description      : Become an unstoppable storm of destructive force, striking all nearby enemies for $<dmg> Physical damage over $d. Deals reduced damage beyond $s1 targets.
+
+You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks.
+$?c2[
+|cFFFFFFFFGenerates ${$50622s3/10} Rage on each strike.|r][]
+Tooltip          : Dealing damage to all nearby enemies every $t1 sec.
+Immune to crowd control.
+Variables        : $dmg=$?c2[${(1+($d/$t))*($50622sw1+($95738sw1/2))}][${(1+($d/$t))*$50622sw1}]
 
 Name             : Ravager (id=228920) [Spell Family (4)] 
 Talent Entry     : Protection [tree=spec, row=10, col=8, max_rank=1, req_points=20, select_idx=300]
@@ -305,6 +322,13 @@ Effects          :
                    Affected Spells: Thunder Clap (6343), Revenge (6572), Thunder Blast (435222), Revenge (1215174)
                    Family Flags: 7, 10
 Description      : Throws a whirling weapon at your target that chases nearby enemies, inflicting $<damage> Physical damage to all enemies over $d. Deals reduced damage beyond $156287s2 targets.
+
+$?c1[Cleave and Whirlwind deal $s4% increased damage while Ravager is active]?c3[Revenge and Thunder Clap deal $s5% increased damage while Ravager is active.
+
+|cFFFFFFFFGenerates ${$334934s1/10} Rage each time it deals damage.|r][]
+Tooltip          : Ravager is currently active.
+$?e3[Cleave and Whirlwind damage increased by $w4%]?e4[Revenge and Thunder Clap damage increased by $w5%][]
+Variables        : $damage=${6*$156287s1}
 
 Name             : Dreadnaught (id=262150) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Arms [tree=spec, row=7, col=2, max_rank=1, req_points=8]
@@ -414,6 +438,8 @@ Effects          :
 #3 (id=1077765)  : Apply Aura (6) | Dummy (4)
                    Base Value: 35 | Scaled Value: 35 | Target: Self (1)
 Description      : Rend and Deep Wounds' Bleed effects last $s1% longer and have a $s2% increased critical strike chance.
+
+If you know Rend, Mortal Strike inflicts Rend on targets below $s3% health.
 
 Name             : Improved Sweeping Strikes (id=383155) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Arms [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=100]
@@ -789,6 +815,9 @@ Effects          :
 #1 (id=1270663)  : Apply Aura (6) | Proc Trigger Spell (42): Deep Wounds
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 262115 | Target: Self (1)
 Description      : Execute inflicts Deep Wounds on the target.
+
+$@spellicon262115 $@spellname262115
+$@spelldesc262115
 
 Name             : Mortal Wounds (id=1261062) [Spell Family (4), Passive] 
 Talent Entry     : Arms [tree=spec, row=10, col=4, max_rank=1, req_points=20]
@@ -805,6 +834,9 @@ Effects          :
 #1 (id=1270668)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Mortal Strike and Slam critical strikes inflict Deep Wounds at $s1% effectiveness.
+
+$@spellicon262115 $@spellname262115
+$@spelldesc262115
 
 Name             : Master of Warfare (id=1269306) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Arms [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
@@ -858,6 +890,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1269391 | Target: Self (1)
 Description      : Your single target melee abilities have a chance to upgrade Slam to Heroic Strike.
 All modifiers and talents that affect Slam also affect Heroic Strike.
+
+$@spellicon1269383 $@spelltooltip1269383
 
 Name             : Martial Prowess (id=1273062) [Spell Family (4), Passive] 
 Talent Entry     : Arms [tree=spec, row=7, col=1, max_rank=1, req_points=8]

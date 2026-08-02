@@ -22,6 +22,15 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : $?a137010[$@spellicon204066 $@spellname204066
 Lunar Beam now causes you to leech life equal to $425217s1% of all damage dealt to enemies within the beam.
+
+$@spellicon202770 $@spellname202770
+Fury of Elune now ends with a flash of energy, blasting nearby enemies for $428682s1 Astral damage.]
+
+[$@spellicon202770 $@spellname202770
+Fury of Elune now ends with a flash of energy, blasting nearby enemies for $428682s1 Astral damage.
+
+$@spellicon274283 $@spellname274283
+$@spelldesc424588]
 
 Name             : The Eternal Moon (id=424113) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
@@ -60,6 +69,16 @@ Effects          :
                    Base Value: 3000 | Scaled Value: 3000 | Misc Value: 1 | Misc Value 2: 5960 (Label) | Target: Self (1)
                    Affected Spells (Label): Lunar Beam (1270292)
 Description      : Further increases the power of Boundless Moonlight.
+
+$?a137010[$@spellicon204066 $@spellname204066
+Lunar Beam increases Mastery by an additional ${$s5*$mas}%, deals $s6% increased damage, and lasts ${$s3/1000} sec longer.
+
+$@spellicon202770 $@spellname202770
+The flash of energy now generates  ${$428682s3/10} Rage and its damage is increased by $s1%.][$@spellicon202770 $@spellname202770
+The flash of energy now generates ${$428682s2/10} Astral Power and its damage is increased by $s1%.
+
+$@spellicon274283 $@spellname274283
+New Moon and Half Moon now also call down $s2 Minor $LMoon:Moons;.]
 
 Name             : The Light of Elune (id=428655) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=100]
@@ -80,6 +99,12 @@ Effects          :
 #2 (id=1119684)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
 Description      : Moonfire damage has a chance to call down a Fury of Elune to follow your target for ${$s2/1000} sec.
+
+$@spellicon202770 $@spellname202770
+Calls down a beam of pure celestial energy, dealing $<dmg> Astral damage over ${$s2/1000} sec within its area.
+
+|cFFFFFFFFGenerates $?a137010[${$202770m4/$202770t4*$s2/10000} Rage][${$202770m3/$202770t3*$s2/10000} Astral Power] over its duration.|r
+Variables        : $dmg=${$s2/1000*2*$211545s1}
 
 Name             : Moon Guardian (id=429520) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
@@ -136,6 +161,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 23 | Misc Value 2: 4367 (Label)
                    Affected Spells (Label): Fury of Nature (370701), Fury of Nature (370704)
 Description      : $?a137013[Starfire deals $s1% increased damage to its primary target.
+
+Wrath no longer changes your Eclipse ability's mode to Solar Eclipse.][Thrash now deals Arcane damage and its damage is increased by $s2%.]
 
 Name             : Lunar Insight (id=429530) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
@@ -164,6 +191,8 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Misc Value 2: 6552 (Label) | Target: Self (1)
                    Affected Spells (Label): Red Moon (1252871), Lunar Wrath (1253609)
 Description      : Moonfire deals $s1% increased damage.$?a137010[
+
+Red Moon deals $s3% increased damage.][]
 
 Name             : Atmospheric Exposure (id=429532) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
@@ -219,6 +248,8 @@ Effects          :
                    Affected Spells: Convoke the Spirits (323764), Convoke the Spirits (391528)
                    Family Flags: 16
 Description      : $?a137013[Incarnation: Chosen of Elune][Incarnation: Guardian of Ursoc] increases Arcane damage from spells and abilities by $102560s6% while active.
+
+Increases the duration and number of spells cast by Convoke the Spirits by $s1%.
 
 Name             : Moondust (id=429538) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Elune's Chosen (Balance, Guardian) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]

@@ -32,6 +32,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 1228 (Category) | Target: Self (1)
                    Affected Spells (Category): Riptide (61295)
 Description      : Lava Burst gains an additional charge and deals $s2% increased damage.$?a137039[
+
+Riptide gains an additional charge and heals for $s3% more.][]
 
 Name             : Ancient Fellowship (id=443423) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Farseer (Elemental, Restoration) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200]
@@ -183,6 +185,9 @@ Effects          :
 #1 (id=1139366)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : When an Ancestor departs, they cast $?a137040[Elemental Blast at a nearby enemy.][Hydrobubble on a nearby injured ally.
+
+$@spellicon444490 |cFFFFFFFF$@spellname444490|r
+$@spelldesc444490]
 
 Name             : Maelstrom Supremacy (id=443447) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Farseer (Elemental, Restoration) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
@@ -204,6 +209,8 @@ Effects          :
                    Affected Spells: Chain Heal (1064), Healing Wave (77472), Downpour (207778), Downpour (462603)
                    Family Flags: 8, 33, 51, 80
 Description      : $?a137040[Increases the damage of Earth Shock, Elemental Blast, and Earthquake by $s1%.
+
+Increases the healing of Healing Surge and Chain Heal by $s2%.][Increases the healing done by Healing Wave, Downpour, and Chain Heal by $s2%.]
 
 Name             : Primordial Capacity (id=443448) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Farseer (Elemental, Restoration) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
@@ -227,6 +234,8 @@ Effects          :
 #4 (id=1303703)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Increases your maximum $?a137040[Maelstrom by $s1.][mana by $s2%.
+
+Tidal Waves can now stack up to ${$s3+$s4} times.]
 
 Name             : Latent Wisdom (id=443449) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Farseer (Elemental, Restoration) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -262,6 +271,8 @@ Effects          :
                    Base Value: 12 | Scaled Value: 12 | Target: Self (1)
                    Modified By: Heed My Call (443444 effect#2)
 Description      : $?a137040[Stormkeeper calls an Ancestor to your side for $445624d.][Unleash Life calls an Ancestor to your side for $s1 sec.]
+
+Whenever you cast a healing or damaging spell, the Ancestor will cast a similar spell.
 
 Name             : Offering from Beyond (id=443451) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Farseer (Elemental, Restoration) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
@@ -348,3 +359,5 @@ Effects          :
 #1 (id=1282483)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : $?c3[For $1270453d sec after casting Nature's Swiftness or Ancestral Swiftness, the recharge rate of Riptide is increased by $1270453s1%.
+
+][]Increases the chance for Lava Surge to occur by $s1%.

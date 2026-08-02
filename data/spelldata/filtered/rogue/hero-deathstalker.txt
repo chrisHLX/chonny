@@ -39,6 +39,8 @@ Effects          :
                    Affected Spells: Cloak of Shadows (31224)
                    Family Flags: 48
 Description      : Evasion reduces magical damage taken by ${-$s1}%. 
+
+Cloak of Shadows reduces physical damage taken by ${-$s2}%.
 
 Name             : Deathstalker's Mark (id=457052) [Spell Family (8), Passive] 
 Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
@@ -58,6 +60,12 @@ Effects          :
 #2 (id=1161759)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : $?c1[Garrote][Shadowstrike] applies $s1 stacks of Deathstalker's Mark to your target, unless Deathstalker's Mark is already active. You learn Mark for Death.
+
+When you spend $s2 or more combo points on attacks against a Marked target you consume an application of Deathstalker's Mark, dealing $457157s1 Plague damage.
+
+$@spellicon1293340
+$@spellname1293340
+$@spelldesc1293340
 
 Name             : Hunt Them Down (id=457054) [Spell Family (8), Passive] 
 Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
@@ -137,6 +145,8 @@ Effects          :
 #1 (id=1161720)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : When you consume the final Deathstalker's Mark from a target or your target dies, gain $457280s1 Energy and Darkest Night, causing your next $?c1[Envenom][Eviscerate] cast with 5 or more combo points to critically strike, deal $457280s2% additional damage, and apply $457280s3 stacks of Deathstalker's Mark to the target if no other Deathstalker's Mark is active.
+
+$?c1[Envenom][Eviscerate] cast with Darkest Night does not consume a stack of active Deathstalker's Marks.
 
 Name             : Symbolic Victory (id=457062) [Spell Family (8), Passive] 
 Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]

@@ -54,6 +54,8 @@ Effects          :
 #2 (id=1043162)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Grow a magical mushroom at the target enemy's location. After $d, the mushroom detonates, dealing $88751s1 Nature damage and then an additional $81281o1 Nature damage over $81281d. Affected targets are slowed by ${$81281s2*-1}%.
+
+Generates up to $88751s2 Astral Power based on targets hit.
 
 Name             : Soul of the Forest (id=114107) [Spell Family (7), Passive] 
 Talent Entry     : Balance [tree=spec, row=5, col=6, max_rank=1, req_points=8]
@@ -108,6 +110,8 @@ Effects          :
 #1 (id=298293)   : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Starsurge and Starfall grant you $s1% Haste for $279709d or until you enter a new Eclipse.
+
+Stacks up to $279709u times. Gaining a stack does not refresh the duration.
 
 Name             : Nature's Balance (id=202430) [Spell Family (7), Passive] 
 Talent Entry     : Balance [tree=spec, row=4, col=3, max_rank=1, req_points=0]
@@ -128,6 +132,8 @@ Effects          :
 #4 (id=736368)   : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : While in combat you generate ${$s1/10} Astral Power every $t1 sec.
+
+While out of combat your Astral Power rebalances to $s2 instead of depleting to empty.
 
 Name             : Fury of Elune (id=202770) [Spell Family (7)] 
 Talent Entry     : Balance [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=100]
@@ -157,6 +163,10 @@ Effects          :
 #4 (id=1119682)  : Apply Aura (6) | Periodic Energize Power (24): every 0.5 seconds
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 1 | Target: Self (1)
 Description      : $?a137010[$@spelldesc428655][Calls down a beam of pure celestial energy that follows the enemy, dealing up to $<dmg> Astral damage over $d within its area. Damage reduced on secondary targets.
+
+|cFFFFFFFFGenerates ${$m3/10/$t3*$d} Astral Power over its duration.|r]
+Tooltip          : $?a137010[Generating ${$m4/$t4*$d} Rage over $d.][Generating ${$m3/10/$t3*$d} Astral Power over $d.]
+Variables        : $dmg=${$d*2*$211545s1}
 
 Name             : Force of Nature (desc=Talent) (id=205636) [Spell Family (7)] 
 Talent Entry     : Balance [tree=spec, row=3, col=4, max_rank=1, req_points=0]
@@ -190,6 +200,8 @@ Effects          :
 #6 (id=1293022)  : Trigger Spell (64): Force of Nature
                    Base Value: 0 | Scaled Value: 0 | Delay: 445_ms | Trigger Spell: 248280 | Target: at Area (87)
 Description      : Summons a stand of $s1 Treants for $248280d which immediately taunt and attack enemies in the targeted area.
+
+|cFFFFFFFFGenerates ${$m5/10} Astral Power.|r
 
 Name             : New Moon (id=274281) [Spell Family (7)] 
 Talent Entry     : Balance [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=200]
@@ -218,6 +230,8 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100 | Resource: astral_power | Target: Self (1)
                    Modified By: Sylvan Beckoning (1264618 effect#8), Spirit of the Thicket (1264911 effect#9)
 Description      : Deals $s1 Astral damage to the target and empowers New Moon to become Half Moon. 
+
+|cFFFFFFFFGenerates ${$m3/10} Astral Power.|r
 
 Name             : Twin Moons (id=279620) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Balance [tree=spec, row=3, col=6, max_rank=1, req_points=0]
@@ -293,6 +307,8 @@ Effects          :
                    Affected Spells: Eclipse (Lunar) (48518)
                    Family Flags: 42
 Description      : Solar Eclipse increases Wrath damage by an additional $s1%. 
+
+Lunar Eclipse increases Starfire damage by an additional $s2%.
 
 Name             : Orbit Breaker (id=383197) [Spell Family (7), Passive] 
 Talent Entry     : Balance [tree=spec, row=9, col=2, max_rank=1, req_points=20, select_idx=100]
@@ -335,6 +351,14 @@ Effects          :
                    Base Value: -60000 | Scaled Value: -60000 | Misc Value: 2328 (Category) | Target: Self (1)
                    Affected Spells (Category): Incarnation: Chosen of Elune (102560), Celestial Alignment (194223), Celestial Alignment (383410), Incarnation: Chosen of Elune (390414)
 Description      : $?s102560[Incarnation: Chosen of Elune][Celestial Alignment] blasts all enemies in a targeted area for ${$361237s1*$<mastery>} Astral damage and applies Stellar Flare to them.
+
+Reduces the cooldown of $?s102560[Incarnation: Chosen of Elune][Celestial Alignment] by ${$s3/-1000} sec.
+
+$@spellicon202347 $@spellname202347
+Burns the target for $202347s1 Astral damage, and then an additional $202347o2 damage over $202347d. If dispelled, causes $356474s1 damage to the dispeller and blasts them upwards.
+
+|cFFFFFFFFGenerates ${$202347m3/10} Astral Power.|r
+Variables        : $mastery=${(1+$393014s1/100)*(1+$393014s3/100)}
 
 Name             : Convoke the Spirits (id=391528) [Spell Family (7)] 
 Talent Entry     : Restoration [tree=spec, row=8, col=4, max_rank=1, req_points=20, select_idx=200]
@@ -377,6 +401,9 @@ Effects          :
                    Affected Spells: Swiftmend (18562)
                    Family Flags: 33, 123
 Description      : Call upon the spirits for an eruption of energy, channeling a rapid flurry of $s2 Druid spells and abilities over $d.$?s391538[ Chance to use an exceptional spell or ability is increased.][]
+
+You will cast $?a24858|a197625[Starsurge, Starfall,]?a768[Ferocious Bite, Shred,]?a5487[Mangle, Ironfur,][Wild Growth, Swiftmend,] Moonfire, Wrath, Regrowth, Rejuvenation, Rake, and Thrash on appropriate nearby targets, favoring your current shapeshift form.
+Tooltip          : Every ${$t1}.2 sec, casting $?a24858|a197625[Starsurge, Starfall,]?a768[Ferocious Bite, Shred,]?a5487[Mangle, Ironfur,][Wild Growth, Swiftmend,] Moonfire, Wrath, Regrowth, Rejuvenation, Rake or Thrash on appropriate nearby targets.
 
 Name             : Umbral Embrace (id=393760) [Spell Family (7), Passive] 
 Talent Entry     : Balance [tree=spec, row=10, col=2, max_rank=1, req_points=20]
@@ -470,6 +497,9 @@ Effects          :
                    Affected Spells (Label): Incarnation: Chosen of Elune (102560), Incarnation: Chosen of Elune (390414)
 Description      : $@spellicon394013 $@spellname394013
 Reduces the Astral Power cost of Starsurge by ${$s5*-1/10}, and the Astral Power cost of Starfall by ${$s6*-1/10}.
+
+$@spellicon391528 $@spellname391528
+Cooldown is reduced by ${($abs($s4)/120000)*100}% and its duration and number of spells cast is reduced by $s1%. Convoke the Spirits has an increased chance to use an exceptional spell or ability.
 
 Name             : Incarnation: Chosen of Elune (id=394013) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Balance [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=100, override="Incarnation: Chosen of Elune" (id=102560)]
@@ -581,6 +611,8 @@ Effects          :
                    Affected Spells: Fury of Elune (202770), Fury of Elune (211545), Fury of Elune (281871), Fury of Elune (365640), Fury of Elune (394111)
                    Family Flags: 23
 Description      : New Moon, Half Moon, and Full Moon deal $s2% increased damage. Full Moon becomes Full Moon once more before resetting to New Moon.
+
+Fury of Elune deals $s3% increased damage and its cooldown is reduced by ${$s1/-1000} sec.
 
 Name             : Celestial Alignment (id=395022) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Balance [tree=spec, row=5, col=4, max_rank=1, req_points=8, override="Celestial Alignment" (id=194223)]
@@ -680,6 +712,8 @@ Effects          :
 #2 (id=1150219)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
 Description      : Casting Wrath has a $s1% chance to make your next Starsurge or Starfall free.
+
+Casting Starfire has a $s2% chance to make your next Starsurge or Starfall free.
 
 Name             : Harmony of the Heavens (id=450558) [Spell Family (7), Passive, Hidden] 
 Talent Entry     : Balance [tree=spec, row=10, col=3, max_rank=1, req_points=20]
@@ -759,6 +793,8 @@ Effects          :
 #1 (id=1182945)  : Apply Aura (6) | Proc Trigger Spell (42): Sunseeker Mushroom
                    Base Value: 30 | Scaled Value: 30 | Trigger Spell: 468938 | Target: Self (1)
 Description      : Sunfire damage has a chance to grow a magical mushroom at a target's location. After $468938d, the mushroom detonates, dealing $1280212s1 Nature damage and then an additional $1280213o1 Nature damage over $1280213d. Affected targets are slowed by ${$1280213s2*-1}%.
+
+Generates up to $1280212s2 Astral Power based on targets hit.
 
 Name             : Hail of Stars (id=469004) [Spell Family (7), Passive] 
 Talent Entry     : Balance [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -791,6 +827,12 @@ Effects          :
 #1 (id=1237603)  : Apply Aura (6) | Dummy (4)
                    Base Value: 32 | Scaled Value: 32 | Target: Self (1)
 Description      : You may draw the sun and moon into alignment for $48517d, empowering either your Nature or Arcane spells. Casting Wrath or Starfire changes what mode of Eclipse will be entered, and the two modes of Eclipse share a button and $?a1240188[${$s1+$1240188s1/1000}][$s1] sec cooldown.
+
+$@spellicon48517 $@spellname48517
+Nature spells deal $48517s1% additional damage and Wrath damage is increased by $48517s3%.
+
+$@spellicon48518 $@spellname48518
+Arcane spells deal $48518s1% additional damage and Starfire damage is increased by $48518s3%.
 
 Name             : Celestial Fire (id=1240185) [Spell Family (7), Passive] 
 Talent Entry     : Balance [tree=spec, row=7, col=3, max_rank=1, req_points=8]
@@ -966,3 +1008,9 @@ Effects          :
 #3 (id=1271694)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Activating an Eclipse also launches Solar or Lunar Bolts at enemies within $s1 yds that always critically strike.
+
+$@spellicon1261573 $@spellname1261573
+Entering Solar Eclipse launches a Solar Bolt at $s2 $Lenemy:enemies; that deals $1261573s1 Nature damage.
+
+$@spellicon1263137 $@spellname1263137
+Entering Lunar Eclipse launches $s3 Lunar Bolts at enemies that deal $1263137s1 Arcane damage to them and nearby targets. Deals reduced damage beyond 5 targets.

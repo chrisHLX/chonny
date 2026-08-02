@@ -335,6 +335,9 @@ Effects          :
 #2 (id=306389)   : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: -60 | Scaled Value: -60 | Radius: 12 yards | Target: Enemies in Cone to Targeted Enemy (104)
 Description      : Targets in a cone in front of you are blinded, causing them to wander disoriented for $d. Damage may cancel the effect.
+
+When Blinding Sleet ends, enemies are slowed by $317898s1% for $317898d.
+Tooltip          : Disoriented.
 
 Name             : Permafrost (id=207200) [Spell Family (15), Passive] 
 Talent Entry     : Generic [tree=class, row=4, col=3, max_rank=1, req_points=0]
@@ -393,6 +396,11 @@ Effects          :
 #7 (id=756394)   : None (0)
                    Base Value: 100 | Scaled Value: 100
 Description      : Embrace the power of the Shadowlands, removing all root effects and increasing your movement speed by $s1% for $d. Taking any action cancels the effect.
+
+While active, your movement speed cannot be reduced below $m2%.
+Tooltip          : Movement speed increased by $w1%.
+Cannot be slowed below $s2% of normal movement speed.
+Cannot attack.
 
 Name             : Asphyxiate (id=221562) [Spell Family (15)] 
 Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=1, req_points=8, select_idx=100]
@@ -453,6 +461,8 @@ Effects          :
                    Affected Spells: Death Grip (49575), Death Grip (49576), Abomination Limb (323950), Abomination Limb (335486), Death Grip (359098), Abomination Limb (383315), Abomination Limb (431048)
                    Family Flags: 25
 Description      : Increases the range of Death Grip by $s1 yds.
+
+Killing an enemy that yields experience or honor resets the cooldown of Death Grip.
 
 Name             : Cleaving Strikes (id=316916) [Spell Family (15), Passive] 
 Talent Entry     : Generic [tree=class, row=2, col=6, max_rank=1, req_points=0]
@@ -481,6 +491,8 @@ Effects          :
                    Affected Spells: Scourge Strike (55090), Festering Strike (85948), Clawing Shadows (207311), Vampiric Strike (433895), Festering Scythe (458128), Festering Strike (1240994)
                    Family Flags: 59, 73
 Description      : $?a137006[Frostscythe deals $s3% increased damage during Remorseless Winter.][]$?a137008[Heart Strike hits up to $s1][]$?a137007[Scourge Strike and Festering Strike deal $s4% increased damage.][]$?a137008[ additional enemies while you remain in Death and Decay.
+
+When leaving your Death and Decay you retain its bonus effects for ${$s2/1000} sec.][]
 
 Name             : Death's Echo (id=356367) [Spell Family (15), Passive] 
 Talent Entry     : Generic [tree=class, row=10, col=5, max_rank=1, req_points=23]
@@ -706,6 +718,8 @@ Effects          :
 #4 (id=1157828)  : Apply Aura (6) | Trigger Spell Based on Health% (468): Blood Draw
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 1 | Trigger Spell: 454871 | Target: Self (1)
 Description      : When you fall below $s1% health you drain $374606s1 health from nearby enemies, the damage you take is reduced by $454871s1% and your Death Strike cost is reduced by ${$454871s2/-10} for $454871d.
+
+Can only occur every $374609d.
 
 Name             : Coldthirst (id=378848) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=4, col=1, max_rank=1, req_points=0]
@@ -758,6 +772,8 @@ Effects          :
 #1 (id=1029125)  : Apply Aura (6) | Trigger Spell with Value (231)
                    Base Value: 25 | Scaled Value: 25 | Trigger Spell: 391547 | Target: Self (1)
 Description      : Death's Advance grants an additional $s1% movement speed over the first $338093d.$?s1233429[
+
+Movement speed while using Price of Progress is increased by $1233429s6%.][]
 
 Name             : Insidious Chill (id=391566) [Spell Family (15), Passive] 
 Talent Entry     : Generic [tree=class, row=8, col=3, max_rank=1, req_points=23]

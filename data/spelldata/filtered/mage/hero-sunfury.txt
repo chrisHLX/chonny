@@ -19,6 +19,11 @@ Effects          :
                    Base Value: 12 | Scaled Value: 12 | Target: Self (1)
                    Modified By: Fire Mage (137019 effect#7)
 Description      : $?c1[Casting a damaging spell][Consuming Hot Streak] has a $s1% chance to conjure a Spellfire Sphere.
+
+While you're out of combat, you will slowly conjure Spellfire Spheres over time.
+
+$@spellicon448604 $@spellname448604
+$@spelldesc448604
 
 Name             : Invocation: Arcane Phoenix (id=448658) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
@@ -33,6 +38,9 @@ Effects          :
 #1 (id=1147288)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : When you cast $?c1[Arcane Surge][Combustion], summon an Arcane Phoenix to aid you in battle.
+
+$@spellicon448659  $@spellname448659
+Your Arcane Phoenix aids you for the duration of your $?c1[Arcane Surge][Combustion], casting random Arcane and Fire spells.
 
 Name             : Mana Cascade (id=449293) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
@@ -63,6 +71,8 @@ Effects          :
 #2 (id=1247373)  : Apply Aura (6) | Dummy (4)
                    Base Value: 90 | Scaled Value: 90 | Target: Self (1)
 Description      : The bonuses provided by your Barrier spells persist an additional $?c1[$449336d][$1246023d] after your Barrier is removed.$?c1[][
+
+Additionally, Cauterize no longer deals damage to you.]
 
 Name             : Sunfury Execution (id=449349) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
@@ -98,6 +108,8 @@ Effects          :
 #2 (id=1269781)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : When your Arcane Phoenix is summoned, it consumes all your Spellfire Spheres.
+
+Each Sphere consumed increases your spell damage during $?c1[Arcane Surge][Combustion] by $?c1[$s1][$s2]% and causes your Arcane Phoenix to cast an exceptional Arcane or Fire spell over its duration.
 
 Name             : Glorious Incandescence (id=449394) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
@@ -122,6 +134,9 @@ Effects          :
 #6 (id=1289173)  : Dummy (3)
                    Base Value: 1 | Scaled Value: 1
 Description      : $?c2[Generating a Spellfire Sphere causes your next cast of Fire Blast to call down a storm of $s1 Meteorites on its target.][Arcane Barrage summons $s6 $LMeteorite:Meteorites; for every $s4 Arcane Salvo stacks consumed.]
+
+$@spellicon449559 $@spellname449559
+$@spelldesc449559
 
 Name             : Savor the Moment (id=449412) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -173,6 +188,12 @@ Effects          :
 #2 (id=1151358)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
 Description      : During $?c1[Arcane Surge][Combustion], you gain twice as many stacks of Mana Cascade.
+
+When your Arcane Phoenix expires, it empowers you, granting $?c1[Arcane Soul][Hyperthermia] for $?c1[${$s1/1000}.1][${$s2/1000}.1] sec.
+
+$?c1[$@spellicon451038$@spellname451038:
+$@spelldesc451038][$@spellicon383874 $@spellname383874:
+$@spellaura383874]
 
 Name             : Lessons in Debilitation (id=449627) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
@@ -215,6 +236,10 @@ Effects          :
                    Affected Spells: Arcane Pulse (1241462), Arcane Pulse (1243460)
                    Family Flags: 18
 Description      : $?c1[Arcane Blast damage increased by $s3%.
+
+Arcane Pulse damage increased by $s4%][Pyroblast damage increased by $s1%.
+
+Flamestrike damage increased by $s2%].
 
 Name             : Explosive Potential (id=1246030) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -260,6 +285,9 @@ Effects          :
 #1 (id=1269675)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : When your Arcane Phoenix expires, it grants you Lesser Time Warp for $1260277d.
+
+$@spellicon1260277 $@spellname1260277
+$@spelldesc1260277
 
 Name             : Spellfire Salvo (id=1260616) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
@@ -281,6 +309,8 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Misc Value 2: 4137 (Label) | Target: Self (1)
                    Affected Spells (Label): Meteorite (449569)
 Description      : $?c1[Arcane Salvo can stack $s1 additional times][Fire Blast cooldown reduced by ${-$s2/1000}.1 sec].
+
+Meteorite damage increased by $s3%.
 
 Name             : Pyrocosm (id=1260673) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Sunfury (Arcane, Fire) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
@@ -305,3 +335,5 @@ Effects          :
 #5 (id=1289181)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : $?c1[Each wave of Arcane Missiles][Damage from Fireball] has a $?c1[$s1][$s2]% chance to summon a Meteorite.
+
+When a Meteorite lands, $?c1[you have a $s5% chance to gain Clearcasting][the cooldown of Fire Blast is reduced by ${$s4/1000}.1 sec].

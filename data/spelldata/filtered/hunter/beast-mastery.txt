@@ -35,6 +35,11 @@ Effects          :
                    Affected Spells: Auto Shot (75), Multi-Shot (2643), Aimed Shot (19434), Kill Command (34026), Kill Shot (53351), Steady Shot (56641), A Murder of Crows (131900), Steel Trap (162487), Chimaera Shot (171454), Chimaera Shot (171457), Arcane Shot (185358), Raptor Strike (186270), Wind Arrow (191043), Hatchet Toss (193265), Cobra Shot (193455), Stomp (199530), Stampede (201594), Fury of the Eagle (203413), Butchery (212436), Explosive Shot (212680), Barbed Shot (217200), Rapid Fire (257045), Multi-Shot (257620), Mongoose Bite (259387), Chakrams (259398), Kill Command (259489), Flanking Strike (259516), Scorching Wildfire (259587), Violent Reaction (260231), Volley (260247), Rapid Fire (263585), Wildfire Bomb (265157), Raptor Strike (265189), Mongoose Bite (265888), Chakrams (267666), Wildfire Bomb (269747), Flanking Strike (269751), Flanking Strike (269752), Explosive Shot (269850), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Volatile Bomb (271048), Volatile Bomb (271049), Harpoon (271625), Wildfire Cluster (272745), Latent Poison (273289), Multi-Shot (278565), Resonating Arrow (308495), Kill Shot (320976), Bloodshed (321530), Flayed Shot (324149), Death Chakram (325028), Death Chakram (325037), Wild Spirits (328757), Wild Spirits (328837), Wildfire Cluster (336899), Chimaera Shot (344120), Chimaera Shot (344121), Wailing Arrow (354831), Wailing Arrow (355589), Wailing Arrow (355596), Coordinated Assault (360969), Death Chakram (361756), Latent Poison (378016), Spearhead (378957), Wailing Arrow (392058), Wailing Arrow (392060), Wailing Arrow (392061), Wailing Arrow (398388), Shadow Surge (444269), Spearhead (459690), Merciless Blow (459870), Rapid Fire (460496), Black Arrow (466930), Bleak Arrows (467718), Bleak Powder (467914), Black Arrow (468037), Boar Charge (471936), Boar Charge (471938), Rend Flesh (471999), Bleak Powder (472084), Merciless Blow (1217375), Spearhead (1221386), Flamefang Pitch (1251595), Flamefang Pitch (1251614), Hemorrhaging Strikes (1251683), Wildfire Imbuement (1252966), Sic 'Em (1253138), Wildfire Bomb (1253171), Lunar Storm (1253733), Takedown (1253859), Takedown (1253862), Rupturing Blow (1256931), Boomstick (1261215), Raptor Swipe (1262293), Raptor Swipe (1262343), Sticky Bomb (1262390), Moonlight Chakram (1264949), Moonlight Chakram (1266081), Twilight Requiem (1266096), Let Fly! (1271682)
                    Family Flags: 0, 106
 Description      : Sends you and your pet into a rage, instantly dealing $344572s1 Physical damage to its target, and increasing all damage you both deal by $s1% for $d. Removes all crowd control effects from your pet. $?s193532[
+
+Activating Bestial Wrath grants $s2 $Lcharge:charges; of Barbed Shot.][]$?s231548&!s193532[.][]
+Tooltip          : Damage dealt increased by $w1%.
+Variables        : $bmMastery=$?s76657[${1+0.01*$76657m1}][${1}]
+$damage=${$ap*($344572s2/100)*$<bmMastery>*(1+$@versadmg)*(1+($137015s1/100))}
 
 Name             : Kill Command (id=34026) [Spell Family (9)] 
 Talent Entry     : Beast Mastery [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -134,6 +139,8 @@ Effects          :
                    Affected Spells: Pathfinding (264656), Endurance Training (264662), Predator's Thirst (264663)
                    Family Flags: 13, 18, 23
 Description      : Increases the damage of Bite, Claw, Smack and the effectiveness of your pet's unique abilities by $s1%.
+
+Increases the effectiveness of your pet's Predator's Thirst, Endurance Training, and Pathfinding passives by $s3%.
 
 Name             : Cobra Shot (id=193455) [Spell Family (9)] 
 Talent Entry     : Beast Mastery [tree=spec, row=4, col=6, max_rank=1, req_points=0, replace="Arcane Shot" (id=185358)]
@@ -160,6 +167,9 @@ Effects          :
 #3 (id=481423)   : Dummy (3)
                    Base Value: 1 | Scaled Value: 1
 Description      : A quick shot causing ${$s2*$<mult>} Physical damage.
+
+Reduces the cooldown of Kill Command by $s3 sec.
+Variables        : $mult=${($min($pl-1,19)*12+112)/340}
 
 Name             : Scent of Blood (id=193532) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -244,6 +254,9 @@ Effects          :
 #2 (id=323303)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Fire a shot that tears through your enemy, causing them to bleed for ${$s1*$s2} damage over $d. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot.
+
+|cFFFFFFFFGenerates ${$246152s1*$246152d/$246152t1} Focus over $246152d.|r
+Tooltip          : Suffering $w1 damage every $t1 sec.
 
 Name             : The Beast Within (id=231548) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=6, col=4, max_rank=1, req_points=8]
@@ -334,6 +347,8 @@ Effects          :
 #1 (id=808436)   : Apply Aura (6) | Modify Power Regen (110)
                    Base Value: 75 | Scaled Value: 75 | Resource: focus | Target: Self (1)
 Description      : Barbed Shot now instantly grants $1282660s1 Focus.
+
+Passive Focus generation increased by $s1%.
 
 Name             : Kill Cleave (id=378207) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=6, col=2, max_rank=1, req_points=8]
@@ -592,6 +607,8 @@ Effects          :
                    Affected Spells: Stomp (201754)
                    Family Flags: 6
 Description      : Bestial Wrath causes all active pets to Stomp at $s1% effectiveness.
+
+Stomp damage increased by $s2%.
 
 Name             : Huntmaster's Call (id=459730) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=9, col=2, max_rank=1, req_points=20]
@@ -606,6 +623,12 @@ Effects          :
 #1 (id=1166755)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Summoning a Dire Beast $459731u times sounds the Horn of Valor, summoning either Hati or Fenryr to battle.
+
+|cFFFFFFFFHati|r
+Increases the damage of all your pets by $459738s2%.
+
+|cFFFFFFFFFenryr|r
+Pounces your primary target, inflicting a heavy bleed that deals $459753o1 damage over $459753d and grants you $459735s2% Haste.
 
 Name             : Snakeskin Quiver (id=468695) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=7, col=7, max_rank=1, req_points=8, select_idx=100]
@@ -640,6 +663,8 @@ Effects          :
                    Affected Spells: Cobra Shot (193455)
                    Family Flags: 86
 Description      : Cobra Shot critical damage dealt increased by $s1%.
+
+When Cobra Shot critically strikes, it refunds $1282710s1 Focus.
 
 Name             : Barbed Scales (id=469880) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=6, col=7, max_rank=1, req_points=8]
@@ -703,6 +728,8 @@ Effects          :
 #2 (id=1226016)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Dire Beasts will now obey your Kill Command, dealing its damage at $s1% effectiveness.
+
+Bestial Wrath now sends your Dire Beasts into a rage, increasing their damage dealt by $1235388s1% for $186254d. Dire Beasts summoned during a Bestial Wrath will benefit at a reduced duration.
 
 Name             : Wild Thrash (id=1264359) [Spell Family (9)] 
 Talent Entry     : Beast Mastery [tree=spec, row=4, col=2, max_rank=1, req_points=0]
@@ -726,6 +753,8 @@ Effects          :
 #2 (id=1275691)  : Dummy (3)
                    Base Value: 2 | Scaled Value: 2
 Description      : Command your pet to thrash all enemies within $1264355A1 yds, dealing $1264355s1 Physical damage to them. Damage is increased by $s1% if Wild Thrash hits $s2 or more $L enemy:enemies;.
+
+Deals reduced damage beyond $1264355s2 $Ltarget:targets;.
 
 Name             : Frenzy (id=1264934) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=8, col=4, max_rank=2, req_points=20]
@@ -783,6 +812,8 @@ Effects          :
                    Affected Spells: Cobra Shot (193455)
                    Family Flags: 86
 Description      : Barbed Shot critical strike chance increased by $s1%.
+
+Cobra Shot critical strike chance increased by $s2%.
 
 Name             : Heart of the Pack (id=1265052) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -849,6 +880,8 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 17 | Misc Value 2: 6239 (Label) | Target: Self (1)
                    Affected Spells (Label): Bestial Wrath (344572)
 Description      : Damage dealt by your pets increased by $s1%.
+
+Bestial Wrath strikes $s2 additional targets.
 
 Name             : Nature's Ally (id=1273126) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Beast Mastery [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -877,3 +910,5 @@ Effects          :
 #4 (id=1296337)  : Apply Aura (6) | Proc Trigger Spell (42): Nature's Ally
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1276720 | Target: Self (1)
 Description      : Barbed Shot and Cobra Shot damage increased by $s1%.
+
+Barbed Shot, Cobra Shot, and Black Arrow increases the damage of your next Kill Command by $1276720s1%.

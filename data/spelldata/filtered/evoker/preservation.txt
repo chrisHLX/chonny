@@ -32,6 +32,26 @@ Effects          :
 #4 (id=1237470)  : Apply Aura (6) | Creature Immunities (147)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 1808 | Target: Self (1)
 Description      : Inhale, gathering the power of the Dream. Release to exhale, healing yourself and $s1 injured allies in a $s3 yd cone in front of you for ${$355941s3+$355941s1*$<sOneTick>}.
+
+|cFFFFFFFFI:|r   Heals $355941s3 instantly and ${$355941s1*$<sOneTick>} over $<sOneDur> sec.
+
+|cFFFFFFFFII:|r  Heals ${$355941s3+$355941s1*2} instantly and ${$355941s1*$<sTwoTick>} over $<sTwoDur> sec.
+
+|cFFFFFFFFIII:|r Heals ${$355941s3+$355941s1*4} instantly and ${$355941s1*$<sThreeTick>} over $<sThreeDur> sec.
+Variables        : $deepExDur=$?s1264321[${$1264321s2/1000}][${0}]
+$deepExTicks=$?s1264321[${$1264321s2/2000}][${0}]
+$sOneHeal=${2*$355941s1}
+$sTwoHeal=${2.25*$355941s1}
+$sThreeHeal=${2.5*$355941s1}
+$sFourHeal=${2.75*$355941s1}
+$sOneTick=${8+$<deepExTicks>}
+$sTwoTick=${6+$<deepExTicks>}
+$sThreeTick=${4+$<deepExTicks>}
+$sFourTick=${2+$<deepExTicks>}
+$sOneDur=${16+$<deepExDur>}
+$sTwoDur=${12+$<deepExDur>}
+$sThreeDur=${8+$<deepExDur>}
+$sFourDur=${4+$<deepExDur>}
 
 Name             : Time Dilation (desc=Bronze) (id=357170) [Spell Family (224)] 
 Talent Entry     : Preservation [tree=spec, row=4, col=6, max_rank=1, req_points=0]
@@ -58,6 +78,9 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: -10 | Target: Targeted Ally (21)
                    Affected School(s): All
 Description      : Stretch time around an ally for the next $d, causing $s1% of damage they would take to instead be dealt over $d.$?s363899[
+
+Healing a target under the effects of Time Dilation clears a portion of the delayed damage.][]
+Tooltip          : $w1% of damage is being delayed and dealt to you over time.
 
 Name             : Fluttering Seedlings (id=359793) [Spell Family (224), Passive] 
 Talent Entry     : Preservation [tree=spec, row=5, col=3, max_rank=2, req_points=8]
@@ -80,6 +103,8 @@ Effects          :
 #3 (id=1311273)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Emerald Blossom sends out $s1 flying $Lseedling:seedlings; when it bursts, plus up to $s3 additional seedlings if Emerald Blossom heals fewer than $355916s2 allies.
+
+Seedlings each heal an ally up to $s2 yds away for $361361s1.
 
 Name             : Dream Flight (desc=Green) (id=359816) [Spell Family (224)] 
 Talent Entry     : Preservation [tree=spec, row=7, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -122,6 +147,11 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 Description      : Take in a deep breath and fly to the targeted location, healing all allies in your path for $363502s2 immediately, and $363502o1 over $363502d, reduced beyond $s8 targets.
+
+Removes all root effects. You are immune to movement impairing and loss of control effects.
+
+Damage taken while you are flying is absorbed, up to $s1% of your maximum health.
+Tooltip          : Releasing healing breath. Immune to crowd control. Absorbing $w9 damage.
 
 Name             : Temporal Compression (id=362874) [Spell Family (224), Passive] 
 Talent Entry     : Preservation [tree=spec, row=3, col=2, max_rank=1, req_points=0]
@@ -171,6 +201,10 @@ Effects          :
 #4 (id=1013052)  : Dummy (3)
                    Base Value: 200 | Scaled Value: 200
 Description      : Rewind $?s376210[${$s3/2}%][$s3%] of damage taken in the last $s2 seconds by all allies within $a1 yds. Always heals for at least $<min>.
+
+Healing increased by $s4% when not in a raid.
+Tooltip          : Rewinding the last $s2 sec of damage.
+Variables        : $min=${$SP*0.4*(($d/$t1)+1)}
 
 Name             : Echo (desc=Bronze) (id=364343) [Spell Family (224)] 
 Talent Entry     : Preservation [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -231,6 +265,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Ally (21)
                    Affected School(s): All
 Description      : Reverse an ally's injuries, $?s378196[instantly healing them for $378196s1% of damage taken in the last $378196s2 sec and an additional][healing them for] $o1 over $d.
+
+When Reversion critically heals, its duration is extended by 2 sec, up to a maximum of ${2*$<cap>} sec.
+Tooltip          : Healing for $w1 every $t1 sec.
+Variables        : $cap=${6}
 
 Name             : Time of Need (id=368412) [Spell Family (224), Passive] 
 Talent Entry     : Preservation [tree=spec, row=8, col=7, max_rank=1, req_points=20]
@@ -248,6 +286,9 @@ Effects          :
 #2 (id=997898)   : Dummy (3)
                    Base Value: 60 | Scaled Value: 60
 Description      : When you or an ally fall below $s1% health, a version of yourself enters your timeline and heals them for $<amount>. Your alternate self continues healing for $368415d before returning to their timeline.
+
+May only occur once every $s2 sec.
+Variables        : $amount=${$361195s1*3}
 
 Name             : Essence Burst (id=369297) [Spell Family (224), Passive] 
 Talent Entry     : Preservation [tree=spec, row=3, col=4, max_rank=1, req_points=0]
@@ -476,6 +517,9 @@ Effects          :
 #4 (id=1314376)  : Dummy (3)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Send forward a vortex of temporal energy, absorbing $<shield> damage on you and any allies in its path. Absorption is reduced beyond $s2 targets.
+
+Applies Echo at $s4% effectiveness on the first $s2 allies it passes through.
+Variables        : $shield=${$SP*6*(1+$@versadmg)}
 
 Name             : Essence Attunement (id=375722) [Spell Family (224), Passive] 
 Talent Entry     : Augmentation [tree=spec, row=3, col=5, max_rank=1, req_points=0]
@@ -916,6 +960,9 @@ Effects          :
 #1 (id=1264146)  : Apply Aura (6) | Proc Trigger Spell (42): Merithra's Blessing
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1256579 | Target: Self (1)
 Description      : Essence abilities have a chance to infuse your next Reversion with the power of the Green Dragonflight, upgrading it to Merithra's Blessing:
+
+$@spellicon1256581 $@spellname1256581
+$@spelldesc1256581
 
 Name             : Merithra's Blessing (id=1256682) [Spell Family (224), Passive] 
 Talent Entry     : Preservation [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=300]

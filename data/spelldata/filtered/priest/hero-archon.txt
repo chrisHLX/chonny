@@ -36,6 +36,10 @@ Effects          :
 #4 (id=1175935)  : Apply Aura (6) | Area Trigger (395)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 34682 | Target: Self (1)
 Description      : Creates a ring of Holy energy around you that quickly expands to a $s2 yd radius, healing allies for $120692s1 and dealing $<holyhalodamage> Holy damage to enemies.
+
+Healing reduced beyond $s1 targets.
+Variables        : $twilightshadowtoholy=$?a390706[${(1+$390706s1/100)}][${1}]
+$holyhalodamage=${$120696s1*$<twilightshadowtoholy>}
 
 Name             : Halo (id=120644) [Spell Family (6)] 
 Talent Entry     : Archon (Shadow) [free=(Shadow), tree=hero, row=1, col=3, max_rank=1, req_points=0]
@@ -71,6 +75,12 @@ Effects          :
 #5 (id=1175943)  : Energize Power (30)
                    Base Value: 500 | Scaled Value: 500 | Resource: insanity | Target: Self (1)
 Description      : Creates a ring of Shadow energy around you that quickly expands to a $s2 yd radius, healing allies for $120692s1 and dealing $<shadowhalodamage> Shadow damage to enemies. Healing reduced beyond $s1 targets.$?s137033[
+
+|cFFFFFFFFGenerates ${$m5/100} Insanity.|r][]
+Variables        : $twilightholytoshadow=$?a390707[${(1+$390707s1/100)}][${1}]
+$shadowcov=$?a322105[${(1+$322105s1/100)}][${1}]
+$darkascension=$?a391109[${(1+$391109s1/100)}][${1}]
+$shadowhalodamage=${$390964s1*$<twilightholytoshadow>*$<shadowcov>*$<darkascension>}
 
 Name             : Divine Halo (id=449806) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Archon (Holy, Shadow) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
@@ -174,6 +184,12 @@ Effects          :
 #1 (id=1155821)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Creating a Halo $?a137033[upgrades your next Mind Flay to Mind Flay: Insanity.
+
+$@spellicon391403 $@spellname391403
+$@spelldesc391403][grants Surge of Light.
+
+$@spellicon109186 $@spellname109186
+$@spelldesc109186]
 
 Name             : Empowered Surges (id=453799) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Archon (Holy, Shadow) [tree=hero, row=3, col=4, max_rank=1, req_points=0]
@@ -193,6 +209,8 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Misc Value 2: 3626 (Label) | Target: Self (1)
                    Affected Spells (Label): Mind Flay: Insanity (391403)
 Description      : $?a137033[Increases the damage done by Mind Flay: Insanity by $s2%.
+
+][Your spells affected by Surge of Light heal for $s1% more while Surge of Light is active.]
 
 Name             : Energy Cycle (id=453828) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Archon (Holy, Shadow) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
@@ -316,6 +334,8 @@ Effects          :
 #2 (id=1181323)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Creating a Halo extends the duration of $?a137031[Apotheosis][Voidform] by ${$s1/1000} sec. If $?a137031[Apotheosis][Voidform] is not active, up to $454002U seconds is stored.
+
+While out of combat or affected by a loss of control effect, the duration of $?a137031[Apotheosis][Voidform] is paused for up to $s2 sec.
 
 Name             : Spiritwell (id=1247178) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Archon (Holy, Shadow) [tree=hero, row=4, col=5, max_rank=1, req_points=0, select_idx=200]
@@ -333,6 +353,9 @@ Effects          :
                    Affected Spells: Shadowy Apparition (413231), Void Apparition (1264176)
                    Family Flags: 90
 Description      : $?c2[Surge of Light can now be consumed by Prayer of Healing in addition to Flash Heal.
+
+$@spellicon109186 $@spellname109186
+$@spelldesc109186][Increases Shadowy Apparition damage by $s1%.]
 
 Name             : Energy Conservation (id=1272308) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Archon (Holy, Shadow) [tree=hero, row=3, col=2, max_rank=1, req_points=0]
@@ -408,3 +431,5 @@ Effects          :
                    Base Value: -3000 | Scaled Value: -3000 | Misc Value: 1169 (Category) | Target: Self (1)
                    Affected Spells (Category): Shadow Word: Death (32379)
 Description      : $?c2[Flash Heal healing increased by $s1%. 
+
+Healing spells and Smite have an additional $s2% chance to grant Surge of Light.][Shadow Word: Death damage increased by $s3% and its cooldown is reduced by ${$s4/-1000} sec.]

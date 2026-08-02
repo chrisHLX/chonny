@@ -18,6 +18,10 @@ Effects          :
 #1 (id=1135423)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10000 | Scaled Value: 10000 | Target: Self (1)
 Description      : $?a137036[Sinister Strike]?s200758[Gloomblade][Backstab] and $?a137036[Ambush][Shadowstrike] now also strike with an Unseen Blade dealing $441144s1 damage. Targets struck are Fazed for $441224d.
+
+Fazed enemies take $441224s1% more damage from you and cannot parry your attacks.
+
+This effect may occur once every $459485d.
 
 Name             : Smoke (id=441247) [Spell Family (8), Passive] 
 Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=2, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -158,6 +162,8 @@ Effects          :
 #1 (id=1135766)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Taking damage from an area-of-effect attack while Feint is active or dodging while Evasion is active refreshes your opportunity to strike with Unseen Blade.
+
+This effect may only occur once every $proccooldown sec.
 
 Name             : Nimble Flurry (id=441367) [Spell Family (8), Passive] 
 Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
@@ -239,6 +245,8 @@ Effects          :
                    Affected Spells: Sap (6770)
                    Family Flags: 7, 31
 Description      : Blind and Shroud of Concealment have $s1% reduced cooldown.
+
+Pick Pocket and Sap have $s2 yd increased range.
 
 Name             : Coup de Grace (id=441423) [Spell Family (8), Passive] 
 Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -275,6 +283,8 @@ Effects          :
 #2 (id=1313710)  : Apply Aura (6) | Dummy (4)
                    Base Value: 6000 | Scaled Value: 6000 | Target: Self (1)
 Description      : Activating $?a137036[Adrenaline Rush][Shadow Blades] creates a cloud of smoke for $441587d, allowing attacks from within the cloud to apply Fazed, stacking up to $441640m2 additional $Ltime:times;.
+
+Effect persists for $?a137036[${$s1/1000}][${$s2/1000}] sec after leaving the cloud.
 
 Name             : Hoodwink (id=1276626) [Spell Family (8), Passive] 
 Talent Entry     : Trickster (Outlaw, Subtlety) [tree=hero, row=2, col=5, max_rank=1, req_points=1]

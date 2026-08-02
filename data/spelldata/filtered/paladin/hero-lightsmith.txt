@@ -26,6 +26,14 @@ Effects          :
 #2 (id=1311044)  : Energize Power (30)
                    Base Value: 3 | Scaled Value: 3 | Resource: holy_power | Target: Self (1)
 Description      : Will the Light to coalesce and become manifest as a Holy Armament, wielded by your friendly target.
+
+$@spellicon432496 $@spellname432496:
+
+$@spelldesc432496
+
+Becomes Sacred Weapon after use.$?c1[
+
+|cFFFFFFFFGenerates $s2 Holy Power.][]
 
 Name             : Solidarity (id=432802) [Spell Family (10), Passive] 
 Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
@@ -42,6 +50,8 @@ Effects          :
 #1 (id=1121750)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : If you bestow an Armament upon an ally, you also gain its benefits.
+
+If you bestow an Armament upon yourself, a nearby ally also gains its benefits.
 
 Name             : Forewarning (id=432804) [Spell Family (10), Passive] 
 Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
@@ -197,6 +207,8 @@ Effects          :
 #1 (id=1122950)  : Enchant Item Temporary (54)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 7143 | Target: Self (1)
 Description      : Imbue your weapon with the power of the Light, increasing your armor by $433550s2% and your primary stat by $433550s1%.
+
+Lasts $433550d.
 
 Name             : Rite of Adjuration (desc=Weapon Imbue) (id=433583) [Spell Family (10)] 
 Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=200]
@@ -213,6 +225,8 @@ Effects          :
 #1 (id=1122971)  : Enchant Item Temporary (54)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 7144 | Target: Self (1)
 Description      : Imbue your weapon with the power of the Light, increasing your Stamina by $433584s1% and causing your Holy Power abilities to sometimes unleash a burst of healing around a target.
+
+Lasts $433584d.
 
 Name             : Hammer and Anvil (id=433718) [Spell Family (10), Passive] 
 Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
@@ -249,6 +263,8 @@ Effects          :
 #1 (id=1184221)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : When you or an ally wielding a Holy Bulwark are healed above maximum health, transfer $s1% of the overhealing to your ally.
+
+When you or an ally wielding a Sacred Weapon drop below $432502s4% health, redistribute your health immediately and every $469703t sec for $469703d. May only occur once per cast.
 
 Name             : Authoritative Rebuke (id=469886) [Spell Family (10), Passive] 
 Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=3, col=4, max_rank=1, req_points=0, select_idx=100]

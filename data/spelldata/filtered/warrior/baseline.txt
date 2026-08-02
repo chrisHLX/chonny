@@ -52,6 +52,8 @@ Effects          :
                    Base Value: 200 | Scaled Value: 200 | Resource: rage | Target: Self (1)
                    Modified By: Recklessness (1719 effect#6), Raging Fury (222266 effect#1)
 Description      : Charge to an enemy, dealing $126664s2 Physical damage, rooting it for $105771d$?s103828[, and stunning it for $7922d][].
+
+|cFFFFFFFFGenerates $/10;s2 Rage.|r
 
 Name             : Block (desc=Passive) (id=107) [Passive] 
 Class            : Warrior, Paladin, Shaman
@@ -148,6 +150,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
                    Modified By: Recklessness (1719 effect#6), Storm of Swords (388903 effect#6)
 Description      : Slams an opponent, causing $s1 Physical damage.$?s388903[
+
+|cFFFFFFFFGenerates ${$388903s6/10} Rage.][]
 
 Name             : Whirlwind (id=1680) [Spell Family (4)] 
 Class            : Warrior
@@ -307,6 +311,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
                    Modified By: Recklessness (1719 effect#7), Precise Strikes (209493 effect#2), Improved Execute (316402 effect#3), Executioner's Wrath (1265570 effect#1)
 Description      : Attempt to finish off a wounded foe, causing ${$280849s1+$163558s1} Physical damage. Only usable on enemies that have less than 20% health.$?s316402[
+
+|cFFFFFFFFGenerates ${$m3/10} Rage.|r][]
 
 Name             : Pummel (id=6552) [Spell Family (4)] 
 Class            : Warrior
@@ -357,6 +363,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1271909 | Radius: 100 yards | Target: Raid in Area (56)
 Description      : Increases the attack power of all raid and party members within $a1 yards by $s1% for $d.
 Tooltip          : Attack power increased by $w1%.$?$w3>0[
+
+Stamina increased by $w3%.][]
 
 Name             : Last Stand (id=12975) [Spell Family (4)] 
 Class            : Warrior
@@ -456,6 +464,9 @@ Effects          :
 #4 (id=200921)   : Apply Aura (6) | Mechanic Immunity (77)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 23 | Target: Self (1)
 Description      : Go berserk, removing and granting immunity to Fear, Sap, and some Incapacitate effects for $d.$?a1271925[
+
+Removes all movement speed-impairing effects.][]
+Tooltip          : Immune to Fear, Sap, and some Incapacitate effects.
 
 Name             : Savior's Sacrifice (id=18826) [Spell Family (4)] 
 School           : Physical
@@ -554,6 +565,10 @@ Effects          :
 #4 (id=1082240)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Slams the target with your shield, causing $s1 Physical damage.$?s231834[
+
+Devastate, Thunder Clap, Revenge, and Execute have a $231834s1% chance to reset the cooldown of Shield Slam.][]
+
+|cFFFFFFFFGenerates $/10;s3 Rage.|r
 
 Name             : Improved Hamstring (id=24428) [Spell Family (4), Passive, Hidden] 
 School           : Physical
@@ -633,6 +648,8 @@ Effects          :
 #1 (id=24417)    : School Damage (2): physical
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 0.472 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Strikes the target, causing $s1 damage and healing you for $118779s1% of your maximum health.
+
+Only usable within $32216d after you kill an enemy that yields experience or honor.
 
 Name             : Temporal Rift (id=35353) [Spell Family (4)] 
 School           : Nature
@@ -960,6 +977,8 @@ Effects          :
 #5 (id=217532)   : Apply Aura (6) | Modify Melee Attack Power% (166)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1 | Target: Self (1)
 Description      : Increases your chance to block by ${$s2}.1% and your chance to critically block (blocking twice the amount) by ${$s1}.1%.
+
+Also increases your attack power by ${$s5}.1%.
 
 Name             : Titan's Grip: Single-Minded Fury (id=81099) [Spell Family (4), Passive] 
 Class            : Fury Warrior
@@ -1490,6 +1509,8 @@ Effects          :
                    Modified By: Phalanx (1269313 effect#2)
 Description      : $@spelldesc2565
 Tooltip          : Block chance increased by $w1%.$?e1[
+
+Shield Slam damage increased by $w2%][]
 
 Name             : Rope Swing Smawh (id=132824) [Hidden] 
 Class            : Warrior
@@ -1840,6 +1861,9 @@ Effects          :
 #2 (id=714082)   : Dummy (3)
                    Base Value: 10 | Scaled Value: 10 | Target: Targeted Enemy (6)
 Description      : Attempts to finish off a foe, causing up to $<damage> Physical damage based on Rage spent. Only usable on enemies that have less than 20% health.$?s316405[
+
+If your foe survives, $s2% of the Rage spent is refunded.][]
+Variables        : $damage=${2.0*$260798s1}
 
 Name             : Execute Off-Hand (id=163558) [Spell Family (4)] 
 Class            : Warrior
@@ -1877,6 +1901,10 @@ Effects          :
 #1 (id=267204)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Becoming Enraged increases your damage done by $76856s1%$?s383848[, Haste by $184362s1%, and movement speed by $184362s2% for $184362d.]?s440277[, Mastery by $184362s5% and Leech by $184362s6% for $184362d.][ for $184362d.]
+
+$@spellicon23881 Bloodthirst has a $23881s3% chance to Enrage you.
+
+$@spellicon184367 Rampage always Enrages you.
 
 Name             : Enrage (id=184362) [Spell Family (4)] 
 Class            : Warrior
@@ -1910,6 +1938,8 @@ Effects          :
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : $@spelldesc184361
 Tooltip          : Damage done increased by $76856s3%$?s383848[, Haste increased by $w1%, and Movement speed increased by $w2%.]?s440277[, Mastery increased by $w5%, and Leech increased by $w6%.][.]$?s208154[
+
+Damage taken reduced by $w3%.][]
 
 Name             : Rampage (id=184707) [Spell Family (4)] 
 Class            : Warrior
@@ -2021,6 +2051,12 @@ Effects          :
 #9 (id=800240)   : Trigger Spell (64): Whirlwind Off-Hand
                    Base Value: 0 | Scaled Value: 0 | Delay: 400_ms | Trigger Spell: 199851 | Target: Self (1)
 Description      : Unleashes a whirlwind of steel, striking all nearby enemies for $<damage> Physical damage. Deals reduced damage beyond $s3 targets.$?s12950[
+
+Causes your next $85739u single-target melee $lattack:attacks; to strike up to $85739s1 additional targets for $85739s2% damage.][]$?s12950[
+
+|cFFFFFFFFGenerates $s1 Rage, plus an additional $s2 per target hit.|r][]
+Variables        : $damage=${$199667s1+$44949s1+(2*($199852s1+$199851s1))}
+$maxRage=${$190411s1+($190411s2*$190411s3)}
 
 Name             : Rage (id=195707) [Spell Family (4)] 
 Class            : Warrior
@@ -2054,6 +2090,12 @@ Effects          :
                    Base Value: 150 | Scaled Value: 150 | Resource: rage | Target: Self (1)
                    Modified By: Raging Fury (222266 effect#1)
 Description      : Run at high speed toward an enemy or ally.
+
+When targeting an enemy, deals $126664s2 Physical damage and roots the target for $105771d.
+
+When targeting an ally, intercepts the next melee or ranged attack against them within $147833d while the ally remains within $147833A2 yards.
+
+|cFFFFFFFFGenerates $/10;s2 Rage.|r
 
 Name             : Charge (id=198337) [Spell Family (4)] 
 Class            : Warrior
@@ -2394,6 +2436,8 @@ Effects          :
 #1 (id=297920)   : Apply Aura (6) | Periodic Heal% (20): every 1 seconds
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
 Description      : Restores $202147s1% health every $202147t1 sec when you have not taken damage for ${$29838s1/1000} sec.
+
+Tooltip          : Healing $w1% health every $t1 sec.
 
 Name             : Bounding Stride (id=202164) 
 Class            : Warrior
@@ -2913,6 +2957,8 @@ Effects          :
 #1 (id=317374)   : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : You go into a trance causing you to regenerate $213858m2% of your health and generate ${$213858m1/10} Rage every $213858t1 sec for $213858d after $?s383916[striking a target with Annihilator $s1 times.][using Raging Blow twice in a row on a target.]
+
+Attacking a new target with $?s383916[Annihilator][Raging Blow] will cancel this effect.
 
 Name             : Battle Trance (desc=PvP Talent) (id=213858) [Spell Family (4)] 
 School           : Physical
@@ -2974,6 +3020,8 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 2590 (Label) | Target: Self (1)
                    Affected Spells (Label): Spell Reflection (23920)
 Description      : Spell Reflection reflects the next $s3 incoming spells cast on you and reflected spells deal $s1% extra damage to the attacker.
+
+Spell Reflection's cooldown is increased by ${$s2/1000} sec.
 
 Name             : The Walls Fell (id=215057) [Spell Family (4), Passive] 
 School           : Physical
@@ -3160,6 +3208,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Delay: 3800_ms | Trigger Spell: 184362 | Target: Self (1)
 Description      : Odyn has granted you a second chance to defeat that which has bested you in combat.  Do this within $d and Odyn will grant you your life and restore $218835s1% of your health.
 Tooltip          : Odyn has granted you a second chance to defeat your enemy!
+
+Failure results in death.
 
 Name             : Gaze of the Val'kyr (id=218834) [Spell Family (4)] 
 Class            : Warrior
@@ -3258,6 +3308,10 @@ Effects          :
                    Affected Spells: Taunt (355), Shield Wall (871), Demoralizing Shout (1160), Shield Block (2565), Last Stand (12975), Shattering Throw (64382), Condemn (330325), Condemn (330334), Wrecking Throw (384110), Shattering Throw (394352), Wrecking Throw (394354), Wrecking Throw Highlight (1293603), Shattering Throw Highlight (1293610)
                    Family Flags: 12, 13, 15, 17, 49, 51, 73, 84
 Description      : Become an unstoppable storm of destructive force, striking all targets within $50622A1 yards $?s23881[with both weapons for ${7*($225308m1+$225307m1)} Physical damage][for ${7*$225308m1} Physical damage] over $d.
+
+You are immune to movement impairing and loss of control effects, but can use defensive abilities and can avoid attacks.
+Tooltip          : Deal area damage every $t1 sec.
+Immune to crowd control.
 
 Name             : Stone Heart (id=225947) [Spell Family (4)] 
 School           : Physical
@@ -4554,6 +4608,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
                    Modified By: Recklessness (1719 effect#7), Precise Strikes (209493 effect#2), Improved Execute (316402 effect#3), Executioner's Wrath (1265570 effect#1)
 Description      : Attempt to finish off a wounded foe, causing ${$280849s1+$163558s1} Physical damage. Only usable on enemies that have less than 35% health.
+
+|cFFFFFFFFGenerates ${$m3/10} Rage.|r
 
 Name             : Legion Legendary - Increase Damage Done (id=280737) [Spell Family (4), Passive] 
 School           : Physical
@@ -4655,6 +4711,9 @@ Effects          :
                    Base Value: 35 | Scaled Value: 35
                    Modified By: Recklessness (1719 effect#7), Precise Strikes (209493 effect#2), Improved Execute (316402 effect#3), Executioner's Wrath (1265570 effect#1)
 Description      : Attempts to finish off a foe, causing up to $<damage> Physical damage based on Rage spent. Only usable on enemies that have less than $s3% health.$?s316405[
+
+If your foe survives, $s2% of the Rage spent is refunded.][]
+Variables        : $damage=${2.0*$260798s1}
 
 Name             : Reckless Flurry (id=283810) [Spell Family (4)] 
 School           : Physical
@@ -4919,6 +4978,11 @@ Effects          :
 #2 (id=786849)   : Trigger Missiles (32): Spear of Bastion
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 307954 | Radius: 5 yards | Target: at Area (87)
 Description      : Throw a Kyrian spear at the target location, dealing $307871s1 Arcane damage instantly and an additional $307871o4 damage over $307954d. Deals reduced damage beyond $<cap> targets.
+
+Enemies hit are tethered to Spear of Bastion's location for the duration.
+
+|cFFFFFFFFGenerates $/10;307871s3 Rage.|r
+Variables        : $cap=${5}
 
 Name             : Spear of Bastion (desc=Kyrian) (id=307871) [Spell Family (4)] 
 Class            : Warrior
@@ -5229,6 +5293,12 @@ Effects          :
 #2 (id=802658)   : Dummy (3)
                    Base Value: 20 | Scaled Value: 20 | Target: Targeted Enemy (6)
 Description      : Condemn a foe to suffer for their sins, causing up to $<damage> Shadow damage. Only usable on enemies who are above 80% health or below 20% health.
+
+The primary target is weakened, preventing up to $<absorb> damage they would deal to you.$?s231830[
+
+If your foe survives, $s2% of the Rage spent is refunded.][]
+Variables        : $damage=${2.0*$317483s1}
+$absorb=${(($317320s3/100)*$AP)*2.0*(1+$@versadmg)}
 
 Name             : Condemn (desc=Venthyr) (id=317483) [Spell Family (4)] 
 Class            : Warrior
@@ -5276,6 +5346,12 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
                    Modified By: Recklessness (1719 effect#7), Precise Strikes (209493 effect#2), Improved Execute (316402 effect#3), Executioner's Wrath (1265570 effect#1)
 Description      : Condemn a foe to suffer for their sins, causing ${$317488sw1+$317489sw1} Shadow damage. Only usable on enemies who are above 80% health or below 20% health.
+
+The primary target is weakened, preventing $<absorb> damage they would deal to you.$?s316403[
+
+|cFFFFFFFFGenerates ${$m3/10} Rage.|r][]
+Variables        : $damage=${2.0*$317483s1}
+$absorb=${(($317320s3/100)*$AP)*2.0*(1+$@versadmg)}
 
 Name             : Condemn (desc=Venthyr) (id=317488) [Spell Family (4)] 
 Class            : Warrior
@@ -5406,6 +5482,16 @@ Effects          :
 #11 (id=880318)  : Trigger Spell (64): Conqueror's Banner
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 343714 | Target: Self (1)
 Description      : Brandish the Conqueror's Banner, granting $s1 Mastery and $s2% increased movement speed to you and your $325862s6 nearest allies, and preventing movement speed from being reduced below $s3%. Lasts $d.
+
+|cFFFFFFFFGenerates $<rage> Rage per sec.|r
+Tooltip          : Mastery increased by $w1.
+Movement speed increased by $w2%.
+Less hindered by movement impairing effects.
+Generating ${$w4/10} Rage per sec.
+$?$w8!=0[
+Strength increased by $w8%.][]$?$w9!=0[
+Critical strike chance increased by $w9%.][]
+Variables        : $rage=$?c1[${4}]?c2[${6}][${4}]
 
 Name             : Glory (desc=Necrolord) (id=325787) [Spell Family (4)] 
 Class            : Warrior
@@ -5506,6 +5592,12 @@ Effects          :
 #3 (id=845571)   : Trigger Spell (64): Ancient Aftershock
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 343607 | Target: Self (1)
 Description      : Unleash a wave of anima, dealing $s1 Nature damage to up to $s2 enemies and knocking them down for $d.
+
+The ground will continue to expel anima, dealing $<areaDmg> Nature damage to up to $s2 enemies and generating $<rage> Rage per enemy over $343607d. Every $<period> sec, targets are briefly knocked down.
+Tooltip          : Stunned.
+Variables        : $rage=${4*($326076s1/10)}
+$areaDmg=${4*$326062s1}
+$period=${3}
 
 Name             : Ancient Aftershock (id=326062) [Spell Family (4)] 
 Class            : Warrior
@@ -5615,6 +5707,12 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Resource: rage | Target: Self (1)
                    Modified By: Recklessness (1719 effect#7), Precise Strikes (209493 effect#2), Improved Execute (316402 effect#3), Executioner's Wrath (1265570 effect#1)
 Description      : Condemn a foe to suffer for their sins, causing ${$317488sw1+$317489sw1} Shadow damage. Only usable on enemies who are above 80% health or below 35% health.
+
+The primary target is weakened, preventing $<absorb> damage they would deal to you.$?s316403[
+
+|cFFFFFFFFGenerates ${$m3/10} Rage.|r][]
+Variables        : $damage=${2.0*$317483s1}
+$absorb=${(($317320s3/100)*$AP)*2.0*(1+$@versadmg)}
 
 Name             : Condemn (desc=Venthyr) (id=330334) [Spell Family (4)] 
 Class            : Warrior
@@ -5639,6 +5737,12 @@ Effects          :
 #2 (id=823944)   : Dummy (3)
                    Base Value: 20 | Scaled Value: 20 | Target: Targeted Enemy (6)
 Description      : Condemn a foe to suffer for their sins, causing up to $<damage> Shadow damage. Only usable on enemies who are above 80% health or below 35% health.
+
+The primary target is weakened, preventing up to $<absorb> damage they would deal to you.$?s231830[
+
+If your foe survives, $s2% of the Rage spent is refunded.][]
+Variables        : $damage=${2.0*$317483s1}
+$absorb=${(($317320s3/100)*$AP)*2.0*(1+$@versadmg)}
 
 Name             : Repulsive Pennant (id=333858) [Spell Family (4)] 
 Class            : Warrior
@@ -5818,6 +5922,10 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
                    Modified By: Fresh Meat (215568 effect#1)
 Description      : Assault the target in a bloodthirsty craze, dealing $s1 Physical damage and restoring $117313s1% of your health.
+
+Bloodbath wounds the target to suffer $113344o1 Bleed damage over $113344d. Using Bloodbath on a target that is affected by Bloodbath extends the bleed by $113344d.
+
+|cFFFFFFFFGenerates ${$s2/10} Rage and has a $s3% chance to Enrage you.|r
 
 Name             : Crushing Blow (id=335097) [Spell Family (4)] 
 Class            : Warrior
@@ -5846,6 +5954,10 @@ Effects          :
 #4 (id=831440)   : Trigger Spell (64): Crushing Blow
                    Base Value: 0 | Scaled Value: 0 | Delay: 100_ms | Trigger Spell: 335100 | Target: Targeted Enemy (6)
 Description      : Strike a mighty blow with both weapons that deals a total of ${$335098s1+$335100s1} Physical damage. 
+
+Crushing Blow has a $s1% chance to instantly reset its own cooldown and its critical strikes deal $1719s13% additional damage.
+
+|cFFFFFFFFGenerates ${$m2/10} Rage.|r
 
 Name             : Crushing Blow (id=335098) [Spell Family (4)] 
 Class            : Warrior
@@ -7086,6 +7198,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 0.54375 | Radius: 8 yards | Target: at Enemy in Area (16)
 Description      : $@spelldesc376079
 Tooltip          : Tethered by chains and taking $w4 Physical damage every $t4 sec.$?e4[
+
+Taking $w5% additional critical strike damage from $@auracaster.][]
 
 Name             : Champion's Spear (id=376081) [Spell Family (4)] 
 Class            : Warrior
@@ -7212,6 +7326,8 @@ Effects          :
 #2 (id=1014823)  : Apply Player/Pet Aura (202) | Proc Trigger Spell (42): Concussive Blows
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 383116 | Radius: 100 yards | Target: Self (1)
 Description      : Cooldown of Pummel reduced by ${$s1/-1000}.1 sec. 
+
+Successfully interrupting an enemy increases the damage you deal to them by $383116s2% for $383116d.
 
 Name             : Concussive Blows (id=383116) [Spell Family (4)] 
 Class            : Warrior
@@ -7539,6 +7655,8 @@ Effects          :
                    Modified By: Hunker Down (1235022 effect#2), Protection Warrior (1258163 effect#12)
 Description      : Raise your $?c3[shield][weapon], reducing magic damage you take by $385391s1% for $d.
 
+Tooltip          : Magical damage taken reduced by $s1%.
+
 Name             : Tough as Nails (id=385890) [Spell Family (4)] 
 Class            : Warrior
 School           : Physical
@@ -7830,6 +7948,8 @@ Effects          :
 #7 (id=1024915)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0
 Description      : Whirlwind has a ${$s1/1000}.1 sec cooldown, but deals $s3% increased damage. 
+
+Slam has a ${$s2/1000}.1 sec cooldown and generates ${$s6/10} Rage, but deals $s4% increased damage.
 
 Name             : Critical Thinking (id=392776) [Spell Family (4)] 
 Class            : Warrior
@@ -8195,6 +8315,8 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 2587 (Label) | Radius: 14 yards | Target: Enemies in Cone to Targeted Enemy (104)
                    Affected Spells (Label): Consecration (81297), Divine Hammer (198137), Empyrean Hammer (431398)
 Description      : Burns the targets for an additional $o2 Radiant damage over $d, and slows them by $s1%.
+
+Tooltip          : $?(s403696)[Burning for $w2 damage every $t2 sec and movement speed reduced by $s1%.] [Movement speed reduced by $s1%.]
 
 Name             : Warrior Arms 10.1 Class Set 2pc (id=405577) [Spell Family (4), Passive, Hidden] 
 Class            : Warrior
@@ -8781,6 +8903,8 @@ Effects          :
 #5 (id=1125688)  : Dummy (3)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Blasts all enemies within $A1 yards for $s1 Stormstrike damage$?s199045[, roots them for $199042d,][] and reduces their movement speed by $435203s1% for $435203d. Deals reduced damage beyond $s5 targets.$?a137048|(a137050&a436707)[
+
+|cFFFFFFFFGenerates ${$s4/10} Rage.][]
 
 Name             : Thunder Blast (id=435615) [Spell Family (4)] 
 Class            : Warrior
@@ -9107,6 +9231,8 @@ Effects          :
                    Affected Spells: Execute (5308), Execute (163201), Execute Off-Hand (163558), Execute (260798), Execute (280735), Execute (280849), Execute (281000), Condemn (317349), Condemn (317483), Condemn (317485), Condemn (317488), Condemn Off-Hand (317489), Condemn (330325), Condemn (330334), Arms Execute FX Test (463815), Fury Execute FX Test (463816), Fury Execute Off-Hand FX Test (463817)
                    Family Flags: 29, 115, 116
 Description      : $@spelldesc444767
+
+Tooltip          : Execute damage$?e1[, critical strike chance, and critical strike damage][] increased by $w1%.
 
 Name             : Imminent Demise (id=445606) [Spell Family (4)] 
 Class            : Warrior
@@ -10388,6 +10514,11 @@ Effects          :
                    Affected Spells: Colossus Smash (167105), Colossus Smash (208086)
                    Family Flags: 62
 Description      : $@spellname262161 inflicts ${$s1}.2% increased damage.
+
+Increases $@spellname167105 duration by ${$S2/1000}.2 sec.
+Tooltip          : $@spellname262161 inflicts ${$s1}.2% increased damage.
+
+Increases $@spellname167105 duration by ${$S2/1000}.2 sec.
 
 Name             : Godly Rage (id=1223161) [Spell Family (4), Passive] 
 Class            : Warrior
@@ -10447,6 +10578,8 @@ Effects          :
 #1 (id=1220649)  : Dummy (3)
                    Base Value: 25 | Scaled Value: 25 | Target: Current Target (25)
 Description      : Casts damaging abilities for use in combat, rotating through them based on priority.
+
+The global cooldown of abilities used through the Single-Button Assistant is $s1% longer.
 
 Name             : Recuperate (id=1231411) 
 Class            : Warrior, Paladin, Hunter, Rogue, Priest, Death Knight, Shaman, Mage, Warlock, Monk, Druid, Demon Hunter, Evoker
@@ -11311,6 +11444,10 @@ Effects          :
                    Family Flags: 2, 22, 25
 Description      : Heroic Strike causes your attacks to penetrate $s1% armor$?a1269306[ and increase Mortal Strike, Cleave, and Overpower damage by ${$1269306s1/10}.1% and increase critical strike damage by ${$1269306s2/10}.1%][].
 
+Tooltip          : Your attacks penetrate $w1% armor.$?$W2>0[
+
+Mortal Strike, Cleave, and Overpower damage increased by ${$W2}.1% and critical strike damage increased by ${$W3}.1%.][]
+
 Name             : Phalanx (id=1270116) [Spell Family (4)] 
 Class            : Warrior
 School           : Physical
@@ -11378,6 +11515,8 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Demolish's final strike grants $1270843s1% Haste for $1270843d.
 
+Tooltip          : Haste increased by $w1%.
+
 Name             : Celeritous Conclusion (id=1270846) [Spell Family (4)] 
 Class            : Warrior
 School           : Physical
@@ -11395,6 +11534,8 @@ Effects          :
                    Affected Spells: Mortal Strike (12294), Shield Slam (23922), Mortal Strike (339385)
                    Family Flags: 25, 41
 Description      : Demolish's final strike increases the critical strike chance of your next $?c1[Mortal Strike][Shield Slam] by $1270846s1%.
+
+Tooltip          : Critical strike chance of next $?c1[Mortal Strike][Shield Slam] increased by $w1%.
 
 Name             : Battle Shout Highlight (id=1271909) [Spell Family (4), Hidden] 
 Class            : Warrior
@@ -11684,6 +11825,8 @@ Effects          :
                    Base Value: -8 | Scaled Value: -8 | PvP Coefficient: 0.5 | Misc Value: 0x7f | Target: Targeted Enemy (6)
                    Affected School(s): All
 Description      : Enemies damaged by Phalanx's wave of force deal ${$s1/-1}.1% reduced damage to you for $d.
+
+Tooltip          : Dealing ${$W1/-1}.1% reduced damage to $@auracaster.
 
 Name             : Wrecking Throw Highlight (id=1293603) [Spell Family (4), Passive, Hidden] 
 Class            : Warrior

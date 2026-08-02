@@ -44,6 +44,8 @@ Effects          :
                    Affected Spells: Steady Shot (56641), Kill Command (259277)
                    Family Flags: 32, 37
 Description      : $?c2[Steady Shot][Kill Command] grants an additional $s1 Focus and its damage is increased by $s4%. 
+
+Maximum Focus increased by $s2.
 
 Name             : Sentinel (id=1253599) [Spell Family (9), Passive] 
 Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
@@ -61,6 +63,9 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Modified By: Moon's Blessing (1253825 effect#1)
 Description      : $?c3[Consuming Tip of the Spear has a $s2% chance to summon the aid of a Sentinel Owl that descends from the skies and applies Sentinel's Mark to your target][Your Eagle is replaced with a Sentinel Owl that applies an enhanced Sentinel's Mark].
+
+$@spellicon1253601$@spellname1253601
+$@spellaura1253601
 
 Name             : Lunar Storm (id=1253732) [Spell Family (9), Passive] 
 Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -138,6 +143,8 @@ Effects          :
 #3 (id=1259885)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
 Description      : $?c2[Consuming Precise Shots][Consuming Tip of the Spear] has a $s1% increased chance to summon your Sentinel Owl.
+
+When your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of $?c2[Aimed Shot][Wildfire Bomb] by $?c2[${$s2/1000}.1][${$s3/1000}.1] sec.
 
 Name             : Can't Miss, Won't Miss (id=1253830) [Spell Family (9), Passive] 
 Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
@@ -174,6 +181,8 @@ Effects          :
                    Base Value: 2000 | Scaled Value: 2000 | Misc Value: 1 | Misc Value 2: 6394 (Label) | Target: Self (1)
                    Affected Spells (Label): Moonlight Chakram (1264946)
 Description      : $?c2[Precise Shots damage bonus][Tip of the Spear damage bonus] increased by $?c2[$s1][$s2]%.
+
+$?c2[Trueshot][Takedown] duration increased by $?c2[${$s3/1000}][${$s4/1000}] sec.
 
 Name             : Sanctified Armaments (id=1253831) [Spell Family (9), Passive] 
 Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
@@ -250,6 +259,8 @@ Effects          :
                    Affected Spells: Aspect of the Cheetah (186257), Aspect of the Cheetah (186258)
                    Family Flags: 21
 Description      : Your movement speed is increased by $s1%.
+
+Aspect of the Cheetah's cooldown is reduced by ${-$s2/1000} sec.
 
 Name             : Scout's Vigil (id=1253892) [Spell Family (9), Passive] 
 Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=4, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -267,6 +278,8 @@ Effects          :
 #2 (id=1260010)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : Enemy detection radius reduced by $s1 yds.
+
+While in Camouflage, your stealth detection radius is increased by $s2 yds.
 
 Name             : Moonlight Chakram (id=1264902) [Spell Family (9), Passive] 
 Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
@@ -285,6 +298,9 @@ Effects          :
 #1 (id=1276512)  : Apply Aura (6) | Proc Trigger Spell (42): Moonlight Chakram
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1264946 | Target: Self (1)
 Description      : For $1264946d after casting $?c2[Trueshot][Takedown], $?c2[Trueshot][Takedown] is replaced with Moonlight Chakram.
+
+$@spellicon1264949 $@spellname1264949
+$@spelldesc1264949
 
 Name             : Radiant Edge (id=1264903) [Spell Family (9), Passive] 
 Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=4, col=5, max_rank=1, req_points=1]

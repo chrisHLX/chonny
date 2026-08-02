@@ -13,6 +13,7 @@ class TalentBuild extends Model
         'spec_id',
         'patch_id',
         'user_id',
+        'module_id',
         'name',
         'share_slug',
         'is_public',
@@ -37,6 +38,11 @@ class TalentBuild extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function module()
+    {
+        return $this->belongsTo(Module::class);
     }
 
     public function choices()

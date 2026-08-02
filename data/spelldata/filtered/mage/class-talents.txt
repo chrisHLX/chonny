@@ -60,6 +60,12 @@ Effects          :
                    Affected Spells: Ice Barrier (11426)
                    Family Flags: 32
 Description      : Shields you with ice, absorbing $<shield> damage$?s235297[ and increasing your armor by $s3%][] for $d.
+
+Melee attacks against you reduce the attacker's movement speed by $205708s1%.
+Tooltip          : Absorbs $w1 damage.
+Melee attackers slowed by $205708s1%.$?s1244069[
+Physical damage taken reduced by ${-$s3}%.][]
+Variables        : $shield=${$s2/100*$MHP*(1+$@versadmg)}
 
 Name             : Spellsteal (id=30449) [Spell Family (3)] 
 Talent Entry     : Generic [tree=class, row=5, col=1, max_rank=1, req_points=8]
@@ -114,6 +120,9 @@ Effects          :
                    Base Value: 12 | Scaled Value: 12
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Enemies in a $s3 yd cone in front of you take $s2 Fire damage and are disoriented for $d. Damage will cancel the effect.$?a235870[
+
+Always deals a critical strike and contributes to Hot Streak.][]
+Tooltip          : Disoriented.
 
 Name             : Ice Block (id=45438) [Spell Family (3)] 
 Talent Entry     : Generic [tree=class, row=2, col=5, max_rank=1, req_points=0]
@@ -153,6 +162,12 @@ Effects          :
 #7 (id=877190)   : Apply Aura (6) | Periodic Heal% (20): every 1 seconds
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
 Description      : Encases you in a block of ice, protecting you from all attacks and damage for $d, but during that time you cannot attack, move, or cast spells.$?a382292[
+
+While inside Ice Block, you heal for ${$382292s1*10}% of your maximum health over the duration.][]
+
+Causes Hypothermia, preventing you from recasting Ice Block for $41425d.
+Tooltip          : Immune to all attacks and damage.
+Cannot attack, move, or use spells.
 
 Name             : Greater Invisibility (id=110959) [Spell Family (3)] 
 Talent Entry     : Generic [tree=class, row=6, col=6, max_rank=1, req_points=8, replace="Invisibility" (id=66)]
@@ -174,6 +189,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 110960 | Target: Self (1)
 Description      : Makes you invisible and untargetable for $110960d, removing all threat. Any action taken cancels this effect.
 $?a382293[
+
+Increases your movement speed by ${$382293s1}% for $337278d.][]
 
 Name             : Ring of Frost (id=113724) [Spell Family (3)] 
 Talent Entry     : Generic [tree=class, row=9, col=4, max_rank=1, req_points=20, select_idx=100]
@@ -204,6 +221,8 @@ Effects          :
 #3 (id=131422)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Radius: 6.5 - 8 yards | Target: at Area (87)
 Description      : Summons a Ring of Frost for $d at the target location. Enemies entering the ring are incapacitated for $82691d. Limit 10 targets.
+
+When the incapacitate expires, enemies are slowed by $321329s1% for $321329d.
 
 Name             : Supernova (id=157980) [Spell Family (3)] 
 Talent Entry     : Generic [tree=class, row=5, col=4, max_rank=1, req_points=8, select_idx=200]
@@ -321,6 +340,9 @@ Effects          :
 #2 (id=315358)   : Apply Aura (6) | Cast while Moving (377)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Teleports you $A1 yds forward, unless something is in the way. Unaffected by the global cooldown and castable while casting.$?a382289[
+
+Gain a shield that absorbs $382289s1% of your maximum health for $382290d after you Shimmer.][]
+Tooltip          : Shimmering.
 
 Name             : Blazing Barrier (id=235313) [Spell Family (3)] 
 Talent Entry     : Fire [free=(Fire), tree=class, row=1, col=4, max_rank=1, req_points=0]
@@ -357,6 +379,12 @@ Effects          :
                    Affected Spells: Blazing Barrier (235313)
                    Family Flags: 94
 Description      : Shields you in flame, absorbing $<shield> damage$?s194315[ and reducing Physical damage taken by $s3%][] for $d.
+
+Melee attacks against you cause the attacker to take $235314s1 Fire damage.
+Tooltip          : Absorbs $w1 damage.
+Melee attackers take $235314s1 Fire damage.$?a321708[
+Heals you for $321708s2% of the damage absorbed.][]
+Variables        : $shield=${$s2/100*$MHP*(1+$@versadmg)}
 
 Name             : Prismatic Barrier (id=235450) [Spell Family (3)] 
 Talent Entry     : Arcane [free=(Arcane), tree=class, row=1, col=4, max_rank=1, req_points=0]
@@ -397,6 +425,12 @@ Effects          :
                    Affected Spells: Prismatic Barrier (235450)
                    Family Flags: 68
 Description      : Shields you with an arcane force, absorbing $<shield> damage and reducing magic damage taken by $s3% for $d.
+
+The duration of harmful Magic effects against you is reduced by $s4%.
+Tooltip          : Absorbs $w1 damage.
+Magic damage taken reduced by $s3%.
+Duration of all harmful Magic effects reduced by $w4%.
+Variables        : $shield=${$s2/100*$MHP*(1+$@versadmg)}
 
 Name             : Improved Blazing Barrier (id=321708) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Fire [tree=class, row=10, col=6, max_rank=1, req_points=20]
@@ -642,6 +676,9 @@ Effects          :
 #2 (id=1014831)  : Apply Aura (6) | Change Model (56)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 16372 | Misc Value 2: 9 | Radius: 0 - 10 yards | Target: Source (22) -> Enemy in Area (15)
 Description      : Transforms all enemies within $a yards into sheep, wandering around incapacitated for $d. While affected, the victims cannot take actions but will regenerate health very quickly. Damage will cancel the effect.
+
+Only works on Beasts, Humanoids and Critters.
+Tooltip          : Incapacitated. Cannot attack or cast spells.  Increased health regeneration.
 
 Name             : Freezing Cold (id=386763) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=9, col=2, max_rank=1, req_points=20, select_idx=100]
@@ -658,6 +695,8 @@ Effects          :
 #1 (id=1021057)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Enemies hit by Cone of Cold are frozen in place for $386770d instead of snared.
+
+When your roots expire or are dispelled, your target is snared by $394255s1%, decaying over $394255d.
 
 Name             : Energized Barriers (id=386828) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=9, col=5, max_rank=1, req_points=20]
@@ -711,6 +750,8 @@ Effects          :
 #2 (id=1033667)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Each time your $?a137021[Arcane Barrage]?a137019[Fireball]?a137020[Frostbolt][Arcane Barrage, Fireball, or Frostbolt] fails to critically strike, it gains $?a137021[$394195s3]?a137019[$394195s1]?a137020[$394195s2][$394195s2]% increased critical strike chance.
+
+Critical strike bonus is removed when the affected spell critically strikes.
 
 Name             : Ice Cold (id=414659) [Spell Family (3), Passive] 
 Talent Entry     : Generic [tree=class, row=10, col=2, max_rank=1, req_points=20]
@@ -753,6 +794,11 @@ Effects          :
 #4 (id=1083973)  : Sanctuary (176)
                    Base Value: 0 | Scaled Value: 0 | Radius: 0 - 40 yards | Target: at Self (18) -> At Ally in Area (31)
 Description      : You and your allies within $A1 yards instantly become invisible for $d. Taking any action will cancel the effect.
+
+$?a415945[]
+
+[Does not affect allies in combat.]
+Tooltip          : Invisible. Taking any action will cancel the effect.
 
 Name             : Barrier Diffusion (id=455428) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=9, col=7, max_rank=1, req_points=20]
@@ -995,6 +1041,9 @@ Effects          :
 #1 (id=1283196)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : After casting $?s212653[Shimmer][Blink], it is replaced with Reflection for $389714d.
+
+$@spellicon389713 $@spellname389713
+$@spelldesc389713
 
 Name             : Mana Confluence (id=1270845) [Spell Family (3), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=8, col=5, max_rank=1, req_points=20]

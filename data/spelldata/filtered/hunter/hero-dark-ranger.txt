@@ -18,6 +18,8 @@ Effects          :
 #2 (id=1137745)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Exhilaration grants you $s1 sec of Survival of the Fittest.
+
+Survival of the Fittest activates Exhilaration at $s2% effectiveness.
 
 Name             : Dark Chains (id=430712) [Spell Family (9), Passive] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=100]
@@ -76,6 +78,9 @@ Effects          :
 #1 (id=1179821)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Black Arrow overrides Kill Shot
                    Base Value: 466930 | Scaled Value: 466930 | Misc Value: 53351 | Target: Self (1)
 Description      : Your Kill Shot is replaced with Black Arrow.
+
+$@spellicon466930 $@spellname466930
+$@spelldesc466930
 
 Name             : Withering Fire (id=466990) [Spell Family (9), Passive] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -99,6 +104,9 @@ Effects          :
 #4 (id=1181481)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : $?c1[Bestial Wrath][Trueshot] causes you to surrender to darkness, granting you Withering Fire for $?c1[$466991d][the duration of Trueshot] and Deathblow.
+
+$@spellicon466991 $@spellname466991
+Casting Black Arrow fires a barrage of $s3 additional Black Arrows at nearby targets at $s4% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.
 
 Name             : The Bell Tolls (id=467644) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=200]
@@ -120,6 +128,8 @@ Effects          :
 #4 (id=1276996)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : $?c1[All pet damage increased by $s2%][Critical strike chance increased by $s1%].
+
+$?c1[Dire Beast damage increased by $s3%][Dark Minion damage increased by $s4%].
 
 Name             : Shadow Dagger (id=467741) [Spell Family (9), Passive] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -160,6 +170,8 @@ Effects          :
                    Affected Spells: Auto Shot (75), Bleak Arrows (467718)
                    Family Flags: 0
 Description      : Your auto shot now deals Shadow damage, allowing it to bypass armor.
+
+Auto shot damage increased by $s3%.
 
 Name             : Ebon Bowstring (id=467897) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=3, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -177,6 +189,9 @@ Effects          :
 #1 (id=1181279)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Casting Black Arrow has a $s1% chance to grant Deathblow.
+
+$@spellicon378770 $@spellname378770
+The cooldown of $?a137015[Black Arrow]?a466932[Black Arrow][Kill Shot] is reset. Your next $?a137015[Black Arrow]?a466932[Black Arrow][Kill Shot] can be used on any target, regardless of their current health.
 
 Name             : Banshee's Mark (id=467902) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -263,6 +278,8 @@ Effects          :
 #2 (id=1230712)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Bleak Powder now applies Black Arrow's periodic effect to all enemies it damages.
+
+If Bleak Powder damages $s2 or more enemies, gain $?c1[Beast Cleave][Trick Shots] if talented.
 
 Name             : Corpsecaller (id=1264289) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
@@ -299,6 +316,11 @@ Effects          :
 #1 (id=1275552)  : Apply Aura (6) | Proc Trigger Spell (42): Wailing Arrow
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 459808 | Target: Self (1)
 Description      : $?c1[Bestial Wrath][Trueshot] summons a $?c1[Dark Hound][Dark Minion].
+
+For $459808d after casting $?c1[Bestial Wrath][Trueshot], $?c1[Bestial Wrath][Trueshot] is replaced with Wailing Arrow.
+
+$@spellicon392060 $@spellname392060
+$@spelldesc392060
 
 Name             : Blighted Quiver (id=1264291) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -336,6 +358,8 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 23 | Misc Value 2: 4949 (Label) | Target: Self (1)
                    Affected Spells (Label): Withering Fire (466990)
 Description      : You fire $s1 additional Black Arrows during Withering Fire's barrage.
+
+$?a137016[Trick Shots damage bonus increased by $s3%. Aspect of the Hydra's damage bonus increased by $s4%][Beast Cleave and Kill Cleave damage increased by $s5%].
 
 Name             : Pact of the Hollow (id=1264690) [Spell Family (9), Passive, Hidden] 
 Talent Entry     : Dark Ranger (Beast Mastery, Marksmanship) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
@@ -372,3 +396,6 @@ Effects          :
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Misc Value 2: 6046 (Label) | Target: Self (1)
                    Affected Spells (Label): Black Arrow (468572)
 Description      : $?c1[Black Arrow deals $s2% increased damage to enemies affected by Black Arrow's periodic damage.][Headshot can now stack $s1 additional $Ltime:times;.
+
+$@spellicon471363 $@spellname471363
+$@spelldesc471363]

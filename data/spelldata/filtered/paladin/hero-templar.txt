@@ -20,6 +20,8 @@ Effects          :
 #2 (id=1146237)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 433674 | Target: Self (1)
 Description      : You gain a stack of Light's Deliverance when you call down an Empyrean Hammer.
+
+While $?a137028[Divine Toll][Wake of Ashes] and Hammer of Light are unavailable, you consume $433674U stacks of Light's Deliverance, empowering yourself to cast Hammer of Light an additional time for free.
 
 Name             : Light's Guidance (id=427445) [Spell Family (10), Passive, Hidden] 
 Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
@@ -42,6 +44,10 @@ Effects          :
 #4 (id=1119213)  : Dummy (3)
                    Base Value: 500 | Scaled Value: 500 | Target: Self (1)
 Description      : $?a137028[Divine Toll][Wake of Ashes] is replaced with $@spellname427453 for $427441d after it is cast.
+
+$@spellicon427453 $@spellname427453:
+$@spelldesc427453
+|cFFFFFFFFCosts 5 Holy Power.
 
 Name             : Zealous Vindication (id=431463) [Spell Family (10), Passive] 
 Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=2, col=1, max_rank=1, req_points=1]
@@ -96,6 +102,8 @@ Effects          :
 #3 (id=1123102)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : When Empyrean Hammer critically strikes, $s2% of its damage is dealt to nearby enemies.
+
+Enemies hit by this effect deal $431625s3% reduced damage to you for $431625d.
 
 Name             : Higher Calling (id=431687) [Spell Family (10), Passive] 
 Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
@@ -136,6 +144,8 @@ Effects          :
 #6 (id=1171029)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : $?a137028[Divine Toll][Wake of Ashes] surrounds you with a Holy barrier for $?a137028[$s1][$s4]% of your maximum health.
+
+Hammer of Light heals you for $?a137028[$s2][$s5]% of your maximum health, increased by $?a137028[$s3][$s6]% for each additional target hit. Any overhealing done with this effect gets converted into a Holy barrier instead.
 
 Name             : Hammerfall (id=432463) [Spell Family (10), Passive] 
 Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
@@ -150,6 +160,8 @@ Effects          :
 #1 (id=1121178)  : Apply Aura (6) | Proc Trigger Spell (42)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $?a137028[Shield of the Righteous and Word of Glory]?s383328[Final Verdict][Templar's Verdict]$?a137027[ and Divine Storm][] calls down an Empyrean Hammer on a nearby enemy.
+
+While Shake the Heavens is active, this effect calls down an additional Empyrean Hammer.
 
 Name             : Endless Wrath (id=432615) [Spell Family (10), Passive] 
 Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -198,6 +210,9 @@ Effects          :
 #4 (id=1123072)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Divine Toll summons Divine Hammers that spin around you for $198034d.
+
+$@spellicon198034$@spellname198034
+$@spelldesc198034
 
 Name             : Sanctification (id=432977) [Spell Family (10), Passive] 
 Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=4, col=1, max_rank=1, req_points=1, select_idx=200]
@@ -211,6 +226,8 @@ Effects          :
 #1 (id=1122007)  : Apply Aura (6) | Proc Trigger Spell (42)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Casting Judgment increases the damage of Empyrean Hammer by $433671s1% for $433671d.
+
+Multiple applications may overlap.
 
 Name             : Unrelenting Charger (id=432990) [Spell Family (10), Passive] 
 Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=3, col=4, max_rank=1, req_points=1, select_idx=200]

@@ -1,0 +1,19 @@
+# Paladin — Havoc Spec Talents
+# Extracted verbatim from paladin.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# 1 spell record(s). Mechanical regroup only — no content altered.
+
+Name             : Dash of Chaos (id=427794) [Spell Family (107), Passive, Hidden] 
+Talent Entry     : Havoc [tree=spec, row=3, col=1, max_rank=1, req_points=0]
+Class            : Demon Hunter
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Cast Successful
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Hide Passive From Tooltip (451)
+Effects          :
+#1 (id=1107562)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : For ${$427793D-($428160s1/10)} sec after using Fel Rush, activating it again will dash back towards your initial location.

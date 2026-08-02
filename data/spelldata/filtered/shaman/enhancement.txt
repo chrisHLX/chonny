@@ -67,6 +67,11 @@ Effects          :
 #16 (id=1248799) : Trigger Spell (64): Doom Winds
                    Base Value: 0 | Scaled Value: 0 | Delay: 10_ms | Trigger Spell: 384352 | Target: Self (1)
 Description      : Transform into an Air Ascendant for $114051d and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by $114051s9%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a $114089r yd range.
+
+Maelstrom Weapon spenders have a ${$1252197s1/10}.1% chance to unleash Doom Winds per Maelstrom Weapon spent while Ascendance is not active.
+Tooltip          : Transformed into a powerful Air Ascendant. Auto attacks have a $114089r yard range, Stormstrike is empowered and has a $114089r yard range.$?s384411[
+
+Generating $384411s1 $lstack:stacks; of Maelstrom Weapon every $384437t1 sec.][]
 
 Name             : Crash Lightning (id=187874) [Spell Family (11)] 
 Talent Entry     : Enhancement [tree=spec, row=3, col=4, max_rank=1, req_points=0]
@@ -96,6 +101,9 @@ Effects          :
 #2 (id=739957)   : Dummy (3)
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
 Description      : Electrocutes all enemies in front of you, dealing $s1 Nature damage. 
+
+Enhances your weapons for $187878d, causing Stormstrike and Lava Lash to discharge $195592s1 Nature damage split between up to $195592i enemies in front of you. $?s1252373[Multiple applications may overlap.][]
+Variables        : $CAP=$?$OWB==0[${$AP*0.98}][${($AP+$OAP)*2/3}]--2H, DW
 
 Name             : Maelstrom Weapon (id=187880) [Spell Family (11), Passive] 
 Talent Entry     : Enhancement [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -130,6 +138,8 @@ Effects          :
                    Affected Spells: Maelstrom Weapon (187881)
                    Family Flags: 100
 Description      : When you deal damage with a melee weapon, you have a chance to generate Maelstrom Weapon, stacking up to $344179u times. 
+
+Each stack of Maelstrom Weapon reduces the cast time of your next Lightning Bolt or Chain Lightning by $s5% and increases its damage by $s3%.
 
 Name             : Sundering (id=197214) [Spell Family (11)] 
 Talent Entry     : Enhancement [tree=spec, row=8, col=6, max_rank=1, req_points=20]
@@ -182,6 +192,8 @@ Effects          :
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 1935 (Label)
                    Affected Spells (Label): Hot Hand (215785)
 Description      : Melee auto-attacks with Flametongue Weapon active have a $h% chance to reduce the cooldown of Lava Lash by ${100*(1-(100/(100+$m2)))}% and increase the damage of Lava Lash by $s3% for $215785d.
+
+May not occur during an active Hot Hand.
 
 Name             : Elemental Assault (id=210853) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -289,6 +301,8 @@ Effects          :
 #3 (id=1185758)  : Apply Aura (6) | Proc Trigger Spell (42): Stormblast
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 470466 | Target: Self (1)
 Description      : Stormstrike has an additional charge.
+
+Stormsurge now also causes your next Stormstrike to deal $s1% additional damage as Nature damage, stacking up to $470466u times.
 
 Name             : Molten Assault (id=334033) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=3, col=6, max_rank=1, req_points=0]
@@ -392,6 +406,11 @@ Effects          :
 #4 (id=1006633)  : Apply Aura (6) | Dummy (4)
                    Base Value: 7 | Scaled Value: 7 | Target: Self (1)
 Description      : $?a137039[Casting Riptide]?a137040[Each Maelstrom spent][Each stack of Maelstrom Weapon consumed] has a $?a137039[$s4]?a137040[${$s2/100}.2][${$s3/10}.1]% chance to activate Ascendance for ${$m1/1000}.1 sec.
+
+$?a137039[$@spellicon114052 $@spellname114052
+$@spelldesc114052]?a137040[$@spellicon114050 $@spellname114050
+$@spelldesc114050][$@spellicon114051 $@spellname114051
+Transform into an Air Ascendant for $114051d and unleash Doom Winds, reducing the cooldown and cost of Stormstrike by $114051s9%, and transforming your auto attack and Stormstrike into Wind attacks which bypass armor and have a $114089r yd range.]
 
 Name             : Surging Elements (id=382042) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=9, col=7, max_rank=1, req_points=20]
@@ -450,6 +469,8 @@ Effects          :
 #5 (id=1310803)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Maelstrom Weapon can now stack $s1 additional times.
+
+Each Maelstrom Weapon stacks consumed grants Overflowing Maelstrom, reducing the cast time of your next Healing Surge or Chain Heal by $s3%, and increasing their healing by $s4% up to $s5 times. This effect can be accumulated up to $410681u times.
 
 Name             : Raging Maelstrom (id=384149) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=5, col=4, max_rank=1, req_points=8]
@@ -488,6 +509,11 @@ Effects          :
 #2 (id=1183511)  : Trigger Spell (64): Doom Winds
                    Base Value: 0 | Scaled Value: 0 | Delay: 100_ms | Trigger Spell: 469270 | Target: at Self (18)
 Description      : Unleash a devastating storm around yourself, dealing $469270s1 Stormstrike damage every $466772s5 sec to nearby enemies for $466772d.
+
+Increases your chance to activate Windfury Weapon by $466772s1%, and the damage of Windfury Weapon by $466772s2%.
+
+Tooltip          : Chance to activate Windfury Weapon increased to ${$319773h}.1%.
+Damage dealt by Windfury Weapon increased by $s2%.
 
 Name             : Elemental Weapons (id=384355) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -561,6 +587,8 @@ Effects          :
                    Base Value: 2000 | Scaled Value: 2000 | Misc Value: 3 | Misc Value 2: 4093 (Label) | Target: Self (1)
                    Affected Spells (Label): Deeply Rooted Elements (378270)
 Description      : Doom Winds and Deeply Rooted Elements last ${$s5/1000} sec longer, and the cooldown of Ascendance is reduced by ${$s4/-1000} sec.
+
+During Doom Winds or Ascendance, Stormstrike and Crash Lightning consume up to $s1 Maelstrom Weapon to discharge a Lightning Bolt or Chain Lightning at $s2% effectiveness at your enemy, whichever you most recently used.
 
 Name             : Lightning Strikes (id=384450) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=9, col=1, max_rank=1, req_points=20]
@@ -644,6 +672,9 @@ Effects          :
 #2 (id=1255865)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Self (1)
 Description      : Casting Sundering summons $s1 Fire Feral $lSpirit:Spirits; and Doom Winds summons $s2 Nature Feral $lSpirit:Spirits; by your side for $469322d.
+
+$@spellicon469314$@spellname469314
+An Elemental Spirit $?s147783[Raptor][Wolf] infused with Fire or Nature magic, granting the summoner with $224125s1% increased Fire or Nature damage and $224125s3% Physical damage for $469322d.
 
 Name             : Voltaic Blaze (id=470057) [Spell Family (11)] 
 Talent Entry     : Enhancement [tree=spec, row=6, col=6, max_rank=1, req_points=8, replace="Flame Shock" (id=470411)]
@@ -674,6 +705,10 @@ Effects          :
 #4 (id=1267980)  : Dummy (3)
                    Base Value: 5 | Scaled Value: 5 | Target: Targeted Enemy (6)
 Description      : Instantly shocks the target and $s4 enemies within $A1 yds with blazing thunder, applying Flame Shock and dealing $1259101s1 Nature damage. Always critically strikes.$?a343725[
+
+|cFFFFFFFFGenerates $343725s14 Maelstrom.|r][
+
+Generates $s2 $Lstack:stacks; of Maelstrom Weapon.]
 
 Name             : Primordial Storm (id=1218047) [Spell Family (11), Passive] 
 Talent Entry     : Enhancement [tree=spec, row=10, col=7, max_rank=1, req_points=20]
@@ -697,6 +732,11 @@ Effects          :
 #3 (id=1206347)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Sundering transforms into a single use Primordial Storm for $1218125d after it is cast.
+
+$@spellicon1218047$@spellname1218047
+Devastate nearby enemies with a Primordial Storm dealing $1218113s1 Flamestrike, $1218116s1 Froststrike, $1218118s1 Stormstrike damage, and unleashing a Lightning Bolt or a Chain Lightning at $s2% effectiveness. Deals reduced damage beyond $s3 targets.
+
+|cFFFFFFFFConsumes Maelstrom Weapon for increased damage.|r
 
 Name             : Elemental Tempo (id=1250364) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=6, col=4, max_rank=1, req_points=8]
@@ -721,6 +761,8 @@ Effects          :
 #4 (id=1254434)  : Apply Aura (6) | Dummy (4)
                    Base Value: 300 | Scaled Value: 300 | Target: Self (1)
 Description      : Elemental damage increased by $s1%. 
+
+Each stack of Maelstrom Weapon consumed reduces the cooldown of Stormstrike by ${$s3/1000}.1 sec and Lava Lash by ${$s4/1000}.1 sec.
 
 Name             : Overcharge (id=1251026) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -792,6 +834,9 @@ Effects          :
 #2 (id=1273649)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Voltaic Blaze generates $s1 additional Maelstrom Weapon and has a $s2% chance to cause a Fire Nova.
+
+$@spellicon333974$@spellname333974
+$@spelldesc333974
 
 Name             : Thunder Capacitor (id=1262635) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Enhancement [tree=spec, row=10, col=1, max_rank=1, req_points=20]
@@ -846,3 +891,5 @@ Effects          :
                    Affected Spells: Flametongue Attack (10444), Windfury Attack (25504), Windfury Attack (33750), Flametongue Weapon (318038), Flametongue Weapon (319778), Flametongue Attack (467386), Flametongue Attack (467390)
                    Family Flags: 21, 23
 Description      : Maelstrom Weapon spending abilities deal $s1% increased damage. 
+
+Weapon Imbuements deal $s2% increased damage.
