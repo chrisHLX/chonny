@@ -1,0 +1,34 @@
+# Manually-verified baseline spec-id overrides.
+#
+# WHY THIS FILE EXISTS: WoW's own data model has no "spec membership" table for spells —
+# see wow-spell-data-model.md and CLAUDE.md's "Baseline ability display" section for the
+# full story. A baseline (never-a-talent) spell's spell_class_availability row is either
+# explicitly spec-tagged (when Blizzard's own export states a restriction, e.g. a
+# free=(...) annotation) or spec_id=NULL — and NULL is structurally ambiguous: it means
+# "genuinely available to every spec of this class" for some spells (Leg Sweep) and
+# "actually spec-restricted, but the source data just never says so" for others (Mind
+# Sear, on Discipline Priest — confirmed leaking this exact way on 2026-08-06). There is
+# no reliable way to tell these apart from the data alone.
+#
+# This file is the deliberate alternative to guessing: a hand-curated, one-at-a-time list
+# of (spell, class, spec) facts, each one verified before being added — never bulk-derived,
+# never auto-generated. Every entry here becomes an EXPLICIT spec_id row (source =
+# 'verified_override'), added ALONGSIDE any existing spec_id=NULL row for the same spell —
+# never replacing it. Read by TalentSelectionService::verifiedBaselineAbilityIds(), the only
+# safe display path for baseline abilities (see that method's docblock — it ONLY reads
+# source='verified_override' rows, never the ambiguous spec_id=NULL bucket).
+#
+# Format: spell_id | class_slug | spec_slug | name (comment only, not parsed)
+# class_slug matches classes.slug; spec_slug matches specializations.slug (both
+# Str::slug()'d at import time — "Beast Mastery" -> "beast-mastery").
+#
+# Adding a new line here is a real claim about the live game, not a data-cleanup nit —
+# verify it (in-game, a real spellbook export, or equally solid evidence) before adding.
+
+119381 | monk | windwalker | Leg Sweep
+187650 | hunter | beast-mastery | Freezing Trap
+187650 | hunter | marksmanship | Freezing Trap
+187650 | hunter | survival | Freezing Trap
+853 | paladin | holy | Hammer of Justice
+853 | paladin | protection | Hammer of Justice
+853 | paladin | retribution | Hammer of Justice

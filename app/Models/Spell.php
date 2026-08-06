@@ -13,10 +13,14 @@ class Spell extends Model
         'name',
         'school',
         'description',
+        'variables',
         'charges',
         'cooldown_seconds',
         'duration_seconds',
         'not_in_spellbook',
+        'icon_name',
+        'mechanic',
+        'is_passive',
     ];
 
     // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL
@@ -29,6 +33,7 @@ class Spell extends Model
         'cooldown_seconds' => 'decimal:2',
         'duration_seconds' => 'decimal:2',
         'not_in_spellbook' => 'boolean',
+        'is_passive' => 'boolean',
     ];
 
     public function patch()

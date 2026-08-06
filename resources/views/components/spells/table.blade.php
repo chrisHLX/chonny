@@ -12,10 +12,16 @@
 
 @if (!empty($entries))
     <div class="linear-card overflow-hidden">
-        <div class="px-5 py-4 border-b border-line">
-            <p class="page-section-title">{{ $title }}</p>
-            <p class="text-[11px] text-ink-subtle mt-0.5">{{ $description }}</p>
-        </div>
+        @if ($title || $description)
+            <div class="px-5 py-4 border-b border-line">
+                @if ($title)
+                    <p class="page-section-title">{{ $title }}</p>
+                @endif
+                @if ($description)
+                    <p class="text-[11px] text-ink-subtle mt-0.5">{{ $description }}</p>
+                @endif
+            </div>
+        @endif
 
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
@@ -23,22 +29,60 @@
                     <tr class="border-b border-line-strong">
                         <th class="pl-5 pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Spell</th>
                         <th class="pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Description</th>
-                        <th class="pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">CD</th>
-                        <th class="pr-5 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">What Modifies/Enhances It</th>
+                        <th class="pr-4 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Cooldown</th>
+                        <th class="pr-5 py-2 text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Modifies / Enhances</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {{-- Heuristic grouping (ModuleSpellReferenceService::categorize()) — view-layer
-                         only, computed from each spell's own spell_effects, not authoritative for
-                         every multi-purpose spell. See that method's docblock. --}}
+                <tbody data-role="spell-tbody">
+                    {{-- Top-level split: Blizzard's own "Passive (6)" Attributes marker
+                         (spells.is_passive) — "Active Abilities" vs "Buffs & Passives". Was
+                         previously has-a-cooldown vs no-cooldown, a stand-in that broke for real
+                         actively-cast spells with no cooldown timer at all (e.g. Mind Control —
+                         balanced by its channel time and diminishing returns, not a cooldown —
+                         which filed under "Buffs & Passives" despite being something you press on
+                         an enemy player; found 2026-08-06). The existing category grouping
+                         (ModuleSpellReferenceService::categorize() — view-layer only, not
+                         authoritative for every multi-purpose spell) nests inside each. --}}
                     @php
-                        $groupedSpellRefs = collect($entries)->groupBy('category');
+                        $cooldownGroups = collect($entries)->groupBy(fn ($e) => $e['spell']->is_passive ? 'passive' : 'active');
+                        $cooldownGroupOrder = ['active' => 'Active Abilities', 'passive' => 'Buffs & Passives'];
+                        $groupIcon = [
+                            'active' => '<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
+                            'passive' => '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>',
+                        ];
                         $spellCategoryOrder = ['Crowd Control', 'Defensive', 'Utility', 'Offensive', 'Other'];
+                        $categoryBadge = [
+                            'Crowd Control' => 'badge-blue',
+                            'Defensive' => 'badge-red',
+                            'Utility' => 'badge-amber',
+                            'Offensive' => 'badge-orange',
+                            'Other' => 'badge-gray',
+                        ];
+                        $categoryAccent = [
+                            'Crowd Control' => 'text-violet',
+                            'Defensive' => 'text-rose-400',
+                            'Utility' => 'text-amber-400',
+                            'Offensive' => 'text-orange-400',
+                            'Other' => 'text-ink-subtle',
+                        ];
                     @endphp
-                    @foreach ($spellCategoryOrder as $spellCategoryName)
+                    @foreach ($cooldownGroupOrder as $cooldownKey => $cooldownLabel)
+                        @continue(!$cooldownGroups->has($cooldownKey))
+                        <tr class="bg-surface-3" data-role="group-header" data-group="{{ $cooldownKey }}">
+                            <td colspan="4" class="pl-5 pr-4 py-2 text-[12px] uppercase tracking-wide text-ink font-bold border-b border-line-gold">
+                                <span class="inline-flex items-center gap-2 text-gold">
+                                    {!! $groupIcon[$cooldownKey] !!}
+                                    <span class="text-ink">{{ $cooldownLabel }}</span>
+                                </span>
+                            </td>
+                        </tr>
+                        @php
+                            $groupedSpellRefs = $cooldownGroups->get($cooldownKey)->groupBy('category');
+                        @endphp
+                        @foreach ($spellCategoryOrder as $spellCategoryName)
                         @continue(!$groupedSpellRefs->has($spellCategoryName))
-                        <tr class="bg-surface-2">
-                            <td colspan="4" class="pl-5 pr-4 py-1.5 text-[10px] uppercase tracking-wide text-gold font-semibold border-b border-line-strong">
+                        <tr class="bg-surface-2" data-role="category-header" data-group="{{ $cooldownKey }}" data-category="{{ $spellCategoryName }}">
+                            <td colspan="4" class="pl-5 pr-4 py-1.5 text-[10px] uppercase tracking-wide font-semibold border-b border-line-strong {{ $categoryAccent[$spellCategoryName] ?? 'text-gold' }}">
                                 {{ $spellCategoryName }}
                             </td>
                         </tr>
@@ -87,15 +131,34 @@
                                 };
                             };
                         @endphp
-                        <tr class="border-b border-line align-top">
+                        @php $isSelected = $entry['isSelected'] ?? true; @endphp
+                        <tr class="border-b border-line align-top hover:bg-surface-2/50 transition-colors {{ $isSelected ? '' : 'opacity-50' }}"
+                            data-role="spell-row"
+                            data-group="{{ $cooldownKey }}"
+                            data-category="{{ $spellCategoryName }}"
+                            data-search="{{ strtolower($spell->name) }}">
                             <td class="pl-5 pr-4 py-3 min-w-[10rem]">
-                                <p class="text-[13px] font-semibold text-ink">{{ $spell->name }}</p>
-                                <span class="text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</span>
+                                <div class="flex items-center gap-2">
+                                    <x-spell-icon :spell="$spell" size="w-8 h-8" />
+                                    <div>
+                                        <p class="text-[13px] font-semibold text-ink">{{ $spell->name }}</p>
+                                        <span class="block text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</span>
+                                        <span class="{{ $categoryBadge[$spellCategoryName] ?? 'badge-gray' }} mt-1">{{ $spellCategoryName }}</span>
+                                        @unless ($isSelected)
+                                            <span class="badge-gray mt-1" title="Not selected in this talent profile.">Not selected</span>
+                                        @endunless
+                                    </div>
+                                </div>
                             </td>
                             <td class="pr-4 py-3 text-[12px] text-ink-muted max-w-md">
                                 {{ $entry['description']['text'] ?: '—' }}
                                 @if ($entry['description']['uncertain'])
                                     <span class="text-[10px] text-ink-subtle italic block mt-0.5">Some values above vary by condition or aren't fully known — check in-game.</span>
+                                @endif
+                                @if (!empty($entry['formulaModifiers']) && $entry['formulaModifiers']->isNotEmpty())
+                                    <span class="text-[10px] text-ink-subtle block mt-0.5">
+                                        <span class="font-semibold">Scales with:</span> {{ $entry['formulaModifiers']->pluck('name')->implode(', ') }}
+                                    </span>
                                 @endif
                             </td>
                             <td class="pr-4 py-3 text-[12px] text-ink whitespace-nowrap">
@@ -126,6 +189,7 @@
                                 @endforelse
                             </td>
                         </tr>
+                        @endforeach
                         @endforeach
                     @endforeach
                 </tbody>

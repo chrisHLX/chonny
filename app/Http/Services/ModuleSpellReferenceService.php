@@ -38,6 +38,39 @@ use Illuminate\Support\Facades\Log;
 class ModuleSpellReferenceService
 {
     /**
+     * Per-instance memoization for the handful of lookups that depend only on a
+     * (class_id, spec_id, hero_tree_id) build context, or on a (spell, build class) pair —
+     * never on the specific spell being rendered otherwise. Added 2026-08-06 after measuring
+     * a real 3-spec page (WowComps) taking 45s / ~5,000 queries: buildKitSpellIdsFor(),
+     * buildTreeIdsFor(), genericBaselineAuraCheckerFor(), and resolveKitContext() were each
+     * being recomputed from scratch for every single spell in a spec's ~100-spell kit, even
+     * though their result is identical across every one of those spells (or, for
+     * resolveKitContext(), identical across its two call sites — modifiersFor() and
+     * resolveDescription() — for the same spell+build). Keyed by plain string keys built from
+     * the actual inputs, so a genuinely different context (a different spec, a different
+     * spell) still gets its own correctly-computed entry — this only removes *redundant*
+     * recomputation of an identical input, never changes what any of these methods return.
+     * Cleared automatically per request/property-computation since the service is resolved
+     * fresh each time (not bound as a singleton) — no stale-across-requests risk.
+     */
+    private array $kitSpellIdsMemo = [];
+
+    private array $treeIdsMemo = [];
+
+    private array $baselineCheckerMemo = [];
+
+    private array $kitContextMemo = [];
+
+    /** @var array<string, ?SpellEffect> keyed by "{spell_id}:{index}" — see findEffectByIndex(). */
+    private array $effectByIndexMemo = [];
+
+    /** @var array<string, ?Spell> keyed by "{spell_id}:{patch_id}" — see findSpellBySpellId(). */
+    private array $spellBySpellIdMemo = [];
+
+    /** @var array<string, bool> keyed by "{spell->id}:{classId}:{specId}:{treeIds}" — see isConfidentlyInBuild(). */
+    private array $confidentlyInBuildMemo = [];
+
+    /**
      * Resolves a spell name to a concrete Spell for this build, disambiguating the same way
      * validated by hand against real data (Warrior Arms spot-check, 2026-07-25; the
      * not_in_spellbook step below added 2026-08-01 after a Priest Spellbook cross-check found
@@ -179,21 +212,27 @@ class ModuleSpellReferenceService
      */
     private function resolveKitContext(Spell $spell, ModuleGameBuild $build): array
     {
+        $key = $spell->id.':'.$build->class_id;
+
+        if (array_key_exists($key, $this->kitContextMemo)) {
+            return $this->kitContextMemo[$key];
+        }
+
         $inOwnClass = $spell->classAvailability()->where('class_id', $build->class_id)->exists();
 
-        if ($inOwnClass) {
-            return [
+        $context = $inOwnClass
+            ? [
                 'class_id' => $build->class_id,
                 'spec_id' => $build->specialization_id,
                 'hero_tree_id' => $build->hero_talent_tree_id,
+            ]
+            : [
+                'class_id' => $spell->classAvailability()->value('class_id'),
+                'spec_id' => null,
+                'hero_tree_id' => null,
             ];
-        }
 
-        return [
-            'class_id' => $spell->classAvailability()->value('class_id'),
-            'spec_id' => null,
-            'hero_tree_id' => null,
-        ];
+        return $this->kitContextMemo[$key] = $context;
     }
 
     /**
@@ -222,6 +261,11 @@ class ModuleSpellReferenceService
             return collect();
         }
 
+        $key = $classId.':'.$specId.':'.$heroTreeId;
+        if (array_key_exists($key, $this->kitSpellIdsMemo)) {
+            return $this->kitSpellIdsMemo[$key];
+        }
+
         $availabilityIds = Spell::whereHas('classAvailability', function ($q) use ($classId, $specId) {
             $q->where('class_id', $classId)
                 ->whereIn('source', ['baseline', 'talent', 'pvp_talent'])
@@ -236,7 +280,7 @@ class ModuleSpellReferenceService
             )->pluck('id');
         }
 
-        return $availabilityIds->merge($heroTreeIds)->unique()->values();
+        return $this->kitSpellIdsMemo[$key] = $availabilityIds->merge($heroTreeIds)->unique()->values();
     }
 
     /**
@@ -276,11 +320,17 @@ class ModuleSpellReferenceService
      * old, selection-blind "everything possible" behavior. The 'baseline' bucket (always-on
      * class passives) is deliberately NOT gated — those aren't optional picks.
      *
+     * Since 2026-08-06, $selectedRanks additionally lets a rank-scaled modifier (see
+     * SpellRelationship's docblock and resolveRankAwareMagnitude()) resolve to the magnitude for
+     * the rank the current build actually selected, rather than showing no number at all for a
+     * talent ImportSpellData deliberately left un-computed at import time.
+     *
      * @return array{named: Collection, baseline: Collection}
      */
-    public function modifiersFor(Spell $spell, ModuleGameBuild $build, ?Collection $selectedSpellIds = null): array
+    public function modifiersFor(Spell $spell, ModuleGameBuild $build, ?Collection $selectedSpellIds = null, ?Collection $selectedRanks = null): array
     {
         $selectedSpellIds ??= collect();
+        $selectedRanks ??= collect();
         $context = $this->resolveKitContext($spell, $build);
         $kitIds = $this->buildKitSpellIdsFor($context['class_id'], $context['spec_id'], $context['hero_tree_id']);
         $isBaseline = $this->genericBaselineAuraCheckerFor($context['class_id'], $context['spec_id']);
@@ -291,17 +341,21 @@ class ModuleSpellReferenceService
         $seenIds = collect([$spell->id]);
 
         $classify = function (Spell $candidate, string $relationshipType, ?SpellRelationship $rel = null) use (
-            &$named, &$baseline, $isBaseline, $context, $treeIds, $selectedSpellIds
+            &$named, &$baseline, $isBaseline, $context, $treeIds, $selectedSpellIds, $selectedRanks
         ) {
             if ($this->isKnownJunk($candidate)) {
                 return;
             }
 
+            [$modifierValue, $modifierUnit] = $rel
+                ? $this->resolveRankAwareMagnitude($rel, $candidate, $selectedRanks)
+                : [null, null];
+
             $entry = [
                 'spell' => $candidate,
                 'relationship_type' => $relationshipType,
-                'modifier_value' => $rel?->modifier_value,
-                'modifier_unit' => $rel?->modifier_unit,
+                'modifier_value' => $modifierValue,
+                'modifier_unit' => $modifierUnit,
             ];
 
             if ($isBaseline($candidate)) {
@@ -366,6 +420,66 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Resolves a relationship's magnitude, filling in the rank-scaled case ImportSpellData
+     * deliberately left un-computed at import time (see modifiesRelationshipMapping()/
+     * categoryRelationshipMapping()'s docblocks, and SpellDataFileParser's rank_scaling capture,
+     * 2026-08-06). Two cases:
+     *
+     * - $rel already has a magnitude (the common case — a fixed, not rank-dependent modifier) —
+     *   returned as-is, no extra query.
+     * - $rel has no magnitude but does have an effect_index — look up that specific effect on
+     *   $source. If it's rank-scaled (SpellEffect.rank_op set), resolve the number for the rank
+     *   $selectedRanks says this build actually has: 'set' means rank_values[rank-1] IS the
+     *   value (replaces base_value); 'mul' means base_value × rank_values[rank-1]. The rank
+     *   itself comes from $selectedRanks (built by TalentSelectionService::selectedRanks(), only
+     *   ever populated for PvE picks — by the time this runs, $source is already confirmed
+     *   selected via $selectedSpellIds' gate in modifiersFor(), so a missing rank here means the
+     *   data is present but the specific rank wasn't captured for some other reason, not that
+     *   nothing was selected — falls back to the highest rank in rank_values ("assume full
+     *   investment") rather than showing no number for a talent that IS selected, flagged via the
+     *   fallback's own comment below rather than silently guessed).
+     *
+     * The unit conversion (÷1000 for seconds, none for charges) is driven by $rel->relationship_type
+     * — already correctly classified at import time regardless of rank — not re-derived from the
+     * effect's type string a second time.
+     *
+     * @return array{0: ?float, 1: ?string}
+     */
+    private function resolveRankAwareMagnitude(SpellRelationship $rel, Spell $source, Collection $selectedRanks): array
+    {
+        if ($rel->modifier_value !== null) {
+            return [(float) $rel->modifier_value, $rel->modifier_unit];
+        }
+
+        if ($rel->effect_index === null) {
+            return [null, null];
+        }
+
+        $effect = $this->findEffectByIndex($source, $rel->effect_index);
+
+        if (!$effect || $effect->rank_op === null || empty($effect->rank_values)) {
+            return [null, null];
+        }
+
+        $rank = $selectedRanks->get($source->id);
+        $rankValues = $effect->rank_values;
+        // Missing rank despite a confirmed selection (see docblock) — assume the highest
+        // available rank rather than showing nothing for a talent that IS selected.
+        $rankIndex = $rank !== null ? max(0, $rank - 1) : count($rankValues) - 1;
+        $rankIndex = min($rankIndex, count($rankValues) - 1);
+
+        $rawValue = $effect->rank_op === 'mul'
+            ? ($effect->base_value ?? 0) * $rankValues[$rankIndex]
+            : $rankValues[$rankIndex];
+
+        return match ($rel->relationship_type) {
+            'modifies_cooldown' => [$rawValue / 1000, 'seconds'],
+            'modifies_charges' => [$rawValue, 'charges'],
+            default => [null, null],
+        };
+    }
+
+    /**
      * Computes $spell's effective cooldown given which talents are actually selected —
      * $spell->cooldown_seconds (the base value) with every selected, magnitude-bearing
      * 'modifies_cooldown' modifier applied: flat seconds first, then percent (the layering order
@@ -376,13 +490,63 @@ class ModuleSpellReferenceService
      *
      * @return array{seconds: ?float, base_seconds: ?float, applied: Collection}
      */
-    public function effectiveCooldown(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds): array
+    public function effectiveCooldown(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds, ?Collection $selectedRanks = null): array
     {
         $base = $spell->cooldown_seconds !== null ? (float) $spell->cooldown_seconds : null;
-        $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_cooldown', 'seconds');
+        $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_cooldown', 'seconds', $selectedRanks);
 
         return ['seconds' => $result['value'], 'base_seconds' => $result['base'], 'applied' => $result['applied']];
     }
+
+    /**
+     * Blizzard's own single-value "Mechanic" classification (spells.mechanic, captured 2026-08-06
+     * — see SpellDataFileParser) mapped to categorize()'s five buckets. Checked before the
+     * effect-type regex fallback below since it's Blizzard's own authoritative tag, not an
+     * inference from effect-type strings — found while investigating a real miscategorization:
+     * Mind Control (a Priest Charm effect) showed as Offensive because its core mechanic effect
+     * type is literally "Possess" (not recognized by the old regex), while its incidental "Modify
+     * Damage Done%" side effect happened to match the Offensive pattern instead. Mind Control's
+     * own record carries `Mechanic: Charm`, which this map resolves correctly with no regex
+     * guessing at all.
+     *
+     * Built from a full survey of every distinct Mechanic value in the dataset (2026-08-06) —
+     * not guessed. A few are genuine judgment calls, flagged here rather than hidden: 'Snare' and
+     * 'Knockback' are movement-control tools used both offensively and defensively — filed under
+     * Utility rather than Crowd Control (a snare/knockback isn't "hard" CC the way a stun/root/
+     * fear is, and lumping every slow into the CC bucket would dilute it). 'Heal' is filed under
+     * Defensive since every spell carrying this tag in practice is a self-preservation cooldown,
+     * not a dedicated healer spell (this dataset has no distinct "Healing" bucket).
+     *
+     * @var array<string, string>
+     */
+    private const MECHANIC_CATEGORY_MAP = [
+        'Stun' => 'Crowd Control',
+        'Root' => 'Crowd Control',
+        'Silence' => 'Crowd Control',
+        'Sleep' => 'Crowd Control',
+        'Freeze' => 'Crowd Control',
+        'Charm' => 'Crowd Control',
+        'Incapacitate' => 'Crowd Control',
+        'Disorient' => 'Crowd Control',
+        'Sap' => 'Crowd Control',
+        'Polymorph' => 'Crowd Control',
+        'Horrify' => 'Crowd Control',
+        'Banish' => 'Crowd Control',
+        'Shackle' => 'Crowd Control',
+        'Flee' => 'Crowd Control',
+        'Turn' => 'Crowd Control',
+        'Invulnerable' => 'Defensive',
+        'Invulnerable 2' => 'Defensive',
+        'Shield' => 'Defensive',
+        'Heal' => 'Defensive',
+        'Bleed' => 'Offensive',
+        'Enrage' => 'Offensive',
+        'Taunt' => 'Utility',
+        'Interrupt' => 'Utility',
+        'Distract' => 'Utility',
+        'Knockback' => 'Utility',
+        'Snare' => 'Utility',
+    ];
 
     /**
      * Best-effort display grouping (Crowd Control / Defensive / Utility / Offensive / Other) for
@@ -398,17 +562,71 @@ class ModuleSpellReferenceService
      * Stun/Fear/Root effect is the least ambiguous signal available, Other last as the catch-all
      * for anything that doesn't match any keyword (a passive/proc-only spell, mostly).
      *
+     * Two layers, added 2026-08-06: `spells.mechanic` (MECHANIC_CATEGORY_MAP above) is checked
+     * first when present — Blizzard's own tag, more reliable than inferring from effect-type
+     * strings. When absent or unmapped, falls through to the original effect-type regex — and,
+     * if that alone comes back 'Other', to the SAME same-named-sibling recovery
+     * findEffectByIndex() already uses elsewhere in this file. Found via a real case: Anti-Magic
+     * Zone is split across two spell_id records (the talent-tree entry, whose only effect is
+     * "Create Area Trigger" — no categorizable signal at all — and a separate baseline record
+     * that carries the real "Absorb Damage" effect, with its own description pointing back at
+     * the talent entry via `$@spelldesc`). Neither record has a Mechanic tag, so only the sibling
+     * merge closes this one — without it, the talent-tree entry (the one actually selected by a
+     * build, and therefore the one actually rendered) permanently reads as 'Other' regardless of
+     * what the ability actually does.
+     *
      * @return string One of: 'Crowd Control', 'Defensive', 'Utility', 'Offensive', 'Other'
      */
     public function categorize(Spell $spell): string
     {
-        $types = $spell->effects->pluck('type')->implode(' | ');
+        if ($spell->mechanic !== null && isset(self::MECHANIC_CATEGORY_MAP[$spell->mechanic])) {
+            return self::MECHANIC_CATEGORY_MAP[$spell->mechanic];
+        }
+
+        $category = $this->categorizeFromEffectTypes($spell->effects->pluck('type'));
+
+        if ($category !== 'Other') {
+            return $category;
+        }
+
+        $siblingTypes = Spell::where('name', $spell->name)
+            ->where('patch_id', $spell->patch_id)
+            ->where('id', '!=', $spell->id)
+            ->with('effects')
+            ->get()
+            ->flatMap(fn (Spell $sibling) => $sibling->effects->pluck('type'));
+
+        return $siblingTypes->isEmpty() ? 'Other' : $this->categorizeFromEffectTypes($siblingTypes);
+    }
+
+    /**
+     * @param  \Illuminate\Support\Collection<int, ?string>  $types
+     *
+     * Defensive/Utility patterns extended 2026-08-06 after surveying every currently-selected
+     * *active* ability (has a cooldown or charges — i.e. actually shows under "Active Abilities",
+     * not "Buffs & Passives") still falling into 'Other': 86 of 2,485. Two real, clean clusters
+     * found, both added below — 'Interrupt Cast' (7 confirmed real interrupts: Mind Freeze,
+     * Quell, Counter Shot, Muzzle, Spear Hand Strike, Rebuke, Wind Shear, none previously
+     * recognized) and healing/armor effect types (Direct Heal/Periodic Heal/Heal Max Health%/
+     * Modify Armor — Swiftmend, Wild Growth, Lay on Hands, Riptide, Power Word: Radiance, etc.),
+     * filed under Defensive for the same reason MECHANIC_CATEGORY_MAP's 'Heal' entry already is
+     * (this dataset has no distinct "Healing" bucket, and every one of these in practice is a
+     * self/ally-preservation cooldown). The remaining ~79 "Other" active abilities after this
+     * pass are overwhelmingly summons (Summon Guardian/Pet — genuinely ambiguous, could be
+     * offensive, defensive, or utility depending on the specific pet) and generic stat/haste/
+     * cooldown-modifier cooldowns (Trueshot, Power Infusion, Nature's Swiftness) whose own effect
+     * types don't say enough to safely guess a bucket — left as 'Other' rather than force a
+     * confident-looking label onto a genuinely ambiguous case.
+     */
+    private function categorizeFromEffectTypes(Collection $types): string
+    {
+        $joined = $types->implode(' | ');
 
         return match (true) {
-            (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror/i', $types) => 'Crowd Control',
-            (bool) preg_match('/Damage Taken%|Absorb|Immunity|Block%|Parry%|Dodge%|Damage Reduction/i', $types) => 'Defensive',
-            (bool) preg_match('/Dispel|Increase Speed%|Threat Reduction|Aggro/i', $types) => 'Utility',
-            (bool) preg_match('/School Damage|Damage Done%|Energize/i', $types) => 'Offensive',
+            (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror/i', $joined) => 'Crowd Control',
+            (bool) preg_match('/Damage Taken%|Absorb|Immunity|Block%|Parry%|Dodge%|Damage Reduction|Direct Heal|Periodic Heal|Heal Max Health%|Modify Armor/i', $joined) => 'Defensive',
+            (bool) preg_match('/Dispel|Increase Speed%|Threat Reduction|Aggro|Interrupt Cast|Redirect Threat/i', $joined) => 'Utility',
+            (bool) preg_match('/School Damage|Damage Done%|Energize/i', $joined) => 'Offensive',
             default => 'Other',
         };
     }
@@ -423,10 +641,10 @@ class ModuleSpellReferenceService
      *
      * @return array{charges: ?int, base_charges: ?int, applied: Collection}
      */
-    public function effectiveCharges(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds): array
+    public function effectiveCharges(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds, ?Collection $selectedRanks = null): array
     {
         $base = $spell->charges !== null ? (float) $spell->charges : null;
-        $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_charges', 'charges');
+        $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_charges', 'charges', $selectedRanks);
 
         return [
             'charges' => $result['value'] !== null ? (int) round($result['value']) : null,
@@ -453,13 +671,14 @@ class ModuleSpellReferenceService
         Collection $selectedSpellIds,
         ?float $base,
         string $relationshipType,
-        string $flatUnit
+        string $flatUnit,
+        ?Collection $selectedRanks = null
     ): array {
         if ($base === null || $selectedSpellIds->isEmpty()) {
             return ['value' => $base, 'base' => $base, 'applied' => collect()];
         }
 
-        $modifiers = $this->modifiersFor($spell, $build, $selectedSpellIds);
+        $modifiers = $this->modifiersFor($spell, $build, $selectedSpellIds, $selectedRanks);
 
         // Fixed 2026-08-02: this used to read only ['named'], silently excluding
         // ['baseline'] — the generic always-on class/spec identity passives (e.g. "Discipline
@@ -511,15 +730,20 @@ class ModuleSpellReferenceService
             return false;
         }
 
+        $key = $spell->id.':'.$classId.':'.$specId.':'.implode(',', $treeIds);
+        if (array_key_exists($key, $this->confidentlyInBuildMemo)) {
+            return $this->confidentlyInBuildMemo[$key];
+        }
+
         $isTalentPick = $spell->talentNodeEntries()
             ->whereHas('talentNode', fn ($q) => $q->whereIn('talent_tree_id', $treeIds))
             ->exists();
 
         if ($isTalentPick) {
-            return true;
+            return $this->confidentlyInBuildMemo[$key] = true;
         }
 
-        return $spell->classAvailability()
+        return $this->confidentlyInBuildMemo[$key] = $spell->classAvailability()
             ->where('class_id', $classId)
             ->where('spec_id', $specId)
             ->exists();
@@ -596,9 +820,29 @@ class ModuleSpellReferenceService
                     return '(varies by condition — check in-game)';
                 }
 
-                $other = Spell::where('spell_id', (int) $id)->first();
+                $other = $this->findSpellBySpellId((int) $id, null);
 
                 return ($other && $kitIds->contains($other->id)) ? $branchA : $branchB;
+            },
+            $text
+        );
+
+        // Pass 1.5: bare "$<varname>" references to a named Variables-block formula (e.g.
+        // Penance's "$<penancedamage>") — added 2026-08-02. Actually evaluating the referenced
+        // variable's own formula is out of scope (it can chain through multiple conditional
+        // talent multipliers — see variablesModifiers()'s docblock for why that's deliberately
+        // not attempted), but leaving the raw "$<penancedamage>" token visible in otherwise-clean
+        // prose reads as more broken than the plain "(varies)" placeholder every other
+        // unresolvable case already falls back to — neither Pass 2 nor Pass 3's token regex
+        // matches the angle-bracket form at all, so without this pass it silently passed through
+        // unchanged. variablesModifiers() (called separately by the caller) surfaces which real
+        // talents affect the value instead.
+        $text = preg_replace_callback(
+            '/\$<[a-zA-Z0-9]+>/',
+            function () use (&$uncertain) {
+                $uncertain = true;
+
+                return '(varies)';
             },
             $text
         );
@@ -641,16 +885,36 @@ class ModuleSpellReferenceService
             function ($m) use (&$uncertain, $spell) {
                 $value = $this->resolveValueToken($m[1], $spell);
 
-                if ($value === null) {
-                    $uncertain = true;
-                    Log::warning('ModuleSpellReferenceService: unresolved description token', [
-                        'spell_id' => $spell->spell_id, 'token' => $m[0],
-                    ]);
-
-                    return '(varies)';
+                if ($value !== null) {
+                    return $this->formatNumber($value);
                 }
 
-                return $this->formatNumber($value);
+                // Coefficient fallback (2026-08-02) — only for a bare bs-token directly in
+                // description text, not inside Pass 2's arithmetic (see coefficientDisplay()'s
+                // docblock for why). Covers both "$s1" (this spell's own effect) and "$<id>s1"
+                // (a cross-spell reference, e.g. a description inherited from a different
+                // spell_id whose own effects are what the token was really written against).
+                $coefficientText = null;
+                if (preg_match('/^s(\d+)$/', $m[1], $sm)) {
+                    $coefficientText = $this->coefficientDisplay($spell, (int) $sm[1]);
+                } elseif (preg_match('/^(\d+)s(\d+)$/', $m[1], $sm)) {
+                    $other = $this->findSpellBySpellId((int) $sm[1], $spell->patch_id);
+                    if ($other) {
+                        $coefficientText = $this->coefficientDisplay($other, (int) $sm[2]);
+                    }
+                }
+
+                $uncertain = true;
+
+                if ($coefficientText !== null) {
+                    return $coefficientText;
+                }
+
+                Log::warning('ModuleSpellReferenceService: unresolved description token', [
+                    'spell_id' => $spell->spell_id, 'token' => $m[0],
+                ]);
+
+                return '(varies)';
             },
             $text
         );
@@ -659,15 +923,64 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Real talent/spell names referenced by this spell's own Variables block (the raw
+     * "$var=$?a<id>[...][...]" formula text captured separately from description — see
+     * SpellDataFileParser) — added 2026-08-02 as the practical fallback for a formula
+     * resolveDescription() can't reduce to one number (Penance's damage/healing multiplies a
+     * coefficient by several conditional talent factors — deliberately not resolved into
+     * arithmetic, see coefficientDisplay()'s docblock). Rather than show nothing, this surfaces
+     * WHICH real talents affect the calculation without asserting the exact math — some are
+     * conditional percentage multipliers, some are conditional additions (Penance's Castigation
+     * and Harsh Discipline add extra bolts, they don't multiply the coefficient) — a plain name
+     * list avoids overclaiming a relationship this method doesn't verify.
+     *
+     * Matches $?a<id> (aura/talent known) and $?s<id> (spell known) conditionals — not $?c<n>
+     * (unresolvable condition codes, same posture as resolveDescription()) and not raw stat
+     * tokens ($AP, $INT, $@versadmg, ...), which don't reference a spell at all. Looked up by
+     * spell_id directly (a real unique key per patch, unlike name-based lookups elsewhere in
+     * this file) so there's no duplicate-name ambiguity to resolve here. An id not present in
+     * this patch's imported data (confirmed real — e.g. Mage's "arctic1-4" chain references
+     * spell_ids that don't exist anywhere in the current dataset) is silently skipped, never
+     * guessed.
+     *
+     * @return Collection<int, Spell>
+     */
+    public function variablesModifiers(Spell $spell): Collection
+    {
+        if (!$spell->variables) {
+            return collect();
+        }
+
+        preg_match_all('/\$\?[as](\d+)\[/', $spell->variables, $matches);
+        $ids = array_unique(array_map('intval', $matches[1] ?? []));
+
+        if (empty($ids)) {
+            return collect();
+        }
+
+        return Spell::whereIn('spell_id', $ids)
+            ->where('patch_id', $spell->patch_id)
+            ->orderBy('name')
+            ->get()
+            ->unique('name')
+            ->values();
+    }
+
+    /**
      * "s1"/"s2"/... -> this spell's own effect N (scaled_value, falling back to base_value);
      * "d" -> its own duration; "<id>s1"/"<id>d" -> the same, but on another spell entirely (e.g.
      * Angelic Bulwark's "$114214d"). Any other suffix (t/w/m/A/u/...) returns null — genuinely
      * uncertain rather than guessed, since we don't have confirmed semantics for those.
+     *
+     * Both "sN" branches route through findEffectByIndex() (2026-08-02) rather than a plain
+     * "$spell->effects->firstWhere(...)" lookup — see that method's docblock for why: a
+     * description's own spell_id record frequently doesn't carry the effect data its own text
+     * references (Angelic Bulwark, Roar of Sacrifice — confirmed real, recoverable examples).
      */
     private function resolveValueToken(string $token, Spell $spell): ?float
     {
         if (preg_match('/^s(\d+)$/', $token, $m)) {
-            $effect = $spell->effects->firstWhere('effect_index', (int) $m[1]);
+            $effect = $this->findEffectByIndex($spell, (int) $m[1]);
 
             return $effect ? $this->effectValue($effect) : null;
         }
@@ -677,7 +990,7 @@ class ModuleSpellReferenceService
         }
 
         if (preg_match('/^(\d+)(s(\d+)|d)$/', $token, $m)) {
-            $other = Spell::where('spell_id', (int) $m[1])->where('patch_id', $spell->patch_id)->first();
+            $other = $this->findSpellBySpellId((int) $m[1], $spell->patch_id);
 
             if (!$other) {
                 return null;
@@ -687,7 +1000,7 @@ class ModuleSpellReferenceService
                 return $other->duration_seconds !== null ? (float) $other->duration_seconds : null;
             }
 
-            $effect = $other->effects->firstWhere('effect_index', (int) $m[3]);
+            $effect = $this->findEffectByIndex($other, (int) $m[3]);
 
             return $effect ? $this->effectValue($effect) : null;
         }
@@ -696,18 +1009,123 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Finds effect #$index for $spell, falling back to a same-named sibling spell_id (same
+     * patch) when $spell's own effect at that index is missing or carries no real value.
+     *
+     * Added 2026-08-02 after two confirmed real cases where a description's own $sN tokens
+     * don't resolve against the spell carrying that description at all: Angelic Bulwark
+     * (spell_id 114214, the real visible spellbook entry) has only 1 effect of its own, but its
+     * description — inherited via a $@spelldesc pointer from spell_id 108945, a hidden internal
+     * data-carrier record — references $s1/$s2/$s3, which only exist on 108945. Roar of
+     * Sacrifice (spell_id 67481) is a *different* shape of the same underlying problem: no
+     * pointer involved at all, its own description is literal text, but SimC's dump itself
+     * splits the ability's effects across multiple same-named, non-hidden spell_id records, only
+     * one of which (53480, the real Talent Entry) has the complete effect list.
+     *
+     * Quantified before building this (2026-08-02): 1,015 non-hidden spells dataset-wide
+     * reference a $sN index missing from their own effects; 694 (68%) have a same-named sibling
+     * that actually carries it, 321 (32%) don't exist anywhere in the imported data — those stay
+     * unresolved exactly as before, per the "flag, don't guess" rule the rest of this resolver
+     * already follows. This method only ever returns an effect with a real, non-zero value (via
+     * effectValue()) — never a sibling's equally-empty effect, and never guesses which sibling is
+     * "more correct" beyond "the first one that actually has real data" (same posture as
+     * resolveSpellByNameAnyClass()'s own "not expected to be perfect, a wrong pick is a one-line
+     * fix" precedent).
+     */
+    private function findEffectByIndex(Spell $spell, int $index): ?SpellEffect
+    {
+        $key = $spell->id.':'.$index;
+        if (array_key_exists($key, $this->effectByIndexMemo)) {
+            return $this->effectByIndexMemo[$key];
+        }
+
+        $own = $spell->effects->firstWhere('effect_index', $index);
+        if ($own && $this->effectValue($own) !== null) {
+            return $this->effectByIndexMemo[$key] = $own;
+        }
+
+        $siblings = Spell::where('name', $spell->name)
+            ->where('patch_id', $spell->patch_id)
+            ->where('id', '!=', $spell->id)
+            ->with('effects')
+            ->get();
+
+        foreach ($siblings as $sibling) {
+            $candidate = $sibling->effects->firstWhere('effect_index', $index);
+            if ($candidate && $this->effectValue($candidate) !== null) {
+                return $this->effectByIndexMemo[$key] = $candidate;
+            }
+        }
+
+        // null, or a real (zero-valued-or-coefficient-only) effect — let effectValue()/callers decide.
+        return $this->effectByIndexMemo[$key] = $own;
+    }
+
+    /**
+     * Resolves a cross-spell reference (Blizzard's numeric spell_id, e.g. from "$<id>s1"/"$<id>d"
+     * tokens or a $?a<id>/$?s<id> conditional) to a Spell, memoized per (spell_id, patch_id) —
+     * added 2026-08-06 alongside findEffectByIndex()'s memoization, same motivation: the same
+     * cross-spell reference (very often a spec's own identity-passive spell_id, pointed at by
+     * dozens of that spec's other spells' description text) was being re-queried from scratch for
+     * every single spell that mentioned it. $patchId of null preserves Pass 1's pre-existing
+     * behavior of not filtering by patch at all (a narrower behavior change than adding a filter
+     * that wasn't there before was not part of this performance pass).
+     */
+    private function findSpellBySpellId(int $spellId, ?int $patchId): ?Spell
+    {
+        $key = $spellId.':'.($patchId ?? 'null');
+        if (array_key_exists($key, $this->spellBySpellIdMemo)) {
+            return $this->spellBySpellIdMemo[$key];
+        }
+
+        $query = Spell::where('spell_id', $spellId);
+        if ($patchId !== null) {
+            $query->where('patch_id', $patchId);
+        }
+
+        return $this->spellBySpellIdMemo[$key] = $query->first();
+    }
+
+    /**
      * A bare 0 in both base_value and scaled_value usually means the real number lives in a
-     * field we don't capture (e.g. "SP Coefficient" on spell-power-scaled damage effects, like
-     * Mind Blast's — confirmed: Base Value 0, Scaled Value 0, SP Coefficient 0.78336, and that
-     * coefficient is what the game client actually multiplies to get the tooltip number) — not
-     * that the effect is genuinely worth zero. Treated as unresolved rather than a confidently
-     * wrong "0", per the "flag, don't guess" rule this whole resolver follows.
+     * field we don't capture as a plain point value (an SP/PvP-coefficient-scaled effect, like
+     * Mind Blast's — Base Value 0, Scaled Value 0, SP Coefficient 0.78336, and that coefficient
+     * is what the game client actually multiplies against the caster's Spell Power to get the
+     * tooltip number) — not that the effect is genuinely worth zero. Treated as unresolved
+     * rather than a confidently wrong "0", per the "flag, don't guess" rule this whole resolver
+     * follows. sp_coefficient is captured (2026-08-02) and used separately by
+     * coefficientDisplay() for the bare-token case — this method stays deliberately narrow (a
+     * real point value, or nothing) since it's also used by findEffectByIndex() to decide
+     * whether an effect is "real data worth preferring."
      */
     private function effectValue(SpellEffect $effect): ?float
     {
         $value = $effect->scaled_value ?? $effect->base_value;
 
         return ((float) $value !== 0.0) ? (float) $value : null;
+    }
+
+    /**
+     * The coefficient-based fallback for a bare "sN" token (Pass 3 of resolveDescription() only
+     * — deliberately not wired into Pass 2's `${...}` arithmetic evaluator, where blending an
+     * estimated percentage into compound math with talent-conditional multipliers risks the
+     * exact "confidently wrong" failure this resolver otherwise avoids; Penance-shaped formulas
+     * stay unresolved and instead surface their real modifying talent names via
+     * variablesModifiers() below). Routes through the same findEffectByIndex() sibling fallback
+     * as effectValue(), so Mind Blast's own coefficient (found directly) and any future
+     * pointer/sibling-split case both work the same way.
+     *
+     * @return ?string e.g. "≈78.3% of Spell Power" — null when no coefficient exists either.
+     */
+    private function coefficientDisplay(Spell $spell, int $index): ?string
+    {
+        $effect = $this->findEffectByIndex($spell, $index);
+
+        if (!$effect || $effect->sp_coefficient === null) {
+            return null;
+        }
+
+        return '≈'.$this->formatNumber($effect->sp_coefficient * 100).'% of Spell Power';
     }
 
     /** Trims to a whole number when exact, else one decimal place — matches how these tooltip
@@ -844,7 +1262,12 @@ class ModuleSpellReferenceService
             return [];
         }
 
-        return TalentTree::where(function ($q) use ($classId, $specId, $heroTreeId) {
+        $key = $classId.':'.$specId.':'.$heroTreeId;
+        if (array_key_exists($key, $this->treeIdsMemo)) {
+            return $this->treeIdsMemo[$key];
+        }
+
+        return $this->treeIdsMemo[$key] = TalentTree::where(function ($q) use ($classId, $specId, $heroTreeId) {
             $q->where(fn ($q2) => $q2->where('class_id', $classId)->where('type', 'class'));
 
             if ($specId !== null) {
@@ -866,10 +1289,15 @@ class ModuleSpellReferenceService
      */
     private function genericBaselineAuraCheckerFor(?int $classId, ?int $specId): \Closure
     {
+        $key = $classId.':'.$specId;
+        if (array_key_exists($key, $this->baselineCheckerMemo)) {
+            return $this->baselineCheckerMemo[$key];
+        }
+
         $className = $classId ? GameClass::find($classId)?->name : null;
         $specName = $specId ? Specialization::find($specId)?->name : null;
 
-        return function (Spell $s) use ($className, $specName) {
+        return $this->baselineCheckerMemo[$key] = function (Spell $s) use ($className, $specName) {
             if ($className !== null && $s->name === $className) {
                 return true;
             }

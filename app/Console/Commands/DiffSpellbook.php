@@ -21,6 +21,32 @@ use Illuminate\Support\Facades\File;
  * Class/spec are resolved from the snapshot's raw export (string token / Blizzard numeric spec
  * id) against local reference data at diff time, not at import time — a snapshot always imports
  * even when local data lags a patch; the diff is what surfaces that gap instead of failing.
+ *
+ * Direction C added 2026-08-06 after tracing a real report (Mind Sear — a Shadow-only spell —
+ * showing up on a Discipline Priest's kit on WowComps/Spell Explorer). Root cause: Mind Sear's
+ * only spell_class_availability row is `spec_id = NULL` (Blizzard's own SimC-format export never
+ * states a spec restriction for it at all — confirmed by hand against the raw source file,
+ * unlike e.g. Mind Blast's parsed `free=(...)` restriction). Direction B, as originally written,
+ * only ever compared EXPLICIT spec_id matches (`->where('spec_id', $spec->id)`) — a NULL-tagged
+ * row was invisible to it entirely, so this exact mismatch sat undetected in snapshot #1 (a real
+ * Discipline Priest export that has never had Mind Sear) despite the ground truth already being
+ * on hand. Direction C closes that: same "in DB, not in game" comparison as Direction B, but
+ * scoped to `spec_id IS NULL` rows instead of explicit ones. A hit here is a much stronger signal
+ * than Direction B's — it's not "this spell just isn't in the spellbook right now" (talent not
+ * picked, hero tree not chosen, etc., the normal/expected Direction B case), it's "the DB claims
+ * this spell is available to every spec of this class, and a real character of this exact spec
+ * doesn't have it" — i.e. a real spec-tagging correction candidate, not background noise.
+ *
+ * Narrowed the same day it was built: an unfiltered first run against snapshot #1 returned 615
+ * hits — technically correct (all 615 really are absent from this character's real spellbook)
+ * but useless as an actionable list, since the overwhelming majority are the exact same junk
+ * (hidden internal duplicates, pet-family/pet-proc spells, old-expansion artifact/covenant
+ * remnants) that TalentSelectionService::alwaysAvailableAbilityIds() already learned to filter
+ * out when deciding what to actually display. Direction C now applies that identical filter
+ * (not_in_spellbook=false, is_passive=false, no `(desc=...)` suffix, real cooldown/charges data)
+ * before comparing — turning this from "615 things nobody expected to see anyway" into a direct
+ * validation of what the Spells page actually shows: does the real character's spellbook agree
+ * with what alwaysAvailableAbilityIds() would currently render for this spec?
  */
 class DiffSpellbook extends Command
 {
@@ -76,14 +102,18 @@ class DiffSpellbook extends Command
 
         [$missingSpell, $missingAvailability] = $this->directionA($snapshot, $class, $spec, $patch);
         $notInSpellbook = $this->directionB($snapshot, $class, $spec, $patch);
+        $ambiguousSpecMismatch = $this->directionC($snapshot, $class, $spec, $patch);
 
         $this->newLine();
         $this->info('=== Direction A: in game, missing/mistagged in DB (the real alarm) ===');
         $this->line('MISSING_SPELL: '.count($missingSpell));
         $this->line('MISSING_AVAILABILITY: '.count($missingAvailability));
         $this->newLine();
-        $this->info('=== Direction B: in DB, not in game (informational — many legitimate hits expected) ===');
+        $this->info('=== Direction B: in DB (spec-explicit), not in game (informational — many legitimate hits expected) ===');
         $this->line('NOT_IN_SPELLBOOK_CANDIDATE: '.count($notInSpellbook));
+        $this->newLine();
+        $this->info('=== Direction C: in DB (spec_id=NULL / class-wide claim), not in game (real spec-tagging correction candidates) ===');
+        $this->line('AMBIGUOUS_SPEC_MISMATCH: '.count($ambiguousSpecMismatch));
 
         if ($missingSpell !== []) {
             $this->newLine();
@@ -112,6 +142,15 @@ class DiffSpellbook extends Command
             ));
         }
 
+        if ($ambiguousSpecMismatch !== []) {
+            $this->newLine();
+            $this->warn('AMBIGUOUS_SPEC_MISMATCH details (spec_id=NULL in DB, absent from this spec\'s real spellbook):');
+            $this->table(['spell_id', 'name', 'source'], array_map(
+                fn (array $r) => [$r['spell_id'], $r['name'], $r['source']],
+                $ambiguousSpecMismatch
+            ));
+        }
+
         if ($this->option('json')) {
             $result = [
                 'snapshot_id' => $snapshot->id,
@@ -121,6 +160,7 @@ class DiffSpellbook extends Command
                 'missing_spell' => $missingSpell,
                 'missing_availability' => $missingAvailability,
                 'not_in_spellbook_candidate' => $notInSpellbook,
+                'ambiguous_spec_mismatch' => $ambiguousSpecMismatch,
             ];
 
             $dir = storage_path('app/wow-diffs');
@@ -180,13 +220,62 @@ class DiffSpellbook extends Command
             return [];
         }
 
-        $snapshotSpellIds = $snapshot->entries->pluck('spell_id')->flip();
-
         $rows = SpellClassAvailability::where('class_id', $class->id)
             ->where('spec_id', $spec->id)
             ->with('spell')
             ->get();
 
+        return $this->notFoundInSpellbook($snapshot, $rows, $patch);
+    }
+
+    /**
+     * The `spec_id = NULL` counterpart to directionB() — see this class's docblock for why it
+     * exists and what a hit here actually means (a real spec-tagging correction candidate, not
+     * background noise). Same "in DB, not in game" comparison, just scoped to the rows Direction
+     * B structurally can't see (an exact spec_id match is required there; these rows have none).
+     *
+     * @return array<int, array>
+     */
+    private function directionC(SpellbookSnapshot $snapshot, GameClass $class, ?Specialization $spec, Patch $patch): array
+    {
+        if (!$spec) {
+            return [];
+        }
+
+        // Same "plausibly real, currently displayed" filter as
+        // TalentSelectionService::alwaysAvailableAbilityIds() — see this class's docblock for why
+        // an unfiltered query here is technically correct but practically useless (615 hits,
+        // almost all already-known junk). Restricted to source='baseline' to match that method
+        // exactly — a null-spec_id 'talent'/'pvp_talent' row is a different mechanism entirely
+        // (whether it was actually picked, via selectedSpellIds(), not whether it's spec-correct)
+        // and mixing it in here produced false triggers (e.g. Halo, Mass Dispel — real, class-wide
+        // Priest talents this admin build simply hasn't picked, not spec mismatches).
+        $rows = SpellClassAvailability::where('class_id', $class->id)
+            ->whereNull('spec_id')
+            ->where('source', 'baseline')
+            ->whereHas('spell', function ($q) {
+                $q->where('is_passive', false)
+                    ->where('not_in_spellbook', false)
+                    ->where('name', 'not like', '%(desc=%')
+                    ->where(fn ($q2) => $q2->whereNotNull('cooldown_seconds')->orWhereNotNull('charges'));
+            })
+            ->with('spell')
+            ->get();
+
+        return $this->notFoundInSpellbook($snapshot, $rows, $patch);
+    }
+
+    /**
+     * Shared comparison behind directionB()/directionC(): which of the given
+     * spell_class_availability rows claim a spell this snapshot's real export never actually
+     * shows.
+     *
+     * @param  \Illuminate\Support\Collection<int, SpellClassAvailability>  $rows
+     * @return array<int, array>
+     */
+    private function notFoundInSpellbook(SpellbookSnapshot $snapshot, $rows, Patch $patch): array
+    {
+        $snapshotSpellIds = $snapshot->entries->pluck('spell_id')->flip();
         $candidates = [];
 
         foreach ($rows as $row) {

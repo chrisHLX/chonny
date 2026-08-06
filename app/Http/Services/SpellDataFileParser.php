@@ -69,14 +69,16 @@ class SpellDataFileParser
     /**
      * @return array<int, array{
      *     spell_id: int, name: string, school: ?string, description: ?string, description_ref: ?int,
+     *     variables: ?string,
      *     class_field: ?string,
-     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float,
-     *     affecting_spells: array<int, string>,
-     *     category_refs: array<int, string>,
+     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string,
+     *     affecting_spells: array<int, array{name: string, effect_index: ?int}>,
+     *     category_refs: array<int, array{name: string, effect_index: ?int}>,
      *     replaces_refs: array<int, string>,
      *     free_specs: array<int, string>,
      *     not_in_spellbook: bool,
-     *     effects: array<int, array{effect_index: int, type: ?string, base_value: ?float, scaled_value: ?float, modified_by: array<int, string>, affects_category: array<int, string>}>,
+     *     is_passive: bool,
+     *     effects: array<int, array{effect_index: int, type: ?string, base_value: ?float, scaled_value: ?float, sp_coefficient: ?float, pvp_coefficient: ?float, rank_op: ?string, rank_values: ?array<int, float>, modified_by: array<int, array{name: string, effect_index: ?int}>, affects_category: array<int, array{name: string, effect_index: ?int}>}>,
      * }>
      */
     public function parseContent(string $content): array
@@ -87,10 +89,17 @@ class SpellDataFileParser
         $current = null;
         $inEffects = false;
         $inDescriptionContinuation = false;
+        $inVariablesContinuation = false;
         $currentEffect = null;
 
         $flushEffect = function () use (&$current, &$currentEffect) {
             if ($current !== null && $currentEffect !== null) {
+                // rank_scaling is parsed off the Talent Entry line, which always precedes the
+                // Effects: block in this file format — by the time any effect is flushed, the
+                // full per-record rank_scaling map (keyed by effect_index) is already complete.
+                $scaling = $current['rank_scaling'][$currentEffect['effect_index']] ?? null;
+                $currentEffect['rank_op'] = $scaling['op'] ?? null;
+                $currentEffect['rank_values'] = $scaling['values'] ?? null;
                 $current['effects'][] = $currentEffect;
             }
             $currentEffect = null;
@@ -112,19 +121,24 @@ class SpellDataFileParser
                     'school' => null,
                     'description' => null,
                     'description_ref' => null,
+                    'variables' => null,
                     'class_field' => null,
                     'charges' => null,
                     'cooldown_seconds' => null,
                     'duration_seconds' => null,
+                    'mechanic' => null,
                     'affecting_spells' => [],
                     'category_refs' => [],
                     'replaces_refs' => [],
                     'free_specs' => [],
                     'not_in_spellbook' => false,
+                    'is_passive' => false,
+                    'rank_scaling' => [],
                     'effects' => [],
                 ];
                 $inEffects = false;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
                 $currentEffect = null;
 
                 continue;
@@ -182,8 +196,44 @@ class SpellDataFileParser
                 }
             }
 
+            // "Talent Entry : Generic [tree=class, row=8, col=8, max_rank=2, req_points=23]"
+            // followed by a continuation line "Effect#1 [op=set, values=(-5000, -10000)]" — a
+            // multi-rank talent (max_rank > 1) whose effect's real value differs per rank, e.g.
+            // Improved Fade: rank 1 reduces Fade's cooldown by 5s, rank 2 by 10s, both sharing
+            // the same spell_id and effect_index — the single "Base Value" captured in the
+            // Effects: block below only ever reflects ONE of those ranks (found 2026-08-06,
+            // reported by the player: Improved Fade showed -5s regardless of whether 1 or 2
+            // points were invested). Two ops confirmed to occur in this dataset: 'set' (the
+            // listed value IS the effect's value at that rank, replacing base_value entirely)
+            // and 'mul' (base_value is multiplied by the listed value at that rank — e.g.
+            // "[op=mul, values=(1, 2)]"). Matched independent of line prefix, same trick as
+            // replace=/free= above — confirmed empirically this exact "Effect#N [op=...]" shape
+            // never appears outside a Talent Entry line's own primary/continuation content.
+            // Stored per effect_index (a talent can have more than one rank-scaled effect)
+            // rather than applied immediately — the actual value can only be resolved once we
+            // know which rank a given build has selected, which isn't known until render time
+            // (see ImportSpellData::modifiesRelationshipMapping()/categoryRelationshipMapping(),
+            // which now defer magnitude computation for these instead of baking in one rank's
+            // number, and ModuleSpellReferenceService, which resolves it per-build).
+            if (preg_match('/Effect#(\d+)\s*\[op=(set|mul),\s*values=\(([^)]+)\)\]/', $line, $m)) {
+                $values = array_map(fn ($v) => (float) trim($v), explode(',', $m[3]));
+                $current['rank_scaling'][(int) $m[1]] = ['op' => $m[2], 'values' => $values];
+            }
+
             if (preg_match('/^School\s*:\s*(.+)$/', $line, $m)) {
                 $current['school'] = trim($m[1]);
+                $inEffects = false;
+
+                continue;
+            }
+
+            // "Mechanic : Charm" — Blizzard's own single-value classification of what kind of
+            // control/defensive mechanic this spell applies (Stun, Root, Silence, Charm, Shield,
+            // Bleed, etc. — see ModuleSpellReferenceService::categorize(), which checks this
+            // before falling back to its effect-type-string regex heuristic). Sparse — most
+            // spells (plain damage/heal, most passives) have no Mechanic line at all, left null.
+            if (preg_match('/^Mechanic\s*:\s*(.+)$/', $line, $m)) {
+                $current['mechanic'] = trim($m[1]);
                 $inEffects = false;
 
                 continue;
@@ -224,6 +274,13 @@ class SpellDataFileParser
             if (preg_match('/^Attributes\s*:\s*(.*)$/', $line, $m)) {
                 $current['not_in_spellbook'] = str_contains($m[1], 'Not In Spellbook (143)')
                     || str_contains($m[1], 'Do Not Display (Spellbook');
+                // "Passive (6)" — Blizzard's own marker for "this is a passive aura/buff, not
+                // something a player casts". Matched by exact code, same discipline as the
+                // not_in_spellbook check just above (a bare substring match on "Passive" would
+                // risk false-positiving on some other attribute whose name happens to contain
+                // it — none confirmed to exist in this dataset, but the exact-code form costs
+                // nothing and avoids relearning the same false-positive lesson twice).
+                $current['is_passive'] = str_contains($m[1], 'Passive (6)');
                 $inEffects = false;
 
                 continue;
@@ -259,6 +316,7 @@ class SpellDataFileParser
                 }
 
                 $inEffects = false;
+                $inVariablesContinuation = false;
                 $flushEffect();
 
                 continue;
@@ -272,6 +330,26 @@ class SpellDataFileParser
             if (preg_match('/^Tooltip\s*:/', $line)) {
                 $inEffects = false;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
+
+                continue;
+            }
+
+            // "Variables : $castigation=$?a193134[${1}][${0}]" followed by further "$var=..."
+            // lines with no field prefix — the raw formula backing a description's substitution
+            // tokens (e.g. Penance's $<penancedamage>). Added 2026-08-02 alongside sp_coefficient
+            // capture: this used to fall through to the Description-continuation catch-all below
+            // and get silently appended onto the end of 'description' as unreadable formula text
+            // — a real parsing bug, not just a missing feature (confirmed on Penance's own
+            // imported description, which used to end with the full raw "Variables: ..." block
+            // glued on after "Castable while moving."). Stored newline-joined (not space-joined
+            // like Description) so each "$var=expression" stays on its own line for
+            // ModuleSpellReferenceService's later regex extraction of $?a<id>/$?s<id> references.
+            if (preg_match('/^Variables\s*:\s*(.*)$/', $line, $m)) {
+                $current['variables'] = trim($m[1]) ?: null;
+                $inEffects = false;
+                $inDescriptionContinuation = false;
+                $inVariablesContinuation = true;
 
                 continue;
             }
@@ -280,6 +358,7 @@ class SpellDataFileParser
                 $current['affecting_spells'] = $this->parseSpellRefs($m[1]);
                 $inEffects = false;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
 
                 continue;
             }
@@ -291,6 +370,7 @@ class SpellDataFileParser
                 $current['cooldown_seconds'] = (float) $m[2];
                 $inEffects = false;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
 
                 continue;
             }
@@ -302,6 +382,7 @@ class SpellDataFileParser
                 $current['cooldown_seconds'] = (float) $m[1];
                 $inEffects = false;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
 
                 continue;
             }
@@ -313,6 +394,7 @@ class SpellDataFileParser
                 $current['duration_seconds'] = (float) $m[1];
                 $inEffects = false;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
 
                 continue;
             }
@@ -324,6 +406,7 @@ class SpellDataFileParser
                 $current['category_refs'] = $this->parseSpellRefs($m[1] ?? '');
                 $inEffects = false;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
 
                 continue;
             }
@@ -331,6 +414,7 @@ class SpellDataFileParser
             if (preg_match('/^Effects\s*:/', $line)) {
                 $inEffects = true;
                 $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
 
                 continue;
             }
@@ -344,6 +428,21 @@ class SpellDataFileParser
                 $continuationText = trim($line);
                 if ($continuationText !== '') {
                     $current['description'] = trim(($current['description'] ?? '').' '.$continuationText);
+                }
+
+                continue;
+            }
+
+            // Continuation of a Variables block — each further line is another "$var=expression"
+            // with no field prefix. Newline-joined, same blank-line-tolerant style as Description
+            // continuation above (stays open across a blank line rather than treating it as the
+            // end — no confirmed case of an internal blank line in this dataset, but erring
+            // toward the already-proven-safe Description behavior rather than a new, untested
+            // "blank line ends it" rule).
+            if ($inVariablesContinuation) {
+                $continuationText = trim($line);
+                if ($continuationText !== '') {
+                    $current['variables'] = trim(($current['variables'] ?? '')."\n".$continuationText);
                 }
 
                 continue;
@@ -388,6 +487,8 @@ class SpellDataFileParser
                     'type' => $type !== '' ? $type : null,
                     'base_value' => null,
                     'scaled_value' => null,
+                    'sp_coefficient' => null,
+                    'pvp_coefficient' => null,
                     'modified_by' => [],
                     'affects_category' => [],
                 ];
@@ -405,6 +506,23 @@ class SpellDataFileParser
 
             if (preg_match('/Scaled Value:\s*(-?[\d.]+)/', $line, $m)) {
                 $currentEffect['scaled_value'] = (float) $m[1];
+            }
+
+            // "SP Coefficient: 0.8109 | PvP Coefficient: 1.059" — the game's own real damage/
+            // healing multiplier against the caster's Spell Power, present on the same detail
+            // line as Base/Scaled Value for spell-power-scaled effects. Confirmed as a genuine
+            // field in SimC's own structured spell model (spelleffect_data_t.sp_coefficient),
+            // not something specific to this text-dump format — see game-data.md. Captured
+            // 2026-08-02 so ModuleSpellReferenceService can show "≈X% of Spell Power" instead of
+            // an unresolved formula when Base/Scaled Value are both 0 (which they always are for
+            // a purely SP-scaled effect — the real number only exists once multiplied by a real
+            // character's actual Spell Power, which this system doesn't have).
+            if (preg_match('/SP Coefficient:\s*(-?[\d.]+)/', $line, $m)) {
+                $currentEffect['sp_coefficient'] = (float) $m[1];
+            }
+
+            if (preg_match('/PvP Coefficient:\s*(-?[\d.]+)/', $line, $m)) {
+                $currentEffect['pvp_coefficient'] = (float) $m[1];
             }
 
             if (preg_match('/Modified By:\s*(.+)$/', $line, $m)) {
@@ -426,19 +544,30 @@ class SpellDataFileParser
     }
 
     /**
-     * Parses a "Name (id ...), Name2 (id2 effects: #1, #2)" list into unique [spell_id => name]
-     * pairs. The parenthetical body is intentionally treated as opaque (effect refs, ranks,
-     * etc. inside it are discarded) — only the leading numeric id is structural for our purposes.
+     * Parses a "Name (id ...), Name2 (id2 effect#1)" list into unique
+     * [spell_id => {name, effect_index}] pairs. Most of the parenthetical body is still treated
+     * as opaque (ranks etc. are discarded) — only the leading numeric id and an "effect#N"
+     * annotation, when present, are structural for our purposes. effect_index is what lets
+     * ImportSpellData::modifiesRelationshipMapping() look up the *specific* effect on the source
+     * spell that a ref points at (e.g. "Fist of Justice (234299 effect#1)"), rather than just
+     * knowing a relationship exists with no way to find its magnitude — this was the gap CLAUDE.md
+     * flagged as "needs SpellDataFileParser::parseSpellRefs() extended to retain effect-number
+     * annotations it currently discards by design", closed 2026-08-05.
      *
-     * @return array<int, string>
+     * @return array<int, array{name: string, effect_index: ?int}>
      */
     private function parseSpellRefs(string $text): array
     {
         $refs = [];
 
-        if (preg_match_all('/([^,]+?)\s*\((\d+)[^)]*\)/', $text, $matches, PREG_SET_ORDER)) {
+        if (preg_match_all('/([^,]+?)\s*\((\d+)([^)]*)\)/', $text, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
-                $refs[(int) $match[2]] = trim($match[1]);
+                $effectIndex = null;
+                if (preg_match('/effect#(\d+)/', $match[3], $em)) {
+                    $effectIndex = (int) $em[1];
+                }
+
+                $refs[(int) $match[2]] = ['name' => trim($match[1]), 'effect_index' => $effectIndex];
             }
         }
 

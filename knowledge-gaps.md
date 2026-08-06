@@ -26,6 +26,39 @@ probably missing from your understanding of X," instead of only ever
 discovering gaps when someone happens to ask the right question in a
 conversation. Every entry below is raw material for that, not just a fun fact.
 
+## This ledger is a last resort, not a first response
+
+**Before something gets logged here as an unfixable/structural gap, the
+investigation has to actually be exhausted — not just "I checked our two
+local data folders and didn't find it."** Concretely, that means, in order:
+
+1. Check whether the value is derivable from data *we already imported* —
+   re-read the relevant `.txt`/`.json` file directly, don't trust a summary
+   of it from memory or from a previous session.
+2. Check whether our own fetch/parse script is silently discarding a field
+   that's actually present in its source, rather than the source lacking it —
+   e.g. a narrow field whitelist in a fetch script, or a parser regex that
+   doesn't capture something it could. Read the actual code, don't assume.
+3. If the answer still isn't there, query the *live* upstream source
+   directly (e.g. Blizzard's Game Data API), bypassing our own cached/
+   imported files entirely, to see the true raw shape — not a summary of what
+   we happened to store from it last time.
+4. Only once all three of those come back empty does something belong in
+   this file as a genuine, confirmed structural gap.
+
+**Why this rule exists:** the "PvP talents have no cooldown data" entry below
+was first written after only step 1 — inspecting our own already-imported
+JSON — and concluded "permanent gap, nothing to be done." It took a direct
+challenge ("how would Wowhead have this, must be an older version?") to
+actually do steps 2 and 3, which is what turned up that `fetch-talent-trees.php`
+hand-picks a narrow field subset (step 2) and that the live API genuinely
+has nothing more even when queried directly right now (step 3) — a
+categorically stronger, actually-trustworthy conclusion than the original
+one, even though it happened to land in the same place. The entry below is
+now a model of the *right* amount of work before writing CONFIRMED, not just
+an example finding — a future entry that skips straight to "flagged, can't
+fix" after only step 1 should be treated as incomplete, not done.
+
 ## How an entry gets in here
 
 1. A canonical module (dictated prose) is cross-referenced against
@@ -46,6 +79,80 @@ conversation. Every entry below is raw material for that, not just a fun fact.
    - **AMBIGUOUS** — the data itself is internally inconsistent or doesn't
      fully resolve the question; recorded so the same dead end isn't
      re-investigated from scratch later.
+
+---
+
+## Cross-cutting data-source gaps (not tied to one module)
+
+Findings below aren't from a canonical-module-vs-data cross-check — they surface
+from general platform usage (Spell Explorer, module Spells sections) rather
+than an expert-dictation review, but they're the same kind of thing: a gap
+between what the platform shows and what's actually true in-game, worth
+tracking in one place rather than losing to a chat transcript.
+
+### PvP talents have no cooldown data at all, for almost the entire set
+- **Status:** CONFIRMED — a genuine, permanent gap in both underlying data
+  sources, not a parser bug and not stale/beta data.
+- **Symptom:** Psyfiend (Shadow Priest PvP talent, spell_id 211522) renders on
+  the Spell Explorer with cooldown "—" and gets sorted into "Buffs & Passives"
+  instead of "Active Abilities" (the cooldown-presence check is what drives
+  that grouping) — despite being a clearly active, on-a-cooldown summon
+  ability in-game.
+- **Data shows:** neither of the two sources this importer reads from carries
+  a cooldown value for PvP-talent-sourced spells in general. `data/pvptalents/{class}.json`
+  (Blizzard's Game Data API PvP-talent endpoint) only ever includes `id`,
+  `name`, `spell_id`, `spell_name`, `description`, `unlock_player_level`,
+  `compatible_slots`, `playable_spec_id/name` — no cooldown field exists in
+  that shape at all. The SimC spelldata dump (`data/spelldata/`) simply
+  doesn't contain most PvP talent spell_ids as their own record — confirmed by
+  grepping for spell_id 211522 (Psyfiend) directly across every raw and
+  filtered priest file: zero matches.
+- **Ruled out two more-hopeful explanations by checking directly, not
+  assuming (2026-08-05):** the player asked whether Wowhead's 45s (see below)
+  might just mean our imported patch is stale/beta. Queried Blizzard's live
+  Game Data API directly — `GET /data/wow/pvp-talent/763` and
+  `GET /data/wow/spell/211522` — bypassing both our cached JSON files and
+  `fetch-talent-trees.php`'s own field selection, to see the *true* raw
+  response. Confirmed current (`namespace=static-12.0.7_67808-us`, i.e. live,
+  not cached/beta). Neither raw response contains a cooldown field anywhere —
+  only `id`, `name`, `description`, `unlock_player_level`, `compatible_slots`,
+  and spell/spec cross-refs. So this also isn't "our fetch script discards a
+  field that's really there" — the field genuinely isn't in what Blizzard's
+  public Game Data API serves, for this spell, right now. Wowhead's number
+  (and the in-game tooltip, which the client renders from its own bundled
+  data files) must come from a source deeper than this public API — most
+  likely the game client's own DBC/DB2 files, which aren't exposed through
+  `/data/wow/*` at all.
+- **Quantified dataset-wide (2026-08-05):** of 249 distinct spell_ids sourced
+  from `pvp_talents`, only **8** have any `cooldown_seconds` value at all
+  (presumably because those 8 happen to *also* exist as a baseline/talent
+  spell elsewhere in the SimC dump); **241** are permanently null under the
+  current two data sources.
+- **Why it matters:** this isn't fixable by improving `SpellDataFileParser` or
+  `ImportSpellData` — there's nothing in either source file for a better
+  parser to extract. Closing it would require a third data source (e.g. a
+  players' addon export, the same mechanism `spellbook_snapshots` already
+  uses for the in-game Spellbook verifier) or manually curating cooldowns for
+  the ~241 affected spells. Not attempted here — flagged so it's a known,
+  quantified gap rather than something that looks like a bug every time it's
+  noticed.
+- **Real value confirmed for Psyfiend specifically (2026-08-05):** the
+  player provided a Wowhead spell-detail screenshot and a real in-game
+  tooltip screenshot (talent-tree hover) — both agree: **45 second
+  cooldown**. This is genuine ground truth, not a guess, but it doesn't come
+  from either of our two import sources — Wowhead mines the game client's own
+  data files directly (far deeper than Blizzard's public Game Data API), and
+  the in-game tooltip is the client rendering that same underlying data. The
+  Game Data API's `/data/wow/playable-specialization/{id}/pvp-talent-slots`
+  endpoint this project's importer reads from genuinely does not expose
+  cooldown at all — confirmed by inspecting the raw JSON shape, not assumed.
+  This is a real limitation of the public API we import from, not something
+  fixable by writing a better parser against the same source. A general fix
+  (closing the gap for all 241 affected spells) would need either a new,
+  richer data source or a persistent manual-override mechanism that survives
+  a full data re-import — neither exists yet; see CLAUDE.md if one gets built.
+- **Found:** 2026-08-05, investigating a user report that Psyfiend appeared
+  hard to find on the Shadow Priest Spell Explorer page.
 
 ---
 

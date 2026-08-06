@@ -13,6 +13,10 @@ class SpellEffect extends Model
         'type',
         'base_value',
         'scaled_value',
+        'sp_coefficient',
+        'pvp_coefficient',
+        'rank_op',
+        'rank_values',
     ];
 
     // Without these, MySQL's decimal columns come back as strings (e.g. "4.6380") while
@@ -22,6 +26,9 @@ class SpellEffect extends Model
     protected $casts = [
         'base_value' => 'float',
         'scaled_value' => 'float',
+        'sp_coefficient' => 'float',
+        'pvp_coefficient' => 'float',
+        'rank_values' => 'array',
     ];
 
     public function spell()

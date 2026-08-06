@@ -24,11 +24,19 @@ use Livewire\Component;
  * yet (a spec with no admin default configured just shows unmodified base data, same as the
  * existing "empty shell" fallback everywhere else in TalentSelectionService).
  *
- * Spell list = that class/spec's baseline kit (source='baseline', spec_id null-or-matching) +
- * whatever talents the default build actually selects — not literally every talent in every
- * tree (which would be 100+ rows of mostly-unpicked options), but what a real character built
- * this way would actually have available. Uses the same <x-spells.table> component as
- * Modules\Show so both pages render identically.
+ * Spell list = the default build's talent selections + manually-verified baseline abilities
+ * (TalentSelectionService::verifiedBaselineAbilityIds() — Leg Sweep, Freezing Trap, etc.) —
+ * not literally every talent in every tree (which would be 100+ rows of mostly-unpicked
+ * options), but what a real character built this way would actually have available. Uses the
+ * same <x-spells.table> component as Modules\Show so both pages render identically.
+ *
+ * DO NOT merge in TalentSelectionService::alwaysAvailableAbilityIds() — see that method's
+ * "DO NOT WIRE IN" docblock and CLAUDE.md's "Baseline ability display" section. That path
+ * derives spec from the ambiguous `spec_id = NULL` bucket and leaked Mind Sear onto
+ * Discipline Priest (2026-08-06). verifiedBaselineAbilityIds() is the safe replacement: it
+ * only ever reads hand-curated, explicit-spec_id rows from
+ * data/spelldata/baseline-spec-overrides.txt — small, grows one verified entry at a time,
+ * never bulk-derived.
  */
 class SpellExplorer extends Component
 {
@@ -36,9 +44,23 @@ class SpellExplorer extends Component
 
     public ?int $specId = null;
 
+    public function mount(): void
+    {
+        $firstClass = GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))
+            ->orderBy('name')
+            ->first();
+
+        if (!$firstClass) {
+            return;
+        }
+
+        $this->classId = $firstClass->id;
+        $this->specId = Specialization::where('class_id', $firstClass->id)->orderBy('name')->first()?->id;
+    }
+
     public function updatedClassId(): void
     {
-        $this->specId = null;
+        $this->specId = Specialization::where('class_id', $this->classId)->orderBy('name')->first()?->id;
     }
 
     public function getClassesProperty(): Collection
@@ -71,6 +93,18 @@ class SpellExplorer extends Component
 
         $defaultBuild = TalentBuild::where('spec_id', $this->specId)->where('is_default', true)->first();
         $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();
+        $ranks = $defaultBuild ? $talentService->selectedRanks($defaultBuild) : collect();
+
+        // The "road not taken" for any CHOICE-node talent the build has a pick for (e.g.
+        // Ultimate Penitence vs. Power Word: Barrier) — display-only, never merged into
+        // $selected, so an unpicked sibling's own modifiers never look like they're actually
+        // applying (see TalentSelectionService::choiceSiblingSpellIds()'s docblock).
+        $siblingIds = $talentService->choiceSiblingSpellIds($selected);
+
+        // Manually-verified baseline abilities only — see this class's docblock. NOT
+        // alwaysAvailableAbilityIds() (DO NOT WIRE IN, see its own docblock).
+        $verifiedBaselineIds = $talentService->verifiedBaselineAbilityIds($this->specId);
+        $displayIds = $selected->merge($siblingIds)->merge($verifiedBaselineIds)->unique();
 
         $build = new ModuleGameBuild([
             'class_id' => $this->classId,
@@ -78,24 +112,24 @@ class SpellExplorer extends Component
             'hero_talent_tree_id' => $this->detectHeroTreeId($selected),
         ]);
 
-        // Deliberately just the default build's own selections, not "the class's whole baseline
-        // kit" — tried merging in source='baseline' availability too, but that data mixes real
-        // class abilities with generic system/item spells with no reliable column to tell them
-        // apart at the view layer (591 rows for Discipline, including things like "Aberrant
-        // Spellforge" and "9.0 Hearthstone Test" — clearly not Priest abilities). This is also a
-        // more literal match for what was asked: "pulls the talents from the system default."
-        return Spell::whereIn('id', $selected)
-            ->with(['effects', 'incomingRelationships.sourceSpell'])
+        return Spell::whereIn('id', $displayIds)
+            ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(fn ($spell) => [
-                'spell' => $spell,
-                'category' => $service->categorize($spell),
-                'description' => $service->resolveDescription($spell, $build),
-                'modifiers' => $service->modifiersFor($spell, $build, $selected),
-                'cooldown' => $service->effectiveCooldown($spell, $build, $selected),
-                'charges' => $service->effectiveCharges($spell, $build, $selected),
-            ])
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds) {
+                $description = $service->resolveDescription($spell, $build);
+
+                return [
+                    'spell' => $spell,
+                    'category' => $service->categorize($spell),
+                    'description' => $description,
+                    'formulaModifiers' => $description['uncertain'] ? $service->variablesModifiers($spell) : collect(),
+                    'modifiers' => $service->modifiersFor($spell, $build, $selected, $ranks),
+                    'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
+                    'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
+                    'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id),
+                ];
+            })
             ->all();
     }
 

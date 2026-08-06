@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\Specialization;
+use App\Models\TalentBuild;
 use App\Models\TalentNode;
 use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
@@ -160,6 +161,82 @@ class BlizzardTalentStringCodec
         }
 
         return ['selections' => $selections, 'warnings' => $warnings];
+    }
+
+    /**
+     * CONFIRMED BROKEN, 2026-08-03 — do not wire this back into any UI until fixed. Kept in place
+     * as a starting point for whoever picks this up, not because it's trustworthy.
+     *
+     * Was meant to encode a TalentBuild's saved PvE choices into a real Blizzard "Export" string
+     * — the inverse of decode(), for getting a build back OUT of this site and into the real game
+     * client for verification. Shipped once (murlok-derived Arms Warrior default build), imported
+     * in-game by the user, and produced a garbage result: the hero tree showed as completely
+     * unresolved (neither of the two options selected) and both class and spec trees showed far
+     * fewer points spent than the build actually has chosen.
+     *
+     * Root cause identified, not yet fixed: this method's own self-check at the time (encode, then
+     * decode the result with this class's own decode(), compare selections) passed cleanly and
+     * gave false confidence — because encode() and decode() share the same orderedNodesForSpec()
+     * node list, a bug in that shared list is invisible to a round-trip through both of them. The
+     * test that actually caught it: TalentBuild #1 was originally decoded from a REAL,
+     * addon-captured loadout string (spellbook_snapshots.loadout_string). Re-encoding that same
+     * build's choices and comparing byte-for-byte against the original real string: real = 109
+     * characters, this method's output = 81 characters — 28 characters (~168 bits) of real content
+     * missing, despite both strings still decoding to the identical 54 selections through this
+     * class's own decode(). Most likely explanation: our own talent_nodes data for a spec is
+     * incomplete relative to the real game client's total node count for that spec, so this
+     * method's node sequence runs shorter than a real client expects — everything after the
+     * shortfall then reads as garbage/unselected. Not confirmed further than that; whoever
+     * resumes this should start by comparing orderedNodesForSpec()'s node count against a real
+     * total (e.g. by walking the raw Game Data API talent-tree response node-by-node) rather than
+     * guessing at the bitstream format again.
+     *
+     * The two things that WERE correct in the original design, worth keeping if this gets
+     * revisited: reusing orderedNodesForSpec() rather than deriving a second, possibly-divergent
+     * order was the right call (it just wasn't enough on its own — the shared list itself is the
+     * suspect, not the fact that it's shared). And PvP talent choices are correctly never
+     * included — see class docblock, "PvP talents are not part of this format at all," which
+     * remains true and unrelated to this bug.
+     */
+    public function encodeBuild(TalentBuild $build, Specialization $spec, int $patchId): string
+    {
+        $chosenByNode = $build->choices()->with('chosenEntry')->get()->keyBy('talent_node_id');
+        $nodes = $this->orderedNodesForSpec($spec, $patchId);
+
+        $bits = [
+            ['bitWidth' => self::HEADER_VERSION_BITS, 'value' => self::SUPPORTED_VERSION],
+            ['bitWidth' => self::HEADER_SPEC_ID_BITS, 'value' => $spec->external_spec_id],
+        ];
+
+        for ($i = 0; $i < self::HEADER_TREE_HASH_BYTES; $i++) {
+            $bits[] = ['bitWidth' => 8, 'value' => 0];
+        }
+
+        foreach ($nodes as $node) {
+            $choice = $chosenByNode->get($node->id);
+
+            if (!$choice) {
+                $bits[] = ['bitWidth' => 1, 'value' => 0]; // not selected
+
+                continue;
+            }
+
+            $bits[] = ['bitWidth' => 1, 'value' => 1]; // selected
+            $bits[] = ['bitWidth' => 1, 'value' => 1]; // purchased
+            $bits[] = ['bitWidth' => 1, 'value' => 0]; // not partially ranked (assume max rank)
+
+            $entries = $node->entries->sortBy('id')->values();
+            $isChoiceNode = $entries->count() > 1;
+
+            $bits[] = ['bitWidth' => 1, 'value' => $isChoiceNode ? 1 : 0];
+
+            if ($isChoiceNode) {
+                $choiceIndex = $entries->search(fn ($e) => $e->id === $choice->chosen_entry_id);
+                $bits[] = ['bitWidth' => 2, 'value' => $choiceIndex !== false ? $choiceIndex : 0];
+            }
+        }
+
+        return $this->encode($bits);
     }
 
     /**

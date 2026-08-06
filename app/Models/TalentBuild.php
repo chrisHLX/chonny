@@ -14,6 +14,7 @@ class TalentBuild extends Model
         'patch_id',
         'user_id',
         'module_id',
+        'spellbook_snapshot_id',
         'name',
         'share_slug',
         'is_public',
@@ -43,6 +44,11 @@ class TalentBuild extends Model
     public function module()
     {
         return $this->belongsTo(Module::class);
+    }
+
+    public function spellbookSnapshot()
+    {
+        return $this->belongsTo(SpellbookSnapshot::class);
     }
 
     public function choices()

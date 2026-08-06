@@ -5,6 +5,8 @@ namespace App\Http\Services;
 use App\Models\Module;
 use App\Models\Patch;
 use App\Models\Specialization;
+use App\Models\Spell;
+use App\Models\SpellbookSnapshotEntry;
 use App\Models\TalentBuild;
 use App\Models\TalentBuildChoice;
 use App\Models\TalentBuildPvpChoice;
@@ -23,7 +25,9 @@ use Illuminate\Support\Str;
  * module's own curated talents, e.g. imported from a real Blizzard export string via
  * TalentSelector's import flow). Feeds ModuleSpellReferenceService, which needs to know which
  * talents are actually selected (not just "possible for this spec") to compute an effective
- * cooldown/charge count. Resolution order for a given module (see
+ * cooldown/charge count — and, since 2026-08-06, which *rank* of a multi-rank talent (see
+ * selectedRanks()), since some talents' magnitude differs per rank while sharing one spell_id
+ * across every rank. Resolution order for a given module (see
  * Modules\Show::initSelectedSpellIds()): that module's own linked build, if any and non-empty →
  * resolveActiveBuild() (user's own build → spec's admin default → empty).
  */
@@ -83,6 +87,251 @@ class TalentSelectionService
             ->filter();
 
         return $peSpellIds->merge($pvpSpellIds)->unique()->values();
+    }
+
+    /**
+     * spell_id => rank, for PvE picks only — the counterpart to selectedSpellIds() that keeps
+     * the rank information that method deliberately flattens away. Needed because a multi-rank
+     * talent's magnitude can differ per rank while sharing one spell_id across every rank (e.g.
+     * Improved Fade: rank 1 = -5s, rank 2 = -10s, both spell_id 390670 — see
+     * ModuleSpellReferenceService, which is the only consumer, and SpellDataFileParser's
+     * rank_scaling capture for how the per-rank numbers themselves get imported). PvP talents
+     * have no rank concept (a PvP talent slot is a flat pick, not a multi-rank node) so they're
+     * not part of this map at all — a spell_id present here is always a PvE pick.
+     *
+     * @return Collection<int, int> spell_id => rank
+     */
+    public function selectedRanks(TalentBuild $build): Collection
+    {
+        if (!$build->exists) {
+            return collect();
+        }
+
+        return $build->choices()->with('chosenEntry')->get()
+            ->filter(fn (TalentBuildChoice $choice) => $choice->chosenEntry?->spell_id !== null)
+            ->mapWithKeys(fn (TalentBuildChoice $choice) => [$choice->chosenEntry->spell_id => $choice->rank]);
+    }
+
+    /**
+     * For every CHOICE-type talent node with a currently-selected entry, returns the spell_ids
+     * of that node's OTHER option(s) — the one(s) NOT taken. Added 2026-08-06 so a page can show
+     * "the road not taken" (e.g. Discipline Priest's Ultimate Penitence vs. Power Word: Barrier,
+     * Feral Druid's Convoke the Spirits vs. Incarnation: Avatar of Ashamane) alongside the
+     * selected pick, greyed out, rather than making it invisible just because it wasn't chosen —
+     * a real, common shape: 695 CHOICE nodes exist across the current dataset, 655 of them a
+     * clean two-option pair.
+     *
+     * Deliberately returns a SEPARATE collection from selectedSpellIds() rather than folding
+     * siblings into it — a sibling is explicitly NOT selected, and must never be treated as if it
+     * were for modifier-gating purposes (ModuleSpellReferenceService::modifiersFor() gates a
+     * modifier's real-world effect on $selectedSpellIds; merging an unpicked sibling into that
+     * set would make its modifiers look like they're actually applying). Callers that want to
+     * *display* both options merge this into their own display-only id list, keeping the true
+     * $selectedSpellIds untouched for every cooldown/modifier computation.
+     *
+     * @return Collection<int, int> spell_id
+     */
+    public function choiceSiblingSpellIds(Collection $selectedSpellIds): Collection
+    {
+        if ($selectedSpellIds->isEmpty()) {
+            return collect();
+        }
+
+        $selectedChoiceNodeIds = TalentNodeEntry::whereIn('spell_id', $selectedSpellIds)
+            ->whereHas('talentNode', fn ($q) => $q->where('type', 'CHOICE'))
+            ->pluck('talent_node_id')
+            ->unique();
+
+        if ($selectedChoiceNodeIds->isEmpty()) {
+            return collect();
+        }
+
+        return TalentNodeEntry::whereIn('talent_node_id', $selectedChoiceNodeIds)
+            ->pluck('spell_id')
+            ->unique()
+            ->diff($selectedSpellIds)
+            ->values();
+    }
+
+    /**
+     * ⚠️ DO NOT WIRE THIS METHOD INTO ANY DISPLAY PAGE. ⚠️ Reverted 2026-08-06, the same day it
+     * shipped, after it put Mind Sear (a Shadow-only spell) on Discipline Priest's kit — and a
+     * dozen other cross-spec leaks alongside it. It is kept here, unused, purely as documented
+     * research: the `(desc=...)` disambiguation-suffix filter below is a real, useful finding
+     * and may be a building block for a real fix later, but the method as a whole is NOT safe to
+     * call from WowComps/SpellExplorer/anywhere else. Read CLAUDE.md's "Baseline ability
+     * display" section in full before touching this again — there is currently no reliable way
+     * to resolve which spec a `spec_id = NULL` baseline spell actually belongs to, and every
+     * attempt to guess it from this data alone produced confidently wrong output for a
+     * meaningful fraction of spells (Mind Sear, Voidform, Dark Ascension, and more — see that
+     * section for the full list and how they were found).
+     *
+     * Everything below this line describes what the method DOES, for whoever reads this next —
+     * it does not mean the method is safe to use.
+     *
+     * Spells that are always part of a class/spec's kit regardless of which talents are
+     * selected — never gated by a talent pick at all (Leg Sweep, Freezing Trap, Bestial Wrath,
+     * ...), as opposed to selectedSpellIds()'s talent-derived set. Added 2026-08-06 after a
+     * real report: WowComps (and, unnoticed until now, Spell Explorer — same underlying gap)
+     * only ever displays selectedSpellIds()'s talent picks, so any ability that was never a
+     * talent to begin with — the actual majority of a class's core kit — was silently absent.
+     * `spell_class_availability.source = 'baseline'` is the right table for this, but that
+     * bucket alone is far too noisy to use unfiltered: confirmed by hand (2026-08-06) that a
+     * naive "all baseline spells with a cooldown" query for e.g. Hunter returns 99 rows, the
+     * large majority of which are pet-family basic attacks/special abilities, Legion artifact
+     * remnants, Shadowlands covenant abilities, and old rank duplicates — not anything a
+     * current player actually has. The reliable signal turned out to already be present in the
+     * imported data rather than needing to be invented: SimC's own raw dump appends a
+     * "(desc=X)" disambiguation suffix directly onto `Name` whenever a spell needs
+     * distinguishing from its real/primary/current counterpart (confirmed in
+     * data/spelldata/filtered/hunter/baseline.txt — e.g. "Growl (desc=Basic Ability)",
+     * "Windburst (desc=Artifact)", "Weapons of Order (desc=Kyrian)"). A full survey (2026-08-06)
+     * of every distinct `(desc=...)` value in the current dataset found it's overwhelmingly
+     * pet-ability tiers (Basic/Special/Exotic/Bonus/Command Pet Ability, Ferocity/Tenacity/
+     * Cunning Ability), Dragonriding/racial color variants (Bronze/Black/Red/Blue/Green), old
+     * expansion systems (Artifact, Kyrian/Venthyr/Necrolord/Night Fae), PvP Talent (already
+     * covered via source='pvp_talent' elsewhere), and rank duplicates — never a real current
+     * player-facing ability worth showing here, so excluding every `(desc=...)`-suffixed name
+     * is a clean, data-grounded filter rather than a guessed keyword list. Combined with the
+     * existing not_in_spellbook signal (same "flag, don't guess" precedent as preferVisible())
+     * and requiring real cooldown/charge data (excludes passive-only/flavor entries), this
+     * turns Hunter's 99 noisy candidates into a shortlist that's actually just Hunter's kit.
+     *
+     * Not expected to be perfect — see the two follow-up notes below for what's still known to
+     * leak through and why, both found the same day this shipped.
+     *
+     * **Duplicate-name contamination, fixed 2026-08-06.** The `(desc=...)`/not_in_spellbook/
+     * cooldown filter above narrows out most junk, but several real classes still have more
+     * than one non-junk-looking spell_id row sharing one display name (the same "one ability,
+     * several internal spell_id records" shape already documented for Penance/Ultimate
+     * Penitence elsewhere in this codebase) — confirmed concretely: Beast Mastery Hunter's
+     * "Freezing Trap" had 3 such rows pass the filter, "Harpoon" had 5, "Intimidation" had 2,
+     * all rendering as literal duplicate rows on screen. Every OTHER spell-resolution path in
+     * this service has one-representative-per-name disambiguation (resolveSpellByName()/
+     * preferVisible()); this method didn't. Fixed below by grouping candidates by name and
+     * keeping exactly one per group — same tiebreak spirit as resolveSpellByName(): prefer a
+     * row whose availability explicitly names this spec (a stronger signal than the loose
+     * null-spec fallback that got it into the candidate pool at all), else the lowest spell_id
+     * as a deterministic, not-guaranteed-perfect fallback (matches resolveSpellByNameAnyClass()'s
+     * own "not expected to be perfect, a wrong pick is a one-line fix" precedent).
+     *
+     * **Cross-spec leak, NOT fixed, confirmed unrecoverable from current data.** A baseline
+     * spell tagged `spec_id = NULL` reads as "available to every spec of this class" by this
+     * method — correct for a genuinely class-wide ability (Leg Sweep, all Monk specs) but wrong
+     * for a spell that's actually spec-restricted in real play but never got an explicit
+     * spec_id tag in the source data (confirmed concretely: Mind Sear — a Shadow Priest
+     * signature spell — leaking onto a Discipline Priest's kit here). Checked whether this is
+     * the same class of bug as the already-fixed Mind Blast case (spec-restricted via a
+     * `free=(Discipline, Shadow)` annotation that ImportSpellData wasn't parsing yet) — it is
+     * NOT: grepped Mind Sear's raw entries in data/spelldata/filtered/priest/baseline.txt
+     * directly and confirmed there is no `free=(...)` tag or any other spec-qualifying field on
+     * it at all, just a bare `Class: Priest` line. There is nothing in the imported data this
+     * method (or a smarter query) could key off to exclude it — this is a genuine gap in what
+     * the source data captures, not a parsing bug. Flagged rather than silently shipped or
+     * silently reverted; see the caller-side discussion of what to do about it (a curated
+     * denylist, tightening to explicit-spec-only and losing legitimate class-wide baseline
+     * abilities along with it, or accepting occasional false positives) rather than deciding
+     * unilaterally here.
+     *
+     * @return Collection<int, int> spell ids
+     */
+    public function alwaysAvailableAbilityIds(int $classId, ?int $specId): Collection
+    {
+        return Spell::whereHas('classAvailability', function ($q) use ($classId, $specId) {
+            $q->where('class_id', $classId)
+                ->where('source', 'baseline')
+                ->where(fn ($q2) => $q2->whereNull('spec_id')->orWhere('spec_id', $specId));
+        })
+            ->where('is_passive', false)
+            ->where('not_in_spellbook', false)
+            ->where('name', 'not like', '%(desc=%')
+            ->where(fn ($q) => $q->whereNotNull('cooldown_seconds')->orWhereNotNull('charges'))
+            ->with('classAvailability')
+            ->get()
+            ->groupBy('name')
+            ->map(function (Collection $group) use ($specId) {
+                $explicitSpecMatch = $group->first(
+                    fn (Spell $s) => $s->classAvailability->contains('spec_id', $specId)
+                );
+
+                return $explicitSpecMatch ?? $group->sortBy('spell_id')->first();
+            })
+            ->pluck('id')
+            ->values();
+    }
+
+    /**
+     * Manually-verified baseline (never-a-talent) abilities for a spec — Leg Sweep, Freezing
+     * Trap, etc. Deliberately separate from the abandoned alwaysAvailableAbilityIds() (see
+     * that method's "DO NOT WIRE IN" banner and CLAUDE.md's "Baseline ability display"
+     * section) — this one is safe to call because it ONLY ever reads
+     * `source = 'verified_override'` rows. spec_id is always explicit on those rows; this
+     * method never touches the ambiguous `spec_id = NULL` bucket that caused the Mind Sear
+     * leak. Grows only via hand-curated additions to data/spelldata/baseline-spec-overrides.txt
+     * (imported by ImportSpellData::importBaselineSpecOverrides()) — never auto-derived, never
+     * bulk-applied from a heuristic.
+     *
+     * @return Collection<int, int> spell ids
+     */
+    public function verifiedBaselineAbilityIds(int $specId): Collection
+    {
+        return Spell::whereHas('classAvailability', function ($q) use ($specId) {
+            $q->where('spec_id', $specId)->where('source', 'verified_override');
+        })->pluck('id');
+    }
+
+    /**
+     * Collapses a fetched Spell collection to one entry per distinct name — the final pass
+     * needed on top of alwaysAvailableAbilityIds()'s own internal dedup, added 2026-08-06 after
+     * confirming its dedup alone wasn't enough: "Mindbender" and "Bestial Wrath" still rendered
+     * twice on real pages, traced to a duplicate-name pair split *across* sources rather than
+     * within one — one copy reached via an actual talent_build_choices pick ($selectedSpellIds),
+     * a second, separately-named-but-identical-looking spell_id copy reached via
+     * alwaysAvailableAbilityIds()'s own baseline query — so the per-source dedup upstream never
+     * saw them together to collapse. $selectedSpellIds is preferred within a colliding group
+     * when present (it reflects the actual chosen talent, the strongest signal), else lowest
+     * spell_id, same deterministic fallback as alwaysAvailableAbilityIds().
+     *
+     * @param  Collection<int, Spell>  $spells
+     * @return Collection<int, Spell>
+     */
+    public function preferSelectedPerName(Collection $spells, Collection $selectedSpellIds): Collection
+    {
+        return $spells->groupBy('name')
+            ->map(fn (Collection $group) => $group->first(fn (Spell $s) => $selectedSpellIds->contains($s->id))
+                ?? $group->sortBy('spell_id')->first())
+            ->values();
+    }
+
+    /**
+     * Real, resolved description text captured directly from the game client for this exact
+     * build — the "Phase 2" piece of spellbook-verifier.md, closing the gap
+     * ModuleSpellReferenceService::resolveDescription()'s template resolver structurally can't:
+     * that resolver can substitute conditionals and evaluate plain arithmetic, but can never
+     * produce a real damage/healing number, since those depend on the caster's actual stats
+     * (Spell Power, versatility, etc.) which nothing on this site has — Penance's own
+     * `spells.description` still reads `$<penancedamage> Holy damage`, an unresolved formula, no
+     * matter how good the template engine gets. A `spellbook_snapshot_entries` row for the same
+     * build, captured live from a real character's client, already has the resolved number.
+     *
+     * Only returns anything when $build.spellbook_snapshot_id is set — most builds (an admin's
+     * hand-picked default, a personal build assembled by clicking through the picker) have no
+     * corresponding real export and get an empty map back, meaning callers should keep using the
+     * template resolver for those exactly as before. Never guesses across builds — a build only
+     * ever gets descriptions from the one snapshot it was actually decoded from, set explicitly
+     * (see TalentBuild.spellbook_snapshot_id), not "the newest snapshot for this spec" or similar.
+     *
+     * @return Collection<int, string> Blizzard spell_id => resolved_description
+     */
+    public function resolvedDescriptionsFor(TalentBuild $build): Collection
+    {
+        if (!$build->exists || !$build->spellbook_snapshot_id) {
+            return collect();
+        }
+
+        return SpellbookSnapshotEntry::where('snapshot_id', $build->spellbook_snapshot_id)
+            ->whereNotNull('resolved_description')
+            ->pluck('resolved_description', 'spell_id');
     }
 
     /**

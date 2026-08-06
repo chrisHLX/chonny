@@ -64,6 +64,8 @@
     .badge-gold   { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-gold/10        text-gold        font-medium; }
     .badge-blue   { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-violet/10      text-violet      font-medium; }
     .badge-gray   { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-surface-3      text-ink-subtle  font-medium; }
+    .badge-red    { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10    text-rose-400    font-medium; }
+    .badge-orange { @apply inline-flex text-[10px] px-1.5 py-0.5 rounded bg-orange-500/10  text-orange-400  font-medium; }
 
     /* Tabs */
     .tab-btn      { @apply px-3 py-1.5 text-[12px] font-medium rounded-md transition-colors; }

@@ -48,6 +48,16 @@ use Illuminate\Database\Eloquent\Model;
  * (Category)" 'modifies_cooldown' rows — see categoryRelationshipMapping()). Null means "not
  * confidently derivable," not zero — the relationship still renders descriptively via
  * `description`.
+ *
+ * `effect_index` (added 2026-08-06) names which effect, by index, on the SOURCE spell produced
+ * this relationship. Always persisted when known (both the plain-marker and Category-marker
+ * import passes now write it), even when `modifier_value` is null — this is what lets
+ * ModuleSpellReferenceService::resolveRankAwareMagnitude() re-look-up that specific effect at
+ * render time for a multi-rank talent whose magnitude differs per rank (SpellEffect.rank_op/
+ * rank_values — e.g. Improved Fade: -5s at rank 1, -10s at rank 2, both sharing one spell_id).
+ * For those, `modifier_value` is deliberately left null at import time — which rank a build has
+ * selected is a per-build/per-viewer runtime fact, not something a single static import-time
+ * number could ever represent correctly for every build.
  */
 class SpellRelationship extends Model
 {
@@ -60,6 +70,7 @@ class SpellRelationship extends Model
         'description',
         'modifier_value',
         'modifier_unit',
+        'effect_index',
     ];
 
     protected $casts = [

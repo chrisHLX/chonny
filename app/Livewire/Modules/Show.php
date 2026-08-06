@@ -7,7 +7,9 @@ use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
 use App\Models\Module;
 use App\Models\Pipeline;
+use App\Models\Spell;
 use App\Models\SubjectContent;
+use App\Models\TalentBuild;
 use App\Models\UserAxisMastery;
 use App\Models\UserConceptMastery;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +33,17 @@ class Show extends Component
      * nothing on this page dispatches that event anymore.
      */
     public array $selectedSpellIds = [];
+
+    /** spell_id => rank, the counterpart to $selectedSpellIds for multi-rank talents whose magnitude differs per rank — see TalentSelectionService::selectedRanks(). */
+    public array $selectedRanks = [];
+
+    /**
+     * The TalentBuild resolved alongside $selectedSpellIds (see initSelectedSpellIds()) — kept
+     * as just the id (Livewire-serializable, same pattern as $activePipelineId above) so
+     * getModuleSpellReferencesProperty() can look up TalentSelectionService::resolvedDescriptionsFor()
+     * without re-resolving which build applies a second time.
+     */
+    public ?int $resolvedTalentBuildId = null;
 
     public function mount(Module $module): void
     {
@@ -79,12 +92,16 @@ class Show extends Component
         $moduleBuild = $service->resolveBuildForModule($this->module);
         if ($moduleBuild) {
             $this->selectedSpellIds = $service->selectedSpellIds($moduleBuild)->all();
+            $this->selectedRanks = $service->selectedRanks($moduleBuild)->all();
+            $this->resolvedTalentBuildId = $moduleBuild->id;
 
             return;
         }
 
         $activeBuild = $service->resolveActiveBuild(Auth::user(), $build->specialization_id);
         $this->selectedSpellIds = $service->selectedSpellIds($activeBuild)->all();
+        $this->selectedRanks = $service->selectedRanks($activeBuild)->all();
+        $this->resolvedTalentBuildId = $activeBuild->exists ? $activeBuild->id : null;
     }
 
     public function render()
@@ -365,7 +382,12 @@ class Show extends Component
      * currently selected no longer shows as an applying modifier or changes the computed
      * cooldown/charge count.
      *
-     * @return array<int, array{spell: \App\Models\Spell, category: string, description: array{text: string, uncertain: bool}, modifiers: array{named: \Illuminate\Support\Collection, baseline: \Illuminate\Support\Collection}, cooldown: array{seconds: ?float, base_seconds: ?float, applied: \Illuminate\Support\Collection}, charges: array{charges: ?int, base_charges: ?int, applied: \Illuminate\Support\Collection}}>
+     * 'isSelected' (added 2026-08-06) — false for a CHOICE-node sibling shown alongside the
+     * actually-selected option (see TalentSelectionService::choiceSiblingSpellIds()); the blade
+     * uses it to grey the entry out with a "not selected" note, never to affect the cooldown/
+     * modifier computation above, which already only ever reflects the true $selectedSpellIds.
+     *
+     * @return array<int, array{spell: \App\Models\Spell, category: string, description: array{text: string, uncertain: bool}, formulaModifiers: \Illuminate\Support\Collection, isSelected: bool, modifiers: array{named: \Illuminate\Support\Collection, baseline: \Illuminate\Support\Collection}, cooldown: array{seconds: ?float, base_seconds: ?float, applied: \Illuminate\Support\Collection}, charges: array{charges: ?int, base_charges: ?int, applied: \Illuminate\Support\Collection}}>
      */
     public function getModuleSpellReferencesProperty(): array
     {
@@ -376,20 +398,54 @@ class Show extends Component
         }
 
         $service = new ModuleSpellReferenceService();
+        $talentService = app(TalentSelectionService::class);
         $selected = collect($this->selectedSpellIds);
+        $ranks = collect($this->selectedRanks);
 
-        return $this->module->spellReferences()
-            ->with(['effects', 'incomingRelationships.sourceSpell'])
+        // The "road not taken" for any CHOICE-node talent this build has a pick for — e.g. a
+        // module discussing Ultimate Penitence also shows Power Word: Barrier alongside it,
+        // greyed out. Display-only, never merged into $selected — see
+        // TalentSelectionService::choiceSiblingSpellIds()'s docblock for why that separation
+        // matters for modifier correctness. A module's curated `module_spell_references` list is
+        // still the base set (an author's own choice of what to reference); this only adds to
+        // it, never removes or overrides.
+        $curatedIds = $this->module->spellReferences()->pluck('spells.id');
+        $siblingIds = $talentService->choiceSiblingSpellIds($selected);
+        $displayIds = $curatedIds->merge($siblingIds)->unique();
+
+        // Real, resolved text captured from the exact character export this build was decoded
+        // from (see TalentSelectionService::resolvedDescriptionsFor()) — preferred over the
+        // template resolver's output when available, since it has real numbers instead of
+        // "varies by condition" for anything depending on the caster's own stats. Empty
+        // collection (and therefore a no-op below) for the vast majority of builds, which have
+        // no linked snapshot.
+        $resolvedDescriptions = $this->resolvedTalentBuildId
+            ? $talentService->resolvedDescriptionsFor(TalentBuild::find($this->resolvedTalentBuildId))
+            : collect();
+
+        return Spell::whereIn('id', $displayIds)
+            ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(fn ($spell) => [
-                'spell' => $spell,
-                'category' => $service->categorize($spell),
-                'description' => $service->resolveDescription($spell, $build),
-                'modifiers' => $service->modifiersFor($spell, $build, $selected),
-                'cooldown' => $service->effectiveCooldown($spell, $build, $selected),
-                'charges' => $service->effectiveCharges($spell, $build, $selected),
-            ])
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $resolvedDescriptions) {
+                $description = $resolvedDescriptions->has($spell->spell_id)
+                    ? ['text' => $resolvedDescriptions->get($spell->spell_id), 'uncertain' => false]
+                    : $service->resolveDescription($spell, $build);
+
+                return [
+                    'spell' => $spell,
+                    'category' => $service->categorize($spell),
+                    'description' => $description,
+                    // Only worth computing when the description couldn't be fully resolved to a
+                    // real number — a snapshot-backed or cleanly-computed description already
+                    // has the real answer, nothing to add. See variablesModifiers()'s docblock.
+                    'formulaModifiers' => $description['uncertain'] ? $service->variablesModifiers($spell) : collect(),
+                    'isSelected' => $selected->contains($spell->id),
+                    'modifiers' => $service->modifiersFor($spell, $build, $selected, $ranks),
+                    'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
+                    'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
+                ];
+            })
             ->all();
     }
 

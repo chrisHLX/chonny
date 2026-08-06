@@ -39,7 +39,9 @@ use JsonException;
  * constraint — re-running against unchanged source files produces zero writes.
  *
  * spell_relationships carries these relationship_type values: 'modifies' (effect-value modifiers,
- * from Affecting Spells/Modified By — importRelationships()), 'replaces' (action-bar spell
+ * from Affecting Spells/Modified By — importRelationships(); upgraded to 'modifies_cooldown' with
+ * a real magnitude when the ref's own effect#N is a known cooldown-modifier shape — see
+ * modifiesRelationshipMapping(), added 2026-08-05), 'replaces' (action-bar spell
  * replacement, from Talent Entry's replace= annotation — importReplacesRelationships()), and five
  * values from the "Category"/"Affected Spells (Category)" structural pair
  * (importCategoryRelationships(), split by categoryRelationshipMapping() as of 2026-08-01 — see
@@ -117,6 +119,10 @@ class ImportSpellData extends Command
 
     private int $descriptionRefSkips = 0;
 
+    private int $baselineOverrideSkips = 0;
+
+    private int $baselineOverridesApplied = 0;
+
     public function handle(SpellDataFileParser $parser): int
     {
         $this->parser = $parser;
@@ -171,6 +177,7 @@ class ImportSpellData extends Command
         $this->importReplacesRelationships();
         $this->importPvpTalentRelationships();
         $this->resolveDescriptionReferences();
+        $this->importBaselineSpecOverrides($patch);
 
         $this->printSummary();
 
@@ -373,6 +380,9 @@ class ImportSpellData extends Command
                 'cooldown_seconds' => $record['cooldown_seconds'],
                 'duration_seconds' => $record['duration_seconds'],
                 'not_in_spellbook' => $record['not_in_spellbook'],
+                'variables' => $record['variables'],
+                'mechanic' => $record['mechanic'],
+                'is_passive' => $record['is_passive'],
             ];
 
             // A pointer-form record (description_ref !== null) always parses to description=null
@@ -406,6 +416,10 @@ class ImportSpellData extends Command
                     'type' => $effect['type'],
                     'base_value' => $effect['base_value'],
                     'scaled_value' => $effect['scaled_value'],
+                    'sp_coefficient' => $effect['sp_coefficient'],
+                    'pvp_coefficient' => $effect['pvp_coefficient'],
+                    'rank_op' => $effect['rank_op'],
+                    'rank_values' => $effect['rank_values'],
                 ], 'spell_effects');
             }
 
@@ -621,6 +635,14 @@ class ImportSpellData extends Command
      * *other* spell that modifies the current record as an explicit id, not free text. Run once
      * at the end, after every class's spells have been imported, since a modifier can live in a
      * different class file than the spell it modifies (e.g. a shared/baseline entry).
+     *
+     * relationship_type/magnitude: each ref carries an optional effect_index (the "effect#N"
+     * annotation SpellDataFileParser::parseSpellRefs() now retains) naming which specific effect
+     * on the *source* spell produced the relationship — modifiesRelationshipMapping() looks that
+     * effect up and converts known cooldown-modifier shapes to 'modifies_cooldown' with a real
+     * magnitude, the same way importCategoryRelationships()'s categoryRelationshipMapping() does
+     * for the Category-marker pair. Everything else stays a bare 'modifies' relationship with no
+     * magnitude, same as before this addition (2026-08-05).
      */
     private function importRelationships(): void
     {
@@ -636,7 +658,7 @@ class ImportSpellData extends Command
                 $sources += $effect['modified_by'];
             }
 
-            foreach (array_keys($sources) as $sourceExternalId) {
+            foreach ($sources as $sourceExternalId => $refInfo) {
                 $source = $this->spellIndex[$sourceExternalId] ?? null;
 
                 if (!$source || $source->id === $target->id) {
@@ -645,13 +667,82 @@ class ImportSpellData extends Command
                     continue;
                 }
 
+                $effectIndex = $refInfo['effect_index'] ?? null;
+                $mapping = $this->modifiesRelationshipMapping($source, $effectIndex);
+
+                // modifier_value/unit are always written explicitly (even as null) — not just
+                // added when present. A prior import (before rank-awareness existed) may have
+                // already written a real magnitude for a pair that's now correctly recognized as
+                // rank-scaled and deferred; omitting these keys here would leave that stale,
+                // now-wrong number in place forever, since upsertTrack()'s fill() only touches
+                // keys actually present in $values.
+                $values = [
+                    'effect_index' => $effectIndex,
+                    'modifier_value' => $mapping['value'],
+                    'modifier_unit' => $mapping['unit'],
+                ];
+
                 $this->upsertTrack(SpellRelationship::class, [
                     'source_spell_id' => $source->id,
                     'target_spell_id' => $target->id,
-                    'relationship_type' => 'modifies',
-                ], [], 'spell_relationships');
+                    'relationship_type' => $mapping['type'],
+                ], $values, 'spell_relationships');
             }
         }
+    }
+
+    /**
+     * Resolves a plain 'modifies' relationship to 'modifies_cooldown' + a real magnitude when the
+     * source's own referenced effect (found via the "effect#N" annotation on the Affecting
+     * Spells/Modified By ref) is a known cooldown-modifier shape. Falls back to a bare 'modifies'
+     * relationship (no magnitude) whenever the index is missing, the effect can't be found, or
+     * its type isn't recognized — same "flag, don't guess" posture as categoryRelationshipMapping().
+     *
+     * Verified against two independent real cases before shipping, not a guess from the type
+     * string alone: Paladin's Fist of Justice (spell_id 234299, effect#1) — 'Add Flat Modifier
+     * (107): Spell Cooldown', Base Value -15000 — reduces Hammer of Justice from 45s to 30s,
+     * confirmed against the player's own live in-game reading (2026-08-05). Independently, a
+     * Warrior talent (spell_id 297945) declares the *same* -15000 cooldown reduction on Heroic
+     * Leap through BOTH this plain marker AND the already-trusted 'Modify Recharge Time
+     * (Category)' marker at once — i.e. this is confirmed to be the identical underlying game
+     * mechanic as the Category-pass conversion already in production, not a new, unverified one.
+     * Do not add more conversions here without an equally hand-verified worked example first.
+     *
+     * When the resolved effect is rank-scaled (SpellEffect.rank_op set — a multi-rank talent
+     * whose magnitude differs per rank, e.g. Improved Fade: -5s at rank 1, -10s at rank 2, found
+     * 2026-08-06 — see SpellDataFileParser's rank_scaling capture), the type is still confidently
+     * known (the effect itself says so) but the magnitude deliberately is NOT computed here —
+     * base_value only ever reflects one rank, and which rank any given build actually has isn't
+     * an import-time fact at all, it's a per-build/per-viewer runtime one. Left null so
+     * ModuleSpellReferenceService can compute the real number once it knows which rank the
+     * current build selected (see effect_index, now persisted on every relationship row for
+     * exactly this lookup).
+     *
+     * @return array{type: string, value: ?float, unit: ?string}
+     */
+    private function modifiesRelationshipMapping(Spell $source, ?int $effectIndex): array
+    {
+        $default = ['type' => 'modifies', 'value' => null, 'unit' => null];
+
+        if ($effectIndex === null) {
+            return $default;
+        }
+
+        $effect = SpellEffect::where('spell_id', $source->id)->where('effect_index', $effectIndex)->first();
+
+        if (!$effect || $effect->type !== 'Add Flat Modifier (107): Spell Cooldown') {
+            return $default;
+        }
+
+        if ($effect->rank_op !== null) {
+            return ['type' => 'modifies_cooldown', 'value' => null, 'unit' => null];
+        }
+
+        return [
+            'type' => 'modifies_cooldown',
+            'value' => $effect->base_value !== null ? $effect->base_value / 1000 : null,
+            'unit' => $effect->base_value !== null ? 'seconds' : null,
+        ];
     }
 
     /**
@@ -710,11 +801,15 @@ class ImportSpellData extends Command
 
             $mapping = $this->categoryRelationshipMapping($effect);
 
-            $values = [];
-            if ($mapping['value'] !== null && $mapping['unit'] !== null) {
-                $values['modifier_value'] = $mapping['value'];
-                $values['modifier_unit'] = $mapping['unit'];
-            }
+            // See importRelationships()'s identical comment — modifier_value/unit are always
+            // written explicitly, even as null, so a stale pre-rank-awareness magnitude gets
+            // properly cleared rather than left in place by upsertTrack()'s fill-only-given-keys
+            // behavior.
+            $values = [
+                'effect_index' => $effect['effect_index'] ?? null,
+                'modifier_value' => $mapping['value'],
+                'modifier_unit' => $mapping['unit'],
+            ];
 
             $this->upsertTrack(SpellRelationship::class, [
                 'source_spell_id' => $source->id,
@@ -739,24 +834,32 @@ class ImportSpellData extends Command
      * same "flag, don't guess" posture as everywhere else in this importer. Do not add more
      * conversions here without a hand-verified worked example first.
      *
-     * @param  ?array{type: ?string, base_value: ?float}  $effect
+     * A rank-scaled effect ($effect['rank_op'] set — a multi-rank talent whose magnitude differs
+     * per rank, see SpellDataFileParser's rank_scaling capture, added 2026-08-06) still gets its
+     * correct type here, but never a magnitude — base_value only reflects one rank, and which
+     * rank a given build actually has is a per-build runtime fact, not an import-time one. Left
+     * null so ModuleSpellReferenceService computes the real number once it knows the selected
+     * rank (via effect_index, now persisted on every relationship row for this lookup).
+     *
+     * @param  ?array{type: ?string, base_value: ?float, rank_op: ?string}  $effect
      * @return array{type: string, value: ?float, unit: ?string}
      */
     private function categoryRelationshipMapping(?array $effect): array
     {
         $effectType = $effect['type'] ?? null;
         $baseValue = $effect['base_value'] ?? null;
+        $rankScaled = ($effect['rank_op'] ?? null) !== null;
 
         return match ($effectType) {
             'Modify Cooldown Charge (Category)' => [
                 'type' => 'modifies_charges',
-                'value' => $baseValue,
-                'unit' => $baseValue !== null ? 'charges' : null,
+                'value' => $rankScaled ? null : $baseValue,
+                'unit' => (!$rankScaled && $baseValue !== null) ? 'charges' : null,
             ],
             'Modify Recharge Time (Category)' => [
                 'type' => 'modifies_cooldown',
-                'value' => $baseValue !== null ? $baseValue / 1000 : null,
-                'unit' => $baseValue !== null ? 'seconds' : null,
+                'value' => ($rankScaled || $baseValue === null) ? null : $baseValue / 1000,
+                'unit' => (!$rankScaled && $baseValue !== null) ? 'seconds' : null,
             ],
             'Modify Recharge Time% (Category)', 'Modify Cooldown Time (Category)' => [
                 'type' => 'modifies_cooldown',
@@ -984,6 +1087,69 @@ class ImportSpellData extends Command
         }
     }
 
+    /**
+     * Applies data/spelldata/baseline-spec-overrides.txt — see that file's own header for the
+     * full rationale. Runs unconditionally (independent of --only), since it's a small,
+     * fast, additive pass reading a hand-curated list, not tied to any one class's import
+     * step; resolves class/spec/spell directly against the DB rather than this run's
+     * transient in-memory maps, so it works correctly even when --only scopes the class loop
+     * to a subset that doesn't include an override's class.
+     *
+     * Each valid line becomes an explicit-spec_id spell_class_availability row with
+     * source='verified_override' — added alongside (never replacing) any existing
+     * spec_id=NULL row for the same spell, so this can never narrow or remove what the
+     * spec_id=NULL bucket already (ambiguously) claims. A malformed line, or one naming a
+     * spell/class/spec that doesn't resolve against this patch, is skipped and counted —
+     * never silently guessed at.
+     */
+    private function importBaselineSpecOverrides(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/baseline-spec-overrides.txt');
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line));
+
+            if (count($parts) < 3 || !ctype_digit($parts[0])) {
+                $this->baselineOverrideSkips++;
+                $this->warn("  Skipping malformed baseline-spec-overrides.txt line: {$line}");
+
+                continue;
+            }
+
+            [$externalSpellId, $classSlug, $specSlug] = $parts;
+
+            $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
+            $class = GameClass::where('slug', $classSlug)->first();
+            $spec = $class ? Specialization::where('class_id', $class->id)->where('slug', $specSlug)->first() : null;
+
+            if (!$spell || !$class || !$spec) {
+                $this->baselineOverrideSkips++;
+                $this->warn("  Skipping unresolved baseline-spec-overrides.txt line (spell/class/spec not found for this patch): {$line}");
+
+                continue;
+            }
+
+            $this->upsertTrack(SpellClassAvailability::class, [
+                'spell_id' => $spell->id,
+                'class_id' => $class->id,
+                'spec_id' => $spec->id,
+                'source' => 'verified_override',
+            ], [], 'spell_class_availability');
+
+            $this->baselineOverridesApplied++;
+        }
+    }
+
     private function resolveOrCreateSpell(int $patchId, int $externalSpellId, string $name, ?string $description = null): Spell
     {
         if (isset($this->spellIndex[$externalSpellId])) {
@@ -1133,6 +1299,10 @@ class ImportSpellData extends Command
 
         if ($this->pvpTalentRelationshipMatches > 0 || $this->pvpTalentRelationshipSkips > 0) {
             $this->comment("PvP talent cooldown modifiers: {$this->pvpTalentRelationshipMatches} matched, {$this->pvpTalentRelationshipSkips} skipped (target spell not resolved).");
+        }
+
+        if ($this->baselineOverridesApplied > 0 || $this->baselineOverrideSkips > 0) {
+            $this->comment("Baseline spec overrides: {$this->baselineOverridesApplied} applied, {$this->baselineOverrideSkips} skipped (see warnings above).");
         }
     }
 }
