@@ -32,3 +32,54 @@
 853 | paladin | holy | Hammer of Justice
 853 | paladin | protection | Hammer of Justice
 853 | paladin | retribution | Hammer of Justice
+
+# Demon Hunter / Evoker, added 2026-08-07 after confirming the identity-passive-link
+# signal (spell_relationships from e.g. "Havoc Demon Hunter") is NOT reliable evidence of
+# spec membership — re-confirmed the same failure mode already documented for Mind Sear:
+# Blade Dance and Death Sweep (100% Havoc-exclusive by long-standing game design, never on
+# Vengeance in any expansion) both showed spurious links to Havoc, Vengeance, AND Devourer
+# identity passives. That signal was discarded entirely for this batch; every line below is
+# verified from established, stable game design (these abilities have held the same spec
+# assignment across multiple expansions) plus each spell's own description text, not from
+# any structural signal in the data. Devourer (Demon Hunter's new third spec, first seen in
+# this dataset's "Midnight"/12.0 patch) is deliberately NOT covered here — it postdates
+# reliable general knowledge, so nothing about its kit is added on assumption; see
+# CLAUDE.md's "whole specs whose core kit is almost entirely baseline" note.
+198013 | demonhunter | havoc | Eye Beam
+188499 | demonhunter | havoc | Blade Dance
+210152 | demonhunter | havoc | Death Sweep
+247938 | demonhunter | havoc | Chaos Blades
+344866 | demonhunter | havoc | Vengeful Retreat
+200166 | demonhunter | havoc | Metamorphosis
+185123 | demonhunter | havoc | Throw Glaive
+# Fel Rush deliberately NOT added — spell_id 195072 already had an explicit spec_id=Havoc
+# baseline tag before this batch (pre-existing, correct); adding 344865 (a separate
+# spell_id, same name) as a second override produced a literal duplicate row on the
+# rendered page. Caught and reverted during 2026-08-07 verification.
+212084 | demonhunter | vengeance | Fel Devastation
+209245 | demonhunter | vengeance | Fiery Brand
+214743 | demonhunter | vengeance | Soul Carver
+
+# Shared Havoc + Vengeance baseline utility (both specs get these identically — confirmed
+# from established Sigil-system/Immolation Aura design, not the unreliable identity-link
+# signal). Sigil of Misery is the disorient CC the 2026-08-07 request specifically asked
+# to track.
+258920 | demonhunter | havoc | Immolation Aura
+258920 | demonhunter | vengeance | Immolation Aura
+207685 | demonhunter | havoc | Sigil of Misery
+207685 | demonhunter | vengeance | Sigil of Misery
+204843 | demonhunter | havoc | Sigil of Chains
+204843 | demonhunter | vengeance | Sigil of Chains
+183752 | demonhunter | havoc | Disrupt
+183752 | demonhunter | vengeance | Disrupt
+
+# Evoker, added 2026-08-07. Hover is baseline movement utility shared identically by all
+# three specs since Evoker's launch. Time of Need is Preservation's signature healing
+# cooldown. Devastation/Augmentation's other headline cooldowns (Dragonrage, Fire Breath,
+# Fury of the Aspects, etc.) were checked and NOT added — their cooldown data isn't
+# populated on any baseline copy in this dataset (all blank), so there's nothing yet to
+# verify a number against; flagged rather than guessed.
+358267 | evoker | devastation | Hover
+358267 | evoker | preservation | Hover
+358267 | evoker | augmentation | Hover
+368415 | evoker | preservation | Time of Need

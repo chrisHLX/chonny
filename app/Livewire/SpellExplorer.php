@@ -104,7 +104,13 @@ class SpellExplorer extends Component
         // Manually-verified baseline abilities only — see this class's docblock. NOT
         // alwaysAvailableAbilityIds() (DO NOT WIRE IN, see its own docblock).
         $verifiedBaselineIds = $talentService->verifiedBaselineAbilityIds($this->specId);
-        $displayIds = $selected->merge($siblingIds)->merge($verifiedBaselineIds)->unique();
+
+        // Explicit-spec_id baseline abilities with a real cooldown/CC mechanic — see
+        // TalentSelectionService::explicitBaselineCooldownAbilityIds()'s docblock. Safe
+        // (explicit spec_id, no NULL-bucket guessing) but only ever a partial fix for
+        // baseline-heavy specs like Demon Hunter/Evoker — see CLAUDE.md.
+        $cooldownBaselineIds = $talentService->explicitBaselineCooldownAbilityIds($this->classId, $this->specId);
+        $displayIds = $selected->merge($siblingIds)->merge($verifiedBaselineIds)->merge($cooldownBaselineIds)->unique();
 
         $build = new ModuleGameBuild([
             'class_id' => $this->classId,
@@ -116,7 +122,7 @@ class SpellExplorer extends Component
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds) {
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds) {
                 $description = $service->resolveDescription($spell, $build);
 
                 return [
@@ -127,7 +133,7 @@ class SpellExplorer extends Component
                     'modifiers' => $service->modifiersFor($spell, $build, $selected, $ranks),
                     'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
                     'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
-                    'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id),
+                    'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
                 ];
             })
             ->all();

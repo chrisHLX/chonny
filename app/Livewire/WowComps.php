@@ -125,7 +125,13 @@ class WowComps extends Component
         // verifiedBaselineAbilityIds() only ever reads explicit-spec_id, hand-curated rows —
         // safe by construction, just small (grows one verified entry at a time).
         $verifiedBaselineIds = $talentService->verifiedBaselineAbilityIds($spec->id);
-        $displayIds = $selected->merge($siblingIds)->merge($verifiedBaselineIds)->unique();
+
+        // Explicit-spec_id baseline abilities with a real cooldown/CC mechanic — see
+        // TalentSelectionService::explicitBaselineCooldownAbilityIds()'s docblock. Safe
+        // (explicit spec_id, no NULL-bucket guessing) but only ever a partial fix for
+        // baseline-heavy specs like Demon Hunter/Evoker — see CLAUDE.md.
+        $cooldownBaselineIds = $talentService->explicitBaselineCooldownAbilityIds($spec->class_id, $spec->id);
+        $displayIds = $selected->merge($siblingIds)->merge($verifiedBaselineIds)->merge($cooldownBaselineIds)->unique();
 
         $build = new ModuleGameBuild([
             'class_id' => $spec->class_id,
@@ -137,7 +143,7 @@ class WowComps extends Component
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds) {
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds) {
                 $description = $service->resolveDescription($spell, $build);
 
                 return [
@@ -148,9 +154,9 @@ class WowComps extends Component
                     'modifiers' => $service->modifiersFor($spell, $build, $selected, $ranks),
                     'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
                     'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
-                    // Verified baseline abilities are never talent-gated, so they read as
-                    // "selected" (normal opacity) regardless of the talent build.
-                    'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id),
+                    // Verified/explicit-spec baseline abilities are never talent-gated, so
+                    // they read as "selected" (normal opacity) regardless of the talent build.
+                    'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
                 ];
             })
             ->all();

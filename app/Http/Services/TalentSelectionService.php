@@ -281,6 +281,52 @@ class TalentSelectionService
     }
 
     /**
+     * Baseline (non-talent) abilities that already carry an EXPLICIT spec_id on their
+     * spell_class_availability row (source='baseline'), filtered to ones worth surfacing on
+     * a kit-comparison page: a real cooldown of 10s+ (arena-relevant, excludes short-CD
+     * fillers) or a Sleep/Disorient mechanic tag (an important CC to see regardless of
+     * cooldown length). Added 2026-08-07 for baseline-heavy specs (Demon Hunter, Evoker)
+     * whose signature kit is mostly never a talent pick.
+     *
+     * Deliberately does NOT touch the ambiguous spec_id = NULL bucket — every row this reads
+     * already has spec attribution resolved correctly by the importer (a `free=(...)` tag or
+     * a per-class Class: line matched to exactly one spec), so there is zero cross-spec
+     * misattribution risk, unlike alwaysAvailableAbilityIds() (DO NOT WIRE IN — see that
+     * method's docblock). The tradeoff, confirmed by hand 2026-08-07 for Demon Hunter: only
+     * 16 of Devourer's 635 baseline spells have this explicit tag — headline kit like Eye
+     * Beam has no `free=(...)`/Class: signal at all and sits in the NULL bucket, so this
+     * method will NOT surface it. That's intentional, not a bug — see CLAUDE.md's "whole
+     * specs whose core kit is almost entirely baseline" note for the full tradeoff
+     * discussion and why the NULL-bucket alternative was rejected (it reproduces the Mind
+     * Sear leak, just within one class instead of across two).
+     *
+     * Same dedup/junk hygiene as the abandoned alwaysAvailableAbilityIds(): excludes
+     * not_in_spellbook and `(desc=...)`-suffixed rows, collapses duplicate-name rows to one
+     * (lowest spell_id, deterministic) — safe to reuse here since it's applied after the
+     * spec filter, not instead of it.
+     *
+     * @return Collection<int, int> spell ids
+     */
+    public function explicitBaselineCooldownAbilityIds(int $classId, int $specId): Collection
+    {
+        return Spell::whereHas('classAvailability', function ($q) use ($classId, $specId) {
+            $q->where('class_id', $classId)
+                ->where('spec_id', $specId)
+                ->where('source', 'baseline');
+        })
+            ->where('is_passive', false)
+            ->where('not_in_spellbook', false)
+            ->where('name', 'not like', '%(desc=%')
+            ->where(fn ($q) => $q->where('cooldown_seconds', '>=', 10)
+                ->orWhereIn('mechanic', ['Sleep', 'Disorient']))
+            ->get()
+            ->groupBy('name')
+            ->map(fn (Collection $group) => $group->sortBy('spell_id')->first())
+            ->pluck('id')
+            ->values();
+    }
+
+    /**
      * Collapses a fetched Spell collection to one entry per distinct name — the final pass
      * needed on top of alwaysAvailableAbilityIds()'s own internal dedup, added 2026-08-06 after
      * confirming its dedup alone wasn't enough: "Mindbender" and "Bestial Wrath" still rendered

@@ -7,6 +7,7 @@ use App\Models\Patch;
 use App\Models\PvpTalent;
 use App\Models\Specialization;
 use App\Models\Spell;
+use App\Models\SpellClassAvailability;
 use App\Models\TalentBuild;
 use App\Models\TalentNode;
 use App\Models\TalentNodeEntry;
@@ -152,4 +153,61 @@ test('syncPvpChoices replaces the whole selection rather than appending', functi
     $service->syncPvpChoices($build, [$talentB->id]);
     expect($build->pvpChoices()->count())->toBe(1)
         ->and($build->pvpChoices()->first()->pvp_talent_id)->toBe($talentB->id);
+});
+
+test('explicitBaselineCooldownAbilityIds only surfaces explicit spec_id baseline rows meeting the cooldown/mechanic bar', function () {
+    $fixture = makeSpecFixture();
+
+    $longCooldown = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 401, 'name' => 'Real Cooldown Ability',
+        'cooldown_seconds' => 20, 'is_passive' => false, 'not_in_spellbook' => false,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $longCooldown->id, 'class_id' => $fixture['class']->id,
+        'spec_id' => $fixture['spec']->id, 'source' => 'baseline',
+    ]);
+
+    $shortCooldown = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 402, 'name' => 'Short Filler Ability',
+        'cooldown_seconds' => 3, 'is_passive' => false, 'not_in_spellbook' => false,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $shortCooldown->id, 'class_id' => $fixture['class']->id,
+        'spec_id' => $fixture['spec']->id, 'source' => 'baseline',
+    ]);
+
+    $sleepCc = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 403, 'name' => 'Short Sleep Effect',
+        'cooldown_seconds' => 5, 'mechanic' => 'Sleep', 'is_passive' => false, 'not_in_spellbook' => false,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $sleepCc->id, 'class_id' => $fixture['class']->id,
+        'spec_id' => $fixture['spec']->id, 'source' => 'baseline',
+    ]);
+
+    // Ambiguous spec_id = NULL — even with a qualifying cooldown, must NEVER be surfaced
+    // by this method (that's alwaysAvailableAbilityIds()'s job, DO NOT WIRE IN).
+    $ambiguousSpec = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 404, 'name' => 'Ambiguous Spec Ability',
+        'cooldown_seconds' => 30, 'is_passive' => false, 'not_in_spellbook' => false,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $ambiguousSpec->id, 'class_id' => $fixture['class']->id,
+        'spec_id' => null, 'source' => 'baseline',
+    ]);
+
+    // Explicit spec_id but a talent pick, not baseline — must be excluded (different source).
+    $talentPick = Spell::create([
+        'patch_id' => $fixture['patch']->id, 'spell_id' => 405, 'name' => 'Talent Pick Ability',
+        'cooldown_seconds' => 45, 'is_passive' => false, 'not_in_spellbook' => false,
+    ]);
+    SpellClassAvailability::create([
+        'spell_id' => $talentPick->id, 'class_id' => $fixture['class']->id,
+        'spec_id' => $fixture['spec']->id, 'source' => 'talent',
+    ]);
+
+    $service = new TalentSelectionService();
+    $ids = $service->explicitBaselineCooldownAbilityIds($fixture['class']->id, $fixture['spec']->id);
+
+    expect($ids->sort()->values()->all())->toBe([$longCooldown->id, $sleepCc->id]);
 });
