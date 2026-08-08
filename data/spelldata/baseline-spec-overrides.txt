@@ -33,6 +33,17 @@
 853 | paladin | protection | Hammer of Justice
 853 | paladin | retribution | Hammer of Justice
 
+# Rogue, added 2026-08-08. Kidney Shot is a core finisher genuinely available to all 3 specs
+# (Assassination/Outlaw/Subtlety), long-standing stable game design. Two spell_id copies exist
+# in the dataset for the same ability (408 carries the real 30s cooldown, 426589 doesn't) —
+# both covered, same precedent as Freezing Trap's multi-copy entries above.
+408 | rogue | assassination | Kidney Shot
+408 | rogue | outlaw | Kidney Shot
+408 | rogue | subtlety | Kidney Shot
+426589 | rogue | assassination | Kidney Shot
+426589 | rogue | outlaw | Kidney Shot
+426589 | rogue | subtlety | Kidney Shot
+
 # Demon Hunter / Evoker, added 2026-08-07 after confirming the identity-passive-link
 # signal (spell_relationships from e.g. "Havoc Demon Hunter") is NOT reliable evidence of
 # spec membership — re-confirmed the same failure mode already documented for Mind Sear:
@@ -83,3 +94,32 @@
 358267 | evoker | preservation | Hover
 358267 | evoker | augmentation | Hover
 368415 | evoker | preservation | Time of Need
+
+# Priest (Shadow), added 2026-08-08. Re-derives a batch a prior session had already verified by
+# reading each spell's own description text — that verification only ever became a one-off manual
+# spell_class_availability UPDATE, which the same-day patch-crash-and-reimport (see CLAUDE.md)
+# wiped, since nothing in the importer derives it. Re-verified fresh against the current DB rather
+# than trusted from memory, which caught two real corrections along the way:
+# - Divine Star has 6 separate spell_id copies; only 122121's own description says "Shadow
+#   damage" (the rest say "Holy damage", including 110744, the copy a broader query surfaced
+#   first). Using the wrong copy would have mistagged a Holy ability as Shadow.
+# - Mindbender turned out to be two genuinely different spells sharing one name: 200174 ("...
+#   Generates ... Insanity") is Shadow's version; 123040 ("... Generates ... Mana") is
+#   Discipline's Atonement-flavored version, confirmed by a Discipline-only talent
+#   ("Evangelism") referencing it directly. Both added below, to their correct spec.
+# Void Shield (1253593) was checked and deliberately NOT added — its own description has no
+# Shadow/Insanity signal at all; flagged as uncertain rather than guessed.
+63619 | priest | shadow | Shadowcrawl
+108968 | priest | shadow | Void Shift
+122121 | priest | shadow | Divine Star
+194249 | priest | shadow | Voidform
+199579 | priest | shadow | Hallucinations
+200174 | priest | shadow | Mindbender
+123040 | priest | discipline | Mindbender
+205448 | priest | shadow | Void Bolt
+391109 | priest | shadow | Dark Ascension
+394976 | priest | shadow | Mind Sear
+400169 | priest | shadow | Dark Reprimand
+450983 | priest | shadow | Void Blast
+451235 | priest | shadow | Voidwraith
+1242173 | priest | shadow | Void Volley

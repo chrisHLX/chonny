@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Http\Services\SpellDataFileParser;
+use App\Http\Services\TalentSelectionService;
 use App\Models\Game;
 use App\Models\GameClass;
 use App\Models\Patch;
@@ -123,6 +124,10 @@ class ImportSpellData extends Command
 
     private int $baselineOverridesApplied = 0;
 
+    private int $manualSpellsApplied = 0;
+
+    private int $manualSpellsSkipped = 0;
+
     public function handle(SpellDataFileParser $parser): int
     {
         $this->parser = $parser;
@@ -177,7 +182,13 @@ class ImportSpellData extends Command
         $this->importReplacesRelationships();
         $this->importPvpTalentRelationships();
         $this->resolveDescriptionReferences();
+        $this->importManualSpells($patch);
         $this->importBaselineSpecOverrides($patch);
+
+        // Spell data (cooldowns, descriptions, mechanic, effects) may have changed for any
+        // spec touched by this run — bump the shared version counter WowComps/SpellExplorer's
+        // Redis cache keys off, rather than trying to enumerate which specs are affected.
+        app(TalentSelectionService::class)->bumpSpellCacheVersion();
 
         $this->printSummary();
 
@@ -1102,6 +1113,125 @@ class ImportSpellData extends Command
      * spell/class/spec that doesn't resolve against this patch, is skipped and counted —
      * never silently guessed at.
      */
+    /**
+     * Spells absent from SimC's own raw dump entirely (confirmed, not a fetch/filter bug —
+     * see data/spelldata/manual-spells.txt's own header for the Polymorph case that started
+     * this) — created directly here rather than annotated the way
+     * importBaselineSpecOverrides() annotates an existing row, since there is no existing row.
+     * Writes spell_class_availability as source='verified_override' immediately, skipping the
+     * ambiguous baseline/spec_id=NULL step entirely — we already know true spec ownership
+     * because we're asserting it by hand, not inferring it from incomplete source data.
+     */
+    private function importManualSpells(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/manual-spells.txt');
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        foreach ($this->parseManualSpellBlocks(File::get($path)) as $block) {
+            $required = ['spell_id', 'name', 'class', 'specs'];
+            $missing = array_filter($required, fn (string $key) => ($block[$key] ?? '') === '');
+
+            if ($missing !== []) {
+                $this->manualSpellsSkipped++;
+                $this->warn('  Skipping malformed manual-spells.txt block (missing '.implode(', ', $missing).'): '.($block['name'] ?? 'unknown'));
+
+                continue;
+            }
+
+            $class = GameClass::where('slug', $block['class'])->first();
+
+            if (!$class) {
+                $this->manualSpellsSkipped++;
+                $this->warn("  Skipping manual-spells.txt block '{$block['name']}' — unknown class slug '{$block['class']}'.");
+
+                continue;
+            }
+
+            $specSlugs = $block['specs'] === 'all'
+                ? Specialization::where('class_id', $class->id)->pluck('slug')->all()
+                : array_map('trim', explode(',', $block['specs']));
+
+            $specs = Specialization::where('class_id', $class->id)->whereIn('slug', $specSlugs)->get();
+
+            if ($specs->isEmpty()) {
+                $this->manualSpellsSkipped++;
+                $this->warn("  Skipping manual-spells.txt block '{$block['name']}' — no specs resolved from '{$block['specs']}' for class '{$block['class']}'.");
+
+                continue;
+            }
+
+            $spell = $this->upsertTrack(Spell::class, [
+                'patch_id' => $patch->id,
+                'spell_id' => (int) $block['spell_id'],
+            ], [
+                'name' => $block['name'],
+                'school' => $block['school'] ?? null,
+                'description' => $block['description'] ?? null,
+                'cooldown_seconds' => ($block['cooldown_seconds'] ?? '') !== '' ? (float) $block['cooldown_seconds'] : null,
+                'duration_seconds' => ($block['duration_seconds'] ?? '') !== '' ? (float) $block['duration_seconds'] : null,
+                'charges' => ($block['charges'] ?? '') !== '' ? (int) $block['charges'] : null,
+                'mechanic' => $block['mechanic'] ?? null,
+                'is_passive' => false,
+                'not_in_spellbook' => false,
+            ], 'spells');
+
+            $this->spellIndex[(int) $block['spell_id']] = $spell;
+
+            foreach ($specs as $spec) {
+                $this->upsertTrack(SpellClassAvailability::class, [
+                    'spell_id' => $spell->id,
+                    'class_id' => $class->id,
+                    'spec_id' => $spec->id,
+                    'source' => 'verified_override',
+                ], [], 'spell_class_availability');
+            }
+
+            $this->manualSpellsApplied++;
+        }
+    }
+
+    /** @return array<int, array<string, string>> */
+    private function parseManualSpellBlocks(string $content): array
+    {
+        $blocks = [];
+        $current = null;
+
+        foreach (explode("\n", $content) as $line) {
+            $trimmed = trim($line);
+
+            if ($trimmed === '' || str_starts_with($trimmed, '#')) {
+                continue;
+            }
+
+            if ($trimmed === 'BEGIN') {
+                $current = [];
+
+                continue;
+            }
+
+            if ($trimmed === 'END') {
+                if ($current !== null) {
+                    $blocks[] = $current;
+                }
+                $current = null;
+
+                continue;
+            }
+
+            if ($current === null || !str_contains($trimmed, ':')) {
+                continue;
+            }
+
+            [$key, $value] = explode(':', $trimmed, 2);
+            $current[trim($key)] = trim($value);
+        }
+
+        return $blocks;
+    }
+
     private function importBaselineSpecOverrides(Patch $patch): void
     {
         $path = base_path('data/spelldata/baseline-spec-overrides.txt');
@@ -1303,6 +1433,10 @@ class ImportSpellData extends Command
 
         if ($this->baselineOverridesApplied > 0 || $this->baselineOverrideSkips > 0) {
             $this->comment("Baseline spec overrides: {$this->baselineOverridesApplied} applied, {$this->baselineOverrideSkips} skipped (see warnings above).");
+        }
+
+        if ($this->manualSpellsApplied > 0 || $this->manualSpellsSkipped > 0) {
+            $this->comment("Manual spells: {$this->manualSpellsApplied} applied, {$this->manualSpellsSkipped} skipped (see warnings above).");
         }
     }
 }

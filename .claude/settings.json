@@ -34,7 +34,10 @@
       "PowerShell(php \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\a2a1048d-0d42-4bdf-91b2-22d0bf9676c5\\\\scratchpad\\\\decode_test.php\")",
       "PowerShell(php -l app/Http/Services/BlizzardTalentStringCodec.php)",
       "PowerShell(php -l tests/Feature/Services/BlizzardTalentStringCodecTest.php)",
-      "PowerShell(vendor\\\\bin\\\\pest.bat tests/Feature/Services/BlizzardTalentStringCodecTest.php 2>&1)"
+      "PowerShell(vendor\\\\bin\\\\pest.bat tests/Feature/Services/BlizzardTalentStringCodecTest.php 2>&1)",
+      "PowerShell(php artisan tinker \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\1f4cbf66-7b25-4668-a136-7a0d0d04bf32\\\\scratchpad\\\\list_specs.php\")",
+      "WebFetch(domain:wowdev.wiki)",
+      "WebFetch(domain:wago.tools)"
     ],
     "additionalDirectories": []
   }

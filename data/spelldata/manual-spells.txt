@@ -1,0 +1,40 @@
+# Hand-authored spells missing from SimulationCraft's own raw dump entirely — confirmed absent
+# at the source (not our own fetch/filter pipeline dropping them), so there is no spell record
+# for the importer to annotate the way baseline-spec-overrides.txt annotates an existing one.
+# SimC has no reason to track a spell with zero combat-simulation relevance (pure incapacitate,
+# no damage/healing/resource component) — Polymorph is the confirmed case that started this file
+# (2026-08-08); Hex is NOT one of these (it exists in SimC's dump as "Hex (desc=Frog)", excluded
+# by the unrelated `(desc=...)` display filter — a different, smaller fix, not a manual-spells
+# case). Repentance and Scatter Shot are correctly absent right now (pruned from the live game
+# this patch; Scatter Shot confirmed returning 12.1) — do not add them here.
+#
+# Lives outside data/spelldata/filtered/{class}/ on purpose: regenerate-filtered.php /
+# split-by-tree.php only ever overwrite specific known filenames inside those directories and
+# never wipe them, so a file placed there would technically survive too — but authoring here
+# means never having to hand-write SimC's own block syntax, which these scripts control and
+# this file has no reason to imitate.
+#
+# Read by ImportSpellData::importManualSpells(), which creates the `spells` row directly AND
+# writes spell_class_availability rows with source='verified_override' immediately (skipping
+# the ambiguous baseline/spec_id=NULL step entirely) — unlike an imported SimC record, there is
+# no ambiguity to record here: we already know the true spec ownership because we're asserting
+# it, not inferring it from incomplete source data.
+#
+# Format: one block per spell, BEGIN/END delimited, `key: value` lines. Required keys: spell_id
+# (the real Blizzard spell id — check it against a real tooltip/addon before adding, same
+# verify-first discipline as every other file in this folder), name, class (class slug), specs
+# (comma-separated spec slugs, or the literal word "all" for every spec of that class).
+# Optional: school, description (write real numbers directly — no $d/$sN template tokens, since
+# nothing re-resolves this text), cooldown_seconds, duration_seconds, charges, mechanic (must
+# match a key in ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP to categorize correctly).
+
+BEGIN
+spell_id: 118
+name: Polymorph
+class: mage
+specs: all
+school: Arcane
+mechanic: Polymorph
+duration_seconds: 60
+description: Transforms the enemy into a sheep, incapacitating them for 60 sec. Damage may interrupt the effect. Limit 1.
+END
