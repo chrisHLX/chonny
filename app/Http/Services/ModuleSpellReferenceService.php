@@ -415,9 +415,45 @@ class ModuleSpellReferenceService
         }
 
         return [
-            'named' => $named->values(),
-            'baseline' => $baseline->values(),
+            'named' => $this->dedupeGenericModifies($named),
+            'baseline' => $this->dedupeGenericModifies($baseline),
         ];
+    }
+
+    /**
+     * Drops a redundant bare 'modifies' entry when the SAME source spell also has a more
+     * specific relationship (e.g. 'modifies_cooldown') to the same target — found 2026-08-09
+     * investigating a real report ("Improved Traps doesn't give a number, but Freezing Trap's
+     * cooldown IS correctly reduced" — same shape independently reported for Territorial
+     * Instincts -> Intimidation). Root cause: a source spell commonly has TWO separate
+     * spell_relationships rows to the same target — one 'modifies' (no magnitude, from the
+     * Affecting-Spells text pass) and one 'modifies_cooldown' (real magnitude, from the
+     * Category-effect pass). The 2026-08-02 "Bug 1" fix deliberately stopped deduping by
+     * source alone so a source with two genuinely DIFFERENT effect types (e.g. damage% AND
+     * cooldown) still shows both — correct. But it also means this literal-duplicate-signal
+     * case (same source, same target, one row just less specific than the other) renders as
+     * two list rows for the same ability, one confusingly numberless, instead of being
+     * recognized as the same fact stated twice at different precision. Fixed here rather than
+     * in classify()/the relationship loop, since the decision needs to see a source's full set
+     * of relationship types to this target before deciding whether 'modifies' is redundant —
+     * that set isn't known until the loop finishes.
+     *
+     * A source with ONLY a bare 'modifies' relationship (no more specific type exists at all)
+     * keeps that entry — it's still the only signal we have that the source affects the
+     * target, just without a known number.
+     */
+    private function dedupeGenericModifies(Collection $entries): Collection
+    {
+        return $entries
+            ->groupBy(fn (array $entry) => $entry['spell']->id)
+            ->flatMap(function (Collection $group) {
+                $hasSpecific = $group->contains(fn (array $entry) => $entry['relationship_type'] !== 'modifies');
+
+                return $hasSpecific
+                    ? $group->reject(fn (array $entry) => $entry['relationship_type'] === 'modifies')
+                    : $group;
+            })
+            ->values();
     }
 
     /**

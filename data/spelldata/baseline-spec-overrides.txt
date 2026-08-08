@@ -123,3 +123,17 @@
 450983 | priest | shadow | Void Blast
 451235 | priest | shadow | Voidwraith
 1242173 | priest | shadow | Void Volley
+
+# Death Knight, added 2026-08-09. Anti-Magic Shell is a core, all-3-spec DK defensive
+# cooldown, long-standing stable game design (self-cast magic-damage absorb + Runic Power
+# generation). Confirmed real via its own description text: 5 spell_id copies exist for this
+# name, all class_id=Death Knight/spec_id=NULL/source=baseline — 48707 is the genuine
+# self-cast player-facing ability (description "Surrounds YOU in an Anti-Magic Shell...",
+# cd=60s); 49088 is an internal proc-description duplicate referencing 48707 (no cd);
+# 451777 is not_in_spellbook (hidden). A separate pair (444740/444741, "Surrounds YOUR
+# TARGET...") describes what looks like a distinct target-cast variant — deliberately NOT
+# added here, since its provenance (new talent? hero tree?) isn't confirmed the way the
+# self-cast version's is; flag for a future pass rather than guess.
+48707 | deathknight | blood | Anti-Magic Shell
+48707 | deathknight | frost | Anti-Magic Shell
+48707 | deathknight | unholy | Anti-Magic Shell

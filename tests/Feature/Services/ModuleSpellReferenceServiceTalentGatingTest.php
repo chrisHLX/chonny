@@ -104,3 +104,52 @@ test('modifiersFor only lists the pvp talent as named when selected, never when 
         ->and($selected['named']->first()['spell']->name)->toBe('Ultimate Radiance')
         ->and($selected['named']->first()['relationship_type'])->toBe('modifies_cooldown');
 });
+
+/**
+ * Covers a real report (2026-08-09): "Improved Traps doesn't give a number, but Freezing
+ * Trap's cooldown IS correctly reduced" — same shape independently reported for Territorial
+ * Instincts -> Intimidation. Root cause: a source spell commonly has TWO separate
+ * spell_relationships rows to the same target — a generic 'modifies' (no magnitude, from the
+ * Affecting-Spells text pass) alongside a specific 'modifies_cooldown' (real magnitude, from
+ * the Category-effect pass). Both used to render as separate list rows for the same source,
+ * one confusingly numberless. modifiersFor() should show only the specific one.
+ */
+test('modifiersFor drops a redundant bare "modifies" entry when a specific one exists for the same source', function () {
+    $fixture = makeDisciplineFixture();
+    $service = new ModuleSpellReferenceService();
+
+    SpellRelationship::create([
+        'source_spell_id' => $fixture['ultimateRadiance']->id,
+        'target_spell_id' => $fixture['evangelism']->id,
+        'relationship_type' => 'modifies',
+        'modifier_value' => null,
+        'modifier_unit' => null,
+    ]);
+
+    $selected = $service->modifiersFor($fixture['evangelism'], $fixture['build'], collect([$fixture['ultimateRadiance']->id]));
+
+    expect($selected['named'])->toHaveCount(1)
+        ->and($selected['named']->first()['relationship_type'])->toBe('modifies_cooldown')
+        ->and($selected['named']->first()['modifier_value'])->toBe(-45.0);
+});
+
+test('modifiersFor keeps a bare "modifies" entry when no more specific relationship exists for that source', function () {
+    $fixture = makeDisciplineFixture();
+    $service = new ModuleSpellReferenceService();
+
+    // Replace the fixture's specific modifies_cooldown row with a bare 'modifies' one — the
+    // only signal we have for this source is "it affects the target", no known number.
+    SpellRelationship::where('source_spell_id', $fixture['ultimateRadiance']->id)->delete();
+    SpellRelationship::create([
+        'source_spell_id' => $fixture['ultimateRadiance']->id,
+        'target_spell_id' => $fixture['evangelism']->id,
+        'relationship_type' => 'modifies',
+        'modifier_value' => null,
+        'modifier_unit' => null,
+    ]);
+
+    $selected = $service->modifiersFor($fixture['evangelism'], $fixture['build'], collect([$fixture['ultimateRadiance']->id]));
+
+    expect($selected['named'])->toHaveCount(1)
+        ->and($selected['named']->first()['relationship_type'])->toBe('modifies');
+});
