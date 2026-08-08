@@ -31,7 +31,18 @@
       "PowerShell(Get-Content:*)",
       "PowerShell(Select-String:*)",
       "PowerShell(Select-Object:*)",
-      "Read(//c/Users/chris/Herd/chonny/**)"
+      "Read(//c/Users/chris/Herd/chonny/**)",
+      "PowerShell(php artisan tinker --execute=\"echo 'spells total='.App\\\\Models\\\\Spell::count\\(\\).' with icon='.App\\\\Models\\\\Spell::whereNotNull\\('icon_name'\\)->count\\(\\);\")",
+      "PowerShell(php artisan wow:apply-icon-manifest)",
+      "PowerShell(php artisan tinker --execute=\"`$spec = App\\\\Models\\\\Specialization::where\\('slug','discipline'\\)->first\\(\\); `$spell = App\\\\Models\\\\Spell::whereNotNull\\('spell_id'\\)->first\\(\\); echo 'spec external='.`$spec->external_spec_id.' class_slug='.`$spec->gameClass->slug.' sample_spell_id='.`$spell->spell_id;\")",
+      "PowerShell(php artisan tinker --execute=\"echo App\\\\Models\\\\Spell::where\\('spell_id',17\\)->first\\(\\)->icon_name.' | '.App\\\\Models\\\\GameClass::where\\('slug','priest'\\)->first\\(\\)->icon_name.' | '.App\\\\Models\\\\Specialization::where\\('external_spec_id',256\\)->first\\(\\)->icon_name;\")",
+      "PowerShell(php artisan test --filter=ApplyIconManifestTest)",
+      "Bash(echo \"---exit:$?\")",
+      "PowerShell(php data/spelldata/fetch-spell-icons.php 2>&1 | Tee-Object -FilePath \"$env:TEMP\\\\fetch-spell-icons.log\")",
+      "PowerShell(php data/spelldata/fetch-class-spec-icons.php)",
+      "PowerShell(php artisan tinker --execute=\"`$spec = App\\\\Models\\\\Specialization::where\\('slug','discipline'\\)->first\\(\\); `$html = Livewire\\\\Livewire::test\\(App\\\\Livewire\\\\WowComps::class\\)->call\\('selectSpec', 0, `$spec->class_id, `$spec->id\\)->html\\(\\); echo 'has spec-icons img: '.\\(str_contains\\(`$html,'/storage/spec-icons/'\\)?'YES':'NO'\\).PHP_EOL; echo 'has class-icons img: '.\\(str_contains\\(`$html,'/storage/class-icons/'\\)?'YES':'NO'\\).PHP_EOL; echo 'has spell-icons img: '.\\(str_contains\\(`$html,'/storage/spell-icons/'\\)?'YES':'NO'\\);\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

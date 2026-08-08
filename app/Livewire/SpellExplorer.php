@@ -6,6 +6,7 @@ use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
 use App\Models\ModuleGameBuild;
+use App\Models\PageViewEvent;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\TalentBuild;
@@ -57,11 +58,25 @@ class SpellExplorer extends Component
 
         $this->classId = $firstClass->id;
         $this->specId = Specialization::where('class_id', $firstClass->id)->orderBy('name')->first()?->id;
+
+        // Bare page view only — NOT attributed to the default (alphabetically-first) class/spec
+        // shown on landing, since every visitor lands there regardless of interest. Attributing
+        // it would repeat the exact "page load counted as a real choice" bug just fixed in
+        // Admin\DiagnosticStats (see CLAUDE.md/this session) — the default class would look
+        // artificially popular. Only an explicit pick (below) counts as a real class/spec view.
+        PageViewEvent::log('spell_explorer');
     }
 
     public function updatedClassId(): void
     {
         $this->specId = Specialization::where('class_id', $this->classId)->orderBy('name')->first()?->id;
+
+        PageViewEvent::log('spell_explorer', $this->classId, $this->specId);
+    }
+
+    public function updatedSpecId(): void
+    {
+        PageViewEvent::log('spell_explorer', $this->classId, $this->specId);
     }
 
     public function getClassesProperty(): Collection

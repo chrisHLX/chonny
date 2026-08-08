@@ -10,6 +10,7 @@ use App\Models\SpellEffect;
 use App\Models\SpellRelationship;
 use App\Models\TalentTree;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -575,6 +576,33 @@ class ModuleSpellReferenceService
      * build, and therefore the one actually rendered) permanently reads as 'Other' regardless of
      * what the ability actually does.
      *
+     * Sibling merge hardened 2026-08-08 after a real misfire: Breath of Sindragosa's own record
+     * has no categorizable effect at all (just Trigger Spell/Periodic Trigger Spell — it's a
+     * wrapper that ticks a separate damage spell), so it fell through to sibling recovery across
+     * its 9 same-named internal records. That pool correctly contains the real
+     * "School Damage: frost" effect — but it ALSO contains a "Direct Heal, Base Value: 1,
+     * Target: Self" effect on a different sibling (spell_id 155168, referenced by real talents
+     * like "A Feast of Souls" — real data, though its actual connection to Breath of Sindragosa
+     * itself is unconfirmed; the real in-game tooltip has no self-heal at all, so 155168 sharing
+     * this display name may just be a coincidental internal-record collision, the same pattern
+     * already seen elsewhere in this file for Divine Star/Penance). Whichever it is, a
+     * `Base Value: 1` effect isn't meaningful gameplay signal either way, and because Defensive
+     * is checked before Offensive in the match arms below, it silently overrode the real damage
+     * signal, showing the DK's biggest offensive channel as "Defensive". Fixed by
+     * categorizeFromEffects() below now receiving full SpellEffect objects (not bare type
+     * strings) so it can filter out exactly this shape (a Direct/Periodic Heal whose own
+     * base_value and scaled_value are both <= 1, AND has no sp_coefficient) before building the
+     * match string — scoped narrowly to healing effects specifically, since that's the only
+     * confirmed case of this failure mode; not a general "ignore small numbers" rule. The
+     * sp_coefficient check is required, not optional — a first version of this fix rejected on
+     * base_value/scaled_value alone and broke Swiftmend/Wild Growth/Riptide, whose real heal
+     * effects also show base_value=0/scaled_value=0 (the normal signature of a real SP-scaled
+     * effect, see resolveDescription()'s SP Coefficient work — the actual magnitude lives in
+     * sp_coefficient, not these two flat fields, for exactly these kinds of spells). Confirmed
+     * directly: Swiftmend/Wild Growth/Riptide all carry a real, nonzero sp_coefficient (10.37,
+     * 0.36, 4.80); Breath of Sindragosa's bookkeeping effect has sp_coefficient = NULL. Requiring
+     * "no sp_coefficient either" is what correctly separates the two cases.
+     *
      * @return string One of: 'Crowd Control', 'Defensive', 'Utility', 'Offensive', 'Other'
      */
     public function categorize(Spell $spell): string
@@ -583,24 +611,24 @@ class ModuleSpellReferenceService
             return self::MECHANIC_CATEGORY_MAP[$spell->mechanic];
         }
 
-        $category = $this->categorizeFromEffectTypes($spell->effects->pluck('type'));
+        $category = $this->categorizeFromEffects($spell->effects);
 
         if ($category !== 'Other') {
             return $category;
         }
 
-        $siblingTypes = Spell::where('name', $spell->name)
+        $siblingEffects = Spell::where('name', $spell->name)
             ->where('patch_id', $spell->patch_id)
             ->where('id', '!=', $spell->id)
             ->with('effects')
             ->get()
-            ->flatMap(fn (Spell $sibling) => $sibling->effects->pluck('type'));
+            ->flatMap(fn (Spell $sibling) => $sibling->effects);
 
-        return $siblingTypes->isEmpty() ? 'Other' : $this->categorizeFromEffectTypes($siblingTypes);
+        return $siblingEffects->isEmpty() ? 'Other' : $this->categorizeFromEffects($siblingEffects);
     }
 
     /**
-     * @param  \Illuminate\Support\Collection<int, ?string>  $types
+     * @param  \Illuminate\Support\Collection<int, SpellEffect>  $effects
      *
      * Defensive/Utility patterns extended 2026-08-06 after surveying every currently-selected
      * *active* ability (has a cooldown or charges — i.e. actually shows under "Active Abilities",
@@ -617,16 +645,35 @@ class ModuleSpellReferenceService
      * cooldown-modifier cooldowns (Trueshot, Power Infusion, Nature's Swiftness) whose own effect
      * types don't say enough to safely guess a bucket — left as 'Other' rather than force a
      * confident-looking label onto a genuinely ambiguous case.
+     *
+     * Offensive pattern extended 2026-08-08: Trueshot (crit chance/damage cooldown) was exactly
+     * this kind of "Other" case — its effects are all Modify Critical Strike%/Add Percent
+     * Modifier: Spell Critical Bonus Multiplier, none of which matched the old pattern
+     * (School Damage%/Damage Done%/Energize). A pure crit-chance-and-damage cooldown is
+     * unambiguously offensive (a DPS increase, nothing else), so "Critical Strike%"/"Critical
+     * Bonus" were added rather than left as an unresolved "Other" alongside the genuinely
+     * ambiguous summon/generic-stat cases.
      */
-    private function categorizeFromEffectTypes(Collection $types): string
+    private function categorizeFromEffects(Collection $effects): string
     {
-        $joined = $types->implode(' | ');
+        $meaningfulTypes = $effects
+            ->reject(function (SpellEffect $effect) {
+                $isHealType = str_contains((string) $effect->type, 'Direct Heal') || str_contains((string) $effect->type, 'Periodic Heal');
+
+                return $isHealType
+                    && (float) ($effect->base_value ?? 0) <= 1
+                    && (float) ($effect->scaled_value ?? 0) <= 1
+                    && $effect->sp_coefficient === null;
+            })
+            ->pluck('type');
+
+        $joined = $meaningfulTypes->implode(' | ');
 
         return match (true) {
             (bool) preg_match('/Stun|Fear|Root|Silence|Incapacitate|Disorient|Charm|Polymorph|Freeze|Sleep|Horror/i', $joined) => 'Crowd Control',
             (bool) preg_match('/Damage Taken%|Absorb|Immunity|Block%|Parry%|Dodge%|Damage Reduction|Direct Heal|Periodic Heal|Heal Max Health%|Modify Armor/i', $joined) => 'Defensive',
             (bool) preg_match('/Dispel|Increase Speed%|Threat Reduction|Aggro|Interrupt Cast|Redirect Threat/i', $joined) => 'Utility',
-            (bool) preg_match('/School Damage|Damage Done%|Energize/i', $joined) => 'Offensive',
+            (bool) preg_match('/School Damage|Damage Done%|Energize|Critical Strike%|Critical Bonus/i', $joined) => 'Offensive',
             default => 'Other',
         };
     }
@@ -780,6 +827,27 @@ class ModuleSpellReferenceService
      *
      * @return array{text: string, uncertain: bool}
      */
+    /**
+     * resolveDescription() runs fresh on every page load for every spell rendered (by design —
+     * see its own docblock), so a page like WowComps (up to ~300 spells across 3 specs in one
+     * request) can hit the same permanent, already-known data gap (a $?c code, an unresolved
+     * token) hundreds of times per view. Logging each occurrence at WARNING severity flooded
+     * the Log Viewer — a single page view could evict 800 lines of real log history, burying
+     * genuine errors. These gaps don't change until the underlying SimC dump does, so once a
+     * given (spell, gap) pair has been recorded it's genuinely not new information — downgraded
+     * to debug (invisible to the Log Viewer's default filter) and deduped for 30 days per key,
+     * added 2026-08-08.
+     */
+    private function logGapOnce(string $key, string $message, array $context): void
+    {
+        $cacheKey = 'mspell-ref-gap:' . $key;
+        if (Cache::has($cacheKey)) {
+            return;
+        }
+        Cache::put($cacheKey, true, now()->addDays(30));
+        Log::debug($message, $context);
+    }
+
     public function resolveDescription(Spell $spell, ModuleGameBuild $build): array
     {
         $text = $spell->description ?? '';
@@ -798,7 +866,7 @@ class ModuleSpellReferenceService
         $truncated = preg_replace('/\$\?[acs]\d+\[[^\]]*$/', '', $text);
         if ($truncated !== $text) {
             $uncertain = true;
-            Log::warning('ModuleSpellReferenceService: truncated an unterminated trailing conditional', [
+            $this->logGapOnce("truncated:{$spell->spell_id}", 'ModuleSpellReferenceService: truncated an unterminated trailing conditional', [
                 'spell_id' => $spell->spell_id,
             ]);
             $text = rtrim($truncated);
@@ -813,7 +881,7 @@ class ModuleSpellReferenceService
 
                 if ($letter === 'c') {
                     $uncertain = true;
-                    Log::warning('ModuleSpellReferenceService: unresolvable $?c condition code', [
+                    $this->logGapOnce("cond:{$spell->spell_id}:{$id}", 'ModuleSpellReferenceService: unresolvable $?c condition code', [
                         'spell_id' => $spell->spell_id, 'code' => $id,
                     ]);
 
@@ -910,7 +978,7 @@ class ModuleSpellReferenceService
                     return $coefficientText;
                 }
 
-                Log::warning('ModuleSpellReferenceService: unresolved description token', [
+                $this->logGapOnce("token:{$spell->spell_id}:{$m[0]}", 'ModuleSpellReferenceService: unresolved description token', [
                     'spell_id' => $spell->spell_id, 'token' => $m[0],
                 ]);
 

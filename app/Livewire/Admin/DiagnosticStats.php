@@ -66,25 +66,61 @@ class DiagnosticStats extends Component
         ];
     }
 
+    /**
+     * Builds the same "u:{user}:{module}" / "s:{session}:{module}" identity key used to match a
+     * funnel_events row to a DiagnosticAttempt row across this whole class — pulled out once here
+     * so getSummaryProperty()/getDropOffProperty()/getContextCompletionProperty() share a single
+     * definition instead of three independently-maintained copies.
+     */
+    private function identityKey(?int $userId, ?string $sessionId, int $moduleId): string
+    {
+        return $userId ? "u:{$userId}:{$moduleId}" : "s:{$sessionId}:{$moduleId}";
+    }
+
+    private function assessmentStartedKeys(): \Illuminate\Support\Collection
+    {
+        return FunnelEvent::where('event', 'assessment_started')
+            ->get(['module_id', 'user_id', 'guest_session_id'])
+            ->map(fn ($e) => $this->identityKey($e->user_id, $e->guest_session_id, $e->module_id))
+            ->unique();
+    }
+
+    /**
+     * "started" here means real engagement — a matching assessment_started funnel event — not
+     * just a DiagnosticAttempt row. DiagnosticQuizRunner::mount() calls startQuizInternal(),
+     * which calls recordAttemptStarted() unconditionally on every page load of a diagnostic
+     * module (before the user clicks anything), so a raw DiagnosticAttempt::count() measures
+     * page views, not starts. That inflated the headline number with anyone who merely loaded
+     * the module page — including link-preview bots/crawlers, since the route is public — and
+     * made the completion rate look far worse than it actually is among people who engaged.
+     * pageViews is kept and exposed separately so that raw signal isn't lost, just no longer
+     * mislabeled as "started".
+     */
     public function getSummaryProperty(): array
     {
-        $started   = DiagnosticAttempt::count();
-        $completed = DiagnosticAttempt::whereNotNull('completed_at')->count();
+        $pageViews = DiagnosticAttempt::count();
 
-        $guestStarted   = DiagnosticAttempt::whereNull('user_id')->count();
-        $guestCompleted = DiagnosticAttempt::whereNull('user_id')->whereNotNull('completed_at')->count();
+        $startedKeys = $this->assessmentStartedKeys();
 
-        $authStarted   = $started - $guestStarted;
-        $authCompleted = $completed - $guestCompleted;
+        $engaged = DiagnosticAttempt::get(['module_id', 'user_id', 'session_id', 'completed_at'])
+            ->filter(fn ($a) => $startedKeys->contains($this->identityKey($a->user_id, $a->session_id, $a->module_id)));
+
+        $started   = $engaged->count();
+        $completed = $engaged->whereNotNull('completed_at')->count();
+
+        $guestEngaged   = $engaged->whereNull('user_id');
+        $guestStarted   = $guestEngaged->count();
+        $guestCompleted = $guestEngaged->whereNotNull('completed_at')->count();
 
         return [
+            'pageViews'      => $pageViews,
             'started'        => $started,
             'completed'      => $completed,
             'rate'           => $started > 0 ? round(($completed / $started) * 100, 1) : 0.0,
             'guestStarted'   => $guestStarted,
             'guestCompleted' => $guestCompleted,
-            'authStarted'    => $authStarted,
-            'authCompleted'  => $authCompleted,
+            'authStarted'    => $started - $guestStarted,
+            'authCompleted'  => $completed - $guestCompleted,
         ];
     }
 
@@ -136,10 +172,7 @@ class DiagnosticStats extends Component
      */
     public function getDropOffProperty(): \Illuminate\Support\Collection
     {
-        $startedKeys = FunnelEvent::where('event', 'assessment_started')
-            ->get(['module_id', 'user_id', 'guest_session_id'])
-            ->map(fn ($e) => $e->user_id ? "u:{$e->user_id}:{$e->module_id}" : "s:{$e->guest_session_id}:{$e->module_id}")
-            ->unique();
+        $startedKeys = $this->assessmentStartedKeys();
 
         return DiagnosticAttempt::with('subject')
             ->whereNull('completed_at')
@@ -155,10 +188,7 @@ class DiagnosticStats extends Component
                     ->sortKeys();
 
                 $stuckOnQ1 = $group->filter(fn ($a) => $a->last_question_index === 0);
-                $neverStarted = $stuckOnQ1->filter(function ($a) use ($startedKeys) {
-                    $key = $a->user_id ? "u:{$a->user_id}:{$a->module_id}" : "s:{$a->session_id}:{$a->module_id}";
-                    return !$startedKeys->contains($key);
-                })->count();
+                $neverStarted = $stuckOnQ1->filter(fn ($a) => !$startedKeys->contains($this->identityKey($a->user_id, $a->session_id, $a->module_id)))->count();
 
                 return [
                     'subject'         => $group->first()->subject?->name ?? '—',
@@ -191,7 +221,7 @@ class DiagnosticStats extends Component
     {
         $declaredKeys = FunnelEvent::where('event', 'context_declared')
             ->get(['module_id', 'user_id', 'guest_session_id'])
-            ->map(fn ($e) => $e->user_id ? "u:{$e->user_id}:{$e->module_id}" : "s:{$e->guest_session_id}:{$e->module_id}")
+            ->map(fn ($e) => $this->identityKey($e->user_id, $e->guest_session_id, $e->module_id))
             ->unique();
 
         $subjectsWithVariants = Question::whereHas('contextOptions')
@@ -208,7 +238,7 @@ class DiagnosticStats extends Component
 
         DiagnosticAttempt::get(['module_id', 'user_id', 'session_id', 'subject_id', 'completed_at'])
             ->each(function ($attempt) use ($declaredKeys, $subjectsWithVariants, &$buckets) {
-                $key      = $attempt->user_id ? "u:{$attempt->user_id}:{$attempt->module_id}" : "s:{$attempt->session_id}:{$attempt->module_id}";
+                $key      = $this->identityKey($attempt->user_id, $attempt->session_id, $attempt->module_id);
                 $declared = $declaredKeys->contains($key);
 
                 $bucket = !$declared

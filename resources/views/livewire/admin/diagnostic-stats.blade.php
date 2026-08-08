@@ -13,6 +13,7 @@
                 <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-2">Started</p>
                 <p class="text-[22px] font-semibold text-ink leading-none">{{ number_format($summary['started']) }}</p>
                 <p class="text-[12px] text-ink-muted mt-1">{{ number_format($summary['guestStarted']) }} guest · {{ number_format($summary['authStarted']) }} auth</p>
+                <p class="text-[11px] text-ink-subtle mt-1">clicked "Start Assessment" · {{ number_format($summary['pageViews']) }} page views total</p>
             </div>
             <div class="linear-card p-5">
                 <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-2">Completed</p>
@@ -22,7 +23,7 @@
             <div class="linear-card p-5">
                 <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-2">Completion rate</p>
                 <p class="text-[22px] font-semibold text-ink leading-none">{{ $summary['rate'] }}%</p>
-                <p class="text-[12px] text-ink-muted mt-1">of all starts</p>
+                <p class="text-[12px] text-ink-muted mt-1">of engaged starts</p>
             </div>
             <div class="linear-card p-5">
                 <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-2">Guest completion rate</p>

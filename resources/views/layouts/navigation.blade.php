@@ -109,6 +109,11 @@
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                     Diagnostic Stats
                 </a>
+                <a href="{{ route('admin.page-usage') }}"
+                   class="sidebar-item text-[12px] {{ request()->routeIs('admin.page-usage') ? 'active !text-accent' : '' }}">
+                    <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                    Page Usage
+                </a>
                 <a href="{{ route('jobs.dashboard') }}"
                    class="sidebar-item text-[12px] {{ request()->routeIs('jobs.dashboard') ? 'active !text-accent' : '' }}">
                     <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
