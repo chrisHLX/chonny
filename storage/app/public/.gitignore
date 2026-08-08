@@ -1,2 +1,16 @@
 *
 !.gitignore
+
+# Self-hosted WoW class/spec/spell icons, fetched once from Blizzard's Game Data API by
+# data/spelldata/fetch-spell-icons.php and fetch-class-spec-icons.php, then committed here so
+# new machines (dev or production) don't need BLIZZARD_CLIENT_ID/SECRET just to render icons.
+# The corresponding spell_id/slug -> filename mapping is committed separately as
+# data/spelldata/icon-manifest.json and applied via `php artisan wow:apply-icon-manifest`
+# (no API calls) after any migrate:fresh, since the DB's icon_name columns don't survive that.
+# This is the only thing stored under storage/app/public/ in this codebase — see CLAUDE.md.
+!spell-icons/
+!spell-icons/**
+!class-icons/
+!class-icons/**
+!spec-icons/
+!spec-icons/**

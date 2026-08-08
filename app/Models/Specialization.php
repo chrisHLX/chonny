@@ -12,6 +12,7 @@ class Specialization extends Model
         'name',
         'slug',
         'external_spec_id',
+        'icon_name',
     ];
 
     public function gameClass()

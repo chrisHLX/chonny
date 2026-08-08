@@ -49,6 +49,14 @@ const OAUTH_URL = 'https://oauth.battle.net/token';
 // Icon storage subdirectory under Laravel's public disk (storage/app/public)
 const ICON_STORAGE_SUBDIR = 'spell-icons';
 
+// Committed alongside the image files (see storage/app/public/.gitignore) so a fresh
+// migrate:fresh on any machine can repopulate spells.icon_name via
+// `php artisan wow:apply-icon-manifest` with zero Blizzard API calls — see that command's
+// docblock. Shared with fetch-class-spec-icons.php (each script only rewrites its own
+// section of the file, always regenerated from the DB's current icon_name values rather
+// than tracked incrementally during the run — see refreshIconManifest() below).
+const ICON_MANIFEST_PATH = __DIR__ . '/icon-manifest.json';
+
 // Courtesy delay between requests (microseconds) — keeps us well under Blizzard's
 // per-second limit without needing to track a request counter/window ourselves.
 const REQUEST_DELAY_US = 40000; // 40ms ≈ 25 req/s
@@ -283,6 +291,29 @@ function downloadFile(string $url, string $targetPath): bool
     return true;
 }
 
+/**
+ * Rewrites only the given top-level section of the shared manifest file from the current
+ * DB state (SELECT of the relevant table's own icon_name column) — always a full refresh
+ * of that section, never an incremental in-loop track, so the manifest self-heals on every
+ * run regardless of where a previous run stopped. Other sections (written by the other
+ * fetch script) are read back unchanged and re-written as-is.
+ */
+function refreshIconManifestSection(string $section, array $entries): void
+{
+    $manifest = is_file(ICON_MANIFEST_PATH)
+        ? json_decode(file_get_contents(ICON_MANIFEST_PATH), true, 512, JSON_THROW_ON_ERROR)
+        : [];
+    $manifest += ['spells' => [], 'classes' => [], 'specs' => []];
+
+    ksort($entries, SORT_STRING);
+    $manifest[$section] = $entries;
+
+    file_put_contents(
+        ICON_MANIFEST_PATH,
+        json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n"
+    );
+}
+
 // ---------------------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------------------
@@ -440,6 +471,17 @@ if ($skipDownload) {
 fwrite(STDOUT, "Total API requests made:       {$requestCount}\n");
 fwrite(STDOUT, "Database updated with icon names for: " . $stats['processed'] . " spells\n");
 fwrite(STDOUT, "\n" . str_repeat('-', 60) . "\n");
+
+// Refresh the committed manifest from the DB's full current state (not just this run's
+// additions) — see refreshIconManifestSection()'s docblock.
+$manifestEntries = [];
+$stmt = $pdo->query('SELECT spell_id, icon_name FROM spells WHERE icon_name IS NOT NULL');
+foreach ($stmt->fetchAll() as $row) {
+    $manifestEntries[(string) $row['spell_id']] = $row['icon_name'];
+}
+refreshIconManifestSection('spells', $manifestEntries);
+fwrite(STDOUT, "\nManifest updated: " . ICON_MANIFEST_PATH . " now has " . count($manifestEntries) . " spell entries.\n");
+fwrite(STDOUT, "Commit both the manifest and storage/app/public/spell-icons/ so other machines never need Blizzard API credentials for icons.\n");
 
 // Verify counts match
 if (!$skipDownload) {

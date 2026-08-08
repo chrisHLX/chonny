@@ -36,36 +36,69 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         @foreach ($slots as $index => $slot)
-            @php $isHealer = $slot['label'] === 'Healer'; @endphp
-            <div class="linear-card p-4 space-y-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg {{ $isHealer ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-violet/10 border border-violet/20' }} flex items-center justify-center shrink-0">
-                        <x-mc-icon name="badge-wow" class="w-5 h-5 {{ $isHealer ? 'text-emerald-400' : 'text-violet' }}"/>
-                    </div>
-                    <div class="min-w-0">
-                        <span class="{{ $isHealer ? 'badge-green' : 'badge-blue' }}">{{ strtoupper($slot['label']) }}</span>
-                        <p class="text-[13px] font-semibold text-ink truncate mt-0.5">
-                            {{ $comp[$index]['class']?->name ?? 'Choose class…' }}
-                        </p>
-                        @if ($comp[$index]['spec'])
-                            <p class="text-[11px] text-ink-muted truncate">{{ $comp[$index]['spec']->name }}</p>
-                        @endif
-                    </div>
-                </div>
+            @php
+                $isHealer = $slot['label'] === 'Healer';
+                $selectedClass = $comp[$index]['class'];
+                $selectedSpec = $comp[$index]['spec'];
+                $selectedColor = $selectedClass ? (config('wow_classes.colors')[$selectedClass->slug] ?? '#8A8A9A') : null;
+            @endphp
+            {{-- Spec-first picker: one click opens a searchable flyout grouped by class, and
+                 clicking a spec directly (e.g. typing "disc" -> click "Discipline") sets both
+                 class + spec in a single selectSpec() call — replaces the old two-step
+                 class-select-then-spec-select pair. --}}
+            <div class="linear-card p-4 space-y-2 relative" x-data="{ open: false, search: '' }" @click.outside="open = false; search = ''">
+                <span class="{{ $isHealer ? 'badge-green' : 'badge-blue' }}">{{ strtoupper($slot['label']) }}</span>
 
-                <div class="grid grid-cols-2 gap-2">
-                    <select wire:model.live="slots.{{ $index }}.classId" class="form-select !text-[12px] !py-1.5">
-                        <option value="">Class…</option>
-                        @foreach ($classes as $class)
-                            <option value="{{ $class->id }}">{{ $class->name }}</option>
-                        @endforeach
-                    </select>
-                    <select wire:model.live="slots.{{ $index }}.specId" class="form-select !text-[12px] !py-1.5" @if (!$slot['classId']) disabled @endif>
-                        <option value="">Spec…</option>
-                        @foreach ($this->specializationsFor($slot['classId']) as $spec)
-                            <option value="{{ $spec->id }}">{{ $spec->name }}</option>
-                        @endforeach
-                    </select>
+                <button type="button"
+                        @click="open = !open; if (open) $nextTick(() => $refs.search.focus())"
+                        class="w-full flex items-center gap-3 text-left px-2.5 py-2 rounded-lg border border-line hover:border-gold/40 transition-colors">
+                    @if ($selectedSpec)
+                        <x-spec-icon :spec="$selectedSpec" :color="$selectedColor" size="w-9 h-9"/>
+                        <span class="min-w-0">
+                            <span class="block text-[13px] font-semibold text-ink truncate">{{ $selectedSpec->name }}</span>
+                            <span class="block text-[11px] text-ink-muted truncate">{{ $selectedClass->name }}</span>
+                        </span>
+                    @else
+                        <div class="w-9 h-9 rounded-md border border-line-strong bg-surface-2 flex items-center justify-center flex-shrink-0">
+                            <x-mc-icon name="badge-wow" class="w-4 h-4 text-ink-subtle"/>
+                        </div>
+                        <span class="text-[13px] text-ink-muted">Choose spec…</span>
+                    @endif
+                    <svg class="w-3.5 h-3.5 text-ink-subtle ml-auto flex-shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <div x-show="open" x-cloak x-transition.opacity.duration.100ms
+                     class="absolute z-30 left-0 right-0 mt-1 linear-card !border-line-strong shadow-gold-lg p-3 max-h-96 overflow-y-auto">
+                    <input type="text" x-ref="search" x-model="search" @click.stop
+                           placeholder="Search a class or spec…"
+                           class="form-input !text-[12px] !py-1.5 mb-3 w-full">
+
+                    @foreach ($classSpecs as $class)
+                        @php $classColor = config('wow_classes.colors')[$class->slug] ?? '#8A8A9A'; @endphp
+                        <div class="mb-2.5 last:mb-0"
+                             data-search-group="{{ Str::lower($class->name.' '.$class->specializations->pluck('name')->implode(' ')) }}"
+                             x-show="search === '' || $el.dataset.searchGroup.includes(search.toLowerCase())">
+                            <div class="flex items-center gap-1.5 mb-1 px-1">
+                                <x-class-icon :class="$class" size="w-4 h-4"/>
+                                <span class="text-[10px] uppercase tracking-wide font-semibold" style="color: {{ $classColor }}">{{ $class->name }}</span>
+                            </div>
+                            <div class="space-y-0.5">
+                                @foreach ($class->specializations as $spec)
+                                    <button type="button"
+                                            data-search="{{ Str::lower($class->name.' '.$spec->name) }}"
+                                            x-show="search === '' || $el.dataset.search.includes(search.toLowerCase())"
+                                            wire:click="selectSpec({{ $index }}, {{ $class->id }}, {{ $spec->id }})"
+                                            @click="open = false; search = ''"
+                                            class="w-full flex items-center gap-2 text-left px-2 py-1.5 rounded hover:bg-surface-2 transition-colors {{ $selectedSpec?->id === $spec->id ? 'bg-gold/10' : '' }}">
+                                        <x-spec-icon :spec="$spec" :color="$classColor" size="w-6 h-6"/>
+                                        <span class="text-[12px] text-ink truncate">{{ $spec->name }}</span>
+                                    </button>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         @endforeach
@@ -180,7 +213,7 @@
                         $cooldownChanged = $cooldown['seconds'] !== null && $cooldown['base_seconds'] !== null && round($cooldown['seconds'], 2) !== round($cooldown['base_seconds'], 2);
                         $chargesChanged = $charges['charges'] !== null && $charges['base_charges'] !== null && $charges['charges'] !== $charges['base_charges'];
                     @endphp
-                    <div x-show="openSpellId === '{{ $modalKey }}'" x-cloak
+                    <div x-show="openSpellId === '{{ $modalKey }}'" x-cloak x-data="{ expandedMod: null }"
                          class="linear-card max-w-md w-full p-5 relative max-h-[85vh] overflow-y-auto"
                          @click.stop>
                         <button type="button" @click="openSpellId = null" class="absolute top-3 right-3 text-ink-subtle hover:text-ink">
@@ -228,7 +261,30 @@
                             <div class="mt-3 pt-3 border-t border-line">
                                 <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold mb-1.5">Modifies / Enhances</p>
                                 @foreach ($entry['modifiers']['named'] as $mod)
-                                    <div class="text-[12px] text-ink-muted mb-1 last:mb-0">{{ $mod['spell']->name }}</div>
+                                    @php
+                                        $modId = $mod['spell']->id;
+                                        $modCooldown = $mod['cooldown'];
+                                        $modCooldownDisplay = $modCooldown['seconds'] !== null ? $fmtSeconds($modCooldown['seconds']) : null;
+                                    @endphp
+                                    <div class="mb-1 last:mb-0">
+                                        <button type="button"
+                                                @click="expandedMod = expandedMod === {{ $modId }} ? null : {{ $modId }}"
+                                                class="w-full flex items-center gap-1.5 text-left py-0.5 -mx-1 px-1 rounded hover:bg-surface-2 transition-colors">
+                                            <svg class="w-3 h-3 text-ink-subtle flex-shrink-0 transition-transform" :class="expandedMod === {{ $modId }} && 'rotate-90'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                            <x-spell-icon :spell="$mod['spell']" size="w-5 h-5" />
+                                            <span class="text-[12px] text-ink-muted flex-1 truncate">{{ $mod['spell']->name }}</span>
+                                        </button>
+                                        <div x-show="expandedMod === {{ $modId }}" x-cloak x-collapse
+                                             class="ml-[18px] pl-2.5 border-l border-line mt-1 mb-1.5">
+                                            <span class="{{ $categoryBadge[$mod['category']] ?? 'badge-gray' }} mb-1">{{ $mod['category'] }}</span>
+                                            <p class="text-[11px] text-ink-muted leading-relaxed mt-1">{{ $mod['description']['text'] ?: 'No description available.' }}</p>
+                                            @if ($modCooldownDisplay)
+                                                <p class="text-[10px] text-ink-subtle mt-1"><span class="font-semibold">Cooldown</span> {{ $modCooldownDisplay }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
                                 @endforeach
                             </div>
                         @endif

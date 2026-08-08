@@ -6,6 +6,7 @@ use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
 use App\Models\ModuleGameBuild;
+use App\Models\PageViewEvent;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\TalentBuild;
@@ -31,6 +32,11 @@ class WowComps extends Component
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
     ];
 
+    public function mount(): void
+    {
+        PageViewEvent::log('wow_comps');
+    }
+
     public function updated(string $name): void
     {
         if (preg_match('/^slots\.(\d+)\.classId$/', $name, $m)) {
@@ -38,7 +44,24 @@ class WowComps extends Component
             $this->slots[$index]['specId'] = Specialization::where('class_id', $this->slots[$index]['classId'])
                 ->orderBy('name')
                 ->first()?->id;
+
+            $this->logSlotSelection($index);
+            return;
         }
+
+        if (preg_match('/^slots\.(\d+)\.specId$/', $name, $m)) {
+            $this->logSlotSelection((int) $m[1]);
+        }
+    }
+
+    private function logSlotSelection(int $index): void
+    {
+        PageViewEvent::log(
+            'wow_comps',
+            $this->slots[$index]['classId'],
+            $this->slots[$index]['specId'],
+            (string) $index
+        );
     }
 
     public function getClassesProperty(): Collection
@@ -48,13 +71,29 @@ class WowComps extends Component
             ->get();
     }
 
-    public function specializationsFor(?int $classId): Collection
+    /**
+     * Every class with its specs eager-loaded, ordered — backs the combined spec-picker
+     * flyout (search + click straight to a spec, e.g. "Discipline", instead of a two-step
+     * class-then-spec select). Shared across all 3 slots since it's the same static list.
+     */
+    public function getClassSpecsProperty(): Collection
     {
-        if (!$classId) {
-            return collect();
-        }
+        return $this->classes->load(['specializations' => fn ($q) => $q->orderBy('name')]);
+    }
 
-        return Specialization::where('class_id', $classId)->orderBy('name')->get();
+    /**
+     * Sets a slot's class + spec in one action (the flyout picker's click target) instead of
+     * the class-first-then-spec two-step the plain <select> pair required. Logs directly
+     * rather than relying on updated() to fire for a method-mutated property — updated() is
+     * kept as-is below for the original wire:model-driven path (still covered by
+     * tests/Feature/Admin/PageUsageTrackingTest.php's ->set('slots.0.classId', ...) case).
+     */
+    public function selectSpec(int $index, int $classId, int $specId): void
+    {
+        $this->slots[$index]['classId'] = $classId;
+        $this->slots[$index]['specId'] = $specId;
+
+        $this->logSlotSelection($index);
     }
 
     /**
@@ -86,9 +125,9 @@ class WowComps extends Component
      * would actually point to as this comp member's main tools — active (non-passive), a real
      * cooldown of at least 20s (filters out short-CD filler abilities), longest first, top 3.
      * Deliberately not restricted to the Offensive/Defensive categorize() buckets — several
-     * genuinely "main" cooldowns (Bloodlust/Heroism, Power Infusion, Trueshot) fall into
+     * genuinely "main" cooldowns (Bloodlust/Heroism, Power Infusion) fall into
      * categorize()'s 'Other' bucket per its own documented limitation (see
-     * ModuleSpellReferenceService::categorizeFromEffectTypes()'s docblock), and excluding them
+     * ModuleSpellReferenceService::categorizeFromEffects()'s docblock), and excluding them
      * here would misrepresent this list's whole purpose.
      *
      * @param  array<int, array{spell: Spell, cooldown: array}>  $entries
@@ -169,13 +208,17 @@ class WowComps extends Component
             ->get()
             ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds) {
                 $description = $service->resolveDescription($spell, $build);
+                $modifiers = $service->modifiersFor($spell, $build, $selected, $ranks);
 
                 return [
                     'spell' => $spell,
                     'category' => $service->categorize($spell),
                     'description' => $description,
                     'formulaModifiers' => $description['uncertain'] ? $service->variablesModifiers($spell) : collect(),
-                    'modifiers' => $service->modifiersFor($spell, $build, $selected, $ranks),
+                    'modifiers' => [
+                        'named' => $this->enrichModifiers($modifiers['named'], $service, $build, $selected, $ranks),
+                        'baseline' => $this->enrichModifiers($modifiers['baseline'], $service, $build, $selected, $ranks),
+                    ],
                     'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
                     'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
                     // Verified/explicit-spec baseline abilities are never talent-gated, so
@@ -184,6 +227,31 @@ class WowComps extends Component
                 ];
             })
             ->all();
+    }
+
+    /**
+     * Adds each modifier's own description/category/cooldown to its entry — added 2026-08-09 so
+     * the modal's "Modifies / Enhances" list can expand a modifier inline (an accordion) instead
+     * of only showing its bare name. modifiersFor() itself only returns
+     * {spell, relationship_type, modifier_value, modifier_unit} — resolving each modifier's own
+     * detail is a separate step, done here rather than inside modifiersFor() since that method is
+     * also called from Modules\Show/SpellExplorer, neither of which needs this extra resolution
+     * work (no modifier-accordion UI on either page). Reuses the same $build/$selected/$ranks
+     * context as the parent spell, since a modifier's own effective cooldown depends on the same
+     * talent build.
+     *
+     * @param  \Illuminate\Support\Collection<int, array>  $modifiers
+     * @return \Illuminate\Support\Collection<int, array>
+     */
+    private function enrichModifiers(Collection $modifiers, ModuleSpellReferenceService $service, ModuleGameBuild $build, Collection $selected, Collection $ranks): Collection
+    {
+        return $modifiers->map(function (array $mod) use ($service, $build, $selected, $ranks) {
+            $mod['description'] = $service->resolveDescription($mod['spell'], $build);
+            $mod['category'] = $service->categorize($mod['spell']);
+            $mod['cooldown'] = $service->effectiveCooldown($mod['spell'], $build, $selected, $ranks);
+
+            return $mod;
+        });
     }
 
     private function detectHeroTreeId(Collection $selectedSpellIds): ?int
@@ -203,7 +271,7 @@ class WowComps extends Component
     public function render()
     {
         return view('livewire.wow-comps', [
-            'classes' => $this->classes,
+            'classSpecs' => $this->classSpecs,
             'comp' => $this->comp,
         ])->layout('layouts.app');
     }

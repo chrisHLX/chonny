@@ -16,6 +16,7 @@ class GameClass extends Model
         'game_id',
         'name',
         'slug',
+        'icon_name',
     ];
 
     public function game()
