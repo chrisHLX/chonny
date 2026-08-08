@@ -11,6 +11,7 @@ use App\Models\Spell;
 use App\Models\TalentBuild;
 use App\Models\TalentNodeEntry;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 /**
@@ -91,6 +92,25 @@ class SpellExplorer extends Component
         $service = app(ModuleSpellReferenceService::class);
         $talentService = app(TalentSelectionService::class);
 
+        // Redis-cached, 2026-08-08 — same rationale/invalidation as WowComps::spellReferencesFor()
+        // (see that method's docblock): this is the same expensive per-spell computation, driven
+        // only by the spec's admin default build + imported spell data, safe to share across
+        // requests/users, invalidated via TalentSelectionService's version counter rather than a
+        // TTL guess.
+        $version = $talentService->spellCacheVersion();
+
+        return Cache::remember(
+            "wow_spell_references:spec:{$this->specId}:v{$version}",
+            now()->addHours(6),
+            fn () => $this->computeSpellReferences($service, $talentService)
+        );
+    }
+
+    /**
+     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool}>
+     */
+    private function computeSpellReferences(ModuleSpellReferenceService $service, TalentSelectionService $talentService): array
+    {
         $defaultBuild = TalentBuild::where('spec_id', $this->specId)->where('is_default', true)->first();
         $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();
         $ranks = $defaultBuild ? $talentService->selectedRanks($defaultBuild) : collect();

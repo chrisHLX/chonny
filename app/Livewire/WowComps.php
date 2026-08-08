@@ -11,6 +11,7 @@ use App\Models\Spell;
 use App\Models\TalentBuild;
 use App\Models\TalentNodeEntry;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 /**
@@ -107,6 +108,29 @@ class WowComps extends Component
      * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool}>
      */
     private function spellReferencesFor(Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService): array
+    {
+        // Redis-cached, 2026-08-08 — this computation (description resolution, categorization,
+        // modifiers, cooldown/charges for every spell in a spec's kit) was the confirmed source
+        // of WowComps's 45.8s/~5,000-query cold render (see CLAUDE.md's "same-day performance
+        // fix" note) — the earlier fix only removed *redundant* recomputation within one request
+        // via ModuleSpellReferenceService's per-instance memoization; every fresh page load still
+        // recomputed everything from scratch. The result depends only on the spec's admin
+        // DEFAULT talent build (never a viewer's own) and the imported spell data, so it's safe
+        // to share across requests/users — invalidated via TalentSelectionService's version
+        // counter (bumped on any default-build write or spelldata re-import), not a TTL guess.
+        $version = $talentService->spellCacheVersion();
+
+        return Cache::remember(
+            "wow_spell_references:spec:{$spec->id}:v{$version}",
+            now()->addHours(6),
+            fn () => $this->computeSpellReferencesFor($spec, $service, $talentService)
+        );
+    }
+
+    /**
+     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool}>
+     */
+    private function computeSpellReferencesFor(Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService): array
     {
         $defaultBuild = TalentBuild::where('spec_id', $spec->id)->where('is_default', true)->first();
         $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();

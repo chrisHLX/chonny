@@ -14,6 +14,7 @@ use App\Models\TalentNode;
 use App\Models\TalentNodeEntry;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 /**
@@ -33,6 +34,28 @@ use Illuminate\Support\Str;
  */
 class TalentSelectionService
 {
+    private const SPELL_CACHE_VERSION_KEY = 'wow_spell_cache_version';
+
+    /**
+     * A coarse-grained version counter, not a per-key invalidation list — bumped whenever
+     * something that affects SpellExplorer/WowComps's expensive per-spec computation changes:
+     * an admin default-build talent pick, or a full spelldata re-import (ImportSpellData).
+     * Personal (non-default) builds never bump this — SpellExplorer/WowComps only ever read a
+     * spec's admin DEFAULT build (TalentBuild.is_default), never a viewer's own saved one.
+     * Included as part of the Redis cache key (see WowComps/SpellExplorer) rather than driving
+     * an explicit per-spec Cache::forget() — a re-import can touch any/all specs at once, so
+     * one global counter is simpler and correct without having to enumerate affected specs.
+     */
+    public function spellCacheVersion(): int
+    {
+        return (int) Cache::get(self::SPELL_CACHE_VERSION_KEY, 1);
+    }
+
+    public function bumpSpellCacheVersion(): void
+    {
+        Cache::forever(self::SPELL_CACHE_VERSION_KEY, $this->spellCacheVersion() + 1);
+    }
+
     /**
      * Resolution order: the user's own saved build for this spec, else the admin-curated
      * default (is_default = true) for this spec+patch, else an unsaved in-memory TalentBuild
@@ -401,6 +424,10 @@ class TalentSelectionService
             ['talent_build_id' => $build->id, 'talent_node_id' => $node->id],
             ['chosen_entry_id' => $entry->id, 'rank' => $entry->rank]
         );
+
+        if ($build->is_default) {
+            $this->bumpSpellCacheVersion();
+        }
     }
 
     /**
@@ -423,6 +450,10 @@ class TalentSelectionService
                 'slot' => $index + 1,
                 'pvp_talent_id' => $pvpTalentId,
             ]);
+        }
+
+        if ($build->is_default) {
+            $this->bumpSpellCacheVersion();
         }
     }
 
@@ -474,6 +505,10 @@ class TalentSelectionService
         }
 
         $build->choices()->whereIn('talent_node_id', $nodeIds)->delete();
+
+        if ($build->is_default) {
+            $this->bumpSpellCacheVersion();
+        }
     }
 
     /**
@@ -491,6 +526,8 @@ class TalentSelectionService
             ->update(['is_default' => false]);
 
         $build->update(['is_default' => true]);
+
+        $this->bumpSpellCacheVersion();
     }
 
     private function currentPatchIdForSpec(int $specId): ?int
