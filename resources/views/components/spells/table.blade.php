@@ -136,6 +136,7 @@
                             data-role="spell-row"
                             data-group="{{ $cooldownKey }}"
                             data-category="{{ $spellCategoryName }}"
+                            data-has-cooldown="{{ $cooldownDisplay !== null ? '1' : '0' }}"
                             data-search="{{ strtolower($spell->display_name) }}">
                             <td class="pl-5 pr-4 py-3 min-w-[10rem]">
                                 <div class="flex items-center gap-2">
