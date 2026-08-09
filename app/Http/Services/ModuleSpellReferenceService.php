@@ -908,6 +908,16 @@ class ModuleSpellReferenceService
             $text = rtrim($truncated);
         }
 
+        // Pass 0.5: strip WoW's in-game chat/tooltip color-code markup ("|cAARRGGBB...|r") —
+        // pure client-side text-color formatting from the real tooltip, never meaningful data.
+        // Found 2026-08-10 leaking raw into displayed prose (e.g. Breath of Sindragosa's
+        // "|cFFFFFFFFGrants a charge of Empower Rune Weapon...|r"). Keeps the wrapped text,
+        // drops only the color markers. A second pass mops up any unpaired |c.../|r left behind
+        // by a malformed/truncated source string, same defensive posture as Pass 0's truncation
+        // above — never leaves a raw pipe-code visible even in a source-data edge case.
+        $text = preg_replace('/\|c[0-9A-Fa-f]{8}(.*?)\|r/s', '$1', $text);
+        $text = preg_replace('/\|c[0-9A-Fa-f]{8}|\|r/', '', $text);
+
         // Pass 1: conditional branches. $?a<id>/$?s<id> resolved via this spell's own kit
         // context membership; $?c<n> codes are flagged rather than guessed.
         $text = preg_replace_callback(
@@ -927,6 +937,53 @@ class ModuleSpellReferenceService
                 $other = $this->findSpellBySpellId((int) $id, null);
 
                 return ($other && $kitIds->contains($other->id)) ? $branchA : $branchB;
+            },
+            $text
+        );
+
+        // Pass 1a: compound chained conditionals — "$?(a<id>&a<id>)[branch]?(!a<id>&a<id>)
+        // [branch]...[fallback]" — a fundamentally different shape from Pass 1's simple
+        // $?a<id>[A][B] (note the parenthesized boolean expression right after $?, and an
+        // arbitrary number of chained ?(cond)[branch] segments before the final bare
+        // [fallback]). Found 2026-08-10 on Trueshot, which uses this to pick between "Applies
+        // Sentinel's Mark"/"Applies Spotter's Mark" based on which hero talent is known.
+        // PCRE can't capture a variable number of repeated groups, so the outer regex only
+        // finds the token's boundaries; resolveChainedConditional() parses the segments in a
+        // PHP loop. Naturally disjoint from Pass 1 above — that one requires a bare letter
+        // ([acs]) immediately after "$?", this one requires "(" — so match order between the
+        // two passes doesn't matter.
+        $text = preg_replace_callback(
+            '/\$\?\([^)]*\)\[[^\[\]]*\](?:\?\([^)]*\)\[[^\[\]]*\])*\[[^\[\]]*\]/',
+            function ($m) use (&$uncertain, $kitIds, $spell) {
+                return $this->resolveChainedConditional($m[0], $kitIds, $uncertain, $spell);
+            },
+            $text
+        );
+
+        // Pass 1b: $@spellname<id> / $@spellicon<id> — cross-spell name/icon references (e.g.
+        // Trueshot's "$@spellicon19434 $@spellname19434" labeling which ability a bonus effect
+        // applies to). An icon can't render inline in plain text, so that token — along with
+        // one adjacent whitespace character — is stripped entirely; without also consuming the
+        // trailing space the raw text always writes between the icon and name tokens, removing
+        // just the token left a stray leading space in front of the resolved name (confirmed on
+        // Trueshot's real output: "faster.  Aimed Shot Cooldown..." — a double space, not one).
+        // The name token resolves to that spell's own display name.
+        $text = preg_replace('/\$@spellicon\d+\s?/', '', $text);
+        $text = preg_replace_callback(
+            '/\$@spellname(\d+)/',
+            function ($m) use (&$uncertain, $spell) {
+                $other = $this->findSpellBySpellId((int) $m[1], $spell->patch_id);
+
+                if ($other) {
+                    return $other->display_name;
+                }
+
+                $uncertain = true;
+                $this->logGapOnce("spellname:{$spell->spell_id}:{$m[1]}", 'ModuleSpellReferenceService: unresolved $@spellname reference', [
+                    'spell_id' => $spell->spell_id, 'referenced_spell_id' => $m[1],
+                ]);
+
+                return '(unknown spell)';
             },
             $text
         );
@@ -1024,6 +1081,89 @@ class ModuleSpellReferenceService
         );
 
         return ['text' => $text, 'uncertain' => $uncertain];
+    }
+
+    /**
+     * Parses and resolves one "$?(cond)[branch]?(cond)[branch)...[fallback]" chained
+     * compound-conditional token (see Pass 1a in resolveDescription() above) — walks the
+     * segments left to right, returning the first branch whose condition is true, or the
+     * trailing bare [fallback] if none are. A condition that can't be confidently evaluated
+     * (an unrecognized term shape) immediately returns the same "(varies by condition)"
+     * placeholder Pass 1 uses for $?c<n> codes, rather than guessing which branch applies —
+     * same "flag, don't guess" posture as everywhere else in this resolver.
+     */
+    private function resolveChainedConditional(string $token, Collection $kitIds, bool &$uncertain, Spell $spell): string
+    {
+        if (!preg_match('/^\$\?\(([^)]*)\)\[([^\[\]]*)\](.*)$/s', $token, $m)) {
+            $uncertain = true;
+
+            return '(varies by condition — check in-game)';
+        }
+
+        [, $cond, $branch, $rest] = $m;
+
+        while (true) {
+            $result = $this->evaluateConditionExpression($cond, $kitIds);
+
+            if ($result === null) {
+                $uncertain = true;
+                $this->logGapOnce("compoundcond:{$spell->spell_id}:{$cond}", 'ModuleSpellReferenceService: unparseable compound condition term', [
+                    'spell_id' => $spell->spell_id, 'condition' => $cond,
+                ]);
+
+                return '(varies by condition — check in-game)';
+            }
+
+            if ($result === true) {
+                return $branch;
+            }
+
+            if (!preg_match('/^\?\(([^)]*)\)\[([^\[\]]*)\](.*)$/s', $rest, $m)) {
+                break;
+            }
+
+            [, $cond, $branch, $rest] = $m;
+        }
+
+        if (preg_match('/^\[([^\[\]]*)\]$/s', $rest, $m)) {
+            return $m[1];
+        }
+
+        $uncertain = true;
+
+        return '(varies by condition — check in-game)';
+    }
+
+    /**
+     * Evaluates a boolean expression combining "a<id>"/"s<id>" kit-membership checks (optionally
+     * negated with a leading "!") with a single & (AND) or | (OR) operator — the only two shapes
+     * confirmed in real data so far, e.g. "a1253599&a470943" or "!a1253599&a470943". Returns
+     * null (not false) when any term doesn't match the recognized shape, so the caller can
+     * distinguish "confidently false" from "don't actually know" — the latter must never
+     * silently fall through to the next branch as if it were false.
+     */
+    private function evaluateConditionExpression(string $cond, Collection $kitIds): ?bool
+    {
+        $operator = str_contains($cond, '|') ? '|' : '&';
+        $terms = array_map('trim', explode($operator, $cond));
+
+        $results = [];
+        foreach ($terms as $term) {
+            $negate = str_starts_with($term, '!');
+            if ($negate) {
+                $term = substr($term, 1);
+            }
+
+            if (!preg_match('/^[as](\d+)$/', $term, $m)) {
+                return null;
+            }
+
+            $other = $this->findSpellBySpellId((int) $m[1], null);
+            $known = $other !== null && $kitIds->contains($other->id);
+            $results[] = $negate ? !$known : $known;
+        }
+
+        return $operator === '&' ? !in_array(false, $results, true) : in_array(true, $results, true);
     }
 
     /**
@@ -1258,7 +1398,23 @@ class ModuleSpellReferenceService
         $tokens = array_values(array_map('trim', $tokens ?: []));
         $pos = 0;
 
-        $peek = fn () => $tokens[$pos] ?? null;
+        // Deliberately a regular closure with use (&$pos), not an arrow function (fn () => ...)
+        // — arrow functions in PHP always capture used variables BY VALUE at the moment the
+        // closure is created, with no way to opt into by-reference capture. An earlier version
+        // used `fn () => $tokens[$pos] ?? null;` here, which silently froze $pos at 0 forever:
+        // every peek() call kept returning $tokens[0] regardless of how many times next() (which
+        // DOES capture by reference) had actually advanced the real $pos. The practical effect
+        // was that every multi-term expression's while-loop condition below (`in_array(peek(),
+        // ['*','/'])` etc.) was checked against the FIRST token forever, so it only ever
+        // "looped" when the first token itself happened to be an operator — never true for an
+        // expression starting with a number — silently truncating evaluation to just the first
+        // factor. Confirmed via safeEval('800/1000') returning 800.0 instead of 0.8 (found
+        // investigating a real report: Breath of Sindragosa's "${$s3/1000}.1 sec" rendering as
+        // "800.1 sec"). This bug affected every ${...} expression with more than one term
+        // dataset-wide, not just this one spell.
+        $peek = function () use (&$tokens, &$pos) {
+            return $tokens[$pos] ?? null;
+        };
         $next = function () use (&$tokens, &$pos) {
             return $tokens[$pos++] ?? null;
         };
