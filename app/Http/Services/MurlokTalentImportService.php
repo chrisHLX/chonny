@@ -249,7 +249,7 @@ class MurlokTalentImportService
      */
     private function resolveTreeChoices(TalentTree $tree, array $parsedEntries, array &$unmatched): array
     {
-        $countByName = collect($parsedEntries)->groupBy(fn ($e) => Str::lower(trim($e['name'])))->map(fn ($g) => (int) $g->max('count'));
+        $countByName = collect($parsedEntries)->groupBy(fn ($e) => $this->normalizeSpellName($e['name']))->map(fn ($g) => (int) $g->max('count'));
 
         $choices = collect();
 
@@ -264,7 +264,7 @@ class MurlokTalentImportService
             $bestCount = 0;
 
             foreach ($entries as $entry) {
-                $key = Str::lower(trim($entry->spell->name ?? ''));
+                $key = $this->normalizeSpellName($entry->spell->name ?? '');
 
                 if (!$countByName->has($key)) {
                     $unmatched[] = $entry->spell->name ?? "spell_id {$entry->spell_id}";
@@ -301,14 +301,14 @@ class MurlokTalentImportService
      */
     private function resolvePvpTalents(Specialization $spec, int $patchId, array $parsedEntries, array &$unmatched): array
     {
-        $countByName = collect($parsedEntries)->groupBy(fn ($e) => Str::lower(trim($e['name'])))->map(fn ($g) => (int) $g->max('count'));
+        $countByName = collect($parsedEntries)->groupBy(fn ($e) => $this->normalizeSpellName($e['name']))->map(fn ($g) => (int) $g->max('count'));
 
         $pvpTalents = PvpTalent::where('spec_id', $spec->id)->where('patch_id', $patchId)->with('spell')->get();
 
         $ranked = collect();
 
         foreach ($pvpTalents as $talent) {
-            $key = Str::lower(trim($talent->spell->name ?? ''));
+            $key = $this->normalizeSpellName($talent->spell->name ?? '');
 
             if (!$countByName->has($key)) {
                 $unmatched[] = $talent->spell->name ?? "spell_id {$talent->spell_id}";
@@ -358,6 +358,25 @@ class MurlokTalentImportService
         }
 
         return $match;
+    }
+
+    /**
+     * Strips the "(desc=Color)" disambiguation suffix (same annotation documented at length in
+     * TalentSelectionService — see its "(desc=...)" note) before comparing a spell name against
+     * murlok's page text. Found 2026-08-09 investigating a real report ("hardly any spells for
+     * Evoker"): Evoker's core kit routinely carries this suffix as a legitimate part of its raw
+     * name (e.g. "Pyre (desc=Red)", "Dragonrage (desc=Red)", "Eternity Surge (desc=Blue)") — a
+     * per-dragonflight-color naming convention specific to this class, not the "noise" the same
+     * suffix represents for other classes (pet-family/artifact/covenant duplicates). murlok's
+     * page never shows this internal annotation to players, so every one of these spells failed
+     * to match and landed in `unmatched` instead of being selected — Pyre and Dragonrage, two of
+     * Devastation's most-picked talents, were silently skipped this way. Without this
+     * normalization, murlok import is effectively broken for Evoker specifically, even though it
+     * worked correctly for Unholy DK (whose kit has no `(desc=...)`-suffixed real abilities).
+     */
+    private function normalizeSpellName(string $name): string
+    {
+        return Str::lower(trim(preg_replace('/\s*\(desc=[^)]*\)\s*$/i', '', trim($name))));
     }
 
     private function currentPatchIdForSpec(Specialization $spec): ?int

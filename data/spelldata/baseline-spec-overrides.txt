@@ -95,6 +95,30 @@
 358267 | evoker | augmentation | Hover
 368415 | evoker | preservation | Time of Need
 
+# Living Flame, added 2026-08-09 investigating "hardly any spells for Evoker" (see
+# CLAUDE.md). Confirmed genuinely available to all 3 specs directly from the spell's own
+# data — its detailed record (361469, "(desc=Red)") lists separate per-spec Resource costs
+# for Preservation/Devastation/Augmentation explicitly, the strongest confirmation signal
+# used anywhere in this file so far. Uses 364664 (not 361469) as the target id — it's the
+# clean-named wrapper record whose own description is a `$@spelldesc361469` pointer (same
+# structural pattern as Angelic Bulwark elsewhere in this codebase), so the displayed name
+# reads "Living Flame", not "Living Flame (desc=Red)".
+#
+# Investigating this also found that most of Evoker's other apparently-missing signature
+# spells (Pyre, Dragonrage, Eternity Surge, Dream Breath, Ebon Might, Upheaval) were never a
+# baseline-visibility problem at all — they're real talents, just never picked in the admin
+# default builds, AND murlok import was silently failing to match nearly all of Evoker's kit
+# due to its "(desc=Color)" naming convention (see MurlokTalentImportService::
+# normalizeSpellName(), fixed same day). Fixed via re-running wow:import-murlok-defaults for
+# all 3 specs, not via this file. Fire Breath/Disintegrate/Deep Breath are confirmed genuinely
+# baseline (no Talent Entry line) but deliberately NOT added here yet — unlike Living Flame,
+# none of their records carry an explicit per-spec Resource confirmation, and general
+# knowledge alone isn't a strong enough signal per this file's own standard; flagged as a
+# remaining gap, not guessed.
+364664 | evoker | devastation | Living Flame
+364664 | evoker | preservation | Living Flame
+364664 | evoker | augmentation | Living Flame
+
 # Priest (Shadow), added 2026-08-08. Re-derives a batch a prior session had already verified by
 # reading each spell's own description text — that verification only ever became a one-off manual
 # spell_class_availability UPDATE, which the same-day patch-crash-and-reimport (see CLAUDE.md)
