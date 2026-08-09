@@ -99,7 +99,7 @@
                                                 class="flex-1 min-w-[8rem] px-2.5 py-2 rounded-md border text-left text-[12px] transition
                                                     {{ $isChosen ? 'border-gold bg-gold-subtle' : 'border-line bg-surface-2 hover:border-line-strong' }}"
                                             >
-                                                <span class="font-semibold {{ $isChosen ? 'text-gold' : 'text-ink' }}">{{ $entry->spell->name }}</span>
+                                                <span class="font-semibold {{ $isChosen ? 'text-gold' : 'text-ink' }}">{{ $entry->spell->display_name }}</span>
                                                 @if ($node->max_ranks > 1)
                                                     <span class="text-ink-subtle text-[10px]"> · Rank {{ $rank }}</span>
                                                 @endif
@@ -136,7 +136,7 @@
                                 {{ $isChosen ? 'border-violet bg-violet-subtle' : 'border-line bg-surface-2 hover:border-line-strong' }}
                                 {{ $isFull ? 'opacity-40 cursor-not-allowed' : '' }}"
                         >
-                            <span class="font-semibold {{ $isChosen ? 'text-violet-hover' : 'text-ink' }}">{{ $talent->spell->name }}</span>
+                            <span class="font-semibold {{ $isChosen ? 'text-violet-hover' : 'text-ink' }}">{{ $talent->spell->display_name }}</span>
                         </button>
                     @endforeach
                 </div>

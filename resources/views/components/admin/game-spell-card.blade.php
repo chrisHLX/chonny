@@ -35,7 +35,7 @@
 
 <tr class="border-b border-line align-top">
     <td class="pl-5 pr-4 py-3 min-w-[10rem]">
-        <p class="text-[13px] font-semibold text-ink">{{ $spell->name }}</p>
+        <p class="text-[13px] font-semibold text-ink">{{ $spell->display_name }}</p>
         <span class="text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</span>
         <div class="flex flex-wrap items-center gap-1.5 mt-1.5">
             <span class="{{ $sourceBadge }}">{{ $source }}</span>

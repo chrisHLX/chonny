@@ -215,7 +215,7 @@ class TalentSelector extends Component
         $this->importPreview = $result['selections']->map(fn (array $row) => [
             'nodeId' => $row['node']->id,
             'entryId' => $row['entry']->id,
-            'spellName' => $row['entry']->spell?->name ?? 'Unknown spell',
+            'spellName' => $row['entry']->spell?->display_name ?? 'Unknown spell',
             'treeType' => $row['node']->talentTree->type,
         ])->values()->all();
     }

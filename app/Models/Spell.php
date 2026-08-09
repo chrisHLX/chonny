@@ -73,6 +73,23 @@ class Spell extends Model
         return $this->patch?->game;
     }
 
+    /**
+     * Display-only: strips the trailing "(desc=Color)" disambiguation suffix some spells carry
+     * as a literal part of their raw `name` (see TalentSelectionService's docblock on the
+     * general pattern, and MurlokTalentImportService::normalizeSpellName() for the Evoker-
+     * specific case — that class's whole kit uses this suffix as a real per-dragonflight-color
+     * naming convention, not the "noise" it represents for other classes). Deliberately an
+     * accessor, not a mutation of `name` itself — the raw column is load-bearing for exact-name
+     * matching elsewhere (murlok comparison, duplicate-copy disambiguation throughout this
+     * codebase) and must stay untouched. Added 2026-08-09 after fixing Evoker's near-empty
+     * spell kit surfaced this as a real, visible papercut across most of that class's UI —
+     * "Pyre (desc=Red)" rendering verbatim to players instead of "Pyre".
+     */
+    public function getDisplayNameAttribute(): string
+    {
+        return trim(preg_replace('/\s*\(desc=[^)]*\)\s*$/i', '', $this->name ?? ''));
+    }
+
     public function scopeInGame(Builder $query, int $gameId): Builder
     {
         return $query->whereHas('patch', fn (Builder $q) => $q->where('game_id', $gameId));

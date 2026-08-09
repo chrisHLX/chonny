@@ -3,7 +3,7 @@
 @php
     $baselineModifierNames = collect($entries)
         ->flatMap(fn ($entry) => $entry['modifiers']['baseline'])
-        ->pluck('spell.name')
+        ->pluck('spell.display_name')
         ->unique()
         ->sort()
         ->values()
@@ -136,12 +136,12 @@
                             data-role="spell-row"
                             data-group="{{ $cooldownKey }}"
                             data-category="{{ $spellCategoryName }}"
-                            data-search="{{ strtolower($spell->name) }}">
+                            data-search="{{ strtolower($spell->display_name) }}">
                             <td class="pl-5 pr-4 py-3 min-w-[10rem]">
                                 <div class="flex items-center gap-2">
                                     <x-spell-icon :spell="$spell" size="w-8 h-8" />
                                     <div>
-                                        <p class="text-[13px] font-semibold text-ink">{{ $spell->name }}</p>
+                                        <p class="text-[13px] font-semibold text-ink">{{ $spell->display_name }}</p>
                                         <span class="block text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</span>
                                         <span class="{{ $categoryBadge[$spellCategoryName] ?? 'badge-gray' }} mt-1">{{ $spellCategoryName }}</span>
                                         @unless ($isSelected)
@@ -157,7 +157,7 @@
                                 @endif
                                 @if (!empty($entry['formulaModifiers']) && $entry['formulaModifiers']->isNotEmpty())
                                     <span class="text-[10px] text-ink-subtle block mt-0.5">
-                                        <span class="font-semibold">Scales with:</span> {{ $entry['formulaModifiers']->pluck('name')->implode(', ') }}
+                                        <span class="font-semibold">Scales with:</span> {{ $entry['formulaModifiers']->pluck('display_name')->implode(', ') }}
                                     </span>
                                 @endif
                             </td>
@@ -179,7 +179,7 @@
                                 @forelse ($entry['modifiers']['named'] as $mod)
                                     <div class="mb-1 last:mb-0 flex items-center gap-1.5 flex-wrap">
                                         <span class="{{ $relTypeBadge($mod['relationship_type']) }}">{{ $relTypeLabel($mod['relationship_type']) }}</span>
-                                        <span class="text-ink-muted">{{ $mod['spell']->name }}</span>
+                                        <span class="text-ink-muted">{{ $mod['spell']->display_name }}</span>
                                         @if ($mod['modifier_value'] !== null && $mod['modifier_unit'] !== null)
                                             <span class="text-[10px] text-gold">{{ $fmtModifierValue($mod) }}</span>
                                         @endif

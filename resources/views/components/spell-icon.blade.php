@@ -13,7 +13,7 @@
 @if ($url)
     <img
         src="{{ $url }}"
-        alt="{{ $spell->name }}"
+        alt="{{ $spell->display_name }}"
         loading="lazy"
         {{ $attributes->merge(['class' => "{$size} rounded border border-line object-cover flex-shrink-0"]) }}
     >

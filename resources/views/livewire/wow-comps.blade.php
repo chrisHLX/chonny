@@ -147,7 +147,7 @@
                                                         @click="openSpellId = '{{ $modalKey }}'"
                                                         class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
                                                     <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                                    <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->name }}</span>
+                                                    <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
                                                     <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
                                                 </button>
                                             @empty
@@ -183,7 +183,7 @@
                                     class="w-full flex items-center justify-between gap-2 py-1 px-1 -mx-1 rounded hover:bg-surface-2 transition-colors">
                                 <span class="flex items-center gap-2 min-w-0">
                                     <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                    <span class="text-[12px] text-ink truncate">{{ $entry['spell']->name }}</span>
+                                    <span class="text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
                                 </span>
                                 <span class="text-[11px] text-gold whitespace-nowrap">{{ $cooldownDisplay($entry) }}</span>
                             </button>
@@ -223,7 +223,7 @@
                         <div class="flex items-start gap-3 mb-3 pr-6">
                             <x-spell-icon :spell="$spell" size="w-11 h-11" class="rounded-lg shrink-0"/>
                             <div class="min-w-0">
-                                <p class="text-[15px] font-semibold text-ink">{{ $spell->name }}</p>
+                                <p class="text-[15px] font-semibold text-ink">{{ $spell->display_name }}</p>
                                 <p class="text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</p>
                                 <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} mt-1">{{ $entry['category'] }}</span>
                             </div>
@@ -235,7 +235,7 @@
                             <p class="text-[10px] text-ink-subtle italic mt-1.5">Some values above vary by condition or aren't fully known — check in-game.</p>
                         @endif
                         @if (!empty($entry['formulaModifiers']) && $entry['formulaModifiers']->isNotEmpty())
-                            <p class="text-[10px] text-ink-subtle mt-1.5"><span class="font-semibold">Scales with:</span> {{ $entry['formulaModifiers']->pluck('name')->implode(', ') }}</p>
+                            <p class="text-[10px] text-ink-subtle mt-1.5"><span class="font-semibold">Scales with:</span> {{ $entry['formulaModifiers']->pluck('display_name')->implode(', ') }}</p>
                         @endif
 
                         <div class="flex items-center gap-4 text-[12px] mt-3 pt-3 border-t border-line">
@@ -274,7 +274,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                             </svg>
                                             <x-spell-icon :spell="$mod['spell']" size="w-5 h-5" />
-                                            <span class="text-[12px] text-ink-muted flex-1 truncate">{{ $mod['spell']->name }}</span>
+                                            <span class="text-[12px] text-ink-muted flex-1 truncate">{{ $mod['spell']->display_name }}</span>
                                         </button>
                                         <div x-show="expandedMod === {{ $modId }}" x-cloak x-collapse
                                              class="ml-[18px] pl-2.5 border-l border-line mt-1 mb-1.5">
