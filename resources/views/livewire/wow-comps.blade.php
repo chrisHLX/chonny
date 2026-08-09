@@ -174,30 +174,45 @@
                 </div>
             @endforeach
 
-            {{-- Main Cooldowns tab — reuses WowComps::mainCooldownsFor()'s existing top-3/20s+
-                 selection per member (unchanged), just displayed as a tab instead of a fixed
-                 sidebar so it sits in the same 3-column comparison layout as the other tabs. --}}
+            {{-- Main Cooldowns tab — same category-grouped card-grid layout as Active Abilities
+                 above (deliberately the same markup shape, just a different entry filter), not
+                 the old fixed top-3/20s+ sidebar summary. Shows every active (non-passive) spell
+                 that has a real cooldown value; Crowd Control spells show regardless of whether
+                 a cooldown is captured — same rule Spell Explorer's own Main Cooldowns tab
+                 uses (some CC has no cooldown data but is still worth surfacing). --}}
             <div x-show="tab === 'cooldowns'" x-cloak>
-                <div class="grid grid-cols-3 gap-3">
-                    @foreach ($comp as $mi => $member)
-                        <div class="linear-card p-3 space-y-1">
-                            @forelse ($member['mainCooldowns'] as $entry)
-                                @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
-                                <button type="button"
-                                        @click="openSpellId = '{{ $modalKey }}'"
-                                        class="w-full flex items-center justify-between gap-2 py-1 px-1 -mx-1 rounded hover:bg-surface-2 transition-colors">
-                                    <span class="flex items-center gap-2 min-w-0">
-                                        <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                        <span class="text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
-                                    </span>
-                                    <span class="text-[11px] text-gold whitespace-nowrap">{{ $cooldownDisplay($entry) }}</span>
-                                </button>
-                            @empty
-                                <p class="text-[11px] text-ink-subtle px-1.5 py-1">{{ $member['spec'] ? 'No notable cooldowns found.' : '—' }}</p>
-                            @endforelse
+                @foreach ($categoryOrder as $category)
+                    @php
+                        $cooldownEntryFilter = fn ($e) => !$e['spell']->is_passive
+                            && $e['category'] === $category
+                            && ($category === 'Crowd Control' || $cooldownDisplay($e) !== null);
+                        $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains($cooldownEntryFilter));
+                    @endphp
+                    @continue(!$categoryHasAny)
+
+                    <div class="mb-4">
+                        <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
+                        <div class="grid grid-cols-3 gap-3">
+                            @foreach ($comp as $mi => $member)
+                                <div class="linear-card p-1.5 space-y-0.5">
+                                    @php $catEntries = collect($member['entries'])->filter($cooldownEntryFilter); @endphp
+                                    @forelse ($catEntries as $entry)
+                                        @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
+                                        <button type="button"
+                                                @click="openSpellId = '{{ $modalKey }}'"
+                                                class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                            <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                            <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                            <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
+                                        </button>
+                                    @empty
+                                        <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
+                                    @endforelse
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 

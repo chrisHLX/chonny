@@ -97,7 +97,7 @@ class WowComps extends Component
     }
 
     /**
-     * @return array<int, array{label: string, class: ?GameClass, spec: ?Specialization, entries: array, mainCooldowns: array}>
+     * @return array<int, array{label: string, class: ?GameClass, spec: ?Specialization, entries: array}>
      */
     public function getCompProperty(): array
     {
@@ -115,32 +115,8 @@ class WowComps extends Component
                 'class' => $class,
                 'spec' => $spec,
                 'entries' => $entries,
-                'mainCooldowns' => $this->mainCooldownsFor($entries),
             ];
         })->all();
-    }
-
-    /**
-     * The handful of "big" cooldowns worth calling out separately, mirroring what a player
-     * would actually point to as this comp member's main tools — active (non-passive), a real
-     * cooldown of at least 20s (filters out short-CD filler abilities), longest first, top 3.
-     * Deliberately not restricted to the Offensive/Defensive categorize() buckets — several
-     * genuinely "main" cooldowns (Bloodlust/Heroism, Power Infusion) fall into
-     * categorize()'s 'Other' bucket per its own documented limitation (see
-     * ModuleSpellReferenceService::categorizeFromEffects()'s docblock), and excluding them
-     * here would misrepresent this list's whole purpose.
-     *
-     * @param  array<int, array{spell: Spell, cooldown: array}>  $entries
-     * @return array<int, array{spell: Spell, cooldown: array}>
-     */
-    private function mainCooldownsFor(array $entries): array
-    {
-        return collect($entries)
-            ->filter(fn (array $e) => !$e['spell']->is_passive && ($e['cooldown']['seconds'] ?? 0) >= 20)
-            ->sortByDesc(fn (array $e) => $e['cooldown']['seconds'])
-            ->take(3)
-            ->values()
-            ->all();
     }
 
     /**
