@@ -25,7 +25,7 @@
     $compSubtitle = $selectedMembers->map(fn ($m) => "{$m['label']}: {$m['class']->name} ({$m['spec']->name})")->implode(' • ');
 @endphp
 
-<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null }">
+<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null, tab: 'active' }">
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">WoW Comps</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $compTitle }}</h1>
@@ -105,93 +105,99 @@
     </div>
 
     @if ($selectedMembers->isNotEmpty())
-        <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5 items-start">
-            {{-- Side-by-side spell kit comparison --}}
-            <div class="space-y-6 min-w-0">
-                <div class="grid grid-cols-3 gap-3 px-1">
-                    @foreach ($comp as $member)
-                        <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide truncate">
-                            {{ $member['spec'] ? "{$member['spec']->name} {$member['class']->name}" : '—' }}
-                        </p>
-                    @endforeach
-                </div>
-
-                @foreach ($groupOrder as $groupKey => $groupLabel)
-                    @php
-                        $groupHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey));
-                    @endphp
-                    @continue(!$groupHasAny)
-
-                    <div>
-                        <p class="text-[12px] uppercase tracking-wide text-gold font-bold mb-2 pl-1">{{ $groupLabel }}</p>
-
-                        @foreach ($categoryOrder as $category)
-                            @php
-                                $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey && $e['category'] === $category));
-                            @endphp
-                            @continue(!$categoryHasAny)
-
-                            <div class="mb-4">
-                                <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
-                                <div class="grid grid-cols-3 gap-3">
-                                    @foreach ($comp as $mi => $member)
-                                        <div class="linear-card p-1.5 space-y-0.5">
-                                            @php
-                                                $catEntries = collect($member['entries'])->filter(
-                                                    fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey && $e['category'] === $category
-                                                );
-                                            @endphp
-                                            @forelse ($catEntries as $entry)
-                                                @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
-                                                <button type="button"
-                                                        @click="openSpellId = '{{ $modalKey }}'"
-                                                        class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
-                                                    <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                                    <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
-                                                    <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
-                                                </button>
-                                            @empty
-                                                <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
-                                            @endforelse
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+        <div class="space-y-6 min-w-0">
+            <div class="grid grid-cols-3 gap-3 px-1">
+                @foreach ($comp as $member)
+                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide truncate">
+                        {{ $member['spec'] ? "{$member['spec']->name} {$member['class']->name}" : '—' }}
+                    </p>
                 @endforeach
             </div>
 
-            {{-- Main Cooldowns --}}
-            <div class="linear-card p-4 lg:sticky lg:top-4">
-                <p class="text-[11px] uppercase tracking-wide text-ink font-bold flex items-center gap-1.5">
-                    <x-mc-icon name="icon-hourglass" class="w-3.5 h-3.5 text-gold"/>
+            {{-- Tab bar — same .tab-btn/.tab-active pattern as Spell Explorer. Pure client-side
+                 (Alpine `tab` state on the outer x-data), so switching never round-trips. --}}
+            <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1 w-fit">
+                <button type="button" @click="tab = 'active'" class="tab-btn flex items-center gap-1.5" :class="tab === 'active' ? 'tab-active' : 'tab-inactive'">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Active Abilities
+                </button>
+                <button type="button" @click="tab = 'cooldowns'" class="tab-btn flex items-center gap-1.5" :class="tab === 'cooldowns' ? 'tab-active' : 'tab-inactive'">
+                    <x-mc-icon name="icon-hourglass" class="w-3.5 h-3.5"/>
                     Main Cooldowns
-                </p>
-                <p class="text-[11px] text-ink-subtle mt-1 mb-3">Key cooldowns for this comp (20s+, longest first).</p>
+                </button>
+                <button type="button" @click="tab = 'passive'" class="tab-btn flex items-center gap-1.5" :class="tab === 'passive' ? 'tab-active' : 'tab-inactive'">
+                    <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
+                    Buffs &amp; Passives
+                </button>
+            </div>
 
-                @foreach ($comp as $mi => $member)
-                    @continue(!$member['spec'])
-                    <div class="mb-4 last:mb-0">
-                        <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold mb-1.5">
-                            {{ $member['spec']->name }} {{ $member['class']->name }}
-                        </p>
-                        @forelse ($member['mainCooldowns'] as $entry)
-                            @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
-                            <button type="button"
-                                    @click="openSpellId = '{{ $modalKey }}'"
-                                    class="w-full flex items-center justify-between gap-2 py-1 px-1 -mx-1 rounded hover:bg-surface-2 transition-colors">
-                                <span class="flex items-center gap-2 min-w-0">
-                                    <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                    <span class="text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
-                                </span>
-                                <span class="text-[11px] text-gold whitespace-nowrap">{{ $cooldownDisplay($entry) }}</span>
-                            </button>
-                        @empty
-                            <p class="text-[11px] text-ink-subtle">No notable cooldowns found.</p>
-                        @endforelse
-                    </div>
-                @endforeach
+            @foreach ($groupOrder as $groupKey => $groupLabel)
+                @php
+                    $groupHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey));
+                @endphp
+                @continue(!$groupHasAny)
+
+                <div x-show="tab === '{{ $groupKey }}'" x-cloak>
+                    @foreach ($categoryOrder as $category)
+                        @php
+                            $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey && $e['category'] === $category));
+                        @endphp
+                        @continue(!$categoryHasAny)
+
+                        <div class="mb-4">
+                            <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
+                            <div class="grid grid-cols-3 gap-3">
+                                @foreach ($comp as $mi => $member)
+                                    <div class="linear-card p-1.5 space-y-0.5">
+                                        @php
+                                            $catEntries = collect($member['entries'])->filter(
+                                                fn ($e) => ($e['spell']->is_passive ? 'passive' : 'active') === $groupKey && $e['category'] === $category
+                                            );
+                                        @endphp
+                                        @forelse ($catEntries as $entry)
+                                            @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
+                                            <button type="button"
+                                                    @click="openSpellId = '{{ $modalKey }}'"
+                                                    class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                                <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                                <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                                <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
+                                            </button>
+                                        @empty
+                                            <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
+                                        @endforelse
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+
+            {{-- Main Cooldowns tab — reuses WowComps::mainCooldownsFor()'s existing top-3/20s+
+                 selection per member (unchanged), just displayed as a tab instead of a fixed
+                 sidebar so it sits in the same 3-column comparison layout as the other tabs. --}}
+            <div x-show="tab === 'cooldowns'" x-cloak>
+                <div class="grid grid-cols-3 gap-3">
+                    @foreach ($comp as $mi => $member)
+                        <div class="linear-card p-3 space-y-1">
+                            @forelse ($member['mainCooldowns'] as $entry)
+                                @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
+                                <button type="button"
+                                        @click="openSpellId = '{{ $modalKey }}'"
+                                        class="w-full flex items-center justify-between gap-2 py-1 px-1 -mx-1 rounded hover:bg-surface-2 transition-colors">
+                                    <span class="flex items-center gap-2 min-w-0">
+                                        <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                        <span class="text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                    </span>
+                                    <span class="text-[11px] text-gold whitespace-nowrap">{{ $cooldownDisplay($entry) }}</span>
+                                </button>
+                            @empty
+                                <p class="text-[11px] text-ink-subtle px-1.5 py-1">{{ $member['spec'] ? 'No notable cooldowns found.' : '—' }}</p>
+                            @endforelse
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
 
