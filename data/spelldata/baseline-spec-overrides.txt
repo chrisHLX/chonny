@@ -161,3 +161,15 @@
 48707 | deathknight | blood | Anti-Magic Shell
 48707 | deathknight | frost | Anti-Magic Shell
 48707 | deathknight | unholy | Anti-Magic Shell
+
+# Mage, added 2026-08-10. Frost Nova is a core, all-3-spec baseline Mage ability (AoE root),
+# long-standing stable game design since the game's earliest expansions. Confirmed via its own
+# data: Charges/cooldown (1 charge, 30s) matches the DB exactly, and its own "Affecting Spells"
+# line lists all three spec-identity passives (Fire Mage/Frost Mage/Arcane Mage) as modifiers —
+# consistent with genuine class-wide availability (this structural signal alone isn't trusted
+# for spec-RESTRICTION per the Mind Sear precedent above, but combined with well-established
+# general knowledge here it's a normal confirmation, not the sole basis for the claim). A
+# second, hidden (not_in_spellbook) copy (235235) exists and was not used.
+122 | mage | arcane | Frost Nova
+122 | mage | fire | Frost Nova
+122 | mage | frost | Frost Nova
