@@ -26,6 +26,9 @@ Effects          :
 #3 (id=738282)   : Dummy (3)
                    Base Value: 30 | Scaled Value: 30 | Radius: 0 - 8 yards | Target: at Self (18) -> at Enemy in Area (16)
 Description      : Unleash an eruption of fel energy, dealing $s2 Chaos damage and stunning all nearby enemies for $d.$?s320412[
+
+Each enemy stunned by Chaos Nova has a $s3% chance to generate a Lesser Soul Fragment.][]
+Tooltip          : Stunned.
 
 Name             : Disrupting Fury (id=183782) [Spell Family (107), Passive] 
 Talent Entry     : Generic [tree=class, row=5, col=3, max_rank=1, req_points=8]
@@ -66,6 +69,8 @@ Effects          :
 #3 (id=1107233)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Summons darkness around you in a$?a357419[ 12 yd][n 8 yd] radius, granting friendly targets a $209426s2% chance to avoid all damage from an attack. Lasts $d.
+
+Chance to avoid damage increased by $s3% when not in a raid.
 
 Name             : Vengeful Retreat (id=198793) [Spell Family (107)] 
 Talent Entry     : Generic [free=(Havoc), tree=class, row=1, col=2, max_rank=1, req_points=0]
@@ -95,6 +100,8 @@ Effects          :
 #4 (id=351230)   : Trigger Spell (64): Vengeful Retreat
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 232709 | Target: Self (1)
 Description      : Remove all snares and vault away. Nearby enemies take $198813s2 Physical damage$?s320635[ and have their movement speed reduced by $198813s1% for $198813d][].$?a203551[
+
+|cFFFFFFFFGenerates ${($203650s1/5)*$203650d} Fury over $203650d if you damage an enemy.|r][]
 
 Name             : Soul Rending (id=204909) [Spell Family (107), Passive] 
 Talent Entry     : Generic [tree=class, row=6, col=3, max_rank=2, req_points=8]
@@ -119,6 +126,8 @@ Effects          :
                    Family Flags: 15, 28, 84
                    Modified By: Improved Soul Rending (452407 effect#2)
 Description      : Leech increased by $s1%.
+
+Gain an additional $s2% leech while Metamorphosis is active.
 
 Name             : Aura of Pain (id=207347) [Spell Family (107), Passive] 
 Talent Entry     : Generic [tree=class, row=5, col=6, max_rank=1, req_points=8]
@@ -161,6 +170,8 @@ Effects          :
 #2 (id=307159)   : Create Area Trigger (179)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 6351 | Target: at Area (87)
 Description      : Place a Sigil of Misery at the target location that activates after $d.
+
+Causes all enemies affected by the sigil to cower in fear, disorienting them for $207685d.
 
 Name             : Charred Warblades (id=213010) [Spell Family (107), Passive] 
 Talent Entry     : Generic [tree=class, row=3, col=6, max_rank=1, req_points=0]
@@ -228,6 +239,8 @@ Effects          :
 #1 (id=351567)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Charge to your target and deal $213243sw2 $@spelldesc395020 damage.
+
+$?s263642[|cFFFFFFFFGenerates $213243s3 Fury.|r]?s203513[|cFFFFFFFFGenerates $213243s3 Fury.|r]?a203555[|cFFFFFFFFGenerates $213243s3 Fury.|r][|cFFFFFFFFGenerates $213243s3 Fury.|r]
 
 Name             : Consume Magic (id=278326) [Spell Family (107)] 
 Talent Entry     : Generic [tree=class, row=4, col=5, max_rank=1, req_points=0]
@@ -612,6 +625,8 @@ Effects          :
 #1 (id=1109569)  : Apply Aura (6) | Proc Trigger Spell (42): Live by the Glaive
                    Base Value: 5 | Scaled Value: 5 | Trigger Spell: 428608 | Target: Self (1)
 Description      : When you parry an attack or have one of your attacks parried, restore $428608s2% of max health and $428608s1 Fury. 
+
+This effect may only occur once every $s1 sec.
 
 Name             : Champion of the Glaive (id=429211) [Spell Family (107), Passive] 
 Talent Entry     : Generic [tree=class, row=5, col=2, max_rank=1, req_points=8, select_idx=200]
@@ -694,6 +709,8 @@ Effects          :
 #1 (id=1246440)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 Description      : Unleash your glaives and charge to your target, dealing $1245414s2 Cosmic damage.$?a1246562[
+
+|CFFffffffGenerates $1245414s3 Fury.|R][]
 
 Name             : Focused Ire (id=1266296) [Spell Family (107), Passive] 
 Talent Entry     : Generic [tree=class, row=5, col=1, max_rank=1, req_points=8]

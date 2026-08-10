@@ -37,6 +37,9 @@ Effects          :
 #6 (id=1102568)  : Apply Aura (6) | Mechanic Immunity (77)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 26 | Target: Self (1)
 Description      : Blasts all enemies in front of you,$?s320415[ dealing guaranteed critical strikes][] for up to $<dmg> Chaos damage over $d. Deals reduced damage beyond $s5 targets.$?s343311[
+
+When Eye Beam finishes fully channeling, your Haste is increased by an additional $343312s1% for $343312d.][]
+Variables        : $dmg={?a320415[{$?a203550[${$198030s1*15*2}][${$198030s1*10*2}]}][{$?a203550[${$198030s1*15}][${$198030s1*10}]}]
 
 Name             : Blind Fury (id=203550) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=6, col=2, max_rank=2, req_points=8]
@@ -85,6 +88,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Misc Value 2: -10 | Target: Self (1)
                    Affected School(s): All
 Description      : Blur now reduces damage taken by an additional ${$abs($m3)}%.
+
+Additionally, damage taken below $s1% Health is reduced by $s2%.
 
 Name             : First Blood (id=206416) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=3, col=3, max_rank=1, req_points=0]
@@ -353,6 +358,8 @@ Effects          :
 #2 (id=1032987)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : Each time Immolation Aura deals damage, $s1% of the damage dealt by up to $s2 critical strikes is gathered as Ragefire.
+
+When Immolation Aura expires you explode, dealing all stored Ragefire damage to nearby enemies.
 
 Name             : Initiative (id=388108) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=5, col=1, max_rank=1, req_points=8]
@@ -369,6 +376,8 @@ Effects          :
 #1 (id=1023598)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Damaging an enemy before they damage you increases your critical strike chance by $391215s1% for $391215d.
+
+Vengeful Retreat refreshes your potential to trigger this effect on any enemies you are in combat with.
 
 Name             : Chaotic Transformation (id=388112) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=8, col=3, max_rank=1, req_points=20, select_idx=200]
@@ -401,6 +410,15 @@ Effects          :
 #3 (id=1107529)  : Apply Aura (6) | Dummy (4)
                    Base Value: 200 | Scaled Value: 200 | Target: Self (1)
 Description      : Chaos Nova, Eye Beam, and Immolation Aura gain bonuses when striking 1 target.
+
+$@spellicon179057 $@spellname179057:
+Stun duration increased by ${$s1/1000} sec.
+
+$@spellicon198013 $@spellname198013:
+Deals $s2% increased damage.
+
+$@spellicon258920 $@spellname258920:
+Always critically strikes.
 
 Name             : Shattered Destiny (id=388116) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=10, col=3, max_rank=1, req_points=20, select_idx=100]
@@ -588,6 +606,8 @@ Effects          :
 #2 (id=1030827)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : $?s203555[Demon Blades][Demon's Bite] and Throw Glaive leave open wounds on your enemies, dealing $391191o1 Chaos damage over $391191d and increasing damage taken from your Immolation Aura by $391191s2%.
+
+May be applied to up to $s2 targets.
 
 Name             : Accelerated Blade (id=391275) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=3, col=4, max_rank=1, req_points=0]
@@ -674,6 +694,8 @@ Effects          :
 #7 (id=1293653)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
                    Base Value: -6000 | Scaled Value: -6000 | Misc Value: 2298 (Category) | Target: Self (1)
 Description      : Immolation Aura has $m1 additional $Lcharge:charges;, has ${$s3/-1000} sec reduced cooldown, and deals Chaos damage instead of Fire.
+
+You can have multiple Immolation Auras active at a time.
 
 Name             : Deflecting Dance (id=427776) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -858,3 +880,5 @@ Effects          :
                    Affected Spells: Blade Dance (188499), Blade Dance (199552), Blade Dance (200685), Death Sweep (210152), Death Sweep (210153), Death Sweep (210155), Blade Dance (391374), Blade Dance (391378), Death Sweep (393054), Death Sweep (393055)
                    Family Flags: 12, 25, 37, 38
 Description      : Blade Dance damage increased by $s1%.
+
+Fully channeling Eye Beam causes your next Blade Dance to refresh its own cooldown.

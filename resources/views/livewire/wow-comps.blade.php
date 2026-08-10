@@ -108,9 +108,20 @@
         <div class="space-y-6 min-w-0">
             <div class="grid grid-cols-3 gap-3 px-1">
                 @foreach ($comp as $member)
-                    <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide truncate">
-                        {{ $member['spec'] ? "{$member['spec']->name} {$member['class']->name}" : '—' }}
-                    </p>
+                    <div class="flex items-center justify-between gap-1.5 min-w-0">
+                        <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide truncate">
+                            {{ $member['spec'] ? "{$member['spec']->name} {$member['class']->name}" : '—' }}
+                        </p>
+                        @if ($member['spec'])
+                            <button type="button" wire:click="openPicker({{ $member['spec']->id }})"
+                                    title="Edit my talents for this spec"
+                                    class="text-ink-subtle hover:text-gold flex-shrink-0 transition-colors">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                            </button>
+                        @endif
+                    </div>
                 @endforeach
             </div>
 
@@ -313,5 +324,23 @@
                 @endforeach
             @endforeach
         </div>
+
+        {{-- Personal talent picker — edits the viewer's OWN saved TalentBuild for whichever
+             member's spec was clicked (never the admin default), via
+             TalentSelectionService::resolveActiveBuild()/getOrCreateUserBuild(). A plain
+             Blade @if rather than an Alpine x-show: open/close already round-trip through
+             openPicker()/closePicker() (Livewire actions), and closing is what makes the
+             Spells table above pick up whatever was just saved — see closePicker()'s docblock. --}}
+        @if ($activePickerSpecId)
+            <div class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
+                 @click.self="$wire.closePicker()">
+                <div class="linear-card max-w-5xl w-full p-5 relative max-h-[90vh] overflow-y-auto">
+                    <button type="button" wire:click="closePicker" class="absolute top-3 right-3 text-ink-subtle hover:text-ink z-10">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                    <livewire:talent-selector :spec-id="$activePickerSpecId" layout="grid" :key="'wow-comps-picker-'.$activePickerSpecId"/>
+                </div>
+            </div>
+        @endif
     @endif
 </div>

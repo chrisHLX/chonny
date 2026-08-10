@@ -18,13 +18,14 @@ use Livewire\Component;
 /**
  * Public, class/spec-only counterpart to a canonical module's "Spells" section (see
  * ModuleSpellReferenceService/ModuleGameBuild) — no module involved. Picker mirrors
- * Admin\TalentBuildEditor exactly (class then spec dropdown); the result below is driven by the
- * spec's admin-curated default TalentBuild (Admin\TalentBuildEditor writes it, this only reads
- * it) rather than a module's own linked build or a viewer's personal one — "the system default"
- * build for that spec, same fallback tier resolveActiveBuild() uses when nothing more specific
- * exists. Entirely read-only: never writes anything, never creates a build if one doesn't exist
- * yet (a spec with no admin default configured just shows unmodified base data, same as the
- * existing "empty shell" fallback everywhere else in TalentSelectionService).
+ * Admin\TalentBuildEditor exactly (class then spec dropdown); the result below is driven by
+ * TalentSelectionService::resolveActiveBuild() — as of the personal talent picker (2026-08-10),
+ * a signed-in viewer's own saved build for the chosen spec if they have one (editable in-place
+ * via the "Edit My Talents" modal, see showTalentPicker/openPicker()/closePicker() and
+ * talent-tree-grid.blade.php), else the spec's admin-curated default (Admin\TalentBuildEditor
+ * writes that one), else the unmodified base data fallback resolveActiveBuild() already had.
+ * This component itself never creates a build — opening the modal doesn't write anything until
+ * a talent is actually clicked inside it (TalentSelector's own persistIfAuthenticated()).
  *
  * Spell list = the default build's talent selections + manually-verified baseline abilities
  * (TalentSelectionService::verifiedBaselineAbilityIds() — Leg Sweep, Freezing Trap, etc.) —
@@ -45,6 +46,9 @@ class SpellExplorer extends Component
     public ?int $classId = null;
 
     public ?int $specId = null;
+
+    /** Whether the talent-picker modal is open — always for the currently-selected $specId. */
+    public bool $showTalentPicker = false;
 
     public function mount(): void
     {
@@ -77,6 +81,20 @@ class SpellExplorer extends Component
     public function updatedSpecId(): void
     {
         PageViewEvent::log('spell_explorer', $this->classId, $this->specId);
+        $this->showTalentPicker = false;
+    }
+
+    public function openTalentPicker(): void
+    {
+        $this->showTalentPicker = true;
+    }
+
+    public function closeTalentPicker(): void
+    {
+        // Closing is itself a Livewire action, so getSpellReferencesProperty() below recomputes
+        // fresh on the very next render — no separate refresh/event plumbing needed for the
+        // underlying Spells table to pick up whatever was just saved in the modal.
+        $this->showTalentPicker = false;
     }
 
     public function getClassesProperty(): Collection
@@ -95,6 +113,16 @@ class SpellExplorer extends Component
         return Specialization::where('class_id', $this->classId)->orderBy('name')->get();
     }
 
+    /** Drives the page's descriptive text — whether the currently-shown kit is this viewer's own saved picks or the spec's admin default. Cheap exists() check, separate from the full resolveActiveBuild() call inside getSpellReferencesProperty() below (that one needs the full build row; this only needs to know which case applies). */
+    public function getUsingPersonalBuildProperty(): bool
+    {
+        if (!$this->specId || !auth()->check()) {
+            return false;
+        }
+
+        return TalentBuild::where('user_id', auth()->id())->where('spec_id', $this->specId)->exists();
+    }
+
     /**
      * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array}>
      */
@@ -107,26 +135,30 @@ class SpellExplorer extends Component
         $service = app(ModuleSpellReferenceService::class);
         $talentService = app(TalentSelectionService::class);
 
-        // Redis-cached, 2026-08-08 — same rationale/invalidation as WowComps::spellReferencesFor()
-        // (see that method's docblock): this is the same expensive per-spell computation, driven
-        // only by the spec's admin default build + imported spell data, safe to share across
-        // requests/users, invalidated via TalentSelectionService's version counter rather than a
-        // TTL guess.
+        // Redis-cached, 2026-08-08 — same rationale as WowComps::spellReferencesFor() (see that
+        // method's docblock for the full explanation): as of the personal talent picker
+        // (2026-08-10), the build resolved below is this viewer's own saved build for $specId if
+        // they have one, else the spec's admin default, exactly as before. The cache key varies
+        // on the resolved build's own id+updated_at so a personal-build save only invalidates
+        // that one viewer's own cache entry; a guest/no-personal-build viewer still shares the
+        // one admin-default entry with everyone else, invalidated via spellCacheVersion as before.
+        $build = $talentService->resolveActiveBuild(auth()->user(), $this->specId);
+        $defaultBuild = $build->exists ? $build : null;
+        $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
 
         return Cache::remember(
-            "wow_spell_references:spec:{$this->specId}:v{$version}",
+            "wow_spell_references:spec:{$this->specId}:build:{$buildStamp}:v{$version}",
             now()->addHours(6),
-            fn () => $this->computeSpellReferences($service, $talentService)
+            fn () => $this->computeSpellReferences($service, $talentService, $defaultBuild)
         );
     }
 
     /**
      * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool}>
      */
-    private function computeSpellReferences(ModuleSpellReferenceService $service, TalentSelectionService $talentService): array
+    private function computeSpellReferences(ModuleSpellReferenceService $service, TalentSelectionService $talentService, ?TalentBuild $defaultBuild): array
     {
-        $defaultBuild = TalentBuild::where('spec_id', $this->specId)->where('is_default', true)->first();
         $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();
         $ranks = $defaultBuild ? $talentService->selectedRanks($defaultBuild) : collect();
 

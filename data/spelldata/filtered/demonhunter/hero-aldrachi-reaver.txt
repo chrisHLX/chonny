@@ -24,6 +24,10 @@ Effects          :
 #4 (id=1168478)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 Description      : Consuming $?a212612[$s1][$s2] Soul Fragments or casting $?a212612[The Hunt][Sigil of Spite] converts your next Throw Glaive into Reaver's Glaive.
+
+$@spellicon442294 $@spellname442294: 
+$@spelldesc442294
+Variables        : $frags = $?a212612[$s1][$s2]
 
 Name             : Incisive Blade (id=442492) [Spell Family (107), Passive] 
 Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
@@ -74,6 +78,8 @@ Effects          :
 #2 (id=1174097)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Consuming a Soul Fragment causes your next $?a212612[Chaos Strike]?s263642[Fracture][Shear] to deal $442507s1 additional Physical damage.$?a212612[
+
+Felblade consumes up to $s2 nearby Soul Fragments.][]
 
 Name             : Reaver's Mark (id=442679) [Spell Family (107), Passive] 
 Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=2, col=4, max_rank=1, req_points=1]
@@ -93,6 +99,8 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
                    Modified By: Demon Hunter Aldrachi Reaver 11.2 Class Set 4pc (1236360 effect#3), Bladecraft (1272153 effect#3)
 Description      : When enhanced by Reaver's Glaive, $?a212612[Chaos Strike]?s263642[Fracture][Shear] applies Reaver's Mark, which causes the target to take $442624s1% increased damage for $442624d. Max $442624u stacks.
+
+Applies $m2 additional $Lstack:stacks; of Reaver's Mark If cast after $?a212612[Blade Dance][Soul Cleave].
 
 Name             : Aldrachi Tactics (id=442683) [Spell Family (107), Passive] 
 Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
@@ -156,6 +164,8 @@ Effects          :
 #2 (id=1138124)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : When enhanced by Reaver's Glaive, $?a212612[Blade Dance][Soul Cleave] casts $s2 additional glaive slashes to nearby targets. Deals reduced damage beyond $444806s2 targets.
+
+If cast after $?a212612[Chaos Strike]?s263642[Fracture][Shear], cast $?a1236360[${($s2*($s1/100+1))+$1236360s1}][${$s2*($s1/100+1)}] slashes instead.
 
 Name             : Incorruptible Spirit (id=442736) [Spell Family (107), Passive] 
 Talent Entry     : Aldrachi Reaver (Havoc, Vengeance) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=200]
@@ -320,3 +330,5 @@ Effects          :
 #4 (id=1285262)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Fury of the Aldrachi further empowers $?a212613[Soul Cleave][Blade Dance] when cast after $?a212613[Fracture][Chaos Strike], increasing slashes to ${$442718s2*($442718s1/100+1)+$s1}.
+
+Reaver's Mark now stacks up to $442624u times and further empowers $?a212613[Fracture][Chaos Strike] when cast after $?a212613[Soul Cleave][Blade Dance], applying an additional stack.

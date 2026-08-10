@@ -425,6 +425,13 @@ class TalentSelectionService
             ['chosen_entry_id' => $entry->id, 'rank' => $entry->rank]
         );
 
+        // Child-row writes above don't touch the parent's own updated_at (Eloquent doesn't
+        // cascade that automatically) — WowComps/SpellExplorer key their per-build spell-
+        // reference cache off this timestamp for non-default (personal) builds, since those
+        // never bump the global spellCacheVersion below. See TalentSelectionService's own
+        // class docblock and CLAUDE.md's "Personal talent picker" section.
+        $build->touch();
+
         if ($build->is_default) {
             $this->bumpSpellCacheVersion();
         }
@@ -451,6 +458,20 @@ class TalentSelectionService
                 'pvp_talent_id' => $pvpTalentId,
             ]);
         }
+
+        $build->touch();
+
+        if ($build->is_default) {
+            $this->bumpSpellCacheVersion();
+        }
+    }
+
+    /** Clears a single node's pick — the counterpart to saveChoice() for TalentSelector::toggleEntry()'s "click the chosen entry again" case. Kept in the service (rather than a bare `$build->choices()->...->delete()` at the call site) so the touch()/cache-invalidation behavior stays in one place. */
+    public function deleteChoice(TalentBuild $build, int $nodeId): void
+    {
+        $build->choices()->where('talent_node_id', $nodeId)->delete();
+
+        $build->touch();
 
         if ($build->is_default) {
             $this->bumpSpellCacheVersion();
@@ -505,6 +526,8 @@ class TalentSelectionService
         }
 
         $build->choices()->whereIn('talent_node_id', $nodeIds)->delete();
+
+        $build->touch();
 
         if ($build->is_default) {
             $this->bumpSpellCacheVersion();

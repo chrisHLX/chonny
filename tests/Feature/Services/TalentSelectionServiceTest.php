@@ -14,6 +14,7 @@ use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
 use App\Models\User;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Carbon;
 
 function makeSpecFixture(): array
 {
@@ -210,4 +211,45 @@ test('explicitBaselineCooldownAbilityIds only surfaces explicit spec_id baseline
     $ids = $service->explicitBaselineCooldownAbilityIds($fixture['class']->id, $fixture['spec']->id);
 
     expect($ids->sort()->values()->all())->toBe([$longCooldown->id, $sleepCc->id]);
+});
+
+test('saveChoice, deleteChoice, syncPvpChoices, and pruneNodeChoices all touch the build', function () {
+    // WowComps/SpellExplorer key their per-viewer spell-reference cache off a personal build's
+    // own updated_at (see the "Personal talent picker" change, 2026-08-10) — a save that doesn't
+    // touch the parent build would silently serve stale cached spell data to that one viewer
+    // forever (or until the unrelated global spellCacheVersion counter happens to bump).
+    $fixture = makeSpecFixture();
+
+    $tree = TalentTree::create([
+        'patch_id' => $fixture['patch']->id, 'class_id' => $fixture['class']->id,
+        'spec_id' => $fixture['spec']->id, 'type' => 'spec', 'name' => 'Discipline', 'external_tree_id' => 1,
+    ]);
+    $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 1, 'type' => 'ACTIVE', 'max_ranks' => 1]);
+    $spell = Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 501, 'name' => 'Touch Test Spell']);
+    $entry = TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $spell->id, 'rank' => 1, 'max_rank' => 1]);
+
+    $build = TalentBuild::create([
+        'spec_id' => $fixture['spec']->id, 'patch_id' => $fixture['patch']->id,
+        'name' => 'Touch Build', 'share_slug' => 'touch-1',
+    ]);
+
+    $service = new TalentSelectionService();
+
+    Carbon::setTestNow('2026-01-01 00:05:00');
+    $service->saveChoice($build, $node, $entry);
+    expect($build->fresh()->updated_at->equalTo(Carbon::parse('2026-01-01 00:05:00')))->toBeTrue();
+
+    Carbon::setTestNow('2026-01-01 00:10:00');
+    $service->deleteChoice($build, $node->id);
+    expect($build->fresh()->updated_at->equalTo(Carbon::parse('2026-01-01 00:10:00')))->toBeTrue();
+
+    Carbon::setTestNow('2026-01-01 00:15:00');
+    $service->syncPvpChoices($build, []);
+    expect($build->fresh()->updated_at->equalTo(Carbon::parse('2026-01-01 00:15:00')))->toBeTrue();
+
+    Carbon::setTestNow('2026-01-01 00:20:00');
+    $service->pruneNodeChoices($build, [$node->id]);
+    expect($build->fresh()->updated_at->equalTo(Carbon::parse('2026-01-01 00:20:00')))->toBeTrue();
+
+    Carbon::setTestNow();
 });

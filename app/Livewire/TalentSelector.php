@@ -8,6 +8,7 @@ use App\Models\PvpTalent;
 use App\Models\Specialization;
 use App\Models\TalentBuild;
 use App\Models\TalentNode;
+use App\Models\TalentNodeEdge;
 use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
 use Illuminate\Support\Collection;
@@ -56,6 +57,16 @@ class TalentSelector extends Component
 
     public ?int $heroTreeId = null;
 
+    /**
+     * 'list' (default) — the original flat, grouped card layout, unchanged for
+     * Admin\TalentBuildEditor. 'grid' — a positional tree layout (talent-tree-grid.blade.php,
+     * one instance per class/spec/hero tree) using talent_nodes.pos_x/pos_y + talent_node_edges
+     * to mirror the real in-game/Wowhead-style tree, used by the player-facing picker modal on
+     * WowComps/SpellExplorer. Both modes share every persistence method below — only the Blade
+     * view differs.
+     */
+    public string $layout = 'list';
+
     /** @var array<int, int> talent_node_id => chosen talent_node_entry id */
     public array $chosenEntries = [];
 
@@ -75,11 +86,12 @@ class TalentSelector extends Component
 
     private const MAX_PVP_TALENTS = 3;
 
-    public function mount(int $specId, bool $isDefaultEditor = false, ?int $moduleHeroTreeId = null): void
+    public function mount(int $specId, bool $isDefaultEditor = false, ?int $moduleHeroTreeId = null, string $layout = 'list'): void
     {
         $this->specId = $specId;
         $this->isDefaultEditor = $isDefaultEditor;
         $this->moduleHeroTreeId = $moduleHeroTreeId;
+        $this->layout = $layout;
 
         $service = app(TalentSelectionService::class);
         $user = $isDefaultEditor ? null : auth()->user();
@@ -140,7 +152,7 @@ class TalentSelector extends Component
             unset($this->chosenEntries[$nodeId]);
 
             $this->persistIfAuthenticated(
-                fn (TalentSelectionService $service, TalentBuild $build) => $build->choices()->where('talent_node_id', $nodeId)->delete()
+                fn (TalentSelectionService $service, TalentBuild $build) => $service->deleteChoice($build, $nodeId)
             );
         } else {
             $this->chosenEntries[$nodeId] = $entryId;
@@ -151,6 +163,46 @@ class TalentSelector extends Component
                     TalentNode::findOrFail($nodeId),
                     TalentNodeEntry::findOrFail($entryId)
                 )
+            );
+        }
+
+        $this->dispatch('talents-changed', selectedSpellIds: $this->selectedSpellIds->all());
+    }
+
+    /**
+     * Grid-layout click handler for a multi-rank, non-CHOICE node (one talent, several rank
+     * tiers sharing one node — e.g. Improved Fade rank 1/rank 2). Advances none -> rank 1 ->
+     * rank 2 -> ... -> max rank -> none on each click. toggleEntry() stays the handler for a
+     * CHOICE node's two side-by-side options and for any single-rank node — both already
+     * correct as-is, since a CHOICE node's two entries share rank 1 and this method would have
+     * nothing to "advance" between them.
+     */
+    public function cycleNode(int $nodeId): void
+    {
+        $entriesByRank = TalentNodeEntry::where('talent_node_id', $nodeId)->orderBy('rank')->get()->keyBy('rank');
+
+        if ($entriesByRank->isEmpty()) {
+            return;
+        }
+
+        $currentEntryId = $this->chosenEntries[$nodeId] ?? null;
+        $currentRank = $currentEntryId
+            ? ($entriesByRank->first(fn (TalentNodeEntry $e) => $e->id === $currentEntryId)?->rank ?? 0)
+            : 0;
+
+        $nextEntry = $entriesByRank->get($currentRank + 1);
+
+        if ($nextEntry) {
+            $this->chosenEntries[$nodeId] = $nextEntry->id;
+
+            $this->persistIfAuthenticated(
+                fn (TalentSelectionService $service, TalentBuild $build) => $service->saveChoice($build, TalentNode::findOrFail($nodeId), $nextEntry)
+            );
+        } else {
+            unset($this->chosenEntries[$nodeId]);
+
+            $this->persistIfAuthenticated(
+                fn (TalentSelectionService $service, TalentBuild $build) => $service->deleteChoice($build, $nodeId)
             );
         }
 
@@ -308,6 +360,33 @@ class TalentSelector extends Component
             ->get();
     }
 
+    /** Prerequisite connections scoped to one tree's own nodes — the grid layout's connector lines. Not computed at all in 'list' mode, since only the grid partial reads it. */
+    private function loadTreeEdges(Collection $nodes): Collection
+    {
+        if ($this->layout !== 'grid' || $nodes->isEmpty()) {
+            return collect();
+        }
+
+        $nodeIds = $nodes->pluck('id');
+
+        return TalentNodeEdge::whereIn('from_node_id', $nodeIds)->whereIn('to_node_id', $nodeIds)->get();
+    }
+
+    public function getClassTalentEdgesProperty(): Collection
+    {
+        return $this->loadTreeEdges($this->classTalentNodes);
+    }
+
+    public function getSpecTalentEdgesProperty(): Collection
+    {
+        return $this->loadTreeEdges($this->specTalentNodes);
+    }
+
+    public function getHeroTalentEdgesProperty(): Collection
+    {
+        return $this->loadTreeEdges($this->heroTalentNodes);
+    }
+
     public function getClassTalentTreeProperty(): ?TalentTree
     {
         $spec = $this->specialization;
@@ -325,7 +404,38 @@ class TalentSelector extends Component
 
     public function getClassTalentNodesProperty(): Collection
     {
-        return $this->loadTreeNodes($this->classTalentTree);
+        $nodes = $this->loadTreeNodes($this->classTalentTree);
+        $spec = $this->specialization;
+        $patchId = $this->currentPatchId();
+
+        if ($nodes->isEmpty() || !$spec || !$patchId) {
+            return $nodes;
+        }
+
+        // Defensive filter against the documented "class-tree API response echoes nearly every
+        // spec node" bug (CLAUDE.md's "data/talenttrees/{class}.json class-tree bloat" note,
+        // 2026-08-02) — the real fix lives in fetch-talent-trees.php at fetch time, but this
+        // locally-imported dataset currently still shows it (confirmed 2026-08-10: Restoration
+        // Druid's entire 73-node spec tree is duplicated into its class tree; Priest's class
+        // tree is back to the exact pre-fix count of 226 nodes). Re-fetching from Blizzard's API
+        // and re-importing is a separate, larger operation (needs live credentials) — this is a
+        // render-time safety net so the picker doesn't show ~4x too many class-tree nodes in the
+        // meantime. Harmless once the underlying data is eventually clean: this filter becomes a
+        // no-op the moment class-tree nodes stop overlapping spec/hero external_node_ids.
+        //
+        // Deliberately compares against EVERY spec/hero tree of this class, not just the one
+        // currently being viewed — confirmed by hand that the bloated response bundles ALL of a
+        // class's spec-tree duplicates together (excluding only the current spec's own 73 nodes
+        // left Druid's class list at 208, nowhere near the documented real ~45-75 range; the
+        // remaining bloat was Balance/Feral/Guardian's own duplicated nodes).
+        $excludedIds = TalentNode::whereHas(
+            'talentTree',
+            fn ($q) => $q->where('class_id', $spec->class_id)
+                ->where('patch_id', $patchId)
+                ->whereIn('type', ['spec', 'hero'])
+        )->pluck('external_node_id');
+
+        return $nodes->reject(fn (TalentNode $n) => $excludedIds->contains($n->external_node_id))->values();
     }
 
     public function getSpecTalentTreeProperty(): ?TalentTree
@@ -399,6 +509,9 @@ class TalentSelector extends Component
             'selectedHeroTree' => $this->selectedHeroTree,
             'heroTalentNodes' => $this->heroTalentNodes,
             'pvpTalents' => $this->pvpTalents,
+            'classTalentEdges' => $this->classTalentEdges,
+            'specTalentEdges' => $this->specTalentEdges,
+            'heroTalentEdges' => $this->heroTalentEdges,
         ]);
     }
 }

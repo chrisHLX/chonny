@@ -26,6 +26,9 @@ Effects          :
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
                    Modified By: Soul Glutton (1247534 effect#2)
 Description      : Collecting $1225789u Soul Fragments grants access to Void Metamorphosis.
+
+$@spellicon1217605 $@spellname1217605
+$@spelldesc1217605
 
 Name             : Void Ray (id=473728) [Spell Family (107)] 
 Talent Entry     : Devourer [tree=spec, row=1, col=4, max_rank=1, req_points=0]
@@ -54,6 +57,10 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $?a1217607[][|CFFffffffRequires $c Fury|R]
 Unleash a beam of concentrated void energy, dealing $1213649s1 Cosmic damage$?a1217607[][ and consuming $1213649c Fury] every ${$t1}.1 sec.$?a1217607[
+
+Channeling Void Ray substantially reduces your Fury drain.][
+
+Effect ends after $d or upon reaching $s4 Fury.]
 
 Name             : Predator's Thirst (id=1215617) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -76,6 +83,8 @@ Effects          :
                    Affected Spells: Shattered Souls (1227619)
                    Family Flags: 96
 Description      : Consume damage increased by $s1%.
+
+Consume generates a Soul Fragment.
 
 Name             : Collapsing Star (id=1221167) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=4, col=4, max_rank=1, req_points=0]
@@ -91,6 +100,9 @@ Effects          :
 #1 (id=1207533)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : While in Void Metamorphosis, every $s1 Soul Fragments harvested grants access to Collapsing Star.
+
+$@spellicon1221150 $@spellname1221150
+$@spelldesc1221150
 
 Name             : Waste Not (id=1223918) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=5, col=5, max_rank=1, req_points=8]
@@ -121,6 +133,9 @@ Effects          :
 #1 (id=1215639)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
 Description      : Fully channeling Void Ray upgrades your Reap to Eradicate.
+
+$@spellicon1225826 $@spellname1225826
+$@spelldesc1225826
 
 Name             : Impending Apocalypse (id=1227707) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=9, col=4, max_rank=1, req_points=20]
@@ -192,6 +207,11 @@ Effects          :
 #1 (id=1237347)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 Description      : After dealing damage with The Hunt or Voidblade, Voidblade is replaced with Hungering Slash for $1239525d.
+
+$@spellicon1239123 $@spellname1239123
+$@spelldesc1239123
+
+Hungering Slash grants a temporary charge of Vengeful Retreat and causes your next Vengeful Retreat within $1223157d to deal an additional $1239526s1 Cosmic damage.
 
 Name             : Second Helping (id=1239537) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=6, col=3, max_rank=1, req_points=8]
@@ -455,6 +475,9 @@ Effects          :
                    Base Value: 1000 | Scaled Value: 1000 | Misc Value: 1 | Misc Value 2: 5312 (Label) | Target: Self (1)
                    Affected Spells (Label): Feast of Souls (1232310)
 Description      : The duration of Feast of Souls is increased by ${$s1/1000} sec.
+
+$@spellicon1237270 $@spellname1237270
+$@spelldesc1237270
 
 Name             : The Hunt (id=1246167) [Spell Family (107)] 
 Talent Entry     : Devourer [tree=spec, row=10, col=2, max_rank=1, req_points=20]
@@ -575,6 +598,8 @@ Effects          :
                    Base Value: -25 | Scaled Value: -25 | Misc Value: 32 | Misc Value 2: 5408 (Label) | Target: Self (1)
                    Affected Spells (Label): Void Metamorphosis (471306)
 Description      : Void Metamorphosis requires $s1 less souls.
+
+Your Fury drains ${-$s2}% faster while in Void Metamorphosis.
 
 Name             : Demonic Instinct (id=1247538) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=8, col=3, max_rank=2, req_points=20]
@@ -623,6 +648,8 @@ Effects          :
                    Affected Spells: Consume (473662), Void Ray (1213649), Void Ray (1214595), Devour (1217610), Collapsing Star (1221162), Reap (1225823), Eradicate (1225827), Hungering Slash (1239127), Voidblade (1245414), Cull (1245455), Voidsurge (1246160), The Hunt (1246168), The Hunt (1246169), Voidfall Meteor (1256305), World Killer (1256619), Meteor Shower (1264129), Eradicate (1279200)
                    Family Flags: 95
 Description      : All Cosmic damage dealt increased by $s4%.
+
+Collapsing Star's critical strike damage is increased by $s3% of your critical strike chance.
 
 Name             : Midnight (id=1250094) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=11, col=4, max_rank=1, req_points=20, select_idx=300]
@@ -658,6 +685,8 @@ Effects          :
 #2 (id=1271517)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
 Description      : While in combat, generate $s1 Soul $LFragment:Fragments; every $t1 sec.
+
+While out of combat, you will slowly build towards your Void Metamorphosis, up to $s2 Soul Fragments.
 
 Name             : Voidrush (id=1272422) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=9, col=2, max_rank=1, req_points=20]
@@ -675,6 +704,8 @@ Effects          :
 #1 (id=1285651)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10000 | Scaled Value: 10000 | Target: Self (1)
 Description      : Collapsing Star reduces the cooldown of Voidblade by ${$s1/1000} sec.
+
+Voidblade and The Hunt briefly reduce your Fury drain while in Void Metamorphosis.
 
 Name             : Soulforged Blades (id=1272432) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=8, col=1, max_rank=1, req_points=20]
@@ -709,6 +740,8 @@ Effects          :
 #2 (id=1286060)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Voidblade damage increased by $s1%.
+
+Hungering Slash deals $s2% increased damage to its primary target.
 
 Name             : Improved Consume (id=1272817) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Devourer [tree=spec, row=6, col=5, max_rank=1, req_points=8]

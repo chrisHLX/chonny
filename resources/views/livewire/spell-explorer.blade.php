@@ -126,7 +126,15 @@
     @if ($specId)
         {{-- Filter tabs + search --}}
         <div class="flex flex-wrap items-center justify-between gap-3">
-            <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1">
+            <div class="flex flex-wrap items-center gap-2">
+                <button type="button" wire:click="openTalentPicker"
+                        class="btn-secondary text-[12px] py-1.5 px-3 flex items-center gap-1.5 whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                    Edit My Talents
+                </button>
+                <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1">
                 <button type="button" @click="setFilter('all')" class="tab-btn flex items-center gap-1.5" :class="filter === 'all' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/></svg>
                     All Spells
@@ -159,6 +167,7 @@
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636L5.636 18.364"/></svg>
                     Crowd Control
                 </button>
+                </div>
             </div>
 
             <div class="relative w-full sm:w-56">
@@ -174,7 +183,9 @@
             <x-spells.table
                 :entries="$entries"
                 title=""
-                description="Cooldowns and charges reflect this spec's admin-curated default talent build (see /admin/talent-builds) — not a personal build."
+                :description="$usingPersonalBuild
+                    ? 'Cooldowns and charges reflect your own saved talent picks — click Edit My Talents to change them.'
+                    : \"Cooldowns and charges reflect this spec's admin-curated default talent build — click Edit My Talents to set your own.\""
             />
         </div>
 
@@ -185,8 +196,26 @@
         @if (empty($entries))
             <div class="linear-card p-5 text-[13px] text-ink-muted">
                 No default talent build has been set for this spec yet — configure one at
-                <a href="{{ route('admin.talent-builds') }}" class="text-gold hover:underline">/admin/talent-builds</a>
-                to see spells here.
+                <a href="{{ route('admin.talent-builds') }}" class="text-gold hover:underline">/admin/talent-builds</a>,
+                or click "Edit My Talents" above to pick your own.
+            </div>
+        @endif
+
+        {{-- Personal talent picker — edits the viewer's OWN saved TalentBuild for the currently
+             selected spec (never the admin default), via
+             TalentSelectionService::resolveActiveBuild()/getOrCreateUserBuild(). Plain Blade @if
+             rather than an Alpine x-show: open/close round-trip through
+             openTalentPicker()/closeTalentPicker() (Livewire actions), and closing is what makes
+             the Spells table above pick up whatever was just saved. --}}
+        @if ($showTalentPicker)
+            <div class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
+                 @click.self="$wire.closeTalentPicker()">
+                <div class="linear-card max-w-5xl w-full p-5 relative max-h-[90vh] overflow-y-auto">
+                    <button type="button" wire:click="closeTalentPicker" class="absolute top-3 right-3 text-ink-subtle hover:text-ink z-10">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                    <livewire:talent-selector :spec-id="$specId" layout="grid" :key="'spell-explorer-picker-'.$specId"/>
+                </div>
             </div>
         @endif
     @endif

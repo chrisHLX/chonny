@@ -21,8 +21,10 @@ use Livewire\Component;
  * Offensive/Defensive/Utility/Crowd Control/Other same as Spell Explorer, plus a "Main
  * Cooldowns" summary per member. Deliberately no comps table, no spell_functions table, no
  * seeding — this exists purely to get the picker/layout shape right before any of that schema
- * work happens. Read-only, same data source as SpellExplorer (each spec's admin-curated
- * default TalentBuild via TalentSelectionService).
+ * work happens. Same data source as SpellExplorer (TalentSelectionService::resolveActiveBuild())
+ * — a viewer's own saved talent build for a slot's spec if they have one (editable in-place via
+ * the talent-picker modal, see openPicker()/closePicker() and talent-tree-grid.blade.php), else
+ * that spec's admin-curated default, same as before this modal existed.
  */
 class WowComps extends Component
 {
@@ -32,9 +34,25 @@ class WowComps extends Component
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
     ];
 
+    /** The spec currently open in the talent-picker modal, or null when closed. Shared across all 3 slots — only one picker open at a time. */
+    public ?int $activePickerSpecId = null;
+
     public function mount(): void
     {
         PageViewEvent::log('wow_comps');
+    }
+
+    public function openPicker(int $specId): void
+    {
+        $this->activePickerSpecId = $specId;
+    }
+
+    public function closePicker(): void
+    {
+        // Closing is itself a Livewire action on this component, so getCompProperty() below
+        // recomputes fresh on the very next render — no separate refresh/event plumbing needed
+        // for the underlying Spells table to pick up whatever was just saved in the modal.
+        $this->activePickerSpecId = null;
     }
 
     public function updated(string $name): void
@@ -129,25 +147,35 @@ class WowComps extends Component
         // of WowComps's 45.8s/~5,000-query cold render (see CLAUDE.md's "same-day performance
         // fix" note) — the earlier fix only removed *redundant* recomputation within one request
         // via ModuleSpellReferenceService's per-instance memoization; every fresh page load still
-        // recomputed everything from scratch. The result depends only on the spec's admin
-        // DEFAULT talent build (never a viewer's own) and the imported spell data, so it's safe
-        // to share across requests/users — invalidated via TalentSelectionService's version
-        // counter (bumped on any default-build write or spelldata re-import), not a TTL guess.
+        // recomputed everything from scratch.
+        //
+        // As of the personal talent picker (2026-08-10), the build resolved below is whichever
+        // resolveActiveBuild() picks for THIS viewer — their own saved build if they have one for
+        // this spec, else the spec's admin default, exactly as before. A guest or a user with no
+        // personal build for this spec resolves to the admin default and shares the same cache
+        // entry every such viewer gets. Once a viewer has a personal build, the cache key includes
+        // that build's own id+updated_at — saveChoice()/syncPvpChoices()/pruneNodeChoices() all
+        // touch() the build (see TalentSelectionService), so a pick invalidates only that one
+        // viewer's own entry, never anyone else's. The admin-default case still additionally
+        // varies on the global spellCacheVersion counter (bumped on an admin-default write or a
+        // spelldata re-import) exactly as before this feature.
+        $build = $talentService->resolveActiveBuild(auth()->user(), $spec->id);
+        $defaultBuild = $build->exists ? $build : null;
+        $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
 
         return Cache::remember(
-            "wow_spell_references:spec:{$spec->id}:v{$version}",
+            "wow_spell_references:spec:{$spec->id}:build:{$buildStamp}:v{$version}",
             now()->addHours(6),
-            fn () => $this->computeSpellReferencesFor($spec, $service, $talentService)
+            fn () => $this->computeSpellReferencesFor($spec, $service, $talentService, $defaultBuild)
         );
     }
 
     /**
      * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool}>
      */
-    private function computeSpellReferencesFor(Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService): array
+    private function computeSpellReferencesFor(Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService, ?TalentBuild $defaultBuild): array
     {
-        $defaultBuild = TalentBuild::where('spec_id', $spec->id)->where('is_default', true)->first();
         $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();
         $ranks = $defaultBuild ? $talentService->selectedRanks($defaultBuild) : collect();
 

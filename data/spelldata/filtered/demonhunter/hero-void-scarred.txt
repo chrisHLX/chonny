@@ -19,6 +19,8 @@ Effects          :
 #1 (id=1153546)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $?a212612[][Void ]Metamorphosis now also $?a212612[causes Demon Blades to generate $162264s10 additional Fury][greatly empowers Voidblade and Hungering Slash].
+
+While demon form is active, the first cast of each empowered ability induces a $?a212612[Demonsurge][Voidsurge], causing you to explode with $?a212612[Fel][Void] energy, dealing $?a212612[$452416s1 Chaos][$1246160s1 Cosmic] damage to nearby enemies. Deals reduced damage beyond $452416s3 targets.
 
 Name             : Wave of Debilitation (id=452403) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
@@ -76,6 +78,8 @@ Effects          :
 #3 (id=1245747)  : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : $?a212612[Demonsurge][Voidsurge] deals $s1% increased damage when it strikes a single target.
+
+Each additional target reduces this bonus by $s2%.
 
 Name             : Set Fire to the Pain (id=452406) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
@@ -100,6 +104,8 @@ Effects          :
                    Base Value: -10 | Scaled Value: -10 | Misc Value: 0x4 | Target: Self (1)
                    Affected School(s): Fire
 Description      : $s2% of all non-Fire damage taken is instead taken as Fire damage over $453286d.
+
+Fire damage taken reduced by $S3%.
 
 Name             : Improved Soul Rending (id=452407) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
@@ -145,6 +151,8 @@ Effects          :
                    Affected Spells: Reap (1225823), Eradicate (1225827), Cull (1245455), Eradicate (1279200)
                    Family Flags: 99
 Description      : $?a212612[Your blades burn with Fel energy, causing the damage from Chaos Strike, Throw Glaive, Blade Dance's First Blood, and auto-attacks to burn for an additional $s1% damage as Fire over $453177d][Your blades burn with Cosmic energy, causing your Voidblade, Hungering Slash, and Throw Glaive to deal an additional $s2% damage as Cosmic damage.
+
+Reap damage increased by $s3%].
 
 Name             : Violent Transformation (id=452409) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=3, col=2, max_rank=1, req_points=1]
@@ -171,6 +179,8 @@ Effects          :
                    Affected Spells: The Hunt (345335), The Hunt (370969), The Hunt (1246168)
                    Family Flags: 87
 Description      : $?a212612[When you activate Metamorphosis, reset the cooldown of Immolation Aura][Entering Void Metamorphosis resets the cooldown of Voidblade and The Hunt.
+
+The Hunt deals $s2% increased damage and resets the cooldown of Soul Immolation].
 
 Name             : Enduring Torment (id=452410) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
@@ -210,6 +220,8 @@ Effects          :
                    Affected Spells: Void Ray (1213649), Void Ray (1214595)
                    Family Flags: 100
 Description      : Maximum Fury increased by $?a212612[$s1][$s2].$?c3[
+
+Void Ray damage increased by $s3%.][]
 
 Name             : Student of Suffering (id=452412) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=4, col=2, max_rank=1, req_points=1, select_idx=100]
@@ -283,6 +295,8 @@ Effects          :
                    Affected Spells: Collapsing Star (1221162)
                    Family Flags: 103
 Description      : $?a212612[Agility][Intellect] increased by $?a212612[$452550s1][$452550s2]% while not in demon form.$?c3[
+
+Collapsing Star damage increased by $s2%.][]
 
 Name             : Demonic Intensity (id=452415) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
@@ -299,6 +313,8 @@ Effects          :
 #1 (id=1153559)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Activating $?a212612[][Void ]Metamorphosis greatly empowers $?a212612[Eye Beam, Immolation Aura][The Hunt].
+
+$?a212612[Demonsurge][Voidsurge] damage is increased by $?a212612[${$452416s2}][${$1246160s2}]% for each time it previously triggered while your demon form is active.
 
 Name             : Blind Focus (id=1272364) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
@@ -334,6 +350,8 @@ Effects          :
                    Family Flags: 95
                    Modified By: Void Metamorphosis (1217607 effect#17)
 Description      : $?a212612[Fire][Cosmic] damage increased by $?a212612[$s1][$s3]%.
+
+Effect is doubled while in demon form.
 
 Name             : Undying Embers (id=1272405) [Spell Family (107), Passive] 
 Talent Entry     : Fel-Scarred (Havoc, Devourer) [tree=hero, row=3, col=5, max_rank=1, req_points=1]

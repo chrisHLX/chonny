@@ -25,6 +25,8 @@ Effects          :
 #2 (id=301812)   : Create Area Trigger (179)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 6027 | Target: at Area (87)
 Description      : Place a Sigil of Silence at the target location that activates after $d.
+
+Silences all enemies affected by the sigil for $204490d.
 
 Name             : Sigil of Chains (id=202138) [Spell Family (107)] 
 Talent Entry     : Vengeance [tree=spec, row=7, col=5, max_rank=1, req_points=8, replace="Sigil of Misery" (id=207684)]
@@ -48,6 +50,8 @@ Effects          :
 #2 (id=301844)   : Create Area Trigger (179)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 6031 | Target: at Area (87)
 Description      : Place a Sigil of Chains at the target location that activates after $d.
+
+All enemies affected by the sigil are pulled to its center and are snared, reducing movement speed by $204843s1% for $204843d.
 
 Name             : Fiery Brand (id=204021) [Spell Family (107)] 
 Talent Entry     : Vengeance [tree=spec, row=2, col=6, max_rank=1, req_points=0]
@@ -186,6 +190,8 @@ Effects          :
 #2 (id=309745)   : Dummy (3)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Sustaining fatal damage instead transforms you to Metamorphosis form.
+
+This may occur once every $209261d.
 
 Name             : Quickened Sigils (id=209281) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Vengeance [tree=spec, row=3, col=5, max_rank=1, req_points=0]
@@ -401,6 +407,8 @@ Effects          :
 #2 (id=845335)   : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : ${$s1/10}.1% of your Fire damage shields you, up to a maximum of ${$MHP*$s2/100}.
+
+Shield and maximum values are doubled while Fiery Brand is active.
 
 Name             : Focused Cleave (id=343207) [Spell Family (107), Passive] 
 Talent Entry     : Vengeance [tree=spec, row=8, col=2, max_rank=1, req_points=20]
@@ -614,6 +622,8 @@ Effects          :
 #1 (id=1026530)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Enemies struck by Sigil of Flame, Soul Cleave, and Spirit Bomb are afflicted with Frailty for $247456d.
+
+You heal for $247456s1% of all damage you deal to targets with Frailty.
 
 Name             : Vulnerability (id=389976) [Spell Family (107), Passive] 
 Talent Entry     : Vengeance [tree=spec, row=9, col=3, max_rank=2, req_points=20]
@@ -688,6 +698,8 @@ Effects          :
                    Base Value: 3 | Scaled Value: 3 | Target: at Area (87)
                    Modified By: Broken Spirit (1272143 effect#1)
 Description      : Place a demonic sigil at the target location that activates after $d.
+
+Detonates to deal $389860s1 Chaos damage and shatter up to $s3 Soul $LFragment:Fragments; from enemies affected by the sigil. Deals reduced damage beyond $s1 targets.
 
 Name             : Burning Blood (id=390213) [Spell Family (107), Passive] 
 Talent Entry     : Vengeance [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -734,6 +746,8 @@ Effects          :
                    Affected Spells: Immolation Aura (258921), Immolation Aura (258922), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916)
                    Family Flags: 49, 61
 Description      : Immolation Aura has $s4% increased critical strike chance and generates $m1-$M1 Fury when it deals critical damage.
+
+This effect may only occur once per ${$proccooldown+0.1} sec.
 
 Name             : Roaring Fire (id=391178) [Spell Family (107), Passive] 
 Talent Entry     : Vengeance [tree=spec, row=4, col=5, max_rank=1, req_points=0, select_idx=100]
@@ -916,3 +930,5 @@ Effects          :
 #1 (id=1282480)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 Description      : Each cast of Soul Cleave and Spirit Bomb that does not grant Untethered Rage instead applies a stack of Seething Anger.
+
+Seething Anger grants $1270547s1% Agility and increases your chance to gain Untethered Rage. Lasts $1270547d and cannot be refreshed after gaining Untethered Rage.

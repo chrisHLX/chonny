@@ -75,44 +75,53 @@
     </div>
 
     <div class="p-5 space-y-6">
-        @foreach ([
-            ['label' => 'Class Talents', 'nodes' => $classTalentNodes],
-            ['label' => ($specialization?->name ?? 'Spec').' Talents', 'nodes' => $specTalentNodes],
-            ['label' => ($selectedHeroTree?->name ?? 'Hero').' Talents', 'nodes' => $heroTalentNodes],
-        ] as $section)
-            @if ($section['nodes']->isNotEmpty())
-                <div>
-                    <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">{{ $section['label'] }}</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        @foreach ($section['nodes'] as $node)
-                            @php $byRank = $node->entries->groupBy('rank'); @endphp
-                            <div class="rounded-lg border border-line bg-surface-1 p-2.5">
-                                @foreach ($byRank as $rank => $entries)
-                                    <div class="flex flex-wrap gap-1.5 {{ !$loop->last ? 'mb-1.5' : '' }}">
-                                        @foreach ($entries as $entry)
-                                            @continue(!$entry->spell)
-                                            @php $isChosen = ($chosenEntries[$node->id] ?? null) === $entry->id; @endphp
-                                            <button
-                                                type="button"
-                                                wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
-                                                title="{{ $entry->spell->description }}"
-                                                class="flex-1 min-w-[8rem] px-2.5 py-2 rounded-md border text-left text-[12px] transition
-                                                    {{ $isChosen ? 'border-gold bg-gold-subtle' : 'border-line bg-surface-2 hover:border-line-strong' }}"
-                                            >
-                                                <span class="font-semibold {{ $isChosen ? 'text-gold' : 'text-ink' }}">{{ $entry->spell->display_name }}</span>
-                                                @if ($node->max_ranks > 1)
-                                                    <span class="text-ink-subtle text-[10px]"> · Rank {{ $rank }}</span>
-                                                @endif
-                                            </button>
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endforeach
+        @if ($layout === 'grid')
+            {{-- Positional tree layout mirroring the real in-game/Wowhead-style talent UI — see
+                 talent-tree-grid.blade.php. Used by the player-facing picker modal on
+                 WowComps/SpellExplorer; Admin\TalentBuildEditor still gets the flat list below. --}}
+            @include('livewire.partials.talent-tree-grid', ['nodes' => $classTalentNodes, 'edges' => $classTalentEdges, 'label' => 'Class Talents', 'chosenEntries' => $chosenEntries])
+            @include('livewire.partials.talent-tree-grid', ['nodes' => $specTalentNodes, 'edges' => $specTalentEdges, 'label' => ($specialization?->name ?? 'Spec').' Talents', 'chosenEntries' => $chosenEntries])
+            @include('livewire.partials.talent-tree-grid', ['nodes' => $heroTalentNodes, 'edges' => $heroTalentEdges, 'label' => ($selectedHeroTree?->name ?? 'Hero').' Talents', 'chosenEntries' => $chosenEntries])
+        @else
+            @foreach ([
+                ['label' => 'Class Talents', 'nodes' => $classTalentNodes],
+                ['label' => ($specialization?->name ?? 'Spec').' Talents', 'nodes' => $specTalentNodes],
+                ['label' => ($selectedHeroTree?->name ?? 'Hero').' Talents', 'nodes' => $heroTalentNodes],
+            ] as $section)
+                @if ($section['nodes']->isNotEmpty())
+                    <div>
+                        <p class="text-[11px] font-semibold text-ink-muted uppercase tracking-wide mb-2">{{ $section['label'] }}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            @foreach ($section['nodes'] as $node)
+                                @php $byRank = $node->entries->groupBy('rank'); @endphp
+                                <div class="rounded-lg border border-line bg-surface-1 p-2.5">
+                                    @foreach ($byRank as $rank => $entries)
+                                        <div class="flex flex-wrap gap-1.5 {{ !$loop->last ? 'mb-1.5' : '' }}">
+                                            @foreach ($entries as $entry)
+                                                @continue(!$entry->spell)
+                                                @php $isChosen = ($chosenEntries[$node->id] ?? null) === $entry->id; @endphp
+                                                <button
+                                                    type="button"
+                                                    wire:click="toggleEntry({{ $node->id }}, {{ $entry->id }})"
+                                                    title="{{ $entry->spell->description }}"
+                                                    class="flex-1 min-w-[8rem] px-2.5 py-2 rounded-md border text-left text-[12px] transition
+                                                        {{ $isChosen ? 'border-gold bg-gold-subtle' : 'border-line bg-surface-2 hover:border-line-strong' }}"
+                                                >
+                                                    <span class="font-semibold {{ $isChosen ? 'text-gold' : 'text-ink' }}">{{ $entry->spell->display_name }}</span>
+                                                    @if ($node->max_ranks > 1)
+                                                        <span class="text-ink-subtle text-[10px]"> · Rank {{ $rank }}</span>
+                                                    @endif
+                                                </button>
+                                            @endforeach
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-            @endif
-        @endforeach
+                @endif
+            @endforeach
+        @endif
 
         @if ($pvpTalents->isNotEmpty())
             <div>
@@ -132,10 +141,11 @@
                             wire:click="togglePvpTalent({{ $talent->id }})"
                             @disabled($isFull)
                             title="{{ $talent->spell->description }}"
-                            class="px-2.5 py-2 rounded-md border text-left text-[12px] transition
+                            class="flex items-center gap-2 px-2.5 py-2 rounded-md border text-left text-[12px] transition
                                 {{ $isChosen ? 'border-violet bg-violet-subtle' : 'border-line bg-surface-2 hover:border-line-strong' }}
                                 {{ $isFull ? 'opacity-40 cursor-not-allowed' : '' }}"
                         >
+                            <x-spell-icon :spell="$talent->spell" size="w-7 h-7"/>
                             <span class="font-semibold {{ $isChosen ? 'text-violet-hover' : 'text-ink' }}">{{ $talent->spell->display_name }}</span>
                         </button>
                     @endforeach
