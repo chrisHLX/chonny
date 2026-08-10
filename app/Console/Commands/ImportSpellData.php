@@ -1240,6 +1240,14 @@ class ImportSpellData extends Command
             return;
         }
 
+        // Tracks every (class, spec, resolved display name) seen this run so two DIFFERENT
+        // spell_ids covering the identical name+spec can be caught and warned about — this is
+        // exactly the mistake that shipped 2026-08-08 (Kidney Shot's real spell_id 408 AND its
+        // dataless duplicate 426589 were both added for all 3 Rogue specs, rendering as two
+        // visible rows for one ability). Added 2026-08-10 as a standing safety net so this class
+        // of bug surfaces at import time instead of via a user report.
+        $seenPerSpec = [];
+
         foreach (File::lines($path) as $line) {
             $line = trim($line);
 
@@ -1277,6 +1285,20 @@ class ImportSpellData extends Command
             ], [], 'spell_class_availability');
 
             $this->baselineOverridesApplied++;
+
+            $seenPerSpec["{$class->id}:{$spec->id}:{$spell->name}"][] = (int) $externalSpellId;
+        }
+
+        foreach ($seenPerSpec as $key => $spellIds) {
+            $distinctIds = array_unique($spellIds);
+
+            if (count($distinctIds) > 1) {
+                [$classId, $specId, $name] = explode(':', $key, 3);
+                $this->warn("  ⚠ DUPLICATE OVERRIDE: '{$name}' has ".count($distinctIds).
+                    ' different spell_ids ('.implode(', ', $distinctIds).
+                    ") both overridden for the same class_id={$classId}/spec_id={$specId} — this will render as two rows for one ability. ".
+                    'Pick a single correct spell_id per (name, spec) in baseline-spec-overrides.txt.');
+            }
         }
     }
 

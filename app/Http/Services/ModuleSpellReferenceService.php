@@ -71,6 +71,9 @@ class ModuleSpellReferenceService
     /** @var array<string, bool> keyed by "{spell->id}:{classId}:{specId}:{treeIds}" — see isConfidentlyInBuild(). */
     private array $confidentlyInBuildMemo = [];
 
+    /** @var array<int, array{seconds: ?float, charges: ?int}> keyed by spell->id — see resolveBaseCooldownCharges(). */
+    private array $baseCooldownChargesMemo = [];
+
     /**
      * Resolves a spell name to a concrete Spell for this build, disambiguating the same way
      * validated by hand against real data (Warrior Arms spot-check, 2026-07-25; the
@@ -517,19 +520,68 @@ class ModuleSpellReferenceService
     }
 
     /**
+     * Resolves $spell's own base cooldown_seconds/charges, falling back independently (each
+     * field on its own — a spell can be missing one and not the other) to a same-named sibling
+     * in the same patch when its own value is null. Same sibling-recovery pattern as
+     * categorize()'s effect merge and findEffectByIndex() — added 2026-08-10 after a real case:
+     * Rogue's Smoke Bomb reaches display via a PvP-talent-selected spell_id (212182/359053)
+     * that carries no cooldown data at all, while a separate same-named baseline record
+     * (76577) has the real "180" — same "one ability, split across multiple spell_id records,
+     * only one carries the real number" shape already seen for Angelic Bulwark/Anti-Magic
+     * Zone/Void Bolt's icon, just affecting the base cooldown/charges fields this time instead
+     * of description/category/icon. Never guesses a value — only borrows a sibling's *real*,
+     * non-null field; a spell with no sibling carrying either field stays exactly as unresolved
+     * as before.
+     *
+     * @return array{seconds: ?float, charges: ?int}
+     */
+    private function resolveBaseCooldownCharges(Spell $spell): array
+    {
+        if (array_key_exists($spell->id, $this->baseCooldownChargesMemo)) {
+            return $this->baseCooldownChargesMemo[$spell->id];
+        }
+
+        $seconds = $spell->cooldown_seconds !== null ? (float) $spell->cooldown_seconds : null;
+        $charges = $spell->charges;
+
+        if ($seconds === null || $charges === null) {
+            $siblings = Spell::where('name', $spell->name)
+                ->where('patch_id', $spell->patch_id)
+                ->where('id', '!=', $spell->id)
+                ->get();
+
+            foreach ($siblings as $sibling) {
+                if ($seconds === null && $sibling->cooldown_seconds !== null) {
+                    $seconds = (float) $sibling->cooldown_seconds;
+                }
+                if ($charges === null && $sibling->charges !== null) {
+                    $charges = $sibling->charges;
+                }
+                if ($seconds !== null && $charges !== null) {
+                    break;
+                }
+            }
+        }
+
+        return $this->baseCooldownChargesMemo[$spell->id] = ['seconds' => $seconds, 'charges' => $charges];
+    }
+
+    /**
      * Computes $spell's effective cooldown given which talents are actually selected —
-     * $spell->cooldown_seconds (the base value) with every selected, magnitude-bearing
-     * 'modifies_cooldown' modifier applied: flat seconds first, then percent (the layering order
-     * validated by hand against a real in-game report in game-data.md's Mind Blast worked
-     * example). Modifiers without a computable magnitude (modifier_value/modifier_unit null —
-     * see SpellRelationship's docblock) still show up in modifiersFor()'s 'named' list
-     * descriptively, they just don't change this number — never guessed.
+     * $spell->cooldown_seconds (the base value, sibling-recovered via
+     * resolveBaseCooldownCharges() when the spell's own copy has none) with every selected,
+     * magnitude-bearing 'modifies_cooldown' modifier applied: flat seconds first, then percent
+     * (the layering order validated by hand against a real in-game report in game-data.md's
+     * Mind Blast worked example). Modifiers without a computable magnitude
+     * (modifier_value/modifier_unit null — see SpellRelationship's docblock) still show up in
+     * modifiersFor()'s 'named' list descriptively, they just don't change this number — never
+     * guessed.
      *
      * @return array{seconds: ?float, base_seconds: ?float, applied: Collection}
      */
     public function effectiveCooldown(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds, ?Collection $selectedRanks = null): array
     {
-        $base = $spell->cooldown_seconds !== null ? (float) $spell->cooldown_seconds : null;
+        $base = $this->resolveBaseCooldownCharges($spell)['seconds'];
         $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_cooldown', 'seconds', $selectedRanks);
 
         return ['seconds' => $result['value'], 'base_seconds' => $result['base'], 'applied' => $result['applied']];
@@ -726,12 +778,13 @@ class ModuleSpellReferenceService
      */
     public function effectiveCharges(Spell $spell, ModuleGameBuild $build, Collection $selectedSpellIds, ?Collection $selectedRanks = null): array
     {
-        $base = $spell->charges !== null ? (float) $spell->charges : null;
+        $resolvedCharges = $this->resolveBaseCooldownCharges($spell)['charges'];
+        $base = $resolvedCharges !== null ? (float) $resolvedCharges : null;
         $result = $this->effectiveScalarValue($spell, $build, $selectedSpellIds, $base, 'modifies_charges', 'charges', $selectedRanks);
 
         return [
             'charges' => $result['value'] !== null ? (int) round($result['value']) : null,
-            'base_charges' => $spell->charges,
+            'base_charges' => $resolvedCharges,
             'applied' => $result['applied'],
         ];
     }
