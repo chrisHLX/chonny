@@ -14,6 +14,17 @@
  *     Freezing Trap, Hammer of Justice; see CLAUDE.md's "Baseline ability display" section.
  *     These are never talents, so they were invisible to this script's original two sources
  *     entirely — confirmed missing icons on real spells before this was added.)
+ *   - Explicit-spec_id baseline spells with a real cooldown/CC mechanic (added 2026-08-10 —
+ *     TalentSelectionService::explicitBaselineCooldownAbilityIds()'s display path for
+ *     baseline-heavy specs like Demon Hunter/Evoker, e.g. Devourer's Blur/Shift/Spectral
+ *     Sight — added 2026-08-07, well after this script's original target-set query was
+ *     written, so it was never wired in; confirmed missing icons on real spells before this
+ *     was added, same shape as the verified_override gap above). Mirrors that method's exact
+ *     filter (source='baseline', explicit spec_id, not passive/not_in_spellbook/`(desc=...)`-
+ *     suffixed, cooldown >= 10s or a Sleep/Disorient mechanic) — deliberately not deduped to
+ *     one-per-name the way the display method is, since fetching a few extra icons for
+ *     same-named duplicate copies is harmless and this script doesn't need to know which
+ *     specific copy the display layer will end up picking.
  * These are queried directly from the local Laravel database rather than derived from the
  * JSON files in data/talenttrees/ or data/pvptalents/, ensuring consistency with whatever
  * was actually imported.
@@ -404,7 +415,28 @@ $pvpTalentSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 $stmt = $pdo->query("SELECT DISTINCT spell_id FROM spell_class_availability WHERE source = 'verified_override' ORDER BY spell_id");
 $verifiedOverrideSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
-$targetSpellDbIds = array_values(array_unique(array_merge($talentSpellDbIds, $pvpTalentSpellDbIds, $verifiedOverrideSpellDbIds)));
+// Mirrors TalentSelectionService::explicitBaselineCooldownAbilityIds()'s exact filter — see
+// this file's docblock for why this source was missing until 2026-08-10.
+$stmt = $pdo->query(
+    "SELECT DISTINCT sca.spell_id
+     FROM spell_class_availability sca
+     JOIN spells s ON s.id = sca.spell_id
+     WHERE sca.source = 'baseline'
+       AND sca.spec_id IS NOT NULL
+       AND s.is_passive = 0
+       AND s.not_in_spellbook = 0
+       AND s.name NOT LIKE '%(desc=%'
+       AND (s.cooldown_seconds >= 10 OR s.mechanic IN ('Sleep', 'Disorient'))
+     ORDER BY sca.spell_id"
+);
+$explicitBaselineCooldownSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+$targetSpellDbIds = array_values(array_unique(array_merge(
+    $talentSpellDbIds,
+    $pvpTalentSpellDbIds,
+    $verifiedOverrideSpellDbIds,
+    $explicitBaselineCooldownSpellDbIds
+)));
 
 if ($limitSpellIds !== null) {
     $targetSpellDbIds = array_slice($targetSpellDbIds, 0, $limitSpellIds);
