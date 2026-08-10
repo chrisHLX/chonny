@@ -239,6 +239,65 @@ function getAccessToken(string $clientId, string $clientSecret): string
 /** Running counter for the end-of-run summary. */
 $requestCount = 0;
 
+/**
+ * Attempts to resolve a spell_id's icon URL via Blizzard's media API. Returns null (never
+ * throws) for a genuine "no icon" case — either an HTTP 404 or a 200 response with no icon
+ * asset — so callers can try a sibling spell_id instead of giving up outright. Other HTTP
+ * failures (unexpected 5xx after retries, etc.) still propagate, since those are
+ * transient/environmental, not "this spell has no icon."
+ */
+function tryFetchIconUrl(string $token, int $spellId): ?string
+{
+    try {
+        $mediaResponse = apiGet($token, "/data/wow/media/spell/{$spellId}");
+    } catch (RuntimeException $e) {
+        if (str_contains($e->getMessage(), 'HTTP 404')) {
+            return null;
+        }
+        throw $e;
+    }
+
+    foreach ($mediaResponse['assets'] ?? [] as $asset) {
+        if (($asset['key'] ?? null) === 'icon' && !empty($asset['value'])) {
+            return $asset['value'];
+        }
+    }
+
+    return null;
+}
+
+/** Mirrors App\Models\Spell::getDisplayNameAttribute()'s "(desc=Color)" suffix stripping. */
+function baseSpellName(string $name): string
+{
+    return trim(preg_replace('/\s*\(desc=[^)]*\)\s*$/i', '', $name));
+}
+
+/**
+ * Finds candidate sibling spell_ids sharing the same base display name, same patch, excluding
+ * the spell itself — e.g. multiple internal copies literally named "Void Bolt", or Evoker's
+ * clean-named wrapper record vs. its "(desc=Red)" detailed-data twin. Confirmed real via a
+ * live API check before building this: Void Bolt's own selected copy 404s on the media API,
+ * but a same-named sibling (228266) has a real icon; Living Flame's clean-named copies all
+ * 404 but the "(desc=Red)" sibling carrying its real description/effects (361469) has one.
+ * Exact-name matches ordered first (most likely to be visually identical), then
+ * "(desc=Color)" siblings.
+ *
+ * @return array<int, int> candidate spell_ids
+ */
+function findSiblingSpellIds(PDO $pdo, int $patchId, int $excludeDbId, string $name): array
+{
+    $base = baseSpellName($name);
+
+    $stmt = $pdo->prepare(
+        'SELECT id, spell_id, name FROM spells
+         WHERE patch_id = ? AND id != ? AND (name = ? OR name LIKE ?)
+         ORDER BY (name = ?) DESC, id'
+    );
+    $stmt->execute([$patchId, $excludeDbId, $base, $base . ' (desc=%', $base]);
+
+    return array_map(fn ($row) => (int) $row['spell_id'], $stmt->fetchAll());
+}
+
 function apiGet(string $token, string $path, array $extraParams = []): array
 {
     global $requestCount;
@@ -356,11 +415,11 @@ fwrite(STDOUT, "Found {$totalSpellIds} distinct spells.id referenced by talent d
 
 // Filter to only spells that don't already have icon_name set
 $placeholders = implode(',', array_fill(0, count($targetSpellDbIds), '?'));
-$stmt = $pdo->prepare("SELECT id, spell_id FROM spells WHERE id IN ({$placeholders}) AND icon_name IS NULL");
+$stmt = $pdo->prepare("SELECT id, spell_id, patch_id, name FROM spells WHERE id IN ({$placeholders}) AND icon_name IS NULL");
 $stmt->execute($targetSpellDbIds);
 $needsIcon = [];
 foreach ($stmt->fetchAll() as $row) {
-    $needsIcon[$row['id']] = (int) $row['spell_id'];
+    $needsIcon[$row['id']] = ['spell_id' => (int) $row['spell_id'], 'patch_id' => (int) $row['patch_id'], 'name' => $row['name']];
 }
 
 $skippedCount = $totalSpellIds - count($needsIcon);
@@ -378,43 +437,49 @@ $stats = [
     'downloaded'     => 0,
     'failed'         => 0,
     'not_found'      => 0,
+    'via_sibling'    => 0,
     'unique_files'   => [],
 ];
 
-$spellsBySpellId = [];
-foreach ($needsIcon as $spellDbId => $spellId) {
-    $spellsBySpellId[$spellId] = $spellDbId;
-}
-
 $processed = 0;
-foreach ($needsIcon as $spellDbId => $spellId) {
+foreach ($needsIcon as $spellDbId => $target) {
+    $spellId = $target['spell_id'];
     $processed++;
     if ($processed % 100 === 0) {
         fwrite(STDOUT, "  {$processed}/" . count($needsIcon) . " processed...\n");
     }
 
     try {
-        $mediaResponse = apiGet($token, "/data/wow/media/spell/{$spellId}");
+        $iconUrl = tryFetchIconUrl($token, $spellId);
+        $resolvedVia = $spellId;
 
-        $iconUrl = null;
-        if (!empty($mediaResponse['assets']) && is_array($mediaResponse['assets'])) {
-            foreach ($mediaResponse['assets'] as $asset) {
-                if (($asset['key'] ?? null) === 'icon' && !empty($asset['value'])) {
-                    $iconUrl = $asset['value'];
+        // The specific spell_id copy carrying this ability's real gameplay data is often NOT
+        // the copy Blizzard attached an icon to (multiple internal spell_id copies commonly
+        // share one visible ability — see CLAUDE.md's many "duplicate spell_id" findings).
+        // Confirmed live before building this: Void Bolt's selected copy 404s on the media
+        // API but a same-named sibling has a real icon; same for Living Flame across the
+        // "(desc=Color)" suffix boundary. Try same-base-name siblings before giving up.
+        if ($iconUrl === null) {
+            foreach (findSiblingSpellIds($pdo, $target['patch_id'], $spellDbId, $target['name']) as $siblingSpellId) {
+                $iconUrl = tryFetchIconUrl($token, $siblingSpellId);
+                if ($iconUrl !== null) {
+                    $resolvedVia = $siblingSpellId;
+                    $stats['via_sibling']++;
+                    fwrite(STDOUT, "  [sibling] spell_id {$spellId} ('{$target['name']}') has no icon of its own — using sibling {$siblingSpellId}'s\n");
                     break;
                 }
             }
         }
 
         if ($iconUrl === null) {
-            fwrite(STDERR, "  [no-icon] spell_id {$spellId} has no icon asset\n");
+            fwrite(STDERR, "  [no-icon] spell_id {$spellId} has no icon asset (checked siblings too)\n");
             $stats['not_found']++;
             continue;
         }
 
         $iconFilename = basename($iconUrl);
         if (empty($iconFilename)) {
-            fwrite(STDERR, "  [invalid] spell_id {$spellId} has empty filename from {$iconUrl}\n");
+            fwrite(STDERR, "  [invalid] spell_id {$resolvedVia} has empty filename from {$iconUrl}\n");
             $stats['not_found']++;
             continue;
         }
@@ -458,6 +523,7 @@ if (!$skipDownload) {
     fwrite(STDOUT, "Icons actually downloaded:     " . $stats['downloaded'] . "\n");
     fwrite(STDOUT, "  (others were already on disk)\n");
 }
+fwrite(STDOUT, "Resolved via sibling spell_id: " . $stats['via_sibling'] . "\n");
 fwrite(STDOUT, "Spells without icon (no API):  " . $stats['not_found'] . "\n");
 fwrite(STDOUT, "Fetch/download errors:         " . $stats['failed'] . "\n");
 fwrite(STDOUT, "\n");
