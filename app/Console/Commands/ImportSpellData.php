@@ -128,6 +128,10 @@ class ImportSpellData extends Command
 
     private int $manualSpellsSkipped = 0;
 
+    private int $ccSynergyOverridesApplied = 0;
+
+    private int $ccSynergyOverrideSkips = 0;
+
     public function handle(SpellDataFileParser $parser): int
     {
         $this->parser = $parser;
@@ -184,6 +188,7 @@ class ImportSpellData extends Command
         $this->resolveDescriptionReferences();
         $this->importManualSpells($patch);
         $this->importBaselineSpecOverrides($patch);
+        $this->importCcSynergyOverrides($patch);
 
         // Retroactive cleanup for talent_build_choices rows written before the same-position
         // collision guard existed (see TalentSelectionService::cleanupSamePositionCollisions()'s
@@ -1341,6 +1346,86 @@ class ImportSpellData extends Command
         }
     }
 
+    /**
+     * Applies data/spelldata/cc-synergies-overrides.txt — see that file's own header for the
+     * full story of why it exists (a real deploy gap found 2026-08-11: dr_category/chain_target/
+     * is_peel/is_interrupt/pvp_duration_seconds had only ever been written directly to the local
+     * dev DB, never captured anywhere a fresh `import:spelldata` on another environment could
+     * pick them up). This file is now the single source of truth for those five columns — every
+     * field is written on every run (blank means null/false, not "leave alone"), so editing or
+     * removing a line here and re-importing is how a correction actually propagates everywhere.
+     */
+    private function importCcSynergyOverrides(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/cc-synergies-overrides.txt');
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        $validDrCategories = ['Stun', 'Disorient', 'Incapacitate', 'Root', 'Silence', 'Knockback', 'Disarm', 'Slow'];
+        $validChainTargets = ['healer', 'kill_target', 'both'];
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line, 7));
+
+            if (count($parts) < 6 || !ctype_digit($parts[0])) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping malformed cc-synergies-overrides.txt line: {$line}");
+
+                continue;
+            }
+
+            [$externalSpellId, $drCategory, $chainTarget, $isPeel, $isInterrupt, $pvpDuration] = $parts;
+
+            $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
+
+            if (!$spell) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping unresolved cc-synergies-overrides.txt line (spell not found for this patch): {$line}");
+
+                continue;
+            }
+
+            if ($drCategory !== '' && !in_array($drCategory, $validDrCategories, true)) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with unknown dr_category '{$drCategory}': {$line}");
+
+                continue;
+            }
+
+            if ($chainTarget !== '' && !in_array($chainTarget, $validChainTargets, true)) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with unknown chain_target '{$chainTarget}': {$line}");
+
+                continue;
+            }
+
+            // Standing rule (see CcChainBuilder's class docblock) — kill_target/both may only
+            // ever be paired with Stun/Silence, since those are the only categories that don't
+            // break on damage. Warn, don't silently accept, if a future edit violates this.
+            if (in_array($chainTarget, ['kill_target', 'both'], true) && !in_array($drCategory, ['Stun', 'Silence'], true)) {
+                $this->warn("  ⚠ cc-synergies-overrides.txt: chain_target='{$chainTarget}' with dr_category='{$drCategory}' violates the break-on-damage rule (only Stun/Silence may be kill_target/both): {$line}");
+            }
+
+            $this->upsertTrack(Spell::class, ['id' => $spell->id], [
+                'dr_category' => $drCategory !== '' ? $drCategory : null,
+                'chain_target' => $chainTarget !== '' ? $chainTarget : null,
+                'is_peel' => $isPeel === '1',
+                'is_interrupt' => $isInterrupt === '1',
+                'pvp_duration_seconds' => $pvpDuration !== '' ? (float) $pvpDuration : null,
+            ], 'spells');
+
+            $this->ccSynergyOverridesApplied++;
+        }
+    }
+
     private function resolveOrCreateSpell(int $patchId, int $externalSpellId, string $name, ?string $description = null): Spell
     {
         if (isset($this->spellIndex[$externalSpellId])) {
@@ -1498,6 +1583,10 @@ class ImportSpellData extends Command
 
         if ($this->manualSpellsApplied > 0 || $this->manualSpellsSkipped > 0) {
             $this->comment("Manual spells: {$this->manualSpellsApplied} applied, {$this->manualSpellsSkipped} skipped (see warnings above).");
+        }
+
+        if ($this->ccSynergyOverridesApplied > 0 || $this->ccSynergyOverrideSkips > 0) {
+            $this->comment("CC synergy overrides (dr_category/chain_target/is_peel/is_interrupt/pvp_duration_seconds): {$this->ccSynergyOverridesApplied} applied, {$this->ccSynergyOverrideSkips} skipped (see warnings above).");
         }
     }
 }
