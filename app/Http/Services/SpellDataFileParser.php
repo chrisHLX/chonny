@@ -58,6 +58,13 @@ namespace App\Http\Services;
  * Penitence) turned out to actually be multiple spell_id records sharing one display name, where
  * only one is the real talent and the rest are internal damage-bolt/heal-bolt/visual-effect
  * sub-spells never meant to be shown on their own.
+ *
+ * `cast_type` (added 2026-08-11 for the Synergies/CC-chain feature — see CLAUDE.md) — presence
+ * or absence of a "Cast Time : X seconds" line, the same instant-vs-cast signal a real player
+ * sees in-game. Deliberately discards the numeric value itself; `spells.cast_type` only stores
+ * `instant`/`cast` (see the 2026-08-11 migration), and nothing downstream needs the exact cast
+ * time. Defaults to 'instant' in the record initializer, same "don't leave a boolean-shaped
+ * field ambiguous" precedent as `is_passive`/`not_in_spellbook`.
  */
 class SpellDataFileParser
 {
@@ -71,7 +78,7 @@ class SpellDataFileParser
      *     spell_id: int, name: string, school: ?string, description: ?string, description_ref: ?int,
      *     variables: ?string,
      *     class_field: ?string,
-     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string,
+     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, cast_type: string,
      *     affecting_spells: array<int, array{name: string, effect_index: ?int}>,
      *     category_refs: array<int, array{name: string, effect_index: ?int}>,
      *     replaces_refs: array<int, string>,
@@ -127,6 +134,7 @@ class SpellDataFileParser
                     'cooldown_seconds' => null,
                     'duration_seconds' => null,
                     'mechanic' => null,
+                    'cast_type' => 'instant',
                     'affecting_spells' => [],
                     'category_refs' => [],
                     'replaces_refs' => [],
@@ -392,6 +400,22 @@ class SpellDataFileParser
             // deliberately doesn't match — infinite isn't a finite seconds value to substitute.
             if (preg_match('/^Duration\s*:\s*([\d.]+)\s*seconds?/i', $line, $m)) {
                 $current['duration_seconds'] = (float) $m[1];
+                $inEffects = false;
+                $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
+
+                continue;
+            }
+
+            // "Cast Time : 1.5 seconds" — present only when a spell actually has a cast time;
+            // absent entirely for instant-cast spells (confirmed directly: Kidney Shot's raw
+            // entry has no Cast Time line at all). cast_type defaults to 'instant' in the
+            // initializer above, same "boolean-style field defaults, don't leave ambiguous"
+            // precedent as is_passive/not_in_spellbook — only the numeric value itself is
+            // discarded (spells.cast_type is instant/cast only, see the 2026-08-11 migration;
+            // no seconds column exists to store it in).
+            if (preg_match('/^Cast Time\s*:\s*([\d.]+)\s*seconds?/i', $line, $m)) {
+                $current['cast_type'] = 'cast';
                 $inEffects = false;
                 $inDescriptionContinuation = false;
                 $inVariablesContinuation = false;

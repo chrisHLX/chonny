@@ -110,6 +110,7 @@ Route::get('modules', Index::class)->name('modules.index');
 
 Route::get('/spells', SpellExplorer::class)->name('spells.explore');
 Route::get('/wow-comps', \App\Livewire\WowComps::class)->name('wow-comps');
+Route::get('/cc-review', \App\Livewire\CcReview::class)->name('cc-review');
 
 Route::get('/modules/manage', [ModuleController::class, 'manage'])->name('modules.manage')->middleware('auth');
 Route::get('/modules/create', [ModuleController::class, 'create'])->name('modules.create')->middleware('auth');

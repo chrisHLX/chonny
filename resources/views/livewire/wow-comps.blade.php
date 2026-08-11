@@ -18,6 +18,21 @@
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
     $cooldownDisplay = fn (array $entry) => $entry['cooldown']['seconds'] !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
 
+    $drBadge = [
+        'Stun' => 'badge-red',
+        'Disorient' => 'badge-blue',
+        'Incapacitate' => 'badge-amber',
+        'Root' => 'badge-green',
+        'Silence' => 'badge-gray',
+        'Knockback' => 'badge-orange',
+        'Disarm' => 'badge-gold',
+        'Slow' => 'badge-gray',
+    ];
+    $fmtPvpDuration = fn ($spell) => $spell->pvp_duration_seconds !== null
+        ? rtrim(rtrim(number_format((float) $spell->pvp_duration_seconds, 1), '0'), '.').'s'
+        : null;
+    $pvpCapSeconds = \App\Http\Services\CcChainBuilder::PVP_CC_DURATION_CAP_SECONDS;
+
     $selectedMembers = collect($comp)->filter(fn ($m) => $m['spec']);
     $compTitle = $selectedMembers->isNotEmpty()
         ? $selectedMembers->pluck('class.name')->implode(' / ')
@@ -140,6 +155,10 @@
                     <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
                     Buffs &amp; Passives
                 </button>
+                <button type="button" @click="tab = 'synergies'" class="tab-btn flex items-center gap-1.5" :class="tab === 'synergies' ? 'tab-active' : 'tab-inactive'">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                    Synergies
+                </button>
             </div>
 
             @foreach ($groupOrder as $groupKey => $groupLabel)
@@ -224,6 +243,108 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+
+            {{-- Synergies tab — deterministic CC-chain sequencing via CcChainBuilder. Only
+                 spells with a curated dr_category are even eligible (124 dataset-wide as of
+                 2026-08-11 — most CC isn't classified yet); of those, only ones ALSO carrying a
+                 chain_target can be placed into a chain (currently just the 8 hand-curated
+                 worked-example spells). Everything else surfaces honestly under "Not Yet
+                 Classified" rather than being silently dropped or guessed into a chain — see
+                 WowComps::getSynergiesProperty()'s docblock. --}}
+            <div x-show="tab === 'synergies'" x-cloak class="space-y-4">
+                <div class="linear-card p-4">
+                    <p class="text-[12px] text-ink-muted leading-relaxed">
+                        Opens with an instant Stun when available, then alternates DR category to avoid Diminishing Returns where possible. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value, and DR resets after 20s of no reapplication. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet.
+                    </p>
+                </div>
+
+                @foreach ([['key' => 'kill_target_chain', 'label' => 'Kill-Target Chain'], ['key' => 'healer_chain', 'label' => 'Healer-Lock Chain']] as $chainDef)
+                    <div class="linear-card p-4">
+                        <p class="text-[11px] uppercase tracking-wide text-gold font-semibold mb-3">{{ $chainDef['label'] }}</p>
+                        @if (empty($synergies[$chainDef['key']]))
+                            <p class="text-[12px] text-ink-subtle">No classified CC available for this chain yet.</p>
+                        @else
+                            <div class="flex flex-wrap items-stretch gap-2">
+                                @foreach ($synergies[$chainDef['key']] as $i => $step)
+                                    @php
+                                        $stepSpell = $step['spell'];
+                                        $ownerIndex = $synergies['owner_map'][$stepSpell->id] ?? null;
+                                        $ownerMember = $ownerIndex !== null ? ($comp[$ownerIndex] ?? null) : null;
+                                        $durationLabel = $fmtPvpDuration($stepSpell);
+                                    @endphp
+                                    @if ($i > 0)
+                                        <div class="flex items-center text-ink-subtle text-[14px] px-0.5">→</div>
+                                    @endif
+                                    <div class="linear-card !p-2.5 w-40 flex-shrink-0 {{ $step['dr_immune'] ? 'opacity-60' : '' }}">
+                                        <div class="flex items-center gap-1.5 mb-1">
+                                            <x-spell-icon :spell="$stepSpell" size="w-6 h-6"/>
+                                            <span class="text-[11px] text-ink font-semibold truncate">{{ $stepSpell->display_name }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-1 flex-wrap">
+                                            <span class="{{ $drBadge[$stepSpell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $stepSpell->dr_category }}</span>
+                                            @if ($durationLabel)
+                                                <span class="text-[10px] text-ink-subtle font-mono">{{ $durationLabel }}</span>
+                                            @endif
+                                        </div>
+                                        @if ($ownerMember && $ownerMember['spec'])
+                                            <p class="text-[10px] text-ink-subtle truncate mt-1">{{ $ownerMember['class']->name }} ({{ $ownerMember['spec']->name }})</p>
+                                        @endif
+                                        <p class="text-[10px] font-semibold mt-1 {{ $step['dr_immune'] ? 'text-rose-400' : ($step['dr_applied'] ? 'text-amber-400' : 'text-emerald-400') }}">
+                                            {{ $step['dr_immune'] ? 'DR Immune' : $step['dr_percentage'].'%' }}
+                                        </p>
+                                        @if ($step['dr_reason'])
+                                            <p class="text-[9px] text-ink-subtle mt-0.5 leading-snug">{{ ucfirst($step['dr_reason']) }}</p>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+
+                {{-- Peels and Interrupts — independent of dr_category entirely (a spell can be
+                     BOTH a DR-chain entry AND a peel/interrupt, e.g. Ursol's Vortex or Typhoon).
+                     Plain grouped lists, not sequenced through CcChainBuilder — diminishing
+                     returns doesn't apply to either concept. --}}
+                @foreach ([['key' => 'peels', 'label' => 'Peels', 'accent' => 'text-emerald-400'], ['key' => 'interrupts', 'label' => 'Interrupts', 'accent' => 'text-sky-400']] as $flagDef)
+                    @if ($synergies[$flagDef['key']]->isNotEmpty())
+                        <div class="linear-card p-4">
+                            <p class="text-[11px] uppercase tracking-wide {{ $flagDef['accent'] }} font-semibold mb-2">{{ $flagDef['label'] }}</p>
+                            <div class="flex flex-wrap gap-2">
+                                @foreach ($synergies[$flagDef['key']] as $spell)
+                                    @php
+                                        $ownerIndex = $synergies['owner_map'][$spell->id] ?? null;
+                                        $ownerMember = $ownerIndex !== null ? ($comp[$ownerIndex] ?? null) : null;
+                                    @endphp
+                                    <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line">
+                                        <x-spell-icon :spell="$spell" size="w-5 h-5"/>
+                                        <span class="text-[11px] text-ink-muted">{{ $spell->display_name }}</span>
+                                        @if ($ownerMember && $ownerMember['spec'])
+                                            <span class="text-[10px] text-ink-subtle">— {{ $ownerMember['spec']->name }}</span>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+
+                @if ($synergies['unclassified']->isNotEmpty())
+                    <div class="linear-card p-4">
+                        <p class="text-[11px] uppercase tracking-wide text-ink-subtle font-semibold mb-2">Not Yet Classified for Chaining</p>
+                        <p class="text-[11px] text-ink-muted mb-3">These have a curated DR category but haven't been assigned a Healer-Lock / Kill-Target chain_target yet — needs the same one-at-a-time expert confirmation as the DR category itself, not a guess.</p>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($synergies['unclassified'] as $spell)
+                                <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line">
+                                    <x-spell-icon :spell="$spell" size="w-5 h-5"/>
+                                    <span class="text-[11px] text-ink-muted">{{ $spell->display_name }}</span>
+                                    <span class="{{ $drBadge[$spell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $spell->dr_category }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
 

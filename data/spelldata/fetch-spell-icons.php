@@ -581,16 +581,25 @@ refreshIconManifestSection('spells', $manifestEntries);
 fwrite(STDOUT, "\nManifest updated: " . ICON_MANIFEST_PATH . " now has " . count($manifestEntries) . " spell entries.\n");
 fwrite(STDOUT, "Commit both the manifest and storage/app/public/spell-icons/ so other machines never need Blizzard API credentials for icons.\n");
 
-// Verify counts match
+// Verify counts match. Fixed 2026-08-10 — the original check compared THIS RUN's unique
+// download count against the TOTAL directory file count, which only ever matches on a single
+// one-shot full run: any later idempotent/incremental re-run (the normal case once the dataset
+// is fully populated — e.g. re-running after adding one baseline-spec-overrides.txt entry)
+// downloads 0 new files and was therefore comparing "0" against "everything on disk," always
+// failing. Confirmed a real bug, not just a cosmetic one: it broke `wow:refresh-icons`, which
+// treats this script's exit code as authoritative. Now compares the DB's own total distinct
+// icon_name count (every spell that has one, not just ones touched this run) against the
+// directory's file count — the actually-authoritative check.
 if (!$skipDownload) {
     $actualFileCount = count(array_filter(
         scandir($iconDir) ?: [],
         fn ($f) => !str_starts_with($f, '.')
     ));
+    $dbUniqueIconCount = count(array_unique(array_values($manifestEntries)));
     fwrite(STDOUT, "\nVerification:\n");
-    fwrite(STDOUT, "  Unique icon_names in icon_name column: " . count($stats['unique_files']) . "\n");
+    fwrite(STDOUT, "  Unique icon_names in the spells table: {$dbUniqueIconCount}\n");
     fwrite(STDOUT, "  Actual files in {$iconDir}: {$actualFileCount}\n");
-    if (abs($actualFileCount - count($stats['unique_files'])) <= 2) { // Allow small rounding
+    if (abs($actualFileCount - $dbUniqueIconCount) <= 2) { // Allow small rounding
         fwrite(STDOUT, "  ✓ Counts match (within tolerance)\n");
     } else {
         fwrite(STDERR, "  ✗ Counts DO NOT MATCH! This indicates a bug.\n");

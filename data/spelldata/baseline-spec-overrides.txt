@@ -188,3 +188,44 @@
 22812 | druid | restoration | Barkskin
 22812 | druid | feral | Barkskin
 22812 | druid | guardian | Barkskin
+
+# Mage, backfilled 2026-08-11. Polymorph was already correctly rendering live on all 3 Mage
+# specs — verified_override rows for spell_id 118 already existed in the DB — but this file
+# never had a matching line, meaning a future migrate:fresh + re-import would have silently
+# dropped it (same class of gap as other one-off manual DB corrections documented elsewhere in
+# this file). Backfilled here rather than left implicit. Confirmed real: base Polymorph is a
+# core, all-3-spec baseline Mage ability with no cooldown, long-standing stable game design.
+# Note: spell_id 118's own scalar fields (cast_type, etc.) are stale in the DB — this specific
+# spell_id no longer appears anywhere in the current filtered dumps' class-record path, so the
+# main import loop never revisits its own fields, only spell_class_availability via this file.
+118 | mage | arcane | Polymorph
+118 | mage | fire | Polymorph
+118 | mage | frost | Polymorph
+
+# Interrupts, added 2026-08-11 alongside the Synergies tab's new is_interrupt flag. Kick,
+# Counterspell, and Pummel are each their class's single, universally-known baseline interrupt —
+# long-standing, all-spec, stable game design since the game's earliest expansions (not a
+# judgment call the way chain_target assignments have been elsewhere in this file). Solar Beam is
+# the one exception: it's Balance-specific (an AoE silence/interrupt tied to the Balance kit),
+# not a Restoration/Feral/Guardian ability, so it's deliberately NOT added for the other 3 Druid
+# specs. Confirmed via each spell's own data: single real (non-hidden) copy, real cooldown
+# matching known live values (Kick 15s, Counterspell 25s, Pummel 15s, Solar Beam 60s).
+1766 | rogue | assassination | Kick
+1766 | rogue | outlaw | Kick
+1766 | rogue | subtlety | Kick
+2139 | mage | arcane | Counterspell
+2139 | mage | fire | Counterspell
+2139 | mage | frost | Counterspell
+6552 | warrior | arms | Pummel
+6552 | warrior | fury | Pummel
+6552 | warrior | protection | Pummel
+97547 | druid | balance | Solar Beam
+
+# Rogue, added 2026-08-11. Cheap Shot is a core, all-3-spec baseline stealth-opener stun
+# (Assassination/Outlaw/Subtlety), same confidence tier and same class as Kidney Shot above
+# (both core Rogue finishers/openers, long-standing stable game design). Surfaced by the
+# Synergies tab's RMP verification: Cheap Shot was correctly dr_category=Stun/chain_target=
+# kill_target but structurally invisible (source=baseline, spec_id=NULL) until this entry.
+1833 | rogue | assassination | Cheap Shot
+1833 | rogue | outlaw | Cheap Shot
+1833 | rogue | subtlety | Cheap Shot
