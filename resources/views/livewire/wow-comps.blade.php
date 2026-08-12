@@ -253,9 +253,21 @@
                  Classified" rather than being silently dropped or guessed into a chain — see
                  WowComps::getSynergiesProperty()'s docblock. --}}
             <div x-show="tab === 'synergies'" x-cloak class="space-y-4">
+                @php
+                    // Neat, labeled CD/Duration pair reused across every Synergies section —
+                    // CD comes from cooldown_by_id (the same talent-modified effective cooldown
+                    // Active Abilities/Main Cooldowns already show); Duration only ever shows a
+                    // real number when pvp_duration_seconds has been hand-curated (never falls
+                    // back to the raw, confirmed-unreliable/PvE-scoped duration_seconds column —
+                    // see CLAUDE.md's "PvP CC duration cap" section for why that field can't be
+                    // trusted directly, e.g. Polymorph's own duration_seconds reads 60s).
+                    $cdLabel = fn ($spell) => isset($synergies['cooldown_by_id'][$spell->id]) && $synergies['cooldown_by_id'][$spell->id] !== null
+                        ? $fmtSeconds($synergies['cooldown_by_id'][$spell->id])
+                        : '—';
+                @endphp
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
-                        Opens with an instant Stun when available, then alternates DR category to avoid Diminishing Returns where possible. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value, and DR resets after 20s of no reapplication. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet.
+                        Opens with an instant Stun when available, then alternates DR category to avoid Diminishing Returns where possible. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value, and DR resets after 20s of no reapplication. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet. "Duration" only shows once a spell's real PvP CC duration has been hand-verified — a blank duration means it hasn't been curated yet, not that the CC is instant.
                     </p>
                 </div>
 
@@ -281,11 +293,10 @@
                                             <x-spell-icon :spell="$stepSpell" size="w-6 h-6"/>
                                             <span class="text-[11px] text-ink font-semibold truncate">{{ $stepSpell->display_name }}</span>
                                         </div>
-                                        <div class="flex items-center gap-1 flex-wrap">
-                                            <span class="{{ $drBadge[$stepSpell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $stepSpell->dr_category }}</span>
-                                            @if ($durationLabel)
-                                                <span class="text-[10px] text-ink-subtle font-mono">{{ $durationLabel }}</span>
-                                            @endif
+                                        <span class="{{ $drBadge[$stepSpell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $stepSpell->dr_category }}</span>
+                                        <div class="flex items-center gap-2.5 text-[10px] font-mono mt-1.5">
+                                            <span class="text-ink-subtle">CD <span class="text-ink">{{ $cdLabel($stepSpell) }}</span></span>
+                                            <span class="text-ink-subtle">Dur <span class="{{ $durationLabel ? 'text-ink' : 'text-ink-subtle italic' }}">{{ $durationLabel ?? '—' }}</span></span>
                                         </div>
                                         @if ($ownerMember && $ownerMember['spec'])
                                             <p class="text-[10px] text-ink-subtle truncate mt-1">{{ $ownerMember['class']->name }} ({{ $ownerMember['spec']->name }})</p>
@@ -316,10 +327,15 @@
                                     @php
                                         $ownerIndex = $synergies['owner_map'][$spell->id] ?? null;
                                         $ownerMember = $ownerIndex !== null ? ($comp[$ownerIndex] ?? null) : null;
+                                        $flagDurationLabel = $fmtPvpDuration($spell);
                                     @endphp
                                     <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line">
                                         <x-spell-icon :spell="$spell" size="w-5 h-5"/>
                                         <span class="text-[11px] text-ink-muted">{{ $spell->display_name }}</span>
+                                        <span class="text-[10px] text-ink-subtle font-mono">CD {{ $cdLabel($spell) }}</span>
+                                        @if ($flagDurationLabel)
+                                            <span class="text-[10px] text-ink-subtle font-mono">Dur {{ $flagDurationLabel }}</span>
+                                        @endif
                                         @if ($ownerMember && $ownerMember['spec'])
                                             <span class="text-[10px] text-ink-subtle">— {{ $ownerMember['spec']->name }}</span>
                                         @endif
@@ -336,10 +352,15 @@
                         <p class="text-[11px] text-ink-muted mb-3">These have a curated DR category but haven't been assigned a Healer-Lock / Kill-Target chain_target yet — needs the same one-at-a-time expert confirmation as the DR category itself, not a guess.</p>
                         <div class="flex flex-wrap gap-2">
                             @foreach ($synergies['unclassified'] as $spell)
+                                @php $unclassifiedDurationLabel = $fmtPvpDuration($spell); @endphp
                                 <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line">
                                     <x-spell-icon :spell="$spell" size="w-5 h-5"/>
                                     <span class="text-[11px] text-ink-muted">{{ $spell->display_name }}</span>
                                     <span class="{{ $drBadge[$spell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $spell->dr_category }}</span>
+                                    <span class="text-[10px] text-ink-subtle font-mono">CD {{ $cdLabel($spell) }}</span>
+                                    @if ($unclassifiedDurationLabel)
+                                        <span class="text-[10px] text-ink-subtle font-mono">Dur {{ $unclassifiedDurationLabel }}</span>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

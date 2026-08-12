@@ -76,12 +76,14 @@ class SpellExplorer extends Component
         $this->specId = Specialization::where('class_id', $this->classId)->orderBy('name')->first()?->id;
 
         PageViewEvent::log('spell_explorer', $this->classId, $this->specId);
+        $this->dispatch('spell-list-refreshed');
     }
 
     public function updatedSpecId(): void
     {
         PageViewEvent::log('spell_explorer', $this->classId, $this->specId);
         $this->showTalentPicker = false;
+        $this->dispatch('spell-list-refreshed');
     }
 
     public function openTalentPicker(): void
@@ -92,9 +94,16 @@ class SpellExplorer extends Component
     public function closeTalentPicker(): void
     {
         // Closing is itself a Livewire action, so getSpellReferencesProperty() below recomputes
-        // fresh on the very next render — no separate refresh/event plumbing needed for the
-        // underlying Spells table to pick up whatever was just saved in the modal.
+        // fresh server-side on the very next render. FIXED 2026-08-12 — the comment here used to
+        // claim "no separate refresh/event plumbing needed", which was wrong: the blade's Alpine
+        // filter logic (applyFilters()/hasResults, see spell-explorer.blade.php) is a CLIENT-side
+        // DOM scan that only ever runs once, on x-init — a Livewire re-render swaps in fresh
+        // spell rows server-side, but nothing re-ran the JS that decides which of them are
+        // visible, so the page could get stuck showing "No spells match your filters" against
+        // real, correctly-rendered data underneath. This dispatch is what the old comment said
+        // wasn't needed — the blade listens for it and re-runs applyFilters().
         $this->showTalentPicker = false;
+        $this->dispatch('spell-list-refreshed');
     }
 
     public function getClassesProperty(): Collection
@@ -223,9 +232,17 @@ class SpellExplorer extends Component
 
     public function render()
     {
+        // FIXED 2026-08-12: 'usingPersonalBuild' used to rely on Livewire's automatic
+        // computed-property injection instead of being passed explicitly here — the same
+        // unreliable-auto-injection gotcha already documented for SpellDetailModal
+        // (getXProperty() methods are NOT guaranteed to auto-expose as bare $x variables in the
+        // view). It was silently undefined the whole time; the bug only became visible once a
+        // separate Blade-compiler issue that had been swallowing that code path was fixed — see
+        // spell-explorer.blade.php's docblock on $spellsTableDescription and CLAUDE.md.
         return view('livewire.spell-explorer', [
             'classes' => $this->classes,
             'specializations' => $this->specializations,
+            'usingPersonalBuild' => $this->usingPersonalBuild,
         ])->layout('layouts.app');
     }
 }

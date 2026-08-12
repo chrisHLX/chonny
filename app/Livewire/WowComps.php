@@ -306,12 +306,18 @@ class WowComps extends Component
      * relationship at all). Neither runs through CcChainBuilder — they're plain grouped lists,
      * not sequenced chains, since diminishing returns doesn't apply to either concept.
      *
-     * @return array{kill_target_chain: array, healer_chain: array, unclassified: Collection, peels: Collection, interrupts: Collection, owner_map: array<int, int>}
+     * `cooldown_by_id` carries each spell's already-computed effective cooldown (talent-modified,
+     * same value the Active Abilities tab shows) so every Synergies section can display CD
+     * alongside the curated PvP CC duration without recomputing anything — `$member['entries']`
+     * already has this from getCompProperty()'s normal per-spec computation.
+     *
+     * @return array{kill_target_chain: array, healer_chain: array, unclassified: Collection, peels: Collection, interrupts: Collection, owner_map: array<int, int>, cooldown_by_id: array<int, ?float>}
      */
     public function getSynergiesProperty(): array
     {
         $builder = app(CcChainBuilder::class);
         $ownerMap = [];
+        $cooldownById = [];
 
         $ccEntries = collect();
         $peels = collect();
@@ -337,6 +343,9 @@ class WowComps extends Component
                     $interrupts->push($spell);
                     $ownerMap[$spell->id] = $mi;
                 }
+                if (!array_key_exists($spell->id, $cooldownById)) {
+                    $cooldownById[$spell->id] = $entry['cooldown']['seconds'];
+                }
             }
         }
         $ccEntries = $ccEntries->unique('id')->values();
@@ -356,6 +365,7 @@ class WowComps extends Component
             'peels' => $peels,
             'interrupts' => $interrupts,
             'owner_map' => $ownerMap,
+            'cooldown_by_id' => $cooldownById,
         ];
     }
 

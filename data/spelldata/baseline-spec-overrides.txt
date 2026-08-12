@@ -221,6 +221,31 @@
 6552 | warrior | protection | Pummel
 97547 | druid | balance | Solar Beam
 
+# Rogue, added 2026-08-12. Feint is a core, all-3-spec baseline defensive (reduces AoE damage
+# taken), long-standing stable game design — same confidence tier as Kick/Cheap Shot above.
+# Confirmed via its own data: single spell_id, real cooldown (15s), class_id=Rogue/spec_id=NULL/
+# source=baseline — the same ambiguous-bucket shape as every other entry in this file.
+1966 | rogue | assassination | Feint
+1966 | rogue | outlaw | Feint
+1966 | rogue | subtlety | Feint
+
+# Rogue, added 2026-08-12, CORRECTED same day. Garrote is Assassination-only — confirmed wrong
+# the first time this was added: the initial entry assumed "core opener, must be all 3 specs"
+# and added Outlaw/Subtlety too, without verifying against actual game knowledge first. The
+# domain expert corrected this directly ("outlaw and sub dont have garrote") — the two incorrect
+# lines were removed, along with the spell_class_availability rows they had already written (the
+# importer is additive-only and never deletes, so removing the file lines alone wouldn't have
+# undone the bad rows — see the one-off cleanup query this correction required).
+# What was still real and worth keeping: the raw data already had an explicit spec_id=30
+# (Assassination) row for Garrote (spell_id 703, cd=6s — a second spell_id 360830 copy has no
+# cooldown data and is not the real one), but that pre-existing row is source='baseline', which
+# verifiedBaselineAbilityIds() never reads (only source='verified_override' is trusted), and
+# Garrote's 6s cooldown doesn't clear explicitBaselineCooldownAbilityIds()'s >=10s bar either —
+# so the pre-existing row was silently dead data, invisible on every display path, regardless of
+# which specs it should cover. This one line fixes that visibility gap for the one spec Garrote
+# actually belongs to.
+703 | rogue | assassination | Garrote
+
 # Rogue, added 2026-08-11. Cheap Shot is a core, all-3-spec baseline stealth-opener stun
 # (Assassination/Outlaw/Subtlety), same confidence tier and same class as Kidney Shot above
 # (both core Rogue finishers/openers, long-standing stable game design). Surfaced by the

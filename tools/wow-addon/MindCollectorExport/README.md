@@ -5,7 +5,9 @@ spellbook + talent state to SavedVariables so it can be imported via
 `php artisan wow:import-spellbook` and diffed against the imported spell data via
 `php artisan wow:diff-spellbook`.
 
-## Status: CONFIRMED working end-to-end as of 2026-08-02 (live-tested, Discipline Priest, patch 12.0.7)
+## Status: CONFIRMED working end-to-end as of 2026-08-02 (live-tested, Discipline Priest, patch 12.0.7); multi-character export fixed 2026-08-12
+
+**2026-08-12 fix — exports now accumulate instead of overwriting.** Every `/mcexport` used to *replace* the entire `MindCollectorExportDB` table, so exporting Character B after Character A silently discarded A's data the moment SavedVariables flushed to disk (confirmed as a real bug, not a misunderstanding — `## SavedVariables: MindCollectorExportDB` is account-wide, not per-character, so this bit everyone regardless of which characters were on the account). Fixed: each export now writes into its own key (`CLASS_specID_timestamp`), so you can log into as many characters/specs as you want across a session (or many sessions) and every export survives in the same file. `php artisan wow:import-spellbook` was updated to match — one command now imports every export currently sitting in the file, deduping already-imported ones individually rather than skipping the whole file.
 
 Every part of the export has now been confirmed live, in two passes:
 
@@ -39,19 +41,27 @@ changes these APIs — same process: log in, `/mcexport`, sanity-check the print
 3. Run `/mcexport` in chat. Watch the printed summary line — if it reports pending descriptions,
    wait a few seconds and run `/mcexport` again (the addon re-checks the client cache each time;
    this is not automatic/polling, by design — see spellbook-verifier.md's "no busy-wait" rule).
+   Re-running it doesn't lose the previous attempt — it just adds another entry (see step 5) —
+   so import whichever timestamp for that character ended up with full description coverage.
 4. Run `/reload` to flush SavedVariables to disk (WoW only writes SavedVariables on logout or
    `/reload`, not immediately after the slash command).
-5. Find the exported file at:
+5. **To export more characters/specs, just log into them and repeat steps 3–4 — no need to copy
+   the file out or run the import command in between.** Each export is stored under its own key
+   (`CLASS_specID_timestamp`) inside the same account-wide `MindCollectorExportDB` table, so
+   nothing gets overwritten. Export your whole roster first, then import once at the end.
+6. Find the exported file at:
    `WTF/Account/<ACCOUNT>/SavedVariables/MindCollectorExport.lua`
-   (or `WTF/Account/<ACCOUNT>/<Realm>/<Character>/SavedVariables/MindCollectorExport.lua` if this
-   ever becomes character-scoped instead of account-scoped — it currently is not; the `.toc`
-   declares a single account-wide `MindCollectorExportDB`, so exporting a second character
-   overwrites the first character's export in that file).
-6. Copy that file wherever you're running the Laravel app from, then:
+   (account-wide, not per-character — the `.toc` declares a single `MindCollectorExportDB`,
+   which is exactly why step 5's key-per-export design matters).
+7. Copy that file wherever you're running the Laravel app from, then:
    ```
    php artisan wow:import-spellbook "path/to/MindCollectorExport.lua"
    php artisan wow:diff-spellbook
    ```
+   The import command reports one line per export found in the file (`Created snapshot #N from
+   'CLASS_specID_timestamp' ...`) and a final summary (`Done: N snapshot(s) created, N skipped`).
+   Skipped means already-imported (per-export content hash, not per-file) — safe to re-run after
+   exporting more characters later; it only ever imports what's new.
 
 ## What this does NOT do
 

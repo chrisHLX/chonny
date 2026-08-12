@@ -699,26 +699,40 @@ class ImportSpellData extends Command
                     continue;
                 }
 
-                $effectIndex = $refInfo['effect_index'] ?? null;
-                $mapping = $this->modifiesRelationshipMapping($source, $effectIndex);
+                // FIXED 2026-08-12 — a source can affect the same target via MORE than one of its
+                // own effects at once (Blizzard's plural "effects: #1, #2" annotation, see
+                // SpellDataFileParser::parseSpellRefs()'s docblock — confirmed real via Anti-Magic
+                // Barrier's cooldown-reduction (#1) + duration-increase (#2) both targeting
+                // Anti-Magic Shell). Looping over every index and writing one row per distinct
+                // resolved type mirrors the same "don't dedupe by source alone" fix already
+                // applied on the read side (ModuleSpellReferenceService::modifiersFor(), Bug 1,
+                // 2026-08-02) — a source having multiple distinct relationship types to the same
+                // target is a normal, expected pattern, not a duplicate to collapse. Falls back to
+                // a single null-index pass when a ref has no parsed indices at all (unchanged
+                // behavior from before this fix).
+                $effectIndexes = !empty($refInfo['effect_indexes']) ? $refInfo['effect_indexes'] : [null];
 
-                // modifier_value/unit are always written explicitly (even as null) — not just
-                // added when present. A prior import (before rank-awareness existed) may have
-                // already written a real magnitude for a pair that's now correctly recognized as
-                // rank-scaled and deferred; omitting these keys here would leave that stale,
-                // now-wrong number in place forever, since upsertTrack()'s fill() only touches
-                // keys actually present in $values.
-                $values = [
-                    'effect_index' => $effectIndex,
-                    'modifier_value' => $mapping['value'],
-                    'modifier_unit' => $mapping['unit'],
-                ];
+                foreach ($effectIndexes as $effectIndex) {
+                    $mapping = $this->modifiesRelationshipMapping($source, $effectIndex);
 
-                $this->upsertTrack(SpellRelationship::class, [
-                    'source_spell_id' => $source->id,
-                    'target_spell_id' => $target->id,
-                    'relationship_type' => $mapping['type'],
-                ], $values, 'spell_relationships');
+                    // modifier_value/unit are always written explicitly (even as null) — not just
+                    // added when present. A prior import (before rank-awareness existed) may have
+                    // already written a real magnitude for a pair that's now correctly recognized
+                    // as rank-scaled and deferred; omitting these keys here would leave that
+                    // stale, now-wrong number in place forever, since upsertTrack()'s fill() only
+                    // touches keys actually present in $values.
+                    $values = [
+                        'effect_index' => $effectIndex,
+                        'modifier_value' => $mapping['value'],
+                        'modifier_unit' => $mapping['unit'],
+                    ];
+
+                    $this->upsertTrack(SpellRelationship::class, [
+                        'source_spell_id' => $source->id,
+                        'target_spell_id' => $target->id,
+                        'relationship_type' => $mapping['type'],
+                    ], $values, 'spell_relationships');
+                }
             }
         }
     }

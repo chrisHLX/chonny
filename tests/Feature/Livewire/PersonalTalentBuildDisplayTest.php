@@ -71,6 +71,31 @@ test('SpellExplorer marks the admin default pick as selected for a guest', funct
         ->and(isSelectedFlagFor($entries, 'Personal Build Pick'))->toBeFalse();
 });
 
+// Regression test, 2026-08-12 — <x-spells.table>'s :description attribute used to be inlined as
+// a multi-line ternary with an escaped double-quote nested inside the tag's own double-quote
+// delimiter. Confirmed via direct render output that this broke Blade's component-tag compiler
+// outright: <x-spells.table> passed straight through as literal, uncompiled text instead of
+// rendering, so the real table markup — and every data-role="spell-row" element the page's
+// client-side filter JS looks for — never existed in the DOM. Asserting on spellReferences alone
+// (as the tests above do) can't catch this class of bug, since the backend property was always
+// correct; only checking the actual rendered HTML proves the component compiled and rendered.
+test('SpellExplorer actually renders spell-row markup in the page HTML, not just the backend property', function () {
+    $fixture = makePersonalPickerFixture();
+
+    $component = Livewire::test(SpellExplorer::class)
+        ->set('classId', $fixture['class']->id)
+        ->set('specId', $fixture['spec']->id);
+
+    $entryCount = count($component->get('spellReferences'));
+    expect($entryCount)->toBeGreaterThan(0);
+
+    $component->assertSeeHtml('data-role="spell-row"')
+        ->assertSeeHtml('data-role="spell-tbody"');
+
+    expect(substr_count($component->html(), 'data-role="spell-row"'))->toBe($entryCount)
+        ->and($component->html())->not->toContain('<x-spells.table');
+});
+
 test('SpellExplorer marks a signed-in viewer\'s own saved pick as selected instead of the admin default', function () {
     $fixture = makePersonalPickerFixture();
     $user = User::create(['name' => 'Picker', 'email' => 'picker@example.com', 'password' => bcrypt('secret')]);
