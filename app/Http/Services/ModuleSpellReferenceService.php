@@ -968,8 +968,14 @@ class ModuleSpellReferenceService
         // drops only the color markers. A second pass mops up any unpaired |c.../|r left behind
         // by a malformed/truncated source string, same defensive posture as Pass 0's truncation
         // above — never leaves a raw pipe-code visible even in a source-data edge case.
-        $text = preg_replace('/\|c[0-9A-Fa-f]{8}(.*?)\|r/s', '$1', $text);
-        $text = preg_replace('/\|c[0-9A-Fa-f]{8}|\|r/', '', $text);
+        //
+        // Case-insensitive ("i" modifier) — found 2026-08-13 that 97 spells (Master
+        // Shapeshifter, Tree of Life, etc.) use uppercase "|C...|R" instead of "|c...|r", which
+        // the original lowercase-only regex silently passed straight through as raw text.
+        // Both cases render identically in-game (WoW's own client treats the marker
+        // case-insensitively), so there's no data to lose by stripping either.
+        $text = preg_replace('/\|c[0-9A-Fa-f]{8}(.*?)\|r/si', '$1', $text);
+        $text = preg_replace('/\|c[0-9A-Fa-f]{8}|\|r/i', '', $text);
 
         // Pass 1: conditional branches. $?a<id>/$?s<id> resolved via this spell's own kit
         // context membership; $?c<n> codes are flagged rather than guessed.

@@ -72,6 +72,18 @@ test('resolveDescription strips WoW color-code markup, keeping the wrapped text'
     expect($result['text'])->toBe('Deals damage. Grants a Rune at the end.');
 });
 
+test('resolveDescription strips uppercase WoW color-code markup too', function () {
+    // Real shape from Master Shapeshifter (spell_id 411143): "|CFFFFFFFFBear Form|R" — the
+    // original stripping pass was lowercase-only ("|c...|r") and left 97 spells' uppercase
+    // "|C...|R" markers passing through raw.
+    $fixture = makeDescriptionFixture();
+    $spell = makeTestSpell($fixture, 11, 'Deals damage. |CFFFFFFFFGrants a Rune at the end.|R');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Deals damage. Grants a Rune at the end.');
+});
+
 test('resolveDescription resolves $@spellname to the real spell name and strips $@spellicon', function () {
     $fixture = makeDescriptionFixture();
     Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 19434, 'name' => 'Aimed Shot']);
