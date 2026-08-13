@@ -996,17 +996,34 @@ class ModuleSpellReferenceService
 
         // Pass 1a: compound chained conditionals — "$?(a<id>&a<id>)[branch]?(!a<id>&a<id>)
         // [branch]...[fallback]" — a fundamentally different shape from Pass 1's simple
-        // $?a<id>[A][B] (note the parenthesized boolean expression right after $?, and an
-        // arbitrary number of chained ?(cond)[branch] segments before the final bare
-        // [fallback]). Found 2026-08-10 on Trueshot, which uses this to pick between "Applies
-        // Sentinel's Mark"/"Applies Spotter's Mark" based on which hero talent is known.
+        // $?a<id>[A][B] (note the boolean expression right after $?, and an arbitrary number of
+        // chained ?(cond)[branch] segments before the final bare [fallback]). Found 2026-08-10 on
+        // Trueshot, which uses this to pick between "Applies Sentinel's Mark"/"Applies Spotter's
+        // Mark" based on which hero talent is known.
+        //
+        // The wrapping parens around each condition are OPTIONAL — found 2026-08-13 on Painful
+        // Invocation ("$?a137031&?s14914[Holy Fire]?a137031&!s14914[...][...]") and 70 other
+        // spells: the exact same chained-compound shape, just without "(...)". The "?" prefix
+        // on a term (as opposed to "!") is a real, distinct source-data marker too — confirmed
+        // from Painful Invocation's own branch pairing ("?s14914" vs "!s14914" as logical
+        // complements deciding between two mutually-exclusive branches) that it means the same
+        // positive check as no prefix at all, not something else — evaluateConditionExpression()
+        // strips it identically to how it already strips "!". Both forms (parenthesized and
+        // bare) are matched by one regex and one resolver — see resolveChainedConditional()'s
+        // updated docblock. Some cases found in this same batch (e.g. a bare "c<n>" condition
+        // code mid-chain, on "Words of the Wise") aren't a recognized term shape at all —
+        // evaluateConditionExpression() already returns null for those, which correctly falls
+        // through to the same "(varies by condition)" placeholder Pass 1 uses for $?c<n>, rather
+        // than guessing.
+        //
         // PCRE can't capture a variable number of repeated groups, so the outer regex only
         // finds the token's boundaries; resolveChainedConditional() parses the segments in a
-        // PHP loop. Naturally disjoint from Pass 1 above — that one requires a bare letter
-        // ([acs]) immediately after "$?", this one requires "(" — so match order between the
-        // two passes doesn't matter.
+        // PHP loop. Naturally disjoint from Pass 1 above — that one requires exactly two bracket
+        // groups immediately adjacent after the id ([A][B] with nothing between them), which a
+        // genuinely-chained or multi-term condition never satisfies (there's always a "?" or a
+        // "&"/"|" term in the way) — so match order between the two passes doesn't matter.
         $text = preg_replace_callback(
-            '/\$\?\([^)]*\)\[[^\[\]]*\](?:\?\([^)]*\)\[[^\[\]]*\])*\[[^\[\]]*\]/',
+            '/\$\?\(?[^)\[\]]*\)?\[[^\[\]]*\](?:\?\(?[^)\[\]]*\)?\[[^\[\]]*\])*\[[^\[\]]*\]/',
             function ($m) use (&$uncertain, $kitIds, $spell) {
                 return $this->resolveChainedConditional($m[0], $kitIds, $uncertain, $spell);
             },
@@ -1144,16 +1161,21 @@ class ModuleSpellReferenceService
      * (an unrecognized term shape) immediately returns the same "(varies by condition)"
      * placeholder Pass 1 uses for $?c<n> codes, rather than guessing which branch applies —
      * same "flag, don't guess" posture as everywhere else in this resolver.
+     *
+     * The wrapping "(...)" around each condition is optional (see Pass 1a's docblock) — each
+     * parse regex below uses an alternation to capture either the parenthesized or the bare
+     * form into whichever group actually matched.
      */
     private function resolveChainedConditional(string $token, Collection $kitIds, bool &$uncertain, Spell $spell): string
     {
-        if (!preg_match('/^\$\?\(([^)]*)\)\[([^\[\]]*)\](.*)$/s', $token, $m)) {
+        if (!preg_match('/^\$\?(?:\(([^)]*)\)|([^\[\]()]*))\[([^\[\]]*)\](.*)$/s', $token, $m)) {
             $uncertain = true;
 
             return '(varies by condition — check in-game)';
         }
 
-        [, $cond, $branch, $rest] = $m;
+        [, $condParen, $condBare, $branch, $rest] = $m;
+        $cond = $condParen !== '' ? $condParen : $condBare;
 
         while (true) {
             $result = $this->evaluateConditionExpression($cond, $kitIds);
@@ -1171,11 +1193,12 @@ class ModuleSpellReferenceService
                 return $branch;
             }
 
-            if (!preg_match('/^\?\(([^)]*)\)\[([^\[\]]*)\](.*)$/s', $rest, $m)) {
+            if (!preg_match('/^\?(?:\(([^)]*)\)|([^\[\]()]*))\[([^\[\]]*)\](.*)$/s', $rest, $m)) {
                 break;
             }
 
-            [, $cond, $branch, $rest] = $m;
+            [, $condParen, $condBare, $branch, $rest] = $m;
+            $cond = $condParen !== '' ? $condParen : $condBare;
         }
 
         if (preg_match('/^\[([^\[\]]*)\]$/s', $rest, $m)) {
@@ -1194,6 +1217,12 @@ class ModuleSpellReferenceService
      * null (not false) when any term doesn't match the recognized shape, so the caller can
      * distinguish "confidently false" from "don't actually know" — the latter must never
      * silently fall through to the next branch as if it were false.
+     *
+     * A leading "?" (as opposed to "!") is stripped the same way and treated as a plain,
+     * unnegated check — found 2026-08-13 on Painful Invocation ("a137031&?s14914" paired against
+     * a second branch's "a137031&!s14914" as its exact logical complement), confirming "?" means
+     * the same positive check as no prefix, not a distinct third operation. Not guessed — the
+     * branch pairing is the evidence.
      */
     private function evaluateConditionExpression(string $cond, Collection $kitIds): ?bool
     {
@@ -1203,7 +1232,7 @@ class ModuleSpellReferenceService
         $results = [];
         foreach ($terms as $term) {
             $negate = str_starts_with($term, '!');
-            if ($negate) {
+            if ($negate || str_starts_with($term, '?')) {
                 $term = substr($term, 1);
             }
 

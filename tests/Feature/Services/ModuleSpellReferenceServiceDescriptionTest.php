@@ -131,6 +131,49 @@ test('resolveDescription falls back to the trailing bracket when no compound con
     expect($result['text'])->toBe('Cooldown recovers 60% faster.');
 });
 
+test('resolveDescription resolves an unparenthesized chained conditional with a "?" prefix term', function () {
+    // Real shape from Painful Invocation (spell_id 1251030): "a137031&?s14914" paired against
+    // "a137031&!s14914" as its exact logical complement — confirms "?" means the same positive
+    // check as no prefix, not a distinct operation. No wrapping "(...)" around either condition.
+    $fixture = makeDescriptionFixture();
+    $talent = Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 100, 'name' => 'Some Talent']);
+    $procSpell = Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 200, 'name' => 'Some Proc']);
+    SpellClassAvailability::create(['spell_id' => $talent->id, 'class_id' => $fixture['class']->id, 'spec_id' => $fixture['spec']->id, 'source' => 'baseline']);
+    SpellClassAvailability::create(['spell_id' => $procSpell->id, 'class_id' => $fixture['class']->id, 'spec_id' => $fixture['spec']->id, 'source' => 'baseline']);
+
+    $spell = makeTestSpell($fixture, 8, 'Increases the damage of $?a100&?s200[Holy Fire]?a100&!s200[Holy Fire and Shadow Word: Pain][Shadow Word: Pain].');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Increases the damage of Holy Fire.');
+});
+
+test('resolveDescription falls through an unparenthesized chained conditional to the final bracket fallback', function () {
+    $fixture = makeDescriptionFixture();
+    // Neither spell_id 100 nor 200 tagged into this fixture's kit — both chained conditions
+    // resolve confidently false, landing on the trailing bare [fallback].
+    $spell = makeTestSpell($fixture, 9, 'Increases the damage of $?a100&?s200[Holy Fire]?a100&!s200[Holy Fire and Shadow Word: Pain][Shadow Word: Pain].');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Increases the damage of Shadow Word: Pain.');
+});
+
+test('resolveDescription resolves a simple unparenthesized OR condition with no chaining', function () {
+    // Real shape from Shadowflame Prism (spell_id 336143): "$?s123040|s200174[Mindbender]
+    // [Shadowfiend]" — a single compound condition, single branch/fallback pair, no "?(...)"
+    // continuation at all.
+    $fixture = makeDescriptionFixture();
+    $mindbender = Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 123040, 'name' => 'Mindbender']);
+    SpellClassAvailability::create(['spell_id' => $mindbender->id, 'class_id' => $fixture['class']->id, 'spec_id' => $fixture['spec']->id, 'source' => 'baseline']);
+
+    $spell = makeTestSpell($fixture, 10, 'Your $?s123040|s200174[Mindbender][Shadowfiend] teleports behind your target.');
+
+    $result = app(ModuleSpellReferenceService::class)->resolveDescription($spell, $fixture['build']);
+
+    expect($result['text'])->toBe('Your Mindbender teleports behind your target.');
+});
+
 test('resolveDescription correctly evaluates multi-term ${...} arithmetic (safeEval regression)', function () {
     $fixture = makeDescriptionFixture();
     $spell = makeTestSpell($fixture, 7, 'Increases the duration by ${$s3/1000} sec.');
