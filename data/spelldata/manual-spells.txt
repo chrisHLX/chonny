@@ -8,6 +8,14 @@
 # case). Repentance and Scatter Shot are correctly absent right now (pruned from the live game
 # this patch; Scatter Shot confirmed returning 12.1) — do not add them here.
 #
+# Re-checked 2026-08-13 against this session's SimC pull (labeled 12.1-era content, see
+# CLAUDE.md's patch-refresh notes) — Scatter Shot is STILL absent, same as before (only
+# referenced in another spell's description prose, no "Name:" record of its own, and not present
+# in the Blizzard talent-tree data either). This contradicts a separate report (from a different
+# machine's own diff-spellbook run) that it "was in the raw files just not pulled" — not yet
+# reconciled; flagging rather than guessing which is right. Do not add it here until that's
+# resolved — check which raw SimC branch/commit the other machine actually pulled from.
+#
 # Lives outside data/spelldata/filtered/{class}/ on purpose: regenerate-filtered.php /
 # split-by-tree.php only ever overwrite specific known filenames inside those directories and
 # never wipe them, so a file placed there would technically survive too — but authoring here
@@ -37,4 +45,41 @@ school: Arcane
 mechanic: Polymorph
 duration_seconds: 60
 description: Transforms the enemy into a sheep, incapacitating them for 60 sec. Damage may interrupt the effect. Limit 1.
+END
+
+# Aimed Shot / Mirror Image, added 2026-08-13. Found investigating a real spellbook-snapshot
+# diff batch (8 characters) — both showed spell_class_availability=0 (no row at all, not the
+# ambiguous spec_id=NULL bucket baseline-spec-overrides.txt handles). Confirmed absent from
+# SimC's own raw dump entirely, same as Polymorph — only ever referenced as a cross-reference
+# target in OTHER spells' "Affecting Spells"/description text, never a "Name:" record of its
+# own. cooldown_seconds/charges deliberately left blank for both — Aimed Shot's real mechanic
+# is charge-based (not a flat cooldown) and no verified current-patch number is on hand; Mirror
+# Image's real duration WAS directly verified (see below) so that field is filled.
+#
+# Aimed Shot is Marksmanship-specific, not baseline/all-spec (confirmed general game knowledge,
+# consistent with every other Marksmanship-tagged spell in this same diff batch) — the real
+# character it was found on is Beast Mastery, showing it only due to spec history (a real
+# artifact of WoW's spellbook enumeration including any spec ever played, not the active one;
+# same caveat already documented for the other 209 hits in this same diff batch).
+BEGIN
+spell_id: 19434
+name: Aimed Shot
+class: hunter
+specs: marksmanship
+school: Physical
+description: A powerful aimed shot that deals damage.
+END
+
+# Mirror Image's duration (15 sec) is real, verified data — pulled directly from the exported
+# character's own resolved in-game tooltip (spellbook_snapshot_entries.resolved_description for
+# spell_id 55342), not memory or a guess. Confirmed all-spec/baseline (long-standing, stable
+# Mage utility across many expansions, not spec-restricted) — the source character is Frost.
+BEGIN
+spell_id: 55342
+name: Mirror Image
+class: mage
+specs: all
+school: Arcane
+duration_seconds: 15
+description: Creates 3 copies of you nearby, which cast spells and attack your enemies. While active, you generate significantly reduced threat. Taking direct damage will cause one of your images to dissipate.
 END
