@@ -5,16 +5,19 @@
 # no damage/healing/resource component) — Polymorph is the confirmed case that started this file
 # (2026-08-08); Hex is NOT one of these (it exists in SimC's dump as "Hex (desc=Frog)", excluded
 # by the unrelated `(desc=...)` display filter — a different, smaller fix, not a manual-spells
-# case). Repentance and Scatter Shot are correctly absent right now (pruned from the live game
-# this patch; Scatter Shot confirmed returning 12.1) — do not add them here.
+# case). Repentance is correctly absent right now (pruned from the live game this patch) — do
+# not add it here.
 #
-# Re-checked 2026-08-13 against this session's SimC pull (labeled 12.1-era content, see
-# CLAUDE.md's patch-refresh notes) — Scatter Shot is STILL absent, same as before (only
-# referenced in another spell's description prose, no "Name:" record of its own, and not present
-# in the Blizzard talent-tree data either). This contradicts a separate report (from a different
-# machine's own diff-spellbook run) that it "was in the raw files just not pulled" — not yet
-# reconciled; flagging rather than guessing which is right. Do not add it here until that's
-# resolved — check which raw SimC branch/commit the other machine actually pulled from.
+# Scatter Shot IS real and current, but it's a manual-spells.txt false alarm from an earlier
+# check that only looked at the SimC dump and the Blizzard talent-tree JSON — neither is its
+# real source. It returned in 12.1 as a PvP talent (real spell_id 213691, all 3 Hunter specs),
+# sourced from data/pvptalents/hunter.json (Blizzard's Game Data API via fetch-talent-trees.php,
+# not SimC at all) — confirmed 2026-08-13 already correctly imported with 3 valid
+# spell_class_availability rows (source=pvp_talent). Never add PvP-talent-only abilities here;
+# check data/pvptalents/{class}.json and pvp_talents/spell_class_availability in the DB before
+# assuming a "missing from SimC" spell needs manual-spells.txt — some are simply sourced
+# elsewhere. cooldown_seconds/mechanic are still genuinely blank for it (PvP talent JSON doesn't
+# carry that data), a separate, smaller display gap — not an availability gap.
 #
 # Lives outside data/spelldata/filtered/{class}/ on purpose: regenerate-filtered.php /
 # split-by-tree.php only ever overwrite specific known filenames inside those directories and
