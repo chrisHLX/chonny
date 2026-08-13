@@ -9,15 +9,15 @@
     (can clip against the modal's own scroll container), an accepted tradeoff rather than adding
     flip-direction detection for this first pass.
 --}}
-@php $spell = $entry->spell; @endphp
+@php $spell = $entry->spell; $description = $this->resolvedDescription($entry); @endphp
 <div class="hidden group-hover:block absolute z-30 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 pointer-events-none">
     <div class="linear-card !border-line-strong shadow-gold-lg p-2.5 text-left">
         <p class="text-[12px] font-semibold text-ink">{{ $spell->display_name }}</p>
         @if ($maxRanks && $maxRanks > 1)
             <p class="text-[10px] text-gold mt-0.5">Rank {{ $rank }} / {{ $maxRanks }}</p>
         @endif
-        @if ($spell->description)
-            <p class="text-[11px] text-ink-muted mt-1 leading-snug">{{ Str::limit($spell->description, 220) }}</p>
+        @if ($description)
+            <p class="text-[11px] text-ink-muted mt-1 leading-snug">{{ Str::limit($description, 220) }}</p>
         @endif
     </div>
 </div>

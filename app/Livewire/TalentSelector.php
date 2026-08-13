@@ -3,7 +3,9 @@
 namespace App\Livewire;
 
 use App\Http\Services\BlizzardTalentStringCodec;
+use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
+use App\Models\ModuleGameBuild;
 use App\Models\PvpTalent;
 use App\Models\Specialization;
 use App\Models\TalentBuild;
@@ -340,6 +342,38 @@ class TalentSelector extends Component
     public function getSpecializationProperty(): ?Specialization
     {
         return Specialization::find($this->specId);
+    }
+
+    /** @var array<int, string> spell_id => resolved description text, memoized per render */
+    private array $resolvedDescriptionCache = [];
+
+    /**
+     * Resolves an entry's spell description through ModuleSpellReferenceService::
+     * resolveDescription() — the same template resolver (${...} arithmetic, $?a<id>[...]
+     * conditionals, $@spellname<id> references, |c...|r color-code stripping) already used for
+     * every other spell-description surface in the app (Spells table, Spell Explorer, WowComps'
+     * own list). talent-tooltip.blade.php previously read $spell->description raw, so its hover
+     * tooltip showed unresolved SimC template syntax instead of readable text — this closes that
+     * gap by giving the picker the same resolution pass, using an ad-hoc unsaved ModuleGameBuild
+     * (same pattern WowComps::spellReferencesFor() already uses) since the picker isn't always
+     * viewed in the context of a real saved Module.
+     */
+    public function resolvedDescription(TalentNodeEntry $entry): string
+    {
+        $spellId = $entry->spell_id;
+
+        if (!array_key_exists($spellId, $this->resolvedDescriptionCache)) {
+            $build = new ModuleGameBuild([
+                'class_id' => $this->specialization?->class_id,
+                'specialization_id' => $this->specId,
+                'hero_talent_tree_id' => $this->heroTreeId,
+            ]);
+
+            $this->resolvedDescriptionCache[$spellId] = app(ModuleSpellReferenceService::class)
+                ->resolveDescription($entry->spell, $build)['text'];
+        }
+
+        return $this->resolvedDescriptionCache[$spellId];
     }
 
     private function currentPatchId(): ?int
