@@ -254,3 +254,15 @@
 1833 | rogue | assassination | Cheap Shot
 1833 | rogue | outlaw | Cheap Shot
 1833 | rogue | subtlety | Cheap Shot
+
+# Rogue, added 2026-08-13. Smoke Bomb is a core, all-3-spec baseline utility (stealth/vision-
+# blocking AoE), long-standing stable game design. Confirmed via its own data: real cooldown
+# (180s) matches known live values, single non-hidden baseline copy (76577), class_id=Rogue/
+# spec_id=NULL/source=baseline — same ambiguous-bucket shape as every other entry in this file.
+# Two other spell_id copies exist (88611 — a linked damage-reduction-aura sub-effect referenced
+# by 76577's own description via $88611s2, no cooldown of its own; 212182/359053 — PvP-talent-
+# sourced copies with no cooldown data) — neither used here; 76577 is the real player-facing
+# ability.
+76577 | rogue | assassination | Smoke Bomb
+76577 | rogue | outlaw | Smoke Bomb
+76577 | rogue | subtlety | Smoke Bomb
