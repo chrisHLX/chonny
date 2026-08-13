@@ -10,6 +10,7 @@ use App\Models\Patch;
 use App\Models\PvpTalent;
 use App\Models\Specialization;
 use App\Models\Spell;
+use App\Models\SpellbookSnapshot;
 use App\Models\SpellClassAvailability;
 use App\Models\SpellEffect;
 use App\Models\SpellRelationship;
@@ -211,6 +212,7 @@ class ImportSpellData extends Command
         app(TalentSelectionService::class)->bumpSpellCacheVersion();
 
         $this->printSummary();
+        $this->runSpellbookDiffCheck();
 
         return self::SUCCESS;
     }
@@ -1601,6 +1603,35 @@ class ImportSpellData extends Command
 
         if ($this->ccSynergyOverridesApplied > 0 || $this->ccSynergyOverrideSkips > 0) {
             $this->comment("CC synergy overrides (dr_category/chain_target/is_peel/is_interrupt/pvp_duration_seconds): {$this->ccSynergyOverridesApplied} applied, {$this->ccSynergyOverrideSkips} skipped (see warnings above).");
+        }
+    }
+
+    /**
+     * Runs unconditionally on every import, same "always run this defensive pass" precedent as
+     * cleanupSamePositionCollisions() above — moved here from PatchUpdate's own step 6/6
+     * (2026-08-13) so this check fires on a plain `import:spelldata` re-run too, not only when
+     * going through the full wow:patch-update orchestrator. Motivation: this session's own
+     * workflow ran import:spelldata directly (an override-file tweak, not a full patch update)
+     * several times without ever re-checking against real spellbook snapshots — the exact gap
+     * this closes. PatchUpdate no longer duplicates this step; see its own docblock.
+     *
+     * Report-only, same as before — never writes anything, just surfaces drift for a human to
+     * act on. Silently does nothing when no snapshots are on file (a fresh/CI environment),
+     * matching PatchUpdate's original behavior exactly.
+     */
+    private function runSpellbookDiffCheck(): void
+    {
+        $snapshotIds = SpellbookSnapshot::pluck('id');
+
+        if ($snapshotIds->isEmpty()) {
+            return;
+        }
+
+        $this->newLine();
+        $this->info('Sanity-checking against real spellbook snapshots on file:');
+        foreach ($snapshotIds as $id) {
+            $this->line("  --- snapshot #{$id} ---");
+            $this->call('wow:diff-spellbook', ['snapshot_id' => $id]);
         }
     }
 }

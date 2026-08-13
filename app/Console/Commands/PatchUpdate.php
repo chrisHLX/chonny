@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\SpellbookSnapshot;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Process;
 
@@ -12,9 +11,14 @@ use Illuminate\Support\Facades\Process;
  * reasoning behind what is and isn't automated here.
  *
  * Runs, in order: fetch-talent-trees.php, fetch-simc-dumps.php, regenerate-filtered.php,
- * import:spelldata, fetch-spell-icons.php, wow:diff-spellbook (report only). All additive —
- * see ImportSpellData's own docblock and CLAUDE.md's patch_id-scoping explanation for why
- * none of this can touch existing users, diagnostics, or a prior patch's data.
+ * import:spelldata, fetch-spell-icons.php. All additive — see ImportSpellData's own docblock
+ * and CLAUDE.md's patch_id-scoping explanation for why none of this can touch existing users,
+ * diagnostics, or a prior patch's data.
+ *
+ * The spellbook-snapshot sanity check used to be this orchestrator's own step 6/6 — moved
+ * INTO ImportSpellData::handle() itself (2026-08-13) so it also fires on a plain
+ * `import:spelldata` re-run, not only through this full orchestrator. Step 4/5 below (the
+ * import call) now triggers it as a side effect; nothing further to do here.
  *
  * Deliberately does NOT automate, and never will without a separate explicit decision:
  *   - Admin default talent-build curation (wow:import-murlok-defaults) — CLAUDE.md's own
@@ -55,11 +59,11 @@ class PatchUpdate extends Command
             return self::FAILURE;
         }
 
-        $this->step('1/6 — Blizzard talent trees + PvP talents', fn () => $this->option('skip-trees')
+        $this->step('1/5 — Blizzard talent trees + PvP talents', fn () => $this->option('skip-trees')
             ? $this->skipped()
             : $this->runScript('data/talenttrees/fetch-talent-trees.php', $only ? ["--only={$only}"] : []));
 
-        $this->step('2/6 — SimC raw spell dumps', function () use ($only, $branch, $autoDetect) {
+        $this->step('2/5 — SimC raw spell dumps', function () use ($only, $branch, $autoDetect) {
             if ($this->option('skip-dumps')) {
                 return $this->skipped();
             }
@@ -72,14 +76,14 @@ class PatchUpdate extends Command
             return $this->runScript('data/spelldata/fetch-simc-dumps.php', $args);
         });
 
-        $ok = $this->step('3/6 — Regenerate filtered dumps', fn () => $this->runScript('data/spelldata/regenerate-filtered.php', []));
+        $ok = $this->step('3/5 — Regenerate filtered dumps', fn () => $this->runScript('data/spelldata/regenerate-filtered.php', []));
         if (!$ok) {
             $this->warn('regenerate-filtered.php failed — stopping before the database import. Fix the raw dumps and re-run.');
 
             return self::FAILURE;
         }
 
-        $this->step('4/6 — Import into the database', function () use ($build, $only) {
+        $this->step('4/5 — Import into the database (also runs the spellbook-snapshot sanity check internally)', function () use ($build, $only) {
             $args = ['game' => 'wow', 'patch' => $build];
             if ($only) {
                 $args['--only'] = $only;
@@ -91,24 +95,9 @@ class PatchUpdate extends Command
             return $this->call('import:spelldata', $args) === self::SUCCESS;
         });
 
-        $this->step('5/6 — Backfill spell icons', fn () => $this->option('skip-icons')
+        $this->step('5/5 — Backfill spell icons', fn () => $this->option('skip-icons')
             ? $this->skipped()
             : $this->runScript('data/spelldata/fetch-spell-icons.php', []));
-
-        $this->step('6/6 — Sanity check against real spellbook snapshots', function () {
-            $snapshots = SpellbookSnapshot::pluck('id');
-            if ($snapshots->isEmpty()) {
-                $this->line('  No spellbook snapshots on file — nothing to diff against. Not a failure, just nothing to check.');
-
-                return true;
-            }
-            foreach ($snapshots as $id) {
-                $this->line("  --- snapshot #{$id} ---");
-                $this->call('wow:diff-spellbook', ['snapshot_id' => $id]);
-            }
-
-            return true;
-        });
 
         $this->newLine();
         $this->info('Mechanical steps done. This did NOT touch users, diagnostics, or the previous patch\'s data — see the patch_id-scoping note in CLAUDE.md if you want to verify that yourself.');
