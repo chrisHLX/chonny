@@ -53,15 +53,19 @@ changes these APIs — same process: log in, `/mcexport`, sanity-check the print
    `WTF/Account/<ACCOUNT>/SavedVariables/MindCollectorExport.lua`
    (account-wide, not per-character — the `.toc` declares a single `MindCollectorExportDB`,
    which is exactly why step 5's key-per-export design matters).
-7. Copy that file wherever you're running the Laravel app from, then:
+7. Copy that file into `data/spellbook-exports/` in the Laravel project as a new, dated file (e.g.
+   `2026-08-20-batch2.lua`) — see that folder's own README for why it must be a *new* file, never
+   an overwrite of an existing one. Then:
    ```
-   php artisan wow:import-spellbook "path/to/MindCollectorExport.lua"
+   php artisan wow:import-spellbook "data/spellbook-exports/2026-08-20-batch2.lua"
    php artisan wow:diff-spellbook
    ```
    The import command reports one line per export found in the file (`Created snapshot #N from
    'CLASS_specID_timestamp' ...`) and a final summary (`Done: N snapshot(s) created, N skipped`).
    Skipped means already-imported (per-export content hash, not per-file) — safe to re-run after
-   exporting more characters later; it only ever imports what's new.
+   exporting more characters later; it only ever imports what's new. Once committed, any machine
+   can `git pull` and run the same import command locally — no WoW install or WTF folder needed
+   there, since `spellbook_snapshots` is a per-machine DB table populated from the committed file.
 
 ## What this does NOT do
 
