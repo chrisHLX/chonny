@@ -1,6 +1,6 @@
 {
     "class": "Mage",
-    "fetched_at": "2026-08-02T09:10:10+00:00",
+    "fetched_at": "2026-08-12T21:50:36+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Frost": {
@@ -59,7 +59,7 @@
                     "name": "Ring of Fire",
                     "spell_id": 353082,
                     "spell_name": "Ring of Fire",
-                    "description": "Summons a Ring of Fire for 8 sec at the target location. Enemies entering the ring are disoriented and burn for 3% of their total health over 3 sec.",
+                    "description": "Summons a Ring of Fire for 8 sec at the target location. Enemies entering the ring are incapacitated and burn for 3% of their total health over 4 sec.",
                     "unlock_player_level": 55,
                     "compatible_slots": [
                         1,
@@ -75,7 +75,7 @@
                     "name": "Frost Bomb",
                     "spell_id": 390612,
                     "spell_name": "Frost Bomb",
-                    "description": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 3,776 Frost damage to the target and 1,913 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
+                    "description": "Places a Frost Bomb on the target. After 5 sec, the bomb explodes, dealing 3,862 Frost damage to the target and 1,917 Frost damage to all other enemies within 10 yards. All affected targets are slowed by 50% for 8 sec. \r\n\r\nIf Frost Bomb is dispelled before it explodes, gain a charge of Brain Freeze.",
                     "unlock_player_level": 20,
                     "compatible_slots": [
                         1,
@@ -139,7 +139,7 @@
                     "name": "Improved Mass Invisibility",
                     "spell_id": 415945,
                     "spell_name": "Improved Mass Invisibility",
-                    "description": "The cooldown of Mass Invisibility is reduced by 4 min and can affect allies in combat.",
+                    "description": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -155,7 +155,7 @@
                     "name": "Overpowered Barrier",
                     "spell_id": 1220739,
                     "spell_name": "Overpowered Barrier",
-                    "description": "Your barriers absorb 100% more damage and have an additional effect, but last 4 sec.\r\n\r\n Prismatic Barrier\r\nIf the barrier is fully absorbed, your next Blink or Shimmer within 15 sec grants Invisibility and immunity to damage for 3 sec. The damage reduction is lost if Invisibility ends.",
+                    "description": "Your barriers absorb 60% more damage and have an additional effect, but last 4 sec.\r\n\r\n Prismatic Barrier\r\nIf the barrier is fully consumed, gain Time Warp for 6 sec.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -208,7 +208,7 @@
                     "name": "Ring of Fire",
                     "spell_id": 353082,
                     "spell_name": "Ring of Fire",
-                    "description": "Summons a Ring of Fire for 8 sec at the target location. Enemies entering the ring are disoriented and burn for 3% of their total health over 3 sec.",
+                    "description": "Summons a Ring of Fire for 8 sec at the target location. Enemies entering the ring are incapacitated and burn for 3% of their total health over 4 sec.",
                     "unlock_player_level": 55,
                     "compatible_slots": [
                         1,
@@ -288,7 +288,7 @@
                     "name": "Improved Mass Invisibility",
                     "spell_id": 415945,
                     "spell_name": "Improved Mass Invisibility",
-                    "description": "The cooldown of Mass Invisibility is reduced by 4 min and can affect allies in combat.",
+                    "description": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -304,7 +304,7 @@
                     "name": "Overpowered Barrier",
                     "spell_id": 1220739,
                     "spell_name": "Overpowered Barrier",
-                    "description": "Your barriers absorb 100% more damage and have an additional effect, but last 4 sec.\r\n\r\n Prismatic Barrier\r\nIf the barrier is fully absorbed, your next Blink or Shimmer within 15 sec grants Invisibility and immunity to damage for 3 sec. The damage reduction is lost if Invisibility ends.",
+                    "description": "Your barriers absorb 60% more damage and have an additional effect, but last 4 sec.\r\n\r\n Prismatic Barrier\r\nIf the barrier is fully consumed, gain Time Warp for 6 sec.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -325,7 +325,7 @@
                     "name": "Improved Mass Invisibility",
                     "spell_id": 415945,
                     "spell_name": "Improved Mass Invisibility",
-                    "description": "The cooldown of Mass Invisibility is reduced by 4 min and can affect allies in combat.",
+                    "description": "The cooldown of Mass Invisibility is reduced by 3 min and it can affect allies in combat.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -357,7 +357,7 @@
                     "name": "Arcanosphere",
                     "spell_id": 353128,
                     "spell_name": "Arcanosphere",
-                    "description": "Builds a sphere of Arcane energy, gaining power over 4 sec. Upon release, the sphere passes through any barriers, knocking enemies back and dealing up to 14,648 Arcane damage.",
+                    "description": "Builds a sphere of Arcane energy, gaining power over 4 sec. Upon release, the sphere passes through any barriers, knocking enemies back and dealing up to 18,806 Arcane damage.",
                     "unlock_player_level": 55,
                     "compatible_slots": [
                         1,
@@ -389,7 +389,7 @@
                     "name": "Ring of Fire",
                     "spell_id": 353082,
                     "spell_name": "Ring of Fire",
-                    "description": "Summons a Ring of Fire for 8 sec at the target location. Enemies entering the ring are disoriented and burn for 3% of their total health over 3 sec.",
+                    "description": "Summons a Ring of Fire for 8 sec at the target location. Enemies entering the ring are incapacitated and burn for 3% of their total health over 4 sec.",
                     "unlock_player_level": 55,
                     "compatible_slots": [
                         1,
@@ -453,7 +453,7 @@
                     "name": "Overpowered Barrier",
                     "spell_id": 1220739,
                     "spell_name": "Overpowered Barrier",
-                    "description": "Your barriers absorb 100% more damage and have an additional effect, but last 4 sec.\r\n\r\n Prismatic Barrier\r\nIf the barrier is fully absorbed, your next Blink or Shimmer within 15 sec grants Invisibility and immunity to damage for 3 sec. The damage reduction is lost if Invisibility ends.",
+                    "description": "Your barriers absorb 60% more damage and have an additional effect, but last 4 sec.\r\n\r\n Prismatic Barrier\r\nIf the barrier is fully consumed, gain Time Warp for 6 sec.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,

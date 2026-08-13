@@ -1,5 +1,5 @@
 # Shaman — Restoration Spec Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 47 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Resurgence (id=16196) [Spell Family (11), Passive, Hidden] 
@@ -58,12 +58,12 @@ Labels           : 16: Class Spells
                  : 741: Healing Spells
 Affecting Spells : Earth Shield (974 effect#1), Healing Trance (60515 effect#1), Mastery: Deep Healing (77226 effect#1), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #1, #2), Torrent (200072 effect#1), Elemental Rebalancers (208777 effect#1), Nature's Fury (381655 effect#1), Wavespeaker's Blessing (381946 effects: #1, #2), Earthliving Weapon (382024 effect#2), Undercurrent (383235 effects: #1, #2), Earth Shield (383648 effect#1), Initial Shaman (417374 effects: #3, #4), Shaman Restoration 10.2 Class Set 4pc (422916 effects: #1, #2), Elemental Reverb (443418 effects: #3, #4), Amplification Core (456369 effects: #1, #2), Tidecaller's Guard (457496 effects: #2, #3), Earthsurge (457566 effect#1), Coalescing Water (470077 effect#1), Restoration Shaman (1256945 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283657 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283658 effects: #1, #2)
 Family Flags     : 41, 68
-Attributes       : Not Shapeshifted (16), Include In Advanced Combat Log (72), DoT Stacking Rule (103), Aura Never Bounces (148), Spell Haste Affects Periodic (173), Vehicle Immunity Category (218), Periodic Can Crit (265), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Unknown (456), Non-secret Aura (506)
+Attributes       : Not Shapeshifted (16), Include In Advanced Combat Log (72), DoT Stacking Rule (103), Aura Never Bounces (148), Spell Haste Affects Periodic (173), Vehicle Immunity Category (218), Periodic Can Crit (265), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Unknown (456)
 Effects          :
 #1 (id=55127)    : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 4.80288 | PvP Coefficient: 1.518 | Target: Targeted Ally (21)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 6 | PvP Coefficient: 1.518 | Target: Targeted Ally (21)
 #2 (id=55128)    : Apply Aura (6) | Periodic Heal (8): every 3 seconds
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.398429 | PvP Coefficient: 1.84 | Target: Targeted Ally (21)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.797 | PvP Coefficient: 1.84 | Target: Targeted Ally (21)
 Description      : Restorative waters wash over a friendly target, healing them for $s1 and an additional $o2 over $d.
 Tooltip          : Heals $w2 every $t2 seconds.
 
@@ -92,7 +92,7 @@ Family Flags     : 41, 94
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Active Threat (94), Not a Proc (105), Can Proc From Procs (122), Do Not Display Range (126), Aura Points On Client (268), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=66866)    : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 6.09991 | Target: Targeted Ally (21)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 12.2 | Target: Targeted Ally (21)
 #2 (id=66867)    : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0) | Attributes: Suppress Points Stacking (6)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
                    Affected Spells: Chain Heal (1064), Healing Wave (77472)
@@ -118,24 +118,28 @@ Range            : 40 yards
 Cast Time        : 2 seconds
 GCD              : 1.5 seconds
 Duration         : 18 seconds
-Cooldown         : 18 seconds
+Cooldown         : 12 seconds
 Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
-Affecting Spells : Spiritwalker's Grace (79206 effect#1), Overflowing Shores (278077 effect#2), Nature's Swiftness (378081 effects: #1, #2), Overflowing Shores (383222 effect#1), Ancestral Swiftness (443454 effects: #1, #2), Soothing Rain (1252874 effect#2)
-Family Flags     : 84
-Attributes       : Not Shapeshifted (16), No Threat (42), Allow Low Level Buff (67), Extra Initial Period (169), Spell Haste Affects Periodic (173), Always Show Ground Texture (190), No Aura Log (202), Aura Points On Client (268), Caster Death Cancels Persistent Area Auras (347), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
+Affecting Spells : Spiritwalker's Grace (79206 effect#1)
+Family Flags     : 5
+Attributes       : Not Shapeshifted (16), No Threat (42), No Aura Icon (60), Allow Low Level Buff (67), Spell Haste Affects Periodic (173), Always Show Ground Texture (190), No Aura Log (202), Aura Points On Client (268), Allow Class Ability Procs (416)
 Aura Interrupt   : Leave World (19)
 Effects          :
 #1 (id=67013)    : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Radius: 11 yards | Target: at Area (87) -> At Ally in Area (31)
-#2 (id=67014)    : Apply Aura (6) | Periodic Dummy (226): every 2 seconds
+#2 (id=67014)    : Apply Aura (6) | Dummy (4)
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
-#3 (id=199332)   : Apply Aura (6) | Dummy (4)
+#3 (id=199332)   : Apply Aura (6) | Periodic Dummy (226): every 2 seconds
                    Base Value: 14 | Scaled Value: 14 | Target: Self (1)
 #4 (id=1172442)  : Dummy (3)
-                   Base Value: 5 | Scaled Value: 5
-Description      : Blanket the target area in healing rains, restoring ${$73921m1*6*2/$t2} health to up to $s4 allies over $d.
+                   Base Value: 6 | Scaled Value: 6
+#5 (id=1322369)  : Trigger Spell (64): Healing Rain
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1298679 | Radius: 0 - 11 yards | Target: at Area (87) -> At Ally in Area (31)
+Description      : Blanket the target area in healing rains, restoring ${$73921m1*6*2/$t2} health to up to $s4 allies over $d.
+
+You can only have one Healing Rain active at a time.
 Tooltip          : Your Healing Rain is currently active.
 $?$w1!=0[Magic damage taken reduced by $w1%.][]
 
@@ -377,10 +381,10 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1006846)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
-Description      : Deal ${$378597s1*$s1} Nature damage every $378463t1 sec to up to $378597s2 enemies inside of your Healing Rain.
+Description      : Deal ${$378597s1*$s1} Nature damage every $73920t3 sec to up to $378597s2 enemies inside of your Healing Rain.
 
 Name             : Wavespeaker's Blessing (id=381946) [Spell Family (11), Passive, Hidden] 
-Talent Entry     : Restoration [tree=spec, row=9, col=6, max_rank=2, req_points=20]
+Talent Entry     : Restoration [tree=spec, row=5, col=6, max_rank=2, req_points=8]
                  : Effect#1 [op=set, values=(3000, 6000)]
                  : Effect#2 [op=set, values=(10, 20)]
 Class            : Shaman
@@ -596,17 +600,19 @@ Labels           : 16: Class Spells
                  : 292
 Proc Chance      : 101%
 Proc Flags       : Cast Successful
-Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log on Learn (355)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1014995)  : Apply Aura (6) | Add Flat Modifier (107): Spell Radius (6)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 6 | Target: Self (1)
-                   Affected Spells: Healing Rain (73920), Healing Rain (73921), Deluge (200075), Downpour (207778), Downpour (462603)
+                   Affected Spells: Healing Rain (73921), Deluge (200075), Downpour (207778), Downpour (462603), Healing Rain (1298679)
                    Family Flags: 33, 84, 87
 #2 (id=1082396)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Radius (6)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 6 | Misc Value 2: 2676 (Label) | Target: Self (1)
                    Affected Spells (Label): Acid Rain (378597)
 #3 (id=1172519)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#4 (id=1322478)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Radius (6)
+                   Base Value: 2 | Scaled Value: 2 | Misc Value: 6 | Target: Self (1)
 Description      : $?a455630[Surging Totem][Healing Rain] instantly restores $383223s1 health to $s3 allies within its area, and its radius is increased by $s1 $Lyard:yards;.
 
 Name             : Healing Stream Totem (id=392916) [Spell Family (11), Passive, Hidden] 
@@ -758,22 +764,6 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Healing Wave and Chain Heal increase the initial healing of your next Riptide by $470077s1%, stacking up to $470077u times.
 
-Name             : Calm Waters (id=1252841) [Spell Family (11), Passive, Hidden] 
-Talent Entry     : Restoration [tree=spec, row=5, col=6, max_rank=1, req_points=8]
-Class            : Shaman
-School           : Physical
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 24: Shaman Spells
-                 : 292
-Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
-Effects          :
-#1 (id=1258241)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
-                   Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
-                   Affected Spells: Chain Heal (1064)
-                   Family Flags: 8
-Description      : Reduces the mana cost of Chain Heal by $s1%.
-
 Name             : Soothing Rain (id=1252874) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Restoration [tree=spec, row=3, col=2, max_rank=1, req_points=0]
 Class            : Shaman
@@ -790,7 +780,7 @@ Effects          :
                    Family Flags: 87
 #2 (id=1258294)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cast Time (10)
                    Base Value: -500 | Scaled Value: -500 | Misc Value: 10 | Target: Self (1)
-                   Affected Spells: Healing Rain (73920)
+                   Affected Spells: Healing Rain (1298679)
                    Family Flags: 84
 Description      : Increases the healing done by $?a455630[Surging Totem by $s1%.][Healing Rain by $s1% and reduces its cast time by ${$s2/-1000}.1 sec.]
 
@@ -855,7 +845,11 @@ Effects          :
                    Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
                    Affected Spells: Healing Wave (77472)
                    Family Flags: 80
-Description      : Reduces the mana cost of Healing Wave by 15%.
+#2 (id=1343853)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Chain Heal (1064)
+                   Family Flags: 8
+Description      : Reduces the mana cost of Healing Wave by $s1% and the mana cost of Chain Heal by $s2%.
 
 Name             : Quickstream (id=1253099) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Restoration [tree=spec, row=5, col=7, max_rank=1, req_points=8]
@@ -981,8 +975,24 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
                    Affected Spells: Unleash Life (73685)
                    Family Flags: 94
-#2 (id=1283652)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
+#2 (id=1283652)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 12 | Target: Self (1)
                    Affected Spells: Unleash Life (73685)
                    Family Flags: 94
 Description      : Unleash Life heals for $s1% more and its bonus healing effect is increased by $s2%.
+
+Name             : Swelling Tides (id=1312843) [Spell Family (11), Passive, Hidden] 
+Talent Entry     : Restoration [tree=spec, row=9, col=6, max_rank=1, req_points=20]
+Class            : Shaman
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 24: Shaman Spells
+                 : 292
+Proc Chance      : 101%
+Proc Flags       : Generic Helpful, Magic Heal
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Allow Class Ability Procs (416)
+Effects          :
+#1 (id=1343882)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
+Description      : Healing Stream Totem $?a1267016[and Stormstream Totem ][]extend$?a1267016[][s] the duration of your active Riptides by ${$m1/1000}.1 sec.

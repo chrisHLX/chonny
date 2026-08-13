@@ -1,5 +1,5 @@
 # Priest — Archon Hero Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68974 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 19 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Halo (id=120517) [Spell Family (6)] 
@@ -247,7 +247,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1155948)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-Description      : $?a137033[Enemies damaged by your Halo take $453850s1% increased damage from you for $453846d, stacking up to $453846U times.][Allies healed by your Halo receive $453850s1% increased healing from you for $453850d, stacking up to $453850U times.]
+Description      : $?a137033[Creating a Halo increases your spell damage by $453850s1% for $453850d, stacking up to $453850U times.][Creating a Halo increases your healing done by $453846s1% for $453846d, stacking up to $453846U times.]
 
 Name             : Shock Pulse (id=453852) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Archon (Holy, Shadow) [tree=hero, row=3, col=1, max_rank=1, req_points=0, select_idx=100]
@@ -384,6 +384,8 @@ Labels           : 16: Class Spells
                  : 18: Priest Spells
                  : 292
                  : 3022
+Proc Chance      : 101%
+Proc Flags       : Magic Hostile Spell
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
 Effects          :
 #1 (id=1285499)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
@@ -395,14 +397,12 @@ Effects          :
                    Affected Spells: Prayer of Healing (596)
                    Family Flags: 9
 #3 (id=1285501)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
                    Affected Spells: Void Volley (1242173), Void Volley (1242189)
                    Family Flags: 41
-#4 (id=1285502)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
-                   Base Value: -4000 | Scaled Value: -4000 | Misc Value: 11 | Target: Self (1)
-                   Affected Spells: Void Volley (1242173), Void Volley (1242189)
-                   Family Flags: 41
-Description      : $?c2[Prayer of Healing mana cost reduced by $s1% and its cast time is reduced by $s2%.][Void Volley damage increased by $s3% and its cooldown is reduced by ${$s4/-1000} sec.]
+#4 (id=1341125)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : $?c2[Prayer of Healing mana cost reduced by $s1% and its cast time is reduced by $s2%.][Void Volley deals $s3% increased damage and Shadow Word: Madness casts during Voidform unleash a Void Volley at your target at $s4% effectiveness.]
 
 Name             : Realized Potential (id=1272326) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Archon (Holy, Shadow) [tree=hero, row=4, col=5, max_rank=1, req_points=0, select_idx=100]

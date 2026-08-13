@@ -1,5 +1,5 @@
 # Evoker — Augmentation Spec Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 52 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Quell (id=351338) [Spell Family (224)] 
@@ -44,7 +44,7 @@ Proc Chance      : 100%
 Proc Flags       : White Melee Taken, Yellow Melee Taken
 Affecting Spells : Hover (358267 effect#5), Hover (393271 effect#1), Mastery: Timewalker (406380 effect#2), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Regenerative Chitin (406907 effect#1), Evoker Augmentation 10.0 Class Set 2pc (415222 effects: #1, #2), Arcane Reach (454983 effect#1)
 Family Flags     : 2, 67, 68
-Attributes       : Combo on Block (Mainline: Dispel All Stacks) (62), DoT Stacking Rule (103), Can Proc From Procs (122), Cannot Be Stolen (134), Allow Proc While Sitting (147), Limit N (165), Implied Targeting (171), Vehicle Immunity Category (218), Aura Points On Client (268), Allow Class Ability Procs (416), Non-secret Aura (506)
+Attributes       : Combo on Block (Mainline: Dispel All Stacks) (62), DoT Stacking Rule (103), Can Proc From Procs (122), Cannot Be Stolen (134), Allow Proc While Sitting (147), Limit N (165), Implied Targeting (171), Vehicle Immunity Category (218), Aura Points On Client (268), Allow Class Ability Procs (416)
 Aura Interrupt   : Leave World (19), Enter World (22), Change Specialization (38)
 Effects          :
 #1 (id=898191)   : Apply Aura (6) | Resistance (22) | Attributes: Suppress Points Stacking (6)
@@ -128,7 +128,7 @@ Labels           : 16: Class Spells
                  : 1468: Black Evoker Spells
 Affecting Spells : Hover (358267 effect#5), Hover (393271 effect#1), Close as Clutchmates (396043 effects: #1, #2), Mastery: Timewalker (406380 effect#2), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Evoker Augmentation 10.1 Class Set 4pc (414878 effect#1), Arcane Reach (454983 effect#4)
 Family Flags     : 2, 56, 65, 67
-Attributes       : No Aura Cancel (31), Exclude Caster (51), Ignore Line of Sight (66), Only On Player (104), Limit N (165), Aura Points On Client (268), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Non-secret Aura (506)
+Attributes       : No Aura Cancel (31), Exclude Caster (51), Ignore Line of Sight (66), Only On Player (104), Limit N (165), Aura Points On Client (268), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
 Aura Interrupt   : Leave World (19), Change Specialization (38), Raid Encounter Start or M+ Start (40), Change Talent (46), Change Glyph (47)
 Effects          :
 #1 (id=1035393)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
@@ -200,7 +200,7 @@ Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
                  : 1468: Black Evoker Spells
-Affecting Spells : Tip the Scales (370553 effects: #1, #2), Ebon Might (395296 effect#4), Font of Magic (408083 effect#3), Unyielding Domain (412733 effect#2)
+Affecting Spells : Tip the Scales (370553 effects: #1, #2), Ebon Might (395296 effect#4), Font of Magic (408083 effect#3), Unyielding Domain (412733 effect#2), Evoker Augmentation 12.1 Class Set 2pc (1296637 effect#1)
 Family Flags     : 59
 Attributes       : Not Shapeshifted (16), No Immunities (29), Is Channelled (34), Is Self Channelled (38), No Threat (42), Aura Stays After Combat (57), No Aura Icon (60), Name in Channel Bar (61), Include In Advanced Combat Log (72), Always Hit (114), Force Display Castbar (155), No Aura Log (202), Haste Affects Duration (273), Always Require PvP Target Match (430), Do Not Allow "Disable Movement Interrupt" (443)
 Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12)
@@ -530,7 +530,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1072001)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Fire Breath overrides Fire Breath
-                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 2 | Target: Self (1)
+                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 3 | Target: Self (1)
 #2 (id=1072002)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Upheaval overrides Upheaval
                    Base Value: 408092 | Scaled Value: 408092 | Misc Value: 396286 | Misc Value 2: 2 | Target: Self (1)
 #3 (id=1072003)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
@@ -725,7 +725,7 @@ Effects          :
 #1 (id=1076504)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : When cast, Blistering Scales grants the target a shield that absorbs up to $<shield> damage for $410651d based on their missing health. Lower health targets gain a larger shield.
-Variables        : $shield=${$SP*12*(1+$@versadmg)}
+Variables        : $shield=${$SP*15*(1+$@versadmg)}
 
 Name             : Symbiotic Bloom (id=410685) [Spell Family (224), Passive] 
 Talent Entry     : Augmentation [tree=spec, row=7, col=7, max_rank=2, req_points=8]
@@ -886,10 +886,12 @@ Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
                  : 1467: Bronze Evoker Spells
+                 : 6674: Magnified Fate (1297728 effect#1)
 Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1080428)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Modified By: Magnified Fate (1297728 effect#1)
 Description      : Prescience grants the ally a chance for their spells and abilities to echo their damage or healing, dealing $s1% of the amount again.
 Variables        : $doses=${50}
 

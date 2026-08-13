@@ -1,5 +1,5 @@
 # Evoker — Flameshaper Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Enkindle (desc=Red) (id=444016) [Spell Family (224), Passive, Hidden] 
@@ -65,14 +65,14 @@ Effects          :
 #5 (id=1275591)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
 #6 (id=1278179)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 200 | Scaled Value: 200 | Target: Self (1)
+                   Base Value: 240 | Scaled Value: 240 | Target: Self (1)
 #7 (id=1317269)  : Apply Aura (6) | Dummy (4)
                    Base Value: 115 | Scaled Value: 115 | Target: Self (1)
-Description      : $?c1[Disintegrate damage consumes ${$s2/1000}.1 sec of Fire Breath from enemies it damages, detonating it for $s4% of the amount consumed.
+Description      : $?c1[Disintegrate consumes ${$s2/1000}.1 sec of Fire Breath from enemies it damages, detonating it for $s4% of the amount consumed.
 
-Pyre damage consumes ${$s3/1000} sec of Fire Breath from enemies it damages, detonating it for $s7% of the amount consumed.][Verdant Embrace healing consumes ${$s5/1000} sec of Dream Breath from allies it heals, detonating it and healing them for $s6% of the amount consumed.
+Pyre consumes ${$s3/1000} sec of Fire Breath from enemies it damages, detonating it for $s7% of the amount consumed.][Verdant Embrace consumes ${$s5/1000} sec of Dream Breath from allies it heals, detonating it and healing them for $s6% of the amount consumed.
 
-Emerald Blossom healing consumes ${$s1/1000} sec of Dream Breath from allies it heals, detonating it and healing them for $s6% of the amount consumed.]
+Emerald Blossom and Fluttering Seedlings consume ${$s1/1000} sec of Dream Breath from allies they heal, detonating it and healing them for $s6% of the amount consumed.]
 
 Name             : Lifecinders (desc=Red) (id=444322) [Spell Family (224), Passive, Hidden] 
 Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=4, col=4, max_rank=1, req_points=0, select_idx=100]
@@ -100,12 +100,11 @@ Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
                  : 3022
-                 : 6457: Devastation Evoker (1286123 effect#16)
+                 : 6457
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Disable Aura While Dead (226), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1141482)  : Apply Aura (6) | Unknown(183)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 50 | Target: Self (1)
-                   Modified By: Devastation Evoker (1286123 effect#16)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 50 | Target: Self (1)
 #2 (id=1141483)  : None (0)
                    Base Value: 50 | Scaled Value: 50
 Description      : Critical strike chance against targets above $s2% health increased by $s1%.
@@ -123,9 +122,13 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1141486)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Dream Breath (355941), Fire Breath (357209), Dream Breath (376788), Full Belly (377087), Fire Breath (444249)
-                   Family Flags: 21, 35
-Description      : Fire Breath's damage over time is increased by $s1%. Dream Breath's heal over time is increased by $s1%.
+                   Affected Spells: Fire Breath (357209), Full Belly (377087), Fire Breath (444249)
+                   Family Flags: 35
+#2 (id=1339599)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+Description      : Fire Breath's damage over time is increased by $s1%. Dream Breath's heal over time is increased by $s2%.
 
 Name             : Trailblazer (desc=Red) (id=444849) [Spell Family (224), Passive, Hidden] 
 Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=100]
@@ -200,14 +203,13 @@ Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
                  : 3022
-                 : 6458: Devastation Evoker (1286123 effect#17)
+                 : 6458
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Aura While Dead (116), Can Proc From Procs (122), Not In Spellbook (143), Allow Entering Arena (149), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1203322)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
-                   Base Value: -20 | Scaled Value: -20 | Misc Value: 19 | Target: Self (1)
+                   Base Value: -15 | Scaled Value: -15 | Misc Value: 19 | Target: Self (1)
                    Affected Spells: Dream Breath (355941), Fire Breath (357209), Dream Breath (376788), Full Belly (377087), Fire Breath (444249)
                    Family Flags: 21, 35
-                   Modified By: Devastation Evoker (1286123 effect#17)
 Description      : $?c1[Fire Breath deals its damage][Fire Breath and Dream Breath deal their damage and healing] $s1% more often.
 
 Name             : Legacy of the Lifebinder (desc=Red) (id=1264269) [Spell Family (224), Passive, Hidden] 

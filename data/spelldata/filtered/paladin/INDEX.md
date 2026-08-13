@@ -25,6 +25,7 @@ One line per spell record; each lists every file it appears in.
 - **Anger Capacitor (id=348249) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Anger Capacitor (id=71406) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Anger Capacitor (id=71545) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Ardent Defender (id=1310686) [Spell Family (10)]** — `baseline.txt`
 - **Ardent Defender (id=31850) [Spell Family (10)]** — `protection.txt`
 - **Ardent Defender (id=66235) [Spell Family (10)]** — `baseline.txt`
 - **Armory of Light (id=1277443) [Spell Family (10), Passive, Hidden]** — `class-talents.txt`
@@ -103,6 +104,8 @@ One line per spell record; each lists every file it appears in.
 - **Blessed Hammer (id=229976) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Blessed Hammers (id=404139) [Spell Family (10)]** — `baseline.txt`
 - **Blessed Hammers (id=404140) [Spell Family (10)]** — `baseline.txt`
+- **Blessed Word (id=1301732) [Spell Family (10), Passive]** — `protection.txt`
+- **Blessed Word (id=1301739) [Spell Family (10)]** — `baseline.txt`
 - **Blessing of An'she (id=445200) [Spell Family (10), Passive, Hidden]** — `hero-herald-of-the-sun.txt`
 - **Blessing of An'she (id=445206) [Spell Family (10)]** — `baseline.txt`
 - **Blessing of Autumn (desc=Night Fae) (id=328622) [Spell Family (10)]** — `baseline.txt`
@@ -212,10 +215,10 @@ One line per spell record; each lists every file it appears in.
 - **Crusader's Might (id=196926) [Spell Family (10), Passive]** — `holy.txt`
 - **Crusader's Resolve (id=380188) [Spell Family (10), Passive]** — `protection.txt`
 - **Crusader's Resolve (id=383843) [Spell Family (10)]** — `baseline.txt`
+- **Crusading Strikes (id=1307499) [Spell Family (10), Hidden]** — `baseline.txt`
 - **Crusading Strikes (id=404542) [Spell Family (10), Passive]** — `retribution.txt`
 - **Crusading Strikes (id=406834) [Spell Family (10)]** — `baseline.txt`
 - **Crusading Strikes (id=408385) [Spell Family (10)]** — `baseline.txt`
-- **Dash of Chaos (id=427794) [Spell Family (107), Passive, Hidden]** — `havoc.txt`
 - **Dawn Will Come (id=363674) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Dawn Will Come (id=364306) [Spell Family (10)]** — `baseline.txt`
 - **Dawn Will Come (id=364468) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
@@ -233,6 +236,10 @@ One line per spell record; each lists every file it appears in.
 - **Denounce (id=2812) [Spell Family (10)]** — `baseline.txt`
 - **Devotion Aura (id=344218) [Spell Family (10), Hidden]** — `baseline.txt`
 - **Devotion Aura (id=465) [Spell Family (10)]** — `baseline.txt`
+- **Divine Arbiter (id=1306161) [Spell Family (10)]** — `baseline.txt`
+- **Divine Arbiter (id=1306162) [Spell Family (10)]** — `baseline.txt`
+- **Divine Arbiter (id=1306923) [Spell Family (10)]** — `baseline.txt`
+- **Divine Arbiter (id=1310461) [Spell Family (10)]** — `baseline.txt`
 - **Divine Auxiliary (id=406158) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Divine Auxiliary (id=408386) [Spell Family (10)]** — `baseline.txt`
 - **Divine Exaction (id=1260429) [Spell Family (10), Passive]** — `hero-templar.txt`
@@ -240,6 +247,7 @@ One line per spell record; each lists every file it appears in.
 - **Divine Favor (id=210294) [Spell Family (10)]** — `baseline.txt`
 - **Divine Glimpse (id=387805) [Spell Family (10), Passive]** — `holy.txt`
 - **Divine Guidance (id=1228455) [Spell Family (10), Hidden]** — `baseline.txt`
+- **Divine Guidance (id=1310389) [Spell Family (10)]** — `baseline.txt`
 - **Divine Guidance (id=433106) [Spell Family (10), Passive]** — `hero-lightsmith.txt`
 - **Divine Guidance (id=433807) [Spell Family (10)]** — `baseline.txt`
 - **Divine Guidance (id=433808) [Spell Family (10)]** — `baseline.txt`
@@ -255,6 +263,8 @@ One line per spell record; each lists every file it appears in.
 - **Divine Image (id=405963) [Spell Family (6)]** — `baseline.txt`
 - **Divine Inspiration (id=432964) [Spell Family (10), Passive]** — `hero-lightsmith.txt`
 - **Divine Overload (id=1271077) [Spell Family (10), Passive]** — `holy.txt`
+- **Divine Power (id=1305230) [Spell Family (10)]** — `baseline.txt`
+- **Divine Power: Storm (id=1306159) [Spell Family (10)]** — `baseline.txt`
 - **Divine Protection (id=403876) [Spell Family (10)]** — `baseline.txt`
 - **Divine Protection (id=498) [Spell Family (10)]** — `baseline.txt`
 - **Divine Purpose (id=223817) [Spell Family (10), Passive]** — `class-talents.txt`
@@ -749,6 +759,7 @@ One line per spell record; each lists every file it appears in.
 - **Morning Star (id=431539) [Spell Family (10)]** — `baseline.txt`
 - **Morning Star (id=431568) [Spell Family (10), Hidden]** — `baseline.txt`
 - **Nether Protection (id=34518) [Spell Family (10)]** — `baseline.txt`
+- **Never Say Die (id=427794) [Spell Family (107), Passive, Hidden]** — `havoc.txt`
 - **Nick of Time (id=109823) [Spell Family (10), Passive]** — `baseline.txt`
 - **Obduracy (id=385427) [Passive, Hidden]** — `class-talents.txt`
 - **Obsidian Stone Spaulders (id=210992) [Spell Family (10), Passive]** — `baseline.txt`
@@ -773,6 +784,8 @@ One line per spell record; each lists every file it appears in.
 - **Paladin Holy 11.1 Class Set 4pc (id=1215613) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Holy 12.0 Class Set 2pc (id=1264844) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Holy 12.0 Class Set 4pc (id=1264845) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Paladin Holy 12.1 Class Set 2pc (id=1296656) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Paladin Holy 12.1 Class Set 4pc (id=1296657) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Holy Class Set 2pc (id=393670) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Holy Class Set 4pc (id=393672) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Lightsmith 11.2 Class Set 4pc (id=1236390) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
@@ -786,6 +799,8 @@ One line per spell record; each lists every file it appears in.
 - **Paladin Protection 11.1 Class Set 4pc (id=1215989) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Protection 12.0 Class Set 2pc (id=1264846) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Protection 12.0 Class Set 4pc (id=1264847) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Paladin Protection 12.1 Class Set 2pc (id=1296658) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Paladin Protection 12.1 Class Set 4pc (id=1296659) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Protection Class Set 2pc (id=393673) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Protection Class Set 4pc (id=393674) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Retribution 10.1 Class Set 2pc (id=405549) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
@@ -798,6 +813,8 @@ One line per spell record; each lists every file it appears in.
 - **Paladin Retribution 11.1 Class Set 4pc (id=1215709) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Retribution 12.0 Class Set 2pc (id=1264848) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Retribution 12.0 Class Set 4pc (id=1264849) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Paladin Retribution 12.1 Class Set 2pc (id=1296660) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Paladin Retribution 12.1 Class Set 4pc (id=1296661) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Retribution Class Set 2pc (id=393675) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Retribution Class Set 4pc (id=393677) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Paladin Tier 6 Trinket (id=40470) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
@@ -816,6 +833,7 @@ One line per spell record; each lists every file it appears in.
 - **Protection of Tyr (id=200430) [Spell Family (10), Passive]** — `holy.txt`
 - **Protection of Tyr (id=211210) [Spell Family (10)]** — `baseline.txt`
 - **Protection Paladin (id=1256936) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
+- **Protection Paladin (id=1305063) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Protection Paladin (id=137028) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Protection Paladin (id=462095) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
 - **Protector of the Innocent (id=94289) [Spell Family (10)]** — `baseline.txt`
@@ -920,7 +938,7 @@ One line per spell record; each lists every file it appears in.
 - **Sanctified Plates (id=402964) [Spell Family (10), Passive, Hidden]** — `class-talents.txt`
 - **Sanctified Wrath (id=317866) [Spell Family (10), Passive]** — `baseline.txt`
 - **Sanctified Wrath (id=326731) [Spell Family (10)]** — `baseline.txt`
-- **Sanctified Wrath (id=53376) [Spell Family (10), Passive]** — `holy.txt`, `protection.txt`
+- **Sanctified Wrath (id=53376) [Spell Family (10), Passive]** — `holy.txt`
 - **Sanctify (id=382536) [Spell Family (10), Passive, Hidden]** — `retribution.txt`
 - **Sanctify (id=382538) [Spell Family (10)]** — `baseline.txt`
 - **Sanctuary (id=105805) [Spell Family (10), Passive, Hidden]** — `baseline.txt`
@@ -934,6 +952,7 @@ One line per spell record; each lists every file it appears in.
 - **Seal of Charity (id=384810) [Spell Family (10)]** — `baseline.txt`
 - **Seal of Charity (id=384815) [Spell Family (10), Passive]** — `protection.txt`
 - **Seal of Might (id=385450) [Spell Family (10), Passive]** — `class-talents.txt`
+- **Seal of Reprisal (id=1302139) [Spell Family (10)]** — `baseline.txt`
 - **Seal of Reprisal (id=377053) [Spell Family (10), Passive]** — `protection.txt`
 - **Seal of the Templar (id=1263252) [Spell Family (10), Passive]** — `hero-templar.txt`
 - **Sealed Verdict (id=387640) [Spell Family (10), Passive]** — `baseline.txt`
@@ -1073,6 +1092,7 @@ One line per spell record; each lists every file it appears in.
 - **Unrelenting Charger (id=432990) [Spell Family (10), Passive]** — `hero-templar.txt`
 - **Unrelenting Charger (id=442221) [Spell Family (10)]** — `baseline.txt`
 - **Unrelenting Charger (id=442264) [Spell Family (10), Hidden]** — `baseline.txt`
+- **Unrelenting Edict (id=1300662) [Spell Family (10)]** — `baseline.txt`
 - **Unwavering Spirit (id=392911) [Spell Family (10), Passive]** — `holy.txt`
 - **Unworthy (id=414022) [Spell Family (10)]** — `baseline.txt`
 - **Uther's Counsel (id=378425) [Spell Family (10), Passive, Hidden]** — `protection.txt`

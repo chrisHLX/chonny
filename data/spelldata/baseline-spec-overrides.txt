@@ -173,3 +173,17 @@
 122 | mage | arcane | Frost Nova
 122 | mage | fire | Frost Nova
 122 | mage | frost | Frost Nova
+
+# Druid, added 2026-08-13. Barkskin is a core, all-4-spec baseline defensive cooldown
+# (usable in any form), long-standing stable game design since the game's earliest
+# expansions — 20% damage reduction, usable while stunned. Confirmed via its own data:
+# single clean spell_id (22812, no duplicate copies to disambiguate), Class: Druid with no
+# free=(...) restriction, cooldown 60s matches the DB exactly, not passive, not
+# not_in_spellbook, and Blizzard's own Attributes flag it "Important Spell (491)" and "Big
+# Defensive (512)" — same confidence tier as Frost Nova/Hammer of Justice/Anti-Magic Shell
+# above. Same confidence tier as those, not the weaker identity-passive-link signal (not
+# used here as the basis for the claim).
+22812 | druid | balance | Barkskin
+22812 | druid | feral | Barkskin
+22812 | druid | guardian | Barkskin
+22812 | druid | restoration | Barkskin

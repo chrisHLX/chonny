@@ -1,7 +1,7 @@
 {
     "class": "Mage",
     "talent_tree_id": 658,
-    "fetched_at": "2026-08-02T09:04:58+00:00",
+    "fetched_at": "2026-08-12T21:34:12+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -106,7 +106,7 @@
                                 "talent_name": "Ice Nova",
                                 "spell_id": 157997,
                                 "spell_name": "Ice Nova",
-                                "description": "Causes a whirl of icy wind around the enemy, dealing 562 Frost damage to the target and all other enemies within 8 yds, freezing them in place for 2 sec. Damage reduced beyond 8 targets.",
+                                "description": "Causes a whirl of icy wind around the enemy, dealing 570 Frost damage to the target and all other enemies within 8 yds, freezing them in place for 2 sec. Damage reduced beyond 8 targets.",
                                 "cast_time": "Instant",
                                 "cooldown": "25 sec cooldown",
                                 "range": "40 yd range"
@@ -631,7 +631,7 @@
                         "spell_name": "Blazing Barrier",
                         "description": "Shields you in flame, absorbing 9,165 damage for 1 min.\r\n\r\nMelee attacks against you cause the attacker to take 58 Fire damage.",
                         "cast_time": "Instant",
-                        "cooldown": "30 sec cooldown",
+                        "cooldown": null,
                         "range": null
                     }
                 ]
@@ -655,7 +655,7 @@
                         "spell_name": "Prismatic Barrier",
                         "description": "Shields you with an arcane force, absorbing 9,165 damage and reducing magic damage taken by 15% for 1 min.\r\n\r\nThe duration of harmful Magic effects against you is reduced by 25%.",
                         "cast_time": "Instant",
-                        "cooldown": "30 sec cooldown",
+                        "cooldown": null,
                         "range": null
                     }
                 ]
@@ -736,7 +736,7 @@
                         "talent_name": "Mirror Image",
                         "spell_id": 55342,
                         "spell_name": "Mirror Image",
-                        "description": "Creates 3 copies of you nearby for 15 sec, which cast spells and attack your enemies. While active, you generate significantly reduced threat.\r\n\r\nTaking direct damage will cause one of your images to dissipate",
+                        "description": "Creates 3 copies of you nearby for 15 sec, which cast spells and attack your enemies. While active, you generate significantly reduced threat.\r\n\r\nTaking direct damage will cause one of your images to dissipate.",
                         "cast_time": "Instant",
                         "cooldown": "2 min cooldown",
                         "range": null
@@ -808,7 +808,7 @@
                         "talent_name": "Time Manipulation",
                         "spell_id": 387807,
                         "spell_name": "Time Manipulation",
-                        "description": "The cooldown of your loss of control spells are reduced by 5 sec.",
+                        "description": "The cooldowns of your loss of control spells are reduced by 5 sec.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -832,7 +832,7 @@
                         "talent_name": "Greater Invisibility",
                         "spell_id": 110959,
                         "spell_name": "Greater Invisibility",
-                        "description": "Makes you invisible and untargetable for 20 sec, removing all threat. Any action taken cancels this effect.\r\n",
+                        "description": "Makes you invisible and untargetable for 20 sec, removing all threat. Any action taken cancels this effect.",
                         "cast_time": "Instant",
                         "cooldown": "2 min cooldown",
                         "range": null
@@ -906,7 +906,7 @@
                                 "talent_name": "Dragon's Breath",
                                 "spell_id": 31661,
                                 "spell_name": "Dragon's Breath",
-                                "description": "Enemies in a 12 yd cone in front of you take 276 Fire damage and are disoriented for 4 sec. Damage will cancel the effect.",
+                                "description": "Enemies in a 12 yd cone in front of you take 271 Fire damage and are disoriented for 4 sec. Damage will cancel the effect.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": null
@@ -916,7 +916,7 @@
                                 "talent_name": "Supernova",
                                 "spell_id": 157980,
                                 "spell_name": "Supernova",
-                                "description": "Pulses arcane energy around the target enemy or ally, dealing 172 Arcane damage to all enemies within 8 yds, and knocking them upward. A primary enemy target will take 100% increased damage.",
+                                "description": "Pulses arcane energy around the target enemy or ally, dealing 174 Arcane damage to all enemies within 8 yds, and knocking them upward. A primary enemy target will take 100% increased damage.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "40 yd range"
@@ -954,7 +954,7 @@
                                 "talent_name": "Temporal Realignment",
                                 "spell_id": 1244090,
                                 "spell_name": "Temporal Realignment",
-                                "description": "Upon dropping below 25% health, your past self corrects your timeline, casting Alter Time and instantly returning 50% of your maximum health.",
+                                "description": "Upon dropping below 25% health, your past self corrects your timeline, casting Alter Time and instantly returning 20% of your maximum health and healing you for an additional 30% over 6 sec.",
                                 "cast_time": "Passive",
                                 "cooldown": null,
                                 "range": null
@@ -980,7 +980,7 @@
                         "talent_name": "Improved Ice Barrier",
                         "spell_id": 1244069,
                         "spell_name": "Improved Ice Barrier",
-                        "description": "Ice Barrier reduces your physical damage taken by 10% and absorbs an additional 5% of your maximum health.",
+                        "description": "Ice Barrier gains an additional charge and reduces your physical damage taken by 10%.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1004,7 +1004,7 @@
                         "talent_name": "Improved Blazing Barrier",
                         "spell_id": 321708,
                         "spell_name": "Improved Blazing Barrier",
-                        "description": "Blazing Barrier's damage is increased by 200% and it now cauterizes your wounds, healing you for 15% of the damage it absorbs.",
+                        "description": "Blazing Barrier gains an additional charge and cauterizes your wounds, healing you for 15% of the damage it absorbs.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1183,7 +1183,7 @@
                         "talent_name": "Improved Prismatic Barrier",
                         "spell_id": 321745,
                         "spell_name": "Improved Prismatic Barrier",
-                        "description": "Prismatic Barrier further reduces magical damage taken by an additional 10% and duration of harmful Magic effects by 15%.",
+                        "description": "Prismatic Barrier gains an additional charge and further reduces magic damage taken by 5%.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1309,6 +1309,30 @@
                         "range": null
                     }
                 ]
+            },
+            {
+                "id": 110597,
+                "node_type": "PASSIVE",
+                "display_row": 7,
+                "display_col": 4,
+                "raw_position_x": 3900,
+                "raw_position_y": 5100,
+                "locked_by": [],
+                "unlocks": [],
+                "max_ranks": 1,
+                "ranks": [
+                    {
+                        "rank": 1,
+                        "talent_id": 142170,
+                        "talent_name": "Improved Warding",
+                        "spell_id": 1297073,
+                        "spell_name": "Improved Warding",
+                        "description": "Damage taken from area of effect attacks reduced by 4%.",
+                        "cast_time": "Passive",
+                        "cooldown": null,
+                        "range": null
+                    }
+                ]
             }
         ]
     },
@@ -1338,7 +1362,7 @@
                             "talent_name": "Ashes of Inspiration",
                             "spell_id": 1260272,
                             "spell_name": "Ashes of Inspiration",
-                            "description": "When your Arcane Phoenix expires, it grants you Lesser Time Warp for 6 sec.\r\n\r\n Lesser Time Warp\r\nWarp the flow of time, increasing your haste by 15%.",
+                            "description": "Each time your Phoenix casts a spell, gain 1 stack of Mana Cascade.\r\n\r\nExceptional spells grant 1 additional stack.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1409,10 +1433,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 7500,
                     "locked_by": [
+                        109673,
                         94643,
                         94650,
-                        94648,
-                        109673
+                        94648
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -1423,7 +1447,7 @@
                             "talent_name": "Memory of Al'ar",
                             "spell_id": 449619,
                             "spell_name": "Memory of Al'ar",
-                            "description": "During Arcane Surge, you gain twice as many stacks of Mana Cascade.\r\n\r\nWhen your Arcane Phoenix expires, it empowers you, granting Arcane Soul for 4.0 sec.\r\n\r\nArcane Soul:\r\nArcane Barrage grants Clearcasting and generates 4 Arcane Charges.\r\n\r\nEach cast of Arcane Barrage grants 5 stacks of Arcane Salvo and casting Arcane Barrage does not consume Arcane Salvo.",
+                            "description": "When your Arcane Phoenix expires it empowers you, granting Arcane Soul for 4.0 sec.\r\n\r\nArcane Soul:\r\nArcane Barrage grants Clearcasting and generates 4 Arcane Charges.\r\n\r\nEach cast of Arcane Barrage grants 5 stacks of Arcane Salvo and casting Arcane Barrage does not consume Arcane Salvo.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1439,10 +1463,10 @@
                     "raw_position_y": 5100,
                     "locked_by": [],
                     "unlocks": [
+                        109675,
                         94652,
                         94644,
-                        94653,
-                        109675
+                        94653
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -1452,7 +1476,7 @@
                             "talent_name": "Spellfire Spheres",
                             "spell_id": 448601,
                             "spell_name": "Spellfire Spheres",
-                            "description": "Casting a damaging spell has a 12% chance to conjure a Spellfire Sphere.\r\n\r\nWhile you're out of combat, you will slowly conjure Spellfire Spheres over time.\r\n\r\n Spellfire Sphere\r\nIncreases your spell damage by 1.0%. Stacks up to 3 times.",
+                            "description": "Casting a damaging spell has a 6% chance to conjure a Spellfire Sphere.\r\n\r\nWhile you're out of combat, you will slowly conjure Spellfire Spheres over time.\r\n\r\n Spellfire Sphere\r\nIncreases your spell damage by 1.0%. Stacks up to 3 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1480,7 +1504,7 @@
                             "talent_name": "Rondurmancy",
                             "spell_id": 449596,
                             "spell_name": "Rondurmancy",
-                            "description": "Spellfire Spheres can now stack up to 5 times.",
+                            "description": "Your chance to generate a Spellfire Sphere is increased by 6%.\r\n\r\nSpellfire Spheres grant an additional 1% spell damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1510,7 +1534,7 @@
                                     "talent_name": "Merely a Setback",
                                     "spell_id": 449330,
                                     "spell_name": "Merely a Setback",
-                                    "description": "The bonuses provided by your Barrier spells persist an additional 8 sec after your Barrier is removed.",
+                                    "description": "The bonuses provided by your Barrier spells persist at 100% effectiveness for an additional 8 sec after your Barrier is removed.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1552,7 +1576,7 @@
                                     "talent_name": "Savor the Moment",
                                     "spell_id": 449412,
                                     "spell_name": "Savor the Moment",
-                                    "description": "When you cast Arcane Surge, its duration is extended by 0.4 sec for each Spellfire Sphere you have, up to 2.0 sec.",
+                                    "description": "When you cast Arcane Surge, its duration is extended by 0.8 sec for each Spellfire Sphere you have, up to 2.4 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1604,7 +1628,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 227 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 224 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1662,7 +1686,7 @@
                             "talent_name": "Mana Cascade",
                             "spell_id": 449293,
                             "spell_name": "Mana Cascade",
-                            "description": "Casting Arcane Blast or Arcane Barrage grants you 0.5% Haste for 10 sec. Stacks up to 10 times. Multiple instances may overlap.",
+                            "description": "Casting Arcane Blast, Arcane Pulse, Arcane Barrage, or Prismatic Bolt grants you 0.5% Haste for 6 sec. Multiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1746,7 +1770,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 6 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 414 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 415 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1767,10 +1791,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        94655,
+                        109667,
                         94658,
                         94657,
-                        109667
+                        94655
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -1809,7 +1833,7 @@
                             "talent_name": "Spellfrost Teachings",
                             "spell_id": 444986,
                             "spell_name": "Spellfrost Teachings",
-                            "description": "Direct damage from Arcane Splinters reduces the cooldown of Arcane Orb by 0.25 sec.",
+                            "description": "Direct damage from Arcane Splinters reduces the cooldown of Arcane Orb by 0.30 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1965,7 +1989,7 @@
                                     "talent_name": "Reactive Barrier",
                                     "spell_id": 444827,
                                     "spell_name": "Reactive Barrier",
-                                    "description": "Your Prismatic Barrier can absorb up to 25% more damage based on your missing Health.\r\n\r\nMax effectiveness when under 25% health.",
+                                    "description": "Your Prismatic Barrier can absorb up to 25% more damage based on your missing health.\r\n\r\nMax effectiveness when under 25% health.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1975,7 +1999,7 @@
                                     "talent_name": "Phantasmal Image",
                                     "spell_id": 444784,
                                     "spell_name": "Phantasmal Image",
-                                    "description": "Your Mirror Image summons 1 extra clone.",
+                                    "description": "Your Mirror Image summons 1 extra copy of you.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2005,7 +2029,7 @@
                             "talent_name": "Splintering Orbs",
                             "spell_id": 444256,
                             "spell_name": "Splintering Orbs",
-                            "description": "Enemies damaged by your Arcane Orb conjure 2 Arcane Splinters, up to 4.\r\n\r\nArcane Orb damage is increased by 10%.",
+                            "description": "Enemies damaged by your Arcane Orb conjure 2 Arcane Splinters, up to 4.\r\n\r\nArcane Orb damage is increased by 50%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2077,10 +2101,10 @@
                     "raw_position_y": 2100,
                     "locked_by": [],
                     "unlocks": [
+                        109669,
                         94663,
                         94661,
-                        94662,
-                        109669
+                        94662
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -2118,7 +2142,7 @@
                             "talent_name": "Polished Focus",
                             "spell_id": 1261082,
                             "spell_name": "Polished Focus",
-                            "description": "Casting Arcane Barrage while at 20 or more Arcane Salvo stacks refunds 5 Arcane Salvo stacks.\r\n\r\nArcane Barrage damage increased by 15%.",
+                            "description": "Casting Arcane Barrage while at 20 or more Arcane Salvo stacks refunds 3 Arcane Salvo stacks.\r\n\r\nArcane Barrage damage increased by 15%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2308,10 +2332,10 @@
                     "raw_position_x": 15000,
                     "raw_position_y": 3900,
                     "locked_by": [
+                        109670,
                         94632,
                         94639,
-                        94637,
-                        109670
+                        94637
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -2322,7 +2346,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,669 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,689 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,632 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,759 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2338,10 +2362,10 @@
                     "raw_position_y": 1500,
                     "locked_by": [],
                     "unlocks": [
+                        109672,
                         94633,
                         94641,
-                        94642,
-                        109672
+                        94642
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -2351,7 +2375,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,058 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,079 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2521,8 +2545,8 @@
                     "raw_position_x": 14100,
                     "raw_position_y": 2100,
                     "locked_by": [
-                        94636,
-                        109956
+                        109956,
+                        94636
                     ],
                     "unlocks": [
                         94638
@@ -2620,8 +2644,8 @@
                     "raw_position_x": 15900,
                     "raw_position_y": 2100,
                     "locked_by": [
-                        109956,
-                        94636
+                        94636,
+                        109956
                     ],
                     "unlocks": [
                         109671
@@ -2634,7 +2658,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,573 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,553 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2663,7 +2687,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,063 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,074 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2697,7 +2721,7 @@
                             "talent_name": "Ice Lance",
                             "spell_id": 30455,
                             "spell_name": "Ice Lance",
-                            "description": "Quickly fling a shard of ice at the target, dealing 755 Frost damage.\r\n\r\nShatters 4 stacks of Freezing.",
+                            "description": "Quickly fling a shard of ice at the target, dealing 750 Frost damage.\r\n\r\nShatters 4 stacks of Freezing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2713,10 +2737,10 @@
                     "raw_position_y": 1500,
                     "locked_by": [],
                     "unlocks": [
+                        109672,
                         94633,
                         94641,
-                        94642,
-                        109672
+                        94642
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -2726,7 +2750,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,053 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,059 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2742,10 +2766,10 @@
                     "raw_position_y": 2100,
                     "locked_by": [],
                     "unlocks": [
+                        109669,
                         94663,
                         94661,
-                        94662,
-                        109669
+                        94662
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -2785,7 +2809,7 @@
                                     "talent_name": "Blizzard",
                                     "spell_id": 190356,
                                     "spell_name": "Blizzard",
-                                    "description": "Ice shards pelt the target area, dealing 1,465 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at a selected location",
+                                    "description": "Ice shards pelt the target area, dealing 1,453 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at a selected location",
                                     "cast_time": "2 sec cast",
                                     "cooldown": "12 sec cooldown",
                                     "range": "40 yd range"
@@ -2795,7 +2819,7 @@
                                     "talent_name": "Blizzard",
                                     "spell_id": 1248829,
                                     "spell_name": "Blizzard",
-                                    "description": "Ice shards pelt the target area, dealing 1,485 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Ice shards pelt the target area, dealing 1,483 Frost damage over 10.7 sec and reducing movement speed by 50% for 3 sec.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "2 sec cast",
                                     "cooldown": "12 sec cooldown",
                                     "range": "40 yd range"
@@ -2840,8 +2864,8 @@
                     "raw_position_x": 14100,
                     "raw_position_y": 2100,
                     "locked_by": [
-                        94636,
-                        109956
+                        109956,
+                        94636
                     ],
                     "unlocks": [
                         94638
@@ -2955,8 +2979,8 @@
                     "raw_position_x": 15900,
                     "raw_position_y": 2100,
                     "locked_by": [
-                        109956,
-                        94636
+                        94636,
+                        109956
                     ],
                     "unlocks": [
                         109671
@@ -2969,7 +2993,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,619 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,601 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3053,7 +3077,7 @@
                             "talent_name": "Splintering Orbs",
                             "spell_id": 444256,
                             "spell_name": "Splintering Orbs",
-                            "description": "Enemies damaged by your Arcane Orb conjure 2 Arcane Splinters, up to 4.\r\n\r\nArcane Orb damage is increased by 10%.",
+                            "description": "Enemies damaged by your Arcane Orb conjure 2 Arcane Splinters, up to 4.\r\n\r\nArcane Orb damage is increased by 50%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3153,7 +3177,7 @@
                             "talent_name": "Icicles",
                             "spell_id": 1246832,
                             "spell_name": "Icicles",
-                            "description": "While in combat, Frost crystallizes around you, generating an Icicle every 5.4 sec. Upon generating 5 Icicles, Frostbolt upgrades to Glacial Spike for its next cast.\r\n\r\n Glacial Spike\r\nConjures a massive spike of ice that impales your target, dealing 5,325 damage and slowing the target's movement speed by 50% for 8 sec.\r\n\r\nApplies 3 stacks of Freezing.",
+                            "description": "While in combat, Frost crystallizes around you, generating an Icicle every 5.4 sec. Upon generating 5 Icicles, Frostbolt upgrades to Glacial Spike for its next cast.\r\n\r\n Glacial Spike\r\nConjures a massive spike of ice that impales your target, dealing 5,310 damage and slowing the target's movement speed by 50% for 8 sec.\r\n\r\nApplies 3 stacks of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3379,7 +3403,7 @@
                                     "talent_name": "Reactive Barrier",
                                     "spell_id": 444827,
                                     "spell_name": "Reactive Barrier",
-                                    "description": "Your Prismatic Barrier can absorb up to 25% more damage based on your missing Health.\r\n\r\nMax effectiveness when under 25% health.",
+                                    "description": "Your Prismatic Barrier can absorb up to 25% more damage based on your missing health.\r\n\r\nMax effectiveness when under 25% health.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3389,7 +3413,7 @@
                                     "talent_name": "Phantasmal Image",
                                     "spell_id": 444784,
                                     "spell_name": "Phantasmal Image",
-                                    "description": "Your Mirror Image summons 1 extra clone.",
+                                    "description": "Your Mirror Image summons 1 extra copy of you.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3448,7 +3472,7 @@
                             "talent_name": "Flurry",
                             "spell_id": 44614,
                             "spell_name": "Flurry",
-                            "description": "Unleash a flurry of ice, striking the target 3 times for a total of 1,616 Frost damage.\r\n\r\nApplies 3 stacks of Freezing.",
+                            "description": "Unleash a flurry of ice, striking the target 3 times for a total of 1,560 Frost damage.\r\n\r\nApplies 3 stacks of Freezing.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -3489,7 +3513,7 @@
                                     "talent_name": "Glacial Bulwark",
                                     "spell_id": 1244110,
                                     "spell_name": "Glacial Bulwark",
-                                    "description": "Ice Block and Ice Barrier now have an additional charge.",
+                                    "description": "Ice Block now has an additional charge and its cooldown is reduced by 30 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3520,7 +3544,7 @@
                             "talent_name": "Frozen Orb",
                             "spell_id": 84714,
                             "spell_name": "Frozen Orb",
-                            "description": "Launches an orb of swirling ice in front of you, dealing up to 5,524 Frost damage to all enemies it passes through over 15 sec. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by the Frozen Orb are slowed by 50% for 8 sec.",
+                            "description": "Launches an orb of swirling ice in front of you, dealing up to 5,545 Frost damage to all enemies it passes through over 15 sec. After a short delay, Frozen Orb will pursue its target. Deals reduced damage beyond 8 targets.\r\n\r\nEnemies damaged by the Frozen Orb are slowed by 50% for 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "40 yd range"
@@ -3716,7 +3740,7 @@
                             "talent_name": "Spellfrost Teachings",
                             "spell_id": 444986,
                             "spell_name": "Spellfrost Teachings",
-                            "description": "Direct damage from Arcane Splinters reduces the cooldown of Arcane Orb by 0.25 sec.",
+                            "description": "Direct damage from Arcane Splinters reduces the cooldown of Arcane Orb by 0.30 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3744,7 +3768,7 @@
                             "talent_name": "Polished Focus",
                             "spell_id": 1261082,
                             "spell_name": "Polished Focus",
-                            "description": "Casting Arcane Barrage while at 20 or more Arcane Salvo stacks refunds 5 Arcane Salvo stacks.\r\n\r\nArcane Barrage damage increased by 15%.",
+                            "description": "Casting Arcane Barrage while at 20 or more Arcane Salvo stacks refunds 3 Arcane Salvo stacks.\r\n\r\nArcane Barrage damage increased by 15%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3905,10 +3929,10 @@
                     "raw_position_x": 15000,
                     "raw_position_y": 3900,
                     "locked_by": [
+                        109670,
                         94632,
                         94639,
-                        94637,
-                        109670
+                        94637
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -3919,7 +3943,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,689 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,727 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,626 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,646 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3934,10 +3958,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        94655,
+                        109667,
                         94658,
                         94657,
-                        109667
+                        94655
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -4005,7 +4029,7 @@
                             "talent_name": "Splitting Ice",
                             "spell_id": 56377,
                             "spell_name": "Splitting Ice",
-                            "description": "Your Flurry and Frostbolt spells strike 1 additional target at 80% effectiveness.",
+                            "description": "Your Flurry and Frostbolt spells strike 1 additional target at 50% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4195,7 +4219,7 @@
                             "talent_name": "Fractured Frost",
                             "spell_id": 378448,
                             "spell_name": "Fractured Frost",
-                            "description": "Ice Lance strikes 1 additional target at 100% effectiveness, preferring enemies with more stacks of Freezing.",
+                            "description": "Ice Lance strikes 1 additional target at 50% effectiveness, preferring enemies with more stacks of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4391,9 +4415,9 @@
                         110258
                     ],
                     "unlocks": [
+                        108863,
                         108857,
-                        108850,
-                        108863
+                        108850
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -4722,7 +4746,7 @@
                             "talent_name": "Comet Storm",
                             "spell_id": 1247777,
                             "spell_name": "Comet Storm",
-                            "description": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 2,475 Frost damage to all enemies within 8 yds of its impacts.\r\n\r\nEach Comet Shatters 1 stack of Freezing.",
+                            "description": "Casting Ray of Frost replaces your Ray of Frost with Comet Storm, calling down a series of 7 icy comets on and around the target, that deals up to 2,484 Frost damage to all enemies within 8 yds of its impacts.\r\n\r\nEach Comet Shatters 1 stack of Freezing.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4746,7 +4770,7 @@
                             "talent_name": "Hand of Frost",
                             "spell_id": 1262935,
                             "spell_name": "Hand of Frost",
-                            "description": "Shattering an enemy has a 10% chance to summon a Hand of Frost to pursue your target, dealing 1,966 Frost damage and applying 1 stack of Freezing on contact.",
+                            "description": "Shattering an enemy has a 10% chance to summon a Hand of Frost to pursue your target, dealing 2,281 Frost damage and applying 1 stack of Freezing on contact.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4772,9 +4796,9 @@
                     "raw_position_y": 1500,
                     "locked_by": [],
                     "unlocks": [
-                        110321,
                         109409,
-                        100989
+                        100989,
+                        110321
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4784,7 +4808,7 @@
                             "talent_name": "Pyroblast",
                             "spell_id": 11366,
                             "spell_name": "Pyroblast",
-                            "description": "Hurls an immense fiery boulder that causes 2,430 Fire damage.",
+                            "description": "Hurls an immense fiery boulder that causes 2,624 Fire damage.",
                             "cast_time": "4 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4813,7 +4837,7 @@
                             "talent_name": "Frostfire Bolt",
                             "spell_id": 431044,
                             "spell_name": "Frostfire Bolt",
-                            "description": "Launches a bolt of frostfire at the enemy, causing 1,079 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
+                            "description": "Launches a bolt of frostfire at the enemy, causing 1,061 Frostfire damage, slowing movement speed by 50%, and causing an additional 99 Frostfire damage over 8 sec.",
                             "cast_time": "1.8 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4831,8 +4855,8 @@
                         100998
                     ],
                     "unlocks": [
-                        100995,
-                        109407
+                        109407,
+                        100995
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4842,7 +4866,7 @@
                             "talent_name": "Fire Blast",
                             "spell_id": 108853,
                             "spell_name": "Fire Blast",
-                            "description": "Blasts the enemy, critically striking for 809 Fire damage.\r\n\r\nCastable while casting other spells.",
+                            "description": "Blasts the enemy, critically striking for 802 Fire damage.\r\n\r\nCastable while casting other spells.",
                             "cast_time": "Instant",
                             "cooldown": "0.5 sec cooldown",
                             "range": "40 yd range"
@@ -4886,8 +4910,8 @@
                         100998
                     ],
                     "unlocks": [
-                        100995,
-                        109406
+                        109406,
+                        100995
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4899,7 +4923,7 @@
                                     "talent_name": "Flamestrike",
                                     "spell_id": 2120,
                                     "spell_name": "Flamestrike",
-                                    "description": "Calls down a pillar of fire, burning all enemies within the area for 1,222 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at a selected location.",
+                                    "description": "Calls down a pillar of fire, burning all enemies within the area for 1,418 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at a selected location.",
                                     "cast_time": "3.5 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -4909,7 +4933,7 @@
                                     "talent_name": "Flamestrike",
                                     "spell_id": 1254851,
                                     "spell_name": "Flamestrike",
-                                    "description": "Calls down a pillar of fire on your target, burning all enemies within the area for 1,244 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at your target.",
+                                    "description": "Calls down a pillar of fire on your target, burning all enemies within the area for 1,410 Fire damage. Deals reduced damage beyond 8 targets.\r\n\r\nThis spell is cast at your target.",
                                     "cast_time": "3.5 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -4926,8 +4950,8 @@
                     "raw_position_x": 14100,
                     "raw_position_y": 2100,
                     "locked_by": [
-                        94636,
-                        109956
+                        109956,
+                        94636
                     ],
                     "unlocks": [
                         94638
@@ -5041,8 +5065,8 @@
                     "raw_position_x": 15900,
                     "raw_position_y": 2100,
                     "locked_by": [
-                        109956,
-                        94636
+                        94636,
+                        109956
                     ],
                     "unlocks": [
                         109671
@@ -5055,7 +5079,7 @@
                             "talent_name": "Duality",
                             "spell_id": 1262843,
                             "spell_name": "Duality",
-                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,608 Fire damage.",
+                            "description": "Casting Glacial Spike also casts a Pyroblast, dealing 3,657 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5354,7 +5378,7 @@
                             "talent_name": "Meteor",
                             "spell_id": 153561,
                             "spell_name": "Meteor",
-                            "description": "Calls down a meteor which lands at the target location after 3 sec, dealing 3,712 Fire damage to all enemies, and burns the ground, dealing 1,707 Fire damage over 4 sec to all enemies in the area.\r\n\r\nDamage reduced beyond 8 targets.",
+                            "description": "Calls down a meteor which lands at the target location after 3 sec, dealing 3,696 Fire damage to all enemies, and burns the ground, dealing 1,707 Fire damage over 4 sec to all enemies in the area.\r\n\r\nDamage reduced beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "40 yd range"
@@ -5495,7 +5519,7 @@
                             "talent_name": "Scorch",
                             "spell_id": 2948,
                             "spell_name": "Scorch",
-                            "description": "Scorches an enemy for 410 Fire damage.\r\n\r\nWhen cast on a target below 30% health, Scorch is a guaranteed critical strike.\r\n\r\nCastable while moving.",
+                            "description": "Scorches an enemy for 419 Fire damage.\r\n\r\nWhen cast on a target below 30% health, Scorch is a guaranteed critical strike.\r\n\r\nCastable while moving.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5572,8 +5596,8 @@
                         101021
                     ],
                     "unlocks": [
-                        109399,
-                        109401
+                        109401,
+                        109399
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -5638,10 +5662,10 @@
                     "raw_position_x": 15000,
                     "raw_position_y": 3900,
                     "locked_by": [
+                        109670,
                         94632,
                         94639,
-                        94637,
-                        109670
+                        94637
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -5652,7 +5676,7 @@
                             "talent_name": "Isothermic Core",
                             "spell_id": 431095,
                             "spell_name": "Isothermic Core",
-                            "description": "Meteor now also calls down a Comet Storm, dealing 2,616 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,677 Fire damage to nearby enemies.",
+                            "description": "Meteor now also calls down a Comet Storm, dealing 2,660 Frost damage to nearby enemies.\r\n\r\nComet Storm now also calls down a Meteor, dealing 3,703 Fire damage to nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5699,9 +5723,9 @@
                         110322
                     ],
                     "unlocks": [
+                        109412,
                         109402,
-                        110087,
-                        109412
+                        110087
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5726,9 +5750,9 @@
                     "raw_position_x": 12300,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        101024,
                         101029,
-                        101009
+                        101009,
+                        101024
                     ],
                     "unlocks": [
                         109412
@@ -5816,10 +5840,10 @@
                     "raw_position_y": 5100,
                     "locked_by": [],
                     "unlocks": [
+                        109675,
                         94652,
                         94644,
-                        94653,
-                        109675
+                        94653
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5829,7 +5853,7 @@
                             "talent_name": "Spellfire Spheres",
                             "spell_id": 448601,
                             "spell_name": "Spellfire Spheres",
-                            "description": "Casting a damaging spell has a 12% chance to conjure a Spellfire Sphere.\r\n\r\nWhile you're out of combat, you will slowly conjure Spellfire Spheres over time.\r\n\r\n Spellfire Sphere\r\nIncreases your spell damage by 1.0%. Stacks up to 3 times.",
+                            "description": "Casting a damaging spell has a 6% chance to conjure a Spellfire Sphere.\r\n\r\nWhile you're out of combat, you will slowly conjure Spellfire Spheres over time.\r\n\r\n Spellfire Sphere\r\nIncreases your spell damage by 1.0%. Stacks up to 3 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5858,7 +5882,7 @@
                             "talent_name": "Conflagration",
                             "spell_id": 1271171,
                             "spell_name": "Conflagration",
-                            "description": "Fire Blast deals 165 additional Fire damage to up to 8 nearby enemies.",
+                            "description": "Fire Blast deals 162 additional Fire damage to up to 8 nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5876,8 +5900,8 @@
                         109408
                     ],
                     "unlocks": [
-                        109404,
-                        101019
+                        101019,
+                        109404
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5957,7 +5981,7 @@
                             "talent_name": "Molten Fury",
                             "spell_id": 457803,
                             "spell_name": "Molten Fury",
-                            "description": "Damage dealt to targets below 30% health is increased by 15%.",
+                            "description": "Damage dealt to targets below 35% health is increased by 15%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6014,7 +6038,7 @@
                             "talent_name": "Mana Cascade",
                             "spell_id": 449293,
                             "spell_name": "Mana Cascade",
-                            "description": "Casting Arcane Blast or Arcane Barrage grants you 0.5% Haste for 10 sec. Stacks up to 10 times. Multiple instances may overlap.",
+                            "description": "Casting Arcane Blast, Arcane Pulse, Arcane Barrage, or Prismatic Bolt grants you 0.5% Haste for 6 sec. Multiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6098,7 +6122,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 6 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 416 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 415 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6154,14 +6178,14 @@
                     "raw_position_x": 12300,
                     "raw_position_y": 5700,
                     "locked_by": [
+                        109402,
                         109398,
-                        109412,
-                        109402
+                        109412
                     ],
                     "unlocks": [
+                        109396,
                         109394,
-                        109393,
-                        109396
+                        109393
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -6253,7 +6277,7 @@
                                     "talent_name": "Merely a Setback",
                                     "spell_id": 449330,
                                     "spell_name": "Merely a Setback",
-                                    "description": "The bonuses provided by your Barrier spells persist an additional 8 sec after your Barrier is removed.",
+                                    "description": "The bonuses provided by your Barrier spells persist at 100% effectiveness for an additional 8 sec after your Barrier is removed.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6333,7 +6357,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 227 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 224 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6468,8 +6492,8 @@
                         101004
                     ],
                     "unlocks": [
-                        101007,
-                        101015
+                        101015,
+                        101007
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6537,7 +6561,7 @@
                                     "talent_name": "Savor the Moment",
                                     "spell_id": 449412,
                                     "spell_name": "Savor the Moment",
-                                    "description": "When you cast Arcane Surge, its duration is extended by 0.4 sec for each Spellfire Sphere you have, up to 2.0 sec.",
+                                    "description": "When you cast Arcane Surge, its duration is extended by 0.8 sec for each Spellfire Sphere you have, up to 2.4 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6577,7 +6601,7 @@
                             "talent_name": "Ashes of Inspiration",
                             "spell_id": 1260272,
                             "spell_name": "Ashes of Inspiration",
-                            "description": "When your Arcane Phoenix expires, it grants you Lesser Time Warp for 6 sec.\r\n\r\n Lesser Time Warp\r\nWarp the flow of time, increasing your haste by 15%.",
+                            "description": "Each time your Phoenix casts a spell, gain 1 stack of Mana Cascade.\r\n\r\nExceptional spells grant 1 additional stack.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6605,7 +6629,7 @@
                             "talent_name": "Rondurmancy",
                             "spell_id": 449596,
                             "spell_name": "Rondurmancy",
-                            "description": "Spellfire Spheres can now stack up to 5 times.",
+                            "description": "Your chance to generate a Spellfire Sphere is increased by 6%.\r\n\r\nSpellfire Spheres grant an additional 1% spell damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6700,9 +6724,9 @@
                     "raw_position_x": 12300,
                     "raw_position_y": 6900,
                     "locked_by": [
+                        109396,
                         109394,
-                        109393,
-                        109396
+                        109393
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6753,7 +6777,7 @@
                             "talent_name": "Pyroclasm",
                             "spell_id": 269650,
                             "spell_name": "Pyroclasm",
-                            "description": "Consuming Hot Streak has a 15% chance to make your next non-instant Pyroblast or Flamestrike cast within 15 sec deal 230% additional damage.\r\n\r\nMaximum 2 stacks.",
+                            "description": "Consuming Hot Streak has a 15% chance to make your next non-instant Pyroblast or Flamestrike cast within 20 sec deal 230% additional damage.\r\n\r\nMaximum 2 stacks.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6779,7 +6803,7 @@
                             "talent_name": "Cinderstorm",
                             "spell_id": 1254865,
                             "spell_name": "Cinderstorm",
-                            "description": "Casting Pyroblast or Flamestrike has a 8% chance to summon a storm of 5 cinders that pursue your target. Upon reaching your target, each cinder deals 796 Fire damage, applies Ignite at 100% effectiveness, and spreads 50% of your Ignite to up to 1 nearby target.",
+                            "description": "Casting Pyroblast or Flamestrike has a 8% chance to summon a storm of 5 cinders that pursue your target. Upon reaching your target, each cinder deals 774 Fire damage, applies Ignite at 100% effectiveness, and spreads 50% of your Ignite to up to 1 nearby target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6794,10 +6818,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 7500,
                     "locked_by": [
+                        109673,
                         94643,
                         94650,
-                        94648,
-                        109673
+                        94648
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6808,7 +6832,7 @@
                             "talent_name": "Memory of Al'ar",
                             "spell_id": 449619,
                             "spell_name": "Memory of Al'ar",
-                            "description": "During Arcane Surge, you gain twice as many stacks of Mana Cascade.\r\n\r\nWhen your Arcane Phoenix expires, it empowers you, granting Arcane Soul for 4.0 sec.\r\n\r\nArcane Soul:\r\nArcane Barrage grants Clearcasting and generates 4 Arcane Charges.\r\n\r\nEach cast of Arcane Barrage grants 5 stacks of Arcane Salvo and casting Arcane Barrage does not consume Arcane Salvo.",
+                            "description": "When your Arcane Phoenix expires it empowers you, granting Arcane Soul for 4.0 sec.\r\n\r\nArcane Soul:\r\nArcane Barrage grants Clearcasting and generates 4 Arcane Charges.\r\n\r\nEach cast of Arcane Barrage grants 5 stacks of Arcane Salvo and casting Arcane Barrage does not consume Arcane Salvo.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6832,7 +6856,7 @@
                             "talent_name": "Fired Up",
                             "spell_id": 1257343,
                             "spell_name": "Fired Up",
-                            "description": "Consuming Hot Streak has a 20% chance to grant you a stack of Fired Up, increasing your Fire damage by 4% for 12 sec. Multiple applications may overlap.",
+                            "description": "Consuming Hot Streak has a 20% chance to grant you a stack of Fired Up, increasing your Fire damage by 2% for 8 sec. Multiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6869,7 +6893,7 @@
                             "talent_name": "Arcane Missiles",
                             "spell_id": 5143,
                             "spell_name": "Arcane Missiles",
-                            "description": "Requires Clearcasting\r\nLaunches 5 waves of Arcane Missiles at the enemy over 2.2 sec, causing a total of 2,141 Arcane damage.",
+                            "description": "Requires Clearcasting\r\nLaunches 5 waves of Arcane Missiles at the enemy over 2.2 sec, causing a total of 2,203 Arcane damage.",
                             "cast_time": "Channeled",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6885,10 +6909,10 @@
                     "raw_position_y": 2100,
                     "locked_by": [],
                     "unlocks": [
+                        109669,
                         94663,
                         94661,
-                        94662,
-                        109669
+                        94662
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6916,7 +6940,7 @@
                         102467
                     ],
                     "unlocks": [
-                        102473,
+                        110850,
                         102445
                     ],
                     "max_ranks": 1,
@@ -6945,8 +6969,8 @@
                         102467
                     ],
                     "unlocks": [
-                        102471,
-                        102445
+                        110850,
+                        102471
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7040,7 +7064,7 @@
                             "talent_name": "Splintering Orbs",
                             "spell_id": 444256,
                             "spell_name": "Splintering Orbs",
-                            "description": "Enemies damaged by your Arcane Orb conjure 2 Arcane Splinters, up to 4.\r\n\r\nArcane Orb damage is increased by 10%.",
+                            "description": "Enemies damaged by your Arcane Orb conjure 2 Arcane Splinters, up to 4.\r\n\r\nArcane Orb damage is increased by 50%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7090,7 +7114,7 @@
                     ]
                 },
                 {
-                    "id": 102473,
+                    "id": 102445,
                     "node_type": "PASSIVE",
                     "display_row": 3,
                     "display_col": 16,
@@ -7106,11 +7130,11 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 131369,
-                            "talent_name": "Amplification",
-                            "spell_id": 236628,
-                            "spell_name": "Amplification",
-                            "description": "Arcane Missiles fires 2 additional missiles.",
+                            "talent_id": 131341,
+                            "talent_name": "Improved Clearcasting",
+                            "spell_id": 321420,
+                            "spell_name": "Improved Clearcasting",
+                            "description": "Clearcasting can stack up to 2 additional times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7118,15 +7142,15 @@
                     ]
                 },
                 {
-                    "id": 102445,
+                    "id": 110850,
                     "node_type": "PASSIVE",
                     "display_row": 3,
                     "display_col": 18,
                     "raw_position_x": 12300,
                     "raw_position_y": 2700,
                     "locked_by": [
-                        108538,
-                        108539
+                        108539,
+                        108538
                     ],
                     "unlocks": [
                         102449
@@ -7135,11 +7159,11 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 131341,
-                            "talent_name": "Improved Clearcasting",
-                            "spell_id": 321420,
-                            "spell_name": "Improved Clearcasting",
-                            "description": "Clearcasting can stack up to 2 additional times.",
+                            "talent_id": 142596,
+                            "talent_name": "Refractive Images",
+                            "spell_id": 1309497,
+                            "spell_name": "Refractive Images",
+                            "description": "10% of damage you would take is instead dealt over 8 sec. Casting Mirror Image increases this effect to 30% for 15 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7267,7 +7291,7 @@
                                     "talent_name": "Reactive Barrier",
                                     "spell_id": 444827,
                                     "spell_name": "Reactive Barrier",
-                                    "description": "Your Prismatic Barrier can absorb up to 25% more damage based on your missing Health.\r\n\r\nMax effectiveness when under 25% health.",
+                                    "description": "Your Prismatic Barrier can absorb up to 25% more damage based on your missing health.\r\n\r\nMax effectiveness when under 25% health.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7277,7 +7301,7 @@
                                     "talent_name": "Phantasmal Image",
                                     "spell_id": 444784,
                                     "spell_name": "Phantasmal Image",
-                                    "description": "Your Mirror Image summons 1 extra clone.",
+                                    "description": "Your Mirror Image summons 1 extra copy of you.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7322,11 +7346,11 @@
                     "raw_position_x": 11100,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        102473
+                        102445
                     ],
                     "unlocks": [
-                        102460,
-                        102462
+                        102462,
+                        102460
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7336,9 +7360,9 @@
                             "talent_name": "Arcane Pulse",
                             "spell_id": 1241462,
                             "spell_name": "Arcane Pulse",
-                            "description": "A pulse of Arcane magic erupts from underneath your target, dealing 375 Arcane damage to all enemies within 2 yds. Damage reduced beyond 5 targets.\r\n\r\nEach Arcane Charge increases damage by 84%, radius by 2 yds, and mana cost by 100%.\r\n\r\nGenerates 1 Arcane Charge.",
-                            "cast_time": "2.3 sec cast",
-                            "cooldown": null,
+                            "description": "A pulse of Arcane magic erupts from underneath your target, dealing 2,448 Arcane damage to all enemies within 8 yds. Damage reduced beyond 5 targets.\r\n\r\nGenerates 1 Arcane Charge for each enemy struck.",
+                            "cast_time": "2 sec cast",
+                            "cooldown": "15 sec cooldown",
                             "range": "40 yd range"
                         }
                     ]
@@ -7351,12 +7375,12 @@
                     "raw_position_x": 12300,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        102445
+                        110850
                     ],
                     "unlocks": [
-                        102440,
                         102469,
-                        102460
+                        102460,
+                        102440
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7384,8 +7408,8 @@
                         102471
                     ],
                     "unlocks": [
-                        102469,
-                        102475
+                        102475,
+                        102469
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7395,7 +7419,7 @@
                             "talent_name": "Arcane Orb",
                             "spell_id": 153626,
                             "spell_name": "Arcane Orb",
-                            "description": "Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing 1,220 Arcane damage to enemies it passes through.\r\n\r\nGrants 1 Arcane Charge when cast and every time it deals damage.",
+                            "description": "Launches an Arcane Orb forward from your position, traveling up to 40 yds, dealing 1,221 Arcane damage to enemies it passes through.\r\n\r\nGrants 1 Arcane Charge when cast and every time it deals damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7479,7 +7503,7 @@
                             "talent_name": "Spellfrost Teachings",
                             "spell_id": 444986,
                             "spell_name": "Spellfrost Teachings",
-                            "description": "Direct damage from Arcane Splinters reduces the cooldown of Arcane Orb by 0.25 sec.",
+                            "description": "Direct damage from Arcane Splinters reduces the cooldown of Arcane Orb by 0.30 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7507,7 +7531,7 @@
                             "talent_name": "Polished Focus",
                             "spell_id": 1261082,
                             "spell_name": "Polished Focus",
-                            "description": "Casting Arcane Barrage while at 20 or more Arcane Salvo stacks refunds 5 Arcane Salvo stacks.\r\n\r\nArcane Barrage damage increased by 15%.",
+                            "description": "Casting Arcane Barrage while at 20 or more Arcane Salvo stacks refunds 3 Arcane Salvo stacks.\r\n\r\nArcane Barrage damage increased by 15%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7555,7 +7579,8 @@
                     ],
                     "unlocks": [
                         102446,
-                        102468
+                        102468,
+                        110849
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7624,8 +7649,8 @@
                         104113
                     ],
                     "unlocks": [
-                        102441,
                         102468,
+                        102441,
                         109002
                     ],
                     "max_ranks": 1,
@@ -7679,10 +7704,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        94655,
+                        109667,
                         94658,
                         94657,
-                        109667
+                        94655
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -7712,9 +7737,9 @@
                         102462
                     ],
                     "unlocks": [
-                        110442,
                         108535,
-                        108536
+                        108536,
+                        110442
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7725,6 +7750,32 @@
                             "spell_id": 1223798,
                             "spell_name": "Intuition",
                             "description": "Upon reaching maximum stacks of Arcane Salvo, your next Arcane Barrage deals 25% increased damage.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
+                    "id": 110849,
+                    "node_type": "PASSIVE",
+                    "display_row": 6,
+                    "display_col": 17,
+                    "raw_position_x": 11700,
+                    "raw_position_y": 4500,
+                    "locked_by": [
+                        102460
+                    ],
+                    "unlocks": [],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 142595,
+                            "talent_name": "Amplification",
+                            "spell_id": 236628,
+                            "spell_name": "Amplification",
+                            "description": "Arcane Missiles fires 2 additional missiles.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7783,7 +7834,7 @@
                             "talent_name": "Energized Familiar",
                             "spell_id": 452997,
                             "spell_name": "Energized Familiar",
-                            "description": "During Arcane Surge, your Familiar fires 4 bolts instead of 1.\r\n\r\nDamage from your Arcane Familiar has a 6% chance to grant you up to 2% of your maximum mana.",
+                            "description": "During Arcane Surge, your Arcane Familiar fires 4 bolts instead of 1.\r\n\r\nDamage from your Arcane Familiar has a 6% chance to restore 2% of your maximum mana.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7813,7 +7864,7 @@
                             "talent_name": "Expanded Mind",
                             "spell_id": 1243557,
                             "spell_name": "Expanded Mind",
-                            "description": "Casting Arcane Blast or Arcane Pulse grants 2 stacks of Arcane Salvo.\r\n\r\nCasting Arcane Orb grants 2 stacks of Arcane Salvo.\r\n",
+                            "description": "Casting Arcane Blast or Arcane Pulse grants 2 stacks of Arcane Salvo.\r\n\r\nCasting Arcane Orb grants 1 stack of Arcane Salvo.\r\n\r\nCasting Prismatic Bolt grants 4 stacks of Arcane Salvo.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7829,10 +7880,10 @@
                     "raw_position_y": 5100,
                     "locked_by": [],
                     "unlocks": [
+                        109675,
                         94652,
                         94644,
-                        94653,
-                        109675
+                        94653
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7842,7 +7893,7 @@
                             "talent_name": "Spellfire Spheres",
                             "spell_id": 448601,
                             "spell_name": "Spellfire Spheres",
-                            "description": "Casting a damaging spell has a 12% chance to conjure a Spellfire Sphere.\r\n\r\nWhile you're out of combat, you will slowly conjure Spellfire Spheres over time.\r\n\r\n Spellfire Sphere\r\nIncreases your spell damage by 1.0%. Stacks up to 3 times.",
+                            "description": "Casting a damaging spell has a 6% chance to conjure a Spellfire Sphere.\r\n\r\nWhile you're out of combat, you will slowly conjure Spellfire Spheres over time.\r\n\r\n Spellfire Sphere\r\nIncreases your spell damage by 1.0%. Stacks up to 3 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7980,7 +8031,7 @@
                                     "talent_name": "Arcane Echo",
                                     "spell_id": 342231,
                                     "spell_name": "Arcane Echo",
-                                    "description": "Direct damage you deal to enemies affected by Touch of the Magi, causes an explosion that deals 40 Arcane damage to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                                    "description": "Direct damage you deal to enemies affected by Touch of the Magi, causes an explosion that deals 41 Arcane damage to all nearby enemies. Deals reduced damage beyond 8 targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8041,7 +8092,7 @@
                             "talent_name": "Impetus",
                             "spell_id": 383676,
                             "spell_name": "Impetus",
-                            "description": "Arcane Blast and Arcane Pulse generate an additional Arcane Charge.",
+                            "description": "Arcane Blast generates an additional Arcane Charge.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8069,7 +8120,7 @@
                             "talent_name": "Mana Cascade",
                             "spell_id": 449293,
                             "spell_name": "Mana Cascade",
-                            "description": "Casting Arcane Blast or Arcane Barrage grants you 0.5% Haste for 10 sec. Stacks up to 10 times. Multiple instances may overlap.",
+                            "description": "Casting Arcane Blast, Arcane Pulse, Arcane Barrage, or Prismatic Bolt grants you 0.5% Haste for 6 sec. Multiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8153,7 +8204,7 @@
                             "talent_name": "Glorious Incandescence",
                             "spell_id": 449394,
                             "spell_name": "Glorious Incandescence",
-                            "description": "Arcane Barrage summons 1 Meteorite for every 6 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 419 Fire damage to all enemies hit, reduced beyond 8 targets.",
+                            "description": "Arcane Barrage summons 1 Meteorite for every 5 Arcane Salvo stacks consumed.\r\n\r\n Meteorite\r\nCalls down a meteorite which lands at the target location after 3 sec, dealing 420 Fire damage to all enemies hit, reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8168,9 +8219,9 @@
                     "raw_position_x": 11100,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        110442,
                         108535,
-                        108536
+                        108536,
+                        110442
                     ],
                     "unlocks": [
                         102480
@@ -8316,7 +8367,7 @@
                                     "talent_name": "Merely a Setback",
                                     "spell_id": 449330,
                                     "spell_name": "Merely a Setback",
-                                    "description": "The bonuses provided by your Barrier spells persist an additional 8 sec after your Barrier is removed.",
+                                    "description": "The bonuses provided by your Barrier spells persist at 100% effectiveness for an additional 8 sec after your Barrier is removed.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8396,7 +8447,7 @@
                                     "talent_name": "Explosive Potential",
                                     "spell_id": 1246030,
                                     "spell_name": "Explosive Potential",
-                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 221 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
+                                    "description": "After casting Arcane Surge, your next Blink will cause a Blast Wave at your previous location, dealing 220 Fire damage, knocking enemies back 8 yds, and slowing them by 70% for 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8456,7 +8507,7 @@
                             "talent_name": "Prodigious Savant",
                             "spell_id": 384612,
                             "spell_name": "Prodigious Savant",
-                            "description": "Arcane Charges increase the damage of Arcane Blast, Arcane Pulse, and Arcane Barrage by an additional 10%.",
+                            "description": "Arcane Charges increase the damage of Arcane Blast and Arcane Barrage by an additional 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8467,7 +8518,7 @@
                             "talent_name": "Prodigious Savant",
                             "spell_id": 384612,
                             "spell_name": "Prodigious Savant",
-                            "description": "Arcane Charges increase the damage of Arcane Blast, Arcane Pulse, and Arcane Barrage by an additional 20%.",
+                            "description": "Arcane Charges increase the damage of Arcane Blast and Arcane Barrage by an additional 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8482,8 +8533,8 @@
                     "raw_position_x": 12300,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        102451,
-                        102470
+                        102470,
+                        102451
                     ],
                     "unlocks": [
                         109478
@@ -8567,7 +8618,7 @@
                                     "talent_name": "Savor the Moment",
                                     "spell_id": 449412,
                                     "spell_name": "Savor the Moment",
-                                    "description": "When you cast Arcane Surge, its duration is extended by 0.4 sec for each Spellfire Sphere you have, up to 2.0 sec.",
+                                    "description": "When you cast Arcane Surge, its duration is extended by 0.8 sec for each Spellfire Sphere you have, up to 2.4 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8607,7 +8658,7 @@
                             "talent_name": "Ashes of Inspiration",
                             "spell_id": 1260272,
                             "spell_name": "Ashes of Inspiration",
-                            "description": "When your Arcane Phoenix expires, it grants you Lesser Time Warp for 6 sec.\r\n\r\n Lesser Time Warp\r\nWarp the flow of time, increasing your haste by 15%.",
+                            "description": "Each time your Phoenix casts a spell, gain 1 stack of Mana Cascade.\r\n\r\nExceptional spells grant 1 additional stack.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8635,7 +8686,7 @@
                             "talent_name": "Rondurmancy",
                             "spell_id": 449596,
                             "spell_name": "Rondurmancy",
-                            "description": "Spellfire Spheres can now stack up to 5 times.",
+                            "description": "Your chance to generate a Spellfire Sphere is increased by 6%.\r\n\r\nSpellfire Spheres grant an additional 1% spell damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8781,7 +8832,7 @@
                             "talent_name": "Orb Mastery",
                             "spell_id": 1243435,
                             "spell_name": "Orb Mastery",
-                            "description": "Casting Arcane Orb while you have Clearcasting causes you to fire 2 additional Arcane Orbs at 100% effectiveness.\r\n\r\nCasting Arcane Orb now consumes Clearcasting.",
+                            "description": "Casting Arcane Orb fires 2 additional Arcane Orbs at 50% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8822,10 +8873,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 7500,
                     "locked_by": [
+                        109673,
                         94643,
                         94650,
-                        94648,
-                        109673
+                        94648
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -8836,7 +8887,7 @@
                             "talent_name": "Memory of Al'ar",
                             "spell_id": 449619,
                             "spell_name": "Memory of Al'ar",
-                            "description": "During Arcane Surge, you gain twice as many stacks of Mana Cascade.\r\n\r\nWhen your Arcane Phoenix expires, it empowers you, granting Arcane Soul for 4.0 sec.\r\n\r\nArcane Soul:\r\nArcane Barrage grants Clearcasting and generates 4 Arcane Charges.\r\n\r\nEach cast of Arcane Barrage grants 5 stacks of Arcane Salvo and casting Arcane Barrage does not consume Arcane Salvo.",
+                            "description": "When your Arcane Phoenix expires it empowers you, granting Arcane Soul for 4.0 sec.\r\n\r\nArcane Soul:\r\nArcane Barrage grants Clearcasting and generates 4 Arcane Charges.\r\n\r\nEach cast of Arcane Barrage grants 5 stacks of Arcane Salvo and casting Arcane Barrage does not consume Arcane Salvo.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8857,10 +8908,10 @@
                         {
                             "rank": 1,
                             "talent_id": 141791,
-                            "talent_name": "Touch of the Archmage",
-                            "spell_id": 1257942,
-                            "spell_name": "Touch of the Archmage",
-                            "description": "Touch of the Magi increases the damage your target receives from you by 15%.",
+                            "talent_name": "Prismatic Bolt",
+                            "spell_id": 1295923,
+                            "spell_name": "Prismatic Bolt",
+                            "description": "Arcane Barrage has a 1% chance per stack of Arcane Salvo consumed to replace your next Arcane Blast with Prismatic Bolt.\r\n\r\n Prismatic Bolt\r\nDevastates the target with overwhelming energy, dealing 16,101 Arcane damage to them and 10,053 Arcane damage to other nearby enemies. Damage reduced beyond 5 targets.\r\n\r\nGenerates 4 Arcane Charges.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

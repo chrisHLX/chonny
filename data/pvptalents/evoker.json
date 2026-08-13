@@ -1,6 +1,6 @@
 {
     "class": "Evoker",
-    "fetched_at": "2026-08-02T09:10:19+00:00",
+    "fetched_at": "2026-08-12T21:50:46+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Augmentation": {
@@ -59,7 +59,7 @@
                     "name": "Unburdened Flight",
                     "spell_id": 378437,
                     "spell_name": "Unburdened Flight",
-                    "description": "Hover makes you immune to movement speed reduction effects.",
+                    "description": "Hover prevents movement speed from being reduced below 100%.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -76,22 +76,6 @@
                     "spell_id": 378438,
                     "spell_name": "Scouring Flame",
                     "description": "Fire Breath burns away 2 beneficial Magic effects from all targets.",
-                    "unlock_player_level": 0,
-                    "compatible_slots": [
-                        1,
-                        2,
-                        3,
-                        4
-                    ],
-                    "playable_spec_id": 1473,
-                    "playable_spec_name": "Augmentation"
-                },
-                {
-                    "id": 5562,
-                    "name": "Swoop Up",
-                    "spell_id": 370388,
-                    "spell_name": "Swoop Up",
-                    "description": "Grab an enemy and fly with them to the target location.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -252,22 +236,6 @@
                     "playable_spec_name": "Preservation"
                 },
                 {
-                    "id": 5465,
-                    "name": "Swoop Up",
-                    "spell_id": 370388,
-                    "spell_name": "Swoop Up",
-                    "description": "Grab an enemy and fly with them to the target location.",
-                    "unlock_player_level": 0,
-                    "compatible_slots": [
-                        1,
-                        2,
-                        3,
-                        4
-                    ],
-                    "playable_spec_id": 1468,
-                    "playable_spec_name": "Preservation"
-                },
-                {
                     "id": 5468,
                     "name": "Nullifying Shroud",
                     "spell_id": 1241352,
@@ -288,7 +256,7 @@
                     "name": "Unburdened Flight",
                     "spell_id": 378437,
                     "spell_name": "Unburdened Flight",
-                    "description": "Hover makes you immune to movement speed reduction effects.",
+                    "description": "Hover prevents movement speed from being reduced below 100%.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -336,7 +304,7 @@
                     "name": "Dream Projection",
                     "spell_id": 377509,
                     "spell_name": "Dream Projection",
-                    "description": "Summon a flying projection of yourself that heals allies you pass through for 769. Detonating your projection dispels all nearby allies of Magical effects, and heals for 3,668 over 20 sec.",
+                    "description": "Summon a flying projection of yourself that heals allies you pass through for 770. Detonating your projection dispels all nearby allies of Magical effects, and heals for 3,702 over 20 sec.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -433,22 +401,6 @@
                     "playable_spec_name": "Devastation"
                 },
                 {
-                    "id": 5466,
-                    "name": "Swoop Up",
-                    "spell_id": 370388,
-                    "spell_name": "Swoop Up",
-                    "description": "Grab an enemy and fly with them to the target location.",
-                    "unlock_player_level": 0,
-                    "compatible_slots": [
-                        1,
-                        2,
-                        3,
-                        4
-                    ],
-                    "playable_spec_id": 1467,
-                    "playable_spec_name": "Devastation"
-                },
-                {
                     "id": 5467,
                     "name": "Nullifying Shroud",
                     "spell_id": 1241352,
@@ -469,7 +421,7 @@
                     "name": "Unburdened Flight",
                     "spell_id": 378437,
                     "spell_name": "Unburdened Flight",
-                    "description": "Hover makes you immune to movement speed reduction effects.",
+                    "description": "Hover prevents movement speed from being reduced below 100%.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,

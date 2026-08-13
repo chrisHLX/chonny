@@ -64,6 +64,7 @@ One line per spell record; each lists every file it appears in.
 - **Blazing Trail (id=123780)** — `baseline.txt`
 - **Block (desc=Passive) (id=107) [Passive]** — `baseline.txt`
 - **Block (id=123829) [Passive, Hidden]** — `baseline.txt`
+- **Blood and Thunder (id=384277) [Spell Family (4), Passive]** — `class-talents.txt`
 - **Bloodbath (id=113344) [Spell Family (4)]** — `baseline.txt`
 - **Bloodbath (id=335096) [Spell Family (4)]** — `baseline.txt`
 - **Bloodbath (id=461288) [Spell Family (4)]** — `baseline.txt`
@@ -83,6 +84,7 @@ One line per spell record; each lists every file it appears in.
 - **Bloody Rage (id=242952) [Spell Family (4)]** — `baseline.txt`
 - **Bloody Rage (id=242953) [Spell Family (4)]** — `baseline.txt`
 - **Bloody Rampage (id=455490) [Spell Family (4)]** — `baseline.txt`
+- **Bloody Rebuke (id=1300690) [Spell Family (4)]** — `baseline.txt`
 - **Boneshaker (id=429639) [Spell Family (4), Passive, Hidden]** — `hero-colossus.txt`
 - **Boneshaker (id=458480) [Spell Family (4)]** — `baseline.txt`
 - **Booming Voice (id=202743) [Spell Family (4), Passive, Hidden]** — `protection.txt`
@@ -109,6 +111,7 @@ One line per spell record; each lists every file it appears in.
 - **Callous Reprisal (id=278991) [Spell Family (4), Hidden]** — `baseline.txt`
 - **Callous Reprisal (id=278999) [Spell Family (4)]** — `baseline.txt`
 - **Capacitance (id=1270724) [Spell Family (4), Passive, Hidden]** — `hero-mountain-thane.txt`
+- **Carving Blades (id=1300463) [Spell Family (4), Passive, Hidden]** — `fury.txt`
 - **Ceann-Ar Rage (id=207779) [Spell Family (4), Passive]** — `baseline.txt`
 - **Celeritous Conclusion (id=1270710) [Spell Family (4), Passive, Hidden]** — `hero-colossus.txt`
 - **Celeritous Conclusion (id=1270843) [Spell Family (4)]** — `baseline.txt`
@@ -150,6 +153,7 @@ One line per spell record; each lists every file it appears in.
 - **Concussive Blows (id=383115) [Spell Family (4), Passive]** — `baseline.txt`
 - **Concussive Blows (id=383116) [Spell Family (4)]** — `baseline.txt`
 - **Concussive Blows (id=383124) [Spell Family (4), Hidden]** — `baseline.txt`
+- **Concussive Slam (id=1300660) [Spell Family (4)]** — `baseline.txt`
 - **Condemn (desc=Venthyr) (id=317320) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Condemn (desc=Venthyr) (id=317349) [Spell Family (4)]** — `baseline.txt`
 - **Condemn (desc=Venthyr) (id=317483) [Spell Family (4)]** — `baseline.txt`
@@ -368,8 +372,8 @@ One line per spell record; each lists every file it appears in.
 - **Improved Execute (id=397708) [Spell Family (4), Passive]** — `baseline.txt`
 - **Improved Hamstring (id=24428) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Improved Overpower (id=385571) [Spell Family (4), Passive]** — `arms.txt`
+- **Improved Raging Blow (id=280270) [Spell Family (4)]** — `baseline.txt`
 - **Improved Raging Blow (id=383854) [Spell Family (4), Passive]** — `fury.txt`
-- **Improved Sweeping Strikes (id=383155) [Spell Family (4), Passive, Hidden]** — `arms.txt`
 - **Improved Whirlwind (id=12950) [Spell Family (4), Passive]** — `fury.txt`
 - **Indomitable (id=202095) [Spell Family (4), Passive]** — `protection.txt`
 - **Indomitable (id=316643) [Spell Family (4)]** — `baseline.txt`
@@ -544,10 +548,8 @@ One line per spell record; each lists every file it appears in.
 - **Rampaging Berserker (id=1269309) [Spell Family (4), Passive, Hidden]** — `fury.txt`
 - **Rampaging Berserker (id=1269310) [Spell Family (4), Passive, Hidden]** — `fury.txt`
 - **Rampaging Ruin (id=1265357) [Spell Family (4), Passive, Hidden]** — `fury.txt`
-- **Rampaging Ruin (id=1265579) [Spell Family (4)]** — `baseline.txt`
-- **Rampaging Ruin (id=1265580) [Spell Family (4)]** — `baseline.txt`
-- **Rampaging Ruin (id=1265581) [Spell Family (4)]** — `baseline.txt`
-- **Rampaging Ruin (id=1265582) [Spell Family (4)]** — `baseline.txt`
+- **Rampaging Ruin (id=1299944) [Spell Family (4)]** — `baseline.txt`
+- **Ravaged (id=1299405) [Spell Family (4)]** — `baseline.txt`
 - **Ravager (id=156287) [Spell Family (4)]** — `baseline.txt`
 - **Ravager (id=228920) [Spell Family (4)]** — `protection.txt`, `arms.txt`
 - **Ravager (id=334934) [Spell Family (4)]** — `baseline.txt`
@@ -664,6 +666,7 @@ One line per spell record; each lists every file it appears in.
 - **Storm Bolt (id=107570) [Spell Family (4)]** — `class-talents.txt`
 - **Storm Bolt (id=132169) [Spell Family (4)]** — `baseline.txt`
 - **Storm Bolts (id=436162) [Spell Family (4), Passive]** — `hero-mountain-thane.txt`
+- **Storm of Blood (id=1299025) [Spell Family (4), Passive]** — `class-talents.txt`
 - **Storm of Swords (id=388903) [Spell Family (4), Passive]** — `baseline.txt`
 - **Storm Shield (id=438597) [Spell Family (4), Passive]** — `hero-mountain-thane.txt`
 - **Storm Shield (id=438598) [Spell Family (4)]** — `baseline.txt`
@@ -734,6 +737,7 @@ One line per spell record; each lists every file it appears in.
 - **Valarjar Berserking (id=248179) [Spell Family (4)]** — `baseline.txt`
 - **Vanguard (id=71) [Spell Family (4), Passive]** — `baseline.txt`
 - **Vanguard's Determination (id=394056) [Spell Family (4)]** — `baseline.txt`
+- **Vengeful Shield (id=1300681) [Spell Family (4)]** — `baseline.txt`
 - **Veteran Vitality (id=440993) [Spell Family (4), Passive, Hidden]** — `hero-colossus.txt`
 - **Vicious Agility (id=444777) [Spell Family (4), Passive, Hidden]** — `hero-slayer.txt`
 - **Vicious Contempt (id=383885) [Spell Family (4), Passive, Hidden]** — `fury.txt`
@@ -771,6 +775,8 @@ One line per spell record; each lists every file it appears in.
 - **Warrior Arms 11.1 Class Set 4pc (id=1215716) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Arms 12.0 Class Set 2pc (id=1264875) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Arms 12.0 Class Set 4pc (id=1264876) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
+- **Warrior Arms 12.1 Class Set 2pc (id=1296643) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
+- **Warrior Arms 12.1 Class Set 4pc (id=1296644) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Arms Set 2pc (id=393705) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Arms Set 4pc (id=393706) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Fury 10.1 Class Set 2pc (id=405579) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
@@ -783,6 +789,8 @@ One line per spell record; each lists every file it appears in.
 - **Warrior Fury 11.1 Class Set 4pc (id=1215715) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Fury 12.0 Class Set 2pc (id=1264877) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Fury 12.0 Class Set 4pc (id=1264878) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
+- **Warrior Fury 12.1 Class Set 2pc (id=1296645) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
+- **Warrior Fury 12.1 Class Set 4pc (id=1296646) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Fury Set 2pc (id=393708) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Fury Set 4pc (id=393709) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Protection 10.1 Class Set 2pc (id=405581) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
@@ -795,6 +803,8 @@ One line per spell record; each lists every file it appears in.
 - **Warrior Protection 11.1 Class Set 4pc (id=1215995) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Protection 12.0 Class Set 2pc (id=1264879) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Protection 12.0 Class Set 4pc (id=1264880) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
+- **Warrior Protection 12.1 Class Set 2pc (id=1296647) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
+- **Warrior Protection 12.1 Class Set 4pc (id=1296648) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Protection Class Set 2pc (id=393710) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Protection Class Set 4pc (id=393711) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
 - **Warrior Tier 6 Trinket (id=40458) [Spell Family (4), Passive, Hidden]** — `baseline.txt`
@@ -831,6 +841,7 @@ One line per spell record; each lists every file it appears in.
 - **Wild Strikes (id=392778) [Spell Family (4)]** — `baseline.txt`
 - **Will of the Berserker (id=335594) [Spell Family (15), Passive]** — `baseline.txt`
 - **Will of the Berserker (id=335597) [Spell Family (4)]** — `baseline.txt`
+- **Winding Up (id=1300670) [Spell Family (4)]** — `baseline.txt`
 - **Winning Streak! (id=1216552) [Spell Family (4)]** — `baseline.txt`
 - **Winning Streak! (id=1216561) [Spell Family (4)]** — `baseline.txt`
 - **Wrath and Fury (id=386045) [Spell Family (4), Passive]** — `baseline.txt`

@@ -103,6 +103,7 @@ One line per spell record; each lists every file it appears in.
 - **Blood Death Knight (id=1256916) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Blood Death Knight (id=137008) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Blood Death Knight (id=462061) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
+- **Blood Debt (id=1310372) [Spell Family (15)]** — `baseline.txt`
 - **Blood Draw (id=374598) [Spell Family (15), Passive, Hidden]** — `class-talents.txt`
 - **Blood Draw (id=374606) [Spell Family (15)]** — `baseline.txt`
 - **Blood Draw (id=374609) [Spell Family (15)]** — `baseline.txt`
@@ -134,6 +135,7 @@ One line per spell record; each lists every file it appears in.
 - **Bloodworms (id=195679) [Spell Family (15), Passive]** — `blood.txt`
 - **Bloodworms (id=197531) [Spell Family (15), Hidden]** — `baseline.txt`
 - **Bloodworms (id=198494) [Hidden]** — `baseline.txt`
+- **Bloody Demise (id=1310571) [Spell Family (15)]** — `baseline.txt`
 - **Bloody Fortitude (id=434136) [Spell Family (15), Passive]** — `hero-sanlayn.txt`
 - **Bloody Reflection (id=1279633) [Spell Family (15), Passive]** — `blood.txt`
 - **Bloody Reflection (id=1279656) [Spell Family (15)]** — `baseline.txt`
@@ -297,6 +299,8 @@ One line per spell record; each lists every file it appears in.
 - **Death Knight Blood 11.1 Class Set 4pc (id=1215993) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Blood 12.0 Class Set 2pc (id=1264799) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Blood 12.0 Class Set 4pc (id=1264800) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
+- **Death Knight Blood 12.1 Class Set 2pc (id=1296650) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
+- **Death Knight Blood 12.1 Class Set 4pc (id=1296651) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Blood Class Set 2pc (id=393621) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Blood Class Set 4pc (id=393622) [Passive, Hidden]** — `baseline.txt`
 - **Death Knight Frost 10.1 Class Set 2pc (id=405501) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
@@ -312,6 +316,8 @@ One line per spell record; each lists every file it appears in.
 - **Death Knight Frost 12.0 Class Set 2pc (id=1264801) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Frost 12.0 Class Set 4pc (id=1264802) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Frost 12.0 Class Set 4pc (id=1269322) [Spell Family (15), Hidden]** — `baseline.txt`
+- **Death Knight Frost 12.1 Class Set 2pc (id=1296652) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
+- **Death Knight Frost 12.1 Class Set 4pc (id=1296653) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Frost Class Set 2pc (id=393623) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Frost Class Set 4pc (id=393624) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight San'layn 11.2 Class Set 2pc (id=1236259) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
@@ -326,11 +332,16 @@ One line per spell record; each lists every file it appears in.
 - **Death Knight Unholy 11.1 Class Set 4pc (id=1215728) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Unholy 12.0 Class Set 2pc (id=1264803) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Unholy 12.0 Class Set 4pc (id=1264804) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
+- **Death Knight Unholy 12.1 Class Set 2pc (id=1296654) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
+- **Death Knight Unholy 12.1 Class Set 2pc (id=1297063) [Spell Family (15), Hidden]** — `baseline.txt`
+- **Death Knight Unholy 12.1 Class Set 2pc (id=1297087) [Spell Family (15), Hidden]** — `baseline.txt`
+- **Death Knight Unholy 12.1 Class Set 4pc (id=1296655) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Unholy Class Set 2pc (id=393626) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death Knight Unholy Class Set 4pc (id=393627) [Passive, Hidden]** — `baseline.txt`
 - **Death Knight Unholy Class Set 4pc (id=394896) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Death March (id=235556) [Spell Family (15), Passive]** — `baseline.txt`
 - **Death Notes (id=1266819) [Spell Family (15), Passive]** — `class-talents.txt`
+- **Death Order (id=1294264) [Spell Family (15)]** — `baseline.txt`
 - **Death Pact (id=48743) [Spell Family (15)]** — `class-talents.txt`
 - **Death Strike (id=45470) [Spell Family (15)]** — `baseline.txt`
 - **Death Strike (id=49998) [Spell Family (15)]** — `class-talents.txt`
@@ -411,6 +422,7 @@ One line per spell record; each lists every file it appears in.
 - **Epidemic (id=207317) [Spell Family (15)]** — `baseline.txt`
 - **Epidemic (id=212739) [Spell Family (15)]** — `baseline.txt`
 - **Epidemic (id=215969) [Spell Family (15)]** — `baseline.txt`
+- **Epidemic Order (id=1300330) [Spell Family (15)]** — `baseline.txt`
 - **Essence of Ardenweald (desc=Night Fae) (id=331117) [Spell Family (15), Hidden]** — `baseline.txt`
 - **Essence of Ardenweald (desc=Night Fae) (id=331119) [Spell Family (15), Hidden]** — `baseline.txt`
 - **Essence of the Blood Queen (id=433925) [Spell Family (15)]** — `baseline.txt`
@@ -457,6 +469,7 @@ One line per spell record; each lists every file it appears in.
 - **Foul Bulwark (id=206974) [Spell Family (15), Passive]** — `blood.txt`
 - **Foul Infections (id=455396) [Spell Family (15), Passive, Hidden]** — `unholy.txt`
 - **Foul Menagerie (id=58723)** — `baseline.txt`
+- **Freezing Tempest (id=1297365) [Spell Family (15)]** — `baseline.txt`
 - **Frenzied Bloodthirst (id=434075) [Spell Family (15), Passive]** — `hero-sanlayn.txt`
 - **Frenzied Monstrosity (id=334888) [Spell Family (15), Passive]** — `baseline.txt`
 - **Frenzied Monstrosity (id=334895)** — `baseline.txt`
@@ -486,6 +499,7 @@ One line per spell record; each lists every file it appears in.
 - **Frostbane (id=1229279) [Hidden]** — `baseline.txt`
 - **Frostbane (id=1229310) [Spell Family (15)]** — `baseline.txt`
 - **Frostbane (id=455993) [Spell Family (15), Passive]** — `frost.txt`
+- **Frostbolt (id=1292107) [Spell Family (15)]** — `baseline.txt`
 - **Frostbolt (id=288548)** — `baseline.txt`
 - **Frostbolt (id=317792) [Spell Family (15)]** — `baseline.txt`
 - **Frostbound Will (id=1238680) [Spell Family (15), Passive, Hidden]** — `frost.txt`
@@ -661,7 +675,8 @@ One line per spell record; each lists every file it appears in.
 - **Lesser Ghoul (id=1254252) [Spell Family (15)]** — `baseline.txt`
 - **Lesser Ghoul (id=1255830) [Spell Family (15), Passive, Hidden]** — `baseline.txt`
 - **Lesser Ghoul (id=1277098) [Spell Family (15)]** — `baseline.txt`
-- **Lesser Ghoul (id=1282535) [Spell Family (15)]** — `baseline.txt`
+- **Lesser Ghoul (id=1294026) [Spell Family (15)]** — `baseline.txt`
+- **Lesser Ghoul (id=1294180) [Spell Family (15)]** — `baseline.txt`
 - **Lesser Ghoul (id=275430) [Spell Family (15)]** — `baseline.txt`
 - **Lesson of Razuvious (id=208713) [Spell Family (15), Passive]** — `baseline.txt`
 - **Let Terror Reign (id=1265949) [Spell Family (15), Passive, Hidden]** — `hero-rider-of-the-apocalypse.txt`
@@ -671,6 +686,8 @@ One line per spell record; each lists every file it appears in.
 - **Lifeblood (id=1264296) [Spell Family (15), Passive]** — `blood.txt`
 - **Lifeblood (id=1264304) [Spell Family (15)]** — `baseline.txt`
 - **Lingering Chill (id=410879) [Spell Family (15)]** — `baseline.txt`
+- **Lord of the Dead (id=1256813) [Spell Family (15), Passive]** — `unholy.txt`
+- **Lord of the Dead (id=1292072) [Spell Family (15)]** — `baseline.txt`
 - **Luck of the Draw! (id=1218601) [Spell Family (15)]** — `baseline.txt`
 - **Luck of the Draw! (id=1219012) [Spell Family (107)]** — `baseline.txt`
 - **Magus of the Dead (id=288544) [Spell Family (15)]** — `baseline.txt`
@@ -705,6 +722,8 @@ One line per spell record; each lists every file it appears in.
 - **Necroblast (id=334851) [Spell Family (15)]** — `baseline.txt`
 - **Necromancer's Cunning (id=1278154) [Spell Family (15)]** — `baseline.txt`
 - **Necromancer's Cunning (id=288848) [Spell Family (15), Passive, Hidden]** — `unholy.txt`
+- **Necrotic Bolt (id=1297055) [Spell Family (15)]** — `baseline.txt`
+- **Necrotic Bolt (id=1297086) [Spell Family (15)]** — `baseline.txt`
 - **Necrotic Coil (id=1242172) [Spell Family (15)]** — `baseline.txt`
 - **Necrotic Coil (id=1242174) [Spell Family (15)]** — `baseline.txt`
 - **Necrotic Coil (id=1242175) [Hidden]** — `baseline.txt`
@@ -798,7 +817,6 @@ One line per spell record; each lists every file it appears in.
 - **Razorice (id=50401) [Spell Family (15)]** — `baseline.txt`
 - **Razorice (id=51714) [Spell Family (15)]** — `baseline.txt`
 - **Reanimated Shambler (id=334836) [Spell Family (15), Passive]** — `baseline.txt`
-- **Reanimation (id=1256813) [Spell Family (15), Passive]** — `unholy.txt`
 - **Reaper of Souls (id=440002) [Spell Family (15), Passive]** — `baseline.txt`
 - **Reaper of Souls (id=469172) [Spell Family (15)]** — `baseline.txt`
 - **Reaper's Mark (id=434765) [Spell Family (15)]** — `baseline.txt`
@@ -815,6 +833,7 @@ One line per spell record; each lists every file it appears in.
 - **Recuperate (id=1231418)** — `baseline.txt`
 - **Red Thirst (id=205723) [Spell Family (15), Passive]** — `blood.txt`
 - **Rejuvenating Blood (id=1271198) [Spell Family (15)]** — `baseline.txt`
+- **Relentless Rider's Strength (id=1300369) [Spell Family (15)]** — `baseline.txt`
 - **Relish in Blood (id=317610) [Spell Family (15), Passive]** — `blood.txt`
 - **Relish in Blood (id=317614) [Spell Family (15)]** — `baseline.txt`
 - **Remnant's Despair (id=368690) [Spell Family (15)]** — `baseline.txt`
@@ -1065,6 +1084,7 @@ One line per spell record; each lists every file it appears in.
 - **Winning Streak! (id=1216859) [Spell Family (15), Hidden]** — `baseline.txt`
 - **Winning Streak! (id=1217897) [Spell Family (15)]** — `baseline.txt`
 - **Wither Away (id=441894) [Spell Family (15), Passive]** — `hero-deathbringer.txt`
+- **Withering Grasp (id=1297091) [Spell Family (15)]** — `baseline.txt`
 - **Wraith Walk (id=212552) [Spell Family (15)]** — `class-talents.txt`
 - **Wraith Walk (id=212654) [Spell Family (15), Hidden]** — `baseline.txt`
 - **Wraith Walk (id=223804) [Spell Family (15), Hidden]** — `baseline.txt`

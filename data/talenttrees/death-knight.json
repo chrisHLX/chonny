@@ -1,7 +1,7 @@
 {
     "class": "Death Knight",
     "talent_tree_id": 750,
-    "fetched_at": "2026-08-02T09:04:46+00:00",
+    "fetched_at": "2026-08-12T21:34:01+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -490,7 +490,7 @@
                         "talent_name": "Permafrost",
                         "spell_id": 207200,
                         "spell_name": "Permafrost",
-                        "description": "Your auto attack damage grants you an absorb shield equal to 40% of the damage dealt.",
+                        "description": "Your auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1293,7 +1293,7 @@
                             "talent_name": "The Blood is Life",
                             "spell_id": 434260,
                             "spell_name": "The Blood is Life",
-                            "description": "Dark Transformation summons a Blood Beast to attack your enemy for 10 sec.\r\n\r\nEach time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing 25% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond 8 targets.",
+                            "description": "Dark Transformation summons a Blood Beast to attack your enemy for 10 sec.\r\n\r\nEach time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing 15% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1323,7 +1323,7 @@
                                     "talent_name": "Blood-Soaked Ground",
                                     "spell_id": 434033,
                                     "spell_name": "Blood-Soaked Ground",
-                                    "description": "While you are within your Death and Decay, your physical damage taken is reduced by 5% and your chance to gain Vampiric Strike is increased by 5%.",
+                                    "description": "While you are within your Death and Decay, your physical damage taken is reduced by 8% and your chance to gain Vampiric Strike is increased by 5%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1575,7 +1575,7 @@
                             "talent_name": "Transfusion",
                             "spell_id": 1265574,
                             "spell_name": "Transfusion",
-                            "description": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8 sec. \r\n\r\nMultiple applications may overlap.",
+                            "description": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8 sec.\r\n\r\nMultiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2345,7 +2345,7 @@
                             "talent_name": "Wither Away",
                             "spell_id": 441894,
                             "spell_name": "Wither Away",
-                            "description": "Frost Fever deals its damage 100% faster, and the second scythe of Exterminate applies Frost Fever.",
+                            "description": "Frost Fever deals its damage 75% faster, and the second scythe of Exterminate applies Frost Fever.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2402,7 +2402,7 @@
                             "talent_name": "Reaper's Mark",
                             "spell_id": 439843,
                             "spell_name": "Reaper's Mark",
-                            "description": "Viciously slice into the soul of your enemy, dealing 109 Shadowfrost damage and applying Reaper's Mark.\r\n\r\nEach time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After 12 sec or reaching 40 stacks, the mark explodes, dealing 14 damage per stack.\r\n\r\nReaper's Mark travels to an unmarked enemy nearby if the target dies.",
+                            "description": "Viciously slice into the soul of your enemy, dealing 81 Shadowfrost damage and applying Reaper's Mark.\r\n\r\nEach time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After 12 sec or reaching 40 stacks, the mark explodes, dealing 10 damage per stack.\r\n\r\nReaper's Mark travels to an unmarked enemy nearby if the target dies.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "Melee Range"
@@ -2431,7 +2431,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 185 Shadowfrost damage and the second scythe strikes all enemies around your target for 75 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 154 Shadowfrost damage and the second scythe strikes all enemies around your target for 60 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2515,7 +2515,7 @@
                             "talent_name": "Frigid Resolve",
                             "spell_id": 1265859,
                             "spell_name": "Frigid Resolve",
-                            "description": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt.\r\n\r\nPermafrost\r\nYour auto attack damage grants you an absorb shield equal to 40% of the damage dealt.",
+                            "description": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt.\r\n\r\nPermafrost\r\nYour auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2551,7 +2551,7 @@
                             "talent_name": "Reaper's Mark",
                             "spell_id": 439843,
                             "spell_name": "Reaper's Mark",
-                            "description": "Viciously slice into the soul of your enemy, dealing 109 Shadowfrost damage and applying Reaper's Mark.\r\n\r\nEach time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After 12 sec or reaching 40 stacks, the mark explodes, dealing 14 damage per stack.\r\n\r\nReaper's Mark travels to an unmarked enemy nearby if the target dies.",
+                            "description": "Viciously slice into the soul of your enemy, dealing 81 Shadowfrost damage and applying Reaper's Mark.\r\n\r\nEach time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After 12 sec or reaching 40 stacks, the mark explodes, dealing 10 damage per stack.\r\n\r\nReaper's Mark travels to an unmarked enemy nearby if the target dies.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "Melee Range"
@@ -2578,7 +2578,7 @@
                             "talent_name": "Heart Strike",
                             "spell_id": 206930,
                             "spell_name": "Heart Strike",
-                            "description": "Instantly strike the target and 1 other nearby enemy, causing 54 Physical damage, and reducing enemies' movement speed by 20% for 8 sec.",
+                            "description": "Instantly strike the target and 1 other nearby enemy, causing 69 Physical damage, and reducing enemies' movement speed by 20% for 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -2635,7 +2635,7 @@
                             "talent_name": "Wave of Souls",
                             "spell_id": 439851,
                             "spell_name": "Wave of Souls",
-                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 34 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
+                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 33 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2663,7 +2663,7 @@
                             "talent_name": "Wither Away",
                             "spell_id": 441894,
                             "spell_name": "Wither Away",
-                            "description": "Frost Fever deals its damage 100% faster, and the second scythe of Exterminate applies Frost Fever.",
+                            "description": "Frost Fever deals its damage 75% faster, and the second scythe of Exterminate applies Frost Fever.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2719,7 +2719,7 @@
                             "talent_name": "Frigid Resolve",
                             "spell_id": 1265859,
                             "spell_name": "Frigid Resolve",
-                            "description": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt.\r\n\r\nPermafrost\r\nYour auto attack damage grants you an absorb shield equal to 40% of the damage dealt.",
+                            "description": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt.\r\n\r\nPermafrost\r\nYour auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2747,7 +2747,7 @@
                             "talent_name": "Marrowrend",
                             "spell_id": 195182,
                             "spell_name": "Marrowrend",
-                            "description": "Smash the target, dealing 51 Physical damage and generating 3 charges of Bone Shield.\r\n\r\n Bone Shield\r\nSurrounds you with a barrier of whirling bones, increasing Armor by 110. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
+                            "description": "Smash the target, dealing 77 Physical damage and generating 3 charges of Bone Shield.\r\n\r\n Bone Shield\r\nSurrounds you with a barrier of whirling bones, increasing Armor by 110. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -2775,7 +2775,7 @@
                             "talent_name": "Blood Boil",
                             "spell_id": 50842,
                             "spell_name": "Blood Boil",
-                            "description": "Deals 57 Shadow damage and infects all enemies within 10 yds with Blood Plague.\r\n\r\n Blood Plague\r\nA shadowy disease that drains 93 health from the target over 24 sec. ",
+                            "description": "Deals 56 Shadow damage and infects all enemies within 10 yds with Blood Plague.\r\n\r\n Blood Plague\r\nA shadowy disease that drains 93 health from the target over 24 sec. ",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -2847,7 +2847,7 @@
                                     "talent_name": "Blood-Soaked Ground",
                                     "spell_id": 434033,
                                     "spell_name": "Blood-Soaked Ground",
-                                    "description": "While you are within your Death and Decay, your physical damage taken is reduced by 5% and your chance to gain Vampiric Strike is increased by 5%.",
+                                    "description": "While you are within your Death and Decay, your physical damage taken is reduced by 8% and your chance to gain Vampiric Strike is increased by 5%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3197,7 +3197,7 @@
                             "talent_name": "The Blood is Life",
                             "spell_id": 434260,
                             "spell_name": "The Blood is Life",
-                            "description": "Dark Transformation summons a Blood Beast to attack your enemy for 10 sec.\r\n\r\nEach time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing 25% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond 8 targets.",
+                            "description": "Dark Transformation summons a Blood Beast to attack your enemy for 10 sec.\r\n\r\nEach time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing 15% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3505,7 +3505,7 @@
                             "talent_name": "Relish in Blood",
                             "spell_id": 317610,
                             "spell_name": "Relish in Blood",
-                            "description": "While Crimson Scourge is active, your next Death and Decay heals you for 10 health per Bone Shield charge and you immediately gain 10 Runic Power.",
+                            "description": "While Crimson Scourge is active, your next Death and Decay heals you for 12 health per Bone Shield charge and you immediately gain 10 Runic Power.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3631,7 +3631,7 @@
                             "talent_name": "Transfusion",
                             "spell_id": 1265574,
                             "spell_name": "Transfusion",
-                            "description": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8 sec. \r\n\r\nMultiple applications may overlap.",
+                            "description": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8 sec.\r\n\r\nMultiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3660,7 +3660,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 185 Shadowfrost damage and the second scythe strikes all enemies around your target for 76 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 154 Shadowfrost damage and the second scythe strikes all enemies around your target for 63 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3778,7 +3778,7 @@
                             "talent_name": "Dancing Rune Weapon",
                             "spell_id": 49028,
                             "spell_name": "Dancing Rune Weapon",
-                            "description": "Summons a rune weapon for 8 sec that mirrors your melee attacks and bolsters your defenses.\r\n\r\nWhile active, you gain 25% parry chance.",
+                            "description": "Summons a rune weapon for 8 sec that mirrors your melee attacks and bolsters your defenses.\r\n\r\nWhile active, you gain 30% parry chance.",
                             "cast_time": "Instant",
                             "cooldown": "2 min cooldown",
                             "range": "30 yd range"
@@ -3836,7 +3836,7 @@
                             "talent_name": "Perseverance of the Ebon Blade",
                             "spell_id": 374747,
                             "spell_name": "Perseverance of the Ebon Blade",
-                            "description": "When Crimson Scourge is consumed, you gain 6% Versatility for 6 sec.",
+                            "description": "When Crimson Scourge is consumed, damage taken is reduced by 4% for 10 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4058,7 +4058,7 @@
                             "talent_name": "Rapid Decomposition",
                             "spell_id": 194662,
                             "spell_name": "Rapid Decomposition",
-                            "description": "Your Blood Plague and Death and Decay deal damage 15% more often.\r\n\r\nAdditionally, your Blood Plague leeches 50% more Health.",
+                            "description": "Your Blood Plague and Death and Decay deal damage 15% more often.\r\n\r\nAdditionally, your Blood Plague leeches 85% more Health.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4107,9 +4107,9 @@
                         76042
                     ],
                     "unlocks": [
+                        76172,
                         76139,
-                        102243,
-                        76172
+                        102243
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4167,9 +4167,9 @@
                         76166
                     ],
                     "unlocks": [
+                        76172,
                         102242,
-                        76041,
-                        76172
+                        76041
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4179,7 +4179,7 @@
                             "talent_name": "Voracious",
                             "spell_id": 273953,
                             "spell_name": "Voracious",
-                            "description": "Death Strike's healing is increased by 5% and grants you 12% Leech for 8 sec.",
+                            "description": "Death Strike's healing is increased by 5% and grants you 15% Leech for 8 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4285,9 +4285,9 @@
                         76143
                     ],
                     "unlocks": [
-                        76125,
                         102244,
-                        76131
+                        76131,
+                        76125
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4397,8 +4397,8 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 6000,
                     "locked_by": [
-                        76139,
-                        76172
+                        76172,
+                        76139
                     ],
                     "unlocks": [
                         76133
@@ -4437,7 +4437,7 @@
                             "talent_name": "Bloodshot",
                             "spell_id": 391398,
                             "spell_name": "Bloodshot",
-                            "description": "While Blood Shield is active, you deal 8% increased damage.",
+                            "description": "While Blood Shield is active, you deal 8% increased damage and damage taken is reduced by 4%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4520,7 +4520,7 @@
                             "talent_name": "Sanguinary Burst",
                             "spell_id": 1263781,
                             "spell_name": "Sanguinary Burst",
-                            "description": "When Blood Mist ends it deals 98 Shadow damage to 8 nearby enemies, healing you for 15% of the damage dealt. The damage is increased by 2% for every 1 Runic Power spent while Blood Mist was active.",
+                            "description": "When Blood Mist ends it deals 97 Shadow damage to 8 nearby enemies, healing you for 18% of the damage dealt. The damage is increased by 2% for every 1 Runic Power spent while Blood Mist was active.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4598,7 +4598,7 @@
                             "talent_name": "Umbilicus Eternus",
                             "spell_id": 391517,
                             "spell_name": "Umbilicus Eternus",
-                            "description": "After Vampiric Blood expires, you absorb damage equal to 5 times the damage your Blood Plague dealt during Vampiric Blood.",
+                            "description": "After Vampiric Blood expires, you absorb damage equal to 6 times the damage your Blood Plague dealt during Vampiric Blood.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4622,7 +4622,7 @@
                             "talent_name": "Dance of Midnight",
                             "spell_id": 1264506,
                             "spell_name": "Dance of Midnight",
-                            "description": "While Dancing Rune Weapon is active, Parrying an attack has a chance to make your next Heart Strike cost no Runes and deal 150% increased damage.",
+                            "description": "While Dancing Rune Weapon is active, Parrying an attack has a 100% chance to make your next Heart Strike cost no Runes and deal 150% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4659,7 +4659,7 @@
                             "talent_name": "Outbreak",
                             "spell_id": 77575,
                             "spell_name": "Outbreak",
-                            "description": "Inflicts the target with Dread Plague and Virulent Plague.\r\n\r\nDread Plague\r\nA malicious plague that deals 153 Shadow damage over 24 sec. Explodes for 64 Shadow damage to nearby enemies and infects one when the host dies. Can only be applied to 1 host at a time.\r\n\r\nVirulent Plague\r\nAn infectious plague that spreads to all nearby enemies, dealing 70 Shadow damage over 24 sec.",
+                            "description": "Inflicts the target with Dread Plague and Virulent Plague.\r\n\r\nDread Plague\r\nA malicious plague that deals 153 Shadow damage over 24 sec. Explodes for 64 Shadow damage to nearby enemies and infects one when the host dies. Can only be applied to 1 host at a time.\r\n\r\nVirulent Plague\r\nAn infectious plague that spreads to all nearby enemies, dealing 71 Shadow damage over 24 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -4735,8 +4735,8 @@
                         76189
                     ],
                     "unlocks": [
-                        76185,
-                        108129
+                        108129,
+                        76185
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4818,7 +4818,7 @@
                                     "talent_name": "Blood-Soaked Ground",
                                     "spell_id": 434033,
                                     "spell_name": "Blood-Soaked Ground",
-                                    "description": "While you are within your Death and Decay, your physical damage taken is reduced by 5% and your chance to gain Vampiric Strike is increased by 5%.",
+                                    "description": "While you are within your Death and Decay, your physical damage taken is reduced by 8% and your chance to gain Vampiric Strike is increased by 5%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4928,7 +4928,7 @@
                             "talent_name": "Clawing Shadows",
                             "spell_id": 1241567,
                             "spell_name": "Clawing Shadows",
-                            "description": "Shadows guide your strikes, increasing the damage of your Scourge Strike by 25%, and causing it to grant you Clawing Shadows up to 4 times.\r\n\r\nFor each stack of Clawing Shadows, your Scourge Strike chains to an additional enemy. Each subsequent chain deals 20% reduced damage.",
+                            "description": "Shadows guide your strikes, increasing the damage of your Scourge Strike by 25%, and causing it to grant you Clawing Shadows up to 4 times.\r\n\r\nFor each stack of Clawing Shadows, your Scourge Strike chains to an additional enemy. Each subsequent chain deals 10% reduced damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4957,7 +4957,7 @@
                             "talent_name": "Putrefy",
                             "spell_id": 1247378,
                             "spell_name": "Putrefy",
-                            "description": "Summon a Lesser Ghoul to strike the enemy for 82 Shadow damage and have them explode for 42 Shadow damage to nearby enemies.",
+                            "description": "Summon a Lesser Ghoul to strike the enemy for 69 Shadow damage and have them explode for 48 Shadow damage to nearby enemies.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5069,7 +5069,7 @@
                             "talent_name": "The Blood is Life",
                             "spell_id": 434260,
                             "spell_name": "The Blood is Life",
-                            "description": "Dark Transformation summons a Blood Beast to attack your enemy for 10 sec.\r\n\r\nEach time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing 25% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond 8 targets.",
+                            "description": "Dark Transformation summons a Blood Beast to attack your enemy for 10 sec.\r\n\r\nEach time the Blood Beast attacks, it stores a portion of the damage dealt. When the Blood Beast dies, it explodes, dealing 15% of the damage accumulated to nearby enemies and healing the Death Knight for the same amount. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5115,9 +5115,9 @@
                         108131
                     ],
                     "unlocks": [
-                        76192,
                         76193,
-                        76197
+                        76197,
+                        76192
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5145,9 +5145,9 @@
                         108129
                     ],
                     "unlocks": [
-                        76192,
                         76196,
-                        76179
+                        76179,
+                        76192
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5327,7 +5327,7 @@
                             "talent_name": "Transfusion",
                             "spell_id": 1265574,
                             "spell_name": "Transfusion",
-                            "description": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8 sec. \r\n\r\nMultiple applications may overlap.",
+                            "description": "Vampiric Strike increases the damage of your Dancing Rune Weapons by 20% for 8 sec.\r\n\r\nMultiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5385,7 +5385,7 @@
                             "talent_name": "Festering Scythe",
                             "spell_id": 455397,
                             "spell_name": "Festering Scythe",
-                            "description": "Festering Strike now follows up with a Festering Scythe that costs no Runes.\r\n\r\nFestering Scythe\r\nSlashes through all enemies within 14 yds in front of you, dealing 34 Shadow damage and hastening all of your plagues on targets hit to deal damage 35% faster for 25 sec.",
+                            "description": "Festering Strike now follows up with a Festering Scythe that costs no Runes.\r\n\r\nFestering Scythe\r\nSlashes through all enemies within 14 yds in front of you, dealing 36 Shadow damage and hastening all of your plagues on targets hit to deal damage 35% faster for 25 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5404,8 +5404,8 @@
                         76162
                     ],
                     "unlocks": [
-                        76196,
-                        76156
+                        76156,
+                        76196
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5445,7 +5445,7 @@
                             "talent_name": "Soul Reaper",
                             "spell_id": 343294,
                             "spell_name": "Soul Reaper",
-                            "description": "Rupture the soul of your enemy, dealing 158 Shadowfrost damage and causing the foe to take 20% increased damage from your diseases and minions for 8 sec.\r\n\r\nOnly usable on enemies below 35% maximum health.\r\n\r\nConsumes up to 2 available charges to cast Putrefy.",
+                            "description": "Rupture the soul of your enemy, dealing 159 Shadowfrost damage and causing the foe to take 20% increased damage from your diseases and minions for 8 sec.\r\n\r\nOnly usable on enemies below 35% maximum health.\r\n\r\nConsumes up to 3 Lesser Ghoul stacks to summon them instantly.",
                             "cast_time": "Instant",
                             "cooldown": "15 sec cooldown",
                             "range": "Melee Range"
@@ -5503,7 +5503,7 @@
                             "talent_name": "Infected Claws",
                             "spell_id": 207272,
                             "spell_name": "Infected Claws",
-                            "description": "The infected claws of your ghouls have a chance to sicken the foe, dealing 7 Shadow damage over 12 sec. When reapplied, any remaining damage is added to the new effect.\r\n",
+                            "description": "The infected claws of your ghouls have a chance to sicken the foe, dealing 5 Shadow damage over 12 sec. When reapplied, any remaining damage is added to the new effect.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5580,9 +5580,9 @@
                         76193
                     ],
                     "unlocks": [
-                        76178,
+                        76160,
                         108126,
-                        76160
+                        76178
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5636,14 +5636,14 @@
                     "raw_position_x": 12600,
                     "raw_position_y": 4200,
                     "locked_by": [
-                        76192,
                         76186,
-                        76179
+                        76179,
+                        76192
                     ],
                     "unlocks": [
+                        76184,
                         76178,
-                        76176,
-                        76184
+                        76176
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5653,7 +5653,7 @@
                             "talent_name": "Army of the Dead",
                             "spell_id": 42650,
                             "spell_name": "Army of the Dead",
-                            "description": "Summons a legion of 8 empowered Lesser Ghouls that last for 15 sec to swarm your enemies.\r\n\r\nGenerates 40 Runic Power.",
+                            "description": "Summon or empower Lesser Ghouls to form an unholy army of 8 for 30 sec. While active, summoning a Lesser Ghoul will instead execute Orders based on nearby enemies.\r\n\r\n Death Orders\r\nLesser Ghouls strike with you, dealing 11 Shadow damage to your target.\r\n\r\n Epidemic Orders\r\nLesser Ghouls erupt in viscera, dealing 2 Shadow damage to nearby enemies. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -5712,7 +5712,7 @@
                             "talent_name": "Menacing Magus",
                             "spell_id": 455135,
                             "spell_name": "Menacing Magus",
-                            "description": "Your Magus of the Dead Shadow Bolt now fires a volley of Shadow Bolts at up to 8 nearby enemies.",
+                            "description": "Your Magus of the Dead Shadow Bolt now fires a volley of Shadow Bolts at up to 8 nearby enemies.\r\n\r\nYour Lord of the Dead Frostbolts now chain to 3 additional enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5930,8 +5930,8 @@
                         76155
                     ],
                     "unlocks": [
-                        108126,
-                        108151
+                        108151,
+                        108126
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6170,9 +6170,9 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 5400,
                     "locked_by": [
-                        76178,
+                        76160,
                         76155,
-                        76160
+                        76178
                     ],
                     "unlocks": [
                         76152,
@@ -6186,7 +6186,7 @@
                             "talent_name": "Blightburst",
                             "spell_id": 1254552,
                             "spell_name": "Blightburst",
-                            "description": "The explosion effect of Putrefy extends the duration of your plagues by 4.5 sec and deals 35% of the damage they would deal over that time instantly.\r\n\r\nPutrefy now applies your plagues to unaffected targets.",
+                            "description": "The explosion effect of Putrefy extends the duration of your plagues by 3.0 sec and deals 35% of the damage they would deal over that time instantly.\r\n\r\nPutrefy now applies your plagues to unaffected targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6248,7 +6248,7 @@
                             "talent_name": "Doomed Bidding",
                             "spell_id": 455386,
                             "spell_name": "Doomed Bidding",
-                            "description": "Consuming Sudden Doom summons forth a Lesser Ghoul to assist you for 6 sec.",
+                            "description": "Consuming Sudden Doom summons forth a Lesser Ghoul to assist you for 8 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6428,8 +6428,8 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 6000,
                     "locked_by": [
-                        108126,
-                        108151
+                        108151,
+                        108126
                     ],
                     "unlocks": [
                         109458
@@ -6482,7 +6482,7 @@
                             "talent_name": "Unholy Aura",
                             "spell_id": 377440,
                             "spell_name": "Unholy Aura",
-                            "description": "Each Magus of the Dead under your command grants you 1.0% Haste.",
+                            "description": "Magus of the Dead grants you 1.0% Haste for 15 sec.\r\n\r\nMultiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6493,7 +6493,7 @@
                             "talent_name": "Unholy Aura",
                             "spell_id": 377440,
                             "spell_name": "Unholy Aura",
-                            "description": "Each Magus of the Dead under your command grants you 2.0% Haste.",
+                            "description": "Magus of the Dead grants you 2.0% Haste for 15 sec.\r\n\r\nMultiple applications may overlap.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6521,7 +6521,7 @@
                             "talent_name": "Commander of the Dead",
                             "spell_id": 390259,
                             "spell_name": "Commander of the Dead",
-                            "description": "Dark Transformation empowers your Gargoyle, Abomination, Magus and Lesser Ghouls for 30 sec, increasing their damage by 15%.\r\n\r\nThe duration of Lesser Ghouls are increased by 25% of your Mastery.",
+                            "description": "Dark Transformation empowers your Gargoyle, Abomination, Magus and Lesser Ghouls for 30 sec, increasing their damage by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6532,7 +6532,7 @@
                             "talent_name": "Commander of the Dead",
                             "spell_id": 390259,
                             "spell_name": "Commander of the Dead",
-                            "description": "Dark Transformation empowers your Gargoyle, Abomination, Magus and Lesser Ghouls for 30 sec, increasing their damage by 30%.\r\n\r\nThe duration of Lesser Ghouls are increased by 50% of your Mastery.",
+                            "description": "Dark Transformation empowers your Gargoyle, Abomination, Magus and Lesser Ghouls for 30 sec, increasing their damage by 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6611,10 +6611,10 @@
                         {
                             "rank": 1,
                             "talent_id": 140432,
-                            "talent_name": "Reanimation",
+                            "talent_name": "Lord of the Dead",
                             "spell_id": 1256813,
-                            "spell_name": "Reanimation",
-                            "description": "When you Putrefy a Lesser Ghoul, it has a 100% chance to reanimate as a Magus of the Dead who hurls Frostbolts and Shadow Bolts at your foes for 15 sec.\r\n\r\nMagus of the Dead Frostbolts and Shadow Bolts deal 25% increased damage.",
+                            "spell_name": "Lord of the Dead",
+                            "description": "Putrefying a Lesser Ghoul has a 100% chance to reanimate it as a Magus of the Dead who hurls Frostbolts and Shadow Bolts at your foes for 15 sec.\r\n\r\nWhen you control 3 Magus of the Dead, sacrifice them to summon their Lord of the Dead for 15 sec, casting Frostbolts that chain between 2 enemies. Magus with higher remaining duration grant increased power.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6664,7 +6664,7 @@
                             "talent_name": "Forbidden Knowledge",
                             "spell_id": 1242158,
                             "spell_name": "Forbidden Knowledge",
-                            "description": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30 sec.\r\n\r\nNecrotic Coil\r\nUnleash a vortex of necrotic energy and bone, dealing 77 Shadowstrike damage up to 3 foes and 24 Shadow damage to all pierced enemies.\r\n\r\nGraveyard\r\nThe dead erupt beneath all foes with Virulent Plague, dealing 33 Shadow damage and 13 Shadow damage to enemies nearby.",
+                            "description": "Army of the Dead siphons the power of the fallen, transforming Death Coil and Epidemic into Necrotic Coil and Graveyard for 30 sec.\r\n\r\nNecrotic Coil\r\nUnleash a vortex of necrotic energy and bone, dealing 73 Shadowstrike damage up to 3 foes and 22 Shadow damage to all pierced enemies.\r\n\r\nGraveyard\r\nThe dead erupt beneath all foes with Virulent Plague, dealing 40 Shadow damage and 18 Shadow damage to enemies nearby.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6703,7 +6703,7 @@
                             "talent_name": "Reaper's Mark",
                             "spell_id": 439843,
                             "spell_name": "Reaper's Mark",
-                            "description": "Viciously slice into the soul of your enemy, dealing 109 Shadowfrost damage and applying Reaper's Mark.\r\n\r\nEach time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After 12 sec or reaching 40 stacks, the mark explodes, dealing 14 damage per stack.\r\n\r\nReaper's Mark travels to an unmarked enemy nearby if the target dies.",
+                            "description": "Viciously slice into the soul of your enemy, dealing 81 Shadowfrost damage and applying Reaper's Mark.\r\n\r\nEach time you deal Shadow or Frost damage, add a stack of Reaper's Mark. After 12 sec or reaching 40 stacks, the mark explodes, dealing 10 damage per stack.\r\n\r\nReaper's Mark travels to an unmarked enemy nearby if the target dies.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "Melee Range"
@@ -6730,7 +6730,7 @@
                             "talent_name": "Frost Strike",
                             "spell_id": 49143,
                             "spell_name": "Frost Strike",
-                            "description": "Chill your weapon with icy power and quickly strike the enemy, dealing 47 Frost damage.",
+                            "description": "Chill your weapon with icy power and quickly strike the enemy, dealing 58 Frost damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -6758,7 +6758,7 @@
                             "talent_name": "Wave of Souls",
                             "spell_id": 439851,
                             "spell_name": "Wave of Souls",
-                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 34 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
+                            "description": "Reaper's Mark sends forth bursts of Shadowfrost energy and back, dealing 33 Shadowfrost damage both ways to all enemies caught in its path.\r\n\r\nWave of Souls critical strikes cause enemies to take 5% increased Shadowfrost damage for 15 sec, stacking up to 2 times, and it is always a critical strike on its way back.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6786,7 +6786,7 @@
                             "talent_name": "Wither Away",
                             "spell_id": 441894,
                             "spell_name": "Wither Away",
-                            "description": "Frost Fever deals its damage 100% faster, and the second scythe of Exterminate applies Frost Fever.",
+                            "description": "Frost Fever deals its damage 75% faster, and the second scythe of Exterminate applies Frost Fever.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6842,7 +6842,7 @@
                             "talent_name": "Frigid Resolve",
                             "spell_id": 1265859,
                             "spell_name": "Frigid Resolve",
-                            "description": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt.\r\n\r\nPermafrost\r\nYour auto attack damage grants you an absorb shield equal to 40% of the damage dealt.",
+                            "description": "The effectiveness of Permafrost is increased by 100% and Exterminate grants Permafrost equal to 10% of the damage dealt.\r\n\r\nPermafrost\r\nYour auto attack damage grants you an absorb shield equal to 50% of the damage dealt.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6871,7 +6871,7 @@
                             "talent_name": "Obliterate",
                             "spell_id": 49020,
                             "spell_name": "Obliterate",
-                            "description": "A brutal attack that deals 41 Physical and 41 Frost damage.",
+                            "description": "A brutal attack that deals 28 Physical and 28 Frost damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -6900,7 +6900,7 @@
                             "talent_name": "Howling Blast",
                             "spell_id": 49184,
                             "spell_name": "Howling Blast",
-                            "description": "Blast the target with a frigid wind, dealing 8 Frost damage to that foe, and reduced damage to all other enemies within 10 yards, infecting all targets with Frost Fever.\r\n\r\n Frost Fever\r\nA disease that deals 59 Frost damage over 24 sec and has a chance to grant the Death Knight 4 Runic Power each time it deals damage.",
+                            "description": "Blast the target with a frigid wind, dealing 15 Frost damage to that foe, and reduced damage to all other enemies within 10 yards, infecting all targets with Frost Fever.\r\n\r\n Frost Fever\r\nA disease that deals 117 Frost damage over 24 sec and has a chance to grant the Death Knight 4 Runic Power each time it deals damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -7074,9 +7074,9 @@
                         76114
                     ],
                     "unlocks": [
+                        109258,
                         76102,
-                        76103,
-                        109258
+                        76103
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7086,7 +7086,7 @@
                             "talent_name": "Empower Rune Weapon",
                             "spell_id": 47568,
                             "spell_name": "Empower Rune Weapon",
-                            "description": "Drain the will of your enemy to empower your rune weapon, dealing 70 Shadowfrost damage and reduced damage to enemies nearby, gaining 40 Runic Power, and grants you Killing Machine.",
+                            "description": "Drain the will of your enemy to empower your rune weapon, dealing 91 Shadowfrost damage and reduced damage to enemies nearby, gaining 40 Runic Power, and grants you Killing Machine.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -7104,8 +7104,8 @@
                         76114
                     ],
                     "unlocks": [
-                        76102,
-                        76112
+                        76112,
+                        76102
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7115,7 +7115,7 @@
                             "talent_name": "Frostscythe",
                             "spell_id": 207230,
                             "spell_name": "Frostscythe",
-                            "description": "A sweeping attack that strikes all enemies in front of you for 14 Frost damage. Deals reduced damage beyond 5 targets. \r\n\r\nConsumes Killing Machine to have its critical strikes deal 4 times the normal damage.",
+                            "description": "A sweeping attack that strikes all enemies in front of you for 17 Frost damage. Deals reduced damage beyond 5 targets. \r\n\r\nConsumes Killing Machine to have its critical strikes deal 4 times the normal damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "8 yd range"
@@ -7300,8 +7300,8 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 3000,
                     "locked_by": [
-                        76096,
-                        76117
+                        76117,
+                        76096
                     ],
                     "unlocks": [
                         76098
@@ -7454,7 +7454,7 @@
                             "talent_name": "Exterminate",
                             "spell_id": 441378,
                             "spell_name": "Exterminate",
-                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 187 Shadowfrost damage and the second scythe strikes all enemies around your target for 76 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
+                            "description": "After Reaper's Mark explodes, your next 2 Obliterates or Frostscythes cost 1 Rune and summon 2 scythes to strike your enemies.\r\n\r\nThe first scythe strikes your target for 151 Shadowfrost damage and the second scythe strikes all enemies around your target for 62 Shadowfrost damage. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7531,9 +7531,9 @@
                         109258
                     ],
                     "unlocks": [
-                        101930,
                         102009,
-                        101931
+                        101931,
+                        101930
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7543,7 +7543,7 @@
                             "talent_name": "Pillar of Frost",
                             "spell_id": 51271,
                             "spell_name": "Pillar of Frost",
-                            "description": "The power of frost increases your Strength by 30% for 12 sec.",
+                            "description": "The power of frost increases your Strength by 20% for 12 sec.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": null
@@ -7558,9 +7558,9 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 3600,
                     "locked_by": [
+                        109258,
                         76112,
-                        76102,
-                        109258
+                        76102
                     ],
                     "unlocks": [
                         76092
@@ -8011,7 +8011,7 @@
                             "talent_name": "Frostwyrm's Fury",
                             "spell_id": 279302,
                             "spell_name": "Frostwyrm's Fury",
-                            "description": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 128 Frost damage, stunning enemies for 3 sec, and slowing movement speed by 50% for 10 sec.",
+                            "description": "Summons a frostwyrm who breathes on all enemies within 40 yd in front of you, dealing 103 Frost damage, stunning enemies for 3 sec, and slowing movement speed by 50% for 10 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": null
@@ -8197,12 +8197,12 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 5400,
                     "locked_by": [
-                        106790,
-                        76037
+                        76037,
+                        106790
                     ],
                     "unlocks": [
-                        101933,
-                        76091
+                        76091,
+                        101933
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8238,9 +8238,9 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 5400,
                     "locked_by": [
-                        106790,
                         101931,
-                        76106
+                        76106,
+                        106790
                     ],
                     "unlocks": [
                         101933
@@ -8507,7 +8507,7 @@
                             "talent_name": "Icy Death Torrent",
                             "spell_id": 435010,
                             "spell_name": "Icy Death Torrent",
-                            "description": "Your auto attack critical strikes have a chance to send out a torrent of ice dealing 37 Frost damage to enemies in front of you.",
+                            "description": "Your auto attack critical strikes have a chance to send out a torrent of ice dealing 49 Frost damage to enemies in front of you.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8671,7 +8671,7 @@
                             "talent_name": "Frostbane",
                             "spell_id": 455993,
                             "spell_name": "Frostbane",
-                            "description": "Each foe struck with Glacial Advance has a chance to transform your next Frost Strike into Frostbane. The chance increases with the number of Razorice stacks on the target.\r\n\r\nFrostbane\r\nStart a frozen onslaught that strikes twice, unleashing the chilling essence of winter, dealing 30 Frost damage to all enemies caught in its wake with each strike.\r\n\r\nEach enemy struck reduces the damage dealt to the next foe by 5%, down to 40%.",
+                            "description": "Each foe struck with Glacial Advance has a chance to transform your next Frost Strike into Frostbane. The chance increases with the number of Razorice stacks on the target.\r\n\r\nFrostbane\r\nStart a frozen onslaught that strikes twice, unleashing the chilling essence of winter, dealing 21 Frost damage to all enemies caught in its wake with each strike.\r\n\r\nEach enemy struck reduces the damage dealt to the next foe by 5%, down to 40%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8697,7 +8697,7 @@
                             "talent_name": "Breath of Sindragosa",
                             "spell_id": 1249658,
                             "spell_name": "Breath of Sindragosa",
-                            "description": "Call upon Sindragosa's aid in battle for 8 sec, continuously dealing 49 Frost damage every 1 sec to enemies in a cone in front of you. Consuming Killing Machine or Rime increases the duration by 0.8 sec. Deals reduced damage to secondary targets.\r\n\r\nGrants a charge of Empower Rune Weapon at the start and 2 Runes at the end.",
+                            "description": "Call upon Sindragosa's aid in battle for 8 sec, continuously dealing 39 Frost damage every 1 sec to enemies in a cone in front of you. Consuming Killing Machine or Rime increases the duration by 0.8 sec. Deals reduced damage to secondary targets.\r\n\r\nGrants a charge of Empower Rune Weapon at the start and 2 Runes at the end.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": null

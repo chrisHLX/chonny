@@ -143,17 +143,12 @@ One line per spell record; each lists every file it appears in.
 - **Dashing Scoundrel (id=340081) [Spell Family (8), Passive]** — `baseline.txt`
 - **Dashing Scoundrel (id=340426) [Spell Family (8)]** — `baseline.txt`
 - **Dashing Scoundrel (id=381797) [Spell Family (8), Passive]** — `assassination.txt`
-- **Dashing Scoundrel (id=395996) [Spell Family (8)]** — `baseline.txt`
 - **Deadened Nerves (id=231719) [Spell Family (8), Passive]** — `class-talents.txt`
-- **Deadly Momentum (id=1250271) [Spell Family (8), Passive]** — `assassination.txt`
-- **Deadly Momentum (id=1250272) [Spell Family (8)]** — `baseline.txt`
 - **Deadly Poison (id=113780) [Spell Family (8)]** — `baseline.txt`
 - **Deadly Poison (id=145420) [Spell Family (8)]** — `baseline.txt`
 - **Deadly Poison (id=177918)** — `baseline.txt`
 - **Deadly Poison (id=2818) [Spell Family (8)]** — `baseline.txt`
 - **Deadly Poison (id=2823) [Spell Family (8)]** — `assassination.txt`
-- **Deadly Poison (id=394324) [Spell Family (8)]** — `baseline.txt`
-- **Deadly Poison (id=394325) [Spell Family (8)]** — `baseline.txt`
 - **Deadly Precision (id=381542) [Spell Family (8), Passive]** — `class-talents.txt`
 - **Deadly Pursuit (id=1259612) [Spell Family (8), Passive]** — `outlaw.txt`
 - **Deadly Pursuit (id=1259613) [Spell Family (8), Hidden]** — `baseline.txt`
@@ -269,6 +264,7 @@ One line per spell record; each lists every file it appears in.
 - **Fade to Nothing (id=386237) [Spell Family (8)]** — `baseline.txt`
 - **Fan of Knives (id=51723) [Spell Family (8)]** — `baseline.txt`
 - **Fan the Hammer (id=381846) [Spell Family (8), Passive]** — `outlaw.txt`
+- **Fang Strike (id=1301405) [Spell Family (8)]** — `baseline.txt`
 - **Fast Action (id=1259480) [Spell Family (8), Passive]** — `outlaw.txt`
 - **Fatal Concoction (id=392384) [Spell Family (8), Passive]** — `assassination.txt`
 - **Fatal Flourish (id=35546) [Spell Family (8)]** — `baseline.txt`
@@ -353,6 +349,8 @@ One line per spell record; each lists every file it appears in.
 - **Glyph of the Twilight Pistol Shot (id=1213567) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Goremaw's Bite (id=1269217) [Spell Family (8)]** — `baseline.txt`
 - **Goremaw's Bite (id=1269674) [Spell Family (8)]** — `baseline.txt`
+- **Goremaw's Bite (id=1309274) [Spell Family (8), Hidden]** — `baseline.txt`
+- **Goremaw's Bite (id=1309309) [Spell Family (8)]** — `baseline.txt`
 - **Goremaw's Bite (id=426591) [Spell Family (8)]** — `subtlety.txt`
 - **Goremaw's Bite (id=426592) [Spell Family (8)]** — `baseline.txt`
 - **Goremaw's Bite (id=426593) [Spell Family (8)]** — `baseline.txt`
@@ -394,8 +392,7 @@ One line per spell record; each lists every file it appears in.
 - **Implacable (id=1265385) [Spell Family (8), Passive]** — `assassination.txt`
 - **Implacable (id=1265386) [Spell Family (8), Passive]** — `assassination.txt`
 - **Implacable (id=1265387) [Spell Family (8), Passive]** — `assassination.txt`
-- **Implacable (id=1265389) [Spell Family (8)]** — `baseline.txt`
-- **Implacable (id=1265391) [Spell Family (8)]** — `baseline.txt`
+- **Implacable (id=1298870) [Spell Family (8)]** — `baseline.txt`
 - **Implacable Strikes (id=1265787) [Spell Family (8)]** — `baseline.txt`
 - **Implacable Strikes (id=1265794) [Spell Family (8)]** — `baseline.txt`
 - **Implacable Strikes (id=1265795) [Spell Family (8)]** — `baseline.txt`
@@ -606,6 +603,8 @@ One line per spell record; each lists every file it appears in.
 - **Rogue Assassination 11.1 Class Set 4pc (id=1215724) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Assassination 12.0 Class Set 2pc (id=1264856) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Assassination 12.0 Class Set 4pc (id=1264857) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
+- **Rogue Assassination 12.1 Class Set 2pc (id=1296590) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
+- **Rogue Assassination 12.1 Class Set 4pc (id=1296591) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Assassination Class Set 2pc (id=393724) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Assassination Class Set 4pc (id=393725) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Outlaw 10.1 Class Set 2pc (id=405561) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
@@ -618,6 +617,8 @@ One line per spell record; each lists every file it appears in.
 - **Rogue Outlaw 11.1 Class Set 4pc (id=1215725) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Outlaw 12.0 Class Set 2pc (id=1264858) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Outlaw 12.0 Class Set 4pc (id=1264859) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
+- **Rogue Outlaw 12.1 Class Set 2pc (id=1296588) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
+- **Rogue Outlaw 12.1 Class Set 4pc (id=1296589) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Outlaw Class Set 2pc (id=393727) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Outlaw Class Set 4pc (id=393728) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Subtlety 10.1 Class Set 2pc (id=405563) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
@@ -630,6 +631,8 @@ One line per spell record; each lists every file it appears in.
 - **Rogue Subtlety 11.1 Class Set 4pc (id=1215722) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Subtlety 12.0 Class Set 2pc (id=1264860) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Subtlety 12.0 Class Set 4pc (id=1264861) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
+- **Rogue Subtlety 12.1 Class Set 2pc (id=1296592) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
+- **Rogue Subtlety 12.1 Class Set 4pc (id=1296593) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Subtlety Class Set 2pc (id=393729) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Subtlety Class Set 4pc (id=393730) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Rogue Tier 6 Trinket (id=40460) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
@@ -660,6 +663,7 @@ One line per spell record; each lists every file it appears in.
 - **Secret Stratagem (id=394320) [Spell Family (8), Passive]** — `subtlety.txt`
 - **Secret Technique (id=1269560) [Spell Family (8)]** — `baseline.txt`
 - **Secret Technique (id=1269663) [Spell Family (8)]** — `baseline.txt`
+- **Secret Technique (id=1305994) [Spell Family (8)]** — `baseline.txt`
 - **Secret Technique (id=280719) [Spell Family (8)]** — `baseline.txt`
 - **Secret Technique (id=280720) [Spell Family (8)]** — `baseline.txt`
 - **Secret Technique (id=282438) [Spell Family (8), Hidden]** — `baseline.txt`
@@ -829,6 +833,7 @@ One line per spell record; each lists every file it appears in.
 - **The Rotten (id=394203) [Spell Family (8)]** — `baseline.txt`
 - **Thick as Thieves (desc=PvP Talent) (id=221622) [Spell Family (8), Passive, Hidden]** — `baseline.txt`
 - **Thief's Versatility (id=381619) [Spell Family (8), Passive]** — `outlaw.txt`
+- **Thistle Tea (id=1298826) [Spell Family (8)]** — `class-talents.txt`
 - **Thistle Tea (id=381623) [Spell Family (8)]** — `baseline.txt`
 - **Thistle Tea (id=469779) [Spell Family (8), Passive]** — `class-talents.txt`
 - **Thousand Cuts (id=441346) [Spell Family (8), Passive]** — `hero-trickster.txt`
@@ -869,6 +874,7 @@ One line per spell record; each lists every file it appears in.
 - **Unseen Blade (id=459485) [Spell Family (8), Hidden]** — `baseline.txt`
 - **Unshakeable Drive (id=1248774) [Spell Family (8), Passive]** — `hero-deathstalker.txt`
 - **Unshakeable Drive (id=1248775) [Spell Family (8)]** — `baseline.txt`
+- **Unstable Toxin (id=1298812) [Spell Family (8), Passive]** — `assassination.txt`
 - **Vanish (id=11327) [Spell Family (8)]** — `baseline.txt`
 - **Vanish (id=1856) [Spell Family (8)]** — `baseline.txt`
 - **Veiltouched (id=382017) [Spell Family (8), Passive]** — `subtlety.txt`

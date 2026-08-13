@@ -1,7 +1,7 @@
 {
     "class": "Druid",
     "talent_tree_id": 793,
-    "fetched_at": "2026-08-02T09:04:38+00:00",
+    "fetched_at": "2026-08-12T21:33:54+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -84,7 +84,7 @@
                         "talent_name": "Starsurge",
                         "spell_id": 197626,
                         "spell_name": "Starsurge",
-                        "description": "Launch a surge of stellar energies at the target, dealing 802 Astral damage.",
+                        "description": "Launch a surge of stellar energies at the target, dealing 804 Astral damage.",
                         "cast_time": "Instant",
                         "cooldown": "10 sec cooldown",
                         "range": "40 yd range"
@@ -108,7 +108,7 @@
                         "talent_name": "Starfire",
                         "spell_id": 194153,
                         "spell_name": "Starfire",
-                        "description": "Call down a burst of energy, causing 382 Arcane damage to the target, and 270 Arcane damage to all other enemies within 10 yards. Deals reduced damage beyond 8 targets.\r\n\r\nGenerates 8 Astral Power.",
+                        "description": "Call down a burst of energy, causing 458 Arcane damage to the target, and 317 Arcane damage to all other enemies within 10 yards. Deals reduced damage beyond 8 targets.\r\n\r\nGenerates 8 Astral Power.",
                         "cast_time": "2.3 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -132,7 +132,7 @@
                         "talent_name": "Starsurge",
                         "spell_id": 78674,
                         "spell_name": "Starsurge",
-                        "description": "Launch a surge of stellar energies at the target, dealing 1,300 Astral damage.",
+                        "description": "Launch a surge of stellar energies at the target, dealing 1,386 Astral damage.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -156,7 +156,7 @@
                         "talent_name": "Wild Growth",
                         "spell_id": 48438,
                         "spell_name": "Wild Growth",
-                        "description": "Heals up to 5 injured allies within 30 yards of the target for 1,085 over 7 sec. Healing starts high and declines over the duration.",
+                        "description": "Heals up to 5 injured allies within 30 yards of the target for 1,303 over 7 sec. Healing starts high and declines over the duration.",
                         "cast_time": "1.5 sec cast",
                         "cooldown": "10 sec cooldown",
                         "range": "40 yd range"
@@ -686,7 +686,7 @@
                         "talent_name": "Improved Stampeding Roar",
                         "spell_id": 288826,
                         "spell_name": "Improved Stampeding Roar",
-                        "description": "Cooldown reduced by 60 sec.",
+                        "description": "Stampeding Roar's cooldown is reduced by 60 sec.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -710,7 +710,7 @@
                         "talent_name": "Heart of the Wild",
                         "spell_id": 1261867,
                         "spell_name": "Heart of the Wild",
-                        "description": "Perform a powerful off-role ability depending on your currently active shapeshift form.\r\n\r\nNon-shapeshifted:\r\nEmpowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for 6,514 over 7 sec.\r\n\r\nBear Form:\r\nIncrease your maximum health by 30% for 20 sec.",
+                        "description": "Perform a powerful off-role ability depending on your currently active shapeshift form.\r\n\r\nNon-shapeshifted:\r\nEmpowered Wild Growth that heals up to 5 injured allies within 30 yards of the target for 9,773 over 7 sec.\r\n\r\nBear Form:\r\nIncrease your maximum health by 30% for 20 sec.",
                         "cast_time": "Instant",
                         "cooldown": "2 min cooldown",
                         "range": "40 yd range"
@@ -1034,7 +1034,7 @@
                         "talent_name": "Innervate",
                         "spell_id": 29166,
                         "spell_name": "Innervate",
-                        "description": "Infuse a friendly healer with energy, allowing them to cast spells without spending mana for 8 sec.",
+                        "description": "Infuse a friendly healer with energy, causing them to regenerate 25% of their maximum mana over 8 sec.",
                         "cast_time": "Instant",
                         "cooldown": "3 min cooldown",
                         "range": "40 yd range"
@@ -1082,7 +1082,7 @@
                         "talent_name": "Starfire",
                         "spell_id": 197628,
                         "spell_name": "Starfire",
-                        "description": "Call down a burst of energy, causing 354 Arcane damage to the target, and 121 Arcane damage to all other enemies within 5 yards. Deals reduced damage beyond 8 targets.",
+                        "description": "Call down a burst of energy, causing 355 Arcane damage to the target, and 252 Arcane damage to all other enemies within 5 yards. Deals reduced damage beyond 8 targets.",
                         "cast_time": "2.5 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -1106,7 +1106,7 @@
                         "talent_name": "Starfire",
                         "spell_id": 197628,
                         "spell_name": "Starfire",
-                        "description": "Call down a burst of energy, causing 354 Arcane damage to the target, and 121 Arcane damage to all other enemies within 5 yards. Deals reduced damage beyond 8 targets.",
+                        "description": "Call down a burst of energy, causing 357 Arcane damage to the target, and 244 Arcane damage to all other enemies within 5 yards. Deals reduced damage beyond 8 targets.",
                         "cast_time": "2.5 sec cast",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -1178,7 +1178,7 @@
                         "talent_name": "Sunfire",
                         "spell_id": 93402,
                         "spell_name": "Sunfire",
-                        "description": "A quick beam of solar light burns the enemy for 81 Nature damage and then an additional 705 Nature damage over 18 sec.",
+                        "description": "A quick beam of solar light burns the enemy for 80 Nature damage and then an additional 705 Nature damage over 18 sec.",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "40 yd range"
@@ -1362,7 +1362,7 @@
                         "talent_name": "Matted Fur",
                         "spell_id": 385786,
                         "spell_name": "Matted Fur",
-                        "description": "When you use Barkskin or Survival Instincts, absorb 525 damage for 15 sec.",
+                        "description": "When you use Barkskin or Survival Instincts, absorb 656 damage for 15 sec.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1373,7 +1373,7 @@
                         "talent_name": "Matted Fur",
                         "spell_id": 385786,
                         "spell_name": "Matted Fur",
-                        "description": "When you use Barkskin or Survival Instincts, absorb 1,050 damage for 15 sec.",
+                        "description": "When you use Barkskin or Survival Instincts, absorb 1,312 damage for 15 sec.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1653,7 +1653,7 @@
                             "talent_name": "Ravage",
                             "spell_id": 441583,
                             "spell_name": "Ravage",
-                            "description": "Your auto-attacks have a chance to make your next Ferocious Bite become Ravage.\r\n\r\nRavage\r\nFinishing move that slashes through your target in a wide arc, dealing Physical damage per combo point to your target and consuming up to 25 additional Energy to increase that damage by up to 100%. Hits all other enemies in front of you for reduced damage per combo point spent. \r\n\r\n1 point: 13 damage, 6 in an arc\r\n2 points: 26 damage, 12 in an arc\r\n3 points: 38 damage, 17 in an arc\r\n4 points: 53 damage, 24 in an arc\r\n5 points: 64 damage, 30 in an arc",
+                            "description": "Your auto-attacks have a chance to make your next Ferocious Bite become Ravage.\r\n\r\nRavage\r\nFinishing move that slashes through your target in a wide arc, dealing Physical damage per combo point to your target and consuming up to 25 additional Energy to increase that damage by up to 100%. Hits all other enemies in front of you for reduced damage per combo point spent. \r\n\r\n1 point: 13 damage, 6 in an arc\r\n2 points: 26 damage, 12 in an arc\r\n3 points: 40 damage, 18 in an arc\r\n4 points: 51 damage, 23 in an arc\r\n5 points: 64 damage, 30 in an arc",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1990,7 +1990,7 @@
                             "talent_name": "Twin Claw",
                             "spell_id": 1271635,
                             "spell_name": "Twin Claw",
-                            "description": "You have a 18% chance to follow up any single target melee ability with a Twin Claw, dealing 120 Physical damage and generating 5 Rage.\r\n\r\n",
+                            "description": "You have a 18% chance to follow up any single target melee ability with a Twin Claw, dealing 119 Physical damage and generating 5 Rage.\r\n\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2488,7 +2488,7 @@
                             "talent_name": "Bursting Growth",
                             "spell_id": 440120,
                             "spell_name": "Bursting Growth",
-                            "description": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing 30 physical damage to nearby enemies. Damage reduced above 5 targets.\r\n\r\nWhen Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for 162.",
+                            "description": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing 30 physical damage to nearby enemies. Damage reduced above 5 targets.\r\n\r\nWhen Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for 159.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2674,7 +2674,7 @@
                                     "talent_name": "Potent Enchantments",
                                     "spell_id": 429420,
                                     "spell_name": "Potent Enchantments",
-                                    "description": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%.\r\n\r\nWhirling Stars increases the haste you gain during Celestial Alignment by an additional 10%.",
+                                    "description": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%.\r\n\r\nWhirling Stars increases the haste you gain during Celestial Alignment by an additional 6%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2733,7 +2733,7 @@
                             "talent_name": "Dream Surge",
                             "spell_id": 433831,
                             "spell_name": "Dream Surge",
-                            "description": "When Grove Guardians are summoned, they grow Dream Petals on your target, healing up to 3 nearby allies for 569.",
+                            "description": "When Grove Guardians are summoned, they grow Dream Petals on your target, healing up to 3 nearby allies for 554.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2916,7 +2916,7 @@
                             "talent_name": "Spirit of the Thicket",
                             "spell_id": 1264899,
                             "spell_name": "Spirit of the Thicket",
-                            "description": "Your Starfall damage is increased by 12% and your Starsurge damage is increased by 8%.",
+                            "description": "Your Starfall damage is increased by 18% and your Starsurge damage is increased by 8%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2972,7 +2972,7 @@
                             "talent_name": "Sylvan Beckoning",
                             "spell_id": 1264614,
                             "spell_name": "Sylvan Beckoning",
-                            "description": "Entering an Eclipse summons a Dryad to assist you for 8 sec, casting Starsurge dealing 563 Astral damage and Starfall at 200% effectiveness.",
+                            "description": "Entering an Eclipse summons a Dryad to assist you for 8 sec, casting Starsurge dealing 567 Astral damage and Starfall at 250% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3008,7 +3008,7 @@
                                     "talent_name": "The Light of Elune",
                                     "spell_id": 428655,
                                     "spell_name": "The Light of Elune",
-                                    "description": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec.\r\n\r\n Fury of Elune\r\nCalls down a beam of pure celestial energy, dealing 419 Astral damage over 3 sec within its area.\r\n\r\nGenerates 15 Astral Power over its duration.",
+                                    "description": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec.\r\n\r\n Fury of Elune\r\nCalls down a beam of pure celestial energy, dealing 416 Astral damage over 3 sec within its area.\r\n\r\nGenerates 15 Astral Power over its duration.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3060,7 +3060,7 @@
                                     "talent_name": "Lunation",
                                     "spell_id": 429539,
                                     "spell_name": "Lunation",
-                                    "description": "Your Arcane abilities reduce the cooldown of Lunar Beam by 3.0 sec.\r\n",
+                                    "description": "Lunar Beam's cooldown is reduced by 20 sec.\r\n",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3330,7 +3330,7 @@
                             "talent_name": "Boundless Moonlight",
                             "spell_id": 424058,
                             "spell_name": "Boundless Moonlight",
-                            "description": " Fury of Elune\r\nFury of Elune now ends with a flash of energy, blasting nearby enemies for 822 Astral damage.\r\n\r\n Full Moon\r\nFull Moon calls down 2 Minor Moons that deal 710 Astral damage and generate 3 Astral Power.",
+                            "description": " Fury of Elune\r\nFury of Elune now ends with a flash of energy, blasting nearby enemies for 822 Astral damage.\r\n\r\n Full Moon\r\nFull Moon calls down 2 Minor Moons that deal 729 Astral damage and generate 3 Astral Power.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3358,7 +3358,7 @@
                             "talent_name": "Bask in Moonlight",
                             "spell_id": 1271305,
                             "spell_name": "Bask in Moonlight",
-                            "description": "Starsurge damage increased by 10%. \r\nStarfall damage increased by 10%. \r\n",
+                            "description": "Starsurge damage increased by 5%. \r\nStarfall damage increased by 10%. \r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3414,7 +3414,7 @@
                             "talent_name": "Star Cascade",
                             "spell_id": 1271206,
                             "spell_name": "Star Cascade",
-                            "description": "Gaining Astral Power with Wrath or Starfire has a 40% chance to launch a Starsurge at a victim at 70% effectiveness.\r\n",
+                            "description": "Gaining Astral Power with Starfire has a 30% chance to launch a Starsurge at a victim at 50% effectiveness.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3450,7 +3450,7 @@
                             "talent_name": "Boundless Moonlight",
                             "spell_id": 424058,
                             "spell_name": "Boundless Moonlight",
-                            "description": " Fury of Elune\r\nFury of Elune now ends with a flash of energy, blasting nearby enemies for 822 Astral damage.\r\n\r\n Full Moon\r\nFull Moon calls down 2 Minor Moons that deal 709 Astral damage and generate 3 Astral Power.",
+                            "description": " Fury of Elune\r\nFury of Elune now ends with a flash of energy, blasting nearby enemies for 822 Astral damage.\r\n\r\n Full Moon\r\nFull Moon calls down 2 Minor Moons that deal 719 Astral damage and generate 3 Astral Power.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3589,7 +3589,7 @@
                             "talent_name": "Star Cascade",
                             "spell_id": 1271206,
                             "spell_name": "Star Cascade",
-                            "description": "Gaining Astral Power with Wrath or Starfire has a 40% chance to launch a Starsurge at a victim at 70% effectiveness.\r\n",
+                            "description": "Gaining Astral Power with Starfire has a 30% chance to launch a Starsurge at a victim at 50% effectiveness.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3618,7 +3618,7 @@
                             "talent_name": "Shooting Stars",
                             "spell_id": 202342,
                             "spell_name": "Shooting Stars",
-                            "description": "Moonfire and Sunfire damage over time has a chance to call down a falling star, dealing 260 Astral damage and generating 2 Astral Power.",
+                            "description": "Moonfire and Sunfire damage over time has a chance to call down a falling star, dealing 257 Astral damage and generating 2 Astral Power.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3920,7 +3920,7 @@
                                     "talent_name": "The Light of Elune",
                                     "spell_id": 428655,
                                     "spell_name": "The Light of Elune",
-                                    "description": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec.\r\n\r\n Fury of Elune\r\nCalls down a beam of pure celestial energy, dealing 425 Astral damage over 3 sec within its area.\r\n\r\nGenerates 15 Astral Power over its duration.",
+                                    "description": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec.\r\n\r\n Fury of Elune\r\nCalls down a beam of pure celestial energy, dealing 419 Astral damage over 3 sec within its area.\r\n\r\nGenerates 15 Astral Power over its duration.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3972,7 +3972,7 @@
                                     "talent_name": "Lunation",
                                     "spell_id": 429539,
                                     "spell_name": "Lunation",
-                                    "description": "Your Arcane abilities reduce the cooldown of Lunar Beam by 3.0 sec.\r\n",
+                                    "description": "Lunar Beam's cooldown is reduced by 20 sec.\r\n",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4002,7 +4002,7 @@
                             "talent_name": "Bask in Moonlight",
                             "spell_id": 1271305,
                             "spell_name": "Bask in Moonlight",
-                            "description": "Starsurge damage increased by 10%. \r\nStarfall damage increased by 10%. \r\n",
+                            "description": "Starsurge damage increased by 5%. \r\nStarfall damage increased by 10%. \r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4091,7 +4091,7 @@
                             "talent_name": "Umbral Intensity",
                             "spell_id": 383195,
                             "spell_name": "Umbral Intensity",
-                            "description": "Solar Eclipse increases Wrath damage by an additional 10%. \r\n\r\nLunar Eclipse increases Starfire damage by an additional 10%.",
+                            "description": "Wrath damage increased by 12%.\r\n\r\nStarfire damage increased by 12%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4286,7 +4286,7 @@
                             "talent_name": "Dream Surge",
                             "spell_id": 433831,
                             "spell_name": "Dream Surge",
-                            "description": "When Grove Guardians are summoned, they grow Dream Petals on your target, healing up to 3 nearby allies for 569.",
+                            "description": "When Grove Guardians are summoned, they grow Dream Petals on your target, healing up to 3 nearby allies for 547.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4401,7 +4401,7 @@
                             "talent_name": "Stellar Amplification",
                             "spell_id": 450212,
                             "spell_name": "Stellar Amplification",
-                            "description": "Starsurge increases the damage the target takes from your periodic effects and Shooting Stars by 16% for 5 sec. Reapplying this effect extends its duration, up to 20 sec.",
+                            "description": "Starsurge increases the damage the target takes from your periodic effects and Shooting Stars by 16% for 5 sec. Reapplying this effect extends its duration, up to 20 sec. Limit 1.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4442,7 +4442,7 @@
                                     "talent_name": "Orbital Strike",
                                     "spell_id": 390378,
                                     "spell_name": "Orbital Strike",
-                                    "description": "Celestial Alignment blasts all enemies in a targeted area for 1,023 Astral damage and applies Stellar Flare to them.\r\n\r\nReduces the cooldown of Celestial Alignment by 60 sec.\r\n\r\n Stellar Flare\r\nBurns the target for 68 Astral damage, and then an additional 894 damage over 24 sec. If dispelled, causes 803 damage to the dispeller and blasts them upwards.\r\n\r\nGenerates 12 Astral Power.",
+                                    "description": "Celestial Alignment blasts all enemies in a targeted area for 1,023 Astral damage and applies Stellar Flare to them.\r\n\r\nReduces the cooldown of Celestial Alignment by 60 sec.\r\n\r\n Stellar Flare\r\nBurns the target for 137 Astral damage, and then an additional 894 damage over 24 sec. If dispelled, causes 803 damage to the dispeller and blasts them upwards.\r\n\r\nGenerates 12 Astral Power.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4474,7 +4474,7 @@
                             "talent_name": "Touch the Cosmos",
                             "spell_id": 450356,
                             "spell_name": "Touch the Cosmos",
-                            "description": "Casting Wrath has a 15% chance to make your next Starsurge or Starfall free.\r\n\r\nCasting Starfire has a 20% chance to make your next Starsurge or Starfall free.",
+                            "description": "Casting Wrath has a 12% chance to make your next Starsurge or Starfall free.\r\n\r\nCasting Starfire has a 15% chance to make your next Starsurge or Starfall free.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4616,7 +4616,7 @@
                             "talent_name": "Sylvan Beckoning",
                             "spell_id": 1264614,
                             "spell_name": "Sylvan Beckoning",
-                            "description": "Entering an Eclipse summons a Dryad to assist you for 8 sec, casting Starsurge dealing 572 Astral damage and Starfall at 200% effectiveness.",
+                            "description": "Entering an Eclipse summons a Dryad to assist you for 8 sec, casting Starsurge dealing 576 Astral damage and Starfall at 250% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4684,7 +4684,7 @@
                             "talent_name": "Celestial Fire",
                             "spell_id": 1240185,
                             "spell_name": "Celestial Fire",
-                            "description": "Moonfire, Sunfire, and Shooting Stars damage increased by 8%.",
+                            "description": "Moonfire, Sunfire, and Shooting Stars damage increased by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4710,10 +4710,10 @@
                         {
                             "rank": 1,
                             "talent_id": 114855,
-                            "talent_name": "Astral Communion",
-                            "spell_id": 450598,
-                            "spell_name": "Astral Communion",
-                            "description": "Increases maximum Astral Power by 20. Entering Eclipse reduces the Astral Power cost of your next Starsurge or Starfall by 15.\r\n\r\n",
+                            "talent_name": "Sculpt the Stars",
+                            "spell_id": 1240188,
+                            "spell_name": "Sculpt the Stars",
+                            "description": "The cooldowns of Lunar Eclipse and Solar Eclipse are reduced by 3 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4892,7 +4892,7 @@
                                     "talent_name": "Potent Enchantments",
                                     "spell_id": 429420,
                                     "spell_name": "Potent Enchantments",
-                                    "description": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%.\r\n\r\nWhirling Stars increases the haste you gain during Celestial Alignment by an additional 10%.",
+                                    "description": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%.\r\n\r\nWhirling Stars increases the haste you gain during Celestial Alignment by an additional 6%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4948,10 +4948,10 @@
                         {
                             "rank": 1,
                             "talent_id": 122112,
-                            "talent_name": "Sculpt the Stars",
-                            "spell_id": 1240188,
-                            "spell_name": "Sculpt the Stars",
-                            "description": "The cooldowns of Lunar Eclipse and Solar Eclipse are reduced by 2 sec.",
+                            "talent_name": "Astral Communion",
+                            "spell_id": 450598,
+                            "spell_name": "Astral Communion",
+                            "description": "Increases maximum Astral Power by 20. Entering Eclipse reduces the Astral Power cost of your next Starsurge or Starfall by 15.\r\n\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5022,7 +5022,7 @@
                             "talent_name": "Total Eclipse",
                             "spell_id": 1240206,
                             "spell_name": "Total Eclipse",
-                            "description": "Entering any Eclipse has a 10% chance to grant the benefits of both Lunar and Solar Eclipse.",
+                            "description": "Entering any Eclipse has a 15% chance to grant the benefits of both Lunar and Solar Eclipse.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5033,7 +5033,7 @@
                             "talent_name": "Total Eclipse",
                             "spell_id": 1240206,
                             "spell_name": "Total Eclipse",
-                            "description": "Entering any Eclipse has a 20% chance to grant the benefits of both Lunar and Solar Eclipse.",
+                            "description": "Entering any Eclipse has a 30% chance to grant the benefits of both Lunar and Solar Eclipse.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5244,7 +5244,7 @@
                             "talent_name": "Spirit of the Thicket",
                             "spell_id": 1264899,
                             "spell_name": "Spirit of the Thicket",
-                            "description": "Your Starfall damage is increased by 12% and your Starsurge damage is increased by 8%.",
+                            "description": "Your Starfall damage is increased by 18% and your Starsurge damage is increased by 8%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5286,7 +5286,7 @@
                                     "talent_name": "Orbit Breaker",
                                     "spell_id": 383197,
                                     "spell_name": "Orbit Breaker",
-                                    "description": "Every 30th Shooting Star calls down a Full Moon at 60% effectiveness upon its target.",
+                                    "description": "Every 30th Shooting Star calls down a Full Moon at 50% effectiveness upon its target.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5366,7 +5366,7 @@
                                     "talent_name": "Fury of Elune",
                                     "spell_id": 202770,
                                     "spell_name": "Fury of Elune",
-                                    "description": "Calls down a beam of pure celestial energy that follows the enemy, dealing up to 1,111 Astral damage over 8 sec within its area. Damage reduced on secondary targets.\r\n\r\nGenerates 40 Astral Power over its duration.",
+                                    "description": "Calls down a beam of pure celestial energy that follows the enemy, dealing up to 1,123 Astral damage over 8 sec within its area. Damage reduced on secondary targets.\r\n\r\nGenerates 40 Astral Power over its duration.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 min cooldown",
                                     "range": "40 yd range"
@@ -5376,7 +5376,7 @@
                                     "talent_name": "New Moon",
                                     "spell_id": 274281,
                                     "spell_name": "New Moon",
-                                    "description": "Deals 991 Astral damage to the target and empowers New Moon to become Half Moon. \r\n\r\nGenerates 10 Astral Power.",
+                                    "description": "Deals 979 Astral damage to the target and empowers New Moon to become Half Moon. \r\n\r\nGenerates 10 Astral Power.",
                                     "cast_time": "1 sec cast",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -5501,8 +5501,8 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        88224,
-                        88206
+                        88206,
+                        88224
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -5602,7 +5602,7 @@
                             "talent_name": "Lifebloom",
                             "spell_id": 33763,
                             "spell_name": "Lifebloom",
-                            "description": "Heals the target for 1,715 over 15 sec. When Lifebloom expires, is dispelled, or is refreshed near expiration the target is instantly healed for 849.\r\n\r\nMay be active on one target at a time.",
+                            "description": "Heals the target for 1,715 over 15 sec. When Lifebloom expires, is dispelled, or is refreshed near expiration the target is instantly healed for 825.\r\n\r\nMay be active on one target at a time.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5659,7 +5659,7 @@
                             "talent_name": "Swiftmend",
                             "spell_id": 18562,
                             "spell_name": "Swiftmend",
-                            "description": "Consume a Regrowth, Wild Growth, or Rejuvenation effect to instantly heal an ally for 3,971.",
+                            "description": "Consume a Regrowth, Wild Growth, or Rejuvenation effect to instantly heal an ally for 3,930. Healing is increased by 40% of the consumed heal over time effect.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5854,17 +5854,17 @@
                             "rank": 1,
                             "choices": [
                                 {
-                                    "talent_id": 108142,
+                                    "talent_id": 142268,
                                     "talent_name": "Verdant Infusion",
                                     "spell_id": 392410,
                                     "spell_name": "Verdant Infusion",
-                                    "description": "Swiftmend no longer consumes a heal over time effect, and extends the duration of your heal over time effects on the target by 8 sec.",
+                                    "description": "Swiftmend no longer consumes a heal over time effect.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
                                 },
                                 {
-                                    "talent_id": 108141,
+                                    "talent_id": 142267,
                                     "talent_name": "Prosperity",
                                     "spell_id": 200383,
                                     "spell_name": "Prosperity",
@@ -5898,10 +5898,10 @@
                             "choices": [
                                 {
                                     "talent_id": 108108,
-                                    "talent_name": "Nature's Splendor",
-                                    "spell_id": 392288,
-                                    "spell_name": "Nature's Splendor",
-                                    "description": "The healing bonus to Regrowth from Nature's Swiftness is increased by 35%.",
+                                    "talent_name": "Overgrowth",
+                                    "spell_id": 203651,
+                                    "spell_name": "Overgrowth",
+                                    "description": "Nature's Swiftness causes your next Regrowth to apply Lifebloom, Rejuvenation, and Wild Growth effects to an ally.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5911,7 +5911,7 @@
                                     "talent_name": "Passing Seasons",
                                     "spell_id": 382550,
                                     "spell_name": "Passing Seasons",
-                                    "description": "Nature's Swiftness's cooldown is reduced by 12 sec.",
+                                    "description": "Nature's Swiftness's cooldown is reduced by 15 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6313,7 +6313,7 @@
                             "talent_name": "Efflorescence",
                             "spell_id": 145205,
                             "spell_name": "Efflorescence",
-                            "description": "Grows a healing blossom at the target location, restoring 223 health to three injured allies within 10 yards every 1.8 sec for 30 sec. Limit 1.",
+                            "description": "Grows a healing blossom at the target location, restoring 219 health to three injured allies within 10 yards every 1.8 sec for 30 sec. Limit 1.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6342,7 +6342,7 @@
                             "talent_name": "Tranquility",
                             "spell_id": 740,
                             "spell_name": "Tranquility",
-                            "description": "Heals all allies within 40 yards for 19,664 over 5.4 sec.\r\n\r\nHealing decreased beyond 5 targets.",
+                            "description": "Heals all allies within 40 yards for 19,452 over 5.4 sec. Healing decreased beyond 5 targets.\r\n\r\nRoots form around you while channeling, absorbing up to 60% of your health in damage and preventing knockbacks.",
                             "cast_time": "Channeled",
                             "cooldown": "3 min cooldown",
                             "range": null
@@ -6363,8 +6363,8 @@
                     "unlocks": [
                         82045,
                         82056,
-                        82045,
-                        82081
+                        82081,
+                        82045
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6432,7 +6432,7 @@
                             "talent_name": "Dream Surge",
                             "spell_id": 433831,
                             "spell_name": "Dream Surge",
-                            "description": "When Grove Guardians are summoned, they grow Dream Petals on your target, healing up to 3 nearby allies for 542.",
+                            "description": "When Grove Guardians are summoned, they grow Dream Petals on your target, healing up to 3 nearby allies for 559.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6459,10 +6459,10 @@
                         {
                             "rank": 1,
                             "talent_id": 108118,
-                            "talent_name": "Verdancy",
-                            "spell_id": 392325,
-                            "spell_name": "Verdancy",
-                            "description": "When Lifebloom blooms, up to 3 targets within your Efflorescence are healed for 360.",
+                            "talent_name": "Germination",
+                            "spell_id": 155675,
+                            "spell_name": "Germination",
+                            "description": "You can apply Rejuvenation twice to the same target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6520,7 +6520,7 @@
                             "talent_name": "Grove Guardians",
                             "spell_id": 1226140,
                             "spell_name": "Grove Guardians",
-                            "description": "Casting Swiftmend or Wild Growth summons a Treant that casts Nourish on that target or a nearby ally periodically, healing for 238. Lasts 8 sec.",
+                            "description": "Casting Swiftmend or Wild Growth summons a Treant that casts Nourish on that target or a nearby ally periodically, healing for 237. Lasts 8 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6529,7 +6529,7 @@
                 },
                 {
                     "id": 82053,
-                    "node_type": "CHOICE",
+                    "node_type": "PASSIVE",
                     "display_row": 7,
                     "display_col": 20,
                     "raw_position_x": 12300,
@@ -6544,28 +6544,14 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 108112,
-                                    "talent_name": "Inner Peace",
-                                    "spell_id": 197073,
-                                    "spell_name": "Inner Peace",
-                                    "description": "Reduces the cooldown of Tranquility by 30 sec.\r\n\r\nWhile channeling Tranquility, you take 20% reduced damage and are immune to knockbacks.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 108111,
-                                    "talent_name": "Flourish",
-                                    "spell_id": 197721,
-                                    "spell_name": "Flourish",
-                                    "description": "Tranquility extends the duration of all of your heal over time effects by 2 sec every 0.9 sec.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                }
-                            ]
+                            "talent_id": 108111,
+                            "talent_name": "Flourish",
+                            "spell_id": 197721,
+                            "spell_name": "Flourish",
+                            "description": "Tranquility extends the duration of all of your heal over time effects by 2 sec every 0.9 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -6581,17 +6567,18 @@
                     ],
                     "unlocks": [
                         82080,
-                        82065
+                        82065,
+                        110694
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
                             "talent_id": 108115,
-                            "talent_name": "Cultivation",
-                            "spell_id": 200390,
-                            "spell_name": "Cultivation",
-                            "description": "When Rejuvenation heals a target below 60% health, they are instantly healed for 115.",
+                            "talent_name": "Flash of Clarity",
+                            "spell_id": 392220,
+                            "spell_name": "Flash of Clarity",
+                            "description": "Clearcast Regrowths heal for an additional 40%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6611,8 +6598,8 @@
                     ],
                     "unlocks": [
                         82080,
-                        82080,
-                        103873
+                        103873,
+                        82080
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6777,7 +6764,7 @@
                             "talent_name": "Sylvan Beckoning",
                             "spell_id": 1264614,
                             "spell_name": "Sylvan Beckoning",
-                            "description": "Entering an Eclipse summons a Dryad to assist you for 8 sec, casting Starsurge dealing 567 Astral damage and Starfall at 200% effectiveness.",
+                            "description": "Entering an Eclipse summons a Dryad to assist you for 8 sec, casting Starsurge dealing 570 Astral damage and Starfall at 250% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6936,6 +6923,45 @@
                             "spell_id": 392302,
                             "spell_name": "Power of the Archdruid",
                             "description": "Soul of the Forest now causes your next Rejuvenation or Regrowth to apply to 2 additional allies within 20 yards of the target.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
+                    "id": 110694,
+                    "node_type": "PASSIVE",
+                    "display_row": 8,
+                    "display_col": 21,
+                    "raw_position_x": 12900,
+                    "raw_position_y": 5100,
+                    "locked_by": [
+                        82056
+                    ],
+                    "unlocks": [
+                        82067
+                    ],
+                    "max_ranks": 2,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 142270,
+                            "talent_name": "Cultivation",
+                            "spell_id": 200390,
+                            "spell_name": "Cultivation",
+                            "description": "When Rejuvenation heals a target below 30% health, they are instantly healed for 115.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        },
+                        {
+                            "rank": 2,
+                            "talent_id": 142270,
+                            "talent_name": "Cultivation",
+                            "spell_id": 200390,
+                            "spell_name": "Cultivation",
+                            "description": "When Rejuvenation heals a target below 60% health, they are instantly healed for 115.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7145,7 +7171,7 @@
                                     "talent_name": "Potent Enchantments",
                                     "spell_id": 429420,
                                     "spell_name": "Potent Enchantments",
-                                    "description": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%.\r\n\r\nWhirling Stars increases the haste you gain during Celestial Alignment by an additional 10%.",
+                                    "description": "Orbital Strike damage increased by 30%, and damage of Stellar Flares it applies increased by 30%.\r\n\r\nWhirling Stars increases the haste you gain during Celestial Alignment by an additional 6%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7241,7 +7267,7 @@
                                     "talent_name": "Incarnation: Tree of Life",
                                     "spell_id": 33891,
                                     "spell_name": "Incarnation: Tree of Life",
-                                    "description": "Shapeshift into the Tree of Life, increasing healing done by 10%, increasing armor by 120%, and granting protection from Polymorph effects. Functionality of Rejuvenation, Wild Growth, Regrowth, Entangling Roots, and Wrath is enhanced.\r\n\r\nLasts 30 sec. You may shapeshift in and out of this form for its duration.",
+                                    "description": "Shapeshift into the Tree of Life, instantly Regrowthing 3 nearby injured allies, increasing healing done by 10%, increasing armor by 120%, and granting protection from Polymorph effects. Functionality of Rejuvenation, Wild Growth, Regrowth, Entangling Roots, and Wrath is enhanced.\r\n\r\nLasts 30 sec. You may shapeshift in and out of this form for its duration.",
                                     "cast_time": "Instant",
                                     "cooldown": "3 min cooldown",
                                     "range": null
@@ -7268,6 +7294,7 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 5700,
                     "locked_by": [
+                        110694,
                         82080,
                         82065
                     ],
@@ -7456,7 +7483,7 @@
                             "talent_name": "Spirit of the Thicket",
                             "spell_id": 1264899,
                             "spell_name": "Spirit of the Thicket",
-                            "description": "Your Starfall damage is increased by 12% and your Starsurge damage is increased by 8%.",
+                            "description": "Your Starfall damage is increased by 18% and your Starsurge damage is increased by 8%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7712,7 +7739,7 @@
                             "talent_name": "Abundance",
                             "spell_id": 207383,
                             "spell_name": "Abundance",
-                            "description": "For each Rejuvenation you have active, Regrowth's cost is reduced by 8% and critical effect chance is increased by 8%, up to a maximum of 96%.",
+                            "description": "While you have at least 5 Rejuvenations active, Regrowth's cost is reduced by 60% and critical chance is increased by 60%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7879,10 +7906,10 @@
                         {
                             "rank": 1,
                             "talent_id": 108132,
-                            "talent_name": "Germination",
-                            "spell_id": 155675,
-                            "spell_name": "Germination",
-                            "description": "You can apply Rejuvenation twice to the same target. Rejuvenation's duration is increased by 2 sec.",
+                            "talent_name": "Verdancy",
+                            "spell_id": 392325,
+                            "spell_name": "Verdancy",
+                            "description": "When Lifebloom blooms, up to 3 targets within your Efflorescence are healed for 505.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8197,10 +8224,10 @@
                         {
                             "rank": 1,
                             "talent_id": 108164,
-                            "talent_name": "Merciless Claws",
-                            "spell_id": 231063,
-                            "spell_name": "Merciless Claws",
-                            "description": "Shred deals 20% increased damage and Swipe deals 20% increased damage against bleeding targets.",
+                            "talent_name": "Rampant Ferocity",
+                            "spell_id": 391709,
+                            "spell_name": "Rampant Ferocity",
+                            "description": "Ferocious Bite also deals 13 damage per combo point spent to all nearby enemies. Spending extra Energy on Ferocious Bite increases damage dealt by up to 100%. Damage reduced beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8399,7 +8426,7 @@
                             "talent_name": "Bursting Growth",
                             "spell_id": 440120,
                             "spell_name": "Bursting Growth",
-                            "description": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing 30 physical damage to nearby enemies. Damage reduced above 5 targets.\r\n\r\nWhen Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for 159.",
+                            "description": "When Bloodseeker Vines expire or you use Ferocious Bite on their target they explode in thorns, dealing 30 physical damage to nearby enemies. Damage reduced above 5 targets.\r\n\r\nWhen Symbiotic Blooms expire or you cast Rejuvenation on their target flowers grow around their target, healing them and up to 3 nearby allies for 160.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8668,7 +8695,7 @@
                             "talent_name": "Taste for Blood",
                             "spell_id": 384665,
                             "spell_name": "Taste for Blood",
-                            "description": "Ferocious Bite deals 12% increased damage and an additional 12% during Tiger's Fury.\r\n",
+                            "description": "Ferocious Bite deals 16% increased damage and an additional 8% during Tiger's Fury.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8897,10 +8924,10 @@
                         {
                             "rank": 1,
                             "talent_id": 108169,
-                            "talent_name": "Panther's Guile",
-                            "spell_id": 1280316,
-                            "spell_name": "Panther's Guile",
-                            "description": "When Shred or Moonfire generate combo points, they have a 25% chance to generate full combo points.",
+                            "talent_name": "Merciless Claws",
+                            "spell_id": 231063,
+                            "spell_name": "Merciless Claws",
+                            "description": "Shred deals 25% increased damage and Swipe deals 25% increased damage against bleeding targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8927,10 +8954,10 @@
                         {
                             "rank": 1,
                             "talent_id": 108186,
-                            "talent_name": "Rampant Ferocity",
-                            "spell_id": 391709,
-                            "spell_name": "Rampant Ferocity",
-                            "description": "Ferocious Bite also deals 10 damage per combo point spent to all nearby enemies. Spending extra Energy on Ferocious Bite increases damage dealt by up to 100%. Damage reduced beyond 5 targets.",
+                            "talent_name": "Panther's Guile",
+                            "spell_id": 1280316,
+                            "spell_name": "Panther's Guile",
+                            "description": "When Shred or Moonfire generate combo points, they have a 25% chance to generate full combo points.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8987,7 +9014,7 @@
                             "talent_name": "Ravage",
                             "spell_id": 441583,
                             "spell_name": "Ravage",
-                            "description": "Your auto-attacks have a chance to make your next Ferocious Bite become Ravage.\r\n\r\nRavage\r\nFinishing move that slashes through your target in a wide arc, dealing Physical damage per combo point to your target and consuming up to 25 additional Energy to increase that damage by up to 100%. Hits all other enemies in front of you for reduced damage per combo point spent. \r\n\r\n1 point: 13 damage, 6 in an arc\r\n2 points: 26 damage, 12 in an arc\r\n3 points: 39 damage, 18 in an arc\r\n4 points: 53 damage, 23 in an arc\r\n5 points: 65 damage, 30 in an arc",
+                            "description": "Your auto-attacks have a chance to make your next Ferocious Bite become Ravage.\r\n\r\nRavage\r\nFinishing move that slashes through your target in a wide arc, dealing Physical damage per combo point to your target and consuming up to 25 additional Energy to increase that damage by up to 100%. Hits all other enemies in front of you for reduced damage per combo point spent. \r\n\r\n1 point: 13 damage, 6 in an arc\r\n2 points: 26 damage, 12 in an arc\r\n3 points: 38 damage, 18 in an arc\r\n4 points: 52 damage, 24 in an arc\r\n5 points: 64 damage, 30 in an arc",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9119,7 +9146,7 @@
                             "talent_name": "Blood Spattered",
                             "spell_id": 1244532,
                             "spell_name": "Blood Spattered",
-                            "description": "Ferocious Bite's damage to its primary target increased by 2% for each enemy affected by your Rip, up to 10.",
+                            "description": "Ferocious Bite's damage to its primary target increased by 8% for each enemy affected by your Rip, up to 6.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9378,7 +9405,7 @@
                             "talent_name": "Saber Jaws",
                             "spell_id": 421432,
                             "spell_name": "Saber Jaws",
-                            "description": "When you spend extra Energy on Ferocious Bite, the extra damage is increased by 50%.",
+                            "description": "When you spend extra Energy on Ferocious Bite, the extra damage is increased by 60%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9389,7 +9416,7 @@
                             "talent_name": "Saber Jaws",
                             "spell_id": 421432,
                             "spell_name": "Saber Jaws",
-                            "description": "When you spend extra Energy on Ferocious Bite, the extra damage is increased by 100%.",
+                            "description": "When you spend extra Energy on Ferocious Bite, the extra damage is increased by 120%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9545,7 +9572,7 @@
                             "talent_name": "Apex Predator's Craving",
                             "spell_id": 391881,
                             "spell_name": "Apex Predator's Craving",
-                            "description": "Rip damage has a 5.0% chance to make your next Ferocious Bite free and deal the maximum damage.",
+                            "description": "Rip damage has a 4.0% chance to make your next Ferocious Bite free and deal the maximum damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9688,7 +9715,7 @@
                                     "talent_name": "Rip and Tear",
                                     "spell_id": 391347,
                                     "spell_name": "Rip and Tear",
-                                    "description": "Applying Rip to a target also applies a Tear that deals 15% of the new Rip's damage over 8 sec.",
+                                    "description": "Applying Rip to a target also applies a Tear that deals 20% of the new Rip's damage over 8 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -9870,7 +9897,7 @@
                                     "talent_name": "Chomp",
                                     "spell_id": 1244258,
                                     "spell_name": "Chomp",
-                                    "description": "Chomp your target, causing 308 Physical damage. Chomp critical strikes deal 3 times normal damage.\r\n\r\nChomp can only be used when you fall below 30% Energy or for 2 seconds afterward.",
+                                    "description": "Chomp your target, causing 411 Physical damage. Chomp critical strikes deal 3 times normal damage.\r\n\r\nChomp can only be used when you fall below 30% Energy or for 2 seconds afterward.",
                                     "cast_time": "Instant",
                                     "cooldown": "20 sec cooldown",
                                     "range": "Melee Range"
@@ -9900,7 +9927,7 @@
                                     "talent_name": "Focused Frenzy",
                                     "spell_id": 1244544,
                                     "spell_name": "Focused Frenzy",
-                                    "description": "Feral Frenzy's cooldown reduced by 15 sec and its damage is increased by 20%.",
+                                    "description": "Feral Frenzy's cooldown reduced by 15 sec and its damage is increased by 15%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -10085,7 +10112,7 @@
                             "talent_name": "Boundless Moonlight",
                             "spell_id": 424058,
                             "spell_name": "Boundless Moonlight",
-                            "description": " Fury of Elune\r\nFury of Elune now ends with a flash of energy, blasting nearby enemies for 822 Astral damage.\r\n\r\n Full Moon\r\nFull Moon calls down 2 Minor Moons that deal 725 Astral damage and generate 3 Astral Power.",
+                            "description": " Fury of Elune\r\nFury of Elune now ends with a flash of energy, blasting nearby enemies for 822 Astral damage.\r\n\r\n Full Moon\r\nFull Moon calls down 2 Minor Moons that deal 713 Astral damage and generate 3 Astral Power.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10112,7 +10139,7 @@
                             "talent_name": "Maul",
                             "spell_id": 6807,
                             "spell_name": "Maul",
-                            "description": "Maul the target for 73 Physical damage.",
+                            "description": "Maul the target for 74 Physical damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -10224,7 +10251,7 @@
                             "talent_name": "Star Cascade",
                             "spell_id": 1271206,
                             "spell_name": "Star Cascade",
-                            "description": "Gaining Astral Power with Wrath or Starfire has a 40% chance to launch a Starsurge at a victim at 70% effectiveness.\r\n",
+                            "description": "Gaining Astral Power with Starfire has a 30% chance to launch a Starsurge at a victim at 50% effectiveness.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10594,7 +10621,7 @@
                                     "talent_name": "The Light of Elune",
                                     "spell_id": 428655,
                                     "spell_name": "The Light of Elune",
-                                    "description": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec.\r\n\r\n Fury of Elune\r\nCalls down a beam of pure celestial energy, dealing 423 Astral damage over 3 sec within its area.\r\n\r\nGenerates 15 Astral Power over its duration.",
+                                    "description": "Moonfire damage has a chance to call down a Fury of Elune to follow your target for 3 sec.\r\n\r\n Fury of Elune\r\nCalls down a beam of pure celestial energy, dealing 414 Astral damage over 3 sec within its area.\r\n\r\nGenerates 15 Astral Power over its duration.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -10646,7 +10673,7 @@
                                     "talent_name": "Lunation",
                                     "spell_id": 429539,
                                     "spell_name": "Lunation",
-                                    "description": "Your Arcane abilities reduce the cooldown of Lunar Beam by 3.0 sec.\r\n",
+                                    "description": "Lunar Beam's cooldown is reduced by 20 sec.\r\n",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -10676,7 +10703,7 @@
                             "talent_name": "Bask in Moonlight",
                             "spell_id": 1271305,
                             "spell_name": "Bask in Moonlight",
-                            "description": "Starsurge damage increased by 10%. \r\nStarfall damage increased by 10%. \r\n",
+                            "description": "Starsurge damage increased by 5%. \r\nStarfall damage increased by 10%. \r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10726,8 +10753,8 @@
                     ],
                     "unlocks": [
                         82144,
-                        82140,
-                        82157
+                        82157,
+                        82140
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -10814,8 +10841,8 @@
                         82160
                     ],
                     "unlocks": [
-                        109378,
-                        92226
+                        92226,
+                        109378
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -10855,8 +10882,8 @@
                         82149
                     ],
                     "unlocks": [
-                        82156,
-                        92226
+                        92226,
+                        82156
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -10907,7 +10934,7 @@
                             "talent_name": "After the Wildfire",
                             "spell_id": 371905,
                             "spell_name": "After the Wildfire",
-                            "description": "Every 300 Rage you spend causes a burst of restorative energy, healing up to 5 allies within 20 yds for 210.",
+                            "description": "Every 300 Rage you spend causes a burst of restorative energy, healing up to 5 allies within 20 yds for 262.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -11029,7 +11056,7 @@
                                     "talent_name": "Brambles",
                                     "spell_id": 203953,
                                     "spell_name": "Brambles",
-                                    "description": "Sharp brambles protect you, absorbing and reflecting up to 7 damage from each attack.\r\n\r\nWhile Barkskin is active, the brambles also deal 2 Nature damage to all nearby enemies every 1 sec.",
+                                    "description": "Sharp brambles protect you, absorbing and reflecting up to 8 damage from each attack.\r\n\r\nWhile Barkskin is active, the brambles also deal 2 Nature damage to all nearby enemies every 1 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -11217,7 +11244,7 @@
                                     "talent_name": "Gory Fur",
                                     "spell_id": 200854,
                                     "spell_name": "Gory Fur",
-                                    "description": "Mangle has a 15% chance to reduce the Rage cost of your next Ironfur by 25%.",
+                                    "description": "Ironfur has a 20% chance to make your next Maul or Ravage free.\r\n\r\nMaul and Ravage have a 10% chance to make your next Ironfur free.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -11277,7 +11304,7 @@
                             "talent_name": "Ravage",
                             "spell_id": 441583,
                             "spell_name": "Ravage",
-                            "description": "Your auto-attacks have a chance to make your next Ferocious Bite become Ravage.\r\n\r\nRavage\r\nFinishing move that slashes through your target in a wide arc, dealing Physical damage per combo point to your target and consuming up to 25 additional Energy to increase that damage by up to 100%. Hits all other enemies in front of you for reduced damage per combo point spent. \r\n\r\n1 point: 13 damage, 6 in an arc\r\n2 points: 27 damage, 12 in an arc\r\n3 points: 39 damage, 18 in an arc\r\n4 points: 53 damage, 24 in an arc\r\n5 points: 66 damage, 30 in an arc",
+                            "description": "Your auto-attacks have a chance to make your next Ferocious Bite become Ravage.\r\n\r\nRavage\r\nFinishing move that slashes through your target in a wide arc, dealing Physical damage per combo point to your target and consuming up to 25 additional Energy to increase that damage by up to 100%. Hits all other enemies in front of you for reduced damage per combo point spent. \r\n\r\n1 point: 13 damage, 6 in an arc\r\n2 points: 26 damage, 12 in an arc\r\n3 points: 39 damage, 18 in an arc\r\n4 points: 51 damage, 24 in an arc\r\n5 points: 63 damage, 30 in an arc",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -11292,9 +11319,9 @@
                     "raw_position_x": 11100,
                     "raw_position_y": 5100,
                     "locked_by": [
+                        92226,
                         82156,
-                        109378,
-                        92226
+                        109378
                     ],
                     "unlocks": [
                         82154,
@@ -11343,9 +11370,9 @@
                         109377
                     ],
                     "unlocks": [
-                        82136,
                         82142,
-                        92586
+                        92586,
+                        82136
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -11375,9 +11402,9 @@
                         109375
                     ],
                     "unlocks": [
-                        82138,
                         82147,
-                        92586
+                        92586,
+                        82138
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -11387,10 +11414,10 @@
                             "talent_name": "Lunar Beam",
                             "spell_id": 204066,
                             "spell_name": "Lunar Beam",
-                            "description": "Summons a beam of lunar light at your target's location, dealing 14 Arcane damage each second to your target and 14 to up to 5 other enemies within the beam. \r\n\r\nLunar Beam also increases your mastery by 18%, and heals you for 802 over 8 sec.",
+                            "description": "Summons a beam of lunar light at your target's location, dealing 14 Arcane damage each second to your target and 14 to up to 5 other enemies within 8 yd. \r\n\r\nLunar Beam also increases your mastery by 18%, and heals you for 998 over 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
-                            "range": null
+                            "range": "40 yd range"
                         }
                     ]
                 },
@@ -11514,12 +11541,12 @@
                     "raw_position_x": 10500,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        109378,
-                        82152
+                        82152,
+                        109378
                     ],
                     "unlocks": [
-                        82153,
-                        109379
+                        109379,
+                        82153
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -11529,7 +11556,7 @@
                             "talent_name": "Ursoc's Fury",
                             "spell_id": 377210,
                             "spell_name": "Ursoc's Fury",
-                            "description": "Thrash and Maul grant you an absorb shield for 30% of the damage dealt for 15 sec.",
+                            "description": "Thrash and Maul grant you an absorb shield for 35% of the damage dealt for 15 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -11587,8 +11614,8 @@
                         82152
                     ],
                     "unlocks": [
-                        82136,
-                        109379
+                        109379,
+                        82136
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -11617,8 +11644,8 @@
                         82137
                     ],
                     "unlocks": [
-                        82134,
-                        82136
+                        82136,
+                        82134
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -11686,8 +11713,8 @@
                         92587
                     ],
                     "unlocks": [
-                        82134,
-                        82145
+                        82145,
+                        82134
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -11883,9 +11910,9 @@
                     "raw_position_x": 12299,
                     "raw_position_y": 6299,
                     "locked_by": [
-                        82137,
                         82142,
-                        92586
+                        92586,
+                        82137
                     ],
                     "unlocks": [
                         82135,
@@ -11945,7 +11972,7 @@
                             "talent_name": "Elune's Favored",
                             "spell_id": 370586,
                             "spell_name": "Elune's Favored",
-                            "description": "While in Bear Form, you are healed for 15% of all Arcane damage done.",
+                            "description": "While in Bear Form, you are healed for 18% of all Arcane damage done.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -12085,7 +12112,7 @@
                             "talent_name": "Twin Claw",
                             "spell_id": 1271635,
                             "spell_name": "Twin Claw",
-                            "description": "You have a 18% chance to follow up any single target melee ability with a Twin Claw, dealing 117 Physical damage and generating 5 Rage.\r\n\r\n",
+                            "description": "You have a 18% chance to follow up any single target melee ability with a Twin Claw, dealing 119 Physical damage and generating 5 Rage.\r\n\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -12100,8 +12127,8 @@
                     "raw_position_x": 10500,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        82159,
-                        109379
+                        109379,
+                        82159
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -12139,7 +12166,7 @@
                             "talent_name": "Sundering Roar",
                             "spell_id": 1253799,
                             "spell_name": "Sundering Roar",
-                            "description": "Roar with earthshattering ferocity, dealing 98 Physical damage, and resetting the cooldown of Thrash and allowing it to stack 5 additional times for 12 sec. \r\n\r\nWhen Sundering Roar ends, any excess stacks of Thrash immediately deal their remaining damage.",
+                            "description": "Roar with earthshattering ferocity, dealing 99 Physical damage, and resetting the cooldown of Thrash and allowing it to stack 5 additional times for 12 sec. \r\n\r\nWhen Sundering Roar ends, any excess stacks of Thrash immediately deal their remaining damage.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": null
@@ -12272,7 +12299,7 @@
                             "talent_name": "Wild Guardian",
                             "spell_id": 1269614,
                             "spell_name": "Wild Guardian",
-                            "description": "After you cast Berserk or Incarnation: Guardian of Ursoc, you gain access to Wild Guardian:\r\n Wild Guardian:\r\nSpirits of the wild come to your aid, causing your next 2 casts of Ironfur, Maul, and Frenzied Regeneration to be echoed at 50% effectiveness.",
+                            "description": "Spending Rage has a 10% chance to awaken a guardian spirit for 8 sec, which attacks a nearby enemy for 106 when you cast Thrash or Mangle.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

@@ -1,5 +1,5 @@
 # Paladin — Templar Hero Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Light's Deliverance (id=425518) [Spell Family (10), Passive] 
@@ -11,6 +11,7 @@ Labels           : 16: Class Spells
                  : 26: Paladin Spells
                  : 292
                  : 3022
+                 : 6935: Retribution Paladin (1258011 effect#15)
 Proc Chance      : 100%
 Proc Flags       : Yellow Melee
 Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
@@ -19,6 +20,10 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 433674 | Target: Self (1)
 #2 (id=1146237)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 433674 | Target: Self (1)
+#3 (id=1337594)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 37 | Misc Value 2: 3455 (Label) | Target: Self (1)
+                   Affected Spells (Label): Light's Deliverance (433674)
+                   Modified By: Retribution Paladin (1258011 effect#15)
 Description      : You gain a stack of Light's Deliverance when you call down an Empyrean Hammer.
 
 While $?a137028[Divine Toll][Wake of Ashes] and Hammer of Light are unavailable, you consume $433674U stacks of Light's Deliverance, empowering yourself to cast Hammer of Light an additional time for free.
@@ -262,13 +267,14 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 26: Paladin Spells
                  : 292
-                 : 6716
+                 : 6716: Protection Paladin (1305063 effect#6)
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Hide Passive From Tooltip (451)
 Effects          :
 #1 (id=1269864)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 #2 (id=1270010)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 150 | Scaled Value: 150 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.75 | Target: Self (1)
+                   Modified By: Protection Paladin (1305063 effect#6)
 Description      : Divine Toll casts $s1 additional $ltime:times; on your target at $s2% effectiveness.
 Variables        : $dmg=${$198137s1*$ceil($198034d/$198034t1)}
 

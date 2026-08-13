@@ -1,5 +1,5 @@
 # Warrior — Slayer Hero Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Unhinged (id=386628) [Spell Family (4), Passive, Hidden] 
@@ -34,7 +34,9 @@ Aura Interrupt   : Change Specialization (38)
 Effects          :
 #1 (id=1141365)  : Apply Aura (6) | Proc Trigger Spell (42)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
-Description      : Your attacks against your primary target have a $s1% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing $445579s1 Physical damage and granting you a stack of Executioner, increasing your Execute damage by $445584s1% for $445584d. Multiple stacks of Executioner may overlap.
+#2 (id=1340339)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : Your attacks against your primary target have a $?c1[$s2][$s1]% chance to overwhelm their defenses and trigger a Slayer's Strike, dealing $445579s1 Physical damage and granting you a stack of Executioner, increasing your Execute damage by $445584s1% for $445584d. Multiple stacks of Executioner may overlap.
 
 Name             : Imminent Demise (id=444769) [Spell Family (4), Passive, Hidden] 
 Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=2, col=1, max_rank=1, req_points=0]

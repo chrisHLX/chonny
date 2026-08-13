@@ -1,5 +1,5 @@
 # Shaman — Elemental Spec Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 51 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Earth Shock (id=8042) [Spell Family (11)] 
@@ -14,7 +14,7 @@ GCD              : 1.5 seconds
 Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
-Affecting Spells : Shaman Shock Range Bonus (32973 effect#1), Elemental Fury (60188 effect#1), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5), Elemental Shaman (137040 effects: #1, #2), Enhancement Shaman (137041 effects: #1, #2), Storm Elemental (157299 effects: #3, #4), Primal Storm Elemental (157319 effects: #4, #5), Mastery: Elemental Overload (168534 effects: #3, #4), Flame Shock (188389 effect#5), Crackling Surge (224127 effects: #1, #2), Lava Shock (273453 effect#1), Bottle of Swirling Maelstrom (329580 effect#4), Nature's Fury (381655 effect#1), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#1), Initial Shaman (417374 effects: #1, #2), Maelstrom Supremacy (443447 effect#1), Shaman Elemental 11.0 Class Set 2pc (453684 effect#1), Stormcaller (454021 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Lightning Capacitor (462862 effects: #1, #2), Lesser Storm Elemental (462990 effects: #4, #5), Lesser Storm Elemental (462993 effects: #3, #4), Earthshatter (468626 effect#1), Enhancement Shaman (1214207 effects: #1, #2), Elemental Shaman (1231772 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effect#1), Tectonic Collapse (1258899 effect#1), Natural Gift (1264691 effects: #1, #2), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
+Affecting Spells : Shaman Shock Range Bonus (32973 effect#1), Elemental Fury (60188 effect#1), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5), Elemental Shaman (137040 effects: #1, #2), Enhancement Shaman (137041 effects: #1, #2), Storm Elemental (157299 effects: #4, #5), Primal Storm Elemental (157319 effects: #4, #5), Mastery: Elemental Overload (168534 effects: #3, #4), Flame Shock (188389 effect#5), Crackling Surge (224127 effects: #1, #2), Lava Shock (273453 effect#1), Bottle of Swirling Maelstrom (329580 effect#4), Nature's Fury (381655 effect#1), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#1), Initial Shaman (417374 effects: #1, #2), Maelstrom Supremacy (443447 effect#1), Shaman Elemental 11.0 Class Set 2pc (453684 effect#1), Stormcaller (454021 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Lightning Capacitor (462862 effects: #1, #2), Lesser Primal Storm Elemental (462990 effects: #4, #5), Lesser Storm Elemental (462993 effects: #4, #5), Earthshatter (468626 effect#1), Enhancement Shaman (1214207 effects: #1, #2), Elemental Shaman (1231772 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effects: #1, #2), Tectonic Collapse (1258899 effect#1), Natural Gift (1264691 effects: #1, #2), Feedback Loop (1270061 effects: #2, #3), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2), Shaman Elemental 12.1 Class Set 2pc (1296625 effects: #1, #2), Overcharge! (1300222 effects: #1, #3)
 Family Flags     : 20, 39, 126
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow Class Ability Procs (416)
 Effects          :
@@ -52,19 +52,19 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
-Affecting Spells : Primordial Fury (378193 effects: #1, #2), Feedback Loop (1270062 effect#2)
+Affecting Spells : Primordial Fury (378193 effects: #1, #2), Feedback Loop (1270062 effects: #2, #3)
 Family Flags     : 91
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=53887)    : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
                    Base Value: 50 | Scaled Value: 50 | Misc Value: 15 | Target: Self (1)
-                   Affected Spells: Searing Bolt (3606), Earth Shock (8042), Flametongue Attack (10444), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Earthquake (61882), Earthquake (77478), Elemental Blast (117014), Elemental Blast Overload (120588), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Shield (192106), Lightning Shield (192109), Frost Shock (196840), Lightning Rod (197568), Control of Lava (204395), Icefury (210714), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Icefury Overload (219271), Lightning Shield Overcharge (273323), Lightning Shield (273324), Lava Burst (285452), Lava Burst Overload (285466), Earthquake (298762), Earthquake Overload (298765), Lightning Lasso (305483), Lightning Lasso (305484), Lightning Lasso (305485), Flametongue Weapon (318038), Flametongue Weapon (319778), Earthquake (329801), Fire Nova (333977), Earthquake (336740), Lightning Shield (344174), Elemental Blast (344645), Earth Shock Overload (381725), Tempest (452201), Searing Volley (458147), Earthquake (462620), Tempest Overload (463351), Flametongue Attack (467386), Flametongue Attack (467390), Flame Shock (470411)
-                   Family Flags: 0, 1, 2, 3, 10, 20, 21, 28, 30, 31, 44, 45, 50, 60, 79, 83, 98, 107, 119, 121
+                   Affected Spells: Searing Bolt (3606), Earth Shock (8042), Flametongue Attack (10444), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Earthquake (61882), Earthquake (77478), Elemental Blast (117014), Elemental Blast Overload (120588), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Shield (192106), Lightning Shield (192109), Frost Shock (196840), Lightning Rod (197568), Control of Lava (204395), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816), Icefury Overload (219271), Lightning Shield Overcharge (273323), Lightning Shield (273324), Lava Burst (285452), Lava Burst Overload (285466), Earthquake (298762), Earthquake Overload (298765), Lightning Lasso (305483), Lightning Lasso (305484), Lightning Lasso (305485), Flametongue Weapon (318038), Flametongue Weapon (319778), Earthquake (329801), Fire Nova (333977), Earthquake (336740), Lightning Shield (344174), Elemental Blast (344645), Earth Shock Overload (381725), Tempest (452201), Searing Volley (458147), Earthquake (462620), Tempest Overload (463351), Flametongue Attack (467386), Flametongue Attack (467390), Flame Shock (470411), Voltaic Blaze (1259101)
+                   Family Flags: 0, 1, 3, 4, 10, 20, 21, 28, 30, 31, 44, 45, 50, 79, 83, 98, 107, 121
                    Modified By: Primordial Fury (378193 effect#1), Feedback Loop (1270062 effect#2)
 #2 (id=830842)   : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
                    Base Value: 50 | Scaled Value: 50 | Misc Value: 15 | Misc Value 2: 3924 (Label) | Target: Self (1)
                    Affected Spells (Label): Earthen Rage (170374), Earthen Rage (170379), Awakening Storms (455130), Thunderstrike (462763)
-                   Modified By: Primordial Fury (378193 effect#2)
+                   Modified By: Primordial Fury (378193 effect#2), Feedback Loop (1270062 effect#3)
 Description      : Your damaging $?a343190[and healing ][]critical strikes deal ${$m1+200}% damage $?a343190[or healing ][]instead of the usual 200%.
 
 Name             : Earthquake (id=61882) [Spell Family (11)] 
@@ -81,7 +81,7 @@ Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
 Proc Chance      : 100%
-Affecting Spells : Elemental Fury (60188 effect#1), Spiritwalker's Grace (79206 effect#1), Flame Shock (188389 effect#5), Echoes of the Great Sundering (208723 effect#1), Fulmination (260111 effect#2), Seismic Thunder (319343 effect#1), Bottle of Swirling Maelstrom (329580 effects: #5, #6), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#2), Primal Fracture (410018 effect#2), Maelstrom Supremacy (443447 effect#1), Shaman Elemental 11.0 Class Set 2pc (453684 effect#2), Voltaic Surge (454919 effect#1), Earthshatter (468626 effect#1), Tectonic Collapse (1258899 effect#1)
+Affecting Spells : Elemental Fury (60188 effect#1), Spiritwalker's Grace (79206 effect#1), Flame Shock (188389 effect#5), Echoes of the Great Sundering (208723 effect#1), Fulmination (260111 effect#2), Seismic Thunder (319343 effect#1), Bottle of Swirling Maelstrom (329580 effects: #5, #6), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#2), Primal Fracture (410018 effect#2), Maelstrom Supremacy (443447 effect#1), Shaman Elemental 11.0 Class Set 2pc (453684 effect#2), Voltaic Surge (454919 effect#1), Earthshatter (468626 effect#1), Tectonic Collapse (1258899 effect#1), Shaman Elemental 12.1 Class Set 2pc (1296625 effects: #1, #2), Overcharge! (1300222 effects: #1, #3)
 Family Flags     : 83
 Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), No Threat (42), No Aura Icon (60), No Initial Threat (86), No Aura Log (202), Aura Points On Client (268), Bypass Visibility Check (320), Caster Death Cancels Persistent Area Auras (347), Allow Class Ability Procs (416)
 Effects          :
@@ -115,7 +115,7 @@ Attributes       : Not Shapeshifted (16), No Aura Cancel (31), Aura Points On Cl
 Aura Interrupt   : Raid Encounter End or M+ Start (41)
 Effects          :
 #1 (id=127153)   : Dummy (3)
-                   Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
+                   Base Value: 50 | Scaled Value: 50 | Target: Targeted Enemy (6)
 #2 (id=1207654)  : Dummy (3)
                    Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0 | Target: Targeted Enemy (6)
 Description      : $@spelldesc1219480
@@ -151,7 +151,7 @@ Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
                  : 737
-Affecting Spells : Elemental Fury (60188 effect#1), Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5), Elemental Shaman (137040 effects: #1, #2, #18), Enhancement Shaman (137041 effects: #1, #2), Storm Elemental (157299 effects: #3, #4), Primal Storm Elemental (157319 effects: #4, #5), Mastery: Elemental Overload (168534 effects: #3, #4), Flame Shock (188389 effect#5), Fire Elemental (188592 effects: #4, #5), Molten Weapon (224125 effects: #1, #2), Icy Edge (224126 effects: #1, #2), Crackling Surge (224127 effects: #1, #2), Nature's Swiftness (378081 effects: #1, #2), Nature's Fury (381655 effect#1), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#3), Improved Flametongue Weapon (382028 effect#1), Fire and Ice (382886 effect#1), Maelstrom of Elements (394677 effects: #1, #3), Elemental Weapons (408390 effects: #1, #2), Volcanic Strength (409833 effects: #1, #2), Initial Shaman (417374 effects: #1, #2), Maelstrom Supremacy (443447 effect#1), Ancestral Swiftness (443454 effects: #1, #2), Shaman Elemental 11.0 Class Set 2pc (453684 effect#1), Stormcaller (454021 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Lightning Capacitor (462862 effects: #1, #2), Lesser Storm Elemental (462990 effects: #4, #5), Lesser Fire Elemental (462992 effects: #4, #5), Lesser Storm Elemental (462993 effects: #3, #4), Enhancement Shaman (1214207 effects: #1, #2, #8), Elemental Shaman (1231772 effects: #1, #2, #6), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effect#1), Tectonic Collapse (1258899 effect#1), Natural Gift (1264691 effects: #1, #2), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
+Affecting Spells : Elemental Fury (60188 effect#1), Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5), Elemental Shaman (137040 effects: #1, #2, #18), Enhancement Shaman (137041 effects: #1, #2), Storm Elemental (157299 effects: #4, #5), Primal Storm Elemental (157319 effects: #4, #5), Mastery: Elemental Overload (168534 effects: #3, #4), Flame Shock (188389 effect#5), Fire Elemental (188592 effects: #4, #5), Molten Weapon (224125 effects: #1, #2), Icy Edge (224126 effects: #1, #2), Crackling Surge (224127 effects: #1, #2), Nature's Swiftness (378081 effects: #1, #2), Nature's Fury (381655 effect#1), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#3), Improved Flametongue Weapon (382028 effect#1), Fire and Ice (382886 effect#1), Maelstrom of Elements (394677 effects: #1, #3), Elemental Weapons (408390 effects: #1, #2), Volcanic Strength (409833 effects: #1, #2), Initial Shaman (417374 effects: #1, #2), Maelstrom Supremacy (443447 effect#1), Ancestral Swiftness (443454 effects: #1, #2), Shaman Elemental 11.0 Class Set 2pc (453684 effect#1), Stormcaller (454021 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Lightning Capacitor (462862 effects: #1, #2), Lesser Primal Storm Elemental (462990 effects: #4, #5), Lesser Fire Elemental (462992 effects: #4, #5), Lesser Storm Elemental (462993 effects: #4, #5), Enhancement Shaman (1214207 effects: #1, #2, #8), Elemental Shaman (1231772 effects: #1, #2, #6), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effects: #1, #2), Tectonic Collapse (1258899 effect#1), Natural Gift (1264691 effects: #1, #2), Feedback Loop (1270061 effects: #2, #3), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2), Shaman Elemental 12.1 Class Set 2pc (1296625 effects: #1, #2), Overcharge! (1300222 effects: #1, #3)
 Family Flags     : 24, 39, 56, 98, 103, 126
 Attributes       : Not Shapeshifted (16), Doesn't Reset Swing Timer if Instant (217), Allow Class Ability Procs (416)
 Effects          :
@@ -202,7 +202,7 @@ Effects          :
                    Affected Spells: Lightning Bolt (188196), Chain Lightning (188443), Chain Lightning (211094), Lightning Bolt (214815), Lightning Bolt Overload (214816)
                    Family Flags: 0, 1
 #2 (id=747303)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0) | Attributes: Suppress Points Stacking (6)
-                   Base Value: 150 | Scaled Value: 150 | PvP Coefficient: 0.2 | Target: Self (1)
+                   Base Value: 150 | Scaled Value: 150 | PvP Coefficient: 0.35 | Target: Self (1)
                    Affected Spells: Lightning Bolt (188196), Lightning Bolt (214815), Lightning Bolt Overload (214816)
                    Family Flags: 0
 #3 (id=1276341)  : Energize Power (30)
@@ -216,12 +216,12 @@ Effects          :
 #5 (id=1299824)  : Dummy (3)
                    Base Value: 2 | Scaled Value: 2
                    Modified By: Shaman Elemental 12.0 Class Set 4pc (1264863 effect#3)
-Description      : Charge yourself with lightning, causing your next $s5 Lightning Bolts to deal $s2% more damage, and also causes your next $s5 Lightning Bolts or Chain Lightings to be instant cast and trigger an Elemental Overload on every target.$?a1264863[
+Description      : Charge yourself with lightning, causing your next $s5 Lightning $lBolt:Bolts; to be instant cast and deal $s2% more damage, or cause your next $s5 Chain $LLightning:Lightings; to be instant cast and trigger an Elemental Overload on every target.$?a1264863[
 
 Additionally, increases Lightning Bolt and Chain Lightning damage by ${$1264863s2}.1%.][]$?a1264762[
 
 |cFFFFFFFFGenerates $1264762s2 Maelstrom.|r][]
-Tooltip          : Your next Lightning Bolt will deal $s2% increased damage, and your next Lightning Bolt or Chain Lightning will be instant cast and cause an Elemental Overload to trigger on every target hit.$?a1264863[
+Tooltip          : Your next Lightning Bolt will be instant cast  and deal $s2% increased damage, or your next Chain Lightning will be instant cast and cause an Elemental Overload to trigger on every target hit.$?a1264863[
 
 Additionally, increases Lightning Bolt and Chain Lightning damage by ${$W4}.1%.][]
 
@@ -256,7 +256,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=281468)   : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
-Description      : Casting Lava Burst has a $s1% chance to cause your next Lightning Bolt$?a454009[, Tempest,][] or Chain Lightning cast to trigger Elemental Overload an additional time, stacking up to $191877U times.
+Description      : Chain Lightning and Lightning Bolt have a $s1% chance to cause your next Lava Burst deal $191877s1% extra damage, stacking up to $191877U times.
 
 Name             : Lightning Rod (id=210689) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=9, col=2, max_rank=1, req_points=20]
@@ -360,7 +360,7 @@ Effects          :
                    Family Flags: 91
 Description      : Elemental Fury increases critical strike damage by an additional $s1%.
 
-Name             : Call of Fire (id=378255) [Spell Family (11), Passive, Hidden] 
+Name             : Call of Fire (id=378255) [Spell Family (11), Passive] 
 Talent Entry     : Elemental [tree=spec, row=9, col=4, max_rank=1, req_points=20]
 Class            : Shaman
 School           : Physical
@@ -368,7 +368,7 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
-Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Attributes       : Passive (6), No Aura Icon (60), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1006598)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
@@ -591,7 +591,7 @@ Duration         : 6 seconds
 Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
-Affecting Spells : Elemental Fury (60188 effect#1), Spiritwalker's Grace (79206 effect#1), Flame Shock (188389 effect#5), Echoes of the Great Sundering (208723 effect#1), Fulmination (260111 effect#2), Seismic Thunder (319343 effect#1), Bottle of Swirling Maelstrom (329580 effects: #5, #6), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#2), Primal Fracture (410018 effect#2), Maelstrom Supremacy (443447 effect#1), Shaman Elemental 11.0 Class Set 2pc (453684 effect#2), Voltaic Surge (454919 effect#1), Earthshatter (468626 effect#1), Tectonic Collapse (1258899 effect#1)
+Affecting Spells : Elemental Fury (60188 effect#1), Spiritwalker's Grace (79206 effect#1), Flame Shock (188389 effect#5), Echoes of the Great Sundering (208723 effect#1), Fulmination (260111 effect#2), Seismic Thunder (319343 effect#1), Bottle of Swirling Maelstrom (329580 effects: #5, #6), Swelling Maelstrom (381707 effect#2), Eye of the Storm (381708 effect#2), Primal Fracture (410018 effect#2), Maelstrom Supremacy (443447 effect#1), Shaman Elemental 11.0 Class Set 2pc (453684 effect#2), Voltaic Surge (454919 effect#1), Earthshatter (468626 effect#1), Tectonic Collapse (1258899 effect#1), Shaman Elemental 12.1 Class Set 2pc (1296625 effects: #1, #2), Overcharge! (1300222 effects: #1, #3)
 Family Flags     : 83
 Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), No Threat (42), No Aura Icon (60), No Initial Threat (86), No Aura Log (202), Aura Points On Client (268), Bypass Visibility Check (320), Caster Death Cancels Persistent Area Auras (347), Allow Class Ability Procs (416)
 Effects          :
@@ -656,8 +656,6 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
-Proc Chance      : 101%
-Proc Flags       : Magic Hostile Spell
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
 Effects          :
 #1 (id=1173037)  : Apply Aura (6) | Dummy (4)
@@ -696,15 +694,15 @@ Labels           : 16: Class Spells
                  : 292
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Allow Class Ability Procs (416)
 Effects          :
-#1 (id=1173078)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-#2 (id=1173079)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 1 | Scaled Value: 1 | Target: Self (1)
-#3 (id=1173080)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-Description      : While a Fire Elemental is active, your Fire damage dealt is increased by $188592s4%.
+#1 (id=1173078)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 4 (32)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 32 | Misc Value 2: 6934 (Label) | Target: Self (1)
+                   Affected Spells (Label): Storm Elemental (157299), Primal Storm Elemental (157319), Fire Elemental (188592), Lesser Primal Storm Elemental (462990), Lesser Fire Elemental (462992), Lesser Storm Elemental (462993)
+#2 (id=1173079)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 5 (33)
+                   Base Value: 6 | Scaled Value: 6 | Misc Value: 33 | Misc Value 2: 6934 (Label) | Target: Self (1)
+                   Affected Spells (Label): Storm Elemental (157299), Primal Storm Elemental (157319), Fire Elemental (188592), Lesser Primal Storm Elemental (462990), Lesser Fire Elemental (462992), Lesser Storm Elemental (462993)
+Description      : While a Fire Elemental is active, your Fire damage dealt is increased by $s1%.
 
-While a Storm Elemental is active, your Nature damage dealt is increased by $157299s4%.
+While a Storm Elemental is active, your Nature damage dealt is increased by $s1%.
 
 Name             : Everlasting Elements (id=462867) [Spell Family (11), Passive, Hidden] 
 Talent Entry     : Elemental [tree=spec, row=7, col=5, max_rank=1, req_points=8]
@@ -718,7 +716,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1173081)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 1 | Target: Self (1)
-                   Affected Spells: Storm Elemental (157299), Primal Storm Elemental (157319), Fire Elemental (188592), Earth Elemental (188616), Storm Elemental (192249), Fire Elemental (198067), Earth Elemental (198103), Fire Elemental (263819), Lesser Storm Elemental (462990), Lesser Fire Elemental (462992), Lesser Storm Elemental (462993)
+                   Affected Spells: Storm Elemental (157299), Primal Storm Elemental (157319), Fire Elemental (188592), Earth Elemental (188616), Storm Elemental (192249), Fire Elemental (198067), Earth Elemental (198103), Fire Elemental (263819), Lesser Primal Storm Elemental (462990), Lesser Fire Elemental (462992), Lesser Storm Elemental (462993)
                    Family Flags: 54, 55, 71, 124
 #2 (id=1218078)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Misc Value 2: 4739 (Label) | Target: Self (1)
@@ -792,7 +790,7 @@ Labels           : 16: Class Spells
                  : 24: Shaman Spells
                  : 292
                  : 4143: Elemental Shaman (137040 effect#12), Elemental Shaman (137040 effect#27), Enhancement Shaman (137041 effect#30), Maelstrom (343725 effect#14), Flames of the Cauldron (378266 effect#3), Fire Nova (1260666 effect#1), Crackling Fury (1269215 effect#1), Crackling Fury (1269215 effect#2)
-Affecting Spells : Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5), Elemental Shaman (137040 effects: #1, #2), Enhancement Shaman (137041 effects: #1, #2), Storm Elemental (157299 effects: #3, #4), Primal Storm Elemental (157319 effects: #4, #5), Mastery: Elemental Overload (168534 effects: #3, #4), Crackling Surge (224127 effects: #1, #2), Elemental Weapons (408390 effects: #1, #2), Initial Shaman (417374 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Lightning Capacitor (462862 effects: #1, #2), Lesser Storm Elemental (462990 effects: #4, #5), Lesser Storm Elemental (462993 effects: #3, #4), Enhancement Shaman (1214207 effects: #1, #2), Elemental Shaman (1231772 effects: #1, #2), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effect#1), Natural Gift (1264691 effects: #1, #2), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
+Affecting Spells : Mastery: Enhanced Elements (77223 effects: #1, #5), Spiritwalker's Grace (79206 effect#1), Restoration Shaman (137039 effects: #4, #5), Elemental Shaman (137040 effects: #1, #2), Enhancement Shaman (137041 effects: #1, #2), Storm Elemental (157299 effects: #4, #5), Primal Storm Elemental (157319 effects: #4, #5), Mastery: Elemental Overload (168534 effects: #3, #4), Crackling Surge (224127 effects: #1, #2), Elemental Weapons (408390 effects: #1, #2), Initial Shaman (417374 effects: #1, #2), Amplification Core (456369 effects: #1, #2), Maelstrom Surge (457727 effects: #1, #2), Lightning Capacitor (462862 effects: #1, #2), Lesser Primal Storm Elemental (462990 effects: #4, #5), Lesser Storm Elemental (462993 effects: #4, #5), Enhancement Shaman (1214207 effects: #1, #2), Elemental Shaman (1231772 effects: #1, #2), Elemental Tempo (1250364 effects: #1, #2), Restoration Shaman (1256945 effects: #3, #4), Elemental Resonance (1258895 effects: #1, #2), Natural Gift (1264691 effects: #1, #2), Feedback Loop (1270061 effects: #2, #3), Feedback Loop (1270062 effect#1), Shaman - Midnight PrePatch - 11.2 Class Set 2pc (1283655 effects: #1, #2), Shaman - Midnight PrePatch - 11.2 Class Set 4pc (1283656 effects: #1, #2)
 Family Flags     : 39, 56, 126
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow Class Ability Procs (416)
 Effects          :
@@ -823,7 +821,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
 Effects          :
 #1 (id=1267666)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Affected Spells: Lava Burst (51505), Lava Burst (285452), Lava Burst Overload (285466)
                    Family Flags: 44, 86
 Description      : Lava Burst deals $s1% additional damage.
@@ -868,6 +866,10 @@ Effects          :
                    Affected Spells: Searing Bolt (3606), Earth Shock (8042), Flametongue Attack (10444), Windfury Attack (25504), Stormstrike (32175), Stormstrike Off-Hand (32176), Windfury Attack (33750), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Lava Lash (60103), Earthquake (77478), Windstrike (115357), Windstrike Off-Hand (115360), Elemental Blast (117014), Elemental Blast Overload (120588), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Frost Shock (196840), Sundering (197214), Icefury (210714), Chain Lightning (211094), Feral Lunge (215802), Icefury Overload (219271), Stormfury (269005), Lightning Shield (273324), Strength of Earth (273466), Lightning Conduit (275394), Rumbling Tremors (279556), Lava Burst (285452), Lava Burst Overload (285466), Tectonic Thunder (286967), Earthquake Overload (298765), Chain Harvest (320752), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Acid Rain (378597), Earth Shock Overload (381725), Doom Winds (384352), Tempest (452201), Awakening Storms (455130), Tremor (455622), Searing Volley (458147), Surging Bolt (458267), Thunderstrike (462763), Tempest Overload (463351), Doom Winds (466772), Ascendance (467263), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Fire (1218113), Primordial Frost (1218116), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
                    Family Flags: 39
                    Modified By: Storm Infusion (1258889 effect#3)
+#2 (id=1333082)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Searing Bolt (3606), Earth Shock (8042), Flametongue Attack (10444), Windfury Attack (25504), Stormstrike (32175), Stormstrike Off-Hand (32176), Windfury Attack (33750), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Lava Lash (60103), Earthquake (77478), Windstrike (115357), Windstrike Off-Hand (115360), Elemental Blast (117014), Elemental Blast Overload (120588), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Frost Shock (196840), Sundering (197214), Icefury (210714), Chain Lightning (211094), Feral Lunge (215802), Icefury Overload (219271), Stormfury (269005), Lightning Shield (273324), Strength of Earth (273466), Lightning Conduit (275394), Rumbling Tremors (279556), Lava Burst (285452), Lava Burst Overload (285466), Tectonic Thunder (286967), Earthquake Overload (298765), Chain Harvest (320752), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Acid Rain (378597), Earth Shock Overload (381725), Doom Winds (384352), Tempest (452201), Awakening Storms (455130), Tremor (455622), Searing Volley (458147), Surging Bolt (458267), Thunderstrike (462763), Tempest Overload (463351), Doom Winds (466772), Ascendance (467263), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Fire (1218113), Primordial Frost (1218116), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
+                   Family Flags: 39
 Description      : All Elemental damage increased by $s1%.
 
 Name             : Tectonic Collapse (id=1258899) [Spell Family (11), Passive, Hidden] 
@@ -986,15 +988,24 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143)
 Effects          :
 #1 (id=1281925)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 2 (12)
-                   Base Value: 35 | Scaled Value: 35 | Misc Value: 12 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 12 | Target: Self (1)
                    Affected Spells: Mastery: Elemental Overload (168534)
                    Family Flags: 14
-Description      : Elemental Overload damage increased by $s1%.
+#2 (id=1328342)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Searing Bolt (3606), Earth Shock (8042), Flametongue Attack (10444), Windfury Attack (25504), Stormstrike (32175), Stormstrike Off-Hand (32176), Windfury Attack (33750), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Lava Lash (60103), Earthquake (77478), Windstrike (115357), Windstrike Off-Hand (115360), Elemental Blast (117014), Elemental Blast Overload (120588), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Frost Shock (196840), Sundering (197214), Icefury (210714), Chain Lightning (211094), Feral Lunge (215802), Icefury Overload (219271), Stormfury (269005), Lightning Shield (273324), Strength of Earth (273466), Lightning Conduit (275394), Rumbling Tremors (279556), Lava Burst (285452), Lava Burst Overload (285466), Tectonic Thunder (286967), Earthquake Overload (298765), Chain Harvest (320752), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Acid Rain (378597), Earth Shock Overload (381725), Doom Winds (384352), Tempest (452201), Awakening Storms (455130), Tremor (455622), Searing Volley (458147), Surging Bolt (458267), Thunderstrike (462763), Tempest Overload (463351), Doom Winds (466772), Ascendance (467263), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Fire (1218113), Primordial Frost (1218116), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
+                   Family Flags: 39
+#3 (id=1328343)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Searing Bolt (3606), Earth Shock (8042), Flametongue Attack (10444), Windfury Attack (25504), Stormstrike (32175), Stormstrike Off-Hand (32176), Windfury Attack (33750), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Lava Lash (60103), Earthquake (77478), Windstrike (115357), Windstrike Off-Hand (115360), Elemental Blast (117014), Elemental Blast Overload (120588), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Frost Shock (196840), Sundering (197214), Icefury (210714), Chain Lightning (211094), Feral Lunge (215802), Icefury Overload (219271), Stormfury (269005), Lightning Shield (273324), Strength of Earth (273466), Lightning Conduit (275394), Rumbling Tremors (279556), Lava Burst (285452), Lava Burst Overload (285466), Tectonic Thunder (286967), Earthquake Overload (298765), Chain Harvest (320752), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Acid Rain (378597), Earth Shock Overload (381725), Doom Winds (384352), Tempest (452201), Awakening Storms (455130), Tremor (455622), Searing Volley (458147), Surging Bolt (458267), Thunderstrike (462763), Tempest Overload (463351), Doom Winds (466772), Ascendance (467263), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Fire (1218113), Primordial Frost (1218116), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
+                   Family Flags: 39
+Description      : Damage of your spells and abilities increased by $s2%. Elemental Overload damage increased by $s1%.
 
 Name             : Feedback Loop (id=1270062) [Spell Family (11), Passive] 
 Talent Entry     : Elemental [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=400]
                  : Effect#1 [op=mul, values=(1, 2)]
                  : Effect#2 [op=mul, values=(1, 2)]
+                 : Effect#3 [op=mul, values=(1, 2)]
 Class            : Shaman
 School           : Physical
 Spell Type       : None
@@ -1009,7 +1020,11 @@ Effects          :
                    Affected Spells: Searing Bolt (3606), Earth Shock (8042), Flametongue Attack (10444), Windfury Attack (25504), Stormstrike (32175), Stormstrike Off-Hand (32176), Windfury Attack (33750), Lightning Bolt Overload (45284), Chain Lightning Overload (45297), Thunderstorm (51490), Lava Burst (51505), Lava Lash (60103), Earthquake (77478), Windstrike (115357), Windstrike Off-Hand (115360), Elemental Blast (117014), Elemental Blast Overload (120588), Earthen Rage (170379), Crash Lightning (187874), Lightning Bolt (188196), Flame Shock (188389), Chain Lightning (188443), Lightning Blast (191726), Chain Lightning (191732), Lightning Shield (192109), Crash Lightning (195592), Frost Shock (196840), Sundering (197214), Icefury (210714), Chain Lightning (211094), Feral Lunge (215802), Icefury Overload (219271), Stormfury (269005), Lightning Shield (273324), Strength of Earth (273466), Lightning Conduit (275394), Rumbling Tremors (279556), Lava Burst (285452), Lava Burst Overload (285466), Tectonic Thunder (286967), Earthquake Overload (298765), Chain Harvest (320752), Fae Transfusion (328928), Fire Nova (333977), Ascendance (344548), Acid Rain (378597), Earth Shock Overload (381725), Doom Winds (384352), Tempest (452201), Awakening Storms (455130), Tremor (455622), Searing Volley (458147), Surging Bolt (458267), Thunderstrike (462763), Tempest Overload (463351), Doom Winds (466772), Ascendance (467263), Sundering (467283), Flametongue Attack (467386), Flametongue Attack (467390), Doom Winds (469270), Voltaic Blaze (470057), Flame Shock (470411), Primordial Fire (1218113), Primordial Frost (1218116), Primordial Lightning (1218118), Crash Lightning (Unleashed) (1252431), Crash Lightning (1252433), Voltaic Blaze (1259101)
                    Family Flags: 39
 #2 (id=1281927)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 1 (3)
-                   Base Value: 25 | Scaled Value: 25 | Misc Value: 3 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 3 | Target: Self (1)
+                   Affected Spells: Elemental Fury (60188)
+                   Family Flags: 91
+#3 (id=1333083)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
                    Affected Spells: Elemental Fury (60188)
                    Family Flags: 91
 Description      : Spell critical strike chance increased by $s1%. Elemental Fury increases spell critical strike damage by an additional $s2%.

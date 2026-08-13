@@ -1,5 +1,5 @@
 # Death Knight — Class Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 46 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Raise Dead (id=46585) [Spell Family (15)] 
@@ -333,7 +333,7 @@ Effects          :
 #1 (id=306388)   : Apply Aura (6) | Confuse (5)
                    Base Value: 1 | Scaled Value: 1 | Radius: 12 yards | Target: Enemies in Cone to Targeted Enemy (104)
 #2 (id=306389)   : Apply Aura (6) | Decrease Movement Speed% (33)
-                   Base Value: -60 | Scaled Value: -60 | Radius: 12 yards | Target: Enemies in Cone to Targeted Enemy (104)
+                   Base Value: -60 | Scaled Value: -60 | PvP Coefficient: 0.833333 | Radius: 12 yards | Target: Enemies in Cone to Targeted Enemy (104)
 Description      : Targets in a cone in front of you are blinded, causing them to wander disoriented for $d. Damage may cancel the effect.
 
 When Blinding Sleet ends, enemies are slowed by $317898s1% for $317898d.
@@ -355,7 +355,7 @@ Proc Flags       : White Melee
 Attributes       : Is Ability (4), Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=306445)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
                    Modified By: Frost Death Knight (137006 effect#9), Unholy Death Knight (137007 effect#7), Frigid Resolve (1265859 effect#1), Frigid Resolve (1265859 effect#2)
 Description      : Your auto attack damage grants you an absorb shield equal to $s1% of the damage dealt.
 

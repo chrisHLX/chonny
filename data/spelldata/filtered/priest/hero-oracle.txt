@@ -1,5 +1,5 @@
 # Priest — Oracle Hero Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68974 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 16 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Prophet's Will (id=433905) [Spell Family (6), Passive, Hidden] 
@@ -17,7 +17,7 @@ Effects          :
                    Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.5 | Target: Self (1)
                    Affected Spells: Holy Word: Serenity (2050), Heal (2060), Flash Heal (2061), Shadow Mend (186263), Ultimate Serenity (1250581), Benediction (1262763)
                    Family Flags: 10, 11, 12
-Description      : $?a137032[Your Flash Heal and Power Word: Shield are $s1%][Your Flash Heal and Holy Word: Serenity are $s1%] more effective when cast on yourself.
+Description      : $?c1[Your Flash Heal, Shadow Mend, and Power Word: Shield are $s1%][Your Flash Heal and Holy Word: Serenity are $s1%] more effective when cast on yourself.
 
 Name             : Preventive Measures (id=440662) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=2, col=1, max_rank=1, req_points=0]
@@ -35,10 +35,10 @@ Effects          :
                    Family Flags: 117
 #2 (id=1134693)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
                    Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.834 | Misc Value: 24 | Target: Self (1)
-                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
+                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593), Power Word: Shield (Unfolding Vision) (1300008), Void Shield (Unfolding Vision) (1300009)
                    Family Flags: 0
 #3 (id=1170141)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 1.3334 | Target: Self (1)
                    Affected Spells: Smite (585), Penance (47666), Holy Nova (132157), Penance (186724), Dark Reprimand (373130), Ultimate Penitence (421543), Smite (425529), Void Blast (450215), Penance (1232571), Dark Reprimand (1232592)
                    Family Flags: 7, 47, 49
 #4 (id=1170142)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
@@ -136,7 +136,7 @@ Effects          :
                    Affected Spells (Category): Prayer of Mending (33076)
 #2 (id=1248561)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
                    Base Value: -1500 | Scaled Value: -1500 | Misc Value: 11 | Target: Self (1)
-                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
+                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593), Power Word: Shield (Unfolding Vision) (1300008), Void Shield (Unfolding Vision) (1300009)
                    Family Flags: 0
 Description      : Reduces the cooldown of $?a137032[Power Word: Shield by ${$s2/-1000}.1 sec.][Prayer of Mending by ${$s1/-1000}.1 sec.]
 
@@ -299,7 +299,7 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Flash Heal (2061), Shadow Mend (186263), Power Word: Radiance (194509), Plea (200829), Benediction (1262763)
                    Family Flags: 8, 11, 22
-Description      : $?a137031&?a1246517[Holy Word: Serenity healing increased by $s1%.]?c2[Holy Word: Serenity and Holy Word: Sanctify healing increased by $s1%.][Flash Heal, Plea, and Power Word: Radiance healing increased by $s2%.]
+Description      : $?a137031&?a1246517[Holy Word: Serenity healing increased by $s1%.]?c2[Holy Word: Serenity and Holy Word: Sanctify healing increased by $s1%.][Flash Heal, Shadow Mend, Plea, and Power Word: Radiance healing increased by $s2%.]
 
 Name             : Prophet's Insight (id=1272359) [Spell Family (6), Passive, Hidden] 
 Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
@@ -339,7 +339,4 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1285568)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
-#2 (id=1285569)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
-Description      : $?c2[When Prayer of Mending expires without healing, it jumps to a nearby injured ally and loses $s1 $Lstack:stacks; instead.][
-When Power Word: Shield or Void Shield expires with absorption remaining, it jumps to a nearby injured ally and loses $s2% of its maximum absorb instead.]
+Description      : $?c2[When Prayer of Mending expires without healing, it jumps to a nearby injured ally and loses $s1 $Lstack:stacks; instead.][When Power Word: Shield or Void Shield expires with absorption remaining, it jumps to a nearby injured ally instead. Can only happen once per shield.]

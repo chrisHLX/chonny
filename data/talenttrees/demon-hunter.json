@@ -1,7 +1,7 @@
 {
     "class": "Demon Hunter",
     "talent_tree_id": 854,
-    "fetched_at": "2026-08-02T09:05:06+00:00",
+    "fetched_at": "2026-08-12T21:34:19+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -408,7 +408,7 @@
                         "spell_name": "Vengeful Retreat",
                         "description": "Remove all snares and vault away. Nearby enemies take 5 Physical damage.",
                         "cast_time": "Instant",
-                        "cooldown": "25 sec cooldown",
+                        "cooldown": "0.5 sec cooldown",
                         "range": null
                     }
                 ]
@@ -958,7 +958,7 @@
                         "talent_name": "Felblade",
                         "spell_id": 232893,
                         "spell_name": "Felblade",
-                        "description": "Charge to your target and deal 43 Fire damage.\r\n\r\nGenerates 15 Fury.",
+                        "description": "Charge to your target and deal 42 Fire damage.\r\n\r\nGenerates 15 Fury.",
                         "cast_time": "Instant",
                         "cooldown": "12 sec cooldown",
                         "range": "15 yd range"
@@ -1158,7 +1158,7 @@
                         "talent_name": "Void Nova",
                         "spell_id": 1234195,
                         "spell_name": "Void Nova",
-                        "description": "Unleash an eruption of void energy, dealing 104 Cosmic damage and stunning your target and all nearby enemies for 2 sec.",
+                        "description": "Unleash an eruption of void energy, dealing 103 Cosmic damage and stunning your target and all nearby enemies for 2 sec.",
                         "cast_time": "Instant",
                         "cooldown": "45 sec cooldown",
                         "range": "30 yd range"
@@ -1222,7 +1222,7 @@
                         "talent_name": "Voidblade",
                         "spell_id": 1245412,
                         "spell_name": "Voidblade",
-                        "description": "Unleash your glaives and charge to your target, dealing 861 Cosmic damage.\r\n",
+                        "description": "Unleash your glaives and charge to your target, dealing 870 Cosmic damage.\r\n",
                         "cast_time": "Instant",
                         "cooldown": null,
                         "range": "15 yd range"
@@ -1384,8 +1384,8 @@
                     "locked_by": [
                         94904,
                         94902,
-                        94909,
-                        109772
+                        109772,
+                        94909
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -1649,7 +1649,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,380 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,343 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2107,8 +2107,8 @@
                     "locked_by": [
                         94910,
                         94895,
-                        94906,
-                        109769
+                        109769,
+                        94906
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -2266,7 +2266,7 @@
                             "talent_name": "Otherworldly Focus",
                             "spell_id": 1253817,
                             "spell_name": "Otherworldly Focus",
-                            "description": "Collapsing Star and Voidfall meteors deal 35% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
+                            "description": "Collapsing Star and Voidfall meteors deal 30% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2294,7 +2294,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,279 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,290 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2449,7 +2449,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 666 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 670 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2904,7 +2904,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,393 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,390 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3136,7 +3136,7 @@
                             "talent_name": "Fel Devastation",
                             "spell_id": 212084,
                             "spell_name": "Fel Devastation",
-                            "description": "Unleash the fel within you, damaging enemies directly in front of you for 165 Fire damage over 2 sec.",
+                            "description": "Unleash the fel within you, damaging enemies directly in front of you for 162 Fire damage over 2 sec.",
                             "cast_time": "Channeled",
                             "cooldown": "40 sec cooldown",
                             "range": "20 yd range"
@@ -3291,7 +3291,7 @@
                             "talent_name": "Spirit Bomb",
                             "spell_id": 247454,
                             "spell_name": "Spirit Bomb",
-                            "description": "Consume up to 5 Soul Fragments then explode, dealing 70 Fire damage to nearby enemies, increased by 20% per fragment consumed. Deals reduced damage beyond 8 targets.",
+                            "description": "Consume up to 5 Soul Fragments then explode, dealing 69 Fire damage to nearby enemies, increased by 20% per fragment consumed. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "25 sec cooldown",
                             "range": null
@@ -3725,7 +3725,7 @@
                 },
                 {
                     "id": 90988,
-                    "node_type": "CHOICE",
+                    "node_type": "PASSIVE",
                     "display_row": 5,
                     "display_col": 18,
                     "raw_position_x": 12300,
@@ -3742,28 +3742,14 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 117910,
-                                    "talent_name": "Roaring Fire",
-                                    "spell_id": 391178,
-                                    "spell_name": "Roaring Fire",
-                                    "description": "Fel Devastation heals you for up to 50% more, based on your missing health.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 117909,
-                                    "talent_name": "Sigil of Silence",
-                                    "spell_id": 202137,
-                                    "spell_name": "Sigil of Silence",
-                                    "description": "Place a Sigil of Silence at the target location that activates after 2 sec.\r\n\r\nSilences all enemies affected by the sigil for 2 sec.",
-                                    "cast_time": "Instant",
-                                    "cooldown": null,
-                                    "range": "30 yd range"
-                                }
-                            ]
+                            "talent_id": 117910,
+                            "talent_name": "Feed the Demon",
+                            "spell_id": 218612,
+                            "spell_name": "Feed the Demon",
+                            "description": "Every 20 Fury spent reduces the remaining cooldown of Demon Spikes by 1.00 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -3834,8 +3820,8 @@
                     "locked_by": [
                         94910,
                         94895,
-                        94906,
-                        109769
+                        109769,
+                        94906
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -3874,7 +3860,7 @@
                             "talent_name": "Sigil of Spite",
                             "spell_id": 390163,
                             "spell_name": "Sigil of Spite",
-                            "description": "Place a demonic sigil at the target location that activates after 2 sec.\r\n\r\nDetonates to deal 245 Chaos damage and shatter up to 3 Soul Fragments from enemies affected by the sigil. Deals reduced damage beyond 5 targets.",
+                            "description": "Place a demonic sigil at the target location that activates after 2 sec.\r\n\r\nDetonates to deal 241 Chaos damage and shatter up to 3 Soul Fragments from enemies affected by the sigil. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "30 yd range"
@@ -3915,7 +3901,7 @@
                 },
                 {
                     "id": 90966,
-                    "node_type": "PASSIVE",
+                    "node_type": "ACTIVE",
                     "display_row": 6,
                     "display_col": 18,
                     "raw_position_x": 12300,
@@ -3933,13 +3919,13 @@
                         {
                             "rank": 1,
                             "talent_id": 117886,
-                            "talent_name": "Feed the Demon",
-                            "spell_id": 218612,
-                            "spell_name": "Feed the Demon",
-                            "description": "Every 20 Fury spent reduces the remaining cooldown of Demon Spikes by 1.00 sec.",
-                            "cast_time": "Passive",
+                            "talent_name": "Sigil of Silence",
+                            "spell_id": 202137,
+                            "spell_name": "Sigil of Silence",
+                            "description": "Place a Sigil of Silence at the target location that activates after 2 sec.\r\n\r\nSilences all enemies affected by the sigil for 2 sec.",
+                            "cast_time": "Instant",
                             "cooldown": null,
-                            "range": null
+                            "range": "30 yd range"
                         }
                     ]
                 },
@@ -3996,7 +3982,7 @@
                             "talent_name": "Revel in Pain",
                             "spell_id": 343014,
                             "spell_name": "Revel in Pain",
-                            "description": "5.0% of your Fire damage shields you, up to a maximum of 3,055.\r\n\r\nShield and maximum values are doubled while Fiery Brand is active.",
+                            "description": "6.0% of your Fire damage shields you, up to a maximum of 3,055.\r\n\r\nShield and maximum values are doubled while Fiery Brand is active.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4025,7 +4011,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 674 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 677 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4055,7 +4041,7 @@
                             "talent_name": "Frailty",
                             "spell_id": 389958,
                             "spell_name": "Frailty",
-                            "description": "Enemies struck by Sigil of Flame, Soul Cleave, and Spirit Bomb are afflicted with Frailty for 8 sec.\r\n\r\nYou heal for 8% of all damage you deal to targets with Frailty.",
+                            "description": "Enemies struck by Sigil of Flame, Soul Cleave, and Spirit Bomb are afflicted with Frailty for 8 sec.\r\n\r\nYou heal for 10% of all damage you deal to targets with Frailty.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4083,7 +4069,7 @@
                             "talent_name": "Feast of Souls",
                             "spell_id": 207697,
                             "spell_name": "Feast of Souls",
-                            "description": "Soul Cleave heals for an additional 63.",
+                            "description": "Soul Cleave heals for an additional 78.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4435,7 +4421,7 @@
                 },
                 {
                     "id": 90954,
-                    "node_type": "ACTIVE",
+                    "node_type": "PASSIVE",
                     "display_row": 8,
                     "display_col": 18,
                     "raw_position_x": 12300,
@@ -4453,13 +4439,13 @@
                         {
                             "rank": 1,
                             "talent_id": 117872,
-                            "talent_name": "Sigil of Chains",
-                            "spell_id": 202138,
-                            "spell_name": "Sigil of Chains",
-                            "description": "Place a Sigil of Chains at the target location that activates after 2 sec.\r\n\r\nAll enemies affected by the sigil are pulled to its center and are snared, reducing movement speed by 70% for 6 sec.",
-                            "cast_time": "Instant",
+                            "talent_name": "Roaring Fire",
+                            "spell_id": 391178,
+                            "spell_name": "Roaring Fire",
+                            "description": "Fel Devastation heals you for up to 50% more, based on your missing health.",
+                            "cast_time": "Passive",
                             "cooldown": null,
-                            "range": "30 yd range"
+                            "range": null
                         }
                     ]
                 },
@@ -4897,7 +4883,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,279 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,261 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4925,7 +4911,7 @@
                             "talent_name": "Otherworldly Focus",
                             "spell_id": 1253817,
                             "spell_name": "Otherworldly Focus",
-                            "description": "Collapsing Star and Voidfall meteors deal 35% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
+                            "description": "Collapsing Star and Voidfall meteors deal 30% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5264,7 +5250,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,421 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,407 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5320,7 +5306,7 @@
                             "talent_name": "Eye Beam",
                             "spell_id": 198013,
                             "spell_name": "Eye Beam",
-                            "description": "Blasts all enemies in front of you, for up to 285 Chaos damage over 1.8 sec. Deals reduced damage beyond 5 targets.",
+                            "description": "Blasts all enemies in front of you, for up to 279 Chaos damage over 1.8 sec. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "20 yd range"
@@ -5646,7 +5632,7 @@
                             "talent_name": "Burning Hatred",
                             "spell_id": 320374,
                             "spell_name": "Burning Hatred",
-                            "description": "Immolation Aura generates an additional 24 Fury over 6 sec.",
+                            "description": "Immolation Aura generates an additional 18 Fury over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5909,10 +5895,10 @@
                         {
                             "rank": 1,
                             "talent_id": 120257,
-                            "talent_name": "Dash of Chaos",
+                            "talent_name": "Never Say Die",
                             "spell_id": 427794,
-                            "spell_name": "Dash of Chaos",
-                            "description": "For 2 sec after using Fel Rush, activating it again will dash back towards your initial location.",
+                            "spell_name": "Never Say Die",
+                            "description": "Damage is increased by 3% while above 50% Health.\r\n\r\nLeech is increased by 5% while below 50% Health.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5970,7 +5956,7 @@
                             "talent_name": "First Blood",
                             "spell_id": 206416,
                             "spell_name": "First Blood",
-                            "description": "Blade Dance deals 95 Chaos damage to the first target struck.",
+                            "description": "Blade Dance deals 101 Chaos damage to the first target struck.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6402,8 +6388,8 @@
                     "locked_by": [
                         94910,
                         94895,
-                        94906,
-                        109769
+                        109769,
+                        94906
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6490,9 +6476,9 @@
                         93015
                     ],
                     "unlocks": [
+                        91025,
                         91015,
-                        91026,
-                        91025
+                        91026
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6559,7 +6545,7 @@
                             "talent_name": "Trail of Ruin",
                             "spell_id": 258881,
                             "spell_name": "Trail of Ruin",
-                            "description": "The final slash of Blade Dance inflicts an additional 25 Chaos damage over 4 sec.",
+                            "description": "The final slash of Blade Dance inflicts an additional 25 Chaos damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6588,7 +6574,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 674 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 661 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6617,7 +6603,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,388 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,385 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6666,8 +6652,8 @@
                         91027
                     ],
                     "unlocks": [
-                        91036,
-                        90921
+                        90921,
+                        91036
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -6677,7 +6663,7 @@
                             "talent_name": "Blind Fury",
                             "spell_id": 203550,
                             "spell_name": "Blind Fury",
-                            "description": "Eye Beam generates 15 Fury every second, has 10% increased duration, and deals 10% increased damage.",
+                            "description": "Eye Beam generates 10 Fury every second, has 10% increased duration, and deals 10% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6688,7 +6674,7 @@
                             "talent_name": "Blind Fury",
                             "spell_id": 203550,
                             "spell_name": "Blind Fury",
-                            "description": "Eye Beam generates 30 Fury every second, has 20% increased duration, and deals 20% increased damage.",
+                            "description": "Eye Beam generates 20 Fury every second, has 20% increased duration, and deals 20% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6736,8 +6722,8 @@
                         90915
                     ],
                     "unlocks": [
-                        91013,
-                        90921
+                        90921,
+                        91013
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -7080,7 +7066,7 @@
                                     "talent_name": "Inertia",
                                     "spell_id": 427640,
                                     "spell_name": "Inertia",
-                                    "description": "The Hunt and Vengeful Retreat cause your next Fel Rush or Felblade to empower you, increasing damage by 18% for 5 sec.",
+                                    "description": "The Hunt and Vengeful Retreat cause your next Fel Rush or Felblade to empower you, increasing damage by 12% for 5 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7143,7 +7129,7 @@
                             "talent_name": "The Hunt",
                             "spell_id": 370965,
                             "spell_name": "The Hunt",
-                            "description": "Charge to your target, striking them for 229 Chaos damage, rooting them in place for 1.5 sec and inflicting 168 Chaos damage over 6 sec to up to 5 enemies in your path. ",
+                            "description": "Charge to your target, striking them for 257 Chaos damage, rooting them in place for 1.5 sec and inflicting 188 Chaos damage over 6 sec to up to 5 enemies in your path. ",
                             "cast_time": "1 sec cast",
                             "cooldown": "1.5 min cooldown",
                             "range": "50 yd range"
@@ -7172,7 +7158,7 @@
                             "talent_name": "Serrated Glaive",
                             "spell_id": 390154,
                             "spell_name": "Serrated Glaive",
-                            "description": "Enemies hit by Chaos Strike or Throw Glaive take 15% increased damage from Chaos Strike and Throw Glaive for 15 sec.",
+                            "description": "Striking an enemy with Chaos Strike or Throw Glaive increases Chaos Strike and Throw Glaive damage by 15% for 12 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7490,15 +7476,15 @@
                 },
                 {
                     "id": 91035,
-                    "node_type": "PASSIVE",
+                    "node_type": "CHOICE",
                     "display_row": 9,
                     "display_col": 16,
                     "raw_position_x": 11400,
                     "raw_position_y": 5700,
                     "locked_by": [
+                        90921,
                         91036,
-                        91021,
-                        90921
+                        91021
                     ],
                     "unlocks": [
                         91034
@@ -7507,20 +7493,34 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 117963,
-                            "talent_name": "Chaos Theory",
-                            "spell_id": 389687,
-                            "spell_name": "Chaos Theory",
-                            "description": "Blade Dance causes your next Chaos Strike within 8 sec to have a 14-30% increased critical strike chance and will always refund Fury.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
+                            "choices": [
+                                {
+                                    "talent_id": 117963,
+                                    "talent_name": "Chaos Theory",
+                                    "spell_id": 389687,
+                                    "spell_name": "Chaos Theory",
+                                    "description": "Blade Dance causes your next Chaos Strike within 8 sec to have a 14-30% increased critical strike chance and will always refund Fury.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                },
+                                {
+                                    "talent_id": 142581,
+                                    "talent_name": "Inner Demon",
+                                    "spell_id": 389693,
+                                    "spell_name": "Inner Demon",
+                                    "description": "Entering demon form causes your next Chaos Strike to unleash your inner demon, causing it to crash into your target and deal 74 Chaos damage to all nearby enemies. Deals reduced damage beyond 5 targets.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     "id": 91024,
-                    "node_type": "CHOICE",
+                    "node_type": "PASSIVE",
                     "display_row": 9,
                     "display_col": 18,
                     "raw_position_x": 12300,
@@ -7537,28 +7537,14 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 117952,
-                                    "talent_name": "Inner Demon",
-                                    "spell_id": 389693,
-                                    "spell_name": "Inner Demon",
-                                    "description": "Entering demon form causes your next Chaos Strike to unleash your inner demon, causing it to crash into your target and deal 74 Chaos damage to all nearby enemies. Deals reduced damage beyond 5 targets.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 122777,
-                                    "talent_name": "Chaotic Transformation",
-                                    "spell_id": 388112,
-                                    "spell_name": "Chaotic Transformation",
-                                    "description": "When you activate Metamorphosis, the cooldowns of Blade Dance and Eye Beam are immediately reset.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                }
-                            ]
+                            "talent_id": 117952,
+                            "talent_name": "Chaotic Transformation",
+                            "spell_id": 388112,
+                            "spell_name": "Chaotic Transformation",
+                            "description": "When you activate Metamorphosis, the cooldowns of Blade Dance and Eye Beam are immediately reset.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -7570,9 +7556,9 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 5700,
                     "locked_by": [
+                        90921,
                         90917,
-                        91013,
-                        90921
+                        91013
                     ],
                     "unlocks": [
                         95147
@@ -7781,7 +7767,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,256 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,262 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7865,7 +7851,7 @@
                             "talent_name": "Otherworldly Focus",
                             "spell_id": 1253817,
                             "spell_name": "Otherworldly Focus",
-                            "description": "Collapsing Star and Voidfall meteors deal 35% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
+                            "description": "Collapsing Star and Voidfall meteors deal 30% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7925,9 +7911,9 @@
                         91024
                     ],
                     "unlocks": [
+                        108669,
                         90919,
-                        91031,
-                        108669
+                        91031
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7957,8 +7943,8 @@
                         91024
                     ],
                     "unlocks": [
-                        90919,
-                        95143
+                        95143,
+                        90919
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8025,8 +8011,8 @@
                     "locked_by": [
                         94904,
                         94902,
-                        94909,
-                        109772
+                        109772,
+                        94909
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -8063,7 +8049,7 @@
                             "talent_name": "Essence Break",
                             "spell_id": 258860,
                             "spell_name": "Essence Break",
-                            "description": "Slash all enemies in front of you for 108 Chaos damage, causing Chaos Strike and Blade Dance to deal 69 Chaos damage to them for 4 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "Slash all enemies in front of you for 163 Chaos damage, causing Chaos Strike and Blade Dance to deal 90 Chaos damage to them for 4 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Instant",
                             "cooldown": "40 sec cooldown",
                             "range": null
@@ -8090,7 +8076,7 @@
                             "talent_name": "Glaive Tempest",
                             "spell_id": 1244557,
                             "spell_name": "Glaive Tempest",
-                            "description": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 65 Chaos damage over 3 sec to all nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "The final slash of Blade Dance consumes 25 Fury when it strikes 3 or more enemies, launching two demonic glaives in a whirlwind of energy, causing 64 Chaos damage over 3 sec to all nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8128,7 +8114,7 @@
                                     "talent_name": "Collective Anguish",
                                     "spell_id": 390152,
                                     "spell_name": "Collective Anguish",
-                                    "description": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing 92 Fire damage over 2 sec. Dealing damage heals you for up to 49 health.",
+                                    "description": "Eye Beam summons an allied Vengeance Demon Hunter who casts Fel Devastation, dealing 93 Fire damage over 2 sec. Dealing damage heals you for up to 62 health.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8247,7 +8233,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,389 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,338 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8274,7 +8260,7 @@
                             "talent_name": "Void Ray",
                             "spell_id": 473728,
                             "spell_name": "Void Ray",
-                            "description": "Requires 100 Fury\r\nUnleash a beam of concentrated void energy, dealing 77 Cosmic damage and consuming 5 Fury every 0.1 sec.\r\n\r\nEffect ends after 2.7 sec or upon reaching 0 Fury.",
+                            "description": "Requires 100 Fury\r\nUnleash a beam of concentrated void energy, dealing 76 Cosmic damage and consuming 5 Fury every 0.1 sec.\r\n\r\nEffect ends after 2.7 sec or upon reaching 0 Fury.",
                             "cast_time": "Channeled",
                             "cooldown": null,
                             "range": "25 yd range"
@@ -8624,7 +8610,7 @@
                                     "talent_name": "Spontaneous Immolation",
                                     "spell_id": 1246556,
                                     "spell_name": "Spontaneous Immolation",
-                                    "description": "Soul Immolation heals for an additional 4% of your health over its duration and its cooldown is reset upon killing an enemy that yields experience or honor.",
+                                    "description": "Soul Immolation heals for an additional 6% of your health over its duration and its cooldown is reset upon killing an enemy that yields experience or honor.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8881,7 +8867,7 @@
                             "talent_name": "Collapsing Star",
                             "spell_id": 1221167,
                             "spell_name": "Collapsing Star",
-                            "description": "While in Void Metamorphosis, every 30 Soul Fragments harvested grants access to Collapsing Star.\r\n\r\n Collapsing Star\r\nChannel an immense amount of void energy into a single, cataclysmic blast, dealing 2,121 Cosmic damage to your target and 1,593 Cosmic damage to all nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile casting Collapsing Star, your Fury drain is significantly reduced.",
+                            "description": "While in Void Metamorphosis, every 30 Soul Fragments harvested grants access to Collapsing Star.\r\n\r\n Collapsing Star\r\nChannel an immense amount of void energy into a single, cataclysmic blast, dealing 2,402 Cosmic damage to your target and 1,817 Cosmic damage to all nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile casting Collapsing Star, your Fury drain is significantly reduced.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9088,7 +9074,7 @@
                             "talent_name": "Voidfall",
                             "spell_id": 1253304,
                             "spell_name": "Voidfall",
-                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 665 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
+                            "description": "Consume has a 35% chance to grant 1 stack of Voidfall.\r\n\r\nUpon reaching 3 stacks of Voidfall, Reap consumes a stack to reach into the Void and call down a meteor strike at your target's location, dealing 669 Cosmic damage to all enemies within 8 yards. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -9117,7 +9103,7 @@
                             "talent_name": "Demonsurge",
                             "spell_id": 452402,
                             "spell_name": "Demonsurge",
-                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,374 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
+                            "description": "Void Metamorphosis now also greatly empowers Voidblade and Hungering Slash.\r\n\r\nWhile demon form is active, the first cast of each empowered ability induces a Voidsurge, causing you to explode with Void energy, dealing 2,401 Cosmic damage to nearby enemies. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10298,7 +10284,7 @@
                             "talent_name": "Dark Matter",
                             "spell_id": 1256307,
                             "spell_name": "Dark Matter",
-                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,318 Cosmic damage over 6 sec.",
+                            "description": "Your first Collapsing Star after casting Void Metamorphosis causes a Cosmic meteor shower to assault the area, dealing 2,296 Cosmic damage over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10382,7 +10368,7 @@
                             "talent_name": "Otherworldly Focus",
                             "spell_id": 1253817,
                             "spell_name": "Otherworldly Focus",
-                            "description": "Collapsing Star and Voidfall meteors deal 35% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
+                            "description": "Collapsing Star and Voidfall meteors deal 30% increased damage when striking a single target.\r\n\r\nEach additional target reduces this bonus by 5%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10466,7 +10452,7 @@
                             "talent_name": "Impending Apocalypse",
                             "spell_id": 1227707,
                             "spell_name": "Impending Apocalypse",
-                            "description": "Each Collapsing Star you cast increases the damage of your next Collapsing Star by 30%.",
+                            "description": "Each Collapsing Star you cast increases the damage of your next Collapsing Star by 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -10567,8 +10553,8 @@
                     "locked_by": [
                         94904,
                         94902,
-                        94909,
-                        109772
+                        109772,
+                        94909
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -10605,7 +10591,7 @@
                             "talent_name": "The Hunt",
                             "spell_id": 1246167,
                             "spell_name": "The Hunt",
-                            "description": "Charge to your target, striking them for 2,300 Cosmic damage, rooting them in place for 1.5 sec and inflicting 1,628 Cosmic damage over 6 sec to up to 5 enemies in your path.",
+                            "description": "Charge to your target, striking them for 2,262 Cosmic damage, rooting them in place for 1.5 sec and inflicting 1,628 Cosmic damage over 6 sec to up to 5 enemies in your path.",
                             "cast_time": "1 sec cast",
                             "cooldown": "1.5 min cooldown",
                             "range": "50 yd range"
@@ -10671,7 +10657,7 @@
                             "talent_name": "Eradicate",
                             "spell_id": 1226033,
                             "spell_name": "Eradicate",
-                            "description": "Fully channeling Void Ray upgrades your Reap to Eradicate.\r\n\r\n Eradicate\r\nSlam your Scythe to the ground, dealing 2,558 Cosmic damage to your primary target and 2,558 to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets.\r\n\r\nEradicate gathers up to 4 nearby souls.",
+                            "description": "Fully channeling Void Ray upgrades your Reap to Eradicate.\r\n\r\n Eradicate\r\nSlam your Scythe to the ground, dealing 2,404 Cosmic damage to your primary target and 2,043 to all other enemies within a 25 yd cone in front of you. Damage reduced beyond 5 targets.\r\n\r\nEradicate gathers up to 4 nearby souls.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

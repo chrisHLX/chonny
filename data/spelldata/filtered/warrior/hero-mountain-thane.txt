@@ -1,5 +1,5 @@
 # Warrior — Mountain Thane Hero Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Storm Surge (id=275336) [Spell Family (4), Passive] 
@@ -179,7 +179,7 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value 2: 3927 (Label) | Target: Self (1)
                    Affected Spells (Label): Lightning Strike Ground Current (460670)
 #4 (id=1128231)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Affected Spells: Thunder Clap (6343), Thunder Blast (435222)
                    Family Flags: 7
 #5 (id=1128298)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
@@ -200,7 +200,7 @@ Description      : Stormstrike or Nature damage your abilities deal is increased
 
 Thunder Clap damage increased by $s4%$?a137050[, no longer costs Rage, and now generates ${$s5/10} Rage][].$?a137050[
 
-Improved Whirlwind, Meat Cleaver, and Barbaric Training affect Thunder Clap in addition to Whirlwind.][]
+Improved Whirlwind, Meat Cleaver, Storm of Blood, and Barbaric Training affect Thunder Clap in addition to Whirlwind.][]
 
 Name             : Strength of the Mountain (id=437068) [Spell Family (4), Passive] 
 Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=2, col=4, max_rank=1, req_points=0]
@@ -227,7 +227,7 @@ Effects          :
                    Family Flags: 17
 #4 (id=1160302)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
-                   Affected Spells: Bloodthirst (23881), Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Bloodbath (335096), Rampaging Ruin (1265579), Rampaging Ruin (1265580), Rampaging Ruin (1265581), Rampaging Ruin (1265582)
+                   Affected Spells: Bloodthirst (23881), Rampage (184367), Rampage (184707), Rampage (184709), Rampage (201363), Rampage (201364), Rampage (218617), Bloodbath (335096), Rampaging Ruin (1299944)
                    Family Flags: 42, 108
 Description      : Shield Slam damage increased by $s1%.$?a137048[
 

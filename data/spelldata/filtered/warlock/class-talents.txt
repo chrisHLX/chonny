@@ -1,5 +1,5 @@
 # Warlock — Class Talents
-# Extracted verbatim from warlock.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 47 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Banish (id=710) [Spell Family (5)] 
@@ -164,28 +164,6 @@ Effects          :
                    Base Value: 130616 | Scaled Value: 130616 | Misc Value: 118699 | Misc Value 2: 2 | Target: Self (1)
 Description      : Your Fear causes the target to tremble in place instead of fleeing in fear.
 
-Name             : Soul Leech (id=108370) [Spell Family (5), Passive] 
-Talent Entry     : Generic [tree=class, row=1, col=4, max_rank=1, req_points=0]
-Class            : Warlock
-School           : Physical
-Spell Type       : None
-Spell Level      : 10
-Labels           : 16: Class Spells
-                 : 19: Warlock Spells
-                 : 292
-Proc Chance      : 100%
-Proc Flags       : White Melee, Yellow Melee, Generic Hostile Spell, Magic Hostile Spell, Periodic
-Affecting Spells : Demon Skin (219272 effect#2), Norgannon's Foresight (236431 effect#1), Infernal Bulwark (434561 effect#1), Illhoof's Design (440070 effect#2), Fortified Soul (1271694 effect#1)
-Family Flags     : 68
-Attributes       : Is Ability (4), Passive (6), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
-Effects          :
-#1 (id=119452)   : Apply Player/Pet Aura (202) | Dummy (4)
-                   Base Value: 3 | Scaled Value: 3 | Radius: 100 yards | Target: Self (1)
-#2 (id=326363)   : Apply Player/Pet Aura (202) | Dummy (4)
-                   Base Value: 5 | Scaled Value: 5 | Radius: 100 yards | Target: Self (1)
-                   Modified By: Demon Skin (219272 effect#2), Infernal Bulwark (434561 effect#1), Illhoof's Design (440070 effect#2), Fortified Soul (1271694 effect#1)
-Description      : All single-target damage done by you and your minions grants you and your pet shadowy shields that absorb $s1% of the damage dealt$?s219272[][ for $108366d], up to $s2% of maximum health.
-
 Name             : Soul Link (id=108415) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=9, col=3, max_rank=2, req_points=23]
                  : Effect#1 [op=mul, values=(1, 1)]
@@ -238,7 +216,7 @@ Effects          :
 #4 (id=817750)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 5
 #5 (id=1138612)  : Apply Aura (6) | Periodic Heal (8): every 1 seconds
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.64583 | PvP Coefficient: 1.6 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 2.0573 | PvP Coefficient: 1.6 | Target: Self (1)
 Description      : Sacrifices $s2% of your current health to shield you for $s3% of the sacrificed health plus an additional $<points> for $d. Usable while suffering from control impairing effects.
 Tooltip          : Absorbs $w1 damage.
 Variables        : $points=${$SP*2.5}
@@ -317,7 +295,7 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 #2 (id=326664)   : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
-                   Affected Spells: Soul Leech (108370)
+                   Affected Spells: Soul Leech (108370), Soul Leech (1311653)
                    Family Flags: 68
 #3 (id=326678)   : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
                    Base Value: -15001 | Scaled Value: -15001 | Misc Value: 1 | Target: Self (1)
@@ -430,7 +408,7 @@ Family Flags     : 113
 Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Nameplate Enemy Debuffs (426)
 Effects          :
 #1 (id=830121)   : Apply Aura (6) | Decrease Movement Speed% (33)
-                   Base Value: -50 | Scaled Value: -50 | SP Coefficient: 1 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
+                   Base Value: -50 | Scaled Value: -50 | SP Coefficient: 1 | PvP Coefficient: 0.6 | Radius: 0 - 10 yards | Target: At Enemy (53) -> at Enemy in Area (16)
 Description      : Reduces the target's movement speed by $s1% for $d.
 
 |cFF8282FFCurses: A warlock can only have one Curse active per target.|r
@@ -967,7 +945,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1284563)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
-                   Affected Spells: Soul Leech (108370)
+                   Affected Spells: Soul Leech (108370), Soul Leech (1311653)
                    Family Flags: 68
 Description      : Soul Leech may now absorb an additional ${$s1}% of your maximum health.
 
@@ -1012,3 +990,22 @@ Effects          :
 Description      : Call forth a cloud of cloying shadow mist that envelopes the target and all enemies within $1272123a1 yds, increasing their casting time of all spells by $1272122s1% for $1272122d.
 
 |cFF8282FFCurses: A warlock can only have one Curse or Blight active per target.|r
+
+Name             : Soul Leech (id=1311653) [Spell Family (5), Passive] 
+Talent Entry     : Generic [tree=class, row=1, col=4, max_rank=1, req_points=0]
+Class            : Warlock
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 19: Warlock Spells
+                 : 292
+Affecting Spells : Demon Skin (219272 effect#2), Norgannon's Foresight (236431 effect#1), Infernal Bulwark (434561 effect#1), Illhoof's Design (440070 effect#2), Fortified Soul (1271694 effect#1)
+Family Flags     : 68
+Attributes       : Passive (6), No Aura Icon (60), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1342100)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1342101)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Modified By: Demon Skin (219272 effect#2), Infernal Bulwark (434561 effect#1), Illhoof's Design (440070 effect#2), Fortified Soul (1271694 effect#1)
+Description      : All single-target damage done by you and your minions grants you and your pet shadowy shields that absorb $s1% of the damage dealt$?s219272[][ for $108366d], up to $s2% of maximum health.

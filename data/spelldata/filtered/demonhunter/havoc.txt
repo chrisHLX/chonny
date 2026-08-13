@@ -1,5 +1,5 @@
 # Demon Hunter — Havoc Spec Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 46 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Eye Beam (id=198013) [Spell Family (107)] 
@@ -45,7 +45,7 @@ Name             : Blind Fury (id=203550) [Spell Family (107), Passive]
 Talent Entry     : Havoc [tree=spec, row=6, col=2, max_rank=2, req_points=8]
                  : Effect#1 [op=set, values=(10, 20)]
                  : Effect#2 [op=set, values=(10, 20)]
-                 : Effect#3 [op=set, values=(75, 150)]
+                 : Effect#3 [op=set, values=(50, 100)]
 Class            : Demon Hunter
 School           : Physical
 Spell Type       : None
@@ -63,7 +63,7 @@ Effects          :
                    Affected Spells: Eye Beam (198030), Eye Beam (391058), Eye Beam (1287949)
                    Family Flags: 8
 #3 (id=355951)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 150 | Scaled Value: 150 | Target: Self (1)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Eye Beam generates ${$s3/5} Fury every second, has $s1% increased duration, and deals $s2% increased damage.
 
 Name             : Desperate Instincts (id=205411) [Spell Family (107), Passive] 
@@ -104,10 +104,12 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=305259)   : Apply Aura (6) | Dummy (4)
                    Base Value: 95 | Scaled Value: 95 | Misc Value: 14 | Target: Self (1)
-Description      : Blade Dance deals $<firstbloodDmg> Chaos damage to the first target struck.
+Description      : Blade Dance deals $?a162264[$<firstbloodSweepDmg>][$<firstbloodDmg>] Chaos damage to the first target struck.
 Variables        : $mastery=$?s185164[${((100+$185164m1)/100)}][${1.00}]
-$baseDmg=${3*$199552sw2+$200685sw2} 
-$firstbloodDmg=${(3*$199552sw2+$200685sw2)*(100+$206416s1)/100*$<mastery>}
+$baseDmg=${3*$199552sw2+$200685sw2}
+$baseSweepDmg=${3*$210153sw2+$210155sw2}
+$firstbloodDmg=${(3*$199552sw2+$200685sw2)*(100+$206416s1)/100*$<mastery>}
+$firstbloodSweepDmg=${(3*$210153sw2+$210155sw2)*(100+$206416s1)/100*$<mastery>}
 
 Name             : Exergy (id=206476) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=7, col=1, max_rank=1, req_points=8, select_idx=100]
@@ -156,12 +158,13 @@ Cooldown         : 40 seconds
 Labels           : 16: Class Spells
                  : 66: Demon Hunter Spells
                  : 292
-Affecting Spells : Demon Soul (163073 effects: #1, #2), Mastery: Demonic Presence (185164 effects: #1, #2), Fiery Brand (207744 effect#2), Fiery Brand (207771 effect#2), Exergy (208628 effects: #1, #2), Havoc Demon Hunter (212612 effects: #1, #2, #6), Vengeance Demon Hunter (212613 effect#6), Chaos Blades (247938 effects: #2, #3), Demon Soul (347765 effects: #1, #2), Burning Blood (390213 effects: #1, #2), Seething Chaos (394934 effects: #1, #2), Inertia (427641 effects: #1, #2), Demon Hide (428241 effects: #1, #3), Reaver's Mark (442624 effect#1), Void Metamorphosis (471306 effect#3), Devourer Demon Hunter (1213636 effect#5), Havoc Demon Hunter (1256955 effects: #1, #2), Blind Focus (1272364 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 2pc (1283625 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 4pc (1283628 effects: #1, #2)
+                 : 6669: Demon Hunter Havoc 12.1 Class Set 4pc (1296612 effect#1)
+Affecting Spells : Demon Soul (163073 effects: #1, #2), Mastery: Demonic Presence (185164 effects: #1, #2), Fiery Brand (207744 effect#2), Fiery Brand (207771 effect#2), Exergy (208628 effects: #1, #2), Havoc Demon Hunter (212612 effects: #1, #2, #6), Vengeance Demon Hunter (212613 effect#6), Chaos Blades (247938 effects: #2, #3), Demon Soul (347765 effects: #1, #2), Burning Blood (390213 effects: #1, #2), Seething Chaos (394934 effects: #1, #2), Inertia (427641 effects: #1, #2), Never Say Die (427794 effects: #4, #5), Demon Hide (428241 effects: #1, #3), Reaver's Mark (442624 effect#1), Void Metamorphosis (471306 effect#3), Devourer Demon Hunter (1213636 effect#5), Havoc Demon Hunter (1256955 effects: #1, #2), Blind Focus (1272364 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 2pc (1283625 effects: #1, #2), Demon Hunter- Midnight PrePatch - 11.2 Class Set 4pc (1283628 effects: #1, #2), Demon Hunter Havoc 12.1 Class Set 2pc (1296611 effect#1)
 Family Flags     : 16, 32, 43, 71
 Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Requires Main-Hand Weapon (106), Do Not Display Range (126), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
 Effects          :
 #1 (id=483076)   : School Damage (2): chaos | Attributes: Area Effects Use Target Radius (17)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 3.11 | Radius: 10 yards | Target: Enemies in Cone to Targeted Enemy (104)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 4.62 | Radius: 10 yards | Target: Enemies in Cone to Targeted Enemy (104)
 #2 (id=1028999)  : Dummy (3)
                    Base Value: 8 | Scaled Value: 8
 Description      : Slash all enemies in front of you for $s1 Chaos damage, causing Chaos Strike and Blade Dance to deal $1245759s1 Chaos damage to them for $320338d. Deals reduced damage beyond $s2 targets.
@@ -180,7 +183,7 @@ Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143
 Effects          :
 #1 (id=483106)   : Apply Aura (6) | Proc Trigger Spell (42): Trail of Ruin
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 258883 | Target: Self (1)
-Description      : The final slash of Blade Dance inflicts an additional $258883o1 Chaos damage over $258883d.
+Description      : The final slash of Blade Dance inflicts an additional $258883s1 Chaos damage.
 
 Name             : Cycle of Hatred (id=258887) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -380,7 +383,7 @@ Description      : Damaging an enemy before they damage you increases your criti
 Vengeful Retreat refreshes your potential to trigger this effect on any enemies you are in combat with.
 
 Name             : Chaotic Transformation (id=388112) [Spell Family (107), Passive] 
-Talent Entry     : Havoc [tree=spec, row=8, col=3, max_rank=1, req_points=20, select_idx=200]
+Talent Entry     : Havoc [tree=spec, row=8, col=3, max_rank=1, req_points=20]
 Class            : Demon Hunter
 School           : Physical
 Spell Type       : None
@@ -457,7 +460,7 @@ Effects          :
 Description      : Gain critical strike damage equal to $s2% of your critical strike chance.
 
 Name             : Chaos Theory (id=389687) [Spell Family (107), Passive] 
-Talent Entry     : Havoc [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Talent Entry     : Havoc [tree=spec, row=8, col=2, max_rank=1, req_points=20, select_idx=100]
 Class            : Demon Hunter
 School           : Physical
 Spell Type       : None
@@ -482,14 +485,13 @@ Labels           : 16: Class Spells
                  : 292
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
-#1 (id=1026088)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
-                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
-                   Affected Spells: Vengeful Retreat (198793), Vengeful Retreat (198813), Vengeful Retreat (344866), Blazing Nova (436899), Blazing Nova (436964)
-                   Family Flags: 3
+#1 (id=1026088)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
+                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 1601 (Category) | Target: Self (1)
+                   Affected Spells (Category): Vengeful Retreat (198793)
 Description      : Vengeful Retreat has a ${$s1/-1000} sec reduced cooldown and generates ${$389890m1/$389890t*$389890d} Fury over $389890d.
 
 Name             : Inner Demon (id=389693) [Spell Family (107), Passive] 
-Talent Entry     : Havoc [tree=spec, row=8, col=3, max_rank=1, req_points=20, select_idx=100]
+Talent Entry     : Havoc [tree=spec, row=8, col=2, max_rank=1, req_points=20, select_idx=200]
 Class            : Demon Hunter
 School           : Physical
 Spell Type       : None
@@ -572,7 +574,7 @@ Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143
 Effects          :
 #1 (id=1026770)  : Apply Aura (6) | Trigger Spell with Value (231)
                    Base Value: 15 | Scaled Value: 15 | Trigger Spell: 390155 | Target: Self (1)
-Description      : Enemies hit by Chaos Strike or Throw Glaive take $s1% increased damage from Chaos Strike and Throw Glaive for $390155d.
+Description      : Striking an enemy with Chaos Strike or Throw Glaive increases Chaos Strike and Throw Glaive damage by $s1% for $390155d.
 
 Name             : Growing Inferno (id=390158) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=6, col=5, max_rank=1, req_points=8]
@@ -662,7 +664,7 @@ Effects          :
 #1 (id=1107236)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 #2 (id=1113215)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 10000 | Scaled Value: 10000 | Target: Self (1)
+                   Base Value: 24000 | Scaled Value: 24000 | Target: Self (1)
 Description      : The Hunt and Vengeful Retreat cause your next Fel Rush or Felblade to empower you, increasing damage by $427641s1% for $427641d.
 
 Name             : A Fire Inside (id=427775) [Spell Family (107), Passive] 
@@ -712,7 +714,7 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : You deflect incoming attacks while Blade Dancing, absorbing damage up to $s1% of your maximum health.
 
-Name             : Dash of Chaos (id=427794) [Spell Family (107), Passive, Hidden] 
+Name             : Never Say Die (id=427794) [Spell Family (107), Passive, Hidden] 
 Talent Entry     : Havoc [tree=spec, row=3, col=1, max_rank=1, req_points=0]
 Class            : Demon Hunter
 School           : Physical
@@ -720,13 +722,27 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 26: Paladin Spells
                  : 292
-Proc Chance      : 101%
-Proc Flags       : Cast Successful
-Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Hide Passive From Tooltip (451)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Aura Points On Client (268), Hide Passive From Tooltip (451)
 Effects          :
-#1 (id=1107562)  : Apply Aura (6) | Dummy (4)
+#1 (id=1107562)  : Apply Aura (6) | Periodic Dummy (226): every 0.8 seconds
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#2 (id=1335330)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#3 (id=1335331)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+#4 (id=1335332)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-Description      : For ${$427793D-($428160s1/10)} sec after using Fel Rush, activating it again will dash back towards your initial location.
+                   Affected Spells: Demon's Bite (162243), Chaos Nova (179057), Throw Glaive (185123), Fel Rush (192611), Eye Beam (198030), Vengeful Retreat (198813), Chaos Strike (199547), Blade Dance (199552), Metamorphosis (200166), Blade Dance (200685), Annihilation (201428), Demon Blades (203796), Sigil of Flame (204598), Death Sweep (210153), Death Sweep (210155), Fel Devastation (212105), Felblade (213243), Chaos Strike (222031), Annihilation (227518), Essence Break (258860), Trail of Ruin (258883), Immolation Aura (258921), Immolation Aura (258922), Unbound Chaos (275148), Elysian Decree (307046), Sinful Brand (317009), Infernal Armor (320334), The Hunt (323802), Fel Devastation (333110), Throw Glaive (337819), Elysian Decree (339893), Elysian Decree (339894), Glaive Tempest (342857), Chaos Nova (344867), The Hunt (345335), Fel Devastation (346503), The Hunt (370966), The Hunt (370969), Sigil of Spite (389860), Inner Demon (390137), Burning Wound (391191), Blade Dance (391374), Blade Dance (391378), Throw Glaive (393035), Death Sweep (393054), Death Sweep (393055), Fel Devastation (393834), Metamorphosis - Alex S Copy (418583), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916), Blazing Nova (436899), Blazing Nova (436964), Reaver's Glaive (442294), Warblade's Hunger (442507), Fury of the Aldrachi (444806), Preemptive Strike (444979), Demonsurge (451266), Demonsurge (452416), Burning Blades (453177), Sigil of Doom (462030), Void Nova (1234195), Essence Break (1245759), Catastrophe (1256667), Catastrophe (1256676), Reaver's Glaive (1283344), Eye Beam (1287949)
+                   Family Flags: 16
+#5 (id=1335333)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Demon's Bite (162243), Chaos Nova (179057), Throw Glaive (185123), Fel Rush (192611), Eye Beam (198030), Vengeful Retreat (198813), Chaos Strike (199547), Blade Dance (199552), Metamorphosis (200166), Blade Dance (200685), Annihilation (201428), Demon Blades (203796), Sigil of Flame (204598), Death Sweep (210153), Death Sweep (210155), Fel Devastation (212105), Felblade (213243), Chaos Strike (222031), Annihilation (227518), Essence Break (258860), Trail of Ruin (258883), Immolation Aura (258921), Immolation Aura (258922), Unbound Chaos (275148), Elysian Decree (307046), Sinful Brand (317009), Infernal Armor (320334), The Hunt (323802), Fel Devastation (333110), Throw Glaive (337819), Elysian Decree (339893), Elysian Decree (339894), Glaive Tempest (342857), Chaos Nova (344867), The Hunt (345335), Fel Devastation (346503), The Hunt (370966), The Hunt (370969), Sigil of Spite (389860), Inner Demon (390137), Burning Wound (391191), Blade Dance (391374), Blade Dance (391378), Throw Glaive (393035), Death Sweep (393054), Death Sweep (393055), Fel Devastation (393834), Metamorphosis - Alex S Copy (418583), Immolation Aura (427904), Immolation Aura (427905), Immolation Aura (427906), Immolation Aura (427907), Immolation Aura (427908), Immolation Aura (427910), Immolation Aura (427911), Immolation Aura (427916), Blazing Nova (436899), Blazing Nova (436964), Reaver's Glaive (442294), Warblade's Hunger (442507), Fury of the Aldrachi (444806), Preemptive Strike (444979), Demonsurge (451266), Demonsurge (452416), Burning Blades (453177), Sigil of Doom (462030), Void Nova (1234195), Essence Break (1245759), Catastrophe (1256667), Catastrophe (1256676), Reaver's Glaive (1283344), Eye Beam (1287949)
+                   Family Flags: 16
+#6 (id=1335334)  : Apply Aura (6) | Modify Leech% (443)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : Damage is increased by $s1% while above $s3% Health.
+
+Leech is increased by $s2% while below $s3% Health.
 
 Name             : Scars of Suffering (id=428232) [Spell Family (107), Passive] 
 Talent Entry     : Havoc [tree=spec, row=5, col=2, max_rank=1, req_points=8]

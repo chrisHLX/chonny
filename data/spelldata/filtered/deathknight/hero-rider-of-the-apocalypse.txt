@@ -1,5 +1,5 @@
 # Death Knight — Rider of the Apocalypse Hero Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Rider's Champion (id=444005) [Spell Family (15), Passive] 
@@ -189,7 +189,7 @@ Effects          :
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 #2 (id=1146068)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-Description      : While you have $s1 or more Horsemen aiding you, your $?c2[Runic Power spending abilities deal]?c3[Death Coil deals $440861s1% and Epidemic deals $440861s3%][] increased damage.
+Description      : While you have $s1 or more Horsemen aiding you, your $?c2[Runic Power spending abilities deal $440861s1%]?c3[Death Coil deals $440861s1% and Epidemic deals $440861s3%][] increased damage.
 
 Name             : Horsemen's Aid (id=444074) [Spell Family (15), Passive] 
 Talent Entry     : Rider of the Apocalypse (Frost, Unholy) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]

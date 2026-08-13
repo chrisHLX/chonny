@@ -1,7 +1,7 @@
 {
     "class": "Hunter",
     "talent_tree_id": 774,
-    "fetched_at": "2026-08-02T09:04:29+00:00",
+    "fetched_at": "2026-08-12T21:33:44+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -1406,7 +1406,7 @@
                                     "talent_name": "Open Fire",
                                     "spell_id": 1253807,
                                     "spell_name": "Open Fire",
-                                    "description": "Flamefang Pitch damage increased by 15%.",
+                                    "description": "Fire damage dealt increased by 5%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1520,7 +1520,7 @@
                             "talent_name": "Moon's Blessing",
                             "spell_id": 1253825,
                             "spell_name": "Moon's Blessing",
-                            "description": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl.\r\n\r\nWhen your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 4.0 sec.",
+                            "description": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl.\r\n\r\nWhen your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 6.0 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1578,7 +1578,7 @@
                             "talent_name": "Lunar Storm",
                             "spell_id": 1253732,
                             "spell_name": "Lunar Storm",
-                            "description": "When Sentinel's Mark is consumed, it summons a barrage of 4 lunar missiles, each dealing 71 Arcane damage to enemies within 10 yds.",
+                            "description": "When Sentinel's Mark is consumed, it summons a barrage of 4 lunar missiles, each dealing 69 Arcane damage to enemies within 10 yds.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1618,7 +1618,7 @@
                                     "talent_name": "Scout's Vigil",
                                     "spell_id": 1253892,
                                     "spell_name": "Scout's Vigil",
-                                    "description": "Enemy detection radius reduced by 10 yds.\r\n\r\nWhile in Camouflage, your stealth detection radius is increased by 25 yds.",
+                                    "description": "Enemy detection radius reduced by 10 yds.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1790,7 +1790,7 @@
                                     "talent_name": "Twilight Requiem",
                                     "spell_id": 1264904,
                                     "spell_name": "Twilight Requiem",
-                                    "description": "When your Moonlight Chakram expires, it summons an explosion of moonlight, dealing 71 Arcane damage to nearby enemies. Damage reduced beyond 8 targets.",
+                                    "description": "When your Moonlight Chakram expires, it summons an explosion of moonlight, dealing 69 Arcane damage to nearby enemies. Damage reduced beyond 8 targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1851,10 +1851,10 @@
                     "raw_position_x": 8100,
                     "raw_position_y": 6599,
                     "locked_by": [
-                        94967,
-                        94969,
                         109804,
-                        109802
+                        109802,
+                        94967,
+                        94969
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -1865,7 +1865,7 @@
                             "talent_name": "Stampede!",
                             "spell_id": 472741,
                             "spell_name": "Stampede!",
-                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 467 Physical damage over 7 sec.",
+                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 472 Physical damage over 7 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2089,7 +2089,7 @@
                             "talent_name": "Hogstrider",
                             "spell_id": 472639,
                             "spell_name": "Hogstrider",
-                            "description": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 200%.\r\n\r\nEach additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
+                            "description": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 100%.\r\n\r\nEach additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2105,10 +2105,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
+                        94979,
                         94985,
                         94992,
-                        94962,
-                        94979
+                        94962
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -2202,7 +2202,7 @@
                             "talent_name": "Lethal Barbs",
                             "spell_id": 1264781,
                             "spell_name": "Lethal Barbs",
-                            "description": "Your auto shot grants 1 Focus to you and your pet.\r\n\r\nAuto shot damage increased by 25%.",
+                            "description": "Your auto shot have a very high chance to grants 3 Focus to you and your pet.\r\n\r\nAuto shot damage increased by 25%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2232,7 +2232,7 @@
                                     "talent_name": "Hoof and Blade",
                                     "spell_id": 1264797,
                                     "spell_name": "Hoof and Blade",
-                                    "description": "Hogstrider further increases the damage of Cobra Shot by 50% and it now strikes up to 3 additional targets.",
+                                    "description": "Hogstrider further increases the damage of Cobra Shot by 25% and it now strikes up to 3 additional targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2449,7 +2449,7 @@
                             "talent_name": "Bleak Powder",
                             "spell_id": 467911,
                             "spell_name": "Bleak Powder",
-                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 88 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 89 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2545,7 +2545,7 @@
                                     "talent_name": "Through the Eyes",
                                     "spell_id": 1277565,
                                     "spell_name": "Through the Eyes",
-                                    "description": "Black Arrow deals 20% increased damage to enemies affected by Black Arrow's periodic damage.",
+                                    "description": "Kill Shot damage increased by 10%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2592,9 +2592,9 @@
                     "raw_position_y": 3597,
                     "locked_by": [
                         94982,
-                        109799,
                         94957,
-                        94983
+                        94983,
+                        109799
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -2605,7 +2605,7 @@
                             "talent_name": "Withering Fire",
                             "spell_id": 466990,
                             "spell_name": "Withering Fire",
-                            "description": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 sec and Deathblow.\r\n\r\n Withering Fire\r\nCasting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 50% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "description": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 sec and Deathblow.\r\n\r\n Withering Fire\r\nCasting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2661,7 +2661,7 @@
                             "talent_name": "Wailing Dead",
                             "spell_id": 1264290,
                             "spell_name": "Wailing Dead",
-                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 492 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
+                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 493 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2734,35 +2734,6 @@
             "spec_id": 254,
             "nodes": [
                 {
-                    "id": 94987,
-                    "node_type": "PASSIVE",
-                    "display_row": 2,
-                    "display_col": 10,
-                    "raw_position_x": 8100,
-                    "raw_position_y": 1200,
-                    "locked_by": [],
-                    "unlocks": [
-                        94974,
-                        94968,
-                        94961,
-                        109801
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 122596,
-                            "talent_name": "Black Arrow",
-                            "spell_id": 466932,
-                            "spell_name": "Black Arrow",
-                            "description": "Your Kill Shot is replaced with Black Arrow.\r\n\r\n Black Arrow\r\nYou attempt to finish off a wounded target, dealing 121 Shadow damage and 140 Shadow damage over 8 sec. Only usable on enemies above 80% health or below 20% health.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
                     "id": 94976,
                     "node_type": "PASSIVE",
                     "display_row": 2,
@@ -2792,6 +2763,35 @@
                     ]
                 },
                 {
+                    "id": 94987,
+                    "node_type": "PASSIVE",
+                    "display_row": 2,
+                    "display_col": 10,
+                    "raw_position_x": 8100,
+                    "raw_position_y": 1200,
+                    "locked_by": [],
+                    "unlocks": [
+                        94974,
+                        94968,
+                        94961,
+                        109801
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 122596,
+                            "talent_name": "Black Arrow",
+                            "spell_id": 466932,
+                            "spell_name": "Black Arrow",
+                            "description": "Your Kill Shot is replaced with Black Arrow.\r\n\r\n Black Arrow\r\nYou attempt to finish off a wounded target, dealing 121 Shadow damage and 140 Shadow damage over 8 sec. Only usable on enemies above 80% health or below 20% health.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
                     "id": 103982,
                     "node_type": "ACTIVE",
                     "display_row": 2,
@@ -2811,10 +2811,39 @@
                             "talent_name": "Aimed Shot",
                             "spell_id": 19434,
                             "spell_name": "Aimed Shot",
-                            "description": "A powerful aimed shot that deals 281 Physical damage.",
+                            "description": "A powerful aimed shot that deals 345 Physical damage.",
                             "cast_time": "2.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
+                        }
+                    ]
+                },
+                {
+                    "id": 94961,
+                    "node_type": "PASSIVE",
+                    "display_row": 3,
+                    "display_col": 9,
+                    "raw_position_x": 7200,
+                    "raw_position_y": 1800,
+                    "locked_by": [
+                        94987,
+                        109961
+                    ],
+                    "unlocks": [
+                        94986
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 122570,
+                            "talent_name": "Bleak Arrows",
+                            "spell_id": 467749,
+                            "spell_name": "Bleak Arrows",
+                            "description": "Your auto shot now deals Shadow damage, allowing it to bypass armor.\r\n\r\nAuto shot damage increased by 100%.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -2847,28 +2876,27 @@
                     ]
                 },
                 {
-                    "id": 94961,
+                    "id": 94973,
                     "node_type": "PASSIVE",
                     "display_row": 3,
-                    "display_col": 9,
-                    "raw_position_x": 7200,
-                    "raw_position_y": 1800,
+                    "display_col": 10,
+                    "raw_position_x": 7800,
+                    "raw_position_y": 2100,
                     "locked_by": [
-                        94987,
-                        109961
+                        94976
                     ],
                     "unlocks": [
-                        94986
+                        94990
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 122570,
-                            "talent_name": "Bleak Arrows",
-                            "spell_id": 467749,
-                            "spell_name": "Bleak Arrows",
-                            "description": "Your auto shot now deals Shadow damage, allowing it to bypass armor.\r\n\r\nAuto shot damage increased by 100%.",
+                            "talent_id": 122582,
+                            "talent_name": "Moon's Blessing",
+                            "spell_id": 1253825,
+                            "spell_name": "Moon's Blessing",
+                            "description": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl.\r\n\r\nWhen your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 6.0 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2905,34 +2933,6 @@
                     ]
                 },
                 {
-                    "id": 94973,
-                    "node_type": "PASSIVE",
-                    "display_row": 3,
-                    "display_col": 10,
-                    "raw_position_x": 7800,
-                    "raw_position_y": 2100,
-                    "locked_by": [
-                        94976
-                    ],
-                    "unlocks": [
-                        94990
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 122582,
-                            "talent_name": "Moon's Blessing",
-                            "spell_id": 1253825,
-                            "spell_name": "Moon's Blessing",
-                            "description": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl.\r\n\r\nWhen your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 4.0 sec.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
                     "id": 94974,
                     "node_type": "PASSIVE",
                     "display_row": 3,
@@ -2954,7 +2954,7 @@
                             "talent_name": "Bleak Powder",
                             "spell_id": 467911,
                             "spell_name": "Bleak Powder",
-                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 88 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 86 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2983,6 +2983,34 @@
                             "spell_id": 1253831,
                             "spell_name": "Sanctified Armaments",
                             "description": "An additional 15% of Raptor Strike's damage is dealt as Arcane damage over 6 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
+                    "id": 109807,
+                    "node_type": "PASSIVE",
+                    "display_row": 3,
+                    "display_col": 12,
+                    "raw_position_x": 9000,
+                    "raw_position_y": 2100,
+                    "locked_by": [
+                        94976
+                    ],
+                    "unlocks": [
+                        110028
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 140820,
+                            "talent_name": "Moonlight Chakram",
+                            "spell_id": 1264902,
+                            "spell_name": "Moonlight Chakram",
+                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 101 Physical damage 7 times, bouncing to other targets if they are nearby.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3019,34 +3047,6 @@
                     ]
                 },
                 {
-                    "id": 109807,
-                    "node_type": "PASSIVE",
-                    "display_row": 3,
-                    "display_col": 12,
-                    "raw_position_x": 9000,
-                    "raw_position_y": 2100,
-                    "locked_by": [
-                        94976
-                    ],
-                    "unlocks": [
-                        110028
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 140820,
-                            "talent_name": "Moonlight Chakram",
-                            "spell_id": 1264902,
-                            "spell_name": "Moonlight Chakram",
-                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 99 Physical damage 7 times, bouncing to other targets if they are nearby.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
                     "id": 103961,
                     "node_type": "ACTIVE",
                     "display_row": 3,
@@ -3057,6 +3057,7 @@
                         103982
                     ],
                     "unlocks": [
+                        104127,
                         103975
                     ],
                     "max_ranks": 1,
@@ -3067,7 +3068,7 @@
                             "talent_name": "Rapid Fire",
                             "spell_id": 257044,
                             "spell_name": "Rapid Fire",
-                            "description": "Shoot a stream of 7 shots at your target over 1.8 sec, dealing a total of 177 Physical damage. Usable while moving.\r\n\r\nEach shot generates 3 Focus.",
+                            "description": "Shoot a stream of 7 shots at your target over 1.8 sec, dealing a total of 259 Physical damage. Usable while moving.\r\n\r\nEach shot generates 3 Focus.",
                             "cast_time": "Channeled",
                             "cooldown": "16 sec cooldown",
                             "range": "40 yd range"
@@ -3085,7 +3086,8 @@
                         103982
                     ],
                     "unlocks": [
-                        107289
+                        107289,
+                        104127
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3099,48 +3101,6 @@
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 94958,
-                    "node_type": "CHOICE",
-                    "display_row": 4,
-                    "display_col": 9,
-                    "raw_position_x": 7200,
-                    "raw_position_y": 2700,
-                    "locked_by": [
-                        94989
-                    ],
-                    "unlocks": [
-                        94970
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 122567,
-                                    "talent_name": "Stargazer",
-                                    "spell_id": 1253751,
-                                    "spell_name": "Stargazer",
-                                    "description": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10 sec. Multiple applications may overlap.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 140345,
-                                    "talent_name": "Open Fire",
-                                    "spell_id": 1253807,
-                                    "spell_name": "Open Fire",
-                                    "description": "Flamefang Pitch damage increased by 15%.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                }
-                            ]
                         }
                     ]
                 },
@@ -3177,7 +3137,7 @@
                                     "talent_name": "Through the Eyes",
                                     "spell_id": 1277565,
                                     "spell_name": "Through the Eyes",
-                                    "description": "Black Arrow deals 20% increased damage to enemies affected by Black Arrow's periodic damage.",
+                                    "description": "Kill Shot damage increased by 10%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3187,30 +3147,44 @@
                     ]
                 },
                 {
-                    "id": 94959,
-                    "node_type": "PASSIVE",
+                    "id": 94958,
+                    "node_type": "CHOICE",
                     "display_row": 4,
-                    "display_col": 10,
-                    "raw_position_x": 7800,
-                    "raw_position_y": 2400,
+                    "display_col": 9,
+                    "raw_position_x": 7200,
+                    "raw_position_y": 2700,
                     "locked_by": [
-                        94968
+                        94989
                     ],
                     "unlocks": [
-                        94957
+                        94970
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 128617,
-                            "talent_name": "Smoke Screen",
-                            "spell_id": 430709,
-                            "spell_name": "Smoke Screen",
-                            "description": "Exhilaration grants you 3 sec of Survival of the Fittest.\r\n\r\nSurvival of the Fittest activates Exhilaration at 50% effectiveness.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
+                            "choices": [
+                                {
+                                    "talent_id": 122567,
+                                    "talent_name": "Stargazer",
+                                    "spell_id": 1253751,
+                                    "spell_name": "Stargazer",
+                                    "description": "Consuming Tip of the Spear grants 2% increased critical strike damage for 10 sec. Multiple applications may overlap.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                },
+                                {
+                                    "talent_id": 140345,
+                                    "talent_name": "Open Fire",
+                                    "spell_id": 1253807,
+                                    "spell_name": "Open Fire",
+                                    "description": "Fire damage dealt increased by 5%.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
                         }
                     ]
                 },
@@ -3236,6 +3210,34 @@
                             "spell_id": 1253830,
                             "spell_name": "Can't Miss, Won't Miss",
                             "description": "Tip of the Spear damage bonus increased by 4%.\r\n\r\nTakedown duration increased by 2 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
+                    "id": 94959,
+                    "node_type": "PASSIVE",
+                    "display_row": 4,
+                    "display_col": 10,
+                    "raw_position_x": 7800,
+                    "raw_position_y": 2400,
+                    "locked_by": [
+                        94968
+                    ],
+                    "unlocks": [
+                        94957
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 128617,
+                            "talent_name": "Smoke Screen",
+                            "spell_id": 430709,
+                            "spell_name": "Smoke Screen",
+                            "description": "Exhilaration grants you 3 sec of Survival of the Fittest.\r\n\r\nSurvival of the Fittest activates Exhilaration at 50% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3333,7 +3335,7 @@
                             "talent_name": "Wailing Dead",
                             "spell_id": 1264290,
                             "spell_name": "Wailing Dead",
-                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 489 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
+                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 481 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3393,7 +3395,6 @@
                         103961
                     ],
                     "unlocks": [
-                        104127,
                         104130
                     ],
                     "max_ranks": 1,
@@ -3412,6 +3413,50 @@
                     ]
                 },
                 {
+                    "id": 104127,
+                    "node_type": "CHOICE",
+                    "display_row": 4,
+                    "display_col": 18,
+                    "raw_position_x": 12600,
+                    "raw_position_y": 2700,
+                    "locked_by": [
+                        103977,
+                        103961
+                    ],
+                    "unlocks": [
+                        103964,
+                        103986
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "choices": [
+                                {
+                                    "talent_id": 133512,
+                                    "talent_name": "Avian Specialization",
+                                    "spell_id": 466867,
+                                    "spell_name": "Avian Specialization",
+                                    "description": "The damage bonus of Spotter's Mark is increased by 20%.\r\n\r\nAdditionally, your Eagle learns how to Fetch.\r\n\r\n Spotter's Mark\r\nDamaging an enemy with abilities empowered by Precise Shots has a 30% chance to apply Spotter's Mark to the primary target, causing your next Aimed Shot to deal 20% increased damage to the target.\r\n",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                },
+                                {
+                                    "talent_id": 134420,
+                                    "talent_name": "Unbreakable Bond",
+                                    "spell_id": 1223323,
+                                    "spell_name": "Unbreakable Bond",
+                                    "description": "Regain access to Call Pet.\r\n\r\nWhile outdoors, your pet deals 15% increased damage and takes 15% reduced damage.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
                     "id": 107289,
                     "node_type": "PASSIVE",
                     "display_row": 4,
@@ -3423,7 +3468,7 @@
                     ],
                     "unlocks": [
                         103957,
-                        104127
+                        103964
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3434,6 +3479,34 @@
                             "spell_id": 194595,
                             "spell_name": "Lock and Load",
                             "description": "Your ranged auto attacks have a 10% chance to trigger Lock and Load, causing your next Aimed Shot to cost no Focus and be instant.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
+                    "id": 94983,
+                    "node_type": "PASSIVE",
+                    "display_row": 5,
+                    "display_col": 9,
+                    "raw_position_x": 7200,
+                    "raw_position_y": 3000,
+                    "locked_by": [
+                        94986
+                    ],
+                    "unlocks": [
+                        94993
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 133045,
+                            "talent_name": "Blighted Quiver",
+                            "spell_id": 1264291,
+                            "spell_name": "Blighted Quiver",
+                            "description": "You fire 2 additional Black Arrows during Withering Fire's barrage.\r\n\r\nBeast Cleave and Kill Cleave damage increased by 5%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3469,27 +3542,27 @@
                     ]
                 },
                 {
-                    "id": 94983,
+                    "id": 94965,
                     "node_type": "PASSIVE",
                     "display_row": 5,
-                    "display_col": 9,
-                    "raw_position_x": 7200,
-                    "raw_position_y": 3000,
+                    "display_col": 10,
+                    "raw_position_x": 7800,
+                    "raw_position_y": 3300,
                     "locked_by": [
-                        94986
+                        94990
                     ],
                     "unlocks": [
-                        94993
+                        94978
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 133045,
-                            "talent_name": "Blighted Quiver",
-                            "spell_id": 1264291,
-                            "spell_name": "Blighted Quiver",
-                            "description": "You fire 2 additional Black Arrows during Withering Fire's barrage.\r\n\r\nBeast Cleave and Kill Cleave damage increased by 5%.",
+                            "talent_id": 122574,
+                            "talent_name": "Lunar Calling",
+                            "spell_id": 1253852,
+                            "spell_name": "Lunar Calling",
+                            "description": "Takedown summons your Sentinel Owl and your chance to summon your Sentinel Owl is increased by an additional 10% during Takedown.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3539,34 +3612,6 @@
                     ]
                 },
                 {
-                    "id": 94965,
-                    "node_type": "PASSIVE",
-                    "display_row": 5,
-                    "display_col": 10,
-                    "raw_position_x": 7800,
-                    "raw_position_y": 3300,
-                    "locked_by": [
-                        94990
-                    ],
-                    "unlocks": [
-                        94978
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 122574,
-                            "talent_name": "Lunar Calling",
-                            "spell_id": 1253852,
-                            "spell_name": "Lunar Calling",
-                            "description": "Takedown summons your Sentinel Owl and your chance to summon your Sentinel Owl is increased by an additional 10% during Takedown.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
                     "id": 94980,
                     "node_type": "CHOICE",
                     "display_row": 5,
@@ -3599,7 +3644,7 @@
                                     "talent_name": "Scout's Vigil",
                                     "spell_id": 1253892,
                                     "spell_name": "Scout's Vigil",
-                                    "description": "Enemy detection radius reduced by 10 yds.\r\n\r\nWhile in Camouflage, your stealth detection radius is increased by 25 yds.",
+                                    "description": "Enemy detection radius reduced by 10 yds.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3703,8 +3748,8 @@
                         103975
                     ],
                     "unlocks": [
-                        103964,
-                        103959
+                        103959,
+                        110572
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3722,20 +3767,17 @@
                     ]
                 },
                 {
-                    "id": 104127,
+                    "id": 103986,
                     "node_type": "CHOICE",
                     "display_row": 5,
-                    "display_col": 18,
-                    "raw_position_x": 12600,
+                    "display_col": 17,
+                    "raw_position_x": 12000,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        103975,
-                        107289
+                        104127
                     ],
                     "unlocks": [
-                        103964,
-                        103986,
-                        103974
+                        110572
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3743,26 +3785,57 @@
                             "rank": 1,
                             "choices": [
                                 {
-                                    "talent_id": 133512,
-                                    "talent_name": "Avian Specialization",
-                                    "spell_id": 466867,
-                                    "spell_name": "Avian Specialization",
-                                    "description": "The damage bonus of Spotter's Mark is increased by 20%.\r\n\r\nAdditionally, your Eagle learns how to Fetch.\r\n\r\n Spotter's Mark\r\nDamaging an enemy with abilities empowered by Precise Shots has a 30% chance to apply Spotter's Mark to the primary target, causing your next Aimed Shot to deal 20% increased damage to the target.\r\n",
+                                    "talent_id": 133214,
+                                    "talent_name": "Tenacious",
+                                    "spell_id": 474456,
+                                    "spell_name": "Tenacious",
+                                    "description": "Your Spotting Eagle gains the Tenacity specialization, granting you Endurance Training and Air Superiority.\r\n\r\n Endurance Training\r\nYou gain 5% increased maximum health.\r\n\r\n Air Superiority\r\nYour Spotting Eagle alerts you to oncoming danger, reducing all damage you take by 3%",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
                                 },
                                 {
-                                    "talent_id": 134420,
-                                    "talent_name": "Unbreakable Bond",
-                                    "spell_id": 1223323,
-                                    "spell_name": "Unbreakable Bond",
-                                    "description": "Regain access to Call Pet.\r\n\r\nWhile outdoors, your pet deals 15% increased damage and takes 15% reduced damage.",
+                                    "talent_id": 133217,
+                                    "talent_name": "Cunning",
+                                    "spell_id": 474440,
+                                    "spell_name": "Cunning",
+                                    "description": "Your Spotting Eagle gains the Cunning specialization, granting you Master's Call and Pathfinding.\r\n\r\n Master's Call\r\nYour pet removes all root and movement impairing effects from itself and a friendly target, and grants immunity to all such effects for 4 sec.\r\n\r\n Pathfinding\r\nYour movement speed is increased by 8%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    "id": 103964,
+                    "node_type": "PASSIVE",
+                    "display_row": 5,
+                    "display_col": 18,
+                    "raw_position_x": 12600,
+                    "raw_position_y": 3300,
+                    "locked_by": [
+                        104127,
+                        107289
+                    ],
+                    "unlocks": [
+                        110575,
+                        103947,
+                        110572
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 133192,
+                            "talent_name": "Penetrating Shots",
+                            "spell_id": 459783,
+                            "spell_name": "Penetrating Shots",
+                            "description": "Gain critical strike damage equal to 25% of your critical strike chance.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -3778,7 +3851,7 @@
                     ],
                     "unlocks": [
                         107288,
-                        103974
+                        110575
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3800,12 +3873,41 @@
                                     "talent_name": "Aspect of the Hydra",
                                     "spell_id": 470945,
                                     "spell_name": "Aspect of the Hydra",
-                                    "description": "Aimed Shot, Rapid Fire, and Arcane Shot now hit 1 additional target for 35% of their damage.",
+                                    "description": "Aimed Shot and Rapid Fire now hit 1 additional target for 35% of their damage.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    "id": 94993,
+                    "node_type": "PASSIVE",
+                    "display_row": 6,
+                    "display_col": 10,
+                    "raw_position_x": 8100,
+                    "raw_position_y": 3597,
+                    "locked_by": [
+                        94982,
+                        94957,
+                        94983,
+                        109799
+                    ],
+                    "unlocks": [],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 122602,
+                            "talent_name": "Withering Fire",
+                            "spell_id": 466990,
+                            "spell_name": "Withering Fire",
+                            "description": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 sec and Deathblow.\r\n\r\n Withering Fire\r\nCasting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -3832,35 +3934,6 @@
                             "spell_id": 1253732,
                             "spell_name": "Lunar Storm",
                             "description": "When Sentinel's Mark is consumed, it summons a barrage of 4 lunar missiles, each dealing 70 Arcane damage to enemies within 10 yds.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 94993,
-                    "node_type": "PASSIVE",
-                    "display_row": 6,
-                    "display_col": 10,
-                    "raw_position_x": 8100,
-                    "raw_position_y": 3597,
-                    "locked_by": [
-                        94982,
-                        109799,
-                        94957,
-                        94983
-                    ],
-                    "unlocks": [],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 122602,
-                            "talent_name": "Withering Fire",
-                            "spell_id": 466990,
-                            "spell_name": "Withering Fire",
-                            "description": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 sec and Deathblow.\r\n\r\n Withering Fire\r\nCasting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 50% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3910,29 +3983,31 @@
                     ]
                 },
                 {
-                    "id": 103964,
+                    "id": 110572,
                     "node_type": "PASSIVE",
                     "display_row": 6,
                     "display_col": 17,
                     "raw_position_x": 12000,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        104127,
+                        103964,
+                        103986,
                         104130
                     ],
                     "unlocks": [
-                        109490,
-                        110572
+                        103985,
+                        103947,
+                        109490
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 133192,
-                            "talent_name": "Penetrating Shots",
-                            "spell_id": 459783,
-                            "spell_name": "Penetrating Shots",
-                            "description": "Gain critical strike damage equal to 25% of your critical strike chance.",
+                            "talent_id": 142135,
+                            "talent_name": "No Scope",
+                            "spell_id": 473385,
+                            "spell_name": "No Scope",
+                            "description": "Rapid Fire grants Precise Shots.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3940,76 +4015,34 @@
                     ]
                 },
                 {
-                    "id": 103986,
-                    "node_type": "CHOICE",
-                    "display_row": 6,
-                    "display_col": 18,
-                    "raw_position_x": 12600,
-                    "raw_position_y": 3900,
-                    "locked_by": [
-                        104127
-                    ],
-                    "unlocks": [
-                        103947,
-                        103955,
-                        110572
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 133214,
-                                    "talent_name": "Tenacious",
-                                    "spell_id": 474456,
-                                    "spell_name": "Tenacious",
-                                    "description": "Your Spotting Eagle gains the Tenacity specialization, granting you Endurance Training and Air Superiority.\r\n\r\n Endurance Training\r\nYou gain 5% increased maximum health.\r\n\r\n Air Superiority\r\nYour Spotting Eagle alerts you to oncoming danger, reducing all damage you take by 3%",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 133217,
-                                    "talent_name": "Cunning",
-                                    "spell_id": 474440,
-                                    "spell_name": "Cunning",
-                                    "description": "Your Spotting Eagle gains the Cunning specialization, granting you Master's Call and Pathfinding.\r\n\r\n Master's Call\r\nYour pet removes all root and movement impairing effects from itself and a friendly target, and grants immunity to all such effects for 4 sec.\r\n\r\n Pathfinding\r\nYour movement speed is increased by 8%.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": 103974,
-                    "node_type": "PASSIVE",
+                    "id": 110575,
+                    "node_type": "ACTIVE",
                     "display_row": 6,
                     "display_col": 19,
                     "raw_position_x": 13200,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        104127,
-                        103957
+                        103957,
+                        103964
                     ],
                     "unlocks": [
-                        103955,
-                        110575
+                        110573,
+                        103947,
+                        110574,
+                        110573
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 133202,
-                            "talent_name": "Master Marksman",
-                            "spell_id": 260309,
-                            "spell_name": "Master Marksman",
-                            "description": "Your ranged ability critical strikes cause the target to bleed for an additional 10% of the damage dealt over 6 sec.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
+                            "talent_id": 142138,
+                            "talent_name": "Explosive Shot",
+                            "spell_id": 212431,
+                            "spell_name": "Explosive Shot",
+                            "description": "Fires an explosive shot at your target that lasts for 3 sec. Every 1 sec the target burns for 106 Fire damage and explode, dealing 50% of the damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
+                            "cast_time": "Instant",
+                            "cooldown": "30 sec cooldown",
+                            "range": "40 yd range"
                         }
                     ]
                 },
@@ -4024,7 +4057,7 @@
                         103957
                     ],
                     "unlocks": [
-                        110575
+                        103955
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4049,13 +4082,13 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        103964,
-                        103959
+                        103959,
+                        110572
                     ],
                     "unlocks": [
                         103985,
                         109491,
-                        103972
+                        110688
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4065,39 +4098,10 @@
                             "talent_name": "Kill Shot",
                             "spell_id": 53351,
                             "spell_name": "Kill Shot",
-                            "description": "You attempt to finish off a wounded target, dealing 243 Physical damage. Only usable on enemies with less than 20% health.",
+                            "description": "You attempt to finish off a wounded target, dealing 370 Physical damage. Only usable on enemies with less than 20% health.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
-                        }
-                    ]
-                },
-                {
-                    "id": 110572,
-                    "node_type": "PASSIVE",
-                    "display_row": 7,
-                    "display_col": 17,
-                    "raw_position_x": 12000,
-                    "raw_position_y": 4500,
-                    "locked_by": [
-                        103986,
-                        103964
-                    ],
-                    "unlocks": [
-                        103985
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 142135,
-                            "talent_name": "No Scope",
-                            "spell_id": 473385,
-                            "spell_name": "No Scope",
-                            "description": "Rapid Fire grants Precise Shots.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
                         }
                     ]
                 },
@@ -4109,12 +4113,14 @@
                     "raw_position_x": 12600,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        103986
+                        110575,
+                        103964,
+                        110572
                     ],
                     "unlocks": [
-                        103984,
-                        103978,
-                        103985
+                        103985,
+                        103974,
+                        103984
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4132,18 +4138,90 @@
                     ]
                 },
                 {
-                    "id": 103955,
-                    "node_type": "PASSIVE",
+                    "id": 110573,
+                    "node_type": "CHOICE",
                     "display_row": 7,
                     "display_col": 19,
                     "raw_position_x": 13200,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        103974,
-                        103986
+                        110575,
+                        110575
                     ],
                     "unlocks": [
-                        103978
+                        103974
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "choices": [
+                                {
+                                    "talent_id": 142136,
+                                    "talent_name": "Tactical Reload",
+                                    "spell_id": 1301406,
+                                    "spell_name": "Tactical Reload",
+                                    "description": "Explosive Shot has a 100% chance to grant the Lock and Load effect.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                },
+                                {
+                                    "talent_id": 142392,
+                                    "talent_name": "Unstable Trigger",
+                                    "spell_id": 473520,
+                                    "spell_name": "Unstable Trigger",
+                                    "description": "Explosive Shot can now be used a second time if cast within 3.0 sec. Explosive Shot will incorporate any remaining damage from previous Explosive Shots on your target.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": 110574,
+                    "node_type": "PASSIVE",
+                    "display_row": 7,
+                    "display_col": 20,
+                    "raw_position_x": 13800,
+                    "raw_position_y": 4500,
+                    "locked_by": [
+                        110575
+                    ],
+                    "unlocks": [
+                        103978,
+                        110691,
+                        103974
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 142137,
+                            "talent_name": "Precision Detonation",
+                            "spell_id": 471369,
+                            "spell_name": "Precision Detonation",
+                            "description": "Explosive Shot lasts 1.0 sec longer.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
+                    "id": 103955,
+                    "node_type": "PASSIVE",
+                    "display_row": 7,
+                    "display_col": 21,
+                    "raw_position_x": 14400,
+                    "raw_position_y": 4500,
+                    "locked_by": [
+                        107288
+                    ],
+                    "unlocks": [
+                        110691
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4157,37 +4235,6 @@
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 110575,
-                    "node_type": "ACTIVE",
-                    "display_row": 7,
-                    "display_col": 20,
-                    "raw_position_x": 13800,
-                    "raw_position_y": 4500,
-                    "locked_by": [
-                        107288,
-                        103974
-                    ],
-                    "unlocks": [
-                        103978,
-                        110573,
-                        110574
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 142138,
-                            "talent_name": "Explosive Shot",
-                            "spell_id": 212431,
-                            "spell_name": "Explosive Shot",
-                            "description": "Fires an explosive shot at your target. After 3 sec, the shot will explode, dealing 203 Fire damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
-                            "cast_time": "Instant",
-                            "cooldown": "30 sec cooldown",
-                            "range": "40 yd range"
                         }
                     ]
                 },
@@ -4212,7 +4259,7 @@
                             "talent_name": "Deathblow",
                             "spell_id": 343248,
                             "spell_name": "Deathblow",
-                            "description": "Kill Command has a 0% chance to grant Deathblow.\r\n\r\n Deathblow\r\nThe cooldown of Kill Shot is reset. Your next Kill Shot can be used on any target, regardless of their current health.",
+                            "description": "Kill Command has a 0% chance to cause your next Aimed Shot to grant Deathblow.\r\n\r\n Deathblow\r\nThe cooldown of Kill Shot is reset. Your next Kill Shot can be used on any target, regardless of their current health.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4220,8 +4267,8 @@
                     ]
                 },
                 {
-                    "id": 103972,
-                    "node_type": "CHOICE",
+                    "id": 110688,
+                    "node_type": "PASSIVE",
                     "display_row": 8,
                     "display_col": 16,
                     "raw_position_x": 11400,
@@ -4236,28 +4283,14 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 133200,
-                                    "talent_name": "Headshot",
-                                    "spell_id": 471363,
-                                    "spell_name": "Headshot",
-                                    "description": "Damage from Kill Shot increases the damage your target receives from Kill Shot by 3%, stacking up to 10 times.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 133517,
-                                    "talent_name": "Deadeye",
-                                    "spell_id": 321460,
-                                    "spell_name": "Deadeye",
-                                    "description": "Kill Shot now has 2 charges and has its cooldown reduced by 2.0 sec.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                }
-                            ]
+                            "talent_id": 133517,
+                            "talent_name": "Deadeye",
+                            "spell_id": 321460,
+                            "spell_name": "Deadeye",
+                            "description": "Kill Shot now has 2 charges and has its cooldown reduced by 2.0 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -4320,29 +4353,29 @@
                     ]
                 },
                 {
-                    "id": 103978,
+                    "id": 103974,
                     "node_type": "PASSIVE",
                     "display_row": 8,
                     "display_col": 19,
                     "raw_position_x": 13200,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        110575,
-                        103955,
-                        103947
+                        110573,
+                        103947,
+                        110574
                     ],
                     "unlocks": [
-                        103973
+                        103978
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 133206,
-                            "talent_name": "Small Game Hunter",
-                            "spell_id": 459802,
-                            "spell_name": "Small Game Hunter",
-                            "description": "Explosive Shot deals 15% increased damage and Volley deals 25% increased damage.",
+                            "talent_id": 133202,
+                            "talent_name": "Master Marksman",
+                            "spell_id": 260309,
+                            "spell_name": "Master Marksman",
+                            "description": "Your ranged ability critical strikes cause the target to bleed for an additional 10% of the damage dealt over 6 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4350,55 +4383,28 @@
                     ]
                 },
                 {
-                    "id": 110574,
-                    "node_type": "PASSIVE",
-                    "display_row": 8,
-                    "display_col": 20,
-                    "raw_position_x": 13800,
-                    "raw_position_y": 5100,
-                    "locked_by": [
-                        110575
-                    ],
-                    "unlocks": [
-                        103973
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 142137,
-                            "talent_name": "Precision Detonation",
-                            "spell_id": 471369,
-                            "spell_name": "Precision Detonation",
-                            "description": "When Aimed Shot damages a target affected by your Explosive Shot, Explosive Shot instantly explodes, dealing 20% increased damage.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 110573,
+                    "id": 110691,
                     "node_type": "PASSIVE",
                     "display_row": 8,
                     "display_col": 21,
                     "raw_position_x": 14400,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        110575
+                        103955,
+                        110574
                     ],
                     "unlocks": [
-                        103973
+                        103978
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 142136,
-                            "talent_name": "Shrapnel Shot",
-                            "spell_id": 473520,
-                            "spell_name": "Shrapnel Shot",
-                            "description": "Casting Explosive Shot has a 100% chance to grant Lock and Load.",
+                            "talent_id": 142266,
+                            "talent_name": "Eagle's Accuracy",
+                            "spell_id": 473369,
+                            "spell_name": "Eagle's Accuracy",
+                            "description": "Aimed Shot deals 5% increased damage.\r\n\r\nRapid Fire deals 10% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4414,8 +4420,8 @@
                     "raw_position_y": 5700,
                     "locked_by": [
                         103985,
-                        103972,
-                        109491
+                        109491,
+                        110688
                     ],
                     "unlocks": [
                         103987,
@@ -4458,9 +4464,9 @@
                         103984
                     ],
                     "unlocks": [
-                        103956,
                         103966,
-                        103962
+                        103962,
+                        103956
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4492,41 +4498,41 @@
                     ]
                 },
                 {
-                    "id": 103973,
+                    "id": 103978,
                     "node_type": "PASSIVE",
                     "display_row": 9,
                     "display_col": 20,
                     "raw_position_x": 13800,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        103978,
+                        103974,
                         110574,
-                        110573
+                        110691
                     ],
                     "unlocks": [
-                        103979,
-                        103956
+                        103956,
+                        103979
                     ],
                     "max_ranks": 2,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 133201,
-                            "talent_name": "Eagle's Accuracy",
-                            "spell_id": 473369,
-                            "spell_name": "Eagle's Accuracy",
-                            "description": "Aimed Shot deals 7% increased damage.\r\n\r\nRapid Fire deals 10% increased damage.",
+                            "talent_id": 133206,
+                            "talent_name": "Small Game Hunter",
+                            "spell_id": 459802,
+                            "spell_name": "Small Game Hunter",
+                            "description": "Explosive Shot deals 8% increased damage and Volley deals 12% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
                         },
                         {
                             "rank": 2,
-                            "talent_id": 133201,
-                            "talent_name": "Eagle's Accuracy",
-                            "spell_id": 473369,
-                            "spell_name": "Eagle's Accuracy",
-                            "description": "Aimed Shot deals 10% increased damage.\r\n\r\nRapid Fire deals 20% increased damage.",
+                            "talent_id": 133206,
+                            "talent_name": "Small Game Hunter",
+                            "spell_id": 459802,
+                            "spell_name": "Small Game Hunter",
+                            "description": "Explosive Shot deals 16% increased damage and Volley deals 24% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4554,7 +4560,7 @@
                             "talent_name": "Focused Aim",
                             "spell_id": 378767,
                             "spell_name": "Focused Aim",
-                            "description": "Consuming Precise Shots reduces the cooldown of Aimed Shot by 2.00 sec.",
+                            "description": "Consuming Precise Shots reduces the cooldown of Aimed Shot by 1.00 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4569,12 +4575,11 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        103958,
-                        103950
+                        103950,
+                        103958
                     ],
                     "unlocks": [
-                        107290,
-                        109938
+                        107290
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4584,7 +4589,7 @@
                             "talent_name": "Bulletstorm",
                             "spell_id": 389019,
                             "spell_name": "Bulletstorm",
-                            "description": "Damage from Rapid Fire increases the damage of Aimed Shot by 1% for 15 sec, stacking up to 15 times.\r\n\r\nNew stacks do not refresh duration and are removed upon casting Rapid Fire.",
+                            "description": "Rapid Fire increases the damage of your next Aimed Shot by 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4601,9 +4606,7 @@
                     "locked_by": [
                         103958
                     ],
-                    "unlocks": [
-                        109938
-                    ],
+                    "unlocks": [],
                     "max_ranks": 1,
                     "ranks": [
                         {
@@ -4627,12 +4630,11 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        103958,
-                        103973
+                        103978,
+                        103958
                     ],
                     "unlocks": [
-                        103960,
-                        109938
+                        103960
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4642,7 +4644,7 @@
                             "talent_name": "Volley",
                             "spell_id": 260243,
                             "spell_name": "Volley",
-                            "description": "Rain a volley of arrows down over 6 sec, dealing up to 580 Physical damage to any enemy in the area, and gain the effects of Trick Shots for as long as Volley is active.",
+                            "description": "Rain a volley of arrows down over 6 sec, dealing up to 691 Physical damage to any enemy in the area, and gain the effects of Trick Shots for as long as Volley is active.",
                             "cast_time": "Instant",
                             "cooldown": "45 sec cooldown",
                             "range": "40 yd range"
@@ -4657,7 +4659,7 @@
                     "raw_position_x": 14400,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        103973
+                        103978
                     ],
                     "unlocks": [
                         104095
@@ -4696,7 +4698,7 @@
                             "talent_name": "Windrunner Quiver",
                             "spell_id": 473523,
                             "spell_name": "Windrunner Quiver",
-                            "description": "Consuming Precise Shots has a 30% to grant Precise Shots.\r\n\r\nThe damage bonus of Precise Shots is increased by an additional 15%.",
+                            "description": "Rapid Fire damage increased by 10%.\r\n\r\nRapid Fire has a 30% chance to grant the Lock and Load effect.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4719,38 +4721,10 @@
                         {
                             "rank": 1,
                             "talent_id": 136996,
-                            "talent_name": "Incendiary Ammunition",
+                            "talent_name": "Accuracy By Volume",
                             "spell_id": 471428,
-                            "spell_name": "Incendiary Ammunition",
-                            "description": "Bulletstorm now increases your critical strike damage by 2%. Additionally, Bulletstorm now stacks 5 more times.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 109938,
-                    "node_type": "PASSIVE",
-                    "display_row": 11,
-                    "display_col": 18,
-                    "raw_position_x": 12600,
-                    "raw_position_y": 6900,
-                    "locked_by": [
-                        103956,
-                        103962,
-                        103966
-                    ],
-                    "unlocks": [],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 141005,
-                            "talent_name": "Double Tap",
-                            "spell_id": 473370,
-                            "spell_name": "Double Tap",
-                            "description": "Casting Trueshot or Volley grants Double Tap, causing your next Aimed Shot to fire again at 80% power, or your next Rapid Fire to fire 80% additional shots during its channel.",
+                            "spell_name": "Accuracy By Volume",
+                            "description": "Bulletstorm now affects 1 additional Aimed Shot.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4776,7 +4750,7 @@
                             "talent_name": "Salvo",
                             "spell_id": 400456,
                             "spell_name": "Salvo",
-                            "description": "Volley now also applies Explosive Shot to up to 2 targets hit.\r\n\r\n Explosive Shot\r\nFires an explosive shot at your target. After 3 sec, the shot will explode, dealing 208 Fire damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
+                            "description": "Volley now also applies Explosive Shot to up to 2 targets hit.\r\n\r\n Explosive Shot\r\nFires an explosive shot at your target that lasts for 3 sec. Every 1 sec the target burns for 106 Fire damage and explode, dealing 50% of the damage to all enemies within 8 yds. Deals reduced damage beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4948,7 +4922,7 @@
                             "talent_name": "Moon's Blessing",
                             "spell_id": 1253825,
                             "spell_name": "Moon's Blessing",
-                            "description": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl.\r\n\r\nWhen your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 4.0 sec.",
+                            "description": "Consuming Tip of the Spear has a 10% increased chance to summon your Sentinel Owl.\r\n\r\nWhen your Sentinel Owl applies Sentinel's Mark, reduce the cooldown of Wildfire Bomb by 6.0 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5004,7 +4978,7 @@
                             "talent_name": "Moonlight Chakram",
                             "spell_id": 1264902,
                             "spell_name": "Moonlight Chakram",
-                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 101 Physical damage 7 times, bouncing to other targets if they are nearby.",
+                            "description": "For 15 sec after casting Takedown, Takedown is replaced with Moonlight Chakram.\r\n\r\n Moonlight Chakram\r\nThrow a chakram blessed with moonlight at your current target that will rapidly deal 99 Physical damage 7 times, bouncing to other targets if they are nearby.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5032,7 +5006,7 @@
                             "talent_name": "Wildfire Bomb",
                             "spell_id": 259495,
                             "spell_name": "Wildfire Bomb",
-                            "description": "Hurl a bomb at the target, exploding for 55 Fire damage in a cone and coating enemies in wildfire, scorching them for 44 Fire damage over 6 sec. Deals reduced damage beyond 8 targets.\r\n\r\nDeals 80% increased damage to your primary target.",
+                            "description": "Hurl a bomb at the target, exploding for 54 Fire damage in a cone and coating enemies in wildfire, scorching them for 44 Fire damage over 6 sec. Deals reduced damage beyond 8 targets.\r\n\r\nDeals 80% increased damage to your primary target.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5060,7 +5034,7 @@
                             "talent_name": "Raptor Strike",
                             "spell_id": 186270,
                             "spell_name": "Raptor Strike",
-                            "description": "A vicious slash dealing 137 Physical damage.",
+                            "description": "A vicious slash dealing 139 Physical damage.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "Melee Range"
@@ -5100,7 +5074,7 @@
                                     "talent_name": "Open Fire",
                                     "spell_id": 1253807,
                                     "spell_name": "Open Fire",
-                                    "description": "Flamefang Pitch damage increased by 15%.",
+                                    "description": "Fire damage dealt increased by 5%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5354,7 +5328,7 @@
                                     "talent_name": "Scout's Vigil",
                                     "spell_id": 1253892,
                                     "spell_name": "Scout's Vigil",
-                                    "description": "Enemy detection radius reduced by 10 yds.\r\n\r\nWhile in Camouflage, your stealth detection radius is increased by 25 yds.",
+                                    "description": "Enemy detection radius reduced by 10 yds.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5413,7 +5387,7 @@
                             "talent_name": "Lunge",
                             "spell_id": 378934,
                             "spell_name": "Lunge",
-                            "description": "The damage of your auto-attacks is increased by 25%.\r\n\r\nYour Agility is increased by 2%, increased by an additional 2% while dual-wielding.",
+                            "description": "The damage of your auto-attacks is increased by 25%.\r\n\r\nYour Agility is increased by 3%, increased by an additional 1% while dual-wielding.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5462,6 +5436,7 @@
                         102263
                     ],
                     "unlocks": [
+                        109305,
                         110163,
                         102279
                     ],
@@ -5621,7 +5596,7 @@
                         109321
                     ],
                     "unlocks": [
-                        109305
+                        110159
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5639,6 +5614,34 @@
                     ]
                 },
                 {
+                    "id": 109305,
+                    "node_type": "PASSIVE",
+                    "display_row": 6,
+                    "display_col": 20,
+                    "raw_position_x": 13800,
+                    "raw_position_y": 3900,
+                    "locked_by": [
+                        109321
+                    ],
+                    "unlocks": [
+                        110159
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 140253,
+                            "talent_name": "Sic 'Em",
+                            "spell_id": 1253137,
+                            "spell_name": "Sic 'Em",
+                            "description": "When Strike as One critically strikes, it bleeds its target for an additional 15 damage over 5 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
                     "id": 110163,
                     "node_type": "PASSIVE",
                     "display_row": 6,
@@ -5649,7 +5652,7 @@
                         109321
                     ],
                     "unlocks": [
-                        109305
+                        110159
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5675,10 +5678,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
+                        94979,
                         94985,
                         94992,
-                        94962,
-                        94979
+                        94962
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5760,7 +5763,7 @@
                                     "talent_name": "Wildfire Shells",
                                     "spell_id": 1261229,
                                     "spell_name": "Wildfire Shells",
-                                    "description": "Damaging one or more enemies with your Boomstick reduces the cooldown of Wildfire Bomb by 2.0 sec.",
+                                    "description": "Damaging one or more enemies with your Boomstick reduces the cooldown of Wildfire Bomb by 3.0 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5799,30 +5802,30 @@
                     ]
                 },
                 {
-                    "id": 109305,
+                    "id": 110159,
                     "node_type": "PASSIVE",
                     "display_row": 7,
                     "display_col": 20,
                     "raw_position_x": 13800,
                     "raw_position_y": 4500,
                     "locked_by": [
+                        109305,
                         110163,
                         102279
                     ],
                     "unlocks": [
-                        109304,
-                        102282,
-                        109306
+                        109306,
+                        102282
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 140253,
-                            "talent_name": "Sic 'Em",
-                            "spell_id": 1253137,
-                            "spell_name": "Sic 'Em",
-                            "description": "When Strike as One critically strikes, it bleeds its target for an additional 15 damage over 5 sec.",
+                            "talent_id": 141452,
+                            "talent_name": "Primal Surge",
+                            "spell_id": 1272154,
+                            "spell_name": "Primal Surge",
+                            "description": "Kill Command grants 1 additional stack of Tip of the Spear.\r\n\r\nTip of the Spear's damage bonus is increased by 5%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6114,7 +6117,7 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        109305,
+                        110159,
                         109319
                     ],
                     "unlocks": [
@@ -6141,51 +6144,12 @@
                                     "talent_name": "Blackrock Munitions",
                                     "spell_id": 462036,
                                     "spell_name": "Blackrock Munitions",
-                                    "description": "Wildfire Bomb and Flamefang Pitch deal 20% increased critical strike damage.",
+                                    "description": "Wildfire Bomb deals 20% increased critical strike damage.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    "id": 109304,
-                    "node_type": "PASSIVE",
-                    "display_row": 8,
-                    "display_col": 20,
-                    "raw_position_x": 13800,
-                    "raw_position_y": 5100,
-                    "locked_by": [
-                        109305
-                    ],
-                    "unlocks": [
-                        109312
-                    ],
-                    "max_ranks": 2,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 140252,
-                            "talent_name": "Shower of Blood",
-                            "spell_id": 1253053,
-                            "spell_name": "Shower of Blood",
-                            "description": "Your Bleed effects deal 8% increased damage.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        },
-                        {
-                            "rank": 2,
-                            "talent_id": 140252,
-                            "talent_name": "Shower of Blood",
-                            "spell_id": 1253053,
-                            "spell_name": "Shower of Blood",
-                            "description": "Your Bleed effects deal 16% increased damage.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
                         }
                     ]
                 },
@@ -6197,7 +6161,7 @@
                     "raw_position_x": 14400,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        109305
+                        110159
                     ],
                     "unlocks": [
                         109312
@@ -6308,7 +6272,7 @@
                             "talent_name": "Hogstrider",
                             "spell_id": 472639,
                             "spell_name": "Hogstrider",
-                            "description": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 200%.\r\n\r\nEach additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
+                            "description": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 100%.\r\n\r\nEach additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6336,7 +6300,7 @@
                             "talent_name": "Lethal Barbs",
                             "spell_id": 1264781,
                             "spell_name": "Lethal Barbs",
-                            "description": "Your auto shot grants 1 Focus to you and your pet.\r\n\r\nAuto shot damage increased by 25%.",
+                            "description": "Your auto shot have a very high chance to grants 3 Focus to you and your pet.\r\n\r\nAuto shot damage increased by 25%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6366,7 +6330,7 @@
                             "talent_name": "Explosives Expert",
                             "spell_id": 378937,
                             "spell_name": "Explosives Expert",
-                            "description": "Wildfire Bomb, Boomstick, and Flamefang Pitch damage increased by 5%.",
+                            "description": "Wildfire Bomb and Boomstick damage increased by 5%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6377,7 +6341,7 @@
                             "talent_name": "Explosives Expert",
                             "spell_id": 378937,
                             "spell_name": "Explosives Expert",
-                            "description": "Wildfire Bomb, Boomstick, and Flamefang Pitch damage increased by 10%.",
+                            "description": "Wildfire Bomb and Boomstick damage increased by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6408,7 +6372,7 @@
                             "talent_name": "Takedown",
                             "spell_id": 1250646,
                             "spell_name": "Takedown",
-                            "description": "You and your pet leap to your target and strike as one, dealing 634 Physical damage. Your pet frees itself from roots when it leaps.\r\n\r\nFor the next 8 sec, the damage dealt by you and your pet is increased by 20%.\r\n\r\nGenerates 50 Focus.",
+                            "description": "You and your pet leap to your target and strike as one, dealing 625 Physical damage. Your pet frees itself from roots when it leaps.\r\n\r\nFor the next 8 sec, the damage dealt by you and your pet is increased by 20%.\r\n\r\nGenerates 50 Focus.",
                             "cast_time": "Instant",
                             "cooldown": "1.5 min cooldown",
                             "range": "15 yd range"
@@ -6423,7 +6387,6 @@
                     "raw_position_x": 13800,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        109304,
                         109306,
                         102282
                     ],
@@ -6535,7 +6498,7 @@
                                     "talent_name": "Hoof and Blade",
                                     "spell_id": 1264797,
                                     "spell_name": "Hoof and Blade",
-                                    "description": "Hogstrider further increases the damage of Cobra Shot by 50% and it now strikes up to 3 additional targets.",
+                                    "description": "Hogstrider further increases the damage of Cobra Shot by 25% and it now strikes up to 3 additional targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6584,7 +6547,7 @@
                 },
                 {
                     "id": 102252,
-                    "node_type": "ACTIVE",
+                    "node_type": "PASSIVE",
                     "display_row": 10,
                     "display_col": 16,
                     "raw_position_x": 11400,
@@ -6601,13 +6564,13 @@
                         {
                             "rank": 1,
                             "talent_id": 131137,
-                            "talent_name": "Flamefang Pitch",
-                            "spell_id": 1251592,
-                            "spell_name": "Flamefang Pitch",
-                            "description": "Toss a fiery concoction that explodes violently upon reaching its destination, dealing 206 Fire damage to enemies in its area. Damage reduced beyond 8 targets.\r\n\r\nAfter landing, your Flamefang Pitch ignites nearby terrain, dealing 138 Fire damage to enemies in its area over 8 sec.",
-                            "cast_time": "Instant",
+                            "talent_name": "Bombardier",
+                            "spell_id": 1311963,
+                            "spell_name": "Bombardier",
+                            "description": "Wildfire Bomb damage increased by 15%, critical strike chance increased by 15%, and critical damage dealt increased by 15%.",
+                            "cast_time": "Passive",
                             "cooldown": null,
-                            "range": "40 yd range"
+                            "range": null
                         }
                     ]
                 },
@@ -6689,7 +6652,7 @@
                         109312
                     ],
                     "unlocks": [
-                        110159,
+                        109304,
                         102257
                     ],
                     "max_ranks": 1,
@@ -6715,10 +6678,10 @@
                     "raw_position_x": 8100,
                     "raw_position_y": 6599,
                     "locked_by": [
-                        94967,
-                        94969,
                         109804,
-                        109802
+                        109802,
+                        94967,
+                        94969
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6729,7 +6692,7 @@
                             "talent_name": "Stampede!",
                             "spell_id": 472741,
                             "spell_name": "Stampede!",
-                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 469 Physical damage over 7 sec.",
+                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 474 Physical damage over 7 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6755,7 +6718,7 @@
                             "talent_name": "Grenade Juggler",
                             "spell_id": 459843,
                             "spell_name": "Grenade Juggler",
-                            "description": "Flamefang Pitch gains 1 additional charge. \r\n\r\nThrowing your Flamefang Pitch grants 1 charge of Wildfire Bomb.",
+                            "description": "Boomstick increases the cooldown recovery rate of Wildfire Bomb by 60% for 8 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6781,7 +6744,7 @@
                             "talent_name": "Wildfire Imbuement",
                             "spell_id": 1252943,
                             "spell_name": "Wildfire Imbuement",
-                            "description": "Throwing your Flamefang Pitch imbues your weapon with flame, causing you and your pet's auto-attacks to deal an additional 14 Fire damage for 10 sec.",
+                            "description": "Throwing your Wildfire Bomb has a chance to imbue your weapon with flame, causing you and your pet's auto-attacks to deal an additional 14 Fire damage for 10 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6842,7 +6805,7 @@
                     ]
                 },
                 {
-                    "id": 110159,
+                    "id": 109304,
                     "node_type": "PASSIVE",
                     "display_row": 11,
                     "display_col": 21,
@@ -6852,15 +6815,26 @@
                         102268
                     ],
                     "unlocks": [],
-                    "max_ranks": 1,
+                    "max_ranks": 2,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 141452,
-                            "talent_name": "Primal Surge",
-                            "spell_id": 1272154,
-                            "spell_name": "Primal Surge",
-                            "description": "Kill Command grants 1 additional stack of Tip of the Spear.\r\n\r\nTip of the Spear's damage bonus is increased by 5%.",
+                            "talent_id": 140252,
+                            "talent_name": "Razor Edge",
+                            "spell_id": 1253053,
+                            "spell_name": "Razor Edge",
+                            "description": "Raptor Strike and Kill Command gain 10% increased critical strike chance and 10% increased critical damage dealt.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        },
+                        {
+                            "rank": 2,
+                            "talent_id": 140252,
+                            "talent_name": "Razor Edge",
+                            "spell_id": 1253053,
+                            "spell_name": "Razor Edge",
+                            "description": "Raptor Strike and Kill Command gain 20% increased critical strike chance and 20% increased critical damage dealt.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6884,7 +6858,7 @@
                             "talent_name": "Raptor Swipe",
                             "spell_id": 1259003,
                             "spell_name": "Raptor Swipe",
-                            "description": "Raptor Strike has a 25% chance to upgrade itself to a Raptor Swipe, dealing 98 Physical damage to all enemies within 15 yds in front of you. Damage reduced beyond 5 targets.",
+                            "description": "Raptor Strike has a 25% chance to upgrade itself to a Raptor Swipe, dealing 97 Physical damage to all enemies within 15 yds in front of you. Damage reduced beyond 5 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6950,7 +6924,7 @@
                             "talent_name": "Kill Command",
                             "spell_id": 34026,
                             "spell_name": "Kill Command",
-                            "description": "Give the command to kill, causing your pet to charge your target and savagely deal 72 Physical damage to the enemy.",
+                            "description": "Give the command to kill, causing your pet to charge your target and savagely deal 86 Physical damage to the enemy.",
                             "cast_time": "Instant",
                             "cooldown": "0.5 sec cooldown",
                             "range": "50 yd range"
@@ -7037,7 +7011,7 @@
                             "talent_name": "Bleak Powder",
                             "spell_id": 467911,
                             "spell_name": "Bleak Powder",
-                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 87 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
+                            "description": "Black Arrow now explodes in a cloud of shadow and sulfur on impact, dealing 88 Shadow damage to all enemies within an 8 yd cone behind the target. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7084,8 +7058,8 @@
                         102346
                     ],
                     "unlocks": [
-                        102368,
-                        102376
+                        102376,
+                        102368
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7138,7 +7112,7 @@
                             "talent_name": "Barbed Shot",
                             "spell_id": 217200,
                             "spell_name": "Barbed Shot",
-                            "description": "Fire a shot that tears through your enemy, causing them to bleed for 136 damage over 12 sec. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot.\r\n\r\nGenerates 20 Focus over 8 sec.",
+                            "description": "Fire a shot that tears through your enemy, causing them to bleed for 150 damage over 12 sec. If Barbed Shot is reapplied, any remaining damage will be added to the new Barbed Shot.\r\n\r\nGenerates 20 Focus over 8 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7178,7 +7152,7 @@
                                     "talent_name": "Through the Eyes",
                                     "spell_id": 1277565,
                                     "spell_name": "Through the Eyes",
-                                    "description": "Black Arrow deals 20% increased damage to enemies affected by Black Arrow's periodic damage.",
+                                    "description": "Kill Shot damage increased by 10%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7278,7 +7252,7 @@
                             "talent_name": "Wailing Dead",
                             "spell_id": 1264290,
                             "spell_name": "Wailing Dead",
-                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 480 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
+                            "description": "Bestial Wrath summons a Dark Hound.\r\n\r\nFor 15 sec after casting Bestial Wrath, Bestial Wrath is replaced with Wailing Arrow.\r\n\r\n Wailing Arrow\r\nFire an enchanted arrow, dealing 489 Shadow damage to your target and an additional 245 Shadow damage to all enemies within 8 yds of your target. Non-Player targets struck by a Wailing Arrow have their spellcasting interrupted and are silenced for 1 sec.\r\n\r\nGrants Deathblow.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7353,8 +7327,8 @@
                         102377
                     ],
                     "unlocks": [
-                        102340,
-                        102354
+                        102354,
+                        102340
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7364,7 +7338,7 @@
                             "talent_name": "Stomp",
                             "spell_id": 199530,
                             "spell_name": "Stomp",
-                            "description": "When you cast Barbed Shot, your pet stomps the ground, dealing 51 Physical damage to all nearby enemies.",
+                            "description": "When you cast Barbed Shot, your pet stomps the ground, dealing 50 Physical damage to all nearby enemies.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7533,8 +7507,8 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        102368,
-                        102376
+                        102376,
+                        102368
                     ],
                     "unlocks": [
                         102341
@@ -7562,8 +7536,8 @@
                     "raw_position_x": 12600,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        102347,
-                        102376
+                        102376,
+                        102347
                     ],
                     "unlocks": [
                         102370,
@@ -7606,7 +7580,7 @@
                             "talent_name": "Cobra Shot",
                             "spell_id": 193455,
                             "spell_name": "Cobra Shot",
-                            "description": "A quick shot causing 110 Physical damage.\r\n\r\nReduces the cooldown of Kill Command by 1 sec.",
+                            "description": "A quick shot causing 137 Physical damage.\r\n\r\nReduces the cooldown of Kill Command by 1 sec.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -7622,9 +7596,9 @@
                     "raw_position_y": 3597,
                     "locked_by": [
                         94982,
-                        109799,
                         94957,
-                        94983
+                        94983,
+                        109799
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -7635,7 +7609,7 @@
                             "talent_name": "Withering Fire",
                             "spell_id": 466990,
                             "spell_name": "Withering Fire",
-                            "description": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 sec and Deathblow.\r\n\r\n Withering Fire\r\nCasting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 50% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
+                            "description": "Bestial Wrath causes you to surrender to darkness, granting you Withering Fire for 10 sec and Deathblow.\r\n\r\n Withering Fire\r\nCasting Black Arrow fires a barrage of 2 additional Black Arrows at nearby targets at 30% effectiveness, prioritizing enemies that aren't affected by Black Arrow's damage over time effect.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7665,7 +7639,7 @@
                             "talent_name": "Beast Cleave",
                             "spell_id": 115939,
                             "spell_name": "Beast Cleave",
-                            "description": "After you Wild Thrash, your pet's melee attacks also strike all nearby enemies for 40% of the damage for the next 8.0 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "After you Wild Thrash, your pet's melee attacks also strike all nearby enemies for 55% of the damage for the next 10.0 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7769,10 +7743,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
+                        94979,
                         94985,
                         94992,
-                        94962,
-                        94979
+                        94962
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7839,7 +7813,7 @@
                             "talent_name": "Kill Cleave",
                             "spell_id": 378207,
                             "spell_name": "Kill Cleave",
-                            "description": "While Beast Cleave is active, Kill Command now also strikes nearby enemies for 40% of damage dealt. Deals reduced damage beyond 8 targets.",
+                            "description": "While Beast Cleave is active, Kill Command now also strikes nearby enemies for 20% of damage dealt. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8282,7 +8256,7 @@
                             "talent_name": "Serpentine Strikes",
                             "spell_id": 468701,
                             "spell_name": "Serpentine Strikes",
-                            "description": "Cobra Shot critical damage dealt increased by 50%.\r\n\r\nWhen Cobra Shot critically strikes, it refunds 10 Focus.",
+                            "description": "Cobra Shot critical damage dealt increased by 20%.\r\n\r\nWhen Cobra Shot critically strikes, it refunds 10 Focus.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8322,7 +8296,7 @@
                                     "talent_name": "Cobra Senses",
                                     "spell_id": 378244,
                                     "spell_name": "Cobra Senses",
-                                    "description": "Cobra Shot Focus cost reduced by 5. Cobra Shot damage increased by 35%.\r\n",
+                                    "description": "Cobra Shot Focus cost reduced by 5. Cobra Shot damage increased by 10%.\r\n",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8422,7 +8396,7 @@
                             "talent_name": "Hogstrider",
                             "spell_id": 472639,
                             "spell_name": "Hogstrider",
-                            "description": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 200%.\r\n\r\nEach additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
+                            "description": "When your Boar deals damage, the damage of your next Cobra Shot is increased by 100%.\r\n\r\nEach additional enemy damaged by your Boar causes Cobra Shot to strike 1 additional target, up to 4.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8450,7 +8424,7 @@
                             "talent_name": "Lethal Barbs",
                             "spell_id": 1264781,
                             "spell_name": "Lethal Barbs",
-                            "description": "Your auto shot grants 1 Focus to you and your pet.\r\n\r\nAuto shot damage increased by 25%.",
+                            "description": "Your auto shot have a very high chance to grants 3 Focus to you and your pet.\r\n\r\nAuto shot damage increased by 25%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8470,9 +8444,9 @@
                         102337
                     ],
                     "unlocks": [
-                        107286,
                         102360,
-                        102350
+                        102350,
+                        107286
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8512,9 +8486,9 @@
                         102365
                     ],
                     "unlocks": [
-                        102362,
                         102360,
-                        102356
+                        102356,
+                        102362
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -8664,7 +8638,7 @@
                                     "talent_name": "Hoof and Blade",
                                     "spell_id": 1264797,
                                     "spell_name": "Hoof and Blade",
-                                    "description": "Hogstrider further increases the damage of Cobra Shot by 50% and it now strikes up to 3 additional targets.",
+                                    "description": "Hogstrider further increases the damage of Cobra Shot by 25% and it now strikes up to 3 additional targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8784,10 +8758,10 @@
                         {
                             "rank": 1,
                             "talent_id": 131248,
-                            "talent_name": "Heart of the Pack",
+                            "talent_name": "Razor Sharp",
                             "spell_id": 1265052,
-                            "spell_name": "Heart of the Pack",
-                            "description": "Summoning a Dire Beast grants 0.50% haste for 8 sec.",
+                            "spell_name": "Razor Sharp",
+                            "description": "Damage dealt by your pet's Bite, Claw, and Smack increased by 100%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8805,7 +8779,7 @@
                         102336
                     ],
                     "unlocks": [
-                        102339
+                        110692
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -8913,10 +8887,10 @@
                     "raw_position_x": 8100,
                     "raw_position_y": 6599,
                     "locked_by": [
-                        94967,
-                        94969,
                         109804,
-                        109802
+                        109802,
+                        94967,
+                        94969
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -8927,7 +8901,7 @@
                             "talent_name": "Stampede!",
                             "spell_id": 472741,
                             "spell_name": "Stampede!",
-                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 474 Physical damage over 7 sec.",
+                            "description": "Casting Bestial Wrath grants Howl of the Pack Leader and causes your next Kill Command to rouse the nearby wildlife into a Stampede, charging your target and dealing 472 Physical damage over 7 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8942,8 +8916,8 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        107286,
-                        102350
+                        102350,
+                        107286
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -8962,8 +8936,8 @@
                     ]
                 },
                 {
-                    "id": 102339,
-                    "node_type": "CHOICE",
+                    "id": 110692,
+                    "node_type": "PASSIVE",
                     "display_row": 11,
                     "display_col": 18,
                     "raw_position_x": 12600,
@@ -8976,28 +8950,14 @@
                     "ranks": [
                         {
                             "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 131227,
-                                    "talent_name": "Wild Instincts",
-                                    "spell_id": 378442,
-                                    "spell_name": "Wild Instincts",
-                                    "description": "When your primary pet uses Stomp, apply Barbed Shot to a target hit by that Stomp. This Barbed Shot will not cause an extra Stomp.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 131226,
-                                    "talent_name": "Bloody Frenzy",
-                                    "spell_id": 407412,
-                                    "spell_name": "Bloody Frenzy",
-                                    "description": "Bestial Wrath causes your Barbed Shot to deal damage 100% faster for 10 sec.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                }
-                            ]
+                            "talent_id": 131226,
+                            "talent_name": "Bloody Frenzy",
+                            "spell_id": 407412,
+                            "spell_name": "Bloody Frenzy",
+                            "description": "Bestial Wrath causes your Barbed Shot to deal damage 50% faster for 10 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },
@@ -9021,7 +8981,7 @@
                             "talent_name": "Piercing Fangs",
                             "spell_id": 392053,
                             "spell_name": "Piercing Fangs",
-                            "description": "While Bestial Wrath is active, your pet's critical damage dealt is increased by 35%.",
+                            "description": "Kill Command critical damage increased by 15%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

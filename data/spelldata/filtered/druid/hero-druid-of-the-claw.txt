@@ -1,5 +1,5 @@
 # Druid — Druid of the Claw Hero Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Ravage (id=441583) [Spell Family (7), Passive] 
@@ -79,11 +79,11 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1136310)  : Apply Aura (6) | Modify Stance Mask (275)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-                   Affected Spells: Frenzied Regeneration (22842), Echo of Frenzied Regeneration (1269645)
+                   Affected Spells: Frenzied Regeneration (22842)
                    Family Flags: 62
 #2 (id=1137303)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 2 (34)
                    Base Value: 40 | Scaled Value: 40 | Misc Value: 34 | Target: Self (1)
-                   Affected Spells: Frenzied Regeneration (22842), Echo of Frenzied Regeneration (1269645)
+                   Affected Spells: Frenzied Regeneration (22842)
                    Family Flags: 62
 #3 (id=1137308)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 5 (33)
                    Base Value: -100 | Scaled Value: -100 | Misc Value: 33 | Misc Value 2: 3340 (Label) | Target: Self (1)
@@ -240,7 +240,7 @@ Effects          :
                    Family Flags: 93
 #3 (id=1136579)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-                   Affected Spells: Maul (6807), Strength of the Wild (236716), Raze (400254), Ravage (441605), Echo of Maul (1269648), Echo of Raze (1269972), Echo of Ravage (1269973)
+                   Affected Spells: Maul (6807), Strength of the Wild (236716), Raze (400254), Ravage (441605)
                    Family Flags: 11
 #4 (id=1176379)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Misc Value 2: 2740 (Label) | Target: Self (1)

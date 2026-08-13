@@ -1,5 +1,5 @@
 # Death Knight — Blood Spec Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 44 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Dancing Rune Weapon (id=49028) [Spell Family (15)] 
@@ -23,7 +23,7 @@ Stance Mask      : 0x01000000
 Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic
 Affecting Spells : Insatiable Blade (377637 effect#1), Everlasting Bond (377668 effects: #1, #2)
 Family Flags     : 30
-Attributes       : Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), No Aura Icon (60), Allow While Not Shapeshifted (caster form) (83), No Proc Equip Requirement (97), Requires Main-Hand Weapon (106), Always Hit (114), Can Proc From Procs (122), No Aura Log (202), No Attack Miss (249), Allow Cast While Channeling (308), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Important Spell (491)
+Attributes       : Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), No Aura Icon (60), Allow While Not Shapeshifted (caster form) (83), No Proc Equip Requirement (97), Requires Main-Hand Weapon (106), Always Hit (114), Can Proc From Procs (122), No Aura Log (202), No Attack Miss (249), Allow Cast While Channeling (308), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491)
 Aura Interrupt   : Raid Encounter End or M+ Start (41)
 Effects          :
 #1 (id=41134)    : Summon Guardian (28)
@@ -164,7 +164,7 @@ Effects          :
 #2 (id=725985)   : Apply Aura (6) | Dummy (4)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 #3 (id=801034)   : Apply Aura (6) | Add Percent Modifier (108): Spell Amplitude (27)
-                   Base Value: 50 | Scaled Value: 50 | Misc Value: 27 | Target: Self (1)
+                   Base Value: 85 | Scaled Value: 85 | Misc Value: 27 | Target: Self (1)
                    Affected Spells: Blood Plague (55078), Consumption (1263872)
                    Family Flags: 57
 Description      : Your Blood Plague and Death and Decay deal damage $s2% more often.
@@ -196,7 +196,7 @@ Effects          :
 #1 (id=286507)   : Dummy (3)
                    Base Value: 1 | Scaled Value: 1 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
 #2 (id=286508)   : School Damage (2): physical
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.471 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 2.2065 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
 #3 (id=286519)   : Dummy (3)
                    Base Value: 3 | Scaled Value: 3 | Chain Multiplier: 1 | Chain Targets: 1 | Target: Targeted Enemy (6)
 Description      : Smash the target, dealing $s2 Physical damage and generating $s3 charges of Bone Shield.
@@ -273,7 +273,7 @@ Effects          :
 #1 (id=306039)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Chain Multiplier: 1 | Chain Targets: 2 | Target: Targeted Enemy (6)
 #2 (id=306040)   : School Damage (2): physical
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.57334 | Chain Multiplier: 1 | Chain Targets: 2 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.967 | Chain Multiplier: 1 | Chain Targets: 2 | Target: Targeted Enemy (6)
 #3 (id=306041)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 #4 (id=312174)   : Dummy (3)
@@ -468,7 +468,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Update Passives on Apply
 Effects          :
 #1 (id=1000757)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-Description      : When Crimson Scourge is consumed, you gain $374748s1% Versatility for $374748d.
+Description      : When Crimson Scourge is consumed, damage taken is reduced by $374748s1% for $374748d.
 
 Name             : Leeching Strike (id=377629) [Spell Family (15), Passive] 
 Talent Entry     : Blood [tree=spec, row=5, col=1, max_rank=1, req_points=8]
@@ -577,7 +577,11 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8 | Misc Value: 23 | Target: Self (1)
                    Affected Spells: Blood Shield (77535), Death Knight (137005)
                    Family Flags: 70
-Description      : While Blood Shield is active, you deal $s1% increased damage.
+#3 (id=1343844)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
+                   Base Value: -4 | Scaled Value: -4 | Misc Value: 33 | Target: Self (1)
+                   Affected Spells: Blood Shield (77535), Death Knight (137005)
+                   Family Flags: 70
+Description      : While Blood Shield is active, you deal $s1% increased damage and damage taken is reduced by $s3%.
 
 Name             : Sanguine Ground (id=391458) [Spell Family (15), Passive] 
 Talent Entry     : Blood [tree=spec, row=9, col=3, max_rank=1, req_points=20]
@@ -626,7 +630,7 @@ Proc Flags       : Generic Helpful, Magic Heal, Helpful Periodic
 Attributes       : Passive (6), No Aura Cancel (31), No Aura Icon (60), Not In Spellbook (143), No Aura Log (202), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1029083)  : Apply Aura (6) | Proc Trigger Spell (42): Umbilicus Eternus
-                   Base Value: 5 | Scaled Value: 5 | Trigger Spell: 391519 | Target: Self (1)
+                   Base Value: 6 | Scaled Value: 6 | Trigger Spell: 391519 | Target: Self (1)
 Description      : After Vampiric Blood expires, you absorb damage equal to $s1 times the damage your Blood Plague dealt during Vampiric Blood.
 
 Name             : Bone Collector (id=458572) [Spell Family (15), Passive] 
@@ -848,7 +852,7 @@ Talent Entry     : Blood [tree=spec, row=11, col=4, max_rank=2, req_points=20, s
                  : Effect#1 [op=set, values=(3, 6)]
                  : Effect#2 [op=set, values=(3, 6)]
                  : Effect#3 [op=set, values=(3, 6)]
-                 : Effect#4 [op=set, values=(4, 4)]
+                 : Effect#4 [op=set, values=(-6, -6)]
                  : Effect#5 [op=set, values=(3, 6)]
 Class            : Death Knight
 School           : Physical
@@ -891,8 +895,8 @@ Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Ye
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1275911)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-Description      : While Dancing Rune Weapon is active, Parrying an attack has a chance to make your next Heart Strike cost no Runes and deal 150% increased damage.
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : While Dancing Rune Weapon is active, Parrying an attack has a $s1% chance to make your next Heart Strike cost no Runes and deal $1264568s1% increased damage.
 
 Name             : Boiling Point (id=1265790) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Blood [tree=spec, row=7, col=1, max_rank=1, req_points=8]

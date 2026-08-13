@@ -1,6 +1,6 @@
 {
     "class": "Druid",
-    "fetched_at": "2026-08-02T09:10:00+00:00",
+    "fetched_at": "2026-08-12T21:50:24+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Balance": {
@@ -12,22 +12,6 @@
                     "spell_id": 233754,
                     "spell_name": "Celestial Guardian",
                     "description": "Bear Form reduces magic damage taken from spells by 10% and you may now cast Moonfire while in Bear Form.",
-                    "unlock_player_level": 0,
-                    "compatible_slots": [
-                        1,
-                        2,
-                        3,
-                        4
-                    ],
-                    "playable_spec_id": 102,
-                    "playable_spec_name": "Balance"
-                },
-                {
-                    "id": 182,
-                    "name": "Crescent Burn",
-                    "spell_id": 200567,
-                    "spell_name": "Crescent Burn",
-                    "description": "Using Moonfire on a target already afflicted by Moonfire's damage over time effect deals 35% additional direct damage.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -60,22 +44,6 @@
                     "spell_id": 209740,
                     "spell_name": "Moonkin Aura",
                     "description": "Starsurge grants 2% spell critical strike chance to 8 allies within 40 yards for 18 sec, stacking up to 3 times.",
-                    "unlock_player_level": 30,
-                    "compatible_slots": [
-                        1,
-                        2,
-                        3,
-                        4
-                    ],
-                    "playable_spec_id": 102,
-                    "playable_spec_name": "Balance"
-                },
-                {
-                    "id": 822,
-                    "name": "Dying Stars",
-                    "spell_id": 410544,
-                    "spell_name": "Dying Stars",
-                    "description": "Enemies that dispel your Moonfire or Sunfire suffer 25% additional damage from their effects for 12 sec. If already vulnerable, 50% of the remaining duration is applied to the dispeller.",
                     "unlock_player_level": 30,
                     "compatible_slots": [
                         1,
@@ -155,7 +123,7 @@
                     "name": "Thorns",
                     "spell_id": 1217017,
                     "spell_name": "Thorns",
-                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 433 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
+                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 430 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
                     "unlock_player_level": 35,
                     "compatible_slots": [
                         1,
@@ -288,7 +256,7 @@
                     "name": "Thorns",
                     "spell_id": 1217017,
                     "spell_name": "Thorns",
-                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 431 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
+                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 438 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
                     "unlock_player_level": 35,
                     "compatible_slots": [
                         1,
@@ -384,7 +352,7 @@
                     "name": "Call of Ohn'ahra",
                     "spell_id": 1246126,
                     "spell_name": "Call of Ohn'ahra",
-                    "description": "Nature's Swiftness now also affects Cyclone, but its cooldown is increased by 10 sec.",
+                    "description": "Nature's Swiftness now also affects Cyclone, but its cooldown is increased by 30 sec.",
                     "unlock_player_level": 60,
                     "compatible_slots": [
                         1,
@@ -400,8 +368,24 @@
                     "name": "Forest Guardian",
                     "spell_id": 1217474,
                     "spell_name": "Forest Guardian",
-                    "description": "Wrath, Starfire, Cyclone, and Combo-Point generating abilities extend the duration of your active heal over time effects by 1.0 sec on up to 3 allies.\r\n\r\nStarsurge and Combo-Point spending abilities increase the rate of your heal over time spells by 20% for 4 sec.\r\n\r\n",
+                    "description": "Wrath, Starfire, Cyclone, and Combo-Point generating abilities extend the duration of your active heal over time effects by 1.0 sec on up to 3 allies.\r\n\r\nStarsurge and Combo-Point spending abilities increase the rate of your heal over time spells by 20% for 4 sec.",
                     "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 105,
+                    "playable_spec_name": "Restoration"
+                },
+                {
+                    "id": 5739,
+                    "name": "Ancient of Lore",
+                    "spell_id": 473909,
+                    "spell_name": "Ancient of Lore",
+                    "description": "Shapeshift into an Ancient of Lore, preventing all crowd control effects, reducing damage taken by 30%, and granting you access to Blossom Burst and Mass Blooming. Reduces movement speed.\r\n\r\nLasts 12 sec.\r\n\r\n Blossom Burst:\r\nHeals an ally for 4,218 and applies 1 missing heal over time effect. If all of them are present, Blossom Burst critically heals.\r\n\r\n Mass Blooming:\r\nHeals 5 allies for 2,712 and applies 1 missing heal over time effect.",
+                    "unlock_player_level": 60,
                     "compatible_slots": [
                         1,
                         2,
@@ -421,7 +405,7 @@
                     "name": "Thorns",
                     "spell_id": 1217017,
                     "spell_name": "Thorns",
-                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 428 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
+                    "description": "Casting Barkskin sprouts thorns on you for 12 sec. When victim to melee attacks, thorns deals 434 Nature damage back to the attacker.\r\n\r\nAttackers also have their movement speed reduced by 50% for 4 sec.",
                     "unlock_player_level": 35,
                     "compatible_slots": [
                         1,

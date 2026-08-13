@@ -1,5 +1,5 @@
 # Death Knight — Unholy Spec Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 41 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Army of the Dead (id=42650) [Spell Family (15)] 
@@ -10,27 +10,40 @@ Spell Type       : None
 Resource         : 1 Rune (5) (id=5831)
 Resource         : -10 Runic Power (6) (id=10627)
 GCD              : 1.5 seconds
-Duration         : 4 seconds
+Duration         : 30 seconds
 Cooldown         : 90 seconds
 Category         : 1650 (Type 0x0)
 Labels           : 16: Class Spells
                  : 27: Death Knight Spells
                  : 292
+                 : 6572
 Category Cooldown: 90 seconds
 Stance Mask      : 0x01000000
 Family Flags     : 11
-Attributes       : Not Shapeshifted (16), No Threat (42), No AutoCast (AI) (49), Allow While Not Shapeshifted (caster form) (83), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416)
+Attributes       : Not Shapeshifted (16), No Threat (42), No AutoCast (AI) (49), Allow While Not Shapeshifted (caster form) (83), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Do Not Consume Aura Stack On Proc (428)
 Effects          :
-#1 (id=34352)    : Apply Aura (6) | Periodic Dummy (226): every 0.5 seconds
+#1 (id=34352)    : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 #2 (id=1296346)  : Dummy (3)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 #3 (id=1296389)  : Energize Power (30)
                    Base Value: 400 | Scaled Value: 400 | Resource: runic_power | Target: Self (1)
-Description      : Summons a legion of $?a134735[${$s1/2}][$s1] empowered Lesser Ghouls that last for $1282535d$?s1242608[ and an Abomination]?s1242147[ and a Gargoyle][] to swarm your enemies.
+#4 (id=1315092)  : Dummy (3)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#5 (id=1316340)  : Dummy (3)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+#6 (id=1324067)  : Dummy (3)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Description      : Summon or empower Lesser Ghouls to form an unholy army of $s1 for ${$d} sec. While active, summoning a Lesser Ghoul will instead execute Orders based on nearby enemies.
 
-|cFFFFFFFFGenerates ${$s3/10} Runic Power.|r
-Tooltip          : Summoning the Army of the Dead.
+$@spellicon47541 |cFFFFFFFFDeath Orders|r
+Lesser Ghouls strike with you, dealing ${0.30*$1294264s1*(1+$mas/100)} Shadow damage to your target.
+
+$@spellicon207317 |cFFFFFFFFEpidemic Orders|r
+Lesser Ghouls erupt in viscera, dealing ${$s5/100*$<damage>} Shadow damage to nearby enemies. Deals reduced damage beyond $s6 targets.
+Tooltip          : Commanding the Army of the Dead.
+Variables        : $mastery=$?s77515[${((100+$77515m1)/100)}][${1.00}]
+$damage=${0.21*($1247379s1)*(1+$@versadmg)*$<mastery>}
 
 Name             : Sudden Doom (id=49530) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=2, col=5, max_rank=1, req_points=0]
@@ -78,8 +91,10 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), In
 Effects          :
 #1 (id=48018)    : School Damage (2): shadow | Attributes: Chain from Initial Target (7), Area Effects Use Target Radius (17)
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 1.35 | PvP Coefficient: 0.8 | Target: Targeted Enemy (6)
-#2 (id=48019)    : Dummy (3)
+#2 (id=48019)    : Dummy (3) | Attributes: Chain from Initial Target (7)
                    Base Value: 35 | Scaled Value: 35 | Target: Targeted Enemy (6)
+#3 (id=1315205)  : Dummy (3) | Attributes: Chain from Initial Target (7)
+                   Base Value: 3 | Scaled Value: 3 | Target: Targeted Enemy (6)
 Description      : An unholy strike that deals $s1 Shadow damage and causing your plagues on the target to erupt, dealing their damage an additional time at $s2% effectiveness.
 
 Applies Virulent Plague or spreads it to a nearby enemy.
@@ -91,7 +106,6 @@ School           : Shadow
 Spell Type       : Magic
 Resource         : 1 Rune (5) (id=7458)
 Resource         : -10 Runic Power (6) (id=10654)
-Spell Level      : 13
 Range            : 30 yards
 GCD              : 1.5 seconds
 Labels           : 16: Class Spells
@@ -107,6 +121,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1240996 | Target: Targeted Enemy (6)
 #2 (id=818973)   : Trigger Spell (64): Virulent Plague
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 191587 | Target: Targeted Enemy (6)
+#3 (id=1337525)  : Dummy (3)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Targeted Enemy (6)
 Description      : Inflicts the target with Dread Plague and Virulent Plague.
 
 $@spellicon1240996$@spellname1240996
@@ -250,16 +266,16 @@ Family Flags     : 43, 78, 90, 120, 127
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Allow While Not Shapeshifted (caster form) (83), Requires Main-Hand Weapon (106), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
 Effects          :
 #1 (id=844983)   : School Damage (2): shadowfrost
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 4.5 | PvP Coefficient: 0.425 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 4.5 | PvP Coefficient: 0.5 | Target: Targeted Enemy (6)
 #2 (id=844984)   : Trigger Spell (64): Soul Reaper
                    Base Value: 35 | Scaled Value: 35 | Trigger Spell: 1241521 | Target: Targeted Enemy (6)
 #3 (id=1310993)  : Dummy (3)
-                   Base Value: 2 | Scaled Value: 2 | Target: Targeted Enemy (6)
+                   Base Value: 3 | Scaled Value: 3 | Target: Targeted Enemy (6)
 Description      : Rupture the soul of your enemy, dealing $s1 Shadowfrost damage and causing the foe to take $1241521s1% increased damage from your diseases and minions for $1241521d.
 
 Only usable on enemies below $s2% maximum health.
 
-|cFFFFFFFFConsumes up to $s3 available $lcharge:charges; to cast Putrefy.|r
+|cFFFFFFFFConsumes up to $s3 Lesser Ghoul $lstack:stacks; to summon them instantly.|r
 
 Name             : Unholy Aura (id=377440) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=9, col=5, max_rank=2, req_points=20]
@@ -275,7 +291,9 @@ Attributes       : Passive (6), Allow Aura While Dead (116), Not In Spellbook (1
 Effects          :
 #1 (id=1005291)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
-Description      : Each Magus of the Dead under your command grants you ${$s1}.1% Haste.
+Description      : Magus of the Dead grants you ${$s1}.1% Haste for $1268917d.
+
+Multiple applications may overlap.
 
 Name             : Reaping (id=377514) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=6, col=5, max_rank=1, req_points=8]
@@ -454,8 +472,8 @@ Description      : Dark Transformation and Army of the Dead summon a Magus of th
 
 Name             : Commander of the Dead (id=390259) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=9, col=6, max_rank=2, req_points=20]
-                 : Effect#1 [op=set, values=(25, 50)]
-                 : Effect#2 [op=set, values=(15, 30)]
+                 : Effect#1 [op=set, values=(10, 20)]
+                 : Effect#2 [op=set, values=(10, 20)]
                  : Effect#3 [op=set, values=(3, 5)]
 Class            : Death Knight
 School           : Shadow
@@ -467,7 +485,7 @@ Proc Chance      : 101%
 Proc Flags       : Cast Successful
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
-#1 (id=1026942)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
+#1 (id=1026942)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 390260 | Target: Self (1)
 #2 (id=1241532)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
                    Base Value: 25 | Scaled Value: 25 | Misc Value: 3 | Misc Value 2: 5241 (Label) | Target: Self (1)
@@ -475,12 +493,7 @@ Effects          :
 #3 (id=1241533)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 12 | Misc Value 2: 5241 (Label) | Target: Self (1)
                    Affected Spells (Label): Commander of the Dead (390264)
-#4 (id=1290801)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Duration (1)
-                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Misc Value 2: 6041 (Label) | Target: Self (1)
-                   Affected Spells (Label): Lesser Ghoul (275430), Lesser Ghoul (1277098), Lesser Ghoul (1282535)
-Description      : Dark Transformation empowers your $?s207349[Dark Arbiter][Gargoyle], Abomination, Magus and Lesser Ghouls for $390264d, increasing their damage by $s2%.
-
-The duration of Lesser Ghouls are increased by $s1% of your Mastery.
+Description      : Dark Transformation empowers your $?s207349[Dark Arbiter][Gargoyle], Abomination, Magus and Lesser Ghouls for $390264d, increasing their damage by $s2%.
 
 Name             : Coil of Devastation (id=390270) [Spell Family (15), Passive, Hidden] 
 Talent Entry     : Unholy [tree=spec, row=6, col=3, max_rank=1, req_points=8]
@@ -534,8 +547,13 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 #2 (id=1158351)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Chain Targets (17)
                    Base Value: 8 | Scaled Value: 8 | Misc Value: 17 | Misc Value 2: 2915 (Label) | Radius: 100 yards | Target: Self and Summons in Area (120)
-                   Affected Spells (Label): Shadow Bolt (317791)
-Description      : Your Magus of the Dead Shadow Bolt now fires a volley of Shadow Bolts at up to $s2 nearby enemies.
+                   Affected Spells (Label): Shadow Bolt (317791), Withering Grasp (1297091)
+#3 (id=1314550)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Chain Targets (17)
+                   Base Value: 3 | Scaled Value: 3 | Misc Value: 17 | Misc Value 2: 6556 (Label) | Radius: 100 yards | Target: Self and Summons in Area (120)
+                   Affected Spells (Label): Frostbolt (1292107), Necrotic Bolt (1297086)
+Description      : Your Magus of the Dead Shadow Bolt now fires a volley of Shadow Bolts at up to $s2 nearby enemies.
+
+Your Lord of the Dead Frostbolts now chain to $s3 additional enemies.
 
 Name             : Doomed Bidding (id=455386) [Passive, Hidden] 
 Talent Entry     : Unholy [tree=spec, row=8, col=6, max_rank=1, req_points=20]
@@ -696,7 +714,7 @@ Effects          :
 #2 (id=1240622)  : Apply Aura (6) | Proc Trigger Spell (42): Clawing Shadows
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1241569 | Target: Self (1)
 #3 (id=1240626)  : Apply Aura (6) | Add Percent Modifier (108): Spell Chain Multiplier (20)
-                   Base Value: -20 | Scaled Value: -20 | Misc Value: 20 | Target: Self (1)
+                   Base Value: -10 | Scaled Value: -10 | Misc Value: 20 | Target: Self (1)
                    Affected Spells: Scourge Strike (55090), Clawing Shadows (207311), Vampiric Strike (433895)
                    Family Flags: 59
 #4 (id=1240627)  : Apply Aura (6) | Add Flat Modifier (107): Spell Chain Targets (17)
@@ -862,7 +880,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), No Threat (42), Allow Aura While Dead (116), Not In Spellbook (143), Allow While Riding Vehicle (204), Aura Points On Client (268), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1261023)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 4500 | Scaled Value: 4500 | Target: Self (1)
+                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
 #2 (id=1261024)  : Apply Aura (6) | Dummy (4)
                    Base Value: 35 | Scaled Value: 35 | Target: Self (1)
 Description      : The explosion effect of Putrefy extends the duration of your plagues by ${$s1/1000}.1 sec and deals $s2% of the damage they would deal over that time instantly.
@@ -903,16 +921,14 @@ Effects          :
 #1 (id=1264129)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
 #2 (id=1296373)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 #3 (id=1296422)  : Apply Aura (6) | Dummy (4)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 #4 (id=1296429)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
-Description      : Each Magus of the Dead under your command increases the damage of Necrotic Coil and Graveyard by $s4%.
-
-Dread Plague has a $s3% chance to rouse the dead, causing a Lesser Ghoul to unearth and leap at the target to Putrefy at $s2% effectiveness.
+Description      : Dread Plague has a $s3% chance to rouse the dead, causing a Lesser Ghoul to unearth and leap at the target to Putrefy at $s2% effectiveness.
 
-Name             : Reanimation (id=1256813) [Spell Family (15), Passive] 
+Name             : Lord of the Dead (id=1256813) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=10, col=4, max_rank=1, req_points=20]
 Class            : Death Knight
 School           : Physical
@@ -930,13 +946,17 @@ Effects          :
                    Base Value: 15000 | Scaled Value: 15000 | Target: Self (1)
 #3 (id=1293570)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 25 | Scaled Value: 25 | Misc Value 2: 2915 (Label) | Target: Self (1)
-                   Affected Spells (Label): Shadow Bolt (317791)
+                   Affected Spells (Label): Shadow Bolt (317791), Withering Grasp (1297091)
 #4 (id=1293571)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 25 | Scaled Value: 25 | Misc Value 2: 5664 (Label) | Target: Self (1)
-                   Affected Spells (Label): Frostbolt (317792)
-Description      : When you Putrefy a Lesser Ghoul, it has a $s1% chance to reanimate as a Magus of the Dead who hurls Frostbolts and Shadow Bolts at your foes for ${$s2/1000} sec.
+                   Affected Spells (Label): Frostbolt (317792), Frostbolt (1292107), Necrotic Bolt (1297055)
+#5 (id=1314358)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#6 (id=1314359)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15000 | Scaled Value: 15000 | Target: Self (1)
+Description      : Putrefying a Lesser Ghoul has a $s1% chance to reanimate it as a Magus of the Dead who hurls Frostbolts and Shadow Bolts at your foes for ${$s2/1000} sec.
 
-Magus of the Dead Frostbolts and Shadow Bolts deal $s3% increased damage.
+When you control $s5 Magus of the Dead, sacrifice them to summon their Lord of the Dead for ${$s6/1000} sec, casting Frostbolts that chain between $1292107x1 enemies. Magus with higher remaining duration grant increased power.
 
 Name             : Blightfall (id=1271974) [Spell Family (15), Passive] 
 Talent Entry     : Unholy [tree=spec, row=10, col=2, max_rank=1, req_points=20]

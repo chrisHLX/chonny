@@ -1,5 +1,5 @@
 # Monk — Brewmaster Spec Talents
-# Extracted verbatim from monk.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from monk.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 56 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Breath of Fire (id=115181) [Spell Family (53)] 
@@ -120,7 +120,7 @@ Labels           : 16: Class Spells
                  : 22: Monk Spells
                  : 292
                  : 3567: Balanced Stratagem (451514 effect#1)
-                 : 5841: Bring Me Another (1265138 effect#1), Bring Me Another (1265138 effect#3)
+                 : 5841: Bring Me Another (1265138 effect#1), Bring Me Another (1265138 effect#3), Scorched (1301410 effect#1)
 Proc Chance      : 101%
 Affecting Spells : Invoke Xuen, the White Tiger (123904 effects: #4, #5), Brewmaster Monk (137023 effects: #1, #2), Mistweaver Monk (137024 effects: #3, #4), Windwalker Monk (137025 effects: #1, #2), Hit Combo (196741 effects: #1, #2), Stormstout's Last Gasp (248044 effect#2), The Wind Blows (281452 effects: #1, #2), Stormstout's Last Keg (337288 effect#1), Tear of Morning (337993 effect#2), Keefer's Skyreach (344021 effect#1), Windwalker Monk Two-Hand Adjustment (346104 effects: #1, #2), Keefer's Skyreach (358759 effect#1), Primordial Power (363924 effects: #1, #2), Keg of the Heavens (366792 effect#1), Primordial Power (368685 effect#1), Hit Scheme (383696 effect#1), Stormstout's Last Keg (383707 effect#3), Weapons of Order (387179 effect#1), Tear of Morning (387995 effect#2), Skytouch (393047 effect#1), Skyreach (393048 effect#1), Brewmaster's Rhythm (394797 effects: #1, #3), Jadefire Brand (395414 effect#1), Mistweaver Monk (428200 effects: #3, #4), Lighter Than Air (449609 effect#3), Aspect of Harmony (450763 effect#2), Fatal Touch (450832 effects: #1, #2), One Versus Many (450988 effect#3), Efficient Training (450989 effects: #1, #2), Monk Brewmaster 11.0 Class Set 2pc (453623 effect#1), Flow of Battle (457257 effect#1), Flow of Battle (457271 effect#1), Luck of the Draw! (1217990 effects: #1, #2), Windwalker Monk (1222923 effects: #1, #2), Zenith (1249625 effects: #2, #4), Brewmaster Monk (1256978 effects: #1, #2), Tigereye Brew (1261844 effect#1), Monk Brewmaster 12.0 Class Set 2pc (1264838 effect#1), Monk Brewmaster 12.0 Class Set 4pc (1264839 effect#1), Empty Barrel (1265307 effect#3), Monk - Midnight PrePatch - 11.2 Class Set 2pc (1283664 effects: #1, #2), Monk - Midnight PrePatch - 11.2 Class Set 4pc (1283665 effects: #1, #2)
 Family Flags     : 57, 103
@@ -349,7 +349,7 @@ School           : Physical
 Spell Type       : None
 GCD              : 1 seconds
 Duration         : 8 seconds
-Charges          : 1 (45 seconds cooldown)
+Charges          : 1 (90 seconds cooldown)
 Category         : 2293 (Type 0x0): Light Brewing (325093 effect#2), Endless Draught (450892 effect#2)
 Labels           : 16: Class Spells
                  : 22: Monk Spells
@@ -360,7 +360,7 @@ Family Flags     : 53, 75
 Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=810869)   : Apply Aura (6) | Absorb Damage (69)
-                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 22.68 | Misc Value: 0x7f | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 56.7 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 #2 (id=834949)   : Apply Aura (6) | Modify Healing Taken% from Caster's Spells (283)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
@@ -708,7 +708,7 @@ Effects          :
 #1 (id=1022530)  : Apply Aura (6) | Proc Trigger Spell (42): Staggering Strikes
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 387624 | Target: Self (1)
 #2 (id=1024490)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 600 | Scaled Value: 600 | Target: Self (1)
+                   Base Value: 750 | Scaled Value: 750 | Target: Self (1)
 #3 (id=1271233)  : Apply Aura (6) | Dummy (4)
                    Base Value: 200 | Scaled Value: 200 | Target: Self (1)
 Description      : When you Blackout Kick, your |CFFffffffStagger|R is reduced by $<reduc>, increased by up to $s3% based on your missing health.
@@ -816,7 +816,7 @@ Labels           : 16: Class Spells
                  : 22: Monk Spells
                  : 292
 Proc Chance      : 101%
-Real PPM         : 5 (Haste multiplier)
+Real PPM         : 6 (Haste multiplier)
 Proc Flags       : Yellow Melee, Generic Hostile Spell
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Aura Interrupt   : Change Specialization (38)
@@ -927,7 +927,7 @@ School           : Physical
 Spell Type       : None
 GCD              : 1 seconds
 Duration         : 16 seconds
-Charges          : 1 (45 seconds cooldown)
+Charges          : 1 (90 seconds cooldown)
 Category         : 2293 (Type 0x0): Light Brewing (325093 effect#2), Endless Draught (450892 effect#2)
 Labels           : 16: Class Spells
                  : 22: Monk Spells
@@ -938,13 +938,13 @@ Family Flags     : 53, 75
 Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1239822)  : Apply Aura (6) | Absorb Damage (69)
-                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 22.68 | Misc Value: 0x7f | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 56.7 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
 #2 (id=1239823)  : Apply Aura (6) | Dummy (4)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
-Description      : A strong herbal brew that coalesces purified chi escaping your body into a celestial guard, absorbing $s2% of incoming damage, up to $<absorb> total.
+Description      : A strong herbal brew that coalesces purified chi escaping your body into a celestial guard, absorbing $s2% of incoming damage, up to $s1 total.
 Tooltip          : Absorbs $s2~% of incoming damage, up to $w1 total.
-Variables        : $absorb=${($AP*22.68)*(1+$@versadmg)}
+Variables        : $absorb=${($AP*45.36)*(1+$@versadmg)}
 
 Name             : Niuzao's Resolve (id=1241097) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=5, col=4, max_rank=1, req_points=8]
@@ -1055,8 +1055,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1263631 | Target: Self (1)
 Description      : Purifying Brew also surrounds you with protective energies for $1263631d. 
 
-When |CFFffffffStaggered|R damage would be dealt to you, you instead absorb up to $1263631s2%, until $<absorb> has been prevented.
-Variables        : $absorb=${($AP*6)*(1+$@versadmg)}
+When |CFFffffffStaggered|R damage would be dealt to you, you instead absorb up to $1263631s2%, until $1263631s1 has been prevented.
+Variables        : $absorb=${($AP*7.5)*(1+$@versadmg)}
 
 Name             : Vital Flame (id=1262659) [Spell Family (53), Passive] 
 Talent Entry     : Brewmaster [tree=spec, row=9, col=6, max_rank=1, req_points=20, select_idx=200]
@@ -1071,7 +1071,7 @@ Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hos
 Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Can Proc From Procs (122), Not In Spellbook (143), Can Proc From Suppressed Target Procs (254), Do Not Log on Learn (355), Can Proc from Suppressed Caster Procs (385), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1273067)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
+                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : Heal for $s1% of all Fire or Nature damage dealt by your spells and abilities.
 
 Name             : Heart of the Ox (id=1263245) [Spell Family (53), Passive] 
@@ -1151,6 +1151,7 @@ Talent Entry     : Brewmaster [tree=spec, row=11, col=5, max_rank=2, req_points=
                  : Effect#1 [op=set, values=(10, 20)]
                  : Effect#2 [op=set, values=(-50, -100)]
                  : Effect#3 [op=set, values=(10, 20)]
+                 : Effect#4 [op=set, values=(10, 20)]
 Class            : Monk
 School           : Physical
 Spell Type       : None
@@ -1161,13 +1162,15 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1276930)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Misc Value 2: 5841 (Label) | Target: Self (1)
-                   Affected Spells (Label): Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Keg Smash (121253), Stomp (227291), Empty Barrel (1265133)
+                   Affected Spells (Label): Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Keg Smash (121253), Rushing Jade Wind (148187), Special Delivery (196733), Blackout Kick (205523), Stomp (227291), Flurry Strike (450617), Stomp (1242373), Empty Barrel (1265133), Fiery Shrapnel (1301619)
 #2 (id=1276931)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 23 | Misc Value 2: 6109 (Label) | Target: Self (1)
                    Affected Spells (Label): Empty Barrel (1265307)
 #3 (id=1276932)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 5841 (Label) | Target: Self (1)
-                   Affected Spells (Label): Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Keg Smash (121253), Stomp (227291), Empty Barrel (1265133)
+                   Affected Spells (Label): Tiger Palm (100780), Blackout Kick (100784), Spinning Crane Kick (107270), Keg Smash (121253), Rushing Jade Wind (148187), Special Delivery (196733), Blackout Kick (205523), Stomp (227291), Flurry Strike (450617), Stomp (1242373), Empty Barrel (1265133), Fiery Shrapnel (1301619)
+#4 (id=1346815)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : Gaining an Empty Barrel resets the cooldown of Keg Smash and makes its next cast cost $s2% less energy. 
 
 Physical damage dealt increased by $s1%.

@@ -1,5 +1,5 @@
 # Evoker — Chronowarden Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 16 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Warp (desc=Bronze) (id=429483) [Spell Family (224), Passive] 
@@ -78,7 +78,7 @@ Proc Flags       : Magic Heal, Magic Hostile Spell
 Attributes       : Passive (6), Can Proc From Procs (122), Do Not Display Range (126), Not In Spellbook (143), Spellcast Override In Spellbook (310), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1119510)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
 #2 (id=1165092)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : $?c2[Verdant Embrace heals for an additional $s1% over $409895d.][Upheaval deals $s2% additional damage over $431620d.]
@@ -172,7 +172,8 @@ Effects          :
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 #3 (id=1168563)  : Apply Aura (6) | Dummy (4)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-Description      : $?c2[When Dream Breath or Fire Breath critically strike, their duration is extended by $s1 sec, up to a maximum of ${$s1*6} sec.][Ebon Might and Prescience gain a chance equal to your critical strike chance to grant $s2% additional stats.]
+Description      : $?c2[When Dream Breath or Fire Breath critically strike, their duration is extended by $s1 sec, up to a maximum of ${$s1*6} sec.][Ebon Might and Prescience gain a chance equal to your critical strike chance to grant $s2% additional stats. For Ebon Might, this increase lasts $<dura> sec.]
+Variables        : $dura=$?a406380[${$460688d*(1+$406380s2/100)}.1][${$460688d}.1]
 
 Name             : Afterimage (desc=Bronze) (id=431875) [Spell Family (224), Passive] 
 Talent Entry     : Chronowarden (Preservation) [tree=hero, row=5, col=3, max_rank=1, req_points=1]

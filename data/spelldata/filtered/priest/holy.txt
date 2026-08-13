@@ -1,5 +1,5 @@
 # Priest — Holy Spec Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68974 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 49 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Prayer of Healing (id=596) [Spell Family (6)] 
@@ -7,7 +7,7 @@ Talent Entry     : Holy [tree=spec, row=3, col=2, max_rank=1, req_points=0]
 Class            : Priest
 School           : Holy
 Spell Type       : Magic
-Resource         : 4.83% Base Mana (0) (id=67)
+Resource         : 4.347% Base Mana (0) (id=67)
 Range            : 40 yards
 Cast Time        : 2.5 seconds
 GCD              : 1.5 seconds
@@ -16,7 +16,7 @@ Labels           : 16: Class Spells
                  : 292
                  : 954
 Stance Mask      : 0x80000000
-Affecting Spells : Renew (139 effect#2), Rapid Healing (24546 effect#2), Healing Trance (37706 effect#1), Archangel (81700 effects: #1, #2), Surge of Light (114255 effects: #7, #8, #10), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #2, #3, #4, #5), Light of T'uure (208065 effect#1), Muze's Unwavering Will (210632 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#2), Unwavering Will (373456 effect#1), Crisis Management (390954 effect#1), Twist of Fate (390978 effects: #1, #2), Lightweaver (390993 effects: #1, #2), Prayer Focus (394729 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Resonant Energy (453846 effect#1), Divinity (1216314 effects: #1, #2), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Efficient Prayers (1247131 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Focused Outburst (1272320 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2)
+Affecting Spells : Renew (139 effect#2), Rapid Healing (24546 effect#2), Healing Trance (37706 effect#1), Archangel (81700 effects: #1, #2), Surge of Light (114255 effects: #7, #8, #10), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #2, #3, #4, #5), Light of T'uure (208065 effect#1), Muze's Unwavering Will (210632 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#2), Unwavering Will (373456 effect#1), Crisis Management (390954 effect#1), Twist of Fate (390978 effects: #1, #2), Lightweaver (390993 effects: #1, #2), Prayer Focus (394729 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Resonant Energy (453846 effects: #1, #2), Divinity (1216314 effects: #1, #2), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Efficient Prayers (1247131 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Focused Outburst (1272320 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2), Renewed Vigor (1306118 effect#1)
 Triggered By     : Surge of Light (114255), Lightweaver (390993)
 Family Flags     : 9, 126
 Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416)
@@ -45,7 +45,7 @@ Labels           : 16: Class Spells
                  : 741: Healing Spells
                  : 1116
 Stance Mask      : 0x80000000
-Affecting Spells : Renew (139 effect#2), Archangel (81700 effects: #1, #2), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #3, #4, #6), Light of T'uure (208065 effect#1), Al'maiesh, the Cord of Hope (211440 effect#1), Rammal's Ulterior Motive (234711 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#3), Twist of Fate (390978 effects: #1, #2), Inspired Word (409479 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Sacred Reverence (423510 effect#2), Prophet's Will (433905 effect#1), Resonant Energy (453846 effects: #1, #2), Phantom Reach (459559 effect#2), Light in the Darkness (471668 effect#1), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Ultimate Serenity (1246517 effect#2), Uplifting Words (1250562 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Words of the Wise (1272352 effect#1), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2)
+Affecting Spells : Renew (139 effect#2), Archangel (81700 effects: #1, #2), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #3, #4, #6), Light of T'uure (208065 effect#1), Al'maiesh, the Cord of Hope (211440 effect#1), Rammal's Ulterior Motive (234711 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#3), Twist of Fate (390978 effects: #1, #2), Inspired Word (409479 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Sacred Reverence (423510 effect#2), Prophet's Will (433905 effect#1), Resonant Energy (453846 effects: #1, #2), Phantom Reach (459559 effect#2), Light in the Darkness (471668 effect#1), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Ultimate Serenity (1246517 effect#2), Uplifting Words (1250562 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Words of the Wise (1272352 effect#1), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2), Renewed Vigor (1306118 effect#1)
 Family Flags     : 10, 126
 Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416)
 Effects          :
@@ -72,7 +72,7 @@ Labels           : 16: Class Spells
                  : 292
                  : 1116
 Stance Mask      : 0x80000000
-Affecting Spells : Renew (139 effect#2), Healing Trance (37706 effect#1), Archangel (81700 effects: #1, #2), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #3, #4, #6), Light of T'uure (208065 effect#1), Al'maiesh, the Cord of Hope (211442 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#3), Twist of Fate (390978 effects: #1, #2), Inspired Word (409479 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Sacred Reverence (423510 effect#2), Resonant Energy (453846 effects: #1, #2), Light in the Darkness (471668 effects: #1, #2), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Ultimate Serenity (1246517 effect#1), Uplifting Words (1250562 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Words of the Wise (1272352 effect#1), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2)
+Affecting Spells : Renew (139 effect#2), Healing Trance (37706 effect#1), Archangel (81700 effects: #1, #2), Holy Priest (137031 effects: #1, #2), Discipline Priest (137032 effects: #1, #2), Apotheosis (200183 effects: #3, #4, #6), Light of T'uure (208065 effect#1), Al'maiesh, the Cord of Hope (211442 effect#1), Dejahna's Inspiration (281456 effects: #1, #2), Kam Xi'raff (281457 effect#1), Lunar Purity (282786 effects: #2, #3), Divine Conversation (363727 effect#3), Twist of Fate (390978 effects: #1, #2), Inspired Word (409479 effect#1), Benevolence (415416 effects: #1, #2), Initial Priest (417191 effects: #3, #4), Sacred Reverence (423510 effect#2), Resonant Energy (453846 effects: #1, #2), Light in the Darkness (471668 effects: #1, #2), Bankroll (1216601 effects: #1, #2), Holy Priest (1238052 effects: #1, #2), Ultimate Serenity (1246517 effect#1), Uplifting Words (1250562 effect#1), Angelic Touch (1250565 effect#1), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #1, #2), Benediction (1262758 effects: #2, #3), Words of the Wise (1272352 effect#1), Priest - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283670 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283671 effects: #1, #2), Renewed Vigor (1306118 effect#1)
 Family Flags     : 28, 126
 Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), DoT Stacking Rule (103), Allow Class Ability Procs (416)
 Effects          :
@@ -153,6 +153,8 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5
 Description      : Heals all party or raid members within $64844A1 yards for ${5*$64844s1} over $d. Each heal increases all targets' healing taken by $64844s2% for $64844d, stacking.
 
+You gain Guardian Spirit while channeling Divine Hymn.
+
 Healing reduced beyond $s5 targets.
 Tooltip          : Healing all nearby party or raid members.
 
@@ -169,7 +171,7 @@ Labels           : 16: Class Spells
                  : 18: Priest Spells
                  : 292
                  : 1116
-Affecting Spells : Spirit Shell (109964 effect#2), Holy Priest (137031 effects: #4, #5), Discipline Priest (137032 effects: #4, #5), Shadow Priest (137033 effects: #1, #2), Voidform (194249 effects: #1, #2, #3), Apotheosis (200183 effect#6), Al'maiesh, the Cord of Hope (211443 effect#1), Shadowform (232698 effects: #1, #3), Sins of the Many (280398 effects: #1, #2), Inner Shadow (355898 effects: #1, #4), Twist of Fate (390978 effects: #1, #2), Dark Ascension (391109 effects: #2, #4, #5), Inspired Word (409479 effect#1), Initial Priest (417191 effects: #1, #2), Resonant Energy (453850 effect#1), Devouring Chorus (454638 effects: #1, #2), Phantom Reach (459559 effect#4), Holy Celerity (1215275 effect#3), Holy Priest (1238052 effects: #4, #5), Focused Power (1249230 effects: #1, #2), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #4, #5), Shadow Priest (1256905 effects: #1, #2), Prophet's Insight (1272359 effect#3), Priest - Midnight PrePatch - 11.2 Class Set 2pc (1283668 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc (1283669 effects: #1, #2)
+Affecting Spells : Spirit Shell (109964 effect#2), Holy Priest (137031 effects: #4, #5), Discipline Priest (137032 effects: #4, #5), Shadow Priest (137033 effects: #1, #2), Voidform (194249 effects: #1, #2), Apotheosis (200183 effect#6), Al'maiesh, the Cord of Hope (211443 effect#1), Shadowform (232698 effects: #1, #3), Sins of the Many (280398 effects: #1, #2), Inner Shadow (355898 effects: #1, #3), Twist of Fate (390978 effects: #1, #2), Dark Ascension (391109 effects: #2, #4, #5), Inspired Word (409479 effect#1), Initial Priest (417191 effects: #1, #2), Resonant Energy (453850 effects: #1, #2), Devouring Chorus (454638 effects: #1, #2), Phantom Reach (459559 effect#4), Holy Celerity (1215275 effect#3), Holy Priest (1238052 effects: #4, #5), Focused Power (1249230 effects: #1, #2), Twin Disciplines (1251077 effects: #1, #2), Discipline Priest (1256903 effects: #4, #5), Shadow Priest (1256905 effects: #1, #2), Prophet's Insight (1272359 effect#3), Priest - Midnight PrePatch - 11.2 Class Set 2pc (1283668 effects: #1, #2), Priest - Midnight PrePatch - 11.2 Class Set 4pc (1283669 effects: #1, #2), Renewed Vigor (1306118 effect#1)
 Family Flags     : 69, 72
 Attributes       : Not Shapeshifted (16), Allow Class Ability Procs (416)
 Aura Interrupt   : Leave World (19)
@@ -307,7 +309,7 @@ Effects          :
                    Affected Spells: Prayer of Healing (596), Heal (2060)
                    Family Flags: 9, 12
 #6 (id=1156167)  : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
-                   Base Value: -50 | Scaled Value: -50 | Misc Value: 14 | Target: Self (1)
+                   Base Value: -70 | Scaled Value: -70 | Misc Value: 14 | Target: Self (1)
                    Affected Spells: Holy Word: Serenity (2050), Holy Word: Sanctify (34861), Holy Word: Chastise (88625), Holy Word: Chastise (200196), Holy Word: Chastise (200200), Ultimate Serenity (1250581)
                    Family Flags: 10, 28, 69
 #7 (id=1181324)  : Apply Aura (6) | Modify Attack Power (104)
@@ -993,7 +995,7 @@ Effects          :
                    Family Flags: 126
 #4 (id=1293197)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
                    Base Value: 6 | Scaled Value: 6 | Misc Value: 24 | Target: Self (1)
-                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593)
+                   Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593), Power Word: Shield (Unfolding Vision) (1300008), Void Shield (Unfolding Vision) (1300009)
                    Family Flags: 0
 Description      : Cosmic Ripple healing increased by $s1%.
 
@@ -1012,6 +1014,8 @@ Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (2
 Effects          :
 #1 (id=1273228)  : Apply Aura (6) | Dummy (4)
                    Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+#2 (id=1342493)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Each pulse of Divine Hymn emits a Cosmic Ripple at $s1% effectiveness.
 
-During Apotheosis, Flash Heal is upgraded to Benediction.
+Holy Word: Serenity now has a $s2% chance to upgrade your next Flash Heal to Benediction.

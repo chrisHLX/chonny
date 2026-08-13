@@ -1,5 +1,5 @@
 # Monk — Class Talents
-# Extracted verbatim from monk.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from monk.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 74 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Intimidation (id=19577) [Spell Family (9)] 
@@ -56,13 +56,14 @@ Resource         : 2.5% Base Mana (0) (id=10832) w/ Mistweaver Monk (id=137024)
 Spell Level      : 10
 Range            : 5 yards
 GCD              : 1.5 seconds
-Cooldown         : 10 seconds
+Charges          : 1 (10 seconds cooldown)
+Category         : 1518 (Type 0x1): Monk (137022 effect#2), Heart of the Jade Serpent (443421 effect#9), Heart of the Jade Serpent (443616 effect#9), Brawler's Intensity (451485 effect#1), Heart of the Jade Serpent (1238904 effect#9), Mistweaver Monk (1258138 effect#8), Rising Sun Kick (1296687 effect#1), Rising Sun Kick (1296687 effect#2)
 Labels           : 16: Class Spells
                  : 22: Monk Spells
                  : 292
                  : 359
                  : 2835: Spatial Paradox (406789 effect#13)
-Affecting Spells : Thunder Focus Tea (116680 effect#1), Monk (137022 effect#1), Brewmaster Monk (137023 effect#11), Mistweaver Monk (137024 effect#11), Windwalker Monk (137025 effect#15), Weapons of Order (311054 effect#1), Pressure Point (337482 effect#1), Fast Feet (388809 effect#1), Rising Star (388849 effects: #1, #2), Xuen's Battlegear (392993 effect#1), Pressure Point (393053 effect#1), Kicks of Flowing Momentum (394944 effect#1), Monk Windwalker 10.1 Class Set 2pc (405543 effect#1), Leverage (408503 effects: #1, #2), Monk Windwalker 10.2 Class Set 4pc (422892 effect#2), Heart of the Jade Serpent (443421 effect#2), Heart of the Jade Serpent (443616 effect#2), Yu'lon's Knowledge (443625 effect#1), Brawler's Intensity (451485 effect#1), Knowledge of the Broken Temple (451859 effect#1), Tiger Strikes (454485 effect#1), Winning Streak! (1216182 effects: #1, #2), Heart of the Jade Serpent (1238904 effect#2), Skyfire Heel (1248705 effect#1), Zenith (1249625 effects: #7, #13), Rushing Wind Kick (1250554 effect#1), Windwalker Monk (1258122 effect#8), Mistweaver Monk (1258138 effects: #4, #8), Brewmaster Monk (1258153 effect#7), Spiritfont (1260677 effect#2), Fast Feet (1261543 effect#1)
+Affecting Spells : Monk (137022 effect#1), Brewmaster Monk (137023 effect#11), Mistweaver Monk (137024 effect#11), Windwalker Monk (137025 effect#15), Weapons of Order (311054 effect#1), Pressure Point (337482 effect#1), Fast Feet (388809 effect#1), Rising Star (388849 effects: #1, #2), Xuen's Battlegear (392993 effect#1), Pressure Point (393053 effect#1), Kicks of Flowing Momentum (394944 effect#1), Monk Windwalker 10.1 Class Set 2pc (405543 effect#1), Leverage (408503 effects: #1, #2), Monk Windwalker 10.2 Class Set 4pc (422892 effect#2), Heart of the Jade Serpent (443421 effect#2), Heart of the Jade Serpent (443616 effect#2), Yu'lon's Knowledge (443625 effect#1), Knowledge of the Broken Temple (451859 effect#1), Tiger Strikes (454485 effect#1), Winning Streak! (1216182 effects: #1, #2), Heart of the Jade Serpent (1238904 effect#2), Skyfire Heel (1248705 effect#1), Zenith (1249625 effects: #7, #13), Rushing Wind Kick (1250554 effect#1), Windwalker Monk (1258122 effect#8), Mistweaver Monk (1258138 effect#4), Brewmaster Monk (1258153 effect#7), Spiritfont (1260677 effect#2), Fast Feet (1261543 effect#1), Rising Sun Kick (1296687 effects: #3, #4), Unbroken Rhythm (1297033 effect#1)
 Family Flags     : 39, 67
 Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Aura Points On Client (268), Hide Shapeshift Requirements (356), Allow Class Ability Procs (416)
 Effects          :
@@ -211,9 +212,9 @@ Labels           : 16: Class Spells
                  : 292
                  : 741: Healing Spells
                  : 3566: Balanced Stratagem (451508 effect#1)
-Affecting Spells : Renewing Mist (119611 effect#2), Enveloping Mist (124682 effect#2), Brewmaster Monk (137023 effect#6), Mistweaver Monk (137024 effects: #1, #2, #17), Dome of Mist (205655 effect#2), Ovyd's Winter Wrap (217642 effect#2), Invoke Yu'lon, the Jade Serpent (322118 effects: #8, #9), Invoke Chi-Ji, the Red Crane (325197 effects: #7, #8), Enveloping Breath (325209 effect#3), Tear of Morning (337993 effect#2), Enveloping Breath (358560 effect#3), Primordial Mending (364266 effects: #1, #2), Tear of Morning (387995 effect#2), Elusive Mists (388681 effect#3), Save Them All (389579 effect#1), Jadefire Brand (395413 effect#1), Monk Mistweaver 10.1 Class Set 2pc (405541 effects: #1, #2), Chi Harmony (423439 effect#1), Mistweaver Monk (428200 effects: #1, #2), Peer Into Peace (440008 effect#3), Renewing Mist (448430 effect#2), Lighter Than Air (449609 effect#3), Chi Proficiency (450426 effects: #2, #3), Aspect of Harmony (450769 effect#2), Chi Harmony (457013 effect#1), Luck of the Draw! (1217990 effects: #1, #2), Renewing Mist (1238851 effect#2), Monk - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283666 effects: #1, #2), Monk - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283667 effects: #1, #2)
+Affecting Spells : Renewing Mist (119611 effect#2), Enveloping Mist (124682 effect#2), Brewmaster Monk (137023 effect#6), Mistweaver Monk (137024 effects: #1, #2, #17), Dome of Mist (205655 effect#2), Ovyd's Winter Wrap (217642 effect#2), Invoke Yu'lon, the Jade Serpent (322118 effects: #8, #9), Invoke Chi-Ji, the Red Crane (325197 effects: #7, #8), Enveloping Breath (325209 effect#3), Tear of Morning (337993 effect#2), Enveloping Breath (358560 effect#3), Primordial Mending (364266 effects: #1, #2), Tear of Morning (387995 effect#2), Elusive Mists (388681 effects: #2, #3), Save Them All (389579 effect#1), Jadefire Brand (395413 effect#1), Monk Mistweaver 10.1 Class Set 2pc (405541 effects: #1, #2), Chi Harmony (423439 effect#1), Mistweaver Monk (428200 effects: #1, #2), Peer Into Peace (440008 effect#3), Renewing Mist (448430 effect#2), Lighter Than Air (449609 effect#3), Chi Proficiency (450426 effects: #2, #3), Aspect of Harmony (450769 effect#2), Chi Harmony (457013 effect#1), Luck of the Draw! (1217990 effects: #1, #2), Renewing Mist (1238851 effect#2), Monk - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283666 effects: #1, #2), Monk - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283667 effects: #1, #2), Vital Expenditure (1299572 effects: #1, #2)
 Family Flags     : 24, 48
-Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Name in Channel Bar (61), Include In Advanced Combat Log (72), No Target Per-Second Costs (75), Active Threat (94), Spell Haste Affects Periodic (173), No Caster Aura Icon (187), Periodic Can Crit (265), Aura Points On Client (268), Haste Affects Duration (273), Heal Prediction (280), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Non-secret Aura (506)
+Attributes       : Not Shapeshifted (16), Is Channelled (34), Is Self Channelled (38), Name in Channel Bar (61), Include In Advanced Combat Log (72), No Target Per-Second Costs (75), Active Threat (94), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Haste Affects Duration (273), Heal Prediction (280), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
 Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12), Attacking (13), Use Item (14), Standing (19), Invulnerability (22)
 Effects          :
 #1 (id=128871)   : Apply Aura (6) | Periodic Heal (8): every 1 seconds
@@ -221,17 +222,21 @@ Effects          :
 #2 (id=1149950)  : Apply Aura (6) | Modify Damage Taken% (87)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Targeted Ally (21)
                    Affected School(s): All
-                   Modified By: Elusive Mists (388681 effect#3)
+                   Modified By: Elusive Mists (388681 effect#2)
 #3 (id=1319104)  : Apply Aura (6) | Cast while Moving (Whitelist) (330)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 7 | Target: Self (1)
                    Affected Spells: Vivify (116670), Enveloping Mist (124682), Enveloping Breath (325209), Enveloping Breath (358560), Sheilun's Gift (399491)
                    Family Flags: 26, 79, 114
+#4 (id=1339342)  : Apply Aura (6) | Modify Damage Taken% (87)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
+                   Affected School(s): All
+                   Modified By: Elusive Mists (388681 effect#3)
+#5 (id=1339348)  : Apply Aura (6) | Replace Animation (Set) (312)
+                   Base Value: 0 | Scaled Value: 0 | Misc Value: 1408 | Target: Self (1)
 Description      : Heals the target for $o1 over $d. While channeling, Enveloping Mist$?s227344[, Surging Mist,][]$?s124081[, Zen Pulse,][] and Vivify may be cast instantly on the target.$?a440008[
 
 Follows the target of your Enveloping Mist and Vivify.][]
-Tooltip          : Healing for $w1 every $t1 sec.$?a388681[
-
-Damage taken reduced by $w2%.][]
+Tooltip          : $?$w1>0[Healing for $w1 every $t1 sec. ][]$?$w2<0[Damage taken reduced by $w2%. ][]$?$w3>0[You may cast Vivify, Enveloping Mist and Sheilun's Gift. ][]$?$w4<0[Damage taken reduced by $w4%. ][]
 
 Name             : Summon Jade Serpent Statue (id=115313) [Spell Family (53)] 
 Talent Entry     : Mistweaver [tree=class, row=8, col=4, max_rank=1, req_points=23, select_idx=200]
@@ -343,7 +348,7 @@ Labels           : 16: Class Spells
                  : 22: Monk Spells
                  : 219
                  : 292
-Affecting Spells : Windwalker Monk (1258122 effect#8), Brewmaster Monk (1258153 effect#7)
+Affecting Spells : Windwalker Monk (1258122 effect#8), Mistweaver Monk (1258138 effect#4), Brewmaster Monk (1258153 effect#7)
 Family Flags     : 47
 Attributes       : Is Ability (4), Not Shapeshifted (16), Include In Advanced Combat Log (72), Allow While Not Shapeshifted (caster form) (83), Can Proc From Procs (122), Vehicle Immunity Category (218), Aura Points On Client (268), Allow Class Ability Procs (416)
 Effects          :
@@ -393,7 +398,6 @@ Labels           : 16: Class Spells
                  : 22: Monk Spells
                  : 292
                  : 1387
-                 : 3566: Balanced Stratagem (451508 effect#1)
 Affecting Spells : Brewmaster Monk (137023 effect#18), Windwalker Monk (137025 effect#16), Tear of Morning (337993 effect#2), Tear of Morning (387995 effect#2), Lighter Than Air (449609 effect#3), Manifestation (450875 effect#1), Windwalker Monk (1258122 effect#8), Brewmaster Monk (1258153 effect#7)
 Family Flags     : 38
 Attributes       : Not Shapeshifted (16), No Redirection (35), No Reflection (39), Do Not Reset Combat Timers (81), Always Hit (114), Delay Combat Timer During Cast (211), Bypass Visibility Check (320), Allow Defense While Casting (337), Allow Class Ability Procs (416)
@@ -624,11 +628,12 @@ Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura 
 Effects          :
 #1 (id=1024517)  : Apply Aura (6) | Dummy (4)
                    Base Value: -6 | Scaled Value: -6 | Target: Self (1)
-#2 (id=1037551)  : Apply Aura (6) | Modify Damage Taken% (87)
-                   Base Value: 0 | Scaled Value: 0 | Misc Value: 0x7f | Target: Self (1)
-                   Affected School(s): All
-#3 (id=1149949)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+#2 (id=1037551)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
                    Base Value: -6 | Scaled Value: -6 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Soothing Mist (115175), Soothing Mist (209525)
+                   Family Flags: 24
+#3 (id=1149949)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 4 (32)
+                   Base Value: -6 | Scaled Value: -6 | Misc Value: 32 | Target: Self (1)
                    Affected Spells: Soothing Mist (115175), Soothing Mist (209525)
                    Family Flags: 24
 Description      : Reduces all damage taken by you and your target while channeling Soothing Mists by $s1%.
@@ -791,7 +796,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1025906)  : Apply Aura (6) | Modify Healing% Based on Target Health% (354)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-                   Affected Spells: Soothing Mist (115175), Revival (115310), Vivify (116670), Renewing Mist (119611), Enveloping Mist (124682), Chi Burst (130654), Chi Wave (132463), Gust of Mists (191894), Zen Pulse (198487), Soothing Mist (198533), Surging Mist (227344), Overflowing Mists (273354), Enveloping Mist (274062), Strength of Spirit (274774), Rising Mist (274912), Burst of Life (278564), Revival (297850), Weapons of Order (311123), Expel Harm (322101), Enveloping Breath (325209), Gust of Mists (328748), Yu'lon's Whisper (337268), Tear of Morning (337993), Soothing Breath (343737), Gust of Mists (343819), Faeline Stomp (345727), Enveloping Breath (358560), Tear of Morning (387995), Ancient Teachings (388024), Ancient Teachings (388025), Yu'lon's Whisper (388044), Jadefire Stomp (388207), Overflowing Mists (388514), Restoral (388615), Zen Pulse (388668), Way of the Crane (389325), Way of the Crane (389328), Burst of Life (399230), Sheilun's Gift (399491), Thunderous Focus Tea (407058), Invigorating Mists (425804), Celestial Conduit (443039), Renewing Mist (448430), Mantra of Purity (451452), Expel Harm (451968), Insurance! (1215544), Insurance! (1215545), Renewing Mist (1238851), Rushing Wind Kick (1269159), Harmonic Surge (1271045)
+                   Affected Spells: Soothing Mist (115175), Revival (115310), Vivify (116670), Renewing Mist (119611), Enveloping Mist (124682), Chi Burst (130654), Chi Wave (132463), Gust of Mists (191894), Zen Pulse (198487), Soothing Mist (198533), Surging Mist (227344), Overflowing Mists (273354), Enveloping Mist (274062), Strength of Spirit (274774), Rising Mist (274912), Burst of Life (278564), Revival (297850), Weapons of Order (311123), Expel Harm (322101), Enveloping Breath (325209), Gust of Mists (328748), Yu'lon's Whisper (337268), Tear of Morning (337993), Soothing Breath (343737), Gust of Mists (343819), Faeline Stomp (345727), Enveloping Breath (358560), Tear of Morning (387995), Ancient Teachings (388024), Ancient Teachings (388025), Yu'lon's Whisper (388044), Jadefire Stomp (388207), Overflowing Mists (388514), Restoral (388615), Zen Pulse (388668), Way of the Crane (389325), Way of the Crane (389328), Burst of Life (399230), Sheilun's Gift (399491), Thunderous Focus Tea (407058), Invigorating Mists (425804), Celestial Conduit (443039), Renewing Mist (448430), Mantra of Purity (451452), Expel Harm (451968), Insurance! (1215544), Insurance! (1215545), Renewing Mist (1238851), Awakening Spirit (1263631), Silent Sanctuary (1266720), Rushing Wind Kick (1269159), Harmonic Surge (1271045)
                    Family Flags: 48, 102
 Description      : Your healing is increased by up to $s1%, based on the current health of your target. Lower health targets are healed for more.
 
@@ -807,7 +812,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1031441)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
                    Affected Spells: Expel Harm (322101), Expel Harm (451968)
                    Family Flags: 17
 #2 (id=1031442)  : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
@@ -913,7 +918,7 @@ Effects          :
 #2 (id=1120530)  : Apply Aura (6) | Modify Damage Taken% (87)
                    Base Value: -10 | Scaled Value: -10 | PvP Coefficient: 0.5 | Misc Value: 0x1 | Target: Self (1)
                    Affected School(s): Physical
-Description      : Your physical damage taken is reduced by $s2% and an additional $432180s2% every $t1 sec until you receive a physical attack.
+Description      : Your physical damage taken is reduced by $s2% and an additional $432180s2% every $t1 sec until you receive a physical attack, stacking up to $432180u.
 
 Name             : Transcendence: Linked Spirits (id=434774) [Spell Family (53), Passive, Hidden] 
 Talent Entry     : Generic [tree=class, row=10, col=4, max_rank=1, req_points=23, select_idx=200]
@@ -1016,11 +1021,11 @@ Effects          :
                    Affected School(s): Arcane, Fire, Frost, Holy, Nature, Shadow
 #2 (id=1150318)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Soothing Mist (115175), Revival (115310), Vivify (116670), Renewing Mist (119611), Gift of the Ox (124507), Enveloping Mist (124682), Chi Burst (130654), Chi Wave (132463), Gift of the Ox (178173), Gust of Mists (191894), Zen Pulse (198487), Soothing Mist (198533), Surging Mist (227344), Overflowing Mists (273354), Enveloping Mist (274062), Strength of Spirit (274774), Rising Mist (274912), Burst of Life (278564), Revival (297850), Weapons of Order (311123), Expel Harm (322101), Enveloping Breath (325209), Gust of Mists (328748), Yu'lon's Whisper (337268), Tear of Morning (337993), Soothing Breath (343737), Gust of Mists (343819), Faeline Stomp (345727), Enveloping Breath (358560), Tear of Morning (387995), Yu'lon's Whisper (388044), Jadefire Stomp (388207), Overflowing Mists (388514), Restoral (388615), Zen Pulse (388668), Burst of Life (399230), Sheilun's Gift (399491), Thunderous Focus Tea (407058), Invigorating Mists (425804), Celestial Conduit (443039), Renewing Mist (448430), Mantra of Purity (451452), Expel Harm (451968), Insurance! (1215544), Insurance! (1215545), Renewing Mist (1238851), Rushing Wind Kick (1269159), Harmonic Surge (1271045)
+                   Affected Spells: Soothing Mist (115175), Revival (115310), Vivify (116670), Renewing Mist (119611), Gift of the Ox (124507), Enveloping Mist (124682), Chi Burst (130654), Chi Wave (132463), Gift of the Ox (178173), Gust of Mists (191894), Zen Pulse (198487), Soothing Mist (198533), Surging Mist (227344), Overflowing Mists (273354), Enveloping Mist (274062), Strength of Spirit (274774), Rising Mist (274912), Burst of Life (278564), Revival (297850), Weapons of Order (311123), Expel Harm (322101), Enveloping Breath (325209), Gust of Mists (328748), Yu'lon's Whisper (337268), Tear of Morning (337993), Soothing Breath (343737), Gust of Mists (343819), Faeline Stomp (345727), Enveloping Breath (358560), Tear of Morning (387995), Yu'lon's Whisper (388044), Jadefire Stomp (388207), Overflowing Mists (388514), Restoral (388615), Zen Pulse (388668), Burst of Life (399230), Sheilun's Gift (399491), Thunderous Focus Tea (407058), Invigorating Mists (425804), Celestial Conduit (443039), Renewing Mist (448430), Mantra of Purity (451452), Expel Harm (451968), Insurance! (1215544), Insurance! (1215545), Renewing Mist (1238851), Awakening Spirit (1263631), Silent Sanctuary (1266720), Rushing Wind Kick (1269159), Harmonic Surge (1271045)
                    Family Flags: 17, 48, 95, 121
 #3 (id=1176892)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Soothing Mist (115175), Revival (115310), Vivify (116670), Renewing Mist (119611), Enveloping Mist (124682), Chi Burst (130654), Chi Wave (132463), Gust of Mists (191894), Zen Pulse (198487), Soothing Mist (198533), Surging Mist (227344), Overflowing Mists (273354), Enveloping Mist (274062), Strength of Spirit (274774), Rising Mist (274912), Burst of Life (278564), Revival (297850), Weapons of Order (311123), Expel Harm (322101), Enveloping Breath (325209), Gust of Mists (328748), Yu'lon's Whisper (337268), Tear of Morning (337993), Soothing Breath (343737), Gust of Mists (343819), Faeline Stomp (345727), Enveloping Breath (358560), Tear of Morning (387995), Yu'lon's Whisper (388044), Jadefire Stomp (388207), Overflowing Mists (388514), Restoral (388615), Zen Pulse (388668), Burst of Life (399230), Sheilun's Gift (399491), Thunderous Focus Tea (407058), Invigorating Mists (425804), Celestial Conduit (443039), Renewing Mist (448430), Mantra of Purity (451452), Expel Harm (451968), Insurance! (1215544), Insurance! (1215545), Renewing Mist (1238851), Rushing Wind Kick (1269159), Harmonic Surge (1271045)
+                   Affected Spells: Soothing Mist (115175), Revival (115310), Vivify (116670), Renewing Mist (119611), Enveloping Mist (124682), Chi Burst (130654), Chi Wave (132463), Gust of Mists (191894), Zen Pulse (198487), Soothing Mist (198533), Surging Mist (227344), Overflowing Mists (273354), Enveloping Mist (274062), Strength of Spirit (274774), Rising Mist (274912), Burst of Life (278564), Revival (297850), Weapons of Order (311123), Expel Harm (322101), Enveloping Breath (325209), Gust of Mists (328748), Yu'lon's Whisper (337268), Tear of Morning (337993), Soothing Breath (343737), Gust of Mists (343819), Faeline Stomp (345727), Enveloping Breath (358560), Tear of Morning (387995), Yu'lon's Whisper (388044), Jadefire Stomp (388207), Overflowing Mists (388514), Restoral (388615), Zen Pulse (388668), Burst of Life (399230), Sheilun's Gift (399491), Thunderous Focus Tea (407058), Invigorating Mists (425804), Celestial Conduit (443039), Renewing Mist (448430), Mantra of Purity (451452), Expel Harm (451968), Insurance! (1215544), Insurance! (1215545), Renewing Mist (1238851), Awakening Spirit (1263631), Silent Sanctuary (1266720), Rushing Wind Kick (1269159), Harmonic Surge (1271045)
                    Family Flags: 48
 Description      : Magical damage done increased by $s1% and healing done increased by $s2%.
 
@@ -1439,7 +1444,7 @@ Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
 Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1285689)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
 Description      : Touch of Death now heals you for $s1% of its damage done.
 
 Name             : Zenith Stomp (id=1272694) [Spell Family (53), Passive] 
@@ -1457,6 +1462,12 @@ Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (2
 Effects          :
 #1 (id=1285948)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+#2 (id=1340371)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 37 | Misc Value 2: 6968 (Label) | Target: Self (1)
+                   Affected Spells (Label): Zenith Stomp (1291484)
+#3 (id=1343377)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Doses (31)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 31 | Misc Value 2: 6968 (Label) | Target: Self (1)
+                   Affected Spells (Label): Zenith Stomp (1291484)
 Description      : Activating Zenith causes you to release a powerful stomp, dealing $1272696s1 Nature damage to nearby enemies, reduced beyond $s1 targets.
 
 |cFFFFFFFFGenerates $1272696s2 Chi.

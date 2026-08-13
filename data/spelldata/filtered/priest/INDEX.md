@@ -14,6 +14,7 @@ One line per spell record; each lists every file it appears in.
 - **Al'maiesh, the Cord of Hope (id=211443) [Spell Family (6)]** — `baseline.txt`
 - **An'juna's Trance (id=207555) [Spell Family (6), Passive]** — `baseline.txt`
 - **Ancient Madness (id=1231346) [Spell Family (6), Passive, Hidden]** — `shadow.txt`
+- **Ancient Madness (id=1304485) [Spell Family (6)]** — `baseline.txt`
 - **Angel's Mercy (id=238100) [Spell Family (6), Passive, Hidden]** — `class-talents.txt`
 - **Angelic Bulwark (id=108945) [Spell Family (6), Passive, Hidden]** — `class-talents.txt`
 - **Angelic Bulwark (id=114214) [Spell Family (6)]** — `baseline.txt`
@@ -86,8 +87,6 @@ One line per spell record; each lists every file it appears in.
 - **Contemptuous Homily (id=313267) [Spell Family (6), Hidden]** — `baseline.txt`
 - **Conversation (id=363492) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Cord of Maiev, Priestess of the Moon (id=214484) [Spell Family (6), Passive]** — `baseline.txt`
-- **Corrupted Apparition (id=1231479) [Spell Family (6)]** — `baseline.txt`
-- **Corrupted Apparitions (id=73510) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Cosmic Ripple (id=238136) [Spell Family (6), Passive, Hidden]** — `holy.txt`
 - **Cosmic Ripple (id=243241) [Spell Family (6)]** — `baseline.txt`
 - **Cosmic Wave (id=1248418) [Spell Family (6), Passive, Hidden]** — `holy.txt`
@@ -110,6 +109,7 @@ One line per spell record; each lists every file it appears in.
 - **Dark Reprimand (id=400187) [Spell Family (6)]** — `baseline.txt`
 - **Dark Reveries (id=394963) [Spell Family (6)]** — `baseline.txt`
 - **Dark Thoughts (id=1240388) [Spell Family (6), Passive, Hidden]** — `shadow.txt`
+- **Dark Transference (id=1307795) [Spell Family (6)]** — `baseline.txt`
 - **Darkened Mind (id=364424) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Darkening Horizon (id=449912) [Spell Family (6), Passive, Hidden]** — `hero-voidweaver.txt`
 - **Darkflame Embers (id=409502) [Spell Family (6)]** — `baseline.txt`
@@ -240,6 +240,7 @@ One line per spell record; each lists every file it appears in.
 - **Greater Judgment (id=414019) [Spell Family (10), Hidden]** — `baseline.txt`
 - **Greater Smite (id=1253724) [Spell Family (6), Passive, Hidden]** — `discipline.txt`
 - **Greater Smite (id=1253725) [Spell Family (6)]** — `baseline.txt`
+- **Grim Deliverance (id=1298779) [Spell Family (6), Passive, Hidden]** — `discipline.txt`
 - **Guardian Angel (id=200209) [Spell Family (6), Passive, Hidden]** — `holy.txt`
 - **Guardian Faerie (desc=Night Fae) (id=327694) [Spell Family (6)]** — `baseline.txt`
 - **Guardian of the Forgotten Queen (id=228048) [Spell Family (6)]** — `baseline.txt`
@@ -487,7 +488,6 @@ One line per spell record; each lists every file it appears in.
 - **Phantasm (id=108942) [Spell Family (6), Passive, Hidden]** — `class-talents.txt`
 - **Phantasm (id=114239) [Spell Family (6)]** — `baseline.txt`
 - **Phantasm (id=335986) [Spell Family (6)]** — `baseline.txt`
-- **Phantom Menace (id=1242779) [Spell Family (6), Passive, Hidden]** — `shadow.txt`
 - **Phantom Reach (id=459559) [Spell Family (6), Passive, Hidden]** — `class-talents.txt`
 - **Phyrix's Embrace (id=234689) [Spell Family (6), Passive]** — `baseline.txt`
 - **Piety (id=1246802) [Spell Family (6), Passive, Hidden]** — `hero-oracle.txt`
@@ -511,6 +511,7 @@ One line per spell record; each lists every file it appears in.
 - **Power Word: Radiance (id=194509) [Spell Family (6)]** — `discipline.txt`
 - **Power Word: Shield (id=1246768) [Spell Family (6)]** — `baseline.txt`
 - **Power Word: Shield (id=17) [Spell Family (6)]** — `baseline.txt`
+- **Power Word: Shield (Unfolding Vision) (id=1300008) [Spell Family (6)]** — `baseline.txt`
 - **Prayer Focus (id=394729) [Spell Family (6)]** — `baseline.txt`
 - **Prayer of Healing (id=596) [Spell Family (6)]** — `holy.txt`
 - **Prayer of Healing (id=98367) [Spell Family (6), Hidden]** — `baseline.txt`
@@ -547,6 +548,8 @@ One line per spell record; each lists every file it appears in.
 - **Priest Discipline 11.1 Class Set 4pc (id=1215621) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Discipline 12.0 Class Set 2pc (id=1264850) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Discipline 12.0 Class Set 4pc (id=1264851) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
+- **Priest Discipline 12.1 Class Set 2pc (id=1296577) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
+- **Priest Discipline 12.1 Class Set 4pc (id=1296578) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Discipline Class Set 2pc (id=393679) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Discipline Class Set 4pc (id=393681) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Holy 10.1 Class Set 2pc (id=405554) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
@@ -560,6 +563,8 @@ One line per spell record; each lists every file it appears in.
 - **Priest Holy 11.1 Class Set 4pc (id=1215623) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Holy 12.0 Class Set 2pc (id=1264852) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Holy 12.0 Class Set 4pc (id=1264853) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
+- **Priest Holy 12.1 Class Set 2pc (id=1296575) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
+- **Priest Holy 12.1 Class Set 4pc (id=1296576) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Holy Class Set 2pc (id=393682) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Holy Class Set 4pc (id=393683) [Passive, Hidden]** — `baseline.txt`
 - **Priest Shadow 10.1 Class Set 2pc (id=405557) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
@@ -572,6 +577,8 @@ One line per spell record; each lists every file it appears in.
 - **Priest Shadow 11.1 Class Set 4pc (id=1215703) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Shadow 12.0 Class Set 2pc (id=1264854) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Shadow 12.0 Class Set 4pc (id=1264855) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
+- **Priest Shadow 12.1 Class Set 2pc (id=1296579) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
+- **Priest Shadow 12.1 Class Set 4pc (id=1296580) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Shadow Class Set 2pc (id=393684) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Shadow Class Set 4pc (id=393685) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
 - **Priest Tier 6 Trinket (id=40438) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
@@ -610,6 +617,7 @@ One line per spell record; each lists every file it appears in.
 - **Recuperate (id=1231418)** — `baseline.txt`
 - **Renew (id=139) [Spell Family (6)]** — `baseline.txt`
 - **Renewed Faith (id=341997) [Spell Family (6), Passive, Hidden]** — `holy.txt`
+- **Renewed Vigor (id=1306118) [Spell Family (6)]** — `baseline.txt`
 - **Repose (id=368841) [Spell Family (6)]** — `baseline.txt`
 - **Resonant Energy (id=453845) [Spell Family (6), Passive, Hidden]** — `hero-archon.txt`
 - **Resonant Energy (id=453846) [Spell Family (6)]** — `baseline.txt`
@@ -640,11 +648,12 @@ One line per spell record; each lists every file it appears in.
 - **Sha (id=148071)** — `baseline.txt`
 - **Shackle Horror (id=9484) [Spell Family (6)]** — `class-talents.txt`
 - **Shackle Undead (id=58251)** — `baseline.txt`
+- **Shadeburst (id=1231479) [Spell Family (6)]** — `baseline.txt`
+- **Shadeburst (id=73510) [Spell Family (6), Passive, Hidden]** — `shadow.txt`
 - **Shadow (desc=Shadow) (id=107905)** — `baseline.txt`
 - **Shadow Covenant (id=314867) [Spell Family (6), Passive]** — `baseline.txt`
 - **Shadow Covenant (id=322105) [Spell Family (6)]** — `baseline.txt`
-- **Shadow Mend (id=1252215) [Spell Family (6), Passive, Hidden]** — `discipline.txt`
-- **Shadow Mend (id=1252217) [Spell Family (6)]** — `baseline.txt`
+- **Shadow Mend (id=1252217) [Spell Family (6), Passive, Hidden]** — `discipline.txt`
 - **Shadow Mend (id=186263) [Spell Family (6)]** — `baseline.txt`
 - **Shadow Mend (id=186439) [Spell Family (6)]** — `baseline.txt`
 - **Shadow Mend (id=186440) [Spell Family (6), Passive, Hidden]** — `baseline.txt`
@@ -823,6 +832,7 @@ One line per spell record; each lists every file it appears in.
 - **Void Leech (id=451964) [Spell Family (6)]** — `baseline.txt`
 - **Void Shield (id=1253593) [Spell Family (6)]** — `baseline.txt`
 - **Void Shield (id=1253828) [Spell Family (6)]** — `baseline.txt`
+- **Void Shield (Unfolding Vision) (id=1300009) [Spell Family (6)]** — `baseline.txt`
 - **Void Shift (id=108968) [Spell Family (6)]** — `baseline.txt`
 - **Void Shift (id=118594) [Spell Family (6)]** — `baseline.txt`
 - **Void Spike (id=373279) [Spell Family (6)]** — `baseline.txt`
@@ -832,6 +842,7 @@ One line per spell record; each lists every file it appears in.
 - **Void Torrent (desc=Artifact) (id=205065) [Spell Family (6)]** — `baseline.txt`
 - **Void Torrent (id=263165) [Spell Family (6)]** — `hero-voidweaver.txt`
 - **Void Torrent (id=289577) [Spell Family (6)]** — `baseline.txt`
+- **Void Volley (id=1242171) [Spell Family (6)]** — `baseline.txt`
 - **Void Volley (id=1242173) [Spell Family (6)]** — `baseline.txt`
 - **Void Volley (id=1242189) [Spell Family (6)]** — `baseline.txt`
 - **Voidform (id=194249) [Spell Family (6)]** — `baseline.txt`

@@ -1,5 +1,5 @@
 # Evoker — Scalecommander Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Maneuverability (desc=Black) (id=433871) [Spell Family (224), Passive] 
@@ -44,7 +44,7 @@ You and your allies have a chance to trigger a Bombardment when attacking marked
 Variables        : $MotBD=$?s441705[${1+($441705s1/100)}][${1}]
 $dmg=${$INT*4.75*(1+$@versadmg)*$pctD*$<MotBD>}
 
-Name             : Mass Disintegrate (desc=Black) (id=436335) [Spell Family (224), Passive] 
+Name             : Mass Disintegrate (desc=Blue) (id=436335) [Spell Family (224), Passive] 
 Talent Entry     : Scalecommander (Devastation) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Evoker
 School           : Arcane
@@ -145,14 +145,10 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1135533)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 500 | Scaled Value: 500 | Target: Self (1)
+                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
 #2 (id=1135534)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1500 | Scaled Value: 1500 | Target: Self (1)
-#3 (id=1302605)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 1000 | Scaled Value: 1000 | Target: Self (1)
-#4 (id=1302606)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 3000 | Scaled Value: 3000 | Target: Self (1)
-Description      : Bombardments reduce the cooldown of $?c1[Deep Breath by ${$s1/1000}.1 sec for each target struck, up to ${$s2/1000}.1 sec.][Breath of Eons by ${$s3/1000}.1 sec for each target struck, up to ${$s4/1000}.1 sec.]
+Description      : $?c1[Mass Disintegrate][Mass Eruption] reduces the remaining cooldown of $?c1[Deep Breath][Breath of Eons] by $?c1[${$s1/1000}.1][${$s2/1000}.1] sec for each target struck.
 
 Name             : Extended Battle (desc=Black) (id=441212) [Spell Family (224), Passive] 
 Talent Entry     : Scalecommander (Devastation) [tree=hero, row=4, col=2, max_rank=1, req_points=0, select_idx=100]

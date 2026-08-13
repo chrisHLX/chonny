@@ -1,7 +1,7 @@
 {
     "class": "Warlock",
     "talent_tree_id": 720,
-    "fetched_at": "2026-08-02T09:05:10+00:00",
+    "fetched_at": "2026-08-12T21:34:23+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -285,7 +285,7 @@
                         "rank": 1,
                         "talent_id": 96443,
                         "talent_name": "Soul Leech",
-                        "spell_id": 108370,
+                        "spell_id": 1311653,
                         "spell_name": "Soul Leech",
                         "description": "All single-target damage done by you and your minions grants you and your pet shadowy shields that absorb 3% of the damage dealt for 15 sec, up to 5% of maximum health.",
                         "cast_time": "Passive",
@@ -1687,7 +1687,7 @@
                             "talent_name": "Seeds of Their Demise",
                             "spell_id": 440055,
                             "spell_name": "Seeds of Their Demise",
-                            "description": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 378 Shadowflame damage to its host every 1 sec until 1 stack remains.\r\n\r\nWhen Blackened Soul deals damage, you have a chance to gain Shard Instability.",
+                            "description": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 548 Shadowflame damage to its host every 1 sec until 1 stack remains.\r\n\r\nWhen Blackened Soul deals damage, you have a chance to gain Shard Instability.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1745,7 +1745,7 @@
                                     "talent_name": "Zevrim's Resilience",
                                     "spell_id": 440065,
                                     "spell_name": "Zevrim's Resilience",
-                                    "description": "Dark Pact heals you for 625 every 1 sec while active.",
+                                    "description": "Dark Pact heals you for 781 every 1 sec while active.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -1785,7 +1785,7 @@
                             "talent_name": "Blackened Soul",
                             "spell_id": 440043,
                             "spell_name": "Blackened Soul",
-                            "description": "Spending Soul Shards on damaging spells will further corrupt enemies affected by your Wither, increasing its stack count by 1.\r\n\r\nEach time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 378 Shadowflame damage to its host until 1 stack remains.",
+                            "description": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1.\r\n\r\nEach time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 548 Shadowflame damage to its host until 1 stack remains.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1814,7 +1814,7 @@
                             "talent_name": "Wither",
                             "spell_id": 445468,
                             "spell_name": "Wither",
-                            "description": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 75 Shadowflame damage immediately and an additional 1,268 Shadowflame damage over 18 sec.\r\n\r\nReplaces Corruption.",
+                            "description": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 93 Shadowflame damage immediately and an additional 1,601 Shadowflame damage over 18 sec.\r\n\r\nReplaces Corruption.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -1871,7 +1871,7 @@
                             "talent_name": "Mark of Peroth'arn",
                             "spell_id": 440045,
                             "spell_name": "Mark of Peroth'arn",
-                            "description": "Critical strike damage dealt by Wither is increased by 10%. \r\n\r\nWither has a chance to gain a stack when it critically strikes. Stacks gained this way do not activate Blackened Soul.",
+                            "description": "Damaging critical strikes dealt by Wither deal 215% damage instead of the usual 200%.\r\n\r\nDamaging critical strikes dealt by Blackened Soul deal 225% damage instead of the usual 200%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2531,7 +2531,7 @@
                             "talent_name": "Wither",
                             "spell_id": 445468,
                             "spell_name": "Wither",
-                            "description": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 74 Shadowflame damage immediately and an additional 1,257 Shadowflame damage over 18 sec.\r\n\r\nReplaces Corruption.",
+                            "description": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 94 Shadowflame damage immediately and an additional 1,597 Shadowflame damage over 18 sec.\r\n\r\nReplaces Corruption.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2643,7 +2643,7 @@
                             "talent_name": "Blackened Soul",
                             "spell_id": 440043,
                             "spell_name": "Blackened Soul",
-                            "description": "Spending Soul Shards on damaging spells will further corrupt enemies affected by your Wither, increasing its stack count by 1.\r\n\r\nEach time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 378 Shadowflame damage to its host until 1 stack remains.",
+                            "description": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1.\r\n\r\nEach time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 548 Shadowflame damage to its host until 1 stack remains.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2869,7 +2869,7 @@
                             "talent_name": "Seed of Corruption",
                             "spell_id": 27243,
                             "spell_name": "Seed of Corruption",
-                            "description": "Embeds a demon seed in the enemy target that will explode after 10.7 sec, dealing 905 Shadow damage to all enemies within 10 yards and applying Corruption to them. Damage reduced beyond 8 targets.\r\n\r\nThe seed will detonate early if the target is hit by other detonations, or takes 190 damage from your spells.",
+                            "description": "Embeds a demon seed in the enemy target that will explode after 10.7 sec, dealing 883 Shadow damage to all enemies within 10 yards and applying Corruption to them. Damage reduced beyond 8 targets.\r\n\r\nThe seed will detonate early if the target is hit by other detonations, or takes 190 damage from your spells.",
                             "cast_time": "2 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -2983,7 +2983,7 @@
                                     "talent_name": "Zevrim's Resilience",
                                     "spell_id": 440065,
                                     "spell_name": "Zevrim's Resilience",
-                                    "description": "Dark Pact heals you for 625 every 1 sec while active.",
+                                    "description": "Dark Pact heals you for 781 every 1 sec while active.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3095,7 +3095,7 @@
                                     "talent_name": "Shared Fate",
                                     "spell_id": 449704,
                                     "spell_name": "Shared Fate",
-                                    "description": "When you kill a target, its tortured soul is flung into a nearby enemy for 3 sec. This effect inflicts 191 Shadow damage to enemies within 10 yds every 0.9 sec.\r\n\r\nDeals reduced damage beyond 8 targets.",
+                                    "description": "When you kill a target, its tortured soul is flung into a nearby enemy for 3 sec. This effect inflicts 189 Shadow damage to enemies within 10 yds every 0.9 sec.\r\n\r\nDeals reduced damage beyond 8 targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -3234,7 +3234,7 @@
                             "talent_name": "Haunt",
                             "spell_id": 48181,
                             "spell_name": "Haunt",
-                            "description": "A ghostly soul haunts a single target, dealing 2,789 Shadow damage and increasing your damage dealt to the target by 12% for 18 sec.\r\n\r\n If the target dies, Haunt's cooldown is reset.",
+                            "description": "A ghostly soul haunts a single target, dealing 2,781 Shadow damage and increasing your damage dealt to the target by 16% for 18 sec.\r\n\r\nIf the target dies, Haunt's cooldown is reset.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": "15 sec cooldown",
                             "range": "40 yd range"
@@ -3318,7 +3318,7 @@
                             "talent_name": "Seeds of Their Demise",
                             "spell_id": 440055,
                             "spell_name": "Seeds of Their Demise",
-                            "description": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 378 Shadowflame damage to its host every 1 sec until 1 stack remains.\r\n\r\nWhen Blackened Soul deals damage, you have a chance to gain Shard Instability.",
+                            "description": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 548 Shadowflame damage to its host every 1 sec until 1 stack remains.\r\n\r\nWhen Blackened Soul deals damage, you have a chance to gain Shard Instability.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3346,7 +3346,7 @@
                             "talent_name": "Mark of Peroth'arn",
                             "spell_id": 440045,
                             "spell_name": "Mark of Peroth'arn",
-                            "description": "Critical strike damage dealt by Wither is increased by 10%. \r\n\r\nWither has a chance to gain a stack when it critically strikes. Stacks gained this way do not activate Blackened Soul.",
+                            "description": "Damaging critical strikes dealt by Wither deal 215% damage instead of the usual 200%.\r\n\r\nDamaging critical strikes dealt by Blackened Soul deal 225% damage instead of the usual 200%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3687,7 +3687,7 @@
                             "talent_name": "Cunning Cruelty",
                             "spell_id": 453172,
                             "spell_name": "Cunning Cruelty",
-                            "description": "Shadow Bolt and Drain Soul have a chance to trigger a Shadow Bolt Volley, dealing 539 Shadow damage to 5 enemies within 10 yards of your current target.",
+                            "description": "Shadow Bolt and Drain Soul have a chance to trigger a Shadow Bolt Volley, dealing 420 Shadow damage to 5 enemies within 10 yards of your current target.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3859,7 +3859,7 @@
                             "talent_name": "Summon Darkglare",
                             "spell_id": 205180,
                             "spell_name": "Summon Darkglare",
-                            "description": "Summons a Darkglare from the Twisting Nether that increases the damage of your Agony, Corruption, and Unstable Affliction by 20% while active.\r\n\r\nThe Darkglare will serve you for 20 sec, blasting its target for 1,809 Shadow damage, increased by 10% for every damage over time effect you have active on their current target.",
+                            "description": "Summons a Darkglare from the Twisting Nether that increases the damage of your Agony, Corruption, and Unstable Affliction by 20% while active.\r\n\r\nThe Darkglare will serve you for 20 sec, blasting its target for 1,850 Shadow damage, increased by 10% for every damage over time effect you have active on their current target.",
                             "cast_time": "Instant",
                             "cooldown": "2 min cooldown",
                             "range": null
@@ -3901,7 +3901,7 @@
                                     "talent_name": "Grimoire of Sacrifice",
                                     "spell_id": 108503,
                                     "spell_name": "Grimoire of Sacrifice",
-                                    "description": "Sacrifices your demon pet for power, gaining its command demon ability, and causing your spells to sometimes also deal 141 additional Shadow damage.\r\n\r\nLasts until canceled or until you summon a demon pet.",
+                                    "description": "Sacrifices your demon pet for power, gaining its command demon ability, and causing your spells to sometimes also deal 140 additional Shadow damage.\r\n\r\nLasts until canceled or until you summon a demon pet.",
                                     "cast_time": "Instant",
                                     "cooldown": "30 sec cooldown",
                                     "range": null
@@ -4160,7 +4160,7 @@
                             "talent_name": "Shard Instability",
                             "spell_id": 1260264,
                             "spell_name": "Shard Instability",
-                            "description": "Damage dealt by Shadow Bolt has a 20% chance to make your next Unstable Affliction cost no Soul Shards and cast instantly.",
+                            "description": "Damage dealt by Shadow Bolt has a 20% chance to make your next Unstable Affliction or Seed of Corruption cost no Soul Shards and cast instantly.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4248,10 +4248,10 @@
                         {
                             "rank": 1,
                             "talent_id": 140866,
-                            "talent_name": "Nocturnal Yield",
-                            "spell_id": 1260271,
-                            "spell_name": "Nocturnal Yield",
-                            "description": "Increases Corruption damage by 10% and Nightfall additionally makes your next Seed of Corruption cost no Soul Shards and cast instantly.",
+                            "talent_name": "Impetuous Wrath",
+                            "spell_id": 1312998,
+                            "spell_name": "Impetuous Wrath",
+                            "description": "Shadow Bolt and Malefic Grasp damage increased by 10% or 20% if the target is affected by Haunt. \r\n\r\nDark Harvest damage increased by 10% or 20% if the target is affected by Haunt.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4463,10 +4463,10 @@
                         {
                             "rank": 1,
                             "talent_id": 140868,
-                            "talent_name": "Patient Zero",
-                            "spell_id": 1260285,
-                            "spell_name": "Patient Zero",
-                            "description": "Increases damage dealt by Seed of Corruption to its host by 50%.",
+                            "talent_name": "Hedonic Gorging",
+                            "spell_id": 1311969,
+                            "spell_name": "Hedonic Gorging",
+                            "description": "Increases Drain Life damage by 10% and Siphon Life now increases the damage of Corruption by an additional 10%.\r\n\r\nDark Harvest channels 10% faster and deals 15% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4555,7 +4555,7 @@
                             "talent_name": "Wither",
                             "spell_id": 445468,
                             "spell_name": "Wither",
-                            "description": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 75 Shadowflame damage immediately and an additional 1,258 Shadowflame damage over 18 sec.\r\n\r\nReplaces Corruption.",
+                            "description": "Bestows a vile malediction upon the target, burning the sinew and muscle of its host, dealing 93 Shadowflame damage immediately and an additional 1,567 Shadowflame damage over 18 sec.\r\n\r\nReplaces Corruption.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4582,7 +4582,7 @@
                             "talent_name": "Chaos Bolt",
                             "spell_id": 116858,
                             "spell_name": "Chaos Bolt",
-                            "description": "Unleashes a devastating blast of chaos, dealing a critical strike for 3,033 Chaos damage. Damage is further increased by your critical strike chance.",
+                            "description": "Unleashes a devastating blast of chaos, dealing a critical strike for 3,312 Chaos damage. Damage is further increased by your critical strike chance.",
                             "cast_time": "3 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4638,7 +4638,7 @@
                             "talent_name": "Blackened Soul",
                             "spell_id": 440043,
                             "spell_name": "Blackened Soul",
-                            "description": "Spending Soul Shards on damaging spells will further corrupt enemies affected by your Wither, increasing its stack count by 1.\r\n\r\nEach time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 378 Shadowflame damage to its host until 1 stack remains.",
+                            "description": "If the target is afflicted with your Wither, casting Chaos Bolt and Shadowburn increase its stack count by 1.\r\n\r\nEach time Wither gains a stack it has a chance to collapse, consuming a stack every 1 sec to deal 548 Shadowflame damage to its host until 1 stack remains.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4723,7 +4723,7 @@
                             "talent_name": "Conflagrate",
                             "spell_id": 17962,
                             "spell_name": "Conflagrate",
-                            "description": "Triggers an explosion on the target, dealing 1,371 Fire damage.\r\n\r\nGenerates 5 Soul Shard Fragments.",
+                            "description": "Triggers an explosion on the target, dealing 1,379 Fire damage.\r\n\r\nGenerates 5 Soul Shard Fragments.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -4880,7 +4880,7 @@
                                     "talent_name": "Zevrim's Resilience",
                                     "spell_id": 440065,
                                     "spell_name": "Zevrim's Resilience",
-                                    "description": "Dark Pact heals you for 625 every 1 sec while active.",
+                                    "description": "Dark Pact heals you for 781 every 1 sec while active.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5090,7 +5090,7 @@
                             "talent_name": "Seeds of Their Demise",
                             "spell_id": 440055,
                             "spell_name": "Seeds of Their Demise",
-                            "description": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 378 Shadowflame damage to its host every 1 sec until 1 stack remains.\r\n\r\nWhen Blackened Soul deals damage, you have a chance to gain Shard Instability.",
+                            "description": "After Wither reaches 8 stacks or when its host reaches 20% health, Wither deals 548 Shadowflame damage to its host every 1 sec until 1 stack remains.\r\n\r\nWhen Blackened Soul deals damage, you have a chance to gain Shard Instability.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5118,7 +5118,7 @@
                             "talent_name": "Mark of Peroth'arn",
                             "spell_id": 440045,
                             "spell_name": "Mark of Peroth'arn",
-                            "description": "Critical strike damage dealt by Wither is increased by 10%. \r\n\r\nWither has a chance to gain a stack when it critically strikes. Stacks gained this way do not activate Blackened Soul.",
+                            "description": "Damaging critical strikes dealt by Wither deal 215% damage instead of the usual 200%.\r\n\r\nDamaging critical strikes dealt by Blackened Soul deal 225% damage instead of the usual 200%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5165,8 +5165,8 @@
                         72067
                     ],
                     "unlocks": [
-                        72060,
-                        71983
+                        71983,
+                        72060
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5209,7 +5209,7 @@
                                     "talent_name": "Mayhem",
                                     "spell_id": 387506,
                                     "spell_name": "Mayhem",
-                                    "description": "Your single target spells have a 35% chance to apply Havoc to a nearby enemy for 5.0 sec.\r\n\r\n Havoc\r\nMarks a target with Havoc for 5.0 sec, causing your single target spells to also strike the Havoc victim for 60% of the damage dealt.",
+                                    "description": "Your single target spells have a 35% chance to apply Havoc to a nearby enemy for 5.0 sec.\r\n\r\n Havoc\r\nMarks a target with Havoc for 5.0 sec, causing your single target spells to also strike the Havoc victim for 50% of the damage dealt.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5219,7 +5219,7 @@
                                     "talent_name": "Havoc",
                                     "spell_id": 80240,
                                     "spell_name": "Havoc",
-                                    "description": "Marks a target with Havoc for 15 sec, causing your single target spells to also strike the Havoc victim for 60% of the damage dealt.",
+                                    "description": "Marks a target with Havoc for 15 sec, causing your single target spells to also strike the Havoc victim for 50% of the damage dealt.",
                                     "cast_time": "Instant",
                                     "cooldown": "30 sec cooldown",
                                     "range": "40 yd range"
@@ -5309,7 +5309,7 @@
                             "talent_name": "Shadowburn",
                             "spell_id": 17877,
                             "spell_name": "Shadowburn",
-                            "description": "Blasts a target for 1,915 Shadowflame damage. Only usable on enemies that have less than 20% health.\r\n\r\nRestores 1 Soul Shard and refunds a charge if the target dies within 5 sec.",
+                            "description": "Blasts a target for 1,889 Shadowflame damage. Only usable on enemies that have less than 20% health.\r\n\r\nRestores 1 Soul Shard and removes its cooldown if the target dies within until canceled.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -5324,13 +5324,13 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 3600,
                     "locked_by": [
-                        71979,
-                        72059
+                        72059,
+                        71979
                     ],
                     "unlocks": [
+                        71985,
                         72061,
-                        71972,
-                        71985
+                        71972
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -5398,9 +5398,9 @@
                         71979
                     ],
                     "unlocks": [
+                        71985,
                         72062,
-                        71982,
-                        71985
+                        71982
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -5450,7 +5450,7 @@
                             "talent_name": "Cataclysm",
                             "spell_id": 152108,
                             "spell_name": "Cataclysm",
-                            "description": "Calls forth a cataclysm at the target location, dealing 1,372 Shadowflame damage to all enemies within 8 yards and afflicting them with Immolate.",
+                            "description": "Calls forth a cataclysm at the target location, dealing 1,399 Shadowflame damage to all enemies within 8 yards and afflicting them with Immolate.",
                             "cast_time": "2 sec cast",
                             "cooldown": "30 sec cooldown",
                             "range": "40 yd range"
@@ -5594,7 +5594,7 @@
                             "talent_name": "Summon Infernal",
                             "spell_id": 1122,
                             "spell_name": "Summon Infernal",
-                            "description": "Summons an Infernal from the Twisting Nether, impacting for 225 Fire damage and stunning all enemies in the area for 2 sec.\r\n\r\nThe Infernal will serve you for 30 sec, dealing 212 damage to all nearby enemies every 1.8 sec and generating 1 Soul Shard Fragment every 1 sec.",
+                            "description": "Summons an Infernal from the Twisting Nether, impacting for 230 Fire damage and stunning all enemies in the area for 2 sec.\r\n\r\nThe Infernal will serve you for 30 sec, dealing 219 damage to all nearby enemies every 1.8 sec and generating 1 Soul Shard Fragment every 1 sec.",
                             "cast_time": "Instant",
                             "cooldown": "2 min cooldown",
                             "range": "30 yd range"
@@ -5922,7 +5922,7 @@
                                     "talent_name": "Grimoire of Sacrifice",
                                     "spell_id": 108503,
                                     "spell_name": "Grimoire of Sacrifice",
-                                    "description": "Sacrifices your demon pet for power, gaining its command demon ability, and causing your spells to sometimes also deal 141 additional Shadow damage.\r\n\r\nLasts until canceled or until you summon a demon pet.",
+                                    "description": "Sacrifices your demon pet for power, gaining its command demon ability, and causing your spells to sometimes also deal 144 additional Shadow damage.\r\n\r\nLasts until canceled or until you summon a demon pet.",
                                     "cast_time": "Instant",
                                     "cooldown": "30 sec cooldown",
                                     "range": null
@@ -6096,8 +6096,8 @@
                         71980
                     ],
                     "unlocks": [
-                        71966,
-                        108681
+                        108681,
+                        71966
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -6133,12 +6133,12 @@
                     "raw_position_x": 12000,
                     "raw_position_y": 5400,
                     "locked_by": [
-                        71980,
-                        71960
+                        71960,
+                        71980
                     ],
                     "unlocks": [
-                        71966,
-                        71965
+                        71965,
+                        71966
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6163,8 +6163,8 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 5400,
                     "locked_by": [
-                        71971,
-                        71960
+                        71960,
+                        71971
                     ],
                     "unlocks": [
                         71968,
@@ -6370,7 +6370,7 @@
                                     "talent_name": "Soul Fire",
                                     "spell_id": 6353,
                                     "spell_name": "Soul Fire",
-                                    "description": "Burns the enemy's soul, dealing 10,110 Fire damage and applying Immolate.\r\n\r\nGenerates 1 Soul Shard.",
+                                    "description": "Burns the enemy's soul, dealing 14,540 Fire damage and applying Immolate.\r\n\r\nGenerates 1 Soul Shard.",
                                     "cast_time": "3 sec cast",
                                     "cooldown": "45 sec cooldown",
                                     "range": "40 yd range"
@@ -6428,7 +6428,7 @@
                             "talent_name": "Conflagration of Chaos",
                             "spell_id": 387108,
                             "spell_name": "Conflagration of Chaos",
-                            "description": "Conflagrate and Shadowburn have a 100% chance to guarantee your next cast of either ability to critically strike, and increase its damage by your critical strike chance.",
+                            "description": "Conflagrate and Shadowburn have a 100% chance to critical strike and their damage is increased by your critical strike chance.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6497,7 +6497,7 @@
                                     "talent_name": "Channel Demonfire",
                                     "spell_id": 196447,
                                     "spell_name": "Channel Demonfire",
-                                    "description": "Launches 15 bolts of felfire over 2.7 sec at random targets afflicted by your Immolate within 40 yds. Each bolt deals 150 Fire damage to the target and 74 Fire damage to nearby enemies.",
+                                    "description": "Launches 15 bolts of felfire over 2.7 sec at random targets afflicted by your Immolate within 40 yds. Each bolt deals 147 Fire damage to the target and 74 Fire damage to nearby enemies.",
                                     "cast_time": "Channeled",
                                     "cooldown": "25 sec cooldown",
                                     "range": "40 yd range"
@@ -6656,7 +6656,7 @@
                             "talent_name": "Embers of Nihilam",
                             "spell_id": 1265770,
                             "spell_name": "Embers of Nihilam",
-                            "description": "Casting Incinerate has a chance to evoke an echo of the Dark Titan's power.\r\n\r\n Echo of Sargeras\r\nHurl an ember torn from Nihilam at the target, dealing 712 Shadowflame damage and an additional 617 Shadowflame damage to all enemies within 10 yds.\r\n\r\nDamage reduced beyond 8 targets.",
+                            "description": "Casting Incinerate has a 10% chance to evoke an echo of the Dark Titan's power.\r\n\r\n Echo of Sargeras\r\nHurl an ember torn from Nihilam at the target, dealing 712 Shadowflame damage and an additional 617 Shadowflame damage to all enemies within 10 yds.\r\n\r\nDamage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6722,7 +6722,7 @@
                             "talent_name": "Hand of Gul'dan",
                             "spell_id": 105174,
                             "spell_name": "Hand of Gul'dan",
-                            "description": "Calls down a demonic meteor full of Wild Imps which burst forth to attack the target.\r\n\r\nDeals up to 571 Shadowflame damage on impact to all enemies within 8 yds of the target and summons 3 Wild Imps.",
+                            "description": "Calls down a demonic meteor full of Wild Imps which burst forth to attack the target.\r\n\r\nDeals up to 581 Shadowflame damage on impact to all enemies within 8 yds of the target and summons 3 Wild Imps.",
                             "cast_time": "1.5 sec cast",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6863,7 +6863,7 @@
                             "talent_name": "Demoniac",
                             "spell_id": 426115,
                             "spell_name": "Demoniac",
-                            "description": "Grants access to the following abilities:\r\n\r\n Demonbolt\r\nSend the fiery soul of a fallen demon at the enemy, causing 1,518 Shadowflame damage.\r\n\r\n Demonic Core\r\nWhen your Wild Imps fade or are imploded, you have a 10% chance to absorb their life essence, granting you a stack of Demonic Core. \r\n\r\nWhen your summoned Dreadstalkers fade away, you have a 100% chance to absorb their life essence, granting you a stack of Demonic Core.\r\n\r\nDemonic Core reduces the cast time of Demonbolt by 100%. Maximum 4 stacks.",
+                            "description": "Grants access to the following abilities:\r\n\r\n Demonbolt\r\nSend the fiery soul of a fallen demon at the enemy, causing 2,338 Shadowflame damage.\r\n\r\n Demonic Core\r\nWhen your Wild Imps fade or are imploded, you have a 10% chance to absorb their life essence, granting you a stack of Demonic Core. \r\n\r\nWhen your summoned Dreadstalkers fade away, you have a 100% chance to absorb their life essence, granting you a stack of Demonic Core.\r\n\r\nDemonic Core reduces the cast time of Demonbolt by 100%. Maximum 4 stacks.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6964,7 +6964,7 @@
                                     "talent_name": "Shared Fate",
                                     "spell_id": 449704,
                                     "spell_name": "Shared Fate",
-                                    "description": "When you kill a target, its tortured soul is flung into a nearby enemy for 3 sec. This effect inflicts 190 Shadow damage to enemies within 10 yds every 0.9 sec.\r\n\r\nDeals reduced damage beyond 8 targets.",
+                                    "description": "When you kill a target, its tortured soul is flung into a nearby enemy for 3 sec. This effect inflicts 193 Shadow damage to enemies within 10 yds every 0.9 sec.\r\n\r\nDeals reduced damage beyond 8 targets.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7334,7 +7334,7 @@
                                     "talent_name": "Implosion",
                                     "spell_id": 196277,
                                     "spell_name": "Implosion",
-                                    "description": "Demonic forces suck 6 of your Wild Imps toward the target, and then cause them to violently explode, dealing 530 Shadowflame damage to all enemies within 8 yards.",
+                                    "description": "Demonic forces suck 6 of your Wild Imps toward the target, and then cause them to violently explode, dealing 522 Shadowflame damage to all enemies within 8 yards.",
                                     "cast_time": "Instant",
                                     "cooldown": "15 sec cooldown",
                                     "range": null
@@ -7365,8 +7365,8 @@
                         101888
                     ],
                     "unlocks": [
-                        109936,
-                        101887
+                        101887,
+                        109936
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7977,7 +7977,7 @@
                             "talent_name": "Antoran Armaments",
                             "spell_id": 1250921,
                             "spell_name": "Antoran Armaments",
-                            "description": "Your Demonic Tyrant is equipped with armor forged within Antorus, increasing their armor by 10%. While summoned, your Demonic Tyrant now assaults enemies with powerful melee attacks.\r\n\r\n Burning Cleave\r\nCleaves all enemies in a cone in front of the caster, inflicting 361 Shadowflame damage. Damage reduced beyond 8 targets.",
+                            "description": "Your Demonic Tyrant is equipped with armor forged within Antorus, increasing their armor by 10%. While summoned, your Demonic Tyrant now assaults enemies with powerful melee attacks.\r\n\r\n Burning Cleave\r\nCleaves the area in front of the caster, inflicting 368 Shadowflame damage. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8627,7 +8627,7 @@
                             "talent_name": "Summon Doomguard",
                             "spell_id": 1276672,
                             "spell_name": "Summon Doomguard",
-                            "description": "Summons a Doomguard to assist you in combat for 12 sec. Consuming a Demonic Core reduces the cooldown of Summon Doomguard by 3 sec.\r\n\r\n Doom Bolt Volley\r\nSends a volley of malefic bolts at 5 enemies within 40 yds, inflicting 1,570 Shadow damage to each target.",
+                            "description": "Summons a Doomguard to assist you in combat for 12 sec. Consuming a Demonic Core reduces the cooldown of Summon Doomguard by 3 sec.\r\n\r\n Doom Bolt Volley\r\nSends a volley of malefic bolts at 5 enemies within 40 yds, inflicting 1,564 Shadow damage to each target.",
                             "cast_time": "Instant",
                             "cooldown": "2 min cooldown",
                             "range": "40 yd range"

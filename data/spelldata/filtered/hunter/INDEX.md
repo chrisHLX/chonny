@@ -4,6 +4,7 @@ One line per spell record; each lists every file it appears in.
 
 - **[DNT] In Imbu (id=400750) [Hidden]** — `baseline.txt`
 - **A Murder of Crows (id=131900) [Spell Family (9)]** — `baseline.txt`
+- **Accuracy By Volume (id=471428) [Spell Family (9), Passive]** — `marksmanship.txt`
 - **Acid Spit (desc=Special Ability) (id=263446) [Spell Family (9)]** — `baseline.txt`
 - **Adaptation (id=152244) [Passive]** — `baseline.txt`
 - **Agile Reflexes (desc=Special Ability) (id=160011) [Spell Family (9)]** — `baseline.txt`
@@ -99,6 +100,7 @@ One line per spell record; each lists every file it appears in.
 - **Boar Charge (id=471938) [Spell Family (9)]** — `baseline.txt`
 - **Boar Charge (id=471947) [Spell Family (9)]** — `baseline.txt`
 - **Boar Charge (id=472020) [Spell Family (9), Hidden]** — `baseline.txt`
+- **Bombardier (id=1311963) [Spell Family (9), Passive]** — `survival.txt`
 - **Bombardment (id=378880) [Spell Family (9), Passive]** — `baseline.txt`
 - **Bombardment (id=386875) [Spell Family (9)]** — `baseline.txt`
 - **Bonding (id=1262442) [Spell Family (9), Passive, Hidden]** — `survival.txt`
@@ -151,6 +153,8 @@ One line per spell record; each lists every file it appears in.
 - **Chimaera Shot (id=53209) [Spell Family (9)]** — `baseline.txt`
 - **Chimaera Shot (id=53353) [Spell Family (9)]** — `baseline.txt`
 - **Claw (desc=Basic Attack) (id=16827) [Spell Family (9)]** — `baseline.txt`
+- **Cobra Cleave (id=1299409) [Spell Family (9)]** — `baseline.txt`
+- **Cobra Fang (id=1299389) [Spell Family (9)]** — `baseline.txt`
 - **Cobra Senses (id=378244) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
 - **Cobra Shot (id=193455) [Spell Family (9)]** — `beast-mastery.txt`
 - **Cobra Spit (id=206685) [Spell Family (9)]** — `baseline.txt`
@@ -195,6 +199,7 @@ One line per spell record; each lists every file it appears in.
 - **Deadly Insight (id=1277134) [Spell Family (9)]** — `baseline.txt`
 - **Deadly Insight (id=1277136) [Spell Family (9)]** — `baseline.txt`
 - **Deadly Sting (desc=Special Ability) (id=160060) [Spell Family (9)]** — `baseline.txt`
+- **Death Bringer (id=1302277) [Spell Family (9)]** — `baseline.txt`
 - **Death Chakram (desc=Necrolord) (id=325028) [Spell Family (9)]** — `baseline.txt`
 - **Death Chakram (desc=Necrolord) (id=335932)** — `baseline.txt`
 - **Death Chakram (id=325037) [Spell Family (9)]** — `baseline.txt`
@@ -222,7 +227,6 @@ One line per spell record; each lists every file it appears in.
 - **Don't Look Back (id=450373) [Spell Family (9), Passive, Hidden]** — `hero-sentinel.txt`
 - **Don't Look Back (id=451447) [Spell Family (9)]** — `baseline.txt`
 - **Double Tap (id=260402) [Spell Family (9)]** — `baseline.txt`
-- **Double Tap (id=473370) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Dragon's Guile (desc=Special Ability) (id=263887) [Spell Family (9)]** — `baseline.txt`
 - **Dual Wield (desc=Passive) (id=674) [Passive]** — `baseline.txt`
 - **Dual Wield (id=1277760) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
@@ -269,10 +273,6 @@ One line per spell record; each lists every file it appears in.
 - **Find The Mark (id=394366) [Spell Family (9)]** — `baseline.txt`
 - **Fireworks (id=127933) [Spell Family (9)]** — `baseline.txt`
 - **Flamebreak (id=1253176) [Spell Family (9), Passive, Hidden]** — `survival.txt`
-- **Flamefang Pitch (id=1251592) [Spell Family (9)]** — `survival.txt`
-- **Flamefang Pitch (id=1251595) [Spell Family (9)]** — `baseline.txt`
-- **Flamefang Pitch (id=1251610) [Spell Family (9)]** — `baseline.txt`
-- **Flamefang Pitch (id=1251614) [Spell Family (9)]** — `baseline.txt`
 - **Flamewaker's Cobra Sting (id=336822) [Spell Family (9), Passive]** — `baseline.txt`
 - **Flamewaker's Cobra Sting (id=336826) [Spell Family (9)]** — `baseline.txt`
 - **Flanked (id=1256938) [Spell Family (9), Passive, Hidden]** — `survival.txt`
@@ -331,7 +331,7 @@ One line per spell record; each lists every file it appears in.
 - **Greater Mrgrglhjorn (id=396968)** — `baseline.txt`
 - **Grenade Juggler (id=1253246) [Spell Family (9)]** — `baseline.txt`
 - **Grenade Juggler (id=459843) [Spell Family (9), Passive, Hidden]** — `survival.txt`
-- **Grenade Juggler (id=470488) [Spell Family (9), Hidden]** — `baseline.txt`
+- **Grenade Juggler (id=470488) [Spell Family (9)]** — `baseline.txt`
 - **Grenade Juggler (id=470492) [Spell Family (9)]** — `baseline.txt`
 - **Grievous Injury (id=1217789)** — `baseline.txt`
 - **Grizzled Fur (id=1236564) [Spell Family (9)]** — `baseline.txt`
@@ -358,8 +358,7 @@ One line per spell record; each lists every file it appears in.
 - **Hati's Bond (id=197401) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Haze of Rage (id=273263) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Headshot (id=1277558) [Spell Family (9)]** — `baseline.txt`
-- **Headshot (id=471363) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
-- **Heart of the Pack (id=1265052) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
+- **Headshot (id=471363) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Heart of the Pack (id=1282747) [Spell Family (9)]** — `baseline.txt`
 - **Heaven's Nemesis (id=397118) [Spell Family (9)]** — `baseline.txt`
 - **Helbrine, Rope of the Mist Marauder (id=213154) [Spell Family (9), Passive]** — `baseline.txt`
@@ -389,6 +388,8 @@ One line per spell record; each lists every file it appears in.
 - **Hunter Beast Mastery 11.1 Class Set 4pc (id=1215644) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Beast Mastery 12.0 Class Set 2pc (id=1264825) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Beast Mastery 12.0 Class Set 4pc (id=1264826) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Hunter Beast Mastery 12.1 Class Set 2pc (id=1296631) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Hunter Beast Mastery 12.1 Class Set 4pc (id=1296632) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Beast Mastery Class Set 2pc (id=393646) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Beast Mastery Class Set 4pc (id=393647) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Beast Survival 12.0 Class Set 2pc (id=1264830) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
@@ -403,6 +404,8 @@ One line per spell record; each lists every file it appears in.
 - **Hunter Marksmanship 11.1 Class Set 4pc (id=1215645) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Marksmanship 12.0 Class Set 2pc (id=1264828) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Marksmanship 12.0 Class Set 4pc (id=1264829) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Hunter Marksmanship 12.1 Class Set 2pc (id=1296633) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Hunter Marksmanship 12.1 Class Set 4pc (id=1296634) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Marksmanship Class Set 2pc (id=393648) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Marksmanship Class Set 4pc (id=393649) [Passive, Hidden]** — `baseline.txt`
 - **Hunter Pack Leader 11.2 Class Set 2pc (id=1236372) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
@@ -417,6 +420,8 @@ One line per spell record; each lists every file it appears in.
 - **Hunter Survival 11.0 Class Set 4pc (id=453653) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Survival 11.1 Class Set 2pc (id=1215730) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Survival 11.1 Class Set 4pc (id=1216064) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Hunter Survival 12.1 Class Set 4pc (id=1296635) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Hunter Survival 12.1 Class Set 4pc (id=1296636) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Survival Class Set 2pc (id=393650) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Survival Class Set 4pc (id=393652) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Hunter Tier 6 Trinket (id=40485) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
@@ -448,7 +453,6 @@ One line per spell record; each lists every file it appears in.
 - **Improved Wildfire Bomb (id=321290) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **In the Rhythm (id=407404) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **In the Rhythm (id=407405) [Spell Family (9)]** — `baseline.txt`
-- **Incendiary Ammunition (id=471428) [Spell Family (9), Passive]** — `marksmanship.txt`
 - **Infected Bite (desc=Special Ability) (id=263853) [Spell Family (9)]** — `baseline.txt`
 - **Infinite Marker of Helbrine (id=214742) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Internal Bleeding (id=270343) [Spell Family (9)]** — `baseline.txt`
@@ -510,6 +514,7 @@ One line per spell record; each lists every file it appears in.
 - **Light the Fuse (id=428464) [Spell Family (9)]** — `baseline.txt`
 - **Lock and Load (id=194594) [Spell Family (9)]** — `baseline.txt`
 - **Lock and Load (id=194595) [Spell Family (9), Passive]** — `marksmanship.txt`
+- **Lock and Load: Explosive Shot (id=1300701) [Spell Family (9)]** — `baseline.txt`
 - **Lock Jaw (desc=Special Ability) (id=263423) [Spell Family (9)]** — `baseline.txt`
 - **Lone Survivor (id=388039) [Spell Family (9), Passive]** — `class-talents.txt`
 - **Lone Wolf (id=155228) [Spell Family (9), Passive]** — `baseline.txt`
@@ -651,7 +656,6 @@ One line per spell record; each lists every file it appears in.
 - **Precise Shots (id=270436) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Precise Shots (id=270437) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Precision Detonation (id=471369) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
-- **Precision Detonation (id=474199) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Precision Strikes (id=1267003) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **Predator (id=260257) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Predator's Thirst (desc=Ferocity Passive) (id=264663) [Spell Family (9), Passive]** — `baseline.txt`
@@ -691,6 +695,8 @@ One line per spell record; each lists every file it appears in.
 - **Raptor's Fury (id=1262323) [Spell Family (9)]** — `baseline.txt`
 - **Ravage (desc=Special Ability) (id=263857) [Spell Family (9)]** — `baseline.txt`
 - **Ravenous Leap (id=459753) [Spell Family (9)]** — `baseline.txt`
+- **Razor Edge (id=1253053) [Spell Family (9), Passive, Hidden]** — `survival.txt`
+- **Razor Sharp (id=1265052) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
 - **Recuperate (id=1231411)** — `baseline.txt`
 - **Recuperate (id=1231418)** — `baseline.txt`
 - **Reduces Snare/Root Duration by 10% (id=55378) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
@@ -764,7 +770,6 @@ One line per spell record; each lists every file it appears in.
 - **Shellshock (id=274356) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Shoot (id=1264357) [Spell Family (9)]** — `baseline.txt`
 - **Shot Power (id=37508) [Spell Family (9)]** — `baseline.txt`
-- **Shower of Blood (id=1253053) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **Shrapnel Bomb (id=1253172) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **Shrapnel Bomb (id=1292687) [Spell Family (9)]** — `baseline.txt`
 - **Shrapnel Bomb (id=270335) [Spell Family (9)]** — `baseline.txt`
@@ -772,7 +777,6 @@ One line per spell record; each lists every file it appears in.
 - **Shrapnel Bomb (id=270338) [Spell Family (9)]** — `baseline.txt`
 - **Shrapnel Bomb (id=270339) [Spell Family (9)]** — `baseline.txt`
 - **Shrapnel Bomb (id=271020) [Spell Family (9)]** — `baseline.txt`
-- **Shrapnel Shot (id=473520) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Shrapnel Shot (id=474310) [Spell Family (9)]** — `baseline.txt`
 - **Shredded Armor (id=410167) [Spell Family (9)]** — `baseline.txt`
 - **Shroud of Darkness (id=220110) [Spell Family (9)]** — `baseline.txt`
@@ -817,6 +821,7 @@ One line per spell record; each lists every file it appears in.
 - **Spotter's Mark (id=1219616) [Spell Family (9), Passive]** — `baseline.txt`
 - **Spotter's Mark (id=466872) [Spell Family (9)]** — `baseline.txt`
 - **Spotter's Mark (id=471429) [Spell Family (9)]** — `baseline.txt`
+- **Spotter's Mark: Rapid Fire (id=1301098) [Spell Family (9)]** — `baseline.txt`
 - **Stalk and Strike (id=1266069) [Spell Family (9), Passive]** — `hero-sentinel.txt`
 - **Stampede (id=1250068) [Spell Family (9)]** — `baseline.txt`
 - **Stampede (id=1258344) [Spell Family (9)]** — `baseline.txt`
@@ -873,6 +878,7 @@ One line per spell record; each lists every file it appears in.
 - **Survival Hunter (id=462082) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Survival of the Fittest (id=264735) [Spell Family (9)]** — `class-talents.txt`
 - **Sweeping Spear (id=378950) [Spell Family (9), Passive, Hidden]** — `survival.txt`
+- **Tactical Reload (id=1301406) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Take Aim (id=1273128) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Take Aim (id=1273129) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Take Aim (id=1273132) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
@@ -965,8 +971,12 @@ One line per spell record; each lists every file it appears in.
 - **Unnatural Causes (id=459529) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Unseen Predator's Cloak (id=248089) [Spell Family (9), Passive]** — `baseline.txt`
 - **Unseen Predator's Cloak (id=248212) [Spell Family (9)]** — `baseline.txt`
+- **Unstable Trigger (id=1301778) [Spell Family (9)]** — `baseline.txt`
+- **Unstable Trigger (id=473520) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Ursine Fury (id=472476) [Spell Family (9), Passive]** — `hero-pack-leader.txt`
 - **Ursine Fury (id=472478) [Spell Family (9)]** — `baseline.txt`
+- **Venom-Cradled Egg (id=1293835)** — `baseline.txt`
+- **Venomous Cradle (id=1293746)** — `baseline.txt`
 - **Vigilance Perch (id=241332) [Passive]** — `baseline.txt`
 - **Vigilance Perch (id=242066)** — `baseline.txt`
 - **Violent Reaction (id=260231) [Spell Family (9)]** — `baseline.txt`
@@ -995,8 +1005,6 @@ One line per spell record; each lists every file it appears in.
 - **Warp Time (desc=Special Ability) (id=35346) [Spell Family (9)]** — `baseline.txt`
 - **Web Spray (desc=Special Ability) (id=160067) [Spell Family (9)]** — `baseline.txt`
 - **Wild Call (id=185791) [Spell Family (9), Hidden]** — `baseline.txt`
-- **Wild Instincts (id=378442) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
-- **Wild Instincts (id=424567) [Spell Family (9)]** — `baseline.txt`
 - **Wild Mark (desc=Night Fae) (id=328275) [Spell Family (9)]** — `baseline.txt`
 - **Wild Spirit (desc=Night Fae) (id=328520) [Spell Family (9)]** — `baseline.txt`
 - **Wild Spirits (desc=Night Fae) (id=328231) [Spell Family (9)]** — `baseline.txt`

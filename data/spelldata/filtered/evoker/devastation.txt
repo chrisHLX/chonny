@@ -1,5 +1,5 @@
 # Evoker — Devastation Spec Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 42 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Quell (id=351338) [Spell Family (224)] 
@@ -250,7 +250,7 @@ Attributes       : Passive (6), Allow Class Ability Procs (416), Unknown (450)
 Effects          :
 #1 (id=982398)   : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
                    Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.667 | Misc Value: 15 | Target: Self (1)
-                   Affected Spells: Deep Breath (353759), Disintegrate (356995), Fire Breath (357209), Pyre (357212), Eternity Surge (359077), Living Flame (361500), Azure Strike (362969), Firestorm (369374), Eruption (395160), Upheaval (396288), Eruption (424428), Eruption (438653), Melt Armor (441172), Fire Breath (444249), Firestorm (456657), Disintegrate (1236949), Pyre (1236970), Eruption (1259172), Unravel (1264379), Shattering Star (1265804), Azure Sweep (1265872), Twin Flame (1265980)
+                   Affected Spells: Deep Breath (353759), Disintegrate (356995), Fire Breath (357209), Pyre (357212), Eternity Surge (359077), Living Flame (361500), Azure Strike (362969), Firestorm (369374), Eruption (395160), Upheaval (396288), Eruption (424428), Eruption (438653), Melt Armor (441172), Fire Breath (444249), Firestorm (456657), Disintegrate (1236949), Pyre (1236970), Eruption (1259172), Unravel (1264379), Shattering Star (1265804), Azure Sweep (1265872), Twin Flame (1265980), Unbound Flame (1292322)
                    Family Flags: 0
 Description      : Your damaging critical strikes deal ${$s1+200}% damage instead of the usual 200%.
 
@@ -297,7 +297,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=982697)   : Apply Aura (6) | Add Flat Modifier (107): Spell Critical Chance (7)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 7 | Target: Self (1)
-                   Affected Spells: Deep Breath (353759), Emerald Blossom (355916), Dream Breath (355941), Disintegrate (356995), Fire Breath (357209), Pyre (357212), Eternity Surge (359077), Verdant Embrace (361195), Fluttering Seedlings (361361), Living Flame (361500), Living Flame (361509), Azure Strike (362969), Dream Flight (363502), Echo (364343), Reversion (366155), Spiritbloom (367230), Spiritbloom (367231), Reversion (367364), Firestorm (369374), Lifebind (373267), Lifebind (373268), Emerald Blossom (373766), Temporal Anomaly (373862), Dream Breath (376788), Panacea (387763), Eruption (395160), Upheaval (396288), Defy Fate (404381), Spiritbloom (409894), Verdant Embrace (409895), Molten Blood (410651), Eruption (424428), Eruption (438653), Melt Armor (441172), Fire Breath (444249), Firestorm (456657), Insurance! (1215550), Insurance! (1215553), Disintegrate (1236949), Pyre (1236970), Merithra's Blessing (1256581), Eruption (1259172), Unravel (1264379), Shattering Star (1265804), Azure Sweep (1265872), Twin Flame (1265980), Twin Flame (1265991)
+                   Affected Spells: Deep Breath (353759), Emerald Blossom (355916), Dream Breath (355941), Disintegrate (356995), Fire Breath (357209), Pyre (357212), Eternity Surge (359077), Verdant Embrace (361195), Fluttering Seedlings (361361), Living Flame (361500), Living Flame (361509), Azure Strike (362969), Dream Flight (363502), Echo (364343), Reversion (366155), Spiritbloom (367230), Spiritbloom (367231), Reversion (367364), Firestorm (369374), Lifebind (373267), Lifebind (373268), Emerald Blossom (373766), Temporal Anomaly (373862), Dream Breath (376788), Panacea (387763), Eruption (395160), Upheaval (396288), Defy Fate (404381), Spiritbloom (409894), Verdant Embrace (409895), Molten Blood (410651), Eruption (424428), Eruption (438653), Melt Armor (441172), Fire Breath (444249), Firestorm (456657), Insurance! (1215550), Insurance! (1215553), Disintegrate (1236949), Pyre (1236970), Merithra's Blessing (1256581), Eruption (1259172), Unravel (1264379), Shattering Star (1265804), Azure Sweep (1265872), Twin Flame (1265980), Twin Flame (1265991), Unbound Flame (1292322)
                    Family Flags: 0, 1
 #2 (id=1300036)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Critical Chance (7)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 7 | Misc Value 2: 6314 (Label) | Target: Self (1)
@@ -317,6 +317,7 @@ Labels           : 16: Class Spells
                  : 690: Major Cooldowns
                  : 1216: Evoker Spells
                  : 1464: Red Evoker Spells
+Triggered By     : Unbound Flame (1292323)
 Family Flags     : 44
 Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491)
 Aura Interrupt   : Change Specialization (38), Raid Encounter End or M+ Start (41), Change Talent (46), Change Glyph (47)
@@ -430,12 +431,15 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
+                 : 6673: Evoker Devastation 12.1 Class Set 4pc (1296640 effect#1), Evoker Devastation 12.1 Class Set 4pc (1296640 effect#2)
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1002393)  : Apply Aura (6) | Dummy (4)
                    Base Value: -500 | Scaled Value: -500 | Target: Self (1)
+                   Modified By: Evoker Devastation 12.1 Class Set 4pc (1296640 effect#1)
 #2 (id=1077539)  : Apply Aura (6) | Dummy (4)
                    Base Value: -400 | Scaled Value: -400 | Target: Self (1)
+                   Modified By: Evoker Devastation 12.1 Class Set 4pc (1296640 effect#2)
 Description      : Disintegrate reduces the remaining cooldown of your empower spells by ${$s1/-1000}.2 sec each time it deals damage.
 
 Pyre reduces the remaining cooldown of your empower spells by ${$s2/-1000}.2 sec per enemy struck, up to $<pyreCap> sec.
@@ -504,7 +508,9 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1004315)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-Description      : During Deep Breath and Dragonrage you gain the maximum benefit of Mastery: Giantkiller regardless of targets' health.
+Description      : During Deep Breath and Dragonrage you gain the maximum benefit of Mastery: Giantkiller regardless of targets' health.
+
+Unbound Flame always gains the maximum benefit.
 
 Name             : Titanic Wrath (id=386272) [Spell Family (224), Passive] 
 Talent Entry     : Devastation [tree=spec, row=9, col=4, max_rank=1, req_points=20]
@@ -590,7 +596,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1077606)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Fire Breath overrides Fire Breath
-                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 2 | Target: Self (1)
+                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 3 | Target: Self (1)
 #2 (id=1077607)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Eternity Surge overrides Eternity Surge
                    Base Value: 382411 | Scaled Value: 382411 | Misc Value: 359073 | Misc Value 2: 2 | Target: Self (1)
 #3 (id=1077608)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
@@ -728,9 +734,10 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1284732)  : Apply Aura (6) | Dummy (4)
                    Base Value: 4000 | Scaled Value: 4000 | Target: Self (1)
-Description      : When Dragonrage ends, gain Risen Fury for ${$s1/1000} sec for each stack of Rising Fury.
+Description      : When Dragonrage ends, Rising Fury persists for ${$s1/1000} sec per stack, and Dragonrage becomes Unbound Flame. Unbound Flame may be cast $1292323u times before Dragonrage finishes its cooldown.
 
-Risen Fury grants the damage and haste bonuses accumulated from Rising Fury and generates Essence Burst every $1271799t4 sec.
+$@spellicon1292321 $@spellname1292321
+$@spelldesc1292321
 
 Name             : Rising Fury (id=1271796) [Spell Family (224), Passive, Hidden] 
 Talent Entry     : Devastation [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]

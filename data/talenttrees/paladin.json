@@ -1,7 +1,7 @@
 {
     "class": "Paladin",
     "talent_tree_id": 790,
-    "fetched_at": "2026-08-02T09:04:50+00:00",
+    "fetched_at": "2026-08-12T21:34:05+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -96,7 +96,7 @@
                                 "talent_name": "Holy Prism",
                                 "spell_id": 114165,
                                 "spell_name": "Holy Prism",
-                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,473 Holy damage and radiates 2,626 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 6,102 and radiates 917 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
+                                "description": "Fires a beam of light that scatters to strike a clump of targets. \r\n\r\nIf the beam is aimed at an enemy target, it deals 2,426 Holy damage and radiates 2,566 healing to 5 allies within 30 yds.\r\n\r\nIf the beam is aimed at a friendly target, it heals for 5,889 and radiates 941 Holy damage to 5 enemies within 30 yds.\r\n\r\nGenerates 3 Holy Power.",
                                 "cast_time": "Instant",
                                 "cooldown": "45 sec cooldown",
                                 "range": "40 yd range"
@@ -786,7 +786,7 @@
                         "talent_name": "Lightforged Blessing",
                         "spell_id": 403479,
                         "spell_name": "Lightforged Blessing",
-                        "description": "Divine Storm heals you and up to 2 nearby allies for 35.",
+                        "description": "Divine Storm heals you and up to 2 nearby allies for 43.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1289,7 +1289,7 @@
                         "talent_name": "Lightforged Blessing",
                         "spell_id": 406468,
                         "spell_name": "Lightforged Blessing",
-                        "description": "Shield of the Righteous heals you and up to 2 nearby allies for 35.",
+                        "description": "Shield of the Righteous heals you and up to 2 nearby allies for 43.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1348,7 +1348,7 @@
                         "talent_name": "Lightforged Blessing",
                         "spell_id": 406468,
                         "spell_name": "Lightforged Blessing",
-                        "description": "Shield of the Righteous heals you and up to 2 nearby allies for 35.",
+                        "description": "Shield of the Righteous heals you and up to 2 nearby allies for 43.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1372,7 +1372,7 @@
                         "talent_name": "Lightforged Blessing",
                         "spell_id": 406468,
                         "spell_name": "Lightforged Blessing",
-                        "description": "Shield of the Righteous heals you and up to 2 nearby allies for 35.",
+                        "description": "Shield of the Righteous heals you and up to 2 nearby allies for 43.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1737,7 +1737,7 @@
                         "talent_name": "Holy Ritual",
                         "spell_id": 199422,
                         "spell_name": "Holy Ritual",
-                        "description": "Allies are healed for 7,508 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
+                        "description": "Allies are healed for 7,752 when you cast Blessing of Protection or Blessing of Sacrifice on them.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1881,7 +1881,7 @@
                         "talent_name": "Brought to Light",
                         "spell_id": 1265549,
                         "spell_name": "Brought to Light",
-                        "description": "Killing an enemy that yields experience or honor causes you to explode with holy energy, healing up to 5 nearby allies and yourself for 175, split evenly among them.",
+                        "description": "Killing an enemy that yields experience or honor causes you to explode with holy energy, healing up to 5 nearby allies and yourself for 218, split evenly among them.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -2145,7 +2145,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 246 Holy damage and 122 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 244 Holy damage and 121 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2400,7 +2400,7 @@
                                     "talent_name": "Divine Exaction",
                                     "spell_id": 1260429,
                                     "spell_name": "Divine Exaction",
-                                    "description": "Divine Toll casts 2 additional times on your target at 150% effectiveness.",
+                                    "description": "Divine Toll casts 2 additional times on your target at 100% effectiveness.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2747,7 +2747,7 @@
                                     "talent_name": "Divine Guidance",
                                     "spell_id": 433106,
                                     "spell_name": "Divine Guidance",
-                                    "description": "For each Holy Power ability cast, your next Consecration deals 1,140 damage or healing immediately, split across all enemies and allies.",
+                                    "description": "For each Holy Power ability cast, your next Consecration deals 760 damage immediately, split across all enemies.\r\n\r\nUp to 3 nearby allies are each healed for 30% of the damage amount.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2757,7 +2757,7 @@
                                     "talent_name": "Blessed Assurance",
                                     "spell_id": 433015,
                                     "spell_name": "Blessed Assurance",
-                                    "description": "Casting a Holy Power ability increases the damage and healing of your next Crusader Strike by 200%.",
+                                    "description": "Casting a Holy Power ability increases the damage and healing of your next Crusader Strike by 100%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -2858,8 +2858,8 @@
                     "raw_position_x": 9900,
                     "raw_position_y": 4800,
                     "locked_by": [
-                        95234,
-                        110257
+                        110257,
+                        95234
                     ],
                     "unlocks": [
                         109743
@@ -2872,7 +2872,7 @@
                             "talent_name": "Masterwork",
                             "spell_id": 1271387,
                             "spell_name": "Masterwork",
-                            "description": "After casting a Holy Armament, your next 3 abilities cast a Lesser Armament of the same kind on a nearby ally.",
+                            "description": "After casting a Holy Armament, your next 3 casts of Crusader Strike bestow a Lesser Armament of the same kind on a nearby ally.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3435,7 +3435,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 243 Holy damage and 122 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 241 Holy damage and 120 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3462,7 +3462,7 @@
                             "talent_name": "Avenger's Shield",
                             "spell_id": 31935,
                             "spell_name": "Avenger's Shield",
-                            "description": "Hurls your shield at an enemy target, dealing 55 Holy damage, interrupting and silencing the non-Player target for 3 sec, and then jumping to 2 additional nearby enemies. \r\n",
+                            "description": "Hurls your shield at an enemy target, dealing 69 Holy damage, interrupting and silencing the non-Player target for 3 sec, and then jumping to 2 additional nearby enemies. \r\n",
                             "cast_time": "Instant",
                             "cooldown": "15 sec cooldown",
                             "range": "30 yd range"
@@ -3574,7 +3574,7 @@
                             "talent_name": "Divine Hammer",
                             "spell_id": 432929,
                             "spell_name": "Divine Hammer",
-                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 50 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
+                            "description": "Divine Toll summons Divine Hammers that spin around you for 8 sec.\r\n\r\nDivine Hammer\r\nStrikes all enemies nearby for 51 Holy damage every 2 sec. Deals reduced damage beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3586,14 +3586,14 @@
                     "node_type": "PASSIVE",
                     "display_row": 3,
                     "display_col": 17,
-                    "raw_position_x": 12601,
-                    "raw_position_y": 2099,
+                    "raw_position_x": 12600,
+                    "raw_position_y": 2100,
                     "locked_by": [
                         81502
                     ],
                     "unlocks": [
-                        81494,
-                        81487
+                        81487,
+                        81476
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3622,7 +3622,7 @@
                     ],
                     "unlocks": [
                         81487,
-                        81498
+                        81494
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3634,7 +3634,7 @@
                                     "talent_name": "Hammer of the Righteous",
                                     "spell_id": 53595,
                                     "spell_name": "Hammer of the Righteous",
-                                    "description": "Hammers the current target for 53 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "Hammers the current target for 70 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": "Melee Range"
@@ -3644,7 +3644,7 @@
                                     "talent_name": "Blessed Hammer",
                                     "spell_id": 204019,
                                     "spell_name": "Blessed Hammer",
-                                    "description": "Throws a Blessed Hammer that spirals outward, dealing 8 Holy damage to enemies and reducing the next damage they deal to you by 11.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "Throws a Blessed Hammer that spirals outward, dealing 11 Holy damage to enemies and reducing the next damage they deal to you by 11.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": null,
                                     "range": null
@@ -3780,7 +3780,7 @@
                     ]
                 },
                 {
-                    "id": 81494,
+                    "id": 81476,
                     "node_type": "CHOICE",
                     "display_row": 4,
                     "display_col": 16,
@@ -3790,8 +3790,82 @@
                         81489
                     ],
                     "unlocks": [
-                        81486,
-                        81476
+                        110862,
+                        81486
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "choices": [
+                                {
+                                    "talent_id": 107444,
+                                    "talent_name": "Valiant Crusade",
+                                    "spell_id": 1245979,
+                                    "spell_name": "Valiant Crusade",
+                                    "description": "While out of combat, Divine Steed grants Shield of the Righteous for its duration and an additional 4.0 sec after it fades.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": "Unlimited range"
+                                },
+                                {
+                                    "talent_id": 142265,
+                                    "talent_name": "Blessed Word",
+                                    "spell_id": 1301732,
+                                    "spell_name": "Blessed Word",
+                                    "description": "Word of Glory can no longer critically strike, but its healing is increased by your critical strike chance and 80% of its overhealing done to instead shrouds its target in Light, granting an absorb shield.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": 81487,
+                    "node_type": "PASSIVE",
+                    "display_row": 4,
+                    "display_col": 18,
+                    "raw_position_x": 13197,
+                    "raw_position_y": 2697,
+                    "locked_by": [
+                        81469,
+                        81489
+                    ],
+                    "unlocks": [
+                        81481,
+                        81501,
+                        110862
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 107458,
+                            "talent_name": "Grand Crusader",
+                            "spell_id": 85043,
+                            "spell_name": "Grand Crusader",
+                            "description": "When you avoid a melee attack or use Crusader Strike, you have a 15% chance to reset the remaining cooldown on Avenger's Shield.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
+                        }
+                    ]
+                },
+                {
+                    "id": 81494,
+                    "node_type": "CHOICE",
+                    "display_row": 4,
+                    "display_col": 20,
+                    "raw_position_x": 14400,
+                    "raw_position_y": 2700,
+                    "locked_by": [
+                        81469
+                    ],
+                    "unlocks": [
+                        101927,
+                        81501
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -3819,66 +3893,6 @@
                                     "range": null
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    "id": 81487,
-                    "node_type": "PASSIVE",
-                    "display_row": 4,
-                    "display_col": 18,
-                    "raw_position_x": 13197,
-                    "raw_position_y": 2697,
-                    "locked_by": [
-                        81469,
-                        81489
-                    ],
-                    "unlocks": [
-                        81476,
-                        81481,
-                        81501
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 107458,
-                            "talent_name": "Grand Crusader",
-                            "spell_id": 85043,
-                            "spell_name": "Grand Crusader",
-                            "description": "When you avoid a melee attack or use Crusader Strike, you have a 15% chance to reset the remaining cooldown on Avenger's Shield.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 81498,
-                    "node_type": "PASSIVE",
-                    "display_row": 4,
-                    "display_col": 20,
-                    "raw_position_x": 14401,
-                    "raw_position_y": 2699,
-                    "locked_by": [
-                        81469
-                    ],
-                    "unlocks": [
-                        101927,
-                        81501
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 107472,
-                            "talent_name": "Seal of Charity",
-                            "spell_id": 384815,
-                            "spell_name": "Seal of Charity",
-                            "description": "When you cast Word of Glory on someone other than yourself, you are also healed for 100% of the amount healed.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
                         }
                     ]
                 },
@@ -4003,7 +4017,7 @@
                                     "talent_name": "Divine Exaction",
                                     "spell_id": 1260429,
                                     "spell_name": "Divine Exaction",
-                                    "description": "Divine Toll casts 2 additional times on your target at 150% effectiveness.",
+                                    "description": "Divine Toll casts 2 additional times on your target at 100% effectiveness.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4023,61 +4037,46 @@
                     ]
                 },
                 {
-                    "id": 81486,
-                    "node_type": "PASSIVE",
-                    "display_row": 5,
-                    "display_col": 16,
-                    "raw_position_x": 12001,
-                    "raw_position_y": 3300,
-                    "locked_by": [
-                        81494
-                    ],
-                    "unlocks": [
-                        81499,
-                        81492,
-                        81474
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 107457,
-                            "talent_name": "Refining Fire",
-                            "spell_id": 469883,
-                            "spell_name": "Refining Fire",
-                            "description": "Enemies struck by Avenger's Shield burn with holy fire, suffering 100% additional Radiant damage over 5 sec.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": "Unlimited range"
-                        }
-                    ]
-                },
-                {
-                    "id": 81476,
-                    "node_type": "PASSIVE",
+                    "id": 110862,
+                    "node_type": "CHOICE",
                     "display_row": 5,
                     "display_col": 17,
-                    "raw_position_x": 12599,
-                    "raw_position_y": 3302,
+                    "raw_position_x": 12600,
+                    "raw_position_y": 3300,
                     "locked_by": [
                         81487,
-                        81494
+                        81476
                     ],
                     "unlocks": [
+                        81486,
                         81499
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107444,
-                            "talent_name": "Valiant Crusade",
-                            "spell_id": 1245979,
-                            "spell_name": "Valiant Crusade",
-                            "description": "While out of combat, Divine Steed grants Shield of the Righteous for its duration and an additional 4.0 sec after it fades.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": "Unlimited range"
+                            "choices": [
+                                {
+                                    "talent_id": 116891,
+                                    "talent_name": "Blessing of Spellwarding",
+                                    "spell_id": 204018,
+                                    "spell_name": "Blessing of Spellwarding",
+                                    "description": "Blesses a party or raid member, granting immunity to magical damage and harmful effects for 10 sec.\r\n\r\nCannot be used on a target with Forbearance. Causes Forbearance for 30 sec.\r\n\r\nShares a cooldown with Blessing of Protection.",
+                                    "cast_time": "Instant",
+                                    "cooldown": "1.5 sec cooldown",
+                                    "range": "40 yd range"
+                                },
+                                {
+                                    "talent_id": 142611,
+                                    "talent_name": "Uther's Counsel",
+                                    "spell_id": 378425,
+                                    "spell_name": "Uther's Counsel",
+                                    "description": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
                         }
                     ]
                 },
@@ -4092,9 +4091,9 @@
                         81487
                     ],
                     "unlocks": [
+                        81483,
                         81499,
-                        81503,
-                        90062
+                        81503
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4113,60 +4112,45 @@
                 },
                 {
                     "id": 81501,
-                    "node_type": "PASSIVE",
+                    "node_type": "CHOICE",
                     "display_row": 5,
                     "display_col": 19,
                     "raw_position_x": 13800,
-                    "raw_position_y": 3301,
+                    "raw_position_y": 3300,
                     "locked_by": [
-                        81487,
-                        81498
+                        81494,
+                        81487
                     ],
                     "unlocks": [
+                        101927,
                         81503
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107475,
-                            "talent_name": "Searing Sunlight",
-                            "spell_id": 1244070,
-                            "spell_name": "Searing Sunlight",
-                            "description": "Casting Avenger's Shield causes Consecration to deal its damage and healing again immediately at 100% effectiveness.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": "Unlimited range"
-                        }
-                    ]
-                },
-                {
-                    "id": 101927,
-                    "node_type": "PASSIVE",
-                    "display_row": 5,
-                    "display_col": 20,
-                    "raw_position_x": 14400,
-                    "raw_position_y": 3300,
-                    "locked_by": [
-                        81498
-                    ],
-                    "unlocks": [
-                        81470,
-                        81503,
-                        81485
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 107456,
-                            "talent_name": "Solace",
-                            "spell_id": 1245891,
-                            "spell_name": "Solace",
-                            "description": "Consecration heals you for 300% of the damage it deals.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": "Unlimited range"
+                            "choices": [
+                                {
+                                    "talent_id": 107475,
+                                    "talent_name": "Searing Sunlight",
+                                    "spell_id": 1244070,
+                                    "spell_name": "Searing Sunlight",
+                                    "description": "Casting Avenger's Shield causes Consecration to deal its damage and healing again immediately at 100% effectiveness.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": "Unlimited range"
+                                },
+                                {
+                                    "talent_id": 142608,
+                                    "talent_name": "Hand of the Protector",
+                                    "spell_id": 315924,
+                                    "spell_name": "Hand of the Protector",
+                                    "description": "When you cast Word of Glory on someone other than yourself, its healing is increased by up to 100% based on the target's missing health.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
                         }
                     ]
                 },
@@ -4200,28 +4184,29 @@
                     ]
                 },
                 {
-                    "id": 81492,
+                    "id": 81486,
                     "node_type": "PASSIVE",
                     "display_row": 6,
-                    "display_col": 15,
-                    "raw_position_x": 11401,
-                    "raw_position_y": 3899,
+                    "display_col": 16,
+                    "raw_position_x": 12000,
+                    "raw_position_y": 3900,
                     "locked_by": [
-                        81486
+                        110862,
+                        81476
                     ],
                     "unlocks": [
-                        81474,
-                        101928
+                        81492,
+                        81474
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107464,
-                            "talent_name": "Undying Embers",
-                            "spell_id": 1244019,
-                            "spell_name": "Undying Embers",
-                            "description": "You are healed for 100% of the damage dealt by Refining Fire.",
+                            "talent_id": 107457,
+                            "talent_name": "Refining Fire",
+                            "spell_id": 469883,
+                            "spell_name": "Refining Fire",
+                            "description": "Enemies struck by Avenger's Shield burn with holy fire, suffering 100% additional Radiant damage over 5 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": "Unlimited range"
@@ -4233,16 +4218,13 @@
                     "node_type": "PASSIVE",
                     "display_row": 6,
                     "display_col": 17,
-                    "raw_position_x": 12599,
-                    "raw_position_y": 3897,
+                    "raw_position_x": 12600,
+                    "raw_position_y": 3900,
                     "locked_by": [
-                        81476,
                         81481,
-                        81486
+                        110862
                     ],
                     "unlocks": [
-                        81474,
-                        81483,
                         81506
                     ],
                     "max_ranks": 1,
@@ -4253,7 +4235,7 @@
                             "talent_name": "Bulwark of Order",
                             "spell_id": 209389,
                             "spell_name": "Bulwark of Order",
-                            "description": "Avenger's Shield also shields you for 8 sec, absorbing 60% as much damage as it dealt, up to 50% of your maximum health.",
+                            "description": "Avenger's Shield also shields you for 8 sec, absorbing 75% as much damage as it dealt, up to 50% of your maximum health.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4261,44 +4243,32 @@
                     ]
                 },
                 {
-                    "id": 90062,
-                    "node_type": "CHOICE",
+                    "id": 81483,
+                    "node_type": "ACTIVE",
                     "display_row": 6,
                     "display_col": 18,
-                    "raw_position_x": 13201,
+                    "raw_position_x": 13200,
                     "raw_position_y": 3900,
                     "locked_by": [
                         81481
                     ],
                     "unlocks": [
-                        81483
+                        81612,
+                        81506,
+                        90062
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 116892,
-                                    "talent_name": "Improved Ardent Defender",
-                                    "spell_id": 393114,
-                                    "spell_name": "Improved Ardent Defender",
-                                    "description": "Ardent Defender reduces damage taken by an additional 10%.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 116891,
-                                    "talent_name": "Blessing of Spellwarding",
-                                    "spell_id": 204018,
-                                    "spell_name": "Blessing of Spellwarding",
-                                    "description": "Blesses a party or raid member, granting immunity to magical damage and harmful effects for 10 sec.\r\n\r\nCannot be used on a target with Forbearance. Causes Forbearance for 30 sec.\r\n\r\nShares a cooldown with Blessing of Protection.",
-                                    "cast_time": "Instant",
-                                    "cooldown": "1.5 sec cooldown",
-                                    "range": "40 yd range"
-                                }
-                            ]
+                            "talent_id": 107453,
+                            "talent_name": "Avenging Wrath",
+                            "spell_id": 31884,
+                            "spell_name": "Avenging Wrath",
+                            "description": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20 sec.",
+                            "cast_time": "Instant",
+                            "cooldown": "2 min cooldown",
+                            "range": null
                         }
                     ]
                 },
@@ -4308,15 +4278,13 @@
                     "display_row": 6,
                     "display_col": 19,
                     "raw_position_x": 13800,
-                    "raw_position_y": 3897,
+                    "raw_position_y": 3900,
                     "locked_by": [
                         81501,
-                        81481,
-                        101927
+                        81481
                     ],
                     "unlocks": [
-                        81485,
-                        81483,
+                        81470,
                         81612
                     ],
                     "max_ranks": 1,
@@ -4349,31 +4317,46 @@
                     ]
                 },
                 {
-                    "id": 81470,
-                    "node_type": "PASSIVE",
+                    "id": 101927,
+                    "node_type": "CHOICE",
                     "display_row": 6,
-                    "display_col": 21,
-                    "raw_position_x": 15000,
+                    "display_col": 20,
+                    "raw_position_x": 14400,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        101927
+                        81494,
+                        81501
                     ],
                     "unlocks": [
-                        81473,
-                        81485
+                        81485,
+                        81470
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107437,
-                            "talent_name": "Vision of Sanctity",
-                            "spell_id": 1245354,
-                            "spell_name": "Vision of Sanctity",
-                            "description": "Consecration deals 100% increased damage when it strikes a single target.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": "Unlimited range"
+                            "choices": [
+                                {
+                                    "talent_id": 107456,
+                                    "talent_name": "Solace",
+                                    "spell_id": 1245891,
+                                    "spell_name": "Solace",
+                                    "description": "Consecration heals you for 375% of the damage it deals.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": "Unlimited range"
+                                },
+                                {
+                                    "talent_id": 107459,
+                                    "talent_name": "Instrument of the Divine",
+                                    "spell_id": 1277162,
+                                    "spell_name": "Instrument of the Divine",
+                                    "description": "Shield of the Righteous consumes up to 2 more Holy Power and deals 50% increased damage for each additional Holy Power consumed.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
                         }
                     ]
                 },
@@ -4410,18 +4393,15 @@
                     "id": 81474,
                     "node_type": "PASSIVE",
                     "display_row": 7,
-                    "display_col": 16,
-                    "raw_position_x": 11998,
-                    "raw_position_y": 4498,
+                    "display_col": 15,
+                    "raw_position_x": 11400,
+                    "raw_position_y": 4500,
                     "locked_by": [
-                        81499,
-                        81492,
                         81486
                     ],
                     "unlocks": [
-                        81629,
-                        101928,
-                        81472
+                        81493,
+                        101928
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -4450,17 +4430,47 @@
                     ]
                 },
                 {
+                    "id": 81492,
+                    "node_type": "PASSIVE",
+                    "display_row": 7,
+                    "display_col": 16,
+                    "raw_position_x": 12000,
+                    "raw_position_y": 4500,
+                    "locked_by": [
+                        81486
+                    ],
+                    "unlocks": [
+                        101928
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 107464,
+                            "talent_name": "Undying Embers",
+                            "spell_id": 1244019,
+                            "spell_name": "Undying Embers",
+                            "description": "You are healed for at least 125% of the damage dealt by Refining Fire, increasing to a maximum of 300% as your health decreases.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": "Unlimited range"
+                        }
+                    ]
+                },
+                {
                     "id": 81506,
                     "node_type": "PASSIVE",
                     "display_row": 7,
                     "display_col": 17,
-                    "raw_position_x": 12599,
-                    "raw_position_y": 4498,
+                    "raw_position_x": 12600,
+                    "raw_position_y": 4500,
                     "locked_by": [
+                        81483,
                         81499
                     ],
                     "unlocks": [
-                        81629
+                        81490,
+                        101928
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4478,21 +4488,17 @@
                     ]
                 },
                 {
-                    "id": 81483,
+                    "id": 90062,
                     "node_type": "CHOICE",
                     "display_row": 7,
                     "display_col": 18,
-                    "raw_position_x": 13197,
-                    "raw_position_y": 4498,
+                    "raw_position_x": 13200,
+                    "raw_position_y": 4500,
                     "locked_by": [
-                        81503,
-                        81499,
-                        90062
+                        81483
                     ],
                     "unlocks": [
-                        81490,
-                        81475,
-                        81629
+                        81490
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4500,23 +4506,23 @@
                             "rank": 1,
                             "choices": [
                                 {
-                                    "talent_id": 107453,
-                                    "talent_name": "Avenging Wrath",
-                                    "spell_id": 31884,
-                                    "spell_name": "Avenging Wrath",
-                                    "description": "Call upon the Light to become an avatar of retribution, increasing your damage, healing, and critical strike chance by 20% for 20 sec.",
-                                    "cast_time": "Instant",
-                                    "cooldown": "2 min cooldown",
+                                    "talent_id": 116892,
+                                    "talent_name": "Improved Ardent Defender",
+                                    "spell_id": 393114,
+                                    "spell_name": "Improved Ardent Defender",
+                                    "description": "Ardent Defender increases your maximum health by 20% for its duration, and its effect is no longer canceled when you take fatal damage.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
                                     "range": null
                                 },
                                 {
-                                    "talent_id": 107452,
-                                    "talent_name": "Sentinel",
-                                    "spell_id": 389539,
-                                    "spell_name": "Sentinel",
-                                    "description": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20 sec. After 5.0 sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec.\r\n\r\nCombines with Avenging Wrath.",
-                                    "cast_time": "Instant",
-                                    "cooldown": "2 min cooldown",
+                                    "talent_id": 142609,
+                                    "talent_name": "Seal of Reprisal",
+                                    "spell_id": 377053,
+                                    "spell_name": "Seal of Reprisal",
+                                    "description": "Your Crusader Strike causes enemies struck to deal 10% reduced damage to you for 8 sec.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
                                     "range": null
                                 }
                             ]
@@ -4528,13 +4534,15 @@
                     "node_type": "PASSIVE",
                     "display_row": 7,
                     "display_col": 19,
-                    "raw_position_x": 13799,
+                    "raw_position_x": 13800,
                     "raw_position_y": 4500,
                     "locked_by": [
+                        81483,
                         81503
                     ],
                     "unlocks": [
-                        81475
+                        81488,
+                        81490
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4552,21 +4560,47 @@
                     ]
                 },
                 {
-                    "id": 81485,
+                    "id": 81470,
                     "node_type": "PASSIVE",
                     "display_row": 7,
                     "display_col": 20,
-                    "raw_position_x": 14401,
-                    "raw_position_y": 4497,
+                    "raw_position_x": 14400,
+                    "raw_position_y": 4500,
                     "locked_by": [
-                        81503,
-                        81470,
+                        101927,
+                        81503
+                    ],
+                    "unlocks": [
+                        81488
+                    ],
+                    "max_ranks": 1,
+                    "ranks": [
+                        {
+                            "rank": 1,
+                            "talent_id": 107437,
+                            "talent_name": "Vision of Sanctity",
+                            "spell_id": 1245354,
+                            "spell_name": "Vision of Sanctity",
+                            "description": "Consecration deals 100% increased damage when it strikes a single target.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": "Unlimited range"
+                        }
+                    ]
+                },
+                {
+                    "id": 81485,
+                    "node_type": "PASSIVE",
+                    "display_row": 7,
+                    "display_col": 21,
+                    "raw_position_x": 15000,
+                    "raw_position_y": 4500,
+                    "locked_by": [
                         101927
                     ],
                     "unlocks": [
-                        81473,
-                        81475,
-                        81500
+                        81488,
+                        81498
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -4690,7 +4724,7 @@
                                     "talent_name": "Divine Guidance",
                                     "spell_id": 433106,
                                     "spell_name": "Divine Guidance",
-                                    "description": "For each Holy Power ability cast, your next Consecration deals 1,140 damage or healing immediately, split across all enemies and allies.",
+                                    "description": "For each Holy Power ability cast, your next Consecration deals 760 damage immediately, split across all enemies.\r\n\r\nUp to 3 nearby allies are each healed for 30% of the damage amount.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4700,7 +4734,7 @@
                                     "talent_name": "Blessed Assurance",
                                     "spell_id": 433015,
                                     "spell_name": "Blessed Assurance",
-                                    "description": "Casting a Holy Power ability increases the damage and healing of your next Crusader Strike by 200%.",
+                                    "description": "Casting a Holy Power ability increases the damage and healing of your next Crusader Strike by 100%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -4717,8 +4751,8 @@
                     "raw_position_x": 9900,
                     "raw_position_y": 4800,
                     "locked_by": [
-                        95234,
-                        110257
+                        110257,
+                        95234
                     ],
                     "unlocks": [
                         109743
@@ -4731,7 +4765,7 @@
                             "talent_name": "Masterwork",
                             "spell_id": 1271387,
                             "spell_name": "Masterwork",
-                            "description": "After casting a Holy Armament, your next 3 abilities cast a Lesser Armament of the same kind on a nearby ally.",
+                            "description": "After casting a Holy Armament, your next 3 casts of Crusader Strike bestow a Lesser Armament of the same kind on a nearby ally.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4740,61 +4774,46 @@
                 },
                 {
                     "id": 101928,
-                    "node_type": "PASSIVE",
+                    "node_type": "CHOICE",
                     "display_row": 8,
-                    "display_col": 15,
-                    "raw_position_x": 11400,
+                    "display_col": 16,
+                    "raw_position_x": 12000,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        81474,
-                        81492
+                        81492,
+                        81506,
+                        81474
                     ],
                     "unlocks": [
-                        81472,
+                        81482,
                         81493
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107439,
-                            "talent_name": "Soaring Shield",
-                            "spell_id": 378457,
-                            "spell_name": "Soaring Shield",
-                            "description": "Avenger's Shield jumps to 2 additional targets.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 81629,
-                    "node_type": "PASSIVE",
-                    "display_row": 8,
-                    "display_col": 17,
-                    "raw_position_x": 12600,
-                    "raw_position_y": 5100,
-                    "locked_by": [
-                        81474,
-                        81506,
-                        81483
-                    ],
-                    "unlocks": [
-                        81472
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 107626,
-                            "talent_name": "Seal of Reprisal",
-                            "spell_id": 377053,
-                            "spell_name": "Seal of Reprisal",
-                            "description": "Your Crusader Strike deals 20% increased damage.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
+                            "choices": [
+                                {
+                                    "talent_id": 107439,
+                                    "talent_name": "Soaring Shield",
+                                    "spell_id": 378457,
+                                    "spell_name": "Soaring Shield",
+                                    "description": "Avenger's Shield jumps to 2 additional targets.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                },
+                                {
+                                    "talent_id": 142610,
+                                    "talent_name": "Focused Enmity",
+                                    "spell_id": 378845,
+                                    "spell_name": "Focused Enmity",
+                                    "description": "When Avenger's Shield strikes a single enemy, it deals 100% additional Holy damage.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
                         }
                     ]
                 },
@@ -4806,7 +4825,9 @@
                     "raw_position_x": 13197,
                     "raw_position_y": 5099,
                     "locked_by": [
-                        81483
+                        90062,
+                        81612,
+                        81506
                     ],
                     "unlocks": [
                         81484,
@@ -4823,61 +4844,32 @@
                             "spell_name": "Guardian of Ancient Kings",
                             "description": "Empowers you with the spirit of ancient kings, reducing all damage you take by 50% for 8 sec.",
                             "cast_time": "Instant",
-                            "cooldown": null,
+                            "cooldown": "8 sec cooldown",
                             "range": null
                         }
                     ]
                 },
                 {
-                    "id": 81475,
+                    "id": 81488,
                     "node_type": "PASSIVE",
                     "display_row": 8,
-                    "display_col": 19,
-                    "raw_position_x": 13801,
+                    "display_col": 20,
+                    "raw_position_x": 14400,
                     "raw_position_y": 5100,
                     "locked_by": [
-                        81485,
                         81612,
-                        81483
+                        81485,
+                        81470
                     ],
                     "unlocks": [
-                        81500
+                        81471,
+                        81498
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107443,
-                            "talent_name": "Hand of the Protector",
-                            "spell_id": 315924,
-                            "spell_name": "Hand of the Protector",
-                            "description": "When you cast Word of Glory on someone other than yourself, its healing is increased by up to 100% based on the target's missing health.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 81473,
-                    "node_type": "PASSIVE",
-                    "display_row": 8,
-                    "display_col": 21,
-                    "raw_position_x": 15001,
-                    "raw_position_y": 5100,
-                    "locked_by": [
-                        81470,
-                        81485
-                    ],
-                    "unlocks": [
-                        81488,
-                        81500
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 107441,
+                            "talent_id": 142612,
                             "talent_name": "Sanctuary",
                             "spell_id": 379021,
                             "spell_name": "Sanctuary",
@@ -5029,33 +5021,46 @@
                     ]
                 },
                 {
-                    "id": 81472,
-                    "node_type": "PASSIVE",
+                    "id": 81493,
+                    "node_type": "CHOICE",
                     "display_row": 9,
-                    "display_col": 16,
-                    "raw_position_x": 11998,
-                    "raw_position_y": 5697,
+                    "display_col": 15,
+                    "raw_position_x": 11400,
+                    "raw_position_y": 5700,
                     "locked_by": [
-                        81474,
-                        81629,
-                        101928
+                        101928,
+                        81474
                     ],
                     "unlocks": [
                         81482,
-                        81493
+                        81505
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107440,
-                            "talent_name": "Focused Enmity",
-                            "spell_id": 378845,
-                            "spell_name": "Focused Enmity",
-                            "description": "When Avenger's Shield strikes a single enemy, it deals 100% additional Holy damage.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
+                            "choices": [
+                                {
+                                    "talent_id": 107466,
+                                    "talent_name": "Strength in Adversity",
+                                    "spell_id": 393071,
+                                    "spell_name": "Strength in Adversity",
+                                    "description": "For each target hit by Avenger's Shield, gain 3% parry for 15 sec.",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                },
+                                {
+                                    "talent_id": 107465,
+                                    "talent_name": "Crusader's Resolve",
+                                    "spell_id": 380188,
+                                    "spell_name": "Crusader's Resolve",
+                                    "description": "Enemies hit by Avenger's Shield deal 10% reduced melee damage to you for 10 sec. ",
+                                    "cast_time": "Passive",
+                                    "cooldown": null,
+                                    "range": null
+                                }
+                            ]
                         }
                     ]
                 },
@@ -5070,9 +5075,9 @@
                         81490
                     ],
                     "unlocks": [
-                        81482,
+                        81497,
                         81491,
-                        81497
+                        81482
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -5100,19 +5105,19 @@
                         81490
                     ],
                     "unlocks": [
-                        81504,
                         81471,
-                        81497
+                        81497,
+                        81504
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
                             "talent_id": 133085,
-                            "talent_name": "Sanctified Wrath",
-                            "spell_id": 53376,
-                            "spell_name": "Sanctified Wrath",
-                            "description": "Avenging Wrath and Avenging Crusader have 25% increased duration.",
+                            "talent_name": "Empyrean Authority",
+                            "spell_id": 1246481,
+                            "spell_name": "Empyrean Authority",
+                            "description": "Guardian of Ancient Kings has 1 additional charge.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5120,30 +5125,29 @@
                     ]
                 },
                 {
-                    "id": 81500,
+                    "id": 81498,
                     "node_type": "PASSIVE",
                     "display_row": 9,
-                    "display_col": 20,
-                    "raw_position_x": 14400,
+                    "display_col": 21,
+                    "raw_position_x": 15000,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        81485,
-                        81473,
-                        81475
+                        81488,
+                        81485
                     ],
                     "unlocks": [
-                        81471,
-                        81488
+                        81477,
+                        81471
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
-                            "talent_id": 107474,
-                            "talent_name": "Uther's Counsel",
-                            "spell_id": 378425,
-                            "spell_name": "Uther's Counsel",
-                            "description": "Your Lay on Hands, Divine Shield, Blessing of Protection, and Blessing of Spellwarding have 15% reduced cooldown.",
+                            "talent_id": 107472,
+                            "talent_name": "Seal of Charity",
+                            "spell_id": 384815,
+                            "spell_name": "Seal of Charity",
+                            "description": "When you cast Word of Glory on someone other than yourself, you are also healed for 100% of the amount healed.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5263,62 +5267,20 @@
                     ]
                 },
                 {
-                    "id": 81493,
-                    "node_type": "CHOICE",
-                    "display_row": 10,
-                    "display_col": 15,
-                    "raw_position_x": 11400,
-                    "raw_position_y": 6300,
-                    "locked_by": [
-                        81472,
-                        101928
-                    ],
-                    "unlocks": [
-                        81505
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "choices": [
-                                {
-                                    "talent_id": 107466,
-                                    "talent_name": "Strength in Adversity",
-                                    "spell_id": 393071,
-                                    "spell_name": "Strength in Adversity",
-                                    "description": "For each target hit by Avenger's Shield, gain 3% parry for 15 sec.",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                },
-                                {
-                                    "talent_id": 107465,
-                                    "talent_name": "Crusader's Resolve",
-                                    "spell_id": 380188,
-                                    "spell_name": "Crusader's Resolve",
-                                    "description": "Enemies hit by Avenger's Shield deal 10% reduced melee damage to you for 10 sec. ",
-                                    "cast_time": "Passive",
-                                    "cooldown": null,
-                                    "range": null
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
                     "id": 81482,
                     "node_type": "PASSIVE",
                     "display_row": 10,
                     "display_col": 16,
-                    "raw_position_x": 11999,
+                    "raw_position_x": 12000,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        81472,
-                        81484
+                        81484,
+                        101928,
+                        81493
                     ],
                     "unlocks": [
-                        81505,
-                        81491
+                        81491,
+                        81505
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -5348,10 +5310,10 @@
                 },
                 {
                     "id": 81497,
-                    "node_type": "PASSIVE",
+                    "node_type": "ACTIVE",
                     "display_row": 10,
                     "display_col": 18,
-                    "raw_position_x": 13201,
+                    "raw_position_x": 13200,
                     "raw_position_y": 6300,
                     "locked_by": [
                         81484,
@@ -5359,20 +5321,20 @@
                         103877
                     ],
                     "unlocks": [
-                        81504,
-                        81491
+                        81491,
+                        81504
                     ],
                     "max_ranks": 1,
                     "ranks": [
                         {
                             "rank": 1,
                             "talent_id": 107471,
-                            "talent_name": "Empyrean Authority",
-                            "spell_id": 1246481,
-                            "spell_name": "Empyrean Authority",
-                            "description": "Guardian of Ancient Kings has 1 additional charge.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
+                            "talent_name": "Sentinel",
+                            "spell_id": 389539,
+                            "spell_name": "Sentinel",
+                            "description": "Call upon the Light and gain 15 stacks of Divine Resolve, increasing your maximum health by 1% and reducing your damage taken by 2% per stack for 20 sec. After 5.0 sec, you will begin to lose 1 stack per second, but each 3 Holy Power spent will delay the loss of your next stack by 1 sec.\r\n\r\nWhile active, your damage and healing are increased by 10%, and critical strike chance is increased by 10%.",
+                            "cast_time": "Instant",
+                            "cooldown": "2 min cooldown",
                             "range": null
                         }
                     ]
@@ -5382,10 +5344,11 @@
                     "node_type": "PASSIVE",
                     "display_row": 10,
                     "display_col": 20,
-                    "raw_position_x": 14401,
-                    "raw_position_y": 6299,
+                    "raw_position_x": 14400,
+                    "raw_position_y": 6300,
                     "locked_by": [
-                        81500,
+                        81488,
+                        81498,
                         103877
                     ],
                     "unlocks": [
@@ -5412,35 +5375,6 @@
                             "spell_id": 391142,
                             "spell_name": "Zealot's Paragon",
                             "description": "Hammer of Wrath and Judgment deal 10% additional damage and extend the duration of Avenging Wrath by 1.0 sec.",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
-                        }
-                    ]
-                },
-                {
-                    "id": 81488,
-                    "node_type": "PASSIVE",
-                    "display_row": 10,
-                    "display_col": 21,
-                    "raw_position_x": 15000,
-                    "raw_position_y": 6300,
-                    "locked_by": [
-                        81473,
-                        81500
-                    ],
-                    "unlocks": [
-                        81477
-                    ],
-                    "max_ranks": 1,
-                    "ranks": [
-                        {
-                            "rank": 1,
-                            "talent_id": 107459,
-                            "talent_name": "Instrument of the Divine",
-                            "spell_id": 1277162,
-                            "spell_name": "Instrument of the Divine",
-                            "description": "Shield of the Righteous consumes up to 2 more Holy Power and deals 50% increased damage for each additional Holy Power consumed.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5522,12 +5456,12 @@
                     "node_type": "PASSIVE",
                     "display_row": 11,
                     "display_col": 17,
-                    "raw_position_x": 12601,
+                    "raw_position_x": 12600,
                     "raw_position_y": 6900,
                     "locked_by": [
+                        81484,
                         81482,
-                        81497,
-                        81484
+                        81497
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -5538,7 +5472,7 @@
                             "talent_name": "Bulwark of Righteous Fury",
                             "spell_id": 386653,
                             "spell_name": "Bulwark of Righteous Fury",
-                            "description": "Avenger's Shield increases the damage of your next Shield of the Righteous by 20% for each target hit by Avenger's Shield, stacking up to 5 times, and increases its radius by 6 yds.",
+                            "description": "Avenger's Shield increases the damage of your next Shield of the Righteous by 10% for each target hit by Avenger's Shield, stacking up to 5 times, and increases its radius by 6 yds.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5550,11 +5484,11 @@
                     "node_type": "PASSIVE",
                     "display_row": 11,
                     "display_col": 19,
-                    "raw_position_x": 13801,
+                    "raw_position_x": 13800,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        81497,
                         81471,
+                        81497,
                         103877
                     ],
                     "unlocks": [],
@@ -5581,7 +5515,7 @@
                     "raw_position_x": 15000,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        81488,
+                        81498,
                         81471
                     ],
                     "unlocks": [],
@@ -5617,7 +5551,7 @@
                             "talent_name": "Glory of the Vanguard",
                             "spell_id": 1267203,
                             "spell_name": "Glory of the Vanguard",
-                            "description": "Judgment has a chance to grant you Vanguard, causing your next Avenger's Shield to leave an echoing bolt of light in a line between you and the initial target, piercing any enemies for 105 Holy damage.",
+                            "description": "Judgment has a chance to grant you Vanguard, causing your next Avenger's Shield to leave an echoing bolt of light in a line between you and the initial target, piercing any enemies for up to 150% of the initial damage dealt.\r\n\r\nDamage reduced against secondary targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5683,7 +5617,7 @@
                             "talent_name": "Holy Shock",
                             "spell_id": 20473,
                             "spell_name": "Holy Shock",
-                            "description": "Triggers a burst of Light on the target, dealing 826 Holy damage to an enemy, or 2,568 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
+                            "description": "Triggers a burst of Light on the target, dealing 815 Holy damage to an enemy, or 4,322 healing to an ally.\r\n\r\nGenerates 1 Holy Power.\r\n",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "40 yd range"
@@ -6025,8 +5959,8 @@
                         81569
                     ],
                     "unlocks": [
-                        81590,
-                        81570
+                        81570,
+                        81590
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6055,9 +5989,9 @@
                         81569
                     ],
                     "unlocks": [
+                        81575,
                         108099,
-                        81566,
-                        81575
+                        81566
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6226,8 +6160,8 @@
                         93927
                     ],
                     "unlocks": [
-                        81571,
-                        93523
+                        93523,
+                        81571
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6266,7 +6200,7 @@
                             "talent_name": "Ringing of the Heavens",
                             "spell_id": 1241542,
                             "spell_name": "Ringing of the Heavens",
-                            "description": "Activating Aura Mastery also casts a Divine Toll at 100% effectiveness.",
+                            "description": "Activating Aura Mastery also casts a Divine Toll at 200% effectiveness.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6484,8 +6418,8 @@
                     "raw_position_x": 14401,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        81568,
-                        81575
+                        81575,
+                        81568
                     ],
                     "unlocks": [
                         81556,
@@ -6572,14 +6506,14 @@
                     "raw_position_x": 11400,
                     "raw_position_y": 4500,
                     "locked_by": [
-                        81571,
                         81590,
-                        81570
+                        81570,
+                        81571
                     ],
                     "unlocks": [
+                        81573,
                         81580,
-                        102502,
-                        81573
+                        102502
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -6621,7 +6555,7 @@
                             "talent_name": "Saved by the Light",
                             "spell_id": 157047,
                             "spell_name": "Saved by the Light",
-                            "description": "When an ally with your Beacon of Light is damaged, they absorb the next 57 damage, increasing by up to 300% based on their current health. Lower health allies are shielded for more.",
+                            "description": "When an ally with your Beacon of Light is damaged, they absorb the next 85 damage, increasing by up to 300% based on their current health. Lower health allies are shielded for more.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6680,7 +6614,7 @@
                             "talent_name": "Overflowing Light",
                             "spell_id": 461244,
                             "spell_name": "Overflowing Light",
-                            "description": "30% of Holy Shock's overhealing is converted into an absorb shield. The shield amount cannot exceed 10% of your max health.",
+                            "description": "50% of Holy Shock's overhealing is converted into an absorb shield. The shield amount cannot exceed 10% of your max health.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6709,7 +6643,7 @@
                             "talent_name": "Shining Righteousness",
                             "spell_id": 414443,
                             "spell_name": "Shining Righteousness",
-                            "description": "Shield of the Righteous deals 975 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
+                            "description": "Shield of the Righteous deals 965 damage to its first target struck.\r\n\r\nShield of the Righteous now has a 35% chance to activate Divine Purpose if talented.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6812,7 +6746,7 @@
                                     "talent_name": "Divine Guidance",
                                     "spell_id": 433106,
                                     "spell_name": "Divine Guidance",
-                                    "description": "For each Holy Power ability cast, your next Consecration deals 1,140 damage or healing immediately, split across all enemies and allies.",
+                                    "description": "For each Holy Power ability cast, your next Consecration deals 760 damage immediately, split across all enemies.\r\n\r\nUp to 3 nearby allies are each healed for 30% of the damage amount.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6822,7 +6756,7 @@
                                     "talent_name": "Blessed Assurance",
                                     "spell_id": 433015,
                                     "spell_name": "Blessed Assurance",
-                                    "description": "Casting a Holy Power ability increases the damage and healing of your next Crusader Strike by 200%.",
+                                    "description": "Casting a Holy Power ability increases the damage and healing of your next Crusader Strike by 100%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": "40 yd range"
@@ -6839,8 +6773,8 @@
                     "raw_position_x": 9900,
                     "raw_position_y": 4800,
                     "locked_by": [
-                        95234,
-                        110257
+                        110257,
+                        95234
                     ],
                     "unlocks": [
                         109743
@@ -6853,7 +6787,7 @@
                             "talent_name": "Masterwork",
                             "spell_id": 1271387,
                             "spell_name": "Masterwork",
-                            "description": "After casting a Holy Armament, your next 3 abilities cast a Lesser Armament of the same kind on a nearby ally.",
+                            "description": "After casting a Holy Armament, your next 3 casts of Crusader Strike bestow a Lesser Armament of the same kind on a nearby ally.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6924,7 +6858,7 @@
                             "talent_name": "Tirion's Devotion",
                             "spell_id": 414720,
                             "spell_name": "Tirion's Devotion",
-                            "description": "Lay on Hands' cooldown is reduced by 30% and restores 5% of your Mana.",
+                            "description": "Lay on Hands' cooldown is reduced by 40% and restores 5% of your Mana.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6939,9 +6873,9 @@
                     "raw_position_x": 12001,
                     "raw_position_y": 5100,
                     "locked_by": [
+                        81570,
                         81574,
-                        93523,
-                        81570
+                        93523
                     ],
                     "unlocks": [
                         103831,
@@ -6984,7 +6918,7 @@
                             "talent_name": "Glistening Radiance",
                             "spell_id": 1241805,
                             "spell_name": "Glistening Radiance",
-                            "description": "While at maximum health, targets with Beacon of Light generate an absorb shield equal to 1% of their health every 3 sec, up to a maximum of 5%.",
+                            "description": "While at maximum health, targets with Beacon of Light generate an absorb shield equal to 2% of their health every 3 sec, up to a maximum of 6%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7073,8 +7007,8 @@
                         81562
                     ],
                     "unlocks": [
-                        81584,
-                        81558
+                        81558,
+                        81584
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7102,8 +7036,8 @@
                         81561
                     ],
                     "unlocks": [
-                        81589,
-                        81558
+                        81558,
+                        81589
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7269,8 +7203,8 @@
                     "raw_position_y": 5699,
                     "locked_by": [
                         81580,
-                        102502,
-                        81573
+                        81573,
+                        102502
                     ],
                     "unlocks": [
                         81579,
@@ -7377,9 +7311,9 @@
                         81578
                     ],
                     "unlocks": [
-                        81587,
+                        81588,
                         81592,
-                        81588
+                        81587
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7401,7 +7335,7 @@
                                     "talent_name": "Avenging Crusader",
                                     "spell_id": 216331,
                                     "spell_name": "Avenging Crusader",
-                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 80% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 49 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
+                                    "description": "You become the ultimate crusader of light, for 15 sec. Auto-attack damage is increased by 1,000%, Judgment and Crusader Strike heal up to 5 injured allies within 40 yds for 55% of the damage done, split evenly among them.\r\n\r\nThis spell is replaced with Crusader Strike while active.\r\n\r\nCrusader Strike:\r\nStrike the target for 48 Physical damage.\r\n\r\nGenerates 1 Holy Power.",
                                     "cast_time": "Instant",
                                     "cooldown": "1 min cooldown",
                                     "range": null
@@ -7571,7 +7505,7 @@
                             "talent_name": "Pillars of Light",
                             "spell_id": 1232616,
                             "spell_name": "Pillars of Light",
-                            "description": " Beacon of Faith:\r\nAllies with Beacon of Light or Beacon of Faith are healed for 125 every 3 sec.\r\n\r\n Beacon of Virtue:\r\nBeacon of Virtue instantly heals allies for 1,484.",
+                            "description": " Beacon of Faith:\r\nAllies with Beacon of Light or Beacon of Faith are healed for 125 every 3 sec.\r\n\r\n Beacon of Virtue:\r\nBeacon of Virtue instantly heals allies for 2,226.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7619,9 +7553,9 @@
                         81584
                     ],
                     "unlocks": [
-                        81588,
                         93521,
-                        81593
+                        81593,
+                        81588
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7643,7 +7577,7 @@
                                     "talent_name": "Awakening",
                                     "spell_id": 414195,
                                     "spell_name": "Awakening",
-                                    "description": "While in combat, your Holy Power spenders have a 10% chance to cause your next Judgment to deal 30% increased damage and critically strike.\r\n\r\nActivating Avenging Wrath activates Awakening.",
+                                    "description": "While in combat, your Holy Power spenders have a 15% chance to cause your next Judgment to deal 30% increased damage and critically strike.\r\n\r\nActivating Avenging Wrath activates Awakening.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -7663,8 +7597,8 @@
                         81584
                     ],
                     "unlocks": [
-                        81588,
-                        81591
+                        81591,
+                        81588
                     ],
                     "max_ranks": 2,
                     "ranks": [
@@ -7713,7 +7647,7 @@
                             "talent_name": "Truth Prevails",
                             "spell_id": 461273,
                             "spell_name": "Truth Prevails",
-                            "description": "Judgment heals you for 912 and its mana cost is reduced by 30%. 50% of overhealing from this effect is transferred onto 2 allies within 40 yds.",
+                            "description": "Judgment heals you for 1,185 and its mana cost is reduced by 30%. 50% of overhealing from this effect is transferred onto 2 allies within 40 yds.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7728,8 +7662,8 @@
                     "raw_position_x": 15600,
                     "raw_position_y": 6300,
                     "locked_by": [
-                        81560,
-                        81558
+                        81558,
+                        81560
                     ],
                     "unlocks": [
                         81591
@@ -7865,9 +7799,9 @@
                     "raw_position_x": 13800,
                     "raw_position_y": 6900,
                     "locked_by": [
+                        81584,
                         81592,
-                        81587,
-                        81584
+                        81587
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -7907,9 +7841,9 @@
                     "raw_position_x": 15000,
                     "raw_position_y": 6900,
                     "locked_by": [
-                        81589,
                         108034,
-                        81587
+                        81587,
+                        81589
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -7983,7 +7917,7 @@
                             "talent_name": "Light's Guidance",
                             "spell_id": 427445,
                             "spell_name": "Light's Guidance",
-                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 243 Holy damage and 120 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
+                            "description": "Wake of Ashes is replaced with Hammer of Light for 20 sec after it is cast.\r\n\r\n Hammer of Light:\r\nHammer down your enemy with the power of the Light, dealing 244 Holy damage and 123 Holy damage up to 7 nearby enemies. \r\n\r\nAdditionally, calls down Empyrean Hammers from the sky to strike 3 nearby enemies for 16 Holy damage each.\r\n\r\nCosts 5 Holy Power.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8039,7 +7973,7 @@
                             "talent_name": "Blade of Justice",
                             "spell_id": 184575,
                             "spell_name": "Blade of Justice",
-                            "description": "Pierce an enemy with a blade of light, dealing 48 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
+                            "description": "Pierce an enemy with a blade of light, dealing 67 Holy damage.\r\n\r\nGenerates 1 Holy Power.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "12 yd range"
@@ -8306,7 +8240,7 @@
                             "talent_name": "Divine Storm",
                             "spell_id": 53385,
                             "spell_name": "Divine Storm",
-                            "description": "Unleashes a whirl of divine energy, dealing 65 Holy damage to all nearby enemies. \r\n\r\nDeals reduced damage beyond 5 targets.",
+                            "description": "Unleashes a whirl of divine energy, dealing 94 Holy damage to all nearby enemies. \r\n\r\nDeals reduced damage beyond 5 targets.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -8691,8 +8625,8 @@
                         92689
                     ],
                     "unlocks": [
-                        92838,
-                        81523
+                        81523,
+                        92838
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -8830,7 +8764,7 @@
                                     "talent_name": "Divine Exaction",
                                     "spell_id": 1260429,
                                     "spell_name": "Divine Exaction",
-                                    "description": "Divine Toll casts 2 additional times on your target at 150% effectiveness.",
+                                    "description": "Divine Toll casts 2 additional times on your target at 100% effectiveness.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -8984,7 +8918,7 @@
                             "talent_name": "Final Verdict",
                             "spell_id": 383328,
                             "spell_name": "Final Verdict",
-                            "description": "Unleashes a powerful weapon strike that deals 141 Holy damage to an enemy target,\r\n\r\nFinal Verdict has a 15% chance to reset the cooldown of Judgment.",
+                            "description": "Unleashes a powerful weapon strike that deals 164 Holy damage to an enemy target,\r\n\r\nHas a 15% chance to reset the cooldown of Judgment.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "12 yd range"
@@ -8999,9 +8933,9 @@
                     "raw_position_x": 13200,
                     "raw_position_y": 3300,
                     "locked_by": [
-                        81544,
                         81521,
-                        93161
+                        93161,
+                        81544
                     ],
                     "unlocks": [
                         109370,
@@ -9527,7 +9461,7 @@
                                     "talent_name": "Templar Strikes",
                                     "spell_id": 406646,
                                     "spell_name": "Templar Strikes",
-                                    "description": "Crusader Strike loses a charge but is now a combo ability.\r\n\r\nTemplar Strike slashes an enemy for 44 Radiant damage and gets followed up by Templar Slash that deals 50 Radiant damage. Templar Slash always critically strikes.",
+                                    "description": "Crusader Strike loses a charge but is now a combo ability.\r\n\r\nTemplar Strike slashes an enemy for 66 Radiant damage and gets followed up by Templar Slash that deals 76 Radiant damage. Templar Slash always critically strikes.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -9537,7 +9471,7 @@
                                     "talent_name": "Crusading Strikes",
                                     "spell_id": 404542,
                                     "spell_name": "Crusading Strikes",
-                                    "description": "Crusader Strike replaces your auto-attacks and deals 83 Physical damage, but you auto-attack 20% slower.",
+                                    "description": "Crusader Strike replaces your auto-attacks and deals 82 Physical damage.\r\n\r\nAuto-attack speed is decreased by 15%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -9668,7 +9602,7 @@
                             "talent_name": "Wake of Ashes",
                             "spell_id": 255937,
                             "spell_name": "Wake of Ashes",
-                            "description": "Lash out at your enemies, dealing 111 Radiant damage to all enemies within 14 yds in front of you, and applying Truth's Wake, burning the targets for an additional 67 damage over 9 sec.\r\n\r\nDemon and Undead enemies are also stunned for 5 sec.\r\n\r\nGenerates 3 Holy Power.",
+                            "description": "Lash out at your enemies, dealing 114 Radiant damage to all enemies within 14 yds in front of you, and applying Truth's Wake, burning the targets for an additional 67 damage over 9 sec.\r\n\r\nDemon and Undead enemies are also stunned for 5 sec.\r\n\r\nGenerates 3 Holy Power.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": null
@@ -9736,7 +9670,7 @@
                             "talent_name": "Execution Sentence",
                             "spell_id": 343527,
                             "spell_name": "Execution Sentence",
-                            "description": "Unleash a heavenly blast around the target, dealing 176 Holy damage to all enemies nearby, and call down a hammer that slowly falls from the sky upon the target. \r\n\r\nAfter 10 sec, they suffer 20% of the Holy damage you dealt to all targets affected by the initial blast during that time.",
+                            "description": "Unleash a heavenly blast around the target, dealing 176 Holy damage to all enemies within 10 yds, and call down a hammer that slowly falls from the sky upon the target. \r\n\r\nAfter 10 sec, they suffer 20% of the Holy damage you dealt to all targets affected by the initial blast during that time.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "30 yd range"
@@ -9921,7 +9855,7 @@
                             "talent_name": "Light Within",
                             "spell_id": 1261113,
                             "spell_name": "Light Within",
-                            "description": "Art of War increases the damage of your next Blade of Justice by 150%.",
+                            "description": "Art of War increases the damage of your next Blade of Justice by 80% and can now accumulate an additional time.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

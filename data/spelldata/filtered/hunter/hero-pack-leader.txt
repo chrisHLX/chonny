@@ -1,5 +1,5 @@
 # Hunter — Pack Leader Hero Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Howl of the Pack Leader (id=471876) [Spell Family (9), Passive] 
@@ -289,6 +289,7 @@ Labels           : 16: Class Spells
                  : 292
                  : 3022
 Proc Chance      : 100%
+Real PPM         : 20 (Unknown: 20)
 Proc Flags       : White Melee, White Ranged
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
@@ -300,7 +301,7 @@ Effects          :
                    Family Flags: 0
 #3 (id=1276378)  : Apply Aura (6) | Modify Auto Attack Damage Done% (344)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
-Description      : Your $?c1[auto shot][auto attacks] grant$?c1[s][] $1264783s1 Focus to you and your pet.
+Description      : Your $?c1[auto shot][auto attacks] have a very high chance to grant$?c1[s][] $1264783s1 Focus to you and your pet.
 
 $?c1[Auto shot][Auto attack] damage increased by $?c1[$s2][$s3]%.
 
@@ -338,7 +339,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1276389)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
-                   Base Value: 50 | Scaled Value: 50 | Misc Value: 3 | Misc Value 2: 5828 (Label) | Target: Self (1)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 3 | Misc Value 2: 5828 (Label) | Target: Self (1)
                    Affected Spells (Label): Hogstrider (472640)
 #2 (id=1276390)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 12 | Misc Value 2: 5828 (Label) | Target: Self (1)

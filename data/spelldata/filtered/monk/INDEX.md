@@ -6,6 +6,7 @@ One line per spell record; each lists every file it appears in.
 - **<DND> Monk Energy Driver (desc=Passive) (id=107500) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **[DNT] Dunk Charge - Despawn Anomalies (id=1249987) [Hidden]** — `baseline.txt`
 - **Aberrant Spellforge (id=452066) [Spell Family (53), Hidden]** — `baseline.txt`
+- **Aflame (id=1301418) [Spell Family (53)]** — `baseline.txt`
 - **Afterlife (desc=Rank 2) (id=322719) [Spell Family (53), Passive]** — `baseline.txt`
 - **Afterlife (id=116092) [Spell Family (53), Passive]** — `baseline.txt`
 - **Against All Odds (id=450986) [Spell Family (53), Passive]** — `hero-shado-pan.txt`
@@ -272,7 +273,7 @@ One line per spell record; each lists every file it appears in.
 - **Elusive Footwork (id=387046) [Spell Family (53), Passive]** — `brewmaster.txt`
 - **Elusive Footwork (id=387047) [Spell Family (53)]** — `baseline.txt`
 - **Elusive Mists (id=388681) [Spell Family (53), Passive, Hidden]** — `class-talents.txt`
-- **Emperor's Elixir (id=1268807) [Spell Family (53), Passive, Hidden]** — `mistweaver.txt`
+- **Emperor's Elixir (id=1268807) [Spell Family (53), Passive]** — `mistweaver.txt`
 - **Emperor's Favor (id=471761) [Spell Family (53), Passive]** — `mistweaver.txt`
 - **Empowered Tiger Lightning (id=323999) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Empowered Tiger Lightning (id=335913) [Spell Family (53)]** — `baseline.txt`
@@ -344,6 +345,7 @@ One line per spell record; each lists every file it appears in.
 - **Feather Feet (desc=PvP Talent) (id=474441) [Spell Family (53), Passive]** — `baseline.txt`
 - **Ferociousness (id=458623) [Spell Family (53), Passive, Hidden]** — `windwalker.txt`
 - **Ferocity of Xuen (id=388674) [Spell Family (53), Passive, Hidden]** — `class-talents.txt`
+- **Fiery Shrapnel (id=1301619) [Spell Family (53)]** — `baseline.txt`
 - **Fighting Pose (id=125874)** — `baseline.txt`
 - **Firestone Walker's Vintage Brew (id=224489) [Spell Family (53), Passive]** — `baseline.txt`
 - **Fists of Flowing Momentum (id=394949) [Spell Family (53)]** — `baseline.txt`
@@ -473,6 +475,7 @@ One line per spell record; each lists every file it appears in.
 - **Hit Scheme (id=383696) [Spell Family (53)]** — `baseline.txt`
 - **Honor (id=125739)** — `baseline.txt`
 - **Honorable Bow (id=125735) [Spell Family (53)]** — `baseline.txt`
+- **Hot Potato (id=1301477) [Spell Family (53)]** — `baseline.txt`
 - **Hot Trub (desc=PvP Talent) (id=202126) [Spell Family (53), Passive]** — `baseline.txt`
 - **Hot Trub (desc=PvP Talent) (id=202127) [Spell Family (53)]** — `baseline.txt`
 - **Hunter Pet (id=34902) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
@@ -481,6 +484,7 @@ One line per spell record; each lists every file it appears in.
 - **Improved Detox (id=388874) [Spell Family (53), Passive, Hidden]** — `class-talents.txt`
 - **Improved Touch of Death (id=322113) [Spell Family (53), Passive, Hidden]** — `class-talents.txt`
 - **Improved Vivify (id=231602) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
+- **In Flames (id=1301417) [Spell Family (53)]** — `baseline.txt`
 - **Initiator's Edge (id=1272849) [Spell Family (53), Passive, Hidden]** — `hero-shado-pan.txt`
 - **Initiator's Edge (id=1272850) [Spell Family (53)]** — `baseline.txt`
 - **Inner Compass (id=443571) [Spell Family (53), Passive]** — `hero-conduit-of-the-celestials.txt`
@@ -638,6 +642,8 @@ One line per spell record; each lists every file it appears in.
 - **Monk Brewmaster 11.1 Class Set 4pc (id=1215997) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Brewmaster 12.0 Class Set 2pc (id=1264838) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Brewmaster 12.0 Class Set 4pc (id=1264839) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
+- **Monk Brewmaster 12.1 Class Set 2pc (id=1296617) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
+- **Monk Brewmaster 12.1 Class Set 4pc (id=1296618) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Brewmaster Class Set 2pc (id=393659) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Brewmaster Class Set 4pc (id=393660) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Conduit of the Celestials 11.2 Class Set 4pc (id=1236382) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
@@ -651,6 +657,8 @@ One line per spell record; each lists every file it appears in.
 - **Monk Mistweaver 11.1 Class Set 4pc (id=1215609) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Mistweaver 12.0 Class Set 2pc (id=1264840) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Mistweaver 12.0 Class Set 4pc (id=1264841) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
+- **Monk Mistweaver 12.1 Class Set 2pc (id=1296619) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
+- **Monk Mistweaver 12.1 Class Set 4pc (id=1296620) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Mistweaver Class Set 2pc (id=393661) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Mistweaver Class Set 4pc (id=393663) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Windwalker 10.1 Class Set 2pc (id=405543) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
@@ -662,6 +670,7 @@ One line per spell record; each lists every file it appears in.
 - **Monk Windwalker 11.0 Class Set 4pc (id=454505) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Windwalker 11.1 Class Set 2pc (id=1215717) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Windwalker 11.1 Class Set 4pc (id=1215718) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
+- **Monk Windwalker 12.1 Class Set 2pc (id=1296621) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Windwalker Class Set 2pc (id=393666) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Windwalker Class Set 4pc (id=393668) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
 - **Monk Windwalker12.0 Class Set 2pc (id=1264842) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
@@ -783,6 +792,7 @@ One line per spell record; each lists every file it appears in.
 - **Rising Mist (id=274912) [Spell Family (53)]** — `baseline.txt`
 - **Rising Star (id=388849) [Spell Family (53), Passive]** — `windwalker.txt`
 - **Rising Sun Kick (id=107428) [Spell Family (53)]** — `class-talents.txt`
+- **Rising Sun Kick (id=1296687) [Spell Family (53)]** — `baseline.txt`
 - **Rising Sun Kick (id=185099) [Spell Family (53)]** — `baseline.txt`
 - **Rising Tiger Kick (id=125152)** — `baseline.txt`
 - **Roar from the Heavens (id=451043) [Spell Family (53), Passive]** — `hero-master-of-harmony.txt`
@@ -805,6 +815,7 @@ One line per spell record; each lists every file it appears in.
 - **Sal'salabim's Strength (id=383697) [Spell Family (53), Passive]** — `brewmaster.txt`
 - **Save Them All (id=389579) [Spell Family (53), Passive]** — `class-talents.txt`
 - **Scalding Brew (id=383698) [Spell Family (53), Passive, Hidden]** — `brewmaster.txt`
+- **Scorched (id=1301410) [Spell Family (53)]** — `baseline.txt`
 - **Secret Infusion (id=287830) [Spell Family (53), Hidden]** — `baseline.txt`
 - **Secret Infusion (id=287831) [Spell Family (53)]** — `baseline.txt`
 - **Secret Infusion (id=287835) [Spell Family (53)]** — `baseline.txt`
@@ -1005,6 +1016,8 @@ One line per spell record; each lists every file it appears in.
 - **Tranquil Tea (id=1270621) [Spell Family (53), Passive, Hidden]** — `mistweaver.txt`
 - **Transcendence (id=101643) [Spell Family (53)]** — `class-talents.txt`
 - **Transcendence: Linked Spirits (id=434774) [Spell Family (53), Passive, Hidden]** — `class-talents.txt`
+- **Unbroken Rhythm (id=1296624) [Spell Family (53), Passive, Hidden]** — `baseline.txt`
+- **Unbroken Rhythm (id=1297033) [Spell Family (53)]** — `baseline.txt`
 - **Unison (id=212123) [Spell Family (53), Passive]** — `baseline.txt`
 - **Unison (id=213872) [Spell Family (53)]** — `baseline.txt`
 - **Unison (id=213884) [Spell Family (53)]** — `baseline.txt`
@@ -1021,6 +1034,7 @@ One line per spell record; each lists every file it appears in.
 - **Vigilant Watch (id=451233) [Spell Family (53)]** — `baseline.txt`
 - **Vigorous Expulsion (id=392900) [Spell Family (53), Passive]** — `class-talents.txt`
 - **Vital Clarity (id=1266748) [Spell Family (53), Passive, Hidden]** — `class-talents.txt`
+- **Vital Expenditure (id=1299572) [Spell Family (53), Passive, Hidden]** — `mistweaver.txt`
 - **Vital Flame (id=1262659) [Spell Family (53), Passive]** — `brewmaster.txt`
 - **Vital Flame (id=1263408) [Spell Family (53)]** — `baseline.txt`
 - **Vivacious Vivification (id=388812) [Spell Family (53), Passive]** — `class-talents.txt`

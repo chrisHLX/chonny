@@ -1,5 +1,5 @@
 # Demon Hunter — Annihilator Hero Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 16 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Voidfall (id=1253304) [Spell Family (107), Passive] 
@@ -213,7 +213,9 @@ Effects          :
                    Base Value: 35 | Scaled Value: 35 | Target: Self (1)
 #2 (id=1259873)  : Apply Aura (6) | Dummy (4)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-Description      : $?a212613[Spirit Bomb][Collapsing Star] and Voidfall meteors deal $s1% increased damage when striking a single target.
+#3 (id=1343380)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+Description      : $?a212613[Spirit Bomb][Collapsing Star] and Voidfall meteors deal $?a212613[$s1][$s3]% increased damage when striking a single target.
 
 Each additional target reduces this bonus by $s2%.
 

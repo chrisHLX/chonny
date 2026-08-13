@@ -1,10 +1,10 @@
 # Mage — Frostfire Hero Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Frostfire Bolt (id=431044) [Spell Family (3)] 
-Talent Entry     : Frostfire (Frost) [tree=hero, row=1, col=3, max_rank=1, req_points=1, replace="Frostbolt" (id=116)]
-                 : Frostfire (Fire) [tree=hero, row=1, col=3, max_rank=1, req_points=1, replace="Fireball" (id=133)]
+Talent Entry     : Frostfire (Frost) [tree=hero, row=1, col=3, max_rank=1, req_points=0, replace="Frostbolt" (id=116)]
+                 : Frostfire (Fire) [tree=hero, row=1, col=3, max_rank=1, req_points=0, replace="Fireball" (id=133)]
 Class            : Mage
 School           : Frostfire
 Spell Type       : Magic
@@ -27,7 +27,7 @@ Description      : Launches a bolt of frostfire at the enemy, causing $468655s1 
 |CFFffffffApplies $1246769s1 $lstack:stacks; of Freezing.|R][]
 
 Name             : Imbued Warding (id=431066) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=100]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=100]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -45,7 +45,7 @@ Effects          :
 Description      : $?c2[Blazing Barrier also casts an Ice Barrier at $s1% effectiveness.]?c3[Ice Barrier also casts a Blazing Barrier at $s2% effectiveness.][]
 
 Name             : Elemental Affinity (id=431067) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=100]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=100]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -75,7 +75,7 @@ Effects          :
 Description      : $?c2[The cooldown of Frost spells with a base cooldown shorter than $s4 minutes is reduced by $s1%.]?c3[The cooldown of Fire spells is reduced by $s3%.][]
 
 Name             : Isothermic Core (id=431095) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=5, col=3, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=5, col=3, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -95,7 +95,7 @@ Damage from Meteor Shatters $1246769s5 stacks of Freezing][Meteor now also calls
 Comet Storm now also calls down a Meteor, dealing $351140s1 Fire damage to nearby enemies].
 
 Name             : Flame and Frost (id=431112) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=1, select_idx=200]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=4, max_rank=1, req_points=0, select_idx=200]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -111,7 +111,7 @@ Description      : $?a137020[Ice Block and Ice Cold reset the cooldowns of your 
 Cauterize resets the cooldown of your Frost spells with a base cooldown shorter than $s1 minutes when it activates.]
 
 Name             : Thermal Conditioning (id=431117) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=100]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=100]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -127,7 +127,7 @@ Effects          :
 Description      : Frostfire Bolt's cast time is reduced by $s1%.
 
 Name             : Meltdown (id=431131) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=1, select_idx=200]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=1, max_rank=1, req_points=0, select_idx=200]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -145,7 +145,7 @@ Description      : You melt slightly out of your Ice Block and Ice Cold, allowin
 Ice Block and Ice Cold trigger a Blazing Barrier when they end.
 
 Name             : Frostfire Infusion (id=431166) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=1, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -164,18 +164,18 @@ Effects          :
                    Family Flags: 5
 #3 (id=1252409)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 4 | Scaled Value: 4 | Target: Self (1)
-                   Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Scorch (1254311), Flamestrike (1254851), Ignite (1262887), Winter's End (1280757)
+                   Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Flamestrike (1254851), Ignite (1262887), Winter's End (1280757)
                    Family Flags: 1, 2, 4, 5, 7, 9, 17, 27, 28, 35, 38, 48, 52, 56, 78, 82, 88, 96, 102, 119, 120
 #4 (id=1252410)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 4 | Scaled Value: 4 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Glacial Spike (1236209), Glacial Spike (1236211), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Scorch (1254311), Flamestrike (1254851), Glacial Spike (1262860), Glacial Spike (1262862), Ignite (1262887), Winter's End (1280757)
+                   Affected Spells: Frostbolt (116), Cone of Cold (120), Flamestrike (2120), Scorch (2948), Ignite (12654), Ice Lance (30455), Living Bomb (44461), Frozen Orb (84721), Fire Blast (108853), Meteor (153564), Comet Storm (153595), Comet Storm (153596), Blast Wave (157981), Ice Nova (157997), Blizzard (190356), Blizzard (190357), Ray of Frost (205021), Flame Patch (205472), Flurry (228354), Flurry (228596), Frostbolt (228597), Ice Lance (228598), Glacial Spike (228600), Comet Storm (228601), Blast Wave (268467), Blast Wave (268473), Blast Wave (268474), Blast Wave (268475), Fire Blast (319836), Meteor (351140), Blast Wave (389631), Meteor (438607), Meteor (438608), Comet Storm (438609), Living Bomb (438674), Meteorite (449560), Meteorite (449569), Living Bomb (453251), Flamestrike (460476), Living Bomb (464884), Frostfire Bolt (468655), Ignite (1236160), Glacial Spike (1236209), Glacial Spike (1236211), Shatter (1246949), Freezing Winds (1247554), Blizzard (1248829), Flamestrike (1254851), Glacial Spike (1262860), Glacial Spike (1262862), Ignite (1262887), Winter's End (1280757)
                    Family Flags: 1, 2, 4, 5, 7, 9, 17, 27, 28, 35, 38, 48, 52, 56, 64, 78, 82, 88, 96, 102, 119, 120
 Description      : $?a137020[Frostfire Bolt has an additional $s1% chance to grant Brain Freeze]?a137019[Frostfire Bolt's critical strike chance is increased by $s2%.][Frostfire Bolt has and additional $s1% chance to grant Brain Freeze and its critical strike chance is increased by $s2%].
 
 The damage of your Frost spells and Fire spells are increased by $s3%.
 
 Name             : Frostfire Empowerment (id=431176) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=2, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=2, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -206,7 +206,7 @@ Description      : Casting Frostfire spells has a $s3% chance to activate Frostf
 Damage from Frostfire Empowerment applies $s4 $Lstack:stacks; of Freezing.]
 
 Name             : Flash Freezeburn (id=431178) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=2, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=2, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -240,7 +240,7 @@ Additionally, Glacial Spike now grants Frostfire Empowerment][Meteor's damage is
 Meteor now grants Frostfire Empowerment].
 
 Name             : Severe Temperatures (id=431189) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=1, select_idx=200]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=2, max_rank=1, req_points=0, select_idx=200]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -260,7 +260,7 @@ Effects          :
 Description      : Frostfire Empowerment stacks $s1 additional $Ltime:times; and it causes Frostfire Bolt to explode for an additional $s2% of its damage.
 
 Name             : Heat Sink (id=1248002) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=1, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=1, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -284,7 +284,7 @@ Effects          :
 Description      : $?a137020[Flurry]?a137019[Fire Blast][Flurry and Fire Blast] now $?a137020[deals]?a137019[deals][deal] Frostfire damage and $?a137020[its]?a137019[its][their] damage is increased by $?a137020[$s3%]?a137019[$s2%][$s2%].
 
 Name             : Dualcasting Adept (id=1248014) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=4, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -326,7 +326,7 @@ Blizzard damage increased by $s6%.]?a137019[Pyroblast damage increased by $s4%.
 Flamestrike damage increased by $s5%.][Ice Lance and Pyroblast  have their damage increased by $s3%.]
 
 Name             : Blast Radius (id=1248016) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=4, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -358,7 +358,7 @@ Meteor damage increased by $s1%.]?a137019[Meteor damage increased by $s3%.
 Comet Storm damage increased by $s4%.][The damage of Meteor and Comet Storm is increased.]
 
 Name             : Duality (id=1262843) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=2, col=5, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -374,7 +374,7 @@ Effects          :
 Description      : $?c2[Casting Pyroblast has a $s2% chance to also cast a Glacial Spike, dealing $1262862s1 Frost damage][Casting Glacial Spike also casts a Pyroblast, dealing $1262863s1 Fire damage].
 
 Name             : Molten Chill (id=1262844) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=5, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=3, col=5, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None
@@ -392,7 +392,7 @@ Effects          :
 Description      : $?c3[Your Frostfire spells apply Ignite, dealing an additional $s1% of their damage over $1262887d][Your Frostfire spells apply Ignite at $s2% increased effectiveness].
 
 Name             : Elemental Conduit (id=1262845) [Spell Family (3), Passive, Hidden] 
-Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=5, max_rank=1, req_points=1]
+Talent Entry     : Frostfire (Fire, Frost) [tree=hero, row=4, col=5, max_rank=1, req_points=0]
 Class            : Mage
 School           : Physical
 Spell Type       : None

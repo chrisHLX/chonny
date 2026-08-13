@@ -1,7 +1,7 @@
 {
     "class": "Rogue",
     "talent_tree_id": 852,
-    "fetched_at": "2026-08-02T09:05:02+00:00",
+    "fetched_at": "2026-08-12T21:34:16+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -769,7 +769,7 @@
             },
             {
                 "id": 90756,
-                "node_type": "ACTIVE",
+                "node_type": "CHOICE",
                 "display_row": 11,
                 "display_col": 2,
                 "raw_position_x": 2700,
@@ -780,14 +780,28 @@
                 "ranks": [
                     {
                         "rank": 1,
-                        "talent_id": 117653,
-                        "talent_name": "Thistle Tea",
-                        "spell_id": 381623,
-                        "spell_name": "Thistle Tea",
-                        "description": "Restore 100 Energy.\r\n\r\nWhen your Energy is reduced below 30, drink a Thistle Tea.",
-                        "cast_time": "Instant",
-                        "cooldown": "1 sec cooldown",
-                        "range": null
+                        "choices": [
+                            {
+                                "talent_id": 117653,
+                                "talent_name": "Thistle Tea",
+                                "spell_id": 381623,
+                                "spell_name": "Thistle Tea",
+                                "description": "Restore 100 Energy.\r\n\r\nWhen your Energy is reduced below 30, drink a Thistle Tea.",
+                                "cast_time": "Instant",
+                                "cooldown": "1 sec cooldown",
+                                "range": null
+                            },
+                            {
+                                "talent_id": 142224,
+                                "talent_name": "Thistle Tea",
+                                "spell_id": 1298826,
+                                "spell_name": "Thistle Tea",
+                                "description": "Restore 100 Energy.",
+                                "cast_time": "Instant",
+                                "cooldown": "1 sec cooldown",
+                                "range": null
+                            }
+                        ]
                     }
                 ]
             },
@@ -927,7 +941,7 @@
                                 "talent_name": "Atrophic Poison",
                                 "spell_id": 381637,
                                 "spell_name": "Atrophic Poison",
-                                "description": "Coats your weapons with a Non-Lethal Poison that lasts for 1 hour. Each strike has a 30% chance of poisoning the enemy, reducing their damage by 3.0% for 10 sec.",
+                                "description": "Coats your weapons with a Non-Lethal Poison that lasts for 1 hour. Each strike has a 30% chance of poisoning the enemy, reducing their damage by 4.0% for 1 min.",
                                 "cast_time": "1.5 sec cast",
                                 "cooldown": null,
                                 "range": null
@@ -1732,7 +1746,7 @@
                             "talent_name": "Deal Fate",
                             "spell_id": 454419,
                             "spell_name": "Deal Fate",
-                            "description": "Mutilate, Ambush, and Fan of Knives generate 1 additional combo point when they trigger Seal Fate.",
+                            "description": "Mutilate, Ambush, and Fan of Knives have a 60% chance to generate 1 additional combo point when they trigger Seal Fate.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1887,7 +1901,7 @@
                             "talent_name": "Hand of Fate",
                             "spell_id": 452536,
                             "spell_name": "Hand of Fate",
-                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 59 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
+                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 58 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2632,7 +2646,7 @@
                             "talent_name": "Hand of Fate",
                             "spell_id": 452536,
                             "spell_name": "Hand of Fate",
-                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 59 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
+                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 58 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2942,7 +2956,7 @@
                             "talent_name": "Deal Fate",
                             "spell_id": 454419,
                             "spell_name": "Deal Fate",
-                            "description": "Mutilate, Ambush, and Fan of Knives generate 1 additional combo point when they trigger Seal Fate.",
+                            "description": "Mutilate, Ambush, and Fan of Knives have a 60% chance to generate 1 additional combo point when they trigger Seal Fate.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3474,7 +3488,7 @@
                             "talent_name": "Unseen Blade",
                             "spell_id": 441146,
                             "spell_name": "Unseen Blade",
-                            "description": "Backstab and Shadowstrike now also strike with an Unseen Blade dealing 99 damage. Targets struck are Fazed for 10 sec.\r\n\r\nFazed enemies take 5% more damage from you and cannot parry your attacks.\r\n\r\nThis effect may occur once every 20 sec.",
+                            "description": "Backstab and Shadowstrike now also strike with an Unseen Blade dealing 98 damage. Targets struck are Fazed for 10 sec.\r\n\r\nFazed enemies take 5% more damage from you and cannot parry your attacks.\r\n\r\nThis effect may occur once every 20 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3492,6 +3506,7 @@
                         90679
                     ],
                     "unlocks": [
+                        90677,
                         90678,
                         90641
                     ],
@@ -3531,7 +3546,7 @@
                             "talent_name": "Blade Rush",
                             "spell_id": 271877,
                             "spell_name": "Blade Rush",
-                            "description": "Charge to your target with your blades out, dealing 300 Physical damage to the target and 133 to all other nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile Blade Flurry is active, damage to non-primary targets is increased by 100%.\r\n\r\nGenerates 25 Energy over 5 sec.",
+                            "description": "Charge to your target with your blades out, dealing 304 Physical damage to the target and 131 to all other nearby enemies. Damage reduced beyond 8 targets.\r\n\r\nWhile Blade Flurry is active, damage to non-primary targets is increased by 100%.\r\n\r\nGenerates 25 Energy over 5 sec.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "20 yd range"
@@ -3617,7 +3632,7 @@
                             "talent_name": "Improved Between the Eyes",
                             "spell_id": 235484,
                             "spell_name": "Improved Between the Eyes",
-                            "description": "Critical strikes with Between the Eyes deal 3.0 times normal damage.\r\n",
+                            "description": "Critical strikes with Between the Eyes deal 2.5 times normal damage.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3635,6 +3650,7 @@
                         90663
                     ],
                     "unlocks": [
+                        90667,
                         90668,
                         90669
                     ],
@@ -3814,7 +3830,7 @@
                             "talent_name": "Audacity",
                             "spell_id": 381845,
                             "spell_name": "Audacity",
-                            "description": "Using Pistol Shot with Opportunity has a 30% chance to make your next Ambush usable without Stealth.\r\n\r\nChance to trigger this effect matches the chance for Sinister Strike to grant Opportunity.",
+                            "description": "Using Pistol Shot with Opportunity has a 30% chance to make your next Ambush usable without Stealth.\r\n\r\nChance to trigger this effect matches the chance for Sinister Strike to grant Opportunity.\r\n\r\nAmbush damage increased by 80%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3845,7 +3861,7 @@
                             "talent_name": "Heavy Hitter",
                             "spell_id": 381885,
                             "spell_name": "Heavy Hitter",
-                            "description": "Attacks that generate combo points deal 10% increased damage.",
+                            "description": "Attacks that generate combo points deal 15% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3856,7 +3872,7 @@
                             "talent_name": "Heavy Hitter",
                             "spell_id": 381885,
                             "spell_name": "Heavy Hitter",
-                            "description": "Attacks that generate combo points deal 20% increased damage.",
+                            "description": "Attacks that generate combo points deal 30% increased damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4111,6 +4127,7 @@
                     "raw_position_x": 10500,
                     "raw_position_y": 5700,
                     "locked_by": [
+                        90680,
                         90641,
                         90678
                     ],
@@ -4140,12 +4157,12 @@
                     "raw_position_x": 11700,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        90654,
-                        90678
+                        90678,
+                        90654
                     ],
                     "unlocks": [
-                        90653,
-                        90676
+                        90676,
+                        90653
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4212,12 +4229,12 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 5700,
                     "locked_by": [
-                        90654,
-                        90668
+                        90668,
+                        90654
                     ],
                     "unlocks": [
-                        90653,
-                        90666
+                        90666,
+                        90653
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4227,7 +4244,7 @@
                             "talent_name": "Zero In",
                             "spell_id": 1259485,
                             "spell_name": "Zero In",
-                            "description": "Your auto-attack critical strikes increase the damage and critical strike chance of your next Between the Eyes by 3%, stacking up to 20 times.",
+                            "description": "Your auto-attack critical strikes increase the damage and critical strike chance of your next Between the Eyes by 2%, stacking up to 20 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4242,6 +4259,7 @@
                     "raw_position_x": 14100,
                     "raw_position_y": 5700,
                     "locked_by": [
+                        90671,
                         90669,
                         90668
                     ],
@@ -4412,7 +4430,7 @@
                             "talent_name": "Summarily Dispatched",
                             "spell_id": 381990,
                             "spell_name": "Summarily Dispatched",
-                            "description": "Dispatch deals 10% increased damage and costs 3 less Energy. This damage bonus is increased by 50% while your damage is enhanced by your Between the Eyes.",
+                            "description": "Dispatch deals 15% increased damage and costs 3 less Energy. This damage bonus is increased by 50% while your damage is enhanced by your Between the Eyes.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4423,7 +4441,7 @@
                             "talent_name": "Summarily Dispatched",
                             "spell_id": 381990,
                             "spell_name": "Summarily Dispatched",
-                            "description": "Dispatch deals 20% increased damage and costs 6 less Energy. This damage bonus is increased by 50% while your damage is enhanced by your Between the Eyes.",
+                            "description": "Dispatch deals 30% increased damage and costs 6 less Energy. This damage bonus is increased by 50% while your damage is enhanced by your Between the Eyes.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4551,7 +4569,7 @@
                             "talent_name": "Hidden Opportunity",
                             "spell_id": 383281,
                             "spell_name": "Hidden Opportunity",
-                            "description": "Ambush has a chance to grant Opportunity. Chance to trigger this effect is 80% of the chance for Sinister Strike to grant Opportunity.",
+                            "description": "Ambush has a chance to grant Opportunity. Chance to trigger this effect is 100% of the chance for Sinister Strike to grant Opportunity.\r\n\r\nEnergy cost of Ambush reduced by 5.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4578,7 +4596,7 @@
                             "talent_name": "Killing Spree",
                             "spell_id": 51690,
                             "spell_name": "Killing Spree",
-                            "description": "Finishing move that unleashes a barrage of gunfire, striking random enemies within 8 yards for Physical damage. Number of strikes increased per combo point.\r\n\r\nRestores 1 combo point every 0.45 sec.\r\n\r\n   1 point  : 194 over 0.45 sec\r\n   2 points: 291 over 0.89 sec\r\n   3 points: 388 over 1.34 sec\r\n   4 points: 484 over 1.78 sec\r\n   5 points: 581 over 2.23 sec",
+                            "description": "Finishing move that unleashes a barrage of gunfire, striking random enemies within 8 yards for Physical damage. Number of strikes increased per combo point.\r\n\r\nRestores 1 combo point every 0.45 sec. Each combo point spent above 5 increases damage by 15%.\r\n\r\n   1 point  : 313 over 0.45 sec\r\n   2 points: 469 over 0.89 sec\r\n   3 points: 626 over 1.34 sec\r\n   4 points: 782 over 1.78 sec\r\n   5 points: 938 over 2.23 sec",
                             "cast_time": "Channeled",
                             "cooldown": "3 min cooldown",
                             "range": "8 yd range"
@@ -4631,7 +4649,7 @@
                             "talent_name": "Fast Action",
                             "spell_id": 1259480,
                             "spell_name": "Fast Action",
-                            "description": "The cooldown of Between the Eyes is reduced by 5 sec.",
+                            "description": "The cooldown of Between the Eyes is reduced by 8 sec.\r\n\r\nBetween the Eyes increases your damage dealt by an additional 1%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4720,7 +4738,7 @@
                             "talent_name": "Hand of Fate",
                             "spell_id": 452536,
                             "spell_name": "Hand of Fate",
-                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 58 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
+                            "description": "Flip a Fatebound Coin each time a finishing move consumes 5 or more combo points. Heads increases the damage of your attacks by 10%, lasting 15 sec or until you flip Tails. Tails deals 59 Cosmic damage to your target.\r\n\r\nFor each time the same face is flipped in a row, Heads increases damage by an additional 2% and Tails increases its damage by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5141,7 +5159,7 @@
                             "talent_name": "Deal Fate",
                             "spell_id": 454419,
                             "spell_name": "Deal Fate",
-                            "description": "Mutilate, Ambush, and Fan of Knives generate 1 additional combo point when they trigger Seal Fate.",
+                            "description": "Mutilate, Ambush, and Fan of Knives have a 60% chance to generate 1 additional combo point when they trigger Seal Fate.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5423,7 +5441,7 @@
                                     "talent_name": "Internal Bleeding",
                                     "spell_id": 381627,
                                     "spell_name": "Internal Bleeding",
-                                    "description": "Kidney Shot and Rupture also apply Internal Bleeding, dealing up to 77 Bleed damage over 6 sec, based on combo points spent.",
+                                    "description": "Kidney Shot and Rupture also apply Internal Bleeding, dealing up to 84 Bleed damage over 6 sec, based on combo points spent.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5972,7 +5990,7 @@
                             "talent_name": "Deathmark",
                             "spell_id": 360194,
                             "spell_name": "Deathmark",
-                            "description": "Carve a deathmark into an enemy, dealing 125 Bleed damage and restoring 80 Energy to you over 16 sec. Damage dealt to the target by your Garrote, Rupture, and Lethal Poisons is increased by 100%.\r\n\r\nEach time you apply a Lethal Poison to the target, apply it twice.",
+                            "description": "Carve a deathmark into an enemy, dealing 125 Bleed damage and restoring 80 Energy to you over 16 sec. Damage dealt to the target by your Garrote, Rupture, and Lethal Poisons is increased by 75%.\r\n\r\nEach time you apply a Lethal Poison to the target, apply it twice.",
                             "cast_time": "Instant",
                             "cooldown": "2 min cooldown",
                             "range": "Melee Range"
@@ -6072,7 +6090,7 @@
                                     "talent_name": "Iron Wire",
                                     "spell_id": 196861,
                                     "spell_name": "Iron Wire",
-                                    "description": "Garrote silences the target for 5 sec when used from Stealth.\r\n\r\nEnemies silenced by Garrote deal 15% reduced damage for 5 sec.",
+                                    "description": "Garrotes applied from stealth or during the Improved Garrote window silence their target for 5 sec.\r\n\r\nEnemies silenced by Garrote deal 15% reduced damage for 5 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6268,7 +6286,7 @@
                             "talent_name": "Poison Bomb",
                             "spell_id": 255544,
                             "spell_name": "Poison Bomb",
-                            "description": "Envenom has a 5% chance per combo point spent to smash a vial of poison at the target's location, creating a pool of acidic death that deals 54 Nature damage over 2 sec to all enemies within it.",
+                            "description": "Envenom has a 5% chance per combo point spent to smash a vial of poison at the target's location, creating a pool of acidic death that deals 52 Nature damage over 2 sec to all enemies within it.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6277,7 +6295,7 @@
                 },
                 {
                     "id": 90771,
-                    "node_type": "PASSIVE",
+                    "node_type": "ACTIVE",
                     "display_row": 8,
                     "display_col": 16,
                     "raw_position_x": 11100,
@@ -6296,11 +6314,11 @@
                         {
                             "rank": 1,
                             "talent_id": 117669,
-                            "talent_name": "Systemic Failure",
-                            "spell_id": 381652,
-                            "spell_name": "Systemic Failure",
-                            "description": "Garrote increases the damage of Ambush and Mutilate on the target by 30%.",
-                            "cast_time": "Passive",
+                            "talent_name": "Amplifying Poison",
+                            "spell_id": 381664,
+                            "spell_name": "Amplifying Poison",
+                            "description": "Coats your weapons with a Lethal Poison that lasts for 1 hour. Each strike has a 30% chance to poison the enemy, dealing 2 Nature damage and applying Amplifying Poison for 12 sec. Envenom can consume 10 stacks of Amplifying Poison to deal 35% increased damage. Max 20 stacks.",
+                            "cast_time": "1.5 sec cast",
                             "cooldown": null,
                             "range": null
                         }
@@ -6340,7 +6358,7 @@
                 },
                 {
                     "id": 90777,
-                    "node_type": "ACTIVE",
+                    "node_type": "PASSIVE",
                     "display_row": 8,
                     "display_col": 20,
                     "raw_position_x": 13500,
@@ -6359,11 +6377,11 @@
                         {
                             "rank": 1,
                             "talent_id": 117675,
-                            "talent_name": "Amplifying Poison",
-                            "spell_id": 381664,
-                            "spell_name": "Amplifying Poison",
-                            "description": "Coats your weapons with a Lethal Poison that lasts for 1 hour. Each strike has a 30% chance to poison the enemy, dealing 2 Nature damage and applying Amplifying Poison for 12 sec. Envenom can consume 10 stacks of Amplifying Poison to deal 35% increased damage. Max 20 stacks.",
-                            "cast_time": "1.5 sec cast",
+                            "talent_name": "Systemic Failure",
+                            "spell_id": 381652,
+                            "spell_name": "Systemic Failure",
+                            "description": "Garrote increases the damage of Ambush and Mutilate on the target by 30%.",
+                            "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
                         }
@@ -6387,10 +6405,10 @@
                         {
                             "rank": 1,
                             "talent_id": 117684,
-                            "talent_name": "Blindside",
-                            "spell_id": 328085,
-                            "spell_name": "Blindside",
-                            "description": "Ambush and Mutilate have a 15% chance to make your next Ambush free and usable without Stealth. Chance increased to 30% if the target is under 35% health.",
+                            "talent_name": "Dashing Scoundrel",
+                            "spell_id": 381797,
+                            "spell_name": "Dashing Scoundrel",
+                            "description": "Envenom's effect also increases the critical strike chance of your weapon poisons by 8%. Your Energy generation is increased by 4% for each lethal poison on your weapons.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6420,7 +6438,7 @@
                             "talent_name": "Kingsbane",
                             "spell_id": 385627,
                             "spell_name": "Kingsbane",
-                            "description": "Release a powerful poison from your weapons and inject it into your target, dealing 60 Nature damage instantly and an additional 71 Nature damage over 14 sec. \r\n\r\nEach time you apply a Lethal Poison to a target affected by Kingsbane, Kingsbane damage increases by 20%, up to 1,000%.\r\n\r\nAwards 1 combo point.",
+                            "description": "Release a powerful poison from your weapons and inject it into your target, dealing 51 Nature damage instantly and an additional 71 Nature damage over 14 sec. \r\n\r\nEach time you apply a Lethal Poison to a target affected by Kingsbane, Kingsbane damage increases by 20%, up to 1,000%.\r\n\r\nAwards 1 combo point.",
                             "cast_time": "Instant",
                             "cooldown": "1 min cooldown",
                             "range": "Melee Range"
@@ -6449,7 +6467,7 @@
                             "talent_name": "Rapid Injection",
                             "spell_id": 455072,
                             "spell_name": "Rapid Injection",
-                            "description": "Envenom's effect increases the damage of Envenom by 15%.",
+                            "description": "Envenom's effect increases the damage of Envenom by 20%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6460,7 +6478,7 @@
                             "talent_name": "Rapid Injection",
                             "spell_id": 455072,
                             "spell_name": "Rapid Injection",
-                            "description": "Envenom's effect increases the damage of Envenom by 30%.",
+                            "description": "Envenom's effect increases the damage of Envenom by 40%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6490,7 +6508,7 @@
                             "talent_name": "Shrouded Suffocation",
                             "spell_id": 385478,
                             "spell_name": "Shrouded Suffocation",
-                            "description": "Garrote damage increased by 20%. Garrote generates 2 additional combo points when used from Stealth.",
+                            "description": "Garrote damage increased by 30%. Garrote generates 2 additional combo points when used from Stealth.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6515,10 +6533,10 @@
                         {
                             "rank": 1,
                             "talent_id": 117512,
-                            "talent_name": "Avulsion",
-                            "spell_id": 1250358,
-                            "spell_name": "Avulsion",
-                            "description": "Rupture damage increased by 20%.",
+                            "talent_name": "Blindside",
+                            "spell_id": 328085,
+                            "spell_name": "Blindside",
+                            "description": "Ambush and Mutilate have a 10% chance to make your next Ambush free and usable without Stealth. Chance increased to 20% if the target is under 35% health.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6650,10 +6668,10 @@
                         {
                             "rank": 1,
                             "talent_id": 117672,
-                            "talent_name": "Deadly Momentum",
-                            "spell_id": 1250271,
-                            "spell_name": "Deadly Momentum",
-                            "description": "Finishing moves have a 3% chance per combo point spent to increase your chance to critically strike by 6% for 6 sec.",
+                            "talent_name": "Avulsion",
+                            "spell_id": 1250358,
+                            "spell_name": "Avulsion",
+                            "description": "Rupture damage increased by 25%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6716,10 +6734,10 @@
                         {
                             "rank": 1,
                             "talent_id": 117682,
-                            "talent_name": "Dashing Scoundrel",
-                            "spell_id": 381797,
-                            "spell_name": "Dashing Scoundrel",
-                            "description": "Envenom's effect also increases the critical strike chance of your weapon poisons by 5%, and their critical strikes generate 1 Energy.",
+                            "talent_name": "Unstable Toxin",
+                            "spell_id": 1298812,
+                            "spell_name": "Unstable Toxin",
+                            "description": "Envenom's damage is increased by 18%, but its duration is reduced by 2 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6795,7 +6813,7 @@
                             "talent_name": "Implacable",
                             "spell_id": 1265385,
                             "spell_name": "Implacable",
-                            "description": "Nothing will save your target from you. Envenom damage increased by 10%. When your Envenom bonus expires, gain 20% increased Energy generation for 5 sec. \r\n\r\nGain an additional 15% increased Energy generation for each Envenom you used while Envenom's bonus was active, up to 80% total.",
+                            "description": "Nothing will save your target from you. Envenom damage increased by 10%. Envenom restores 2 Energy per combo point spent.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7531,9 +7549,9 @@
                         94582
                     ],
                     "unlocks": [
+                        90715,
                         90709,
-                        90734,
-                        90715
+                        90734
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -7702,8 +7720,8 @@
                     "raw_position_x": 12300,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        90733,
-                        90701
+                        90701,
+                        90733
                     ],
                     "unlocks": [
                         101715,
@@ -7760,8 +7778,8 @@
                     "raw_position_x": 13500,
                     "raw_position_y": 3900,
                     "locked_by": [
-                        90733,
-                        90714
+                        90714,
+                        90733
                     ],
                     "unlocks": [
                         90717,
@@ -7776,7 +7794,7 @@
                             "talent_name": "Relentless Strikes",
                             "spell_id": 58423,
                             "spell_name": "Relentless Strikes",
-                            "description": "Your finishing moves generate 5 Energy per combo point spent.",
+                            "description": "Your finishing moves generate 4 Energy per combo point spent.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7805,7 +7823,7 @@
                             "talent_name": "Unseen Blade",
                             "spell_id": 441146,
                             "spell_name": "Unseen Blade",
-                            "description": "Backstab and Shadowstrike now also strike with an Unseen Blade dealing 97 damage. Targets struck are Fazed for 10 sec.\r\n\r\nFazed enemies take 5% more damage from you and cannot parry your attacks.\r\n\r\nThis effect may occur once every 20 sec.",
+                            "description": "Backstab and Shadowstrike now also strike with an Unseen Blade dealing 98 damage. Targets struck are Fazed for 10 sec.\r\n\r\nFazed enemies take 5% more damage from you and cannot parry your attacks.\r\n\r\nThis effect may occur once every 20 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7891,9 +7909,9 @@
                     "raw_position_x": 11700,
                     "raw_position_y": 4500,
                     "locked_by": [
+                        90727,
                         90699,
-                        90734,
-                        90727
+                        90734
                     ],
                     "unlocks": [
                         90735,
@@ -7922,9 +7940,9 @@
                     "raw_position_x": 12900,
                     "raw_position_y": 4500,
                     "locked_by": [
+                        90715,
                         90709,
-                        90734,
-                        90715
+                        90734
                     ],
                     "unlocks": [
                         90724,
@@ -8177,10 +8195,10 @@
                         {
                             "rank": 1,
                             "talent_id": 117630,
-                            "talent_name": "The First Dance",
-                            "spell_id": 382505,
-                            "spell_name": "The First Dance",
-                            "description": "Remaining out of combat for 6 sec increases the duration of your next Shadow Dance by 3 sec.",
+                            "talent_name": "Deepening Shadows",
+                            "spell_id": 185314,
+                            "spell_name": "Deepening Shadows",
+                            "description": "Shadow Dance duration is increased by 150% of your Haste stat.\r\n\r\nCurrent bonus duration: 0.00 sec",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8189,7 +8207,7 @@
                 },
                 {
                     "id": 90724,
-                    "node_type": "PASSIVE",
+                    "node_type": "ACTIVE",
                     "display_row": 8,
                     "display_col": 18,
                     "raw_position_x": 12300,
@@ -8208,13 +8226,13 @@
                         {
                             "rank": 1,
                             "talent_id": 117617,
-                            "talent_name": "Deepening Shadows",
-                            "spell_id": 185314,
-                            "spell_name": "Deepening Shadows",
-                            "description": "Shadow Dance duration is increased by 150% of your Haste stat.\r\n\r\nCurrent bonus duration: 0.00 sec",
-                            "cast_time": "Passive",
-                            "cooldown": null,
-                            "range": null
+                            "talent_name": "Goremaw's Bite",
+                            "spell_id": 426591,
+                            "spell_name": "Goremaw's Bite",
+                            "description": "Lash out at your target and 2 additional nearby enemies, inflicting 221 Shadow damage and causing them to Bleed for 432 damage over 14 sec.\r\n\r\n20% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.",
+                            "cast_time": "Instant",
+                            "cooldown": "45 sec cooldown",
+                            "range": "Melee Range"
                         }
                     ]
                 },
@@ -8497,7 +8515,7 @@
                             "talent_name": "Lingering Shadow",
                             "spell_id": 382524,
                             "spell_name": "Lingering Shadow",
-                            "description": "After Shadow Dance ends, Backstab deals an additional 50% damage as Shadow, fading by 2.8% per sec.",
+                            "description": "After Shadow Dance ends, Backstab and Shuriken Storm deal an additional 50% damage as Shadow, fading by 2.8% per sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8889,7 +8907,7 @@
                             "talent_name": "Shadowcraft",
                             "spell_id": 426594,
                             "spell_name": "Shadowcraft",
-                            "description": "While Shadow Dance is active, your Shadow Techniques triggers 40% more frequently, stores 1 additional combo point, and generates 2 additional Energy.",
+                            "description": "While Shadow Dance is active, your Shadow Techniques triggers 25% more frequently and generates 1 additional combo point.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -8924,7 +8942,7 @@
                 },
                 {
                     "id": 94581,
-                    "node_type": "ACTIVE",
+                    "node_type": "PASSIVE",
                     "display_row": 11,
                     "display_col": 19,
                     "raw_position_x": 12900,
@@ -8939,13 +8957,13 @@
                         {
                             "rank": 1,
                             "talent_id": 122181,
-                            "talent_name": "Goremaw's Bite",
-                            "spell_id": 426591,
-                            "spell_name": "Goremaw's Bite",
-                            "description": "Lashes out at the target, inflicting 114 Shadow damage and causing your next 3 finishing moves to cost no Energy.\r\n\r\nAwards 3 combo points.",
-                            "cast_time": "Instant",
-                            "cooldown": "45 sec cooldown",
-                            "range": "Melee Range"
+                            "talent_name": "The First Dance",
+                            "spell_id": 382505,
+                            "spell_name": "The First Dance",
+                            "description": "Remaining out of combat for 6 sec increases the duration of your next Shadow Dance by 4 sec.",
+                            "cast_time": "Passive",
+                            "cooldown": null,
+                            "range": null
                         }
                     ]
                 },

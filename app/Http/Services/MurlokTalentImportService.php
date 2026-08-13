@@ -80,6 +80,10 @@ class MurlokTalentImportService
         $classTree = TalentTree::where('class_id', $spec->class_id)->where('patch_id', $patchId)->where('type', 'class')->with('nodes.entries.spell')->first();
         $specTree = TalentTree::where('spec_id', $spec->id)->where('patch_id', $patchId)->where('type', 'spec')->with('nodes.entries.spell')->first();
 
+        if ($classTree) {
+            $this->stripBloatedClassNodes($classTree, $spec->class_id, $patchId);
+        }
+
         // The page renders every hero tree available to the spec, not just the meta one (see
         // parseHeroBlocks()'s docblock) — pick whichever block has the highest total pick count
         // across its own entries, since that's the one real top players are actually using.
@@ -244,6 +248,36 @@ class MurlokTalentImportService
 
     /**
      * @param  array<int, array{name: string, count: int}>  $parsedEntries
+     * Strips the class-tree bloat documented in TalentSelector::getClassTalentNodesProperty()
+     * (CLAUDE.md's "class-tree bloat" note) — Blizzard's bare class-tree endpoint has, at various
+     * points, echoed nearly every one of the class's own spec-tree nodes back into the class
+     * tree's own node list, and because talent_nodes upserts are additive-only, an import done
+     * while that bug was live leaves those duplicate rows in the DB permanently, even after a
+     * later clean re-fetch. Without this filter, resolveTreeChoices() below would name-match
+     * murlok's page text against both the real node AND its bloated class-tree duplicate,
+     * writing two talent_build_choices rows for one real talent — confirmed happening in
+     * practice (2026-08-13) across every spec whose class tree carried this duplication.
+     * Mirrors TalentSelector's own filter exactly (same comparison: any class-tree node whose
+     * external_node_id also appears in ANY of this class's spec/hero trees is dropped) so both
+     * surfaces agree on what the "real" class tree looks like. Mutates $classTree's already
+     *-loaded 'nodes' relation in place via setRelation() rather than re-querying.
+     */
+    private function stripBloatedClassNodes(TalentTree $classTree, int $classId, int $patchId): void
+    {
+        $specHeroExternalIds = TalentNode::whereHas(
+            'talentTree',
+            fn ($q) => $q->where('class_id', $classId)
+                ->where('patch_id', $patchId)
+                ->whereIn('type', ['spec', 'hero'])
+        )->pluck('external_node_id');
+
+        $classTree->setRelation(
+            'nodes',
+            $classTree->nodes->reject(fn (TalentNode $n) => $specHeroExternalIds->contains($n->external_node_id))->values()
+        );
+    }
+
+    /**
      * @param  array<int, string>  &$unmatched
      * @return array{choices: Collection, total: int}
      */

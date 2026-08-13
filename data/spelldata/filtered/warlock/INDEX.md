@@ -146,7 +146,6 @@ One line per spell record; each lists every file it appears in.
 - **Conflagrate (id=17962) [Spell Family (5)]** — `destruction.txt`
 - **Conflagrate (id=245330) [Spell Family (5)]** — `baseline.txt`
 - **Conflagration of Chaos (id=387108) [Spell Family (5), Passive, Hidden]** — `destruction.txt`
-- **Conflagration of Chaos (id=387109) [Spell Family (5)]** — `baseline.txt`
 - **Consuming Shadows (desc=Basic Attack) (id=3716) [Spell Family (57)]** — `baseline.txt`
 - **Contagion (id=453096) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
 - **Contained Perpetual Explosion (id=356259) [Spell Family (5), Hidden]** — `baseline.txt`
@@ -182,6 +181,7 @@ One line per spell record; each lists every file it appears in.
 - **Dark Harvest (id=1257052) [Spell Family (5)]** — `affliction.txt`
 - **Dark Harvest (id=1257065) [Spell Family (5)]** — `baseline.txt`
 - **Dark Pact (id=108416) [Spell Family (5)]** — `class-talents.txt`
+- **Dark Titan's Mark (id=1305711) [Spell Family (5)]** — `baseline.txt`
 - **Darkglare Presence (id=1280663) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Deadwind Harvester (id=216708) [Spell Family (5)]** — `baseline.txt`
 - **Death's Embrace (id=234876) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
@@ -434,6 +434,7 @@ One line per spell record; each lists every file it appears in.
 - **Havoc (id=80240) [Spell Family (5)]** — `destruction.txt`
 - **Headbutt (id=267999)** — `baseline.txt`
 - **Healthstone (id=6262) [Spell Family (5)]** — `baseline.txt`
+- **Hedonic Gorging (id=1311969) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
 - **Hellbent Commander (id=1250897) [Spell Family (5), Passive, Hidden]** — `demonology.txt`
 - **Hellbent Commander (id=1281559) [Spell Family (5)]** — `baseline.txt`
 - **Hood of Eternal Disdain (id=205797) [Spell Family (5), Passive]** — `baseline.txt`
@@ -460,6 +461,7 @@ One line per spell record; each lists every file it appears in.
 - **Impending Catastrophe (id=322170) [Spell Family (5)]** — `baseline.txt`
 - **Impending Ruin (id=364348) [Spell Family (5)]** — `baseline.txt`
 - **Impending Ruin (id=387158) [Spell Family (5)]** — `baseline.txt`
+- **Impetuous Wrath (id=1312998) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
 - **Implosion (id=196277) [Spell Family (5)]** — `demonology.txt`
 - **Implosion (id=196278) [Spell Family (5)]** — `baseline.txt`
 - **Implosion (id=225590) [Hidden]** — `baseline.txt`
@@ -511,6 +513,8 @@ One line per spell record; each lists every file it appears in.
 - **Inner Demons (id=267216) [Spell Family (5), Passive]** — `demonology.txt`
 - **Internal Combustion (id=266134) [Spell Family (5), Passive]** — `destruction.txt`
 - **Internal Combustion (id=266136) [Spell Family (5)]** — `baseline.txt`
+- **Isolated Implosion (id=1306077) [Spell Family (5)]** — `baseline.txt`
+- **Isolated Implosion (id=1309535) [Hidden]** — `baseline.txt`
 - **Jackpot! (id=1217798) [Spell Family (5)]** — `baseline.txt`
 - **Jackpot! (id=1219034) [Spell Family (5)]** — `baseline.txt`
 - **Jaws of Shadow (id=242922)** — `baseline.txt`
@@ -609,7 +613,6 @@ One line per spell record; each lists every file it appears in.
 - **Nightfall (id=264571) [Spell Family (5)]** — `baseline.txt`
 - **Nightmare (id=386648) [Passive, Hidden]** — `class-talents.txt`
 - **Niskaran Methods (id=1279510) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
-- **Nocturnal Yield (id=1260271) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
 - **Norgannon's Foresight (id=236431) [Spell Family (5)]** — `baseline.txt`
 - **Odr, Shawl of the Ymirjar (id=212172) [Spell Family (5), Passive]** — `baseline.txt`
 - **Odr, Shawl of the Ymirjar (id=212173) [Spell Family (5)]** — `baseline.txt`
@@ -624,7 +627,6 @@ One line per spell record; each lists every file it appears in.
 - **Pact of the Satyr (id=1270691) [Spell Family (5), Passive, Hidden]** — `class-talents.txt`
 - **Pandemic Invocation (id=289367) [Spell Family (5)]** — `baseline.txt`
 - **Pandemic Invocation (id=289368) [Spell Family (5)]** — `baseline.txt`
-- **Patient Zero (id=1260285) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
 - **Perpetual Agony of Azj'Aqir (id=337106) [Spell Family (5), Passive]** — `baseline.txt`
 - **Phantom Singularity (id=205179) [Spell Family (5)]** — `baseline.txt`
 - **Phantom Singularity (id=205246) [Spell Family (5)]** — `baseline.txt`
@@ -659,6 +661,7 @@ One line per spell record; each lists every file it appears in.
 - **Recuperate (id=1231418)** — `baseline.txt`
 - **Recurrent Ritual (id=205721) [Spell Family (5), Passive]** — `baseline.txt`
 - **Recurrent Ritual (id=214811) [Spell Family (5)]** — `baseline.txt`
+- **Refund Soul Shard (id=1305798) [Spell Family (5)]** — `baseline.txt`
 - **Reign of Tyranny (id=1276748) [Spell Family (5), Passive, Hidden]** — `demonology.txt`
 - **Relic of Demonic Synergy (id=337057) [Spell Family (5), Passive]** — `baseline.txt`
 - **Relic of Demonic Synergy (id=337060) [Spell Family (5)]** — `baseline.txt`
@@ -735,6 +738,7 @@ One line per spell record; each lists every file it appears in.
 - **Shadow Slash (id=272012)** — `baseline.txt`
 - **Shadow's Bite (id=272945) [Spell Family (5)]** — `baseline.txt`
 - **Shadowbolt Volley (id=453176) [Spell Family (5)]** — `baseline.txt`
+- **Shadowburn (id=1311913)** — `baseline.txt`
 - **Shadowburn (id=17877) [Spell Family (5)]** — `destruction.txt`
 - **Shadowburn (id=245731) [Spell Family (5)]** — `baseline.txt`
 - **Shadowburn (id=29341) [Spell Family (5)]** — `baseline.txt`
@@ -781,7 +785,8 @@ One line per spell record; each lists every file it appears in.
 - **Soul Fire (id=335004) [Spell Family (5)]** — `baseline.txt`
 - **Soul Fire (id=6353) [Spell Family (5)]** — `destruction.txt`
 - **Soul Leech (desc=Talent) (id=108366) [Spell Family (5)]** — `baseline.txt`
-- **Soul Leech (id=108370) [Spell Family (5), Passive]** — `class-talents.txt`
+- **Soul Leech (id=108370) [Spell Family (5), Passive]** — `baseline.txt`
+- **Soul Leech (id=1311653) [Spell Family (5), Passive]** — `class-talents.txt`
 - **Soul Link (id=108415) [Spell Family (5), Passive, Hidden]** — `class-talents.txt`
 - **Soul Link (id=108446) [Spell Family (5)]** — `baseline.txt`
 - **Soul Link (id=108447) [Spell Family (5)]** — `baseline.txt`
@@ -909,7 +914,7 @@ One line per spell record; each lists every file it appears in.
 - **Unstable Affliction (id=233499) [Spell Family (5)]** — `baseline.txt`
 - **Unstable Affliction (id=30108) [Spell Family (5)]** — `baseline.txt`
 - **Unstable Affliction (id=31117) [Spell Family (5)]** — `baseline.txt`
-- **Unstable Affliction (id=316099) [Spell Family (5)]** — `baseline.txt`
+- **Unstable Empowerment (id=1305774) [Spell Family (5)]** — `baseline.txt`
 - **Unstable Soul (id=1281512) [Spell Family (5)]** — `baseline.txt`
 - **Unstable Tear (id=387979) [Spell Family (5)]** — `baseline.txt`
 - **Use Soulstone (id=3026) [Spell Family (5)]** — `baseline.txt`
@@ -938,6 +943,8 @@ One line per spell record; each lists every file it appears in.
 - **Warlock Affliction 11.1 Class Set 4pc (id=1219036) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Warlock Affliction 12.0 Class Set 2pc (id=1264869) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Affliction 12.0 Class Set 4pc (id=1264870) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
+- **Warlock Affliction 12.1 Class Set 2pc (id=1296568) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
+- **Warlock Affliction 12.1 Class Set 4pc (id=1296569) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Affliction Class Set 2pc (id=393698) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Affliction Class Set 4pc (id=393699) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Demonology 10.1 Class Set 2pc (id=405573) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
@@ -951,6 +958,8 @@ One line per spell record; each lists every file it appears in.
 - **Warlock Demonology 11.1 Class Set 4pc (id=1217647) [Spell Family (5)]** — `baseline.txt`
 - **Warlock Demonology 12.0 Class Set 2pc (id=1264871) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Demonology 12.0 Class Set 4pc (id=1264872) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
+- **Warlock Demonology 12.1 Class Set 2pc (id=1296573) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
+- **Warlock Demonology 12.1 Class Set 4pc (id=1296574) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Demonology Class Set 2pc (id=393701) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Demonology Class Set 4pc (id=393702) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Destruction 10.1 Class Set 2pc (id=405575) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
@@ -963,6 +972,8 @@ One line per spell record; each lists every file it appears in.
 - **Warlock Destruction 11.1 Class Set 4pc (id=1215681) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Destruction 12.0 Class Set 2pc (id=1264873) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Destruction 12.0 Class Set 4pc (id=1264874) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
+- **Warlock Destruction 12.1 Class Set 2pc (id=1296571) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
+- **Warlock Destruction 12.1 Class Set 4pc (id=1296572) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Destruction Class Set 2pc (id=393703) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Destruction Class Set 4pc (id=393704) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Warlock Tier 6 Trinket (id=40478) [Spell Family (5), Passive, Hidden]** — `baseline.txt`

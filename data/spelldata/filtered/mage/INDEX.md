@@ -23,6 +23,7 @@ One line per spell record; each lists every file it appears in.
 - **Alter Time (id=342246) [Spell Family (3)]** — `baseline.txt`
 - **Alter Time (id=342247) [Spell Family (3)]** — `baseline.txt`
 - **Amplification (id=236628) [Spell Family (3), Passive]** — `arcane.txt`
+- **Amplified Refraction (id=1309793) [Spell Family (3)]** — `baseline.txt`
 - **Arcane Artillery (id=424331) [Spell Family (3)]** — `baseline.txt`
 - **Arcane Assault (id=225119) [Spell Family (3)]** — `baseline.txt`
 - **Arcane Barrage (id=321529) [Spell Family (3)]** — `baseline.txt`
@@ -75,6 +76,7 @@ One line per spell record; each lists every file it appears in.
 - **Arcane Potency (id=24544) [Spell Family (3)]** — `baseline.txt`
 - **Arcane Pulse (id=1241462) [Spell Family (3)]** — `arcane.txt`
 - **Arcane Pulse (id=1243460) [Spell Family (3)]** — `baseline.txt`
+- **Arcane Pulse (id=1295977) [Spell Family (3)]** — `baseline.txt`
 - **Arcane Pummeling (id=270670) [Spell Family (3)]** — `baseline.txt`
 - **Arcane Pummeling (id=270671) [Spell Family (3), Hidden]** — `baseline.txt`
 - **Arcane Rebound (id=1223801) [Spell Family (3)]** — `baseline.txt`
@@ -214,6 +216,7 @@ One line per spell record; each lists every file it appears in.
 - **Crushing Jets (desc=PvP Talent) (id=198146) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Cryo-Freeze (id=382292) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Crystalline Refraction (id=1247544) [Spell Family (3), Passive]** — `frost.txt`
+- **Cumulative Power (id=1296930) [Spell Family (3)]** — `baseline.txt`
 - **Dalaran Brilliance (id=212660)** — `baseline.txt`
 - **Dalaran Brilliance (id=292848) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Dalaran Brilliance (id=292849)** — `baseline.txt`
@@ -520,6 +523,7 @@ One line per spell record; each lists every file it appears in.
 - **Improved Remove Curse (id=1270847) [Spell Family (3), Passive, Hidden]** — `class-talents.txt`
 - **Improved Shatter (id=1246811) [Spell Family (3), Passive]** — `frost.txt`
 - **Improved Spellsteal (id=1270827) [Spell Family (3), Passive, Hidden]** — `class-talents.txt`
+- **Improved Warding (id=1297073) [Spell Family (3), Passive]** — `class-talents.txt`
 - **Incantation of Swiftness (id=337275) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Incantation of Swiftness (id=337278)** — `baseline.txt`
 - **Incantation of Swiftness (id=382293) [Spell Family (3), Passive, Hidden]** — `class-talents.txt`
@@ -546,7 +550,6 @@ One line per spell record; each lists every file it appears in.
 - **Kleptomania (desc=PvP Talent) (id=198100) [Spell Family (3)]** — `baseline.txt`
 - **Koralon's Burning Touch (id=208099) [Spell Family (3), Passive]** — `baseline.txt`
 - **Lady Vashj's Grasp (id=208146) [Spell Family (3), Passive]** — `baseline.txt`
-- **Lesser Time Warp (id=1260277) [Spell Family (3)]** — `baseline.txt`
 - **Lessons in Debilitation (id=449627) [Spell Family (3), Passive, Hidden]** — `hero-sunfury.txt`
 - **Living Bomb (id=176673)** — `baseline.txt`
 - **Living Bomb (id=217694) [Spell Family (3)]** — `baseline.txt`
@@ -575,6 +578,8 @@ One line per spell record; each lists every file it appears in.
 - **Mage Arcane 11.1 Class Set 4pc (id=1215624) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Arcane 12.0 Class Set 2pc (id=1264832) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Arcane 12.0 Class Set 4pc (id=1264833) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
+- **Mage Arcane 12.1 Class Set 2pc (id=1296581) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
+- **Mage Arcane 12.1 Class Set 4pc (id=1296582) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Arcane Class Set 2pc (id=393653) [Spell Family (3), Passive]** — `baseline.txt`
 - **Mage Arcane Class Set 4pc (id=393654) [Spell Family (3), Passive]** — `baseline.txt`
 - **Mage Fire 10.1 Class Set 2pc (id=405534) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
@@ -588,6 +593,8 @@ One line per spell record; each lists every file it appears in.
 - **Mage Fire 11.1 Class Set 4pc (id=1215632) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Fire 12.0 Class Set 2pc (id=1264834) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Fire 12.0 Class Set 4pc (id=1264835) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
+- **Mage Fire 12.1 Class Set 2pc (id=1296583) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
+- **Mage Fire 12.1 Class Set 4pc (id=1296584) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Fire Class Set 2pc (id=393655) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Fire Class Set 4pc (id=393656) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Frost 10.1 Class Set 2pc (id=405536) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
@@ -600,6 +607,8 @@ One line per spell record; each lists every file it appears in.
 - **Mage Frost 11.1 Class Set 4pc (id=1215629) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Frost 12.0 Class Set 2pc (id=1264836) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Frost 12.0 Class Set 4pc (id=1264837) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
+- **Mage Frost 12.1 Class Set 2pc (id=1296585) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
+- **Mage Frost 12.1 Class Set 4pc (id=1296586) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Frost Class Set 2pc (id=393657) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Mage Frost Class Set 4pc (id=393658) [Spell Family (3), Passive, Hidden]** — `baseline.txt`
 - **Magtheridon's Might (id=214403) [Spell Family (3), Passive]** — `baseline.txt`
@@ -717,6 +726,12 @@ One line per spell record; each lists every file it appears in.
 - **Preheat (id=273333) [Spell Family (3)]** — `baseline.txt`
 - **Presence of Mind (id=205025) [Spell Family (3)]** — `arcane.txt`
 - **Prismatic Barrier (id=235450) [Spell Family (3)]** — `class-talents.txt`
+- **Prismatic Bolt (id=1295923) [Spell Family (3), Passive]** — `arcane.txt`
+- **Prismatic Bolt (id=1295924) [Spell Family (3)]** — `baseline.txt`
+- **Prismatic Bolt (id=1295939) [Spell Family (3)]** — `baseline.txt`
+- **Prismatic Bolt (id=1295944) [Spell Family (3), Passive]** — `arcane.txt`
+- **Prismatic Bolt (id=1295946) [Spell Family (3), Passive]** — `arcane.txt`
+- **Prismatic Bolt! (id=1295942) [Spell Family (3)]** — `baseline.txt`
 - **Prodigious Savant (id=384612) [Spell Family (3), Passive]** — `arcane.txt`
 - **PvP Rules Enabled (HARDCODED) (id=134735) [Hidden]** — `baseline.txt`
 - **PvP Rules Enabled for Dummy (id=178806)** — `baseline.txt`
@@ -742,6 +757,7 @@ One line per spell record; each lists every file it appears in.
 - **Radiant Spark (desc=Kyrian) (id=312950) [Hidden]** — `baseline.txt`
 - **Radiant Spark Vulnerability (id=307454) [Spell Family (3)]** — `baseline.txt`
 - **Rage of the Frost Wyrm (id=248177) [Spell Family (3)]** — `baseline.txt`
+- **Rapid Refreezing (id=1310248) [Spell Family (3)]** — `baseline.txt`
 - **Ray of Frost (id=205021) [Spell Family (3)]** — `frost.txt`
 - **Ray of Frost (id=208141) [Spell Family (3), Hidden]** — `baseline.txt`
 - **Ray of Frost (id=269748) [Spell Family (3), Hidden]** — `baseline.txt`
@@ -755,6 +771,9 @@ One line per spell record; each lists every file it appears in.
 - **Reflection (id=1270829) [Spell Family (3), Passive, Hidden]** — `class-talents.txt`
 - **Reflection (id=389713) [Spell Family (3)]** — `baseline.txt`
 - **Reflection (id=389714) [Spell Family (3)]** — `baseline.txt`
+- **Refraction (id=1309786) [Spell Family (3)]** — `baseline.txt`
+- **Refraction (id=1309787) [Spell Family (3)]** — `baseline.txt`
+- **Refractive Images (id=1309497) [Spell Family (3), Passive]** — `arcane.txt`
 - **Refreshment (id=167152)** — `baseline.txt`
 - **Remove Curse (id=475) [Spell Family (3)]** — `class-talents.txt`
 - **Resonance (id=205028) [Spell Family (3), Passive]** — `arcane.txt`
@@ -775,7 +794,6 @@ One line per spell record; each lists every file it appears in.
 - **Rule of Threes (id=264774) [Spell Family (3)]** — `baseline.txt`
 - **Savor the Moment (id=449412) [Spell Family (3), Passive, Hidden]** — `hero-sunfury.txt`
 - **Scald (id=450746) [Spell Family (3), Passive]** — `fire.txt`
-- **Scorch (id=1254311) [Spell Family (3), Passive]** — `baseline.txt`
 - **Scorch (id=2948) [Spell Family (3)]** — `fire.txt`
 - **Searing Blast (id=16454) [Spell Family (3)]** — `baseline.txt`
 - **Searing Blast (id=470633) [Spell Family (3)]** — `baseline.txt`
@@ -821,7 +839,6 @@ One line per spell record; each lists every file it appears in.
 - **Spellfire Salvo (id=1260616) [Spell Family (3), Passive, Hidden]** — `hero-sunfury.txt`
 - **Spellfire Sphere (id=448604) [Spell Family (3)]** — `baseline.txt`
 - **Spellfire Spheres (id=448601) [Spell Family (3), Passive, Hidden]** — `hero-sunfury.txt`
-- **Spellfire Spheres (id=449400) [Spell Family (3)]** — `baseline.txt`
 - **Spellfrost Teachings (id=444986) [Spell Family (3), Passive, Hidden]** — `hero-spellslinger.txt`
 - **Spellfrost Teachings (id=458411) [Spell Family (3)]** — `baseline.txt`
 - **Spellfrost Teachings (id=460568) [Spell Family (3), Hidden]** — `baseline.txt`
@@ -875,12 +892,6 @@ One line per spell record; each lists every file it appears in.
 - **Tormenting Backlash (id=317589) [Spell Family (3)]** — `baseline.txt`
 - **Tormenting Backlash (id=342375) [Spell Family (3)]** — `baseline.txt`
 - **Touch of Ice (id=394994) [Spell Family (3)]** — `baseline.txt`
-- **Touch of the Archmage (id=1257942) [Spell Family (3), Passive]** — `arcane.txt`
-- **Touch of the Archmage (id=1257947) [Spell Family (3), Passive]** — `arcane.txt`
-- **Touch of the Archmage (id=1257950) [Spell Family (3), Passive]** — `arcane.txt`
-- **Touch of the Archmage (id=1258036) [Spell Family (3)]** — `baseline.txt`
-- **Touch of the Archmage (id=1258134) [Spell Family (3)]** — `baseline.txt`
-- **Touch of the Magi (id=210725) [Spell Family (3), Passive]** — `baseline.txt`
 - **Touch of the Magi (id=210824) [Spell Family (3)]** — `baseline.txt`
 - **Touch of the Magi (id=210833) [Spell Family (3)]** — `baseline.txt`
 - **Touch of the Magi (id=321507) [Spell Family (3)]** — `arcane.txt`

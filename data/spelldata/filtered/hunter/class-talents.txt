@@ -1,5 +1,5 @@
 # Hunter — Class Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 52 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Scare Beast (id=1513) [Spell Family (9)] 
@@ -51,7 +51,7 @@ Family Flags     : 1, 121
 Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Do Not Reset Combat Timers (81), Show Mechanic as Combat Text (213), Taps immediately (215), Do Not Auto Select Target with Initiates Combat (220), Aura Points On Client (268), Don't Cancel When All Effects are Disabled (353), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1805)     : Apply Aura (6) | Decrease Movement Speed% (33)
-                   Base Value: -50 | Scaled Value: -50 | Target: Targeted Enemy (6)
+                   Base Value: -50 | Scaled Value: -50 | PvP Coefficient: 0.6 | Target: Targeted Enemy (6)
                    Modified By: Improved Snaring (1268868 effect#2)
 Description      : Dazes the target, slowing movement speed by $s1% for $d.$?a137015[
 
@@ -150,7 +150,7 @@ Attributes       : Is Ability (4), Not Shapeshifted (16), No Threat (42), Includ
 Aura Interrupt   : Raid Encounter End or M+ Start (41)
 Effects          :
 #1 (id=46148)    : Apply Aura (6) | Modify Damage Taken% (87)
-                   Base Value: -15 | Scaled Value: -15 | Value Multiplier: 1 | Misc Value: 0x7f | Target: Targeted Ally (21)
+                   Base Value: -15 | Scaled Value: -15 | Value Multiplier: 1 | PvP Coefficient: 1.66666 | Misc Value: 0x7f | Target: Targeted Ally (21)
                    Affected School(s): All
 #2 (id=46149)    : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Value Multiplier: 1 | Misc Value: 127 | Target: Targeted Ally (21)

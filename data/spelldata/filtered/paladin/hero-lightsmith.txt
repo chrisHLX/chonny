@@ -1,5 +1,5 @@
 # Paladin — Lightsmith Hero Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 19 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Holy Bulwark (id=432459) [Spell Family (10)] 
@@ -183,13 +183,21 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Aura Interrupt   : Change Specialization (38), Change Talent (46)
 Effects          :
 #1 (id=1122231)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
                    Modified By: Protection Paladin (137028 effect#20)
 #2 (id=1123462)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
-Description      : For each Holy Power ability cast, your next Consecration deals $?a137029[$<holy>][$<prot>] damage or healing immediately, split across all enemies and allies.
+#3 (id=1339581)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 3 | Scaled Value: 3 | Target: Self (1)
+#4 (id=1339582)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+#5 (id=1339700)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+Description      : For each Holy Power ability cast, your next Consecration deals $?a137029[$<holy>][$<prot>] damage immediately, split across all enemies.
+
+Up to $s3 nearby $Lally is:allies are each; healed for $?a137029[$s5][$s4]% of the damage amount.
 Variables        : $prot=${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137028s1/100)}
-$holy=${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137029s9/100)}
+$holy=${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137029s1/100)}
 $value=$?a137028[${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137028s1/100)}][${($SP*$433106s1/10)*(1+$@versadmg)*(1+$137029s9/100)}]
 
 Name             : Rite of Sanctification (desc=Weapon Imbue) (id=433568) [Spell Family (10)] 
@@ -275,9 +283,8 @@ Range            : 40 yards
 Labels           : 16: Class Spells
                  : 26: Paladin Spells
                  : 292
-Internal Cooldown: 0.1 seconds
 Proc Chance      : 101%
-Proc Flags       : Yellow Melee, Yellow Ranged, Generic Helpful, Generic Hostile Spell, Magic Heal, Magic Hostile Spell, Periodic, Helpful Periodic, Unknown 37
+Proc Flags       : Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Cast Successful, Unknown 37
 Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355)
 Aura Interrupt   : Change Specialization (38), Change Talent (46)
 Effects          :
@@ -303,7 +310,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1284059)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
-Description      : After casting a Holy Armament, your next $s1 $Lability:abilities; $Lcasts:cast; a Lesser Armament of the same kind on a nearby ally.
+Description      : After casting a Holy Armament, your next $s1 $Lcast:casts; of $?s204019[Blessed Hammer]?s53595[Hammer of the Righteous]?a137029[Holy Shock or Crusader Strike][Crusader Strike] bestow a Lesser Armament of the same kind on a nearby ally.
 
 Name             : Reflection of Radiance (id=1271466) [Spell Family (10), Passive] 
 Talent Entry     : Lightsmith (Holy, Protection) [tree=hero, row=4, col=4, max_rank=1, req_points=0]

@@ -1,6 +1,6 @@
 {
     "class": "Hunter",
-    "fetched_at": "2026-08-02T09:09:55+00:00",
+    "fetched_at": "2026-08-12T21:50:19+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "specs": {
         "Marksmanship": {
@@ -27,7 +27,7 @@
                     "name": "Chimaeral Sting",
                     "spell_id": 356719,
                     "spell_name": "Chimaeral Sting",
-                    "description": "Stings the target, dealing 52 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
+                    "description": "Stings the target, dealing 53 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
                     "unlock_player_level": 30,
                     "compatible_slots": [
                         1,
@@ -75,7 +75,7 @@
                     "name": "Hunting Pack",
                     "spell_id": 203235,
                     "spell_name": "Hunting Pack",
-                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 15 yds.",
+                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 30 yds.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -133,6 +133,22 @@
                     ],
                     "playable_spec_id": 254,
                     "playable_spec_name": "Marksmanship"
+                },
+                {
+                    "id": 5745,
+                    "name": "Scatter Shot",
+                    "spell_id": 213691,
+                    "spell_name": "Scatter Shot",
+                    "description": "A short-range shot that deals 1 damage, removes all harmful damage over time effects, and incapacitates the target for 3 sec.  Any damage caused will remove the effect. Turns off your attack when used.",
+                    "unlock_player_level": 45,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 254,
+                    "playable_spec_name": "Marksmanship"
                 }
             ]
         },
@@ -144,7 +160,7 @@
                     "name": "Hunting Pack",
                     "spell_id": 203235,
                     "spell_name": "Hunting Pack",
-                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 15 yds.",
+                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 30 yds.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -240,7 +256,7 @@
                     "name": "Chimaeral Sting",
                     "spell_id": 356719,
                     "spell_name": "Chimaeral Sting",
-                    "description": "Stings the target, dealing 52 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
+                    "description": "Stings the target, dealing 53 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
                     "unlock_player_level": 30,
                     "compatible_slots": [
                         1,
@@ -274,6 +290,22 @@
                     "spell_name": "Interlope",
                     "description": "Misdirection now causes the next 3 hostile spells cast on your target within 10 sec to be redirected to your pet, but its cooldown is increased by 15 sec.\r\n\r\nYour pet must be within 20 yards of the target for spells to be redirected.\r\n",
                     "unlock_player_level": 30,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 255,
+                    "playable_spec_name": "Survival"
+                },
+                {
+                    "id": 5744,
+                    "name": "Scatter Shot",
+                    "spell_id": 213691,
+                    "spell_name": "Scatter Shot",
+                    "description": "A short-range shot that deals 1 damage, removes all harmful damage over time effects, and incapacitates the target for 3 sec.  Any damage caused will remove the effect. Turns off your attack when used.",
+                    "unlock_player_level": 45,
                     "compatible_slots": [
                         1,
                         2,
@@ -357,7 +389,7 @@
                     "name": "Chimaeral Sting",
                     "spell_id": 356719,
                     "spell_name": "Chimaeral Sting",
-                    "description": "Stings the target, dealing 52 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
+                    "description": "Stings the target, dealing 51 Nature damage and initiating a series of venoms. Each lasts 3 sec and applies the next effect after the previous one ends.\r\n\r\n Scorpid Venom:\r\n90% reduced movement speed.\r\n\r\n Spider Venom:\r\nSilenced.\r\n\r\n Viper Venom:\r\n20% reduced damage and healing.",
                     "unlock_player_level": 30,
                     "compatible_slots": [
                         1,
@@ -373,7 +405,7 @@
                     "name": "Hunting Pack",
                     "spell_id": 203235,
                     "spell_name": "Hunting Pack",
-                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 15 yds.",
+                    "description": "Aspect of the Cheetah has 50% reduced cooldown and grants its effects to allies within 30 yds.",
                     "unlock_player_level": 0,
                     "compatible_slots": [
                         1,
@@ -423,6 +455,22 @@
                     "spell_name": "Diamond Ice",
                     "description": "Victims of Freezing Trap can no longer be damaged or healed.  Freezing Trap is now undispellable, but has a 4 sec duration.",
                     "unlock_player_level": 40,
+                    "compatible_slots": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "playable_spec_id": 253,
+                    "playable_spec_name": "Beast Mastery"
+                },
+                {
+                    "id": 5746,
+                    "name": "Scatter Shot",
+                    "spell_id": 213691,
+                    "spell_name": "Scatter Shot",
+                    "description": "A short-range shot that deals 1 damage, removes all harmful damage over time effects, and incapacitates the target for 3 sec.  Any damage caused will remove the effect. Turns off your attack when used.",
+                    "unlock_player_level": 45,
                     "compatible_slots": [
                         1,
                         2,

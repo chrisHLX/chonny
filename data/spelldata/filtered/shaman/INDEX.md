@@ -74,9 +74,10 @@ One line per spell record; each lists every file it appears in.
 - **Bottle of Swirling Maelstrom (id=350122) [Spell Family (11)]** — `baseline.txt`
 - **Brimming with Life (id=381684) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Brimming with Life (id=381689) [Spell Family (11), Passive, Hidden]** — `class-talents.txt`
+- **Burning Core (id=1299975) [Spell Family (11)]** — `baseline.txt`
 - **Call Lightning (id=157348) [Spell Family (11)]** — `baseline.txt`
 - **Call of Al'Akir (desc=PvP Talent) (id=1246131) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
-- **Call of Fire (id=378255) [Spell Family (11), Passive, Hidden]** — `elemental.txt`
+- **Call of Fire (id=378255) [Spell Family (11), Passive]** — `elemental.txt`
 - **Call of the Ancestors (id=1238269) [Spell Family (11)]** — `baseline.txt`
 - **Call of the Ancestors (id=443450) [Spell Family (11), Passive, Hidden]** — `hero-farseer.txt`
 - **Call of the Ancestors (id=445624) [Spell Family (11)]** — `baseline.txt`
@@ -85,7 +86,6 @@ One line per spell record; each lists every file it appears in.
 - **Call of the Ancestors (id=450511) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Call of the Ancestors (id=451031) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Call of the Ancestors (id=451137) [Spell Family (11), Hidden]** — `baseline.txt`
-- **Calm Waters (id=1252841) [Spell Family (11), Passive, Hidden]** — `restoration.txt`
 - **Capacitor Totem (id=118905) [Spell Family (11)]** — `baseline.txt`
 - **Capacitor Totem (id=192058) [Spell Family (11)]** — `class-talents.txt`
 - **Chain Harvest (desc=Venthyr) (id=320674) [Spell Family (11)]** — `baseline.txt`
@@ -119,6 +119,7 @@ One line per spell record; each lists every file it appears in.
 - **Coalescing Water (id=470076) [Spell Family (11), Passive, Hidden]** — `restoration.txt`
 - **Coalescing Water (id=470077) [Spell Family (11)]** — `baseline.txt`
 - **Combat Experience (id=156843) [Spell Family (9), Passive]** — `baseline.txt`
+- **Condensation (id=1300642) [Spell Family (11)]** — `baseline.txt`
 - **Conductive Energy (id=455123) [Spell Family (11), Passive, Hidden]** — `hero-stormbringer.txt`
 - **Control of Lava (id=204395) [Spell Family (11)]** — `baseline.txt`
 - **Control of Lava (id=236746) [Spell Family (11)]** — `baseline.txt`
@@ -288,8 +289,6 @@ One line per spell record; each lists every file it appears in.
 - **Feedback Loop (id=1270064) [Spell Family (11), Passive]** — `elemental.txt`
 - **Felborne Renewal (id=233645) [Spell Family (11)]** — `baseline.txt`
 - **Felsteel Boar (id=31038) [Spell Family (11)]** — `baseline.txt`
-- **Feral Lunge (id=1219343) [Spell Family (11)]** — `baseline.txt`
-- **Feral Lunge (id=1219348) [Spell Family (11)]** — `baseline.txt`
 - **Feral Lunge (id=196881) [Spell Family (11)]** — `baseline.txt`
 - **Feral Lunge (id=196884) [Spell Family (11)]** — `baseline.txt`
 - **Feral Lunge (id=215802) [Spell Family (11)]** — `baseline.txt`
@@ -344,6 +343,7 @@ One line per spell record; each lists every file it appears in.
 - **Flametongue Weapon (id=319778) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Flash of Lightning (id=381936) [Spell Family (11), Passive, Hidden]** — `elemental.txt`
 - **Flow of the Tides (id=382039) [Spell Family (11), Passive, Hidden]** — `restoration.txt`
+- **Flowing Elements (id=1300219) [Spell Family (11)]** — `baseline.txt`
 - **Flurry (id=382888) [Spell Family (11), Passive, Hidden]** — `enhancement.txt`
 - **Flurry (id=382889) [Spell Family (11)]** — `baseline.txt`
 - **Focuser of Jonat, the Elder (id=210606) [Spell Family (11), Passive]** — `baseline.txt`
@@ -376,6 +376,8 @@ One line per spell record; each lists every file it appears in.
 - **Heal the Soul (id=366779) [Spell Family (11)]** — `baseline.txt`
 - **Heal the Soul (id=366780) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Heal the Soul (id=369064) [Spell Family (11), Hidden]** — `baseline.txt`
+- **Healing Rain (id=1298679) [Spell Family (11), Hidden]** — `baseline.txt`
+- **Healing Rain (id=1307888) [Spell Family (11)]** — `baseline.txt`
 - **Healing Rain (id=73920) [Spell Family (11)]** — `restoration.txt`
 - **Healing Rain (id=73921) [Spell Family (11)]** — `baseline.txt`
 - **Healing Stream (id=1281950)** — `baseline.txt`
@@ -449,7 +451,7 @@ One line per spell record; each lists every file it appears in.
 - **Legacy of the Frost Witch (id=335899) [Spell Family (11), Passive]** — `baseline.txt`
 - **Legacy of the Frost Witch (id=335901) [Spell Family (11)]** — `baseline.txt`
 - **Lesser Fire Elemental (id=462992) [Spell Family (11)]** — `baseline.txt`
-- **Lesser Storm Elemental (id=462990) [Spell Family (11)]** — `baseline.txt`
+- **Lesser Primal Storm Elemental (id=462990) [Spell Family (11)]** — `baseline.txt`
 - **Lesser Storm Elemental (id=462993) [Spell Family (11)]** — `baseline.txt`
 - **Lightning Blast (id=145002)** — `baseline.txt`
 - **Lightning Blast (id=191726) [Spell Family (11)]** — `baseline.txt`
@@ -544,6 +546,7 @@ One line per spell record; each lists every file it appears in.
 - **Ocean's Embrace (id=242465) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Offering from Beyond (id=443451) [Spell Family (11), Passive, Hidden]** — `hero-farseer.txt`
 - **Overcharge (id=1251026) [Spell Family (11), Passive, Hidden]** — `enhancement.txt`
+- **Overcharge! (id=1300222) [Spell Family (11)]** — `baseline.txt`
 - **Overflowing Maelstrom (id=384143) [Spell Family (11), Passive, Hidden]** — `enhancement.txt`
 - **Overflowing Maelstrom (id=410681) [Spell Family (11)]** — `baseline.txt`
 - **Overflowing Shores (id=278077) [Spell Family (11), Hidden]** — `baseline.txt`
@@ -667,6 +670,8 @@ One line per spell record; each lists every file it appears in.
 - **Shaman Elemental 11.1 Class Set 4pc (id=1215676) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Elemental 12.0 Class Set 2pc (id=1264862) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Elemental 12.0 Class Set 4pc (id=1264863) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
+- **Shaman Elemental 12.1 Class Set 2pc (id=1296625) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
+- **Shaman Elemental 12.1 Class Set 4pc (id=1296626) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Elemental Class Set 2pc (id=393688) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Elemental Class Set 4pc (id=393690) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Enhancement 10.1 Class Set 2pc (id=405567) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
@@ -679,6 +684,8 @@ One line per spell record; each lists every file it appears in.
 - **Shaman Enhancement 11.1 Class Set 4pc (id=1215712) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Enhancement 12.0 Class Set 2pc (id=1264864) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Enhancement 12.0 Class Set 4pc (id=1264865) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
+- **Shaman Enhancement 12.1 Class Set 2pc (id=1296627) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
+- **Shaman Enhancement 12.1 Class Set 4pc (id=1296628) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Enhancement Class Set 2pc (id=393691) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Enhancement Class Set 4pc (id=393693) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Restoration 10.1 Class Set 2pc (id=405569) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
@@ -691,6 +698,8 @@ One line per spell record; each lists every file it appears in.
 - **Shaman Restoration 11.1 Class Set 4pc (id=1215611) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Restoration 12.0 Class Set 2pc (id=1264866) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Restoration 12.0 Class Set 4pc (id=1264867) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
+- **Shaman Restoration 12.1 Class Set 2pc (id=1296629) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
+- **Shaman Restoration 12.1 Class Set 4pc (id=1296630) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Restoration Class Set 2pc (id=393695) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Restoration Class Set 4pc (id=393697) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
 - **Shaman Shock Range Bonus (id=32973) [Spell Family (11), Passive, Hidden]** — `baseline.txt`
@@ -700,6 +709,7 @@ One line per spell record; each lists every file it appears in.
 - **Shattering Strikes (id=467274) [Spell Family (11), Passive]** — `baseline.txt`
 - **Shock of the Twisting Nether (id=207999)** — `baseline.txt`
 - **Shocking Blast (id=275384) [Spell Family (11)]** — `baseline.txt`
+- **Short Circuit (id=1299991) [Spell Family (11)]** — `baseline.txt`
 - **Single-Button Assistant (id=1229376)** — `baseline.txt`
 - **Skybreaker's Fiery Demise (id=336734) [Spell Family (11), Passive]** — `baseline.txt`
 - **Skyfury (id=462854) [Spell Family (11)]** — `baseline.txt`
@@ -833,6 +843,7 @@ One line per spell record; each lists every file it appears in.
 - **Swelling Stream (id=275495) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Swelling Stream (id=275499) [Spell Family (11)]** — `baseline.txt`
 - **Swelling Stream (id=275502) [Spell Family (11), Hidden]** — `baseline.txt`
+- **Swelling Tides (id=1312843) [Spell Family (11), Passive, Hidden]** — `restoration.txt`
 - **Swift Recall (id=445027) [Spell Family (11), Passive, Hidden]** — `hero-totemic.txt`
 - **Swift Recall (id=457676) [Spell Family (11), Hidden]** — `baseline.txt`
 - **Synapse Shock (id=277958) [Spell Family (11), Hidden]** — `baseline.txt`

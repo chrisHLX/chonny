@@ -1,7 +1,7 @@
 {
     "class": "Evoker",
     "talent_tree_id": 872,
-    "fetched_at": "2026-08-02T09:05:14+00:00",
+    "fetched_at": "2026-08-12T21:34:26+00:00",
     "source": "Blizzard Game Data API (static-us, en_US)",
     "class_talents": {
         "nodes": [
@@ -559,7 +559,7 @@
                         "talent_name": "Unravel",
                         "spell_id": 1264378,
                         "spell_name": "Unravel",
-                        "description": "Direct damage from Fire Breath consumes absorb shields from enemies, dealing 4,524 additional Spellfrost damage to them.",
+                        "description": "Direct damage from Fire Breath consumes absorb shields from enemies, dealing 4,483 additional Spellfrost damage to them.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -738,7 +738,7 @@
                         "talent_name": "Verdant Embrace",
                         "spell_id": 360995,
                         "spell_name": "Verdant Embrace",
-                        "description": "Fly to an ally and heal them for 4,020, or heal yourself for the same amount.",
+                        "description": "Fly to an ally and heal them for 5,226, or heal yourself for the same amount.",
                         "cast_time": "Instant",
                         "cooldown": "0.5 sec cooldown",
                         "range": "25 yd range"
@@ -917,7 +917,7 @@
                         "talent_name": "Panacea",
                         "spell_id": 387761,
                         "spell_name": "Panacea",
-                        "description": "Emerald Blossom and Verdant Embrace instantly heal you for 760 when cast.",
+                        "description": "Emerald Blossom and Verdant Embrace instantly heal you for 950 when cast.",
                         "cast_time": "Passive",
                         "cooldown": null,
                         "range": null
@@ -1582,7 +1582,7 @@
                             "talent_name": "Maneuverability",
                             "spell_id": 433871,
                             "spell_name": "Maneuverability",
-                            "description": "Deep Breath can now be steered in your desired direction.\r\n\r\nIn addition, Deep Breath burns targets for 2,554 Volcanic damage over 12 sec.\r\n\r\nThe duration of this effect is extended when Deep Breath is cast multiple times.",
+                            "description": "Deep Breath can now be steered in your desired direction.\r\n\r\nIn addition, Deep Breath burns targets for 3,576 Volcanic damage over 12 sec.\r\n\r\nThe duration of this effect is extended when Deep Breath is cast multiple times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1710,7 +1710,7 @@
                             "talent_name": "Wingleader",
                             "spell_id": 441206,
                             "spell_name": "Wingleader",
-                            "description": "Bombardments reduce the cooldown of Deep Breath by 0.5 sec for each target struck, up to 1.5 sec.",
+                            "description": "Mass Disintegrate reduces the remaining cooldown of Deep Breath by 1.0 sec for each target struck.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1829,7 +1829,7 @@
                             "talent_name": "Command Squadron",
                             "spell_id": 1260745,
                             "spell_name": "Command Squadron",
-                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 687 Fire damage to nearby enemies up to 8 times.",
+                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 961 Fire damage to nearby enemies up to 8 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1892,7 +1892,7 @@
                             "talent_name": "Consume Flame",
                             "spell_id": 444088,
                             "spell_name": "Consume Flame",
-                            "description": "Disintegrate damage consumes 1.0 sec of Fire Breath from enemies it damages, detonating it for 150% of the amount consumed.\r\n\r\nPyre damage consumes 4 sec of Fire Breath from enemies it damages, detonating it for 115% of the amount consumed.",
+                            "description": "Disintegrate consumes 1.0 sec of Fire Breath from enemies it damages, detonating it for 150% of the amount consumed.\r\n\r\nPyre consumes 4 sec of Fire Breath from enemies it damages, detonating it for 115% of the amount consumed.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -1920,7 +1920,7 @@
                             "talent_name": "Fulminous Roar",
                             "spell_id": 1218447,
                             "spell_name": "Fulminous Roar",
-                            "description": "Fire Breath deals its damage 20% more often.",
+                            "description": "Fire Breath deals its damage 15% more often.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2088,7 +2088,7 @@
                             "talent_name": "Conduit of Flame",
                             "spell_id": 444843,
                             "spell_name": "Conduit of Flame",
-                            "description": "Critical strike chance against targets above 50% health increased by 15%.",
+                            "description": "Critical strike chance against targets above 50% health increased by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2157,7 +2157,7 @@
                                     "talent_name": "Expanded Lungs",
                                     "spell_id": 444845,
                                     "spell_name": "Expanded Lungs",
-                                    "description": "Fire Breath's damage over time is increased by 30%. Dream Breath's heal over time is increased by 30%.",
+                                    "description": "Fire Breath's damage over time is increased by 30%. Dream Breath's heal over time is increased by 20%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2271,7 +2271,7 @@
                             "talent_name": "Twin Flame",
                             "spell_id": 1265979,
                             "spell_name": "Twin Flame",
-                            "description": "Consuming Essence Burst fires a twin flame, striking your target for 684 Fire damage.",
+                            "description": "Consuming Essence Burst fires a twin flame, striking your target for 547 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -2320,10 +2320,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 6600,
                     "locked_by": [
+                        109508,
                         94930,
                         94932,
-                        94942,
-                        109508
+                        94942
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -2392,7 +2392,7 @@
                                     "talent_name": "Double-time",
                                     "spell_id": 431874,
                                     "spell_name": "Double-time",
-                                    "description": "Ebon Might and Prescience gain a chance equal to your critical strike chance to grant 50% additional stats.",
+                                    "description": "Ebon Might and Prescience gain a chance equal to your critical strike chance to grant 50% additional stats. For Ebon Might, this increase lasts 15.0 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -2574,10 +2574,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
+                        109510,
                         94948,
                         94955,
-                        94925,
-                        109510
+                        94925
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -2962,7 +2962,7 @@
                             "talent_name": "Upheaval",
                             "spell_id": 396286,
                             "spell_name": "Upheaval",
-                            "description": "Gather earthen power beneath your enemy's feet and send them hurtling upwards, dealing 1,620 Volcanic damage to the target and nearby enemies.\r\n\r\nEmpowering expands the area of effect.\r\n\r\nI:   3 yd radius.\r\n\r\nII:  6 yd radius.\r\n\r\nIII: 9 yd radius.",
+                            "description": "Gather earthen power beneath your enemy's feet and send them hurtling upwards, dealing 1,643 Volcanic damage to the target and nearby enemies.\r\n\r\nEmpowering expands the area of effect.\r\n\r\nI:   3 yd radius.\r\n\r\nII:  6 yd radius.\r\n\r\nIII: 9 yd radius.",
                             "cast_time": "Channeled",
                             "cooldown": "40 sec cooldown",
                             "range": "25 yd range"
@@ -3023,7 +3023,7 @@
                             "talent_name": "Defy Fate",
                             "spell_id": 404195,
                             "spell_name": "Defy Fate",
-                            "description": "Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one.\r\n\r\nThe release of temporal energy restores 9,925 health to you, and 3,349 to 4 nearby allies, over 9 sec. Healing starts high and declines over the duration.\r\n\r\nMay only occur once every 6 min.",
+                            "description": "Fatal attacks are diverted into a nearby timeline, preventing the damage, and your death, in this one.\r\n\r\nThe release of temporal energy restores 12,154 health to you, and 4,161 to 4 nearby allies, over 9 sec. Healing starts high and declines over the duration.\r\n\r\nMay only occur once every 6 min.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -3416,7 +3416,7 @@
                                     "talent_name": "Molten Blood",
                                     "spell_id": 410643,
                                     "spell_name": "Molten Blood",
-                                    "description": "When cast, Blistering Scales grants the target a shield that absorbs up to 4,560 damage for 30 sec based on their missing health. Lower health targets gain a larger shield.",
+                                    "description": "When cast, Blistering Scales grants the target a shield that absorbs up to 5,700 damage for 30 sec based on their missing health. Lower health targets gain a larger shield.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4246,7 +4246,7 @@
                                     "talent_name": "Expanded Lungs",
                                     "spell_id": 444845,
                                     "spell_name": "Expanded Lungs",
-                                    "description": "Fire Breath's damage over time is increased by 30%. Dream Breath's heal over time is increased by 30%.",
+                                    "description": "Fire Breath's damage over time is increased by 30%. Dream Breath's heal over time is increased by 20%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -4331,7 +4331,7 @@
                             "talent_name": "Conduit of Flame",
                             "spell_id": 444843,
                             "spell_name": "Conduit of Flame",
-                            "description": "Critical strike chance against targets above 50% health increased by 15%.",
+                            "description": "Critical strike chance against targets above 50% health increased by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4387,7 +4387,7 @@
                             "talent_name": "Fulminous Roar",
                             "spell_id": 1218447,
                             "spell_name": "Fulminous Roar",
-                            "description": "Fire Breath deals its damage 20% more often.",
+                            "description": "Fire Breath deals its damage 15% more often.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4415,7 +4415,7 @@
                             "talent_name": "Twin Flame",
                             "spell_id": 1265979,
                             "spell_name": "Twin Flame",
-                            "description": "Consuming Essence Burst fires a twin flame, striking your target for 684 Fire damage.",
+                            "description": "Consuming Essence Burst fires a twin flame, striking your target for 547 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4444,7 +4444,7 @@
                             "talent_name": "Dream Breath",
                             "spell_id": 355936,
                             "spell_name": "Dream Breath",
-                            "description": "Inhale, gathering the power of the Dream. Release to exhale, healing yourself and 5 injured allies in a 40 yd cone in front of you for 1,634.\r\n\r\nI:   Heals 700 instantly and 934 over 16 sec.\r\n\r\nII:  Heals 934 instantly and 700 over 12 sec.\r\n\r\nIII: Heals 1,167 instantly and 467 over 8 sec.",
+                            "description": "Inhale, gathering the power of the Dream. Release to exhale, healing yourself and 5 injured allies in a 40 yd cone in front of you for 1,977.\r\n\r\nI:   Heals 350 instantly and 1,627 over 16 sec.\r\n\r\nII:  Heals 757 instantly and 1,220 over 12 sec.\r\n\r\nIII: Heals 1,163 instantly and 814 over 8 sec.",
                             "cast_time": "Channeled",
                             "cooldown": "1 sec cooldown",
                             "range": null
@@ -4713,7 +4713,7 @@
                             "talent_name": "Consume Flame",
                             "spell_id": 444088,
                             "spell_name": "Consume Flame",
-                            "description": "Disintegrate damage consumes 1.0 sec of Fire Breath from enemies it damages, detonating it for 150% of the amount consumed.\r\n\r\nPyre damage consumes 4 sec of Fire Breath from enemies it damages, detonating it for 115% of the amount consumed.",
+                            "description": "Disintegrate consumes 1.0 sec of Fire Breath from enemies it damages, detonating it for 150% of the amount consumed.\r\n\r\nPyre consumes 4 sec of Fire Breath from enemies it damages, detonating it for 115% of the amount consumed.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -4818,10 +4818,10 @@
                     "raw_position_y": 4200,
                     "locked_by": [],
                     "unlocks": [
+                        109510,
                         94948,
                         94955,
-                        94925,
-                        109510
+                        94925
                     ],
                     "max_ranks": 1,
                     "ranks": [
@@ -4929,7 +4929,7 @@
                             "talent_name": "Font of Magic",
                             "spell_id": 375783,
                             "spell_name": "Font of Magic",
-                            "description": "Your empower spells' maximum level is increased by 1.",
+                            "description": "Your empower spells' maximum level is increased by 1, and they reach maximum empower level 20% faster.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5180,7 +5180,7 @@
                                     "talent_name": "Spiritual Clarity",
                                     "spell_id": 376150,
                                     "spell_name": "Spiritual Clarity",
-                                    "description": "Dream Breath's cooldown is reduced by 10 sec.",
+                                    "description": "Dream Breath's cooldown is reduced by 6 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5385,7 +5385,7 @@
                                     "talent_name": "Temporal Barrier",
                                     "spell_id": 1291636,
                                     "spell_name": "Temporal Barrier",
-                                    "description": "Send out a ripple of temporal energy, absorbing 3,420 damage and applying Echo at 30% effectiveness on your target and up to 4 allies within 40 yds.",
+                                    "description": "Send out a ripple of temporal energy, absorbing 4,446 damage and applying Echo at 30% effectiveness on your target and up to 4 allies within 40 yds.",
                                     "cast_time": "1.5 sec cast",
                                     "cooldown": "15 sec cooldown",
                                     "range": "30 yd range"
@@ -5588,7 +5588,7 @@
                                     "talent_name": "Dream Flight",
                                     "spell_id": 359816,
                                     "spell_name": "Dream Flight",
-                                    "description": "Take in a deep breath and fly to the targeted location, healing all allies in your path for 1,900 immediately, and 4,360 over 15 sec, reduced beyond 5 targets.\r\n\r\nRemoves all root effects. You are immune to movement impairing and loss of control effects.\r\n\r\nDamage taken while you are flying is absorbed, up to 100% of your maximum health.",
+                                    "description": "Take in a deep breath and fly to the targeted location, healing all allies in your path for 1,900 immediately, and 4,309 over 15 sec, reduced beyond 5 targets.\r\n\r\nRemoves all root effects. You are immune to movement impairing and loss of control effects.\r\n\r\nDamage taken while you are flying is absorbed, up to 100% of your maximum health.",
                                     "cast_time": "Instant",
                                     "cooldown": "2 min cooldown",
                                     "range": "15-50 yd range"
@@ -5661,7 +5661,7 @@
                                     "talent_name": "Double-time",
                                     "spell_id": 431874,
                                     "spell_name": "Double-time",
-                                    "description": "Ebon Might and Prescience gain a chance equal to your critical strike chance to grant 50% additional stats.",
+                                    "description": "Ebon Might and Prescience gain a chance equal to your critical strike chance to grant 50% additional stats. For Ebon Might, this increase lasts 15.0 sec.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -5871,7 +5871,7 @@
                             "talent_name": "Inner Flame",
                             "spell_id": 1242745,
                             "spell_name": "Inner Flame",
-                            "description": "Casting Dream Flight or Stasis increases your healing over time by 60% and causes Living Flame and Reversion to have a 100% increased chance to grant Essence Burst. Lasts 15 sec.\r\n",
+                            "description": "Casting Dream Flight or Stasis increases your healing over time by 50% and causes Living Flame and Reversion to have a 100% increased chance to grant Essence Burst. Lasts 15 sec.\r\n",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -5957,7 +5957,7 @@
                             "talent_name": "Time of Need",
                             "spell_id": 368412,
                             "spell_name": "Time of Need",
-                            "description": "When you or an ally fall below 30% health, a version of yourself enters your timeline and heals them for 12,061. Your alternate self continues healing for 8 sec before returning to their timeline.\r\n\r\nMay only occur once every 60 sec.",
+                            "description": "When you or an ally fall below 30% health, a version of yourself enters your timeline and heals them for 15,679. Your alternate self continues healing for 8 sec before returning to their timeline.\r\n\r\nMay only occur once every 60 sec.",
                             "cast_time": "Passive",
                             "cooldown": "2 min cooldown",
                             "range": null
@@ -5972,10 +5972,10 @@
                     "raw_position_x": 7800,
                     "raw_position_y": 6600,
                     "locked_by": [
+                        109508,
                         94930,
                         94932,
-                        94942,
-                        109508
+                        94942
                     ],
                     "unlocks": [],
                     "max_ranks": 1,
@@ -6203,7 +6203,7 @@
                             "talent_name": "Lifespark",
                             "spell_id": 443177,
                             "spell_name": "Lifespark",
-                            "description": "Reversion healing has a chance to cause your next Living Flame to cast instantly and deal 50% increased healing or damage. Stacks up to 2 charges.",
+                            "description": "Reversion healing has a chance to cause your next Living Flame to cast instantly and deal 100% increased healing or damage. Stacks up to 2 charges.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6279,7 +6279,7 @@
                             "talent_name": "Merithra's Blessing",
                             "spell_id": 1256577,
                             "spell_name": "Merithra's Blessing",
-                            "description": "Essence abilities have a chance to infuse your next Reversion with the power of the Green Dragonflight, upgrading it to Merithra's Blessing:\r\n\r\n Merithra's Blessing\r\nSpring a bloom of life from your target, healing them and up to 4 other allies within 30 yards for 950. Blooms may heal your primary target multiple times if no nearby injured allies are present.",
+                            "description": "Essence abilities have a chance to infuse your next Reversion with the power of the Green Dragonflight, upgrading it to Merithra's Blessing:\r\n\r\n Merithra's Blessing\r\nSpring a bloom of life from your target, healing them and up to 4 other allies within 30 yards for 855. Blooms may heal your primary target multiple times if no nearby injured allies are present.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6447,7 +6447,7 @@
                             "talent_name": "Command Squadron",
                             "spell_id": 1260745,
                             "spell_name": "Command Squadron",
-                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 676 Fire damage to nearby enemies up to 8 times.",
+                            "description": "While flying during Deep Breath you are assisted by a squadron of Dracthyr who assault enemies with Pyre, dealing 952 Fire damage to nearby enemies up to 8 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6557,7 +6557,7 @@
                                     "talent_name": "Expanded Lungs",
                                     "spell_id": 444845,
                                     "spell_name": "Expanded Lungs",
-                                    "description": "Fire Breath's damage over time is increased by 30%. Dream Breath's heal over time is increased by 30%.",
+                                    "description": "Fire Breath's damage over time is increased by 30%. Dream Breath's heal over time is increased by 20%.",
                                     "cast_time": "Passive",
                                     "cooldown": null,
                                     "range": null
@@ -6614,7 +6614,7 @@
                             "talent_name": "Pyre",
                             "spell_id": 357211,
                             "spell_name": "Pyre",
-                            "description": "Lob a ball of flame, dealing 1,516 Fire damage to your target and all enemies within 8 yds.",
+                            "description": "Lob a ball of flame, dealing 1,675 Fire damage to your target and all enemies within 8 yds.",
                             "cast_time": "Instant",
                             "cooldown": null,
                             "range": "25 yd range"
@@ -6670,7 +6670,7 @@
                             "talent_name": "Wingleader",
                             "spell_id": 441206,
                             "spell_name": "Wingleader",
-                            "description": "Bombardments reduce the cooldown of Deep Breath by 0.5 sec for each target struck, up to 1.5 sec.",
+                            "description": "Mass Disintegrate reduces the remaining cooldown of Deep Breath by 1.0 sec for each target struck.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6756,7 +6756,7 @@
                             "talent_name": "Conduit of Flame",
                             "spell_id": 444843,
                             "spell_name": "Conduit of Flame",
-                            "description": "Critical strike chance against targets above 50% health increased by 15%.",
+                            "description": "Critical strike chance against targets above 50% health increased by 10%.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6812,7 +6812,7 @@
                             "talent_name": "Fulminous Roar",
                             "spell_id": 1218447,
                             "spell_name": "Fulminous Roar",
-                            "description": "Fire Breath deals its damage 20% more often.",
+                            "description": "Fire Breath deals its damage 15% more often.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -6840,7 +6840,7 @@
                             "talent_name": "Twin Flame",
                             "spell_id": 1265979,
                             "spell_name": "Twin Flame",
-                            "description": "Consuming Essence Burst fires a twin flame, striking your target for 684 Fire damage.",
+                            "description": "Consuming Essence Burst fires a twin flame, striking your target for 547 Fire damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7267,7 +7267,7 @@
                             "talent_name": "Eternity Surge",
                             "spell_id": 359073,
                             "spell_name": "Eternity Surge",
-                            "description": "Focus your energies to release a salvo of pure magic, dealing 4,216 Spellfrost damage to an enemy. Damages additional enemies within 25 yds when empowered.\r\n\r\nI:   Damages 1 enemy.\r\n\r\nII:  Damages 2 enemies.\r\n\r\nIII: Damages 3 enemies.",
+                            "description": "Focus your energies to release a salvo of pure magic, dealing 4,141 Spellfrost damage to an enemy. Damages additional enemies within 25 yds when empowered.\r\n\r\nI:   Damages 1 enemy.\r\n\r\nII:  Damages 2 enemies.\r\n\r\nIII: Damages 3 enemies.",
                             "cast_time": "Channeled",
                             "cooldown": "30 sec cooldown",
                             "range": "25 yd range"
@@ -7297,7 +7297,7 @@
                             "talent_name": "Maneuverability",
                             "spell_id": 433871,
                             "spell_name": "Maneuverability",
-                            "description": "Deep Breath can now be steered in your desired direction.\r\n\r\nIn addition, Deep Breath burns targets for 2,554 Volcanic damage over 12 sec.\r\n\r\nThe duration of this effect is extended when Deep Breath is cast multiple times.",
+                            "description": "Deep Breath can now be steered in your desired direction.\r\n\r\nIn addition, Deep Breath burns targets for 3,576 Volcanic damage over 12 sec.\r\n\r\nThe duration of this effect is extended when Deep Breath is cast multiple times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7326,7 +7326,7 @@
                             "talent_name": "Consume Flame",
                             "spell_id": 444088,
                             "spell_name": "Consume Flame",
-                            "description": "Disintegrate damage consumes 1.0 sec of Fire Breath from enemies it damages, detonating it for 150% of the amount consumed.\r\n\r\nPyre damage consumes 4 sec of Fire Breath from enemies it damages, detonating it for 115% of the amount consumed.",
+                            "description": "Disintegrate consumes 1.0 sec of Fire Breath from enemies it damages, detonating it for 150% of the amount consumed.\r\n\r\nPyre consumes 4 sec of Fire Breath from enemies it damages, detonating it for 115% of the amount consumed.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7449,7 +7449,7 @@
                             "talent_name": "Azure Sweep",
                             "spell_id": 1265867,
                             "spell_name": "Azure Sweep",
-                            "description": "Eternity Surge upgrades your next Azure Strike to Azure Sweep, damaging all nearby enemies and dealing 75% additional damage.\r\n\r\n Azure Sweep\r\nConcentrate azure energy into your tail and sweep to release pure magic upon an enemy and nearby targets for 618 Spellfrost damage. Damage reduced beyond 8 targets.",
+                            "description": "Eternity Surge upgrades your next Azure Strike to Azure Sweep, damaging all nearby enemies and dealing 75% additional damage.\r\n\r\n Azure Sweep\r\nConcentrate azure energy into your tail and sweep to release pure magic upon an enemy and nearby targets for 629 Spellfrost damage. Damage reduced beyond 8 targets.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7518,7 +7518,7 @@
                             "talent_name": "Ruby Embers",
                             "spell_id": 365937,
                             "spell_name": "Ruby Embers",
-                            "description": "Living Flame deals 115 damage over 12 sec to enemies, or restores 222 health to allies over 12 sec. Stacks 3 times.",
+                            "description": "Living Flame deals 111 damage over 12 sec to enemies, or restores 220 health to allies over 12 sec. Stacks 3 times.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7818,7 +7818,7 @@
                             "talent_name": "Tyranny",
                             "spell_id": 376888,
                             "spell_name": "Tyranny",
-                            "description": "During Deep Breath and Dragonrage you gain the maximum benefit of Mastery: Giantkiller regardless of targets' health.",
+                            "description": "During Deep Breath and Dragonrage you gain the maximum benefit of Mastery: Giantkiller regardless of targets' health.\r\n\r\nUnbound Flame always gains the maximum benefit.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7875,7 +7875,7 @@
                             "talent_name": "Shattering Stars",
                             "spell_id": 1265802,
                             "spell_name": "Shattering Stars",
-                            "description": "Eternity Surge additionally releases a Shattering Star at your target that deals 50% more damage per empower level reached.\r\n\r\n Shattering Star\r\nExhale a bolt of concentrated power from your mouth at the target for 661 Spellfrost damage.",
+                            "description": "Eternity Surge additionally releases a Shattering Star at your target that deals 50% more damage per empower level reached.\r\n\r\n Shattering Star\r\nExhale a bolt of concentrated power from your mouth at the target for 652 Spellfrost damage.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null
@@ -7903,7 +7903,7 @@
                             "talent_name": "Feed the Flames",
                             "spell_id": 369846,
                             "spell_name": "Feed the Flames",
-                            "description": "After casting 6 Pyres, your next Pyre will explode into a Firestorm.\r\n\r\n Firestorm\r\nAn explosion bombards the target area with white-hot embers, dealing 5,425 Fire damage to enemies over 10 sec.",
+                            "description": "After casting 6 Pyres, your next Pyre will explode into a Firestorm.\r\n\r\n Firestorm\r\nAn explosion bombards the target area with white-hot embers, dealing 5,527 Fire damage to enemies over 10 sec.",
                             "cast_time": "Passive",
                             "cooldown": null,
                             "range": null

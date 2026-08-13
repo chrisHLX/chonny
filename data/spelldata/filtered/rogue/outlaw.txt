@@ -1,5 +1,5 @@
 # Rogue — Outlaw Spec Talents
-# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 44 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Adrenaline Rush (id=13750) [Spell Family (8)] 
@@ -42,6 +42,14 @@ Effects          :
                    Base Value: 50 | Scaled Value: 50 | Resource: energy | Target: Self (1)
 #7 (id=1293534)  : Apply Aura (6) | Periodic Dummy (226): every 1 seconds
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#8 (id=1340981)  : Apply Aura (6) | Add Percent Modifier (108): Spell Tick Time (19)
+                   Base Value: -17 | Scaled Value: -17 | Misc Value: 19 | Target: Self (1)
+                   Affected Spells: Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Killing Spree (424556), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603)
+                   Family Flags: 55
+#9 (id=1340982)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -17 | Scaled Value: -17 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Killing Spree (424556), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Killing Spree (1248603)
+                   Family Flags: 55
 Description      : Increases your Energy regeneration rate by $s1%, your maximum Energy by $s6, and your attack speed by $s2% for $d.$?$s4>0[
 
 Damage of combo point generating abilities and finishers increased by $s4%.][]
@@ -104,7 +112,7 @@ Labels           : 16: Class Spells
                  : 184
                  : 292
 Proc Flags       : Yellow Melee, Generic Helpful, Generic Hostile Spell
-Affecting Spells : Adrenaline Rush (13750 effect#4), Deeper Stratagem (193531 effects: #1, #4), Tight Spender (381621 effect#1), Devious Stratagem (394321 effects: #1, #4), Fazed (441224 effect#5), Disorienting Strikes (441274 effect#1), Flawless Form (441326 effects: #1, #2), Sanguine Stratagem (457512 effects: #1, #4), Crescendo of Violence (1259499 effects: #1, #2), Deadly Pursuit (1259614 effect#1), Cold Blood (1264297 effect#1), Deep Cuts (1267216 effects: #1, #2)
+Affecting Spells : Adrenaline Rush (13750 effects: #4, #8, #9), Deeper Stratagem (193531 effects: #1, #4), Tight Spender (381621 effect#1), Devious Stratagem (394321 effects: #1, #4), Fazed (441224 effect#5), Disorienting Strikes (441274 effect#1), Flawless Form (441326 effects: #1, #2), Sanguine Stratagem (457512 effects: #1, #4), Crescendo of Violence (1259499 effects: #1, #2), Deadly Pursuit (1259614 effect#1), Cold Blood (1264297 effect#1), Deep Cuts (1267216 effects: #1, #2)
 Family Flags     : 55
 Attributes       : Is Ability (4), Not Shapeshifted (16), No Immunities (29), No Aura Cancel (31), Is Channelled (34), Is Self Channelled (38), Initiates Combat (Enables Auto-Attack) (41), Name in Channel Bar (61), PvP Enabling (96), Requires Main-Hand Weapon (106), Force Display Castbar (155), Extra Initial Period (169), Spell Haste Affects Periodic (173), Delay Combat Timer During Cast (211), Haste Affects Duration (273), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338), Allow Class Ability Procs (416)
 Channel Interrupt: Damage (2)
@@ -113,9 +121,13 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 3 | Target: Self (1)
 #2 (id=44063)    : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+#3 (id=1339122)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | PvP Coefficient: 0.5 | Target: Self (1)
+#4 (id=1341035)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Finishing move that unleashes a barrage of gunfire, striking random enemies within $r yards for Physical damage. Number of strikes increased per combo point.
 
-Restores $1235074m2 combo $Lpoint:points; every ${$t1}.2 sec.
+Restores $1235074m2 combo $Lpoint:points; every ${$t1}.2 sec. Each combo point spent above $?s193531&s394321[7]?s193531|s394321[6][5] increases damage by $s4%.
 
    1 point  : ${$<dmg>*2} over ${$424556d}.2 sec
    2 points: ${$<dmg>*3} over ${$424556d*2}.2 sec
@@ -186,7 +198,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=355887)   : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
-                   Base Value: 100 | Scaled Value: 100 | PvP Coefficient: 0.75 | Misc Value: 15 | Target: Self (1)
+                   Base Value: 50 | Scaled Value: 50 | PvP Coefficient: 0.75 | Misc Value: 15 | Target: Self (1)
                    Affected Spells: Between the Eyes (315341)
                    Family Flags: 111
 Description      : Critical strikes with Between the Eyes deal ${$s1/100+2}.1 times normal damage.
@@ -363,9 +375,15 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1012945)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+#2 (id=1339112)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
+                   Affected Spells: Ambush (8676), Ambush (385897), Ambush (430023)
+                   Family Flags: 9
 Description      : Using Pistol Shot with Opportunity has a $279876s1% chance to make your next Ambush usable without Stealth.
 
-Chance to trigger this effect matches the chance for Sinister Strike to grant Opportunity.
+Chance to trigger this effect matches the chance for Sinister Strike to grant Opportunity.
+
+Ambush damage increased by $s2%.
 
 Name             : Fan the Hammer (id=381846) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=9, col=7, max_rank=2, req_points=20]
@@ -447,18 +465,18 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1013004)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Gouge (1776), Cheap Shot (1833), Shiv (5938), Ambush (8676), Quaking Palm (107079), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Sepsis (328305), Sepsis (328306), Sinister Strike (341541), Echoing Reprimand (354835), Echoing Reprimand (354838), Ambush (385897), Ambush (430023), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672)
                    Family Flags: 3, 9, 10, 26, 29, 82, 98, 101, 118
 #2 (id=1033553)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Gouge (1776), Cheap Shot (1833), Shiv (5938), Ambush (8676), Quaking Palm (107079), Pistol Shot (185763), Sinister Strike (193315), Sinister Strike (197834), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Sepsis (328305), Sepsis (328306), Sinister Strike (341541), Echoing Reprimand (354835), Echoing Reprimand (354838), Ambush (385897), Ambush (430023), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672)
                    Family Flags: 3, 9, 10, 26, 29, 82, 98, 101, 118
 #3 (id=1118464)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 3052 (Label) | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 22 | Misc Value 2: 3052 (Label) | Target: Self (1)
                    Affected Spells (Label): Blade Flurry (429951)
 #4 (id=1118465)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 3052 (Label) | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 3052 (Label) | Target: Self (1)
                    Affected Spells (Label): Blade Flurry (429951)
 Description      : Attacks that generate combo points deal $s1% increased damage.
 
@@ -494,9 +512,9 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1013171)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 #2 (id=1021261)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Dispatch (2098), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Dispatch (467059)
                    Family Flags: 112
                    Modified By: Between the Eyes (315341 effect#4)
@@ -519,8 +537,14 @@ Proc Flags       : Yellow Melee
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Only Proc From Class Abilities (415)
 Effects          :
 #1 (id=1015086)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 80 | Scaled Value: 80 | Target: Self (1)
-Description      : Ambush has a chance to grant Opportunity. Chance to trigger this effect is $s1% of the chance for Sinister Strike to grant Opportunity.
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
+#2 (id=1339114)  : Apply Aura (6) | Add Flat Modifier (107): Spell Resource Cost 1 (14)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 14 | Target: Self (1)
+                   Affected Spells: Ambush (8676), Ambush (385897), Ambush (430023)
+                   Family Flags: 9
+Description      : Ambush has a chance to grant Opportunity. Chance to trigger this effect is $s1% of the chance for Sinister Strike to grant Opportunity.
+
+Energy cost of Ambush reduced by $s2.
 
 Name             : Devious Stratagem (id=394321) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=5, col=3, max_rank=1, req_points=8]
@@ -534,7 +558,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (2
 Effects          :
 #1 (id=1033861)  : Apply Aura (6) | Modify Max Cost (63)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 17, 20, 32, 35, 44, 55, 81, 89, 92, 100, 111, 112, 116
 #2 (id=1033862)  : Apply Aura (6) | Modify Max Resource (418)
                    Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
@@ -542,11 +566,11 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 4 | Target: Self (1)
 #4 (id=1033864)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Affected Spells: Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Secret Technique (1305994)
                    Family Flags: 17, 32, 35, 44, 55, 81, 92, 111, 112
 #5 (id=1033865)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 20, 32, 44, 81, 95, 100
 Description      : Gain $s1 additional max combo point.
 
@@ -682,10 +706,20 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1268613)  : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
-                   Base Value: -5000 | Scaled Value: -5000 | Misc Value: 11 | Target: Self (1)
+                   Base Value: -8000 | Scaled Value: -8000 | Misc Value: 11 | Target: Self (1)
                    Affected Spells: Between the Eyes (315341)
                    Family Flags: 111
-Description      : The cooldown of Between the Eyes is reduced by ${-$s1/1000} sec.
+#2 (id=1326439)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 12 | Target: Self (1)
+                   Affected Spells: Between the Eyes (315341)
+                   Family Flags: 111
+#3 (id=1326440)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 23 | Target: Self (1)
+                   Affected Spells: Between the Eyes (315341)
+                   Family Flags: 111
+Description      : The cooldown of Between the Eyes is reduced by ${-$s1/1000} sec.
+
+Between the Eyes increases your damage dealt by an additional $s2%.
 
 Name             : Dragon-Bone Dice (id=1259481) [Spell Family (8), Passive] 
 Talent Entry     : Outlaw [tree=spec, row=9, col=5, max_rank=1, req_points=20]
@@ -730,6 +764,8 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1268623)  : Apply Aura (6) | Proc Trigger Spell (42): Zero In
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1259486 | Target: Self (1)
+#2 (id=1329165)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
 Description      : Your auto-attack critical strikes increase the damage and critical strike chance of your next Between the Eyes by $1259486s1%, stacking up to $1259486u times.
 
 Name             : Flickering Steel (id=1259492) [Spell Family (8), Passive] 
@@ -830,7 +866,7 @@ Labels           : 16: Class Spells
                  : 292
 Proc Chance      : 101%
 Proc Flags       : Yellow Melee
-Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Between the Eyes (315341 effects: #2, #3), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2), Outlaw Rogue (137036 effects: #1, #2), Assassination Rogue (137037 effects: #1, #2), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Between the Eyes (315341 effects: #2, #3), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
 Family Flags     : 54
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :

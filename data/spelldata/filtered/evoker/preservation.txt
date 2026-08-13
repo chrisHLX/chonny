@@ -1,5 +1,5 @@
 # Evoker — Preservation Spec Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Dream Breath (desc=Green) (id=355936) [Spell Family (224)] 
@@ -18,7 +18,7 @@ Labels           : 16: Class Spells
                  : 292
                  : 1216: Evoker Spells
                  : 1466: Green Evoker Spells
-Affecting Spells : Temporal Compression (362877 effect#1), Tip the Scales (370553 effects: #1, #2), Flow State (390148 effect#14), Burning Adrenaline (444020 effect#1)
+Affecting Spells : Temporal Compression (362877 effect#1), Tip the Scales (370553 effects: #1, #2), Font of Magic (375783 effect#4), Flow State (390148 effect#14), Burning Adrenaline (444020 effect#1)
 Family Flags     : 25
 Attributes       : Not Shapeshifted (16), Is Self Channelled (38), No Aura Icon (60), Name in Channel Bar (61), Force Display Castbar (155), Haste Affects Duration (273), Allow Class Ability Procs (416), Do Not Allow "Disable Movement Interrupt" (443)
 Channel Interrupt: Damage (2), Action (3), Sheathing (10), Interacting (11), Looting (12)
@@ -223,7 +223,7 @@ Labels           : 16: Class Spells
                  : 1467: Bronze Evoker Spells
 Affecting Spells : Devastation Evoker (356809 effects: #5, #6), Preservation Evoker (356810 effects: #1, #2), Initial Evoker (356816 effects: #5, #6), Hover (358267 effect#5), Essence Burst (369299 effects: #1, #2, #3), Honed Aggression (371038 effect#1), Time Lord (372527 effect#1), Timeless Magic (376240 effects: #1, #3), Attuned to the Dream (376930 effects: #1, #2), Boon of the Covenants (387169 effects: #1, #2), Hover (393271 effect#1), Augmentation Evoker (396186 effects: #5, #6), Spatial Paradox (406732 effect#3), Spatial Paradox (406789 effect#3), Temporal Burst (431698 effect#15), Golden Opportunity (432004 effect#1), Melt Armor (441172 effect#2), Arcane Reach (454983 effect#1), Tempo Charged (1237978 effect#1), Inner Flame (1242747 effect#1), Preservation Evoker (1256944 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283653 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283654 effects: #1, #2)
 Family Flags     : 1, 2, 3, 11, 38
-Attributes       : Not Shapeshifted (16), Aura Expires Offline (130), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416), Unknown (456), Non-secret Aura (506)
+Attributes       : Not Shapeshifted (16), Aura Expires Offline (130), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416), Unknown (456)
 Effects          :
 #1 (id=904256)   : Direct Heal (10)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 2.4 | Target: Targeted Ally (21)
@@ -254,7 +254,7 @@ Proc Chance      : 100%
 Proc Flags       : Helpful Periodic Taken
 Affecting Spells : Devastation Evoker (356809 effects: #5, #6), Preservation Evoker (356810 effects: #1, #2), Initial Evoker (356816 effects: #5, #6), Honed Aggression (371038 effect#1), Grace Period (376239 effect#1), Timeless Magic (376240 effects: #1, #2), Attuned to the Dream (376930 effects: #1, #2), Boon of the Covenants (387169 effects: #1, #2), Time Bender (394544 effect#1), Augmentation Evoker (396186 effects: #5, #6), Evoker Preservation 11.0 Class Set 2pc (453673 effect#1), Arcane Reach (454983 effect#1), Tempo Charged (1237978 effects: #1, #2), Inner Flame (1242747 effect#1), Preservation Evoker (1256944 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 2pc - Healing (1283653 effects: #1, #2), Evoker - Midnight PrePatch - 11.2 Class Set 4pc - Healing (1283654 effects: #1, #2)
 Family Flags     : 1, 8
-Attributes       : Not Shapeshifted (16), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436), Non-secret Aura (506)
+Attributes       : Not Shapeshifted (16), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
 Effects          :
 #1 (id=907578)   : Apply Aura (6) | Periodic Heal (8): every 2 seconds | Attributes: Suppress Points Stacking (6)
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.4275 | Target: Targeted Ally (21)
@@ -550,12 +550,16 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1002399)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Fire Breath overrides Fire Breath
-                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 2 | Target: Self (1)
+                   Base Value: 382266 | Scaled Value: 382266 | Misc Value: 357208 | Misc Value 2: 3 | Target: Self (1)
 #2 (id=1013727)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Dream Breath overrides Dream Breath
                    Base Value: 382614 | Scaled Value: 382614 | Misc Value: 355936 | Misc Value 2: 2 | Target: Self (1)
 #3 (id=1014188)  : Apply Aura (6) | Override Action Spell (Misc w/ Base) (332): Spiritbloom overrides Spiritbloom
                    Base Value: 382731 | Scaled Value: 382731 | Misc Value: 367226 | Misc Value 2: 2 | Target: Self (1)
-Description      : Your empower spells' maximum level is increased by 1.
+#4 (id=1322063)  : Apply Aura (6) | Add Percent Modifier (108): Spell Duration (1)
+                   Base Value: -20 | Scaled Value: -20 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Dream Breath (355936), Fire Breath (357208), Fire Breath (382266), Dream Breath (382614)
+                   Family Flags: 15, 25
+Description      : Your empower spells' maximum level is increased by 1, and they reach maximum empower level $s4% faster.
 
 Name             : Empath (id=376138) [Spell Family (224), Passive] 
 Talent Entry     : Preservation [tree=spec, row=6, col=1, max_rank=1, req_points=8, select_idx=100]
@@ -582,7 +586,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1003006)  : Apply Aura (6) | Modify Recharge Time (Category) (453)
-                   Base Value: -10000 | Scaled Value: -10000 | Misc Value: 2054 (Category) | Target: Self (1)
+                   Base Value: -6000 | Scaled Value: -6000 | Misc Value: 2054 (Category) | Target: Self (1)
                    Affected Spells (Category): Dream Breath (355936), Dream Breath (382614)
 Description      : Dream Breath's cooldown is reduced by ${$s1/-1000} sec.
 
@@ -806,7 +810,7 @@ Effects          :
 #1 (id=1138908)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Trigger Spell: 394552 | Target: Self (1)
 #2 (id=1138909)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 50 | Scaled Value: 50 | Target: Self (1)
+                   Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Reversion healing has a chance to cause your next Living Flame to cast instantly and deal $s2% increased healing or damage. Stacks up to $394552u charges.
 
 Name             : Titan's Gift (id=443264) [Spell Family (224), Passive] 
@@ -990,12 +994,16 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1264326)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 250 | Scaled Value: 250 | Target: Self (1)
+                   Base Value: 60 | Scaled Value: 60 | Target: Self (1)
                    Affected Spells: Dream Breath (355941), Dream Breath (376788)
                    Family Flags: 21
 #2 (id=1264327)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
-Description      : Dream Breath's instant healing is increased by $s1% and Dream Breath has a $s2% chance to grant Merithra's Blessing.
+#3 (id=1321988)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 60 | Scaled Value: 60 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Dream Breath (355941), Dream Breath (376788)
+                   Family Flags: 21
+Description      : Dream Breath's healing is increased by $s1% and Dream Breath has a $s2% chance to grant Merithra's Blessing.
 
 Name             : Temporal Barrier (desc=Bronze) (id=1291636) [Spell Family (224)] 
 Talent Entry     : Preservation [tree=spec, row=6, col=7, max_rank=1, req_points=8, select_idx=100, replace="Temporal Anomaly" (id=373861)]
@@ -1019,7 +1027,7 @@ Family Flags     : 2, 45, 90
 Attributes       : Limit N (165), Spell Haste Affects Periodic (173), Aura Points On Client (268), Haste Affects Duration (273), Missile Speed is Delay (in sec) (292), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1311112)  : Apply Aura (6) | Absorb Damage (69) | Attributes: Aura Points Stack (9)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 9 | Misc Value: 0x7f | Radius: 0 - 40 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 11.7 | Misc Value: 0x7f | Radius: 0 - 40 yards | Target: at Targeted Ally (132) -> At Ally in Area (31)
                    Affected School(s): All
 #2 (id=1311705)  : Dummy (3)
                    Base Value: 4 | Scaled Value: 4

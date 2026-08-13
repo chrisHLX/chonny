@@ -231,6 +231,8 @@ One line per spell record; each lists every file it appears in.
 - **Evoker Augmentation 11.1 Class Set 4pc (id=1215691) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Augmentation 12.0 Class Set 2pc (id=1264819) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Augmentation 12.0 Class Set 4pc (id=1264820) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 12.1 Class Set 2pc (id=1296637) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Augmentation 12.1 Class Set 4pc (id=1296638) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Devastation 10.1 Class Set 2pc (id=405518) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Devastation 10.1 Class Set 4pc (id=405519) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Devastation 10.2 Class Set 2pc (id=422870) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
@@ -241,6 +243,8 @@ One line per spell record; each lists every file it appears in.
 - **Evoker Devastation 11.1 Class Set 4pc (id=1215692) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Devastation 12.0 Class Set 2pc (id=1264821) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Devastation 12.0 Class Set 4pc (id=1264822) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 12.1 Class Set 2pc (id=1296639) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Devastation 12.1 Class Set 4pc (id=1296640) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Devastation Class Set 2pc (id=393642) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Devastation Class Set 4pc (id=393643) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Preservation 10.1 Class Set 2pc (id=405520) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
@@ -253,6 +257,8 @@ One line per spell record; each lists every file it appears in.
 - **Evoker Preservation 11.1 Class Set 4pc (id=1215610) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Preservation 12.0 Class Set 2pc (id=1264823) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Preservation 12.0 Class Set 4pc (id=1264824) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 12.1 Class Set 2pc (id=1296641) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
+- **Evoker Preservation 12.1 Class Set 4pc (id=1296642) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Preservation Class Set 2pc (id=393644) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Evoker Preservation Class Set 4pc (id=393645) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Exhilarating Burst (id=377100) [Spell Family (224), Passive]** — `preservation.txt`
@@ -391,10 +397,11 @@ One line per spell record; each lists every file it appears in.
 - **Living Flame (id=385757)** — `baseline.txt`
 - **Living Flame (id=399787)** — `baseline.txt`
 - **Lush Growth (id=375561) [Spell Family (224), Passive]** — `class-talents.txt`
+- **Magnified Fate (id=1297728) [Spell Family (224)]** — `baseline.txt`
 - **Mail Specialization (desc=Passive) (id=366524) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Maneuverability (desc=Black) (id=433871) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
-- **Mass Disintegrate (desc=Black) (id=436335) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
 - **Mass Disintegrate (desc=Black) (id=436336) [Spell Family (224)]** — `baseline.txt`
+- **Mass Disintegrate (desc=Blue) (id=436335) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
 - **Mass Eruption (desc=Black) (id=438587) [Spell Family (224), Passive]** — `hero-scalecommander.txt`
 - **Mass Eruption (desc=Black) (id=438588) [Spell Family (224)]** — `baseline.txt`
 - **Mass Return (desc=Bronze) (id=361178) [Spell Family (224)]** — `baseline.txt`
@@ -627,6 +634,10 @@ One line per spell record; each lists every file it appears in.
 - **Twin Guardian (id=370888) [Spell Family (224), Passive]** — `class-talents.txt`
 - **Twin Guardian (id=370889) [Spell Family (224)]** — `baseline.txt`
 - **Tyranny (id=376888) [Spell Family (224), Passive]** — `devastation.txt`
+- **Unbound Flame (desc=Red) (id=1292321) [Spell Family (224)]** — `baseline.txt`
+- **Unbound Flame (desc=Red) (id=1292322) [Spell Family (224)]** — `baseline.txt`
+- **Unbound Flame (id=1292323) [Spell Family (224)]** — `baseline.txt`
+- **Unbound Flame (id=1292325) [Spell Family (224), Hidden]** — `baseline.txt`
 - **Unity (id=387431) [Spell Family (224), Passive, Hidden]** — `baseline.txt`
 - **Unravel (desc=Blue) (id=1264378) [Spell Family (224), Passive]** — `class-talents.txt`
 - **Unravel (desc=Blue) (id=1264379) [Spell Family (224)]** — `baseline.txt`

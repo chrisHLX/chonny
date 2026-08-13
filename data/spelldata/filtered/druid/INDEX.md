@@ -19,8 +19,11 @@ One line per spell record; each lists every file it appears in.
 - **Aggravate Wounds (id=441829) [Spell Family (7), Passive]** — `hero-druid-of-the-claw.txt`
 - **Ailuro Pouncers (id=208209) [Spell Family (7), Passive]** — `baseline.txt`
 - **Ailuro Pouncers (id=226014) [Spell Family (7), Hidden]** — `baseline.txt`
+- **Akil'zon's Clarity (id=1301768) [Spell Family (7)]** — `baseline.txt`
 - **Aman'Thul's Wisdom (id=208220) [Spell Family (7), Passive]** — `baseline.txt`
 - **Ancient of Lore (desc=PvP Talent, Shapeshift) (id=473909) [Spell Family (7)]** — `baseline.txt`
+- **Answered Calling (id=1308399) [Spell Family (7), Hidden]** — `baseline.txt`
+- **Answered Calling (id=1308647) [Spell Family (7)]** — `baseline.txt`
 - **Apex Predator's Craving (id=339139) [Spell Family (7), Passive]** — `baseline.txt`
 - **Apex Predator's Craving (id=339140) [Spell Family (7)]** — `baseline.txt`
 - **Apex Predator's Craving (id=391881) [Spell Family (7), Passive]** — `feral.txt`
@@ -197,6 +200,7 @@ One line per spell record; each lists every file it appears in.
 - **Dream Bloom (id=434141) [Spell Family (7)]** — `baseline.txt`
 - **Dream Burst (id=433832) [Spell Family (7)]** — `baseline.txt`
 - **Dream Burst (id=433850) [Spell Family (7)]** — `baseline.txt`
+- **Dream Conduit (id=1308176) [Spell Family (7)]** — `baseline.txt`
 - **Dream Guide (id=1278886) [Passive]** — `guardian.txt`
 - **Dream Guide (id=1278914) [Spell Family (7)]** — `baseline.txt`
 - **Dream Guide (id=1292031) [Spell Family (7), Hidden]** — `baseline.txt`
@@ -226,6 +230,8 @@ One line per spell record; each lists every file it appears in.
 - **Druid Balance 11.1 Class Set 4pc (id=1215698) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Balance 12.0 Class Set 2pc (id=1264810) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Balance 12.0 Class Set 4pc (id=1264811) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Balance 12.1 Class Set 2pc (id=1296603) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Balance 12.1 Class Set 4pc (id=1296604) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Balance Class Set 2pc (id=393632) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Balance Class Set 4pc (id=393633) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Feral 10.1 Class Set 2pc (id=405512) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
@@ -238,6 +244,8 @@ One line per spell record; each lists every file it appears in.
 - **Druid Feral 11.1 Class Set 4pc (id=1215735) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Feral 12.0 Class Set 2pc (id=1264812) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Feral 12.0 Class Set 4pc (id=1264813) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Feral 12.1 Class Set 2pc (id=1296605) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Feral 12.1 Class Set 4pc (id=1296606) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Feral Class Set 2pc (id=393635) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Feral Class Set 4pc (id=393636) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Forms Trinket (id=37336) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
@@ -251,6 +259,8 @@ One line per spell record; each lists every file it appears in.
 - **Druid Guardian 11.1 Class Set 4pc (id=1215988) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Guardian 12.0 Class Set 2pc (id=1264815) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Guardian 12.0 Class Set 4pc (id=1264816) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Guardian 12.1 Class Set 2pc (id=1296607) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Guardian 12.1 Class Set 4pc (id=1296608) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Guardian Class Set 2pc (id=393637) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Guardian Class Set 4pc (id=393638) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid of the Flames (id=99246) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
@@ -264,6 +274,8 @@ One line per spell record; each lists every file it appears in.
 - **Druid Restoration 11.1 Class Set 4pc (id=1215619) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Restoration 12.0 Class Set 2pc (id=1264817) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Restoration 12.0 Class Set 4pc (id=1264818) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Restoration 12.1 Class Set 2pc (id=1296609) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Druid Restoration 12.1 Class Set 4pc (id=1296610) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Restoration Class Set 2pc (id=393639) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Restoration Class Set 4pc (id=393641) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Druid Tier 6 Trinket (id=40442) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
@@ -273,11 +285,6 @@ One line per spell record; each lists every file it appears in.
 - **Early Harvest (id=287253) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Early Harvest (id=287255) [Spell Family (7)]** — `baseline.txt`
 - **Early Spring (id=428937) [Spell Family (7), Passive]** — `hero-keeper-of-the-grove.txt`
-- **Echo of Frenzied Regeneration (id=1269645) [Spell Family (7)]** — `baseline.txt`
-- **Echo of Ironfur (id=1269633) [Spell Family (7)]** — `baseline.txt`
-- **Echo of Maul (id=1269648) [Spell Family (7)]** — `baseline.txt`
-- **Echo of Ravage (id=1269973) [Spell Family (7)]** — `baseline.txt`
-- **Echo of Raze (id=1269972) [Spell Family (7)]** — `baseline.txt`
 - **Eclipse (id=1239669) [Spell Family (7), Passive]** — `balance.txt`
 - **Eclipse (Lunar) (id=48518) [Spell Family (7)]** — `baseline.txt`
 - **Eclipse (Solar) (id=48517) [Spell Family (7)]** — `baseline.txt`
@@ -347,7 +354,7 @@ One line per spell record; each lists every file it appears in.
 - **Fiery Red Maimers (id=236757) [Spell Family (7)]** — `baseline.txt`
 - **Flap (id=164862) [Spell Family (7)]** — `baseline.txt`
 - **Flash of Clarity (id=1272262) [Spell Family (7)]** — `baseline.txt`
-- **Flash of Clarity (id=392220) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
+- **Flash of Clarity (id=392220) [Spell Family (7), Passive, Hidden]** — `restoration.txt`
 - **Flashing Claws (id=393427) [Spell Family (7), Passive]** — `guardian.txt`
 - **Flicker Clone (id=1244038) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Flicker Clone (id=1244046) [Spell Family (7), Hidden]** — `baseline.txt`
@@ -404,12 +411,10 @@ One line per spell record; each lists every file it appears in.
 - **Galactic Guardian (id=213708) [Spell Family (7)]** — `baseline.txt`
 - **Gale Winds (id=400142) [Spell Family (7), Passive]** — `class-talents.txt`
 - **Gathering Starstuff (id=394412) [Spell Family (7)]** — `baseline.txt`
+- **Genesis (id=1302255) [Spell Family (7)]** — `baseline.txt`
 - **Germination (id=155675) [Spell Family (7), Passive]** — `restoration.txt`
 - **Gift of an Ancient Guardian (id=1251876) [Spell Family (7), Passive]** — `guardian.txt`
 - **Gift of an Ancient Guardian (id=1251877) [Spell Family (7)]** — `baseline.txt`
-- **Gift of Frenzied Regeneration (id=1269661) [Spell Family (7)]** — `baseline.txt`
-- **Gift of Ironfur (id=1269659) [Spell Family (7)]** — `baseline.txt`
-- **Gift of Maul (id=1269660) [Spell Family (7)]** — `baseline.txt`
 - **Gift of the Wild (id=1262034) [Spell Family (7), Passive]** — `class-talents.txt`
 - **Gjallar's Horn (id=228136) [Spell Family (7)]** — `baseline.txt`
 - **Glistening Fur (id=429533) [Spell Family (7), Passive, Hidden]** — `hero-elunes-chosen.txt`
@@ -419,6 +424,8 @@ One line per spell record; each lists every file it appears in.
 - **Goldrinn's Fang (id=394047) [Spell Family (7)]** — `baseline.txt`
 - **Gore (id=210706) [Spell Family (7), Passive]** — `guardian.txt`
 - **Gore (id=93622) [Spell Family (7)]** — `baseline.txt`
+- **Gorestained Claws (id=1301286) [Spell Family (7)]** — `baseline.txt`
+- **Gory Fur (id=1307881) [Spell Family (7)]** — `baseline.txt`
 - **Gory Fur (id=200854) [Spell Family (7), Passive]** — `guardian.txt`
 - **Gory Fur (id=201671) [Spell Family (7)]** — `baseline.txt`
 - **Gory Regeneration (id=279536) [Spell Family (7), Hidden]** — `baseline.txt`
@@ -443,6 +450,7 @@ One line per spell record; each lists every file it appears in.
 - **Gushing Lacerations (id=279468) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Gushing Lacerations (id=279471) [Spell Family (7)]** — `baseline.txt`
 - **Hail of Stars (id=469004) [Spell Family (7), Passive]** — `balance.txt`
+- **Halazzi's Fury (id=1301600) [Spell Family (7)]** — `baseline.txt`
 - **Half Moon (id=274282) [Spell Family (7)]** — `baseline.txt`
 - **Harmonious Blooming (id=392256) [Spell Family (7), Passive]** — `restoration.txt`
 - **Harmonious Constitution (id=440116) [Spell Family (7), Passive]** — `hero-wildstalker.txt`
@@ -494,6 +502,7 @@ One line per spell record; each lists every file it appears in.
 - **Incarnation: Tree of Life (desc=Passive) (id=81097) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Incarnation: Tree of Life (desc=Passive) (id=81098) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Incarnation: Tree of Life (desc=Talent, Shapeshift) (id=33891) [Spell Family (7)]** — `restoration.txt`
+- **Incarnation: Tree of Life (id=1301340) [Spell Family (7)]** — `baseline.txt`
 - **Incessant Tempest (id=400140) [Spell Family (7), Passive]** — `class-talents.txt`
 - **Indomitable Guardian (id=408522) [Spell Family (7)]** — `baseline.txt`
 - **Infected Wounds (id=345208) [Spell Family (7), Passive]** — `guardian.txt`
@@ -503,7 +512,6 @@ One line per spell record; each lists every file it appears in.
 - **Infected Wounds (id=58180) [Spell Family (7)]** — `baseline.txt`
 - **Initial Druid (id=417382) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Innate Resolve (id=377811) [Spell Family (7), Passive, Hidden]** — `guardian.txt`
-- **Inner Peace (id=197073) [Spell Family (7), Passive]** — `restoration.txt`
 - **Innervate (id=29166) [Spell Family (7)]** — `class-talents.txt`
 - **Instincts of the Claw (id=449184) [Spell Family (7), Passive]** — `class-talents.txt`
 - **Insurance! (id=1215515) [Spell Family (7)]** — `baseline.txt`
@@ -659,7 +667,6 @@ One line per spell record; each lists every file it appears in.
 - **Natural Recovery (id=377796) [Spell Family (7), Passive]** — `class-talents.txt`
 - **Natural Resilience (id=1278789) [Spell Family (7), Passive]** — `guardian.txt`
 - **Natural Resilience (id=1278800) [Spell Family (7)]** — `baseline.txt`
-- **Natural Wisdom (id=326228) [Spell Family (7), Passive]** — `baseline.txt`
 - **Nature's Balance (id=202430) [Spell Family (7), Passive]** — `balance.txt`
 - **Nature's Balance (id=279649) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Nature's Balance (id=279652) [Spell Family (7), Hidden]** — `baseline.txt`
@@ -668,7 +675,6 @@ One line per spell record; each lists every file it appears in.
 - **Nature's Cure (id=88423) [Spell Family (7)]** — `baseline.txt`
 - **Nature's Grace (id=450347) [Passive]** — `balance.txt`
 - **Nature's Guardian (id=227034) [Spell Family (7)]** — `baseline.txt`
-- **Nature's Splendor (id=392288) [Spell Family (7), Passive]** — `restoration.txt`
 - **Nature's Swiftness (id=132158) [Spell Family (7)]** — `restoration.txt`
 - **New Moon (id=274281) [Spell Family (7)]** — `balance.txt`
 - **Nimble Healing Touch (id=24542) [Spell Family (7)]** — `baseline.txt`
@@ -693,12 +699,16 @@ One line per spell record; each lists every file it appears in.
 - **Oneth's Intuition (id=209406) [Spell Family (7)]** — `baseline.txt`
 - **Oneth's Overconfidence (id=209407) [Spell Family (7)]** — `baseline.txt`
 - **Oneth's Perception (id=339800) [Spell Family (7)]** — `baseline.txt`
+- **Orbit Breaker (id=1303480) [Spell Family (7)]** — `baseline.txt`
 - **Orbit Breaker (id=383197) [Spell Family (7), Passive]** — `balance.txt`
 - **Orbital Strike (id=361237) [Spell Family (7)]** — `baseline.txt`
 - **Orbital Strike (id=390378) [Spell Family (7), Passive]** — `balance.txt`
 - **Overflowing Power (id=405069) [Spell Family (7)]** — `baseline.txt`
 - **Overflowing Power (id=405189) [Spell Family (7)]** — `baseline.txt`
 - **Overflowing Power (id=405191) [Spell Family (7)]** — `baseline.txt`
+- **Overgrowth (desc=PvP Talent) (id=203652) [Spell Family (7), Hidden]** — `baseline.txt`
+- **Overgrowth (id=1301989) [Spell Family (7)]** — `baseline.txt`
+- **Overgrowth (id=203651) [Spell Family (7), Passive, Hidden]** — `restoration.txt`
 - **Overpowering Aura (id=395944) [Spell Family (7)]** — `baseline.txt`
 - **Owlkin Adept (desc=PvP Talent) (id=354541) [Spell Family (7), Passive, Hidden]** — `baseline.txt`
 - **Owlkin Adept (id=357745) [Spell Family (7), Hidden]** — `baseline.txt`
@@ -759,6 +769,9 @@ One line per spell record; each lists every file it appears in.
 - **Rampant Ferocity (id=391709) [Spell Family (7), Passive]** — `feral.txt`
 - **Rampant Ferocity (id=391710) [Spell Family (7)]** — `baseline.txt`
 - **Rampant Growth (id=404521) [Spell Family (7), Passive]** — `restoration.txt`
+- **Rampant Thorn (id=1301157) [Spell Family (7)]** — `baseline.txt`
+- **Rampant Thorn (id=1310150) [Spell Family (7), Hidden]** — `baseline.txt`
+- **Rampant Thorn (id=1310213) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Rattle the Stars (id=393954) [Spell Family (7), Passive]** — `balance.txt`
 - **Ravage (id=441583) [Spell Family (7), Passive]** — `hero-druid-of-the-claw.txt`
 - **Ravage (id=441585) [Spell Family (7)]** — `baseline.txt`
@@ -862,6 +875,11 @@ One line per spell record; each lists every file it appears in.
 - **Spirit of the Thicket (id=1264899) [Spell Family (7), Passive]** — `hero-keeper-of-the-grove.txt`
 - **Spirit of the Thicket (id=1264905) [Spell Family (7)]** — `baseline.txt`
 - **Spirit of the Thicket (id=1264911) [Spell Family (7)]** — `baseline.txt`
+- **Spirit's Wrath (id=1308093) [Spell Family (7)]** — `baseline.txt`
+- **Spirit's Wrath (id=1308125) [Spell Family (7)]** — `baseline.txt`
+- **Spirit's Wrath (id=1308437) [Spell Family (7), Hidden]** — `baseline.txt`
+- **Spirit's Wrath (id=1308479) [Spell Family (7)]** — `baseline.txt`
+- **Spirit's Wrath (id=1308639) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Stacked Deck (id=1218537) [Spell Family (7)]** — `baseline.txt`
 - **Stalking Predator (id=1263962) [Spell Family (7)]** — `baseline.txt`
 - **Stampeding Roar (id=106898) [Spell Family (7)]** — `class-talents.txt`
@@ -883,6 +901,8 @@ One line per spell record; each lists every file it appears in.
 - **Starfall (id=1264676) [Spell Family (7)]** — `baseline.txt`
 - **Starfall (id=1286243) [Spell Family (7)]** — `baseline.txt`
 - **Starfall (id=1286247) [Spell Family (7), Hidden]** — `baseline.txt`
+- **Starfall (id=1301742) [Spell Family (7)]** — `baseline.txt`
+- **Starfall (id=1301747) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Starfall (id=191034) [Spell Family (7)]** — `baseline.txt`
 - **Starfall (id=191037) [Spell Family (7)]** — `baseline.txt`
 - **Starfall (id=359399) [Spell Family (7)]** — `baseline.txt`
@@ -905,6 +925,7 @@ One line per spell record; each lists every file it appears in.
 - **Stellar Amplification (id=450214) [Spell Family (7)]** — `baseline.txt`
 - **Stellar Command (id=429668) [Spell Family (7), Passive, Hidden]** — `hero-elunes-chosen.txt`
 - **Stellar Flare (id=202347) [Spell Family (7)]** — `baseline.txt`
+- **Stellar Protection (id=1297521) [Spell Family (7), Passive]** — `baseline.txt`
 - **Stonebark (id=197061) [Spell Family (7), Passive]** — `restoration.txt`
 - **Strategic Infusion (id=439890) [Spell Family (7), Passive]** — `hero-wildstalker.txt`
 - **Strategic Infusion (id=439891) [Spell Family (7)]** — `baseline.txt`
@@ -940,6 +961,7 @@ One line per spell record; each lists every file it appears in.
 - **Sylvan Beckoning (id=1264618) [Spell Family (7)]** — `baseline.txt`
 - **Sylvan Beckoning (id=1264680) [Spell Family (7)]** — `baseline.txt`
 - **Symbiotic Blooms (id=439530) [Spell Family (7)]** — `baseline.txt`
+- **Symbiotic Relationship (id=1301638) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Symbiotic Relationship (id=474750) [Spell Family (7)]** — `class-talents.txt`
 - **Symbiotic Relationship (id=474754) [Spell Family (7)]** — `baseline.txt`
 - **Symbiotic Relationship (id=474760) [Spell Family (7)]** — `baseline.txt`
@@ -1106,6 +1128,7 @@ One line per spell record; each lists every file it appears in.
 - **Wild Guardian (id=1269619) [Spell Family (7), Passive]** — `guardian.txt`
 - **Wild Guardian (id=1269658) [Spell Family (7)]** — `baseline.txt`
 - **Wild Guardian (id=1270277) [Spell Family (7)]** — `baseline.txt`
+- **Wild Guardian Spirit (id=1308522) [Spell Family (7), Hidden]** — `baseline.txt`
 - **Wild Mushroom (id=392996) [Spell Family (7)]** — `baseline.txt`
 - **Wild Mushroom (id=88747) [Spell Family (7)]** — `balance.txt`
 - **Wild Mushroom (id=88751) [Spell Family (7)]** — `baseline.txt`

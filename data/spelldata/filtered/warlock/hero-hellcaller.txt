@@ -1,5 +1,5 @@
 # Warlock — Hellcaller Hero Talents
-# Extracted verbatim from warlock.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68887 Live)
+# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Malevolence (id=430014) [Spell Family (5), Passive, Hidden] 
@@ -33,7 +33,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1133699)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Chance (7)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 7 | Target: Self (1)
-                   Affected Spells: Corruption (172), Shadow Bolt (686), Agony (980), Mortal Coil (6789), Shadowburn (17877), Seed of Corruption (27285), Unstable Affliction (30108), Unstable Affliction (31117), Seed of Corruption (43991), Haunt (48181), Siphon Life (63106), Chaos Bolt (116858), Corruption (146739), Cataclysm (152108), Grimoire of Sacrifice (196100), Unstable Affliction (196364), Drain Soul (198590), Phantom Singularity (205179), Summon Darkglare (205180), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Vile Taint (278350), Unstable Affliction (316099), Malefic Rapture (324540), Soul Rot (325640), Deliberate Corruption (367831), Vile Taint (386931), Soul Rot (386997), Soul Rot (386998), Infernal Bolt (434506), Wither (445468), Wither (445474), Unstable Affliction (1219045), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Agony (1261166), Unstable Affliction (1261176), Shadow of Nathreza (1262710), Wither (1279686)
+                   Affected Spells: Corruption (172), Shadow Bolt (686), Agony (980), Mortal Coil (6789), Shadowburn (17877), Seed of Corruption (27285), Unstable Affliction (30108), Unstable Affliction (31117), Seed of Corruption (43991), Haunt (48181), Siphon Life (63106), Chaos Bolt (116858), Corruption (146739), Cataclysm (152108), Grimoire of Sacrifice (196100), Unstable Affliction (196364), Drain Soul (198590), Phantom Singularity (205179), Summon Darkglare (205180), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Vile Taint (278350), Malefic Rapture (324540), Soul Rot (325640), Deliberate Corruption (367831), Vile Taint (386931), Soul Rot (386997), Soul Rot (386998), Infernal Bolt (434506), Wither (445468), Wither (445474), Unstable Affliction (1219045), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Agony (1261166), Unstable Affliction (1261176), Shadow of Nathreza (1262710), Wither (1279686)
                    Family Flags: 0, 1, 3, 7, 8, 9, 10, 19, 23, 40, 43, 45, 47, 64, 72, 73, 84, 85, 88, 101, 112, 116
                    Modified By: Will of Xalan (441531 effect#2)
 #2 (id=1137484)  : Apply Aura (6) | Modify Guardian Damage Done% (531)
@@ -41,12 +41,12 @@ Effects          :
                    Modified By: Destruction Warlock (137046 effect#9), Will of Xalan (441531 effect#2)
 #3 (id=1166858)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 6 | Scaled Value: 6 | Target: Self (1)
-                   Affected Spells: Corruption (172), Shadow Bolt (686), Agony (980), Mortal Coil (6789), Shadowburn (17877), Seed of Corruption (27285), Unstable Affliction (30108), Unstable Affliction (31117), Seed of Corruption (43991), Haunt (48181), Siphon Life (63106), Chaos Bolt (116858), Corruption (146739), Unstable Affliction (196364), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Vile Taint (278350), Unstable Affliction (316099), Malefic Rapture (324540), Soul Rot (325640), Deliberate Corruption (367831), Vile Taint (386931), Soul Rot (386997), Soul Rot (386998), Infernal Bolt (434506), Wither (445468), Wither (445474), Unstable Affliction (1219045), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Agony (1261166), Unstable Affliction (1261176), Shadow of Nathreza (1262710), Wither (1279686)
+                   Affected Spells: Corruption (172), Shadow Bolt (686), Agony (980), Mortal Coil (6789), Shadowburn (17877), Seed of Corruption (27285), Unstable Affliction (30108), Unstable Affliction (31117), Seed of Corruption (43991), Haunt (48181), Siphon Life (63106), Chaos Bolt (116858), Corruption (146739), Unstable Affliction (196364), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Vile Taint (278350), Malefic Rapture (324540), Soul Rot (325640), Deliberate Corruption (367831), Vile Taint (386931), Soul Rot (386997), Soul Rot (386998), Infernal Bolt (434506), Wither (445468), Wither (445474), Unstable Affliction (1219045), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Agony (1261166), Unstable Affliction (1261176), Shadow of Nathreza (1262710), Wither (1279686)
                    Family Flags: 0, 1, 3, 7, 8, 10, 19, 23, 40, 43, 45, 47, 73, 84, 85, 101, 112
                    Modified By: Destruction Warlock (137046 effect#10), Will of Xalan (441531 effect#2)
 #4 (id=1166859)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 6 | Scaled Value: 6 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Corruption (172), Shadow Bolt (686), Agony (980), Mortal Coil (6789), Shadowburn (17877), Seed of Corruption (27285), Unstable Affliction (30108), Unstable Affliction (31117), Seed of Corruption (43991), Haunt (48181), Siphon Life (63106), Chaos Bolt (116858), Corruption (146739), Unstable Affliction (196364), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Vile Taint (278350), Unstable Affliction (316099), Malefic Rapture (324540), Soul Rot (325640), Deliberate Corruption (367831), Vile Taint (386931), Soul Rot (386997), Soul Rot (386998), Infernal Bolt (434506), Wither (445468), Wither (445474), Unstable Affliction (1219045), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Agony (1261166), Unstable Affliction (1261176), Shadow of Nathreza (1262710), Wither (1279686)
+                   Affected Spells: Corruption (172), Shadow Bolt (686), Agony (980), Mortal Coil (6789), Shadowburn (17877), Seed of Corruption (27285), Unstable Affliction (30108), Unstable Affliction (31117), Seed of Corruption (43991), Haunt (48181), Siphon Life (63106), Chaos Bolt (116858), Corruption (146739), Unstable Affliction (196364), Drain Soul (198590), Phantom Singularity (205179), Phantom Singularity (205246), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Drain Life (234153), Vile Taint (278350), Malefic Rapture (324540), Soul Rot (325640), Deliberate Corruption (367831), Vile Taint (386931), Soul Rot (386997), Soul Rot (386998), Infernal Bolt (434506), Wither (445468), Wither (445474), Unstable Affliction (1219045), Unstable Affliction (1259790), Malefic Grasp (1261153), Corruption (1261158), Agony (1261166), Unstable Affliction (1261176), Shadow of Nathreza (1262710), Wither (1279686)
                    Family Flags: 0, 1, 3, 7, 8, 10, 19, 23, 40, 43, 45, 47, 73, 84, 85, 101, 112
                    Modified By: Destruction Warlock (137046 effect#11), Will of Xalan (441531 effect#2)
 #5 (id=1166860)  : Apply Aura (6) | Modify Pet Damage Done% (429)
@@ -84,7 +84,7 @@ Effects          :
                    Base Value: 8 | Scaled Value: 8
 #3 (id=1142441)  : None (0)
                    Base Value: 20 | Scaled Value: 20
-Description      : Spending Soul Shards on damaging spells will further corrupt enemies affected by your Wither, increasing its stack count by $s1.
+Description      : If the target is afflicted with your Wither, casting $?s1259790[Unstable Affliction][Chaos Bolt and Shadowburn] increase its stack count by $s1.
 
 Each time Wither gains a stack it has a chance to collapse, consuming a stack every $445731t1 sec to deal $445736s1 Shadowflame damage to its host until 1 stack remains.
 
@@ -143,17 +143,20 @@ Labels           : 16: Class Spells
                  : 19: Warlock Spells
                  : 292
                  : 4340
-Proc Chance      : 101%
-Proc Flags       : Magic Hostile Spell, Periodic
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Suppress Caster Procs (112)
 Effects          :
-#1 (id=1133704)  : Apply Aura (6) | Add Percent Modifier (108): Spell Critical Bonus Multiplier (15)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value: 15 | Target: Self (1)
-                   Affected Spells: Corruption (172), Immolate (348), Corruption (146739), Immolate (157736), Immolate (193540), Immolate (228312), Deliberate Corruption (367831), Wither (445468), Wither (445474), Corruption (1261158), Wither (1279686)
-                   Family Flags: 1, 2, 4
-Description      : Critical strike damage dealt by Wither is increased by $s1%. 
+#1 (id=1133704)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 15 | Misc Value 2: 3445 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wither (445474)
+#2 (id=1334363)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 15 | Misc Value 2: 3456 (Label) | Target: Self (1)
+                   Affected Spells (Label): Blackened Soul (445736)
+#3 (id=1336786)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Critical Bonus Multiplier (15)
+                   Base Value: 15 | Scaled Value: 15 | Misc Value: 15 | Misc Value 2: 3444 (Label) | Target: Self (1)
+                   Affected Spells (Label): Wither (445468)
+Description      : Damaging critical strikes dealt by Wither deal ${200+$s1}% damage instead of the usual 200%.
 
-Wither has a chance to gain a stack when it critically strikes. Stacks gained this way do not activate Blackened Soul.
+Damaging critical strikes dealt by Blackened Soul deal ${200+$s2}% damage instead of the usual 200%.
 
 Name             : Mark of Xavius (id=440046) [Spell Family (5), Passive, Hidden] 
 Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=4, col=1, max_rank=1, req_points=0]
@@ -307,7 +310,7 @@ Effects          :
                    Base Value: -10 | Scaled Value: -10 | Target: Self (1)
 #2 (id=1138615)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
                    Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Target: Self (1)
-                   Affected Spells: Soul Leech (108370)
+                   Affected Spells: Soul Leech (108370), Soul Leech (1311653)
                    Family Flags: 68
 Description      : Sacrifice $s1% of your maximum health. Soul Leech now absorbs an additional $s2% of your maximum health.
 
@@ -344,12 +347,12 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1279479)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
-                   Affected Spells: Unstable Affliction (30108), Unstable Affliction (31117), Unstable Affliction (196364), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Unstable Affliction (316099), Unstable Affliction (1219045), Unstable Affliction (1259790), Unstable Affliction (1261176)
+                   Affected Spells: Unstable Affliction (30108), Unstable Affliction (31117), Unstable Affliction (196364), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Unstable Affliction (1219045), Unstable Affliction (1259790), Unstable Affliction (1261176)
                    Family Flags: 40, 43
                    Modified By: Malevolence (442726 effect#4)
 #2 (id=1280946)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Unstable Affliction (30108), Unstable Affliction (31117), Unstable Affliction (196364), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Unstable Affliction (316099), Unstable Affliction (1219045), Unstable Affliction (1259790), Unstable Affliction (1261176)
+                   Affected Spells: Unstable Affliction (30108), Unstable Affliction (31117), Unstable Affliction (196364), Unstable Affliction (233490), Unstable Affliction (233496), Unstable Affliction (233497), Unstable Affliction (233498), Unstable Affliction (233499), Unstable Affliction (1219045), Unstable Affliction (1259790), Unstable Affliction (1261176)
                    Family Flags: 40, 43
                    Modified By: Malevolence (442726 effect#4)
 #3 (id=1281487)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)

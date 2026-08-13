@@ -184,8 +184,6 @@ One line per spell record; each lists every file it appears in.
 - **Darkness (id=196718) [Spell Family (107)]** — `class-talents.txt`
 - **Darkness (id=209426) [Spell Family (107)]** — `baseline.txt`
 - **Dash of Chaos (id=427793) [Spell Family (107)]** — `baseline.txt`
-- **Dash of Chaos (id=427794) [Spell Family (107), Passive, Hidden]** — `havoc.txt`
-- **Dash of Chaos (id=428160) [Spell Family (107)]** — `baseline.txt`
 - **Deadly Dance (id=363736) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Deadly Dance (id=364438) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Death Sweep (id=210152) [Spell Family (107)]** — `baseline.txt`
@@ -205,6 +203,8 @@ One line per spell record; each lists every file it appears in.
 - **Demon Hunter Aldrachi Reaver 11.2 Class Set 4pc (id=1236360) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Devourer 12.0 Class Set 2pc (id=1264881) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Devourer 12.0 Class Set 4pc (id=1264882) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
+- **Demon Hunter Devourer 12.1 Class Set 2pc (id=1296615) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
+- **Demon Hunter Devourer 12.1 Class Set 4pc (id=1296616) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Havoc 10.1 Class Set 2pc (id=405505) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Havoc 10.1 Class Set 4pc (id=405507) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Havoc 10.2 Class Set 2pc (id=422857) [Passive, Hidden]** — `baseline.txt`
@@ -214,6 +214,8 @@ One line per spell record; each lists every file it appears in.
 - **Demon Hunter Havoc 11.1 Class Set 2pc (id=1215731) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Havoc 12.0 Class Set 2pc (id=1264805) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Havoc 12.0 Class Set 4pc (id=1264807) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
+- **Demon Hunter Havoc 12.1 Class Set 2pc (id=1296611) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
+- **Demon Hunter Havoc 12.1 Class Set 4pc (id=1296612) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Havoc Class Set 2pc (id=393628) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Havoc Class Set 4pc (id=393629) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Vengeance 10.1 Class Set 2pc (id=405508) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
@@ -226,6 +228,8 @@ One line per spell record; each lists every file it appears in.
 - **Demon Hunter Vengeance 11.1 Class Set 4pc (id=1215991) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Vengeance 12.0 Class Set 2pc (id=1264808) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Vengeance 12.0 Class Set 4pc (id=1264809) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
+- **Demon Hunter Vengeance 12.1 Class Set 2pc (id=1296613) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
+- **Demon Hunter Vengeance 12.1 Class Set 4pc (id=1296614) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Vengeance Class Set 2pc (id=393630) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter Vengeance Class Set 4pc (id=393631) [Passive, Hidden]** — `baseline.txt`
 - **Demon Hunter- Midnight PrePatch - 11.2 Class Set 2pc (id=1283625) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
@@ -590,6 +594,7 @@ One line per spell record; each lists every file it appears in.
 - **Necessary Sacrifice (id=1215732) [Spell Family (107), Passive, Hidden]** — `baseline.txt`
 - **Necessary Sacrifice (id=1217055) [Spell Family (107)]** — `baseline.txt`
 - **Nemesis (id=208605) [Spell Family (107)]** — `baseline.txt`
+- **Never Say Die (id=427794) [Spell Family (107), Passive, Hidden]** — `havoc.txt`
 - **Oblivion's Embrace (id=248074) [Spell Family (107), Passive]** — `baseline.txt`
 - **Otherworldly Focus (id=1253817) [Spell Family (107), Passive]** — `hero-annihilator.txt`
 - **Painbringer (id=207387) [Spell Family (107), Passive]** — `vengeance.txt`
@@ -695,7 +700,7 @@ One line per spell record; each lists every file it appears in.
 - **Shift (id=1234814) [Spell Family (107)]** — `baseline.txt`
 - **Shift (id=1234818) [Spell Family (107)]** — `baseline.txt`
 - **Shift (id=1242880) [Spell Family (107)]** — `baseline.txt`
-- **Sigil of Chains (id=202138) [Spell Family (107)]** — `vengeance.txt`
+- **Sigil of Chains (id=202138) [Spell Family (107)]** — `baseline.txt`
 - **Sigil of Chains (id=204843) [Spell Family (107)]** — `baseline.txt`
 - **Sigil of Doom (id=452490) [Spell Family (107)]** — `baseline.txt`
 - **Sigil of Doom (id=462030) [Spell Family (107)]** — `baseline.txt`
@@ -753,6 +758,8 @@ One line per spell record; each lists every file it appears in.
 - **Soul Sigils (id=395446) [Spell Family (107), Passive]** — `vengeance.txt`
 - **Soul Splitter (id=1266330) [Spell Family (107), Passive]** — `class-talents.txt`
 - **Soul Sunder (id=452436) [Spell Family (107)]** — `baseline.txt`
+- **Soulburst (id=1297432) [Spell Family (107)]** — `baseline.txt`
+- **Soulburst (id=1297433) [Spell Family (107)]** — `baseline.txt`
 - **Soulcrush (id=389985) [Spell Family (107), Passive]** — `vengeance.txt`
 - **Soulforged Blades (id=1272432) [Spell Family (107), Passive, Hidden]** — `devourer.txt`
 - **Soulfuse (id=454774) [Spell Family (107)]** — `baseline.txt`

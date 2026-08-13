@@ -1,5 +1,5 @@
 # Rogue — Assassination Spec Talents
-# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 45 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Deadly Poison (id=2823) [Spell Family (8)] 
@@ -25,6 +25,8 @@ Aura Interrupt   : Change Specialization (38)
 Effects          :
 #1 (id=855)      : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 2818 | Target: Self (1)
+#2 (id=1322689)  : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 4 | Scaled Value: 4 | Resource: energy | Target: Self (1)
 Description      : Coats your weapons with a Lethal Poison that lasts for $d. Each strike has a $h% chance to poison the enemy for ${$2818m1*$2818d/$2818t1} Nature damage over $2818d. Subsequent poison applications will instantly deal $113780s1 Nature damage.
 Tooltip          : Each strike has a chance of causing the target to suffer Nature damage every $2818t1 sec for $2818d. Subsequent poison applications deal instant Nature damage.
 
@@ -87,7 +89,7 @@ Effects          :
                    Family Flags: 61
 #2 (id=705892)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5 | PvP Coefficient: 0.6 | Target: Self (1)
-Description      : Garrote silences the target for $s2 sec when used from Stealth.
+Description      : Garrotes applied from stealth or during the Improved Garrote window silence their target for $s2 sec.
 
 Enemies silenced by Garrote deal $256148s1% reduced damage for $256148d.
 
@@ -111,7 +113,7 @@ Description      : Envenom has a $<chance>% chance per combo point spent to smas
 Variables        : $chance=${$s1/10}%
 
 Name             : Blindside (id=328085) [Spell Family (8), Passive] 
-Talent Entry     : Assassination [tree=spec, row=8, col=2, max_rank=1, req_points=20]
+Talent Entry     : Assassination [tree=spec, row=8, col=6, max_rank=1, req_points=20]
 Class            : Rogue
 School           : Physical
 Spell Type       : None
@@ -121,9 +123,9 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=819937)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 #2 (id=819938)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 30 | Scaled Value: 30
+                   Base Value: 20 | Scaled Value: 20
 #3 (id=819939)   : Apply Aura (6) | Dummy (4)
                    Base Value: 35 | Scaled Value: 35
 Description      : Ambush and Mutilate have a $s1% chance to make your next Ambush free and usable without Stealth. Chance increased to $s2% if the target is under $s3% health.
@@ -143,7 +145,7 @@ Labels           : 16: Class Spells
                  : 690: Major Cooldowns
                  : 1077
 Mechanic         : Bleed
-Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Mastery: Potent Assassin (76803 effects: #1, #2), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Between the Eyes (315341 effects: #2, #3), Shiv (319504 effect#3), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Septic Wounds (394845 effect#1), Shiv (400789 effect#3), Sudden Demise (423136 effect#1), Natureblight (426568 effects: #2, #3), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Lucky Coin (1248971 effect#2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Implacable (1265386 effect#1), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Affecting Spells : Deadly Poison (2818 effect#2), Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Mastery: Potent Assassin (76803 effects: #1, #2), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2), Outlaw Rogue (137036 effects: #1, #2), Assassination Rogue (137037 effects: #1, #2), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Between the Eyes (315341 effects: #2, #3), Shiv (319504 effect#3), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Septic Wounds (394845 effect#1), Shiv (400789 effect#3), Sudden Demise (423136 effect#1), Natureblight (426568 effects: #2, #3), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Lucky Coin (1248971 effect#2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Implacable (1265386 effect#1), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
 Family Flags     : 54, 59
 Attributes       : Is Ability (4), Not Shapeshifted (16), Initiates Combat (Enables Auto-Attack) (41), Spell Haste Affects Periodic (173), Taps immediately (215), No Attack Parry (248), Periodic Can Crit (265), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423), Important Spell (491)
 Aura Interrupt   : Change Specialization (38), Raid Encounter End or M+ Start (41), Change Talent (46), Change Glyph (47)
@@ -151,12 +153,12 @@ Effects          :
 #1 (id=897169)   : Apply Aura (6) | Periodic Damage (3): physical every 2 seconds
                    Base Value: 0 | Scaled Value: 0 | AP Coefficient: 0.4 | Mechanic: Bleed | Target: Targeted Enemy (6)
 #2 (id=1033882)  : Apply Party Aura (35) | Modify Damage Taken% from Caster's Spells (271)
-                   Base Value: 100 | Scaled Value: 100 | Target: Targeted Enemy (6)
-                   Affected Spells: Garrote (703), Rupture (1943), Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Rupture (360826), Garrote (360830), Amplifying Poison (381664), Amplifying Poison (383414), Rupture (394031), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Rupture (1270203)
+                   Base Value: 75 | Scaled Value: 75 | Target: Targeted Enemy (6)
+                   Affected Spells: Garrote (703), Rupture (1943), Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Rupture (360826), Garrote (360830), Amplifying Poison (381664), Amplifying Poison (383414), Rupture (394031), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Rupture (1270203)
                    Family Flags: 8, 16, 20, 28, 68
 #3 (id=1250577)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 10 | Scaled Value: 10 | Target: Targeted Enemy (6)
-Description      : Carve a deathmark into an enemy, dealing $o1 Bleed damage and restoring ${$s3*8} Energy to you over $d. Damage dealt to the target by your Garrote, Rupture, and Lethal Poisons is increased by $s2%.
+                   Base Value: 80 | Scaled Value: 80 | Target: Targeted Enemy (6)
+Description      : Carve a deathmark into an enemy, dealing $o1 Bleed damage and restoring $s3 Energy to you over $d. Damage dealt to the target by your Garrote, Rupture, and Lethal Poisons is increased by $s2%.
 
 Each time you apply a Lethal Poison to the target, apply it twice.
 Tooltip          : Bleeding for $w1 damage and restoring $w3 Energy to $@auracaster every $t sec. Damage taken from $@auracaster's Garrote, Rupture, and Lethal Poisons increased by $w2%.
@@ -174,7 +176,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1012586)  : Apply Aura (6) | Add Flat Modifier (107): Spell Proc Chance (18)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 18 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
                    Family Flags: 14, 16, 28, 45, 68, 83
 Description      : Increases the application chance of your weapon poisons by $s1%.
 
@@ -298,7 +300,7 @@ Effects          :
 Description      : Your weapon poisons and Nature or Bleed damage over time abilities deal $s1% increased damage to targets for each of your lethal poison or damage over time effects on them.
 
 Name             : Systemic Failure (id=381652) [Spell Family (8), Passive] 
-Talent Entry     : Assassination [tree=spec, row=7, col=2, max_rank=1, req_points=8]
+Talent Entry     : Assassination [tree=spec, row=7, col=6, max_rank=1, req_points=8]
 Class            : Rogue
 School           : Physical
 Spell Type       : None
@@ -312,7 +314,7 @@ Effects          :
 Description      : Garrote increases the damage of Ambush and Mutilate on the target by $s1%.
 
 Name             : Amplifying Poison (id=381664) [Spell Family (8)] 
-Talent Entry     : Assassination [tree=spec, row=7, col=6, max_rank=1, req_points=8]
+Talent Entry     : Assassination [tree=spec, row=7, col=2, max_rank=1, req_points=8]
 Class            : Rogue
 School           : Physical
 Spell Type       : None
@@ -338,6 +340,8 @@ Effects          :
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 #3 (id=1015337)  : Apply Aura (6) | Proc Trigger Spell (42): Amplifying Poison
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 383414 | Target: Self (1)
+#4 (id=1322684)  : Apply Aura (6) | Modify Power Regen (110)
+                   Base Value: 4 | Scaled Value: 4 | Resource: energy | Target: Self (1)
 Description      : Coats your weapons with a Lethal Poison that lasts for $d. Each strike has a $h% chance to poison the enemy, dealing $383414s1 Nature damage and applying Amplifying Poison for $383414d. Envenom can consume $s2 stacks of Amplifying Poison to deal $s1% increased damage. Max $383414u stacks.
 Tooltip          : Each strike has a chance of inflicting Nature damage and applying Amplifying Poison. Envenom consumes the poison to deal increased damage.
 
@@ -355,10 +359,10 @@ Attributes       : Passive (6), Can Proc From Procs (122), Not In Spellbook (143
 Effects          :
 #1 (id=1012664)  : Apply Aura (6) | Dummy (4)
                    Base Value: 25 | Scaled Value: 25 | Target: Self (1)
-Description      : Mutilate deals an additional $s1% Bleed damage over ${$381672d+2} sec.
+Description      : Mutilate deals an additional $s1% Bleed damage over ${$394021d+2} sec.
 
 Name             : Dashing Scoundrel (id=381797) [Spell Family (8), Passive] 
-Talent Entry     : Assassination [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Talent Entry     : Assassination [tree=spec, row=8, col=2, max_rank=1, req_points=20]
 Class            : Rogue
 School           : Physical
 Spell Type       : None
@@ -368,13 +372,12 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1012874)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 5 (33)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value: 33 | Target: Self (1)
+                   Base Value: 8 | Scaled Value: 8 | Misc Value: 33 | Target: Self (1)
                    Affected Spells: Envenom (32645)
                    Family Flags: 35
-#2 (id=1105253)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
-                   Base Value: 1 | Scaled Value: 1 | Misc Value: 3 | Misc Value 2: 2944 (Label) | Target: Self (1)
-                   Affected Spells (Label): Dashing Scoundrel (395996)
-Description      : Envenom's effect also increases the critical strike chance of your weapon poisons by $s1%, and their critical strikes generate $s2 Energy.
+#2 (id=1105253)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 4 | Scaled Value: 4 | Target: Self (1)
+Description      : Envenom's effect also increases the critical strike chance of your weapon poisons by $s1%. Your Energy generation is increased by $s2% for each lethal poison on your weapons.
 
 Name             : Zoldyck Recipe (id=381798) [Spell Family (8), Passive] 
 Talent Entry     : Assassination [tree=spec, row=9, col=2, max_rank=2, req_points=20]
@@ -424,7 +427,7 @@ Effects          :
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 #2 (id=1099049)  : Apply Aura (6) | Add Percent Modifier (108): Spell Proc Chance (18)
                    Base Value: -30 | Scaled Value: -30 | Misc Value: 18 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
                    Family Flags: 14, 16, 28, 45, 68, 83
 Description      : You may apply $s1 additional Lethal and Non-Lethal Poison to your weapons, but they have $s2% less application chance.
 
@@ -439,7 +442,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (268), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1018749)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 30 | Scaled Value: 30 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Garrote (703), Garrote (360830)
                    Family Flags: 8
 #2 (id=1018750)  : Dummy (3)
@@ -461,14 +464,14 @@ Labels           : 16: Class Spells
                  : 292
 Proc Chance      : 101%
 Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
-Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Mastery: Potent Assassin (76803 effects: #1, #2), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Toxic Blade (245389 effect#1), Between the Eyes (315341 effects: #2, #3), Shiv (319504 effect#1), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Deadly Precision (381542 effect#1), Lethality (382238 effect#2), Kingsbane (394095 effect#1), Poisoned Edges (409587 effects: #1, #3), Caustic Spatter (421976 effect#3), Natureblight (426568 effects: #2, #3), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Vile Tincture (458475 effects: #1, #2), Lucky Coin (1248971 effect#2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Implacable (1265386 effects: #2, #3), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Mastery: Potent Assassin (76803 effects: #1, #2), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2), Outlaw Rogue (137036 effects: #1, #2), Assassination Rogue (137037 effects: #1, #2), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Toxic Blade (245389 effect#1), Between the Eyes (315341 effects: #2, #3), Shiv (319504 effect#1), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Deadly Precision (381542 effect#1), Lethality (382238 effect#2), Kingsbane (394095 effect#1), Poisoned Edges (409587 effects: #1, #3), Caustic Spatter (421976 effect#3), Natureblight (426568 effects: #2, #3), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Vile Tincture (458475 effects: #1, #2), Lucky Coin (1248971 effect#2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Implacable (1265386 effects: #2, #3), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
 Family Flags     : 54, 85, 119
 Attributes       : Is Ability (4), Do Not Sheath (18), Can Proc From Procs (122), No Caster Aura Icon (187), No Attack Parry (248), Periodic Can Crit (265), Aura Points On Client (268), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
 Effects          :
 #1 (id=1019022)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 #2 (id=1019023)  : School Damage (2): nature
-                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 1.7281 | PvP Coefficient: 0.8 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 1.469 | PvP Coefficient: 0.8 | Target: Targeted Enemy (6)
 #3 (id=1019024)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 #4 (id=1019025)  : Apply Aura (6) | Periodic Damage (3): nature every 2 seconds
@@ -498,11 +501,11 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1030552)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Amplifying Poison (381664), Amplifying Poison (383414), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Amplifying Poison (381664), Amplifying Poison (383414), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
                    Family Flags: 16, 28, 68, 83
 #2 (id=1030553)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Deadly Poison (113780), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Deadly Poison (113780), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Instant Poison (394326)
                    Family Flags: 16
 Description      : Increases the damage of your weapon poisons by $s1%.
 
@@ -575,7 +578,7 @@ Proc Flags       : Yellow Melee
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1158231)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 3 (23)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value: 23 | Target: Self (1)
+                   Base Value: 20 | Scaled Value: 20 | Misc Value: 23 | Target: Self (1)
                    Affected Spells: Envenom (32645)
                    Family Flags: 35
 Description      : Envenom's effect increases the damage of Envenom by $s1%.
@@ -592,7 +595,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (2
 Effects          :
 #1 (id=1162752)  : Apply Aura (6) | Modify Max Cost (63)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Rupture (394031), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 17, 20, 32, 35, 44, 55, 81, 89, 92, 100, 111, 112, 116
 #2 (id=1162753)  : Apply Aura (6) | Modify Max Resource (418)
                    Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
@@ -600,11 +603,11 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 4 | Target: Self (1)
 #4 (id=1162755)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Affected Spells: Dispatch (2098), Envenom (32645), Killing Spree (51690), Killing Spree (57841), Killing Spree (57842), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Killing Spree (424556), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Killing Spree (1235074), Killing Spree (1235097), Killing Spree (1235100), Crimson Tempest (1247227), Killing Spree (1248603), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Secret Technique (1305994)
                    Family Flags: 17, 32, 35, 44, 55, 81, 92, 111, 112
 #5 (id=1162756)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 20, 32, 44, 81, 95, 100
 Description      : Gain $s1 additional max combo point.
 
@@ -620,7 +623,7 @@ GCD              : 1 seconds
 Labels           : 16: Class Spells
                  : 20: Rogue Spells
                  : 292
-Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Mastery: Potent Assassin (76803 effects: #1, #2), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Deeper Stratagem (193531 effects: #1, #4, #5), Symbols of Death (212283 effect#4), Between the Eyes (315341 effects: #2, #3), Shiv (319504 effect#3), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Grudge Match (364668 effect#1), Deadly Precision (381542 effect#1), Lethality (382238 effect#2), Secret Stratagem (394320 effects: #1, #4, #5), Devious Stratagem (394321 effects: #1, #4, #5), Septic Wounds (394845 effect#1), Shiv (400789 effect#3), Sudden Demise (423136 effect#1), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Momentum of Despair (457115 effects: #1, #2), Sanguine Stratagem (457512 effects: #1, #4, #5), Thrombotic Tincture (458476 effects: #1, #2), Winning Streak! (1218439 effects: #1, #2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Implacable (1265386 effect#1), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Affecting Spells : Deadly Poison (2818 effect#2), Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Mastery: Potent Assassin (76803 effects: #1, #2), Shadow Focus (112942 effects: #1, #2), Subtlety Rogue (137035 effects: #1, #2), Outlaw Rogue (137036 effects: #1, #2), Assassination Rogue (137037 effects: #1, #2), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Deeper Stratagem (193531 effects: #1, #4, #5), Symbols of Death (212283 effect#4), Between the Eyes (315341 effects: #2, #3), Shiv (319504 effect#3), Master Assassin's Mark (340094 effect#1), Deathly Shadows (341202 effects: #1, #2), Deathly Shadows (350964 effects: #1, #2), Grudge Match (364668 effect#1), Deadly Precision (381542 effect#1), Lethality (382238 effect#2), Secret Stratagem (394320 effects: #1, #4, #5), Devious Stratagem (394321 effects: #1, #4, #5), Septic Wounds (394845 effect#1), Shiv (400789 effect#3), Sudden Demise (423136 effect#1), Fazed (441224 effect#1), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Momentum of Despair (457115 effects: #1, #2), Sanguine Stratagem (457512 effects: #1, #4, #5), Thrombotic Tincture (458476 effects: #1, #2), Winning Streak! (1218439 effects: #1, #2), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Implacable (1265386 effect#1), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
 Family Flags     : 54, 81
 Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), No Active Defense (21), Initiates Combat (Enables Auto-Attack) (41), Requires Main-Hand Weapon (106), Allow Class Ability Procs (416)
 Effects          :
@@ -710,23 +713,6 @@ Effects          :
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 Description      : When you apply a Weapon Poison with a single-target attack, you have a $s1% chance to strike a nearby enemy for $1250216s1 Physical damage and apply the same Weapon Poison to them.
 
-Name             : Deadly Momentum (id=1250271) [Spell Family (8), Passive] 
-Talent Entry     : Assassination [tree=spec, row=9, col=5, max_rank=1, req_points=20]
-Class            : Rogue
-School           : Physical
-Spell Type       : None
-Labels           : 16: Class Spells
-                 : 20: Rogue Spells
-                 : 292
-Internal Cooldown: 0.1 seconds
-Proc Chance      : 100%
-Proc Flags       : Yellow Melee, Generic Helpful
-Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
-Effects          :
-#1 (id=1254308)  : Apply Aura (6) | Proc Trigger Spell (42): Deadly Momentum
-                   Base Value: 3 | Scaled Value: 3 | Trigger Spell: 1250272 | Target: Self (1)
-Description      : Finishing moves have a $s1% chance per combo point spent to increase your chance to critically strike by $1250272s1% for $1250272d.
-
 Name             : Poisoner's Drive (id=1250318) [Spell Family (8), Passive] 
 Talent Entry     : Assassination [tree=spec, row=9, col=4, max_rank=1, req_points=20, select_idx=200]
 Class            : Rogue
@@ -758,7 +744,7 @@ Effects          :
 Description      : When Kingsbane ends, gain $1250331s1% haste for every $s1 stacks of increased Kingsbane damage that you had, decreasing by $1250331s1% every $1250331t2 sec.
 
 Name             : Avulsion (id=1250358) [Spell Family (8), Passive] 
-Talent Entry     : Assassination [tree=spec, row=8, col=6, max_rank=1, req_points=20]
+Talent Entry     : Assassination [tree=spec, row=9, col=5, max_rank=1, req_points=20]
 Class            : Rogue
 School           : Physical
 Spell Type       : None
@@ -768,7 +754,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1254423)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 20 | Scaled Value: 20 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Rupture (1943), Rupture (360826), Rupture (394031), Rupture (1270203)
                    Family Flags: 20
 Description      : Rupture damage increased by $s1%.
@@ -795,22 +781,15 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 20: Rogue Spells
                  : 292
-Internal Cooldown: 0.1 seconds
-Proc Chance      : 101%
-Proc Flags       : Yellow Melee
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
-#1 (id=1277130)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
-#2 (id=1277133)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
-#3 (id=1277134)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+#1 (id=1277130)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Affected Spells: Envenom (32645)
                    Family Flags: 35
-Description      : Nothing will save your target from you. Envenom damage increased by $s3%. When your Envenom bonus expires, gain $s1% increased Energy generation for $1265391d. 
-
-Gain an additional $s2% increased Energy generation for each Envenom you used while Envenom's bonus was active, up to ${$s1+4*$s2}% total.
+#2 (id=1277133)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 2 | Scaled Value: 2 | Target: Self (1)
+Description      : Nothing will save your target from you. Envenom damage increased by $s1%. Envenom restores $s2 Energy per combo point spent.
 
 Name             : Implacable (id=1265386) [Spell Family (8), Passive] 
 Talent Entry     : Assassination [tree=spec, row=11, col=4, max_rank=2, req_points=20, select_idx=200]
@@ -832,11 +811,11 @@ Effects          :
                    Family Flags: 8, 20, 59, 81, 95, 115, 126
 #2 (id=1277697)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8680), Envenom (32645), Deadly Poison (113780), Poison Bomb (255546), Double Dose (273009), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Amplifying Poison (381664), Amplifying Poison (383414), Kingsbane (385627), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Fatebound Coin (Tails) (452538), Implacable Strikes (1265794)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8680), Envenom (32645), Deadly Poison (113780), Poison Bomb (255546), Double Dose (273009), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Amplifying Poison (381664), Amplifying Poison (383414), Kingsbane (385627), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Fatebound Coin (Tails) (452538), Implacable Strikes (1265794)
                    Family Flags: 16, 25, 35, 68, 85, 86, 97, 119, 120
 #3 (id=1277698)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8680), Envenom (32645), Deadly Poison (113780), Poison Bomb (255546), Double Dose (273009), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Amplifying Poison (381664), Amplifying Poison (383414), Kingsbane (385627), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Fatebound Coin (Tails) (452538), Implacable Strikes (1265794)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8680), Envenom (32645), Deadly Poison (113780), Poison Bomb (255546), Double Dose (273009), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Amplifying Poison (381664), Amplifying Poison (383414), Kingsbane (385627), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Fatebound Coin (Tails) (452538), Implacable Strikes (1265794)
                    Family Flags: 16, 25, 35, 68, 85, 86, 97, 119, 120
 #4 (id=1277699)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Misc Value 2: 3936 (Label) | Target: Self (1)
@@ -872,3 +851,23 @@ Effects          :
 #1 (id=1313372)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : If the target of your Deathmark dies, Deathmark jumps to a nearby enemy combatant for its remaining duration.
+
+Name             : Unstable Toxin (id=1298812) [Spell Family (8), Passive] 
+Talent Entry     : Assassination [tree=spec, row=10, col=2, max_rank=1, req_points=20]
+Class            : Rogue
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 20: Rogue Spells
+                 : 292
+Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
+Effects          :
+#1 (id=1322618)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 18 | Scaled Value: 18 | Target: Self (1)
+                   Affected Spells: Envenom (32645)
+                   Family Flags: 35
+#2 (id=1322619)  : Apply Aura (6) | Add Flat Modifier (107): Spell Duration (1)
+                   Base Value: -2000 | Scaled Value: -2000 | Misc Value: 1 | Target: Self (1)
+                   Affected Spells: Envenom (32645)
+                   Family Flags: 35
+Description      : Envenom's damage is increased by $s1%, but its duration is reduced by ${$s2/-1000} sec.

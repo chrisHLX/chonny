@@ -1,5 +1,5 @@
 # Rogue — Subtlety Spec Talents
-# Extracted verbatim from rogue.txt (SimulationCraft 1205-01 for World of Warcraft 12.0.7.68453 Live)
+# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Relentless Strikes (id=58423) [Spell Family (8), Passive] 
@@ -62,7 +62,7 @@ Labels           : 16: Class Spells
                  : 690: Major Cooldowns
 Proc Chance      : 100%
 Proc Flags       : White Melee, Yellow Melee, Yellow Ranged, Generic Hostile Spell, Magic Hostile Spell, Periodic
-Affecting Spells : Deeper Daggers (341550 effect#1), Veiltouched (382017 effects: #1, #2), Dark Brew (382504 effects: #2, #3), Deeper Daggers (382517 effects: #1, #2), Deeper Daggers (383405 effects: #1, #2), Death Perception (469642 effect#3), Winning Streak! (1218143 effects: #2, #3), Rogue Subtlety 12.0 Class Set 4pc (1264861 effects: #1, #2)
+Affecting Spells : Deeper Daggers (341550 effect#1), Deeper Daggers (382517 effects: #1, #2), Death Perception (469642 effect#3), Winning Streak! (1218143 effects: #2, #3), Rogue Subtlety 12.0 Class Set 4pc (1264861 effects: #1, #2)
 Family Flags     : 78
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow While Stealthed (37), Can Proc From Procs (122), Aura Points On Client (268), Reset cooldown upon ending an encounter (333), Allow Class Ability Procs (416), Important Spell (491)
 Effects          :
@@ -79,17 +79,16 @@ Effects          :
                    Family Flags: 2, 8, 29, 82
 #4 (id=902463)   : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Effect 1 (3)
                    Base Value: 100 | Scaled Value: 100 | Misc Value: 3 | Misc Value 2: 2942 (Label) | Target: Self (1)
-                   Affected Spells (Label): Goremaw's Bite (426593)
 #5 (id=1291976)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-                   Affected Spells: Kidney Shot (408), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Kidney Shot (426589), Coup de Grace (441776), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Affected Spells: Kidney Shot (408), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Kidney Shot (426589), Coup de Grace (441776), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Secret Technique (1305994)
                    Family Flags: 17, 21, 32, 44, 92
                    Modified By: Death Perception (469642 effect#3)
 Description      : Draws upon surrounding shadows to empower your weapons, causing your attacks to deal $s1% additional damage as Shadow and causing your combo point generating abilities to generate double combo points for $d.
 Tooltip          : Attacks deal $w1% additional damage as Shadow and combo point generating attacks generate double combo points.
 
 Name             : Deepening Shadows (id=185314) [Spell Family (8), Passive] 
-Talent Entry     : Subtlety [tree=spec, row=7, col=4, max_rank=1, req_points=8]
+Talent Entry     : Subtlety [tree=spec, row=7, col=3, max_rank=1, req_points=8]
 Class            : Rogue
 School           : Physical
 Spell Type       : None
@@ -155,7 +154,7 @@ Requires weapon  : Dagger
 Labels           : 16: Class Spells
                  : 20: Rogue Spells
                  : 292
-Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Shadow Focus (112942 effects: #1, #2), Shadow Blades (121471 effect#2), Subtlety Rogue (137035 effects: #1, #2, #16, #17), Outlaw Rogue (137036 effects: #1, #2, #9, #10), Assassination Rogue (137037 effects: #1, #2, #10, #11), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Symbols of Death (227151 effect#1), Gloomblade (246332 effect#1), The First of the Dead (248210 effect#2), Perforate (277720 effect#1), Inevitability (278683 effect#3), Between the Eyes (315341 effects: #2, #3), Improved Backstab (319949 effect#2), Master Assassin's Mark (340094 effect#1), The Rotten (341134 effects: #1, #3), Deathly Shadows (341202 effects: #1, #2), Deeper Daggers (341550 effect#1), Deathly Shadows (350964 effects: #1, #2), Deadly Precision (381542 effect#1), Veiltouched (382017 effects: #1, #2), Lethality (382238 effect#2), Dark Brew (382504 effects: #2, #3), Deeper Daggers (382517 effects: #1, #2), Deeper Daggers (383405 effects: #1, #2), Danse Macabre (393969 effects: #1, #2), The Rotten (394203 effects: #1, #3, #4), Perforated Veins (394254 effect#1), Honed Blades (394894 effects: #1, #2), Perforated Veins (426602 effect#1), Fazed (441224 effects: #1, #4), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Winning Streak! (1218143 effects: #2, #3), Unshakeable Drive (1248775 effect#1), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Find Weakness (1264521 effect#3), Ancient Arts (1268936 effects: #2, #3), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2)
+Affecting Spells : Master of Subtlety (31665 effects: #1, #2), Envenom (32645 effects: #8, #9), Shadow Focus (112942 effects: #1, #2), Shadow Blades (121471 effect#2), Subtlety Rogue (137035 effects: #1, #2), Outlaw Rogue (137036 effects: #1, #2), Assassination Rogue (137037 effects: #1, #2), Shadow Dance (185313 effects: #5, #9), Ruthless Precision (193357 effect#1), Grand Melee (193358 effects: #1, #3), Symbols of Death (212283 effect#4), Symbols of Death (227151 effect#1), Gloomblade (246332 effect#1), The First of the Dead (248210 effect#2), Perforate (277720 effect#1), Inevitability (278683 effect#3), Between the Eyes (315341 effects: #2, #3), Improved Backstab (319949 effect#2), Master Assassin's Mark (340094 effect#1), The Rotten (341134 effects: #1, #3), Deathly Shadows (341202 effects: #1, #2), Deeper Daggers (341550 effect#1), Deathly Shadows (350964 effects: #1, #2), Deadly Precision (381542 effect#1), Veiltouched (382017 effects: #1, #2), Lethality (382238 effect#2), Dark Brew (382504 effects: #9, #10), Deeper Daggers (382517 effects: #1, #2), Deeper Daggers (383405 effects: #7, #8), Danse Macabre (393969 effects: #1, #2), The Rotten (394203 effects: #1, #3, #4), Perforated Veins (394254 effect#1), Honed Blades (394894 effects: #1, #2), Perforated Veins (426602 effect#1), Fazed (441224 effects: #1, #4), Fatebound Coin (Heads) (452923 effects: #1, #2), Fatebound Coin (Heads) (456479 effects: #1, #2), Winning Streak! (1218143 effects: #2, #3), Unshakeable Drive (1248775 effect#1), Finish the Job (1249810 effects: #1, #2), Subtlety Rogue (1256946 effects: #1, #2), Outlaw Rogue (1256947 effects: #1, #2), Assassination Rogue (1256950 effects: #1, #2), Find Weakness (1264521 effect#3), Ancient Arts (1268936 effects: #2, #3), Whirl of Blades (1275176 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 2pc (1283637 effects: #1, #2), Rogue - Midnight PrePatch - 11.2 Class Set 4pc (1283639 effects: #1, #2), Rogue Subtlety 12.1 Class Set 2pc (1296592 effects: #1, #2)
 Family Flags     : 54, 109, 123
 Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Require All Targets (58), Discount Power On Miss (59), Initiate Combat Post-Cast (Enables Auto-Attack) (84), Requires Main-Hand Weapon (106), Allow Class Ability Procs (416)
 Aura Interrupt   : Raid Encounter Start or M+ Start (40)
@@ -303,18 +302,18 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1013205)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Flagellation (323654), Slaughter Poison (323660), Sepsis (328305), Sepsis (328306), Flagellation (345316), Echoing Reprimand (354835), Echoing Reprimand (354838), Flagellation (384631), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Flagellation (394757), Goremaw's Bite (426591), Goremaw's Bite (426592), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Implacable Strikes (1265794), Gloomblade (1269214), Goremaw's Bite (1269217)
-                   Family Flags: 15, 16, 28, 67, 78, 82, 97, 109, 118, 124
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Secret Technique (282449), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Black Powder (319190), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Slaughter Poison (323660), Eviscerate (328082), Sepsis (328305), Sepsis (328306), Echoing Reprimand (354835), Echoing Reprimand (354838), Lingering Shadow (386081), Instant Poison (394326), Wound Poison (394327), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Lashe Macabre (1264397), Implacable Strikes (1265794), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061), Secret Technique (1305994)
+                   Family Flags: 16, 28, 82, 97, 118, 123
 #2 (id=1083888)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Flagellation (323654), Slaughter Poison (323660), Sepsis (328305), Sepsis (328306), Flagellation (345316), Echoing Reprimand (354835), Echoing Reprimand (354838), Flagellation (384631), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Flagellation (394757), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Implacable Strikes (1265794), Gloomblade (1269214)
-                   Family Flags: 15, 16, 28, 78, 82, 97, 109, 118, 124
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Secret Technique (282449), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Black Powder (319190), Echoing Reprimand (323547), Echoing Reprimand (323558), Echoing Reprimand (323559), Echoing Reprimand (323560), Slaughter Poison (323660), Eviscerate (328082), Sepsis (328305), Sepsis (328306), Echoing Reprimand (354835), Echoing Reprimand (354838), Lingering Shadow (386081), Instant Poison (394326), Wound Poison (394327), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Supercharge (470409), Supercharge (470412), Supercharge (470414), Supercharge (470415), Echoing Reprimand (470672), Lashe Macabre (1264397), Implacable Strikes (1265794), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061), Secret Technique (1305994)
+                   Family Flags: 16, 28, 82, 97, 118, 123
 #3 (id=1083890)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Misc Value 2: 2696 (Label) | Target: Self (1)
-                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Secret Technique (1305994)
 #4 (id=1083891)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Misc Value 2: 2696 (Label) | Target: Self (1)
-                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Secret Technique (1305994)
 #5 (id=1183438)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Misc Value 2: 3936 (Label) | Target: Self (1)
                    Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
@@ -355,22 +354,22 @@ Attributes       : Passive (6), Not In Spellbook (143), Allow Class Ability Proc
 Effects          :
 #1 (id=1013872)  : Apply Aura (6) | Modify Spell School (220)
                    Base Value: 1 | Scaled Value: 1 | School: shadow | Target: Self (1)
-                   Affected Spells: Rupture (1943), Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Double Dose (273009), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Sepsis (328305), Sepsis (328306), Numbing Poison (359078), Rupture (360826), Amplifying Poison (383414), Atrophic Poison (392388), Mutilated Flesh (394021), Rupture (394031), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Implacable Strikes (1265794), Rupture (1270203)
+                   Affected Spells: Rupture (1943), Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Double Dose (273009), Nothing Personal (286581), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Sepsis (328305), Sepsis (328306), Numbing Poison (359078), Rupture (360826), Amplifying Poison (383414), Atrophic Poison (392388), Mutilated Flesh (394021), Rupture (394031), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Implacable Strikes (1265794), Rupture (1270203)
                    Family Flags: 16, 20, 28, 51, 97, 118, 120, 126
 #2 (id=1013873)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Deadly Poison (2818), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8680), Crippling Poison (115196), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315585), Flagellation (323654), Sepsis (328305), Sepsis (328306), Flagellation (345316), Numbing Poison (359078), Rupture (360826), Amplifying Poison (383414), Flagellation (384631), Atrophic Poison (392388), Mutilated Flesh (394021), Rupture (394031), Deadly Poison (394324), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Flagellation (394757), Goremaw's Bite (426591), Goremaw's Bite (426592), Implacable Strikes (1265794), Gloomblade (1269214), Goremaw's Bite (1269217), Rupture (1270203)
-                   Family Flags: 15, 20, 51, 67, 78, 97, 109, 118, 124, 126
+                   Affected Spells: Deadly Poison (2818), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8680), Crippling Poison (115196), Double Dose (273009), Nothing Personal (286581), Instant Poison (315585), Sepsis (328305), Sepsis (328306), Numbing Poison (359078), Amplifying Poison (383414), Atrophic Poison (392388), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Implacable Strikes (1265794)
+                   Family Flags: 51, 97, 118
 #3 (id=1083909)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Deadly Poison (2818), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8680), Crippling Poison (115196), Shadow Blades (121471), Gloomblade (200758), Double Dose (273009), Shadow Blades (279043), Nothing Personal (286581), Instant Poison (315585), Flagellation (323654), Sepsis (328305), Sepsis (328306), Flagellation (345316), Numbing Poison (359078), Rupture (360826), Amplifying Poison (383414), Flagellation (384631), Atrophic Poison (392388), Mutilated Flesh (394021), Rupture (394031), Deadly Poison (394324), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Flagellation (394757), Implacable Strikes (1265794), Gloomblade (1269214), Rupture (1270203)
-                   Family Flags: 15, 20, 51, 78, 97, 109, 118, 124, 126
+                   Affected Spells: Deadly Poison (2818), Crippling Poison (3409), Numbing Poison (5760), Wound Poison (8680), Crippling Poison (115196), Double Dose (273009), Nothing Personal (286581), Instant Poison (315585), Sepsis (328305), Sepsis (328306), Numbing Poison (359078), Amplifying Poison (383414), Atrophic Poison (392388), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328), Implacable Strikes (1265794)
+                   Family Flags: 51, 97, 118
 #4 (id=1083910)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Misc Value 2: 2696 (Label) | Target: Self (1)
-                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Secret Technique (1305994)
 #5 (id=1083911)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 2696 (Label) | Target: Self (1)
-                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Secret Technique (1305994)
 #6 (id=1173487)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Misc Value 2: 3936 (Label) | Target: Self (1)
                    Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
@@ -379,14 +378,22 @@ Effects          :
                    Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
 #8 (id=1291924)  : Apply Aura (6) | Add Flat Modifier (107): Spell Proc Chance (18)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 18 | Target: Self (1)
-                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Deadly Poison (394324), Deadly Poison (394325), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
+                   Affected Spells: Deadly Poison (2818), Deadly Poison (2823), Crippling Poison (3408), Crippling Poison (3409), Numbing Poison (5760), Numbing Poison (5761), Wound Poison (8679), Wound Poison (8680), Deadly Poison (113780), Crippling Poison (115196), Instant Poison (315584), Instant Poison (315585), Slaughter Poison (323660), Numbing Poison (359078), Atrophic Poison (381637), Amplifying Poison (381664), Amplifying Poison (383414), Atrophic Poison (392388), Instant Poison (394326), Wound Poison (394327), Amplifying Poison (394328)
                    Family Flags: 14, 16, 28, 45, 68, 83
+#9 (id=1347734)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061), Secret Technique (1305994)
+                   Family Flags: 123
+#10 (id=1347735) : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
+                   Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
+                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061), Secret Technique (1305994)
+                   Family Flags: 123
 Description      : Your weapon poisons have $s8% increased application chance and now deal damage as Shadow instead of Nature.
 
 Shadow damage increased by $s2%.
 
 Name             : The First Dance (id=382505) [Spell Family (8), Passive] 
-Talent Entry     : Subtlety [tree=spec, row=7, col=3, max_rank=1, req_points=8]
+Talent Entry     : Subtlety [tree=spec, row=10, col=5, max_rank=1, req_points=20]
 Class            : Rogue
 School           : Physical
 Spell Type       : None
@@ -413,7 +420,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Proc cooldown on a per t
 Effects          :
 #1 (id=1013875)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.333333 | Target: Self (1)
-                   Affected Spells: Secret Technique (282449), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Secret Technique (282449), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 122
 #2 (id=1013876)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 1 (3)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 6070 (Label) | Target: Self (1)
@@ -521,7 +528,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (2
 Effects          :
 #1 (id=1013901)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
-                   Affected Spells: Shadow Blades (121471), Gloomblade (200758), Shadow Blades (279043), Flagellation (323654), Flagellation (345316), Flagellation (384631), Flagellation (394757), Goremaw's Bite (426591), Goremaw's Bite (426592), Gloomblade (1269214), Goremaw's Bite (1269217)
+                   Affected Spells: Shadow Blades (121471), Gloomblade (200758), Shadow Blades (279043), Flagellation (323654), Flagellation (345316), Flagellation (384631), Flagellation (394757), Goremaw's Bite (426591), Goremaw's Bite (426592), Goremaw's Bite (426593), Gloomblade (1269214), Goremaw's Bite (1269217)
                    Family Flags: 15, 67, 78, 109, 124
 #2 (id=1276141)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Target: Self (1)
@@ -529,10 +536,10 @@ Effects          :
                    Family Flags: 15, 78, 109, 124
 #3 (id=1276142)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 8 | Scaled Value: 8 | Misc Value 2: 2696 (Label) | Target: Self (1)
-                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Secret Technique (1305994)
 #4 (id=1276143)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Periodic Amount (22)
                    Base Value: 8 | Scaled Value: 8 | Misc Value: 22 | Misc Value 2: 2696 (Label) | Target: Self (1)
-                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205)
+                   Affected Spells (Label): Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Rupture (394031), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Secret Technique (1305994)
 #5 (id=1276144)  : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
                    Base Value: 8 | Scaled Value: 8 | Misc Value 2: 3936 (Label) | Target: Self (1)
                    Affected Spells (Label): Deathstalker's Mark (457157), Hunt Them Down (457193), Singular Focus (457236), Deathstalker's Mark (1273061)
@@ -575,7 +582,7 @@ Effects          :
                    Affected Spells (Label): Lingering Shadow (385960)
 #3 (id=1019867)  : Apply Aura (6) | Dummy (4)
                    Base Value: 18 | Scaled Value: 18 | Target: Self (1)
-Description      : After Shadow Dance ends, $?s200758[Gloomblade][Backstab] deals an additional $s1% damage as Shadow, fading by ${$s1/$s3}.1% per sec.
+Description      : After Shadow Dance ends, $?s200758[Gloomblade][Backstab] and Shuriken Storm deal an additional $s1% damage as Shadow, fading by ${$s1/$s3}.1% per sec.
 
 Name             : Finality (id=382525) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=9, col=6, max_rank=2, req_points=20]
@@ -639,7 +646,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Aura Points On Client (2
 Effects          :
 #1 (id=1033856)  : Apply Aura (6) | Modify Max Cost (63)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 4 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Keep It Rolling (381989), Rupture (394031), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Roll the Bones (1214909), Crimson Tempest (1247227), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Rupture (1943), Dispatch (2098), Envenom (32645), Weaponmaster (193536), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Slice and Dice (315496), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Rupture (360826), Keep It Rolling (381989), Rupture (394031), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Roll the Bones (1214909), Crimson Tempest (1247227), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 17, 20, 32, 35, 44, 81, 89, 92, 100, 111, 112, 113, 116
 #2 (id=1033857)  : Apply Aura (6) | Modify Max Resource (418)
                    Base Value: 1 | Scaled Value: 1 | Resource: combo_points | Target: Self (1)
@@ -647,11 +654,11 @@ Effects          :
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 4 | Target: Self (1)
 #4 (id=1033859)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Dispatch (2098), Envenom (32645), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Crimson Tempest (1247227), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565)
+                   Affected Spells: Dispatch (2098), Envenom (32645), Eviscerate (196819), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Between the Eyes (315341), Black Powder (319175), Black Powder (319190), Eviscerate (328082), Coup de Grace (441776), Dispatch (Coup de Grace) (462140), Dispatch (Coup de Grace) (462239), Dispatch (Coup de Grace) (462240), Eviscerate (Coup de Grace) (462241), Eviscerate (Coup de Grace) (462242), Eviscerate (Coup de Grace) (462243), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Dispatch (467059), Crimson Tempest (1247227), Eviscerate (1269205), Secret Technique (1269560), Black Powder (1269565), Secret Technique (1305994)
                    Family Flags: 17, 32, 35, 44, 81, 92, 111, 112
 #5 (id=1033860)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Rupture (1943), Weaponmaster (193536), Eviscerate (245691), Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Black Powder (319175), Black Powder (319190), Rupture (360826), Internal Bleeding (381628), Rupture (394031), Crimson Tempest (1247227), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 20, 32, 44, 81, 95, 100
 #6 (id=1105233)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Max Stacks (37)
                    Base Value: 2 | Scaled Value: 2 | Misc Value: 37 | Misc Value 2: 2943 (Label) | Target: Self (1)
@@ -713,7 +720,7 @@ Effects          :
 Description      : Increases healing received by $s1%.
 
 Name             : Goremaw's Bite (id=426591) [Spell Family (8)] 
-Talent Entry     : Subtlety [tree=spec, row=10, col=5, max_rank=1, req_points=20]
+Talent Entry     : Subtlety [tree=spec, row=7, col=4, max_rank=1, req_points=8]
 Class            : Rogue
 School           : Physical
 Spell Type       : Melee
@@ -724,17 +731,19 @@ Cooldown         : 45 seconds
 Labels           : 16: Class Spells
                  : 20: Rogue Spells
                  : 292
-Affecting Spells : Deadly Precision (381542 effect#1), Veiltouched (382017 effect#1), Lethality (382238 effect#2), Dark Brew (382504 effect#2), Deeper Daggers (382517 effect#1), Deeper Daggers (383405 effect#1), The Rotten (394203 effects: #3, #4), Perforated Veins (394254 effect#1), Perforated Veins (426602 effect#1), Fazed (441224 effect#4), Winning Streak! (1218143 effect#2)
+Affecting Spells : Deadly Precision (381542 effect#1), Lethality (382238 effect#2), Deeper Daggers (382517 effect#1), The Rotten (394203 effects: #3, #4), Perforated Veins (394254 effect#1), Perforated Veins (426602 effect#1), Fazed (441224 effect#4), Winning Streak! (1218143 effect#2)
 Family Flags     : 67
-Attributes       : Initiates Combat (Enables Auto-Attack) (41), No Attack Parry (248), Allow Class Ability Procs (416)
+Attributes       : Initiates Combat (Enables Auto-Attack) (41), Chain From Caster (76), Do Not Chain To Crowd-Controlled Targets (200), No Attack Parry (248), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1105220)  : Trigger Spell (64): Goremaw's Bite
-                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 426592 | Target: Targeted Enemy (6)
+                   Base Value: 2 | Scaled Value: 2 | Trigger Spell: 426592 | Target: Targeted Enemy (6)
 #2 (id=1105221)  : Trigger Spell (64): Goremaw's Bite
-                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 426593 | Target: Self (1)
-Description      : Lashes out at the target, inflicting $426592s1 Shadow damage and causing your next $426593u finishing moves to cost no Energy.
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 426593 | Target: Targeted Enemy (6)
+#3 (id=1338222)  : Trigger Spell (64): Goremaw's Bite
+                   Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1309274 | Target: Self (1)
+Description      : Lash out at your target and $s1 additional nearby enemies, inflicting $426592s1 Shadow damage and causing them to Bleed for $426593o1 damage over $426593d.
 
-|cFFFFFFFFAwards $426593s1 combo $lpoint:points;.|r
+$1309274s2% of all damage from Finishing Moves is repeated as Shadow, split evenly among affected enemies.
 
 Name             : Shadowcraft (id=426594) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=10, col=3, max_rank=1, req_points=20]
@@ -751,8 +760,8 @@ Effects          :
 #2 (id=1105229)  : Apply Aura (6) | Dummy (4)
                    Base Value: 1 | Scaled Value: 1 | Target: Self (1)
 #3 (id=1109359)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
-Description      : While Shadow Dance is active, your Shadow Techniques triggers $s3% more frequently, stores $m2 additional combo $Lpoint:points;, and generates $s1 additional Energy.
+                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+Description      : While Shadow Dance is active, your Shadow Techniques triggers $s3% more frequently and generates $m2 additional combo $Lpoint:points;.
 
 Name             : Terrifying Pace (id=428387) [Spell Family (8), Passive] 
 Talent Entry     : Subtlety [tree=spec, row=4, col=7, max_rank=1, req_points=0, select_idx=200]
@@ -888,11 +897,11 @@ Effects          :
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
 #2 (id=1282156)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061)
+                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061), Secret Technique (1305994)
                    Family Flags: 123
 #3 (id=1282157)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061)
+                   Affected Spells: Gloomblade (200758), Shadow Blades (279043), Secret Technique (282449), Black Powder (319190), Eviscerate (328082), Lingering Shadow (386081), Goremaw's Bite (426592), Deathstalker's Mark (457157), Hunt Them Down (457193), Eviscerate (Coup de Grace) (462244), Eviscerate (Coup de Grace) (462247), Eviscerate (Coup de Grace) (462248), Lashe Macabre (1264397), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Deathstalker's Mark (1273061), Secret Technique (1305994)
                    Family Flags: 123
 Description      : Shadow damage increased by $s2%.
 
@@ -924,7 +933,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1291943)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
-                   Affected Spells: Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Secret Technique (1269560)
+                   Affected Spells: Secret Technique (280719), Secret Technique (280720), Secret Technique (282449), Secret Technique (282480), Secret Technique (1269560), Secret Technique (1305994)
                    Family Flags: 32
 #2 (id=1291973)  : Apply Aura (6) | Modify Pet Damage Done% (429)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
@@ -946,7 +955,7 @@ Attributes       : Passive (6), Not In Spellbook (143), Proc cooldown on a per t
 Effects          :
 #1 (id=1294596)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
-                   Affected Spells: Secret Technique (282449), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203)
+                   Affected Spells: Secret Technique (282449), Eviscerate (1269205), Backstab (1269209), Gloomblade (1269214), Goremaw's Bite (1269217), Shadowstrike (1269336), Shuriken Storm (1269340), Shuriken Toss (1269343), Secret Technique (1269560), Black Powder (1269565), Rupture (1270203), Secret Technique (1305994)
                    Family Flags: 122
 #2 (id=1294597)  : Apply Aura (6) | Dummy (4)
                    Base Value: 50 | Scaled Value: 50 | Target: Self (1)
