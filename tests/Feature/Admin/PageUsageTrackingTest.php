@@ -54,6 +54,31 @@ test('spell explorer records a real selection when the class is explicitly chang
     expect(PageViewEvent::where('page', 'spell_explorer')->count())->toBe(2);
 });
 
+test('spell explorer dispatches spell-list-refreshed after every change that swaps the visible spell rows', function () {
+    // Regression test for the 2026-08-12 fix: the blade's client-side filter logic
+    // (applyFilters()/hasResults) only ever ran once on first paint (x-init), so switching
+    // class/spec via wire:model.live — or closing the talent picker — could re-render fresh
+    // spell rows server-side while the page kept showing a stale "No spells match your filters"
+    // banner from before. SpellExplorer must dispatch 'spell-list-refreshed' on every one of
+    // these transitions so the blade's new x-on listener can re-run applyFilters() against the
+    // real, freshly-morphed DOM. See CLAUDE.md / SpellExplorer::closeTalentPicker()'s docblock.
+    $fixture = makePageUsageFixture();
+
+    Livewire::test(SpellExplorer::class)
+        ->set('classId', $fixture['warrior']->id)
+        ->assertDispatched('spell-list-refreshed');
+
+    Livewire::test(SpellExplorer::class)
+        ->set('classId', $fixture['priest']->id)
+        ->set('specId', $fixture['discipline']->id)
+        ->assertDispatched('spell-list-refreshed');
+
+    Livewire::test(SpellExplorer::class)
+        ->call('openTalentPicker')
+        ->call('closeTalentPicker')
+        ->assertDispatched('spell-list-refreshed');
+});
+
 test('wow comps mount records a bare view and slot picks are attributed to their slot', function () {
     $fixture = makePageUsageFixture();
 

@@ -17,10 +17,16 @@ class Spell extends Model
         'charges',
         'cooldown_seconds',
         'duration_seconds',
+        'pvp_duration_seconds',
         'not_in_spellbook',
         'icon_name',
         'mechanic',
         'is_passive',
+        'dr_category',
+        'cast_type',
+        'chain_target',
+        'is_peel',
+        'is_interrupt',
     ];
 
     // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL
@@ -32,8 +38,11 @@ class Spell extends Model
         'charges' => 'integer',
         'cooldown_seconds' => 'decimal:2',
         'duration_seconds' => 'decimal:2',
+        'pvp_duration_seconds' => 'decimal:1',
         'not_in_spellbook' => 'boolean',
         'is_passive' => 'boolean',
+        'is_peel' => 'boolean',
+        'is_interrupt' => 'boolean',
     ];
 
     public function patch()
@@ -54,6 +63,13 @@ class Spell extends Model
     public function classAvailability()
     {
         return $this->hasMany(SpellClassAvailability::class);
+    }
+
+    public function ccChainExceptions()
+    {
+        return $this->belongsToMany(CcChainException::class, 'cc_chain_exception_spells')
+            ->withPivot('order')
+            ->orderByPivot('order');
     }
 
     /** Relationships where this spell is the one doing the modifying. */

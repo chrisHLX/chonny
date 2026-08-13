@@ -58,6 +58,13 @@ namespace App\Http\Services;
  * Penitence) turned out to actually be multiple spell_id records sharing one display name, where
  * only one is the real talent and the rest are internal damage-bolt/heal-bolt/visual-effect
  * sub-spells never meant to be shown on their own.
+ *
+ * `cast_type` (added 2026-08-11 for the Synergies/CC-chain feature — see CLAUDE.md) — presence
+ * or absence of a "Cast Time : X seconds" line, the same instant-vs-cast signal a real player
+ * sees in-game. Deliberately discards the numeric value itself; `spells.cast_type` only stores
+ * `instant`/`cast` (see the 2026-08-11 migration), and nothing downstream needs the exact cast
+ * time. Defaults to 'instant' in the record initializer, same "don't leave a boolean-shaped
+ * field ambiguous" precedent as `is_passive`/`not_in_spellbook`.
  */
 class SpellDataFileParser
 {
@@ -71,7 +78,7 @@ class SpellDataFileParser
      *     spell_id: int, name: string, school: ?string, description: ?string, description_ref: ?int,
      *     variables: ?string,
      *     class_field: ?string,
-     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string,
+     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, cast_type: string,
      *     affecting_spells: array<int, array{name: string, effect_index: ?int}>,
      *     category_refs: array<int, array{name: string, effect_index: ?int}>,
      *     replaces_refs: array<int, string>,
@@ -127,6 +134,7 @@ class SpellDataFileParser
                     'cooldown_seconds' => null,
                     'duration_seconds' => null,
                     'mechanic' => null,
+                    'cast_type' => 'instant',
                     'affecting_spells' => [],
                     'category_refs' => [],
                     'replaces_refs' => [],
@@ -399,6 +407,22 @@ class SpellDataFileParser
                 continue;
             }
 
+            // "Cast Time : 1.5 seconds" — present only when a spell actually has a cast time;
+            // absent entirely for instant-cast spells (confirmed directly: Kidney Shot's raw
+            // entry has no Cast Time line at all). cast_type defaults to 'instant' in the
+            // initializer above, same "boolean-style field defaults, don't leave ambiguous"
+            // precedent as is_passive/not_in_spellbook — only the numeric value itself is
+            // discarded (spells.cast_type is instant/cast only, see the 2026-08-11 migration;
+            // no seconds column exists to store it in).
+            if (preg_match('/^Cast Time\s*:\s*([\d.]+)\s*seconds?/i', $line, $m)) {
+                $current['cast_type'] = 'cast';
+                $inEffects = false;
+                $inDescriptionContinuation = false;
+                $inVariablesContinuation = false;
+
+                continue;
+            }
+
             // "Category : 2105 (Type 0x1): Protector of the Frail (373035 effect#3)" — the
             // trailing ref list (present on ~half of Category lines) is who grants this spell
             // extra charges. Same `\s*:` anchor exclusion as Cooldown above.
@@ -545,16 +569,31 @@ class SpellDataFileParser
 
     /**
      * Parses a "Name (id ...), Name2 (id2 effect#1)" list into unique
-     * [spell_id => {name, effect_index}] pairs. Most of the parenthetical body is still treated
-     * as opaque (ranks etc. are discarded) — only the leading numeric id and an "effect#N"
-     * annotation, when present, are structural for our purposes. effect_index is what lets
-     * ImportSpellData::modifiesRelationshipMapping() look up the *specific* effect on the source
-     * spell that a ref points at (e.g. "Fist of Justice (234299 effect#1)"), rather than just
-     * knowing a relationship exists with no way to find its magnitude — this was the gap CLAUDE.md
-     * flagged as "needs SpellDataFileParser::parseSpellRefs() extended to retain effect-number
-     * annotations it currently discards by design", closed 2026-08-05.
+     * [spell_id => {name, effect_index, effect_indexes}] pairs. Most of the parenthetical body is
+     * still treated as opaque (ranks etc. are discarded) — only the leading numeric id and an
+     * effect-number annotation, when present, are structural for our purposes. effect_index(es)
+     * is what lets ImportSpellData::modifiesRelationshipMapping() look up the *specific* effect(s)
+     * on the source spell that a ref points at (e.g. "Fist of Justice (234299 effect#1)"), rather
+     * than just knowing a relationship exists with no way to find its magnitude — this was the gap
+     * CLAUDE.md flagged as "needs SpellDataFileParser::parseSpellRefs() extended to retain
+     * effect-number annotations it currently discards by design", closed 2026-08-05.
      *
-     * @return array<int, array{name: string, effect_index: ?int}>
+     * FIXED 2026-08-12 — the singular "effect#N" form was the only one ever handled; Blizzard's
+     * raw data also uses a PLURAL form when a source spell affects the same target via more than
+     * one of its own effects at once: "Anti-Magic Barrier (205727 effects: #1, #2)" (effect #1 =
+     * a cooldown reduction, #2 = a duration increase — genuinely two different modifiers on the
+     * same target). The old regex silently matched neither piece of that annotation, so the ref
+     * fell back to effect_index=null and a bare 'modifies' relationship with no magnitude —
+     * confirmed as the root cause of Anti-Magic Shell's cooldown only ever appearing to increase
+     * (Unyielding Will's singular "effect#2" parsed fine and applied +20s) and never decrease
+     * (Anti-Magic Barrier's plural "effects: #1, #2" didn't parse at all, silently dropping its
+     * -20s). Quantified before fixing: ~27,000 occurrences of the plural form dataset-wide — the
+     * MORE common shape when a source affects a target via 2+ effects, not a rare edge case.
+     * `effect_indexes` (plural, always an array, possibly empty) is the new authoritative field;
+     * `effect_index` (singular) is kept for backward compatibility, set to the first parsed index
+     * or null — existing single-index call sites are unaffected.
+     *
+     * @return array<int, array{name: string, effect_index: ?int, effect_indexes: array<int, int>}>
      */
     private function parseSpellRefs(string $text): array
     {
@@ -562,12 +601,16 @@ class SpellDataFileParser
 
         if (preg_match_all('/([^,]+?)\s*\((\d+)([^)]*)\)/', $text, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
-                $effectIndex = null;
-                if (preg_match('/effect#(\d+)/', $match[3], $em)) {
-                    $effectIndex = (int) $em[1];
+                $effectIndexes = [];
+                if (preg_match_all('/#(\d+)/', $match[3], $em)) {
+                    $effectIndexes = array_map('intval', $em[1]);
                 }
 
-                $refs[(int) $match[2]] = ['name' => trim($match[1]), 'effect_index' => $effectIndex];
+                $refs[(int) $match[2]] = [
+                    'name' => trim($match[1]),
+                    'effect_index' => $effectIndexes[0] ?? null,
+                    'effect_indexes' => $effectIndexes,
+                ];
             }
         }
 

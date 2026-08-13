@@ -6,7 +6,6 @@ use App\Models\Patch;
 use App\Models\PvpTalent;
 use App\Models\Specialization;
 use App\Models\TalentBuild;
-use App\Models\TalentBuildChoice;
 use App\Models\TalentBuildPvpChoice;
 use App\Models\TalentNode;
 use App\Models\TalentTree;
@@ -132,13 +131,16 @@ class MurlokTalentImportService
 
         $build->choices()->delete();
 
+        // Routed through saveChoice() (not a direct bulk TalentBuildChoice::create() as before
+        // 2026-08-10) so the same same-position-collision guard TalentSelector's picker already
+        // gets applies here too — this is the likeliest actual source of the 29 real collisions
+        // found dataset-wide (Moonkin Form, Starsurge, etc.): murlok resolves each of our nodes
+        // independently by matching pick-count text against its own possible spells, so two
+        // nodes Blizzard's own data places at an identical position (see
+        // TalentSelectionService::samePositionSiblingNodeIds()'s docblock) can each
+        // independently look like a real, high-pick-count murlok result and both get selected.
         foreach ($preview['choices'] as $choice) {
-            TalentBuildChoice::create([
-                'talent_build_id' => $build->id,
-                'talent_node_id' => $choice['node']->id,
-                'chosen_entry_id' => $choice['entry']->id,
-                'rank' => $choice['entry']->rank,
-            ]);
+            $talentService->saveChoice($build, $choice['node'], $choice['entry']);
         }
 
         $talentService->syncPvpChoices($build, $preview['pvpTalentIds']);

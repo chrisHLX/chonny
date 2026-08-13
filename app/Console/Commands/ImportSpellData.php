@@ -128,6 +128,10 @@ class ImportSpellData extends Command
 
     private int $manualSpellsSkipped = 0;
 
+    private int $ccSynergyOverridesApplied = 0;
+
+    private int $ccSynergyOverrideSkips = 0;
+
     public function handle(SpellDataFileParser $parser): int
     {
         $this->parser = $parser;
@@ -184,6 +188,22 @@ class ImportSpellData extends Command
         $this->resolveDescriptionReferences();
         $this->importManualSpells($patch);
         $this->importBaselineSpecOverrides($patch);
+        $this->importCcSynergyOverrides($patch);
+
+        // Retroactive cleanup for talent_build_choices rows written before the same-position
+        // collision guard existed (see TalentSelectionService::cleanupSamePositionCollisions()'s
+        // docblock and CLAUDE.md's "Same-position ACTIVE node collisions" section) — runs
+        // unconditionally on every import, same "always run this defensive pass" precedent as
+        // importBaselineSpecOverrides() above, so a plain re-import is enough to fix this on any
+        // environment without a separate command to remember.
+        $collisionReport = app(TalentSelectionService::class)->cleanupSamePositionCollisions();
+        if ($collisionReport !== []) {
+            $this->warn('  Removed '.count($collisionReport).' same-position talent collision row(s):');
+            foreach ($collisionReport as $row) {
+                $label = $row['is_default'] ? "default build #{$row['build_id']}" : "build #{$row['build_id']}";
+                $this->line("    [{$label}] dropped '{$row['dropped_spell']}' (node {$row['dropped_node_id']}), kept '{$row['kept_spell']}' (node {$row['kept_node_id']})");
+            }
+        }
 
         // Spell data (cooldowns, descriptions, mechanic, effects) may have changed for any
         // spec touched by this run — bump the shared version counter WowComps/SpellExplorer's
@@ -394,6 +414,7 @@ class ImportSpellData extends Command
                 'variables' => $record['variables'],
                 'mechanic' => $record['mechanic'],
                 'is_passive' => $record['is_passive'],
+                'cast_type' => $record['cast_type'],
             ];
 
             // A pointer-form record (description_ref !== null) always parses to description=null
@@ -678,26 +699,40 @@ class ImportSpellData extends Command
                     continue;
                 }
 
-                $effectIndex = $refInfo['effect_index'] ?? null;
-                $mapping = $this->modifiesRelationshipMapping($source, $effectIndex);
+                // FIXED 2026-08-12 — a source can affect the same target via MORE than one of its
+                // own effects at once (Blizzard's plural "effects: #1, #2" annotation, see
+                // SpellDataFileParser::parseSpellRefs()'s docblock — confirmed real via Anti-Magic
+                // Barrier's cooldown-reduction (#1) + duration-increase (#2) both targeting
+                // Anti-Magic Shell). Looping over every index and writing one row per distinct
+                // resolved type mirrors the same "don't dedupe by source alone" fix already
+                // applied on the read side (ModuleSpellReferenceService::modifiersFor(), Bug 1,
+                // 2026-08-02) — a source having multiple distinct relationship types to the same
+                // target is a normal, expected pattern, not a duplicate to collapse. Falls back to
+                // a single null-index pass when a ref has no parsed indices at all (unchanged
+                // behavior from before this fix).
+                $effectIndexes = !empty($refInfo['effect_indexes']) ? $refInfo['effect_indexes'] : [null];
 
-                // modifier_value/unit are always written explicitly (even as null) — not just
-                // added when present. A prior import (before rank-awareness existed) may have
-                // already written a real magnitude for a pair that's now correctly recognized as
-                // rank-scaled and deferred; omitting these keys here would leave that stale,
-                // now-wrong number in place forever, since upsertTrack()'s fill() only touches
-                // keys actually present in $values.
-                $values = [
-                    'effect_index' => $effectIndex,
-                    'modifier_value' => $mapping['value'],
-                    'modifier_unit' => $mapping['unit'],
-                ];
+                foreach ($effectIndexes as $effectIndex) {
+                    $mapping = $this->modifiesRelationshipMapping($source, $effectIndex);
 
-                $this->upsertTrack(SpellRelationship::class, [
-                    'source_spell_id' => $source->id,
-                    'target_spell_id' => $target->id,
-                    'relationship_type' => $mapping['type'],
-                ], $values, 'spell_relationships');
+                    // modifier_value/unit are always written explicitly (even as null) — not just
+                    // added when present. A prior import (before rank-awareness existed) may have
+                    // already written a real magnitude for a pair that's now correctly recognized
+                    // as rank-scaled and deferred; omitting these keys here would leave that
+                    // stale, now-wrong number in place forever, since upsertTrack()'s fill() only
+                    // touches keys actually present in $values.
+                    $values = [
+                        'effect_index' => $effectIndex,
+                        'modifier_value' => $mapping['value'],
+                        'modifier_unit' => $mapping['unit'],
+                    ];
+
+                    $this->upsertTrack(SpellRelationship::class, [
+                        'source_spell_id' => $source->id,
+                        'target_spell_id' => $target->id,
+                        'relationship_type' => $mapping['type'],
+                    ], $values, 'spell_relationships');
+                }
             }
         }
     }
@@ -778,6 +813,24 @@ class ImportSpellData extends Command
      * When a pair is only known via the non-magnitude-bearing "Category:" direction (no matching
      * effect found), the type can't be determined and falls back to the original 'modifies_charges'
      * label with no magnitude — see categoryRelationshipMapping()'s default case.
+     *
+     * Fixed 2026-08-10 — a real bug found investigating a live report (Balance Druid's Whirling
+     * Stars talent showed no charge bonus on Celestial Alignment, despite +1 charge being right
+     * there in the raw data). $pairs used to be keyed ONLY by "{source}|{target}", one scalar
+     * $effect per key — so when a single source spell has MULTIPLE distinct Category effects
+     * targeting the SAME spell (Whirling Stars' effect #2 "Modify Cooldown Charge" AND effect #3
+     * "Modify Recharge Time" both target Celestial Alignment, confirmed directly in the raw dump
+     * — same "Affected Spells (Category)" target list, different effect_index/type/base_value),
+     * the second effect processed silently overwrote the first in the $pairs array before either
+     * ever reached upsertTrack() — never a collision upsertTrack() itself could catch, since it
+     * correctly keys on (source, target, relationship_type) and would have written both rows
+     * fine if both had actually been passed to it. $pairs now collects a LIST of effects per
+     * (source, target) pair instead of one; every effect in the list gets its own
+     * categoryRelationshipMapping() call and its own upsertTrack() row, so two distinct
+     * relationship_types for the same pair (a charges grant AND a cooldown reduction, as here)
+     * both survive. A pair with only a bare "Category:" sighting (no matching effect at all)
+     * keeps the exact same fallback behavior as before — an empty effects list still produces
+     * one row via categoryRelationshipMapping(null)'s default case.
      */
     private function importCategoryRelationships(): void
     {
@@ -786,19 +839,20 @@ class ImportSpellData extends Command
         foreach ($this->pendingRelationshipRecords as $record) {
             foreach (array_keys($record['category_refs']) as $sourceExternalId) {
                 $key = $sourceExternalId.'|'.$record['spell_id'];
-                $pairs[$key] ??= null;
+                $pairs[$key] ??= [];
             }
 
             foreach ($record['effects'] as $effect) {
                 foreach (array_keys($effect['affects_category']) as $targetExternalId) {
-                    // The magnitude-bearing direction — always wins over a bare category_refs
-                    // sighting of the same pair (see docblock above).
-                    $pairs[$record['spell_id'].'|'.$targetExternalId] = $effect;
+                    // Appends — a source spell can have more than one distinct Category effect
+                    // (e.g. a charges grant AND a cooldown reduction) targeting the same spell;
+                    // each must survive as its own relationship row, not overwrite the other.
+                    $pairs[$record['spell_id'].'|'.$targetExternalId][] = $effect;
                 }
             }
         }
 
-        foreach ($pairs as $pair => $effect) {
+        foreach ($pairs as $pair => $effects) {
             [$sourceExternalId, $targetExternalId] = array_map('intval', explode('|', $pair));
 
             $source = $this->spellIndex[$sourceExternalId] ?? null;
@@ -810,23 +864,27 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            $mapping = $this->categoryRelationshipMapping($effect);
+            // A bare category_refs sighting with no matching effect at all — same fallback as
+            // before this fix, one row via the default (unknown-type) mapping.
+            foreach ($effects === [] ? [null] : $effects as $effect) {
+                $mapping = $this->categoryRelationshipMapping($effect);
 
-            // See importRelationships()'s identical comment — modifier_value/unit are always
-            // written explicitly, even as null, so a stale pre-rank-awareness magnitude gets
-            // properly cleared rather than left in place by upsertTrack()'s fill-only-given-keys
-            // behavior.
-            $values = [
-                'effect_index' => $effect['effect_index'] ?? null,
-                'modifier_value' => $mapping['value'],
-                'modifier_unit' => $mapping['unit'],
-            ];
+                // See importRelationships()'s identical comment — modifier_value/unit are always
+                // written explicitly, even as null, so a stale pre-rank-awareness magnitude gets
+                // properly cleared rather than left in place by upsertTrack()'s fill-only-given-keys
+                // behavior.
+                $values = [
+                    'effect_index' => $effect['effect_index'] ?? null,
+                    'modifier_value' => $mapping['value'],
+                    'modifier_unit' => $mapping['unit'],
+                ];
 
-            $this->upsertTrack(SpellRelationship::class, [
-                'source_spell_id' => $source->id,
-                'target_spell_id' => $target->id,
-                'relationship_type' => $mapping['type'],
-            ], $values, 'spell_relationships');
+                $this->upsertTrack(SpellRelationship::class, [
+                    'source_spell_id' => $source->id,
+                    'target_spell_id' => $target->id,
+                    'relationship_type' => $mapping['type'],
+                ], $values, 'spell_relationships');
+            }
         }
     }
 
@@ -1240,6 +1298,14 @@ class ImportSpellData extends Command
             return;
         }
 
+        // Tracks every (class, spec, resolved display name) seen this run so two DIFFERENT
+        // spell_ids covering the identical name+spec can be caught and warned about — this is
+        // exactly the mistake that shipped 2026-08-08 (Kidney Shot's real spell_id 408 AND its
+        // dataless duplicate 426589 were both added for all 3 Rogue specs, rendering as two
+        // visible rows for one ability). Added 2026-08-10 as a standing safety net so this class
+        // of bug surfaces at import time instead of via a user report.
+        $seenPerSpec = [];
+
         foreach (File::lines($path) as $line) {
             $line = trim($line);
 
@@ -1277,6 +1343,100 @@ class ImportSpellData extends Command
             ], [], 'spell_class_availability');
 
             $this->baselineOverridesApplied++;
+
+            $seenPerSpec["{$class->id}:{$spec->id}:{$spell->name}"][] = (int) $externalSpellId;
+        }
+
+        foreach ($seenPerSpec as $key => $spellIds) {
+            $distinctIds = array_unique($spellIds);
+
+            if (count($distinctIds) > 1) {
+                [$classId, $specId, $name] = explode(':', $key, 3);
+                $this->warn("  ⚠ DUPLICATE OVERRIDE: '{$name}' has ".count($distinctIds).
+                    ' different spell_ids ('.implode(', ', $distinctIds).
+                    ") both overridden for the same class_id={$classId}/spec_id={$specId} — this will render as two rows for one ability. ".
+                    'Pick a single correct spell_id per (name, spec) in baseline-spec-overrides.txt.');
+            }
+        }
+    }
+
+    /**
+     * Applies data/spelldata/cc-synergies-overrides.txt — see that file's own header for the
+     * full story of why it exists (a real deploy gap found 2026-08-11: dr_category/chain_target/
+     * is_peel/is_interrupt/pvp_duration_seconds had only ever been written directly to the local
+     * dev DB, never captured anywhere a fresh `import:spelldata` on another environment could
+     * pick them up). This file is now the single source of truth for those five columns — every
+     * field is written on every run (blank means null/false, not "leave alone"), so editing or
+     * removing a line here and re-importing is how a correction actually propagates everywhere.
+     */
+    private function importCcSynergyOverrides(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/cc-synergies-overrides.txt');
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        $validDrCategories = ['Stun', 'Disorient', 'Incapacitate', 'Root', 'Silence', 'Knockback', 'Disarm', 'Slow'];
+        $validChainTargets = ['healer', 'kill_target', 'both'];
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line, 7));
+
+            if (count($parts) < 6 || !ctype_digit($parts[0])) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping malformed cc-synergies-overrides.txt line: {$line}");
+
+                continue;
+            }
+
+            [$externalSpellId, $drCategory, $chainTarget, $isPeel, $isInterrupt, $pvpDuration] = $parts;
+
+            $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
+
+            if (!$spell) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping unresolved cc-synergies-overrides.txt line (spell not found for this patch): {$line}");
+
+                continue;
+            }
+
+            if ($drCategory !== '' && !in_array($drCategory, $validDrCategories, true)) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with unknown dr_category '{$drCategory}': {$line}");
+
+                continue;
+            }
+
+            if ($chainTarget !== '' && !in_array($chainTarget, $validChainTargets, true)) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with unknown chain_target '{$chainTarget}': {$line}");
+
+                continue;
+            }
+
+            // Standing rule (see CcChainBuilder's class docblock) — kill_target/both may only
+            // ever be paired with Stun/Silence, since those are the only categories that don't
+            // break on damage. Warn, don't silently accept, if a future edit violates this.
+            if (in_array($chainTarget, ['kill_target', 'both'], true) && !in_array($drCategory, ['Stun', 'Silence'], true)) {
+                $this->warn("  ⚠ cc-synergies-overrides.txt: chain_target='{$chainTarget}' with dr_category='{$drCategory}' violates the break-on-damage rule (only Stun/Silence may be kill_target/both): {$line}");
+            }
+
+            $this->upsertTrack(Spell::class, ['id' => $spell->id], [
+                'dr_category' => $drCategory !== '' ? $drCategory : null,
+                'chain_target' => $chainTarget !== '' ? $chainTarget : null,
+                'is_peel' => $isPeel === '1',
+                'is_interrupt' => $isInterrupt === '1',
+                'pvp_duration_seconds' => $pvpDuration !== '' ? (float) $pvpDuration : null,
+            ], 'spells');
+
+            $this->ccSynergyOverridesApplied++;
         }
     }
 
@@ -1437,6 +1597,10 @@ class ImportSpellData extends Command
 
         if ($this->manualSpellsApplied > 0 || $this->manualSpellsSkipped > 0) {
             $this->comment("Manual spells: {$this->manualSpellsApplied} applied, {$this->manualSpellsSkipped} skipped (see warnings above).");
+        }
+
+        if ($this->ccSynergyOverridesApplied > 0 || $this->ccSynergyOverrideSkips > 0) {
+            $this->comment("CC synergy overrides (dr_category/chain_target/is_peel/is_interrupt/pvp_duration_seconds): {$this->ccSynergyOverridesApplied} applied, {$this->ccSynergyOverrideSkips} skipped (see warnings above).");
         }
     }
 }

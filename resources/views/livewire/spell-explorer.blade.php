@@ -11,6 +11,18 @@
             ? 'Choose a specialization to see its full spell kit.'
             : "Pick a class and spec to see its spells — cooldowns and charges reflect that spec's default talent build.");
     $heroSpell = $entries[0]['spell'] ?? null;
+    // FIXED 2026-08-12: this used to be inlined directly as the <x-spells.table :description="...">
+    // attribute's value — a multi-line ternary with an escaped double-quote nested inside the
+    // attribute's own double-quote delimiter. Confirmed via direct render output that Blade's
+    // component-tag compiler failed to recognize <x-spells.table> as a component at all when
+    // written that way — it passed straight through as literal, uncompiled text (the tag syntax
+    // itself, unrendered, sat in the page's HTML), which is why the page showed "No spells match
+    // your filters": the real table markup, and therefore every data-role="spell-row" element
+    // applyFilters() looks for, never existed in the DOM at all. Extracting to a plain variable
+    // here removes the fragile nested-quote pattern from the component tag entirely.
+    $spellsTableDescription = $usingPersonalBuild
+        ? 'Cooldowns and charges reflect your own saved talent picks — click Edit My Talents to change them.'
+        : "Cooldowns and charges reflect this spec's admin-curated default talent build — click Edit My Talents to set your own.";
 @endphp
 
 <div class="max-w-6xl mx-auto px-4 py-8 space-y-5"
@@ -44,7 +56,15 @@
             this.hasResults = visibleSections.size > 0;
         }
      }"
-     x-init="$nextTick(() => applyFilters())">
+     x-init="$nextTick(() => applyFilters())"
+     x-on:spell-list-refreshed.window="$nextTick(() => applyFilters())">
+    {{-- FIXED 2026-08-12: applyFilters() is a client-side DOM scan that used to only ever run
+         once (x-init, on first paint). Switching class/spec (wire:model.live) or closing the
+         talent picker re-renders the spell rows server-side but never re-ran this JS, so
+         hasResults could get stuck showing "No spells match your filters" over real,
+         correctly-rendered rows underneath. SpellExplorer::updatedClassId()/updatedSpecId()/
+         closeTalentPicker() now dispatch 'spell-list-refreshed' after every such change; this
+         listener re-runs applyFilters() against the freshly-morphed DOM in response. --}}
 
     {{-- Hero --}}
     <div class="linear-card relative overflow-hidden">
@@ -183,9 +203,7 @@
             <x-spells.table
                 :entries="$entries"
                 title=""
-                :description="$usingPersonalBuild
-                    ? 'Cooldowns and charges reflect your own saved talent picks — click Edit My Talents to change them.'
-                    : \"Cooldowns and charges reflect this spec's admin-curated default talent build — click Edit My Talents to set your own.\""
+                :description="$spellsTableDescription"
             />
         </div>
 

@@ -10,6 +10,17 @@
 -- the process (loadout string / PvP talent slot enumeration — see README.md for detail). If a
 -- future patch changes these APIs, re-run /mcexport and sanity-check the printed counts.
 -- ============================================================================================
+--
+-- FIXED 2026-08-12 — MindCollectorExportDB used to be REPLACED wholesale on every /mcexport
+-- (`MindCollectorExportDB = { ...single export... }`). Interface: SavedVariables is
+-- account-wide, not per-character (see the .toc — deliberately no "PerCharacter" suffix, since
+-- diffing needs one file covering every alt), which meant exporting Character B after
+-- Character A silently discarded A's data the moment WoW flushed SavedVariables to disk —
+-- confirmed as a real bug, not a misunderstanding. Fixed: the export is now written into
+-- MindCollectorExportDB under its own key (class_spec_timestamp), so it ACCUMULATES — export
+-- as many characters/specs as you want across a session (or many sessions) and every one
+-- survives in the same file until you import them. wow:import-spellbook (PHP side) was updated
+-- to match — it now imports every entry in the file, not just one flat export.
 
 local ADDON_NAME = ...
 
@@ -222,7 +233,12 @@ local function doExport()
     local talents = collectTalents()
     local pvpTalents = collectPvpTalents()
 
-    MindCollectorExportDB = {
+    -- Keyed by class_spec_timestamp, not overwritten — see the "FIXED 2026-08-12" note above.
+    -- The timestamp makes every export unique even if you export the same character/spec twice
+    -- in a row (e.g. after descriptions finish loading), so nothing is ever silently clobbered.
+    local exportKey = string.format("%s_%d_%d", classToken, specID, time())
+
+    MindCollectorExportDB[exportKey] = {
         exported_at = time(),
         build = build,
         class = classToken,
@@ -236,11 +252,20 @@ local function doExport()
         },
     }
 
+    local totalExports = 0
+    for _ in pairs(MindCollectorExportDB) do
+        totalExports = totalExports + 1
+    end
+
     print(string.format(
         "MindCollector: exported %d spellbook entries, %d talents, %d pvp talents, %d description(s) pending (%d already missed).",
         #spellbook, #talents, #pvpTalents, pendingDescriptionRequests, descriptionMisses
     ))
-    print("MindCollector: /reload to flush SavedVariables to disk. Re-run /mcexport after descriptions finish loading if any are pending.")
+    print(string.format(
+        "MindCollector: saved as '%s'. %d total export(s) now stored — /reload to flush to disk, then log into another character and /mcexport again if you want more, or import the file now.",
+        exportKey, totalExports
+    ))
+    print("MindCollector: re-run /mcexport (same character) after descriptions finish loading if any are pending — it'll add a new entry, not replace this one, so import whichever timestamp has the fullest description coverage.")
 end
 
 SLASH_MINDCOLLECTOREXPORT1 = "/mcexport"

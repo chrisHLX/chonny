@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Http\Services\CcChainBuilder;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
@@ -272,11 +273,108 @@ class WowComps extends Component
             ?->talent_tree_id;
     }
 
+    /**
+     * The Synergies tab's data — a deterministic CC-chain sequence per chain_target, built from
+     * whatever the comp's 3 members currently have selected. Only spells with `dr_category` set
+     * are eligible at all (124 spells dataset-wide as of 2026-08-11, see CLAUDE.md's "Synergies
+     * tab" section — the rest of the game's CC has no curated DR category yet). Of those, only
+     * spells that ALSO have `chain_target` set can actually be placed into a chain — as of this
+     * date that's just the original 8 hand-curated worked-example spells (all `kill_target`);
+     * the 116 bulk-applied-from-dr-categories-reference.md spells have `dr_category` but no
+     * `chain_target` at all, and `healer` has never been used once. Rather than guess a
+     * healer/kill-target split for those 116 (exactly the "AI invents a judgment call" failure
+     * mode this project keeps having to catch and revert elsewhere — Mind Sear,
+     * alwaysAvailableAbilityIds(), etc.), they're surfaced honestly as `unclassified` instead of
+     * silently dropped or silently guessed into a chain.
+     *
+     * `chain_target=both` (2026-08-11, Stun-category spells — Kidney Shot, Cheap Shot, etc.:
+     * flexible, not fixed to one role, per the domain expert) is a candidate for EITHER pool
+     * below, independently. A `both` spell can therefore appear in the FINAL OUTPUT of both
+     * `kill_target_chain` and `healer_chain` at once, each one sequenced separately with no
+     * cross-chain awareness — confirmed correct and intentional once a real `both` spell
+     * actually existed to test it against (the original design note for this column claimed
+     * "never auto-duplicated into both simultaneously," written before any `both`-tagged spell
+     * existed; that claim was wrong, and the corrected, verified behavior is documented here —
+     * see CLAUDE.md's "chain_target=both is genuinely dual, not deduplicated" section). This
+     * is the honest, useful behavior: it shows a stun as a valid option for either role, not an
+     * artificial pick between them.
+     *
+     * Also pools two functional-role flags that are independent of dr_category entirely (see
+     * the is_peel/is_interrupt migration's docblock for why they're separate fields, not folded
+     * into dr_category) — `peels` (Roots + Ursol's Vortex, spells used to create separation/
+     * protect a teammate) and `interrupts` (Kick/Counterspell/etc., a mechanic with no DR
+     * relationship at all). Neither runs through CcChainBuilder — they're plain grouped lists,
+     * not sequenced chains, since diminishing returns doesn't apply to either concept.
+     *
+     * `cooldown_by_id` carries each spell's already-computed effective cooldown (talent-modified,
+     * same value the Active Abilities tab shows) so every Synergies section can display CD
+     * alongside the curated PvP CC duration without recomputing anything — `$member['entries']`
+     * already has this from getCompProperty()'s normal per-spec computation.
+     *
+     * @return array{kill_target_chain: array, healer_chain: array, unclassified: Collection, peels: Collection, interrupts: Collection, owner_map: array<int, int>, cooldown_by_id: array<int, ?float>}
+     */
+    public function getSynergiesProperty(): array
+    {
+        $builder = app(CcChainBuilder::class);
+        $ownerMap = [];
+        $cooldownById = [];
+
+        $ccEntries = collect();
+        $peels = collect();
+        $interrupts = collect();
+        foreach ($this->comp as $mi => $member) {
+            if (!$member['spec']) {
+                continue;
+            }
+            foreach ($member['entries'] as $entry) {
+                $spell = $entry['spell'];
+                if (!($entry['isSelected'] ?? true)) {
+                    continue;
+                }
+                if ($spell->dr_category !== null) {
+                    $ccEntries->push($spell);
+                    $ownerMap[$spell->id] = $mi;
+                }
+                if ($spell->is_peel) {
+                    $peels->push($spell);
+                    $ownerMap[$spell->id] = $mi;
+                }
+                if ($spell->is_interrupt) {
+                    $interrupts->push($spell);
+                    $ownerMap[$spell->id] = $mi;
+                }
+                if (!array_key_exists($spell->id, $cooldownById)) {
+                    $cooldownById[$spell->id] = $entry['cooldown']['seconds'];
+                }
+            }
+        }
+        $ccEntries = $ccEntries->unique('id')->values();
+        $peels = $peels->unique('id')->values();
+        $interrupts = $interrupts->unique('id')->values();
+
+        $classified = $ccEntries->filter(fn (Spell $s) => $s->chain_target !== null);
+        $unclassified = $ccEntries->filter(fn (Spell $s) => $s->chain_target === null)->values();
+
+        $killTargetSpells = $classified->filter(fn (Spell $s) => in_array($s->chain_target, ['kill_target', 'both']))->values();
+        $healerSpells = $classified->filter(fn (Spell $s) => in_array($s->chain_target, ['healer', 'both']))->values();
+
+        return [
+            'kill_target_chain' => $killTargetSpells->isNotEmpty() ? $builder->buildChain($killTargetSpells) : [],
+            'healer_chain' => $healerSpells->isNotEmpty() ? $builder->buildChain($healerSpells) : [],
+            'unclassified' => $unclassified,
+            'peels' => $peels,
+            'interrupts' => $interrupts,
+            'owner_map' => $ownerMap,
+            'cooldown_by_id' => $cooldownById,
+        ];
+    }
+
     public function render()
     {
         return view('livewire.wow-comps', [
             'classSpecs' => $this->classSpecs,
             'comp' => $this->comp,
+            'synergies' => $this->synergies,
         ])->layout('layouts.app');
     }
 }

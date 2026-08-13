@@ -35,14 +35,18 @@
 
 # Rogue, added 2026-08-08. Kidney Shot is a core finisher genuinely available to all 3 specs
 # (Assassination/Outlaw/Subtlety), long-standing stable game design. Two spell_id copies exist
-# in the dataset for the same ability (408 carries the real 30s cooldown, 426589 doesn't) —
-# both covered, same precedent as Freezing Trap's multi-copy entries above.
+# in the dataset for the same ability (408 carries the real 30s cooldown + Stun mechanic;
+# 426589 has neither). CORRECTED 2026-08-10: the original entry covered BOTH copies for all 3
+# specs on the mistaken belief this matched Freezing Trap's multi-copy precedent above — it
+# doesn't. Freezing Trap's multiple lines cover the SAME real spell_id across different SPECS;
+# this instead added two DIFFERENT spell_ids for the SAME specs, which rendered as two visible
+# rows for one ability (a real duplicate, confirmed live). 426589 removed — it carries no real
+# data and was never actually a second copy worth surfacing. See ImportSpellData's new
+# duplicate-override warning, added the same day specifically so this mistake can't ship
+# silently again.
 408 | rogue | assassination | Kidney Shot
 408 | rogue | outlaw | Kidney Shot
 408 | rogue | subtlety | Kidney Shot
-426589 | rogue | assassination | Kidney Shot
-426589 | rogue | outlaw | Kidney Shot
-426589 | rogue | subtlety | Kidney Shot
 
 # Demon Hunter / Evoker, added 2026-08-07 after confirming the identity-passive-link
 # signal (spell_relationships from e.g. "Havoc Demon Hunter") is NOT reliable evidence of
@@ -174,16 +178,79 @@
 122 | mage | fire | Frost Nova
 122 | mage | frost | Frost Nova
 
-# Druid, added 2026-08-13. Barkskin is a core, all-4-spec baseline defensive cooldown
-# (usable in any form), long-standing stable game design since the game's earliest
-# expansions — 20% damage reduction, usable while stunned. Confirmed via its own data:
-# single clean spell_id (22812, no duplicate copies to disambiguate), Class: Druid with no
-# free=(...) restriction, cooldown 60s matches the DB exactly, not passive, not
-# not_in_spellbook, and Blizzard's own Attributes flag it "Important Spell (491)" and "Big
-# Defensive (512)" — same confidence tier as Frost Nova/Hammer of Justice/Anti-Magic Shell
-# above. Same confidence tier as those, not the weaker identity-passive-link signal (not
-# used here as the basis for the claim).
+# Druid, added 2026-08-10. Barkskin is a core, all-4-spec baseline defensive (flat damage
+# reduction, no mana/rage/energy cost), long-standing stable game design since Vanilla —
+# genuinely available to Balance/Restoration/Feral/Guardian alike, not spec-restricted like
+# most other defensives in this file. Confirmed via its own data: single spell_id, real
+# cooldown (60s), class_id=Druid/spec_id=NULL/source=baseline — same confidence tier as
+# Hammer of Justice/Frost Nova above.
 22812 | druid | balance | Barkskin
+22812 | druid | restoration | Barkskin
 22812 | druid | feral | Barkskin
 22812 | druid | guardian | Barkskin
-22812 | druid | restoration | Barkskin
+
+# Mage, backfilled 2026-08-11. Polymorph was already correctly rendering live on all 3 Mage
+# specs — verified_override rows for spell_id 118 already existed in the DB — but this file
+# never had a matching line, meaning a future migrate:fresh + re-import would have silently
+# dropped it (same class of gap as other one-off manual DB corrections documented elsewhere in
+# this file). Backfilled here rather than left implicit. Confirmed real: base Polymorph is a
+# core, all-3-spec baseline Mage ability with no cooldown, long-standing stable game design.
+# Note: spell_id 118's own scalar fields (cast_type, etc.) are stale in the DB — this specific
+# spell_id no longer appears anywhere in the current filtered dumps' class-record path, so the
+# main import loop never revisits its own fields, only spell_class_availability via this file.
+118 | mage | arcane | Polymorph
+118 | mage | fire | Polymorph
+118 | mage | frost | Polymorph
+
+# Interrupts, added 2026-08-11 alongside the Synergies tab's new is_interrupt flag. Kick,
+# Counterspell, and Pummel are each their class's single, universally-known baseline interrupt —
+# long-standing, all-spec, stable game design since the game's earliest expansions (not a
+# judgment call the way chain_target assignments have been elsewhere in this file). Solar Beam is
+# the one exception: it's Balance-specific (an AoE silence/interrupt tied to the Balance kit),
+# not a Restoration/Feral/Guardian ability, so it's deliberately NOT added for the other 3 Druid
+# specs. Confirmed via each spell's own data: single real (non-hidden) copy, real cooldown
+# matching known live values (Kick 15s, Counterspell 25s, Pummel 15s, Solar Beam 60s).
+1766 | rogue | assassination | Kick
+1766 | rogue | outlaw | Kick
+1766 | rogue | subtlety | Kick
+2139 | mage | arcane | Counterspell
+2139 | mage | fire | Counterspell
+2139 | mage | frost | Counterspell
+6552 | warrior | arms | Pummel
+6552 | warrior | fury | Pummel
+6552 | warrior | protection | Pummel
+97547 | druid | balance | Solar Beam
+
+# Rogue, added 2026-08-12. Feint is a core, all-3-spec baseline defensive (reduces AoE damage
+# taken), long-standing stable game design — same confidence tier as Kick/Cheap Shot above.
+# Confirmed via its own data: single spell_id, real cooldown (15s), class_id=Rogue/spec_id=NULL/
+# source=baseline — the same ambiguous-bucket shape as every other entry in this file.
+1966 | rogue | assassination | Feint
+1966 | rogue | outlaw | Feint
+1966 | rogue | subtlety | Feint
+
+# Rogue, added 2026-08-12, CORRECTED same day. Garrote is Assassination-only — confirmed wrong
+# the first time this was added: the initial entry assumed "core opener, must be all 3 specs"
+# and added Outlaw/Subtlety too, without verifying against actual game knowledge first. The
+# domain expert corrected this directly ("outlaw and sub dont have garrote") — the two incorrect
+# lines were removed, along with the spell_class_availability rows they had already written (the
+# importer is additive-only and never deletes, so removing the file lines alone wouldn't have
+# undone the bad rows — see the one-off cleanup query this correction required).
+# What was still real and worth keeping: the raw data already had an explicit spec_id=30
+# (Assassination) row for Garrote (spell_id 703, cd=6s — a second spell_id 360830 copy has no
+# cooldown data and is not the real one), but that pre-existing row is source='baseline', which
+# verifiedBaselineAbilityIds() never reads (only source='verified_override' is trusted), and
+# Garrote's 6s cooldown doesn't clear explicitBaselineCooldownAbilityIds()'s >=10s bar either —
+# so the pre-existing row was silently dead data, invisible on every display path, regardless of
+# which specs it should cover. This one line fixes that visibility gap for the one spec Garrote
+# actually belongs to.
+703 | rogue | assassination | Garrote
+
+# Rogue, added 2026-08-11. Cheap Shot is a core, all-3-spec baseline stealth-opener stun
+# (Assassination/Outlaw/Subtlety), same confidence tier and same class as Kidney Shot above
+# (both core Rogue finishers/openers, long-standing stable game design). Surfaced by the
+# Synergies tab's RMP verification: Cheap Shot was correctly dr_category=Stun/chain_target=
+# kill_target but structurally invisible (source=baseline, spec_id=NULL) until this entry.
+1833 | rogue | assassination | Cheap Shot
+1833 | rogue | outlaw | Cheap Shot
+1833 | rogue | subtlety | Cheap Shot

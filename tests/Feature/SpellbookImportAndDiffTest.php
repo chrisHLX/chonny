@@ -9,10 +9,16 @@ use App\Models\SpellClassAvailability;
 use App\Models\SpellbookSnapshot;
 use App\Models\SpellbookSnapshotEntry;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 
 function spellbookFixturePath(): string
 {
     return __DIR__.'/../fixtures/MindCollectorExport.sample.lua';
+}
+
+function spellbookMultiFixturePath(): string
+{
+    return __DIR__.'/../fixtures/MindCollectorExport.multi.sample.lua';
 }
 
 function makeSpellbookDiscipline(): array
@@ -81,6 +87,54 @@ test('diff flags a snapshot spell absent from spells as MISSING_SPELL', function
     $this->artisan('wow:diff-spellbook')
         ->expectsOutputToContain('MISSING_SPELL: ')
         ->assertSuccessful();
+});
+
+test('import handles a multi-export file (accumulated across characters, 2026-08-12 fix) — one snapshot per export, not one for the whole file', function () {
+    $this->artisan('wow:import-spellbook', ['path' => spellbookMultiFixturePath()])
+        ->expectsOutputToContain("Done: 2 snapshot(s) created, 0 skipped")
+        ->assertSuccessful();
+
+    expect(SpellbookSnapshot::count())->toBe(2);
+
+    $priest = SpellbookSnapshot::where('class', 'PRIEST')->first();
+    expect($priest->spec_id)->toBe(256)
+        ->and($priest->client_build)->toBe('12.0.7.68887');
+    expect(SpellbookSnapshotEntry::where('snapshot_id', $priest->id)->count())->toBe(1);
+
+    $warrior = SpellbookSnapshot::where('class', 'WARRIOR')->first();
+    expect($warrior->spec_id)->toBe(71);
+    expect(SpellbookSnapshotEntry::where('snapshot_id', $warrior->id)->count())->toBe(1);
+});
+
+test('re-importing a multi-export file skips already-imported exports individually, not the whole file', function () {
+    $this->artisan('wow:import-spellbook', ['path' => spellbookMultiFixturePath()])->assertSuccessful();
+    expect(SpellbookSnapshot::count())->toBe(2);
+
+    // Simulates logging into a THIRD character and exporting again — the file now contains the
+    // same two exports as before plus one new one. Re-importing must skip the two already-known
+    // exports individually (per-export hash) and only create the one truly new snapshot — this
+    // is exactly the bug the whole-file hash would have caused (see ImportSpellbook's docblock).
+    // Built as a fresh literal rather than string-surgery on the base fixture — the base fixture
+    // has an identical "}, -- [1]\n}\n" closing sequence after BOTH exports (Priest and Warrior
+    // each have exactly one spellbook entry), so a str_replace() there would silently corrupt
+    // both occurrences instead of appending once at the end.
+    $original = rtrim(File::get(spellbookMultiFixturePath()));
+    $withThird = rtrim($original, "}\n")
+        .'	["MAGE_62_1785600200"] = { ["exported_at"] = 1785600200, ["build"] = "12.0.7.68887", '
+        .'["class"] = "MAGE", ["spec_id"] = 62, ["spec_name"] = "Arcane", ["loadout_string"] = "abc", '
+        .'["spellbook"] = { { ["id"] = 118, ["name"] = "Polymorph", ["tab"] = "Mage" }, }, '
+        ."[\"talents\"] = { [\"selected\"] = {}, [\"known_pvp\"] = {} }, }\n}\n";
+    $tmpPath = sys_get_temp_dir().'/mc-export-with-third.lua';
+    File::put($tmpPath, $withThird);
+
+    $this->artisan('wow:import-spellbook', ['path' => $tmpPath])
+        ->expectsOutputToContain('Done: 1 snapshot(s) created, 2 skipped')
+        ->assertSuccessful();
+
+    expect(SpellbookSnapshot::count())->toBe(3)
+        ->and(SpellbookSnapshot::where('class', 'MAGE')->exists())->toBeTrue();
+
+    File::delete($tmpPath);
 });
 
 test('diff flags a spell present but with no matching spell_class_availability row as MISSING_AVAILABILITY', function () {

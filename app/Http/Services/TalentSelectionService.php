@@ -40,11 +40,14 @@ class TalentSelectionService
      * A coarse-grained version counter, not a per-key invalidation list — bumped whenever
      * something that affects SpellExplorer/WowComps's expensive per-spec computation changes:
      * an admin default-build talent pick, or a full spelldata re-import (ImportSpellData).
-     * Personal (non-default) builds never bump this — SpellExplorer/WowComps only ever read a
-     * spec's admin DEFAULT build (TalentBuild.is_default), never a viewer's own saved one.
-     * Included as part of the Redis cache key (see WowComps/SpellExplorer) rather than driving
-     * an explicit per-spec Cache::forget() — a re-import can touch any/all specs at once, so
-     * one global counter is simpler and correct without having to enumerate affected specs.
+     * Personal (non-default) builds never bump this — invalidated instead via their own
+     * updated_at timestamp baked into the cache key (see WowComps/SpellExplorer's own
+     * Cache::remember key, which resolves the viewer's own build first, falling back to the
+     * admin default — corrected 2026-08-10, this comment previously described stale pre-
+     * "personal talent picker" behavior). Included as part of the Redis cache key rather than
+     * driving an explicit per-spec Cache::forget() — a re-import can touch any/all specs at
+     * once, so one global counter is simpler and correct without having to enumerate affected
+     * specs.
      */
     public function spellCacheVersion(): int
     {
@@ -408,14 +411,105 @@ class TalentSelectionService
      * actually pick something, never just from viewing a page (avoids empty rows for every
      * visitor). $patchId defaults to the spec's current patch when not given.
      */
+    /**
+     * Root-caused 2026-08-10 from a real report: swapping one talent in the player-facing
+     * picker (WowComps/SpellExplorer's `<livewire:talent-selector layout="grid">`, mounted
+     * without isDefaultEditor — distinct from /admin/talent-builds) on a spec the viewer had
+     * never personalized before made almost every other spell vanish from the page. Root cause
+     * was NOT lost/dropped clicks — it was this method: the first click on that picker calls
+     * this, which (before this fix) created a brand-new, completely EMPTY personal build via
+     * plain firstOrCreate() — and resolveActiveBuild() always prefers an existing personal
+     * build over the richer admin default the instant one exists, even with just one choice in
+     * it. "Swap Cyclone for Soothe" therefore silently became "start a new build containing
+     * only Soothe" for that viewer, for every future page load, until fixed. Now seeds a
+     * brand-new personal build with a full copy of the spec's current admin-default choices
+     * (if one exists) at creation time — so personalizing one talent starts from the meta
+     * build's other 90+ picks intact, not from nothing. Existing already-broken personal
+     * builds (created before this fix) are NOT retroactively repaired — deleting the affected
+     * row lets it be recreated correctly on the next click.
+     */
     public function getOrCreateUserBuild(User $user, int $specId, ?int $patchId = null): TalentBuild
     {
         $patchId ??= $this->currentPatchIdForSpec($specId);
 
-        return TalentBuild::firstOrCreate(
-            ['user_id' => $user->id, 'spec_id' => $specId],
-            ['patch_id' => $patchId, 'name' => 'My Build', 'share_slug' => (string) Str::uuid()]
-        );
+        $existing = TalentBuild::where('user_id', $user->id)->where('spec_id', $specId)->first();
+        if ($existing) {
+            return $existing;
+        }
+
+        $build = TalentBuild::create([
+            'user_id' => $user->id,
+            'spec_id' => $specId,
+            'patch_id' => $patchId,
+            'name' => 'My Build',
+            'share_slug' => (string) Str::uuid(),
+        ]);
+
+        $this->seedFromDefaultBuild($build, $specId, $patchId);
+
+        return $build;
+    }
+
+    /** Copies the spec's current admin-default choices (PvE + PvP) onto a freshly-created build. No-op when no default exists yet — the new build just stays empty, same as before this fix. */
+    private function seedFromDefaultBuild(TalentBuild $build, int $specId, ?int $patchId): void
+    {
+        $default = TalentBuild::where('spec_id', $specId)
+            ->where('patch_id', $patchId)
+            ->where('is_default', true)
+            ->first();
+
+        if (!$default) {
+            return;
+        }
+
+        foreach ($default->choices as $choice) {
+            TalentBuildChoice::create([
+                'talent_build_id' => $build->id,
+                'talent_node_id' => $choice->talent_node_id,
+                'chosen_entry_id' => $choice->chosen_entry_id,
+                'rank' => $choice->rank,
+            ]);
+        }
+
+        foreach ($default->pvpChoices as $pvpChoice) {
+            TalentBuildPvpChoice::create([
+                'talent_build_id' => $build->id,
+                'slot' => $pvpChoice->slot,
+                'pvp_talent_id' => $pvpChoice->pvp_talent_id,
+            ]);
+        }
+    }
+
+    /**
+     * Finds other ACTIVE-type nodes in the same tree occupying the identical (pos_x, pos_y) —
+     * added 2026-08-10 after a real, now-confirmed-systemic report (Balance Druid's Moonkin
+     * Form and Starsurge each showing two "duplicate" entries). Root cause: Blizzard's own
+     * talent-tree data sometimes places two genuinely different ACTIVE nodes at the identical
+     * grid position without ever formally marking them as a mutually-exclusive CHOICE node —
+     * the same shape already found and flagged (not fixed at the time) for Hunter's
+     * "Intimidation"/"Spotting Eagle" pair. Quantified before building this fix: 29 such
+     * collision instances existed across nearly every class's admin-default builds, confirmed
+     * NOT explained by the separate, already-documented "class-tree bloat" bug (checked and
+     * ruled out — neither node's external_node_id duplicates into any spec/hero tree; these
+     * are two genuinely distinct, correctly-imported nodes). Scoped to 'ACTIVE' only — a real
+     * CHOICE node already has its own, correct mutual-exclusion handling via toggleEntry()'s
+     * single-entry-per-node design; this only covers the gap Blizzard's data itself doesn't
+     * formally express.
+     *
+     * @return Collection<int, int> other node ids at the same position
+     */
+    public function samePositionSiblingNodeIds(TalentNode $node): Collection
+    {
+        if ($node->type !== 'ACTIVE') {
+            return collect();
+        }
+
+        return TalentNode::where('talent_tree_id', $node->talent_tree_id)
+            ->where('pos_x', $node->pos_x)
+            ->where('pos_y', $node->pos_y)
+            ->where('id', '!=', $node->id)
+            ->where('type', 'ACTIVE')
+            ->pluck('id');
     }
 
     public function saveChoice(TalentBuild $build, TalentNode $node, TalentNodeEntry $entry): void
@@ -424,6 +518,15 @@ class TalentSelectionService
             ['talent_build_id' => $build->id, 'talent_node_id' => $node->id],
             ['chosen_entry_id' => $entry->id, 'rank' => $entry->rank]
         );
+
+        // Treats same-position ACTIVE node pairs as an informal mutually-exclusive choice —
+        // see samePositionSiblingNodeIds()'s docblock. Picking one clears any sibling(s) at the
+        // identical grid position, the same way a real CHOICE node already only ever holds one
+        // entry per node. Safe to always run (a node with no same-position siblings is a no-op).
+        $siblingIds = $this->samePositionSiblingNodeIds($node);
+        if ($siblingIds->isNotEmpty()) {
+            $build->choices()->whereIn('talent_node_id', $siblingIds)->delete();
+        }
 
         // Child-row writes above don't touch the parent's own updated_at (Eloquent doesn't
         // cascade that automatically) — WowComps/SpellExplorer key their per-build spell-
@@ -435,6 +538,58 @@ class TalentSelectionService
         if ($build->is_default) {
             $this->bumpSpellCacheVersion();
         }
+    }
+
+    /**
+     * Removes same-position ACTIVE-node collisions (see samePositionSiblingNodeIds()'s
+     * docblock) from EVERY existing TalentBuild — the retroactive counterpart to the guard
+     * saveChoice() now applies going forward. Added 2026-08-10, shared by the standalone
+     * `wow:fix-talent-collisions` command and — per the actual goal behind building this share
+     * point — ImportSpellData's `handle()`, which now calls this unconditionally at the end of
+     * every import (same "always run this defensive pass" precedent as
+     * importBaselineSpecOverrides()). This means a plain `php artisan import:spelldata` on any
+     * environment, including one still carrying pre-fix collision data, is enough on its own —
+     * no separate command to remember. Deterministic, non-guessing tiebreaker: for each
+     * collision group, keeps whichever choice was written most recently (highest updated_at,
+     * tie-break highest id) and deletes the rest — never claims to know which talent is
+     * game-balance-"correct". Safe to call repeatedly; a clean build is a no-op.
+     *
+     * @return array<int, array{build_id: int, is_default: bool, dropped_spell: string, dropped_node_id: int, kept_spell: string, kept_node_id: int}>
+     */
+    public function cleanupSamePositionCollisions(): array
+    {
+        $report = [];
+
+        foreach (TalentBuild::all() as $build) {
+            $choices = $build->choices()->with(['talentNode', 'chosenEntry.spell'])->get();
+
+            $byPosition = $choices
+                ->filter(fn (TalentBuildChoice $c) => $c->talentNode->type === 'ACTIVE')
+                ->groupBy(fn (TalentBuildChoice $c) => $c->talentNode->talent_tree_id.':'.$c->talentNode->pos_x.':'.$c->talentNode->pos_y);
+
+            foreach ($byPosition as $group) {
+                if ($group->count() <= 1) {
+                    continue;
+                }
+
+                $sorted = $group->sortByDesc(fn (TalentBuildChoice $c) => [$c->updated_at, $c->id])->values();
+                $keep = $sorted->first();
+
+                foreach ($sorted->slice(1) as $drop) {
+                    $report[] = [
+                        'build_id' => $build->id,
+                        'is_default' => $build->is_default,
+                        'dropped_spell' => $drop->chosenEntry->spell->name,
+                        'dropped_node_id' => $drop->talent_node_id,
+                        'kept_spell' => $keep->chosenEntry->spell->name,
+                        'kept_node_id' => $keep->talent_node_id,
+                    ];
+                    $drop->delete();
+                }
+            }
+        }
+
+        return $report;
     }
 
     /**
