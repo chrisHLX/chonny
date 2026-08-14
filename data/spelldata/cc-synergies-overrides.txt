@@ -37,120 +37,120 @@
 # verify it (in-game, real player experience, or a source cross-checked with the domain expert)
 # before adding, same discipline as baseline-spec-overrides.txt.
 
-99 | Incapacitate | | | | | Incapacitating Roar
+99 | Incapacitate | | | | 3 | Incapacitating Roar
 100 | Root | | 1 | | | Charge
 118 | Incapacitate | healer | | | 6.0 | Polymorph
-122 | Root | | 1 | | | Frost Nova
-339 | Root | | 1 | | | Entangling Roots
-408 | Stun | both | | | 6.0 | Kidney Shot
-605 | Disorient | | | | | Mind Control
-703 | Silence | | | | | Garrote
+122 | Root | | 1 | | 8 | Frost Nova
+339 | Root | | 1 | | 6 | Entangling Roots
+408 | Stun | both | | | 5 | Kidney Shot
+605 | Disorient | | | | 6 | Mind Control
+703 | Silence | | | | 3 | Garrote
 710 | Incapacitate | | | | | Banish
-853 | Stun | both | | | | Hammer of Justice
+853 | Stun | both | | | 5 | Hammer of Justice
 1513 | Disorient | | | | | Scare Beast
 1766 | | | | 1 | | Kick
 1776 | Incapacitate | | | | 3.0 | Gouge
-1833 | Stun | both | | | 6.0 | Cheap Shot
-2094 | Disorient | | | | 6.0 | Blind
+1833 | Stun | both | | | 4 | Cheap Shot
+2094 | Disorient | | | | 5 | Blind
 2139 | | | | 1 | | Counterspell
 2637 | Incapacitate | | | | | Hibernate
-3409 | Slow | | | | | Crippling Poison
+3409 | Slow | | | | 9.2 | Crippling Poison
 3600 | Slow | | | | | Earthbind
-5116 | Slow | | | | | Concussive Shot
-5211 | Stun | | | | | Mighty Bash
-5246 | Disorient | | | | | Intimidating Shout
-5484 | Disorient | | | | | Howl of Terror
+5116 | Slow | | | | 6 | Concussive Shot
+5211 | Stun | | | | 4 | Mighty Bash
+5246 | Disorient | | | | 6 | Intimidating Shout
+5484 | Disorient | | | | 6 | Howl of Terror
 5782 | Disorient | healer | | | 6.0 | Fear
 6552 | | | | 1 | | Pummel
-6770 | Incapacitate | | | | | Sap
-6789 | Incapacitate | | | | | Mortal Coil
-8122 | Disorient | | | | | Psychic Scream
+6770 | Incapacitate | | | | 6 | Sap
+6789 | Incapacitate | | | | 3 | Mortal Coil
+8122 | Disorient | | | | 6 | Psychic Scream
 9484 | Incapacitate | | | | | Shackle Horror
 10326 | Disorient | | | | | Turn Evil
 12323 | Slow | | | | | Piercing Howl
-15487 | Silence | | | | | Silence
-19577 | Stun | both | | | | Intimidation
+15487 | Silence | | | | 4 | Silence
+19577 | Stun | both | | | 3 | Intimidation
 19647 | | | | 1 | | Spell Lock (desc=Command Demon Ability)
 22570 | Stun | both | | | 5.0 | Maim
-30283 | Stun | | | | | Shadowfury
-31661 | Disorient | healer | | | | Dragon's Breath
-31935 | Silence | | | 1 | | Avenger's Shield
-33395 | Root | | 1 | | | Freeze
+30283 | Stun | | | | 3 | Shadowfury
+31661 | Disorient | healer | | | 3 | Dragon's Breath
+31935 | Silence | | | 1 | 1.4 | Avenger's Shield
+33395 | Root | | 1 | | 8 | Freeze
 33786 | Disorient | healer | | | 5.0 | Cyclone
-45524 | Slow | | | | | Chains of Ice
-46968 | Stun | | | | | Shockwave
-47476 | Silence | healer | | | | Strangulate
+45524 | Slow | | | | 8 | Chains of Ice
+46968 | Stun | | | | 3 | Shockwave
+47476 | Silence | healer | | | 4 | Strangulate
 47528 | | | | 1 | | Mind Freeze
 50245 | Slow | | | | | Pin (desc=Special Ability)
 50285 | Slow | | | | | Dust Cloud (desc=Special Ability)
 50433 | Slow | | | | | Ankle Crack (desc=Special Ability)
-51485 | Root | | 1 | | | Earthgrab Totem
-51490 | Knockback | | | | | Thunderstorm
+51485 | Root | | 1 | | 6 | Earthgrab Totem
+51490 | Knockback | | | | 6.5 | Thunderstorm
 54644 | Slow | | | | | Frost Breath (desc=Special Ability)
 57994 | | | | 1 | | Wind Shear
-78675 | Silence | | | | | Solar Beam
-88625 | Incapacitate | healer | | | | Holy Word: Chastise
+78675 | Silence | | | | 5 | Solar Beam
+88625 | Incapacitate | healer | | | 3 | Holy Word: Chastise
 96231 | | | | 1 | | Rebuke
 97547 | | | | 1 | | Solar Beam
-102359 | Root | | 1 | | | Mass Entanglement
-102401 | Root | | 1 | | | Wild Charge
+102359 | Root | | 1 | | 6 | Mass Entanglement
+102401 | Root | | 1 | | 0.5 | Wild Charge
 102793 | Knockback | | 1 | | | Ursol's Vortex
-107570 | Stun | | | | | Storm Bolt
+107570 | Stun | | | | 3 | Storm Bolt
 108199 | Knockback | | | | | Gorefiend's Grasp
-109248 | Stun | both | | | | Binding Shot
-115078 | Incapacitate | | | | | Paralysis
-115196 | Slow | | | | | Crippling Poison
-115750 | Disorient | | | | | Blinding Light
+109248 | Stun | both | | | 3 | Binding Shot
+115078 | Incapacitate | | | | 3 | Paralysis
+115196 | Slow | | | | 5 | Crippling Poison
+115750 | Disorient | | | | 4 | Blinding Light
 116705 | | | | 1 | | Spear Hand Strike
-116706 | Root | | 1 | | | Disable
+116706 | Root | | 1 | | 3 | Disable
 116844 | Knockback | | | | | Ring of Peace
-116947 | Slow | | | | | Earthbind
-119381 | Stun | | | | | Leg Sweep
+116947 | Slow | | | | 5.1 | Earthbind
+119381 | Stun | | | | 4 | Leg Sweep
 132469 | Knockback | | | 1 | | Typhoon
-136511 | Incapacitate | | | | | Ring of Frost
+136511 | Incapacitate | | | | 6 | Ring of Frost
 147362 | | | | 1 | | Counter Shot
 155722 | Stun | | | | | Rake
 157981 | Knockback | | | | | Blast Wave
-157997 | Root | | 1 | | | Ice Nova
+157997 | Root | | 1 | | 2 | Ice Nova
 160065 | Slow | | | | | Tendon Rip (desc=Special Ability)
 160067 | Slow | | | | | Web Spray (desc=Special Ability)
 162488 | Root | | 1 | | | Steel Trap
 170995 | Slow | | | | | Cripple
 171138 | | | | 1 | | Shadow Lock (desc=Special Ability)
 183752 | | | | 1 | | Disrupt
-187650 | Incapacitate | healer | | | | Freezing Trap
+187650 | Incapacitate | healer | | | 6 | Freezing Trap
 187707 | | | | 1 | | Muzzle
-190925 | Root | | 1 | | | Harpoon
-192058 | Stun | | | | | Capacitor Totem
+190925 | Root | | 1 | | 3 | Harpoon
+192058 | Stun | | | | 3 | Capacitor Totem
 197214 | Incapacitate | | | | | Sundering
-198898 | Disorient | | | | | Song of Chi-Ji
+198898 | Disorient | | | | 6 | Song of Chi-Ji
 199786 | Slow | | | | | Glacial Spike
 200199 | Stun | | | | | Censure
 202137 | Silence | | | | | Sigil of Silence
 202246 | Knockback | | | | | Overrun
 202335 | Stun | | | | | Double Barrel
 202370 | Knockback | | | | | Mighty Ox Kick
-204242 | Slow | | | | | Consecration
+204242 | Slow | | | | 12 | Consecration
 204843 | Slow | | | | | Sigil of Chains
 205596 | Incapacitate | | | | | Detainment
-205630 | Stun | | | | | Illidan's Grasp
+205630 | Stun | | | | 1.9 | Illidan's Grasp
 205708 | Slow | | | | | Chilled
 206572 | Knockback | | | | | Dragon Charge
-207167 | Disorient | | | | | Blinding Sleet
+207167 | Disorient | | | | 4 | Blinding Sleet
 207684 | Disorient | | | | | Sigil of Misery
-207777 | Disarm | | | | | Dismantle
-209749 | Disarm | | | | | Faerie Swarm
+207777 | Disarm | | | | 5 | Dismantle
+209749 | Disarm | | | | 5 | Faerie Swarm
 211056 | Slow | | | | | Mark of Aluneth
-212638 | Root | | 1 | | | Tracker's Net
-213405 | Slow | | | | | Master of the Glaive
-215652 | Silence | | | | | Shield of Virtue
+212638 | Root | | 1 | | 6 | Tracker's Net
+213405 | Slow | | | | 6.2 | Master of the Glaive
+215652 | Silence | | | | 1.9 | Shield of Virtue
 217383 | Root | | 1 | | | Thunderstruck
-217832 | Incapacitate | | | | | Imprison
-221562 | Stun | | | | | Asphyxiate
+217832 | Incapacitate | | | | 3 | Imprison
+221562 | Stun | | | | 4 | Asphyxiate
 232559 | Slow | | | | | Thorns (desc=PvP Talent)
-233759 | Disarm | | | | | Grapple Weapon
+233759 | Disarm | | | | 5.0 | Grapple Weapon
 236027 | Root | | 1 | | | Charge
-236077 | Disarm | | | | | Disarm
+236077 | Disarm | | | | 5 | Disarm
 236776 | Knockback | | | | | High Explosive Trap
 255937 | Stun | | | | | Wake of Ashes
 263423 | Slow | | | | | Lock Jaw (desc=Special Ability)
@@ -161,20 +161,48 @@
 273977 | Slow | | | | | Grip of the Dead
 290497 | Slow | | | | | Consecration
 305483 | Stun | | | | | Lightning Lasso
-317898 | Slow | | | | | Blinding Sleet
+317898 | Slow | | | | 6 | Blinding Sleet
 334275 | Slow | | | | | Curse of Exhaustion
 344867 | Stun | | | | | Chaos Nova
 347008 | | | | 1 | | Axe Toss (desc=Special Ability)
 351338 | | | | 1 | | Quell
-356084 | Slow | | | | | Blaze of Light
-370898 | Slow | | | | | Permeating Chill
+356084 | Slow | | | | 2 | Blaze of Light
+370898 | Slow | | | | 9.4 | Permeating Chill
 386071 | | | | 1 | | Disrupting Shout
-408383 | Slow | | | | | Judgment of Justice
+408383 | Slow | | | | 8 | Judgment of Justice
 420378 | Slow | | | | | Consecration
-450342 | Slow | | | | | Crashing Momentum
+450342 | Slow | | | | 5 | Crashing Momentum
 450596 | Slow | | | | | Spirit's Essence
 451210 | Slow | | | | | No Escape
-453263 | Slow | | | | | Wave of Debilitation
+453263 | Slow | | | | 5 | Wave of Debilitation
 462765 | Slow | | | | | Arctic Snowstorm
 1248825 | Root | | 1 | | | Frostbite
 1268673 | Slow | | | | | Cold Feet
+
+# Added 2026-08-14 from the user's hand-eyeballed "CC Durations Off Arena logs.txt" list.
+213691 | Incapacitate | | | | 3 | Scatter Shot
+51514 | Incapacitate | healer | | | 6 | Hex
+
+# Hunter Intimidation has two real, distinct spell_ids sharing the display name — confirmed by
+# description text, not guessed. 19577 ("Commands your pet to intimidate the target") is the
+# traditional pet-cast version (Beast Mastery + Survival, per baseline-spec-overrides.txt).
+# 474421 ("Your Spotting Eagle descends from the skies") is Marksmanship's own Spotting-Eagle-
+# flavored version, no physical pet action involved. Both reference the identical duration
+# token ($24394d) in their own description text, confirming they share the same real 3s stun
+# regardless of which spec/flavor is showing. User confirmed 2026-08-14 this pairing (BM/Survival
+# pet-cast vs. MM Spotting Eagle) is correct, not a data bug — both added for completeness.
+474421 | Stun | both | | | 3 | Intimidation
+
+# User guidance, 2026-08-14: Knockback-category spells are pure positional disruptors, not a
+# duration-bearing debuff — pvp_duration_seconds is not a meaningful concept for this category
+# at all (unlike every other dr_category here). Deliberately left blank for every Knockback
+# entry in this file and NOT a gap to keep chasing — do not flag these as "missing" data in any
+# future duration scan/report.
+#
+# Wake of Ashes (255937, Stun): user believes its stun component only affects Undead-type
+# targets (a PvE/lore-flavored restriction), making it irrelevant for real PvP CC — stated with
+# some uncertainty ("I think"), so dr_category is left as-is rather than removed, but no
+# pvp_duration_seconds is being chased for it.
+#
+# Lightning Lasso (305483, Stun): user reports this one is hard to find/verify — still open,
+# no value applied, not guessed.

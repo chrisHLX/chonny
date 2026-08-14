@@ -1,0 +1,96 @@
+CC Durations Off Arena logs
+scatter shot 3s
+intimidation stun 3s
+cyclone 5s
+freezing trap 6s
+mighty bash 4s
+maim 5s
+capacitor totem 3s
+polymorph 6s
+gouge 3s
+Hammer of justice 5s
+blinding light 4s
+Garrote silence 3s
+kidney shot 5s
+cheap shot 4s
+blind 5s
+mind control 6s
+preist psychic scream 6s
+howl of terror 6s
+song of chi-ji 6s
+paralysis 3s
+mortal coil 3s
+Disarm 5s
+Dragons breath 3s
+earth Grab totem root 6s
+Sap 6s
+incap roar 3s
+leg sweep 4s
+spriest silence 4s
+entangling roots 6s
+cap stun 3s
+strangulate 4s
+hex 6s
+Blinding Sleet 4s
+Chastise 3s
+Storm Bolt 3s
+
+----- Applied 2026-08-14 -----
+21 of these already matched what's live (Cyclone, Mighty Bash, Maim, Polymorph, Gouge, Hammer of
+Justice, Mind Control, Psychic Scream, Howl of Terror, Mortal Coil, Disarm, Dragon's Breath, Sap,
+Incapacitating Roar, Leg Sweep, spriest Silence, Entangling Roots — strong cross-validation of the
+earlier arena-log batch work). 10 were genuinely new and applied directly (Intimidation, Freezing
+Trap, Capacitor Totem, Blinding Light, Garrote's silence component, Song of Chi-Ji, Earthgrab
+Totem, Holy Word: Chastise, Storm Bolt, plus Scatter Shot and Hex which also needed a dr_category
+added since neither was tagged at all). Cheap Shot (4s here) resolves the standing contradiction
+from the old PVP duration.txt notes — this list is the second independent confirmation that note
+said was needed, so 6 -> 4 was applied.
+
+6 real contradictions against already-applied values were found and NOT silently overwritten —
+flagged back to the user instead:
+  Kidney Shot: live=6.0, this list=5
+  Blind: live=6.0, this list=5
+  Paralysis: live=3.9 (measured), this list=3 (minor, likely just rounding)
+  Strangulate: live=5.2 (measured), this list=4
+  Blinding Sleet (spell_id 207167): live=5.2 (measured), this list=4
+  Blinding Sleet (spell_id 317898, a second distinct copy): live=7.8 (measured), this list=4
+
+----- User follow-up, same day -----
+Strangulate: "definately 4 i think it might have been modiffied by dragon ability" — applied
+(5.2 -> 4). The higher measured value was very likely a real modifier inflating that one
+match's instance (a talent/ability extending Strangulate's duration), not the base value —
+consistent with the "max observed" methodology only being safe for a spell with no such
+modifiers in play. Live now.
+
+Left unresolved, not enough confidence yet on either side:
+  Blind, Kidney Shot: user leans toward the existing 6s being right ("might be 6, need more data").
+  Paralysis: user unsure between 3 and 4 (not the measured 3.9 either).
+  Blinding Sleet: user unsure between 3 and 4, suspects it was also modified by something,
+    same shape as Strangulate — worth re-measuring with the modifier identified/excluded rather
+    than guessing which raw number is the unmodified base.
+Do not silently resolve these — needs either more matches, identifying what the "dragon
+ability" modifier actually is so measured instances can be filtered to unmodified-only casts,
+or a direct confirmation.
+
+----- RESOLVED via clustering analysis, 2026-08-14 -----
+User asked for a histogram/consistency pass instead of "max observed" — with 79 matches on
+file this was decisive. The earlier "max" methodology was the wrong estimator for these:
+a modal (most common) value with a clean, dominant majority is much stronger evidence than
+whatever the single highest outlier happened to be — max only tells you an upper bound, mode
+tells you what actually usually happens.
+
+  Blind (2094): 37/63 instances at 5.0s (next-largest bucket is scattered noise) -> 5s. Was 6.
+  Kidney Shot (408): 75/152 at 5.0s, >3x the next bucket -> 5s. Was 6 (reverses the earlier
+    verbal "kidney 6" recollection — 152 real instances across 36 matches is much stronger
+    evidence than a single remembered figure).
+  Paralysis (115078): 30/55 at 3.0s -> 3s. Was 3.9 (the earlier "max" of 3.9 was just the one
+    longest outlier, not representative).
+  Blinding Sleet (207167): 71/177 at 4.0s -> 4s. Was 5.2.
+  Blinding Sleet (317898): 56/144 at 6.0s -> 6s. Was 7.8. IMPORTANT: this is a completely
+    different peak from 207167's 4.0s peak, not the same spell measured twice — these two
+    spell_ids are genuinely mechanically distinct, not duplicate copies of one ability. The
+    curated list's flat "4s" for "Blinding Sleet" apparently only covered 207167.
+
+All 5 applied and live. Only Strangulate's earlier "modified by dragon ability" caveat is
+still open as a real unknown (what the modifier actually is) — its value (4s) is applied and
+not in question, just the mechanism behind why one measured instance read higher.

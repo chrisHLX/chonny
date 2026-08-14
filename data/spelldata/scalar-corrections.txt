@@ -1,0 +1,52 @@
+# Hand-verified scalar-field corrections for spells that already have a correct `spells` row
+# and correct spell_class_availability (imported via SimC, PvP-talent JSON, or manual-spells.txt)
+# but are missing cooldown_seconds/duration_seconds/mechanic because their SOURCE data doesn't
+# carry it at all — not an availability problem, a plain missing-fact problem.
+#
+# Distinct from the other three override files in this folder, on purpose:
+#   - baseline-spec-overrides.txt fixes AVAILABILITY (which spec a spec_id=NULL baseline spell
+#     belongs to) for a spell that's already otherwise fully described.
+#   - manual-spells.txt CREATES a spell + availability from scratch for something missing from
+#     SimC entirely.
+#   - cc-synergies-overrides.txt is CC-chain-specific fields only (dr_category/chain_target/
+#     is_peel/is_interrupt/pvp_duration_seconds), a different feature's data.
+#   - This file touches none of the above — it only ever updates cooldown_seconds/
+#     duration_seconds/mechanic/description on a spell that ImportSpellData::importScalarCorrections()
+#     confirms ALREADY exists for the current patch. If the spell doesn't exist yet, the line is
+#     skipped with a warning, never used to create one (that's manual-spells.txt's job).
+#
+# Format: spell_id | field=value, field=value, ... | note (comment only, not parsed)
+# Valid fields: cooldown_seconds, duration_seconds, mechanic (must match a key in
+# ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP). Omit a field entirely to leave it alone —
+# this is a field-level patch, not a full record replace.
+#
+# Verify each line the same way as everywhere else in this folder before adding: in-game, a real
+# spellbook snapshot's resolved_description, or equally solid evidence — never guessed.
+
+# Scatter Shot (Hunter PvP talent, spell_id 213691) — confirmed absent from SimC's raw dump
+# entirely (checked both filtered and raw hunter.txt directly, only ever referenced as a text
+# mention inside another spell's DR-style damage-reduction description, never its own record) and
+# the addon's collectPvpTalents() never calls a cooldown API at all (id/name/desc only — see
+# main.lua), so cooldown/duration/mechanic can never come from any data source already on file.
+# duration_seconds + mechanic recovered from the real Hunter snapshot's resolved tooltip text
+# (2026-08-13-batch1.lua, snapshot #2): "...incapacitates the target for 3 sec. Any damage caused
+# will remove the effect." cooldown_seconds supplied directly by the user from their own research
+# (2026-08-14) — not recoverable from any source this project has on file, real-world confirmed
+# fact only.
+213691 | cooldown_seconds=30, duration_seconds=3, mechanic=Incapacitate | Scatter Shot
+
+# Grapple Weapon (Windwalker Monk PvP talent, spell_id 233759) — confirmed absent from SimC's
+# raw dump entirely (checked both filtered/monk and raw/monk.txt directly, zero records for
+# this spell_id anywhere), same shape as Scatter Shot above: a PvP-talent-only spell with no
+# SimC coverage at all, so nothing already on file could ever have populated these fields.
+# duration_seconds=5 confirmed via wow:find-cc-duration (built 2026-08-14 specifically for
+# this kind of gap) scanning every stored arena log: 8 real SPELL_AURA_APPLIED->REMOVED
+# instances across 4 independent matches, all 5.006-5.036s — matches the ability's own
+# tooltip text exactly ("...returning them to you for 5 sec"). cooldown_seconds=45 is a
+# WEAKER-confidence inference, not a stated fact: the same scan found a real minimum gap of
+# 45.862s between two successive casts by the same player in one match (proof the ability was
+# off cooldown by then, never proof of the exact value) — recorded as 45 because it's a
+# suspiciously clean number just under that floor and matches common PvP-talent cooldown
+# design, not because it was confirmed via tooltip/spellbook/direct source. Flag and correct
+# if a harder source (in-game tooltip, a real snapshot) ever contradicts this.
+233759 | cooldown_seconds=45, duration_seconds=5 | Grapple Weapon

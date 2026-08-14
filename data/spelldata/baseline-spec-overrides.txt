@@ -81,8 +81,8 @@
 # to track.
 258920 | demonhunter | havoc | Immolation Aura
 258920 | demonhunter | vengeance | Immolation Aura
-207685 | demonhunter | havoc | Sigil of Misery
-207685 | demonhunter | vengeance | Sigil of Misery
+207684 | demonhunter | havoc | Sigil of Misery
+207684 | demonhunter | vengeance | Sigil of Misery
 204843 | demonhunter | havoc | Sigil of Chains
 204843 | demonhunter | vengeance | Sigil of Chains
 183752 | demonhunter | havoc | Disrupt
@@ -266,3 +266,650 @@
 76577 | rogue | assassination | Smoke Bomb
 76577 | rogue | outlaw | Smoke Bomb
 76577 | rogue | subtlety | Smoke Bomb
+
+# Batch added 2026-08-14, sourced from wow:diff-spellbook's new Direction D (see DiffSpellbook.php's
+# own docblock) — cross-referencing 8 real character spellbook exports (one per class: Hunter/BM,
+# Mage/Frost, Druid/Feral, Priest/Disc, Rogue/Assassination, Paladin/Holy, Shaman/Restoration,
+# Warrior/Arms) against the whole spec_id=NULL baseline bucket for each character's class. Unlike
+# every prior batch in this file, these are not "verified by general knowledge" — each one is
+# confirmed PRESENT in that exact spec's own real spellbook export, the strongest evidence tier
+# this file uses. Still hand-reviewed one class at a time before writing, not blindly bulk-applied:
+# 15 candidates were caught and excluded as spec-history contamination (a real character's
+# spellbook includes any spec ever played, not just their current one — same pattern documented
+# throughout this file) or generic cross-class noise (Recuperate, a food/rest spell on all 13
+# classes) — see wow:diff-spellbook Direction D output for the excluded list, and CLAUDE.md's
+# "Two stacked bugs" / MISSING_AVAILABILITY session notes for the full trace. This closes the gap
+# where a no-cooldown baseline ability (Shred, Ferocious Bite, Entangling Roots, etc.) was
+# structurally invisible everywhere on the site — the existing explicitBaselineCooldownAbilityIds()
+# safety valve only ever surfaced baseline spells with a 10s+ cooldown or a Sleep/Disorient
+# mechanic, which excludes most filler/core-rotation abilities entirely.
+185358 | hunter | beast-mastery | Arcane Shot
+186257 | hunter | beast-mastery | Aspect of the Cheetah
+186265 | hunter | beast-mastery | Aspect of the Turtle
+75 | hunter | beast-mastery | Auto Shot
+272651 | hunter | beast-mastery | Command Pet
+781 | hunter | beast-mastery | Disengage
+109304 | hunter | beast-mastery | Exhilaration
+5384 | hunter | beast-mastery | Feign Death
+1543 | hunter | beast-mastery | Flare
+257284 | hunter | beast-mastery | Hunter's Mark
+56641 | hunter | beast-mastery | Steady Shot
+1449 | mage | frost | Arcane Explosion
+1459 | mage | frost | Arcane Intellect
+1953 | mage | frost | Blink
+120 | mage | frost | Cone of Cold
+190336 | mage | frost | Conjure Refreshment
+319836 | mage | frost | Fire Blast
+414658 | mage | frost | Ice Cold
+66 | mage | frost | Invisibility
+5019 | mage | frost | Shoot
+80353 | mage | frost | Time Warp
+106951 | druid | feral | Berserk
+1850 | druid | feral | Dash
+193753 | druid | feral | Dreamwalk
+339 | druid | feral | Entangling Roots
+22568 | druid | feral | Ferocious Bite
+6795 | druid | feral | Growl
+33917 | druid | feral | Mangle
+1126 | druid | feral | Mark of the Wild
+8921 | druid | feral | Moonfire
+5215 | druid | feral | Prowl
+20484 | druid | feral | Rebirth
+8936 | druid | feral | Regrowth
+5221 | druid | feral | Shred
+77758 | druid | feral | Thrash
+5176 | druid | feral | Wrath
+355897 | priest | discipline | Inner Light
+1706 | priest | discipline | Levitate
+453 | priest | discipline | Mind Soothe
+2096 | priest | discipline | Mind Vision
+21562 | priest | discipline | Power Word: Fortitude
+17 | priest | discipline | Power Word: Shield
+186263 | priest | discipline | Shadow Mend
+589 | priest | discipline | Shadow Word: Pain
+5019 | priest | discipline | Shoot
+585 | priest | discipline | Smite
+8676 | rogue | assassination | Ambush
+185311 | rogue | assassination | Crimson Vial
+1725 | rogue | assassination | Distract
+196819 | rogue | assassination | Eviscerate
+1804 | rogue | assassination | Pick Lock
+6770 | rogue | assassination | Sap
+114018 | rogue | assassination | Shroud of Concealment
+315496 | rogue | assassination | Slice and Dice
+2983 | rogue | assassination | Sprint
+115191 | rogue | assassination | Stealth
+381623 | rogue | assassination | Thistle Tea
+1856 | rogue | assassination | Vanish
+317920 | paladin | holy | Concentration Aura
+26573 | paladin | holy | Consecration
+32223 | paladin | holy | Crusader Aura
+465 | paladin | holy | Devotion Aura
+642 | paladin | holy | Divine Shield
+19750 | paladin | holy | Flash of Light
+391054 | paladin | holy | Intercession
+471195 | paladin | holy | Lay on Hands
+85673 | paladin | holy | Word of Glory
+443454 | shaman | restoration | Ancestral Swiftness
+6196 | shaman | restoration | Far Sight
+470411 | shaman | restoration | Flame Shock
+2645 | shaman | restoration | Ghost Wolf
+5394 | shaman | restoration | Healing Stream Totem
+8004 | shaman | restoration | Healing Surge
+188196 | shaman | restoration | Lightning Bolt
+192106 | shaman | restoration | Lightning Shield
+73899 | shaman | restoration | Primal Strike
+462854 | shaman | restoration | Skyfury
+444995 | shaman | restoration | Surging Totem
+457481 | shaman | restoration | Tidecaller's Guard
+6673 | warrior | arms | Battle Shout
+446035 | warrior | arms | Bladestorm
+100 | warrior | arms | Charge
+281000 | warrior | arms | Execute
+1715 | warrior | arms | Hamstring
+57755 | warrior | arms | Heroic Throw
+1464 | warrior | arms | Slam
+355 | warrior | arms | Taunt
+1680 | warrior | arms | Whirlwind
+
+# Excluded from the batch above after review, logged here so a future pass doesn't re-add them
+# blindly: Recuperate (1231411, all 8 classes — generic food/rest spell, not a real class ability).
+# Druid/Feral: Celestial Alignment (194223), Solar Eclipse (1233346) — both Balance's own eclipse
+# mechanic, present only via this character's Balance spec history. Warrior/Arms: Shield Block
+# (2565), Shield Slam (23922) — Protection's mitigation kit, spec-history contamination. Paladin/
+# Holy: Shield of the Righteous (53600), Hand of Reckoning (62124), Templar Strike (407480) —
+# Protection's mitigation/taunt kit, same contamination pattern.
+
+# Druid, added 2026-08-14. The Direction D batch above only ever confirmed these 8 for Feral
+# (the one spec we have a real snapshot for) — but each is genuinely all-4-spec, class-wide
+# baseline with no spec-specific mechanic behind it (utility/CC/heal/rez spells any Druid spec
+# can cast), same confidence tier as Hammer of Justice/Freezing Trap above. Extended to
+# Balance/Guardian/Restoration on general knowledge, not further snapshot evidence. Deliberately
+# NOT extending Shred/Ferocious Bite/Prowl/Mangle/Thrash/Growl/Berserk from that same batch —
+# those are genuinely Cat-Form/Bear-Form-flavored (Berserk 106951 specifically confirmed
+# Feral-only, distinct from Guardian's own separate Berserk copy 50334) and stay Feral-only
+# pending real evidence for the other specs.
+339 | druid | balance | Entangling Roots
+339 | druid | guardian | Entangling Roots
+339 | druid | restoration | Entangling Roots
+8936 | druid | balance | Regrowth
+8936 | druid | guardian | Regrowth
+8936 | druid | restoration | Regrowth
+5176 | druid | balance | Wrath
+5176 | druid | guardian | Wrath
+5176 | druid | restoration | Wrath
+8921 | druid | balance | Moonfire
+8921 | druid | guardian | Moonfire
+8921 | druid | restoration | Moonfire
+1126 | druid | balance | Mark of the Wild
+1126 | druid | guardian | Mark of the Wild
+1126 | druid | restoration | Mark of the Wild
+20484 | druid | balance | Rebirth
+20484 | druid | guardian | Rebirth
+20484 | druid | restoration | Rebirth
+1850 | druid | balance | Dash
+1850 | druid | guardian | Dash
+1850 | druid | restoration | Dash
+193753 | druid | balance | Dreamwalk
+193753 | druid | guardian | Dreamwalk
+193753 | druid | restoration | Dreamwalk
+
+# New evidence source, 2026-08-14: real arena match cast data (wowarenalogs.com), not a
+# spellbook_snapshots export — see arena-log-api.md + CLAUDE.md's "arena log spell diff"
+# discussion for the mechanism (wow:extract-arena-spells / wow:diff-arena-spells). A player
+# actually casting a spell in a real ranked match is the same tier of evidence as a real
+# spellbook export for the purpose of this file — confirmed correct by the user, spell by
+# spell, before being added here (same discipline as every other batch in this file).
+# Match f3026e050f7c7833099b62bd33255ec5 (3v3, RMD vs MHunterLock).
+#
+# Rogue/Subtlety — 5 new spells never previously tagged to any spec for Subtlety:
+1776 | rogue | subtlety | Gouge
+5277 | rogue | subtlety | Evasion
+57934 | rogue | subtlety | Tricks of the Trade
+282449 | rogue | subtlety | Secret Technique
+441776 | rogue | subtlety | Coup de Grace
+# Rogue/Subtlety — 8 more spells already tagged verified_override/baseline for Assassination
+# or Outlaw specifically, but confirmed here to ALSO be used by Subtlety — same
+# under-scoped-to-one-spec pattern already documented for Freezing Trap above (a spell that's
+# genuinely multi-spec only had one spec's evidence recorded). These lines ADD Subtlety
+# alongside the existing spec tags, they do not replace or narrow anything already there.
+1856 | rogue | subtlety | Vanish
+2094 | rogue | subtlety | Blind
+2983 | rogue | subtlety | Sprint
+5938 | rogue | subtlety | Shiv
+6770 | rogue | subtlety | Sap
+115191 | rogue | subtlety | Stealth
+185311 | rogue | subtlety | Crimson Vial
+196819 | rogue | subtlety | Eviscerate
+
+# Warlock/Affliction — 13 spells never previously tagged to any spec for Affliction, from the
+# same match, including the spec's own signature abilities (Corruption, Fear). One entry
+# (Spell Lock) carries a "(desc=Command Demon Ability)" name suffix — that pattern usually
+# flags pet-ability noise elsewhere in this project (see CLAUDE.md's baseline-ability
+# section), so it was called out specifically before adding; confirmed correct anyway.
+172 | warlock | affliction | Corruption
+1714 | warlock | affliction | Curse of Tongues
+5484 | warlock | affliction | Howl of Terror
+5782 | warlock | affliction | Fear
+6789 | warlock | affliction | Mortal Coil
+104773 | warlock | affliction | Unending Resolve
+108416 | warlock | affliction | Dark Pact
+111771 | warlock | affliction | Demonic Gateway
+119910 | warlock | affliction | Spell Lock (desc=Command Demon Ability)
+198590 | warlock | affliction | Drain Soul
+334275 | warlock | affliction | Curse of Exhaustion
+385899 | warlock | affliction | Soulburn
+452930 | warlock | affliction | Demonic Healthstone
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Death Knight/Unholy, real arena-log cast evidence (see arena-log-api.md).
+43265 | deathknight | unholy | Death and Decay
+45524 | deathknight | unholy | Chains of Ice
+47528 | deathknight | unholy | Mind Freeze
+47541 | deathknight | unholy | Death Coil
+48743 | deathknight | unholy | Death Pact
+48792 | deathknight | unholy | Icebound Fortitude
+49039 | deathknight | unholy | Lichborne
+49576 | deathknight | unholy | Death Grip
+51052 | deathknight | unholy | Anti-Magic Zone
+207167 | deathknight | unholy | Blinding Sleet
+444347 | deathknight | unholy | Death Charge
+458128 | deathknight | unholy | Festering Scythe
+1242174 | deathknight | unholy | Necrotic Coil
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Death Knight/Frost, real arena-log cast evidence (see arena-log-api.md).
+43265 | deathknight | frost | Death and Decay
+45524 | deathknight | frost | Chains of Ice
+47528 | deathknight | frost | Mind Freeze
+48265 | deathknight | frost | Death's Advance
+48743 | deathknight | frost | Death Pact
+49998 | deathknight | frost | Death Strike
+207167 | deathknight | frost | Blinding Sleet
+212552 | deathknight | frost | Wraith Walk
+439843 | deathknight | frost | Reaper's Mark
+441424 | deathknight | frost | Exterminate
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Demon Hunter/Devourer, real arena-log cast evidence (see arena-log-api.md).
+196718 | demonhunter | devourer | Darkness
+198793 | demonhunter | devourer | Vengeful Retreat
+217832 | demonhunter | devourer | Imprison
+1217610 | demonhunter | devourer | Devour
+1223412 | demonhunter | devourer | Soul Fragment
+1234195 | demonhunter | devourer | Void Nova
+1239123 | demonhunter | devourer | Hungering Slash
+1245414 | demonhunter | devourer | Voidblade
+1245453 | demonhunter | devourer | Cull
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Demon Hunter/Havoc, real arena-log cast evidence (see arena-log-api.md).
+131347 | demonhunter | havoc | Glide
+179057 | demonhunter | havoc | Chaos Nova
+188501 | demonhunter | havoc | Spectral Sight
+196718 | demonhunter | havoc | Darkness
+201427 | demonhunter | havoc | Annihilation
+209693 | demonhunter | havoc | Shattered Souls
+232893 | demonhunter | havoc | Felblade
+278326 | demonhunter | havoc | Consume Magic
+370966 | demonhunter | havoc | The Hunt
+442294 | demonhunter | havoc | Reaver's Glaive
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Demon Hunter/Vengeance, real arena-log cast evidence (see arena-log-api.md).
+131347 | demonhunter | vengeance | Glide
+179057 | demonhunter | vengeance | Chaos Nova
+188501 | demonhunter | vengeance | Spectral Sight
+196718 | demonhunter | vengeance | Darkness
+204255 | demonhunter | vengeance | Soul Fragment
+217832 | demonhunter | vengeance | Imprison
+225919 | demonhunter | vengeance | Fracture
+232893 | demonhunter | vengeance | Felblade
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Druid/Balance, real arena-log cast evidence (see arena-log-api.md).
+99 | druid | balance | Incapacitating Roar
+783 | druid | balance | Travel Form (desc=Shapeshift)
+5211 | druid | balance | Mighty Bash
+5215 | druid | balance | Prowl
+5487 | druid | balance | Bear Form (desc=Shapeshift)
+16979 | druid | balance | Wild Charge (desc=Talent)
+22842 | druid | balance | Frenzied Regeneration
+33786 | druid | balance | Cyclone
+61391 | druid | balance | Typhoon
+77761 | druid | balance | Stampeding Roar
+93402 | druid | balance | Sunfire
+102359 | druid | balance | Mass Entanglement
+102560 | druid | balance | Incarnation: Chosen of Elune (desc=Talent, Shapeshift)
+164862 | druid | balance | Flap
+1233272 | druid | balance | Lunar Eclipse
+1233346 | druid | balance | Solar Eclipse
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Druid/Feral, real arena-log cast evidence (see arena-log-api.md).
+768 | druid | feral | Cat Form (desc=Shapeshift)
+2782 | druid | feral | Remove Corruption
+5211 | druid | feral | Mighty Bash
+22570 | druid | feral | Maim
+33786 | druid | feral | Cyclone
+49376 | druid | feral | Wild Charge (desc=Talent)
+61391 | druid | feral | Typhoon
+77764 | druid | feral | Stampeding Roar
+102793 | druid | feral | Ursol's Vortex
+106785 | druid | feral | Swipe
+106839 | druid | feral | Skull Bash
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Druid/Guardian, real arena-log cast evidence (see arena-log-api.md).
+99 | druid | guardian | Incapacitating Roar
+768 | druid | guardian | Cat Form (desc=Shapeshift)
+1079 | druid | guardian | Rip
+1822 | druid | guardian | Rake
+2782 | druid | guardian | Remove Corruption
+5215 | druid | guardian | Prowl
+5487 | druid | guardian | Bear Form (desc=Shapeshift)
+16979 | druid | guardian | Wild Charge (desc=Talent)
+22570 | druid | guardian | Maim
+33786 | druid | guardian | Cyclone
+33917 | druid | guardian | Mangle
+77758 | druid | guardian | Thrash
+77761 | druid | guardian | Stampeding Roar
+102793 | druid | guardian | Ursol's Vortex
+106839 | druid | guardian | Skull Bash
+192081 | druid | guardian | Ironfur
+1269658 | druid | guardian | Wild Guardian
+1270292 | druid | guardian | Lunar Beam
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Druid/Restoration, real arena-log cast evidence (see arena-log-api.md).
+99 | druid | restoration | Incapacitating Roar
+768 | druid | restoration | Cat Form (desc=Shapeshift)
+783 | druid | restoration | Travel Form (desc=Shapeshift)
+5215 | druid | restoration | Prowl
+22570 | druid | restoration | Maim
+29166 | druid | restoration | Innervate
+33786 | druid | restoration | Cyclone
+49376 | druid | restoration | Wild Charge (desc=Talent)
+106785 | druid | restoration | Swipe
+106898 | druid | restoration | Stampeding Roar
+155777 | druid | restoration | Rejuvenation (Germination)
+197626 | druid | restoration | Starsurge
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Evoker/Augmentation, real arena-log cast evidence (see arena-log-api.md).
+357208 | evoker | augmentation | Fire Breath (desc=Red)
+360806 | evoker | augmentation | Sleep Walk (desc=Green)
+360995 | evoker | augmentation | Verdant Embrace (desc=Green)
+361195 | evoker | augmentation | Verdant Embrace
+364342 | evoker | augmentation | Blessing of the Bronze (desc=Bronze)
+370553 | evoker | augmentation | Tip the Scales (desc=Bronze)
+374968 | evoker | augmentation | Time Spiral (desc=Bronze)
+442204 | evoker | augmentation | Breath of Eons (desc=Bronze)
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Evoker/Devastation, real arena-log cast evidence (see arena-log-api.md).
+355913 | evoker | devastation | Emerald Blossom (desc=Green)
+356995 | evoker | devastation | Disintegrate (desc=Blue)
+357210 | evoker | devastation | Deep Breath (desc=Black)
+360806 | evoker | devastation | Sleep Walk (desc=Green)
+362969 | evoker | devastation | Azure Strike (desc=Blue)
+363916 | evoker | devastation | Obsidian Scales (desc=Black)
+370553 | evoker | devastation | Tip the Scales (desc=Bronze)
+370665 | evoker | devastation | Rescue
+374968 | evoker | devastation | Time Spiral (desc=Bronze)
+382266 | evoker | devastation | Fire Breath (desc=Red)
+382411 | evoker | devastation | Eternity Surge (desc=Blue)
+1265872 | evoker | devastation | Azure Sweep (desc=Blue)
+1265980 | evoker | devastation | Twin Flame
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Evoker/Preservation, real arena-log cast evidence (see arena-log-api.md).
+355941 | evoker | preservation | Dream Breath
+356995 | evoker | preservation | Disintegrate (desc=Blue)
+357208 | evoker | preservation | Fire Breath (desc=Red)
+358385 | evoker | preservation | Landslide (desc=Black)
+360806 | evoker | preservation | Sleep Walk (desc=Green)
+361195 | evoker | preservation | Verdant Embrace
+363916 | evoker | preservation | Obsidian Scales (desc=Black)
+370553 | evoker | preservation | Tip the Scales (desc=Bronze)
+372048 | evoker | preservation | Oppressing Roar (desc=Black)
+374251 | evoker | preservation | Cauterizing Flame (desc=Red)
+374968 | evoker | preservation | Time Spiral (desc=Bronze)
+431443 | evoker | preservation | Chrono Flames (desc=Bronze)
+1256581 | evoker | preservation | Merithra's Blessing (desc=Green)
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Hunter/Beast Mastery, real arena-log cast evidence (see arena-log-api.md).
+5116 | hunter | beast-mastery | Concussive Shot
+19577 | hunter | beast-mastery | Intimidation
+109248 | hunter | beast-mastery | Binding Shot
+147362 | hunter | beast-mastery | Counter Shot
+272682 | hunter | beast-mastery | Master's Call (desc=Command Pet Ability)
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Hunter/Marksmanship, real arena-log cast evidence (see arena-log-api.md).
+781 | hunter | marksmanship | Disengage
+5116 | hunter | marksmanship | Concussive Shot
+109248 | hunter | marksmanship | Binding Shot
+109304 | hunter | marksmanship | Exhilaration
+185358 | hunter | marksmanship | Arcane Shot
+186257 | hunter | marksmanship | Aspect of the Cheetah
+186265 | hunter | marksmanship | Aspect of the Turtle
+392060 | hunter | marksmanship | Wailing Arrow
+466930 | hunter | marksmanship | Black Arrow
+474421 | hunter | marksmanship | Intimidation
+1241871 | hunter | marksmanship | Master's Call (desc=Command Pet Ability)
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Hunter/Survival, real arena-log cast evidence (see arena-log-api.md).
+136 | hunter | survival | Mend Pet
+781 | hunter | survival | Disengage
+1543 | hunter | survival | Flare
+5116 | hunter | survival | Concussive Shot
+6262 | hunter | survival | Healthstone
+19577 | hunter | survival | Intimidation
+19801 | hunter | survival | Tranquilizing Shot
+53480 | hunter | survival | Roar of Sacrifice
+109248 | hunter | survival | Binding Shot
+109304 | hunter | survival | Exhilaration
+186257 | hunter | survival | Aspect of the Cheetah
+187707 | hunter | survival | Muzzle
+195645 | hunter | survival | Wing Clip
+199483 | hunter | survival | Camouflage
+257284 | hunter | survival | Hunter's Mark
+265189 | hunter | survival | Raptor Strike
+272682 | hunter | survival | Master's Call (desc=Command Pet Ability)
+1253859 | hunter | survival | Takedown
+1262293 | hunter | survival | Raptor Swipe
+1264949 | hunter | survival | Moonlight Chakram
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Mage/Arcane, real arena-log cast evidence (see arena-log-api.md).
+1953 | mage | arcane | Blink
+30449 | mage | arcane | Spellsteal
+31661 | mage | arcane | Dragon's Breath
+110959 | mage | arcane | Greater Invisibility
+113724 | mage | arcane | Ring of Frost
+157997 | mage | arcane | Ice Nova
+342245 | mage | arcane | Alter Time
+414664 | mage | arcane | Mass Invisibility
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Mage/Fire, real arena-log cast evidence (see arena-log-api.md).
+30449 | mage | fire | Spellsteal
+31661 | mage | fire | Dragon's Breath
+45438 | mage | fire | Ice Block
+110959 | mage | fire | Greater Invisibility
+113724 | mage | fire | Ring of Frost
+157997 | mage | fire | Ice Nova
+212653 | mage | fire | Shimmer
+342245 | mage | fire | Alter Time
+414664 | mage | fire | Mass Invisibility
+431044 | mage | fire | Frostfire Bolt
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Monk/Mistweaver, real arena-log cast evidence (see arena-log-api.md).
+100780 | monk | mistweaver | Tiger Palm
+100784 | monk | mistweaver | Blackout Kick
+101643 | monk | mistweaver | Transcendence
+115008 | monk | mistweaver | Chi Torpedo
+115175 | monk | mistweaver | Soothing Mist
+115203 | monk | mistweaver | Fortifying Brew
+115294 | monk | mistweaver | Mana Tea
+115313 | monk | mistweaver | Summon Jade Serpent Statue
+116841 | monk | mistweaver | Tiger's Lust
+117952 | monk | mistweaver | Crackling Jade Lightning
+119381 | monk | mistweaver | Leg Sweep
+198898 | monk | mistweaver | Song of Chi-Ji
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Monk/Windwalker, real arena-log cast evidence (see arena-log-api.md).
+100780 | monk | windwalker | Tiger Palm
+100784 | monk | windwalker | Blackout Kick
+101546 | monk | windwalker | Spinning Crane Kick
+101643 | monk | windwalker | Transcendence
+109132 | monk | windwalker | Roll
+115203 | monk | windwalker | Fortifying Brew
+116095 | monk | windwalker | Disable
+116670 | monk | windwalker | Vivify
+116705 | monk | windwalker | Spear Hand Strike
+116841 | monk | windwalker | Tiger's Lust
+116844 | monk | windwalker | Ring of Peace
+467307 | monk | windwalker | Rushing Wind Kick
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Paladin/Holy, real arena-log cast evidence (see arena-log-api.md).
+1044 | paladin | holy | Blessing of Freedom
+6940 | paladin | holy | Blessing of Sacrifice
+115750 | paladin | holy | Blinding Light
+156322 | paladin | holy | Eternal Flame
+375576 | paladin | holy | Divine Toll
+415388 | paladin | holy | Reclamation
+1241413 | paladin | holy | Hammer of Wrath
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Paladin/Protection, real arena-log cast evidence (see arena-log-api.md).
+1044 | paladin | protection | Blessing of Freedom
+6940 | paladin | protection | Blessing of Sacrifice
+26573 | paladin | protection | Consecration
+53600 | paladin | protection | Shield of the Righteous
+85673 | paladin | protection | Word of Glory
+96231 | paladin | protection | Rebuke
+115750 | paladin | protection | Blinding Light
+375576 | paladin | protection | Divine Toll
+432459 | paladin | protection | Holy Bulwark
+432472 | paladin | protection | Sacred Weapon
+1241413 | paladin | protection | Hammer of Wrath
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Paladin/Retribution, real arena-log cast evidence (see arena-log-api.md).
+642 | paladin | retribution | Divine Shield
+1044 | paladin | retribution | Blessing of Freedom
+6940 | paladin | retribution | Blessing of Sacrifice
+20271 | paladin | retribution | Judgment
+24275 | paladin | retribution | Hammer of Wrath
+96231 | paladin | retribution | Rebuke
+115750 | paladin | retribution | Blinding Light
+156322 | paladin | retribution | Eternal Flame
+190784 | paladin | retribution | Divine Steed
+375576 | paladin | retribution | Divine Toll
+408385 | paladin | retribution | Crusading Strikes
+471195 | paladin | retribution | Lay on Hands
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Priest/Discipline, real arena-log cast evidence (see arena-log-api.md).
+586 | priest | discipline | Fade
+8122 | priest | discipline | Psychic Scream
+10060 | priest | discipline | Power Infusion
+73325 | priest | discipline | Leap of Faith
+450215 | priest | discipline | Void Blast
+1253593 | priest | discipline | Void Shield
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Priest/Holy, real arena-log cast evidence (see arena-log-api.md).
+2061 | priest | holy | Flash Heal
+8122 | priest | holy | Psychic Scream
+10060 | priest | holy | Power Infusion
+121536 | priest | holy | Angelic Feather
+215769 | priest | holy | Spirit of Redemption (desc=PvP Talent)
+1262763 | priest | holy | Benediction
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Priest/Shadow, real arena-log cast evidence (see arena-log-api.md).
+528 | priest | shadow | Dispel Magic
+589 | priest | shadow | Shadow Word: Pain
+10060 | priest | shadow | Power Infusion
+32379 | priest | shadow | Shadow Word: Death
+263165 | priest | shadow | Void Torrent
+341263 | priest | shadow | Shadowy Apparition
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Rogue/Assassination, real arena-log cast evidence (see arena-log-api.md).
+1776 | rogue | assassination | Gouge
+27576 | rogue | assassination | Mutilate
+31224 | rogue | assassination | Cloak of Shadows
+452538 | rogue | assassination | Fatebound Coin (Tails)
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Rogue/Outlaw, real arena-log cast evidence (see arena-log-api.md).
+1776 | rogue | outlaw | Gouge
+1784 | rogue | outlaw | Stealth
+1856 | rogue | outlaw | Vanish
+2983 | rogue | outlaw | Sprint
+5277 | rogue | outlaw | Evasion
+5938 | rogue | outlaw | Shiv
+57934 | rogue | outlaw | Tricks of the Trade
+185311 | rogue | outlaw | Crimson Vial
+441776 | rogue | outlaw | Coup de Grace
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Shaman/Elemental, real arena-log cast evidence (see arena-log-api.md).
+5394 | shaman | elemental | Healing Stream Totem
+51505 | shaman | elemental | Lava Burst
+51514 | shaman | elemental | Hex (desc=Frog)
+79206 | shaman | elemental | Spiritwalker's Grace
+188196 | shaman | elemental | Lightning Bolt
+192058 | shaman | elemental | Capacitor Totem
+378773 | shaman | elemental | Greater Purge
+443454 | shaman | elemental | Ancestral Swiftness
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Shaman/Enhancement, real arena-log cast evidence (see arena-log-api.md).
+8004 | shaman | enhancement | Healing Surge
+51485 | shaman | enhancement | Earthgrab Totem
+57994 | shaman | enhancement | Wind Shear
+108271 | shaman | enhancement | Astral Shift
+108287 | shaman | enhancement | Totemic Projection
+115356 | shaman | enhancement | Windstrike
+188443 | shaman | enhancement | Chain Lightning
+192058 | shaman | enhancement | Capacitor Totem
+452201 | shaman | enhancement | Tempest
+469270 | shaman | enhancement | Doom Winds
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Shaman/Restoration, real arena-log cast evidence (see arena-log-api.md).
+974 | shaman | restoration | Earth Shield
+8143 | shaman | restoration | Tremor Totem
+51485 | shaman | restoration | Earthgrab Totem
+51514 | shaman | restoration | Hex (desc=Frog)
+57994 | shaman | restoration | Wind Shear
+79206 | shaman | restoration | Spiritwalker's Grace
+108287 | shaman | restoration | Totemic Projection
+192058 | shaman | restoration | Capacitor Totem
+378081 | shaman | restoration | Nature's Swiftness
+378773 | shaman | restoration | Greater Purge
+1267068 | shaman | restoration | Stormstream Totem
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Warlock/Affliction, real arena-log cast evidence (see arena-log-api.md).
+691 | warlock | affliction | Summon Felhunter (desc=Summon)
+702 | warlock | affliction | Curse of Weakness
+333889 | warlock | affliction | Fel Domination
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Warlock/Demonology, real arena-log cast evidence (see arena-log-api.md).
+686 | warlock | demonology | Shadow Bolt
+1714 | warlock | demonology | Curse of Tongues
+5484 | warlock | demonology | Howl of Terror
+5782 | warlock | demonology | Fear
+6789 | warlock | demonology | Mortal Coil
+105174 | warlock | demonology | Hand of Gul'dan
+108416 | warlock | demonology | Dark Pact
+111771 | warlock | demonology | Demonic Gateway
+119914 | warlock | demonology | Axe Toss (desc=Command Demon Ability)
+264178 | warlock | demonology | Demonbolt
+334275 | warlock | demonology | Curse of Exhaustion
+385899 | warlock | demonology | Soulburn
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Warlock/Destruction, real arena-log cast evidence (see arena-log-api.md).
+5484 | warlock | destruction | Howl of Terror
+5782 | warlock | destruction | Fear
+6789 | warlock | destruction | Mortal Coil
+108416 | warlock | destruction | Dark Pact
+111771 | warlock | destruction | Demonic Gateway
+119909 | warlock | destruction | Seduction (desc=Command Demon Ability)
+334275 | warlock | destruction | Curse of Exhaustion
+385899 | warlock | destruction | Soulburn
+442726 | warlock | destruction | Malevolence
+445468 | warlock | destruction | Wither
+452930 | warlock | destruction | Demonic Healthstone
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Warrior/Fury, real arena-log cast evidence (see arena-log-api.md).
+100 | warrior | fury | Charge
+1715 | warrior | fury | Hamstring
+3411 | warrior | fury | Intervene
+5246 | warrior | fury | Intimidating Shout
+6343 | warrior | fury | Thunder Clap
+18499 | warrior | fury | Berserker Rage
+23920 | warrior | fury | Spell Reflection
+46968 | warrior | fury | Shockwave
+52174 | warrior | fury | Heroic Leap
+97462 | warrior | fury | Rallying Cry
+107570 | warrior | fury | Storm Bolt
+202168 | warrior | fury | Impending Victory
+280735 | warrior | fury | Execute
+335096 | warrior | fury | Bloodbath
+335097 | warrior | fury | Crushing Blow
+376079 | warrior | fury | Champion's Spear
+435222 | warrior | fury | Thunder Blast
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Warrior/Protection, real arena-log cast evidence (see arena-log-api.md).
+355 | warrior | protection | Taunt
+3411 | warrior | protection | Intervene
+6343 | warrior | protection | Thunder Clap
+23922 | warrior | protection | Shield Slam
+52174 | warrior | protection | Heroic Leap
+202168 | warrior | protection | Impending Victory
+376079 | warrior | protection | Champion's Spear
+435222 | warrior | protection | Thunder Blast
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Warrior/Arms, real arena-log cast evidence (see arena-log-api.md).
+5246 | warrior | arms | Intimidating Shout
+6343 | warrior | arms | Thunder Clap
+23920 | warrior | arms | Spell Reflection
+46968 | warrior | arms | Shockwave
+107570 | warrior | arms | Storm Bolt
+202168 | warrior | arms | Impending Victory
+376079 | warrior | arms | Champion's Spear
+384100 | warrior | arms | Berserker Shout
+1269383 | warrior | arms | Heroic Strike
+1271985 | warrior | arms | Champion's Leap
+
+# Added via wow:diff-arena-spells --apply, 2026-08-14 — Mage/Frost, real arena-log cast evidence (see arena-log-api.md).
+116 | mage | frost | Frostbolt
+30449 | mage | frost | Spellsteal
+31661 | mage | frost | Dragon's Breath
+113724 | mage | frost | Ring of Frost
+157997 | mage | frost | Ice Nova
+199786 | mage | frost | Glacial Spike
+212653 | mage | frost | Shimmer
+342245 | mage | frost | Alter Time
+414664 | mage | frost | Mass Invisibility

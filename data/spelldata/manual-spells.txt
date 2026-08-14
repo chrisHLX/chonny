@@ -86,3 +86,39 @@ school: Arcane
 duration_seconds: 15
 description: Creates 3 copies of you nearby, which cast spells and attack your enemies. While active, you generate significantly reduced threat. Taking direct damage will cause one of your images to dissipate.
 END
+
+# Shadowstep, added 2026-08-14 — found via arena-log kill-sequence data (spell_id 36554,
+# cast by a real Subtlety Rogue) showing as an unresolved spell_id, same "absent from SimC
+# entirely" shape as everything else in this file. Confirmed three ways before adding: (1) the
+# raw combat log itself names it "Shadowstep" at every cast (a first-party source — the actual
+# WoW client's own combat log), (2) a real spellbook_snapshot (id=6, Assassination Rogue)
+# has spell_id 36554 with resolved_description confirming the name and the Thrill Seeking
+# charge-grant relationship, (3) user-supplied Wowhead spell details: cooldown 30s, duration
+# 3s, 10 Energy, 25 yd range, instant cast. Duration note: the spellbook snapshot's own
+# resolved text says "2 sec" for the movement-speed buff, Wowhead's structured Duration field
+# says "3 seconds" — a real, unresolved discrepancy between two sources; went with the
+# Wowhead structured field as the more likely current/authoritative number, not silently
+# picked without flagging it here.
+#
+# KNOWN GAP, not fixed here: none of Shadowstep's 4 real modifying talents will link to it via
+# spell_relationships automatically. Checked all 4 directly against their own SimC records:
+#   - Thrill Seeking (394931) and Quick Decisions (382503) both reference it via Blizzard's
+#     Category mechanism (Category 1206), which only resolves if the TARGET spell also
+#     declares its own Category — manual-spells.txt has no field for that.
+#   - Shadewalker (457057) and Intent to Kill (381630) have NO structural reference at all,
+#     purely free-text description ("reduce the cooldown of Shadowstep by X sec") — nothing in
+#     the importer parses this shape for regular class/hero talents (the closest existing
+#     mechanism, the PvP-talent free-text cooldown regex, only ever scans PvP talent JSON).
+# Closing this for real needs either a `category:` field added to this file's own format (for
+# the first two) or new free-text parsing (for the second two) — deliberately not built as
+# part of adding this one spell; flagged so it isn't mistaken for an oversight later.
+BEGIN
+spell_id: 36554
+name: Shadowstep
+class: rogue
+specs: all
+school: Physical
+cooldown_seconds: 30
+duration_seconds: 3
+description: Step through the shadows to appear behind your target and gain 70% increased movement speed for 3 sec. If you already know Shadowstep, instead gain 1 additional charge of Shadowstep.
+END

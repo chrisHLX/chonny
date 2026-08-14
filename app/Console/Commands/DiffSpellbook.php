@@ -47,6 +47,30 @@ use Illuminate\Support\Facades\File;
  * before comparing — turning this from "615 things nobody expected to see anyway" into a direct
  * validation of what the Spells page actually shows: does the real character's spellbook agree
  * with what alwaysAvailableAbilityIds() would currently render for this spec?
+ *
+ * Direction D added 2026-08-14, after a real report (Entangling Roots — the exact ability the
+ * spellbook-verifier project was originally motivated by — missing from Feral Druid's kit
+ * display). Root cause traced to a coverage gap distinct from A/B/C: Direction A's own
+ * "hasAvailability" check (see directionA() below) deliberately treats spec_id=NULL as "already
+ * has availability" — correct for its purpose (nothing is crashing/erroring), but it means a
+ * spec_id=NULL baseline ability that's never been promoted to a verified_override for its actual
+ * spec is invisible to every one of A/B/C: not MISSING_AVAILABILITY (A treats NULL as present),
+ * not a Direction C hit either (C only fires on ABSENCE from a real spellbook — Entangling Roots
+ * genuinely IS in this Feral character's spellbook, so C's "not found" comparison never triggers).
+ * Direction D closes this: the mirror image of Direction C — same spec_id=NULL/source=baseline
+ * candidate pool, but flags PRESENCE in the real snapshot as the signal, not absence. A hit here
+ * is strong evidence for promoting that spell to a verified_override for this exact spec via
+ * baseline-spec-overrides.txt.
+ *
+ * Confirmed via a real cross-check across 8 snapshots (one per class) that even this positive
+ * signal isn't automatically trustworthy on its own: a real character's spellbook enumeration
+ * includes every spec ever played, not just the current one (the same root cause behind nearly
+ * every Direction B/C false positive) — so a Direction D hit can still be a different spec's
+ * signature ability leaking in via spec history (e.g. Balance's Celestial Alignment/Solar Eclipse
+ * showing up on a Feral snapshot, Protection's Shield Block/Shield Slam on an Arms snapshot).
+ * Direction D hits still require the same one-at-a-time human review as every other addition to
+ * baseline-spec-overrides.txt before being promoted — this command surfaces strong candidates, it
+ * does not auto-write anything.
  */
 class DiffSpellbook extends Command
 {
@@ -103,6 +127,7 @@ class DiffSpellbook extends Command
         [$missingSpell, $missingAvailability] = $this->directionA($snapshot, $class, $spec, $patch);
         $notInSpellbook = $this->directionB($snapshot, $class, $spec, $patch);
         $ambiguousSpecMismatch = $this->directionC($snapshot, $class, $spec, $patch);
+        $confirmedPresentCandidates = $this->directionD($snapshot, $class, $spec, $patch);
 
         $this->newLine();
         $this->info('=== Direction A: in game, missing/mistagged in DB (the real alarm) ===');
@@ -114,6 +139,9 @@ class DiffSpellbook extends Command
         $this->newLine();
         $this->info('=== Direction C: in DB (spec_id=NULL / class-wide claim), not in game (real spec-tagging correction candidates) ===');
         $this->line('AMBIGUOUS_SPEC_MISMATCH: '.count($ambiguousSpecMismatch));
+        $this->newLine();
+        $this->info('=== Direction D: in DB (spec_id=NULL), CONFIRMED present in game — promotion candidates, still need manual review (spec-history contamination possible) ===');
+        $this->line('CONFIRMED_PRESENT_CANDIDATE: '.count($confirmedPresentCandidates));
 
         if ($missingSpell !== []) {
             $this->newLine();
@@ -151,6 +179,15 @@ class DiffSpellbook extends Command
             ));
         }
 
+        if ($confirmedPresentCandidates !== []) {
+            $this->newLine();
+            $this->comment('CONFIRMED_PRESENT_CANDIDATE details (spec_id=NULL in DB, confirmed present in this spec\'s real spellbook — review each before adding to baseline-spec-overrides.txt, spec-history contamination is possible):');
+            $this->table(['spell_id', 'name', 'cooldown_seconds'], array_map(
+                fn (array $r) => [$r['spell_id'], $r['name'], $r['cooldown_seconds'] ?? '-'],
+                $confirmedPresentCandidates
+            ));
+        }
+
         if ($this->option('json')) {
             $result = [
                 'snapshot_id' => $snapshot->id,
@@ -161,6 +198,7 @@ class DiffSpellbook extends Command
                 'missing_availability' => $missingAvailability,
                 'not_in_spellbook_candidate' => $notInSpellbook,
                 'ambiguous_spec_mismatch' => $ambiguousSpecMismatch,
+                'confirmed_present_candidate' => $confirmedPresentCandidates,
             ];
 
             $dir = storage_path('app/wow-diffs');
@@ -289,6 +327,61 @@ class DiffSpellbook extends Command
                 $candidates[] = ['spell_id' => $spell->spell_id, 'name' => $spell->name, 'source' => $row->source];
             }
         }
+
+        return $candidates;
+    }
+
+    /**
+     * The inverse of directionC()/notFoundInSpellbook(): spec_id=NULL baseline rows CONFIRMED
+     * present in this real snapshot — strong promotion candidates for baseline-spec-overrides.txt,
+     * but not auto-applied. See this class's docblock ("Direction D added 2026-08-14") for why
+     * presence alone still isn't sufficient without a human spec-history sanity check.
+     *
+     * Deliberately does NOT apply Direction C's cooldown/charges requirement — the exact gap this
+     * direction exists to close is no-cooldown baseline abilities (Shred, Ferocious Bite,
+     * Entangling Roots) that a cooldown filter would itself exclude.
+     *
+     * @return array<int, array>
+     */
+    private function directionD(SpellbookSnapshot $snapshot, GameClass $class, ?Specialization $spec, Patch $patch): array
+    {
+        if (!$spec) {
+            return [];
+        }
+
+        $snapshotSpellIds = $snapshot->entries->pluck('spell_id')->unique();
+
+        $alreadyVerified = SpellClassAvailability::where('class_id', $class->id)
+            ->where('spec_id', $spec->id)
+            ->where('source', 'verified_override')
+            ->pluck('spell_id')
+            ->flip();
+
+        $rows = SpellClassAvailability::where('class_id', $class->id)
+            ->whereNull('spec_id')
+            ->where('source', 'baseline')
+            ->whereHas('spell', function ($q) use ($patch) {
+                $q->where('patch_id', $patch->id)
+                    ->where('is_passive', false)
+                    ->where('not_in_spellbook', false)
+                    ->where('name', 'not like', '%(desc=%');
+            })
+            ->with('spell')
+            ->get();
+
+        $candidates = [];
+        foreach ($rows as $row) {
+            $spellRow = $row->spell;
+            if (!$spellRow || !$snapshotSpellIds->contains($spellRow->spell_id)) {
+                continue;
+            }
+            if ($alreadyVerified->has($spellRow->id)) {
+                continue;
+            }
+            $candidates[] = ['spell_id' => $spellRow->spell_id, 'name' => $spellRow->name, 'cooldown_seconds' => $spellRow->cooldown_seconds];
+        }
+
+        usort($candidates, fn ($a, $b) => $a['name'] <=> $b['name']);
 
         return $candidates;
     }

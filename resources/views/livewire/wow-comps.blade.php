@@ -159,6 +159,11 @@
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
                     Synergies
                 </button>
+                <button type="button" @click="tab = 'killsequence'" class="tab-btn flex items-center gap-1.5" :class="tab === 'killsequence' ? 'tab-active' : 'tab-inactive'">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Kill Sequence
+                    <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
+                </button>
             </div>
 
             @foreach ($groupOrder as $groupKey => $groupLabel)
@@ -366,6 +371,66 @@
                         </div>
                     </div>
                 @endif
+            </div>
+
+            {{-- Kill Sequence tab — DEV/preview, deliberately not gated on sample size (see
+                 WowComps::getKillSequencesProperty()'s docblock). Shows, per member, what
+                 actually gets cast in the real seconds before a kill across every recorded
+                 arena log for that spec — data/arena-logs/kill-sequences/*/*.jsonl, built by
+                 ArenaLogService::recordKillSequence()/wow:record-kill-sequences. sampleSize is
+                 shown explicitly so a low number reads as "not much data yet" rather than a
+                 confident answer. --}}
+            <div x-show="tab === 'killsequence'" x-cloak class="space-y-4">
+                <div class="linear-card p-4">
+                    <p class="text-[12px] text-ink-muted leading-relaxed">
+                        <span class="text-amber-400 font-semibold">Preview / in development.</span>
+                        What each spec actually cast in the ~20 seconds before a real kill, aggregated across every arena match on file. Sample sizes vary a lot by spec right now — a low count means "not much data yet," not a confident answer.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3">
+                    @foreach ($comp as $mi => $member)
+                        <div class="linear-card p-3 space-y-2">
+                            @if (!$member['spec'])
+                                <p class="text-[11px] text-ink-subtle">—</p>
+                            @else
+                                @php $ks = $killSequences[$mi]; @endphp
+                                <div class="flex items-center justify-between">
+                                    <p class="text-[11px] font-semibold text-ink truncate">{{ $member['spec']->name }} {{ $member['class']->name }}</p>
+                                    <span class="badge-gray !text-[9px] whitespace-nowrap">{{ $ks['sampleSize'] }} sample{{ $ks['sampleSize'] === 1 ? '' : 's' }}</span>
+                                </div>
+
+                                @if ($ks['sampleSize'] === 0)
+                                    <p class="text-[11px] text-ink-subtle italic">No recorded kill sequences for this spec yet.</p>
+                                @else
+                                    <div class="space-y-0.5">
+                                        @foreach ($ks['ranked'] as $r)
+                                            <div class="flex items-center gap-2">
+                                                <div class="flex-1 h-4 bg-surface-2 rounded overflow-hidden relative">
+                                                    <div class="h-full bg-gold/30" style="width: {{ $r['pct'] }}%"></div>
+                                                    <span class="absolute inset-0 flex items-center px-1.5 text-[10px] text-ink truncate">{{ $r['name'] }}</span>
+                                                </div>
+                                                <span class="text-[10px] text-ink-subtle font-mono w-8 text-right">{{ $r['pct'] }}%</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                    @if ($ks['examples']->isNotEmpty())
+                                        <div class="pt-2 mt-2 border-t border-line space-y-2">
+                                            <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Real examples</p>
+                                            @foreach ($ks['examples'] as $ex)
+                                                <div class="text-[10px] text-ink-muted leading-relaxed">
+                                                    <p class="text-ink-subtle">vs {{ $ex['losingComp']->implode(' / ') }} — killed {{ $ex['killedSpecName'] }}</p>
+                                                    <p class="mt-0.5">{{ $ex['sequence']->implode(' → ') }}</p>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                @endif
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
 

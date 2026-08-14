@@ -133,6 +133,10 @@ class ImportSpellData extends Command
 
     private int $ccSynergyOverrideSkips = 0;
 
+    private int $scalarCorrectionsApplied = 0;
+
+    private int $scalarCorrectionSkips = 0;
+
     public function handle(SpellDataFileParser $parser): int
     {
         $this->parser = $parser;
@@ -190,6 +194,7 @@ class ImportSpellData extends Command
         $this->importManualSpells($patch);
         $this->importBaselineSpecOverrides($patch);
         $this->importCcSynergyOverrides($patch);
+        $this->importScalarCorrections($patch);
 
         // Retroactive cleanup for talent_build_choices rows written before the same-position
         // collision guard existed (see TalentSelectionService::cleanupSamePositionCollisions()'s
@@ -1442,6 +1447,88 @@ class ImportSpellData extends Command
         }
     }
 
+    /**
+     * Reads data/spelldata/scalar-corrections.txt — see that file's own header for the full
+     * rationale. Field-level patch only: a spell must already exist for this patch (created via
+     * the normal SimC import, PvP-talent import, or importManualSpells() above), and only the
+     * fields actually given on the line are touched — omitting a field leaves whatever's already
+     * there alone, unlike importCcSynergyOverrides() above which always writes all five of its
+     * own fields explicitly. Never creates a spell or touches spell_class_availability — this is
+     * strictly narrower than manual-spells.txt on purpose (see this method's own header note on
+     * why reusing that file would have created duplicate availability rows for a spell that's
+     * already correctly available).
+     */
+    private function importScalarCorrections(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/scalar-corrections.txt');
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        $validFields = ['cooldown_seconds', 'duration_seconds', 'mechanic'];
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line, 3));
+
+            if (count($parts) < 2 || !ctype_digit($parts[0])) {
+                $this->scalarCorrectionSkips++;
+                $this->warn("  Skipping malformed scalar-corrections.txt line: {$line}");
+
+                continue;
+            }
+
+            [$externalSpellId, $fieldsRaw] = $parts;
+
+            $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
+
+            if (!$spell) {
+                $this->scalarCorrectionSkips++;
+                $this->warn("  Skipping unresolved scalar-corrections.txt line (spell not found for this patch — this file only patches existing spells, it never creates one): {$line}");
+
+                continue;
+            }
+
+            $values = [];
+            $malformed = false;
+
+            foreach (explode(',', $fieldsRaw) as $pair) {
+                $pair = trim($pair);
+
+                if ($pair === '' || !str_contains($pair, '=')) {
+                    continue;
+                }
+
+                [$field, $value] = array_map('trim', explode('=', $pair, 2));
+
+                if (!in_array($field, $validFields, true)) {
+                    $this->warn("  Skipping unknown scalar-corrections.txt field '{$field}': {$line}");
+                    $malformed = true;
+
+                    continue;
+                }
+
+                $values[$field] = $field === 'mechanic' ? $value : (float) $value;
+            }
+
+            if ($malformed || $values === []) {
+                $this->scalarCorrectionSkips++;
+
+                continue;
+            }
+
+            $this->upsertTrack(Spell::class, ['id' => $spell->id], $values, 'spells');
+
+            $this->scalarCorrectionsApplied++;
+        }
+    }
+
     private function resolveOrCreateSpell(int $patchId, int $externalSpellId, string $name, ?string $description = null): Spell
     {
         if (isset($this->spellIndex[$externalSpellId])) {
@@ -1599,6 +1686,10 @@ class ImportSpellData extends Command
 
         if ($this->manualSpellsApplied > 0 || $this->manualSpellsSkipped > 0) {
             $this->comment("Manual spells: {$this->manualSpellsApplied} applied, {$this->manualSpellsSkipped} skipped (see warnings above).");
+        }
+
+        if ($this->scalarCorrectionsApplied > 0 || $this->scalarCorrectionSkips > 0) {
+            $this->comment("Scalar corrections (cooldown_seconds/duration_seconds/mechanic): {$this->scalarCorrectionsApplied} applied, {$this->scalarCorrectionSkips} skipped (see warnings above).");
         }
 
         if ($this->ccSynergyOverridesApplied > 0 || $this->ccSynergyOverrideSkips > 0) {

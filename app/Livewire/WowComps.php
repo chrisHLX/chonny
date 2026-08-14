@@ -14,6 +14,7 @@ use App\Models\TalentBuild;
 use App\Models\TalentNodeEntry;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
 /**
@@ -369,12 +370,118 @@ class WowComps extends Component
         ];
     }
 
+    /**
+     * Kill Sequence tab data — reads data/arena-logs/kill-sequences/{classSlug}/{specSlug}.jsonl
+     * (built by ArenaLogService::recordKillSequence(), see that method's docblock) directly off
+     * disk per request. Deliberately NOT gated on a minimum sample size (per direct user
+     * instruction 2026-08-14 — "this is in development I want to see how the data looks and
+     * feels on screen") — a spec with 1 recorded instance shows 100% for everything it did,
+     * which is honestly noisy, not a bug; sampleSize is exposed to the view specifically so the
+     * UI can (and eventually should) flag low-confidence data rather than presenting every spec
+     * with equal authority. A spec with zero recorded matches shows an explicit empty state.
+     *
+     * Ranked by DISTINCT-instance frequency (matches wow:common-prekill-spells's own logic) —
+     * how many of this spec's recorded pre-kill windows an ability appears in at all, not raw
+     * cast count, so one spammy filler cast within a single window can't outrank something that
+     * reliably shows up across many different real kills.
+     *
+     * @return array<int, array{sampleSize: int, ranked: Collection, examples: Collection}|null>
+     */
+    public function getKillSequencesProperty(): array
+    {
+        return collect($this->comp)->map(function ($member) {
+            if (!$member['spec']) {
+                return null;
+            }
+
+            return $this->killSequenceDataFor($member['class'], $member['spec']);
+        })->all();
+    }
+
+    /**
+     * @return array{sampleSize: int, ranked: Collection, examples: Collection}
+     */
+    private function killSequenceDataFor(GameClass $class, Specialization $spec): array
+    {
+        $path = base_path("data/arena-logs/kill-sequences/{$class->slug}/{$spec->slug}.jsonl");
+
+        if (!File::exists($path)) {
+            return ['sampleSize' => 0, 'ranked' => collect(), 'examples' => collect()];
+        }
+
+        $records = collect(File::lines($path))
+            ->map(fn ($line) => json_decode($line, true))
+            ->filter();
+
+        $sampleSize = $records->count();
+
+        if ($sampleSize === 0) {
+            return ['sampleSize' => 0, 'ranked' => collect(), 'examples' => collect()];
+        }
+
+        $matchCountBySpell = [];
+        $nameBySpell = [];
+
+        foreach ($records as $record) {
+            $seenThisRecord = [];
+            foreach ($record['sequence'] as $cast) {
+                $id = $cast['spellId'];
+
+                // Prefer an ASCII (English) name across matches, not last-write-wins. A spell
+                // not yet in our `spells` table falls back to each individual match's own raw
+                // combat log name (ArenaLogService::recordKillSequence()'s hybrid resolver) —
+                // and different matches can be recorded by different-locale clients, so the same
+                // spell_id can carry an English name in one match and e.g. a Chinese name in
+                // another. Without this guard, whichever match happened to be processed last
+                // silently decided the aggregated display name — confirmed live 2026-08-14
+                // (Snowdrift showed as Chinese characters in the ranked list despite most
+                // recorded instances being English). A spell already in our `spells` table never
+                // hits this ambiguity at all (recordKillSequence() always resolves those to the
+                // same canonical DB name regardless of which match recorded them).
+                if (!isset($nameBySpell[$id]) || (preg_match('/[^\x00-\x7F]/', $nameBySpell[$id]) && !preg_match('/[^\x00-\x7F]/', $cast['name']))) {
+                    $nameBySpell[$id] = $cast['name'];
+                }
+
+                if (!isset($seenThisRecord[$id])) {
+                    $seenThisRecord[$id] = true;
+                    $matchCountBySpell[$id] = ($matchCountBySpell[$id] ?? 0) + 1;
+                }
+            }
+        }
+
+        $ranked = collect($matchCountBySpell)
+            ->map(fn ($count, $id) => [
+                'name' => $nameBySpell[$id],
+                'spellId' => $id,
+                'count' => $count,
+                'pct' => (int) round($count / $sampleSize * 100),
+            ])
+            ->sortByDesc('count')
+            ->take(12)
+            ->values();
+
+        $specNames = Specialization::whereIn('external_spec_id', $records->flatMap(fn ($r) => array_merge($r['winningComp'], $r['losingComp'], [$r['killedSpec']]))->unique())
+            ->get()
+            ->keyBy('external_spec_id')
+            ->map(fn ($s) => $s->name);
+
+        $examples = $records->take(3)->map(fn ($r) => [
+            'sequence' => collect($r['sequence'])->pluck('name'),
+            'winningComp' => collect($r['winningComp'])->map(fn ($id) => $specNames[$id] ?? "spec {$id}"),
+            'losingComp' => collect($r['losingComp'])->map(fn ($id) => $specNames[$id] ?? "spec {$id}"),
+            'killedSpecName' => $specNames[$r['killedSpec']] ?? "spec {$r['killedSpec']}",
+        ]);
+
+        return ['sampleSize' => $sampleSize, 'ranked' => $ranked, 'examples' => $examples];
+    }
+
     public function render()
     {
         return view('livewire.wow-comps', [
             'classSpecs' => $this->classSpecs,
             'comp' => $this->comp,
             'synergies' => $this->synergies,
+            'killSequences' => $this->killSequences,
         ])->layout('layouts.app');
     }
 }
