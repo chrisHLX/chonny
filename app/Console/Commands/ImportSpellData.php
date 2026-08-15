@@ -1586,6 +1586,58 @@ class ImportSpellData extends Command
             $result[$heroTreeNameSlug] = array_keys($specs);
         }
 
+        return $this->applyHeroTreeSpecOverrides($classDir, $result);
+    }
+
+    /**
+     * Applies data/spelldata/hero-tree-spec-overrides.txt on top of scanHeroTreeSpecs()'s raw
+     * SimC-dump-derived result — for the rare case the dump's own "(SpecList)" tag is simply
+     * wrong, not a parsing problem on our side. Found 2026-08-15: Demon Hunter's Fel-Scarred and
+     * Void-Scarred hero-*.txt files both tag "(Havoc, Devourer)" and Annihilator tags
+     * "(Generic)" (not a real spec name — silently dropped by the lookup this method already
+     * does), all three confirmed wrong by the user directly (real, current game knowledge —
+     * Devourer is brand-new content, plausibly why the community-maintained SimC dump hasn't
+     * caught up). Same "verify by hand, one line at a time, never bulk-derive" discipline as
+     * baseline-spec-overrides.txt — an override REPLACES the scanned spec list for that hero
+     * tree entirely, it doesn't merge, since the whole point is the scanned list was wrong.
+     *
+     * Scoped by classSlug so this can't silently apply to the wrong class if the same hero-tree
+     * name slug ever collided across classes (not expected, but cheap to guard against).
+     */
+    private function applyHeroTreeSpecOverrides(string $classDir, array $result): array
+    {
+        $path = base_path('data/spelldata/hero-tree-spec-overrides.txt');
+
+        if (!File::exists($path)) {
+            return $result;
+        }
+
+        $classSlug = $this->normalizeSlug(basename($classDir));
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line));
+
+            if (count($parts) < 3) {
+                $this->warn("  Malformed hero-tree-spec-overrides.txt line, skipping: {$line}");
+
+                continue;
+            }
+
+            [$overrideClassSlug, $heroTreeSlug, $specListText] = $parts;
+
+            if ($this->normalizeSlug($overrideClassSlug) !== $classSlug) {
+                continue;
+            }
+
+            $result[$this->normalizeSlug($heroTreeSlug)] = array_map('trim', explode(',', $specListText));
+        }
+
         return $result;
     }
 

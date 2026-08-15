@@ -598,6 +598,75 @@ class ArenaLogService
     }
 
     /**
+     * The low-rating counterpart to pullTopMatchesForSpec() — same gather-across-pages,
+     * dedupe-by-matchId-already-on-disk mechanics, but sorts ascending and filters to
+     * $ratingCeiling and below instead of taking the highest. Built 2026-08-15 because the
+     * comp/spec-index manifests (pullBestWinForComp()/pullHighestRatedMatchForSpec()) only
+     * ever track a single "best" match per key — there is no existing path that deliberately
+     * goes after LOW-rated matches, and a rating-tier comparison (e.g. 2800 vs ~2100 play)
+     * needs several of those, not the accidental few that happened to already be on disk from
+     * earlier comp/spec pulls.
+     *
+     * `latestMatches` has no server-side max-rating filter (only `minRating` exists in the
+     * schema, per arena-log-api.md) — this pages through recent matches with NO rating filter
+     * applied server-side and does the ceiling filtering client-side, same "gather then sort/
+     * filter in PHP" approach gatherSpecCandidates() already uses for the opposite direction.
+     * Recent matches span the full ladder by construction (whoever happens to be queuing right
+     * now), so a plain recent-matches scan surfaces plenty of sub-2300 games without needing
+     * any special low-rating query mode.
+     *
+     * No manifest — unlike pullHighestRatedMatchForSpec()/pullBestWinForComp(), "the low-rated
+     * match for this spec" isn't a single stable target to track/replace-on-improvement the way
+     * "the highest-rated" is (there's no single canonical answer to converge on), so this just
+     * pulls up to $topN distinct low-rated matches it finds and returns per-match status. Skips
+     * (no network call) any match already on disk, same as pullTopMatchesForSpec().
+     *
+     * $ratingFloor added 2026-08-15 (optional, defaults to 0 — original ceiling-only behavior
+     * unchanged for existing callers) so this can target a specific band (e.g. 2100–2400, the
+     * "Duelist" title range) instead of always pulling from the absolute bottom of the ladder up.
+     * Without a floor, sorting ascending under a ceiling keeps grabbing whatever is lowest-rated
+     * in the scanned window first — confirmed in practice pulling Havoc data 2026-08-15: a
+     * 2300 ceiling with no floor returned matches clustered in the 1700s–1900s, nothing near
+     * 2100–2300, because that's simply where the bulk of the recent-match population sits. A
+     * floor is the only way to force coverage of a specific mid-range band rather than always
+     * re-finding the same bottom-of-the-ladder games.
+     *
+     * @return array<int, array{matchId: string, rating: int, status: string}>
+     */
+    public function pullLowRatedMatchesForSpec(int $specExternalId, string $bracket, int $pages, int $topN, int $ratingCeiling, int $ratingFloor = 0): array
+    {
+        $candidates = $this->gatherSpecCandidates($specExternalId, $bracket, $pages);
+        $candidates = array_values(array_filter($candidates, fn ($c) => $c['rating'] > $ratingFloor && $c['rating'] <= $ratingCeiling));
+        usort($candidates, fn ($a, $b) => $a['rating'] <=> $b['rating']);
+        $chosen = array_slice($candidates, 0, $topN);
+
+        $results = [];
+
+        foreach ($chosen as $c) {
+            $matchId = $c['matchId'];
+
+            if (File::exists(base_path("data/arena-logs/metadata/{$matchId}.json"))) {
+                $results[] = ['matchId' => $matchId, 'rating' => $c['rating'], 'status' => 'already_on_disk'];
+
+                continue;
+            }
+
+            $match = $this->fetchMatch($matchId);
+
+            if ($match === null) {
+                $results[] = ['matchId' => $matchId, 'rating' => $c['rating'], 'status' => 'fetch_failed'];
+
+                continue;
+            }
+
+            $stored = $this->storeMatch($matchId, $match);
+            $results[] = ['matchId' => $matchId, 'rating' => $c['rating'], 'status' => isset($stored['error']) ? 'fetch_failed' : 'stored'];
+        }
+
+        return $results;
+    }
+
+    /**
      * Merges a match's cast-spell list for one (class, spec) into the cumulative, deduped
      * plain-text file at data/arena-logs/spell-usage/{classSlug}/{specSlug}.txt — shared by
      * wow:extract-arena-spells (manual, per-match) and wow:discover-spec-spells (automated

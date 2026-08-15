@@ -164,6 +164,11 @@
                     Kill Sequence
                     <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
                 </button>
+                <button type="button" @click="tab = 'ratingtiers'" class="tab-btn flex items-center gap-1.5" :class="tab === 'ratingtiers' ? 'tab-active' : 'tab-inactive'">
+                    <x-mc-icon name="icon-compass" class="w-3.5 h-3.5"/>
+                    Rating Tiers
+                    <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
+                </button>
             </div>
 
             @foreach ($groupOrder as $groupKey => $groupLabel)
@@ -373,59 +378,143 @@
                 @endif
             </div>
 
-            {{-- Kill Sequence tab — DEV/preview, deliberately not gated on sample size (see
-                 WowComps::getKillSequencesProperty()'s docblock). Shows, per member, what
-                 actually gets cast in the real seconds before a kill across every recorded
-                 arena log for that spec — data/arena-logs/kill-sequences/*/*.jsonl, built by
-                 ArenaLogService::recordKillSequence()/wow:record-kill-sequences. sampleSize is
-                 shown explicitly so a low number reads as "not much data yet" rather than a
-                 confident answer. --}}
+            {{-- Kill Sequence tab — DEV/preview. Shows, per member and now per RATING BAND, what
+                 actually gets cast in the real seconds before a kill — sourced from
+                 data/arena-logs/rating-tiers/{class}/{spec}.json's own killWindow stat on each
+                 band (RatingTierAnalysisService::killWindowStats(), same computation the Rating
+                 Tiers tab uses, filtered to that band's matchIds against the same
+                 kill-sequences/*.jsonl file ArenaLogService::recordKillSequence() builds — no
+                 duplicate computation, this tab just renders data already produced for the
+                 Rating Tiers tab). Added 2026-08-15 on direct request ("I would imagine there
+                 might be a difference between the 3 tiers") — the flat, all-ratings-combined
+                 single ranked list this tab used to show couldn't answer that question at all.
+                 killWindow.n is shown per band since it's a real SUBSET of that band's total
+                 sample (only winning kills produce a recorded sequence at all, so it's usually
+                 smaller than the band's overall performance count from the Rating Tiers tab). --}}
             <div x-show="tab === 'killsequence'" x-cloak class="space-y-4">
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
                         <span class="text-amber-400 font-semibold">Preview / in development.</span>
-                        What each spec actually cast in the ~20 seconds before a real kill, aggregated across every arena match on file. Sample sizes vary a lot by spec right now — a low count means "not much data yet," not a confident answer.
+                        What each spec actually cast in the ~20 seconds before a real kill, broken down by rating band. Sample sizes vary a lot by spec and band right now — a low count means "not much data yet," not a confident answer.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-3 gap-3">
                     @foreach ($comp as $mi => $member)
-                        <div class="linear-card p-3 space-y-2">
+                        <div class="linear-card p-3 space-y-3">
                             @if (!$member['spec'])
                                 <p class="text-[11px] text-ink-subtle">—</p>
                             @else
-                                @php $ks = $killSequences[$mi]; @endphp
-                                <div class="flex items-center justify-between">
-                                    <p class="text-[11px] font-semibold text-ink truncate">{{ $member['spec']->name }} {{ $member['class']->name }}</p>
-                                    <span class="badge-gray !text-[9px] whitespace-nowrap">{{ $ks['sampleSize'] }} sample{{ $ks['sampleSize'] === 1 ? '' : 's' }}</span>
-                                </div>
+                                @php $rt = $ratingTiers[$mi]; @endphp
+                                <p class="text-[11px] font-semibold text-ink truncate">{{ $member['spec']->name }} {{ $member['class']->name }}</p>
 
-                                @if ($ks['sampleSize'] === 0)
-                                    <p class="text-[11px] text-ink-subtle italic">No recorded kill sequences for this spec yet.</p>
+                                @if (empty($rt['bands']))
+                                    <p class="text-[11px] text-ink-subtle italic">No rating-tier data for this spec yet.</p>
                                 @else
-                                    <div class="space-y-0.5">
-                                        @foreach ($ks['ranked'] as $r)
-                                            <div class="flex items-center gap-2">
-                                                <div class="flex-1 h-4 bg-surface-2 rounded overflow-hidden relative">
-                                                    <div class="h-full bg-gold/30" style="width: {{ $r['pct'] }}%"></div>
-                                                    <span class="absolute inset-0 flex items-center px-1.5 text-[10px] text-ink truncate">{{ $r['name'] }}</span>
+                                    @foreach ($rt['bands'] as $band)
+                                        @php $kw = $band['killWindow'] ?? ['n' => 0, 'spellPct' => []]; @endphp
+                                        <div class="pt-2 first:pt-0 border-t border-line first:border-t-0">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-[11px] font-semibold text-ink">{{ $band['label'] }}</span>
+                                                <span class="badge-gray !text-[9px] whitespace-nowrap">{{ $kw['n'] }} kill{{ $kw['n'] === 1 ? '' : 's' }}</span>
+                                            </div>
+
+                                            @if ($kw['n'] === 0)
+                                                <p class="text-[10px] text-ink-subtle italic mt-0.5">No recorded kills in this band yet.</p>
+                                            @else
+                                                <div class="space-y-0.5 mt-1">
+                                                    @foreach ($kw['spellPct'] as $spellName => $pct)
+                                                        <div class="flex items-center gap-2">
+                                                            <div class="flex-1 h-4 bg-surface-2 rounded overflow-hidden relative">
+                                                                <div class="h-full bg-gold/30" style="width: {{ $pct }}%"></div>
+                                                                <span class="absolute inset-0 flex items-center px-1.5 text-[10px] text-ink truncate">{{ $spellName }}</span>
+                                                            </div>
+                                                            <span class="text-[10px] text-ink-subtle font-mono w-8 text-right">{{ $pct }}%</span>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                                <span class="text-[10px] text-ink-subtle font-mono w-8 text-right">{{ $r['pct'] }}%</span>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endif
+
+                                @php $ks = $killSequences[$mi]; @endphp
+                                @if ($ks['examples']->isNotEmpty())
+                                    <div class="pt-2 mt-2 border-t border-line space-y-2">
+                                        <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Real examples (all ratings combined)</p>
+                                        @foreach ($ks['examples'] as $ex)
+                                            <div class="text-[10px] text-ink-muted leading-relaxed">
+                                                <p class="text-ink-subtle">vs {{ $ex['losingComp']->implode(' / ') }} — killed {{ $ex['killedSpecName'] }}</p>
+                                                <p class="mt-0.5">{{ $ex['sequence']->implode(' → ') }}</p>
                                             </div>
                                         @endforeach
                                     </div>
+                                @endif
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            </div>
 
-                                    @if ($ks['examples']->isNotEmpty())
-                                        <div class="pt-2 mt-2 border-t border-line space-y-2">
-                                            <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Real examples</p>
-                                            @foreach ($ks['examples'] as $ex)
-                                                <div class="text-[10px] text-ink-muted leading-relaxed">
-                                                    <p class="text-ink-subtle">vs {{ $ex['losingComp']->implode(' / ') }} — killed {{ $ex['killedSpecName'] }}</p>
-                                                    <p class="mt-0.5">{{ $ex['sequence']->implode(' → ') }}</p>
+            {{-- Rating Tiers tab — DEV/preview, reads data/arena-logs/rating-tiers/{class}/{spec}.json
+                 directly (RatingTierAnalysisService / wow:analyze-rating-tiers), same "read straight
+                 off disk, no DB, no cache" posture as the Kill Sequence tab above. Damage/spell-cast
+                 rate/CC/interrupts/deaths/win-loss are shown per rating band, further split by hero
+                 talent tree (Aldrachi Reaver vs Fel-Scarred etc.) — see the command's own docblock
+                 for why the hero-tree split matters (a flat per-spec average silently blends
+                 different playstyles together for hero-tree-exclusive abilities). --}}
+            <div x-show="tab === 'ratingtiers'" x-cloak class="space-y-4">
+                <div class="linear-card p-4">
+                    <p class="text-[12px] text-ink-muted leading-relaxed">
+                        <span class="text-amber-400 font-semibold">Preview / in development.</span>
+                        Damage, spell-cast rate, and win/loss-controlled survivability compared across rating bands, further split by hero talent tree. Sample sizes vary a lot by spec and hero tree right now — a low count means "not much data yet," not a confident answer.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3">
+                    @foreach ($comp as $mi => $member)
+                        <div class="linear-card p-3 space-y-3">
+                            @if (!$member['spec'])
+                                <p class="text-[11px] text-ink-subtle">—</p>
+                            @else
+                                @php $rt = $ratingTiers[$mi]; @endphp
+                                <p class="text-[11px] font-semibold text-ink truncate">{{ $member['spec']->name }} {{ $member['class']->name }}</p>
+
+                                @if (empty($rt['bands']))
+                                    <p class="text-[11px] text-ink-subtle italic">No rating-tier data for this spec yet.</p>
+                                @else
+                                    @foreach ($rt['bands'] as $band)
+                                        <div class="pt-2 first:pt-0 border-t border-line first:border-t-0">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-[11px] font-semibold text-ink">{{ $band['label'] }}</span>
+                                                <span class="badge-gray !text-[9px] whitespace-nowrap">n={{ $band['n'] }}</span>
+                                            </div>
+
+                                            @if ($band['n'] === 0)
+                                                <p class="text-[10px] text-ink-subtle italic mt-0.5">No matches on disk in this range.</p>
+                                            @else
+                                                <div class="grid grid-cols-2 gap-x-2 gap-y-0.5 mt-1 text-[10px]">
+                                                    <span class="text-ink-subtle">DPS</span><span class="text-ink font-mono text-right">{{ number_format($band['avgDps']) }}</span>
+                                                    <span class="text-ink-subtle">Casts/min</span><span class="text-ink font-mono text-right">{{ $band['avgCastsPerMin'] }}</span>
+                                                    <span class="text-ink-subtle">Win rate</span><span class="text-ink font-mono text-right">{{ $band['winRate'] !== null ? $band['winRate'].'%' : '—' }}</span>
+                                                    <span class="text-ink-subtle">Deaths/game</span><span class="text-ink font-mono text-right">{{ $band['avgDeaths'] }}</span>
                                                 </div>
-                                            @endforeach
+
+                                                @if (!empty($band['heroTreeBreakdown']) && count($band['heroTreeBreakdown']) > 1)
+                                                    <div class="mt-1.5 pl-2 border-l border-line space-y-1">
+                                                        @foreach ($band['heroTreeBreakdown'] as $treeName => $treeStats)
+                                                            @if (($treeStats['n'] ?? 0) > 0)
+                                                                <div class="flex items-center justify-between text-[9.5px]">
+                                                                    <span class="text-ink-subtle truncate">{{ $treeName }} <span class="text-ink-subtle">(n={{ $treeStats['n'] }})</span></span>
+                                                                    <span class="text-ink font-mono">{{ number_format($treeStats['avgDps']) }} dps</span>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    </div>
+                                                @endif
+                                            @endif
                                         </div>
-                                    @endif
+                                    @endforeach
                                 @endif
                             @endif
                         </div>

@@ -475,6 +475,44 @@ class WowComps extends Component
         return ['sampleSize' => $sampleSize, 'ranked' => $ranked, 'examples' => $examples];
     }
 
+    /**
+     * Rating Tiers tab data — reads data/arena-logs/rating-tiers/{classSlug}/{specSlug}.json
+     * directly (built by RatingTierAnalysisService::analyzeSpec() / wow:analyze-rating-tiers),
+     * same "no DB, no caching, read straight off disk" posture as getKillSequencesProperty()
+     * above. The file is a full JSON blob (not a per-line log), so this is a plain decode-and-
+     * pass-through — no aggregation happens at render time, unlike the kill-sequence tab, since
+     * wow:analyze-rating-tiers already computed every number (including the hero-tree
+     * breakdown) ahead of time.
+     *
+     * @return array<int, array{bands: array}|null>
+     */
+    public function getRatingTiersProperty(): array
+    {
+        return collect($this->comp)->map(function ($member) {
+            if (!$member['spec'] || !$member['class']) {
+                return null;
+            }
+
+            return $this->ratingTierDataFor($member['class'], $member['spec']);
+        })->all();
+    }
+
+    /**
+     * @return array{bands: array}
+     */
+    private function ratingTierDataFor(GameClass $class, Specialization $spec): array
+    {
+        $path = base_path("data/arena-logs/rating-tiers/{$class->slug}/{$spec->slug}.json");
+
+        if (!File::exists($path)) {
+            return ['bands' => []];
+        }
+
+        $decoded = json_decode(File::get($path), true);
+
+        return ['bands' => $decoded['bands'] ?? []];
+    }
+
     public function render()
     {
         return view('livewire.wow-comps', [
@@ -482,6 +520,7 @@ class WowComps extends Component
             'comp' => $this->comp,
             'synergies' => $this->synergies,
             'killSequences' => $this->killSequences,
+            'ratingTiers' => $this->ratingTiers,
         ])->layout('layouts.app');
     }
 }
