@@ -51,9 +51,7 @@ Route::get('/checkout/success', fn () => view('checkout.success'))->name('checko
 Route::get('/checkout/cancel', fn () => view('checkout.cancel'))->name('checkout.cancel');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', \App\Livewire\WowComps::class);
 
 Route::get('/diagnostic', function () {
     return view('diagnostic');

@@ -1,4 +1,12 @@
 <x-guest-layout>
+    <div class="flex items-start gap-2.5 mb-5 px-3 py-2.5 rounded-md bg-gold-subtle border border-line-gold">
+        <x-mc-icon name="icon-flask" class="w-4 h-4 text-gold shrink-0 mt-0.5"/>
+        <p class="text-[12px] text-ink-muted leading-snug">
+            <span class="text-gold font-semibold">Actively in development.</span>
+            Expect rough edges, and features may change or reset while we build.
+        </p>
+    </div>
+
     <form id="register-form" method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf
 

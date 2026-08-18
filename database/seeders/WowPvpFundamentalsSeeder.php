@@ -342,7 +342,7 @@ DR prevents CC from being applied indefinitely. When the same **category** of CC
 | Second      | 50% duration |
 | Third       | 0% (Full Immunity) |
 
-The DR window resets 16 seconds after the last CC effect of that category expires — once 16 seconds pass with no new application of that category, the next application lands at full duration again.
+The DR window resets 20 seconds after the last CC effect of that category expires — once 20 seconds pass with no new application of that category, the next application lands at full duration again.
 
 DR is shared within categories — stuns share DR with other stuns, fears share with fears, and so on. Silences and incapacitates each have their own categories.
 

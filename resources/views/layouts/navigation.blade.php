@@ -16,6 +16,7 @@
             <span class="text-[13px] font-semibold tracking-tight">
                 <span class="text-ink">Mind</span><span class="text-gold">Collector</span>
             </span>
+            <span class="text-[9px] uppercase tracking-wide text-ink-subtle border border-line-strong rounded px-1 py-0.5 leading-none">Beta</span>
         </a>
     </div>
 

@@ -53,7 +53,7 @@ class WowComps extends Component
      * leaving an empty-looking category header behind, which a pure client-side row-hide couldn't
      * cleanly avoid without duplicating that visibility logic in JS.
      */
-    public bool $cooldownsLongOnly = false;
+    public bool $cooldownsLongOnly = true;
 
     public function mount(): void
     {

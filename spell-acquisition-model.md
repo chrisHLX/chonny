@@ -132,3 +132,57 @@ Not from an addon — pulled from wowarenalogs.com's public, unauthenticated Gra
 - A literal `"slow"`-substring requirement on any `Snare→Slow` mapping, plus a small hardcoded exclusion list for spells this project already investigated and declined to tag (Fatal Flourish, Divine Hammer, Numbing Poison, Frozen Orb, Searing Dialogue) — `Snare` is the one mechanic already confirmed to carry real spurious tags on abilities unrelated to movement speed.
 
 Verified end-to-end 2026-08-17: 12 real candidates applied (10 via `--apply`, 2 added by hand after independently confirming their description text), then run through `wow:find-cc-duration` to resolve `pvp_duration_seconds` for all 12 — 8 resolved cleanly, 2 as weaker-but-real plurality winners, 2 deliberately left unresolved (one too weak/likely measuring the wrong duration component, one genuinely tied between two values).
+
+
+
+LATEST COMMIT CHANGE
+
+git fetch origin
+git checkout specificity
+git reset --hard origin/specificity
+
+
+What to run on live, in this order
+1. Schema — apply any migrations not yet run:
+
+
+php artisan migrate --force
+--force skips the "you're in production, are you sure?" prompt. Safe/idempotent — it only runs migrations not already recorded in the migrations table, whatever that number turns out to be. Do not use migrate:fresh — that wipes the whole DB.
+
+2. Storage symlink (only needed once per server — safe to re-run, no-ops if it exists):
+
+
+php artisan storage:link
+Without this, every spell/class/spec icon 404s even though the files and DB columns are correct.
+
+3. The big one — re-import spell data:
+
+
+php artisan import:spelldata wow 12.0.7.68453
+⚠️ That exact version string, not the real current WoW patch. This project deliberately freezes the "current" patch at 12.0.7.68453 so re-imports update data in place instead of forking a new, disconnected patch row (see CLAUDE.md's "frozen patch version" note — this bit someone earlier this session). Before running it, it's worth double-checking the DB agrees:
+
+
+php artisan tinker --execute="echo App\Models\Patch::where('is_current', true)->first()->build_version;"
+It should print 12.0.7.68453. If it prints anything else, stop and tell me before running the import.
+
+This one command is what actually applies almost everything from this session: baseline-spec-overrides.txt (Turtle, Evoker CC fixes), cc-synergies-overrides.txt (dr_category tagging), scalar-corrections.txt (Strangulate's cooldown), the class-tree-bloat/duplicate-node/same-position-collision cleanup passes, and it automatically bumps the spell cache version — no separate cache-clear step needed. If it's slow/runs out of memory (it has before, after several consecutive re-imports), use:
+
+
+php -d memory_limit=512M artisan import:spelldata wow 12.0.7.68453
+4. Icons, if this server has no Blizzard API credentials (most production setups don't need them for this):
+
+
+php artisan wow:apply-icon-manifest
+Reads the committed data/spelldata/icon-manifest.json + the committed icon files under storage/app/public/, fills in icon_name — zero API calls, safe to always run.
+
+5. Assets, if your deploy doesn't already do this:
+
+
+composer install --no-dev --optimize-autoloader
+npm run build
+Not needed:
+
+talent-spec-exclusions.txt (the Hunter Intimidation fix) — read live at request time, not import time. Works the instant the code deploys, no command required.
+Arena-log spell-usage/kill-sequence/rating-tier data — already committed to git as plain files, arrives with the code pull. The raw/metadata folders are gitignored now and only matter if you're pulling new matches on that server, which isn't required for the site to work.
+Any db:seed — nothing new needs seeding for this session's work.
+Run 1→2→3→4 in that order (4 only matters after 1 has created the icon_name columns), then spot-check the live site.
