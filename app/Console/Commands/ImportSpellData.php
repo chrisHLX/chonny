@@ -1343,6 +1343,18 @@ class ImportSpellData extends Command
         // of bug surfaces at import time instead of via a user report.
         $seenPerSpec = [];
 
+        // Every (spell.id, spec.id) pair this run actually wrote — used below to prune any
+        // stale verified_override row this patch has that ISN'T covered by the file anymore.
+        // Added 2026-08-19: upsertTrack() only ever creates/updates, never deletes, so removing
+        // a line from this file (e.g. correcting a wrong-spell_id mistake, see the "hidden
+        // duplicate copy" fixes in this same file's history) previously left the old row
+        // permanently in the DB — a real production incident: Wild Charge kept rendering
+        // duplicated even after the bad override line was deleted and re-imported, because the
+        // stale row from the earlier import never got cleaned up. This closes that gap
+        // permanently, the same "always run this defensive pass" precedent as
+        // cleanupSamePositionCollisions()/cleanupClassTreeBloat() elsewhere in this file.
+        $writtenPairs = [];
+
         foreach (File::lines($path) as $line) {
             $line = trim($line);
 
@@ -1380,8 +1392,24 @@ class ImportSpellData extends Command
             ], [], 'spell_class_availability');
 
             $this->baselineOverridesApplied++;
+            $writtenPairs["{$spell->id}:{$spec->id}"] = true;
 
             $seenPerSpec["{$class->id}:{$spec->id}:{$spell->name}"][] = (int) $externalSpellId;
+        }
+
+        $stalePruned = 0;
+        SpellClassAvailability::where('source', 'verified_override')
+            ->whereHas('spell', fn ($q) => $q->where('patch_id', $patch->id))
+            ->get(['id', 'spell_id', 'spec_id'])
+            ->each(function (SpellClassAvailability $row) use ($writtenPairs, &$stalePruned) {
+                if (!isset($writtenPairs["{$row->spell_id}:{$row->spec_id}"])) {
+                    $row->delete();
+                    $stalePruned++;
+                }
+            });
+
+        if ($stalePruned > 0) {
+            $this->warn("  Pruned {$stalePruned} stale verified_override row(s) no longer present in baseline-spec-overrides.txt.");
         }
 
         foreach ($seenPerSpec as $key => $spellIds) {
