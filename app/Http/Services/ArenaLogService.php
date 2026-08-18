@@ -807,6 +807,58 @@ class ArenaLogService
     }
 
     /**
+     * Bulk version of isPrioritySpell() — resolves priority status for every spell in $spells
+     * via ONE query per patch (grouped by base display name in PHP) instead of one query per
+     * spell whose own spell_id doesn't directly match $priorityExternalIds. Added 2026-08-19
+     * alongside ModuleSpellReferenceService::preloadBaseCooldownCharges(), after profiling a
+     * cold WowComps render: isPrioritySpell()'s per-spell sibling query was ~140 of ~1800 total
+     * queries. Produces byte-identical results to calling isPrioritySpell() once per spell —
+     * this only changes where the sibling data comes from.
+     *
+     * @param  \Illuminate\Support\Collection<int, Spell>  $spells
+     * @return \Illuminate\Support\Collection<int, bool> keyed by spell->id
+     */
+    public function preloadPrioritySpells(\Illuminate\Support\Collection $spells, \Illuminate\Support\Collection $priorityExternalIds): \Illuminate\Support\Collection
+    {
+        $result = collect();
+        $needsLookup = collect();
+
+        foreach ($spells as $spell) {
+            if ($priorityExternalIds->contains($spell->spell_id)) {
+                $result[$spell->id] = true;
+            } elseif ($spell->display_name !== '') {
+                $needsLookup->push($spell);
+            } else {
+                $result[$spell->id] = false;
+            }
+        }
+
+        foreach ($needsLookup->groupBy('patch_id') as $patchId => $group) {
+            $baseNames = $group->pluck('display_name')->unique()->values();
+
+            $candidates = Spell::where('patch_id', $patchId)
+                ->where(function ($q) use ($baseNames) {
+                    foreach ($baseNames as $name) {
+                        $q->orWhere('name', $name)->orWhere('name', 'LIKE', $name.' (desc=%');
+                    }
+                })
+                ->get(['id', 'spell_id', 'name']);
+
+            $byBaseName = $candidates->groupBy(fn (Spell $s) => $s->display_name);
+
+            foreach ($group as $spell) {
+                $siblingSpellIds = ($byBaseName[$spell->display_name] ?? collect())
+                    ->reject(fn (Spell $s) => $s->id === $spell->id)
+                    ->pluck('spell_id');
+
+                $result[$spell->id] = $siblingSpellIds->intersect($priorityExternalIds)->isNotEmpty();
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Merges arena-log-derived per-spell_id aggregate rows (casts/damage) by their resolved
      * canonical name — closes the "one ability, several spell_id sub-effect records"
      * fragmentation found 2026-08-14 building wow:key-offensive-abilities (Eviscerate split

@@ -259,11 +259,22 @@ class SpellExplorer extends Component
             'hero_talent_tree_id' => $this->detectHeroTreeId($selected),
         ]);
 
-        return Spell::whereIn('id', $displayIds)
+        $spells = Spell::whereIn('id', $displayIds)
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
-            ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds, $arenaLogService) {
+            ->get();
+
+        // Bulk-resolves what would otherwise be one query per spell for both of these — see
+        // each method's own docblock (ModuleSpellReferenceService::preloadBaseCooldownCharges()/
+        // ArenaLogService::preloadPrioritySpells()) for the profiling that found this. Must run
+        // before the map() below so its per-spell calls hit an already-primed memo/map instead
+        // of querying individually.
+        $service->preloadBaseCooldownCharges($spells);
+        $service->preloadCategorize($spells);
+        $priorityBySpellId = $arenaLogService->preloadPrioritySpells($spells, $priorityExternalIds);
+
+        return $spells
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityBySpellId) {
                 $description = $service->resolveDescription($spell, $build);
 
                 return [
@@ -276,7 +287,7 @@ class SpellExplorer extends Component
                     'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
                     'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
                     'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
-                    'isPriority' => $arenaLogService->isPrioritySpell($spell, $priorityExternalIds),
+                    'isPriority' => $priorityBySpellId[$spell->id] ?? false,
                 ];
             })
             ->all();

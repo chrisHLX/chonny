@@ -267,13 +267,45 @@ class WowComps extends Component
             'hero_talent_tree_id' => $this->detectHeroTreeId($selected),
         ]);
 
-        return Spell::whereIn('id', $displayIds)
+        $spells = Spell::whereIn('id', $displayIds)
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
-            ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds, $arenaLogService) {
+            ->get();
+
+        // Bulk-resolves what would otherwise be one query per spell for both of these — see
+        // each method's own docblock for the profiling that found this (a cold render of one
+        // spec's ~175 entries cost ~1800 queries/3.2s before this, ~700 of which were these two
+        // exact per-spell sibling lookups). Must run before modifiersFor()/enrichModifiers()
+        // below so their per-spell calls hit an already-primed memo instead of querying
+        // individually.
+        $service->preloadBaseCooldownCharges($spells);
+        $service->preloadCategorize($spells);
+        $priorityBySpellId = $arenaLogService->preloadPrioritySpells($spells, $priorityExternalIds);
+
+        // modifiersFor() computed once per entry here (not again inside the final map() below)
+        // specifically so every modifier spell it surfaces can be collected and preloaded in
+        // bulk too — enrichModifiers() calls effectiveCooldown() on each modifier's own spell,
+        // a DIFFERENT spell than the main entry, so preloading only $spells above left this
+        // second tier of lookups still going one-by-one (confirmed via profiling: this was the
+        // majority of the ~389 sibling queries remaining after the first preload pass).
+        $modifiersBySpellId = [];
+        $modifierSpells = collect();
+
+        foreach ($spells as $spell) {
+            $modifiers = $service->modifiersFor($spell, $build, $selected, $ranks);
+            $modifiersBySpellId[$spell->id] = $modifiers;
+            $modifierSpells->push(...$modifiers['named']->pluck('spell'));
+            $modifierSpells->push(...$modifiers['baseline']->pluck('spell'));
+        }
+
+        $modifierSpells = $modifierSpells->unique('id');
+        $service->preloadBaseCooldownCharges($modifierSpells);
+        $service->preloadCategorize($modifierSpells);
+
+        return $spells
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityBySpellId, $modifiersBySpellId) {
                 $description = $service->resolveDescription($spell, $build);
-                $modifiers = $service->modifiersFor($spell, $build, $selected, $ranks);
+                $modifiers = $modifiersBySpellId[$spell->id];
 
                 return [
                     'spell' => $spell,
@@ -290,7 +322,7 @@ class WowComps extends Component
                     // they read as "selected" (normal opacity) regardless of the talent build.
                     'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
                     'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
-                    'isPriority' => $arenaLogService->isPrioritySpell($spell, $priorityExternalIds),
+                    'isPriority' => $priorityBySpellId[$spell->id] ?? false,
                 ];
             })
             ->all();

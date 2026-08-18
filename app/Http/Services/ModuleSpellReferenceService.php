@@ -74,6 +74,9 @@ class ModuleSpellReferenceService
     /** @var array<int, array{seconds: ?float, charges: ?int, duration: ?float}> keyed by spell->id — see resolveBaseCooldownCharges(). */
     private array $baseCooldownChargesMemo = [];
 
+    /** @var array<int, string> keyed by spell->id — see categorize(). */
+    private array $categorizeMemo = [];
+
     /**
      * Resolves a spell name to a concrete Spell for this build, disambiguating the same way
      * validated by hand against real data (Warrior Arms spot-check, 2026-07-25; the
@@ -555,6 +558,70 @@ class ModuleSpellReferenceService
             return $this->baseCooldownChargesMemo[$spell->id];
         }
 
+        $siblings = Spell::where('name', $spell->name)
+            ->where('patch_id', $spell->patch_id)
+            ->where('id', '!=', $spell->id)
+            ->get();
+
+        return $this->baseCooldownChargesMemo[$spell->id] = $this->resolveBaseCooldownChargesFromSiblings($spell, $siblings);
+    }
+
+    /**
+     * Bulk-primes resolveBaseCooldownCharges()'s memo for every spell in $spells in ONE query
+     * per patch, instead of one query per spell as each is resolved individually later. Added
+     * 2026-08-19 after direct profiling of a cold WowComps render (a spec with 175 display
+     * entries): this exact per-spell sibling query was the single largest contributor, ~563 of
+     * ~1800 total queries, to a 3.2s cold-cache render. The per-spell memoization above was
+     * already correct — it just can't help when most of the ~175+ spells genuinely are each
+     * being resolved for the first time in a request; the actual fix is fewer round trips, not
+     * more caching. Reuses the exact same resolution logic via
+     * resolveBaseCooldownChargesFromSiblings() — this only changes WHERE the sibling data comes
+     * from (one bulk query grouped by name, vs. one query per spell), never the resolution
+     * rules. Safe to call with any subset of spells (e.g. only the main display entries, not
+     * their modifier spells) — anything not covered here simply falls back to
+     * resolveBaseCooldownCharges()'s own per-spell query when first needed, same as before this
+     * existed; already-memoized spells are skipped without a query.
+     */
+    public function preloadBaseCooldownCharges(Collection $spells): void
+    {
+        $pending = $spells->reject(fn (Spell $s) => array_key_exists($s->id, $this->baseCooldownChargesMemo));
+
+        if ($pending->isEmpty()) {
+            return;
+        }
+
+        foreach ($pending->groupBy('patch_id') as $patchId => $group) {
+            $names = $group->pluck('name')->unique()->values();
+
+            $byName = Spell::where('patch_id', $patchId)
+                ->whereIn('name', $names)
+                ->get()
+                ->groupBy('name');
+
+            foreach ($group as $spell) {
+                if (array_key_exists($spell->id, $this->baseCooldownChargesMemo)) {
+                    continue;
+                }
+
+                $siblings = ($byName[$spell->name] ?? collect())
+                    ->reject(fn (Spell $s) => $s->id === $spell->id)
+                    ->values();
+
+                $this->baseCooldownChargesMemo[$spell->id] = $this->resolveBaseCooldownChargesFromSiblings($spell, $siblings);
+            }
+        }
+    }
+
+    /**
+     * The actual seconds/charges/duration resolution rules, shared by both the per-spell path
+     * (resolveBaseCooldownCharges()) and the bulk-preload path (preloadBaseCooldownCharges())
+     * above — kept as one method so the two call sites can never drift into different behavior.
+     *
+     * @param  Collection<int, Spell>  $siblings  same-named, same-patch spells other than $spell itself
+     * @return array{seconds: ?float, charges: ?int, duration: ?float}
+     */
+    private function resolveBaseCooldownChargesFromSiblings(Spell $spell, Collection $siblings): array
+    {
         $seconds = $spell->cooldown_seconds !== null ? (float) $spell->cooldown_seconds : null;
         $charges = $spell->charges;
         $duration = $spell->duration_seconds !== null ? (float) $spell->duration_seconds : null;
@@ -575,11 +642,6 @@ class ModuleSpellReferenceService
         };
 
         if ($seconds === null || $charges === null || $duration === null) {
-            $siblings = Spell::where('name', $spell->name)
-                ->where('patch_id', $spell->patch_id)
-                ->where('id', '!=', $spell->id)
-                ->get();
-
             foreach ($siblings as $sibling) {
                 $applyCandidate($sibling);
                 if ($seconds !== null && $charges !== null && $duration !== null) {
@@ -597,7 +659,7 @@ class ModuleSpellReferenceService
             }
         }
 
-        return $this->baseCooldownChargesMemo[$spell->id] = ['seconds' => $seconds, 'charges' => $charges, 'duration' => $duration];
+        return ['seconds' => $seconds, 'charges' => $charges, 'duration' => $duration];
     }
 
     /**
@@ -758,14 +820,14 @@ class ModuleSpellReferenceService
      */
     public function categorize(Spell $spell): string
     {
-        if ($spell->mechanic !== null && isset(self::MECHANIC_CATEGORY_MAP[$spell->mechanic])) {
-            return self::MECHANIC_CATEGORY_MAP[$spell->mechanic];
+        if (array_key_exists($spell->id, $this->categorizeMemo)) {
+            return $this->categorizeMemo[$spell->id];
         }
 
-        $category = $this->categorizeFromEffects($spell->effects);
+        $ownCategory = $this->categorizeFromOwnEffects($spell);
 
-        if ($category !== 'Other') {
-            return $category;
+        if ($ownCategory !== null) {
+            return $this->categorizeMemo[$spell->id] = $ownCategory;
         }
 
         $siblingEffects = Spell::where('name', $spell->name)
@@ -775,7 +837,77 @@ class ModuleSpellReferenceService
             ->get()
             ->flatMap(fn (Spell $sibling) => $sibling->effects);
 
-        return $siblingEffects->isEmpty() ? 'Other' : $this->categorizeFromEffects($siblingEffects);
+        return $this->categorizeMemo[$spell->id] = ($siblingEffects->isEmpty() ? 'Other' : $this->categorizeFromEffects($siblingEffects));
+    }
+
+    /**
+     * The query-free half of categorize() — mechanic map + the spell's own (already eager-
+     * loaded) effects, no DB access. Returns null when both come back 'Other', meaning the
+     * caller needs the sibling-effects query to possibly upgrade it. Split out so
+     * preloadCategorize() below can find which spells actually need that query WITHOUT calling
+     * categorize() itself for each one first (which would just run the very queries this exists
+     * to batch away).
+     */
+    private function categorizeFromOwnEffects(Spell $spell): ?string
+    {
+        if ($spell->mechanic !== null && isset(self::MECHANIC_CATEGORY_MAP[$spell->mechanic])) {
+            return self::MECHANIC_CATEGORY_MAP[$spell->mechanic];
+        }
+
+        $category = $this->categorizeFromEffects($spell->effects);
+
+        return $category !== 'Other' ? $category : null;
+    }
+
+    /**
+     * Bulk-primes categorize()'s memo for every spell in $spells whose OWN effects don't already
+     * resolve to a real category (i.e. would otherwise fall through to the per-spell sibling
+     * query in categorize()) — one query per patch instead of one per such spell. Added
+     * 2026-08-19 alongside preloadBaseCooldownCharges()/ArenaLogService::preloadPrioritySpells(),
+     * after profiling found this was the largest single remaining cost once those two were fixed
+     * (~386 of ~1477 total queries in a cold WowComps render). categorize() had no memoization
+     * at all before this — added here too, so a modifier spell shared across several main
+     * entries is only ever categorized once per request either way.
+     */
+    public function preloadCategorize(Collection $spells): void
+    {
+        $pending = $spells->filter(function (Spell $spell) {
+            if (array_key_exists($spell->id, $this->categorizeMemo)) {
+                return false;
+            }
+
+            $ownCategory = $this->categorizeFromOwnEffects($spell);
+
+            if ($ownCategory !== null) {
+                $this->categorizeMemo[$spell->id] = $ownCategory;
+
+                return false;
+            }
+
+            return true;
+        });
+
+        if ($pending->isEmpty()) {
+            return;
+        }
+
+        foreach ($pending->groupBy('patch_id') as $patchId => $group) {
+            $names = $group->pluck('name')->unique()->values();
+
+            $byName = Spell::where('patch_id', $patchId)
+                ->whereIn('name', $names)
+                ->with('effects')
+                ->get()
+                ->groupBy('name');
+
+            foreach ($group as $spell) {
+                $siblingEffects = ($byName[$spell->name] ?? collect())
+                    ->reject(fn (Spell $s) => $s->id === $spell->id)
+                    ->flatMap(fn (Spell $sibling) => $sibling->effects);
+
+                $this->categorizeMemo[$spell->id] = $siblingEffects->isEmpty() ? 'Other' : $this->categorizeFromEffects($siblingEffects);
+            }
+        }
     }
 
     /**
