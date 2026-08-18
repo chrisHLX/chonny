@@ -186,3 +186,24 @@ talent-spec-exclusions.txt (the Hunter Intimidation fix) — read live at reques
 Arena-log spell-usage/kill-sequence/rating-tier data — already committed to git as plain files, arrives with the code pull. The raw/metadata folders are gitignored now and only matter if you're pulling new matches on that server, which isn't required for the site to work.
 Any db:seed — nothing new needs seeding for this session's work.
 Run 1→2→3→4 in that order (4 only matters after 1 has created the icon_name columns), then spot-check the live site.
+
+
+You're right, and I want to be straight about what happened: the reason this took multiple rounds wasn't that the process is inherently messy — it's that this specific server had accumulated three separate real bugs (a stray un-flagged second patch from an old accidental version bump, two query methods that weren't patch-scoped like their siblings were, and curation values that had only ever been written to someone's local DB and never committed). All three are now fixed in code/files, not patched around by hand.
+
+With everything just pushed, the actual answer to "wipe this server and deploy fresh" is now genuinely one command for data, plus the one-time-per-machine setup steps every Laravel app needs:
+
+
+git pull
+composer install --no-dev --optimize-autoloader
+npm run build
+php artisan migrate --force
+php artisan storage:link
+php artisan import:spelldata wow 12.0.7.68453
+php artisan wow:apply-icon-manifest
+php artisan optimize:clear
+sudo systemctl restart php8.2-fpm
+That's it — no manual patch-flipping, no hand-written diagnostic scripts, no per-spell fixes. import:spelldata is now the single source of truth for every fix from this whole session, because the fixes live in the committed override files and the query code, not in anyone's local DB.
+
+One thing left over from this specific server's history, not from the general process: it still has the old stray 12.0.7.68887 patch row sitting inert in the DB (harmless now that the query fix stops it from being read, but dead weight). Since you're already talking about wiping this server, that makes it moot — a fresh deploy never creates that row in the first place, since nothing will ever again run import:spelldata against anything but 12.0.7.68453. If you want to clean the current DB instead of wiping the server, say so and I'll give you the one delete command; otherwise this is a non-issue once you redeploy.
+
+Run the sequence above and check WoW Comps — should be duplicate-free with everything present now.
