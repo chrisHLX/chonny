@@ -22,6 +22,10 @@
 /vendor
 /data/spelldata/raw/*
 !/data/spelldata/raw/.gitkeep
+/data/arena-logs/raw/*
+!/data/arena-logs/raw/.gitkeep
+/data/arena-logs/metadata/*
+!/data/arena-logs/metadata/.gitkeep
 Homestead.json
 Homestead.yaml
 Thumbs.db
