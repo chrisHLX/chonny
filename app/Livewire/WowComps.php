@@ -258,7 +258,8 @@ class WowComps extends Component
         // entry regardless of tab, same "compute once, filter at render time" pattern the rest of
         // this method already uses for category/group.
         $class = GameClass::find($spec->class_id);
-        $priorityExternalIds = $class ? app(ArenaLogService::class)->spellUsageIds($class->slug, $spec->slug) : collect();
+        $arenaLogService = app(ArenaLogService::class);
+        $priorityExternalIds = $class ? $arenaLogService->spellUsageIds($class->slug, $spec->slug) : collect();
 
         $build = new ModuleGameBuild([
             'class_id' => $spec->class_id,
@@ -270,7 +271,7 @@ class WowComps extends Component
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds) {
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds, $arenaLogService) {
                 $description = $service->resolveDescription($spell, $build);
                 $modifiers = $service->modifiersFor($spell, $build, $selected, $ranks);
 
@@ -289,7 +290,7 @@ class WowComps extends Component
                     // they read as "selected" (normal opacity) regardless of the talent build.
                     'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
                     'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
-                    'isPriority' => $priorityExternalIds->contains($spell->spell_id),
+                    'isPriority' => $arenaLogService->isPrioritySpell($spell, $priorityExternalIds),
                 ];
             })
             ->all();

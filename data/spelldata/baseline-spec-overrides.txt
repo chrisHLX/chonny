@@ -548,12 +548,11 @@
 188501 | demonhunter | havoc | Spectral Sight
 196718 | demonhunter | havoc | Darkness
 201427 | demonhunter | havoc | Annihilation
-# Shattered Souls override REMOVED here 2026-08-19 — 209693 is a hidden internal duplicate copy
-# (not_in_spellbook=1). The real, visible copy (178940, is_passive=1) already naturally has
-# avail=[8:baseline] for this exact spec with no override needed at all — found via a systematic
-# audit of every baseline-spec-overrides.txt line for this exact "pointed at the wrong internal
-# copy" mistake shape (same class of bug as Landslide/Kidney Shot before it), prompted directly
-# by the Wild Charge duplicate.
+# CORRECTED 2026-08-19: 209693 was removed earlier today as a suspected hidden duplicate of
+# 178940 — wrong call, caught by cross-checking data/arena-logs/spell-usage/demonhunter/havoc.txt:
+# real combat logs record casts under 209693, never 178940. Real arena-log cast evidence
+# outranks the not_in_spellbook heuristic — restored.
+209693 | demonhunter | havoc | Shattered Souls
 232893 | demonhunter | havoc | Felblade
 278326 | demonhunter | havoc | Consume Magic
 370966 | demonhunter | havoc | The Hunt
@@ -583,11 +582,14 @@
 # unnecessary and actively wrong, producing a second, duplicate "Wild Charge" card.
 22842 | druid | balance | Frenzied Regeneration
 33786 | druid | balance | Cyclone
-# Typhoon and Stampeding Roar overrides REMOVED here 2026-08-19 — both pointed at hidden
-# internal duplicate copies (61391/77761, not_in_spellbook=1). The real copies (132469 Typhoon,
-# 106898 Stampeding Roar) are genuine shared Druid Class-tree talents, confirmed already
-# reachable via allTalentSpellIds() for every relevant spec with zero override needed — same
-# root cause as the Wild Charge fix directly above this file's Feral-spec block.
+# Typhoon (61391) stays removed here — unlike Shattered Souls below, its "real" sibling (132469)
+# IS independently reachable via allTalentSpellIds() (a genuine shared Druid Class-tree talent),
+# so re-adding 61391 as an override would recreate a duplicate row, not fix a gap. The real
+# problem this surfaced — arena-log spell-usage/druid/*.txt records casts under 61391, so
+# isPriority never matched 132469 and Typhoon vanished from the Cooldowns tab — is fixed at the
+# code level instead (isPriority now checks same-named siblings too), not by duplicating
+# availability. See TalentSelectionService/WowComps 2026-08-19 for the actual fix. Stampeding
+# Roar's 77761 override stays removed for the same "real sibling already reachable" reason.
 93402 | druid | balance | Sunfire
 102359 | druid | balance | Mass Entanglement
 102560 | druid | balance | Incarnation: Chosen of Elune (desc=Talent, Shapeshift)
@@ -601,10 +603,9 @@
 5211 | druid | feral | Mighty Bash
 22570 | druid | feral | Maim
 33786 | druid | feral | Cyclone
-# Wild Charge override REMOVED here 2026-08-19 — see the balance-spec note above for the full
-# reason (hidden duplicate copy; the real spell resolves via the shared talent tree already).
-# Typhoon and Stampeding Roar overrides REMOVED here too, same reason — see the Balance-spec
-# note above.
+# Wild Charge / Typhoon / Stampeding Roar overrides REMOVED here 2026-08-19 — see the Balance-
+# spec note above for the full reasoning (real sibling already reachable via the talent tree;
+# isPriority sibling-matching fixed at the code level instead).
 102793 | druid | feral | Ursol's Vortex
 106785 | druid | feral | Swipe
 106839 | druid | feral | Skull Bash
@@ -934,10 +935,10 @@
 18499 | warrior | fury | Berserker Rage
 23920 | warrior | fury | Spell Reflection
 46968 | warrior | fury | Shockwave
-# Heroic Leap override REMOVED here 2026-08-19 — 52174 is a hidden internal duplicate copy
-# (not_in_spellbook=1). The real copy (6544) is a genuine shared Warrior Class-tree talent,
-# confirmed already reachable via allTalentSpellIds() for Fury/Protection with zero override
-# needed — same root cause as the Druid Typhoon/Stampeding Roar/Wild Charge fixes above.
+# Heroic Leap (52174) stays removed here — its "real" sibling (6544) IS independently reachable
+# via allTalentSpellIds() (a genuine shared Warrior Class-tree talent), so re-adding 52174 would
+# recreate a duplicate row rather than fix a gap. Same isPriority sibling-matching fix as Typhoon
+# above closes the "vanished from Cooldowns tab" symptom without duplicating availability.
 97462 | warrior | fury | Rallying Cry
 107570 | warrior | fury | Storm Bolt
 202168 | warrior | fury | Impending Victory
@@ -952,7 +953,7 @@
 3411 | warrior | protection | Intervene
 6343 | warrior | protection | Thunder Clap
 23922 | warrior | protection | Shield Slam
-# Heroic Leap override REMOVED here too, same reason as the Fury-spec note above.
+# Heroic Leap stays removed here too, same reason — see the Fury-spec note above.
 202168 | warrior | protection | Impending Victory
 376079 | warrior | protection | Champion's Spear
 435222 | warrior | protection | Thunder Blast

@@ -248,8 +248,9 @@ class SpellExplorer extends Component
 
         $class = GameClass::find($this->classId);
         $spec = Specialization::find($this->specId);
+        $arenaLogService = app(ArenaLogService::class);
         $priorityExternalIds = ($class && $spec)
-            ? app(ArenaLogService::class)->spellUsageIds($class->slug, $spec->slug)
+            ? $arenaLogService->spellUsageIds($class->slug, $spec->slug)
             : collect();
 
         $build = new ModuleGameBuild([
@@ -262,7 +263,7 @@ class SpellExplorer extends Component
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds) {
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds, $arenaLogService) {
                 $description = $service->resolveDescription($spell, $build);
 
                 return [
@@ -275,7 +276,7 @@ class SpellExplorer extends Component
                     'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
                     'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
                     'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
-                    'isPriority' => $priorityExternalIds->contains($spell->spell_id),
+                    'isPriority' => $arenaLogService->isPrioritySpell($spell, $priorityExternalIds),
                 ];
             })
             ->all();

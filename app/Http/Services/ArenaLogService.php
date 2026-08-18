@@ -766,6 +766,47 @@ class ArenaLogService
     }
 
     /**
+     * Whether $spell should be treated as arena-log-confirmed ("priority"), checking not just
+     * its own spell_id against $priorityExternalIds but also any same-named sibling in the same
+     * patch — the same "one real ability, split across multiple internal spell_id records"
+     * recovery this codebase already applies for cooldown/duration/description (see
+     * ModuleSpellReferenceService::resolveBaseCooldownCharges()/resolveDescription()).
+     *
+     * Added 2026-08-19 after a real, confirmed case: Druid's Typhoon is displayed via spell_id
+     * 132469 (the real class-tree talent, genuinely reachable via allTalentSpellIds() — the
+     * copy with actual cooldown data), but real arena combat logs record the cast event under a
+     * DIFFERENT internal spell_id, 61391 (identical name, identical description, but flagged
+     * not_in_spellbook and missing direct cooldown data — a separate internal record Blizzard's
+     * own combat log API happens to report for the cast, not the talent-tree definition record).
+     * A plain exact-spell_id match against spellUsageIds() never matches the displayed 132469,
+     * so Typhoon silently vanished from the Cooldowns tab (isPriority filter) even though it's
+     * genuinely, confirmedly cast in real matches. The fix is NOT to add 61391 as a second,
+     * independently-displayed override — 132469 is already reachable via the talent tree, so
+     * doing that would just recreate a duplicate row (the exact class of bug this same session
+     * fixed elsewhere) instead of a gap. Checking siblings here closes the real gap without
+     * touching availability at all.
+     */
+    public function isPrioritySpell(Spell $spell, \Illuminate\Support\Collection $priorityExternalIds): bool
+    {
+        if ($priorityExternalIds->contains($spell->spell_id)) {
+            return true;
+        }
+
+        $baseName = $spell->display_name;
+
+        if ($baseName === '') {
+            return false;
+        }
+
+        return Spell::where('patch_id', $spell->patch_id)
+            ->where('id', '!=', $spell->id)
+            ->where(fn ($q) => $q->where('name', $baseName)->orWhere('name', 'LIKE', $baseName.' (desc=%'))
+            ->pluck('spell_id')
+            ->intersect($priorityExternalIds)
+            ->isNotEmpty();
+    }
+
+    /**
      * Merges arena-log-derived per-spell_id aggregate rows (casts/damage) by their resolved
      * canonical name — closes the "one ability, several spell_id sub-effect records"
      * fragmentation found 2026-08-14 building wow:key-offensive-abilities (Eviscerate split
