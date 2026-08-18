@@ -3,7 +3,7 @@
     "classSlug": "shaman",
     "specSlug": "enhancement",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:08+00:00",
+    "generatedAt": "2026-08-15T08:08:31+00:00",
     "heroTreesDetected": [
         "Totemic",
         "Stormbringer",
@@ -96,8 +96,12 @@
             "killWindow": {
                 "n": 7,
                 "spellPct": {
+                    "Earthgrab Totem": 100,
+                    "Capacitor Totem": 100,
                     "Tempest": 100,
                     "Heroism": 85.7,
+                    "Ascendance": 85.7,
+                    "Doom Winds": 85.7,
                     "Windstrike": 85.7,
                     "Lightning Bolt": 57.1,
                     "Stormstrike": 57.1,
@@ -106,12 +110,10 @@
                     "Voltaic Blaze": 57.1,
                     "Hex (desc=Frog)": 42.9,
                     "Chain Lightning": 42.9,
-                    "Lava Lash": 42.9,
-                    "Healing Surge": 42.9,
-                    "嗜血": 14.3
+                    "Lava Lash": 42.9
                 },
-                "avgCasts": 15.57,
-                "avgDistinctSpells": 7.43
+                "avgCasts": 22.57,
+                "avgDistinctSpells": 11.29
             },
             "heroTreeBreakdown": {
                 "Stormbringer": {
@@ -200,8 +202,12 @@
                     "killWindow": {
                         "n": 7,
                         "spellPct": {
+                            "Earthgrab Totem": 100,
+                            "Capacitor Totem": 100,
                             "Tempest": 100,
                             "Heroism": 85.7,
+                            "Ascendance": 85.7,
+                            "Doom Winds": 85.7,
                             "Windstrike": 85.7,
                             "Lightning Bolt": 57.1,
                             "Stormstrike": 57.1,
@@ -210,12 +216,10 @@
                             "Voltaic Blaze": 57.1,
                             "Hex (desc=Frog)": 42.9,
                             "Chain Lightning": 42.9,
-                            "Lava Lash": 42.9,
-                            "Healing Surge": 42.9,
-                            "嗜血": 14.3
+                            "Lava Lash": 42.9
                         },
-                        "avgCasts": 15.57,
-                        "avgDistinctSpells": 7.43
+                        "avgCasts": 22.57,
+                        "avgDistinctSpells": 11.29
                     }
                 }
             }
@@ -317,15 +321,21 @@
                 "n": 3,
                 "spellPct": {
                     "Stormstrike": 100,
+                    "Earthgrab Totem": 66.7,
                     "Wind Shear": 66.7,
                     "Lightning Bolt": 66.7,
                     "Lava Lash": 66.7,
                     "Voltaic Blaze": 66.7,
+                    "Astral Shift": 66.7,
                     "Bloodlust": 66.7,
-                    "Tempest": 33.3
+                    "Doom Winds": 66.7,
+                    "Surging Totem": 66.7,
+                    "Blood Fury": 66.7,
+                    "Gladiator's Badge": 66.7,
+                    "Sundering": 66.7
                 },
-                "avgCasts": 9.67,
-                "avgDistinctSpells": 4.67
+                "avgCasts": 22,
+                "avgDistinctSpells": 12.67
             },
             "heroTreeBreakdown": {
                 "Stormbringer": {
@@ -422,11 +432,14 @@
                         "n": 1,
                         "spellPct": {
                             "Stormstrike": 100,
+                            "Earthgrab Totem": 100,
+                            "Ghost Wolf": 100,
+                            "Crash Lightning": 100,
                             "Wind Shear": 100,
                             "Tempest": 100
                         },
-                        "avgCasts": 6,
-                        "avgDistinctSpells": 3
+                        "avgCasts": 9,
+                        "avgDistinctSpells": 6
                     }
                 },
                 "Totemic": {
@@ -505,11 +518,18 @@
                             "Stormstrike": 100,
                             "Lava Lash": 100,
                             "Voltaic Blaze": 100,
+                            "Astral Shift": 100,
                             "Bloodlust": 100,
+                            "Doom Winds": 100,
+                            "Surging Totem": 100,
+                            "Blood Fury": 100,
+                            "Gladiator's Badge": 100,
+                            "Sundering": 100,
+                            "Primordial Storm": 100,
                             "Wind Shear": 50
                         },
-                        "avgCasts": 11.5,
-                        "avgDistinctSpells": 5.5
+                        "avgCasts": 28.5,
+                        "avgDistinctSpells": 16
                     }
                 }
             }
@@ -602,18 +622,24 @@
             "killWindow": {
                 "n": 4,
                 "spellPct": {
+                    "Doom Winds": 100,
                     "Stormstrike": 100,
                     "Voltaic Blaze": 100,
+                    "Capacitor Totem": 75,
+                    "Bloodlust": 75,
+                    "Lightning Bolt": 75,
                     "Chain Lightning": 75,
                     "Tempest": 75,
-                    "Lightning Bolt": 75,
-                    "Bloodlust": 75,
+                    "Crash Lightning": 75,
+                    "Totemic Projection": 50,
+                    "Lava Lash": 50,
                     "Windstrike": 50,
                     "Wind Shear": 50,
-                    "Lava Lash": 50
+                    "Earthgrab Totem": 25,
+                    "Gladiator's Badge": 25
                 },
-                "avgCasts": 17.5,
-                "avgDistinctSpells": 6.5
+                "avgCasts": 30.25,
+                "avgDistinctSpells": 12.5
             },
             "heroTreeBreakdown": {
                 "Totemic": {
@@ -692,14 +718,22 @@
                     "killWindow": {
                         "n": 1,
                         "spellPct": {
+                            "Earthgrab Totem": 100,
+                            "Capacitor Totem": 100,
+                            "Gladiator's Badge": 100,
+                            "Doom Winds": 100,
                             "Bloodlust": 100,
+                            "Sundering": 100,
+                            "Totemic Projection": 100,
                             "Stormstrike": 100,
                             "Lightning Bolt": 100,
+                            "Healing Stream Totem": 100,
                             "Lava Lash": 100,
-                            "Voltaic Blaze": 100
+                            "Surging Totem": 100,
+                            "Burrow": 100
                         },
-                        "avgCasts": 11,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 29,
+                        "avgDistinctSpells": 16
                     }
                 },
                 "Stormbringer": {
@@ -782,18 +816,24 @@
                     "killWindow": {
                         "n": 3,
                         "spellPct": {
+                            "Doom Winds": 100,
                             "Chain Lightning": 100,
                             "Tempest": 100,
                             "Stormstrike": 100,
+                            "Crash Lightning": 100,
                             "Voltaic Blaze": 100,
                             "Windstrike": 66.7,
                             "Wind Shear": 66.7,
                             "Lightning Bolt": 66.7,
                             "Bloodlust": 66.7,
-                            "Lava Lash": 33.3
+                            "Capacitor Totem": 66.7,
+                            "Spirit Walk": 33.3,
+                            "Totemic Projection": 33.3,
+                            "Ghost Wolf": 33.3,
+                            "Blood Fury": 33.3
                         },
-                        "avgCasts": 19.67,
-                        "avgDistinctSpells": 7
+                        "avgCasts": 30.67,
+                        "avgDistinctSpells": 11.33
                     }
                 }
             }

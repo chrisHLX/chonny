@@ -3,7 +3,7 @@
     "classSlug": "priest",
     "specSlug": "shadow",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:06+00:00",
+    "generatedAt": "2026-08-15T08:08:21+00:00",
     "heroTreesDetected": [
         "Voidweaver",
         "Archon",
@@ -93,16 +93,20 @@
                     "Shadow Word: Pain": 100,
                     "Psyfiend": 100,
                     "Tentacle Slam": 100,
+                    "Shadowy Apparition": 100,
                     "Mind Blast": 100,
                     "Void Torrent": 100,
                     "Shadow Word: Madness": 100,
+                    "Angelic Feather": 100,
+                    "Fade": 100,
+                    "Psychic Scream": 100,
                     "Void Blast": 100,
                     "Silence": 100,
                     "Mind Flay": 100,
                     "Shadow Word: Death": 100
                 },
-                "avgCasts": 13,
-                "avgDistinctSpells": 10
+                "avgCasts": 27,
+                "avgDistinctSpells": 14
             },
             "heroTreeBreakdown": {
                 "Archon": {
@@ -245,16 +249,20 @@
                             "Shadow Word: Pain": 100,
                             "Psyfiend": 100,
                             "Tentacle Slam": 100,
+                            "Shadowy Apparition": 100,
                             "Mind Blast": 100,
                             "Void Torrent": 100,
                             "Shadow Word: Madness": 100,
+                            "Angelic Feather": 100,
+                            "Fade": 100,
+                            "Psychic Scream": 100,
                             "Void Blast": 100,
                             "Silence": 100,
                             "Mind Flay": 100,
                             "Shadow Word: Death": 100
                         },
-                        "avgCasts": 13,
-                        "avgDistinctSpells": 10
+                        "avgCasts": 27,
+                        "avgDistinctSpells": 14
                     }
                 }
             }
@@ -346,23 +354,23 @@
                 "n": 7,
                 "spellPct": {
                     "Shadow Word: Madness": 100,
+                    "Shadowy Apparition": 100,
                     "Mind Blast": 100,
-                    "Tentacle Slam": 85.7,
-                    "Shadow Word: Pain": 85.7,
                     "Silence": 85.7,
+                    "Shadow Word: Pain": 85.7,
+                    "Tentacle Slam": 85.7,
                     "Mind Flay": 71.4,
+                    "Psychic Scream": 71.4,
                     "Psyfiend": 57.1,
+                    "Fade": 57.1,
                     "Void Torrent": 57.1,
                     "Shadow Word: Death": 57.1,
                     "Void Blast": 42.9,
-                    "Mind Flay: Insanity": 28.6,
-                    "Dispel Magic": 28.6,
-                    "Voidform": 14.3,
-                    "Vampiric Touch": 14.3,
-                    "Power Word: Shield": 14.3
+                    "Angelic Feather": 42.9,
+                    "Dispel Magic": 28.6
                 },
-                "avgCasts": 11.71,
-                "avgDistinctSpells": 8.43
+                "avgCasts": 24,
+                "avgDistinctSpells": 11.71
             },
             "heroTreeBreakdown": {
                 "Voidweaver": {
@@ -443,21 +451,24 @@
                     "killWindow": {
                         "n": 4,
                         "spellPct": {
-                            "Shadow Word: Pain": 100,
+                            "Shadowy Apparition": 100,
+                            "Silence": 100,
                             "Mind Blast": 100,
                             "Void Torrent": 100,
                             "Shadow Word: Madness": 100,
-                            "Silence": 100,
+                            "Shadow Word: Pain": 100,
+                            "Psychic Scream": 75,
+                            "Shadow Word: Death": 75,
                             "Tentacle Slam": 75,
                             "Void Blast": 75,
-                            "Shadow Word: Death": 75,
+                            "Fade": 50,
                             "Psyfiend": 50,
+                            "Angelic Feather": 50,
                             "Mind Flay": 50,
-                            "Vampiric Touch": 25,
                             "Power Word: Shield": 25
                         },
-                        "avgCasts": 12.25,
-                        "avgDistinctSpells": 8.75
+                        "avgCasts": 25,
+                        "avgDistinctSpells": 11.75
                     }
                 },
                 "Archon": {
@@ -536,20 +547,24 @@
                     "killWindow": {
                         "n": 3,
                         "spellPct": {
-                            "Tentacle Slam": 100,
                             "Shadow Word: Madness": 100,
+                            "Shadowy Apparition": 100,
                             "Mind Blast": 100,
                             "Mind Flay": 100,
-                            "Mind Flay: Insanity": 66.7,
-                            "Shadow Word: Pain": 66.7,
-                            "Dispel Magic": 66.7,
-                            "Psyfiend": 66.7,
+                            "Tentacle Slam": 100,
                             "Silence": 66.7,
-                            "Shadow Word: Death": 33.3,
-                            "Voidform": 33.3
+                            "Dispel Magic": 66.7,
+                            "Shadow Word: Pain": 66.7,
+                            "Psyfiend": 66.7,
+                            "Void Volley": 66.7,
+                            "Fade": 66.7,
+                            "Psychic Scream": 66.7,
+                            "Mind Flay: Insanity": 66.7,
+                            "Voidform": 33.3,
+                            "Gladiator's Medallion": 33.3
                         },
-                        "avgCasts": 11,
-                        "avgDistinctSpells": 8
+                        "avgCasts": 22.67,
+                        "avgDistinctSpells": 11.67
                     }
                 }
             }
@@ -637,24 +652,24 @@
             "killWindow": {
                 "n": 12,
                 "spellPct": {
+                    "Shadowy Apparition": 100,
                     "Tentacle Slam": 100,
                     "Shadow Word: Pain": 100,
                     "Shadow Word: Madness": 83.3,
                     "Silence": 83.3,
                     "Shadow Word: Death": 75,
+                    "Psychic Scream": 66.7,
                     "Mind Blast": 58.3,
                     "Voidform": 50,
+                    "Void Volley": 50,
                     "Void Blast": 50,
                     "Mind Flay": 50,
                     "Void Torrent": 50,
                     "Psyfiend": 50,
-                    "Dispel Magic": 33.3,
-                    "Power Word: Shield": 25,
-                    "Vampiric Touch": 16.7,
-                    "Power Infusion": 16.7
+                    "Fade": 50
                 },
-                "avgCasts": 13.08,
-                "avgDistinctSpells": 8.92
+                "avgCasts": 26.17,
+                "avgDistinctSpells": 11.75
             },
             "heroTreeBreakdown": {
                 "Voidweaver": {
@@ -740,24 +755,24 @@
                     "killWindow": {
                         "n": 12,
                         "spellPct": {
+                            "Shadowy Apparition": 100,
                             "Tentacle Slam": 100,
                             "Shadow Word: Pain": 100,
                             "Shadow Word: Madness": 83.3,
                             "Silence": 83.3,
                             "Shadow Word: Death": 75,
+                            "Psychic Scream": 66.7,
                             "Mind Blast": 58.3,
                             "Voidform": 50,
+                            "Void Volley": 50,
                             "Void Blast": 50,
                             "Mind Flay": 50,
                             "Void Torrent": 50,
                             "Psyfiend": 50,
-                            "Dispel Magic": 33.3,
-                            "Power Word: Shield": 25,
-                            "Vampiric Touch": 16.7,
-                            "Power Infusion": 16.7
+                            "Fade": 50
                         },
-                        "avgCasts": 13.08,
-                        "avgDistinctSpells": 8.92
+                        "avgCasts": 26.17,
+                        "avgDistinctSpells": 11.75
                     }
                 }
             }

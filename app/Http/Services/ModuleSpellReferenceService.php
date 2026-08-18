@@ -71,7 +71,7 @@ class ModuleSpellReferenceService
     /** @var array<string, bool> keyed by "{spell->id}:{classId}:{specId}:{treeIds}" — see isConfidentlyInBuild(). */
     private array $confidentlyInBuildMemo = [];
 
-    /** @var array<int, array{seconds: ?float, charges: ?int}> keyed by spell->id — see resolveBaseCooldownCharges(). */
+    /** @var array<int, array{seconds: ?float, charges: ?int, duration: ?float}> keyed by spell->id — see resolveBaseCooldownCharges(). */
     private array $baseCooldownChargesMemo = [];
 
     /**
@@ -520,20 +520,34 @@ class ModuleSpellReferenceService
     }
 
     /**
-     * Resolves $spell's own base cooldown_seconds/charges, falling back independently (each
-     * field on its own — a spell can be missing one and not the other) to a same-named sibling
-     * in the same patch when its own value is null. Same sibling-recovery pattern as
-     * categorize()'s effect merge and findEffectByIndex() — added 2026-08-10 after a real case:
-     * Rogue's Smoke Bomb reaches display via a PvP-talent-selected spell_id (212182/359053)
-     * that carries no cooldown data at all, while a separate same-named baseline record
-     * (76577) has the real "180" — same "one ability, split across multiple spell_id records,
-     * only one carries the real number" shape already seen for Angelic Bulwark/Anti-Magic
-     * Zone/Void Bolt's icon, just affecting the base cooldown/charges fields this time instead
-     * of description/category/icon. Never guesses a value — only borrows a sibling's *real*,
-     * non-null field; a spell with no sibling carrying either field stays exactly as unresolved
-     * as before.
+     * Resolves $spell's own base cooldown_seconds/charges/duration_seconds, falling back
+     * independently (each field on its own — a spell can be missing one and not the other) —
+     * first to a same-named sibling in the same patch, then (added 2026-08-17) to whatever
+     * spell_id the description's own `$<id>d`/`$<id>s<n>` tokens explicitly reference. Same
+     * sibling-recovery pattern as categorize()'s effect merge and findEffectByIndex() — added
+     * 2026-08-10 after a real case: Rogue's Smoke Bomb reaches display via a PvP-talent-selected
+     * spell_id (212182/359053) that carries no cooldown data at all, while a separate same-named
+     * baseline record (76577) has the real "180" — same "one ability, split across multiple
+     * spell_id records, only one carries the real number" shape already seen for Angelic
+     * Bulwark/Anti-Magic Zone/Void Bolt's icon, just affecting the base cooldown/charges fields
+     * this time instead of description/category/icon.
      *
-     * @return array{seconds: ?float, charges: ?int}
+     * The description-reference tier was added after a real, confirmed gap the name-matching
+     * tier structurally can't catch: Axe Toss's displayed copy (id 10853, suffixed "(desc=
+     * Command Demon Ability)") has null cooldown/duration, and its real data lives on a
+     * DIFFERENTLY-named sibling (id 10815, "Axe Toss (desc=Special Ability)") — same-name
+     * matching finds nothing, because the names genuinely differ. But Axe Toss's own
+     * description text says "...for $89766d" — Blizzard's own explicit pointer to spell_id
+     * 89766, which resolves to exactly that record. This is a *more* reliable signal than
+     * name-matching (an authored reference, not a heuristic), so it's tried as an additional
+     * fallback tier after the same-name pass — reusing resolveValueToken()'s own `$<id>d`/
+     * `$<id>s<n>` regex shape and findSpellBySpellId(), not a new parsing mechanism.
+     *
+     * Never guesses a value — only borrows a real, non-null field from a sibling or an
+     * explicitly-referenced spell; a spell with neither carrying either field stays exactly as
+     * unresolved as before.
+     *
+     * @return array{seconds: ?float, charges: ?int, duration: ?float}
      */
     private function resolveBaseCooldownCharges(Spell $spell): array
     {
@@ -543,27 +557,76 @@ class ModuleSpellReferenceService
 
         $seconds = $spell->cooldown_seconds !== null ? (float) $spell->cooldown_seconds : null;
         $charges = $spell->charges;
+        $duration = $spell->duration_seconds !== null ? (float) $spell->duration_seconds : null;
 
-        if ($seconds === null || $charges === null) {
+        $applyCandidate = function (?Spell $candidate) use (&$seconds, &$charges, &$duration): void {
+            if (!$candidate) {
+                return;
+            }
+            if ($seconds === null && $candidate->cooldown_seconds !== null) {
+                $seconds = (float) $candidate->cooldown_seconds;
+            }
+            if ($charges === null && $candidate->charges !== null) {
+                $charges = $candidate->charges;
+            }
+            if ($duration === null && $candidate->duration_seconds !== null) {
+                $duration = (float) $candidate->duration_seconds;
+            }
+        };
+
+        if ($seconds === null || $charges === null || $duration === null) {
             $siblings = Spell::where('name', $spell->name)
                 ->where('patch_id', $spell->patch_id)
                 ->where('id', '!=', $spell->id)
                 ->get();
 
             foreach ($siblings as $sibling) {
-                if ($seconds === null && $sibling->cooldown_seconds !== null) {
-                    $seconds = (float) $sibling->cooldown_seconds;
-                }
-                if ($charges === null && $sibling->charges !== null) {
-                    $charges = $sibling->charges;
-                }
-                if ($seconds !== null && $charges !== null) {
+                $applyCandidate($sibling);
+                if ($seconds !== null && $charges !== null && $duration !== null) {
                     break;
                 }
             }
         }
 
-        return $this->baseCooldownChargesMemo[$spell->id] = ['seconds' => $seconds, 'charges' => $charges];
+        if ($seconds === null || $charges === null || $duration === null) {
+            foreach ($this->findDescriptionReferencedSpells($spell) as $referenced) {
+                $applyCandidate($referenced);
+                if ($seconds !== null && $charges !== null && $duration !== null) {
+                    break;
+                }
+            }
+        }
+
+        return $this->baseCooldownChargesMemo[$spell->id] = ['seconds' => $seconds, 'charges' => $charges, 'duration' => $duration];
+    }
+
+    /**
+     * Every distinct spell explicitly referenced by $spell's own description via a `$<id>d` or
+     * `$<id>s<n>` token — Blizzard's own pointer to another spell_id's duration or effect value,
+     * the same token shape resolveValueToken() already parses for text substitution. Reused here
+     * (by resolveBaseCooldownCharges()) as a scalar-field fallback source: when a description
+     * explicitly names another spell_id, that's stronger evidence of "this is the real data
+     * record" than a same-name-string heuristic. Order-preserving, deduplicated by spell_id.
+     *
+     * @return array<int, Spell>
+     */
+    private function findDescriptionReferencedSpells(Spell $spell): array
+    {
+        if (!$spell->description) {
+            return [];
+        }
+
+        preg_match_all('/\$(\d+)(?:s\d+|d)\b/', $spell->description, $matches);
+
+        $referenced = [];
+        foreach (array_unique($matches[1]) as $externalSpellId) {
+            $other = $this->findSpellBySpellId((int) $externalSpellId, $spell->patch_id);
+            if ($other && $other->id !== $spell->id) {
+                $referenced[] = $other;
+            }
+        }
+
+        return $referenced;
     }
 
     /**

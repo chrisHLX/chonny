@@ -3,7 +3,7 @@
     "classSlug": "evoker",
     "specSlug": "devastation",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:14+00:00",
+    "generatedAt": "2026-08-15T08:08:50+00:00",
     "heroTreesDetected": [
         "Scalecommander",
         "Flameshaper",
@@ -41,7 +41,7 @@
                 "Fire Breath (desc=Red)": 1.97,
                 "Azure Strike (desc=Blue)": 1.77,
                 "Deep Breath (desc=Black)": 1.75,
-                "Unbound Flame": 1.56,
+                "Unbound Flame (desc=Red)": 1.56,
                 "Living Flame (desc=Red)": 1.32,
                 "Glide": 0.88,
                 "Obsidian Scales (desc=Black)": 0.67,
@@ -60,7 +60,7 @@
             "damageSharePct": {
                 "Disintegrate (desc=Blue)": 52.78,
                 "Azure Sweep (desc=Blue)": 10.95,
-                "Unbound Flame": 7.05,
+                "Unbound Flame (desc=Red)": 7.05,
                 "Eternity Surge (desc=Blue)": 6.67,
                 "Deep Breath (desc=Black)": 4.9,
                 "Fire Breath (desc=Red)": 4.71,
@@ -79,12 +79,15 @@
                 "spellPct": {
                     "Azure Sweep (desc=Blue)": 100,
                     "Disintegrate (desc=Blue)": 100,
-                    "Unbound Flame": 75,
+                    "Deep Breath (desc=Black)": 100,
+                    "Fire Breath (desc=Red)": 25,
+                    "Unbound Flame (desc=Red)": 75,
                     "Living Flame (desc=Red)": 75,
+                    "Hover": 75,
                     "Sleep Walk (desc=Green)": 25
                 },
-                "avgCasts": 10.25,
-                "avgDistinctSpells": 3.75
+                "avgCasts": 13.5,
+                "avgDistinctSpells": 6.5
             },
             "heroTreeBreakdown": {
                 "Scalecommander": {
@@ -118,7 +121,7 @@
                         "Fire Breath (desc=Red)": 1.97,
                         "Azure Strike (desc=Blue)": 1.77,
                         "Deep Breath (desc=Black)": 1.75,
-                        "Unbound Flame": 1.56,
+                        "Unbound Flame (desc=Red)": 1.56,
                         "Living Flame (desc=Red)": 1.32,
                         "Glide": 0.88,
                         "Obsidian Scales (desc=Black)": 0.67,
@@ -137,7 +140,7 @@
                     "damageSharePct": {
                         "Disintegrate (desc=Blue)": 52.78,
                         "Azure Sweep (desc=Blue)": 10.95,
-                        "Unbound Flame": 7.05,
+                        "Unbound Flame (desc=Red)": 7.05,
                         "Eternity Surge (desc=Blue)": 6.67,
                         "Deep Breath (desc=Black)": 4.9,
                         "Fire Breath (desc=Red)": 4.71,
@@ -156,12 +159,15 @@
                         "spellPct": {
                             "Azure Sweep (desc=Blue)": 100,
                             "Disintegrate (desc=Blue)": 100,
-                            "Unbound Flame": 75,
+                            "Deep Breath (desc=Black)": 100,
+                            "Fire Breath (desc=Red)": 25,
+                            "Unbound Flame (desc=Red)": 75,
                             "Living Flame (desc=Red)": 75,
+                            "Hover": 75,
                             "Sleep Walk (desc=Green)": 25
                         },
-                        "avgCasts": 10.25,
-                        "avgDistinctSpells": 3.75
+                        "avgCasts": 13.5,
+                        "avgDistinctSpells": 6.5
                     }
                 }
             }
@@ -233,15 +239,18 @@
             "killWindow": {
                 "n": 1,
                 "spellPct": {
+                    "Deep Breath (desc=Black)": 100,
                     "Disintegrate (desc=Blue)": 100,
+                    "Hover": 100,
                     "Sleep Walk (desc=Green)": 100,
+                    "Fire Breath (desc=Red)": 100,
                     "Azure Sweep (desc=Blue)": 100,
                     "Azure Strike (desc=Blue)": 100,
                     "Eternity Surge (desc=Blue)": 100,
                     "Quell": 100
                 },
-                "avgCasts": 14,
-                "avgDistinctSpells": 6
+                "avgCasts": 17,
+                "avgDistinctSpells": 9
             },
             "heroTreeBreakdown": {
                 "Scalecommander": {
@@ -311,15 +320,18 @@
                     "killWindow": {
                         "n": 1,
                         "spellPct": {
+                            "Deep Breath (desc=Black)": 100,
                             "Disintegrate (desc=Blue)": 100,
+                            "Hover": 100,
                             "Sleep Walk (desc=Green)": 100,
+                            "Fire Breath (desc=Red)": 100,
                             "Azure Sweep (desc=Blue)": 100,
                             "Azure Strike (desc=Blue)": 100,
                             "Eternity Surge (desc=Blue)": 100,
                             "Quell": 100
                         },
-                        "avgCasts": 14,
-                        "avgDistinctSpells": 6
+                        "avgCasts": 17,
+                        "avgDistinctSpells": 9
                     }
                 }
             }
@@ -406,11 +418,15 @@
                     "Azure Sweep (desc=Blue)": 100,
                     "Rescue": 50,
                     "Twin Flame": 50,
+                    "Fire Breath (desc=Red)": 50,
+                    "Tip the Scales (desc=Bronze)": 50,
                     "Eternity Surge (desc=Blue)": 50,
-                    "Quell": 50
+                    "Quell": 50,
+                    "Hover": 50,
+                    "Gladiator's Medallion": 50
                 },
-                "avgCasts": 11.5,
-                "avgDistinctSpells": 5.5
+                "avgCasts": 15,
+                "avgDistinctSpells": 8
             },
             "heroTreeBreakdown": {
                 "Scalecommander": {
@@ -490,12 +506,15 @@
                         "spellPct": {
                             "Disintegrate (desc=Blue)": 100,
                             "Quell": 100,
+                            "Hover": 100,
                             "Sleep Walk (desc=Green)": 100,
+                            "Fire Breath (desc=Red)": 100,
                             "Eternity Surge (desc=Blue)": 100,
-                            "Azure Sweep (desc=Blue)": 100
+                            "Azure Sweep (desc=Blue)": 100,
+                            "Gladiator's Medallion": 100
                         },
-                        "avgCasts": 12,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 17,
+                        "avgDistinctSpells": 8
                     }
                 },
                 "Flameshaper": {
@@ -572,11 +591,13 @@
                             "Sleep Walk (desc=Green)": 100,
                             "Twin Flame": 100,
                             "Disintegrate (desc=Blue)": 100,
+                            "Fire Breath (desc=Red)": 100,
+                            "Tip the Scales (desc=Bronze)": 100,
                             "Eternity Surge (desc=Blue)": 100,
                             "Azure Sweep (desc=Blue)": 100
                         },
-                        "avgCasts": 11,
-                        "avgDistinctSpells": 6
+                        "avgCasts": 13,
+                        "avgDistinctSpells": 8
                     }
                 }
             }

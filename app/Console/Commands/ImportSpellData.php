@@ -196,6 +196,36 @@ class ImportSpellData extends Command
         $this->importCcSynergyOverrides($patch);
         $this->importScalarCorrections($patch);
 
+        // Retroactive cleanup for stale class-tree talent nodes that duplicate a spec-tree
+        // talent (see TalentSelectionService::cleanupClassTreeBloat()'s docblock and CLAUDE.md's
+        // "cross-spec spell leakage" section) — runs BEFORE the same-position collision cleanup
+        // below since removing a stale duplicate node can itself resolve what would otherwise
+        // look like a same-position collision. Same "always run this defensive pass" precedent
+        // as importBaselineSpecOverrides() above.
+        $bloatReport = app(TalentSelectionService::class)->cleanupClassTreeBloat();
+        if ($bloatReport !== []) {
+            $this->warn('  Removed '.count($bloatReport).' stale class-tree talent node(s) (spell also present in a spec tree):');
+            $byClass = collect($bloatReport)->groupBy('class');
+            foreach ($byClass as $className => $rows) {
+                $this->line("    [{$className}] {$rows->count()} stale node(s), e.g. ".$rows->pluck('spell')->unique()->take(3)->implode(', '));
+            }
+        }
+
+        // Retroactive cleanup for same-position ACTIVE-node duplicates sharing an identical
+        // talent name (see TalentSelectionService::cleanupDuplicateSpellNodes()'s docblock and
+        // CLAUDE.md — found 2026-08-17 via "Intimidation"/Moonkin Form/Starsurge/Starfire each
+        // showing 2-3 times). Runs BEFORE the same-position collision cleanup below, same
+        // ordering rationale as the class-tree-bloat pass above — merging a genuine duplicate
+        // node down to one can itself resolve what would otherwise look like a same-position
+        // collision. Same "always run this defensive pass" precedent as the others.
+        $duplicateNodeReport = app(TalentSelectionService::class)->cleanupDuplicateSpellNodes();
+        if ($duplicateNodeReport !== []) {
+            $this->warn('  Merged '.count($duplicateNodeReport).' duplicate talent node(s) sharing an identical name:');
+            foreach ($duplicateNodeReport as $row) {
+                $this->line("    [{$row['tree']}] dropped '{$row['dropped']}' (node {$row['dropped_node_id']}), kept node {$row['kept_node_id']}");
+            }
+        }
+
         // Retroactive cleanup for talent_build_choices rows written before the same-position
         // collision guard existed (see TalentSelectionService::cleanupSamePositionCollisions()'s
         // docblock and CLAUDE.md's "Same-position ACTIVE node collisions" section) — runs
@@ -1433,6 +1463,18 @@ class ImportSpellData extends Command
             // break on damage. Warn, don't silently accept, if a future edit violates this.
             if (in_array($chainTarget, ['kill_target', 'both'], true) && !in_array($drCategory, ['Stun', 'Silence'], true)) {
                 $this->warn("  ⚠ cc-synergies-overrides.txt: chain_target='{$chainTarget}' with dr_category='{$drCategory}' violates the break-on-damage rule (only Stun/Silence may be kill_target/both): {$line}");
+            }
+
+            // Standing rule, added 2026-08-17 after a real mistake (Censure — a passive that
+            // changes Holy Word: Chastise's CC type — was wrongly tagged as its own Stun,
+            // rendering as an independent CC ability in the Synergies tab). A dr_category
+            // represents an actively-cast ability a player can sequence into a CC chain; a
+            // passive, by definition, isn't cast, so it should never carry one. Warn, don't
+            // silently accept — same posture as the break-on-damage rule above, not a hard skip,
+            // since this is a strong signal something's wrong rather than an absolute
+            // impossibility worth blocking outright.
+            if ($drCategory !== '' && $spell->is_passive) {
+                $this->warn("  ⚠ cc-synergies-overrides.txt: dr_category='{$drCategory}' assigned to a PASSIVE spell ('{$spell->name}') — passives can't be cast/sequenced in a CC chain; this is almost always a sign the tag belongs on an active ability this passive modifies instead: {$line}");
             }
 
             $this->upsertTrack(Spell::class, ['id' => $spell->id], [

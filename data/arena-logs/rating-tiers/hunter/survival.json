@@ -3,7 +3,7 @@
     "classSlug": "hunter",
     "specSlug": "survival",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:11+00:00",
+    "generatedAt": "2026-08-15T08:08:42+00:00",
     "heroTreesDetected": [
         "Sentinel",
         "Pack Leader",
@@ -93,20 +93,23 @@
             "killWindow": {
                 "n": 4,
                 "spellPct": {
-                    "Kill Command": 100,
+                    "Raptor Swipe": 100,
                     "Wildfire Bomb": 100,
+                    "Kill Command": 100,
                     "Raptor Strike": 100,
-                    "Intimidation": 50,
+                    "Freezing Trap": 50,
                     "Muzzle": 50,
-                    "Tranquilizing Shot": 25,
+                    "Intimidation": 50,
                     "Tracker's Net": 25,
                     "Boomstick": 25,
                     "Scatter Shot": 25,
-                    "Takedown": 25,
-                    "Moonlight Chakram": 25
+                    "Exhilaration": 25,
+                    "Tranquilizing Shot": 25,
+                    "Gladiator's Badge": 25,
+                    "Takedown": 25
                 },
-                "avgCasts": 8.5,
-                "avgDistinctSpells": 5.5
+                "avgCasts": 12,
+                "avgDistinctSpells": 8
             },
             "heroTreeBreakdown": {
                 "Sentinel": {
@@ -192,20 +195,23 @@
                     "killWindow": {
                         "n": 4,
                         "spellPct": {
-                            "Kill Command": 100,
+                            "Raptor Swipe": 100,
                             "Wildfire Bomb": 100,
+                            "Kill Command": 100,
                             "Raptor Strike": 100,
-                            "Intimidation": 50,
+                            "Freezing Trap": 50,
                             "Muzzle": 50,
-                            "Tranquilizing Shot": 25,
+                            "Intimidation": 50,
                             "Tracker's Net": 25,
                             "Boomstick": 25,
                             "Scatter Shot": 25,
-                            "Takedown": 25,
-                            "Moonlight Chakram": 25
+                            "Exhilaration": 25,
+                            "Tranquilizing Shot": 25,
+                            "Gladiator's Badge": 25,
+                            "Takedown": 25
                         },
-                        "avgCasts": 8.5,
-                        "avgDistinctSpells": 5.5
+                        "avgCasts": 12,
+                        "avgDistinctSpells": 8
                     }
                 }
             }
@@ -302,21 +308,24 @@
             "killWindow": {
                 "n": 4,
                 "spellPct": {
-                    "Wildfire Bomb": 100,
                     "Kill Command": 100,
-                    "Boomstick": 75,
+                    "Wildfire Bomb": 100,
                     "Harpoon": 75,
-                    "Hunter's Mark": 75,
+                    "Boomstick": 75,
                     "Raptor Strike": 75,
-                    "Tranquilizing Shot": 50,
+                    "Hunter's Mark": 75,
+                    "Raptor Swipe": 50,
+                    "Freezing Trap": 50,
                     "Takedown": 50,
+                    "Tranquilizing Shot": 50,
+                    "Disengage": 25,
+                    "Gladiator's Badge": 25,
+                    "Gladiator's Medallion": 25,
                     "Tracker's Net": 25,
-                    "Muzzle": 25,
-                    "Chimaeral Sting": 25,
-                    "Moonlight Chakram": 25
+                    "Aspect of the Cheetah": 25
                 },
-                "avgCasts": 10.5,
-                "avgDistinctSpells": 7
+                "avgCasts": 13.75,
+                "avgDistinctSpells": 9.75
             },
             "heroTreeBreakdown": {
                 "Sentinel": {
@@ -411,17 +420,20 @@
                             "Wildfire Bomb": 100,
                             "Kill Command": 100,
                             "Boomstick": 66.7,
-                            "Harpoon": 66.7,
-                            "Hunter's Mark": 66.7,
                             "Raptor Strike": 66.7,
+                            "Hunter's Mark": 66.7,
+                            "Harpoon": 66.7,
                             "Tranquilizing Shot": 66.7,
                             "Muzzle": 33.3,
                             "Chimaeral Sting": 33.3,
+                            "Freezing Trap": 33.3,
+                            "Binding Shot": 33.3,
+                            "Flare": 33.3,
                             "Takedown": 33.3,
                             "Moonlight Chakram": 33.3
                         },
-                        "avgCasts": 9.67,
-                        "avgDistinctSpells": 6.67
+                        "avgCasts": 11.67,
+                        "avgDistinctSpells": 8.33
                     }
                 },
                 "Pack Leader": {
@@ -493,17 +505,23 @@
                     "killWindow": {
                         "n": 1,
                         "spellPct": {
+                            "Raptor Swipe": 100,
                             "Kill Command": 100,
                             "Harpoon": 100,
+                            "Freezing Trap": 100,
+                            "Disengage": 100,
+                            "Gladiator's Badge": 100,
                             "Takedown": 100,
+                            "Gladiator's Medallion": 100,
                             "Boomstick": 100,
                             "Wildfire Bomb": 100,
                             "Raptor Strike": 100,
                             "Hunter's Mark": 100,
-                            "Tracker's Net": 100
+                            "Tracker's Net": 100,
+                            "Aspect of the Cheetah": 100
                         },
-                        "avgCasts": 13,
-                        "avgDistinctSpells": 8
+                        "avgCasts": 20,
+                        "avgDistinctSpells": 14
                     }
                 }
             }

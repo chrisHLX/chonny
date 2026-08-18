@@ -3,7 +3,7 @@
     "classSlug": "rogue",
     "specSlug": "outlaw",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:15+00:00",
+    "generatedAt": "2026-08-15T08:08:53+00:00",
     "heroTreesDetected": [
         "Trickster",
         "Fatebound",
@@ -229,12 +229,16 @@
                 "spellPct": {
                     "Dispatch": 100,
                     "Pistol Shot": 100,
+                    "角斗士的勋章": 100,
                     "Sinister Strike": 100,
+                    "Feint": 100,
                     "Kidney Shot": 100,
-                    "Between the Eyes": 100
+                    "Between the Eyes": 100,
+                    "Sprint": 100,
+                    "Roll the Bones": 100
                 },
-                "avgCasts": 27,
-                "avgDistinctSpells": 5
+                "avgCasts": 31,
+                "avgDistinctSpells": 9
             },
             "heroTreeBreakdown": {
                 "Trickster": {
@@ -308,12 +312,16 @@
                         "spellPct": {
                             "Dispatch": 100,
                             "Pistol Shot": 100,
+                            "角斗士的勋章": 100,
                             "Sinister Strike": 100,
+                            "Feint": 100,
                             "Kidney Shot": 100,
-                            "Between the Eyes": 100
+                            "Between the Eyes": 100,
+                            "Sprint": 100,
+                            "Roll the Bones": 100
                         },
-                        "avgCasts": 27,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 31,
+                        "avgDistinctSpells": 9
                     }
                 }
             }
@@ -402,11 +410,17 @@
                     "Between the Eyes": 100,
                     "Sinister Strike": 100,
                     "Dispatch": 100,
+                    "Roll the Bones": 100,
                     "Pistol Shot": 50,
-                    "Blade Rush": 50
+                    "Feint": 50,
+                    "Evasion": 50,
+                    "Sprint": 50,
+                    "Adrenaline Rush": 50,
+                    "Blade Rush": 50,
+                    "Grappling Hook": 50
                 },
-                "avgCasts": 14,
-                "avgDistinctSpells": 4
+                "avgCasts": 17.5,
+                "avgDistinctSpells": 7.5
             },
             "heroTreeBreakdown": {
                 "Trickster": {
@@ -493,11 +507,17 @@
                             "Between the Eyes": 100,
                             "Sinister Strike": 100,
                             "Dispatch": 100,
+                            "Roll the Bones": 100,
                             "Pistol Shot": 50,
-                            "Blade Rush": 50
+                            "Feint": 50,
+                            "Evasion": 50,
+                            "Sprint": 50,
+                            "Adrenaline Rush": 50,
+                            "Blade Rush": 50,
+                            "Grappling Hook": 50
                         },
-                        "avgCasts": 14,
-                        "avgDistinctSpells": 4
+                        "avgCasts": 17.5,
+                        "avgDistinctSpells": 7.5
                     }
                 }
             }

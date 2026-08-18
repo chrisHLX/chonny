@@ -48,6 +48,22 @@
             Discover
         </a>
 
+        <div class="pl-3 space-y-0.5">
+            <div class="px-2.5 pt-1.5 pb-0.5">
+                <p class="text-[10px] font-medium text-ink-subtle uppercase tracking-widest">WoW</p>
+            </div>
+            <a href="{{ route('wow-comps') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('wow-comps') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                WoW Comps
+            </a>
+            <a href="{{ route('spells.explore') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Spells
+            </a>
+        </div>
+
         @can('admin')
         <!-- Creator -->
         <div x-data="{ creatorOpen: $persist(true).as('nav_creator_open') }" class="pt-1">

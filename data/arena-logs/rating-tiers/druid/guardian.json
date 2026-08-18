@@ -3,7 +3,7 @@
     "classSlug": "druid",
     "specSlug": "guardian",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:17+00:00",
+    "generatedAt": "2026-08-15T08:08:58+00:00",
     "heroTreesDetected": [
         "Druid of the Claw",
         "Wildstalker",
@@ -101,6 +101,9 @@
                 "n": 3,
                 "spellPct": {
                     "Moonfire": 100,
+                    "Thrash": 100,
+                    "Bear Form (desc=Shapeshift)": 100,
+                    "Ironfur": 66.7,
                     "Mangle": 66.7,
                     "Overrun": 66.7,
                     "Wild Charge (desc=Talent)": 66.7,
@@ -109,12 +112,12 @@
                     "Maul": 33.3,
                     "Remove Corruption": 33.3,
                     "Maim": 33.3,
-                    "Raze": 33.3,
-                    "Cyclone": 33.3,
-                    "Skull Bash": 33.3
+                    "Ursol's Vortex": 33.3,
+                    "Cat Form (desc=Shapeshift)": 33.3,
+                    "Raze": 33.3
                 },
-                "avgCasts": 9.33,
-                "avgDistinctSpells": 6.67
+                "avgCasts": 17.33,
+                "avgDistinctSpells": 11
             },
             "heroTreeBreakdown": {
                 "Elune's Chosen": {
@@ -199,6 +202,9 @@
                         "n": 3,
                         "spellPct": {
                             "Moonfire": 100,
+                            "Thrash": 100,
+                            "Bear Form (desc=Shapeshift)": 100,
+                            "Ironfur": 66.7,
                             "Mangle": 66.7,
                             "Overrun": 66.7,
                             "Wild Charge (desc=Talent)": 66.7,
@@ -207,12 +213,12 @@
                             "Maul": 33.3,
                             "Remove Corruption": 33.3,
                             "Maim": 33.3,
-                            "Raze": 33.3,
-                            "Cyclone": 33.3,
-                            "Skull Bash": 33.3
+                            "Ursol's Vortex": 33.3,
+                            "Cat Form (desc=Shapeshift)": 33.3,
+                            "Raze": 33.3
                         },
-                        "avgCasts": 9.33,
-                        "avgDistinctSpells": 6.67
+                        "avgCasts": 17.33,
+                        "avgDistinctSpells": 11
                     }
                 }
             }

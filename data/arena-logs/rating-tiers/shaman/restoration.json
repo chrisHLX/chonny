@@ -3,7 +3,7 @@
     "classSlug": "shaman",
     "specSlug": "restoration",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:03+00:00",
+    "generatedAt": "2026-08-15T08:08:17+00:00",
     "heroTreesDetected": [
         "Totemic",
         "Stormbringer",
@@ -103,12 +103,18 @@
                     "Flame Shock": 100,
                     "Lava Burst": 100,
                     "Earth Shield": 66.7,
+                    "Stormstream Totem": 66.7,
+                    "Totemic Projection": 66.7,
+                    "Surging Totem": 66.7,
                     "Lightning Bolt": 66.7,
                     "Unleash Life": 33.3,
-                    "Greater Purge": 33.3
+                    "Earthgrab Totem": 33.3,
+                    "Wind Rush Totem": 33.3,
+                    "Greater Purge": 33.3,
+                    "Medallón de Gladiador": 33.3
                 },
-                "avgCasts": 8.33,
-                "avgDistinctSpells": 7
+                "avgCasts": 12,
+                "avgDistinctSpells": 10.67
             },
             "heroTreeBreakdown": {
                 "Totemic": {
@@ -204,12 +210,18 @@
                             "Flame Shock": 100,
                             "Lava Burst": 100,
                             "Earth Shield": 66.7,
+                            "Stormstream Totem": 66.7,
+                            "Totemic Projection": 66.7,
+                            "Surging Totem": 66.7,
                             "Lightning Bolt": 66.7,
                             "Unleash Life": 33.3,
-                            "Greater Purge": 33.3
+                            "Earthgrab Totem": 33.3,
+                            "Wind Rush Totem": 33.3,
+                            "Greater Purge": 33.3,
+                            "Medallón de Gladiador": 33.3
                         },
-                        "avgCasts": 8.33,
-                        "avgDistinctSpells": 7
+                        "avgCasts": 12,
+                        "avgDistinctSpells": 10.67
                     }
                 }
             }
@@ -306,22 +318,24 @@
             "killWindow": {
                 "n": 6,
                 "spellPct": {
-                    "Chain Heal": 100,
                     "Riptide": 100,
+                    "Chain Heal": 100,
+                    "Surging Totem": 100,
+                    "Healing Rain": 83.3,
+                    "Healing Stream Totem": 66.7,
                     "Purify Spirit": 50,
-                    "Unleash Life": 50,
                     "Healing Wave": 50,
+                    "Unleash Life": 50,
+                    "Stormstream Totem": 50,
                     "Lightning Bolt": 33.3,
-                    "Greater Purge": 33.3,
-                    "Purge": 16.7,
-                    "Lightning Lasso": 16.7,
-                    "妖术": 16.7,
-                    "Lava Burst": 16.7,
-                    "Earth Shield": 16.7,
-                    "Flame Shock": 16.7
+                    "Grounding Totem": 33.3,
+                    "Healing Tide Totem": 33.3,
+                    "Earthgrab Totem": 33.3,
+                    "Nature's Swiftness": 33.3,
+                    "Greater Purge": 33.3
                 },
-                "avgCasts": 7.5,
-                "avgDistinctSpells": 5.33
+                "avgCasts": 12.33,
+                "avgDistinctSpells": 10
             },
             "heroTreeBreakdown": {
                 "Totemic": {
@@ -416,22 +430,24 @@
                     "killWindow": {
                         "n": 6,
                         "spellPct": {
-                            "Chain Heal": 100,
                             "Riptide": 100,
+                            "Chain Heal": 100,
+                            "Surging Totem": 100,
+                            "Healing Rain": 83.3,
+                            "Healing Stream Totem": 66.7,
                             "Purify Spirit": 50,
-                            "Unleash Life": 50,
                             "Healing Wave": 50,
+                            "Unleash Life": 50,
+                            "Stormstream Totem": 50,
                             "Lightning Bolt": 33.3,
-                            "Greater Purge": 33.3,
-                            "Purge": 16.7,
-                            "Lightning Lasso": 16.7,
-                            "妖术": 16.7,
-                            "Lava Burst": 16.7,
-                            "Earth Shield": 16.7,
-                            "Flame Shock": 16.7
+                            "Grounding Totem": 33.3,
+                            "Healing Tide Totem": 33.3,
+                            "Earthgrab Totem": 33.3,
+                            "Nature's Swiftness": 33.3,
+                            "Greater Purge": 33.3
                         },
-                        "avgCasts": 7.5,
-                        "avgDistinctSpells": 5.33
+                        "avgCasts": 12.33,
+                        "avgDistinctSpells": 10
                     }
                 }
             }
@@ -518,18 +534,23 @@
             "killWindow": {
                 "n": 4,
                 "spellPct": {
+                    "Healing Stream Totem": 100,
                     "Chain Heal": 100,
                     "Riptide": 100,
                     "Flame Shock": 100,
                     "Unleash Life": 75,
                     "Healing Wave": 75,
+                    "治疗之雨": 50,
+                    "Surging Totem": 50,
+                    "Grounding Totem": 50,
+                    "Earthgrab Totem": 50,
                     "Lava Burst": 50,
                     "Wind Shear": 25,
                     "Hex (desc=Frog)": 25,
-                    "Greater Purge": 25
+                    "Nature's Swiftness": 25
                 },
-                "avgCasts": 10.5,
-                "avgDistinctSpells": 6.75
+                "avgCasts": 15.5,
+                "avgDistinctSpells": 11
             },
             "heroTreeBreakdown": {
                 "Totemic": {
@@ -614,18 +635,23 @@
                     "killWindow": {
                         "n": 4,
                         "spellPct": {
+                            "Healing Stream Totem": 100,
                             "Chain Heal": 100,
                             "Riptide": 100,
                             "Flame Shock": 100,
                             "Unleash Life": 75,
                             "Healing Wave": 75,
+                            "治疗之雨": 50,
+                            "Surging Totem": 50,
+                            "Grounding Totem": 50,
+                            "Earthgrab Totem": 50,
                             "Lava Burst": 50,
                             "Wind Shear": 25,
                             "Hex (desc=Frog)": 25,
-                            "Greater Purge": 25
+                            "Nature's Swiftness": 25
                         },
-                        "avgCasts": 10.5,
-                        "avgDistinctSpells": 6.75
+                        "avgCasts": 15.5,
+                        "avgDistinctSpells": 11
                     }
                 }
             }

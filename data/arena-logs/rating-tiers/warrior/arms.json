@@ -3,7 +3,7 @@
     "classSlug": "warrior",
     "specSlug": "arms",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:49+00:00",
+    "generatedAt": "2026-08-15T08:07:34+00:00",
     "heroTreesDetected": [
         "Slayer",
         "Mountain Thane",
@@ -105,18 +105,22 @@
                 "n": 9,
                 "spellPct": {
                     "Mortal Strike": 100,
+                    "Colossus Smash": 88.9,
                     "Overpower": 88.9,
-                    "Execute": 22.2,
+                    "Execute": 77.8,
                     "Storm Bolt": 66.7,
                     "Intimidating Shout": 44.4,
+                    "Bladestorm": 44.4,
                     "Hamstring": 44.4,
+                    "Rend": 33.3,
                     "Heroic Strike": 33.3,
+                    "Battle Stance": 33.3,
                     "Disarm": 33.3,
-                    "Charge": 22.2,
-                    "Pummel": 11.1
+                    "Gladiator's Medallion": 33.3,
+                    "Charge": 22.2
                 },
-                "avgCasts": 12.33,
-                "avgDistinctSpells": 5.67
+                "avgCasts": 16.33,
+                "avgDistinctSpells": 9.33
             },
             "heroTreeBreakdown": {
                 "Slayer": {
@@ -211,16 +215,21 @@
                         "spellPct": {
                             "Execute": 100,
                             "Mortal Strike": 100,
+                            "Colossus Smash": 100,
                             "Overpower": 85.7,
                             "Storm Bolt": 71.4,
+                            "Bladestorm": 57.1,
+                            "Rend": 42.9,
                             "Disarm": 42.9,
+                            "Gladiator's Medallion": 42.9,
                             "Intimidating Shout": 28.6,
                             "Heroic Strike": 28.6,
                             "Hamstring": 28.6,
-                            "Charge": 14.3
+                            "Charge": 14.3,
+                            "Cleave": 14.3
                         },
-                        "avgCasts": 12.43,
-                        "avgDistinctSpells": 5.14
+                        "avgCasts": 15.86,
+                        "avgDistinctSpells": 8.14
                     }
                 },
                 "Colossus": {
@@ -303,16 +312,22 @@
                         "spellPct": {
                             "Intimidating Shout": 100,
                             "Mortal Strike": 100,
+                            "Thunder Clap": 100,
                             "Hamstring": 100,
                             "Overpower": 100,
+                            "Spell Reflection": 100,
+                            "Battle Stance": 100,
                             "Execute": 100,
+                            "Heroic Leap": 50,
                             "Pummel": 50,
+                            "Berserker Shout": 50,
                             "Storm Bolt": 50,
-                            "Charge": 50,
-                            "Heroic Strike": 50
+                            "Shockwave": 50,
+                            "Avatar": 50,
+                            "Champion's Spear": 50
                         },
-                        "avgCasts": 12,
-                        "avgDistinctSpells": 7.5
+                        "avgCasts": 18,
+                        "avgDistinctSpells": 13.5
                     }
                 }
             }
@@ -423,15 +438,16 @@
                     "Heroic Strike": 75,
                     "Charge": 62.5,
                     "Hamstring": 50,
+                    "Spell Reflection": 50,
+                    "Berserker Shout": 37.5,
+                    "Colossus Smash": 37.5,
                     "Rend": 25,
-                    "Demolish": 25,
-                    "Storm Bolt": 25,
-                    "Pummel": 12.5,
-                    "Intervene": 12.5,
-                    "Intimidating Shout": 12.5
+                    "Battle Stance": 25,
+                    "Avatar": 25,
+                    "Thunder Clap": 25
                 },
-                "avgCasts": 12.25,
-                "avgDistinctSpells": 6.88
+                "avgCasts": 15.75,
+                "avgDistinctSpells": 10.38
             },
             "heroTreeBreakdown": {
                 "Slayer": {
@@ -528,16 +544,18 @@
                             "Overpower": 83.3,
                             "Heroic Strike": 83.3,
                             "Charge": 66.7,
+                            "Berserker Shout": 50,
                             "Hamstring": 50,
                             "Rend": 33.3,
-                            "Intervene": 16.7,
-                            "Intimidating Shout": 16.7,
-                            "Disarm": 16.7,
-                            "Storm Bolt": 16.7,
-                            "Slam": 16.7
+                            "Battle Stance": 33.3,
+                            "Colossus Smash": 33.3,
+                            "Bladestorm": 33.3,
+                            "Spell Reflection": 33.3,
+                            "角斗士的勋章": 16.7,
+                            "Sweeping Strikes": 16.7
                         },
-                        "avgCasts": 13.33,
-                        "avgDistinctSpells": 6.83
+                        "avgCasts": 16,
+                        "avgDistinctSpells": 9.5
                     }
                 },
                 "Colossus": {
@@ -628,18 +646,24 @@
                     "killWindow": {
                         "n": 2,
                         "spellPct": {
+                            "Spell Reflection": 100,
                             "Mortal Strike": 100,
                             "Execute": 100,
+                            "Avatar": 100,
                             "Overpower": 100,
+                            "Thunder Clap": 100,
                             "Demolish": 100,
                             "Heroic Strike": 50,
                             "Pummel": 50,
-                            "Storm Bolt": 50,
-                            "Charge": 50,
-                            "Hamstring": 50
+                            "胜利之手": 50,
+                            "Die by the Sword": 50,
+                            "Champion's Spear": 50,
+                            "Colossus Smash": 50,
+                            "Shockwave": 50,
+                            "Storm Bolt": 50
                         },
-                        "avgCasts": 9,
-                        "avgDistinctSpells": 7
+                        "avgCasts": 15,
+                        "avgDistinctSpells": 13
                     }
                 }
             }
@@ -748,16 +772,17 @@
                     "Charge": 66.7,
                     "Execute": 33.3,
                     "Heroic Strike": 55.6,
+                    "Colossus Smash": 55.6,
+                    "Thunder Clap": 55.6,
                     "Demolish": 44.4,
-                    "Storm Bolt": 33.3,
+                    "Spell Reflection": 44.4,
                     "Hamstring": 33.3,
-                    "Slam": 22.2,
-                    "Intervene": 22.2,
-                    "Disarm": 11.1,
-                    "Intimidating Shout": 11.1
+                    "Storm Bolt": 33.3,
+                    "Shockwave": 33.3,
+                    "Battle Stance": 33.3
                 },
-                "avgCasts": 12.78,
-                "avgDistinctSpells": 7.11
+                "avgCasts": 17,
+                "avgDistinctSpells": 11.11
             },
             "heroTreeBreakdown": {
                 "Slayer": {
@@ -850,16 +875,22 @@
                         "n": 3,
                         "spellPct": {
                             "Execute": 100,
-                            "Mortal Strike": 100,
                             "Overpower": 100,
-                            "Charge": 33.3,
-                            "Slam": 33.3,
-                            "Heroic Strike": 33.3,
+                            "Mortal Strike": 100,
+                            "Charge": 66.7,
+                            "Defensive Stance": 66.7,
+                            "Battle Stance": 66.7,
+                            "Thunder Clap": 66.7,
                             "Hamstring": 33.3,
-                            "Storm Bolt": 33.3
+                            "Champion's Spear": 33.3,
+                            "Champion's Leap": 33.3,
+                            "Gladiator's Medallion": 33.3,
+                            "Bladestorm": 33.3,
+                            "Storm Bolt": 33.3,
+                            "Spell Reflection": 33.3
                         },
-                        "avgCasts": 12.33,
-                        "avgDistinctSpells": 5.33
+                        "avgCasts": 18,
+                        "avgDistinctSpells": 10.67
                     }
                 },
                 "Colossus": {
@@ -949,20 +980,20 @@
                         "n": 6,
                         "spellPct": {
                             "Mortal Strike": 100,
-                            "Overpower": 83.3,
                             "Charge": 83.3,
-                            "Demolish": 66.7,
+                            "Overpower": 83.3,
                             "Heroic Strike": 66.7,
+                            "Demolish": 66.7,
+                            "Colossus Smash": 66.7,
                             "Execute": 50,
-                            "Intervene": 33.3,
-                            "Storm Bolt": 33.3,
-                            "Hamstring": 33.3,
-                            "Disarm": 16.7,
-                            "Slam": 16.7,
-                            "Intimidating Shout": 16.7
+                            "Spell Reflection": 50,
+                            "Thunder Clap": 50,
+                            "Bladestorm": 33.3,
+                            "Shockwave": 33.3,
+                            "Intervene": 33.3
                         },
-                        "avgCasts": 13,
-                        "avgDistinctSpells": 8
+                        "avgCasts": 16.5,
+                        "avgDistinctSpells": 11.33
                     }
                 }
             }

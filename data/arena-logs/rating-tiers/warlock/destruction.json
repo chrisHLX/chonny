@@ -3,7 +3,7 @@
     "classSlug": "warlock",
     "specSlug": "destruction",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:14+00:00",
+    "generatedAt": "2026-08-15T08:08:49+00:00",
     "heroTreesDetected": [
         "Soul Harvester",
         "Hellcaller",
@@ -87,14 +87,19 @@
                 "spellPct": {
                     "Conflagrate": 100,
                     "Chaos Bolt": 100,
+                    "Dark Pact": 66.7,
                     "Wither": 66.7,
+                    "Gladiator's Medallion": 66.7,
+                    "Soul Rip": 66.7,
                     "Incinerate": 66.7,
                     "Seduction (desc=Command Demon Ability)": 33.3,
+                    "Nether Ward (desc=PvP Talent)": 33.3,
                     "Havoc": 33.3,
-                    "Soul Fire": 33.3
+                    "Soul Fire": 33.3,
+                    "Summon Infernal (desc=Guardian)": 33.3
                 },
-                "avgCasts": 9.67,
-                "avgDistinctSpells": 4.33
+                "avgCasts": 12.33,
+                "avgDistinctSpells": 7
             },
             "heroTreeBreakdown": {
                 "Hellcaller": {
@@ -174,14 +179,19 @@
                         "spellPct": {
                             "Conflagrate": 100,
                             "Chaos Bolt": 100,
+                            "Dark Pact": 66.7,
                             "Wither": 66.7,
+                            "Gladiator's Medallion": 66.7,
+                            "Soul Rip": 66.7,
                             "Incinerate": 66.7,
                             "Seduction (desc=Command Demon Ability)": 33.3,
+                            "Nether Ward (desc=PvP Talent)": 33.3,
                             "Havoc": 33.3,
-                            "Soul Fire": 33.3
+                            "Soul Fire": 33.3,
+                            "Summon Infernal (desc=Guardian)": 33.3
                         },
-                        "avgCasts": 9.67,
-                        "avgDistinctSpells": 4.33
+                        "avgCasts": 12.33,
+                        "avgDistinctSpells": 7
                     }
                 }
             }
@@ -275,13 +285,18 @@
                     "Chaos Bolt": 75,
                     "Incinerate": 75,
                     "Fear": 50,
+                    "Nether Ward (desc=PvP Talent)": 50,
                     "Spell Lock (desc=Command Demon Ability)": 50,
-                    "Seduction (desc=Command Demon Ability)": 25,
-                    "Havoc": 25,
-                    "Shadowburn": 25
+                    "Malevolence": 50,
+                    "Curse of Exhaustion": 25,
+                    "Summon Felhunter (desc=Summon)": 25,
+                    "Summon Infernal (desc=Guardian)": 25,
+                    "Howl of Terror": 25,
+                    "Soulburn": 25,
+                    "Demonic Healthstone": 25
                 },
-                "avgCasts": 10,
-                "avgDistinctSpells": 5.75
+                "avgCasts": 13.25,
+                "avgDistinctSpells": 8.75
             },
             "heroTreeBreakdown": {
                 "Hellcaller": {
@@ -373,13 +388,18 @@
                             "Chaos Bolt": 75,
                             "Incinerate": 75,
                             "Fear": 50,
+                            "Nether Ward (desc=PvP Talent)": 50,
                             "Spell Lock (desc=Command Demon Ability)": 50,
-                            "Seduction (desc=Command Demon Ability)": 25,
-                            "Havoc": 25,
-                            "Shadowburn": 25
+                            "Malevolence": 50,
+                            "Curse of Exhaustion": 25,
+                            "Summon Felhunter (desc=Summon)": 25,
+                            "Summon Infernal (desc=Guardian)": 25,
+                            "Howl of Terror": 25,
+                            "Soulburn": 25,
+                            "Demonic Healthstone": 25
                         },
-                        "avgCasts": 10,
-                        "avgDistinctSpells": 5.75
+                        "avgCasts": 13.25,
+                        "avgDistinctSpells": 8.75
                     }
                 }
             }

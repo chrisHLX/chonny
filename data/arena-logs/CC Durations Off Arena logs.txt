@@ -94,3 +94,22 @@ tells you what actually usually happens.
 All 5 applied and live. Only Strangulate's earlier "modified by dragon ability" caveat is
 still open as a real unknown (what the modifier actually is) — its value (4s) is applied and
 not in question, just the mechanism behind why one measured instance read higher.
+
+----- RESOLVED, 2026-08-17: the "dragon ability" identified -----
+wow:find-cc-duration was rebuilt to do this automatically: bucket every observed instance,
+recommend the mode, and for any instance above the mode, check whether a Preservation Evoker
+was in that specific match's roster (Preservation has a real, verified ability — Oppressing
+Roar, spell_id 372048, "(desc=Black)" — that extends the duration of CC affecting its target;
+already documented in CLAUDE.md's "PvP CC duration cap" section as the one confirmed exception
+to the flat 6s PvP cap).
+
+Re-ran against Strangulate (47476) with the expanded log set now on file: 129/218 instances at
+4.0s (confirms the applied value). ALL 6 above-mode outliers (five at 5.0s, one at 4.5s) came
+back EXPLAINED — a Preservation Evoker was present in every single one of those matches. The
+"dragon ability" was Oppressing Roar, exactly as suspected. Nothing to change — 4s remains
+correct — this just closes the open mechanism question with real confirmation instead of a
+recollection.
+
+Same run against Kidney Shot (408) for a second, independent check: 199/396 at 5.0s (matches
+the earlier 75/152 conclusion, now on a much larger sample), and its 3 above-mode outliers
+were likewise all Preservation-Evoker-explained.

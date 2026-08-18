@@ -1,0 +1,39 @@
+# Hand-verified talent-node SPEC EXCLUSIONS — the inverse of baseline-spec-overrides.txt.
+#
+# WHY THIS FILE EXISTS: TalentSelectionService::allTalentSpellIds() treats any spell reachable
+# via a class-type talent tree as available to EVERY spec of that class — correct for the
+# overwhelming majority of class-tree content, which genuinely is shared. But Blizzard's own
+# talent-tree data occasionally places two spec-conditional VARIANTS of one conceptual "slot" at
+# the identical class-tree position as two separate node entries (see CLAUDE.md's "Same-position
+# ACTIVE node collisions" / "duplicate-copy spells" history) — and when the two variants happen
+# to share a display name (e.g. Hunter's "Intimidation": spell_id 19577 for Beast Mastery/
+# Survival's pet-cast version, 474421 for Marksmanship's own Spotting-Eagle-flavored version,
+# confirmed via each copy's own description text, 2026-08-14), nothing in Blizzard's raw data
+# says which spec a same-position class-tree node actually belongs to. cleanupDuplicateSpellNodes()
+# deliberately excludes exactly this case from its own auto-merge (see its docblock's
+# "Intimidation" exception) because merging would delete a real, distinct ability — but that left
+# the display-side half of the bug unsolved: the wrong spec's copy still showed everywhere.
+#
+# Format: spell_id | class_slug | excluded_spec_slug | note (comment only, not parsed)
+#   - excluded_spec_slug: the spec this spell_id should NEVER show for, even though it's
+#     structurally reachable via the shared class tree. Every OTHER spec of the class is
+#     unaffected — this only ever narrows, never widens, availability.
+#   - One line per (spell_id, excluded spec) pair — a spell_id excluded from 2 specs needs 2 lines.
+#
+# Verify each line the same way as everywhere else in this folder before adding: read both
+# copies' own description text and confirm they're genuinely different abilities that happen to
+# share a name, not guessed from name/position alone.
+
+# Hunter Intimidation — 474421 ("Your Spotting Eagle descends from the skies, stunning your
+# target...") is Marksmanship's own copy, confirmed via description text 2026-08-14 (see
+# cc-synergies-overrides.txt's own note on this pairing). It sits in the shared Hunter class tree
+# alongside 19577 ("Commands your pet to intimidate the target...", BM/Survival's copy), so
+# without this file it displays for all 3 Hunter specs. Found via direct user report 2026-08-18
+# ("BM and Survival are both showing this spell as available to them when it should only be MM").
+# 19577's own scoping is the symmetric half of the same fix — CLAUDE.md's own already-established
+# finding on this pairing (2026-08-14) states 19577 is "the traditional pet-cast version (Beast
+# Mastery + Survival)" specifically, not Marksmanship, so it's excluded from MM here too —
+# otherwise Marksmanship would show BOTH copies instead of only its own.
+474421 | hunter | beast-mastery | Intimidation (Spotting Eagle) — Marksmanship-only
+474421 | hunter | survival | Intimidation (Spotting Eagle) — Marksmanship-only
+19577 | hunter | marksmanship | Intimidation (pet-cast) — Beast Mastery/Survival-only

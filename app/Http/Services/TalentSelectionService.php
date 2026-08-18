@@ -2,8 +2,10 @@
 
 namespace App\Http\Services;
 
+use App\Models\GameClass;
 use App\Models\Module;
 use App\Models\Patch;
+use App\Models\PvpTalent;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\SpellbookSnapshotEntry;
@@ -12,9 +14,11 @@ use App\Models\TalentBuildChoice;
 use App\Models\TalentBuildPvpChoice;
 use App\Models\TalentNode;
 use App\Models\TalentNodeEntry;
+use App\Models\TalentTree;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 /**
@@ -176,6 +180,127 @@ class TalentSelectionService
             ->pluck('spell_id')
             ->unique()
             ->diff($selectedSpellIds)
+            ->values();
+    }
+
+    /**
+     * Every distinct spell_id reachable from any real talent-tree entry for this spec — the
+     * spec's class tree + its own spec tree + every hero tree valid for it (via the
+     * talent_tree_specializations pivot). Unlike choiceSiblingSpellIds(), this needs no
+     * "already selected" input — it's the full static possibility space, not a function of
+     * one build. Multi-rank entries (same spell_id at rank 1 and rank 2) collapse to one id;
+     * rank only matters for magnitude computation (selectedRanks()), not availability.
+     *
+     * Mirrors BlizzardTalentStringCodec::orderedNodesForSpec()'s tree-resolution query
+     * (class tree + spec's own tree + hero trees via the pivot) rather than re-deriving it —
+     * that method's resolution was specifically bug-fixed 2026-08-01 to avoid the "class-tree
+     * bloat" and "external_node_id collides across trees" issues; reusing the same shape
+     * avoids reintroducing either.
+     *
+     * Built 2026-08-16 as the foundation for "always show every talent, tagged" — see
+     * WowComps/SpellExplorer, which use this (plus allPvpTalentSpellIds()) as the base
+     * display set instead of gating visibility on what one curated build happened to select.
+     *
+     * @return Collection<int, int> spell ids
+     */
+    public function allTalentSpellIds(int $specId): Collection
+    {
+        $spec = Specialization::find($specId);
+        if (!$spec) {
+            return collect();
+        }
+
+        $patchId = $this->currentPatchIdForSpec($specId);
+
+        $treeIds = TalentTree::where('patch_id', $patchId)
+            ->where(function ($q) use ($spec, $specId) {
+                $q->where(fn ($q2) => $q2->where('class_id', $spec->class_id)->where('type', 'class'))
+                    ->orWhere(fn ($q2) => $q2->where('spec_id', $specId)->where('type', 'spec'))
+                    ->orWhere(fn ($q2) => $q2->where('type', 'hero')
+                        ->whereHas('specializations', fn ($q3) => $q3->where('specializations.id', $specId)));
+            })
+            ->pluck('id');
+
+        $spellIds = TalentNodeEntry::whereHas('talentNode', fn ($q) => $q->whereIn('talent_tree_id', $treeIds))
+            ->pluck('spell_id')
+            ->unique()
+            ->values();
+
+        // Narrows OUT the hand-verified spec-exclusion list — see excludedTalentSpellIds()'s
+        // docblock. Deliberately applied here, not at each caller, so every consumer
+        // (WowComps/SpellExplorer's computeSpellReferences*()) gets the correction automatically.
+        return $spellIds->diff($this->excludedTalentSpellIds($spec));
+    }
+
+    /**
+     * Hand-verified spell_ids that must NEVER show for this spec despite being structurally
+     * reachable via allTalentSpellIds()'s shared class/hero-tree union — reads
+     * data/spelldata/talent-spec-exclusions.txt (see that file's own header for the full
+     * rationale: the inverse of baseline-spec-overrides.txt, narrowing rather than widening
+     * availability). A spec with no exclusion lines simply returns an empty collection — not an
+     * error state. Resolved by external spell_id in the file, converted to internal spell.id
+     * here so the caller can diff() directly against allTalentSpellIds()'s own internal-id set.
+     *
+     * @return Collection<int, int> internal spell.id values
+     */
+    private function excludedTalentSpellIds(Specialization $spec): Collection
+    {
+        $path = base_path('data/spelldata/talent-spec-exclusions.txt');
+
+        if (!File::exists($path)) {
+            return collect();
+        }
+
+        $class = GameClass::find($spec->class_id);
+        if (!$class) {
+            return collect();
+        }
+
+        $patchId = $this->currentPatchIdForSpec($spec->id);
+        $externalIds = [];
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line));
+            if (count($parts) < 3 || !ctype_digit($parts[0])) {
+                continue;
+            }
+
+            [$externalSpellId, $classSlug, $excludedSpecSlug] = $parts;
+
+            if ($classSlug === $class->slug && $excludedSpecSlug === $spec->slug) {
+                $externalIds[] = (int) $externalSpellId;
+            }
+        }
+
+        if ($externalIds === []) {
+            return collect();
+        }
+
+        return Spell::where('patch_id', $patchId)->whereIn('spell_id', $externalIds)->pluck('id');
+    }
+
+    /**
+     * Every PvP talent available to this spec — pvp_talents.spec_id is a direct, required FK
+     * (see PvpTalent model / TalentSelectionService::syncPvpChoices()'s own docblock: PvP
+     * talent "slots" carry no real per-slot restriction in this data, only a spec-level one),
+     * so there's no slot-membership ambiguity to resolve, unlike allTalentSpellIds()'s
+     * multi-tree resolution.
+     *
+     * @return Collection<int, int> spell ids
+     */
+    public function allPvpTalentSpellIds(int $specId): Collection
+    {
+        $patchId = $this->currentPatchIdForSpec($specId);
+
+        return PvpTalent::where('spec_id', $specId)
+            ->where('patch_id', $patchId)
+            ->pluck('spell_id')
+            ->unique()
             ->values();
     }
 
@@ -585,6 +710,242 @@ class TalentSelectionService
                         'kept_node_id' => $keep->talent_node_id,
                     ];
                     $drop->delete();
+                }
+            }
+        }
+
+        return $report;
+    }
+
+    /**
+     * Deletes stale class-tree TalentNode rows whose linked spell ALSO has a genuine entry in
+     * one of that class's own spec trees — the DB-level recurrence of the "class-tree bloat" bug
+     * (see CLAUDE.md's `data/talenttrees/{class}.json class-tree bloat` section — found and
+     * supposedly fixed 2026-08-02 in fetch-talent-trees.php's fetch-time filter). A class-wide
+     * talent, by Blizzard's own design, can never legitimately also appear in a spec's own tree
+     * — so "same spell reachable via both a class tree and a spec tree for the same class" is an
+     * unambiguous, safe signature for stale/bloated data, never a judgment call.
+     *
+     * Confirmed 2026-08-17 via a real user report (Berserk/Solar Beam showing on Restoration
+     * Druid, Cauterize on Frost Mage — cross-spec leakage through allTalentSpellIds()'s class-
+     * tree branch) that the live DB still carried ~2,650 such stale entries across all 13
+     * classes, despite the on-disk data/talenttrees/*.json files (re-fetched 2026-08-12, well
+     * after the original fix) being correctly filtered — import:spelldata's upsertTrack()
+     * pattern only creates/updates, never deletes, so a stale node created by an older/re-
+     * bloated import is never cleaned up just because a later fetch happens to be clean.
+     *
+     * Deleting a class-tree TalentNode cascades (talent_node_entries.talent_node_id,
+     * talent_node_edges.from_node_id/to_node_id, and talent_build_choices.talent_node_id are all
+     * cascadeOnDelete()) — a build that had double-picked the same talent via both the stale
+     * class node and the legitimate spec node loses only the redundant stale pick, keeping its
+     * real one intact (confirmed on 5 real admin-default builds during this fix).
+     *
+     * Runs unconditionally on every import:spelldata run (same "always run this defensive pass"
+     * precedent as cleanupSamePositionCollisions() above), so the DB self-heals on every future
+     * re-import regardless of whether that particular run's fetched JSON happens to be clean.
+     *
+     * @return array<int, array{class: string, node_id: int, spell: string}> what was removed
+     */
+    public function cleanupClassTreeBloat(): array
+    {
+        $report = [];
+
+        foreach (GameClass::whereHas('game', fn ($q) => $q->where('slug', 'wow'))->get() as $class) {
+            $classTree = TalentTree::where('class_id', $class->id)->where('type', 'class')->first();
+
+            if (!$classTree) {
+                continue;
+            }
+
+            $specTreeIds = TalentTree::where('class_id', $class->id)->where('type', 'spec')->pluck('id');
+
+            $specSpellIds = TalentNodeEntry::whereHas('talentNode', fn ($q) => $q->whereIn('talent_tree_id', $specTreeIds))
+                ->pluck('spell_id')
+                ->unique();
+
+            $staleNodes = TalentNode::where('talent_tree_id', $classTree->id)
+                ->whereHas('entries', fn ($q) => $q->whereIn('spell_id', $specSpellIds))
+                ->with('entries.spell')
+                ->get();
+
+            foreach ($staleNodes as $node) {
+                $report[] = [
+                    'class' => $class->name,
+                    'node_id' => $node->id,
+                    'spell' => $node->entries->pluck('spell.name')->filter()->unique()->implode(', '),
+                ];
+                $node->delete();
+            }
+        }
+
+        return $report;
+    }
+
+    /**
+     * Merges same-position ACTIVE-node duplicates that share the identical talent NAME within
+     * one tree — a broader, name-based generalization that also subsumes the plain "identical
+     * spell_id" case (identical spell_id always implies identical name). Found 2026-08-17 via a
+     * real user report: "Intimidation" showing both its BM/Survival and Marksmanship copies on
+     * Beast Mastery, plus Moonkin Form/Starsurge/Starfire each showing 2-3 times on every Druid
+     * spec, despite cleanupClassTreeBloat() and cleanupSamePositionCollisions() (above) already
+     * existing. Neither of those two covers this shape: cleanupClassTreeBloat() only strips a
+     * class-tree node when the SAME spell_id also has a genuine spec-tree entry (none of these
+     * do — Balance's own spec tree has zero entries for any of the three Druid abilities,
+     * confirmed directly), and cleanupSamePositionCollisions() only removes redundant SELECTIONS
+     * from a build, never the underlying duplicate TalentNode rows themselves — so even a build
+     * with no double-pick still displays both copies, since the 2026-08-16 "always show every
+     * talent" rework reads every talent_node_entries row regardless of selection.
+     *
+     * Verified by reading each pair's own raw description text (data/talenttrees/{class}.json)
+     * before writing this, not guessed: Moonkin Form's two copies are byte-identical; Starsurge/
+     * Starfire's differ only in a tuning number (804 vs 1,386 damage; 458/317 vs 355/252) — the
+     * same shape as every other "one real ability, multiple spell_id records" case already
+     * documented throughout this codebase (Penance, Angelic Bulwark, Living Flame, etc.), just
+     * manifesting as duplicate talent NODES here instead of duplicate hidden spell rows.
+     *
+     * KNOWN, VERIFIED EXCEPTION: "Intimidation" is excluded — its two spell_ids ARE genuinely
+     * different abilities per spec (19577 "Commands your pet to intimidate the target" for
+     * BM/Survival vs 474421 "Your Spotting Eagle descends from the skies" for Marksmanship,
+     * confirmed via description text 2026-08-14 — see cc-synergies-overrides.txt's own note).
+     * Merging these would silently delete a real, distinct ability. Do not remove this exclusion
+     * without re-verifying via description text first, same discipline as every other "same
+     * name, different spell_id" disambiguation in this codebase. This method does NOT fix why
+     * Intimidation's Marksmanship copy still shows on Beast Mastery/Survival after the redundant
+     * BM/Survival duplicate is merged away — both genuinely sit in the shared Hunter class tree,
+     * and nothing in Blizzard's raw data (no locked_by, no spec field on a class-tree node) says
+     * which spec a same-position class-tree node belongs to when the content genuinely differs
+     * per spec. That is a separate, harder, unsolved problem — the same category of gap as
+     * spell_class_availability's ambiguous spec_id=NULL bucket — flagged in CLAUDE.md, not
+     * solved here. A same-shaped duplicate-plus-real-variant trio also exists for Hunter's
+     * Muzzle/Counter Shot and Demon Hunter's Chaos Nova/Void Nova and Felblade/Voidblade — this
+     * method safely reduces each trio's redundant duplicate pair down to one copy (they don't
+     * share a name with the genuine variant, so no exclusion entry is needed for those), leaving
+     * the same unsolved per-spec-visibility gap Intimidation has.
+     *
+     * Survivor tiering mirrors ModuleSpellReferenceService::resolveSpellByName()'s own
+     * established disambiguation chain (not a new invented rule): prefer a spell with
+     * not_in_spellbook=false, then prefer one with real cooldown/charges data, then prefer
+     * whichever node already has the most TalentBuildChoice references (preserves existing
+     * real-world curation over an arbitrary pick), tie-break lowest node id. Any existing choice
+     * on a "losing" node is re-pointed onto the survivor's own entry — or dropped if the build
+     * already has a choice on the survivor (the same redundant-choice case
+     * cleanupSamePositionCollisions() already handles) — never silently deleted without an
+     * attempt to preserve it first.
+     *
+     * Scoped to single-entry, single-rank nodes only (no CHOICE-shaped or multi-rank nodes) —
+     * every duplicate found so far fits this shape; a node with more than one entry or a
+     * mismatched rank/max_ranks against its same-named sibling is left alone rather than guessed
+     * at. Runs unconditionally on every import:spelldata run (same "always run this defensive
+     * pass" precedent as the other two cleanup methods above), so the DB self-heals regardless
+     * of what a future re-fetch's raw JSON happens to contain.
+     *
+     * @return array<int, array{tree: string, kept: string, kept_node_id: int, dropped: string, dropped_node_id: int}>
+     */
+    public function cleanupDuplicateSpellNodes(): array
+    {
+        $report = [];
+
+        // Verified, manually-checked exceptions — see docblock above. Add a name here ONLY
+        // after confirming via each copy's own description text that they're genuinely
+        // different abilities, not a data duplicate.
+        $excludedNames = ['Intimidation'];
+
+        $nodesByTree = TalentNode::where('type', 'ACTIVE')->get()->groupBy('talent_tree_id');
+
+        foreach ($nodesByTree as $treeId => $treeNodes) {
+            $tree = TalentTree::find($treeId);
+            $byPosition = $treeNodes->groupBy(fn (TalentNode $n) => $n->pos_x.'|'.$n->pos_y);
+
+            foreach ($byPosition as $group) {
+                if ($group->count() < 2) {
+                    continue;
+                }
+
+                $entriesByNode = $group->mapWithKeys(
+                    fn (TalentNode $n) => [$n->id => TalentNodeEntry::where('talent_node_id', $n->id)->with('spell')->get()]
+                );
+
+                // Only single-entry nodes — see docblock.
+                if ($entriesByNode->contains(fn ($entries) => $entries->count() !== 1)) {
+                    continue;
+                }
+
+                $byName = $group->groupBy(fn (TalentNode $n) => $entriesByNode[$n->id]->first()->spell->name);
+
+                foreach ($byName as $name => $sameNameNodes) {
+                    if ($sameNameNodes->count() < 2 || in_array($name, $excludedNames, true)) {
+                        continue;
+                    }
+
+                    // Require identical rank/max_rank across the group too — extra safety
+                    // beyond the name match, in case a future duplicate shape isn't a clean
+                    // single-rank node like every case found so far.
+                    $rankShapes = $sameNameNodes->map(fn (TalentNode $n) => $entriesByNode[$n->id]->first()->rank.':'.$entriesByNode[$n->id]->first()->max_rank)->unique();
+                    if ($rankShapes->count() > 1) {
+                        continue;
+                    }
+
+                    $survivor = $sameNameNodes->sort(function (TalentNode $a, TalentNode $b) use ($entriesByNode) {
+                        $spellA = $entriesByNode[$a->id]->first()->spell;
+                        $spellB = $entriesByNode[$b->id]->first()->spell;
+
+                        $visibleA = !$spellA->not_in_spellbook;
+                        $visibleB = !$spellB->not_in_spellbook;
+                        if ($visibleA !== $visibleB) {
+                            return $visibleA ? -1 : 1;
+                        }
+
+                        $hasDataA = $spellA->cooldown_seconds !== null || $spellA->charges !== null;
+                        $hasDataB = $spellB->cooldown_seconds !== null || $spellB->charges !== null;
+                        if ($hasDataA !== $hasDataB) {
+                            return $hasDataA ? -1 : 1;
+                        }
+
+                        $choicesA = TalentBuildChoice::where('talent_node_id', $a->id)->count();
+                        $choicesB = TalentBuildChoice::where('talent_node_id', $b->id)->count();
+                        if ($choicesA !== $choicesB) {
+                            return $choicesB <=> $choicesA;
+                        }
+
+                        return $a->id <=> $b->id;
+                    })->first();
+
+                    $survivorEntry = $entriesByNode[$survivor->id]->first();
+
+                    foreach ($sameNameNodes as $node) {
+                        if ($node->id === $survivor->id) {
+                            continue;
+                        }
+
+                        $loserEntry = $entriesByNode[$node->id]->first();
+
+                        foreach (TalentBuildChoice::where('talent_node_id', $node->id)->get() as $choice) {
+                            $existing = TalentBuildChoice::where('talent_build_id', $choice->talent_build_id)
+                                ->where('talent_node_id', $survivor->id)
+                                ->exists();
+
+                            if ($existing) {
+                                $choice->delete();
+
+                                continue;
+                            }
+
+                            $choice->update([
+                                'talent_node_id' => $survivor->id,
+                                'chosen_entry_id' => $survivorEntry->id,
+                            ]);
+                        }
+
+                        $report[] = [
+                            'tree' => $tree->name,
+                            'kept' => $survivorEntry->spell->name,
+                            'kept_node_id' => $survivor->id,
+                            'dropped' => $loserEntry->spell->name,
+                            'dropped_node_id' => $node->id,
+                        ];
+
+                        $node->delete();
+                    }
                 }
             }
         }

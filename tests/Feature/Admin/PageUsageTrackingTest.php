@@ -57,11 +57,13 @@ test('spell explorer records a real selection when the class is explicitly chang
 test('spell explorer dispatches spell-list-refreshed after every change that swaps the visible spell rows', function () {
     // Regression test for the 2026-08-12 fix: the blade's client-side filter logic
     // (applyFilters()/hasResults) only ever ran once on first paint (x-init), so switching
-    // class/spec via wire:model.live — or closing the talent picker — could re-render fresh
-    // spell rows server-side while the page kept showing a stale "No spells match your filters"
-    // banner from before. SpellExplorer must dispatch 'spell-list-refreshed' on every one of
-    // these transitions so the blade's new x-on listener can re-run applyFilters() against the
-    // real, freshly-morphed DOM. See CLAUDE.md / SpellExplorer::closeTalentPicker()'s docblock.
+    // class/spec via wire:model.live could re-render fresh spell rows server-side while the
+    // page kept showing a stale "No spells match your filters" banner from before.
+    // SpellExplorer must dispatch 'spell-list-refreshed' on every such transition so the
+    // blade's x-on listener can re-run applyFilters() against the real, freshly-morphed DOM.
+    // The former third case here (opening/closing the talent-picker modal) was removed
+    // 2026-08-16 along with the picker itself — see SpellExplorer's class docblock: every
+    // talent is always shown now, so there's no picker whose close event needs covering.
     $fixture = makePageUsageFixture();
 
     Livewire::test(SpellExplorer::class)
@@ -71,11 +73,6 @@ test('spell explorer dispatches spell-list-refreshed after every change that swa
     Livewire::test(SpellExplorer::class)
         ->set('classId', $fixture['priest']->id)
         ->set('specId', $fixture['discipline']->id)
-        ->assertDispatched('spell-list-refreshed');
-
-    Livewire::test(SpellExplorer::class)
-        ->call('openTalentPicker')
-        ->call('closeTalentPicker')
         ->assertDispatched('spell-list-refreshed');
 });
 

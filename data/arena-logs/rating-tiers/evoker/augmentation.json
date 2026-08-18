@@ -3,7 +3,7 @@
     "classSlug": "evoker",
     "specSlug": "augmentation",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:17+00:00",
+    "generatedAt": "2026-08-15T08:08:59+00:00",
     "heroTreesDetected": [
         "Scalecommander",
         "Flameshaper",
@@ -199,12 +199,15 @@
             "killWindow": {
                 "n": 3,
                 "spellPct": {
+                    "Eruption (desc=Black)": 100,
+                    "Fire Breath (desc=Red)": 100,
                     "Upheaval (desc=Black)": 100,
                     "Prescience (desc=Bronze)": 100,
+                    "Hover": 100,
                     "Quell": 100
                 },
-                "avgCasts": 4,
-                "avgDistinctSpells": 3
+                "avgCasts": 13,
+                "avgDistinctSpells": 6
             },
             "heroTreeBreakdown": {
                 "Scalecommander": {
@@ -268,12 +271,15 @@
                     "killWindow": {
                         "n": 3,
                         "spellPct": {
+                            "Eruption (desc=Black)": 100,
+                            "Fire Breath (desc=Red)": 100,
                             "Upheaval (desc=Black)": 100,
                             "Prescience (desc=Bronze)": 100,
+                            "Hover": 100,
                             "Quell": 100
                         },
-                        "avgCasts": 4,
-                        "avgDistinctSpells": 3
+                        "avgCasts": 13,
+                        "avgDistinctSpells": 6
                     }
                 }
             }

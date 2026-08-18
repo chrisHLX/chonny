@@ -40,7 +40,7 @@
     $compSubtitle = $selectedMembers->map(fn ($m) => "{$m['label']}: {$m['class']->name} ({$m['spec']->name})")->implode(' • ');
 @endphp
 
-<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null, tab: 'active' }">
+<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null, tab: 'cooldowns', classPickerSlot: null, pendingSlot: null }">
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">WoW Comps</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $compTitle }}</h1>
@@ -57,15 +57,23 @@
                 $selectedSpec = $comp[$index]['spec'];
                 $selectedColor = $selectedClass ? (config('wow_classes.colors')[$selectedClass->slug] ?? '#8A8A9A') : null;
             @endphp
-            {{-- Spec-first picker: one click opens a searchable flyout grouped by class, and
-                 clicking a spec directly (e.g. typing "disc" -> click "Discipline") sets both
-                 class + spec in a single selectSpec() call — replaces the old two-step
-                 class-select-then-spec-select pair. --}}
-            <div class="linear-card p-4 space-y-2 relative" x-data="{ open: false, search: '' }" @click.outside="open = false; search = ''">
+            {{-- Spec-first picker: one click opens the shared class/spec grid modal below
+                 (classPickerSlot records which slot is choosing), and clicking a spec icon
+                 directly sets both class + spec in a single selectSpec() call. Replaced the old
+                 inline searchable flyout dropdown 2026-08-16, direct request (a full modal grid
+                 reads better than a cramped per-slot dropdown, especially with 13 classes).
+                 pendingSlot (set by the modal's spec button below, cleared once the selectSpec()
+                 round trip resolves) drives the spinner/disabled state here — the spec-kit
+                 computation getCompProperty() triggers can genuinely take a couple seconds for a
+                 talent-heavy spec, and with no feedback that read as "the click didn't register"
+                 (direct user report, 2026-08-17). --}}
+            <div class="linear-card p-4 space-y-2">
                 <span class="{{ $isHealer ? 'badge-green' : 'badge-blue' }}">{{ strtoupper($slot['label']) }}</span>
 
                 <button type="button"
-                        @click="open = !open; if (open) $nextTick(() => $refs.search.focus())"
+                        @click="classPickerSlot = {{ $index }}"
+                        :disabled="pendingSlot === {{ $index }}"
+                        :class="pendingSlot === {{ $index }} && 'opacity-60 cursor-wait'"
                         class="w-full flex items-center gap-3 text-left px-2.5 py-2 rounded-lg border border-line hover:border-gold/40 transition-colors">
                     @if ($selectedSpec)
                         <x-spec-icon :spec="$selectedSpec" :color="$selectedColor" size="w-9 h-9"/>
@@ -79,44 +87,67 @@
                         </div>
                         <span class="text-[13px] text-ink-muted">Choose spec…</span>
                     @endif
-                    <svg class="w-3.5 h-3.5 text-ink-subtle ml-auto flex-shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
+                    <template x-if="pendingSlot === {{ $index }}">
+                        <svg class="animate-spin w-4 h-4 text-gold ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                        </svg>
+                    </template>
+                    <template x-if="pendingSlot !== {{ $index }}">
+                        <svg class="w-3.5 h-3.5 text-ink-subtle ml-auto flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </template>
                 </button>
-
-                <div x-show="open" x-cloak x-transition.opacity.duration.100ms
-                     class="absolute z-30 left-0 right-0 mt-1 linear-card !border-line-strong shadow-gold-lg p-3 max-h-96 overflow-y-auto">
-                    <input type="text" x-ref="search" x-model="search" @click.stop
-                           placeholder="Search a class or spec…"
-                           class="form-input !text-[12px] !py-1.5 mb-3 w-full">
-
-                    @foreach ($classSpecs as $class)
-                        @php $classColor = config('wow_classes.colors')[$class->slug] ?? '#8A8A9A'; @endphp
-                        <div class="mb-2.5 last:mb-0"
-                             data-search-group="{{ Str::lower($class->name.' '.$class->specializations->pluck('name')->implode(' ')) }}"
-                             x-show="search === '' || $el.dataset.searchGroup.includes(search.toLowerCase())">
-                            <div class="flex items-center gap-1.5 mb-1 px-1">
-                                <x-class-icon :class="$class" size="w-4 h-4"/>
-                                <span class="text-[10px] uppercase tracking-wide font-semibold" style="color: {{ $classColor }}">{{ $class->name }}</span>
-                            </div>
-                            <div class="space-y-0.5">
-                                @foreach ($class->specializations as $spec)
-                                    <button type="button"
-                                            data-search="{{ Str::lower($class->name.' '.$spec->name) }}"
-                                            x-show="search === '' || $el.dataset.search.includes(search.toLowerCase())"
-                                            wire:click="selectSpec({{ $index }}, {{ $class->id }}, {{ $spec->id }})"
-                                            @click="open = false; search = ''"
-                                            class="w-full flex items-center gap-2 text-left px-2 py-1.5 rounded hover:bg-surface-2 transition-colors {{ $selectedSpec?->id === $spec->id ? 'bg-gold/10' : '' }}">
-                                        <x-spec-icon :spec="$spec" :color="$classColor" size="w-6 h-6"/>
-                                        <span class="text-[12px] text-ink truncate">{{ $spec->name }}</span>
-                                    </button>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                <p x-show="pendingSlot === {{ $index }}" x-cloak class="text-[10px] text-gold-light">Loading spells…</p>
             </div>
         @endforeach
+    </div>
+
+    {{-- Class/spec picker modal — a full grid of every class (2-column, class-colored headers)
+         and its specs, replacing the old per-slot inline flyout (2026-08-16, direct request with
+         a reference screenshot of the desired layout). `classPickerSlot` (root x-data) holds
+         which slot index is currently choosing, or null when closed; opened by each slot's button
+         above, read here to route the click into the right selectSpec() call. Purely
+         Alpine-driven open/close — no Livewire round trip needed just to open it — same pattern
+         as the talent-picker modal further down, keyed off a plain client-side index instead of a
+         server-side prop since no spec is chosen yet at the point this opens. --}}
+    <div x-show="classPickerSlot !== null" x-cloak x-transition.opacity.duration.100ms x-data="{ search: '' }"
+         class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
+         @click.self="classPickerSlot = null; search = ''">
+        <div class="linear-card max-w-2xl w-full p-5 relative max-h-[85vh] overflow-y-auto">
+            <button type="button" @click="classPickerSlot = null; search = ''" class="absolute top-3 right-3 text-ink-subtle hover:text-ink z-10">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <input type="text" x-model="search" placeholder="Search a class or spec…"
+                   class="form-input !text-[12px] !py-1.5 mb-4 w-full">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
+                @foreach ($classSpecs as $class)
+                    @php $classColor = config('wow_classes.colors')[$class->slug] ?? '#8A8A9A'; @endphp
+                    <div data-search-group="{{ Str::lower($class->name.' '.$class->specializations->pluck('name')->implode(' ')) }}"
+                         x-show="search === '' || $el.dataset.searchGroup.includes(search.toLowerCase())">
+                        <p class="text-[11px] uppercase tracking-wide font-bold mb-2" style="color: {{ $classColor }}">{{ $class->name }}</p>
+                        <div class="flex flex-wrap gap-2.5">
+                            @foreach ($class->specializations as $spec)
+                                <button type="button"
+                                        data-search="{{ Str::lower($class->name.' '.$spec->name) }}"
+                                        x-show="search === '' || $el.dataset.search.includes(search.toLowerCase())"
+                                        @click="
+                                            pendingSlot = classPickerSlot;
+                                            classPickerSlot = null;
+                                            search = '';
+                                            $wire.selectSpec(pendingSlot, {{ $class->id }}, {{ $spec->id }}).finally(() => pendingSlot = null);
+                                        "
+                                        title="{{ $spec->name }} {{ $class->name }}"
+                                        class="rounded-md hover:ring-2 hover:ring-gold/60 transition-shadow">
+                                    <x-spec-icon :spec="$spec" :color="$classColor" size="w-12 h-12"/>
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 
     @if ($selectedMembers->isNotEmpty())
@@ -127,15 +158,6 @@
                         <p class="text-[11px] font-semibold text-ink-subtle uppercase tracking-wide truncate">
                             {{ $member['spec'] ? "{$member['spec']->name} {$member['class']->name}" : '—' }}
                         </p>
-                        @if ($member['spec'])
-                            <button type="button" wire:click="openPicker({{ $member['spec']->id }})"
-                                    title="Edit my talents for this spec"
-                                    class="text-ink-subtle hover:text-gold flex-shrink-0 transition-colors">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                </svg>
-                            </button>
-                        @endif
                     </div>
                 @endforeach
             </div>
@@ -143,21 +165,25 @@
             {{-- Tab bar — same .tab-btn/.tab-active pattern as Spell Explorer. Pure client-side
                  (Alpine `tab` state on the outer x-data), so switching never round-trips. --}}
             <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1 w-fit">
+                <button type="button" @click="tab = 'cooldowns'" class="tab-btn flex items-center gap-1.5" :class="tab === 'cooldowns' ? 'tab-active' : 'tab-inactive'" title="Only spells confirmed cast by a real player of this exact spec in a real ranked match">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+                    Cooldowns
+                </button>
+                <button type="button" @click="tab = 'synergies'" class="tab-btn flex items-center gap-1.5" :class="tab === 'synergies' ? 'tab-active' : 'tab-inactive'">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                    Crowd Control
+                </button>
+                <button type="button" @click="tab = 'pvptalents'" class="tab-btn flex items-center gap-1.5" :class="tab === 'pvptalents' ? 'tab-active' : 'tab-inactive'">
+                    <x-mc-icon name="icon-scroll" class="w-3.5 h-3.5"/>
+                    PvP Talents
+                </button>
                 <button type="button" @click="tab = 'active'" class="tab-btn flex items-center gap-1.5" :class="tab === 'active' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     Active Abilities
                 </button>
-                <button type="button" @click="tab = 'cooldowns'" class="tab-btn flex items-center gap-1.5" :class="tab === 'cooldowns' ? 'tab-active' : 'tab-inactive'">
-                    <x-mc-icon name="icon-hourglass" class="w-3.5 h-3.5"/>
-                    Main Cooldowns
-                </button>
                 <button type="button" @click="tab = 'passive'" class="tab-btn flex items-center gap-1.5" :class="tab === 'passive' ? 'tab-active' : 'tab-inactive'">
                     <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
                     Buffs &amp; Passives
-                </button>
-                <button type="button" @click="tab = 'synergies'" class="tab-btn flex items-center gap-1.5" :class="tab === 'synergies' ? 'tab-active' : 'tab-inactive'">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-                    Synergies
                 </button>
                 <button type="button" @click="tab = 'killsequence'" class="tab-btn flex items-center gap-1.5" :class="tab === 'killsequence' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -169,6 +195,79 @@
                     Rating Tiers
                     <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
                 </button>
+            </div>
+
+            {{-- Cooldowns tab — added 2026-08-18, direct request: reduce the error space (wrong
+                 categorization, duplicate spell_id copies) by showing ONLY spells with real
+                 arena-log cast evidence for this exact spec (isPriority — same tagging
+                 ArenaLogService::spellUsageIds() already powers on Spell Explorer's "Priority
+                 Spells" filter), instead of the full talent-tree-derived kit. Deliberately the
+                 new default tab (see the root x-data's tab: 'cooldowns') — the old "Main
+                 Cooldowns" tab (a plain has-a-cooldown-value filter, no arena-log involvement)
+                 was removed the same day this tab replaced it, freeing up the 'cooldowns' key
+                 this tab now uses instead of its original 'priority' key, so the internal state
+                 name matches the visible label. Active Abilities/Buffs & Passives are kept, not
+                 deleted, for the case a real ability just hasn't been logged in enough matches
+                 yet; this tab trades completeness for a much smaller, evidence-backed surface.
+                 Same category-grouped card-grid markup and the same click-to-open spell-detail
+                 modal as every other tab on this page — no new modal plumbing needed, since
+                 isPriority is just another key on the already-computed entry array. --}}
+            <div x-show="tab === 'cooldowns'" x-cloak>
+                @php
+                    $cooldownsFilter = fn ($e) => ($e['isPriority'] ?? false)
+                        && (!$cooldownsLongOnly || ($e['cooldown']['seconds'] ?? 0) > 15);
+                    $anyPriorityAtAll = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains($cooldownsFilter));
+                @endphp
+
+                <label class="flex items-center gap-2 mb-3 text-[12px] text-ink-muted cursor-pointer w-fit">
+                    <input type="checkbox" wire:model.live="cooldownsLongOnly" class="form-checkbox">
+                    Only show cooldowns over 15s
+                </label>
+
+                @if (!$anyPriorityAtAll)
+                    <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
+                        {{ $cooldownsLongOnly ? 'No arena-log-confirmed spells over 15s for any selected spec.' : 'No arena-log-confirmed spells for any selected spec yet — try Active Abilities for the full kit.' }}
+                    </p>
+                @else
+                    @foreach ($categoryOrder as $category)
+                        @php
+                            $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => $cooldownsFilter($e) && $e['category'] === $category));
+                        @endphp
+                        @continue(!$categoryHasAny)
+
+                        <div class="mb-4">
+                            <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
+                            <div class="grid grid-cols-3 gap-3">
+                                @foreach ($comp as $mi => $member)
+                                    <div class="linear-card p-1.5 space-y-0.5">
+                                        @php
+                                            $priorityEntries = collect($member['entries'])->filter(
+                                                fn ($e) => $cooldownsFilter($e) && $e['category'] === $category
+                                            );
+                                        @endphp
+                                        @forelse ($priorityEntries as $entry)
+                                            @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
+                                            <button type="button"
+                                                    @click="openSpellId = '{{ $modalKey }}'"
+                                                    class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                                <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                                <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                                @if (($entry['source'] ?? null) === 'talent')
+                                                    <span class="badge-blue shrink-0" title="Talent">T</span>
+                                                @elseif (($entry['source'] ?? null) === 'pvp_talent')
+                                                    <span class="badge-gold shrink-0" title="PvP Talent">PvP</span>
+                                                @endif
+                                                <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
+                                            </button>
+                                        @empty
+                                            <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
+                                        @endforelse
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
 
             @foreach ($groupOrder as $groupKey => $groupLabel)
@@ -201,6 +300,11 @@
                                                     class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
                                                 <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
                                                 <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                                @if (($entry['source'] ?? null) === 'talent')
+                                                    <span class="badge-blue shrink-0" title="Talent">T</span>
+                                                @elseif (($entry['source'] ?? null) === 'pvp_talent')
+                                                    <span class="badge-gold shrink-0" title="PvP Talent">PvP</span>
+                                                @endif
                                                 <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
                                             </button>
                                         @empty
@@ -214,59 +318,20 @@
                 </div>
             @endforeach
 
-            {{-- Main Cooldowns tab — same category-grouped card-grid layout as Active Abilities
-                 above (deliberately the same markup shape, just a different entry filter), not
-                 the old fixed top-3/20s+ sidebar summary. Shows every active (non-passive) spell
-                 that has a real cooldown value; Crowd Control spells show regardless of whether
-                 a cooldown is captured — same rule Spell Explorer's own Main Cooldowns tab
-                 uses (some CC has no cooldown data but is still worth surfacing). --}}
-            <div x-show="tab === 'cooldowns'" x-cloak>
-                @foreach ($categoryOrder as $category)
-                    @php
-                        $cooldownEntryFilter = fn ($e) => !$e['spell']->is_passive
-                            && $e['category'] === $category
-                            && ($category === 'Crowd Control' || $cooldownDisplay($e) !== null);
-                        $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains($cooldownEntryFilter));
-                    @endphp
-                    @continue(!$categoryHasAny)
-
-                    <div class="mb-4">
-                        <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
-                        <div class="grid grid-cols-3 gap-3">
-                            @foreach ($comp as $mi => $member)
-                                <div class="linear-card p-1.5 space-y-0.5">
-                                    @php $catEntries = collect($member['entries'])->filter($cooldownEntryFilter); @endphp
-                                    @forelse ($catEntries as $entry)
-                                        @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
-                                        <button type="button"
-                                                @click="openSpellId = '{{ $modalKey }}'"
-                                                class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
-                                            <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                            <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
-                                            <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
-                                        </button>
-                                    @empty
-                                        <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
-                                    @endforelse
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            {{-- Synergies tab — deterministic CC-chain sequencing via CcChainBuilder. Only
-                 spells with a curated dr_category are even eligible (124 dataset-wide as of
-                 2026-08-11 — most CC isn't classified yet); of those, only ones ALSO carrying a
-                 chain_target can be placed into a chain (currently just the 8 hand-curated
-                 worked-example spells). Everything else surfaces honestly under "Not Yet
-                 Classified" rather than being silently dropped or guessed into a chain — see
-                 WowComps::getSynergiesProperty()'s docblock. --}}
+            {{-- Synergies tab — deterministic CC-chain sequencing via CcChainBuilder. Two cards,
+                 per WowComps::SYNERGY_GROUPS: "Utility" (Knockback/Disarm/Slow/Root, merged into
+                 one chain) and "DRs" (Stun/Silence/Incapacitate/Disorient, merged into one
+                 chain) — each merge is safe because CcChainBuilder's DR bookkeeping still keys on
+                 each spell's own real dr_category, so cross-category entries in one merged chain
+                 never falsely show as DR'd against each other. Any dr_category not covered by
+                 either group still renders under its own card (see
+                 WowComps::getSynergiesProperty()'s leftover-chain fallback) — nothing with a
+                 curated dr_category is ever silently dropped. --}}
             <div x-show="tab === 'synergies'" x-cloak class="space-y-4">
                 @php
                     // Neat, labeled CD/Duration pair reused across every Synergies section —
                     // CD comes from cooldown_by_id (the same talent-modified effective cooldown
-                    // Active Abilities/Main Cooldowns already show); Duration only ever shows a
+                    // Active Abilities/Cooldowns already show); Duration only ever shows a
                     // real number when pvp_duration_seconds has been hand-curated (never falls
                     // back to the raw, confirmed-unreliable/PvE-scoped duration_seconds column —
                     // see CLAUDE.md's "PvP CC duration cap" section for why that field can't be
@@ -274,50 +339,75 @@
                     $cdLabel = fn ($spell) => isset($synergies['cooldown_by_id'][$spell->id]) && $synergies['cooldown_by_id'][$spell->id] !== null
                         ? $fmtSeconds($synergies['cooldown_by_id'][$spell->id])
                         : '—';
+
+                    // Splits a formatted "30s"/"4.5s" label into [number, unit] so the CD/Duration
+                    // stat blocks below can render the trailing "s" smaller and in a plain color
+                    // than the number itself, instead of one uniformly-styled string.
+                    $splitUnit = fn (string $label) => str_ends_with($label, 's')
+                        ? [substr($label, 0, -1), 's']
+                        : [$label, ''];
                 @endphp
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
-                        Opens with an instant Stun when available, then alternates DR category to avoid Diminishing Returns where possible. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value, and DR resets after 20s of no reapplication. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet. "Duration" only shows once a spell's real PvP CC duration has been hand-verified — a blank duration means it hasn't been curated yet, not that the CC is instant.
+                        CC is grouped into Diminishing Returns Groups (Stun, Silence, Incapacitate, Disorient — the categories that actually diminish each other) and Utility (Knockback, Disarm, Slow, Root — none of which diminish anything). Each spell's own category shows as a badge on its card — chain them yourself in-game. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value, and DR resets after 20s of no reapplication. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet. "Duration" only shows once a spell's real PvP CC duration has been hand-verified — a blank duration means it hasn't been curated yet, not that the CC is instant.
                     </p>
                 </div>
 
-                @foreach ([['key' => 'kill_target_chain', 'label' => 'Kill-Target Chain'], ['key' => 'healer_chain', 'label' => 'Healer-Lock Chain']] as $chainDef)
+                {{-- Both boxes are plain groupings by real dr_category, NOT sequenced through
+                     CcChainBuilder (2026-08-16, direct instruction) — no DR%/immune tracking,
+                     the category badge lives on each spell's own card ("like we had originally")
+                     rather than a group sub-heading. The player builds their own in-game chain
+                     from what's shown. --}}
+                @foreach ($synergies['groups'] as $groupLabel => $spells)
                     <div class="linear-card p-4">
-                        <p class="text-[11px] uppercase tracking-wide text-gold font-semibold mb-3">{{ $chainDef['label'] }}</p>
-                        @if (empty($synergies[$chainDef['key']]))
-                            <p class="text-[12px] text-ink-subtle">No classified CC available for this chain yet.</p>
+                        <p class="text-[11px] uppercase tracking-wide text-gold font-semibold mb-3">{{ $groupLabel }}</p>
+                        @if ($spells->isEmpty())
+                            <p class="text-[12px] text-ink-subtle">No classified CC available yet.</p>
                         @else
-                            <div class="flex flex-wrap items-stretch gap-2">
-                                @foreach ($synergies[$chainDef['key']] as $i => $step)
+                            <div class="flex flex-wrap gap-2.5">
+                                @foreach ($spells as $spell)
                                     @php
-                                        $stepSpell = $step['spell'];
-                                        $ownerIndex = $synergies['owner_map'][$stepSpell->id] ?? null;
+                                        $ownerIndex = $synergies['owner_map'][$spell->id] ?? null;
                                         $ownerMember = $ownerIndex !== null ? ($comp[$ownerIndex] ?? null) : null;
-                                        $durationLabel = $fmtPvpDuration($stepSpell);
+                                        $ownerColor = ($ownerMember && $ownerMember['class']) ? (config('wow_classes.colors')[$ownerMember['class']->slug] ?? null) : null;
+                                        $durationLabel = $fmtPvpDuration($spell);
+                                        [$cdValue, $cdUnit] = $splitUnit($cdLabel($spell));
+                                        [$durValue, $durUnit] = $splitUnit($durationLabel ?? '—');
                                     @endphp
-                                    @if ($i > 0)
-                                        <div class="flex items-center text-ink-subtle text-[14px] px-0.5">→</div>
-                                    @endif
-                                    <div class="linear-card !p-2.5 w-40 flex-shrink-0 {{ $step['dr_immune'] ? 'opacity-60' : '' }}">
-                                        <div class="flex items-center gap-1.5 mb-1">
-                                            <x-spell-icon :spell="$stepSpell" size="w-6 h-6"/>
-                                            <span class="text-[11px] text-ink font-semibold truncate">{{ $stepSpell->display_name }}</span>
+                                    {{-- Clickable — opens the same spell-detail modal Active Abilities/Main
+                                         Cooldowns use, keyed by "m{memberIndex}-s{spellId}" (see the
+                                         modal block near the bottom of this file, which already
+                                         iterates every $comp member's full entry list, Synergies-tab
+                                         spells included, so no new modal content needed here — just
+                                         wiring the trigger). Note for the caveat this surfaces: the
+                                         modal's description/cooldown come from the spell's raw PvE
+                                         game data via ModuleSpellReferenceService, which can read
+                                         differently from this card's own curated PvP duration/DR
+                                         category (CC is frequently shortened/reworked in PvP) — both
+                                         are shown deliberately, not reconciled. --}}
+                                    <button type="button"
+                                            @click="openSpellId = 'm{{ $ownerIndex }}-s{{ $spell->id }}'"
+                                            class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <x-spell-icon :spell="$spell" size="w-8 h-8"/>
+                                            <span class="text-[12px] text-ink font-semibold truncate">{{ $spell->display_name }}</span>
                                         </div>
-                                        <span class="{{ $drBadge[$stepSpell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $stepSpell->dr_category }}</span>
-                                        <div class="flex items-center gap-2.5 text-[10px] font-mono mt-1.5">
-                                            <span class="text-ink-subtle">CD <span class="text-ink">{{ $cdLabel($stepSpell) }}</span></span>
-                                            <span class="text-ink-subtle">Dur <span class="{{ $durationLabel ? 'text-ink' : 'text-ink-subtle italic' }}">{{ $durationLabel ?? '—' }}</span></span>
+                                        <span class="{{ $drBadge[$spell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $spell->dr_category }}</span>
+                                        <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
+                                            <div class="flex flex-col leading-none">
+                                                <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">CD</span>
+                                                <span class="text-[15px] font-bold text-ink tabular-nums">{{ $cdValue }}<span class="text-[10px] font-bold text-ink">{{ $cdUnit }}</span></span>
+                                            </div>
+                                            <div class="w-px h-7 bg-line"></div>
+                                            <div class="flex flex-col leading-none">
+                                                <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">Dur</span>
+                                                <span class="text-[15px] font-bold tabular-nums {{ $durationLabel ? 'text-ink' : 'text-ink-subtle italic text-[13px]' }}">{{ $durValue }}<span class="text-[10px] font-bold text-ink">{{ $durUnit }}</span></span>
+                                            </div>
                                         </div>
                                         @if ($ownerMember && $ownerMember['spec'])
-                                            <p class="text-[10px] text-ink-subtle truncate mt-1">{{ $ownerMember['class']->name }} ({{ $ownerMember['spec']->name }})</p>
+                                            <p class="text-[10px] font-semibold truncate mt-2.5" style="{{ $ownerColor ? 'color: '.$ownerColor : '' }}">{{ $ownerMember['class']->name }} ({{ $ownerMember['spec']->name }})</p>
                                         @endif
-                                        <p class="text-[10px] font-semibold mt-1 {{ $step['dr_immune'] ? 'text-rose-400' : ($step['dr_applied'] ? 'text-amber-400' : 'text-emerald-400') }}">
-                                            {{ $step['dr_immune'] ? 'DR Immune' : $step['dr_percentage'].'%' }}
-                                        </p>
-                                        @if ($step['dr_reason'])
-                                            <p class="text-[9px] text-ink-subtle mt-0.5 leading-snug">{{ ucfirst($step['dr_reason']) }}</p>
-                                        @endif
-                                    </div>
+                                    </button>
                                 @endforeach
                             </div>
                         @endif
@@ -339,7 +429,9 @@
                                         $ownerMember = $ownerIndex !== null ? ($comp[$ownerIndex] ?? null) : null;
                                         $flagDurationLabel = $fmtPvpDuration($spell);
                                     @endphp
-                                    <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line">
+                                    <button type="button"
+                                            @click="openSpellId = 'm{{ $ownerIndex }}-s{{ $spell->id }}'"
+                                            class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line hover:border-gold/40 transition-colors">
                                         <x-spell-icon :spell="$spell" size="w-5 h-5"/>
                                         <span class="text-[11px] text-ink-muted">{{ $spell->display_name }}</span>
                                         <span class="text-[10px] text-ink-subtle font-mono">CD {{ $cdLabel($spell) }}</span>
@@ -349,31 +441,56 @@
                                         @if ($ownerMember && $ownerMember['spec'])
                                             <span class="text-[10px] text-ink-subtle">— {{ $ownerMember['spec']->name }}</span>
                                         @endif
-                                    </div>
+                                    </button>
                                 @endforeach
                             </div>
                         </div>
                     @endif
                 @endforeach
 
-                @if ($synergies['unclassified']->isNotEmpty())
-                    <div class="linear-card p-4">
-                        <p class="text-[11px] uppercase tracking-wide text-ink-subtle font-semibold mb-2">Not Yet Classified for Chaining</p>
-                        <p class="text-[11px] text-ink-muted mb-3">These have a curated DR category but haven't been assigned a Healer-Lock / Kill-Target chain_target yet — needs the same one-at-a-time expert confirmation as the DR category itself, not a guess.</p>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach ($synergies['unclassified'] as $spell)
-                                @php $unclassifiedDurationLabel = $fmtPvpDuration($spell); @endphp
-                                <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line">
-                                    <x-spell-icon :spell="$spell" size="w-5 h-5"/>
-                                    <span class="text-[11px] text-ink-muted">{{ $spell->display_name }}</span>
-                                    <span class="{{ $drBadge[$spell->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $spell->dr_category }}</span>
-                                    <span class="text-[10px] text-ink-subtle font-mono">CD {{ $cdLabel($spell) }}</span>
-                                    @if ($unclassifiedDurationLabel)
-                                        <span class="text-[10px] text-ink-subtle font-mono">Dur {{ $unclassifiedDurationLabel }}</span>
-                                    @endif
-                                </div>
-                            @endforeach
-                        </div>
+            </div>
+
+            {{-- PvP Talents tab — added 2026-08-18, direct request. No new computation needed:
+                 every entry already carries 'source' => 'pvp_talent' (set in
+                 WowComps::computeSpellReferencesFor(), from TalentSelectionService::
+                 allPvpTalentSpellIds() — a direct, required spec_id FK on pvp_talents, no
+                 NULL-bucket ambiguity to worry about) — this tab is a pure filter over data
+                 already on the entry array, same click-to-open spell-detail modal as every other
+                 tab. Deliberately NOT category-grouped (Offensive/Defensive/etc, unlike every
+                 other tab on this page) — direct follow-up request the same day: categorize()'s
+                 heuristic mostly buckets real PvP talents into 'Other' anyway (verified against
+                 Discipline Priest's own 11 real entries — 8 of 11 landed in Other), so the
+                 grouping added visual noise without actually organizing anything. Just one flat
+                 list per member instead. Every PvP talent for the spec shows regardless of
+                 whether it's part of the resolved build's own picks (opacity/"Not selected"
+                 still reflects that, same as Active Abilities) — this is meant as a reference
+                 list of what's available, not just what's chosen. --}}
+            <div x-show="tab === 'pvptalents'" x-cloak>
+                @php $anyPvpTalentAtAll = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => ($e['source'] ?? null) === 'pvp_talent')); @endphp
+                @if (!$anyPvpTalentAtAll)
+                    <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">No PvP talent data for any selected spec.</p>
+                @else
+                    <div class="grid grid-cols-3 gap-3">
+                        @foreach ($comp as $mi => $member)
+                            <div class="linear-card p-1.5 space-y-0.5">
+                                @php
+                                    $pvpTalentEntries = collect($member['entries'])->filter(fn ($e) => ($e['source'] ?? null) === 'pvp_talent');
+                                @endphp
+                                @forelse ($pvpTalentEntries as $entry)
+                                    @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
+                                    <button type="button"
+                                            @click="openSpellId = '{{ $modalKey }}'"
+                                            class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                        <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                        <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                        <span class="badge-gold shrink-0" title="PvP Talent">PvP</span>
+                                        <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
+                                    </button>
+                                @empty
+                                    <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
+                                @endforelse
+                            </div>
+                        @endforeach
                     </div>
                 @endif
             </div>
@@ -620,23 +737,5 @@
                 @endforeach
             @endforeach
         </div>
-
-        {{-- Personal talent picker — edits the viewer's OWN saved TalentBuild for whichever
-             member's spec was clicked (never the admin default), via
-             TalentSelectionService::resolveActiveBuild()/getOrCreateUserBuild(). A plain
-             Blade @if rather than an Alpine x-show: open/close already round-trip through
-             openPicker()/closePicker() (Livewire actions), and closing is what makes the
-             Spells table above pick up whatever was just saved — see closePicker()'s docblock. --}}
-        @if ($activePickerSpecId)
-            <div class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
-                 @click.self="$wire.closePicker()">
-                <div class="linear-card max-w-5xl w-full p-5 relative max-h-[90vh] overflow-y-auto">
-                    <button type="button" wire:click="closePicker" class="absolute top-3 right-3 text-ink-subtle hover:text-ink z-10">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                    </button>
-                    <livewire:talent-selector :spec-id="$activePickerSpecId" layout="grid" :key="'wow-comps-picker-'.$activePickerSpecId"/>
-                </div>
-            </div>
-        @endif
     @endif
 </div>

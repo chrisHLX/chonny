@@ -3,7 +3,7 @@
     "classSlug": "druid",
     "specSlug": "balance",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:13+00:00",
+    "generatedAt": "2026-08-15T08:08:48+00:00",
     "heroTreesDetected": [
         "Druid of the Claw",
         "Wildstalker",
@@ -74,13 +74,15 @@
                 "n": 1,
                 "spellPct": {
                     "Starsurge": 100,
+                    "Incarnation: Chosen of Elune (desc=Talent, Shapeshift)": 100,
                     "Wrath": 100,
                     "Mighty Bash": 100,
                     "Moonfire": 100,
-                    "Starfire": 100
+                    "Starfire": 100,
+                    "Force of Nature (desc=Talent)": 100
                 },
-                "avgCasts": 15,
-                "avgDistinctSpells": 5
+                "avgCasts": 17,
+                "avgDistinctSpells": 7
             },
             "heroTreeBreakdown": {
                 "Keeper of the Grove": {
@@ -146,13 +148,15 @@
                         "n": 1,
                         "spellPct": {
                             "Starsurge": 100,
+                            "Incarnation: Chosen of Elune (desc=Talent, Shapeshift)": 100,
                             "Wrath": 100,
                             "Mighty Bash": 100,
                             "Moonfire": 100,
-                            "Starfire": 100
+                            "Starfire": 100,
+                            "Force of Nature (desc=Talent)": 100
                         },
-                        "avgCasts": 15,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 17,
+                        "avgDistinctSpells": 7
                     }
                 }
             }
@@ -241,11 +245,13 @@
                     "Sunfire": 100,
                     "Starsurge": 100,
                     "Moonfire": 100,
+                    "Gladiator's Medallion": 100,
                     "Mass Entanglement": 100,
-                    "Solar Beam": 100
+                    "Solar Beam": 100,
+                    "Solar Eclipse": 100
                 },
-                "avgCasts": 20,
-                "avgDistinctSpells": 7
+                "avgCasts": 22,
+                "avgDistinctSpells": 9
             },
             "heroTreeBreakdown": {
                 "Keeper of the Grove": {
@@ -328,11 +334,13 @@
                             "Sunfire": 100,
                             "Starsurge": 100,
                             "Moonfire": 100,
+                            "Gladiator's Medallion": 100,
                             "Mass Entanglement": 100,
-                            "Solar Beam": 100
+                            "Solar Beam": 100,
+                            "Solar Eclipse": 100
                         },
-                        "avgCasts": 20,
-                        "avgDistinctSpells": 7
+                        "avgCasts": 22,
+                        "avgDistinctSpells": 9
                     }
                 },
                 "Elune's Chosen": {
@@ -483,20 +491,24 @@
             "killWindow": {
                 "n": 6,
                 "spellPct": {
-                    "Starsurge": 100,
                     "Moonfire": 100,
+                    "Starsurge": 100,
+                    "Moonkin Form": 83.3,
                     "Starfire": 83.3,
-                    "Sunfire": 66.7,
                     "Solar Beam": 66.7,
-                    "Wrath": 50,
+                    "Wild Charge (desc=Talent)": 66.7,
+                    "Sunfire": 66.7,
                     "Faerie Swarm": 50,
                     "Mass Entanglement": 50,
+                    "Gladiator's Medallion": 50,
                     "Cyclone": 50,
+                    "Wrath": 50,
+                    "Solar Eclipse": 50,
                     "Mighty Bash": 33.3,
-                    "Regrowth": 16.7
+                    "Force of Nature (desc=Talent)": 33.3
                 },
-                "avgCasts": 10.5,
-                "avgDistinctSpells": 6.67
+                "avgCasts": 14.33,
+                "avgDistinctSpells": 10.5
             },
             "heroTreeBreakdown": {
                 "Keeper of the Grove": {
@@ -578,20 +590,24 @@
                     "killWindow": {
                         "n": 6,
                         "spellPct": {
-                            "Starsurge": 100,
                             "Moonfire": 100,
+                            "Starsurge": 100,
+                            "Moonkin Form": 83.3,
                             "Starfire": 83.3,
-                            "Sunfire": 66.7,
                             "Solar Beam": 66.7,
-                            "Wrath": 50,
+                            "Wild Charge (desc=Talent)": 66.7,
+                            "Sunfire": 66.7,
                             "Faerie Swarm": 50,
                             "Mass Entanglement": 50,
+                            "Gladiator's Medallion": 50,
                             "Cyclone": 50,
+                            "Wrath": 50,
+                            "Solar Eclipse": 50,
                             "Mighty Bash": 33.3,
-                            "Regrowth": 16.7
+                            "Force of Nature (desc=Talent)": 33.3
                         },
-                        "avgCasts": 10.5,
-                        "avgDistinctSpells": 6.67
+                        "avgCasts": 14.33,
+                        "avgDistinctSpells": 10.5
                     }
                 }
             }

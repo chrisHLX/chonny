@@ -3,7 +3,7 @@
     "classSlug": "rogue",
     "specSlug": "assassination",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:00+00:00",
+    "generatedAt": "2026-08-15T08:08:08+00:00",
     "heroTreesDetected": [
         "Trickster",
         "Fatebound",
@@ -96,20 +96,22 @@
             "killWindow": {
                 "n": 8,
                 "spellPct": {
-                    "Mutilate": 100,
                     "Rupture": 100,
+                    "Mutilate": 100,
                     "Garrote": 87.5,
-                    "Kingsbane": 75,
                     "Envenom": 75,
+                    "Kingsbane": 75,
+                    "Fatebound Coin (Tails)": 62.5,
                     "Ambush": 50,
                     "Shadowstep": 50,
+                    "Vanish": 50,
+                    "Sprint": 37.5,
                     "Kidney Shot": 37.5,
-                    "Deathmark": 25,
-                    "Kick": 12.5,
-                    "Shiv": 12.5
+                    "Stealth": 25,
+                    "Deathmark": 25
                 },
-                "avgCasts": 13.13,
-                "avgDistinctSpells": 7.88
+                "avgCasts": 16.75,
+                "avgDistinctSpells": 10.13
             },
             "heroTreeBreakdown": {
                 "Fatebound": {
@@ -198,20 +200,22 @@
                     "killWindow": {
                         "n": 8,
                         "spellPct": {
-                            "Mutilate": 100,
                             "Rupture": 100,
+                            "Mutilate": 100,
                             "Garrote": 87.5,
-                            "Kingsbane": 75,
                             "Envenom": 75,
+                            "Kingsbane": 75,
+                            "Fatebound Coin (Tails)": 62.5,
                             "Ambush": 50,
                             "Shadowstep": 50,
+                            "Vanish": 50,
+                            "Sprint": 37.5,
                             "Kidney Shot": 37.5,
-                            "Deathmark": 25,
-                            "Kick": 12.5,
-                            "Shiv": 12.5
+                            "Stealth": 25,
+                            "Deathmark": 25
                         },
-                        "avgCasts": 13.13,
-                        "avgDistinctSpells": 7.88
+                        "avgCasts": 16.75,
+                        "avgDistinctSpells": 10.13
                     }
                 }
             }
@@ -310,20 +314,20 @@
                     "Mutilate": 100,
                     "Garrote": 100,
                     "Rupture": 85.7,
+                    "Fatebound Coin (Tails)": 85.7,
                     "Envenom": 71.4,
                     "Shadowstep": 57.1,
+                    "Kingsbane": 42.9,
                     "Kidney Shot": 42.9,
                     "Deathmark": 42.9,
-                    "Kingsbane": 42.9,
                     "Shiv": 28.6,
+                    "Crimson Tempest": 28.6,
+                    "Sprint": 28.6,
                     "Blind": 28.6,
-                    "Cheap Shot": 28.6,
-                    "Gouge": 28.6,
-                    "Dismantle": 14.3,
-                    "Kick": 14.3
+                    "Vanish": 28.6
                 },
-                "avgCasts": 15,
-                "avgDistinctSpells": 7.86
+                "avgCasts": 18.86,
+                "avgDistinctSpells": 10.86
             },
             "heroTreeBreakdown": {
                 "Fatebound": {
@@ -420,20 +424,20 @@
                             "Mutilate": 100,
                             "Garrote": 100,
                             "Rupture": 85.7,
+                            "Fatebound Coin (Tails)": 85.7,
                             "Envenom": 71.4,
                             "Shadowstep": 57.1,
+                            "Kingsbane": 42.9,
                             "Kidney Shot": 42.9,
                             "Deathmark": 42.9,
-                            "Kingsbane": 42.9,
                             "Shiv": 28.6,
+                            "Crimson Tempest": 28.6,
+                            "Sprint": 28.6,
                             "Blind": 28.6,
-                            "Cheap Shot": 28.6,
-                            "Gouge": 28.6,
-                            "Dismantle": 14.3,
-                            "Kick": 14.3
+                            "Vanish": 28.6
                         },
-                        "avgCasts": 15,
-                        "avgDistinctSpells": 7.86
+                        "avgCasts": 18.86,
+                        "avgDistinctSpells": 10.86
                     }
                 }
             }
@@ -527,18 +531,18 @@
                     "Envenom": 85.7,
                     "Rupture": 85.7,
                     "Garrote": 85.7,
+                    "Feint": 71.4,
+                    "Fatebound Coin (Tails)": 71.4,
                     "Poisoned Knife": 57.1,
                     "Cheap Shot": 57.1,
+                    "Vanish": 42.9,
+                    "Crimson Vial": 28.6,
                     "Shadowstep": 28.6,
-                    "Deathmark": 28.6,
-                    "Kingsbane": 28.6,
-                    "Dismantle": 28.6,
-                    "Blind": 14.3,
-                    "Gouge": 14.3,
-                    "Shiv": 14.3
+                    "Cloak of Shadows": 28.6,
+                    "Deathmark": 28.6
                 },
-                "avgCasts": 17.14,
-                "avgDistinctSpells": 8.14
+                "avgCasts": 22.57,
+                "avgDistinctSpells": 11.71
             },
             "heroTreeBreakdown": {
                 "Fatebound": {
@@ -630,18 +634,18 @@
                             "Envenom": 85.7,
                             "Rupture": 85.7,
                             "Garrote": 85.7,
+                            "Feint": 71.4,
+                            "Fatebound Coin (Tails)": 71.4,
                             "Poisoned Knife": 57.1,
                             "Cheap Shot": 57.1,
+                            "Vanish": 42.9,
+                            "Crimson Vial": 28.6,
                             "Shadowstep": 28.6,
-                            "Deathmark": 28.6,
-                            "Kingsbane": 28.6,
-                            "Dismantle": 28.6,
-                            "Blind": 14.3,
-                            "Gouge": 14.3,
-                            "Shiv": 14.3
+                            "Cloak of Shadows": 28.6,
+                            "Deathmark": 28.6
                         },
-                        "avgCasts": 17.14,
-                        "avgDistinctSpells": 8.14
+                        "avgCasts": 22.57,
+                        "avgDistinctSpells": 11.71
                     }
                 }
             }

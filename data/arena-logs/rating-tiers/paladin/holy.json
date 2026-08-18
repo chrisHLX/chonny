@@ -3,7 +3,7 @@
     "classSlug": "paladin",
     "specSlug": "holy",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:33+00:00",
+    "generatedAt": "2026-08-15T08:07:03+00:00",
     "heroTreesDetected": [
         "Templar",
         "Lightsmith",
@@ -102,6 +102,7 @@
             "killWindow": {
                 "n": 5,
                 "spellPct": {
+                    "Reclamation": 100,
                     "Holy Shock": 80,
                     "Flash of Light": 60,
                     "Hammer of Wrath": 60,
@@ -113,12 +114,12 @@
                     "Hammer of Justice": 40,
                     "Holy Bulwark": 40,
                     "Blessing of Freedom": 40,
+                    "Aura Mastery": 20,
                     "Cleanse": 20,
-                    "Denounce": 20,
-                    "Crusader Strike": 20
+                    "Denounce": 20
                 },
-                "avgCasts": 11.4,
-                "avgDistinctSpells": 6.2
+                "avgCasts": 19.4,
+                "avgDistinctSpells": 7.8
             },
             "heroTreeBreakdown": {
                 "Lightsmith": {
@@ -204,6 +205,7 @@
                     "killWindow": {
                         "n": 3,
                         "spellPct": {
+                            "Reclamation": 100,
                             "Word of Glory": 100,
                             "Holy Bulwark": 66.7,
                             "Judgment": 66.7,
@@ -214,11 +216,13 @@
                             "Cleanse": 33.3,
                             "Denounce": 33.3,
                             "Crusader Strike": 33.3,
+                            "Shield of the Righteous": 33.3,
+                            "Divine Protection": 33.3,
                             "Blessing of Sacrifice": 33.3,
                             "Hammer of Justice": 33.3
                         },
-                        "avgCasts": 10.67,
-                        "avgDistinctSpells": 6.33
+                        "avgCasts": 14,
+                        "avgDistinctSpells": 8
                     }
                 },
                 "Herald of the Sun": {
@@ -297,15 +301,17 @@
                         "spellPct": {
                             "Eternal Flame": 100,
                             "Holy Shock": 100,
+                            "Reclamation": 100,
                             "Flash of Light": 100,
                             "Divine Toll": 100,
                             "Hammer of Wrath": 50,
+                            "Aura Mastery": 50,
                             "Judgment": 50,
                             "Blessing of Sacrifice": 50,
                             "Hammer of Justice": 50
                         },
-                        "avgCasts": 12.5,
-                        "avgDistinctSpells": 6
+                        "avgCasts": 27.5,
+                        "avgDistinctSpells": 7.5
                     }
                 }
             }
@@ -413,6 +419,7 @@
                 "n": 19,
                 "spellPct": {
                     "Holy Shock": 94.7,
+                    "Reclamation": 89.5,
                     "Judgment": 73.7,
                     "Word of Glory": 73.7,
                     "Hammer of Wrath": 57.9,
@@ -420,16 +427,15 @@
                     "Hammer of Justice": 52.6,
                     "Cleanse": 47.4,
                     "Blessing of Freedom": 42.1,
+                    "Divine Steed": 31.6,
                     "Holy Light": 31.6,
+                    "Avenging Crusader": 26.3,
                     "Eternal Flame": 15.8,
                     "Sacred Weapon": 15.8,
-                    "Lay on Hands": 15.8,
-                    "Divine Toll": 5.3,
-                    "Blessing of Spellwarding": 5.3,
-                    "Holy Bulwark": 5.3
+                    "Aura Mastery": 15.8
                 },
-                "avgCasts": 10.05,
-                "avgDistinctSpells": 6.05
+                "avgCasts": 14.11,
+                "avgDistinctSpells": 8.16
             },
             "heroTreeBreakdown": {
                 "Herald of the Sun": {
@@ -510,18 +516,22 @@
                         "n": 4,
                         "spellPct": {
                             "Holy Shock": 100,
+                            "Reclamation": 100,
                             "Judgment": 100,
                             "Eternal Flame": 75,
                             "Flash of Light": 50,
                             "Hammer of Justice": 50,
+                            "Divine Steed": 50,
                             "Cleanse": 50,
                             "Hammer of Wrath": 25,
                             "Divine Toll": 25,
                             "Blessing of Freedom": 25,
+                            "Shield of the Righteous": 25,
+                            "Aura Mastery": 25,
                             "Lay on Hands": 25
                         },
-                        "avgCasts": 10.25,
-                        "avgDistinctSpells": 5.25
+                        "avgCasts": 18.5,
+                        "avgDistinctSpells": 7.25
                     }
                 },
                 "Lightsmith": {
@@ -617,6 +627,7 @@
                         "spellPct": {
                             "Word of Glory": 93.3,
                             "Holy Shock": 93.3,
+                            "Reclamation": 86.7,
                             "Hammer of Wrath": 66.7,
                             "Judgment": 66.7,
                             "Flash of Light": 60,
@@ -624,15 +635,14 @@
                             "Cleanse": 46.7,
                             "Blessing of Freedom": 46.7,
                             "Holy Light": 40,
+                            "Avenging Crusader": 33.3,
+                            "Divine Steed": 26.7,
                             "Sacred Weapon": 20,
-                            "Lay on Hands": 13.3,
-                            "Blessing of Spellwarding": 6.7,
-                            "Holy Bulwark": 6.7,
-                            "Denounce": 6.7,
-                            "Crusader Strike": 6.7
+                            "Searing Glare": 13.3,
+                            "Blinding Light": 13.3
                         },
-                        "avgCasts": 10,
-                        "avgDistinctSpells": 6.27
+                        "avgCasts": 12.93,
+                        "avgDistinctSpells": 8.4
                     }
                 }
             }
@@ -734,6 +744,8 @@
                 "n": 13,
                 "spellPct": {
                     "Hammer of Wrath": 76.9,
+                    "Divine Steed": 76.9,
+                    "Reclamation": 76.9,
                     "Holy Shock": 76.9,
                     "Word of Glory": 69.2,
                     "Hammer of Justice": 69.2,
@@ -743,14 +755,12 @@
                     "Blessing of Freedom": 38.5,
                     "Holy Light": 30.8,
                     "Crusader Strike": 23.1,
-                    "Blessing of Sacrifice": 23.1,
-                    "Sacred Weapon": 23.1,
-                    "Holy Bulwark": 15.4,
-                    "Denounce": 7.7,
-                    "Eternal Flame": 7.7
+                    "Avenging Crusader": 23.1,
+                    "Blinding Light": 23.1,
+                    "Blessing of Sacrifice": 23.1
                 },
-                "avgCasts": 10.15,
-                "avgDistinctSpells": 6.31
+                "avgCasts": 14.31,
+                "avgDistinctSpells": 8.77
             },
             "heroTreeBreakdown": {
                 "Lightsmith": {
@@ -847,6 +857,8 @@
                         "spellPct": {
                             "Hammer of Wrath": 75,
                             "Word of Glory": 75,
+                            "Divine Steed": 75,
+                            "Reclamation": 75,
                             "Holy Shock": 75,
                             "Hammer of Justice": 66.7,
                             "Flash of Light": 66.7,
@@ -854,14 +866,13 @@
                             "Blessing of Freedom": 41.7,
                             "Cleanse": 41.7,
                             "Crusader Strike": 25,
+                            "Avenging Crusader": 25,
                             "Holy Light": 25,
-                            "Sacred Weapon": 25,
-                            "Blessing of Sacrifice": 16.7,
-                            "Holy Bulwark": 16.7,
-                            "Denounce": 8.3
+                            "Blinding Light": 25,
+                            "Sacred Weapon": 25
                         },
-                        "avgCasts": 10,
-                        "avgDistinctSpells": 6.17
+                        "avgCasts": 14,
+                        "avgDistinctSpells": 8.58
                     }
                 },
                 "Herald of the Sun": {
@@ -922,6 +933,9 @@
                         "spellPct": {
                             "Hammer of Wrath": 100,
                             "Holy Shock": 100,
+                            "Reclamation": 100,
+                            "Divine Steed": 100,
+                            "Divine Shield": 100,
                             "Hammer of Justice": 100,
                             "Holy Light": 100,
                             "Cleanse": 100,
@@ -929,8 +943,8 @@
                             "Eternal Flame": 100,
                             "Flash of Light": 100
                         },
-                        "avgCasts": 12,
-                        "avgDistinctSpells": 8
+                        "avgCasts": 18,
+                        "avgDistinctSpells": 11
                     }
                 }
             }

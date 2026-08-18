@@ -3,7 +3,7 @@
     "classSlug": "rogue",
     "specSlug": "subtlety",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:47+00:00",
+    "generatedAt": "2026-08-15T08:07:28+00:00",
     "heroTreesDetected": [
         "Trickster",
         "Fatebound",
@@ -237,24 +237,23 @@
             "killWindow": {
                 "n": 7,
                 "spellPct": {
-                    "Cheap Shot": 100,
                     "Eviscerate": 100,
-                    "Shadowstrike": 85.7,
+                    "Shadow Dance": 100,
+                    "Cheap Shot": 100,
                     "Shadowstep": 85.7,
+                    "Shadowstrike": 85.7,
                     "Secret Technique": 85.7,
                     "Coup de Grace": 71.4,
                     "Gouge": 57.1,
                     "Kidney Shot": 57.1,
                     "Backstab": 42.9,
+                    "Vanish": 42.9,
+                    "Shuriken Storm": 42.9,
                     "Shuriken Toss": 28.6,
-                    "Tricks of the Trade": 28.6,
-                    "Goremaw's Bite": 28.6,
-                    "Blind": 14.3,
-                    "Shiv": 14.3,
-                    "Dismantle": 14.3
+                    "Tricks of the Trade": 28.6
                 },
-                "avgCasts": 12.14,
-                "avgDistinctSpells": 8.14
+                "avgCasts": 16.86,
+                "avgDistinctSpells": 12
             },
             "heroTreeBreakdown": {
                 "Trickster": {
@@ -348,24 +347,23 @@
                     "killWindow": {
                         "n": 7,
                         "spellPct": {
-                            "Cheap Shot": 100,
                             "Eviscerate": 100,
-                            "Shadowstrike": 85.7,
+                            "Shadow Dance": 100,
+                            "Cheap Shot": 100,
                             "Shadowstep": 85.7,
+                            "Shadowstrike": 85.7,
                             "Secret Technique": 85.7,
                             "Coup de Grace": 71.4,
                             "Gouge": 57.1,
                             "Kidney Shot": 57.1,
                             "Backstab": 42.9,
+                            "Vanish": 42.9,
+                            "Shuriken Storm": 42.9,
                             "Shuriken Toss": 28.6,
-                            "Tricks of the Trade": 28.6,
-                            "Goremaw's Bite": 28.6,
-                            "Blind": 14.3,
-                            "Shiv": 14.3,
-                            "Dismantle": 14.3
+                            "Tricks of the Trade": 28.6
                         },
-                        "avgCasts": 12.14,
-                        "avgDistinctSpells": 8.14
+                        "avgCasts": 16.86,
+                        "avgDistinctSpells": 12
                     }
                 }
             }
@@ -477,6 +475,7 @@
             "killWindow": {
                 "n": 26,
                 "spellPct": {
+                    "Shadow Dance": 100,
                     "Shadowstrike": 92.3,
                     "Cheap Shot": 92.3,
                     "Shadowstep": 84.6,
@@ -487,14 +486,13 @@
                     "Backstab": 61.5,
                     "Gouge": 53.8,
                     "Tricks of the Trade": 42.3,
+                    "Feint": 42.3,
                     "Shuriken Toss": 34.6,
-                    "Blind": 11.5,
-                    "Kick": 11.5,
-                    "Shiv": 11.5,
-                    "Dismantle": 3.8
+                    "Vanish": 30.8,
+                    "Sprint": 30.8
                 },
-                "avgCasts": 12.54,
-                "avgDistinctSpells": 7.92
+                "avgCasts": 17.12,
+                "avgDistinctSpells": 12.04
             },
             "heroTreeBreakdown": {
                 "Trickster": {
@@ -604,6 +602,7 @@
                     "killWindow": {
                         "n": 26,
                         "spellPct": {
+                            "Shadow Dance": 100,
                             "Shadowstrike": 92.3,
                             "Cheap Shot": 92.3,
                             "Shadowstep": 84.6,
@@ -614,14 +613,13 @@
                             "Backstab": 61.5,
                             "Gouge": 53.8,
                             "Tricks of the Trade": 42.3,
+                            "Feint": 42.3,
                             "Shuriken Toss": 34.6,
-                            "Blind": 11.5,
-                            "Kick": 11.5,
-                            "Shiv": 11.5,
-                            "Dismantle": 3.8
+                            "Vanish": 30.8,
+                            "Sprint": 30.8
                         },
-                        "avgCasts": 12.54,
-                        "avgDistinctSpells": 7.92
+                        "avgCasts": 17.12,
+                        "avgDistinctSpells": 12.04
                     }
                 }
             }

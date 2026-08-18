@@ -11,6 +11,10 @@
             ? 'Choose a specialization to see its full spell kit.'
             : "Pick a class and spec to see its spells — cooldowns and charges reflect that spec's default talent build.");
     $heroSpell = $entries[0]['spell'] ?? null;
+    // Only show the "Priority Spells" filter when this spec actually has real arena-log
+    // spell-usage evidence (data/arena-logs/spell-usage/{class}/{spec}.txt) tagging at least one
+    // entry — a spec with no matches processed for it yet has nothing to filter down to.
+    $hasPriorityData = collect($entries)->contains(fn ($e) => $e['isPriority'] ?? false);
     // FIXED 2026-08-12: this used to be inlined directly as the <x-spells.table :description="...">
     // attribute's value — a multi-line ternary with an escaped double-quote nested inside the
     // attribute's own double-quote delimiter. Confirmed via direct render output that Blade's
@@ -21,12 +25,14 @@
     // applyFilters() looks for, never existed in the DOM at all. Extracting to a plain variable
     // here removes the fragile nested-quote pattern from the component tag entirely.
     $spellsTableDescription = $usingPersonalBuild
-        ? 'Cooldowns and charges reflect your own saved talent picks — click Edit My Talents to change them.'
-        : "Cooldowns and charges reflect this spec's admin-curated default talent build — click Edit My Talents to set your own.";
+        ? "Every talent and PvP talent for this spec, tagged by source. Greyed-out \"Not selected\" rows aren't part of your own saved build; cooldowns/charges on selected rows reflect your actual picks."
+        : "Every talent and PvP talent for this spec, tagged by source. Greyed-out \"Not selected\" rows aren't part of this spec's admin-curated default build; cooldowns/charges on selected rows reflect that build's actual picks.";
 @endphp
 
 <div class="max-w-6xl mx-auto px-4 py-8 space-y-5"
      x-data="{
+        classPickerOpen: false,
+        pendingSpec: false,
         filter: 'all',
         search: '',
         hasResults: true,
@@ -38,7 +44,7 @@
             const visibleSections = new Set();
             body.querySelectorAll('[data-role=spell-row]').forEach(row => {
                 const matchesFilter = this.filter === 'all'
-                    || (this.filter === 'main-cooldowns' && (row.dataset.hasCooldown === '1' || row.dataset.category === 'Crowd Control'))
+                    || (this.filter === 'priority' && row.dataset.priority === '1')
                     || this.filter === 'group:' + row.dataset.group
                     || this.filter === 'category:' + row.dataset.category;
                 const matchesSearch = !term || row.dataset.search.includes(term);
@@ -56,9 +62,28 @@
             this.hasResults = visibleSections.size > 0;
         }
      }"
-     x-init="$nextTick(() => applyFilters())"
+     x-init="
+        $nextTick(() => applyFilters());
+        if ($refs.spellTableBody) {
+            new MutationObserver(() => applyFilters()).observe($refs.spellTableBody, { childList: true, subtree: true });
+        }
+     "
      x-on:spell-list-refreshed.window="$nextTick(() => applyFilters())">
-    {{-- FIXED 2026-08-12: applyFilters() is a client-side DOM scan that used to only ever run
+    {{-- FIXED 2026-08-18: the 2026-08-12 fix below (dispatching 'spell-list-refreshed' after
+         selectSpec(), re-running applyFilters() on that event) assumed Livewire's dispatched
+         event always fires strictly after its DOM morph completes. Confirmed via direct testing
+         2026-08-18 that a real duplicate-tab report ("Priority Spells page shows 'No spells
+         match your filters' over real rows, but only when the same spec was already computed —
+         i.e. cached — by WoW Comps first") was NOT a server/cache bug — reproduced the exact
+         shared-cache-key read (WowComps computes a spec, SpellExplorer reads the identical Redis
+         key) directly and got correct, non-empty data back every time. The remaining explanation
+         is that a warm cache makes the round trip fast enough to expose a real ordering race
+         between the dispatched event and the morph that a cold, slower compute was masking.
+         Added a MutationObserver on $refs.spellTableBody as the primary trigger instead — it
+         reacts to the actual DOM content changing, not a guessed event-ordering window, so it
+         can't race regardless of how fast the server responds. The event listener below is kept
+         as a harmless redundant trigger, not the load-bearing fix anymore.
+    FIXED 2026-08-12: applyFilters() is a client-side DOM scan that used to only ever run
          once (x-init, on first paint). Switching class/spec (wire:model.live) or closing the
          talent picker re-renders the spell rows server-side but never re-ran this JS, so
          hasResults could get stuck showing "No spells match your filters" over real,
@@ -96,50 +121,82 @@
         </div>
     </div>
 
-    {{-- Class / Spec pickers — the real <select> is an invisible overlay covering the whole
-         box, so the browser handles interaction/native option list while everything visible is
-         our own markup. Avoids any cross-browser native-<select>-appearance quirks entirely. --}}
-    <div class="flex flex-wrap gap-3">
-        <div class="relative flex items-center gap-3 linear-card px-4 py-2.5 w-full sm:w-64">
-            <div class="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 pointer-events-none">
-                <x-mc-icon name="badge-wow" class="w-4 h-4 text-gold"/>
-            </div>
-            <div class="flex-1 min-w-0 pointer-events-none">
-                <label class="block text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Class</label>
-                <p class="text-[14px] font-semibold text-ink truncate">{{ $selectedClass?->name ?? 'Choose class…' }}</p>
-            </div>
-            <svg class="w-3.5 h-3.5 text-ink-subtle shrink-0 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-            <select wire:model.live="classId"
-                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" aria-label="Class">
-                <option value="">Choose class…</option>
-                @foreach ($classes as $class)
-                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="relative flex items-center gap-3 linear-card px-4 py-2.5 w-full sm:w-64">
-            <div class="w-9 h-9 rounded-lg bg-violet/10 border border-violet/20 flex items-center justify-center shrink-0 pointer-events-none">
-                <x-mc-icon name="icon-axis-hex" class="w-4 h-4 text-violet"/>
-            </div>
-            <div class="flex-1 min-w-0 pointer-events-none">
-                <label class="block text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Specialization</label>
-                <p class="text-[14px] font-semibold text-ink truncate">{{ $selectedSpec?->name ?? 'Choose spec…' }}</p>
-            </div>
-            <svg class="w-3.5 h-3.5 text-ink-subtle shrink-0 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-            @if ($classId)
-                <select wire:model.live="specId"
-                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" aria-label="Specialization">
-                    <option value="">Choose spec…</option>
-                    @foreach ($specializations as $spec)
-                        <option value="{{ $spec->id }}">{{ $spec->name }}</option>
-                    @endforeach
-                </select>
+    {{-- Class/spec picker — matches WowComps' picker exactly (2026-08-17, direct request): one
+         button opens a shared full-grid modal (every class, 2-column, class-colored header, specs
+         as a row of colored icon buttons) instead of the old pair of native <select> overlays.
+         Replaces WowComps::selectSpec($index, ...)'s per-slot signature with a single
+         selectSpec($classId, $specId) — this page only ever has one "slot." --}}
+    @php
+        $selectedColor = $selectedClass ? (config('wow_classes.colors')[$selectedClass->slug] ?? '#8A8A9A') : null;
+    @endphp
+    <div class="linear-card p-4 max-w-md">
+        <button type="button"
+                @click="classPickerOpen = true"
+                :disabled="pendingSpec"
+                :class="pendingSpec && 'opacity-60 cursor-wait'"
+                class="w-full flex items-center gap-3 text-left px-2.5 py-2 rounded-lg border border-line hover:border-gold/40 transition-colors">
+            @if ($selectedSpec)
+                <x-spec-icon :spec="$selectedSpec" :color="$selectedColor" size="w-9 h-9"/>
+                <span class="min-w-0">
+                    <span class="block text-[13px] font-semibold text-ink truncate">{{ $selectedSpec->name }}</span>
+                    <span class="block text-[11px] text-ink-muted truncate">{{ $selectedClass->name }}</span>
+                </span>
+            @else
+                <div class="w-9 h-9 rounded-md border border-line-strong bg-surface-2 flex items-center justify-center flex-shrink-0">
+                    <x-mc-icon name="badge-wow" class="w-4 h-4 text-ink-subtle"/>
+                </div>
+                <span class="text-[13px] text-ink-muted">Choose class &amp; spec…</span>
             @endif
+            <template x-if="pendingSpec">
+                <svg class="animate-spin w-4 h-4 text-gold ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+            </template>
+            <template x-if="!pendingSpec">
+                <svg class="w-3.5 h-3.5 text-ink-subtle ml-auto flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </template>
+        </button>
+        <p x-show="pendingSpec" x-cloak class="text-[10px] text-gold-light mt-1.5">Loading spells…</p>
+    </div>
+
+    <div x-show="classPickerOpen" x-cloak x-transition.opacity.duration.100ms x-data="{ search: '' }"
+         class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
+         @click.self="classPickerOpen = false; search = ''">
+        <div class="linear-card max-w-2xl w-full p-5 relative max-h-[85vh] overflow-y-auto">
+            <button type="button" @click="classPickerOpen = false; search = ''" class="absolute top-3 right-3 text-ink-subtle hover:text-ink z-10">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <input type="text" x-model="search" placeholder="Search a class or spec…"
+                   class="form-input !text-[12px] !py-1.5 mb-4 w-full">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
+                @foreach ($classSpecs as $class)
+                    @php $classColor = config('wow_classes.colors')[$class->slug] ?? '#8A8A9A'; @endphp
+                    <div data-search-group="{{ Str::lower($class->name.' '.$class->specializations->pluck('name')->implode(' ')) }}"
+                         x-show="search === '' || $el.dataset.searchGroup.includes(search.toLowerCase())">
+                        <p class="text-[11px] uppercase tracking-wide font-bold mb-2" style="color: {{ $classColor }}">{{ $class->name }}</p>
+                        <div class="flex flex-wrap gap-2.5">
+                            @foreach ($class->specializations as $spec)
+                                <button type="button"
+                                        data-search="{{ Str::lower($class->name.' '.$spec->name) }}"
+                                        x-show="search === '' || $el.dataset.search.includes(search.toLowerCase())"
+                                        @click="
+                                            pendingSpec = true;
+                                            classPickerOpen = false;
+                                            search = '';
+                                            $wire.selectSpec({{ $class->id }}, {{ $spec->id }}).finally(() => pendingSpec = false);
+                                        "
+                                        title="{{ $spec->name }} {{ $class->name }}"
+                                        class="rounded-md hover:ring-2 hover:ring-gold/60 transition-shadow">
+                                    <x-spec-icon :spec="$spec" :color="$classColor" size="w-12 h-12"/>
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 
@@ -147,26 +204,17 @@
         {{-- Filter tabs + search --}}
         <div class="flex flex-wrap items-center justify-between gap-3">
             <div class="flex flex-wrap items-center gap-2">
-                <button type="button" wire:click="openTalentPicker"
-                        class="btn-secondary text-[12px] py-1.5 px-3 flex items-center gap-1.5 whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                    </svg>
-                    Edit My Talents
-                </button>
                 <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1">
                 <button type="button" @click="setFilter('all')" class="tab-btn flex items-center gap-1.5" :class="filter === 'all' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/></svg>
                     All Spells
                 </button>
-                <button type="button" @click="setFilter('group:active')" class="tab-btn flex items-center gap-1.5" :class="filter === 'group:active' ? 'tab-active' : 'tab-inactive'">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    Active Abilities
+                @if ($hasPriorityData)
+                <button type="button" @click="setFilter('priority')" class="tab-btn flex items-center gap-1.5" :class="filter === 'priority' ? 'tab-active' : 'tab-inactive'" title="Spells actually seen cast in real ranked arena matches">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+                    Priority Spells
                 </button>
-                <button type="button" @click="setFilter('main-cooldowns')" class="tab-btn flex items-center gap-1.5" :class="filter === 'main-cooldowns' ? 'tab-active' : 'tab-inactive'">
-                    <x-mc-icon name="icon-hourglass" class="w-3.5 h-3.5"/>
-                    Main Cooldowns
-                </button>
+                @endif
                 <button type="button" @click="setFilter('category:Utility')" class="tab-btn flex items-center gap-1.5" :class="filter === 'category:Utility' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     Utility
@@ -213,27 +261,7 @@
 
         @if (empty($entries))
             <div class="linear-card p-5 text-[13px] text-ink-muted">
-                No default talent build has been set for this spec yet — configure one at
-                <a href="{{ route('admin.talent-builds') }}" class="text-gold hover:underline">/admin/talent-builds</a>,
-                or click "Edit My Talents" above to pick your own.
-            </div>
-        @endif
-
-        {{-- Personal talent picker — edits the viewer's OWN saved TalentBuild for the currently
-             selected spec (never the admin default), via
-             TalentSelectionService::resolveActiveBuild()/getOrCreateUserBuild(). Plain Blade @if
-             rather than an Alpine x-show: open/close round-trip through
-             openTalentPicker()/closeTalentPicker() (Livewire actions), and closing is what makes
-             the Spells table above pick up whatever was just saved. --}}
-        @if ($showTalentPicker)
-            <div class="fixed inset-0 z-50 bg-surface-0/80 backdrop-blur-sm flex items-center justify-center p-4"
-                 @click.self="$wire.closeTalentPicker()">
-                <div class="linear-card max-w-5xl w-full p-5 relative max-h-[90vh] overflow-y-auto">
-                    <button type="button" wire:click="closeTalentPicker" class="absolute top-3 right-3 text-ink-subtle hover:text-ink z-10">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                    </button>
-                    <livewire:talent-selector :spec-id="$specId" layout="grid" :key="'spell-explorer-picker-'.$specId"/>
-                </div>
+                No talent tree, PvP talent, or baseline-ability data is imported for this spec yet.
             </div>
         @endif
     @endif

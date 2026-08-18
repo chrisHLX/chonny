@@ -3,7 +3,7 @@
     "classSlug": "priest",
     "specSlug": "discipline",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:19+00:00",
+    "generatedAt": "2026-08-15T08:06:46+00:00",
     "heroTreesDetected": [
         "Voidweaver",
         "Archon",
@@ -116,21 +116,21 @@
                     "Penance": 96,
                     "Power Word: Shield": 76,
                     "Shadow Word: Pain": 72,
+                    "Void Shield": 56,
                     "Shadow Word: Death": 52,
+                    "Fade": 40,
                     "Mind Blast": 40,
                     "Power Word: Radiance": 32,
-                    "Smite": 24,
+                    "Psychic Scream": 32,
                     "Dispel Magic": 24,
+                    "Smite": 24,
                     "Shadow Mend": 20,
+                    "Angelic Feather": 16,
                     "Evangelism": 16,
-                    "Pain Suppression": 12,
-                    "Void Blast": 12,
-                    "Plea": 8,
-                    "Ultimate Penitence": 8,
-                    "Flash Heal": 8
+                    "Pain Suppression": 12
                 },
-                "avgCasts": 8.8,
-                "avgDistinctSpells": 5.16
+                "avgCasts": 10.6,
+                "avgDistinctSpells": 6.88
             },
             "heroTreeBreakdown": {
                 "Oracle": {
@@ -231,21 +231,21 @@
                             "Penance": 95.2,
                             "Power Word: Shield": 85.7,
                             "Shadow Word: Pain": 66.7,
+                            "Void Shield": 52.4,
                             "Shadow Word: Death": 42.9,
+                            "Fade": 42.9,
                             "Power Word: Radiance": 38.1,
+                            "Psychic Scream": 38.1,
                             "Mind Blast": 33.3,
                             "Dispel Magic": 28.6,
                             "Shadow Mend": 23.8,
+                            "Angelic Feather": 19,
                             "Evangelism": 19,
-                            "Smite": 14.3,
                             "Pain Suppression": 14.3,
-                            "Ultimate Penitence": 9.5,
-                            "Flash Heal": 9.5,
-                            "Purify": 4.8,
-                            "Haymaker": 4.8
+                            "Smite": 14.3
                         },
-                        "avgCasts": 8.52,
-                        "avgDistinctSpells": 5.05
+                        "avgCasts": 10.48,
+                        "avgDistinctSpells": 6.9
                     }
                 },
                 "Voidweaver": {
@@ -332,11 +332,13 @@
                             "Mind Blast": 75,
                             "Smite": 75,
                             "Void Blast": 75,
+                            "Void Shield": 75,
                             "Power Word: Shield": 25,
-                            "Plea": 25
+                            "Plea": 25,
+                            "Fade": 25
                         },
-                        "avgCasts": 10.25,
-                        "avgDistinctSpells": 5.75
+                        "avgCasts": 11.25,
+                        "avgDistinctSpells": 6.75
                     }
                 }
             }
@@ -453,21 +455,21 @@
                     "Penance": 100,
                     "Power Word: Shield": 78.3,
                     "Shadow Word: Pain": 73.9,
+                    "Void Shield": 65.2,
                     "Power Word: Radiance": 60.9,
+                    "Fade": 52.2,
+                    "Psychic Scream": 52.2,
                     "Shadow Word: Death": 52.2,
-                    "Smite": 39.1,
                     "Mind Blast": 39.1,
+                    "Smite": 39.1,
                     "Evangelism": 30.4,
-                    "Dispel Magic": 21.7,
                     "Shadow Mend": 21.7,
-                    "Purify": 17.4,
-                    "Power Infusion": 17.4,
-                    "Ultimate Penitence": 13,
-                    "Pain Suppression": 13,
-                    "Void Blast": 8.7
+                    "Dispel Magic": 21.7,
+                    "Gladiator's Medallion": 17.4,
+                    "Purify": 17.4
                 },
-                "avgCasts": 10.39,
-                "avgDistinctSpells": 6.13
+                "avgCasts": 12.43,
+                "avgDistinctSpells": 8.17
             },
             "heroTreeBreakdown": {
                 "Oracle": {
@@ -576,21 +578,21 @@
                             "Penance": 100,
                             "Power Word: Shield": 81.8,
                             "Shadow Word: Pain": 72.7,
+                            "Void Shield": 68.2,
                             "Power Word: Radiance": 59.1,
+                            "Fade": 54.5,
+                            "Psychic Scream": 54.5,
                             "Shadow Word: Death": 50,
                             "Mind Blast": 40.9,
                             "Smite": 36.4,
                             "Evangelism": 31.8,
                             "Dispel Magic": 22.7,
-                            "Purify": 18.2,
-                            "Power Infusion": 18.2,
+                            "Gladiator's Medallion": 18.2,
                             "Shadow Mend": 18.2,
-                            "Ultimate Penitence": 13.6,
-                            "Pain Suppression": 13.6,
-                            "Flash Heal": 9.1
+                            "Purify": 18.2
                         },
-                        "avgCasts": 10.18,
-                        "avgDistinctSpells": 6.09
+                        "avgCasts": 12.32,
+                        "avgDistinctSpells": 8.23
                     }
                 },
                 "Voidweaver": {
@@ -668,18 +670,20 @@
                     "killWindow": {
                         "n": 2,
                         "spellPct": {
-                            "Void Blast": 100,
-                            "Shadow Word: Death": 100,
                             "Penance": 100,
-                            "Power Word: Radiance": 100,
                             "Shadow Word: Pain": 100,
+                            "Power Word: Radiance": 100,
+                            "Shadow Word: Death": 100,
                             "Smite": 100,
                             "Shadow Mend": 100,
+                            "Void Blast": 100,
+                            "Psychic Scream": 50,
+                            "Gladiator's Medallion": 50,
                             "Evangelism": 50,
                             "Mind Blast": 50
                         },
-                        "avgCasts": 14.5,
-                        "avgDistinctSpells": 8
+                        "avgCasts": 15.5,
+                        "avgDistinctSpells": 9
                     }
                 }
             }
@@ -784,21 +788,21 @@
                     "Penance": 100,
                     "Shadow Word: Pain": 90.5,
                     "Power Word: Shield": 85.7,
+                    "Void Shield": 81,
                     "Power Word: Radiance": 57.1,
+                    "Psychic Scream": 57.1,
                     "Mind Blast": 47.6,
                     "Shadow Word: Death": 38.1,
                     "Evangelism": 33.3,
                     "Flash Heal": 33.3,
+                    "Angelic Feather": 28.6,
                     "Ultimate Penitence": 28.6,
+                    "Fade": 23.8,
                     "Smite": 23.8,
-                    "Purify": 19,
-                    "Mind Control": 14.3,
-                    "Dispel Magic": 9.5,
-                    "Shadow Mend": 9.5,
-                    "Pain Suppression": 4.8
+                    "Purify": 19
                 },
-                "avgCasts": 9.29,
-                "avgDistinctSpells": 6
+                "avgCasts": 11.57,
+                "avgDistinctSpells": 8.24
             },
             "heroTreeBreakdown": {
                 "Oracle": {
@@ -896,23 +900,23 @@
                         "n": 18,
                         "spellPct": {
                             "Penance": 100,
-                            "Power Word: Shield": 88.9,
                             "Shadow Word: Pain": 88.9,
+                            "Power Word: Shield": 88.9,
+                            "Void Shield": 77.8,
+                            "Psychic Scream": 66.7,
                             "Power Word: Radiance": 50,
                             "Mind Blast": 38.9,
                             "Flash Heal": 38.9,
-                            "Ultimate Penitence": 33.3,
                             "Evangelism": 33.3,
+                            "Angelic Feather": 33.3,
+                            "Ultimate Penitence": 33.3,
                             "Shadow Word: Death": 27.8,
+                            "Fade": 27.8,
                             "Purify": 22.2,
-                            "Mind Control": 16.7,
-                            "Smite": 11.1,
-                            "Dispel Magic": 11.1,
-                            "Shadow Mend": 11.1,
-                            "Pain Suppression": 5.6
+                            "Mind Control": 16.7
                         },
-                        "avgCasts": 9,
-                        "avgDistinctSpells": 5.83
+                        "avgCasts": 11.5,
+                        "avgDistinctSpells": 8.28
                     }
                 },
                 "Voidweaver": {
@@ -988,20 +992,24 @@
                     "killWindow": {
                         "n": 5,
                         "spellPct": {
+                            "Void Shield": 100,
                             "Penance": 100,
+                            "Power Word: Shield": 80,
                             "Shadow Word: Pain": 80,
                             "Shadow Word: Death": 80,
                             "Mind Blast": 80,
-                            "Power Word: Shield": 80,
-                            "Power Word: Radiance": 60,
                             "Smite": 60,
+                            "Power Word: Radiance": 60,
+                            "Angelic Feather": 20,
+                            "Psychic Scream": 20,
+                            "Mind Control": 20,
                             "Evangelism": 20,
+                            "Mass Dispel": 20,
                             "Shadow Mend": 20,
-                            "Purify": 20,
-                            "Mind Control": 20
+                            "Purify": 20
                         },
-                        "avgCasts": 9.4,
-                        "avgDistinctSpells": 6.2
+                        "avgCasts": 11,
+                        "avgDistinctSpells": 7.8
                     }
                 }
             }

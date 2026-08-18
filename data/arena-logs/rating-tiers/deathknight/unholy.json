@@ -3,7 +3,7 @@
     "classSlug": "deathknight",
     "specSlug": "unholy",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:55+00:00",
+    "generatedAt": "2026-08-15T08:07:51+00:00",
     "heroTreesDetected": [
         "San'layn",
         "Rider of the Apocalypse",
@@ -87,7 +87,7 @@
                 "Time Dilation": 2.18,
                 "Virulent Plague (Erupt)": 1.48,
                 "Dread Plague (Erupt)": 1.38,
-                "Festering Scythe": 1.1
+                "Epidemic Order": 1.12
             },
             "killWindow": {
                 "n": 1,
@@ -95,11 +95,13 @@
                     "Outbreak": 100,
                     "Scourge Strike": 100,
                     "Death Coil": 100,
+                    "Dark Transformation": 100,
                     "Soul Reaper": 100,
-                    "Festering Strike": 100
+                    "Festering Strike": 100,
+                    "Festering Scythe": 100
                 },
-                "avgCasts": 15,
-                "avgDistinctSpells": 5
+                "avgCasts": 17,
+                "avgDistinctSpells": 7
             },
             "heroTreeBreakdown": {
                 "Rider of the Apocalypse": {
@@ -179,7 +181,7 @@
                         "Time Dilation": 2.18,
                         "Virulent Plague (Erupt)": 1.48,
                         "Dread Plague (Erupt)": 1.38,
-                        "Festering Scythe": 1.1
+                        "Epidemic Order": 1.12
                     },
                     "killWindow": {
                         "n": 1,
@@ -187,11 +189,13 @@
                             "Outbreak": 100,
                             "Scourge Strike": 100,
                             "Death Coil": 100,
+                            "Dark Transformation": 100,
                             "Soul Reaper": 100,
-                            "Festering Strike": 100
+                            "Festering Strike": 100,
+                            "Festering Scythe": 100
                         },
-                        "avgCasts": 15,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 17,
+                        "avgDistinctSpells": 7
                     }
                 }
             }
@@ -274,18 +278,23 @@
             "killWindow": {
                 "n": 3,
                 "spellPct": {
-                    "Scourge Strike": 100,
                     "Necrotic Coil": 100,
-                    "Death Coil": 66.7,
-                    "Strangulate": 66.7,
+                    "Scourge Strike": 100,
                     "Soul Reaper": 66.7,
+                    "Strangulate": 66.7,
+                    "Death Coil": 66.7,
                     "Putrefy": 33.3,
                     "Death Strike": 33.3,
+                    "角斗士的勋章": 33.3,
                     "Festering Strike": 33.3,
-                    "Outbreak": 33.3
+                    "Festering Scythe": 33.3,
+                    "Outbreak": 33.3,
+                    "Army of the Dead": 33.3,
+                    "Dark Transformation": 33.3,
+                    "Blinding Sleet": 33.3
                 },
-                "avgCasts": 14.67,
-                "avgDistinctSpells": 5.33
+                "avgCasts": 16.33,
+                "avgDistinctSpells": 7
             },
             "heroTreeBreakdown": {
                 "Rider of the Apocalypse": {
@@ -366,18 +375,23 @@
                     "killWindow": {
                         "n": 3,
                         "spellPct": {
-                            "Scourge Strike": 100,
                             "Necrotic Coil": 100,
-                            "Death Coil": 66.7,
-                            "Strangulate": 66.7,
+                            "Scourge Strike": 100,
                             "Soul Reaper": 66.7,
+                            "Strangulate": 66.7,
+                            "Death Coil": 66.7,
                             "Putrefy": 33.3,
                             "Death Strike": 33.3,
+                            "角斗士的勋章": 33.3,
                             "Festering Strike": 33.3,
-                            "Outbreak": 33.3
+                            "Festering Scythe": 33.3,
+                            "Outbreak": 33.3,
+                            "Army of the Dead": 33.3,
+                            "Dark Transformation": 33.3,
+                            "Blinding Sleet": 33.3
                         },
-                        "avgCasts": 14.67,
-                        "avgDistinctSpells": 5.33
+                        "avgCasts": 16.33,
+                        "avgDistinctSpells": 7
                     }
                 }
             }
@@ -478,17 +492,19 @@
                     "Necrotic Coil": 66.7,
                     "Death Coil": 66.7,
                     "Festering Strike": 53.3,
+                    "Death Charge": 53.3,
+                    "Festering Scythe": 40,
                     "Strangulate": 40,
                     "Chains of Ice": 33.3,
                     "Death Grip": 33.3,
                     "Mind Freeze": 26.7,
                     "Anti-Magic Shell": 26.7,
+                    "Dark Transformation": 20,
                     "Putrefy": 20,
-                    "Death Strike": 13.3,
-                    "Outbreak": 13.3
+                    "Gladiator's Medallion": 20
                 },
-                "avgCasts": 14,
-                "avgDistinctSpells": 5.73
+                "avgCasts": 16.27,
+                "avgDistinctSpells": 7.73
             },
             "heroTreeBreakdown": {
                 "Rider of the Apocalypse": {
@@ -587,17 +603,19 @@
                             "Necrotic Coil": 66.7,
                             "Death Coil": 66.7,
                             "Festering Strike": 53.3,
+                            "Death Charge": 53.3,
+                            "Festering Scythe": 40,
                             "Strangulate": 40,
                             "Chains of Ice": 33.3,
                             "Death Grip": 33.3,
                             "Mind Freeze": 26.7,
                             "Anti-Magic Shell": 26.7,
+                            "Dark Transformation": 20,
                             "Putrefy": 20,
-                            "Death Strike": 13.3,
-                            "Outbreak": 13.3
+                            "Gladiator's Medallion": 20
                         },
-                        "avgCasts": 14,
-                        "avgDistinctSpells": 5.73
+                        "avgCasts": 16.27,
+                        "avgDistinctSpells": 7.73
                     }
                 }
             }

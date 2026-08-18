@@ -3,7 +3,7 @@
     "classSlug": "evoker",
     "specSlug": "preservation",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:25+00:00",
+    "generatedAt": "2026-08-15T08:06:53+00:00",
     "heroTreesDetected": [
         "Scalecommander",
         "Flameshaper",
@@ -84,17 +84,22 @@
                 "n": 4,
                 "spellPct": {
                     "Echo (desc=Bronze)": 100,
+                    "Dream Breath (desc=Green)": 100,
                     "Merithra's Blessing (desc=Green)": 100,
                     "Verdant Embrace (desc=Green)": 100,
                     "Verdant Embrace": 100,
                     "Chrono Flames (desc=Bronze)": 100,
                     "Time Dilation (desc=Bronze)": 75,
                     "Reversion (desc=Bronze)": 75,
+                    "Fire Breath (desc=Red)": 75,
+                    "Deep Breath (desc=Black)": 25,
+                    "Stasis (desc=Bronze)": 25,
                     "Cauterizing Flame (desc=Red)": 25,
-                    "Disintegrate (desc=Blue)": 25
+                    "Dream Breath": 25,
+                    "Hover": 25
                 },
-                "avgCasts": 13.25,
-                "avgDistinctSpells": 7
+                "avgCasts": 16.25,
+                "avgDistinctSpells": 10
             },
             "heroTreeBreakdown": {
                 "Chronowarden": {
@@ -171,17 +176,22 @@
                         "n": 4,
                         "spellPct": {
                             "Echo (desc=Bronze)": 100,
+                            "Dream Breath (desc=Green)": 100,
                             "Merithra's Blessing (desc=Green)": 100,
                             "Verdant Embrace (desc=Green)": 100,
                             "Verdant Embrace": 100,
                             "Chrono Flames (desc=Bronze)": 100,
                             "Time Dilation (desc=Bronze)": 75,
                             "Reversion (desc=Bronze)": 75,
+                            "Fire Breath (desc=Red)": 75,
+                            "Deep Breath (desc=Black)": 25,
+                            "Stasis (desc=Bronze)": 25,
                             "Cauterizing Flame (desc=Red)": 25,
-                            "Disintegrate (desc=Blue)": 25
+                            "Dream Breath": 25,
+                            "Hover": 25
                         },
-                        "avgCasts": 13.25,
-                        "avgDistinctSpells": 7
+                        "avgCasts": 16.25,
+                        "avgDistinctSpells": 10
                     }
                 }
             }
@@ -273,19 +283,21 @@
                     "Verdant Embrace (desc=Green)": 100,
                     "Verdant Embrace": 100,
                     "Echo (desc=Bronze)": 100,
+                    "Chrono Flames (desc=Bronze)": 100,
                     "Merithra's Blessing (desc=Green)": 100,
                     "Disintegrate (desc=Blue)": 100,
-                    "Chrono Flames (desc=Bronze)": 100,
-                    "Cauterizing Flame (desc=Red)": 33.3,
+                    "Fire Breath (desc=Red)": 66.7,
+                    "Dream Breath": 50,
                     "Sleep Walk (desc=Green)": 33.3,
                     "Naturalize (desc=Green)": 33.3,
-                    "Reversion (desc=Bronze)": 16.7,
+                    "Dream Breath (desc=Green)": 33.3,
+                    "Cauterizing Flame (desc=Red)": 33.3,
+                    "Hover": 33.3,
                     "Living Flame (desc=Red)": 16.7,
-                    "Blessing of the Bronze (desc=Bronze)": 16.7,
-                    "Obsidian Scales (desc=Black)": 16.7
+                    "Blessing of the Bronze (desc=Bronze)": 16.7
                 },
-                "avgCasts": 12.83,
-                "avgDistinctSpells": 7.67
+                "avgCasts": 16,
+                "avgDistinctSpells": 10.33
             },
             "heroTreeBreakdown": {
                 "Chronowarden": {
@@ -375,19 +387,21 @@
                             "Verdant Embrace (desc=Green)": 100,
                             "Verdant Embrace": 100,
                             "Echo (desc=Bronze)": 100,
+                            "Chrono Flames (desc=Bronze)": 100,
                             "Merithra's Blessing (desc=Green)": 100,
                             "Disintegrate (desc=Blue)": 100,
-                            "Chrono Flames (desc=Bronze)": 100,
-                            "Cauterizing Flame (desc=Red)": 33.3,
+                            "Fire Breath (desc=Red)": 66.7,
+                            "Dream Breath": 50,
                             "Sleep Walk (desc=Green)": 33.3,
                             "Naturalize (desc=Green)": 33.3,
-                            "Reversion (desc=Bronze)": 16.7,
+                            "Dream Breath (desc=Green)": 33.3,
+                            "Cauterizing Flame (desc=Red)": 33.3,
+                            "Hover": 33.3,
                             "Living Flame (desc=Red)": 16.7,
-                            "Blessing of the Bronze (desc=Bronze)": 16.7,
-                            "Obsidian Scales (desc=Black)": 16.7
+                            "Blessing of the Bronze (desc=Bronze)": 16.7
                         },
-                        "avgCasts": 12.83,
-                        "avgDistinctSpells": 7.67
+                        "avgCasts": 16,
+                        "avgDistinctSpells": 10.33
                     }
                 }
             }
@@ -507,18 +521,18 @@
                     "Disintegrate (desc=Blue)": 91.7,
                     "Chrono Flames (desc=Bronze)": 86.1,
                     "Merithra's Blessing (desc=Green)": 83.3,
+                    "Dream Breath (desc=Green)": 80.6,
+                    "Fire Breath (desc=Red)": 75,
                     "Sleep Walk (desc=Green)": 55.6,
+                    "Hover": 47.2,
                     "Time Dilation (desc=Bronze)": 44.4,
                     "Reversion (desc=Bronze)": 27.8,
                     "Obsidian Scales (desc=Black)": 19.4,
-                    "Naturalize (desc=Green)": 19.4,
-                    "Living Flame (desc=Red)": 13.9,
-                    "Cauterizing Flame (desc=Red)": 2.8,
-                    "Azure Strike (desc=Blue)": 2.8,
-                    "Rescue": 2.8
+                    "Dream Breath": 19.4,
+                    "Deep Breath (desc=Black)": 19.4
                 },
-                "avgCasts": 13.86,
-                "avgDistinctSpells": 7.47
+                "avgCasts": 17.67,
+                "avgDistinctSpells": 10.94
             },
             "heroTreeBreakdown": {
                 "Chronowarden": {
@@ -636,18 +650,18 @@
                             "Disintegrate (desc=Blue)": 91.7,
                             "Chrono Flames (desc=Bronze)": 86.1,
                             "Merithra's Blessing (desc=Green)": 83.3,
+                            "Dream Breath (desc=Green)": 80.6,
+                            "Fire Breath (desc=Red)": 75,
                             "Sleep Walk (desc=Green)": 55.6,
+                            "Hover": 47.2,
                             "Time Dilation (desc=Bronze)": 44.4,
                             "Reversion (desc=Bronze)": 27.8,
                             "Obsidian Scales (desc=Black)": 19.4,
-                            "Naturalize (desc=Green)": 19.4,
-                            "Living Flame (desc=Red)": 13.9,
-                            "Cauterizing Flame (desc=Red)": 2.8,
-                            "Azure Strike (desc=Blue)": 2.8,
-                            "Rescue": 2.8
+                            "Dream Breath": 19.4,
+                            "Deep Breath (desc=Black)": 19.4
                         },
-                        "avgCasts": 13.86,
-                        "avgDistinctSpells": 7.47
+                        "avgCasts": 17.67,
+                        "avgDistinctSpells": 10.94
                     }
                 }
             }

@@ -137,6 +137,7 @@
                             data-group="{{ $cooldownKey }}"
                             data-category="{{ $spellCategoryName }}"
                             data-has-cooldown="{{ $cooldownDisplay !== null ? '1' : '0' }}"
+                            data-priority="{{ !empty($entry['isPriority']) ? '1' : '0' }}"
                             data-search="{{ strtolower($spell->display_name) }}">
                             <td class="pl-5 pr-4 py-3 min-w-[10rem]">
                                 <div class="flex items-center gap-2">
@@ -145,9 +146,17 @@
                                         <p class="text-[13px] font-semibold text-ink">{{ $spell->display_name }}</p>
                                         <span class="block text-[10px] text-ink-subtle font-mono">#{{ $spell->spell_id }}</span>
                                         <span class="{{ $categoryBadge[$spellCategoryName] ?? 'badge-gray' }} mt-1">{{ $spellCategoryName }}</span>
+                                        @if (($entry['source'] ?? null) === 'talent')
+                                            <span class="badge-blue mt-1">Talent</span>
+                                        @elseif (($entry['source'] ?? null) === 'pvp_talent')
+                                            <span class="badge-gold mt-1">PvP Talent</span>
+                                        @endif
                                         @unless ($isSelected)
                                             <span class="badge-gray mt-1" title="Not selected in this talent profile.">Not selected</span>
                                         @endunless
+                                        @if (!empty($entry['isPriority']))
+                                            <span class="badge-green mt-1" title="Seen cast in real ranked arena matches.">Priority</span>
+                                        @endif
                                     </div>
                                 </div>
                             </td>

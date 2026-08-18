@@ -3,7 +3,7 @@
     "classSlug": "druid",
     "specSlug": "restoration",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:31+00:00",
+    "generatedAt": "2026-08-15T08:07:00+00:00",
     "heroTreesDetected": [
         "Druid of the Claw",
         "Wildstalker",
@@ -117,21 +117,21 @@
                     "Rejuvenation": 100,
                     "Starsurge": 92.3,
                     "Lifebloom": 84.6,
-                    "Regrowth": 61.5,
                     "Swiftmend": 61.5,
+                    "Regrowth": 61.5,
                     "Cyclone": 53.8,
+                    "Cat Form (desc=Shapeshift)": 46.2,
                     "Wild Charge (desc=Talent)": 46.2,
                     "Rejuvenation (Germination)": 46.2,
                     "Maim": 38.5,
+                    "Wild Growth": 30.8,
                     "Wrath": 30.8,
+                    "Bear Form (desc=Shapeshift)": 30.8,
                     "Moonfire": 23.1,
-                    "Rake": 23.1,
-                    "Nature's Cure": 15.4,
-                    "Shred": 15.4,
-                    "Ironbark": 7.7
+                    "Rake": 23.1
                 },
-                "avgCasts": 9.15,
-                "avgDistinctSpells": 7.38
+                "avgCasts": 11.23,
+                "avgDistinctSpells": 9.46
             },
             "heroTreeBreakdown": {
                 "Wildstalker": {
@@ -222,24 +222,24 @@
                     "killWindow": {
                         "n": 4,
                         "spellPct": {
-                            "Starsurge": 100,
                             "Rejuvenation": 100,
+                            "Starsurge": 100,
                             "Lifebloom": 75,
+                            "Cat Form (desc=Shapeshift)": 75,
                             "Maim": 75,
                             "Cyclone": 50,
                             "Wild Charge (desc=Talent)": 50,
                             "Moonfire": 50,
-                            "Regrowth": 25,
+                            "Wild Growth": 25,
+                            "Typhoon": 25,
                             "Rake": 25,
                             "Swiftmend": 25,
                             "Wrath": 25,
-                            "Nature's Cure": 25,
-                            "Rejuvenation (Germination)": 25,
-                            "Shred": 25,
-                            "Rip": 25
+                            "Regrowth": 25,
+                            "Bear Form (desc=Shapeshift)": 25
                         },
-                        "avgCasts": 8.25,
-                        "avgDistinctSpells": 7
+                        "avgCasts": 9.75,
+                        "avgDistinctSpells": 8.5
                     }
                 },
                 "Keeper of the Grove": {
@@ -345,16 +345,16 @@
                             "Cyclone": 55.6,
                             "Rejuvenation (Germination)": 55.6,
                             "Wild Charge (desc=Talent)": 44.4,
+                            "Cat Form (desc=Shapeshift)": 33.3,
+                            "Bear Form (desc=Shapeshift)": 33.3,
+                            "Incarnation: Tree of Life (desc=Talent, Shapeshift)": 33.3,
+                            "Barkskin": 33.3,
+                            "Wild Growth": 33.3,
                             "Wrath": 33.3,
-                            "Maim": 22.2,
-                            "Rake": 22.2,
-                            "Nature's Cure": 11.1,
-                            "Ironbark": 11.1,
-                            "Blossom Burst (desc=PvP Talent)": 11.1,
-                            "Mass Blooming (desc=PvP Talent)": 11.1
+                            "Maim": 22.2
                         },
-                        "avgCasts": 9.56,
-                        "avgDistinctSpells": 7.56
+                        "avgCasts": 11.89,
+                        "avgDistinctSpells": 9.89
                     }
                 }
             }
@@ -468,19 +468,19 @@
                     "Wrath": 55.6,
                     "Lifebloom": 55.6,
                     "Swiftmend": 55.6,
+                    "Wild Growth": 44.4,
                     "Rejuvenation (Germination)": 44.4,
                     "Regrowth": 44.4,
                     "Cyclone": 22.2,
-                    "Rake": 22.2,
                     "Maim": 22.2,
+                    "Rake": 22.2,
                     "Entangling Roots": 11.1,
-                    "Mark of the Wild": 11.1,
-                    "Moonfire": 11.1,
+                    "Cat Form (desc=Shapeshift)": 11.1,
                     "Wild Charge (desc=Talent)": 11.1,
                     "Shred": 11.1
                 },
-                "avgCasts": 11.22,
-                "avgDistinctSpells": 5.56
+                "avgCasts": 12.67,
+                "avgDistinctSpells": 7
             },
             "heroTreeBreakdown": {
                 "Keeper of the Grove": {
@@ -587,19 +587,19 @@
                             "Rejuvenation": 62.5,
                             "Swiftmend": 62.5,
                             "Lifebloom": 50,
+                            "Wild Growth": 50,
                             "Rejuvenation (Germination)": 50,
                             "Regrowth": 37.5,
-                            "Rake": 25,
                             "Maim": 25,
+                            "Rake": 25,
                             "Entangling Roots": 12.5,
-                            "Cyclone": 12.5,
-                            "Mark of the Wild": 12.5,
-                            "Moonfire": 12.5,
+                            "Cat Form (desc=Shapeshift)": 12.5,
                             "Wild Charge (desc=Talent)": 12.5,
-                            "Shred": 12.5
+                            "Shred": 12.5,
+                            "Travel Form (desc=Shapeshift)": 12.5
                         },
-                        "avgCasts": 11.75,
-                        "avgDistinctSpells": 5.63
+                        "avgCasts": 13.38,
+                        "avgDistinctSpells": 7.25
                     }
                 },
                 "Wildstalker": {
@@ -793,23 +793,23 @@
                 "n": 17,
                 "spellPct": {
                     "Rejuvenation": 100,
+                    "Rejuvenation (Germination)": 94.1,
                     "Lifebloom": 94.1,
                     "Swiftmend": 94.1,
-                    "Rejuvenation (Germination)": 94.1,
                     "Starsurge": 88.2,
                     "Regrowth": 70.6,
                     "Cyclone": 52.9,
+                    "Nature's Swiftness": 47.1,
+                    "Wild Growth": 41.2,
                     "Wrath": 35.3,
                     "Nature's Cure": 29.4,
+                    "Cat Form (desc=Shapeshift)": 23.5,
+                    "Incapacitating Roar": 17.6,
                     "Mark of the Wild": 17.6,
-                    "Mass Entanglement": 11.8,
-                    "Innervate": 5.9,
-                    "Shred": 5.9,
-                    "Maim": 5.9,
-                    "Rake": 5.9
+                    "Gladiator's Medallion": 11.8
                 },
-                "avgCasts": 10.82,
-                "avgDistinctSpells": 7.24
+                "avgCasts": 13.18,
+                "avgDistinctSpells": 9.24
             },
             "heroTreeBreakdown": {
                 "Keeper of the Grove": {
@@ -910,24 +910,24 @@
                     "killWindow": {
                         "n": 14,
                         "spellPct": {
-                            "Swiftmend": 100,
                             "Rejuvenation": 100,
-                            "Lifebloom": 92.9,
+                            "Swiftmend": 100,
                             "Starsurge": 92.9,
                             "Rejuvenation (Germination)": 92.9,
+                            "Lifebloom": 92.9,
                             "Regrowth": 78.6,
                             "Cyclone": 50,
+                            "Nature's Swiftness": 50,
+                            "Wild Growth": 42.9,
                             "Wrath": 35.7,
                             "Nature's Cure": 28.6,
+                            "Cat Form (desc=Shapeshift)": 21.4,
                             "Mass Entanglement": 14.3,
-                            "Innervate": 7.1,
-                            "Shred": 7.1,
-                            "Maim": 7.1,
-                            "Rake": 7.1,
-                            "Mark of the Wild": 7.1
+                            "Incapacitating Roar": 14.3,
+                            "Barkskin": 14.3
                         },
-                        "avgCasts": 11,
-                        "avgDistinctSpells": 7.36
+                        "avgCasts": 13.36,
+                        "avgDistinctSpells": 9.36
                     }
                 },
                 "Wildstalker": {
@@ -1013,12 +1013,17 @@
                             "Mark of the Wild": 66.7,
                             "Starsurge": 66.7,
                             "Swiftmend": 66.7,
+                            "Nature's Swiftness": 33.3,
+                            "Cat Form (desc=Shapeshift)": 33.3,
+                            "Regrowth": 33.3,
+                            "角斗士的勋章": 33.3,
+                            "Incapacitating Roar": 33.3,
+                            "Ursol's Vortex": 33.3,
                             "Nature's Cure": 33.3,
-                            "Wrath": 33.3,
-                            "Regrowth": 33.3
+                            "Wild Growth": 33.3
                         },
-                        "avgCasts": 10,
-                        "avgDistinctSpells": 6.67
+                        "avgCasts": 12.33,
+                        "avgDistinctSpells": 8.67
                     }
                 }
             }

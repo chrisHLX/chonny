@@ -729,6 +729,43 @@ class ArenaLogService
     }
 
     /**
+     * Resolves the accumulated spell-usage file for one (class, spec) into the set of Blizzard
+     * external spell_ids it names — i.e. every spell positively confirmed cast by a real player
+     * of this exact spec, across every match fed into mergeSpellUsage() so far. Pure read, same
+     * `spell_id | name` parsing convention as the file's own writer above.
+     *
+     * Extracted 2026-08-18 as the single shared implementation behind two independent
+     * consumers that had each grown their own copy of this exact parsing loop:
+     * SpellExplorer::priorityExternalSpellIds() (the "Priority Spells" filter) and
+     * WowComps's own "Cooldowns" tab (added the same day). A spec with no usage file yet (no
+     * matches processed for it) simply returns an empty collection — not an error state.
+     *
+     * @return \Illuminate\Support\Collection<int, int>
+     */
+    public function spellUsageIds(string $classSlug, string $specSlug): \Illuminate\Support\Collection
+    {
+        $path = base_path("data/arena-logs/spell-usage/{$classSlug}/{$specSlug}.txt");
+
+        if (!File::exists($path)) {
+            return collect();
+        }
+
+        $ids = [];
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+            $parts = array_map('trim', explode('|', $line, 2));
+            if (count($parts) === 2 && ctype_digit($parts[0])) {
+                $ids[] = (int) $parts[0];
+            }
+        }
+
+        return collect($ids);
+    }
+
+    /**
      * Merges arena-log-derived per-spell_id aggregate rows (casts/damage) by their resolved
      * canonical name — closes the "one ability, several spell_id sub-effect records"
      * fragmentation found 2026-08-14 building wow:key-offensive-abilities (Eviscerate split
@@ -859,7 +896,13 @@ class ArenaLogService
 
         foreach ($winningPlayers as $unit) {
             $g = preg_quote($unit['id'], '/');
-            preg_match_all('/^([\d\/: .-]+)\s+SPELL_CAST_SUCCESS,'.$g.',"[^"]*",[^,]*,[^,]*,[^,]*,"[^"]*",[^,]*,[^,]*,(\d+),"([^"]*)"/m', $raw, $casts, PREG_SET_ORDER);
+            // destName (the 5th field after sourceGUID) is normally a quoted string, but WoW's
+            // combat log writes the bare, UNQUOTED word `nil` here for any self-cast/ground-
+            // targeted ability with no real unit target (Psychic Scream, Freezing Trap, etc.) —
+            // confirmed 2026-08-15 against real captured lines. The old `"[^"]*"` requirement
+            // silently failed to match ~23-24% of all casts in a typical match as a result; the
+            // `(?:"[^"]*"|nil)` alternation accepts both shapes.
+            preg_match_all('/^([\d\/: .-]+)\s+SPELL_CAST_SUCCESS,'.$g.',"[^"]*",[^,]*,[^,]*,[^,]*,(?:"[^"]*"|nil),[^,]*,[^,]*,(\d+),"([^"]*)"/m', $raw, $casts, PREG_SET_ORDER);
 
             $sequence = [];
             foreach ($casts as $c) {
@@ -998,6 +1041,280 @@ class ArenaLogService
         }
 
         return ((int) $m[1] * 3600) + ((int) $m[2] * 60) + (int) $m[3] + ((float) ('0.'.$m[4]));
+    }
+
+    /**
+     * Healer specs — hardcoded, same "well-known stable game knowledge" tier as
+     * RatingTierAnalysisService::CC_SPELL_IDS_BY_CLASS, not derived from any DB column (none
+     * exists yet). Used to tag the roster so a causal-analysis report can label "CC landed on
+     * the enemy healer" without the reader having to already know every spec's role.
+     *
+     * @var array<int, array{0: string, 1: string}>
+     */
+    private const HEALER_SPEC_SLUGS = [
+        ['druid', 'restoration'], ['shaman', 'restoration'], ['priest', 'holy'], ['priest', 'discipline'],
+        ['paladin', 'holy'], ['monk', 'mistweaver'], ['evoker', 'preservation'],
+    ];
+
+    /**
+     * Name substrings for defensive cooldowns, offensive cooldowns, and PvP trinkets —
+     * deliberately a curated keyword list, not a DB-driven tag. `ModuleSpellReferenceService::
+     * categorize()` was considered instead but explicitly avoided for this: this project's own
+     * standing feedback ("offensive cooldown isn't an actual tag in our system yet... offensive
+     * and defensive tags miss a lot") means that classifier isn't reliable enough yet for what
+     * this report needs — a wrong or missing tag here just means an entry doesn't get
+     * highlighted (the full, untagged cast timeline is still shown), so the failure mode is
+     * silent omission, not a wrong claim. Expand this list opportunistically as new matches get
+     * analyzed; it will never be exhaustive across all 13 classes.
+     */
+    private const WATCHED_DEFENSIVES = [
+        'Cloak of Shadows', 'Evasion', 'Feint', 'Crimson Vial', 'Guardian Spirit', 'Desperate Prayer',
+        'Astral Shift', 'Earth Elemental', 'Stone Bulwark Totem', 'Fade', 'Power Word: Shield',
+        'Pain Suppression', 'Ice Block', 'Divine Shield', 'Barkskin', 'Survival Instincts',
+        'Frenzied Regeneration',
+    ];
+
+    private const WATCHED_OFFENSIVES = [
+        'Bestial Wrath', 'Feral Frenzy', 'Ascendance', 'Incarnation', 'Berserking', 'Avenging Wrath',
+        'Combustion', 'Icy Veins', 'Arcane Surge', 'Trueshot', 'Metamorphosis', 'Recklessness',
+        'Avatar', 'Chaos Blades', 'Dragonrage', 'Coordinated Assault', 'Adrenaline Rush', 'Shadow Blades',
+    ];
+
+    private const WATCHED_TRINKETS = ["Gladiator's Badge", "Gladiator's Medallion", "Gladiator's Emblem"];
+
+    /**
+     * Reconstructs the full causal picture around one match's deciding kill — every CC landing
+     * (real source AND real target, via SPELL_AURA_APPLIED/REMOVED, which carry destination
+     * info that SPELL_CAST_SUCCESS never does), every watched defensive/offensive/trinket cast
+     * from EITHER team, the killed player's HP curve, and the top damage sources against them
+     * in the closing seconds.
+     *
+     * Built 2026-08-15, consolidating a chain of one-off scratchpad investigations from the
+     * same session into a single reusable tool — see wow:analyze-kill's docblock for the full
+     * story of what prompted this (a real Jungle-comp match where "who was locking the enemy
+     * healer, and when did their own defensives actually cover the damage that killed them"
+     * turned out to be answerable, but only by hand-writing five separate throwaway scripts).
+     *
+     * Deliberately does NOT attempt to explain WHY a player pressed something — that's
+     * interpretation, not extraction, and needs a human (or a human+AI conversation) reading
+     * the output with real game knowledge, the same way the original investigation worked. This
+     * method's job is only to put the real facts in front of that conversation without them
+     * having to be re-derived from raw log grepping every time.
+     *
+     * @return array{
+     *   matchId: string, killTime: float, killedGuid: string, killedName: string,
+     *   killedSpec: ?string, durationSeconds: int,
+     *   roster: array<string, array{name: string, spec: string, reaction: mixed, isHealer: bool}>,
+     *   timeline: array<int, array{t: float, text: string}>,
+     *   hpCurve: array<int, array{t: float, currentHp: float, maxHp: float, pct: float}>,
+     *   damageTaken: array<int, array{t: float, source: string, amount: int, ability: string}>
+     * }|null
+     */
+    public function analyzeKillCausally(string $matchId, int $windowSeconds = 60): ?array
+    {
+        $metaPath = base_path("data/arena-logs/metadata/{$matchId}.json");
+        $rawPath = base_path("data/arena-logs/raw/{$matchId}.log.gz");
+
+        if (!File::exists($metaPath) || !File::exists($rawPath)) {
+            return null;
+        }
+
+        $meta = json_decode(File::get($metaPath), true);
+        $raw = gzdecode(File::get($rawPath));
+
+        if (!preg_match_all('/^([\d\/: .-]+)\s+(?:PARTY_KILL|UNIT_DIED),[^,]*,[^,]*,[^,]*,[^,]*,(Player-[^,]+),"([^"]*)"/m', $raw, $deaths, PREG_SET_ORDER)) {
+            return null;
+        }
+        if ($deaths === []) {
+            return null;
+        }
+        $last = end($deaths);
+        $killTime = $this->parseLogTimestamp($last[1]);
+        $killedGuid = $last[2];
+        $killedName = $last[3];
+
+        $isHealer = function (int $extSpecId) {
+            $spec = Specialization::where('external_spec_id', $extSpecId)->first();
+            if (!$spec || !$spec->gameClass) {
+                return false;
+            }
+            foreach (self::HEALER_SPEC_SLUGS as [$c, $s]) {
+                if ($spec->gameClass->slug === $c && $spec->slug === $s) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
+
+        $roster = [];
+        $killedSpec = null;
+        foreach ($meta['units'] ?? [] as $u) {
+            if (!str_starts_with($u['id'], 'Player-') || !isset($u['spec']) || (int) $u['spec'] === 0) {
+                continue;
+            }
+            $spec = Specialization::with('gameClass')->where('external_spec_id', (int) $u['spec'])->first();
+            $specLabel = $spec ? "{$spec->name} {$spec->gameClass?->name}" : "spec {$u['spec']}";
+            $roster[$u['id']] = ['name' => $u['name'], 'spec' => $specLabel, 'reaction' => $u['reaction'] ?? null, 'isHealer' => $isHealer((int) $u['spec'])];
+            if ($u['id'] === $killedGuid) {
+                $killedSpec = $specLabel;
+            }
+        }
+
+        $patch = \App\Models\Patch::where('is_current', true)->first();
+        $ccByCategory = $patch
+            ? Spell::where('patch_id', $patch->id)->whereNotNull('dr_category')->pluck('dr_category', 'spell_id')->all()
+            : [];
+        $timeline = [];
+
+        foreach (['SPELL_AURA_APPLIED' => 'landed on', 'SPELL_AURA_REMOVED' => 'fell off'] as $eventType => $verb) {
+            preg_match_all('/^([\d\/: .-]+)\s+'.$eventType.',(Player-[^,]+),"[^"]*",[^,]*,[^,]*,(Player-[^,]+),"[^"]*",[^,]*,[^,]*,(\d+),"([^"]*)"/m', $raw, $matches, PREG_SET_ORDER);
+            foreach ($matches as $m) {
+                $spellId = (int) $m[4];
+                $name = $m[5];
+                $isCC = isset($ccByCategory[$spellId]);
+                $isWatched = $this->matchesAny($name, [...self::WATCHED_DEFENSIVES, ...self::WATCHED_OFFENSIVES, ...self::WATCHED_TRINKETS]);
+                if (!$isCC && !$isWatched) {
+                    continue;
+                }
+
+                $t = $this->parseLogTimestamp($m[1]);
+                $secBefore = $killTime - $t;
+                if ($secBefore < 0 || $secBefore > $windowSeconds) {
+                    continue;
+                }
+
+                $src = $roster[$m[2]]['name'] ?? $m[2];
+                $dst = $roster[$m[3]]['name'] ?? $m[3];
+                $tag = $isCC ? " ({$ccByCategory[$spellId]})" : '';
+                $timeline[] = ['t' => $secBefore, 'text' => "{$src} -> {$name}{$tag} {$verb} {$dst}"];
+            }
+        }
+
+        foreach ($roster as $guid => $info) {
+            $g = preg_quote($guid, '/');
+            preg_match_all('/^([\d\/: .-]+)\s+SPELL_CAST_SUCCESS,'.$g.',"[^"]*",[^,]*,[^,]*,[^,]*,(?:"[^"]*"|nil),[^,]*,[^,]*,(\d+),"([^"]*)"/m', $raw, $casts, PREG_SET_ORDER);
+            foreach ($casts as $c) {
+                $name = $c[3];
+                if (!$this->matchesAny($name, [...self::WATCHED_DEFENSIVES, ...self::WATCHED_OFFENSIVES, ...self::WATCHED_TRINKETS])) {
+                    continue;
+                }
+                $t = $this->parseLogTimestamp($c[1]);
+                $secBefore = $killTime - $t;
+                if ($secBefore < 0 || $secBefore > $windowSeconds) {
+                    continue;
+                }
+                $timeline[] = ['t' => $secBefore + 0.0001, 'text' => "CAST: {$info['name']} ({$info['spec']}) casts {$name}"];
+            }
+        }
+
+        usort($timeline, fn ($a, $b) => $b['t'] <=> $a['t']);
+
+        // HP curve + damage breakdown for the killed player specifically — SPELL_DAMAGE/
+        // SPELL_PERIODIC_DAMAGE's currentHP field reflects post-hit health (confirmed 2026-08-15
+        // against a real killing blow's overkill math), SWING_DAMAGE has a 3-field-shorter
+        // prefix so its currentHP sits 3 tail positions earlier.
+        $kg = preg_quote($killedGuid, '/');
+        preg_match_all('/^([\d\/: .-]+)\s+(SPELL_DAMAGE|SPELL_PERIODIC_DAMAGE|SWING_DAMAGE),(Player-[^,]+),"[^"]*",[^,]*,[^,]*,'.$kg.',"[^"]*",[^,]*,[^,]*,(.*)$/m', $raw, $dmgMatches, PREG_SET_ORDER);
+
+        $hpCurve = [];
+        $damageTaken = [];
+        foreach ($dmgMatches as $d) {
+            $t = $this->parseLogTimestamp($d[1]);
+            $secBefore = $killTime - $t;
+            if ($secBefore < 0 || $secBefore > $windowSeconds) {
+                continue;
+            }
+            $type = $d[2];
+            $sourceName = $roster[$d[3]]['name'] ?? $d[3];
+
+            if ($type === 'SWING_DAMAGE') {
+                $tail = explode(',', $d[4]);
+                $hpIdx = 11;
+                $amountIdx = 19;
+                $ability = '(melee)';
+            } else {
+                if (!preg_match('/^\d+,"([^"]*)",[^,]*,(.*)$/', $d[4], $sub)) {
+                    continue;
+                }
+                $ability = $sub[1];
+                $tail = explode(',', $sub[2]);
+                $hpIdx = 14;
+                $amountIdx = 19;
+            }
+
+            $currentHp = (float) ($tail[$hpIdx] ?? 0);
+            $maxHp = (float) ($tail[$hpIdx + 1] ?? 0);
+            $amount = (int) ($tail[$amountIdx] ?? 0);
+
+            if ($maxHp > 0) {
+                $hpCurve[] = ['t' => $secBefore, 'currentHp' => $currentHp, 'maxHp' => $maxHp, 'pct' => round($currentHp / $maxHp * 100, 1)];
+            }
+            if ($amount > 0) {
+                $damageTaken[] = ['t' => $secBefore, 'source' => $sourceName, 'amount' => $amount, 'ability' => $ability];
+            }
+        }
+
+        usort($hpCurve, fn ($a, $b) => $b['t'] <=> $a['t']);
+        usort($damageTaken, fn ($a, $b) => $b['t'] <=> $a['t']);
+
+        return [
+            'matchId' => $matchId,
+            'killTime' => $killTime,
+            'killedGuid' => $killedGuid,
+            'killedName' => $killedName,
+            'killedSpec' => $killedSpec,
+            'durationSeconds' => (int) ($meta['durationInSeconds'] ?? 0),
+            'roster' => $roster,
+            'timeline' => $timeline,
+            'hpCurve' => $hpCurve,
+            'damageTaken' => $damageTaken,
+        ];
+    }
+
+    /**
+     * Whether any real player in $matchId's roster is playing $specializationId — a lightweight
+     * roster-composition check, reusing the same metadata JSON + external_spec_id lookup pattern
+     * as analyzeKillCausally()'s own roster build, but without needing the raw log or a kill
+     * event at all (metadata alone carries every unit's spec). Built 2026-08-17 for
+     * FindCcDuration's outlier-explanation check — was this match's unusually long CC-duration
+     * instance explained by a Preservation Evoker's Oppressing Roar being in play — but
+     * deliberately generic (takes any specialization id), not Oppressing-Roar-specific, since
+     * "was spec X present in this match" is a reusable question.
+     */
+    public function matchRosterHasSpec(string $matchId, int $specializationId): bool
+    {
+        $metaPath = base_path("data/arena-logs/metadata/{$matchId}.json");
+
+        if (!File::exists($metaPath)) {
+            return false;
+        }
+
+        $spec = Specialization::find($specializationId);
+        if (!$spec) {
+            return false;
+        }
+
+        $meta = json_decode(File::get($metaPath), true);
+
+        foreach ($meta['units'] ?? [] as $u) {
+            if (str_starts_with($u['id'] ?? '', 'Player-') && (int) ($u['spec'] ?? 0) === $spec->external_spec_id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function matchesAny(string $haystack, array $needles): bool
+    {
+        foreach ($needles as $needle) {
+            if (str_contains($haystack, $needle)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function manifestPath(string $file = 'comp-index.json'): string

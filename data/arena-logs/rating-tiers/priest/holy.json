@@ -3,7 +3,7 @@
     "classSlug": "priest",
     "specSlug": "holy",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:28+00:00",
+    "generatedAt": "2026-08-15T08:06:56+00:00",
     "heroTreesDetected": [
         "Voidweaver",
         "Archon",
@@ -88,19 +88,20 @@
                     "Prayer of Mending": 70,
                     "Flash Heal": 60,
                     "Holy Word: Chastise": 60,
+                    "Psychic Scream": 60,
                     "Holy Fire": 60,
                     "Smite": 60,
-                    "Benediction": 50,
                     "Holy Word: Serenity": 50,
+                    "Benediction": 50,
                     "Gesegneter Boden": 30,
+                    "Spirit of Redemption (desc=PvP Talent)": 30,
+                    "Divine Hymn": 30,
+                    "Fade": 30,
                     "Shadow Word: Death": 30,
-                    "Leap of Faith": 20,
-                    "Guardian Spirit": 10,
-                    "Purify": 10,
-                    "Power Infusion": 10
+                    "Apotheosis": 20
                 },
-                "avgCasts": 10,
-                "avgDistinctSpells": 5.2
+                "avgCasts": 13.5,
+                "avgDistinctSpells": 7.6
             },
             "heroTreeBreakdown": {
                 "Oracle": {
@@ -181,19 +182,20 @@
                             "Prayer of Mending": 70,
                             "Flash Heal": 60,
                             "Holy Word: Chastise": 60,
+                            "Psychic Scream": 60,
                             "Holy Fire": 60,
                             "Smite": 60,
-                            "Benediction": 50,
                             "Holy Word: Serenity": 50,
+                            "Benediction": 50,
                             "Gesegneter Boden": 30,
+                            "Spirit of Redemption (desc=PvP Talent)": 30,
+                            "Divine Hymn": 30,
+                            "Fade": 30,
                             "Shadow Word: Death": 30,
-                            "Leap of Faith": 20,
-                            "Guardian Spirit": 10,
-                            "Purify": 10,
-                            "Power Infusion": 10
+                            "Apotheosis": 20
                         },
-                        "avgCasts": 10,
-                        "avgDistinctSpells": 5.2
+                        "avgCasts": 13.5,
+                        "avgDistinctSpells": 7.6
                     }
                 }
             }
@@ -291,20 +293,22 @@
                 "spellPct": {
                     "Prayer of Mending": 100,
                     "Holy Word: Chastise": 81.3,
+                    "Psychic Scream": 68.8,
                     "Holy Word: Serenity": 62.5,
                     "Benediction": 62.5,
                     "Holy Fire": 37.5,
                     "Purify": 31.3,
                     "Flash Heal": 31.3,
+                    "Fade": 25,
                     "Power Infusion": 25,
+                    "Angelic Feather": 25,
+                    "Apotheosis": 18.8,
                     "Smite": 18.8,
                     "Shadow Word: Death": 12.5,
-                    "Guardian Spirit": 12.5,
-                    "Dispel Magic": 6.3,
-                    "Sanctified Ground": 6.3
+                    "Holy Nova": 12.5
                 },
-                "avgCasts": 8.63,
-                "avgDistinctSpells": 4.88
+                "avgCasts": 10.94,
+                "avgDistinctSpells": 6.88
             },
             "heroTreeBreakdown": {
                 "Oracle": {
@@ -400,20 +404,22 @@
                         "spellPct": {
                             "Prayer of Mending": 100,
                             "Holy Word: Chastise": 81.3,
+                            "Psychic Scream": 68.8,
                             "Holy Word: Serenity": 62.5,
                             "Benediction": 62.5,
                             "Holy Fire": 37.5,
                             "Purify": 31.3,
                             "Flash Heal": 31.3,
+                            "Fade": 25,
                             "Power Infusion": 25,
+                            "Angelic Feather": 25,
+                            "Apotheosis": 18.8,
                             "Smite": 18.8,
                             "Shadow Word: Death": 12.5,
-                            "Guardian Spirit": 12.5,
-                            "Dispel Magic": 6.3,
-                            "Sanctified Ground": 6.3
+                            "Holy Nova": 12.5
                         },
-                        "avgCasts": 8.63,
-                        "avgDistinctSpells": 4.88
+                        "avgCasts": 10.94,
+                        "avgDistinctSpells": 6.88
                     }
                 }
             }
@@ -503,20 +509,23 @@
                 "n": 13,
                 "spellPct": {
                     "Prayer of Mending": 100,
-                    "Holy Fire": 69.2,
                     "Holy Word: Serenity": 69.2,
-                    "Shadow Word: Death": 53.8,
+                    "Holy Fire": 69.2,
                     "Smite": 53.8,
+                    "Shadow Word: Death": 53.8,
                     "Benediction": 46.2,
+                    "Psychic Scream": 46.2,
                     "Flash Heal": 46.2,
                     "Holy Word: Chastise": 46.2,
+                    "Fade": 30.8,
+                    "Angelic Feather": 30.8,
                     "Purify": 30.8,
                     "Dispel Magic": 23.1,
-                    "Sanctified Ground": 15.4,
-                    "Power Infusion": 15.4
+                    "Power Infusion": 15.4,
+                    "Gladiator's Medallion": 15.4
                 },
-                "avgCasts": 10.46,
-                "avgDistinctSpells": 5.69
+                "avgCasts": 12.15,
+                "avgDistinctSpells": 7.31
             },
             "heroTreeBreakdown": {
                 "Oracle": {
@@ -604,20 +613,23 @@
                         "n": 13,
                         "spellPct": {
                             "Prayer of Mending": 100,
-                            "Holy Fire": 69.2,
                             "Holy Word: Serenity": 69.2,
-                            "Shadow Word: Death": 53.8,
+                            "Holy Fire": 69.2,
                             "Smite": 53.8,
+                            "Shadow Word: Death": 53.8,
                             "Benediction": 46.2,
+                            "Psychic Scream": 46.2,
                             "Flash Heal": 46.2,
                             "Holy Word: Chastise": 46.2,
+                            "Fade": 30.8,
+                            "Angelic Feather": 30.8,
                             "Purify": 30.8,
                             "Dispel Magic": 23.1,
-                            "Sanctified Ground": 15.4,
-                            "Power Infusion": 15.4
+                            "Power Infusion": 15.4,
+                            "Gladiator's Medallion": 15.4
                         },
-                        "avgCasts": 10.46,
-                        "avgDistinctSpells": 5.69
+                        "avgCasts": 12.15,
+                        "avgDistinctSpells": 7.31
                     }
                 }
             }

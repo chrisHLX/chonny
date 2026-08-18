@@ -97,7 +97,10 @@ class KeyOffensiveAbilities extends Command
             foreach (array_unique($guids) as $guid) {
                 $g = preg_quote($guid, '/');
 
-                preg_match_all('/^[\d\/: .-]+\s+SPELL_CAST_SUCCESS,'.$g.',"[^"]*",[^,]*,[^,]*,[^,]*,"[^"]*",[^,]*,[^,]*,(\d+),"[^"]*"/m', $raw, $m);
+                // destName (5th field after sourceGUID) is unquoted `nil` for self-cast/ground-
+                // targeted abilities (Psychic Scream, Freezing Trap, etc.) — see ArenaLogService::
+                // findPreKillWindow()'s docblock for the full trace. `(?:"[^"]*"|nil)` accepts both.
+                preg_match_all('/^[\d\/: .-]+\s+SPELL_CAST_SUCCESS,'.$g.',"[^"]*",[^,]*,[^,]*,[^,]*,(?:"[^"]*"|nil),[^,]*,[^,]*,(\d+),"[^"]*"/m', $raw, $m);
                 foreach ($m[1] as $spellId) {
                     $castCounts[(int) $spellId] = ($castCounts[(int) $spellId] ?? 0) + 1;
                 }

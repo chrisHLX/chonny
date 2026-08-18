@@ -3,7 +3,7 @@
     "classSlug": "warlock",
     "specSlug": "affliction",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:42+00:00",
+    "generatedAt": "2026-08-15T08:07:14+00:00",
     "heroTreesDetected": [
         "Soul Harvester",
         "Hellcaller",
@@ -95,17 +95,24 @@
             "killWindow": {
                 "n": 10,
                 "spellPct": {
-                    "Drain Soul": 100,
                     "Unstable Affliction": 100,
+                    "Drain Soul": 100,
                     "Haunt": 90,
+                    "Curse of Exhaustion": 90,
+                    "Círculo demoníaco: Teletransporte": 40,
+                    "Dark Harvest": 40,
                     "Fear": 40,
                     "Seduction (desc=Command Demon Ability)": 30,
                     "Agony": 30,
                     "Mortal Coil": 20,
+                    "Curse of Tongues": 20,
+                    "Dark Pact": 20,
+                    "Nether Ward (desc=PvP Talent)": 10,
+                    "Curse of Weakness": 10,
                     "Corruption": 10
                 },
-                "avgCasts": 10.4,
-                "avgDistinctSpells": 4.2
+                "avgCasts": 13.4,
+                "avgDistinctSpells": 6.7
             },
             "heroTreeBreakdown": {
                 "Soul Harvester": {
@@ -190,17 +197,24 @@
                     "killWindow": {
                         "n": 10,
                         "spellPct": {
-                            "Drain Soul": 100,
                             "Unstable Affliction": 100,
+                            "Drain Soul": 100,
                             "Haunt": 90,
+                            "Curse of Exhaustion": 90,
+                            "Círculo demoníaco: Teletransporte": 40,
+                            "Dark Harvest": 40,
                             "Fear": 40,
                             "Seduction (desc=Command Demon Ability)": 30,
                             "Agony": 30,
                             "Mortal Coil": 20,
+                            "Curse of Tongues": 20,
+                            "Dark Pact": 20,
+                            "Nether Ward (desc=PvP Talent)": 10,
+                            "Curse of Weakness": 10,
                             "Corruption": 10
                         },
-                        "avgCasts": 10.4,
-                        "avgDistinctSpells": 4.2
+                        "avgCasts": 13.4,
+                        "avgDistinctSpells": 6.7
                     }
                 },
                 "Hellcaller": {
@@ -367,18 +381,24 @@
             "killWindow": {
                 "n": 11,
                 "spellPct": {
-                    "Haunt": 100,
                     "Drain Soul": 100,
+                    "Haunt": 100,
                     "Unstable Affliction": 90.9,
+                    "Curse of Exhaustion": 63.6,
                     "Agony": 63.6,
                     "Corruption": 54.5,
                     "Fear": 45.5,
+                    "Dark Harvest": 45.5,
+                    "Nether Ward (desc=PvP Talent)": 27.3,
                     "Mortal Coil": 27.3,
+                    "Soulburn": 27.3,
+                    "Dark Pact": 18.2,
+                    "Curse of Weakness": 18.2,
                     "Spell Lock (desc=Command Demon Ability)": 18.2,
-                    "Blight of Tongues": 9.1
+                    "Summon Darkglare": 9.1
                 },
-                "avgCasts": 10,
-                "avgDistinctSpells": 5.09
+                "avgCasts": 12.91,
+                "avgDistinctSpells": 7.82
             },
             "heroTreeBreakdown": {
                 "Soul Harvester": {
@@ -479,18 +499,24 @@
                     "killWindow": {
                         "n": 11,
                         "spellPct": {
-                            "Haunt": 100,
                             "Drain Soul": 100,
+                            "Haunt": 100,
                             "Unstable Affliction": 90.9,
+                            "Curse of Exhaustion": 63.6,
                             "Agony": 63.6,
                             "Corruption": 54.5,
                             "Fear": 45.5,
+                            "Dark Harvest": 45.5,
+                            "Nether Ward (desc=PvP Talent)": 27.3,
                             "Mortal Coil": 27.3,
+                            "Soulburn": 27.3,
+                            "Dark Pact": 18.2,
+                            "Curse of Weakness": 18.2,
                             "Spell Lock (desc=Command Demon Ability)": 18.2,
-                            "Blight of Tongues": 9.1
+                            "Summon Darkglare": 9.1
                         },
-                        "avgCasts": 10,
-                        "avgDistinctSpells": 5.09
+                        "avgCasts": 12.91,
+                        "avgDistinctSpells": 7.82
                     }
                 }
             }
@@ -592,21 +618,26 @@
                 "Malevolence": 0.78
             },
             "killWindow": {
-                "n": 10,
+                "n": 11,
                 "spellPct": {
-                    "Unstable Affliction": 100,
-                    "Haunt": 100,
-                    "Drain Soul": 90,
-                    "Fear": 50,
-                    "Spell Lock (desc=Command Demon Ability)": 40,
-                    "Mortal Coil": 30,
-                    "Wither": 20,
-                    "Seed of Corruption": 20,
-                    "Agony": 20,
-                    "Corruption": 20
+                    "Unstable Affliction": 90.9,
+                    "Haunt": 90.9,
+                    "Drain Soul": 81.8,
+                    "Howl of Terror": 45.5,
+                    "Fear": 45.5,
+                    "Curse of Exhaustion": 36.4,
+                    "Dark Harvest": 36.4,
+                    "Curse of Tongues": 36.4,
+                    "Spell Lock (desc=Command Demon Ability)": 36.4,
+                    "Dark Pact": 27.3,
+                    "Mortal Coil": 27.3,
+                    "Demonic Circle: Teleport": 27.3,
+                    "Curse of Weakness": 18.2,
+                    "Soulburn": 18.2,
+                    "Wither": 18.2
                 },
-                "avgCasts": 8.9,
-                "avgDistinctSpells": 4.9
+                "avgCasts": 12.09,
+                "avgDistinctSpells": 7.64
             },
             "heroTreeBreakdown": {
                 "Soul Harvester": {
@@ -697,18 +728,26 @@
                         "Fel Armor": 0.34
                     },
                     "killWindow": {
-                        "n": 8,
+                        "n": 9,
                         "spellPct": {
-                            "Unstable Affliction": 100,
-                            "Haunt": 100,
-                            "Drain Soul": 100,
-                            "Fear": 50,
-                            "Spell Lock (desc=Command Demon Ability)": 37.5,
-                            "Mortal Coil": 37.5,
-                            "Corruption": 25
+                            "Drain Soul": 88.9,
+                            "Unstable Affliction": 88.9,
+                            "Haunt": 88.9,
+                            "Curse of Exhaustion": 44.4,
+                            "Howl of Terror": 44.4,
+                            "Fear": 44.4,
+                            "Dark Pact": 33.3,
+                            "Mortal Coil": 33.3,
+                            "Dark Harvest": 33.3,
+                            "Curse of Tongues": 33.3,
+                            "Spell Lock (desc=Command Demon Ability)": 33.3,
+                            "Curse of Weakness": 22.2,
+                            "Soulburn": 22.2,
+                            "Demonic Circle: Teleport": 22.2,
+                            "Corruption": 22.2
                         },
-                        "avgCasts": 8.25,
-                        "avgDistinctSpells": 4.5
+                        "avgCasts": 11.67,
+                        "avgDistinctSpells": 7.33
                     }
                 },
                 "Hellcaller": {
@@ -790,11 +829,16 @@
                             "Seed of Corruption": 100,
                             "Agony": 100,
                             "Fear": 50,
+                            "Curse of the Satyr": 50,
                             "Spell Lock (desc=Command Demon Ability)": 50,
+                            "Dark Harvest": 50,
+                            "Howl of Terror": 50,
+                            "Demonic Circle: Teleport": 50,
+                            "Curse of Tongues": 50,
                             "Drain Soul": 50
                         },
-                        "avgCasts": 11.5,
-                        "avgDistinctSpells": 6.5
+                        "avgCasts": 14,
+                        "avgDistinctSpells": 9
                     }
                 }
             }

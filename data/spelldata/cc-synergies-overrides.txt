@@ -66,7 +66,7 @@
 6789 | Incapacitate | | | | 3 | Mortal Coil
 8122 | Disorient | | | | 6 | Psychic Scream
 9484 | Incapacitate | | | | | Shackle Horror
-10326 | Disorient | | | | | Turn Evil
+10326 | | | | | | Turn Evil (removed from DR group 2026-08-17, direct user request — see note below)
 12323 | Slow | | | | | Piercing Howl
 15487 | Silence | | | | 4 | Silence
 19577 | Stun | both | | | 3 | Intimidation
@@ -107,9 +107,29 @@
 116947 | Slow | | | | 5.1 | Earthbind
 119381 | Stun | | | | 4 | Leg Sweep
 132469 | Knockback | | | 1 | | Typhoon
-136511 | Incapacitate | | | | 6 | Ring of Frost
+136511 | | | | | | Ring of Frost (wrong-copy fix 2026-08-17, see note below — real tag moved to 113724)
 147362 | | | | 1 | | Counter Shot
-155722 | Stun | | | | | Rake
+# Rake's Stun tag was misapplied to spell_id 155722 (the base Bleed ability, mechanic=Bleed) in
+# the original dr-categories-reference.md bulk-apply pass — confirmed 2026-08-17 via direct user
+# correction ("Rake from stealth stuns the target for 3s... no CD") plus the spell's own
+# description text: 155722 (Bleed) references "$163505d" as the ACTUAL stun's duration — Blizzard's
+# own pointer to a separate spell_id (163505, mechanic=Stun, description literally "While
+# stealthed, Rake will also stun the target for [duration]") that carries the real conditional
+# stun bonus (only applies while stealthed, gated by one of two talents). 155722 itself has no CC
+# component of its own — it's a damage/bleed ability, same "the modifying/bonus effect gets its
+# own tag, the base carrier doesn't" pattern as Censure->Holy Word: Chastise. This also explains
+# why the arena-log duration resolver measured a confident, real 15.0s (51%/349 instances) for
+# 155722 earlier the same day — that number was correct, just for the wrong effect (the Bleed
+# DoT's real duration, not a CC duration at all). is_peel/is_interrupt were never set on this
+# line, nothing else to preserve.
+155722 | | | | | | Rake
+
+# The real stun component. cooldown_seconds/duration_seconds are both blank on its own record
+# (163505's stored duration=4.00 is the PvE tooltip value — user directly confirmed 3s is the
+# real PvP duration, not derived from the raw column, same discipline as every other
+# pvp_duration_seconds entry in this file) — "no CD" per the user, consistent with Rake itself
+# being a spammable combo-point builder with no cooldown of its own.
+163505 | Stun | | | | 3.0 | Rake (While Stealthed)
 157981 | Knockback | | | | | Blast Wave
 157997 | Root | | 1 | | 2 | Ice Nova
 160065 | Slow | | | | | Tendon Rip (desc=Special Ability)
@@ -125,7 +145,7 @@
 197214 | Incapacitate | | | | | Sundering
 198898 | Disorient | | | | 6 | Song of Chi-Ji
 199786 | Slow | | | | | Glacial Spike
-200199 | Stun | | | | | Censure
+200199 | | | | | | Censure (desc=passive that makes Holy Word: Chastise stun instead of incapacitate — not itself a CC ability, see CLAUDE.md 2026-08-17)
 202137 | Silence | | | | | Sigil of Silence
 202246 | Knockback | | | | | Overrun
 202335 | Stun | | | | | Double Barrel
@@ -152,7 +172,7 @@
 236027 | Root | | 1 | | | Charge
 236077 | Disarm | | | | 5 | Disarm
 236776 | Knockback | | | | | High Explosive Trap
-255937 | Stun | | | | | Wake of Ashes
+255937 | | | | | | Wake of Ashes (removed from DR group 2026-08-17, direct user request — see note below)
 263423 | Slow | | | | | Lock Jaw (desc=Special Ability)
 263446 | Slow | | | | | Acid Spit (desc=Special Ability)
 263715 | | | | 1 | | Silence
@@ -162,7 +182,7 @@
 290497 | Slow | | | | | Consecration
 305483 | Stun | | | | | Lightning Lasso
 317898 | Slow | | | | 6 | Blinding Sleet
-334275 | Slow | | | | | Curse of Exhaustion
+334275 | Slow | | | | 12.0 | Curse of Exhaustion
 344867 | Stun | | | | | Chaos Nova
 347008 | | | | 1 | | Axe Toss (desc=Special Ability)
 351338 | | | | 1 | | Quell
@@ -172,11 +192,11 @@
 408383 | Slow | | | | 8 | Judgment of Justice
 420378 | Slow | | | | | Consecration
 450342 | Slow | | | | 5 | Crashing Momentum
-450596 | Slow | | | | | Spirit's Essence
+450596 | Slow | | | | 4.0 | Spirit's Essence
 451210 | Slow | | | | | No Escape
 453263 | Slow | | | | 5 | Wave of Debilitation
 462765 | Slow | | | | | Arctic Snowstorm
-1248825 | Root | | 1 | | | Frostbite
+1248825 | | | | | | Frostbite (desc=not a CC ability — passive proc that adds damage-dealing Freezing stacks on Frost crit, no rooting anywhere in its own description; dr-categories-reference.md's Root listing is stale/pre-rework, caught by the is_passive+dr_category import guard, see CLAUDE.md 2026-08-17)
 1268673 | Slow | | | | | Cold Feet
 
 # Added 2026-08-14 from the user's hand-eyeballed "CC Durations Off Arena logs.txt" list.
@@ -199,10 +219,99 @@
 # entry in this file and NOT a gap to keep chasing — do not flag these as "missing" data in any
 # future duration scan/report.
 #
-# Wake of Ashes (255937, Stun): user believes its stun component only affects Undead-type
-# targets (a PvE/lore-flavored restriction), making it irrelevant for real PvP CC — stated with
-# some uncertainty ("I think"), so dr_category is left as-is rather than removed, but no
-# pvp_duration_seconds is being chased for it.
+# Wake of Ashes (255937) and Turn Evil (10326): removed from the DR group entirely, 2026-08-17,
+# direct user request. Wake of Ashes' stun component was already flagged uncertain here (believed
+# Undead-only, a PvE/lore restriction, irrelevant for real PvP CC) — left as-is at the time
+# pending further verification; now cleared rather than kept as a known-questionable entry.
+# Turn Evil is a PvE-only crowd-control spell (Undead/Demon targets only) with no PvP relevance
+# at all — never should have been in the DR taxonomy. Both dr_category values blanked, not the
+# lines deleted (importCcSynergyOverrides() writes every field on every run — blank clears the
+# existing DB value, same precedent as the Censure/Frostbite corrections above).
 #
 # Lightning Lasso (305483, Stun): user reports this one is hard to find/verify — still open,
 # no value applied, not guessed.
+
+# Warlock pet-command abilities, added 2026-08-17 after user report ("Spell Lock, Seduction
+# missing from Synergies") — each spell's own description text read directly, not guessed:
+# Axe Toss: "hurls its weapon, stunning AND interrupting the target" — both a real Stun and a
+#   real interrupt in one action, tagged as both.
+# Spell Lock: "Counters the enemy's spellcast, preventing any spell from THAT SCHOOL of magic
+#   from being cast" — a school-specific lockout, not a full silence. Tagged is_interrupt only;
+#   dr_category deliberately left blank rather than guessed as Silence — a school lockout is
+#   mechanically different from the true, all-schools PvP Silence category this taxonomy's
+#   "Silence" bucket represents elsewhere (e.g. Strangulate), and this project doesn't guess a
+#   DR category without being sure. chain_target intentionally left blank too — the current
+#   Synergies tab groups purely by dr_category (see CLAUDE.md's "unified into one design"
+#   section), chain_target is vestigial for display as of that redesign.
+# Seduction: "Seduces the target, disorienting... Only usable against Humanoids" — a clean
+#   Disorient; the Humanoid-only restriction isn't modeled by dr_category anywhere else either
+#   (same as Polymorph/Sap), not a reason to omit the tag.
+# pvp_duration_seconds for Axe Toss/Seduction resolved 2026-08-17 via wow:find-cc-duration — but
+# run against a SIBLING spell_id, not the displayed one. Both 119914/119909 came back "cast but
+# no AURA_APPLIED->REMOVED window captured" when scanned directly — real cast evidence exists
+# (273 logs scanned, hits found), but this specific display copy never carries the aura event
+# itself. Same "the displayed copy isn't the one carrying real data" shape documented repeatedly
+# elsewhere in this file/CLAUDE.md, just discovered here via the duration resolver instead of
+# cooldown/description lookup. Axe Toss's real aura data lives on sibling spell_id 89766 (3.0s,
+# 13/26 instances, real majority); Seduction's on 6358 (6.0s, 20/63 instances — also matches this
+# project's established flat PvP CC duration cap, same as Kidney Shot/Fear/Polymorph/Blind). The
+# VALUE is measured from the sibling but WRITTEN to the displayed spell_id (119914/119909), since
+# that's the row the Spells/Synergies pages actually render.
+119914 | Stun | | | 1 | 3.0 | Axe Toss (Command Demon)
+119910 | | | | 1 | | Spell Lock (Command Demon)
+119909 | Disorient | | | | 6.0 | Seduction (Command Demon)
+
+# Added via wow:discover-cc-spells --apply, 2026-08-17 — real arena-log cast evidence + unambiguous mechanic->dr_category mapping (see spell-acquisition-model.md).
+# pvp_duration_seconds resolved 2026-08-17 via wow:find-cc-duration (histogram/mode across real
+# match instances) — see spell-acquisition-model.md. Earthgrab/Landslide are weaker plurality
+# winners (~25-27% of a large sample, not a true majority) than the rest (all >=42%, several
+# matching the spell's own stored duration_seconds too) — applied anyway since no other value
+# tied or came close, but flagged here as the lower-confidence pair in this batch.
+1330 | Silence | | | | 3.0 | Garrote - Silence
+64695 | Root | | | | 6.0 | Earthgrab
+114404 | Root | | | | 4.0 | Void Tendrils
+355689 | Root | | | | 6.0 | Landslide (desc=Black)
+370970 | Root | | | | 1.5 | The Hunt
+372245 | Stun | | | | 3.0 | Terror of the Skies (desc=Black)
+374776 | Silence | | | | 3.0 | Tightening Grasp
+377048 | Stun | | | | 3.0 | Absolute Zero
+454787 | Root | | | | 4.0 | Ice Prison
+1258862 | Root | | | | 4.0 | Encasing Cold
+
+# Sleep Walk (360806, Preservation/Devastation/Augmentation Evoker) — found 2026-08-18 via direct
+# user report (Preservation Evoker's Crowd Control tab showing no CC at all). Already correctly
+# available for all 3 specs (verified_override existed already), just never had a dr_category.
+# Own description settles it outright, no ambiguity: "Disorient an enemy for [x], causing them to
+# sleep walk towards you." pvp_duration_seconds left blank — not yet verified via wow:find-cc-duration.
+360806 | Disorient | | | | | Sleep Walk (desc=Green)
+
+# The following 2 landed in wow:discover-cc-spells' NEEDS REVIEW bucket (mechanic=Snare,
+# Slow-keyword filter didn't recognize them on that run — likely a stale opcache serving the
+# pre-fix command version, not a logic error; the substring check itself is correct and passes
+# when re-traced by hand) but both independently verified by reading their own description text
+# directly: Tar Trap — "enemies within [x] yards will be slowed by [x]%"; Dark Chains —
+# "causing them to move [x]% slower." Added manually, same confidence tier as the other 10.
+135299 | Slow | | | | | Tar Trap
+442396 | Slow | | | | | Dark Chains
+
+# pvp_duration_seconds deliberately left blank for both of these, checked via wow:find-cc-duration
+# 2026-08-17, not silently resolved either way:
+# Tar Trap: only a 14% plurality winner (1.5s) across 303 real instances — too weak to trust, and
+#   its own description names TWO different durations (the trap's ground lifetime vs. the slow
+#   effect applied once triggered), so this measurement is likely catching the wrong one.
+# Dark Chains: genuinely AMBIGUOUS — 2.0s and 1.5s tied for the most instances. Needs more matches
+#   or a direct confirmation, not a guess.
+
+# Ring of Frost was tagged on the wrong internal duplicate-copy spell_id, found 2026-08-17 via a
+# direct user report ("Ring of Frost isn't showing on the Synergies tab, I swear it used to").
+# 136511 (dr_category=Incapacitate) is a `source=baseline, spec_id=NULL` copy — never reachable
+# via verifiedBaselineAbilityIds()/explicitBaselineCooldownAbilityIds() (both require an explicit
+# spec_id), so it can never appear as "selected" on any spec's kit regardless of its DR tag. The
+# actual displayed copy — 113724, which already carries `verified_override` for all 3 Mage specs
+# (Frost/Fire/Arcane) and real 45s cooldown data — had no dr_category at all. Same "the displayed
+# copy isn't the one carrying real data" shape as Axe Toss/Seduction above, just for the DR tag
+# instead of pvp_duration_seconds. Root cause of how this ever "used to work" is unconfirmed (no
+# git history was checked) — plausibly the DR bulk-apply pass picked 136511 by coincidence of
+# name-matching order before 113724's own verified_override rows existed, and nobody re-verified
+# after. Fixed by moving the tag to the correct spell_id; 136511 blanked above, not deleted.
+113724 | Incapacitate | | | | 6 | Ring of Frost

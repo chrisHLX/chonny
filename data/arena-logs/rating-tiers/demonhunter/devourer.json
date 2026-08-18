@@ -3,7 +3,7 @@
     "classSlug": "demonhunter",
     "specSlug": "devourer",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:59+00:00",
+    "generatedAt": "2026-08-15T08:08:04+00:00",
     "heroTreesDetected": [
         "Fel-Scarred",
         "Aldrachi Reaver",
@@ -88,21 +88,23 @@
             "killWindow": {
                 "n": 7,
                 "spellPct": {
+                    "Soul Fragment": 100,
                     "Consume": 100,
                     "Reap": 100,
                     "Cull": 85.7,
                     "Devour": 85.7,
                     "Voidblade": 57.1,
                     "Predator's Wake": 42.9,
-                    "The Hunt": 14.3,
-                    "Throw Glaive": 28.6,
-                    "Pierce the Veil": 14.3,
-                    "Imprison": 14.3,
-                    "Disrupt": 14.3,
-                    "Consume Magic": 14.3
+                    "The Hunt": 42.9,
+                    "Reaper's Toll": 42.9,
+                    "Hungering Slash": 42.9,
+                    "Vengeful Retreat": 42.9,
+                    "Glide": 28.6,
+                    "Void Nova": 28.6,
+                    "Soul Immolation": 28.6
                 },
-                "avgCasts": 10.43,
-                "avgDistinctSpells": 6.71
+                "avgCasts": 31.71,
+                "avgDistinctSpells": 10.29
             },
             "heroTreeBreakdown": {
                 "Void-Scarred": {
@@ -181,19 +183,22 @@
                     "killWindow": {
                         "n": 6,
                         "spellPct": {
+                            "Soul Fragment": 100,
                             "Consume": 100,
                             "Reap": 100,
                             "Cull": 83.3,
                             "Devour": 83.3,
                             "Predator's Wake": 50,
                             "The Hunt": 16.7,
+                            "Reaper's Toll": 50,
                             "Voidblade": 50,
-                            "Pierce the Veil": 16.7,
-                            "Consume Magic": 16.7,
-                            "Throw Glaive": 16.7
+                            "Hungering Slash": 50,
+                            "Vengeful Retreat": 50,
+                            "Void Nova": 33.3,
+                            "Glide": 16.7
                         },
-                        "avgCasts": 10.17,
-                        "avgDistinctSpells": 6.33
+                        "avgCasts": 31.83,
+                        "avgDistinctSpells": 9.83
                     }
                 },
                 "Annihilator": {
@@ -265,18 +270,21 @@
                         "n": 2,
                         "spellPct": {
                             "Cull": 100,
+                            "Soul Fragment": 100,
                             "Devour": 100,
                             "Consume": 100,
                             "Reap": 100,
+                            "Glide": 100,
                             "Predator's Wake": 50,
                             "The Hunt": 50,
+                            "Reaper's Toll": 50,
                             "Imprison": 50,
+                            "Soul Immolation": 50,
                             "Voidblade": 50,
-                            "Disrupt": 50,
-                            "Throw Glaive": 50
+                            "Void Ray": 50
                         },
-                        "avgCasts": 11.5,
-                        "avgDistinctSpells": 8
+                        "avgCasts": 28.5,
+                        "avgDistinctSpells": 11.5
                     }
                 }
             }
@@ -365,22 +373,24 @@
             "killWindow": {
                 "n": 4,
                 "spellPct": {
+                    "Soul Fragment": 100,
+                    "Vengeful Retreat": 100,
+                    "Void Ray": 75,
                     "Reap": 75,
+                    "Reaper's Toll": 75,
                     "Voidblade": 75,
                     "Pierce the Veil": 75,
                     "Cull": 75,
                     "Devour": 75,
                     "Disrupt": 50,
                     "Consume": 50,
+                    "Glide": 50,
+                    "Gladiator's Medallion": 50,
                     "Predator's Wake": 50,
-                    "The Hunt": 50,
-                    "Throw Glaive": 25,
-                    "Consume Magic": 25,
-                    "Torment": 25,
-                    "Imprison": 25
+                    "The Hunt": 50
                 },
-                "avgCasts": 13.75,
-                "avgDistinctSpells": 6.75
+                "avgCasts": 46,
+                "avgDistinctSpells": 11.5
             },
             "heroTreeBreakdown": {
                 "Void-Scarred": {
@@ -463,22 +473,24 @@
                     "killWindow": {
                         "n": 4,
                         "spellPct": {
+                            "Soul Fragment": 100,
+                            "Vengeful Retreat": 100,
+                            "Void Ray": 75,
                             "Reap": 75,
+                            "Reaper's Toll": 75,
                             "Voidblade": 75,
                             "Pierce the Veil": 75,
                             "Cull": 75,
                             "Devour": 75,
                             "Disrupt": 50,
                             "Consume": 50,
+                            "Glide": 50,
+                            "Gladiator's Medallion": 50,
                             "Predator's Wake": 50,
-                            "The Hunt": 50,
-                            "Throw Glaive": 25,
-                            "Consume Magic": 25,
-                            "Torment": 25,
-                            "Imprison": 25
+                            "The Hunt": 50
                         },
-                        "avgCasts": 13.75,
-                        "avgDistinctSpells": 6.75
+                        "avgCasts": 46,
+                        "avgDistinctSpells": 11.5
                     }
                 },
                 "Annihilator": {
@@ -641,21 +653,23 @@
             "killWindow": {
                 "n": 13,
                 "spellPct": {
+                    "Soul Fragment": 100,
+                    "Void Ray": 92.3,
                     "Cull": 76.9,
                     "Devour": 69.2,
+                    "Vengeful Retreat": 61.5,
+                    "Glide": 46.2,
+                    "Soul Immolation": 46.2,
                     "Consume": 38.5,
                     "Reap": 38.5,
                     "Voidblade": 23.1,
-                    "Disrupt": 23.1,
+                    "Void Nova": 30.8,
                     "Predator's Wake": 23.1,
                     "The Hunt": 23.1,
-                    "Imprison": 15.4,
-                    "Pierce the Veil": 15.4,
-                    "Consume Magic": 7.7,
-                    "Collapsing Star": 7.7
+                    "Reaper's Toll": 23.1
                 },
-                "avgCasts": 11.31,
-                "avgDistinctSpells": 4
+                "avgCasts": 43.46,
+                "avgDistinctSpells": 8.62
             },
             "heroTreeBreakdown": {
                 "Void-Scarred": {
@@ -734,19 +748,24 @@
                     "killWindow": {
                         "n": 3,
                         "spellPct": {
+                            "Soul Fragment": 100,
+                            "Void Ray": 100,
                             "Predator's Wake": 100,
                             "The Hunt": 100,
+                            "Reaper's Toll": 100,
+                            "Glide": 66.7,
                             "Consume": 66.7,
                             "Reap": 66.7,
                             "Cull": 66.7,
+                            "Vengeful Retreat": 66.7,
                             "Voidblade": 66.7,
                             "Pierce the Veil": 66.7,
+                            "Soul Immolation": 33.3,
                             "Consume Magic": 33.3,
-                            "Disrupt": 33.3,
-                            "Devour": 33.3
+                            "Blur": 33.3
                         },
-                        "avgCasts": 10.33,
-                        "avgDistinctSpells": 6.33
+                        "avgCasts": 41,
+                        "avgDistinctSpells": 12.67
                     }
                 },
                 "Annihilator": {
@@ -823,17 +842,23 @@
                     "killWindow": {
                         "n": 10,
                         "spellPct": {
-                            "Cull": 80,
+                            "Soul Fragment": 100,
+                            "Void Ray": 90,
                             "Devour": 80,
+                            "Cull": 80,
+                            "Vengeful Retreat": 60,
+                            "Soul Immolation": 50,
+                            "Glide": 40,
+                            "Voidblade": 30,
+                            "Void Nova": 30,
                             "Consume": 30,
                             "Reap": 30,
-                            "Voidblade": 30,
-                            "Imprison": 20,
+                            "Hungering Slash": 20,
                             "Disrupt": 20,
-                            "Collapsing Star": 10
+                            "Imprison": 20
                         },
-                        "avgCasts": 11.6,
-                        "avgDistinctSpells": 3.3
+                        "avgCasts": 44.2,
+                        "avgDistinctSpells": 7.4
                     }
                 }
             }

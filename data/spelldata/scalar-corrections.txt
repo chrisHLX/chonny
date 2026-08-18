@@ -50,3 +50,14 @@
 # design, not because it was confirmed via tooltip/spellbook/direct source. Flag and correct
 # if a harder source (in-game tooltip, a real snapshot) ever contradicts this.
 233759 | cooldown_seconds=45, duration_seconds=5 | Grapple Weapon
+
+# Strangulate (Death Knight PvP talent, spell_id 47476) — confirmed absent from SimC's raw dump
+# entirely (checked both filtered/deathknight and raw/deathknight.txt directly, zero records for
+# this spell_id anywhere) and Blizzard's own PvP-talent JSON never carries a cooldown field on
+# any entry (checked data/pvptalents/death-knight.json directly — id/name/spell_id/spell_name/
+# description/unlock_player_level/compatible_slots/playable_spec_id/playable_spec_name only), so
+# nothing already on file could ever have populated cooldown_seconds. duration_seconds is already
+# correctly set via cc-synergies-overrides.txt (pvp_duration_seconds=4, silence). cooldown_seconds
+# confirmed 2026-08-18 via a real WoWHead tooltip screenshot supplied by the user: "45 sec
+# cooldown" — same confidence tier as Scatter Shot's user-supplied research above.
+47476 | cooldown_seconds=45 | Strangulate

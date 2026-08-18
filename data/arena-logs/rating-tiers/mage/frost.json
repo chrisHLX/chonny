@@ -3,7 +3,7 @@
     "classSlug": "mage",
     "specSlug": "frost",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:45+00:00",
+    "generatedAt": "2026-08-15T08:07:21+00:00",
     "heroTreesDetected": [
         "Sunfury",
         "Spellslinger",
@@ -90,19 +90,22 @@
             "killWindow": {
                 "n": 2,
                 "spellPct": {
+                    "Frost Nova": 100,
                     "Ray of Frost": 100,
+                    "Ice Barrier": 100,
                     "Polymorph": 100,
                     "Ice Lance": 100,
                     "Snowdrift": 50,
+                    "Alter Time": 50,
+                    "Shimmer": 50,
                     "Comet Storm": 50,
                     "Glacial Spike": 50,
                     "Frozen Orb": 50,
                     "Flurry": 50,
-                    "Frostbolt": 50,
-                    "Counterspell": 50
+                    "Frostbolt": 50
                 },
-                "avgCasts": 10.5,
-                "avgDistinctSpells": 7
+                "avgCasts": 15,
+                "avgDistinctSpells": 11
             },
             "heroTreeBreakdown": {
                 "Spellslinger": {
@@ -180,14 +183,17 @@
                     "killWindow": {
                         "n": 1,
                         "spellPct": {
+                            "Frost Nova": 100,
                             "Polymorph": 100,
                             "Frostbolt": 100,
                             "Ray of Frost": 100,
                             "Ice Lance": 100,
-                            "Counterspell": 100
+                            "Counterspell": 100,
+                            "Blink": 100,
+                            "Ice Barrier": 100
                         },
-                        "avgCasts": 6,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 9,
+                        "avgDistinctSpells": 8
                     }
                 },
                 "Frostfire": {
@@ -254,7 +260,11 @@
                         "n": 1,
                         "spellPct": {
                             "Snowdrift": 100,
+                            "Frost Nova": 100,
+                            "Alter Time": 100,
+                            "Shimmer": 100,
                             "Ray of Frost": 100,
+                            "Ice Barrier": 100,
                             "Comet Storm": 100,
                             "Polymorph": 100,
                             "Glacial Spike": 100,
@@ -262,8 +272,8 @@
                             "Flurry": 100,
                             "Ice Lance": 100
                         },
-                        "avgCasts": 15,
-                        "avgDistinctSpells": 9
+                        "avgCasts": 21,
+                        "avgDistinctSpells": 14
                     }
                 }
             }
@@ -376,16 +386,17 @@
                     "Frostbolt": 68.8,
                     "Frozen Orb": 37.5,
                     "Polymorph": 37.5,
+                    "Ice Barrier": 37.5,
                     "Counterspell": 31.3,
-                    "Snowdrift": 12.5,
-                    "Ice Nova": 12.5,
-                    "Arcane Intellect": 6.3,
-                    "Comet Storm": 6.3,
-                    "Spellsteal": 6.3,
-                    "变形术": 6.3
+                    "Blink": 25,
+                    "Blizzard": 25,
+                    "Gladiator's Medallion": 18.8,
+                    "Frost Nova": 18.8,
+                    "Dragon's Breath": 12.5,
+                    "Shimmer": 12.5
                 },
-                "avgCasts": 12.69,
-                "avgDistinctSpells": 5.88
+                "avgCasts": 15,
+                "avgDistinctSpells": 7.94
             },
             "heroTreeBreakdown": {
                 "Spellslinger": {
@@ -489,16 +500,18 @@
                             "Ray of Frost": 73.3,
                             "Glacial Spike": 73.3,
                             "Frozen Orb": 33.3,
-                            "Polymorph": 6.7,
+                            "Polymorph": 33.3,
+                            "Ice Barrier": 33.3,
                             "Counterspell": 33.3,
-                            "Ice Nova": 13.3,
-                            "Arcane Intellect": 6.7,
-                            "Spellsteal": 6.7,
-                            "变形术": 6.7,
-                            "积雪": 6.7
+                            "Blink": 26.7,
+                            "Blizzard": 26.7,
+                            "Gladiator's Medallion": 20,
+                            "Dragon's Breath": 13.3,
+                            "Frost Nova": 13.3,
+                            "Ring of Frost": 13.3
                         },
-                        "avgCasts": 12.53,
-                        "avgDistinctSpells": 5.67
+                        "avgCasts": 14.6,
+                        "avgDistinctSpells": 7.53
                     }
                 },
                 "Frostfire": {
@@ -572,7 +585,11 @@
                         "n": 1,
                         "spellPct": {
                             "Snowdrift": 100,
+                            "Frost Nova": 100,
+                            "Alter Time": 100,
+                            "Shimmer": 100,
                             "Ray of Frost": 100,
+                            "Ice Barrier": 100,
                             "Comet Storm": 100,
                             "Polymorph": 100,
                             "Glacial Spike": 100,
@@ -580,8 +597,8 @@
                             "Flurry": 100,
                             "Ice Lance": 100
                         },
-                        "avgCasts": 15,
-                        "avgDistinctSpells": 9
+                        "avgCasts": 21,
+                        "avgDistinctSpells": 14
                     }
                 }
             }
@@ -695,18 +712,18 @@
                     "Ray of Frost": 68.4,
                     "Frozen Orb": 63.2,
                     "Glacial Spike": 63.2,
-                    "Polymorph": 5.3,
+                    "Polymorph": 57.9,
+                    "Ice Barrier": 36.8,
                     "Frostbolt": 36.8,
+                    "Alter Time": 26.3,
+                    "Blink": 31.6,
+                    "Frost Nova": 26.3,
                     "Counterspell": 26.3,
-                    "Arcane Intellect": 21.1,
-                    "Ice Nova": 15.8,
-                    "Spellsteal": 10.5,
-                    "变形术": 10.5,
-                    "Remove Curse": 5.3,
-                    "변이": 5.3
+                    "Blizzard": 26.3,
+                    "Shimmer": 21.1
                 },
-                "avgCasts": 11.16,
-                "avgDistinctSpells": 6.05
+                "avgCasts": 14.21,
+                "avgDistinctSpells": 8.89
             },
             "heroTreeBreakdown": {
                 "Spellslinger": {
@@ -818,18 +835,18 @@
                             "Ray of Frost": 68.4,
                             "Frozen Orb": 63.2,
                             "Glacial Spike": 63.2,
-                            "Polymorph": 5.3,
+                            "Polymorph": 57.9,
+                            "Ice Barrier": 36.8,
                             "Frostbolt": 36.8,
+                            "Alter Time": 26.3,
+                            "Blink": 31.6,
+                            "Frost Nova": 26.3,
                             "Counterspell": 26.3,
-                            "Arcane Intellect": 21.1,
-                            "Ice Nova": 15.8,
-                            "Spellsteal": 10.5,
-                            "变形术": 10.5,
-                            "Remove Curse": 5.3,
-                            "변이": 5.3
+                            "Blizzard": 26.3,
+                            "Shimmer": 21.1
                         },
-                        "avgCasts": 11.16,
-                        "avgDistinctSpells": 6.05
+                        "avgCasts": 14.21,
+                        "avgDistinctSpells": 8.89
                     }
                 }
             }

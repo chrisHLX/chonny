@@ -28,6 +28,44 @@
 119381 | monk | windwalker | Leg Sweep
 187650 | hunter | beast-mastery | Freezing Trap
 187650 | hunter | marksmanship | Freezing Trap
+
+# 2026-08-16: found while building the "always show every talent" rework (see CLAUDE.md's
+# WoW Comps sections). Confirmed NOT reachable via any real talent_node_entries row —
+# genuinely baseline, not talent-gated — so allTalentSpellIds() alone can't surface these;
+# they need this file same as any other baseline spec-attribution fact.
+#
+# Sundering's 2nd internal spell_id copy — confirmed via wow:diff-arena-spells real arena-log
+# cast evidence for Enhancement specifically (PROMOTION_CANDIDATE), the strongest evidence
+# tier used anywhere in this file.
+467283 | shaman | enhancement | Sundering
+
+# Warlock pet-command abilities (Axe Toss/Spell Lock/Seduction) — user-reported missing,
+# confirmed structurally baseline (pet-summon-driven, not a talent pick). Corrected 2026-08-17
+# after a direct user correction: the original "any spec can summon any pet" assumption was
+# wrong for Axe Toss specifically — the Felguard (Axe Toss's pet) is Demonology-exclusive, not
+# available to Affliction/Destruction, so Axe Toss is Demonology-only. Spell Lock (Felhunter)
+# and Seduction (Succubus) ARE both legitimately available across specs that can swap pets —
+# a warlock can have either one selected depending on which pet they choose — so those two stay
+# multi-spec, per the user's own confirmation this part of the original fix was intentional.
+119914 | warlock | demonology | Axe Toss (Command Demon)
+119910 | warlock | affliction | Spell Lock (Command Demon)
+119910 | warlock | demonology | Spell Lock (Command Demon)
+119910 | warlock | destruction | Spell Lock (Command Demon)
+119909 | warlock | affliction | Seduction (Command Demon)
+119909 | warlock | demonology | Seduction (Command Demon)
+119909 | warlock | destruction | Seduction (Command Demon)
+
+# Singe Magic (Imp's dispel — "burns harmful spells, removing 1 harmful Magic effect from an
+# ally") — same Command Demon pattern as the other 3 pet abilities above, same reasoning: the
+# Imp is ungated (source=baseline, no talent, no spec restriction), so its ability is multi-
+# spec. User-reported missing from the Spells page 2026-08-17, confirmed via real arena-log
+# cast evidence (wow:diff-arena-spells flagged a variant spell_id, 132411, as cast by real
+# Demonology players but MISSING_ENTIRELY from spells — a separate raw-import gap, not fixable
+# here; this line covers the spell_id that DOES exist in our data, 89808, the one carrying the
+# real 15s cooldown).
+89808 | warlock | affliction | Singe Magic (Command Demon)
+89808 | warlock | demonology | Singe Magic (Command Demon)
+89808 | warlock | destruction | Singe Magic (Command Demon)
 187650 | hunter | survival | Freezing Trap
 853 | paladin | holy | Hammer of Justice
 853 | paladin | protection | Hammer of Justice
@@ -304,6 +342,11 @@
 66 | mage | frost | Invisibility
 5019 | mage | frost | Shoot
 80353 | mage | frost | Time Warp
+# Rake's conditional while-stealthed stun bonus (real spell_id 163505, mechanic=Stun) — a
+# separate record from Rake's own base Bleed spell_id (155722), see cc-synergies-overrides.txt's
+# note on this same spell_id for the full misclassification trace. Feral-only: the stun requires
+# being stealthed (Prowl), a Feral-exclusive mechanic.
+163505 | druid | feral | Rake (While Stealthed)
 106951 | druid | feral | Berserk
 1850 | druid | feral | Dash
 193753 | druid | feral | Dreamwalk
@@ -658,6 +701,7 @@
 109248 | hunter | survival | Binding Shot
 109304 | hunter | survival | Exhilaration
 186257 | hunter | survival | Aspect of the Cheetah
+186265 | hunter | survival | Aspect of the Turtle
 187707 | hunter | survival | Muzzle
 195645 | hunter | survival | Wing Clip
 199483 | hunter | survival | Camouflage
@@ -913,3 +957,44 @@
 212653 | mage | frost | Shimmer
 342245 | mage | frost | Alter Time
 414664 | mage | frost | Mass Invisibility
+
+# Added via wow:diff-arena-spells --apply, 2026-08-17 — Warlock/Affliction, real arena-log cast evidence (see arena-log-api.md).
+6201 | warlock | affliction | Create Healthstone
+234153 | warlock | affliction | Drain Life
+366222 | warlock | affliction | Summon Sayaad
+442726 | warlock | affliction | Malevolence
+442804 | warlock | affliction | Curse of the Satyr
+445468 | warlock | affliction | Wither
+
+# Added via wow:diff-arena-spells --apply, 2026-08-17 — Warlock/Demonology, real arena-log cast evidence (see arena-log-api.md).
+104773 | warlock | demonology | Unending Resolve
+333889 | warlock | demonology | Fel Domination
+452930 | warlock | demonology | Demonic Healthstone
+
+# Added via wow:diff-arena-spells --apply, 2026-08-17 — Warlock/Destruction, real arena-log cast evidence (see arena-log-api.md).
+691 | warlock | destruction | Summon Felhunter (desc=Summon)
+6201 | warlock | destruction | Create Healthstone
+104773 | warlock | destruction | Unending Resolve
+333889 | warlock | destruction | Fel Domination
+366222 | warlock | destruction | Summon Sayaad
+442804 | warlock | destruction | Curse of the Satyr
+
+# Evoker Crowd Control gap, found 2026-08-18 via direct user report ("Preservation Evoker isn't
+# showing CC — Landslide and a 3s stun I can't think of the name of"). Both already had a correct
+# dr_category in cc-synergies-overrides.txt (from the 2026-08-17 discover-cc-spells batch) but
+# neither had ever been given a baseline-spec-overrides.txt line, so both sat unreachable in the
+# ambiguous spec_id=NULL bucket on every tab, not just Crowd Control.
+# Terror of the Skies (372245): own description reads "$?s403631[Breath of Eons][Deep Breath]
+# stuns enemies for..." — 403631 (Breath of Eons) is a confirmed Augmentation-exclusive talent
+# (source=talent), so this stun is the shared component of Deep Breath (Devastation/Preservation's
+# copy) or Breath of Eons (Augmentation's own talent-modified copy) — genuinely all 3 specs, not a
+# guess from the "(desc=Black)" suffix alone.
+# Landslide (355689): no conditional text to lean on, but no spec-specific variant exists either
+# (checked — no Green/Bronze-suffixed sibling) — same "universal Evoker utility" shape as Hover,
+# added the same way (2026-08-07 batch) without needing per-spec textual confirmation.
+355689 | evoker | devastation | Landslide (desc=Black)
+355689 | evoker | preservation | Landslide (desc=Black)
+355689 | evoker | augmentation | Landslide (desc=Black)
+372245 | evoker | devastation | Terror of the Skies (desc=Black)
+372245 | evoker | preservation | Terror of the Skies (desc=Black)
+372245 | evoker | augmentation | Terror of the Skies (desc=Black)

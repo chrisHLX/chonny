@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Http\Services\CcChainBuilder;
+use App\Http\Services\ArenaLogService;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
@@ -23,10 +23,18 @@ use Livewire\Component;
  * Offensive/Defensive/Utility/Crowd Control/Other same as Spell Explorer, plus a "Main
  * Cooldowns" summary per member. Deliberately no comps table, no spell_functions table, no
  * seeding — this exists purely to get the picker/layout shape right before any of that schema
- * work happens. Same data source as SpellExplorer (TalentSelectionService::resolveActiveBuild())
- * — a viewer's own saved talent build for a slot's spec if they have one (editable in-place via
- * the talent-picker modal, see openPicker()/closePicker() and talent-tree-grid.blade.php), else
- * that spec's admin-curated default, same as before this modal existed.
+ * work happens.
+ *
+ * REWORKED 2026-08-16, same change and same reasoning as SpellExplorer (see that class's
+ * docblock): every real talent-tree entry and every PvP talent for each slot's spec is ALWAYS
+ * shown now (tagged 'Talent'/'PvP Talent' — see the 'source' key on each mapped entry below),
+ * not just whatever one curated build happened to have selected. A resolved build
+ * (TalentSelectionService::resolveActiveBuild()) is now purely an overlay — which entries
+ * render highlighted vs. greyed "Not selected," and the source of the build-aware
+ * cooldown/charge numbers via ModuleSpellReferenceService. The interactive talent-picker modal
+ * that used to live on this page (activePickerSpecId/openPicker()/closePicker()) has been
+ * removed, since nothing is hidden by build selection anymore. Admin\TalentBuildEditor remains
+ * the only place that edits the admin-default overlay builds.
  */
 class WowComps extends Component
 {
@@ -36,25 +44,20 @@ class WowComps extends Component
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
     ];
 
-    /** The spec currently open in the talent-picker modal, or null when closed. Shared across all 3 slots — only one picker open at a time. */
-    public ?int $activePickerSpecId = null;
+    /**
+     * Cooldowns tab, added 2026-08-18 — narrows the already-priority-filtered list down further
+     * to only spells with an effective cooldown over 15s. A real Livewire property (not a client-
+     * side Alpine toggle like the rest of this page's filtering) deliberately, so a category that
+     * loses every entry under the threshold correctly disappears server-side — same `@continue`
+     * category-visibility check the removed "Main Cooldowns" tab used to rely on — rather than
+     * leaving an empty-looking category header behind, which a pure client-side row-hide couldn't
+     * cleanly avoid without duplicating that visibility logic in JS.
+     */
+    public bool $cooldownsLongOnly = false;
 
     public function mount(): void
     {
         PageViewEvent::log('wow_comps');
-    }
-
-    public function openPicker(int $specId): void
-    {
-        $this->activePickerSpecId = $specId;
-    }
-
-    public function closePicker(): void
-    {
-        // Closing is itself a Livewire action on this component, so getCompProperty() below
-        // recomputes fresh on the very next render — no separate refresh/event plumbing needed
-        // for the underlying Spells table to pick up whatever was just saved in the modal.
-        $this->activePickerSpecId = null;
     }
 
     public function updated(string $name): void
@@ -160,11 +163,16 @@ class WowComps extends Component
         // touch() the build (see TalentSelectionService), so a pick invalidates only that one
         // viewer's own entry, never anyone else's. The admin-default case still additionally
         // varies on the global spellCacheVersion counter (bumped on an admin-default write or a
-        // spelldata re-import) exactly as before this feature.
+        // spelldata re-import) exactly as before this feature. 'isPriority' (2026-08-18) is baked
+        // into this same cached payload — a new arena-log match processed for this spec does NOT
+        // bump spellCacheVersion() on its own, same known staleness class as everywhere else this
+        // cache is used.
         $build = $talentService->resolveActiveBuild(auth()->user(), $spec->id);
         $defaultBuild = $build->exists ? $build : null;
         $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
+
+        $this->ensureMemoryHeadroom();
 
         return Cache::remember(
             "wow_spell_references:spec:{$spec->id}:build:{$buildStamp}:v{$version}",
@@ -174,18 +182,61 @@ class WowComps extends Component
     }
 
     /**
-     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool}>
+     * Raises (never lowers) PHP's memory_limit before computing/caching a spec's full spell
+     * reference set — found necessary 2026-08-17 via a real user report (fatal "Allowed memory
+     * size... exhausted" inside RedisStore::serialize(), i.e. while writing the computed result
+     * to the Redis cache, not while computing it). Root cause: the 2026-08-16 "always show every
+     * talent" rework (see this class's docblock) grew a talent-heavy spec's entry count from
+     * ~50-80 (selected + siblings) to as many as ~250 (every real talent-tree entry + every PvP
+     * talent), each entry carrying a full eager-loaded Spell model (+ effects +
+     * incomingRelationships.sourceSpell.effects). Measured in isolation: ~66MB peak per spec.
+     * getCompProperty() computes up to 3 slots per render, so a fresh page load with several
+     * simultaneous cache misses can plausibly stack past PHP's 128MB default — confirmed live.
+     * Scoped to this one heavy computation rather than a global php.ini/.user.ini change, so no
+     * other page's memory ceiling is affected; same "bump memory_limit for this specific
+     * memory-heavy operation" precedent already used for the `import:spelldata` CLI command (see
+     * CLAUDE.md's "modifies_charges/charges display fixed" note — `-d memory_limit=512M`).
+     */
+    private function ensureMemoryHeadroom(string $minimum = '512M'): void
+    {
+        $toBytes = function (string $value): int {
+            $value = trim($value);
+            if ($value === '' || $value === '-1') {
+                return -1;
+            }
+            $unit = strtolower(substr($value, -1));
+            $number = (int) $value;
+
+            return match ($unit) {
+                'g' => $number * 1024 * 1024 * 1024,
+                'm' => $number * 1024 * 1024,
+                'k' => $number * 1024,
+                default => $number,
+            };
+        };
+
+        $current = $toBytes((string) ini_get('memory_limit'));
+
+        if ($current !== -1 && $current < $toBytes($minimum)) {
+            ini_set('memory_limit', $minimum);
+        }
+    }
+
+    /**
+     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool, source: string}>
      */
     private function computeSpellReferencesFor(Specialization $spec, ModuleSpellReferenceService $service, TalentSelectionService $talentService, ?TalentBuild $defaultBuild): array
     {
         $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();
         $ranks = $defaultBuild ? $talentService->selectedRanks($defaultBuild) : collect();
 
-        // The "road not taken" for any CHOICE-node talent the build has a pick for (e.g.
-        // Ultimate Penitence vs. Power Word: Barrier) — display-only, never merged into
-        // $selected, so an unpicked sibling's own modifiers never look like they're actually
-        // applying (see TalentSelectionService::choiceSiblingSpellIds()'s docblock).
-        $siblingIds = $talentService->choiceSiblingSpellIds($selected);
+        // Always-shown display set — see this class's docblock (reworked 2026-08-16). Every
+        // real talent-tree entry and every PvP talent for the spec, regardless of whether the
+        // resolved overlay build ($selected) picked it. choiceSiblingSpellIds() is no longer
+        // needed here: allTalentSpellIds() already includes every option of every CHOICE node
+        // unconditionally, not just the unpicked side of a node that HAS a pick.
+        $allTalentIds = $talentService->allTalentSpellIds($spec->id);
+        $allPvpIds = $talentService->allPvpTalentSpellIds($spec->id);
 
         // Manually-verified baseline abilities only (Leg Sweep, Freezing Trap, ...) — NOT
         // TalentSelectionService::alwaysAvailableAbilityIds() (see that method's "DO NOT WIRE
@@ -200,7 +251,14 @@ class WowComps extends Component
         // (explicit spec_id, no NULL-bucket guessing) but only ever a partial fix for
         // baseline-heavy specs like Demon Hunter/Evoker — see CLAUDE.md.
         $cooldownBaselineIds = $talentService->explicitBaselineCooldownAbilityIds($spec->class_id, $spec->id);
-        $displayIds = $selected->merge($siblingIds)->merge($verifiedBaselineIds)->merge($cooldownBaselineIds)->unique();
+        $displayIds = $allTalentIds->merge($allPvpIds)->merge($verifiedBaselineIds)->merge($cooldownBaselineIds)->unique();
+
+        // Real arena-match cast evidence for this spec — powers the "Cooldowns" tab (2026-08-18),
+        // same shared source SpellExplorer's "Priority Spells" filter reads. Tagged onto every
+        // entry regardless of tab, same "compute once, filter at render time" pattern the rest of
+        // this method already uses for category/group.
+        $class = GameClass::find($spec->class_id);
+        $priorityExternalIds = $class ? app(ArenaLogService::class)->spellUsageIds($class->slug, $spec->slug) : collect();
 
         $build = new ModuleGameBuild([
             'class_id' => $spec->class_id,
@@ -212,7 +270,7 @@ class WowComps extends Component
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds) {
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds) {
                 $description = $service->resolveDescription($spell, $build);
                 $modifiers = $service->modifiersFor($spell, $build, $selected, $ranks);
 
@@ -230,6 +288,8 @@ class WowComps extends Component
                     // Verified/explicit-spec baseline abilities are never talent-gated, so
                     // they read as "selected" (normal opacity) regardless of the talent build.
                     'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
+                    'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
+                    'isPriority' => $priorityExternalIds->contains($spell->spell_id),
                 ];
             })
             ->all();
@@ -275,48 +335,55 @@ class WowComps extends Component
     }
 
     /**
-     * The Synergies tab's data — a deterministic CC-chain sequence per chain_target, built from
-     * whatever the comp's 3 members currently have selected. Only spells with `dr_category` set
-     * are eligible at all (124 spells dataset-wide as of 2026-08-11, see CLAUDE.md's "Synergies
-     * tab" section — the rest of the game's CC has no curated DR category yet). Of those, only
-     * spells that ALSO have `chain_target` set can actually be placed into a chain — as of this
-     * date that's just the original 8 hand-curated worked-example spells (all `kill_target`);
-     * the 116 bulk-applied-from-dr-categories-reference.md spells have `dr_category` but no
-     * `chain_target` at all, and `healer` has never been used once. Rather than guess a
-     * healer/kill-target split for those 116 (exactly the "AI invents a judgment call" failure
-     * mode this project keeps having to catch and revert elsewhere — Mind Sear,
-     * alwaysAvailableAbilityIds(), etc.), they're surfaced honestly as `unclassified` instead of
-     * silently dropped or silently guessed into a chain.
+     * The two Synergies tab boxes, in render order (2026-08-16, third same-day revision — Utility
+     * dropped CcChainBuilder sequencing too, matching the plain-grouping design DRs got in the
+     * prior revision; the two boxes also swapped order, DRs first). Each maps a display label to
+     * the real dr_category values it contains — "Diminishing Returns Groups" (Stun/Silence/
+     * Incapacitate/Disorient, the categories that actually diminish each other) and "Utility"
+     * (Knockback/Disarm/Slow/Root, which don't). Neither box is sequenced or scored anymore —
+     * see getSynergiesProperty()'s docblock for why.
+     */
+    private const GROUP_CATEGORIES = [
+        'Diminishing Returns Groups' => ['Stun', 'Silence', 'Incapacitate', 'Disorient'],
+        'Utility' => ['Knockback', 'Disarm', 'Slow', 'Root'],
+    ];
+
+    /**
+     * The Synergies tab's data. `groups` is a plain grouping keyed by the display labels in
+     * GROUP_CATEGORIES above — no CcChainBuilder involvement anymore for either box, no
+     * sequencing, no DR%/immune computation (direct instruction, 2026-08-16: the player builds
+     * their own in-game chain from what's shown; this tab only surfaces what CC exists and which
+     * DR category it belongs to). Each box's spells are ordered by GROUP_CATEGORIES's own fixed
+     * category order first (so same-category spells visually cluster even without a sub-heading
+     * — the category itself now renders as a badge on each individual spell card, "like we had
+     * originally," rather than a group heading), then alphabetically by name within a category.
      *
-     * `chain_target=both` (2026-08-11, Stun-category spells — Kidney Shot, Cheap Shot, etc.:
-     * flexible, not fixed to one role, per the domain expert) is a candidate for EITHER pool
-     * below, independently. A `both` spell can therefore appear in the FINAL OUTPUT of both
-     * `kill_target_chain` and `healer_chain` at once, each one sequenced separately with no
-     * cross-chain awareness — confirmed correct and intentional once a real `both` spell
-     * actually existed to test it against (the original design note for this column claimed
-     * "never auto-duplicated into both simultaneously," written before any `both`-tagged spell
-     * existed; that claim was wrong, and the corrected, verified behavior is documented here —
-     * see CLAUDE.md's "chain_target=both is genuinely dual, not deduplicated" section). This
-     * is the honest, useful behavior: it shows a stun as a valid option for either role, not an
-     * artificial pick between them.
+     * Any `dr_category` value outside both known lists (none currently exist, but the taxonomy is
+     * a plain curated string, not a DB enum — see CLAUDE.md's `dr_category` design-decision note)
+     * still gets its own trailing group, keyed by that category name directly and appended
+     * alphabetically after the two known boxes, so a future/unclassified category can never
+     * silently vanish from the tab.
+     *
+     * `chain_target`/`is_peel`/`is_interrupt` are untouched by any of this — still curated
+     * columns, still read by CcReview/ImportSpellData — they just don't drive this tab's
+     * grouping. CcChainBuilder itself is untouched too (still used/tested independently) — this
+     * tab just no longer calls it.
      *
      * Also pools two functional-role flags that are independent of dr_category entirely (see
      * the is_peel/is_interrupt migration's docblock for why they're separate fields, not folded
      * into dr_category) — `peels` (Roots + Ursol's Vortex, spells used to create separation/
      * protect a teammate) and `interrupts` (Kick/Counterspell/etc., a mechanic with no DR
-     * relationship at all). Neither runs through CcChainBuilder — they're plain grouped lists,
-     * not sequenced chains, since diminishing returns doesn't apply to either concept.
+     * relationship at all). Plain grouped lists, unaffected by any of this.
      *
      * `cooldown_by_id` carries each spell's already-computed effective cooldown (talent-modified,
      * same value the Active Abilities tab shows) so every Synergies section can display CD
      * alongside the curated PvP CC duration without recomputing anything — `$member['entries']`
      * already has this from getCompProperty()'s normal per-spec computation.
      *
-     * @return array{kill_target_chain: array, healer_chain: array, unclassified: Collection, peels: Collection, interrupts: Collection, owner_map: array<int, int>, cooldown_by_id: array<int, ?float>}
+     * @return array{groups: array<string, Collection<int, Spell>>, peels: Collection, interrupts: Collection, owner_map: array<int, int>, cooldown_by_id: array<int, ?float>}
      */
     public function getSynergiesProperty(): array
     {
-        $builder = app(CcChainBuilder::class);
         $ownerMap = [];
         $cooldownById = [];
 
@@ -353,16 +420,23 @@ class WowComps extends Component
         $peels = $peels->unique('id')->values();
         $interrupts = $interrupts->unique('id')->values();
 
-        $classified = $ccEntries->filter(fn (Spell $s) => $s->chain_target !== null);
-        $unclassified = $ccEntries->filter(fn (Spell $s) => $s->chain_target === null)->values();
+        $groups = [];
+        $covered = [];
+        foreach (self::GROUP_CATEGORIES as $label => $categories) {
+            $covered = array_merge($covered, $categories);
+            $ordered = collect();
+            foreach ($categories as $cat) {
+                $ordered = $ordered->merge($ccEntries->filter(fn (Spell $s) => $s->dr_category === $cat)->sortBy('name')->values());
+            }
+            $groups[$label] = $ordered->values();
+        }
 
-        $killTargetSpells = $classified->filter(fn (Spell $s) => in_array($s->chain_target, ['kill_target', 'both']))->values();
-        $healerSpells = $classified->filter(fn (Spell $s) => in_array($s->chain_target, ['healer', 'both']))->values();
+        foreach ($ccEntries->pluck('dr_category')->unique()->diff($covered)->sort()->values() as $cat) {
+            $groups[$cat] = $ccEntries->filter(fn (Spell $s) => $s->dr_category === $cat)->sortBy('name')->values();
+        }
 
         return [
-            'kill_target_chain' => $killTargetSpells->isNotEmpty() ? $builder->buildChain($killTargetSpells) : [],
-            'healer_chain' => $healerSpells->isNotEmpty() ? $builder->buildChain($healerSpells) : [],
-            'unclassified' => $unclassified,
+            'groups' => $groups,
             'peels' => $peels,
             'interrupts' => $interrupts,
             'owner_map' => $ownerMap,

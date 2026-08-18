@@ -3,7 +3,7 @@
     "classSlug": "shaman",
     "specSlug": "elemental",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:02+00:00",
+    "generatedAt": "2026-08-15T08:08:14+00:00",
     "heroTreesDetected": [
         "Totemic",
         "Stormbringer",
@@ -100,17 +100,20 @@
                     "Earth Shock": 100,
                     "Voltaic Blaze": 100,
                     "Lightning Bolt": 66.7,
+                    "Ancestral Swiftness": 66.7,
                     "Ascendance": 50,
                     "Bloodlust": 50,
                     "Greater Purge": 50,
                     "Hex (desc=Frog)": 33.3,
+                    "Gust of Wind": 33.3,
                     "Earth Shield": 16.7,
+                    "Healing Stream Totem": 16.7,
+                    "Stormkeeper": 16.7,
                     "Wind Shear": 16.7,
-                    "Healing Surge": 16.7,
-                    "Heroism": 16.7
+                    "Healing Surge": 16.7
                 },
-                "avgCasts": 11.83,
-                "avgDistinctSpells": 6.17
+                "avgCasts": 13.67,
+                "avgDistinctSpells": 8
             },
             "heroTreeBreakdown": {
                 "Farseer": {
@@ -200,17 +203,21 @@
                             "Lava Burst": 100,
                             "Earth Shock": 100,
                             "Voltaic Blaze": 100,
+                            "Ancestral Swiftness": 80,
                             "Lightning Bolt": 60,
                             "Ascendance": 60,
                             "Bloodlust": 60,
                             "Greater Purge": 60,
                             "Hex (desc=Frog)": 40,
                             "Earth Shield": 20,
+                            "Healing Stream Totem": 20,
+                            "Stormkeeper": 20,
                             "Wind Shear": 20,
-                            "Healing Surge": 20
+                            "Healing Surge": 20,
+                            "Spiritwalker's Grace": 20
                         },
-                        "avgCasts": 12.4,
-                        "avgDistinctSpells": 6.4
+                        "avgCasts": 14.2,
+                        "avgDistinctSpells": 8.2
                     }
                 },
                 "Stormbringer": {
@@ -276,13 +283,15 @@
                         "n": 1,
                         "spellPct": {
                             "Lightning Bolt": 100,
+                            "Gust of Wind": 100,
                             "Voltaic Blaze": 100,
                             "Lava Burst": 100,
                             "Earth Shock": 100,
+                            "Ghost Wolf": 100,
                             "Heroism": 100
                         },
-                        "avgCasts": 9,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 11,
+                        "avgDistinctSpells": 7
                     }
                 }
             }
@@ -372,10 +381,15 @@
                     "Lava Burst": 100,
                     "Earth Shock": 100,
                     "Wind Shear": 40,
-                    "Greater Purge": 20
+                    "Ghost Wolf": 40,
+                    "Thunderstorm": 20,
+                    "Greater Purge": 20,
+                    "Spiritwalker's Grace": 20,
+                    "Stormkeeper": 20,
+                    "Ancestral Swiftness": 20
                 },
-                "avgCasts": 13,
-                "avgDistinctSpells": 4.6
+                "avgCasts": 14.2,
+                "avgDistinctSpells": 5.8
             },
             "heroTreeBreakdown": {
                 "Farseer": {
@@ -463,10 +477,15 @@
                             "Lava Burst": 100,
                             "Earth Shock": 100,
                             "Wind Shear": 40,
-                            "Greater Purge": 20
+                            "Ghost Wolf": 40,
+                            "Thunderstorm": 20,
+                            "Greater Purge": 20,
+                            "Spiritwalker's Grace": 20,
+                            "Stormkeeper": 20,
+                            "Ancestral Swiftness": 20
                         },
-                        "avgCasts": 13,
-                        "avgDistinctSpells": 4.6
+                        "avgCasts": 14.2,
+                        "avgDistinctSpells": 5.8
                     }
                 }
             }
@@ -559,21 +578,24 @@
             "killWindow": {
                 "n": 14,
                 "spellPct": {
+                    "Voltaic Blaze": 100,
                     "Lava Burst": 100,
                     "Earth Shock": 100,
-                    "Voltaic Blaze": 100,
+                    "Ancestral Swiftness": 71.4,
                     "Lightning Bolt": 64.3,
                     "Greater Purge": 57.1,
+                    "Earthgrab Totem": 50,
+                    "Stormkeeper": 50,
                     "Hex (desc=Frog)": 35.7,
                     "Bloodlust": 35.7,
-                    "Wind Shear": 28.6,
-                    "Ascendance": 21.4,
-                    "Earth Shield": 14.3,
-                    "Earthquake": 7.1,
-                    "Earth Elemental": 7.1
+                    "Healing Stream Totem": 35.7,
+                    "Ghost Wolf": 28.6,
+                    "Blood Fury": 28.6,
+                    "Spiritwalker's Grace": 28.6,
+                    "Wind Shear": 28.6
                 },
-                "avgCasts": 12.93,
-                "avgDistinctSpells": 5.71
+                "avgCasts": 16.71,
+                "avgDistinctSpells": 9.5
             },
             "heroTreeBreakdown": {
                 "Farseer": {
@@ -664,21 +686,24 @@
                     "killWindow": {
                         "n": 14,
                         "spellPct": {
+                            "Voltaic Blaze": 100,
                             "Lava Burst": 100,
                             "Earth Shock": 100,
-                            "Voltaic Blaze": 100,
+                            "Ancestral Swiftness": 71.4,
                             "Lightning Bolt": 64.3,
                             "Greater Purge": 57.1,
+                            "Earthgrab Totem": 50,
+                            "Stormkeeper": 50,
                             "Hex (desc=Frog)": 35.7,
                             "Bloodlust": 35.7,
-                            "Wind Shear": 28.6,
-                            "Ascendance": 21.4,
-                            "Earth Shield": 14.3,
-                            "Earthquake": 7.1,
-                            "Earth Elemental": 7.1
+                            "Healing Stream Totem": 35.7,
+                            "Ghost Wolf": 28.6,
+                            "Blood Fury": 28.6,
+                            "Spiritwalker's Grace": 28.6,
+                            "Wind Shear": 28.6
                         },
-                        "avgCasts": 12.93,
-                        "avgDistinctSpells": 5.71
+                        "avgCasts": 16.71,
+                        "avgDistinctSpells": 9.5
                     }
                 }
             }

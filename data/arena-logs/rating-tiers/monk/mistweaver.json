@@ -3,7 +3,7 @@
     "classSlug": "monk",
     "specSlug": "mistweaver",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:51+00:00",
+    "generatedAt": "2026-08-15T08:07:40+00:00",
     "heroTreesDetected": [
         "Conduit of the Celestials",
         "Shado-Pan",
@@ -96,16 +96,22 @@
             "killWindow": {
                 "n": 4,
                 "spellPct": {
+                    "Rushing Wind Kick": 100,
                     "Sheilun's Gift": 75,
                     "Tiger Palm": 75,
+                    "Thunder Focus Tea": 75,
                     "Enveloping Mist": 50,
+                    "Leg Sweep": 50,
                     "Blackout Kick": 50,
+                    "Spinning Crane Kick": 50,
                     "Soothing Mist": 25,
+                    "Chi Torpedo": 25,
                     "Touch of Death": 25,
-                    "Renewing Mist": 25
+                    "Renewing Mist": 25,
+                    "Invoke Chi-Ji, the Red Crane": 25
                 },
-                "avgCasts": 6.75,
-                "avgDistinctSpells": 3.25
+                "avgCasts": 12.75,
+                "avgDistinctSpells": 6.5
             },
             "heroTreeBreakdown": {
                 "Master of Harmony": {
@@ -194,16 +200,22 @@
                     "killWindow": {
                         "n": 4,
                         "spellPct": {
+                            "Rushing Wind Kick": 100,
                             "Sheilun's Gift": 75,
                             "Tiger Palm": 75,
+                            "Thunder Focus Tea": 75,
                             "Enveloping Mist": 50,
+                            "Leg Sweep": 50,
                             "Blackout Kick": 50,
+                            "Spinning Crane Kick": 50,
                             "Soothing Mist": 25,
+                            "Chi Torpedo": 25,
                             "Touch of Death": 25,
-                            "Renewing Mist": 25
+                            "Renewing Mist": 25,
+                            "Invoke Chi-Ji, the Red Crane": 25
                         },
-                        "avgCasts": 6.75,
-                        "avgDistinctSpells": 3.25
+                        "avgCasts": 12.75,
+                        "avgDistinctSpells": 6.5
                     }
                 }
             }
@@ -308,22 +320,24 @@
             "killWindow": {
                 "n": 11,
                 "spellPct": {
+                    "Rushing Wind Kick": 72.7,
                     "Sheilun's Gift": 72.7,
-                    "Soothing Mist": 54.5,
+                    "Thunder Focus Tea": 72.7,
                     "Crackling Jade Lightning": 54.5,
-                    "Enveloping Mist": 45.5,
+                    "Soothing Mist": 54.5,
                     "Renewing Mist": 45.5,
+                    "Enveloping Mist": 45.5,
+                    "Mana Tea": 45.5,
+                    "Paralysis": 27.3,
                     "Blackout Kick": 27.3,
                     "Touch of Death": 27.3,
-                    "Paralysis": 27.3,
-                    "Tiger's Lust": 18.2,
-                    "Tiger Palm": 18.2,
-                    "Detox": 18.2,
+                    "Chi Torpedo": 27.3,
+                    "Spinning Crane Kick": 18.2,
                     "Life Cocoon": 18.2,
-                    "Provoke": 9.1
+                    "Detox": 18.2
                 },
-                "avgCasts": 7.09,
-                "avgDistinctSpells": 4.36
+                "avgCasts": 11.91,
+                "avgDistinctSpells": 7.18
             },
             "heroTreeBreakdown": {
                 "Master of Harmony": {
@@ -419,22 +433,24 @@
                     "killWindow": {
                         "n": 9,
                         "spellPct": {
+                            "Rushing Wind Kick": 88.9,
+                            "Thunder Focus Tea": 77.8,
                             "Sheilun's Gift": 66.7,
-                            "Soothing Mist": 44.4,
-                            "Crackling Jade Lightning": 44.4,
                             "Renewing Mist": 44.4,
-                            "Enveloping Mist": 33.3,
+                            "Crackling Jade Lightning": 44.4,
+                            "Soothing Mist": 44.4,
+                            "Paralysis": 33.3,
                             "Blackout Kick": 33.3,
                             "Touch of Death": 33.3,
-                            "Paralysis": 33.3,
-                            "Tiger Palm": 22.2,
-                            "Detox": 22.2,
+                            "Enveloping Mist": 33.3,
+                            "Mana Tea": 33.3,
+                            "Chi Torpedo": 33.3,
+                            "Spinning Crane Kick": 22.2,
                             "Life Cocoon": 22.2,
-                            "Tiger's Lust": 11.1,
-                            "Provoke": 11.1
+                            "Detox": 22.2
                         },
-                        "avgCasts": 6.22,
-                        "avgDistinctSpells": 4.22
+                        "avgCasts": 11.33,
+                        "avgDistinctSpells": 7.11
                     }
                 },
                 "Conduit of the Celestials": {
@@ -496,15 +512,19 @@
                     "killWindow": {
                         "n": 2,
                         "spellPct": {
+                            "Mana Tea": 100,
                             "Soothing Mist": 100,
                             "Enveloping Mist": 100,
                             "Sheilun's Gift": 100,
                             "Crackling Jade Lightning": 100,
+                            "Leg Sweep": 50,
+                            "魂体双分：转移": 50,
                             "Tiger's Lust": 50,
-                            "Renewing Mist": 50
+                            "Renewing Mist": 50,
+                            "Thunder Focus Tea": 50
                         },
-                        "avgCasts": 11,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 14.5,
+                        "avgDistinctSpells": 7.5
                     }
                 }
             }
@@ -604,20 +624,24 @@
             "killWindow": {
                 "n": 14,
                 "spellPct": {
+                    "Rushing Wind Kick": 100,
+                    "Thunder Focus Tea": 85.7,
                     "Enveloping Mist": 71.4,
                     "Sheilun's Gift": 64.3,
                     "Blackout Kick": 57.1,
                     "Renewing Mist": 57.1,
-                    "Touch of Death": 50,
                     "Paralysis": 50,
+                    "Touch of Death": 50,
                     "Crackling Jade Lightning": 42.9,
                     "Soothing Mist": 42.9,
+                    "Chi Torpedo": 42.9,
+                    "Leg Sweep": 35.7,
+                    "Gladiator's Medallion": 28.6,
                     "Detox": 28.6,
-                    "Tiger Palm": 21.4,
-                    "Provoke": 7.1
+                    "Tiger Palm": 21.4
                 },
-                "avgCasts": 6.5,
-                "avgDistinctSpells": 4.93
+                "avgCasts": 12.79,
+                "avgDistinctSpells": 8.71
             },
             "heroTreeBreakdown": {
                 "Master of Harmony": {
@@ -706,6 +730,8 @@
                     "killWindow": {
                         "n": 12,
                         "spellPct": {
+                            "Rushing Wind Kick": 100,
+                            "Thunder Focus Tea": 83.3,
                             "Enveloping Mist": 75,
                             "Sheilun's Gift": 66.7,
                             "Renewing Mist": 58.3,
@@ -714,11 +740,14 @@
                             "Touch of Death": 50,
                             "Paralysis": 50,
                             "Crackling Jade Lightning": 41.7,
+                            "Leg Sweep": 41.7,
+                            "Gladiator's Medallion": 33.3,
+                            "Chi Torpedo": 33.3,
                             "Tiger Palm": 25,
                             "Detox": 25
                         },
-                        "avgCasts": 6.67,
-                        "avgDistinctSpells": 4.92
+                        "avgCasts": 12.42,
+                        "avgDistinctSpells": 8.42
                     }
                 },
                 "Conduit of the Celestials": {
@@ -801,18 +830,24 @@
                     "killWindow": {
                         "n": 2,
                         "spellPct": {
+                            "Thunder Focus Tea": 100,
+                            "Rushing Wind Kick": 100,
+                            "Spinning Crane Kick": 100,
+                            "Chi Torpedo": 100,
                             "Blackout Kick": 100,
-                            "Sheilun's Gift": 50,
-                            "Crackling Jade Lightning": 50,
-                            "Touch of Death": 50,
                             "Renewing Mist": 50,
                             "Enveloping Mist": 50,
                             "Provoke": 50,
                             "Paralysis": 50,
-                            "Detox": 50
+                            "Transcendence": 50,
+                            "Mana Tea": 50,
+                            "Detox": 50,
+                            "Ring of Peace": 50,
+                            "Sheilun's Gift": 50,
+                            "Crackling Jade Lightning": 50
                         },
-                        "avgCasts": 5.5,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 15,
+                        "avgDistinctSpells": 10.5
                     }
                 }
             }

@@ -3,7 +3,7 @@
     "classSlug": "mage",
     "specSlug": "arcane",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:14+00:00",
+    "generatedAt": "2026-08-15T08:08:51+00:00",
     "heroTreesDetected": [
         "Sunfury",
         "Spellslinger",
@@ -235,12 +235,14 @@
                 "n": 1,
                 "spellPct": {
                     "Arcane Barrage": 100,
+                    "Dragon's Breath": 100,
                     "Arcane Blast": 100,
                     "Arcane Missiles": 100,
-                    "Polymorph": 100
+                    "Polymorph": 100,
+                    "Blink": 100
                 },
-                "avgCasts": 7,
-                "avgDistinctSpells": 4
+                "avgCasts": 10,
+                "avgDistinctSpells": 6
             },
             "heroTreeBreakdown": {
                 "Spellslinger": {
@@ -388,12 +390,14 @@
                         "n": 1,
                         "spellPct": {
                             "Arcane Barrage": 100,
+                            "Dragon's Breath": 100,
                             "Arcane Blast": 100,
                             "Arcane Missiles": 100,
-                            "Polymorph": 100
+                            "Polymorph": 100,
+                            "Blink": 100
                         },
-                        "avgCasts": 7,
-                        "avgDistinctSpells": 4
+                        "avgCasts": 10,
+                        "avgDistinctSpells": 6
                     }
                 }
             }
@@ -470,14 +474,21 @@
                 "n": 4,
                 "spellPct": {
                     "Arcane Barrage": 100,
+                    "Arcane Orb": 100,
                     "Arcane Blast": 75,
+                    "Presence of Mind": 75,
                     "Polymorph": 50,
                     "Arcane Surge": 50,
                     "Spellsteal": 50,
+                    "Blink": 25,
+                    "Arcane Explosion": 25,
+                    "Greater Invisibility": 25,
+                    "Frost Nova": 25,
+                    "Ice Wall (desc=PvP Talent)": 25,
                     "Counterspell": 25
                 },
-                "avgCasts": 8.75,
-                "avgDistinctSpells": 3.5
+                "avgCasts": 13.5,
+                "avgDistinctSpells": 6.75
             },
             "heroTreeBreakdown": {
                 "Spellslinger": {
@@ -552,14 +563,21 @@
                         "n": 4,
                         "spellPct": {
                             "Arcane Barrage": 100,
+                            "Arcane Orb": 100,
                             "Arcane Blast": 75,
+                            "Presence of Mind": 75,
                             "Polymorph": 50,
                             "Arcane Surge": 50,
                             "Spellsteal": 50,
+                            "Blink": 25,
+                            "Arcane Explosion": 25,
+                            "Greater Invisibility": 25,
+                            "Frost Nova": 25,
+                            "Ice Wall (desc=PvP Talent)": 25,
                             "Counterspell": 25
                         },
-                        "avgCasts": 8.75,
-                        "avgDistinctSpells": 3.5
+                        "avgCasts": 13.5,
+                        "avgDistinctSpells": 6.75
                     }
                 }
             }

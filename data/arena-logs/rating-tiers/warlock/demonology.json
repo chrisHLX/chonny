@@ -3,7 +3,7 @@
     "classSlug": "warlock",
     "specSlug": "demonology",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:16+00:00",
+    "generatedAt": "2026-08-15T08:08:57+00:00",
     "heroTreesDetected": [
         "Soul Harvester",
         "Hellcaller",
@@ -65,11 +65,14 @@
                 "spellPct": {
                     "Hand of Gul'dan": 100,
                     "Axe Toss (desc=Command Demon Ability)": 100,
+                    "Howl of Terror": 100,
+                    "Power Siphon": 100,
                     "Mortal Coil": 100,
-                    "Demonbolt": 100
+                    "Demonbolt": 100,
+                    "Call Fel Lord": 100
                 },
-                "avgCasts": 10,
-                "avgDistinctSpells": 4
+                "avgCasts": 13,
+                "avgDistinctSpells": 7
             },
             "heroTreeBreakdown": {
                 "Soul Harvester": {
@@ -127,11 +130,14 @@
                         "spellPct": {
                             "Hand of Gul'dan": 100,
                             "Axe Toss (desc=Command Demon Ability)": 100,
+                            "Howl of Terror": 100,
+                            "Power Siphon": 100,
                             "Mortal Coil": 100,
-                            "Demonbolt": 100
+                            "Demonbolt": 100,
+                            "Call Fel Lord": 100
                         },
-                        "avgCasts": 10,
-                        "avgDistinctSpells": 4
+                        "avgCasts": 13,
+                        "avgDistinctSpells": 7
                     }
                 }
             }
@@ -228,13 +234,19 @@
                     "Hand of Gul'dan": 100,
                     "Call Dreadstalkers": 100,
                     "Implosion": 100,
+                    "Dark Pact": 50,
+                    "Demonic Circle: Teleport": 50,
                     "Mortal Coil": 50,
                     "Heartbroken": 50,
+                    "Howl of Terror": 50,
+                    "Nether Ward (desc=PvP Talent)": 50,
+                    "Summon Demonic Tyrant": 50,
                     "Fear": 50,
+                    "Curse of Exhaustion": 50,
                     "Shadow Bolt": 50
                 },
-                "avgCasts": 13,
-                "avgDistinctSpells": 6
+                "avgCasts": 16,
+                "avgDistinctSpells": 9
             },
             "heroTreeBreakdown": {
                 "Soul Harvester": {
@@ -321,13 +333,19 @@
                             "Hand of Gul'dan": 100,
                             "Call Dreadstalkers": 100,
                             "Implosion": 100,
+                            "Dark Pact": 50,
+                            "Demonic Circle: Teleport": 50,
                             "Mortal Coil": 50,
                             "Heartbroken": 50,
+                            "Howl of Terror": 50,
+                            "Nether Ward (desc=PvP Talent)": 50,
+                            "Summon Demonic Tyrant": 50,
                             "Fear": 50,
+                            "Curse of Exhaustion": 50,
                             "Shadow Bolt": 50
                         },
-                        "avgCasts": 13,
-                        "avgDistinctSpells": 6
+                        "avgCasts": 16,
+                        "avgDistinctSpells": 9
                     }
                 }
             }

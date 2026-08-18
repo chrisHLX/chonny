@@ -3,7 +3,7 @@
     "classSlug": "mage",
     "specSlug": "fire",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:17:12+00:00",
+    "generatedAt": "2026-08-15T08:08:44+00:00",
     "heroTreesDetected": [
         "Sunfury",
         "Spellslinger",
@@ -71,13 +71,18 @@
             "killWindow": {
                 "n": 1,
                 "spellPct": {
+                    "Ring of Frost": 100,
+                    "Blink": 100,
                     "Fire Blast": 100,
+                    "Combustion": 100,
                     "Scorch": 100,
                     "Pyroblast": 100,
-                    "Ice Nova": 100
+                    "Ice Nova": 100,
+                    "Blazing Barrier": 100,
+                    "Mass Invisibility": 100
                 },
-                "avgCasts": 14,
-                "avgDistinctSpells": 4
+                "avgCasts": 19,
+                "avgDistinctSpells": 9
             },
             "heroTreeBreakdown": {
                 "Sunfury": {
@@ -141,13 +146,18 @@
                     "killWindow": {
                         "n": 1,
                         "spellPct": {
+                            "Ring of Frost": 100,
+                            "Blink": 100,
                             "Fire Blast": 100,
+                            "Combustion": 100,
                             "Scorch": 100,
                             "Pyroblast": 100,
-                            "Ice Nova": 100
+                            "Ice Nova": 100,
+                            "Blazing Barrier": 100,
+                            "Mass Invisibility": 100
                         },
-                        "avgCasts": 14,
-                        "avgDistinctSpells": 4
+                        "avgCasts": 19,
+                        "avgDistinctSpells": 9
                     }
                 }
             }
@@ -226,16 +236,23 @@
             "killWindow": {
                 "n": 3,
                 "spellPct": {
-                    "Scorch": 100,
                     "Fire Blast": 100,
                     "Pyroblast": 100,
+                    "Scorch": 100,
                     "Frostfire Bolt": 66.7,
-                    "Fireball": 33.3,
+                    "Ice Nova": 33.3,
+                    "Frost Nova": 33.3,
                     "Polymorph": 33.3,
-                    "Ice Nova": 33.3
+                    "Fireball": 33.3,
+                    "Meteor": 33.3,
+                    "Blazing Barrier": 33.3,
+                    "Ice Wall (desc=PvP Talent)": 33.3,
+                    "Combustion": 33.3,
+                    "Gladiator's Badge": 33.3,
+                    "Ice Block": 33.3
                 },
-                "avgCasts": 13,
-                "avgDistinctSpells": 5
+                "avgCasts": 15.33,
+                "avgDistinctSpells": 7.33
             },
             "heroTreeBreakdown": {
                 "Sunfury": {
@@ -307,11 +324,13 @@
                             "Scorch": 100,
                             "Fire Blast": 100,
                             "Fireball": 100,
+                            "Meteor": 100,
                             "Pyroblast": 100,
+                            "Blazing Barrier": 100,
                             "Polymorph": 100
                         },
-                        "avgCasts": 9,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 11,
+                        "avgDistinctSpells": 7
                     }
                 },
                 "Frostfire": {
@@ -388,10 +407,15 @@
                             "Pyroblast": 100,
                             "Scorch": 100,
                             "Ice Nova": 50,
-                            "Polymorph": 50
+                            "Frost Nova": 50,
+                            "Polymorph": 50,
+                            "Ice Wall (desc=PvP Talent)": 50,
+                            "Combustion": 50,
+                            "Gladiator's Badge": 50,
+                            "Ice Block": 50
                         },
-                        "avgCasts": 15,
-                        "avgDistinctSpells": 5
+                        "avgCasts": 17.5,
+                        "avgDistinctSpells": 7.5
                     }
                 }
             }
@@ -477,14 +501,21 @@
                     "Pyroblast": 100,
                     "Fire Blast": 100,
                     "Frostfire Bolt": 80,
+                    "Meteor": 80,
+                    "Dragon's Breath": 60,
                     "Scorch": 60,
+                    "Blink": 60,
                     "Ice Nova": 40,
+                    "Blazing Barrier": 40,
                     "Polymorph": 40,
-                    "Arcane Intellect": 20,
-                    "Counterspell": 20
+                    "Combustion": 40,
+                    "Gladiator's Badge": 40,
+                    "Bull Rush": 20,
+                    "Counterspell": 20,
+                    "Gladiator's Medallion": 20
                 },
-                "avgCasts": 12.8,
-                "avgDistinctSpells": 4.6
+                "avgCasts": 17.2,
+                "avgDistinctSpells": 9
             },
             "heroTreeBreakdown": {
                 "Frostfire": {
@@ -568,14 +599,21 @@
                             "Pyroblast": 100,
                             "Fire Blast": 100,
                             "Frostfire Bolt": 80,
+                            "Meteor": 80,
+                            "Dragon's Breath": 60,
                             "Scorch": 60,
+                            "Blink": 60,
                             "Ice Nova": 40,
+                            "Blazing Barrier": 40,
                             "Polymorph": 40,
-                            "Arcane Intellect": 20,
-                            "Counterspell": 20
+                            "Combustion": 40,
+                            "Gladiator's Badge": 40,
+                            "Bull Rush": 20,
+                            "Counterspell": 20,
+                            "Gladiator's Medallion": 20
                         },
-                        "avgCasts": 12.8,
-                        "avgDistinctSpells": 4.6
+                        "avgCasts": 17.2,
+                        "avgDistinctSpells": 9
                     }
                 }
             }

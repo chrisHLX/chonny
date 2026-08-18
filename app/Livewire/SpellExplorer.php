@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Http\Services\ArenaLogService;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
@@ -17,38 +18,45 @@ use Livewire\Component;
 
 /**
  * Public, class/spec-only counterpart to a canonical module's "Spells" section (see
- * ModuleSpellReferenceService/ModuleGameBuild) — no module involved. Picker mirrors
- * Admin\TalentBuildEditor exactly (class then spec dropdown); the result below is driven by
- * TalentSelectionService::resolveActiveBuild() — as of the personal talent picker (2026-08-10),
- * a signed-in viewer's own saved build for the chosen spec if they have one (editable in-place
- * via the "Edit My Talents" modal, see showTalentPicker/openPicker()/closePicker() and
- * talent-tree-grid.blade.php), else the spec's admin-curated default (Admin\TalentBuildEditor
- * writes that one), else the unmodified base data fallback resolveActiveBuild() already had.
- * This component itself never creates a build — opening the modal doesn't write anything until
- * a talent is actually clicked inside it (TalentSelector's own persistIfAuthenticated()).
+ * ModuleSpellReferenceService/ModuleGameBuild) — no module involved.
  *
- * Spell list = the default build's talent selections + manually-verified baseline abilities
- * (TalentSelectionService::verifiedBaselineAbilityIds() — Leg Sweep, Freezing Trap, etc.) —
- * not literally every talent in every tree (which would be 100+ rows of mostly-unpicked
- * options), but what a real character built this way would actually have available. Uses the
- * same <x-spells.table> component as Modules\Show so both pages render identically.
+ * REWORKED 2026-08-16: every real talent-tree entry and every PvP talent for the chosen spec
+ * is ALWAYS shown now (tagged 'Talent'/'PvP Talent' — see the 'source' key on each mapped
+ * entry below), not just whatever one curated build happened to have selected. The old
+ * behavior — showing only a resolved build's picks plus CHOICE-node "siblings" — meant a
+ * talent nobody had gotten around to selecting in the admin-default build was completely
+ * invisible, with no way to distinguish "doesn't exist for this spec" from "exists but
+ * uncurated." Concrete case that prompted this: Hex was missing from Enhancement Shaman's
+ * display (verified_override existed for Restoration/Elemental, never finished for
+ * Enhancement) — a curation gap, not a data gap.
+ *
+ * A resolved build (TalentSelectionService::resolveActiveBuild() — signed-in viewer's own
+ * saved build for the spec, else the spec's admin-curated default, else an empty shell) is
+ * now purely an OVERLAY: it decides which entries render highlighted vs. greyed "Not
+ * selected," and feeds ModuleSpellReferenceService::effectiveCooldown()/effectiveCharges()/
+ * modifiersFor() so a selected entry shows accurate build-aware numbers while an unselected
+ * one shows base numbers. Since nothing is hidden anymore, the interactive talent-picker
+ * modal that used to live on this page (showTalentPicker/openTalentPicker()/
+ * closeTalentPicker()) has been removed — same reasoning that already removed it from
+ * Modules\Show on 2026-08-01. A pre-existing personal build (created before this change, via
+ * that now-removed picker) still overlays correctly; it just can no longer be edited from
+ * this page. Admin\TalentBuildEditor remains the only place that edits the admin-default
+ * overlay builds.
  *
  * DO NOT merge in TalentSelectionService::alwaysAvailableAbilityIds() — see that method's
  * "DO NOT WIRE IN" docblock and CLAUDE.md's "Baseline ability display" section. That path
  * derives spec from the ambiguous `spec_id = NULL` bucket and leaked Mind Sear onto
- * Discipline Priest (2026-08-06). verifiedBaselineAbilityIds() is the safe replacement: it
- * only ever reads hand-curated, explicit-spec_id rows from
- * data/spelldata/baseline-spec-overrides.txt — small, grows one verified entry at a time,
- * never bulk-derived.
+ * Discipline Priest (2026-08-06). verifiedBaselineAbilityIds()/explicitBaselineCooldownAbilityIds()
+ * remain the safe path for baseline (never-a-talent) abilities — hand-curated, explicit-spec_id
+ * rows only. allTalentSpellIds()/allPvpTalentSpellIds() (new 2026-08-16) are structurally safe
+ * in the same way baseline never was: a talent_node_entries/pvp_talents row is tied to a real
+ * talent_tree_id whose class/spec/hero-tree scoping is genuine imported structure, not a guess.
  */
 class SpellExplorer extends Component
 {
     public ?int $classId = null;
 
     public ?int $specId = null;
-
-    /** Whether the talent-picker modal is open — always for the currently-selected $specId. */
-    public bool $showTalentPicker = false;
 
     public function mount(): void
     {
@@ -82,27 +90,24 @@ class SpellExplorer extends Component
     public function updatedSpecId(): void
     {
         PageViewEvent::log('spell_explorer', $this->classId, $this->specId);
-        $this->showTalentPicker = false;
         $this->dispatch('spell-list-refreshed');
     }
 
-    public function openTalentPicker(): void
+    /**
+     * Sets class + spec in one action — the shared class/spec grid modal's click target, same
+     * component and interaction WowComps::selectSpec() uses for its own slot picker (2026-08-17,
+     * direct request to match that picker's UX). Logs directly rather than relying on
+     * updated{Property}() to fire for a method-mutated property — same reasoning as
+     * WowComps::selectSpec()'s own docblock. updatedClassId()/updatedSpecId() above are kept
+     * as-is for the original wire:model-driven path (still covered by
+     * tests/Feature/Admin/PageUsageTrackingTest.php's ->set('classId', ...) cases).
+     */
+    public function selectSpec(int $classId, int $specId): void
     {
-        $this->showTalentPicker = true;
-    }
+        $this->classId = $classId;
+        $this->specId = $specId;
 
-    public function closeTalentPicker(): void
-    {
-        // Closing is itself a Livewire action, so getSpellReferencesProperty() below recomputes
-        // fresh server-side on the very next render. FIXED 2026-08-12 — the comment here used to
-        // claim "no separate refresh/event plumbing needed", which was wrong: the blade's Alpine
-        // filter logic (applyFilters()/hasResults, see spell-explorer.blade.php) is a CLIENT-side
-        // DOM scan that only ever runs once, on x-init — a Livewire re-render swaps in fresh
-        // spell rows server-side, but nothing re-ran the JS that decides which of them are
-        // visible, so the page could get stuck showing "No spells match your filters" against
-        // real, correctly-rendered data underneath. This dispatch is what the old comment said
-        // wasn't needed — the blade listens for it and re-runs applyFilters().
-        $this->showTalentPicker = false;
+        PageViewEvent::log('spell_explorer', $this->classId, $this->specId);
         $this->dispatch('spell-list-refreshed');
     }
 
@@ -120,6 +125,16 @@ class SpellExplorer extends Component
         }
 
         return Specialization::where('class_id', $this->classId)->orderBy('name')->get();
+    }
+
+    /**
+     * Every class with its specs eager-loaded, ordered — backs the combined class/spec grid
+     * modal (search + click straight to a spec). Same shape and purpose as
+     * WowComps::getClassSpecsProperty(); this page only ever has one "slot" to fill.
+     */
+    public function getClassSpecsProperty(): Collection
+    {
+        return $this->classes->load(['specializations' => fn ($q) => $q->orderBy('name')]);
     }
 
     /** Drives the page's descriptive text — whether the currently-shown kit is this viewer's own saved picks or the spec's admin default. Cheap exists() check, separate from the full resolveActiveBuild() call inside getSpellReferencesProperty() below (that one needs the full build row; this only needs to know which case applies). */
@@ -151,10 +166,18 @@ class SpellExplorer extends Component
         // on the resolved build's own id+updated_at so a personal-build save only invalidates
         // that one viewer's own cache entry; a guest/no-personal-build viewer still shares the
         // one admin-default entry with everyone else, invalidated via spellCacheVersion as before.
+        // 'isPriority' (2026-08-17, arena-log spell-usage tagging) is also baked into this same
+        // cached payload — same known staleness class already documented elsewhere for this
+        // cache (see CLAUDE.md's repeated "stale Redis cache" notes): a data/arena-logs/
+        // spell-usage/ file changing does NOT bump spellCacheVersion() on its own, so a spec
+        // already cached before a new match is processed keeps showing the old priority set
+        // until the 6-hour TTL expires or spellCacheVersion() is bumped manually.
         $build = $talentService->resolveActiveBuild(auth()->user(), $this->specId);
         $defaultBuild = $build->exists ? $build : null;
         $buildStamp = $defaultBuild ? "{$defaultBuild->id}:{$defaultBuild->updated_at?->timestamp}" : 'none';
         $version = $talentService->spellCacheVersion();
+
+        $this->ensureMemoryHeadroom();
 
         return Cache::remember(
             "wow_spell_references:spec:{$this->specId}:build:{$buildStamp}:v{$version}",
@@ -164,18 +187,53 @@ class SpellExplorer extends Component
     }
 
     /**
-     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool}>
+     * Raises (never lowers) PHP's memory_limit before computing/caching this spec's full spell
+     * reference set — same fix, same rationale as WowComps::ensureMemoryHeadroom() (see that
+     * method's docblock for the full incident). This page only ever computes one spec per
+     * render (vs. WowComps' up to 3), so it's less exposed in practice, but shares the identical
+     * ~250-entry-per-spec computation since the 2026-08-16 "always show every talent" rework —
+     * applied proactively here too rather than waiting for a separate report.
+     */
+    private function ensureMemoryHeadroom(string $minimum = '512M'): void
+    {
+        $toBytes = function (string $value): int {
+            $value = trim($value);
+            if ($value === '' || $value === '-1') {
+                return -1;
+            }
+            $unit = strtolower(substr($value, -1));
+            $number = (int) $value;
+
+            return match ($unit) {
+                'g' => $number * 1024 * 1024 * 1024,
+                'm' => $number * 1024 * 1024,
+                'k' => $number * 1024,
+                default => $number,
+            };
+        };
+
+        $current = $toBytes((string) ini_get('memory_limit'));
+
+        if ($current !== -1 && $current < $toBytes($minimum)) {
+            ini_set('memory_limit', $minimum);
+        }
+    }
+
+    /**
+     * @return array<int, array{spell: Spell, category: string, description: array, modifiers: array, cooldown: array, charges: array, isSelected: bool, source: string, isPriority: bool}>
      */
     private function computeSpellReferences(ModuleSpellReferenceService $service, TalentSelectionService $talentService, ?TalentBuild $defaultBuild): array
     {
         $selected = $defaultBuild ? $talentService->selectedSpellIds($defaultBuild) : collect();
         $ranks = $defaultBuild ? $talentService->selectedRanks($defaultBuild) : collect();
 
-        // The "road not taken" for any CHOICE-node talent the build has a pick for (e.g.
-        // Ultimate Penitence vs. Power Word: Barrier) — display-only, never merged into
-        // $selected, so an unpicked sibling's own modifiers never look like they're actually
-        // applying (see TalentSelectionService::choiceSiblingSpellIds()'s docblock).
-        $siblingIds = $talentService->choiceSiblingSpellIds($selected);
+        // Always-shown display set — see this class's docblock (reworked 2026-08-16). Every
+        // real talent-tree entry and every PvP talent for the spec, regardless of whether the
+        // resolved overlay build ($selected) picked it. choiceSiblingSpellIds() is no longer
+        // needed here: allTalentSpellIds() already includes every option of every CHOICE node
+        // unconditionally, not just the unpicked side of a node that HAS a pick.
+        $allTalentIds = $talentService->allTalentSpellIds($this->specId);
+        $allPvpIds = $talentService->allPvpTalentSpellIds($this->specId);
 
         // Manually-verified baseline abilities only — see this class's docblock. NOT
         // alwaysAvailableAbilityIds() (DO NOT WIRE IN, see its own docblock).
@@ -186,7 +244,13 @@ class SpellExplorer extends Component
         // (explicit spec_id, no NULL-bucket guessing) but only ever a partial fix for
         // baseline-heavy specs like Demon Hunter/Evoker — see CLAUDE.md.
         $cooldownBaselineIds = $talentService->explicitBaselineCooldownAbilityIds($this->classId, $this->specId);
-        $displayIds = $selected->merge($siblingIds)->merge($verifiedBaselineIds)->merge($cooldownBaselineIds)->unique();
+        $displayIds = $allTalentIds->merge($allPvpIds)->merge($verifiedBaselineIds)->merge($cooldownBaselineIds)->unique();
+
+        $class = GameClass::find($this->classId);
+        $spec = Specialization::find($this->specId);
+        $priorityExternalIds = ($class && $spec)
+            ? app(ArenaLogService::class)->spellUsageIds($class->slug, $spec->slug)
+            : collect();
 
         $build = new ModuleGameBuild([
             'class_id' => $this->classId,
@@ -198,7 +262,7 @@ class SpellExplorer extends Component
             ->with(['effects', 'incomingRelationships.sourceSpell.effects'])
             ->orderBy('name')
             ->get()
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds) {
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityExternalIds) {
                 $description = $service->resolveDescription($spell, $build);
 
                 return [
@@ -210,6 +274,8 @@ class SpellExplorer extends Component
                     'cooldown' => $service->effectiveCooldown($spell, $build, $selected, $ranks),
                     'charges' => $service->effectiveCharges($spell, $build, $selected, $ranks),
                     'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
+                    'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
+                    'isPriority' => $priorityExternalIds->contains($spell->spell_id),
                 ];
             })
             ->all();
@@ -242,6 +308,7 @@ class SpellExplorer extends Component
         return view('livewire.spell-explorer', [
             'classes' => $this->classes,
             'specializations' => $this->specializations,
+            'classSpecs' => $this->classSpecs,
             'usingPersonalBuild' => $this->usingPersonalBuild,
         ])->layout('layouts.app');
     }

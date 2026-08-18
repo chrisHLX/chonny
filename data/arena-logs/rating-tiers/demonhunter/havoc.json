@@ -3,7 +3,7 @@
     "classSlug": "demonhunter",
     "specSlug": "havoc",
     "bracket": "3v3",
-    "generatedAt": "2026-08-15T05:16:14+00:00",
+    "generatedAt": "2026-08-15T08:06:39+00:00",
     "heroTreesDetected": [
         "Fel-Scarred",
         "Aldrachi Reaver",
@@ -129,18 +129,19 @@
                 "n": 27,
                 "spellPct": {
                     "Throw Glaive": 96.3,
+                    "Shattered Souls": 48.1,
+                    "Death Sweep": 88.9,
                     "Felblade": 81.5,
+                    "Eye Beam": 77.8,
                     "Reaver's Glaive": 77.8,
                     "Chaos Strike": 77.8,
+                    "Blade Dance": 74.1,
                     "Annihilation": 70.4,
-                    "Consume Magic": 37,
-                    "The Hunt": 25.9,
-                    "Disrupt": 22.2,
-                    "Imprison": 14.8,
-                    "Teufelslanze": 11.1
+                    "Immolation Aura": 63,
+                    "Fel Rush": 48.1
                 },
-                "avgCasts": 22.59,
-                "avgDistinctSpells": 8.19
+                "avgCasts": 35.56,
+                "avgDistinctSpells": 14.78
             },
             "heroTreeBreakdown": {
                 "Aldrachi Reaver": {
@@ -253,19 +254,20 @@
                     "killWindow": {
                         "n": 25,
                         "spellPct": {
-                            "Throw Glaive": 96,
+                            "Throw Glaive": 100,
+                            "Shattered Souls": 44,
+                            "Death Sweep": 88,
                             "Felblade": 84,
                             "Reaver's Glaive": 84,
+                            "Eye Beam": 80,
                             "Chaos Strike": 80,
+                            "Blade Dance": 76,
                             "Annihilation": 72,
-                            "Consume Magic": 32,
-                            "Disrupt": 24,
-                            "The Hunt": 24,
-                            "Imprison": 16,
-                            "Teufelslanze": 12
+                            "Immolation Aura": 64,
+                            "Fel Rush": 48
                         },
-                        "avgCasts": 23,
-                        "avgDistinctSpells": 8.32
+                        "avgCasts": 35.96,
+                        "avgDistinctSpells": 14.8
                     }
                 },
                 "Fel-Scarred": {
@@ -348,15 +350,20 @@
                     "killWindow": {
                         "n": 2,
                         "spellPct": {
+                            "Shattered Souls": 100,
                             "Consume Magic": 100,
                             "Throw Glaive": 50,
+                            "Death Sweep": 100,
                             "Chaos Strike": 50,
+                            "Blade Dance": 50,
+                            "Immolation Aura": 50,
+                            "Fel Rush": 50,
                             "The Hunt": 50,
-                            "Felblade": 50,
-                            "Annihilation": 50
+                            "Eye Beam": 50,
+                            "Metamorphosis": 50
                         },
-                        "avgCasts": 17.5,
-                        "avgDistinctSpells": 6.5
+                        "avgCasts": 30.5,
+                        "avgDistinctSpells": 14.5
                     }
                 }
             }
@@ -465,19 +472,20 @@
             "killWindow": {
                 "n": 21,
                 "spellPct": {
-                    "Throw Glaive": 85.7,
+                    "Throw Glaive": 95.2,
+                    "Shattered Souls": 90.5,
                     "Annihilation": 90.5,
+                    "Death Sweep": 85.7,
+                    "Eye Beam": 85.7,
+                    "Blade Dance": 76.2,
                     "Felblade": 76.2,
                     "Consume Magic": 66.7,
                     "Reaver's Glaive": 61.9,
-                    "Chaos Strike": 57.1,
-                    "Disrupt": 33.3,
-                    "The Hunt": 33.3,
-                    "Fel Lance": 14.3,
-                    "Imprison": 9.5
+                    "Immolation Aura": 61.9,
+                    "Chaos Strike": 57.1
                 },
-                "avgCasts": 22.76,
-                "avgDistinctSpells": 8.43
+                "avgCasts": 36.48,
+                "avgDistinctSpells": 16.05
             },
             "heroTreeBreakdown": {
                 "Aldrachi Reaver": {
@@ -577,18 +585,19 @@
                         "n": 14,
                         "spellPct": {
                             "Throw Glaive": 100,
+                            "Shattered Souls": 92.9,
+                            "Death Sweep": 92.9,
                             "Annihilation": 92.9,
                             "Reaver's Glaive": 92.9,
+                            "Eye Beam": 92.9,
                             "Felblade": 85.7,
+                            "Blade Dance": 71.4,
+                            "Immolation Aura": 64.3,
                             "Consume Magic": 64.3,
-                            "Chaos Strike": 57.1,
-                            "Disrupt": 42.9,
-                            "The Hunt": 21.4,
-                            "Imprison": 7.1,
-                            "邪能之枪": 7.1
+                            "Chaos Strike": 57.1
                         },
-                        "avgCasts": 25.5,
-                        "avgDistinctSpells": 8.93
+                        "avgCasts": 40,
+                        "avgDistinctSpells": 16.57
                     }
                 },
                 "Fel-Scarred": {
@@ -674,18 +683,19 @@
                     "killWindow": {
                         "n": 7,
                         "spellPct": {
-                            "Throw Glaive": 57.1,
+                            "Throw Glaive": 85.7,
+                            "Shattered Souls": 71.4,
                             "Annihilation": 85.7,
+                            "Blade Dance": 85.7,
+                            "Eye Beam": 71.4,
                             "Consume Magic": 71.4,
+                            "Death Sweep": 71.4,
                             "Felblade": 57.1,
                             "Chaos Strike": 57.1,
-                            "The Hunt": 57.1,
-                            "Fel Lance": 28.6,
-                            "Disrupt": 14.3,
-                            "Imprison": 14.3
+                            "The Hunt": 57.1
                         },
-                        "avgCasts": 17.29,
-                        "avgDistinctSpells": 7.43
+                        "avgCasts": 29.43,
+                        "avgDistinctSpells": 15
                     }
                 }
             }
@@ -794,18 +804,19 @@
                 "n": 31,
                 "spellPct": {
                     "Throw Glaive": 90.3,
+                    "Shattered Souls": 61.3,
                     "Annihilation": 93.5,
                     "Felblade": 93.5,
+                    "Eye Beam": 87.1,
+                    "Death Sweep": 87.1,
                     "Reaver's Glaive": 77.4,
+                    "Fel Rush": 67.7,
+                    "Vengeful Retreat": 61.3,
                     "Chaos Strike": 54.8,
-                    "Consume Magic": 54.8,
-                    "The Hunt": 29,
-                    "Disrupt": 22.6,
-                    "Imprison": 9.7,
-                    "Torment": 6.5
+                    "Consume Magic": 54.8
                 },
-                "avgCasts": 26.74,
-                "avgDistinctSpells": 8.65
+                "avgCasts": 42.9,
+                "avgDistinctSpells": 16.32
             },
             "heroTreeBreakdown": {
                 "Aldrachi Reaver": {
@@ -907,19 +918,20 @@
                     "killWindow": {
                         "n": 28,
                         "spellPct": {
-                            "Throw Glaive": 92.9,
+                            "Throw Glaive": 100,
+                            "Shattered Souls": 57.1,
                             "Annihilation": 100,
+                            "Eye Beam": 96.4,
+                            "Death Sweep": 92.9,
                             "Felblade": 92.9,
                             "Reaver's Glaive": 85.7,
+                            "Fel Rush": 67.9,
+                            "Vengeful Retreat": 57.1,
                             "Consume Magic": 53.6,
-                            "Chaos Strike": 50,
-                            "The Hunt": 32.1,
-                            "Disrupt": 25,
-                            "Imprison": 10.7,
-                            "Torment": 7.1
+                            "Chaos Strike": 50
                         },
-                        "avgCasts": 27.68,
-                        "avgDistinctSpells": 8.89
+                        "avgCasts": 44.71,
+                        "avgDistinctSpells": 16.79
                     }
                 },
                 "Fel-Scarred": {
@@ -997,14 +1009,20 @@
                         "n": 3,
                         "spellPct": {
                             "Throw Glaive": 100,
+                            "Vengeful Retreat": 100,
+                            "Shattered Souls": 66.7,
                             "Felblade": 100,
                             "Chaos Strike": 100,
+                            "Fel Rush": 66.7,
+                            "Immolation Aura": 66.7,
+                            "Blade Dance": 66.7,
                             "Consume Magic": 66.7,
+                            "Death Sweep": 33.3,
                             "Annihilation": 33.3,
                             "Fel Lance": 33.3
                         },
-                        "avgCasts": 18,
-                        "avgDistinctSpells": 6.33
+                        "avgCasts": 26,
+                        "avgDistinctSpells": 12
                     }
                 }
             }
