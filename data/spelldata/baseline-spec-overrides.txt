@@ -548,7 +548,12 @@
 188501 | demonhunter | havoc | Spectral Sight
 196718 | demonhunter | havoc | Darkness
 201427 | demonhunter | havoc | Annihilation
-209693 | demonhunter | havoc | Shattered Souls
+# Shattered Souls override REMOVED here 2026-08-19 — 209693 is a hidden internal duplicate copy
+# (not_in_spellbook=1). The real, visible copy (178940, is_passive=1) already naturally has
+# avail=[8:baseline] for this exact spec with no override needed at all — found via a systematic
+# audit of every baseline-spec-overrides.txt line for this exact "pointed at the wrong internal
+# copy" mistake shape (same class of bug as Landslide/Kidney Shot before it), prompted directly
+# by the Wild Charge duplicate.
 232893 | demonhunter | havoc | Felblade
 278326 | demonhunter | havoc | Consume Magic
 370966 | demonhunter | havoc | The Hunt
@@ -570,11 +575,19 @@
 5211 | druid | balance | Mighty Bash
 5215 | druid | balance | Prowl
 5487 | druid | balance | Bear Form (desc=Shapeshift)
-16979 | druid | balance | Wild Charge (desc=Talent)
+# Wild Charge override REMOVED here 2026-08-19 — 16979 is a hidden internal duplicate copy
+# (not_in_spellbook=1, literal name "Wild Charge (desc=Talent)"). The real, visible spell
+# (102401, clean name "Wild Charge", already correctly Root/is_peel-tagged in
+# cc-synergies-overrides.txt) is a genuine shared Druid Class-tree talent and already resolves
+# for every spec via allTalentSpellIds() with no override needed at all — this line was both
+# unnecessary and actively wrong, producing a second, duplicate "Wild Charge" card.
 22842 | druid | balance | Frenzied Regeneration
 33786 | druid | balance | Cyclone
-61391 | druid | balance | Typhoon
-77761 | druid | balance | Stampeding Roar
+# Typhoon and Stampeding Roar overrides REMOVED here 2026-08-19 — both pointed at hidden
+# internal duplicate copies (61391/77761, not_in_spellbook=1). The real copies (132469 Typhoon,
+# 106898 Stampeding Roar) are genuine shared Druid Class-tree talents, confirmed already
+# reachable via allTalentSpellIds() for every relevant spec with zero override needed — same
+# root cause as the Wild Charge fix directly above this file's Feral-spec block.
 93402 | druid | balance | Sunfire
 102359 | druid | balance | Mass Entanglement
 102560 | druid | balance | Incarnation: Chosen of Elune (desc=Talent, Shapeshift)
@@ -588,9 +601,10 @@
 5211 | druid | feral | Mighty Bash
 22570 | druid | feral | Maim
 33786 | druid | feral | Cyclone
-49376 | druid | feral | Wild Charge (desc=Talent)
-61391 | druid | feral | Typhoon
-77764 | druid | feral | Stampeding Roar
+# Wild Charge override REMOVED here 2026-08-19 — see the balance-spec note above for the full
+# reason (hidden duplicate copy; the real spell resolves via the shared talent tree already).
+# Typhoon and Stampeding Roar overrides REMOVED here too, same reason — see the Balance-spec
+# note above.
 102793 | druid | feral | Ursol's Vortex
 106785 | druid | feral | Swipe
 106839 | druid | feral | Skull Bash
@@ -603,12 +617,13 @@
 2782 | druid | guardian | Remove Corruption
 5215 | druid | guardian | Prowl
 5487 | druid | guardian | Bear Form (desc=Shapeshift)
-16979 | druid | guardian | Wild Charge (desc=Talent)
+# Wild Charge override REMOVED here 2026-08-19 — see the balance-spec note above for the full
+# reason (hidden duplicate copy; the real spell resolves via the shared talent tree already).
 22570 | druid | guardian | Maim
 33786 | druid | guardian | Cyclone
 33917 | druid | guardian | Mangle
 77758 | druid | guardian | Thrash
-77761 | druid | guardian | Stampeding Roar
+# Stampeding Roar override REMOVED here too, same reason as the Balance-spec note above.
 102793 | druid | guardian | Ursol's Vortex
 106839 | druid | guardian | Skull Bash
 192081 | druid | guardian | Ironfur
@@ -623,7 +638,8 @@
 22570 | druid | restoration | Maim
 29166 | druid | restoration | Innervate
 33786 | druid | restoration | Cyclone
-49376 | druid | restoration | Wild Charge (desc=Talent)
+# Wild Charge override REMOVED here 2026-08-19 — see the balance-spec note above for the full
+# reason (hidden duplicate copy; the real spell resolves via the shared talent tree already).
 106785 | druid | restoration | Swipe
 106898 | druid | restoration | Stampeding Roar
 155777 | druid | restoration | Rejuvenation (Germination)
@@ -824,7 +840,10 @@
 
 # Added via wow:diff-arena-spells --apply, 2026-08-14 — Rogue/Assassination, real arena-log cast evidence (see arena-log-api.md).
 1776 | rogue | assassination | Gouge
-27576 | rogue | assassination | Mutilate
+# Mutilate override REMOVED here 2026-08-19 — 27576 is a hidden internal duplicate copy
+# (not_in_spellbook=1). The real copy (1329, "Attack with both weapons" — matches Mutilate's
+# actual dual-wield mechanic) already naturally has avail=[30:baseline] for this exact spec with
+# no override needed at all.
 31224 | rogue | assassination | Cloak of Shadows
 452538 | rogue | assassination | Fatebound Coin (Tails)
 
@@ -915,7 +934,10 @@
 18499 | warrior | fury | Berserker Rage
 23920 | warrior | fury | Spell Reflection
 46968 | warrior | fury | Shockwave
-52174 | warrior | fury | Heroic Leap
+# Heroic Leap override REMOVED here 2026-08-19 — 52174 is a hidden internal duplicate copy
+# (not_in_spellbook=1). The real copy (6544) is a genuine shared Warrior Class-tree talent,
+# confirmed already reachable via allTalentSpellIds() for Fury/Protection with zero override
+# needed — same root cause as the Druid Typhoon/Stampeding Roar/Wild Charge fixes above.
 97462 | warrior | fury | Rallying Cry
 107570 | warrior | fury | Storm Bolt
 202168 | warrior | fury | Impending Victory
@@ -930,7 +952,7 @@
 3411 | warrior | protection | Intervene
 6343 | warrior | protection | Thunder Clap
 23922 | warrior | protection | Shield Slam
-52174 | warrior | protection | Heroic Leap
+# Heroic Leap override REMOVED here too, same reason as the Fury-spec note above.
 202168 | warrior | protection | Impending Victory
 376079 | warrior | protection | Champion's Spear
 435222 | warrior | protection | Thunder Blast

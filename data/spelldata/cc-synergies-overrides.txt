@@ -291,7 +291,13 @@
 # when re-traced by hand) but both independently verified by reading their own description text
 # directly: Tar Trap — "enemies within [x] yards will be slowed by [x]%"; Dark Chains —
 # "causing them to move [x]% slower." Added manually, same confidence tier as the other 10.
-135299 | Slow | | | | | Tar Trap
+# Corrected 2026-08-19: was 135299 (not_in_spellbook=1, an older/incomplete "place a trap"
+# copy with no real cooldown) — 187699 is the real, modern "hurl a tar trap" version with actual
+# cooldown/duration data (30s/60s), same "wrong hidden copy" mistake pattern found and fixed
+# across baseline-spec-overrides.txt the same day. Note: neither copy has explicit per-spec
+# availability yet (both sit in the ambiguous spec_id=NULL baseline bucket) — this only fixes
+# which spell_id the CC tag lives on, not display availability, which is a separate open gap.
+187699 | Slow | | | | | Tar Trap
 442396 | Slow | | | | | Dark Chains
 
 # pvp_duration_seconds deliberately left blank for both of these, checked via wow:find-cc-duration
