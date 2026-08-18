@@ -992,8 +992,14 @@
 # Landslide (355689): no conditional text to lean on, but no spec-specific variant exists either
 # (checked — no Green/Bronze-suffixed sibling) — same "universal Evoker utility" shape as Hover,
 # added the same way (2026-08-07 batch) without needing per-spec textual confirmation.
+# CORRECTED 2026-08-19: preservation was wrongly duplicated here — 358385 (line above, added
+# 2026-08-14 via wow:diff-arena-spells --apply, real arena-log cast evidence + real 90s cooldown
+# data) already covers preservation and is the better-evidenced copy of the two (355689 has a
+# duration but no cooldown at all). Two different spell_ids both overridden for the same
+# class+spec renders as two visible rows for one ability — caught live by ImportSpellData's own
+# "DUPLICATE OVERRIDE" check. Devastation/Augmentation have no competing evidence either way, so
+# 355689 stays for those two.
 355689 | evoker | devastation | Landslide (desc=Black)
-355689 | evoker | preservation | Landslide (desc=Black)
 355689 | evoker | augmentation | Landslide (desc=Black)
 372245 | evoker | devastation | Terror of the Skies (desc=Black)
 372245 | evoker | preservation | Terror of the Skies (desc=Black)

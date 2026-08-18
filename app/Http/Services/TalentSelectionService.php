@@ -422,13 +422,26 @@ class TalentSelectionService
      * (imported by ImportSpellData::importBaselineSpecOverrides()) — never auto-derived, never
      * bulk-applied from a heuristic.
      *
+     * Patch-scoped via currentPatchIdForSpec(), same as allTalentSpellIds()/
+     * allPvpTalentSpellIds() — added 2026-08-19 after a real production incident: this method
+     * had no patch filter at all, so once a stray second Patch row existed (see CLAUDE.md's
+     * "frozen patch version" note), it returned verified_override matches from EVERY patch
+     * simultaneously — the same conceptual spell appearing twice (once per patch's own copy)
+     * wherever an override had been re-applied across both, and vanishing entirely wherever it
+     * had only ever been applied to the now-inactive patch's copy. allTalentSpellIds()/
+     * allPvpTalentSpellIds() were already correctly patch-scoped; this method and
+     * explicitBaselineCooldownAbilityIds() below were the only two gaps.
+     *
      * @return Collection<int, int> spell ids
      */
     public function verifiedBaselineAbilityIds(int $specId): Collection
     {
-        return Spell::whereHas('classAvailability', function ($q) use ($specId) {
-            $q->where('spec_id', $specId)->where('source', 'verified_override');
-        })->pluck('id');
+        $patchId = $this->currentPatchIdForSpec($specId);
+
+        return Spell::where('patch_id', $patchId)
+            ->whereHas('classAvailability', function ($q) use ($specId) {
+                $q->where('spec_id', $specId)->where('source', 'verified_override');
+            })->pluck('id');
     }
 
     /**
@@ -460,11 +473,14 @@ class TalentSelectionService
      */
     public function explicitBaselineCooldownAbilityIds(int $classId, int $specId): Collection
     {
-        return Spell::whereHas('classAvailability', function ($q) use ($classId, $specId) {
-            $q->where('class_id', $classId)
-                ->where('spec_id', $specId)
-                ->where('source', 'baseline');
-        })
+        $patchId = $this->currentPatchIdForSpec($specId);
+
+        return Spell::where('patch_id', $patchId)
+            ->whereHas('classAvailability', function ($q) use ($classId, $specId) {
+                $q->where('class_id', $classId)
+                    ->where('spec_id', $specId)
+                    ->where('source', 'baseline');
+            })
             ->where('is_passive', false)
             ->where('not_in_spellbook', false)
             ->where('name', 'not like', '%(desc=%')
