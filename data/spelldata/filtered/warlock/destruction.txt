@@ -1,5 +1,5 @@
 # Warlock — Destruction Spec Talents
-# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
+# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Summon Infernal (desc=Guardian) (id=1122) [Spell Family (5)] 
@@ -93,6 +93,7 @@ Description      : Burns the enemy's soul, dealing $s1 Fire damage and applying 
 Variables        : $cdr=${$s2/1000}
 
 Name             : Shadowburn (id=17877) [Spell Family (5)] 
+Hotfixed         : Description
 Talent Entry     : Destruction [tree=spec, row=5, col=1, max_rank=1, req_points=8]
 Class            : Warlock
 School           : Shadowflame
@@ -120,7 +121,7 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 1311913 | Target: Targeted Enemy (6)
 Description      : Blasts a target for $s1 Shadowflame damage. Only usable on enemies that have less than $s4% health.
 
-|cFFFFFFFFRestores ${$245731s1/10} Soul Shard and removes its cooldown if the target dies within $d.|r
+|cFFFFFFFFRestores ${$245731s1/10} Soul Shard and removes its cooldown if the target dies within $1311913d.|r
 
 Name             : Conflagrate (id=17962) [Spell Family (5)] 
 Talent Entry     : Destruction [tree=spec, row=2, col=3, max_rank=1, req_points=0]

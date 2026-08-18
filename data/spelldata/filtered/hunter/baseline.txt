@@ -1,5 +1,5 @@
 # Hunter — Baseline (no talent tree)
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
 # 814 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Auto Shot (id=75) [Spell Family (9)] 
@@ -3808,7 +3808,7 @@ Attributes       : Allow While Sitting (27), Allow While Stealthed (37), Include
 Effects          :
 #1 (id=306612)   : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
                    Base Value: -15 | Scaled Value: -15 | Misc Value: 14 | Target: Self (1)
-                   Affected Spells: Revive Pet (982), Multi-Shot (2643), Kill Command (34026), Kill Command (83381), A Murder of Crows (131900), Cobra Shot (193455), Multi-Shot (257620), Volley (260243), Volley (260247), Kill Command (1232922)
+                   Affected Spells: Revive Pet (982), Multi-Shot (2643), Kill Command (34026), Kill Command (83381), A Murder of Crows (131900), Cobra Shot (193455), Multi-Shot (257620), Volley (260243), Volley (260247)
                    Family Flags: 12, 24, 34, 43, 86, 98, 99
 Description      : $@spelldesc207280
 Tooltip          : Reduces Focus costs by $s1%.
@@ -8285,7 +8285,7 @@ Attributes       : No Aura Cancel (31), No Threat (42), Not an Action (92), Supp
 Effects          :
 #1 (id=834483)   : Apply Aura (6) | Add Percent Modifier (108): Spell Resource Cost 1 (14)
                    Base Value: -100 | Scaled Value: -100 | Misc Value: 14 | Target: Self (1)
-                   Affected Spells: Kill Command (34026), Kill Command (83381), Kill Command (1232922)
+                   Affected Spells: Kill Command (34026), Kill Command (83381)
                    Family Flags: 43
 Description      : $@spelldesc336822
 Tooltip          : Your next Kill Command will consume $s1% less Focus.
@@ -9588,7 +9588,7 @@ Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook
 Effects          :
 #1 (id=1006233)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Kill Command (34026), Kill Command (83381), Kill Command (259277), Kill Command (1232922)
+                   Affected Spells: Kill Command (34026), Kill Command (83381), Kill Command (259277)
                    Family Flags: 37, 43
 Description      : Kill Command damage increased by $s1%.
 
@@ -9654,7 +9654,7 @@ Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura 
 Effects          :
 #1 (id=1007162)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 5 | Scaled Value: 5 | Target: Self (1)
-                   Affected Spells: Kill Command (34026), Kill Command (83381), Kill Command (1232922)
+                   Affected Spells: Kill Command (34026), Kill Command (83381)
                    Family Flags: 43
 Description      : Kill Command damage increased by $s1%.
 
@@ -10187,7 +10187,7 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1032731)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.5 | Target: Self (1)
-                   Affected Spells: Kill Command (34026), Kill Command (83381), Kill Command (1232922)
+                   Affected Spells: Kill Command (34026), Kill Command (83381)
                    Family Flags: 43
 Description      : Kill Command damage increased by $s1% and it has a $h% chance to reset the cooldown on Barbed Shot.
 
@@ -10294,7 +10294,7 @@ Attributes       : Do Not Sheath (18), No Threat (42), Include In Advanced Comba
 Effects          :
 #1 (id=1033805)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Target: Self (1)
-                   Affected Spells: Kill Command (34026), Kill Command (83381), Kill Command (1232922)
+                   Affected Spells: Kill Command (34026), Kill Command (83381)
                    Family Flags: 43
 Description      : $@spelldesc393647
 Tooltip          : Damage of Kill Command increased by $s1%.
@@ -10522,7 +10522,7 @@ Effects          :
                    Family Flags: 86
 #2 (id=1075473)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.5 | Target: Self (1)
-                   Affected Spells: Kill Command (34026), Kill Command (83381), Kill Command (1232922)
+                   Affected Spells: Kill Command (34026), Kill Command (83381)
                    Family Flags: 43
 Description      : Cobra Shot and Kill Command damage increased by $s1%.
 
@@ -12253,7 +12253,7 @@ Aura Interrupt   : Leave World (19), Enter World (22), Change Specialization (38
 Effects          :
 #1 (id=1189659)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
-                   Affected Spells: Kill Command (83381)
+                   Affected Spells: Kill Command (83381), Kill Command (1232922)
                    Family Flags: 108
 Description      : $@spelldesc471876
 Tooltip          : Your next Kill Command deals $?c1[$472358s1][$472358s4]% increased damage and summons a Wyvern.
@@ -13224,6 +13224,7 @@ Description      : $@spelldesc1231411
 Tooltip          : Restoring $s1% health every sec.
 
 Name             : Kill Command (id=1232922) [Spell Family (9)] 
+Hotfixed         : Affecting Spells
 Class            : Hunter
 School           : Physical
 Spell Type       : Melee
@@ -13232,8 +13233,8 @@ Range            : 100 yards
 Labels           : 16: Class Spells
                  : 23: Hunter Spells
                  : 292
-Affecting Spells : Roar of the Seven Lions (207318 effect#1), Rotting Jaws (264195 effect#1), Alpha Predator (269737 effect#4), Flamewaker's Cobra Sting (336826 effect#1), Improved Kill Command (378010 effect#1), Killer Command (378740 effect#1), Hunter Beast Mastery Class Set 2pc (393646 effect#1), Lethal Command (394298 effect#1), Hunter Beast Mastery 10.1 Class Set 2pc (405524 effect#2), Savagery (424557 effect#1), Specialized Arsenal (459542 effects: #1, #2), Go for the Throat (459550 effect#1)
-Family Flags     : 43
+Affecting Spells : Alpha Predator (269737 effect#4), Killer Instinct (273887 effect#1), Piercing Fangs (392053 effect#1), Savagery (424557 effect#1), Specialized Arsenal (459542 effect#1), Howl of the Pack Leader (471878 effect#1), Nature's Ally (1276720 effect#1)
+Family Flags     : 108
 Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Do Not Display Range (126), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1226015)  : School Damage (2): physical
@@ -14746,7 +14747,7 @@ Attributes       : Can Proc From Procs (122), Aura Points On Client (268), Allow
 Effects          :
 #1 (id=1288679)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
-                   Affected Spells: Kill Command (83381)
+                   Affected Spells: Kill Command (83381), Kill Command (1232922)
                    Family Flags: 108
 Description      : $@spelldesc1273126
 Tooltip          : Your next Kill Command deals $s1% increased damage.
@@ -15297,9 +15298,9 @@ Proc Flags       : Yellow Ranged
 Attributes       : Can Proc From Procs (122), Only Proc From Class Abilities (415)
 Effects          :
 #1 (id=1323597)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.5 | Target: Self (1)
 #2 (id=1323599)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.5 | Target: Self (1)
+                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : $@spelldesc1296632
 Tooltip          : Your next Cobra Shot will either benefit from Beast Cleave and deal $s1% damage to enemies surrounding your target, or will deal $s2% additional damage to your primary target.
 

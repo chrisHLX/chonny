@@ -738,7 +738,7 @@ One line per spell record; each lists every file it appears in.
 - **Shadow Slash (id=272012)** — `baseline.txt`
 - **Shadow's Bite (id=272945) [Spell Family (5)]** — `baseline.txt`
 - **Shadowbolt Volley (id=453176) [Spell Family (5)]** — `baseline.txt`
-- **Shadowburn (id=1311913)** — `baseline.txt`
+- **Shadowburn (id=1311913) [Spell Family (5)]** — `baseline.txt`
 - **Shadowburn (id=17877) [Spell Family (5)]** — `destruction.txt`
 - **Shadowburn (id=245731) [Spell Family (5)]** — `baseline.txt`
 - **Shadowburn (id=29341) [Spell Family (5)]** — `baseline.txt`
@@ -785,7 +785,7 @@ One line per spell record; each lists every file it appears in.
 - **Soul Fire (id=335004) [Spell Family (5)]** — `baseline.txt`
 - **Soul Fire (id=6353) [Spell Family (5)]** — `destruction.txt`
 - **Soul Leech (desc=Talent) (id=108366) [Spell Family (5)]** — `baseline.txt`
-- **Soul Leech (id=108370) [Spell Family (5), Passive]** — `baseline.txt`
+- **Soul Leech (id=108370) [Spell Family (5)]** — `baseline.txt`
 - **Soul Leech (id=1311653) [Spell Family (5), Passive]** — `class-talents.txt`
 - **Soul Link (id=108415) [Spell Family (5), Passive, Hidden]** — `class-talents.txt`
 - **Soul Link (id=108446) [Spell Family (5)]** — `baseline.txt`

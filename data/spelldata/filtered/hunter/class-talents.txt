@@ -1,5 +1,5 @@
 # Hunter — Class Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
 # 52 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Scare Beast (id=1513) [Spell Family (9)] 
@@ -691,11 +691,12 @@ Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log
 Effects          :
 #1 (id=1166436)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
-                   Affected Spells: Aimed Shot (19434), Kill Command (34026), Kill Command (83381), Wildfire Bomb (265157), Pheromone Bomb (270329), Shrapnel Bomb (270338), Volatile Bomb (271048), Kill Command (1232922)
-                   Family Flags: 17, 25, 43
+                   Affected Spells: Aimed Shot (19434), Kill Command (83381), Wildfire Bomb (265157), Pheromone Bomb (270329), Shrapnel Bomb (270338), Volatile Bomb (271048), Kill Command (1232922)
+                   Family Flags: 17, 25, 108
+Hotfixed         : Affects Spells
 #2 (id=1166437)  : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 22 | Target: Self (1)
-                   Affected Spells: Aimed Shot (19434), Kill Command (34026), Kill Command (83381), Scorching Wildfire (259587), Violent Reaction (260231), Wildfire Bomb (265157), Wildfire Bomb (269747), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Internal Bleeding (270343), Volatile Bomb (271048), Volatile Bomb (271049), Kill Command (1232922), Wildfire Bomb (1253171)
+                   Affected Spells: Aimed Shot (19434), Kill Command (34026), Kill Command (83381), Scorching Wildfire (259587), Violent Reaction (260231), Wildfire Bomb (265157), Wildfire Bomb (269747), Pheromone Bomb (270329), Pheromone Bomb (270332), Shrapnel Bomb (270338), Shrapnel Bomb (270339), Internal Bleeding (270343), Volatile Bomb (271048), Volatile Bomb (271049), Wildfire Bomb (1253171)
                    Family Flags: 17, 22, 43
 Description      : $?a137017[Wildfire Bomb]?a137016[Aimed Shot][Kill Command] deals $s1% increased damage.
 

@@ -1,5 +1,5 @@
 # Warlock — Baseline (no talent tree)
-# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69273 Live)
+# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
 # 774 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Eye of Kilrogg (id=126) [Spell Family (5)] 
@@ -1716,19 +1716,21 @@ Effects          :
 Description      : $@spelldesc108370
 Tooltip          : Absorbs $w1 damage.
 
-Name             : Soul Leech (id=108370) [Spell Family (5), Passive] 
+Name             : Soul Leech (id=108370) [Spell Family (5)] 
 Class            : Warlock
 School           : Physical
 Spell Type       : None
 Spell Level      : 10
+Duration         : Aura (infinite)
 Labels           : 16: Class Spells
                  : 19: Warlock Spells
                  : 292
 Proc Chance      : 100%
 Proc Flags       : White Melee, Yellow Melee, Generic Hostile Spell, Magic Hostile Spell, Periodic
 Affecting Spells : Demon Skin (219272 effect#2), Norgannon's Foresight (236431 effect#1), Infernal Bulwark (434561 effect#1), Illhoof's Design (440070 effect#2), Fortified Soul (1271694 effect#1)
+Triggered By     : Soul Leech (1311653)
 Family Flags     : 68
-Attributes       : Is Ability (4), Passive (6), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
+Attributes       : Is Ability (4), No Aura Icon (60), Can Proc From Procs (122), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=119452)   : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
@@ -14353,7 +14355,8 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc196277
 
-Name             : Shadowburn (id=1311913) 
+Name             : Shadowburn (id=1311913) [Spell Family (5)] 
+Hotfixed         : Affecting Spells
 Class            : Warlock
 School           : Shadowflame
 Spell Type       : None
