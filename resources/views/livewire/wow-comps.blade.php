@@ -40,7 +40,7 @@
     $compSubtitle = $selectedMembers->map(fn ($m) => "{$m['label']}: {$m['class']->name} ({$m['spec']->name})")->implode(' • ');
 @endphp
 
-<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null, tab: 'cooldowns', classPickerSlot: null, pendingSlot: null }">
+<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null, tab: 'offensive', classPickerSlot: null, pendingSlot: null }">
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">WoW Comps</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $compTitle }}</h1>
@@ -165,9 +165,13 @@
             {{-- Tab bar — same .tab-btn/.tab-active pattern as Spell Explorer. Pure client-side
                  (Alpine `tab` state on the outer x-data), so switching never round-trips. --}}
             <div class="flex flex-wrap items-center gap-1 linear-card !hover:border-line p-1 w-fit">
-                <button type="button" @click="tab = 'cooldowns'" class="tab-btn flex items-center gap-1.5" :class="tab === 'cooldowns' ? 'tab-active' : 'tab-inactive'" title="Only spells confirmed cast by a real player of this exact spec in a real ranked match">
+                <button type="button" @click="tab = 'offensive'" class="tab-btn flex items-center gap-1.5" :class="tab === 'offensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified offensive cooldowns for this exact spec">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
-                    Cooldowns
+                    Offensive Cooldowns
+                </button>
+                <button type="button" @click="tab = 'defensive'" class="tab-btn flex items-center gap-1.5" :class="tab === 'defensive' ? 'tab-active' : 'tab-inactive'" title="Real, arena-log-verified defensive cooldowns for this exact spec">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l8 3.5v6c0 5-3.5 8.5-8 10.5-4.5-2-8-5.5-8-10.5v-6L12 2z"/></svg>
+                    Defensive Cooldowns
                 </button>
                 <button type="button" @click="tab = 'synergies'" class="tab-btn flex items-center gap-1.5" :class="tab === 'synergies' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
@@ -197,78 +201,81 @@
                 </button>
             </div>
 
-            {{-- Cooldowns tab — added 2026-08-18, direct request: reduce the error space (wrong
-                 categorization, duplicate spell_id copies) by showing ONLY spells with real
-                 arena-log cast evidence for this exact spec (isPriority — same tagging
-                 ArenaLogService::spellUsageIds() already powers on Spell Explorer's "Priority
-                 Spells" filter), instead of the full talent-tree-derived kit. Deliberately the
-                 new default tab (see the root x-data's tab: 'cooldowns') — the old "Main
-                 Cooldowns" tab (a plain has-a-cooldown-value filter, no arena-log involvement)
-                 was removed the same day this tab replaced it, freeing up the 'cooldowns' key
-                 this tab now uses instead of its original 'priority' key, so the internal state
-                 name matches the visible label. Active Abilities/Buffs & Passives are kept, not
-                 deleted, for the case a real ability just hasn't been logged in enough matches
-                 yet; this tab trades completeness for a much smaller, evidence-backed surface.
-                 Same category-grouped card-grid markup and the same click-to-open spell-detail
-                 modal as every other tab on this page — no new modal plumbing needed, since
-                 isPriority is just another key on the already-computed entry array. --}}
-            <div x-show="tab === 'cooldowns'" x-cloak>
+            {{-- Offensive Cooldowns / Defensive Cooldowns tabs — replaced the single "Cooldowns"
+                 tab 2026-08-20, direct request. That tab's own filter (isPriority + an arbitrary
+                 "over 15s" toggle) is gone; both tabs below instead intersect isPriority (this
+                 exact spec really cast it, per real arena-log evidence) with
+                 offensiveDefensive (a real, arena-log-VERIFIED classification of what kind of
+                 cooldown it is — School Damage/Direct Heal/Damage Taken%/etc effect signals,
+                 not a guess), promoted from wow-arena-archive's classify-cooldowns.php. Both
+                 signals come from real match evidence; combined, they answer "did this spec
+                 really press this, and is it really offensive or defensive" far more precisely
+                 than categorize()'s spec-blind, filler-inclusive heuristic (still used elsewhere
+                 on this page for Active Abilities/Buffs & Passives, which answer a different,
+                 broader question — "everything in the kit," not "the real cooldowns"). A spell
+                 classified Mixed (real signals for both) appears in BOTH tabs, matching that
+                 bucket's own honest "don't force one bucket" definition — same shared
+                 $offDefFilter builder below, only the direction ('offensive'/'defensive') and
+                 tab key differ. Same category-grouped card-grid markup and the same
+                 click-to-open spell-detail modal as every other tab on this page. --}}
+            @php
+                $offDefFilter = fn (string $direction) => fn ($e) => ($e['isPriority'] ?? false) && ($e['offensiveDefensive'][$direction] ?? false);
+            @endphp
+            @foreach (['offensive' => 'Offensive', 'defensive' => 'Defensive'] as $direction => $directionLabel)
                 @php
-                    $cooldownsFilter = fn ($e) => ($e['isPriority'] ?? false)
-                        && (!$cooldownsLongOnly || ($e['cooldown']['seconds'] ?? 0) > 15);
-                    $anyPriorityAtAll = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains($cooldownsFilter));
+                    $odFilter = $offDefFilter($direction);
+                    $anyForDirection = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains($odFilter));
                 @endphp
+                <div x-show="tab === '{{ $direction }}'" x-cloak>
+                    @if (!$anyForDirection)
+                        <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
+                            No arena-log-verified {{ strtolower($directionLabel) }} cooldowns for any selected spec yet — try Active Abilities for the full kit.
+                        </p>
+                    @else
+                        @foreach ($categoryOrder as $category)
+                            @php
+                                $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => $odFilter($e) && $e['category'] === $category));
+                            @endphp
+                            @continue(!$categoryHasAny)
 
-                <label class="flex items-center gap-2 mb-3 text-[12px] text-ink-muted cursor-pointer w-fit">
-                    <input type="checkbox" wire:model.live="cooldownsLongOnly" class="form-checkbox">
-                    Only show cooldowns over 15s
-                </label>
-
-                @if (!$anyPriorityAtAll)
-                    <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
-                        {{ $cooldownsLongOnly ? 'No arena-log-confirmed spells over 15s for any selected spec.' : 'No arena-log-confirmed spells for any selected spec yet — try Active Abilities for the full kit.' }}
-                    </p>
-                @else
-                    @foreach ($categoryOrder as $category)
-                        @php
-                            $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => $cooldownsFilter($e) && $e['category'] === $category));
-                        @endphp
-                        @continue(!$categoryHasAny)
-
-                        <div class="mb-4">
-                            <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
-                            <div class="grid grid-cols-3 gap-3">
-                                @foreach ($comp as $mi => $member)
-                                    <div class="linear-card p-1.5 space-y-0.5">
-                                        @php
-                                            $priorityEntries = collect($member['entries'])->filter(
-                                                fn ($e) => $cooldownsFilter($e) && $e['category'] === $category
-                                            );
-                                        @endphp
-                                        @forelse ($priorityEntries as $entry)
-                                            @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
-                                            <button type="button"
-                                                    @click="openSpellId = '{{ $modalKey }}'"
-                                                    class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
-                                                <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                                <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
-                                                @if (($entry['source'] ?? null) === 'talent')
-                                                    <span class="badge-blue shrink-0" title="Talent">T</span>
-                                                @elseif (($entry['source'] ?? null) === 'pvp_talent')
-                                                    <span class="badge-gold shrink-0" title="PvP Talent">PvP</span>
-                                                @endif
-                                                <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
-                                            </button>
-                                        @empty
-                                            <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
-                                        @endforelse
-                                    </div>
-                                @endforeach
+                            <div class="mb-4">
+                                <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
+                                <div class="grid grid-cols-3 gap-3">
+                                    @foreach ($comp as $mi => $member)
+                                        <div class="linear-card p-1.5 space-y-0.5">
+                                            @php
+                                                $odEntries = collect($member['entries'])->filter(
+                                                    fn ($e) => $odFilter($e) && $e['category'] === $category
+                                                );
+                                            @endphp
+                                            @forelse ($odEntries as $entry)
+                                                @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
+                                                <button type="button"
+                                                        @click="openSpellId = '{{ $modalKey }}'"
+                                                        class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                                    <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
+                                                    <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
+                                                    @if (($entry['offensiveDefensive']['label'] ?? null) === 'Mixed')
+                                                        <span class="badge-amber shrink-0" title="Real signals for both offense and defense">Mixed</span>
+                                                    @endif
+                                                    @if (($entry['source'] ?? null) === 'talent')
+                                                        <span class="badge-blue shrink-0" title="Talent">T</span>
+                                                    @elseif (($entry['source'] ?? null) === 'pvp_talent')
+                                                        <span class="badge-gold shrink-0" title="PvP Talent">PvP</span>
+                                                    @endif
+                                                    <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
+                                                </button>
+                                            @empty
+                                                <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
+                                            @endforelse
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
+                        @endforeach
+                    @endif
+                </div>
+            @endforeach
 
             @foreach ($groupOrder as $groupKey => $groupLabel)
                 @php

@@ -20,10 +20,14 @@ use Livewire\Component;
 /**
  * Phase-1 shape-check page: pick 3 specs (Healer / DPS / DPS slots — labels only, nothing
  * enforces role) and see each one's spell kit side by side for comparison, grouped
- * Offensive/Defensive/Utility/Crowd Control/Other same as Spell Explorer, plus a "Main
- * Cooldowns" summary per member. Deliberately no comps table, no spell_functions table, no
- * seeding — this exists purely to get the picker/layout shape right before any of that schema
- * work happens.
+ * Offensive/Defensive/Utility/Crowd Control/Other same as Spell Explorer (categorize()'s
+ * heuristic — every spell in the kit, filler included), plus separate Offensive Cooldowns /
+ * Defensive Cooldowns tabs backed by wow-arena-archive's real, arena-log-verified cooldown
+ * classification (see ArenaLogService::offensiveDefensiveClassification()) — a narrower,
+ * higher-confidence answer than categorize() for the specific question "is this a real
+ * offensive or defensive cooldown a competitive player actually presses," not every spell in
+ * the kit. Deliberately no comps table, no spell_functions table, no seeding — this exists
+ * purely to get the picker/layout shape right before any of that schema work happens.
  *
  * REWORKED 2026-08-16, same change and same reasoning as SpellExplorer (see that class's
  * docblock): every real talent-tree entry and every PvP talent for each slot's spec is ALWAYS
@@ -45,15 +49,14 @@ class WowComps extends Component
     ];
 
     /**
-     * Cooldowns tab, added 2026-08-18 — narrows the already-priority-filtered list down further
-     * to only spells with an effective cooldown over 15s. A real Livewire property (not a client-
-     * side Alpine toggle like the rest of this page's filtering) deliberately, so a category that
-     * loses every entry under the threshold correctly disappears server-side — same `@continue`
-     * category-visibility check the removed "Main Cooldowns" tab used to rely on — rather than
-     * leaving an empty-looking category header behind, which a pure client-side row-hide couldn't
-     * cleanly avoid without duplicating that visibility logic in JS.
+     * The single "Cooldowns" tab (isPriority + effective cooldown over 15s, an arbitrary UI
+     * toggle) was replaced 2026-08-20 by two tabs, Offensive Cooldowns / Defensive Cooldowns,
+     * driven by the real arena-log-verified classification promoted from wow-arena-archive (see
+     * ArenaLogService::offensiveDefensiveClassification()) instead of a bare cooldown-length
+     * heuristic — the $cooldownsLongOnly toggle this docblock used to describe is gone with it;
+     * that classification already has its own, non-arbitrary minimum-cooldown floor (8s) baked
+     * into how the archive builds it, so no separate UI toggle is needed here.
      */
-    public bool $cooldownsLongOnly = true;
 
     public function mount(): void
     {
@@ -261,6 +264,15 @@ class WowComps extends Component
         $arenaLogService = app(ArenaLogService::class);
         $priorityExternalIds = $class ? $arenaLogService->spellUsageIds($class->slug, $spec->slug) : collect();
 
+        // Offensive/Defensive Cooldowns tabs (2026-08-20) — real, arena-log-verified
+        // classification, promoted from wow-arena-archive (see ArenaLogService::
+        // offensiveDefensiveClassification()'s own docblock). Deliberately intersected with
+        // isPriority below, not used alone: the classification is a GLOBAL "is this spell ever
+        // an offensive/defensive cooldown" answer, spec-blind by design — isPriority is what
+        // narrows it to "and this exact spec actually cast it," the same two-signal intersection
+        // spec-cooldowns.php itself uses in the archive.
+        $classification = $arenaLogService->offensiveDefensiveClassification();
+
         $build = new ModuleGameBuild([
             'class_id' => $spec->class_id,
             'specialization_id' => $spec->id,
@@ -303,9 +315,10 @@ class WowComps extends Component
         $service->preloadCategorize($modifierSpells);
 
         return $spells
-            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityBySpellId, $modifiersBySpellId) {
+            ->map(function ($spell) use ($service, $build, $selected, $ranks, $verifiedBaselineIds, $cooldownBaselineIds, $allTalentIds, $allPvpIds, $priorityBySpellId, $modifiersBySpellId, $classification) {
                 $description = $service->resolveDescription($spell, $build);
                 $modifiers = $modifiersBySpellId[$spell->id];
+                $offDef = $classification['bySpellId'][$spell->spell_id] ?? $classification['byName'][$spell->display_name] ?? null;
 
                 return [
                     'spell' => $spell,
@@ -323,6 +336,7 @@ class WowComps extends Component
                     'isSelected' => $selected->contains($spell->id) || $verifiedBaselineIds->contains($spell->id) || $cooldownBaselineIds->contains($spell->id),
                     'source' => $allTalentIds->contains($spell->id) ? 'talent' : ($allPvpIds->contains($spell->id) ? 'pvp_talent' : 'baseline'),
                     'isPriority' => $priorityBySpellId[$spell->id] ?? false,
+                    'offensiveDefensive' => $offDef,
                 ];
             })
             ->all();
@@ -506,6 +520,11 @@ class WowComps extends Component
     }
 
     /**
+     * Deliberately reads this project's own tree, NOT config('arena_logs.archive_path') —
+     * recordKillSequence() writes fresh pulls to the archive as a staging/review area (direct
+     * user instruction 2026-08-20); this live tab must only reflect what's been manually
+     * promoted, same reasoning as ArenaLogService::spellUsageIds(). See config/arena_logs.php.
+     *
      * @return array{sampleSize: int, ranked: Collection, examples: Collection}
      */
     private function killSequenceDataFor(GameClass $class, Specialization $spec): array
