@@ -84,7 +84,7 @@ class FindCcDuration extends Command
             $this->warn("Spell id={$spellId} not found in the current patch's spells table — searching logs anyway.");
         }
 
-        $files = glob(base_path('data/arena-logs/raw/*.log.gz'));
+        $files = glob(config('arena_logs.archive_path').'/raw/*.log.gz');
 
         if ($files === []) {
             $this->error('No arena logs on file — run wow:fetch-arena-log first.');

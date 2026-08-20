@@ -1,0 +1,1154 @@
+[
+    {
+        "spellId": 51690,
+        "name": "Killing Spree",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 57841: School Damage (2): physical (SP-scaled, pvp_coefficient=0.62222)"
+        ]
+    },
+    {
+        "spellId": 64382,
+        "name": "Shattering Throw",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 394352: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 114050,
+        "name": "Ascendance",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 344548: School Damage (2): nature (SP-scaled, pvp_coefficient=0.5)"
+        ]
+    },
+    {
+        "spellId": 114051,
+        "name": "Ascendance",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 344548: School Damage (2): nature (SP-scaled, pvp_coefficient=0.5)"
+        ]
+    },
+    {
+        "spellId": 322109,
+        "name": "Touch of Death",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 187827,
+        "name": "Metamorphosis",
+        "cooldownSeconds": 120,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 200166: School Damage (2): chromatic (base=0)"
+        ]
+    },
+    {
+        "spellId": 357210,
+        "name": "Deep Breath",
+        "cooldownSeconds": 120,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 353759: Periodic Damage (3): firestorm every 0.5 seconds (SP-scaled, sp_coefficient=2.6)"
+        ]
+    },
+    {
+        "spellId": 360194,
+        "name": "Deathmark",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Own record: Periodic Damage (3): physical every 2 seconds (base=0)"
+        ]
+    },
+    {
+        "spellId": 433874,
+        "name": "Deep Breath",
+        "cooldownSeconds": 120,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 353759: Periodic Damage (3): firestorm every 0.5 seconds (SP-scaled, sp_coefficient=2.6)"
+        ]
+    },
+    {
+        "spellId": 19574,
+        "name": "Bestial Wrath",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 344572: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 121471,
+        "name": "Shadow Blades",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 279043: School Damage (2): shadow (base=0)"
+        ]
+    },
+    {
+        "spellId": 227847,
+        "name": "Bladestorm",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 50622: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 279302,
+        "name": "Frostwyrm's Fury",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 279303: School Damage (2): frost (SP-scaled, pvp_coefficient=0.33333)"
+        ]
+    },
+    {
+        "spellId": 365350,
+        "name": "Arcane Surge",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): arcane (SP-scaled, sp_coefficient=3.72)"
+        ]
+    },
+    {
+        "spellId": 370965,
+        "name": "The Hunt",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 345335: Periodic Damage (3): nature every 2 seconds (base=0)"
+        ]
+    },
+    {
+        "spellId": 376079,
+        "name": "Champion's Spear",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 376080: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 446035,
+        "name": "Bladestorm",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 50622: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 1246167,
+        "name": "The Hunt",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 345335: Periodic Damage (3): nature every 2 seconds (base=0)"
+        ]
+    },
+    {
+        "spellId": 1249658,
+        "name": "Breath of Sindragosa",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 155166: School Damage (2): frost (SP-scaled, pvp_coefficient=0.833)"
+        ]
+    },
+    {
+        "spellId": 1250646,
+        "name": "Takedown",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1253859: School Damage (2): physical (SP-scaled, pvp_coefficient=0.5625)"
+        ]
+    },
+    {
+        "spellId": 84714,
+        "name": "Frozen Orb",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 84721: School Damage (2): frost (SP-scaled, sp_coefficient=0.67584)"
+        ]
+    },
+    {
+        "spellId": 120644,
+        "name": "Halo",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 120696: School Damage (2): holy (SP-scaled, sp_coefficient=1.442)"
+        ]
+    },
+    {
+        "spellId": 202770,
+        "name": "Fury of Elune",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 211545: School Damage (2): astral (SP-scaled, sp_coefficient=0.1834)"
+        ]
+    },
+    {
+        "spellId": 204021,
+        "name": "Fiery Brand",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): fire (base=0)"
+        ]
+    },
+    {
+        "spellId": 204066,
+        "name": "Lunar Beam",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 414613: School Damage (2): arcane (base=0)"
+        ]
+    },
+    {
+        "spellId": 205021,
+        "name": "Ray of Frost",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Own record: Periodic Damage (3): frost every 0.5 seconds (SP-scaled, sp_coefficient=4.5)"
+        ]
+    },
+    {
+        "spellId": 207407,
+        "name": "Soul Carver",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Own record: Periodic Damage (3): fire every 1 seconds (base=0)"
+        ]
+    },
+    {
+        "spellId": 271877,
+        "name": "Blade Rush",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 271881: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 343527,
+        "name": "Execution Sentence",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 387113: School Damage (2): holy (base=0)"
+        ]
+    },
+    {
+        "spellId": 384352,
+        "name": "Doom Winds",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 469270: School Damage (2): stormstrike (base=0)"
+        ]
+    },
+    {
+        "spellId": 385627,
+        "name": "Kingsbane",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): nature (SP-scaled, pvp_coefficient=0.8)"
+        ]
+    },
+    {
+        "spellId": 390163,
+        "name": "Sigil of Spite",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 389860: School Damage (2): chromatic (base=0)"
+        ]
+    },
+    {
+        "spellId": 432472,
+        "name": "Sacred Weapon",
+        "cooldownSeconds": 60,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 432616: School Damage (2): holy (base=0)"
+        ]
+    },
+    {
+        "spellId": 442726,
+        "name": "Malevolence",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 446285: School Damage (2): shadowflame (SP-scaled, sp_coefficient=12.6551)"
+        ]
+    },
+    {
+        "spellId": 1253799,
+        "name": "Sundering Roar",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 1257052,
+        "name": "Dark Harvest",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1257065: Health Leech (9) (SP-scaled, sp_coefficient=8.39552)"
+        ]
+    },
+    {
+        "spellId": 1261193,
+        "name": "Boomstick",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1261215: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 6353,
+        "name": "Soul Fire",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): fire (SP-scaled, sp_coefficient=38.674)"
+        ]
+    },
+    {
+        "spellId": 153561,
+        "name": "Meteor",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 117588: School Damage (2): fire (SP-scaled, sp_coefficient=7.7)"
+        ]
+    },
+    {
+        "spellId": 167105,
+        "name": "Colossus Smash",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): physical (SP-scaled, pvp_coefficient=1.6)"
+        ]
+    },
+    {
+        "spellId": 179057,
+        "name": "Chaos Nova",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): chromatic (base=0)"
+        ]
+    },
+    {
+        "spellId": 260243,
+        "name": "Volley",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 260247: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 274837,
+        "name": "Feral Frenzy",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 274838: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 315341,
+        "name": "Between the Eyes",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): physical (SP-scaled, pvp_coefficient=0.85)"
+        ]
+    },
+    {
+        "spellId": 321507,
+        "name": "Touch of the Magi",
+        "cooldownSeconds": 45,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 210833: School Damage (2): arcane (base=0)"
+        ]
+    },
+    {
+        "spellId": 384110,
+        "name": "Wrecking Throw",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 394354: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 385059,
+        "name": "Odyn's Fury",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 205546: Normalized Weapon Damage (121) (base=0)"
+        ]
+    },
+    {
+        "spellId": 385952,
+        "name": "Shield Charge",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 385954: School Damage (2): physical (SP-scaled, pvp_coefficient=0.75)"
+        ]
+    },
+    {
+        "spellId": 426591,
+        "name": "Goremaw's Bite",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 426592: School Damage (2): shadow (base=0)"
+        ]
+    },
+    {
+        "spellId": 439843,
+        "name": "Reaper's Mark",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): shadowfrost (base=0)"
+        ]
+    },
+    {
+        "spellId": 1233448,
+        "name": "Dark Transformation",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 344955: School Damage (2): shadow (base=0)"
+        ]
+    },
+    {
+        "spellId": 1234195,
+        "name": "Void Nova",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): cosmic (SP-scaled, sp_coefficient=0.27482)"
+        ]
+    },
+    {
+        "spellId": 1263824,
+        "name": "Consumption",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1263825: School Damage (2): shadow (base=0)"
+        ]
+    },
+    {
+        "spellId": 258860,
+        "name": "Essence Break",
+        "cooldownSeconds": 40,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): chaos (base=0)"
+        ]
+    },
+    {
+        "spellId": 396286,
+        "name": "Upheaval",
+        "cooldownSeconds": 40,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 396288: School Damage (2): firestorm (SP-scaled, sp_coefficient=4.3)"
+        ]
+    },
+    {
+        "spellId": 152175,
+        "name": "Whirling Dragon Punch",
+        "cooldownSeconds": 35,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 158221: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 392983,
+        "name": "Strike of the Windlord",
+        "cooldownSeconds": 35,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 395519: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 5938,
+        "name": "Shiv",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 13877,
+        "name": "Blade Flurry",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 22482: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 43265,
+        "name": "Death and Decay",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 52212: School Damage (2): shadow (base=0)"
+        ]
+    },
+    {
+        "spellId": 44614,
+        "name": "Flurry",
+        "cooldownSeconds": 30,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 228354: School Damage (2): frost (SP-scaled, sp_coefficient=1.2852)"
+        ]
+    },
+    {
+        "spellId": 47568,
+        "name": "Empower Rune Weapon",
+        "cooldownSeconds": 30,
+        "charges": 2,
+        "signals": [
+            "Own record: School Damage (2): shadowfrost (SP-scaled, pvp_coefficient=0.77)"
+        ]
+    },
+    {
+        "spellId": 88747,
+        "name": "Wild Mushroom",
+        "cooldownSeconds": 30,
+        "charges": 3,
+        "signals": [
+            "Via sibling spell_id 88751: School Damage (2): nature (SP-scaled, sp_coefficient=3.187)"
+        ]
+    },
+    {
+        "spellId": 108503,
+        "name": "Grimoire of Sacrifice",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 196100: School Damage (2): shadow (SP-scaled, sp_coefficient=0.37188)"
+        ]
+    },
+    {
+        "spellId": 196884,
+        "name": "Feral Lunge",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 215802: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 204596,
+        "name": "Sigil of Flame",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 204598: School Damage (2): fire (base=0)"
+        ]
+    },
+    {
+        "spellId": 212431,
+        "name": "Explosive Shot",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Own record: Periodic Damage (3): fire every 1 seconds (base=0)"
+        ]
+    },
+    {
+        "spellId": 255937,
+        "name": "Wake of Ashes",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): holyfire (SP-scaled, pvp_coefficient=0.72727)"
+        ]
+    },
+    {
+        "spellId": 258920,
+        "name": "Immolation Aura",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 258921: School Damage (2): fire (base=0)"
+        ]
+    },
+    {
+        "spellId": 263165,
+        "name": "Void Torrent",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Own record: Periodic Damage (3): shadow every 1 seconds (SP-scaled, sp_coefficient=2.37685)"
+        ]
+    },
+    {
+        "spellId": 355913,
+        "name": "Emerald Blossom",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 373766: School Damage (2): nature (SP-scaled, sp_coefficient=1.5)"
+        ]
+    },
+    {
+        "spellId": 357208,
+        "name": "Fire Breath",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 357209: School Damage (2): fire (SP-scaled, sp_coefficient=1.63409)"
+        ]
+    },
+    {
+        "spellId": 359073,
+        "name": "Eternity Surge",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 359077: School Damage (2): spellfrost (SP-scaled, sp_coefficient=10.8847)"
+        ]
+    },
+    {
+        "spellId": 360827,
+        "name": "Blistering Scales",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 360828: School Damage (2): firestorm (SP-scaled, pvp_coefficient=2)"
+        ]
+    },
+    {
+        "spellId": 382266,
+        "name": "Fire Breath",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 357209: School Damage (2): fire (SP-scaled, sp_coefficient=1.63409)"
+        ]
+    },
+    {
+        "spellId": 382411,
+        "name": "Eternity Surge",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 359077: School Damage (2): spellfrost (SP-scaled, sp_coefficient=10.8847)"
+        ]
+    },
+    {
+        "spellId": 427917,
+        "name": "Immolation Aura",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 258921: School Damage (2): fire (base=0)"
+        ]
+    },
+    {
+        "spellId": 1245412,
+        "name": "Voidblade",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 1245414: School Damage (2): cosmic (SP-scaled, sp_coefficient=2.25)"
+        ]
+    },
+    {
+        "spellId": 1247378,
+        "name": "Putrefy",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 390220: School Damage (2): shadow (base=0)"
+        ]
+    },
+    {
+        "spellId": 120,
+        "name": "Cone of Cold",
+        "cooldownSeconds": 25,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): frost (SP-scaled, sp_coefficient=0.43125)"
+        ]
+    },
+    {
+        "spellId": 198793,
+        "name": "Vengeful Retreat",
+        "cooldownSeconds": 25,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 198813: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 202168,
+        "name": "Impending Victory",
+        "cooldownSeconds": 25,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 247454,
+        "name": "Spirit Bomb",
+        "cooldownSeconds": 25,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 247455: School Damage (2): fire (base=0)"
+        ]
+    },
+    {
+        "spellId": 280719,
+        "name": "Secret Technique",
+        "cooldownSeconds": 25,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 280720: School Damage (2): physical (SP-scaled, pvp_coefficient=0.77)"
+        ]
+    },
+    {
+        "spellId": 153626,
+        "name": "Arcane Orb",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 153640: School Damage (2): arcane (SP-scaled, sp_coefficient=2.432)"
+        ]
+    },
+    {
+        "spellId": 203720,
+        "name": "Demon Spikes",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 391159: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 60103,
+        "name": "Lava Lash",
+        "cooldownSeconds": 18,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): fire (SP-scaled, pvp_coefficient=0.96)"
+        ]
+    },
+    {
+        "spellId": 217200,
+        "name": "Barbed Shot",
+        "cooldownSeconds": 18,
+        "charges": 2,
+        "signals": [
+            "Own record: Periodic Damage (3): physical every 2 seconds (SP-scaled, pvp_coefficient=0.888)"
+        ]
+    },
+    {
+        "spellId": 259495,
+        "name": "Wildfire Bomb",
+        "cooldownSeconds": 18,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 265157: School Damage (2): fire (base=0)"
+        ]
+    },
+    {
+        "spellId": 257044,
+        "name": "Rapid Fire",
+        "cooldownSeconds": 16,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 257045: School Damage (2): physical (SP-scaled, pvp_coefficient=1.534)"
+        ]
+    },
+    {
+        "spellId": 48181,
+        "name": "Haunt",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): shadow (SP-scaled, sp_coefficient=7.20612)"
+        ]
+    },
+    {
+        "spellId": 187874,
+        "name": "Crash Lightning",
+        "cooldownSeconds": 15,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): nature (SP-scaled, pvp_coefficient=1.8)"
+        ]
+    },
+    {
+        "spellId": 188499,
+        "name": "Blade Dance",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 199552: School Damage (2): physical (SP-scaled, pvp_coefficient=1.1)"
+        ]
+    },
+    {
+        "spellId": 196277,
+        "name": "Implosion",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 196278: School Damage (2): shadowflame (SP-scaled, sp_coefficient=1.36382)"
+        ]
+    },
+    {
+        "spellId": 343294,
+        "name": "Soul Reaper",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): shadowfrost (SP-scaled, pvp_coefficient=0.5)"
+        ]
+    },
+    {
+        "spellId": 1227280,
+        "name": "Tentacle Slam",
+        "cooldownSeconds": 15,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 1227621: School Damage (2): shadow (SP-scaled, sp_coefficient=0.68793)"
+        ]
+    },
+    {
+        "spellId": 108853,
+        "name": "Fire Blast",
+        "cooldownSeconds": 14,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): fire (SP-scaled, sp_coefficient=0.98625)"
+        ]
+    },
+    {
+        "spellId": 17962,
+        "name": "Conflagrate",
+        "cooldownSeconds": 12.96,
+        "charges": 2,
+        "signals": [
+            "Own record: School Damage (2): fire (SP-scaled, sp_coefficient=3.59309)"
+        ]
+    },
+    {
+        "spellId": 7384,
+        "name": "Overpower",
+        "cooldownSeconds": 12,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): physical (SP-scaled, pvp_coefficient=1.08)"
+        ]
+    },
+    {
+        "spellId": 117014,
+        "name": "Elemental Blast",
+        "cooldownSeconds": 12,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): elemental (SP-scaled, sp_coefficient=2.0125)"
+        ]
+    },
+    {
+        "spellId": 184575,
+        "name": "Blade of Justice",
+        "cooldownSeconds": 12,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): holy (base=0)"
+        ]
+    },
+    {
+        "spellId": 190356,
+        "name": "Blizzard",
+        "cooldownSeconds": 12,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 190357: School Damage (2): frost (SP-scaled, sp_coefficient=0.4428)"
+        ]
+    },
+    {
+        "spellId": 232893,
+        "name": "Felblade",
+        "cooldownSeconds": 12,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 213243: School Damage (2): fire (SP-scaled, pvp_coefficient=1.2)"
+        ]
+    },
+    {
+        "spellId": 20271,
+        "name": "Judgment",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): holy (SP-scaled, sp_coefficient=1.00739)"
+        ]
+    },
+    {
+        "spellId": 275773,
+        "name": "Judgment",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): holy (SP-scaled, sp_coefficient=1.2375)"
+        ]
+    },
+    {
+        "spellId": 275779,
+        "name": "Judgment",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): holy (SP-scaled, sp_coefficient=1.9)"
+        ]
+    },
+    {
+        "spellId": 1241413,
+        "name": "Hammer of Wrath",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): holy (SP-scaled, pvp_coefficient=1.3)"
+        ]
+    },
+    {
+        "spellId": 14914,
+        "name": "Holy Fire",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): holy (SP-scaled, sp_coefficient=3.08)"
+        ]
+    },
+    {
+        "spellId": 32379,
+        "name": "Shadow Word: Death",
+        "cooldownSeconds": 10,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): shadow (SP-scaled, sp_coefficient=2.55)"
+        ]
+    },
+    {
+        "spellId": 107428,
+        "name": "Rising Sun Kick",
+        "cooldownSeconds": 10,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 185099: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 195072,
+        "name": "Fel Rush",
+        "cooldownSeconds": 10,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 192611: School Damage (2): chaos (base=0)"
+        ]
+    },
+    {
+        "spellId": 197626,
+        "name": "Starsurge",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): astral (SP-scaled, sp_coefficient=2.101)"
+        ]
+    },
+    {
+        "spellId": 466930,
+        "name": "Black Arrow",
+        "cooldownSeconds": 10,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): shadow (base=0)"
+        ]
+    },
+    {
+        "spellId": 467307,
+        "name": "Rushing Wind Kick",
+        "cooldownSeconds": 10,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 468179: School Damage (2): nature (base=0)"
+        ]
+    },
+    {
+        "spellId": 470057,
+        "name": "Voltaic Blaze",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1259101: School Damage (2): nature (SP-scaled, sp_coefficient=4)"
+        ]
+    },
+    {
+        "spellId": 8092,
+        "name": "Mind Blast",
+        "cooldownSeconds": 9,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): shadow (SP-scaled, sp_coefficient=0.78336)"
+        ]
+    },
+    {
+        "spellId": 23922,
+        "name": "Shield Slam",
+        "cooldownSeconds": 9,
+        "charges": null,
+        "signals": [
+            "Own record: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 26573,
+        "name": "Consecration",
+        "cooldownSeconds": 9,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 81297: School Damage (2): holy (SP-scaled, pvp_coefficient=1.5)"
+        ]
+    },
+    {
+        "spellId": 47540,
+        "name": "Penance",
+        "cooldownSeconds": 9,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 47666: School Damage (2): holy (SP-scaled, sp_coefficient=0.932)"
+        ]
+    },
+    {
+        "spellId": 185123,
+        "name": "Throw Glaive",
+        "cooldownSeconds": 9,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 337819: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 210152,
+        "name": "Death Sweep",
+        "cooldownSeconds": 9,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 210153: School Damage (2): physical (SP-scaled, pvp_coefficient=1.1)"
+        ]
+    },
+    {
+        "spellId": 450983,
+        "name": "Void Blast",
+        "cooldownSeconds": 9,
+        "charges": 1,
+        "signals": [
+            "Own record: School Damage (2): shadow (SP-scaled, sp_coefficient=2.1)"
+        ]
+    },
+    {
+        "spellId": 51505,
+        "name": "Lava Burst",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 285452: School Damage (2): fire (SP-scaled, sp_coefficient=1.81)"
+        ]
+    },
+    {
+        "spellId": 85288,
+        "name": "Raging Blow",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 85384: School Damage (2): physical (base=0)"
+        ]
+    },
+    {
+        "spellId": 335097,
+        "name": "Crushing Blow",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 335098: School Damage (2): physical (SP-scaled, pvp_coefficient=1.3)"
+        ]
+    },
+    {
+        "spellId": 1226019,
+        "name": "Reap",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 1225823: School Damage (2): cosmic (SP-scaled, sp_coefficient=6.328)"
+        ]
+    },
+    {
+        "spellId": 1245453,
+        "name": "Cull",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 1245455: School Damage (2): cosmic (SP-scaled, sp_coefficient=8.14)"
+        ]
+    },
+    {
+        "spellId": 1264359,
+        "name": "Wild Thrash",
+        "cooldownSeconds": 8,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1264355: School Damage (2): physical (base=0)"
+        ]
+    }
+]

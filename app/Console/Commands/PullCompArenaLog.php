@@ -69,8 +69,8 @@ class PullCompArenaLog extends Command
             case 'stored_new':
                 $prev = $result['previousRating'] !== null ? " (previous best: {$result['previousRating']})" : ' (first time storing this comp)';
                 $this->info("Stored match {$result['matchId']} — {$result['rating']} rating{$prev}.");
-                $this->line('data/arena-logs/raw/'.$result['matchId'].'.log.gz');
-                $this->line('data/arena-logs/metadata/'.$result['matchId'].'.json');
+                $this->line($service->rawLogPath($result['matchId']));
+                $this->line($service->metadataPath($result['matchId']));
                 $this->line('data/arena-logs/comp-index.json updated.');
 
                 return self::SUCCESS;

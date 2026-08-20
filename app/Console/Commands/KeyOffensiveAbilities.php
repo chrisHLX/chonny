@@ -69,7 +69,7 @@ class KeyOffensiveAbilities extends Command
         $patch = Patch::where('is_current', true)->first();
 
         $playerGuidsByMatch = [];
-        foreach (glob(base_path('data/arena-logs/metadata/*.json')) as $metaFile) {
+        foreach (glob(config('arena_logs.archive_path').'/metadata/*.json') as $metaFile) {
             $meta = json_decode(File::get($metaFile), true);
             $matchId = basename($metaFile, '.json');
 
@@ -92,7 +92,7 @@ class KeyOffensiveAbilities extends Command
         $damageTotals = [];
 
         foreach ($playerGuidsByMatch as $matchId => $guids) {
-            $raw = gzdecode(File::get(base_path("data/arena-logs/raw/{$matchId}.log.gz")));
+            $raw = gzdecode(File::get(config('arena_logs.archive_path')."/raw/{$matchId}.log.gz"));
 
             foreach (array_unique($guids) as $guid) {
                 $g = preg_quote($guid, '/');

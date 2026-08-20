@@ -33,6 +33,10 @@ use Illuminate\Support\Facades\File;
  */
 class RatingTierAnalysisService
 {
+    public function __construct(private ArenaLogService $arenaLogService)
+    {
+    }
+
     /**
      * Known Demon Hunter CC spell IDs, carried over directly from the session's manual DB
      * lookups (dr_category/mechanic queries against `spells`) — see arena-log-api.md and this
@@ -208,7 +212,7 @@ class RatingTierAnalysisService
     {
         $results = [];
 
-        foreach (File::glob(base_path('data/arena-logs/metadata/*.json')) as $path) {
+        foreach (File::glob(config('arena_logs.archive_path').'/metadata/*.json') as $path) {
             $meta = json_decode(File::get($path), true);
 
             if (!$meta || ($meta['startInfo']['bracket'] ?? null) !== $bracket) {
@@ -222,7 +226,7 @@ class RatingTierAnalysisService
 
                 $matchId = pathinfo($path, PATHINFO_FILENAME);
 
-                if (!File::exists(base_path("data/arena-logs/raw/{$matchId}.log.gz"))) {
+                if (!File::exists($this->arenaLogService->rawLogPath($matchId))) {
                     continue;
                 }
 
@@ -377,8 +381,8 @@ class RatingTierAnalysisService
      */
     private function analyzeOneMatch(array $m): array
     {
-        $raw = gzdecode(File::get(base_path("data/arena-logs/raw/{$m['matchId']}.log.gz")));
-        $meta = json_decode(File::get(base_path("data/arena-logs/metadata/{$m['matchId']}.json")), true);
+        $raw = gzdecode(File::get($this->arenaLogService->rawLogPath($m['matchId'])));
+        $meta = json_decode(File::get($this->arenaLogService->metadataPath($m['matchId'])), true);
         $guid = $m['playerGuid'];
         $guidQ = preg_quote($guid, '/');
 

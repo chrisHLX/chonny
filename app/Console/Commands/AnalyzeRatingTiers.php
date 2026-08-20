@@ -193,7 +193,7 @@ class AnalyzeRatingTiers extends Command
     private function countMatchesOnDisk(int $specExternalId, string $bracket): int
     {
         $count = 0;
-        foreach (File::glob(base_path('data/arena-logs/metadata/*.json')) as $path) {
+        foreach (File::glob(config('arena_logs.archive_path').'/metadata/*.json') as $path) {
             $meta = json_decode(File::get($path), true);
             if (!$meta || ($meta['startInfo']['bracket'] ?? null) !== $bracket) {
                 continue;

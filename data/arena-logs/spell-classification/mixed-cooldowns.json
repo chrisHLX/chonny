@@ -1,0 +1,153 @@
+[
+    {
+        "spellId": 421453,
+        "name": "Ultimate Penitence",
+        "cooldownSeconds": 240,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 421543: School Damage (2): holy (SP-scaled, sp_coefficient=2.47)"
+        ],
+        "defensiveSignals": [
+            "Absorb (shield)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 53480,
+        "name": "Roar of Sacrifice",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 67481: School Damage (2): nature (base=0)"
+        ],
+        "defensiveSignals": [
+            "Damage Taken%, self takes LESS (-15)"
+        ]
+    },
+    {
+        "spellId": 389539,
+        "name": "Sentinel",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "offensiveBuffSignals": [
+            "Critical Strike% (10)",
+            "Critical Chance (10)",
+            "Damage Done% (+10)",
+            "Spell Direct Amount, +10% (non-healer spec)",
+            "Spell Periodic Amount, +10% (non-healer spec)"
+        ],
+        "offensiveSpellSignals": [],
+        "defensiveSignals": [
+            "Damage Taken%, self takes LESS (-2)"
+        ]
+    },
+    {
+        "spellId": 107574,
+        "name": "Avatar",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "offensiveBuffSignals": [
+            "Damage Done% (+20)",
+            "Spell Direct Amount, +20% (non-healer spec)",
+            "Spell Periodic Amount, +20% (non-healer spec)"
+        ],
+        "offensiveSpellSignals": [],
+        "defensiveSignals": [
+            "Damage Taken%, self takes LESS (-5)"
+        ]
+    },
+    {
+        "spellId": 122470,
+        "name": "Touch of Karma",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 124280: Periodic Damage (3): nature every 1 seconds (base=1)"
+        ],
+        "defensiveSignals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 443028,
+        "name": "Celestial Conduit",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 443038: School Damage (2): nature (base=0)"
+        ],
+        "defensiveSignals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 212084,
+        "name": "Fel Devastation",
+        "cooldownSeconds": 40,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 212105: School Damage (2): fire (base=0)"
+        ],
+        "defensiveSignals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 198013,
+        "name": "Eye Beam",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 198030: School Damage (2): chromatic (base=0)"
+        ],
+        "defensiveSignals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 235313,
+        "name": "Blazing Barrier",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 235314: School Damage (2): fire (SP-scaled, sp_coefficient=0.14375)"
+        ],
+        "defensiveSignals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 436358,
+        "name": "Demolish",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 440884: School Damage (2): physical (base=0)"
+        ],
+        "defensiveSignals": [
+            "Damage Taken%, self takes LESS (-10)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 113656,
+        "name": "Fists of Fury",
+        "cooldownSeconds": 24,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Own record: School Damage (2): physical (SP-scaled, pvp_coefficient=1.15)"
+        ],
+        "defensiveSignals": [
+            "Parry% (0)"
+        ]
+    }
+]

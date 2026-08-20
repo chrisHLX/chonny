@@ -127,7 +127,7 @@ class DiscoverCcSpells extends Command
             return self::SUCCESS;
         }
 
-        $files = glob(base_path('data/arena-logs/raw/*.log.gz'));
+        $files = glob(config('arena_logs.archive_path').'/raw/*.log.gz');
 
         if ($files === []) {
             $this->error('No arena logs on file — run wow:fetch-arena-log first.');

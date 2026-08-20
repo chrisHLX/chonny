@@ -105,6 +105,22 @@ class ArenaLogService
     }
 
     /**
+     * Full path to a match's raw combat log — routed through the configurable archive root
+     * (config('arena_logs.archive_path'), see that config file's docblock) rather than a
+     * hardcoded base_path(), so the bulk archive can live outside this project entirely.
+     */
+    public function rawLogPath(string $matchId): string
+    {
+        return config('arena_logs.archive_path')."/raw/{$matchId}.log.gz";
+    }
+
+    /** Full path to a match's metadata JSON — same configurable archive root as rawLogPath(). */
+    public function metadataPath(string $matchId): string
+    {
+        return config('arena_logs.archive_path')."/metadata/{$matchId}.json";
+    }
+
+    /**
      * Downloads the raw log for an already-fetched $match (from fetchMatch()) and writes
      * both output files. Returns byte-size info for reporting; throws nothing — caller
      * checks the returned array for 'error'.
@@ -117,21 +133,21 @@ class ArenaLogService
             return ['error' => "Failed to download raw log: HTTP {$logResp->status()}"];
         }
 
-        $rawDir = base_path('data/arena-logs/raw');
-        $metaDir = base_path('data/arena-logs/metadata');
-        File::ensureDirectoryExists($rawDir);
-        File::ensureDirectoryExists($metaDir);
+        $rawPath = $this->rawLogPath($matchId);
+        $metaPath = $this->metadataPath($matchId);
+        File::ensureDirectoryExists(dirname($rawPath));
+        File::ensureDirectoryExists(dirname($metaPath));
 
         $rawBody = $logResp->body();
         $compressed = gzencode($rawBody, 9);
-        File::put("{$rawDir}/{$matchId}.log.gz", $compressed);
+        File::put($rawPath, $compressed);
 
         $metadata = $match;
         $metadata['fetchedAt'] = now()->toIso8601String();
         $metadata['sourceUrl'] = "https://wowarenalogs.com/match?id={$matchId}";
 
         File::put(
-            "{$metaDir}/{$matchId}.json",
+            $metaPath,
             json_encode($metadata, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n"
         );
 
@@ -333,8 +349,8 @@ class ArenaLogService
      */
     public function extractCastSpellsByPlayer(string $matchId): array
     {
-        $metaPath = base_path("data/arena-logs/metadata/{$matchId}.json");
-        $rawPath = base_path("data/arena-logs/raw/{$matchId}.log.gz");
+        $metaPath = $this->metadataPath($matchId);
+        $rawPath = $this->rawLogPath($matchId);
 
         if (!File::exists($metaPath) || !File::exists($rawPath)) {
             throw new \RuntimeException("Match {$matchId} is not on file — run wow:fetch-arena-log first.");
@@ -576,7 +592,7 @@ class ArenaLogService
         foreach ($top as $c) {
             $matchId = $c['matchId'];
 
-            if (File::exists(base_path("data/arena-logs/metadata/{$matchId}.json"))) {
+            if (File::exists($this->metadataPath($matchId))) {
                 $results[] = ['matchId' => $matchId, 'rating' => $c['rating'], 'status' => 'already_on_disk'];
 
                 continue;
@@ -645,7 +661,7 @@ class ArenaLogService
         foreach ($chosen as $c) {
             $matchId = $c['matchId'];
 
-            if (File::exists(base_path("data/arena-logs/metadata/{$matchId}.json"))) {
+            if (File::exists($this->metadataPath($matchId))) {
                 $results[] = ['matchId' => $matchId, 'rating' => $c['rating'], 'status' => 'already_on_disk'];
 
                 continue;
@@ -668,16 +684,22 @@ class ArenaLogService
 
     /**
      * Merges a match's cast-spell list for one (class, spec) into the cumulative, deduped
-     * plain-text file at data/arena-logs/spell-usage/{classSlug}/{specSlug}.txt — shared by
+     * plain-text file at {archive_path}/spell-usage/{classSlug}/{specSlug}.txt — shared by
      * wow:extract-arena-spells (manual, per-match) and wow:discover-spec-spells (automated
      * search+pull+extract). See either command's docblock for the file format and the
      * "this is partial coverage, not a full spellbook" caveat.
+     *
+     * Writes to config('arena_logs.archive_path'), NOT this project's own
+     * data/arena-logs/spell-usage/ — see that config file's own docblock (2026-08-20). This is
+     * the staging copy; spellUsageIds() below (the one the live app actually reads) is
+     * deliberately still pinned to this project's own tree and only picks up new data once a
+     * human manually copies it over after reviewing it.
      *
      * @param  array<int, array{spellId: int, name: string}>  $newSpells
      */
     public function mergeSpellUsage(string $classSlug, string $specSlug, string $matchId, array $newSpells): void
     {
-        $dir = base_path("data/arena-logs/spell-usage/{$classSlug}");
+        $dir = config('arena_logs.archive_path')."/spell-usage/{$classSlug}";
         File::ensureDirectoryExists($dir);
         $path = "{$dir}/{$specSlug}.txt";
 
@@ -740,6 +762,12 @@ class ArenaLogService
      * WowComps's own "Cooldowns" tab (added the same day). A spec with no usage file yet (no
      * matches processed for it) simply returns an empty collection — not an error state.
      *
+     * Deliberately still reads this project's own base_path('data/arena-logs/...') tree, NOT
+     * config('arena_logs.archive_path') — this is what SpellExplorer/WowComps show live, so it
+     * must only ever reflect data a human has manually promoted after review. mergeSpellUsage()
+     * above writes fresh pulls to the archive instead; this method has no visibility into that
+     * staging copy until someone copies the files over. See config/arena_logs.php (2026-08-20).
+     *
      * @return \Illuminate\Support\Collection<int, int>
      */
     public function spellUsageIds(string $classSlug, string $specSlug): \Illuminate\Support\Collection
@@ -763,6 +791,56 @@ class ArenaLogService
         }
 
         return collect($ids);
+    }
+
+    /**
+     * Loads the promoted offensive/defensive cooldown classification from
+     * data/arena-logs/spell-classification/{offensive-buffs,offensive-spells,defensive-
+     * cooldowns,mixed-cooldowns}.json — produced by wow-arena-archive's classify-cooldowns.php
+     * (a separate project, see CLAUDE.md's "Offensive/Defensive Cooldown Classifier" section)
+     * from real, arena-log-verified cast evidence, then manually promoted here once reviewed.
+     * NOT computed live by this project — this is a read of already-reviewed, static output.
+     *
+     * Returns two parallel maps (by external spell_id, and by base display name as a same-named-
+     * sibling fallback — see resolveIsPriority()'s own docblock just below for why that fallback
+     * exists) — each spell_id/name mapping to ['offensive' => bool, 'defensive' => bool, 'label'
+     * => string]. A spell from mixed-cooldowns.json sets BOTH offensive and defensive true,
+     * matching that bucket's own honest "has signals from both, don't force one" definition.
+     *
+     * @return array{bySpellId: array<int, array{offensive: bool, defensive: bool, label: string}>, byName: array<string, array{offensive: bool, defensive: bool, label: string}>}
+     */
+    public function offensiveDefensiveClassification(): array
+    {
+        $dir = base_path('data/arena-logs/spell-classification');
+        $files = [
+            'offensive-spells.json' => ['offensive' => true, 'defensive' => false, 'label' => 'Offensive Spell'],
+            'offensive-buffs.json' => ['offensive' => true, 'defensive' => false, 'label' => 'Offensive Buff'],
+            'defensive-cooldowns.json' => ['offensive' => false, 'defensive' => true, 'label' => 'Defensive'],
+            'mixed-cooldowns.json' => ['offensive' => true, 'defensive' => true, 'label' => 'Mixed'],
+        ];
+
+        $bySpellId = [];
+        $byName = [];
+
+        foreach ($files as $filename => $flags) {
+            $path = "{$dir}/{$filename}";
+            if (!File::exists($path)) {
+                continue;
+            }
+
+            $entries = json_decode(File::get($path), true) ?? [];
+            foreach ($entries as $entry) {
+                $existing = $bySpellId[$entry['spellId']] ?? ['offensive' => false, 'defensive' => false, 'label' => $flags['label']];
+                $bySpellId[$entry['spellId']] = [
+                    'offensive' => $existing['offensive'] || $flags['offensive'],
+                    'defensive' => $existing['defensive'] || $flags['defensive'],
+                    'label' => $flags['label'],
+                ];
+                $byName[$entry['name']] = $bySpellId[$entry['spellId']];
+            }
+        }
+
+        return ['bySpellId' => $bySpellId, 'byName' => $byName];
     }
 
     /**
@@ -958,8 +1036,8 @@ class ArenaLogService
      */
     public function findPreKillWindow(string $matchId, int $windowSeconds = 20): ?array
     {
-        $metaPath = base_path("data/arena-logs/metadata/{$matchId}.json");
-        $rawPath = base_path("data/arena-logs/raw/{$matchId}.log.gz");
+        $metaPath = $this->metadataPath($matchId);
+        $rawPath = $this->rawLogPath($matchId);
 
         if (!File::exists($metaPath) || !File::exists($rawPath)) {
             return null;
@@ -1029,7 +1107,7 @@ class ArenaLogService
 
     /**
      * Persists findPreKillWindow()'s result for a match into
-     * data/arena-logs/kill-sequences/{classSlug}/{specSlug}.jsonl — one JSON line per
+     * {archive_path}/kill-sequences/{classSlug}/{specSlug}.jsonl — one JSON line per
      * (match, winning real player), accumulating across every match ever processed this way,
      * same append-and-grow spirit as mergeSpellUsage()'s spell-usage files.
      *
@@ -1043,6 +1121,11 @@ class ArenaLogService
      * Idempotent per (matchId, playerSpec) — re-running against an already-recorded match/player
      * pair is a no-op, so this is safe to run repeatedly (e.g. after pulling new matches) without
      * producing duplicate lines.
+     *
+     * Writes to config('arena_logs.archive_path'), NOT this project's own
+     * data/arena-logs/kill-sequences/ — see config/arena_logs.php's docblock (2026-08-20).
+     * WowComps's Kill Sequence tab reads this project's own tree directly (its own hardcoded
+     * path, not this method) and only picks up new data once manually promoted.
      *
      * @return array{recorded: int, alreadyPresent: int}
      */
@@ -1065,7 +1148,7 @@ class ArenaLogService
             }
             $class = \App\Models\GameClass::find($spec->class_id);
 
-            $dir = base_path("data/arena-logs/kill-sequences/{$class->slug}");
+            $dir = config('arena_logs.archive_path')."/kill-sequences/{$class->slug}";
             File::ensureDirectoryExists($dir);
             $path = "{$dir}/{$spec->slug}.jsonl";
 
@@ -1205,8 +1288,8 @@ class ArenaLogService
      */
     public function analyzeKillCausally(string $matchId, int $windowSeconds = 60): ?array
     {
-        $metaPath = base_path("data/arena-logs/metadata/{$matchId}.json");
-        $rawPath = base_path("data/arena-logs/raw/{$matchId}.log.gz");
+        $metaPath = $this->metadataPath($matchId);
+        $rawPath = $this->rawLogPath($matchId);
 
         if (!File::exists($metaPath) || !File::exists($rawPath)) {
             return null;
@@ -1377,7 +1460,7 @@ class ArenaLogService
      */
     public function matchRosterHasSpec(string $matchId, int $specializationId): bool
     {
-        $metaPath = base_path("data/arena-logs/metadata/{$matchId}.json");
+        $metaPath = $this->metadataPath($matchId);
 
         if (!File::exists($metaPath)) {
             return false;

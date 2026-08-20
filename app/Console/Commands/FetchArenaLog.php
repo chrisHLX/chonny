@@ -69,8 +69,8 @@ class FetchArenaLog extends Command
             return self::FAILURE;
         }
 
-        $this->info("Saved raw log to data/arena-logs/raw/{$matchId}.log.gz ({$stored['compressedBytes']} bytes, gzipped from {$stored['rawBytes']})");
-        $this->info("Saved metadata to data/arena-logs/metadata/{$matchId}.json");
+        $this->info("Saved raw log to {$service->rawLogPath($matchId)} ({$stored['compressedBytes']} bytes, gzipped from {$stored['rawBytes']})");
+        $this->info("Saved metadata to {$service->metadataPath($matchId)}");
 
         return self::SUCCESS;
     }

@@ -1,0 +1,439 @@
+[
+    {
+        "spellId": 13750,
+        "name": "Adrenaline Rush",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Modify Power (+75)"
+        ]
+    },
+    {
+        "spellId": 50334,
+        "name": "Berserk",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Damage Done% (+25)",
+            "Spell Direct Amount, +25% (non-healer spec)",
+            "Spell Periodic Amount, +25% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 102543,
+        "name": "Incarnation: Avatar of Ashamane",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Damage Done% (+15)",
+            "Spell Direct Amount, +15% (non-healer spec)",
+            "Spell Periodic Amount, +15% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 102558,
+        "name": "Incarnation: Guardian of Ursoc",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Damage Done% (+25)",
+            "Spell Direct Amount, +25% (non-healer spec)",
+            "Spell Periodic Amount, +25% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 102560,
+        "name": "Incarnation: Chosen of Elune",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Critical Chance (10)",
+            "Modify All Haste% (+10)",
+            "Spell Direct Amount, +10% (non-healer spec)",
+            "Spell Periodic Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 10060,
+        "name": "Power Infusion",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Modify All Haste% (+20)"
+        ]
+    },
+    {
+        "spellId": 31884,
+        "name": "Avenging Wrath",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Critical Strike% (20)",
+            "Critical Chance (20)",
+            "Modify All Haste% (+3)",
+            "Spell Direct Amount, +20% (non-healer spec)",
+            "Spell Periodic Amount, +20% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 187827,
+        "name": "Metamorphosis",
+        "cooldownSeconds": 120,
+        "charges": 1,
+        "signals": [
+            "Spell Direct Amount, +20% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 190319,
+        "name": "Combustion",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Critical Chance (100)"
+        ]
+    },
+    {
+        "spellId": 288613,
+        "name": "Trueshot",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Critical Strike% (10)",
+            "Critical Bonus (20)"
+        ]
+    },
+    {
+        "spellId": 1719,
+        "name": "Recklessness",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Critical Chance (20)",
+            "Critical Bonus (20)"
+        ]
+    },
+    {
+        "spellId": 19574,
+        "name": "Bestial Wrath",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Spell Direct Amount, +20% (non-healer spec)",
+            "Spell Periodic Amount, +20% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 42650,
+        "name": "Army of the Dead",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+400)"
+        ]
+    },
+    {
+        "spellId": 1249625,
+        "name": "Zenith",
+        "cooldownSeconds": 90,
+        "charges": 2,
+        "signals": [
+            "Critical Strike% (0)"
+        ]
+    },
+    {
+        "spellId": 1250646,
+        "name": "Takedown",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Damage Done% (+20)",
+            "Spell Direct Amount, +20% (non-healer spec)",
+            "Spell Periodic Amount, +20% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 120644,
+        "name": "Halo",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+500)"
+        ]
+    },
+    {
+        "spellId": 191634,
+        "name": "Stormkeeper",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Spell Direct Amount, +150% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 202770,
+        "name": "Fury of Elune",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+25)"
+        ]
+    },
+    {
+        "spellId": 204066,
+        "name": "Lunar Beam",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Spell Direct Amount, +10% (non-healer spec)",
+            "Spell Periodic Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 205636,
+        "name": "Force of Nature",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+200)"
+        ]
+    },
+    {
+        "spellId": 216331,
+        "name": "Avenging Crusader",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Damage Done% (+1000)"
+        ]
+    },
+    {
+        "spellId": 381623,
+        "name": "Thistle Tea",
+        "cooldownSeconds": 60,
+        "charges": 3,
+        "signals": [
+            "Energize/resource gen (+100)"
+        ]
+    },
+    {
+        "spellId": 385627,
+        "name": "Kingsbane",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 432459,
+        "name": "Holy Bulwark",
+        "cooldownSeconds": 60,
+        "charges": 2,
+        "signals": [
+            "Energize/resource gen (+3)"
+        ]
+    },
+    {
+        "spellId": 432472,
+        "name": "Sacred Weapon",
+        "cooldownSeconds": 60,
+        "charges": 2,
+        "signals": [
+            "Energize/resource gen (+3)"
+        ]
+    },
+    {
+        "spellId": 442726,
+        "name": "Malevolence",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Modify All Haste% (+8)"
+        ]
+    },
+    {
+        "spellId": 1298826,
+        "name": "Thistle Tea",
+        "cooldownSeconds": 60,
+        "charges": 3,
+        "signals": [
+            "Energize/resource gen (+100)"
+        ]
+    },
+    {
+        "spellId": 51271,
+        "name": "Pillar of Frost",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Spell Direct Amount, +400% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 315341,
+        "name": "Between the Eyes",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Spell Direct Amount, +4% (non-healer spec)",
+            "Spell Periodic Amount, +4% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 321507,
+        "name": "Touch of the Magi",
+        "cooldownSeconds": 45,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+4)"
+        ]
+    },
+    {
+        "spellId": 385059,
+        "name": "Odyn's Fury",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+200)"
+        ]
+    },
+    {
+        "spellId": 439843,
+        "name": "Reaper's Mark",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+200)"
+        ]
+    },
+    {
+        "spellId": 1233448,
+        "name": "Dark Transformation",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Damage Done% (+200)"
+        ]
+    },
+    {
+        "spellId": 5217,
+        "name": "Tiger's Fury",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Damage Done% (+15)",
+            "Energize/resource gen (+50)",
+            "Spell Direct Amount, +15% (non-healer spec)",
+            "Spell Periodic Amount, +15% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 5938,
+        "name": "Shiv",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 255937,
+        "name": "Wake of Ashes",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+3)"
+        ]
+    },
+    {
+        "spellId": 258920,
+        "name": "Immolation Aura",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+20)"
+        ]
+    },
+    {
+        "spellId": 443454,
+        "name": "Ancestral Swiftness",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Spell Direct Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 153626,
+        "name": "Arcane Orb",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 185313,
+        "name": "Shadow Dance",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Critical Bonus (10)"
+        ]
+    },
+    {
+        "spellId": 48181,
+        "name": "Haunt",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, target takes MORE (+16)"
+        ]
+    },
+    {
+        "spellId": 1227280,
+        "name": "Tentacle Slam",
+        "cooldownSeconds": 15,
+        "charges": 2,
+        "signals": [
+            "Energize/resource gen (+600)"
+        ]
+    },
+    {
+        "spellId": 184575,
+        "name": "Blade of Justice",
+        "cooldownSeconds": 12,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 1241413,
+        "name": "Hammer of Wrath",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 85288,
+        "name": "Raging Blow",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+120)"
+        ]
+    },
+    {
+        "spellId": 335097,
+        "name": "Crushing Blow",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+120)"
+        ]
+    }
+]

@@ -61,7 +61,7 @@ class CommonPreKillSpells extends Command
         $patch = Patch::where('is_current', true)->first();
 
         $matchIds = [];
-        foreach (glob(base_path('data/arena-logs/metadata/*.json')) as $metaFile) {
+        foreach (glob(config('arena_logs.archive_path').'/metadata/*.json') as $metaFile) {
             $meta = json_decode(File::get($metaFile), true);
             $matchId = basename($metaFile, '.json');
 

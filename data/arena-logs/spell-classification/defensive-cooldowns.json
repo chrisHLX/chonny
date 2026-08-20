@@ -1,0 +1,620 @@
+[
+    {
+        "spellId": 633,
+        "name": "Lay on Hands",
+        "cooldownSeconds": 600,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 471195,
+        "name": "Lay on Hands",
+        "cooldownSeconds": 600,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 642,
+        "name": "Divine Shield",
+        "cooldownSeconds": 300,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1022,
+        "name": "Blessing of Protection",
+        "cooldownSeconds": 300,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 204018,
+        "name": "Blessing of Spellwarding",
+        "cooldownSeconds": 300,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 45438,
+        "name": "Ice Block",
+        "cooldownSeconds": 240,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 363534,
+        "name": "Rewind",
+        "cooldownSeconds": 240,
+        "charges": 1,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 740,
+        "name": "Tranquility",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 871,
+        "name": "Shield Wall",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Damage Taken%, self takes LESS (-40)"
+        ]
+    },
+    {
+        "spellId": 33206,
+        "name": "Pain Suppression",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Damage Taken%, self takes LESS (-40)"
+        ]
+    },
+    {
+        "spellId": 33891,
+        "name": "Incarnation: Tree of Life",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 47788,
+        "name": "Guardian Spirit",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 104773,
+        "name": "Unending Resolve",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-25)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 115310,
+        "name": "Revival",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 186265,
+        "name": "Aspect of the Turtle",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 388615,
+        "name": "Restoral",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 5277,
+        "name": "Evasion",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Dodge% (200)"
+        ]
+    },
+    {
+        "spellId": 6940,
+        "name": "Blessing of Sacrifice",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 47585,
+        "name": "Dispersion",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-75)",
+            "Immunity",
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 48743,
+        "name": "Death Pact",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)",
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 48792,
+        "name": "Icebound Fortitude",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 49039,
+        "name": "Lichborne",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 108271,
+        "name": "Astral Shift",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-40)"
+        ]
+    },
+    {
+        "spellId": 109304,
+        "name": "Exhilaration",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 116849,
+        "name": "Life Cocoon",
+        "cooldownSeconds": 120,
+        "charges": 1,
+        "signals": [
+            "Absorb (shield)",
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 118038,
+        "name": "Die by the Sword",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)",
+            "Parry% (100)"
+        ]
+    },
+    {
+        "spellId": 184364,
+        "name": "Enraged Regeneration",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)"
+        ]
+    },
+    {
+        "spellId": 215769,
+        "name": "Spirit of Redemption",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 19236,
+        "name": "Desperate Prayer",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 31850,
+        "name": "Ardent Defender",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)",
+            "Damage Taken%, self takes LESS (-30)"
+        ]
+    },
+    {
+        "spellId": 55233,
+        "name": "Vampiric Blood",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 102342,
+        "name": "Ironbark",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 264735,
+        "name": "Survival of the Fittest",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)"
+        ]
+    },
+    {
+        "spellId": 363916,
+        "name": "Obsidian Scales",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 473909,
+        "name": "Ancient of Lore",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-30)",
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 498,
+        "name": "Divine Protection",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 2050,
+        "name": "Holy Word: Serenity",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 18499,
+        "name": "Berserker Rage",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 22812,
+        "name": "Barkskin",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 34861,
+        "name": "Holy Word: Sanctify",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 48707,
+        "name": "Anti-Magic Shell",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 108416,
+        "name": "Dark Pact",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)",
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 199483,
+        "name": "Camouflage",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 357170,
+        "name": "Time Dilation",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 374251,
+        "name": "Cauterizing Flame",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 384100,
+        "name": "Berserker Shout",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 403876,
+        "name": "Divine Protection",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-20)"
+        ]
+    },
+    {
+        "spellId": 452930,
+        "name": "Demonic Healthstone",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 1241937,
+        "name": "Soul Immolation",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 22842,
+        "name": "Frenzied Regeneration",
+        "cooldownSeconds": 36,
+        "charges": 1,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 586,
+        "name": "Fade",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-10)"
+        ]
+    },
+    {
+        "spellId": 11426,
+        "name": "Ice Barrier",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 185311,
+        "name": "Crimson Vial",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 235450,
+        "name": "Prismatic Barrier",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Absorb (shield)",
+            "Damage Taken%, self takes LESS (-15)"
+        ]
+    },
+    {
+        "spellId": 452497,
+        "name": "Abyssal Gaze",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1044,
+        "name": "Blessing of Freedom",
+        "cooldownSeconds": 25,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1953,
+        "name": "Blink",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 73685,
+        "name": "Unleash Life",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 115008,
+        "name": "Chi Torpedo",
+        "cooldownSeconds": 20,
+        "charges": 2,
+        "signals": [
+            "Immunity"
+        ]
+    },
+    {
+        "spellId": 1277297,
+        "name": "Ignore Pain",
+        "cooldownSeconds": 20,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 194509,
+        "name": "Power Word: Radiance",
+        "cooldownSeconds": 18,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 1966,
+        "name": "Feint",
+        "cooldownSeconds": 15,
+        "charges": 1,
+        "signals": [
+            "Damage Taken%, self takes LESS (-40)"
+        ]
+    },
+    {
+        "spellId": 18562,
+        "name": "Swiftmend",
+        "cooldownSeconds": 15,
+        "charges": 1,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 200025,
+        "name": "Beacon of Virtue",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-5)"
+        ]
+    },
+    {
+        "spellId": 136,
+        "name": "Mend Pet",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 48438,
+        "name": "Wild Growth",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 366155,
+        "name": "Reversion",
+        "cooldownSeconds": 9,
+        "charges": 2,
+        "signals": [
+            "Absorb (shield)",
+            "Periodic Heal (real magnitude)"
+        ]
+    }
+]

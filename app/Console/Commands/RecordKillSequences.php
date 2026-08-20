@@ -34,7 +34,7 @@ class RecordKillSequences extends Command
         if ($this->option('matchId')) {
             $matchIds = [$this->option('matchId')];
         } elseif ($this->option('all')) {
-            $matchIds = array_map(fn ($f) => basename($f, '.log.gz'), glob(base_path('data/arena-logs/raw/*.log.gz')));
+            $matchIds = array_map(fn ($f) => basename($f, '.log.gz'), glob(config('arena_logs.archive_path').'/raw/*.log.gz'));
         } else {
             $this->error('Pass --matchId=<id> or --all.');
 
