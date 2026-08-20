@@ -1,8 +1,8 @@
 {
     "class": "warrior",
     "spec": "fury",
-    "windows": 416,
-    "killWindows": 94,
+    "windows": 308,
+    "killWindows": 97,
     "matches": 36,
     "anchors": [
         "Avatar",
@@ -20,28 +20,32 @@
         "length": 4,
         "steps": [
             {
-                "name": "Odyn's Fury Off-Hand",
-                "spellId": 385061
+                "name": "Avatar",
+                "spellId": 107574
             },
             {
-                "name": "Odyn's Fury",
-                "spellId": 385059
+                "name": "Recklessness",
+                "spellId": 1719
             },
             {
-                "name": "Odyn's Fury Off-Hand",
-                "spellId": 385061
+                "name": "Crushing Blow",
+                "spellId": 335097
             },
             {
-                "name": "Rampage",
-                "spellId": 184367
+                "name": "Crushing Blow",
+                "spellId": 335097
             }
         ],
-        "count": 39,
-        "pct": 9.4
+        "count": 33,
+        "pct": 10.7
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
+            {
+                "name": "Raging Blow",
+                "spellId": 85288
+            },
             {
                 "name": "Avatar",
                 "spellId": 107574
@@ -51,15 +55,11 @@
                 "spellId": 1719
             },
             {
-                "name": "Rampage",
-                "spellId": 184367
-            },
-            {
-                "name": "Thunder Blast",
-                "spellId": 435222
+                "name": "Crushing Blow",
+                "spellId": 335097
             }
         ],
-        "count": 11,
-        "pct": 11.7
+        "count": 14,
+        "pct": 14.4
     }
 }

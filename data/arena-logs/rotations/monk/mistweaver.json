@@ -1,58 +1,14 @@
 {
     "class": "monk",
     "spec": "mistweaver",
-    "windows": 551,
-    "killWindows": 60,
+    "windows": 19,
+    "killWindows": 6,
     "matches": 42,
     "anchors": [
         "Celestial Conduit",
         "Rushing Wind Kick",
         "Touch of Death"
     ],
-    "topCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Thunder Focus Tea",
-                "spellId": 116680
-            },
-            {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307
-            },
-            {
-                "name": "Enveloping Mist",
-                "spellId": 124682
-            },
-            {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307
-            }
-        ],
-        "count": 22,
-        "pct": 4
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307
-            },
-            {
-                "name": "Thunder Focus Tea",
-                "spellId": 116680
-            },
-            {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307
-            },
-            {
-                "name": "Soothing Mist",
-                "spellId": 115175
-            }
-        ],
-        "count": 6,
-        "pct": 10
-    }
+    "topCombo": null,
+    "topKillCombo": null
 }

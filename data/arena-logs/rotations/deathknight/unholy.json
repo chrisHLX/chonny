@@ -1,8 +1,8 @@
 {
     "class": "deathknight",
     "spec": "unholy",
-    "windows": 571,
-    "killWindows": 68,
+    "windows": 303,
+    "killWindows": 50,
     "matches": 78,
     "anchors": [
         "Army of the Dead",
@@ -15,46 +15,46 @@
         "length": 4,
         "steps": [
             {
-                "name": "Dark Transformation",
-                "spellId": 1233448
+                "name": "Chains of Ice",
+                "spellId": 45524
             },
             {
                 "name": "Army of the Dead",
                 "spellId": 42650
             },
             {
-                "name": "Soul Reaper",
-                "spellId": 343294
+                "name": "Dark Transformation",
+                "spellId": 1233448
             },
             {
-                "name": "Putrefy",
-                "spellId": 1247378
+                "name": "Soul Reaper",
+                "spellId": 343294
             }
         ],
-        "count": 18,
-        "pct": 3.2
+        "count": 27,
+        "pct": 8.9
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Putrefy",
-                "spellId": 1247378
+                "name": "Chains of Ice",
+                "spellId": 45524
             },
             {
-                "name": "Necrotic Coil",
-                "spellId": 1242174
+                "name": "Army of the Dead",
+                "spellId": 42650
             },
             {
-                "name": "Necrotic Coil",
-                "spellId": 1242174
+                "name": "Dark Transformation",
+                "spellId": 1233448
             },
             {
-                "name": "Strangulate",
-                "spellId": 47476
+                "name": "Soul Reaper",
+                "spellId": 343294
             }
         ],
-        "count": 4,
-        "pct": 5.9
+        "count": 7,
+        "pct": 14
     }
 }

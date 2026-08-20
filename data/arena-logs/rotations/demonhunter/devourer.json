@@ -1,8 +1,8 @@
 {
     "class": "demonhunter",
     "spec": "devourer",
-    "windows": 483,
-    "killWindows": 52,
+    "windows": 208,
+    "killWindows": 24,
     "matches": 42,
     "anchors": [
         "Cull",
@@ -17,46 +17,46 @@
         "length": 4,
         "steps": [
             {
-                "name": "Soul Fragment",
-                "spellId": 1223412
-            },
-            {
                 "name": "Reap",
                 "spellId": 1226019
             },
             {
-                "name": "Consume",
-                "spellId": 473662
+                "name": "The Hunt",
+                "spellId": 1246167
             },
             {
-                "name": "Soul Fragment",
-                "spellId": 1223412
+                "name": "Vengeful Retreat",
+                "spellId": 198793
+            },
+            {
+                "name": "Reap",
+                "spellId": 1226019
             }
         ],
-        "count": 210,
-        "pct": 43.5
+        "count": 17,
+        "pct": 8.2
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Soul Fragment",
-                "spellId": 1223412
+                "name": "Reap",
+                "spellId": 1226019
             },
             {
                 "name": "Reap",
                 "spellId": 1226019
             },
             {
-                "name": "Consume",
-                "spellId": 473662
+                "name": "The Hunt",
+                "spellId": 1246167
             },
             {
-                "name": "Soul Fragment",
-                "spellId": 1223412
+                "name": "Vengeful Retreat",
+                "spellId": 198793
             }
         ],
-        "count": 21,
-        "pct": 40.4
+        "count": 5,
+        "pct": 20.8
     }
 }

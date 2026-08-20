@@ -1,8 +1,8 @@
 {
     "class": "druid",
     "spec": "balance",
-    "windows": 172,
-    "killWindows": 18,
+    "windows": 124,
+    "killWindows": 13,
     "matches": 27,
     "anchors": [
         "Force of Nature",
@@ -14,28 +14,9 @@
         "length": 4,
         "steps": [
             {
-                "name": "Force of Nature",
-                "spellId": 205636
+                "name": "Cyclone",
+                "spellId": 33786
             },
-            {
-                "name": "Incarnation: Chosen of Elune",
-                "spellId": 102560
-            },
-            {
-                "name": "Starsurge",
-                "spellId": 78674
-            },
-            {
-                "name": "Starsurge",
-                "spellId": 78674
-            }
-        ],
-        "count": 19,
-        "pct": 11
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
             {
                 "name": "Force of Nature",
                 "spellId": 205636
@@ -45,15 +26,30 @@
                 "spellId": 102560
             },
             {
-                "name": "Starsurge",
-                "spellId": 78674
-            },
-            {
-                "name": "Starsurge",
-                "spellId": 78674
+                "name": "Cyclone",
+                "spellId": 33786
             }
         ],
         "count": 6,
-        "pct": 33.3
+        "pct": 4.8
+    },
+    "topKillCombo": {
+        "length": 3,
+        "steps": [
+            {
+                "name": "Wild Mushroom",
+                "spellId": 88747
+            },
+            {
+                "name": "Force of Nature",
+                "spellId": 205636
+            },
+            {
+                "name": "Incarnation: Chosen of Elune",
+                "spellId": 102560
+            }
+        ],
+        "count": 3,
+        "pct": 23.1
     }
 }

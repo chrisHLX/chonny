@@ -1,8 +1,8 @@
 {
     "class": "hunter",
     "spec": "marksmanship",
-    "windows": 768,
-    "killWindows": 87,
+    "windows": 373,
+    "killWindows": 56,
     "matches": 63,
     "anchors": [
         "Black Arrow",
@@ -16,46 +16,46 @@
         "length": 4,
         "steps": [
             {
+                "name": "Volley",
+                "spellId": 260243
+            },
+            {
                 "name": "Rapid Fire",
                 "spellId": 257044
             },
             {
-                "name": "Arcane Shot",
-                "spellId": 185358
+                "name": "Trueshot",
+                "spellId": 288613
             },
             {
-                "name": "Aimed Shot",
-                "spellId": 19434
-            },
-            {
-                "name": "Arcane Shot",
-                "spellId": 185358
+                "name": "Black Arrow",
+                "spellId": 466930
             }
         ],
-        "count": 42,
-        "pct": 5.5
+        "count": 32,
+        "pct": 8.6
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Arcane Shot",
-                "spellId": 185358
+                "name": "Black Arrow",
+                "spellId": 466930
             },
             {
-                "name": "Explosive Shot",
-                "spellId": 212431
+                "name": "Volley",
+                "spellId": 260243
             },
             {
-                "name": "Aimed Shot",
-                "spellId": 19434
+                "name": "Rapid Fire",
+                "spellId": 257044
             },
             {
-                "name": "Arcane Shot",
-                "spellId": 185358
+                "name": "Black Arrow",
+                "spellId": 466930
             }
         ],
-        "count": 7,
-        "pct": 8
+        "count": 5,
+        "pct": 8.9
     }
 }

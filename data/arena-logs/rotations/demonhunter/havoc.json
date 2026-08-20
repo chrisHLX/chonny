@@ -1,8 +1,8 @@
 {
     "class": "demonhunter",
     "spec": "havoc",
-    "windows": 403,
-    "killWindows": 65,
+    "windows": 314,
+    "killWindows": 56,
     "matches": 52,
     "anchors": [
         "Blade Dance",
@@ -21,46 +21,46 @@
         "length": 4,
         "steps": [
             {
+                "name": "Eye Beam",
+                "spellId": 198013
+            },
+            {
+                "name": "Fel Rush",
+                "spellId": 195072
+            },
+            {
                 "name": "Throw Glaive",
                 "spellId": 185123
             },
             {
-                "name": "Blade Dance",
-                "spellId": 188499
-            },
-            {
-                "name": "Throw Glaive",
-                "spellId": 185123
-            },
-            {
-                "name": "Shattered Souls",
-                "spellId": 228537
+                "name": "Death Sweep",
+                "spellId": 210152
             }
         ],
-        "count": 219,
-        "pct": 54.3
+        "count": 38,
+        "pct": 12.1
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Throw Glaive",
-                "spellId": 185123
-            },
-            {
-                "name": "Blade Dance",
-                "spellId": 188499
+                "name": "Eye Beam",
+                "spellId": 198013
             },
             {
                 "name": "Throw Glaive",
                 "spellId": 185123
             },
             {
-                "name": "Shattered Souls",
-                "spellId": 228537
+                "name": "Death Sweep",
+                "spellId": 210152
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 185123
             }
         ],
-        "count": 52,
-        "pct": 80
+        "count": 10,
+        "pct": 17.9
     }
 }

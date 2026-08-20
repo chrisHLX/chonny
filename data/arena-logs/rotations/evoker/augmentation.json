@@ -1,8 +1,8 @@
 {
     "class": "evoker",
     "spec": "augmentation",
-    "windows": 30,
-    "killWindows": 0,
+    "windows": 32,
+    "killWindows": 2,
     "matches": 5,
     "anchors": [
         "Blistering Scales",
@@ -11,23 +11,27 @@
         "Upheaval"
     ],
     "topCombo": {
-        "length": 3,
+        "length": 4,
         "steps": [
+            {
+                "name": "Sleep Walk",
+                "spellId": 360806
+            },
             {
                 "name": "Upheaval",
                 "spellId": 396286
             },
             {
-                "name": "Tip the Scales",
-                "spellId": 370553
-            },
-            {
                 "name": "Fire Breath",
                 "spellId": 357208
+            },
+            {
+                "name": "Blistering Scales",
+                "spellId": 360827
             }
         ],
-        "count": 6,
-        "pct": 20
+        "count": 8,
+        "pct": 25
     },
     "topKillCombo": null
 }

@@ -1,8 +1,8 @@
 {
     "class": "mage",
     "spec": "fire",
-    "windows": 334,
-    "killWindows": 67,
+    "windows": 138,
+    "killWindows": 32,
     "matches": 51,
     "anchors": [
         "Blazing Barrier",
@@ -15,6 +15,10 @@
         "length": 4,
         "steps": [
             {
+                "name": "Meteor",
+                "spellId": 153561
+            },
+            {
                 "name": "Combustion",
                 "spellId": 190319
             },
@@ -23,21 +27,21 @@
                 "spellId": 108853
             },
             {
-                "name": "Pyroblast",
-                "spellId": 11366
-            },
-            {
                 "name": "Fire Blast",
                 "spellId": 108853
             }
         ],
-        "count": 33,
-        "pct": 9.9
+        "count": 24,
+        "pct": 17.4
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
+                "name": "Meteor",
+                "spellId": 153561
+            },
+            {
                 "name": "Combustion",
                 "spellId": 190319
             },
@@ -46,15 +50,11 @@
                 "spellId": 108853
             },
             {
-                "name": "Pyroblast",
-                "spellId": 11366
-            },
-            {
                 "name": "Fire Blast",
                 "spellId": 108853
             }
         ],
-        "count": 11,
-        "pct": 16.4
+        "count": 7,
+        "pct": 21.9
     }
 }

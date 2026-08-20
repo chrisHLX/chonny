@@ -1,8 +1,8 @@
 {
     "class": "shaman",
     "spec": "enhancement",
-    "windows": 242,
-    "killWindows": 33,
+    "windows": 42,
+    "killWindows": 10,
     "matches": 23,
     "anchors": [
         "Ascendance",
@@ -16,46 +16,46 @@
         "length": 4,
         "steps": [
             {
-                "name": "Doom Winds",
-                "spellId": 469270
+                "name": "Earthgrab Totem",
+                "spellId": 51485
             },
             {
-                "name": "Tempest",
-                "spellId": 452201
+                "name": "Voltaic Blaze",
+                "spellId": 470057
             },
             {
-                "name": "Windstrike",
-                "spellId": 115356
+                "name": "Crash Lightning",
+                "spellId": 187874
             },
             {
-                "name": "Doom Winds",
-                "spellId": 469270
+                "name": "Ascendance",
+                "spellId": 114051
             }
         ],
-        "count": 75,
-        "pct": 31
+        "count": 5,
+        "pct": 11.9
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Doom Winds",
-                "spellId": 469270
+                "name": "Earthgrab Totem",
+                "spellId": 51485
             },
             {
-                "name": "Chain Lightning",
-                "spellId": 188443
+                "name": "Voltaic Blaze",
+                "spellId": 470057
             },
             {
-                "name": "Windstrike",
-                "spellId": 115356
+                "name": "Crash Lightning",
+                "spellId": 187874
             },
             {
-                "name": "Doom Winds",
-                "spellId": 469270
+                "name": "Ascendance",
+                "spellId": 114051
             }
         ],
-        "count": 25,
-        "pct": 75.8
+        "count": 3,
+        "pct": 30
     }
 }

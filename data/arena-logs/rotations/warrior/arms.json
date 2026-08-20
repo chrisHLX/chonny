@@ -1,8 +1,8 @@
 {
     "class": "warrior",
     "spec": "arms",
-    "windows": 999,
-    "killWindows": 135,
+    "windows": 642,
+    "killWindows": 117,
     "matches": 89,
     "anchors": [
         "Avatar",
@@ -19,46 +19,46 @@
         "length": 4,
         "steps": [
             {
-                "name": "Execute",
-                "spellId": 281000
+                "name": "Champion's Spear",
+                "spellId": 376079
+            },
+            {
+                "name": "Avatar",
+                "spellId": 107574
+            },
+            {
+                "name": "Colossus Smash",
+                "spellId": 167105
             },
             {
                 "name": "Bladestorm",
                 "spellId": 446035
-            },
-            {
-                "name": "Mortal Strike",
-                "spellId": 12294
-            },
-            {
-                "name": "Mortal Strike",
-                "spellId": 12294
             }
         ],
-        "count": 38,
-        "pct": 3.8
+        "count": 25,
+        "pct": 3.9
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Execute",
-                "spellId": 281000
+                "name": "Storm Bolt",
+                "spellId": 107570
             },
             {
-                "name": "Bladestorm",
-                "spellId": 446035
+                "name": "Champion's Spear",
+                "spellId": 376079
             },
             {
-                "name": "Mortal Strike",
-                "spellId": 12294
+                "name": "Avatar",
+                "spellId": 107574
             },
             {
-                "name": "Mortal Strike",
-                "spellId": 12294
+                "name": "Colossus Smash",
+                "spellId": 167105
             }
         ],
-        "count": 10,
-        "pct": 7.4
+        "count": 7,
+        "pct": 6
     }
 }

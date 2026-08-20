@@ -1,8 +1,8 @@
 {
     "class": "mage",
     "spec": "frost",
-    "windows": 925,
-    "killWindows": 101,
+    "windows": 577,
+    "killWindows": 81,
     "matches": 87,
     "anchors": [
         "Blizzard",
@@ -15,24 +15,24 @@
         "length": 4,
         "steps": [
             {
-                "name": "Frostbolt",
-                "spellId": 116
+                "name": "Blizzard",
+                "spellId": 190356
             },
             {
                 "name": "Flurry",
                 "spellId": 44614
             },
             {
-                "name": "Ice Lance",
-                "spellId": 30455
+                "name": "Flurry",
+                "spellId": 44614
             },
             {
-                "name": "Ice Lance",
-                "spellId": 30455
+                "name": "Ray of Frost",
+                "spellId": 205021
             }
         ],
-        "count": 33,
-        "pct": 3.6
+        "count": 8,
+        "pct": 1.4
     },
     "topKillCombo": {
         "length": 4,
@@ -46,15 +46,15 @@
                 "spellId": 44614
             },
             {
-                "name": "Ice Lance",
-                "spellId": 30455
+                "name": "Dragon's Breath",
+                "spellId": 31661
             },
             {
-                "name": "Ice Lance",
-                "spellId": 30455
+                "name": "Ray of Frost",
+                "spellId": 205021
             }
         ],
-        "count": 10,
-        "pct": 9.9
+        "count": 4,
+        "pct": 4.9
     }
 }

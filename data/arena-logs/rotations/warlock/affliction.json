@@ -1,8 +1,8 @@
 {
     "class": "warlock",
     "spec": "affliction",
-    "windows": 416,
-    "killWindows": 54,
+    "windows": 127,
+    "killWindows": 27,
     "matches": 47,
     "anchors": [
         "Dark Harvest",
@@ -18,20 +18,20 @@
                 "spellId": 48181
             },
             {
-                "name": "Unstable Affliction",
-                "spellId": 1259790
+                "name": "Dark Harvest",
+                "spellId": 1257052
             },
             {
-                "name": "Unstable Affliction",
-                "spellId": 1259790
+                "name": "Curse of Exhaustion",
+                "spellId": 334275
             },
             {
-                "name": "Drain Soul",
-                "spellId": 198590
+                "name": "Curse of Exhaustion",
+                "spellId": 334275
             }
         ],
-        "count": 13,
-        "pct": 3.1
+        "count": 5,
+        "pct": 3.9
     },
     "topKillCombo": {
         "length": 4,
@@ -41,19 +41,19 @@
                 "spellId": 48181
             },
             {
-                "name": "Unstable Affliction",
-                "spellId": 1259790
+                "name": "Curse of Exhaustion",
+                "spellId": 334275
             },
             {
-                "name": "Drain Soul",
-                "spellId": 198590
+                "name": "Curse of Exhaustion",
+                "spellId": 334275
             },
             {
-                "name": "Unstable Affliction",
-                "spellId": 1259790
+                "name": "Dark Harvest",
+                "spellId": 1257052
             }
         ],
-        "count": 3,
-        "pct": 5.6
+        "count": 4,
+        "pct": 14.8
     }
 }

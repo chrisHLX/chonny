@@ -1,8 +1,8 @@
 {
     "class": "mage",
     "spec": "arcane",
-    "windows": 249,
-    "killWindows": 12,
+    "windows": 112,
+    "killWindows": 7,
     "matches": 28,
     "anchors": [
         "Arcane Orb",
@@ -14,24 +14,24 @@
         "length": 4,
         "steps": [
             {
-                "name": "Arcane Barrage",
-                "spellId": 44425
+                "name": "Arcane Surge",
+                "spellId": 365350
             },
             {
-                "name": "Arcane Missiles",
-                "spellId": 5143
+                "name": "Touch of the Magi",
+                "spellId": 321507
             },
             {
                 "name": "Arcane Orb",
                 "spellId": 153626
             },
             {
-                "name": "Arcane Barrage",
-                "spellId": 44425
+                "name": "Arcane Orb",
+                "spellId": 153626
             }
         ],
-        "count": 9,
-        "pct": 3.6
+        "count": 7,
+        "pct": 6.3
     },
     "topKillCombo": null
 }

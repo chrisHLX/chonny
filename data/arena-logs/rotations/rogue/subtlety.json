@@ -1,8 +1,8 @@
 {
     "class": "rogue",
     "spec": "subtlety",
-    "windows": 378,
-    "killWindows": 38,
+    "windows": 114,
+    "killWindows": 10,
     "matches": 51,
     "anchors": [
         "Goremaw's Bite",
@@ -23,16 +23,16 @@
                 "spellId": 1833
             },
             {
-                "name": "Eviscerate",
-                "spellId": 196819
+                "name": "Shadow Blades",
+                "spellId": 121471
             },
             {
-                "name": "Shadowstrike",
-                "spellId": 185438
+                "name": "Secret Technique",
+                "spellId": 280719
             }
         ],
-        "count": 31,
-        "pct": 8.2
+        "count": 23,
+        "pct": 20.2
     },
     "topKillCombo": {
         "length": 4,
@@ -42,19 +42,19 @@
                 "spellId": 185313
             },
             {
-                "name": "Shadowstrike",
-                "spellId": 185438
+                "name": "Cheap Shot",
+                "spellId": 1833
+            },
+            {
+                "name": "Shadow Blades",
+                "spellId": 121471
             },
             {
                 "name": "Secret Technique",
                 "spellId": 280719
-            },
-            {
-                "name": "Shadowstrike",
-                "spellId": 185438
             }
         ],
-        "count": 6,
-        "pct": 15.8
+        "count": 3,
+        "pct": 30
     }
 }

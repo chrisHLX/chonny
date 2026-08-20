@@ -2,7 +2,7 @@
     "class": "warlock",
     "spec": "demonology",
     "windows": 38,
-    "killWindows": 2,
+    "killWindows": 3,
     "matches": 10,
     "anchors": [
         "Implosion"
@@ -15,16 +15,16 @@
                 "spellId": 196277
             },
             {
-                "name": "Curse of Exhaustion",
-                "spellId": 334275
+                "name": "Fear",
+                "spellId": 5782
             },
             {
-                "name": "Demonbolt",
-                "spellId": 264178
+                "name": "Axe Toss",
+                "spellId": 119914
             }
         ],
-        "count": 3,
-        "pct": 7.9
+        "count": 4,
+        "pct": 10.5
     },
     "topKillCombo": null
 }

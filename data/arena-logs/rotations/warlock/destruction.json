@@ -1,8 +1,8 @@
 {
     "class": "warlock",
     "spec": "destruction",
-    "windows": 516,
-    "killWindows": 46,
+    "windows": 217,
+    "killWindows": 21,
     "matches": 37,
     "anchors": [
         "Conflagrate",
@@ -13,46 +13,46 @@
         "length": 4,
         "steps": [
             {
-                "name": "Chaos Bolt",
-                "spellId": 116858
-            },
-            {
-                "name": "Chaos Bolt",
-                "spellId": 116858
-            },
-            {
                 "name": "Conflagrate",
                 "spellId": 17962
             },
             {
-                "name": "Incinerate",
-                "spellId": 29722
+                "name": "Mortal Coil",
+                "spellId": 6789
+            },
+            {
+                "name": "Soul Fire",
+                "spellId": 6353
+            },
+            {
+                "name": "Conflagrate",
+                "spellId": 17962
             }
         ],
-        "count": 14,
-        "pct": 2.7
+        "count": 16,
+        "pct": 7.4
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Chaos Bolt",
-                "spellId": 116858
+                "name": "Conflagrate",
+                "spellId": 17962
+            },
+            {
+                "name": "Soul Fire",
+                "spellId": 6353
             },
             {
                 "name": "Conflagrate",
                 "spellId": 17962
             },
             {
-                "name": "Chaos Bolt",
-                "spellId": 116858
-            },
-            {
-                "name": "Incinerate",
-                "spellId": 29722
+                "name": "Malevolence",
+                "spellId": 442726
             }
         ],
-        "count": 4,
-        "pct": 8.7
+        "count": 5,
+        "pct": 23.8
     }
 }

@@ -1,8 +1,8 @@
 {
     "class": "paladin",
     "spec": "retribution",
-    "windows": 911,
-    "killWindows": 187,
+    "windows": 64,
+    "killWindows": 10,
     "matches": 81,
     "anchors": [
         "Avenging Wrath",
@@ -15,46 +15,46 @@
         "length": 4,
         "steps": [
             {
-                "name": "Crusading Strikes",
-                "spellId": 408385
-            },
-            {
-                "name": "Final Verdict",
-                "spellId": 383328
-            },
-            {
                 "name": "Blade of Justice",
                 "spellId": 184575
             },
             {
-                "name": "Crusading Strikes",
-                "spellId": 408385
+                "name": "Avenging Wrath",
+                "spellId": 31884
+            },
+            {
+                "name": "Execution Sentence",
+                "spellId": 343527
+            },
+            {
+                "name": "Wake of Ashes",
+                "spellId": 255937
             }
         ],
-        "count": 75,
-        "pct": 8.2
+        "count": 7,
+        "pct": 10.9
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Crusading Strikes",
-                "spellId": 408385
-            },
-            {
-                "name": "Final Verdict",
-                "spellId": 383328
+                "name": "Judgment",
+                "spellId": 20271
             },
             {
                 "name": "Blade of Justice",
                 "spellId": 184575
             },
             {
-                "name": "Crusading Strikes",
-                "spellId": 408385
+                "name": "Avenging Wrath",
+                "spellId": 31884
+            },
+            {
+                "name": "Execution Sentence",
+                "spellId": 343527
             }
         ],
-        "count": 29,
-        "pct": 15.5
+        "count": 3,
+        "pct": 30
     }
 }

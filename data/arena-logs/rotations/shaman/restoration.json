@@ -1,8 +1,8 @@
 {
     "class": "shaman",
     "spec": "restoration",
-    "windows": 228,
-    "killWindows": 41,
+    "windows": 75,
+    "killWindows": 11,
     "matches": 65,
     "anchors": [
         "Ancestral Swiftness",
@@ -12,28 +12,9 @@
         "length": 4,
         "steps": [
             {
-                "name": "Ancestral Swiftness",
-                "spellId": 443454
+                "name": "Earthgrab Totem",
+                "spellId": 51485
             },
-            {
-                "name": "Healing Wave",
-                "spellId": 77472
-            },
-            {
-                "name": "Stormstream Totem",
-                "spellId": 1267068
-            },
-            {
-                "name": "Riptide",
-                "spellId": 61295
-            }
-        ],
-        "count": 9,
-        "pct": 3.9
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
             {
                 "name": "Lava Burst",
                 "spellId": 51505
@@ -43,15 +24,30 @@
                 "spellId": 443454
             },
             {
-                "name": "Healing Wave",
-                "spellId": 77472
-            },
-            {
-                "name": "Stormstream Totem",
-                "spellId": 1267068
+                "name": "Lava Burst",
+                "spellId": 51505
             }
         ],
         "count": 3,
-        "pct": 7.3
+        "pct": 4
+    },
+    "topKillCombo": {
+        "length": 3,
+        "steps": [
+            {
+                "name": "Lightning Lasso",
+                "spellId": 305483
+            },
+            {
+                "name": "Ancestral Swiftness",
+                "spellId": 443454
+            },
+            {
+                "name": "Lava Burst",
+                "spellId": 51505
+            }
+        ],
+        "count": 3,
+        "pct": 27.3
     }
 }

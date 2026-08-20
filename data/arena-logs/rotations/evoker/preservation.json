@@ -1,8 +1,8 @@
 {
     "class": "evoker",
     "spec": "preservation",
-    "windows": 525,
-    "killWindows": 50,
+    "windows": 109,
+    "killWindows": 15,
     "matches": 83,
     "anchors": [
         "Deep Breath",
@@ -12,46 +12,24 @@
         "length": 4,
         "steps": [
             {
+                "name": "Sleep Walk",
+                "spellId": 360806
+            },
+            {
                 "name": "Fire Breath",
                 "spellId": 357208
             },
             {
-                "name": "Chrono Flames",
-                "spellId": 431443
+                "name": "Deep Breath",
+                "spellId": 357210
             },
             {
-                "name": "Disintegrate",
-                "spellId": 356995
-            },
-            {
-                "name": "Disintegrate",
-                "spellId": 356995
+                "name": "Sleep Walk",
+                "spellId": 360806
             }
         ],
-        "count": 11,
-        "pct": 2.1
+        "count": 6,
+        "pct": 5.5
     },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Fire Breath",
-                "spellId": 357208
-            },
-            {
-                "name": "Chrono Flames",
-                "spellId": 431443
-            },
-            {
-                "name": "Disintegrate",
-                "spellId": 356995
-            },
-            {
-                "name": "Disintegrate",
-                "spellId": 356995
-            }
-        ],
-        "count": 3,
-        "pct": 6
-    }
+    "topKillCombo": null
 }

@@ -1,7 +1,7 @@
 {
     "class": "evoker",
     "spec": "devastation",
-    "windows": 64,
+    "windows": 28,
     "killWindows": 0,
     "matches": 6,
     "anchors": [
@@ -14,24 +14,24 @@
         "length": 4,
         "steps": [
             {
+                "name": "Deep Breath",
+                "spellId": 433874
+            },
+            {
+                "name": "Deep Breath",
+                "spellId": 433874
+            },
+            {
                 "name": "Fire Breath",
                 "spellId": 357208
             },
             {
                 "name": "Eternity Surge",
                 "spellId": 359073
-            },
-            {
-                "name": "Hover",
-                "spellId": 358267
-            },
-            {
-                "name": "Disintegrate",
-                "spellId": 356995
             }
         ],
-        "count": 5,
-        "pct": 7.8
+        "count": 4,
+        "pct": 14.3
     },
     "topKillCombo": null
 }

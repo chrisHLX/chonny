@@ -1,8 +1,8 @@
 {
     "class": "deathknight",
     "spec": "frost",
-    "windows": 290,
-    "killWindows": 33,
+    "windows": 157,
+    "killWindows": 26,
     "matches": 46,
     "anchors": [
         "Breath of Sindragosa",
@@ -16,46 +16,46 @@
         "length": 4,
         "steps": [
             {
-                "name": "Obliterate",
-                "spellId": 49020
+                "name": "Pillar of Frost",
+                "spellId": 51271
             },
             {
                 "name": "Empower Rune Weapon",
                 "spellId": 47568
             },
             {
-                "name": "Exterminate",
-                "spellId": 441424
+                "name": "Breath of Sindragosa",
+                "spellId": 1249658
             },
             {
-                "name": "Obliterate",
-                "spellId": 49020
+                "name": "Empower Rune Weapon",
+                "spellId": 47568
             }
         ],
-        "count": 44,
-        "pct": 15.2
+        "count": 22,
+        "pct": 14
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Obliterate",
-                "spellId": 49020
+                "name": "Chains of Ice",
+                "spellId": 45524
             },
             {
-                "name": "Empower Rune Weapon",
-                "spellId": 47568
+                "name": "Chains of Ice",
+                "spellId": 45524
             },
             {
-                "name": "Exterminate",
-                "spellId": 441424
+                "name": "Pillar of Frost",
+                "spellId": 51271
             },
             {
-                "name": "Obliterate",
-                "spellId": 49020
+                "name": "Reaper's Mark",
+                "spellId": 439843
             }
         ],
         "count": 5,
-        "pct": 15.2
+        "pct": 19.2
     }
 }

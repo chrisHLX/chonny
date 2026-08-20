@@ -1,8 +1,8 @@
 {
     "class": "druid",
     "spec": "feral",
-    "windows": 326,
-    "killWindows": 22,
+    "windows": 240,
+    "killWindows": 21,
     "matches": 34,
     "anchors": [
         "Feral Frenzy",
@@ -13,8 +13,8 @@
         "length": 4,
         "steps": [
             {
-                "name": "Rip",
-                "spellId": 1079
+                "name": "Tiger's Fury",
+                "spellId": 5217
             },
             {
                 "name": "Feral Frenzy",
@@ -25,34 +25,34 @@
                 "spellId": 22570
             },
             {
-                "name": "Shred",
-                "spellId": 5221
+                "name": "Cyclone",
+                "spellId": 33786
             }
         ],
-        "count": 13,
-        "pct": 4
+        "count": 18,
+        "pct": 7.5
     },
     "topKillCombo": {
         "length": 4,
         "steps": [
             {
-                "name": "Rip",
-                "spellId": 1079
+                "name": "Tiger's Fury",
+                "spellId": 5217
             },
             {
                 "name": "Feral Frenzy",
                 "spellId": 274837
             },
             {
-                "name": "Ferocious Bite",
-                "spellId": 22568
+                "name": "Maim",
+                "spellId": 22570
             },
             {
-                "name": "Shred",
-                "spellId": 5221
+                "name": "Entangling Roots",
+                "spellId": 339
             }
         ],
-        "count": 3,
-        "pct": 13.6
+        "count": 4,
+        "pct": 19
     }
 }
