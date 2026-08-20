@@ -18,6 +18,15 @@
         ]
     },
     {
+        "spellId": 115203,
+        "name": "Fortifying Brew",
+        "cooldownSeconds": 360,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 120954: Absorb (Absorb Damage)"
+        ]
+    },
+    {
         "spellId": 642,
         "name": "Divine Shield",
         "cooldownSeconds": 300,
@@ -36,6 +45,15 @@
         ]
     },
     {
+        "spellId": 196718,
+        "name": "Darkness",
+        "cooldownSeconds": 300,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 209426: Absorb (Absorb Damage)"
+        ]
+    },
+    {
         "spellId": 204018,
         "name": "Blessing of Spellwarding",
         "cooldownSeconds": 300,
@@ -51,6 +69,15 @@
         "charges": 1,
         "signals": [
             "Immunity"
+        ]
+    },
+    {
+        "spellId": 51052,
+        "name": "Anti-Magic Zone",
+        "cooldownSeconds": 240,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 50461: Absorb (Absorb Damage)"
         ]
     },
     {
@@ -105,6 +132,33 @@
         "charges": null,
         "signals": [
             "Absorb (shield)"
+        ]
+    },
+    {
+        "spellId": 61336,
+        "name": "Survival Instincts",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 50322: Damage Taken%, self takes LESS (-50)"
+        ]
+    },
+    {
+        "spellId": 64843,
+        "name": "Divine Hymn",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 64844: Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 98008,
+        "name": "Spirit Link Totem",
+        "cooldownSeconds": 180,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 98007: Damage Taken%, self takes LESS (-10)"
         ]
     },
     {
@@ -164,6 +218,15 @@
         ]
     },
     {
+        "spellId": 31224,
+        "name": "Cloak of Shadows",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 35729: Immunity (School Immunity)"
+        ]
+    },
+    {
         "spellId": 47585,
         "name": "Dispersion",
         "cooldownSeconds": 120,
@@ -195,6 +258,15 @@
         ]
     },
     {
+        "spellId": 49028,
+        "name": "Dancing Rune Weapon",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 81256: Parry% (30)"
+        ]
+    },
+    {
         "spellId": 49039,
         "name": "Lichborne",
         "cooldownSeconds": 120,
@@ -219,6 +291,15 @@
         "charges": null,
         "signals": [
             "Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 110959,
+        "name": "Greater Invisibility",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 113862: Damage Taken%, self takes LESS (-60)"
         ]
     },
     {
@@ -258,6 +339,15 @@
         "signals": [
             "Absorb (shield)",
             "Immunity"
+        ]
+    },
+    {
+        "spellId": 325197,
+        "name": "Invoke Chi-Ji, the Red Crane",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 343818: Immunity (School Immunity)"
         ]
     },
     {
@@ -391,6 +481,15 @@
         ]
     },
     {
+        "spellId": 198589,
+        "name": "Blur",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 202818: Dodge% (50)"
+        ]
+    },
+    {
         "spellId": 199483,
         "name": "Camouflage",
         "cooldownSeconds": 60,
@@ -472,6 +571,15 @@
         ]
     },
     {
+        "spellId": 5394,
+        "name": "Healing Stream Totem",
+        "cooldownSeconds": 30,
+        "charges": 0,
+        "signals": [
+            "Via sibling spell_id 52042: Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 11426,
         "name": "Ice Barrier",
         "cooldownSeconds": 30,
@@ -509,12 +617,30 @@
         ]
     },
     {
+        "spellId": 1267068,
+        "name": "Stormstream Totem",
+        "cooldownSeconds": 30,
+        "charges": 0,
+        "signals": [
+            "Via sibling spell_id 1267745: Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 1044,
         "name": "Blessing of Freedom",
         "cooldownSeconds": 25,
         "charges": 1,
         "signals": [
             "Immunity"
+        ]
+    },
+    {
+        "spellId": 23920,
+        "name": "Spell Reflection",
+        "cooldownSeconds": 25,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 335255: Damage Taken%, self takes LESS (-20)"
         ]
     },
     {
@@ -563,6 +689,15 @@
         ]
     },
     {
+        "spellId": 2565,
+        "name": "Shield Block",
+        "cooldownSeconds": 16,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 132404: Block% (100)"
+        ]
+    },
+    {
         "spellId": 1966,
         "name": "Feint",
         "cooldownSeconds": 15,
@@ -590,6 +725,15 @@
         ]
     },
     {
+        "spellId": 33076,
+        "name": "Prayer of Mending",
+        "cooldownSeconds": 12,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 33110: Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 136,
         "name": "Mend Pet",
         "cooldownSeconds": 10,
@@ -605,6 +749,15 @@
         "charges": null,
         "signals": [
             "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 115151,
+        "name": "Renewing Mist",
+        "cooldownSeconds": 9,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 119611: Periodic Heal (real magnitude)"
         ]
     },
     {

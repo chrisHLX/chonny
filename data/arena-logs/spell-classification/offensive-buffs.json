@@ -76,15 +76,6 @@
         ]
     },
     {
-        "spellId": 187827,
-        "name": "Metamorphosis",
-        "cooldownSeconds": 120,
-        "charges": 1,
-        "signals": [
-            "Spell Direct Amount, +20% (non-healer spec)"
-        ]
-    },
-    {
         "spellId": 190319,
         "name": "Combustion",
         "cooldownSeconds": 120,
@@ -114,16 +105,6 @@
         ]
     },
     {
-        "spellId": 19574,
-        "name": "Bestial Wrath",
-        "cooldownSeconds": 90,
-        "charges": null,
-        "signals": [
-            "Spell Direct Amount, +20% (non-healer spec)",
-            "Spell Periodic Amount, +20% (non-healer spec)"
-        ]
-    },
-    {
         "spellId": 42650,
         "name": "Army of the Dead",
         "cooldownSeconds": 90,
@@ -150,15 +131,6 @@
             "Damage Done% (+20)",
             "Spell Direct Amount, +20% (non-healer spec)",
             "Spell Periodic Amount, +20% (non-healer spec)"
-        ]
-    },
-    {
-        "spellId": 120644,
-        "name": "Halo",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Energize/resource gen (+500)"
         ]
     },
     {
@@ -223,15 +195,6 @@
         "charges": null,
         "signals": [
             "Energize/resource gen (+1)"
-        ]
-    },
-    {
-        "spellId": 432459,
-        "name": "Holy Bulwark",
-        "cooldownSeconds": 60,
-        "charges": 2,
-        "signals": [
-            "Energize/resource gen (+3)"
         ]
     },
     {

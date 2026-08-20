@@ -14,6 +14,19 @@
         ]
     },
     {
+        "spellId": 51690,
+        "name": "Killing Spree",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 57841: School Damage (2): physical (SP-scaled, pvp_coefficient=0.62222)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 424562: Absorb (Absorb Damage)"
+        ]
+    },
+    {
         "spellId": 53480,
         "name": "Roar of Sacrifice",
         "cooldownSeconds": 120,
@@ -24,6 +37,21 @@
         ],
         "defensiveSignals": [
             "Damage Taken%, self takes LESS (-15)"
+        ]
+    },
+    {
+        "spellId": 187827,
+        "name": "Metamorphosis",
+        "cooldownSeconds": 120,
+        "charges": 1,
+        "offensiveBuffSignals": [
+            "Spell Direct Amount, +20% (non-healer spec)"
+        ],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 200166: School Damage (2): chromatic (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 201453: Immunity (School Immunity)"
         ]
     },
     {
@@ -41,6 +69,22 @@
         "offensiveSpellSignals": [],
         "defensiveSignals": [
             "Damage Taken%, self takes LESS (-2)"
+        ]
+    },
+    {
+        "spellId": 19574,
+        "name": "Bestial Wrath",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "offensiveBuffSignals": [
+            "Spell Direct Amount, +20% (non-healer spec)",
+            "Spell Periodic Amount, +20% (non-healer spec)"
+        ],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 344572: School Damage (2): physical (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 186254: Absorb (Absorb Damage)"
         ]
     },
     {
@@ -85,6 +129,60 @@
         ]
     },
     {
+        "spellId": 120644,
+        "name": "Halo",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "offensiveBuffSignals": [
+            "Energize/resource gen (+500)"
+        ],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 120696: School Damage (2): holy (SP-scaled, sp_coefficient=1.442)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 120692: Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 204021,
+        "name": "Fiery Brand",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Own record: School Damage (2): fire (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 207771: Damage Taken%, self takes LESS (-40)"
+        ]
+    },
+    {
+        "spellId": 432459,
+        "name": "Holy Bulwark",
+        "cooldownSeconds": 60,
+        "charges": 2,
+        "offensiveBuffSignals": [
+            "Energize/resource gen (+3)"
+        ],
+        "offensiveSpellSignals": [],
+        "defensiveSignals": [
+            "Via sibling spell_id 432607: Absorb (Absorb Damage)"
+        ]
+    },
+    {
+        "spellId": 1263824,
+        "name": "Consumption",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 1263825: School Damage (2): shadow (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 1263861: Damage Taken%, self takes LESS (-5)"
+        ]
+    },
+    {
         "spellId": 212084,
         "name": "Fel Devastation",
         "cooldownSeconds": 40,
@@ -124,6 +222,19 @@
         ]
     },
     {
+        "spellId": 355913,
+        "name": "Emerald Blossom",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 373766: School Damage (2): nature (SP-scaled, sp_coefficient=1.5)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 355916: Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 436358,
         "name": "Demolish",
         "cooldownSeconds": 30,
@@ -138,6 +249,19 @@
         ]
     },
     {
+        "spellId": 202168,
+        "name": "Impending Victory",
+        "cooldownSeconds": 25,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Own record: School Damage (2): physical (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 202166: Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 113656,
         "name": "Fists of Fury",
         "cooldownSeconds": 24,
@@ -148,6 +272,45 @@
         ],
         "defensiveSignals": [
             "Parry% (0)"
+        ]
+    },
+    {
+        "spellId": 203720,
+        "name": "Demon Spikes",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 391159: School Damage (2): physical (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 203819: Parry% (8)"
+        ]
+    },
+    {
+        "spellId": 467307,
+        "name": "Rushing Wind Kick",
+        "cooldownSeconds": 10,
+        "charges": 1,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 468179: School Damage (2): nature (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 1269159: Direct Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 47540,
+        "name": "Penance",
+        "cooldownSeconds": 9,
+        "charges": 1,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Via sibling spell_id 47666: School Damage (2): holy (SP-scaled, sp_coefficient=0.932)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 47750: Direct Heal (real magnitude)"
         ]
     }
 ]

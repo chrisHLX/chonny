@@ -1,14 +1,5 @@
 [
     {
-        "spellId": 51690,
-        "name": "Killing Spree",
-        "cooldownSeconds": 180,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 57841: School Damage (2): physical (SP-scaled, pvp_coefficient=0.62222)"
-        ]
-    },
-    {
         "spellId": 64382,
         "name": "Shattering Throw",
         "cooldownSeconds": 180,
@@ -45,15 +36,6 @@
         ]
     },
     {
-        "spellId": 187827,
-        "name": "Metamorphosis",
-        "cooldownSeconds": 120,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 200166: School Damage (2): chromatic (base=0)"
-        ]
-    },
-    {
         "spellId": 357210,
         "name": "Deep Breath",
         "cooldownSeconds": 120,
@@ -78,15 +60,6 @@
         "charges": 1,
         "signals": [
             "Via sibling spell_id 353759: Periodic Damage (3): firestorm every 0.5 seconds (SP-scaled, sp_coefficient=2.6)"
-        ]
-    },
-    {
-        "spellId": 19574,
-        "name": "Bestial Wrath",
-        "cooldownSeconds": 90,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 344572: School Damage (2): physical (base=0)"
         ]
     },
     {
@@ -189,30 +162,12 @@
         ]
     },
     {
-        "spellId": 120644,
-        "name": "Halo",
-        "cooldownSeconds": 60,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 120696: School Damage (2): holy (SP-scaled, sp_coefficient=1.442)"
-        ]
-    },
-    {
         "spellId": 202770,
         "name": "Fury of Elune",
         "cooldownSeconds": 60,
         "charges": null,
         "signals": [
             "Via sibling spell_id 211545: School Damage (2): astral (SP-scaled, sp_coefficient=0.1834)"
-        ]
-    },
-    {
-        "spellId": 204021,
-        "name": "Fiery Brand",
-        "cooldownSeconds": 60,
-        "charges": 1,
-        "signals": [
-            "Own record: School Damage (2): fire (base=0)"
         ]
     },
     {
@@ -468,15 +423,6 @@
         ]
     },
     {
-        "spellId": 1263824,
-        "name": "Consumption",
-        "cooldownSeconds": 45,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 1263825: School Damage (2): shadow (base=0)"
-        ]
-    },
-    {
         "spellId": 258860,
         "name": "Essence Break",
         "cooldownSeconds": 40,
@@ -630,15 +576,6 @@
         ]
     },
     {
-        "spellId": 355913,
-        "name": "Emerald Blossom",
-        "cooldownSeconds": 30,
-        "charges": null,
-        "signals": [
-            "Via sibling spell_id 373766: School Damage (2): nature (SP-scaled, sp_coefficient=1.5)"
-        ]
-    },
-    {
         "spellId": 357208,
         "name": "Fire Breath",
         "cooldownSeconds": 30,
@@ -729,15 +666,6 @@
         ]
     },
     {
-        "spellId": 202168,
-        "name": "Impending Victory",
-        "cooldownSeconds": 25,
-        "charges": null,
-        "signals": [
-            "Own record: School Damage (2): physical (base=0)"
-        ]
-    },
-    {
         "spellId": 247454,
         "name": "Spirit Bomb",
         "cooldownSeconds": 25,
@@ -762,15 +690,6 @@
         "charges": 1,
         "signals": [
             "Via sibling spell_id 153640: School Damage (2): arcane (SP-scaled, sp_coefficient=2.432)"
-        ]
-    },
-    {
-        "spellId": 203720,
-        "name": "Demon Spikes",
-        "cooldownSeconds": 20,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 391159: School Damage (2): physical (base=0)"
         ]
     },
     {
@@ -1017,15 +936,6 @@
         ]
     },
     {
-        "spellId": 467307,
-        "name": "Rushing Wind Kick",
-        "cooldownSeconds": 10,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 468179: School Damage (2): nature (base=0)"
-        ]
-    },
-    {
         "spellId": 470057,
         "name": "Voltaic Blaze",
         "cooldownSeconds": 10,
@@ -1059,15 +969,6 @@
         "charges": null,
         "signals": [
             "Via sibling spell_id 81297: School Damage (2): holy (SP-scaled, pvp_coefficient=1.5)"
-        ]
-    },
-    {
-        "spellId": 47540,
-        "name": "Penance",
-        "cooldownSeconds": 9,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 47666: School Damage (2): holy (SP-scaled, sp_coefficient=0.932)"
         ]
     },
     {
