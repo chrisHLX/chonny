@@ -411,6 +411,14 @@
                                         $durationLabel = $fmtPvpDuration($spell);
                                         [$cdValue, $cdUnit] = $splitUnit($cdLabel($spell));
                                         [$durValue, $durUnit] = $splitUnit($durationLabel ?? '—');
+                                        // Defaults to 1 when null — every ability has at least one
+                                        // use before going on cooldown; the DB only ever stores an
+                                        // explicit value when a spell has 2+ charges baseline. This
+                                        // is the talent-modified effective count (same "card shows
+                                        // the number, modal explains which modifier caused it" split
+                                        // CD already uses) — which modifier granted an extra charge
+                                        // stays a click away, not duplicated here.
+                                        $chargesValue = $synergies['charges_by_id'][$spell->id] ?? 1;
                                     @endphp
                                     {{-- Clickable — opens the same spell-detail modal Active Abilities/Main
                                          Cooldowns use, keyed by "m{memberIndex}-s{spellId}" (see the
@@ -440,6 +448,11 @@
                                             <div class="flex flex-col leading-none">
                                                 <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">Dur</span>
                                                 <span class="text-[15px] font-bold tabular-nums {{ $durationLabel ? 'text-ink' : 'text-ink-subtle italic text-[13px]' }}">{{ $durValue }}<span class="text-[10px] font-bold text-ink">{{ $durUnit }}</span></span>
+                                            </div>
+                                            <div class="w-px h-7 bg-line"></div>
+                                            <div class="flex flex-col leading-none">
+                                                <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">Chg</span>
+                                                <span class="text-[15px] font-bold tabular-nums {{ $chargesValue > 1 ? 'text-gold' : 'text-ink' }}">{{ $chargesValue }}</span>
                                             </div>
                                         </div>
                                         @if ($ownerMember && $ownerMember['spec'])
@@ -555,7 +568,7 @@
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
                         <span class="text-amber-400 font-semibold">Preview / in development.</span>
-                        The most common cast sequence each spec actually performs around its own offensive cooldowns, taken from real matches. The target is identified by where that player's damage actually went inside the window, so a go that didn't kill still counts. <span class="text-ink font-semibold">Kill combo</span> is the same thing restricted to windows where the target actually died. Sample sizes vary a lot by spec — a low count means "not much data yet," not a confident answer.
+                        The most common cast sequence each spec actually performs around its own <span class="text-ink font-semibold">major</span> offensive cooldowns, taken from real matches — a 30s window (15s either side) around the cooldown, matched on cooldowns and crowd control only so filler doesn't crowd them out. Gold-bordered steps are the cooldown the window is built around. These are <span class="text-ink font-semibold">exact</span> 6-cast sequences, so the match rate is low by nature — real play varies, and no single ordering dominates. Treat it as "this specific sequence recurs more than any other," not "this is what they always do."
                     </p>
                 </div>
 
@@ -582,15 +595,16 @@
                             @if (!$rot || empty($rot['topCombo']))
                                 <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a rotation on this spec yet.</p>
                             @else
-                                @foreach ([['key' => 'topCombo', 'label' => 'Most common combo', 'sample' => $rot['windows']], ['key' => 'topKillCombo', 'label' => 'Most common kill combo', 'sample' => $rot['killWindows']]] as $block)
-                                    @php $combo = $rot[$block['key']] ?? null; @endphp
-                                    @continue(!$combo)
-
-                                    <div class="{{ !$loop->first ? 'mt-4 pt-4 border-t border-line' : '' }}">
+                                {{-- One combo only (2026-08-20, direct instruction) — the separate
+                                     "kill combo" block was dropped because it was near-identical to
+                                     this one for most specs: "kill combo is basically the combo
+                                     working but they are all pretty much the same". --}}
+                                @php $combo = $rot['topCombo']; @endphp
+                                    <div>
                                         <div class="flex items-baseline gap-2 mb-2.5">
-                                            <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">{{ $block['label'] }}</p>
+                                            <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Most common combo</p>
                                             <span class="text-[10px] text-ink-subtle">
-                                                seen in {{ $combo['count'] }} of {{ number_format($block['sample']) }} ({{ $combo['pct'] }}%)
+                                                seen in {{ $combo['count'] }} of {{ number_format($rot['windows']) }} go windows ({{ $combo['pct'] }}%)
                                             </span>
                                         </div>
 
@@ -635,7 +649,6 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                @endforeach
                             @endif
                         @endif
                     </div>
@@ -644,7 +657,7 @@
 
             {{-- Rating Tiers tab — DEV/preview, reads data/arena-logs/rating-tiers/{class}/{spec}.json
                  directly (RatingTierAnalysisService / wow:analyze-rating-tiers), same "read straight
-                 off disk, no DB, no cache" posture as the Kill Sequence tab above. Damage/spell-cast
+                 off disk, no DB, no cache" posture as the Offensive Rotation tab above. Damage/spell-cast
                  rate/CC/interrupts/deaths/win-loss are shown per rating band, further split by hero
                  talent tree (Aldrachi Reaver vs Fel-Scarred etc.) — see the command's own docblock
                  for why the hero-tree split matters (a flat per-spec average silently blends

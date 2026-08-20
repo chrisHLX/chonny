@@ -16,32 +16,22 @@
         "Shattering Throw",
         "Wrecking Throw"
     ],
+    "majorAnchors": [
+        "Avatar",
+        "Bladestorm",
+        "Champion's Spear",
+        "Odyn's Fury",
+        "Recklessness",
+        "Shattering Throw",
+        "Wrecking Throw"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
-                "name": "Avatar",
-                "spellId": 107574
+                "name": "Raging Blow",
+                "spellId": 85288
             },
-            {
-                "name": "Recklessness",
-                "spellId": 1719
-            },
-            {
-                "name": "Crushing Blow",
-                "spellId": 335097
-            },
-            {
-                "name": "Crushing Blow",
-                "spellId": 335097
-            }
-        ],
-        "count": 33,
-        "pct": 10.7
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
             {
                 "name": "Raging Blow",
                 "spellId": 85288
@@ -57,9 +47,13 @@
             {
                 "name": "Crushing Blow",
                 "spellId": 335097
+            },
+            {
+                "name": "Crushing Blow",
+                "spellId": 335097
             }
         ],
-        "count": 14,
-        "pct": 14.4
+        "count": 9,
+        "pct": 2.9
     }
 }

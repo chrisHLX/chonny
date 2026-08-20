@@ -7,24 +7,8 @@
     "anchors": [
         "Implosion"
     ],
-    "topCombo": {
-        "length": 3,
-        "steps": [
-            {
-                "name": "Implosion",
-                "spellId": 196277
-            },
-            {
-                "name": "Fear",
-                "spellId": 5782
-            },
-            {
-                "name": "Axe Toss",
-                "spellId": 119914
-            }
-        ],
-        "count": 4,
-        "pct": 10.5
-    },
-    "topKillCombo": null
+    "majorAnchors": [
+        "Implosion"
+    ],
+    "topCombo": null
 }

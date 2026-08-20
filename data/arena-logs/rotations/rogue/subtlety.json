@@ -11,8 +11,12 @@
         "Shadow Dance",
         "Shiv"
     ],
+    "majorAnchors": [
+        "Goremaw's Bite",
+        "Shadow Blades"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
                 "name": "Shadow Dance",
@@ -29,32 +33,17 @@
             {
                 "name": "Secret Technique",
                 "spellId": 280719
-            }
-        ],
-        "count": 23,
-        "pct": 20.2
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Shadow Dance",
-                "spellId": 185313
             },
             {
                 "name": "Cheap Shot",
                 "spellId": 1833
             },
             {
-                "name": "Shadow Blades",
-                "spellId": 121471
-            },
-            {
-                "name": "Secret Technique",
-                "spellId": 280719
+                "name": "Shadow Dance",
+                "spellId": 185313
             }
         ],
-        "count": 3,
-        "pct": 30
+        "count": 5,
+        "pct": 4.4
     }
 }

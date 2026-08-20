@@ -11,50 +11,39 @@
         "Judgment",
         "Wake of Ashes"
     ],
+    "majorAnchors": [
+        "Avenging Wrath",
+        "Execution Sentence"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
                 "name": "Blade of Justice",
                 "spellId": 184575
             },
-            {
-                "name": "Avenging Wrath",
-                "spellId": 31884
-            },
-            {
-                "name": "Execution Sentence",
-                "spellId": 343527
-            },
-            {
-                "name": "Wake of Ashes",
-                "spellId": 255937
-            }
-        ],
-        "count": 7,
-        "pct": 10.9
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
             {
                 "name": "Judgment",
                 "spellId": 20271
             },
             {
-                "name": "Blade of Justice",
-                "spellId": 184575
-            },
-            {
-                "name": "Avenging Wrath",
-                "spellId": 31884
+                "name": "Judgment",
+                "spellId": 20271
             },
             {
                 "name": "Execution Sentence",
                 "spellId": 343527
+            },
+            {
+                "name": "Blade of Justice",
+                "spellId": 184575
+            },
+            {
+                "name": "Hammer of Justice",
+                "spellId": 853
             }
         ],
-        "count": 3,
-        "pct": 30
+        "count": 4,
+        "pct": 6.3
     }
 }

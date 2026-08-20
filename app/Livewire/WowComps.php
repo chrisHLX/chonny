@@ -426,14 +426,18 @@ class WowComps extends Component
      * `cooldown_by_id` carries each spell's already-computed effective cooldown (talent-modified,
      * same value the Active Abilities tab shows) so every Synergies section can display CD
      * alongside the curated PvP CC duration without recomputing anything — `$member['entries']`
-     * already has this from getCompProperty()'s normal per-spec computation.
+     * already has this from getCompProperty()'s normal per-spec computation. `charges_by_id`
+     * (2026-08-20, direct request) is the same idea for effective charge count — shown on the
+     * card itself now, not only inside the click-through modal, same "the card shows the
+     * talent-modified number, the modal explains which modifier caused it" split CD already has.
      *
-     * @return array{groups: array<string, Collection<int, Spell>>, peels: Collection, interrupts: Collection, owner_map: array<int, int>, cooldown_by_id: array<int, ?float>}
+     * @return array{groups: array<string, Collection<int, Spell>>, peels: Collection, interrupts: Collection, owner_map: array<int, int>, cooldown_by_id: array<int, ?float>, charges_by_id: array<int, ?int>}
      */
     public function getSynergiesProperty(): array
     {
         $ownerMap = [];
         $cooldownById = [];
+        $chargesById = [];
 
         $ccEntries = collect();
         $peels = collect();
@@ -461,6 +465,7 @@ class WowComps extends Component
                 }
                 if (!array_key_exists($spell->id, $cooldownById)) {
                     $cooldownById[$spell->id] = $entry['cooldown']['seconds'];
+                    $chargesById[$spell->id] = $entry['charges']['charges'];
                 }
             }
         }
@@ -489,6 +494,7 @@ class WowComps extends Component
             'interrupts' => $interrupts,
             'owner_map' => $ownerMap,
             'cooldown_by_id' => $cooldownById,
+            'charges_by_id' => $chargesById,
         ];
     }
 

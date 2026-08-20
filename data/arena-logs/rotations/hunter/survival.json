@@ -10,35 +10,29 @@
         "Takedown",
         "Wildfire Bomb"
     ],
+    "majorAnchors": [
+        "Boomstick",
+        "Roar of Sacrifice",
+        "Takedown"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
-                "name": "Freezing Trap",
-                "spellId": 187650
+                "name": "Roar of Sacrifice",
+                "spellId": 53480
             },
-            {
-                "name": "Boomstick",
-                "spellId": 1261193
-            },
-            {
-                "name": "Wildfire Bomb",
-                "spellId": 259495
-            },
-            {
-                "name": "Wildfire Bomb",
-                "spellId": 259495
-            }
-        ],
-        "count": 6,
-        "pct": 8.6
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
             {
                 "name": "Scatter Shot",
                 "spellId": 213691
+            },
+            {
+                "name": "Wildfire Bomb",
+                "spellId": 259495
+            },
+            {
+                "name": "Binding Shot",
+                "spellId": 109248
             },
             {
                 "name": "Freezing Trap",
@@ -47,13 +41,9 @@
             {
                 "name": "Takedown",
                 "spellId": 1250646
-            },
-            {
-                "name": "Wildfire Bomb",
-                "spellId": 259495
             }
         ],
         "count": 4,
-        "pct": 44.4
+        "pct": 5.7
     }
 }

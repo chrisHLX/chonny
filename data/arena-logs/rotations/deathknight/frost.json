@@ -12,9 +12,23 @@
         "Pillar of Frost",
         "Reaper's Mark"
     ],
+    "majorAnchors": [
+        "Breath of Sindragosa",
+        "Frostwyrm's Fury",
+        "Pillar of Frost",
+        "Reaper's Mark"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
+            {
+                "name": "Chains of Ice",
+                "spellId": 45524
+            },
+            {
+                "name": "Reaper's Mark",
+                "spellId": 439843
+            },
             {
                 "name": "Pillar of Frost",
                 "spellId": 51271
@@ -32,30 +46,7 @@
                 "spellId": 47568
             }
         ],
-        "count": 22,
-        "pct": 14
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Chains of Ice",
-                "spellId": 45524
-            },
-            {
-                "name": "Chains of Ice",
-                "spellId": 45524
-            },
-            {
-                "name": "Pillar of Frost",
-                "spellId": 51271
-            },
-            {
-                "name": "Reaper's Mark",
-                "spellId": 439843
-            }
-        ],
-        "count": 5,
-        "pct": 19.2
+        "count": 7,
+        "pct": 4.5
     }
 }

@@ -9,17 +9,13 @@
         "Death and Decay",
         "Reaper's Mark"
     ],
+    "majorAnchors": [
+        "Consumption",
+        "Reaper's Mark"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
-            {
-                "name": "Chains of Ice",
-                "spellId": 45524
-            },
-            {
-                "name": "Death and Decay",
-                "spellId": 43265
-            },
             {
                 "name": "Chains of Ice",
                 "spellId": 45524
@@ -27,10 +23,25 @@
             {
                 "name": "Reaper's Mark",
                 "spellId": 439843
+            },
+            {
+                "name": "Strangulate",
+                "spellId": 47476
+            },
+            {
+                "name": "Consumption",
+                "spellId": 1263824
+            },
+            {
+                "name": "Chains of Ice",
+                "spellId": 45524
+            },
+            {
+                "name": "Chains of Ice",
+                "spellId": 45524
             }
         ],
         "count": 4,
         "pct": 33.3
-    },
-    "topKillCombo": null
+    }
 }

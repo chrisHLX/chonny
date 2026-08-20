@@ -10,9 +10,17 @@
         "Haunt",
         "Malevolence"
     ],
+    "majorAnchors": [
+        "Dark Harvest",
+        "Malevolence"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 5,
         "steps": [
+            {
+                "name": "Curse of Exhaustion",
+                "spellId": 334275
+            },
             {
                 "name": "Haunt",
                 "spellId": 48181
@@ -22,38 +30,15 @@
                 "spellId": 1257052
             },
             {
-                "name": "Curse of Exhaustion",
-                "spellId": 334275
+                "name": "Fear",
+                "spellId": 5782
             },
             {
                 "name": "Curse of Exhaustion",
                 "spellId": 334275
             }
         ],
-        "count": 5,
-        "pct": 3.9
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Haunt",
-                "spellId": 48181
-            },
-            {
-                "name": "Curse of Exhaustion",
-                "spellId": 334275
-            },
-            {
-                "name": "Curse of Exhaustion",
-                "spellId": 334275
-            },
-            {
-                "name": "Dark Harvest",
-                "spellId": 1257052
-            }
-        ],
-        "count": 4,
-        "pct": 14.8
+        "count": 3,
+        "pct": 2.4
     }
 }

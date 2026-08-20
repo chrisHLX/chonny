@@ -11,31 +11,12 @@
         "Frozen Orb",
         "Ray of Frost"
     ],
+    "majorAnchors": [
+        "Frozen Orb",
+        "Ray of Frost"
+    ],
     "topCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Blizzard",
-                "spellId": 190356
-            },
-            {
-                "name": "Flurry",
-                "spellId": 44614
-            },
-            {
-                "name": "Flurry",
-                "spellId": 44614
-            },
-            {
-                "name": "Ray of Frost",
-                "spellId": 205021
-            }
-        ],
-        "count": 8,
-        "pct": 1.4
-    },
-    "topKillCombo": {
-        "length": 4,
+        "length": 5,
         "steps": [
             {
                 "name": "Blizzard",
@@ -52,9 +33,13 @@
             {
                 "name": "Ray of Frost",
                 "spellId": 205021
+            },
+            {
+                "name": "Flurry",
+                "spellId": 44614
             }
         ],
         "count": 4,
-        "pct": 4.9
+        "pct": 0.7
     }
 }

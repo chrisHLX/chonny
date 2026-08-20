@@ -15,50 +15,43 @@
         "Shattering Throw",
         "Wrecking Throw"
     ],
+    "majorAnchors": [
+        "Avatar",
+        "Bladestorm",
+        "Champion's Spear",
+        "Colossus Smash",
+        "Shattering Throw",
+        "Wrecking Throw"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
-                "name": "Champion's Spear",
-                "spellId": 376079
+                "name": "Overpower",
+                "spellId": 7384
             },
-            {
-                "name": "Avatar",
-                "spellId": 107574
-            },
-            {
-                "name": "Colossus Smash",
-                "spellId": 167105
-            },
-            {
-                "name": "Bladestorm",
-                "spellId": 446035
-            }
-        ],
-        "count": 25,
-        "pct": 3.9
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
             {
                 "name": "Storm Bolt",
                 "spellId": 107570
             },
             {
-                "name": "Champion's Spear",
-                "spellId": 376079
-            },
-            {
-                "name": "Avatar",
-                "spellId": 107574
+                "name": "Overpower",
+                "spellId": 7384
             },
             {
                 "name": "Colossus Smash",
                 "spellId": 167105
+            },
+            {
+                "name": "Charge",
+                "spellId": 100
+            },
+            {
+                "name": "Overpower",
+                "spellId": 7384
             }
         ],
-        "count": 7,
-        "pct": 6
+        "count": 5,
+        "pct": 0.8
     }
 }

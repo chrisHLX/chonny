@@ -10,9 +10,19 @@
         "Fire Breath",
         "Upheaval"
     ],
+    "majorAnchors": [
+        "Blistering Scales",
+        "Emerald Blossom",
+        "Fire Breath",
+        "Upheaval"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 5,
         "steps": [
+            {
+                "name": "Sleep Walk",
+                "spellId": 360806
+            },
             {
                 "name": "Sleep Walk",
                 "spellId": 360806
@@ -30,8 +40,7 @@
                 "spellId": 360827
             }
         ],
-        "count": 8,
-        "pct": 25
-    },
-    "topKillCombo": null
+        "count": 4,
+        "pct": 12.5
+    }
 }

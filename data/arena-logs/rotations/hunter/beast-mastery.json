@@ -10,31 +10,12 @@
         "Roar of Sacrifice",
         "Wild Thrash"
     ],
+    "majorAnchors": [
+        "Bestial Wrath",
+        "Roar of Sacrifice"
+    ],
     "topCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Freezing Trap",
-                "spellId": 187650
-            },
-            {
-                "name": "Barbed Shot",
-                "spellId": 217200
-            },
-            {
-                "name": "Bestial Wrath",
-                "spellId": 19574
-            },
-            {
-                "name": "Barbed Shot",
-                "spellId": 217200
-            }
-        ],
-        "count": 52,
-        "pct": 13.1
-    },
-    "topKillCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
                 "name": "Intimidation",
@@ -45,15 +26,23 @@
                 "spellId": 187650
             },
             {
+                "name": "Barbed Shot",
+                "spellId": 217200
+            },
+            {
                 "name": "Bestial Wrath",
                 "spellId": 19574
             },
             {
                 "name": "Barbed Shot",
                 "spellId": 217200
+            },
+            {
+                "name": "Barbed Shot",
+                "spellId": 217200
             }
         ],
-        "count": 12,
-        "pct": 14.8
+        "count": 13,
+        "pct": 3.3
     }
 }

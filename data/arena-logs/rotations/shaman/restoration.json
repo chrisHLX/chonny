@@ -8,6 +8,9 @@
         "Ancestral Swiftness",
         "Lava Burst"
     ],
+    "majorAnchors": [
+        "Ancestral Swiftness"
+    ],
     "topCombo": {
         "length": 4,
         "steps": [
@@ -30,24 +33,5 @@
         ],
         "count": 3,
         "pct": 4
-    },
-    "topKillCombo": {
-        "length": 3,
-        "steps": [
-            {
-                "name": "Lightning Lasso",
-                "spellId": 305483
-            },
-            {
-                "name": "Ancestral Swiftness",
-                "spellId": 443454
-            },
-            {
-                "name": "Lava Burst",
-                "spellId": 51505
-            }
-        ],
-        "count": 3,
-        "pct": 27.3
     }
 }

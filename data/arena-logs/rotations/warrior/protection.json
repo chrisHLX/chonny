@@ -12,17 +12,14 @@
         "Shield Charge",
         "Shield Slam"
     ],
+    "majorAnchors": [
+        "Avatar",
+        "Champion's Spear",
+        "Shield Charge"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
-            {
-                "name": "Shield Slam",
-                "spellId": 23922
-            },
-            {
-                "name": "Shield Slam",
-                "spellId": 23922
-            },
             {
                 "name": "Storm Bolt",
                 "spellId": 107570
@@ -30,10 +27,25 @@
             {
                 "name": "Shield Charge",
                 "spellId": 385952
+            },
+            {
+                "name": "Avatar",
+                "spellId": 107574
+            },
+            {
+                "name": "Demolish",
+                "spellId": 436358
+            },
+            {
+                "name": "Shield Slam",
+                "spellId": 23922
+            },
+            {
+                "name": "Shockwave",
+                "spellId": 46968
             }
         ],
-        "count": 7,
-        "pct": 41.2
-    },
-    "topKillCombo": null
+        "count": 3,
+        "pct": 17.6
+    }
 }

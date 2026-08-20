@@ -13,28 +13,35 @@
         "Void Blast",
         "Void Torrent"
     ],
+    "majorAnchors": [
+        "Halo",
+        "Power Infusion"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 5,
         "steps": [
             {
                 "name": "Tentacle Slam",
                 "spellId": 1227280
             },
             {
-                "name": "Void Torrent",
-                "spellId": 263165
+                "name": "Power Infusion",
+                "spellId": 10060
             },
             {
-                "name": "Void Blast",
-                "spellId": 450983
+                "name": "Psychic Scream",
+                "spellId": 8122
             },
             {
-                "name": "Tentacle Slam",
-                "spellId": 1227280
+                "name": "Mind Blast",
+                "spellId": 8092
+            },
+            {
+                "name": "Mind Blast",
+                "spellId": 8092
             }
         ],
-        "count": 5,
-        "pct": 8.2
-    },
-    "topKillCombo": null
+        "count": 4,
+        "pct": 6.6
+    }
 }

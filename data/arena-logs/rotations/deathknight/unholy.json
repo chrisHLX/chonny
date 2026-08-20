@@ -11,50 +11,39 @@
         "Putrefy",
         "Soul Reaper"
     ],
+    "majorAnchors": [
+        "Army of the Dead",
+        "Dark Transformation"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
                 "name": "Chains of Ice",
                 "spellId": 45524
             },
             {
-                "name": "Army of the Dead",
-                "spellId": 42650
-            },
-            {
                 "name": "Dark Transformation",
                 "spellId": 1233448
-            },
-            {
-                "name": "Soul Reaper",
-                "spellId": 343294
-            }
-        ],
-        "count": 27,
-        "pct": 8.9
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Chains of Ice",
-                "spellId": 45524
             },
             {
                 "name": "Army of the Dead",
                 "spellId": 42650
             },
             {
-                "name": "Dark Transformation",
-                "spellId": 1233448
-            },
-            {
                 "name": "Soul Reaper",
                 "spellId": 343294
+            },
+            {
+                "name": "Putrefy",
+                "spellId": 1247378
+            },
+            {
+                "name": "Putrefy",
+                "spellId": 1247378
             }
         ],
-        "count": 7,
-        "pct": 14
+        "count": 8,
+        "pct": 2.6
     }
 }

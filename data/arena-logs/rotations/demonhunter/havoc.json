@@ -17,32 +17,25 @@
         "Throw Glaive",
         "Vengeful Retreat"
     ],
+    "majorAnchors": [
+        "Chaos Nova",
+        "The Hunt"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
-                "name": "Eye Beam",
-                "spellId": 198013
-            },
-            {
-                "name": "Fel Rush",
-                "spellId": 195072
+                "name": "The Hunt",
+                "spellId": 370965
             },
             {
                 "name": "Throw Glaive",
                 "spellId": 185123
             },
             {
-                "name": "Death Sweep",
-                "spellId": 210152
-            }
-        ],
-        "count": 38,
-        "pct": 12.1
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
+                "name": "Blade Dance",
+                "spellId": 188499
+            },
             {
                 "name": "Eye Beam",
                 "spellId": 198013
@@ -54,13 +47,9 @@
             {
                 "name": "Death Sweep",
                 "spellId": 210152
-            },
-            {
-                "name": "Throw Glaive",
-                "spellId": 185123
             }
         ],
-        "count": 10,
-        "pct": 17.9
+        "count": 6,
+        "pct": 1.9
     }
 }

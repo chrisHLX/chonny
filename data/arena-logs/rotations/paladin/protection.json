@@ -13,13 +13,15 @@
         "Sacred Weapon",
         "Sentinel"
     ],
+    "majorAnchors": [
+        "Avenging Wrath",
+        "Holy Bulwark",
+        "Sacred Weapon",
+        "Sentinel"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
-            {
-                "name": "Judgment",
-                "spellId": 275779
-            },
             {
                 "name": "Consecration",
                 "spellId": 26573
@@ -31,28 +33,21 @@
             {
                 "name": "Avenger's Shield",
                 "spellId": 31935
-            }
-        ],
-        "count": 12,
-        "pct": 15
-    },
-    "topKillCombo": {
-        "length": 3,
-        "steps": [
+            },
             {
                 "name": "Judgment",
                 "spellId": 275779
             },
             {
-                "name": "Avenging Wrath",
-                "spellId": 31884
+                "name": "Consecration",
+                "spellId": 26573
             },
             {
-                "name": "Hammer of Wrath",
-                "spellId": 1241413
+                "name": "Holy Bulwark",
+                "spellId": 432459
             }
         ],
-        "count": 3,
-        "pct": 37.5
+        "count": 6,
+        "pct": 7.5
     }
 }

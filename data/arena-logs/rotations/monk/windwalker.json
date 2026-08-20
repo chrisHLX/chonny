@@ -14,39 +14,29 @@
         "Whirling Dragon Punch",
         "Zenith"
     ],
+    "majorAnchors": [
+        "Touch of Death",
+        "Touch of Karma",
+        "Zenith"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
-            {
-                "name": "Leg Sweep",
-                "spellId": 119381
-            },
             {
                 "name": "Zenith",
                 "spellId": 1249625
-            },
-            {
-                "name": "Strike of the Windlord",
-                "spellId": 392983
             },
             {
                 "name": "Rising Sun Kick",
                 "spellId": 107428
-            }
-        ],
-        "count": 32,
-        "pct": 8.2
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Zenith",
-                "spellId": 1249625
             },
             {
                 "name": "Strike of the Windlord",
                 "spellId": 392983
+            },
+            {
+                "name": "Rushing Wind Kick",
+                "spellId": 467307
             },
             {
                 "name": "Rising Sun Kick",
@@ -57,7 +47,7 @@
                 "spellId": 113656
             }
         ],
-        "count": 8,
-        "pct": 11
+        "count": 15,
+        "pct": 3.8
     }
 }

@@ -10,8 +10,11 @@
         "Eternity Surge",
         "Fire Breath"
     ],
+    "majorAnchors": [
+        "Deep Breath"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 5,
         "steps": [
             {
                 "name": "Deep Breath",
@@ -28,10 +31,13 @@
             {
                 "name": "Eternity Surge",
                 "spellId": 359073
+            },
+            {
+                "name": "Sleep Walk",
+                "spellId": 360806
             }
         ],
-        "count": 4,
-        "pct": 14.3
-    },
-    "topKillCombo": null
+        "count": 3,
+        "pct": 10.7
+    }
 }

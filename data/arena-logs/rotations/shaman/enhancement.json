@@ -12,8 +12,12 @@
         "Lava Lash",
         "Voltaic Blaze"
     ],
+    "majorAnchors": [
+        "Ascendance",
+        "Doom Winds"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 5,
         "steps": [
             {
                 "name": "Earthgrab Totem",
@@ -30,32 +34,13 @@
             {
                 "name": "Ascendance",
                 "spellId": 114051
-            }
-        ],
-        "count": 5,
-        "pct": 11.9
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
-            {
-                "name": "Earthgrab Totem",
-                "spellId": 51485
-            },
-            {
-                "name": "Voltaic Blaze",
-                "spellId": 470057
             },
             {
                 "name": "Crash Lightning",
                 "spellId": 187874
-            },
-            {
-                "name": "Ascendance",
-                "spellId": 114051
             }
         ],
         "count": 3,
-        "pct": 30
+        "pct": 7.1
     }
 }

@@ -10,12 +10,24 @@
         "Cone of Cold",
         "Touch of the Magi"
     ],
+    "majorAnchors": [
+        "Arcane Surge",
+        "Touch of the Magi"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 5,
         "steps": [
+            {
+                "name": "Dragon's Breath",
+                "spellId": 31661
+            },
             {
                 "name": "Arcane Surge",
                 "spellId": 365350
+            },
+            {
+                "name": "Frost Nova",
+                "spellId": 122
             },
             {
                 "name": "Touch of the Magi",
@@ -24,14 +36,9 @@
             {
                 "name": "Arcane Orb",
                 "spellId": 153626
-            },
-            {
-                "name": "Arcane Orb",
-                "spellId": 153626
             }
         ],
-        "count": 7,
-        "pct": 6.3
-    },
-    "topKillCombo": null
+        "count": 4,
+        "pct": 3.6
+    }
 }

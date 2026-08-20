@@ -13,32 +13,21 @@
         "Void Nova",
         "Voidblade"
     ],
+    "majorAnchors": [
+        "The Hunt",
+        "Void Nova"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
+            {
+                "name": "Void Nova",
+                "spellId": 1234195
+            },
             {
                 "name": "Reap",
                 "spellId": 1226019
             },
-            {
-                "name": "The Hunt",
-                "spellId": 1246167
-            },
-            {
-                "name": "Vengeful Retreat",
-                "spellId": 198793
-            },
-            {
-                "name": "Reap",
-                "spellId": 1226019
-            }
-        ],
-        "count": 17,
-        "pct": 8.2
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
             {
                 "name": "Reap",
                 "spellId": 1226019
@@ -56,7 +45,7 @@
                 "spellId": 198793
             }
         ],
-        "count": 5,
-        "pct": 20.8
+        "count": 4,
+        "pct": 1.9
     }
 }

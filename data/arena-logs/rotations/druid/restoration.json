@@ -7,16 +7,23 @@
     "anchors": [
         "Starsurge"
     ],
+    "majorAnchors": [
+        "Starsurge"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
-            {
-                "name": "Maim",
-                "spellId": 22570
-            },
             {
                 "name": "Starsurge",
                 "spellId": 197626
+            },
+            {
+                "name": "Wild Charge",
+                "spellId": 102401
+            },
+            {
+                "name": "Ursol's Vortex",
+                "spellId": 102793
             },
             {
                 "name": "Cyclone",
@@ -25,32 +32,13 @@
             {
                 "name": "Starsurge",
                 "spellId": 197626
-            }
-        ],
-        "count": 10,
-        "pct": 2.3
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
+            },
             {
                 "name": "Incapacitating Roar",
                 "spellId": 99
-            },
-            {
-                "name": "Cyclone",
-                "spellId": 33786
-            },
-            {
-                "name": "Starsurge",
-                "spellId": 197626
-            },
-            {
-                "name": "Starsurge",
-                "spellId": 197626
             }
         ],
         "count": 4,
-        "pct": 4.8
+        "pct": 0.9
     }
 }

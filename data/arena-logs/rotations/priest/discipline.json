@@ -11,16 +11,16 @@
         "Shadow Word: Death",
         "Ultimate Penitence"
     ],
+    "majorAnchors": [
+        "Power Infusion",
+        "Ultimate Penitence"
+    ],
     "topCombo": {
-        "length": 4,
+        "length": 6,
         "steps": [
             {
-                "name": "Power Infusion",
-                "spellId": 10060
-            },
-            {
-                "name": "Penance",
-                "spellId": 47540
+                "name": "Psychic Scream",
+                "spellId": 8122
             },
             {
                 "name": "Ultimate Penitence",
@@ -29,32 +29,21 @@
             {
                 "name": "Penance",
                 "spellId": 47540
-            }
-        ],
-        "count": 13,
-        "pct": 7
-    },
-    "topKillCombo": {
-        "length": 4,
-        "steps": [
+            },
             {
-                "name": "Shadow Word: Death",
-                "spellId": 32379
+                "name": "Mind Blast",
+                "spellId": 8092
             },
             {
                 "name": "Penance",
                 "spellId": 47540
             },
             {
-                "name": "Psychic Scream",
-                "spellId": 8122
-            },
-            {
-                "name": "Penance",
-                "spellId": 47540
+                "name": "Power Infusion",
+                "spellId": 10060
             }
         ],
-        "count": 3,
-        "pct": 15.8
+        "count": 4,
+        "pct": 2.2
     }
 }
