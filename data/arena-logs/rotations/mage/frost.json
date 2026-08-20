@@ -16,30 +16,35 @@
         "Ray of Frost"
     ],
     "topCombo": {
-        "length": 5,
+        "length": 4,
         "steps": [
             {
                 "name": "Blizzard",
-                "spellId": 190356
+                "spellId": 190356,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Flurry",
-                "spellId": 44614
+                "spellId": 44614,
+                "isCc": false,
+                "isRepeat": false
             },
             {
-                "name": "Dragon's Breath",
-                "spellId": 31661
+                "name": "Glacial Spike",
+                "spellId": 199786,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Ray of Frost",
-                "spellId": 205021
-            },
-            {
-                "name": "Flurry",
-                "spellId": 44614
+                "spellId": 205021,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 0.7
+        "count": 6,
+        "pct": 1,
+        "distinct": 4
     }
 }

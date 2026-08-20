@@ -17,30 +17,35 @@
         "Doom Winds"
     ],
     "topCombo": {
-        "length": 5,
+        "length": 4,
         "steps": [
             {
                 "name": "Earthgrab Totem",
-                "spellId": 51485
+                "spellId": 51485,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Voltaic Blaze",
-                "spellId": 470057
+                "spellId": 470057,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Crash Lightning",
-                "spellId": 187874
+                "spellId": 187874,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Ascendance",
-                "spellId": 114051
-            },
-            {
-                "name": "Crash Lightning",
-                "spellId": 187874
+                "spellId": 114051,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 3,
-        "pct": 7.1
+        "count": 5,
+        "pct": 11.9,
+        "distinct": 4
     }
 }

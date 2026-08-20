@@ -13,30 +13,35 @@
         "Power Infusion"
     ],
     "topCombo": {
-        "length": 5,
+        "length": 4,
         "steps": [
             {
+                "name": "Power Infusion",
+                "spellId": 10060,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Holy Word: Chastise",
-                "spellId": 88625
+                "spellId": 88625,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Psychic Scream",
-                "spellId": 8122
-            },
-            {
-                "name": "Power Infusion",
-                "spellId": 10060
-            },
-            {
-                "name": "Holy Fire",
-                "spellId": 14914
+                "spellId": 8122,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Holy Fire",
-                "spellId": 14914
+                "spellId": 14914,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 8,
-        "pct": 3.6
+        "count": 11,
+        "pct": 5,
+        "distinct": 4
     }
 }

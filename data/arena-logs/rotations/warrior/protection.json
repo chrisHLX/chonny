@@ -22,30 +22,43 @@
         "steps": [
             {
                 "name": "Storm Bolt",
-                "spellId": 107570
+                "spellId": 107570,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Shield Charge",
-                "spellId": 385952
+                "spellId": 385952,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Avatar",
-                "spellId": 107574
+                "spellId": 107574,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Demolish",
-                "spellId": 436358
+                "spellId": 436358,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Shield Slam",
-                "spellId": 23922
+                "spellId": 23922,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Shockwave",
-                "spellId": 46968
+                "spellId": 46968,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
         "count": 3,
-        "pct": 17.6
+        "pct": 17.6,
+        "distinct": 6
     }
 }

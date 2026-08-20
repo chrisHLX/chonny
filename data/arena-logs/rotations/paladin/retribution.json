@@ -19,31 +19,44 @@
         "length": 6,
         "steps": [
             {
-                "name": "Blade of Justice",
-                "spellId": 184575
-            },
-            {
                 "name": "Judgment",
-                "spellId": 20271
-            },
-            {
-                "name": "Judgment",
-                "spellId": 20271
-            },
-            {
-                "name": "Execution Sentence",
-                "spellId": 343527
+                "spellId": 20271,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Blade of Justice",
-                "spellId": 184575
+                "spellId": 184575,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Hammer of Justice",
-                "spellId": 853
+                "spellId": 853,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Avenging Wrath",
+                "spellId": 31884,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Execution Sentence",
+                "spellId": 343527,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Wake of Ashes",
+                "spellId": 255937,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
         "count": 4,
-        "pct": 6.3
+        "pct": 6.3,
+        "distinct": 6
     }
 }

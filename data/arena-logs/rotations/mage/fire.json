@@ -16,34 +16,35 @@
         "Meteor"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 4,
         "steps": [
             {
                 "name": "Frost Nova",
-                "spellId": 122
+                "spellId": 122,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Combustion",
-                "spellId": 190319
+                "spellId": 190319,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Meteor",
-                "spellId": 153561
+                "spellId": 153561,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Fire Blast",
-                "spellId": 108853
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853
-            },
-            {
-                "name": "Fire Blast",
-                "spellId": 108853
+                "spellId": 108853,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 2.9
+        "count": 6,
+        "pct": 4.3,
+        "distinct": 4
     }
 }

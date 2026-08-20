@@ -18,34 +18,41 @@
         "Void Nova"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 5,
         "steps": [
             {
+                "name": "Reap",
+                "spellId": 1226019,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Void Nova",
-                "spellId": 1234195
-            },
-            {
-                "name": "Reap",
-                "spellId": 1226019
-            },
-            {
-                "name": "Reap",
-                "spellId": 1226019
-            },
-            {
-                "name": "Reap",
-                "spellId": 1226019
+                "spellId": 1234195,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "The Hunt",
-                "spellId": 1246167
+                "spellId": 1246167,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Vengeful Retreat",
-                "spellId": 198793
+                "spellId": 198793,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Imprison",
+                "spellId": 217832,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 1.9
+        "count": 3,
+        "pct": 1.4,
+        "distinct": 5
     }
 }

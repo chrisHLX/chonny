@@ -20,30 +20,43 @@
         "steps": [
             {
                 "name": "Roar of Sacrifice",
-                "spellId": 53480
+                "spellId": 53480,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Scatter Shot",
-                "spellId": 213691
+                "spellId": 213691,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Wildfire Bomb",
-                "spellId": 259495
+                "spellId": 259495,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Binding Shot",
-                "spellId": 109248
+                "spellId": 109248,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Freezing Trap",
-                "spellId": 187650
+                "spellId": 187650,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Takedown",
-                "spellId": 1250646
+                "spellId": 1250646,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
         "count": 4,
-        "pct": 5.7
+        "pct": 5.7,
+        "distinct": 6
     }
 }

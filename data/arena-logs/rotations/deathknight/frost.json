@@ -23,30 +23,43 @@
         "steps": [
             {
                 "name": "Chains of Ice",
-                "spellId": 45524
+                "spellId": 45524,
+                "isCc": true,
+                "isRepeat": false
             },
             {
-                "name": "Reaper's Mark",
-                "spellId": 439843
+                "name": "Blinding Sleet",
+                "spellId": 207167,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Frostwyrm's Fury",
+                "spellId": 279302,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Pillar of Frost",
-                "spellId": 51271
+                "spellId": 51271,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Reaper's Mark",
+                "spellId": 439843,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Empower Rune Weapon",
-                "spellId": 47568
-            },
-            {
-                "name": "Breath of Sindragosa",
-                "spellId": 1249658
-            },
-            {
-                "name": "Empower Rune Weapon",
-                "spellId": 47568
+                "spellId": 47568,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 7,
-        "pct": 4.5
+        "count": 4,
+        "pct": 2.5,
+        "distinct": 6
     }
 }

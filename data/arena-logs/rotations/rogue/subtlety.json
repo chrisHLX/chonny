@@ -16,34 +16,41 @@
         "Shadow Blades"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 5,
         "steps": [
             {
+                "name": "Kidney Shot",
+                "spellId": 408,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
                 "name": "Shadow Dance",
-                "spellId": 185313
+                "spellId": 185313,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Cheap Shot",
-                "spellId": 1833
+                "spellId": 1833,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Shadow Blades",
-                "spellId": 121471
+                "spellId": 121471,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Secret Technique",
-                "spellId": 280719
-            },
-            {
-                "name": "Cheap Shot",
-                "spellId": 1833
-            },
-            {
-                "name": "Shadow Dance",
-                "spellId": 185313
+                "spellId": 280719,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 5,
-        "pct": 4.4
+        "count": 6,
+        "pct": 5.3,
+        "distinct": 5
     }
 }

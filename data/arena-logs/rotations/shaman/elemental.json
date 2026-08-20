@@ -17,34 +17,41 @@
         "Stormkeeper"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 5,
         "steps": [
             {
+                "name": "Hex",
+                "spellId": 51514,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
                 "name": "Stormkeeper",
-                "spellId": 191634
+                "spellId": 191634,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Voltaic Blaze",
-                "spellId": 470057
+                "spellId": 470057,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Ancestral Swiftness",
-                "spellId": 443454
+                "spellId": 443454,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Lava Burst",
-                "spellId": 51505
-            },
-            {
-                "name": "Lava Burst",
-                "spellId": 51505
-            },
-            {
-                "name": "Voltaic Blaze",
-                "spellId": 470057
+                "spellId": 51505,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 5,
-        "pct": 4.2
+        "count": 6,
+        "pct": 5,
+        "distinct": 5
     }
 }

@@ -27,31 +27,44 @@
         "length": 6,
         "steps": [
             {
-                "name": "Overpower",
-                "spellId": 7384
-            },
-            {
                 "name": "Storm Bolt",
-                "spellId": 107570
+                "spellId": 107570,
+                "isCc": true,
+                "isRepeat": false
             },
             {
-                "name": "Overpower",
-                "spellId": 7384
+                "name": "Champion's Spear",
+                "spellId": 376079,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Avatar",
+                "spellId": 107574,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Colossus Smash",
-                "spellId": 167105
+                "spellId": 167105,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Charge",
-                "spellId": 100
+                "spellId": 100,
+                "isCc": true,
+                "isRepeat": false
             },
             {
-                "name": "Overpower",
-                "spellId": 7384
+                "name": "Bladestorm",
+                "spellId": 446035,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
         "count": 5,
-        "pct": 0.8
+        "pct": 0.8,
+        "distinct": 6
     }
 }

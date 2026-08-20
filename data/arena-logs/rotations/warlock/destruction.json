@@ -14,34 +14,41 @@
         "Soul Fire"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 5,
         "steps": [
             {
+                "name": "Malevolence",
+                "spellId": 442726,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Mortal Coil",
-                "spellId": 6789
+                "spellId": 6789,
+                "isCc": true,
+                "isRepeat": false
             },
             {
-                "name": "Seduction",
-                "spellId": 119909
-            },
-            {
-                "name": "Conflagrate",
-                "spellId": 17962
+                "name": "Howl of Terror",
+                "spellId": 5484,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Soul Fire",
-                "spellId": 6353
+                "spellId": 6353,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Conflagrate",
-                "spellId": 17962
-            },
-            {
-                "name": "Conflagrate",
-                "spellId": 17962
+                "spellId": 17962,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 1.8
+        "count": 3,
+        "pct": 1.4,
+        "distinct": 5
     }
 }

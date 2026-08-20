@@ -19,26 +19,37 @@
         "steps": [
             {
                 "name": "Dragon's Breath",
-                "spellId": 31661
+                "spellId": 31661,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Arcane Surge",
-                "spellId": 365350
+                "spellId": 365350,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Frost Nova",
-                "spellId": 122
+                "spellId": 122,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Touch of the Magi",
-                "spellId": 321507
+                "spellId": 321507,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Arcane Orb",
-                "spellId": 153626
+                "spellId": 153626,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
         "count": 4,
-        "pct": 3.6
+        "pct": 3.6,
+        "distinct": 5
     }
 }

@@ -18,26 +18,37 @@
         "steps": [
             {
                 "name": "Tiger's Fury",
-                "spellId": 5217
+                "spellId": 5217,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Feral Frenzy",
-                "spellId": 274837
+                "spellId": 274837,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Maim",
-                "spellId": 22570
+                "spellId": 22570,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Cyclone",
-                "spellId": 33786
+                "spellId": 33786,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Entangling Roots",
-                "spellId": 339
+                "spellId": 339,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
         "count": 6,
-        "pct": 2.5
+        "pct": 2.5,
+        "distinct": 5
     }
 }

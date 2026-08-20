@@ -21,31 +21,44 @@
         "length": 6,
         "steps": [
             {
+                "name": "Freezing Trap",
+                "spellId": 187650,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
                 "name": "Volley",
-                "spellId": 260243
+                "spellId": 260243,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Rapid Fire",
-                "spellId": 257044
+                "spellId": 257044,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Trueshot",
-                "spellId": 288613
+                "spellId": 288613,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Black Arrow",
-                "spellId": 466930
+                "spellId": 466930,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Explosive Shot",
-                "spellId": 212431
-            },
-            {
-                "name": "Rapid Fire",
-                "spellId": 257044
+                "spellId": 212431,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 9,
-        "pct": 2.4
+        "count": 6,
+        "pct": 1.6,
+        "distinct": 6
     }
 }

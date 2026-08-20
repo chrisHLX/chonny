@@ -568,7 +568,7 @@
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
                         <span class="text-amber-400 font-semibold">Preview / in development.</span>
-                        The most common cast sequence each spec actually performs around its own <span class="text-ink font-semibold">major</span> offensive cooldowns, taken from real matches — a 30s window (15s either side) around the cooldown, matched on cooldowns and crowd control only so filler doesn't crowd them out. Gold-bordered steps are the cooldown the window is built around. These are <span class="text-ink font-semibold">exact</span> 6-cast sequences, so the match rate is low by nature — real play varies, and no single ordering dominates. Treat it as "this specific sequence recurs more than any other," not "this is what they always do."
+                        The most common cast sequence each spec actually performs around its own <span class="text-ink font-semibold">major</span> offensive cooldowns, taken from real matches — a 30s window (15s either side) around the cooldown, matched on cooldowns and crowd control only so filler doesn't crowd them out. Gold-bordered steps are the cooldown the window is built around. Each combo is up to 6 <span class="text-ink font-semibold">different</span> abilities in the order they were actually cast. These are <span class="text-ink font-semibold">exact</span> sequences, so the match rate is low by nature — real play varies, and no single ordering dominates. Treat it as "this specific sequence recurs more than any other," not "this is what they always do."
                     </p>
                 </div>
 
@@ -618,6 +618,13 @@
                                                 @php
                                                     $stepSpell = $step['spell'] ?? null;
                                                     $isAnchor = in_array($step['name'], $rot['anchors'] ?? [], true);
+                                                    // A second use of the SAME CC inside one go is
+                                                    // diminished (100% / 50% / immune — see the DR
+                                                    // rules in CLAUDE.md), so it genuinely isn't
+                                                    // worth what the first was. A repeated non-CC
+                                                    // ability is NOT dimmed — those hit just as
+                                                    // hard the second time.
+                                                    $isDrDimmed = ($step['isRepeat'] ?? false) && ($step['isCc'] ?? false);
                                                 @endphp
                                                 @if ($stepSpell)
                                                     {{-- Clickable into the same spell-detail modal every other tab uses, but
@@ -630,13 +637,16 @@
                                                     @endphp
                                                     <button type="button"
                                                             @if ($hasModal) @click="openSpellId = 'm{{ $mi }}-s{{ $stepSpell->id }}'" @else disabled @endif
-                                                            class="linear-card !p-2.5 w-36 flex-shrink-0 text-left {{ $hasModal ? 'hover:border-gold/40 transition-colors' : 'cursor-default' }} {{ $isAnchor ? '!border-gold/50' : '' }}">
+                                                            class="linear-card !p-2.5 w-36 flex-shrink-0 text-left {{ $hasModal ? 'hover:border-gold/40 transition-colors' : 'cursor-default' }} {{ $isAnchor ? '!border-gold/50' : '' }} {{ $isDrDimmed ? 'opacity-45' : '' }}"
+                                                            @if ($isDrDimmed) title="Second use of this CC in the same go — diminished (50%)" @endif>
                                                         <div class="flex items-center gap-2">
                                                             <x-spell-icon :spell="$stepSpell" size="w-8 h-8"/>
                                                             <span class="min-w-0">
-                                                                <span class="block text-[11px] text-ink font-semibold truncate">{{ $stepSpell->display_name }}</span>
+                                                                <span class="block text-[11px] {{ $isDrDimmed ? 'text-ink-muted' : 'text-ink' }} font-semibold truncate">{{ $stepSpell->display_name }}</span>
                                                                 @if ($isAnchor)
                                                                     <span class="badge-gold !text-[8px] !px-1 !py-0 mt-0.5">CD</span>
+                                                                @elseif ($isDrDimmed)
+                                                                    <span class="badge-gray !text-[8px] !px-1 !py-0 mt-0.5">DR</span>
                                                                 @endif
                                                             </span>
                                                         </div>

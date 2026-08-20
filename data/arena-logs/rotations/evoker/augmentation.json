@@ -17,30 +17,35 @@
         "Upheaval"
     ],
     "topCombo": {
-        "length": 5,
+        "length": 4,
         "steps": [
             {
                 "name": "Sleep Walk",
-                "spellId": 360806
-            },
-            {
-                "name": "Sleep Walk",
-                "spellId": 360806
+                "spellId": 360806,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Upheaval",
-                "spellId": 396286
+                "spellId": 396286,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Fire Breath",
-                "spellId": 357208
+                "spellId": 357208,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Blistering Scales",
-                "spellId": 360827
+                "spellId": 360827,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 12.5
+        "count": 8,
+        "pct": 25,
+        "distinct": 4
     }
 }

@@ -24,23 +24,32 @@
         "length": 4,
         "steps": [
             {
+                "name": "Sap",
+                "spellId": 6770,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Cheap Shot",
+                "spellId": 1833,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
                 "name": "Adrenaline Rush",
-                "spellId": 13750
+                "spellId": 13750,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Blade Rush",
-                "spellId": 271877
-            },
-            {
-                "name": "Between the Eyes",
-                "spellId": 315341
-            },
-            {
-                "name": "Between the Eyes",
-                "spellId": 315341
+                "spellId": 271877,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 5.8
+        "count": 3,
+        "pct": 4.3,
+        "distinct": 4
     }
 }

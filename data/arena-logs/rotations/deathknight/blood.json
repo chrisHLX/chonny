@@ -14,34 +14,35 @@
         "Reaper's Mark"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 4,
         "steps": [
             {
                 "name": "Chains of Ice",
-                "spellId": 45524
+                "spellId": 45524,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Reaper's Mark",
-                "spellId": 439843
+                "spellId": 439843,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Strangulate",
-                "spellId": 47476
+                "spellId": 47476,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Consumption",
-                "spellId": 1263824
-            },
-            {
-                "name": "Chains of Ice",
-                "spellId": 45524
-            },
-            {
-                "name": "Chains of Ice",
-                "spellId": 45524
+                "spellId": 1263824,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
         "count": 4,
-        "pct": 33.3
+        "pct": 33.3,
+        "distinct": 4
     }
 }

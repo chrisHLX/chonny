@@ -19,31 +19,44 @@
         "length": 6,
         "steps": [
             {
-                "name": "Chains of Ice",
-                "spellId": 45524
+                "name": "Blinding Sleet",
+                "spellId": 207167,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Dark Transformation",
-                "spellId": 1233448
+                "spellId": 1233448,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Army of the Dead",
-                "spellId": 42650
+                "spellId": 42650,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Soul Reaper",
-                "spellId": 343294
+                "spellId": 343294,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Putrefy",
-                "spellId": 1247378
+                "spellId": 1247378,
+                "isCc": false,
+                "isRepeat": false
             },
             {
-                "name": "Putrefy",
-                "spellId": 1247378
+                "name": "Strangulate",
+                "spellId": 47476,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
-        "count": 8,
-        "pct": 2.6
+        "count": 5,
+        "pct": 1.7,
+        "distinct": 6
     }
 }

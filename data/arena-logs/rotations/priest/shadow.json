@@ -18,30 +18,35 @@
         "Power Infusion"
     ],
     "topCombo": {
-        "length": 5,
+        "length": 4,
         "steps": [
             {
-                "name": "Tentacle Slam",
-                "spellId": 1227280
+                "name": "Power Infusion",
+                "spellId": 10060,
+                "isCc": false,
+                "isRepeat": false
             },
             {
-                "name": "Power Infusion",
-                "spellId": 10060
+                "name": "Tentacle Slam",
+                "spellId": 1227280,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Silence",
+                "spellId": 15487,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Psychic Scream",
-                "spellId": 8122
-            },
-            {
-                "name": "Mind Blast",
-                "spellId": 8092
-            },
-            {
-                "name": "Mind Blast",
-                "spellId": 8092
+                "spellId": 8122,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 6.6
+        "count": 5,
+        "pct": 8.2,
+        "distinct": 4
     }
 }

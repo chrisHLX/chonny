@@ -14,30 +14,35 @@
         "Deep Breath"
     ],
     "topCombo": {
-        "length": 5,
+        "length": 4,
         "steps": [
             {
                 "name": "Deep Breath",
-                "spellId": 433874
-            },
-            {
-                "name": "Deep Breath",
-                "spellId": 433874
+                "spellId": 433874,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Fire Breath",
-                "spellId": 357208
+                "spellId": 357208,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Eternity Surge",
-                "spellId": 359073
+                "spellId": 359073,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Sleep Walk",
-                "spellId": 360806
+                "spellId": 360806,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
         "count": 3,
-        "pct": 10.7
+        "pct": 10.7,
+        "distinct": 4
     }
 }

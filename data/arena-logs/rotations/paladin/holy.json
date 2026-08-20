@@ -19,34 +19,41 @@
         "Sacred Weapon"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 5,
         "steps": [
             {
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
                 "name": "Judgment",
-                "spellId": 275773
+                "spellId": 275773,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Avenging Crusader",
-                "spellId": 216331
+                "spellId": 216331,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Hammer of Wrath",
-                "spellId": 1241413
+                "spellId": 1241413,
+                "isCc": false,
+                "isRepeat": false
             },
             {
-                "name": "Hammer of Wrath",
-                "spellId": 1241413
-            },
-            {
-                "name": "Hammer of Justice",
-                "spellId": 853
-            },
-            {
-                "name": "Hammer of Wrath",
-                "spellId": 1241413
+                "name": "Sacred Weapon",
+                "spellId": 432472,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 5,
-        "pct": 1.7
+        "count": 3,
+        "pct": 1,
+        "distinct": 5
     }
 }

@@ -25,31 +25,44 @@
         "length": 6,
         "steps": [
             {
+                "name": "Immolation Aura",
+                "spellId": 258920,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Vengeful Retreat",
+                "spellId": 198793,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "The Hunt",
-                "spellId": 370965
-            },
-            {
-                "name": "Throw Glaive",
-                "spellId": 185123
-            },
-            {
-                "name": "Blade Dance",
-                "spellId": 188499
+                "spellId": 370965,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Eye Beam",
-                "spellId": 198013
+                "spellId": 198013,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Throw Glaive",
-                "spellId": 185123
+                "spellId": 185123,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Death Sweep",
-                "spellId": 210152
+                "spellId": 210152,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 6,
-        "pct": 1.9
+        "count": 4,
+        "pct": 1.3,
+        "distinct": 6
     }
 }

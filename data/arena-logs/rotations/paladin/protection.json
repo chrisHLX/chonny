@@ -20,34 +20,41 @@
         "Sentinel"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 5,
         "steps": [
             {
-                "name": "Consecration",
-                "spellId": 26573
+                "name": "Judgment",
+                "spellId": 275779,
+                "isCc": false,
+                "isRepeat": false
             },
             {
-                "name": "Judgment",
-                "spellId": 275779
+                "name": "Shield of Virtue",
+                "spellId": 215652,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Sentinel",
+                "spellId": 389539,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Hammer of Wrath",
+                "spellId": 1241413,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Avenger's Shield",
-                "spellId": 31935
-            },
-            {
-                "name": "Judgment",
-                "spellId": 275779
-            },
-            {
-                "name": "Consecration",
-                "spellId": 26573
-            },
-            {
-                "name": "Holy Bulwark",
-                "spellId": 432459
+                "spellId": 31935,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
-        "count": 6,
-        "pct": 7.5
+        "count": 3,
+        "pct": 3.8,
+        "distinct": 5
     }
 }

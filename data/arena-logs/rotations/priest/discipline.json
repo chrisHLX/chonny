@@ -16,34 +16,35 @@
         "Ultimate Penitence"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 4,
         "steps": [
             {
                 "name": "Psychic Scream",
-                "spellId": 8122
+                "spellId": 8122,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Ultimate Penitence",
-                "spellId": 421453
+                "spellId": 421453,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Penance",
-                "spellId": 47540
+                "spellId": 47540,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Mind Blast",
-                "spellId": 8092
-            },
-            {
-                "name": "Penance",
-                "spellId": 47540
-            },
-            {
-                "name": "Power Infusion",
-                "spellId": 10060
+                "spellId": 8092,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 2.2
+        "count": 5,
+        "pct": 2.7,
+        "distinct": 4
     }
 }

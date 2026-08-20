@@ -16,30 +16,35 @@
         "Incarnation: Chosen of Elune"
     ],
     "topCombo": {
-        "length": 5,
+        "length": 4,
         "steps": [
             {
                 "name": "Wild Mushroom",
-                "spellId": 88747
+                "spellId": 88747,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Cyclone",
-                "spellId": 33786
+                "spellId": 33786,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Force of Nature",
-                "spellId": 205636
+                "spellId": 205636,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Incarnation: Chosen of Elune",
-                "spellId": 102560
-            },
-            {
-                "name": "Cyclone",
-                "spellId": 33786
+                "spellId": 102560,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 3.2
+        "count": 5,
+        "pct": 4,
+        "distinct": 4
     }
 }

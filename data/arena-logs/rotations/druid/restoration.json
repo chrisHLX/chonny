@@ -11,34 +11,41 @@
         "Starsurge"
     ],
     "topCombo": {
-        "length": 6,
+        "length": 5,
         "steps": [
             {
-                "name": "Starsurge",
-                "spellId": 197626
-            },
-            {
                 "name": "Wild Charge",
-                "spellId": 102401
+                "spellId": 102401,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Ursol's Vortex",
-                "spellId": 102793
+                "spellId": 102793,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Cyclone",
-                "spellId": 33786
+                "spellId": 33786,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Starsurge",
-                "spellId": 197626
+                "spellId": 197626,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Incapacitating Roar",
-                "spellId": 99
+                "spellId": 99,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
         "count": 4,
-        "pct": 0.9
+        "pct": 0.9,
+        "distinct": 5
     }
 }

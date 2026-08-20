@@ -23,31 +23,44 @@
         "length": 6,
         "steps": [
             {
+                "name": "Fists of Fury",
+                "spellId": 113656,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Leg Sweep",
+                "spellId": 119381,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
                 "name": "Zenith",
-                "spellId": 1249625
+                "spellId": 1249625,
+                "isCc": false,
+                "isRepeat": false
             },
             {
                 "name": "Rising Sun Kick",
-                "spellId": 107428
+                "spellId": 107428,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Paralysis",
+                "spellId": 115078,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Strike of the Windlord",
-                "spellId": 392983
-            },
-            {
-                "name": "Rushing Wind Kick",
-                "spellId": 467307
-            },
-            {
-                "name": "Rising Sun Kick",
-                "spellId": 107428
-            },
-            {
-                "name": "Fists of Fury",
-                "spellId": 113656
+                "spellId": 392983,
+                "isCc": false,
+                "isRepeat": false
             }
         ],
-        "count": 15,
-        "pct": 3.8
+        "count": 6,
+        "pct": 1.5,
+        "distinct": 6
     }
 }

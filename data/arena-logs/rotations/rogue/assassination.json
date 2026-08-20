@@ -20,30 +20,43 @@
         "steps": [
             {
                 "name": "Garrote",
-                "spellId": 703
-            },
-            {
-                "name": "Kidney Shot",
-                "spellId": 408
-            },
-            {
-                "name": "Kingsbane",
-                "spellId": 385627
+                "spellId": 703,
+                "isCc": true,
+                "isRepeat": false
             },
             {
                 "name": "Deathmark",
-                "spellId": 360194
+                "spellId": 360194,
+                "isCc": false,
+                "isRepeat": false
             },
             {
-                "name": "Thistle Tea",
-                "spellId": 381623
+                "name": "Shiv",
+                "spellId": 5938,
+                "isCc": false,
+                "isRepeat": false
             },
             {
-                "name": "Garrote",
-                "spellId": 703
+                "name": "Kidney Shot",
+                "spellId": 408,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Kingsbane",
+                "spellId": 385627,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Blind",
+                "spellId": 2094,
+                "isCc": true,
+                "isRepeat": false
             }
         ],
-        "count": 4,
-        "pct": 1.2
+        "count": 3,
+        "pct": 0.9,
+        "distinct": 6
     }
 }
