@@ -1,0 +1,60 @@
+{
+    "class": "priest",
+    "spec": "discipline",
+    "windows": 971,
+    "killWindows": 98,
+    "matches": 79,
+    "anchors": [
+        "Mind Blast",
+        "Penance",
+        "Power Infusion",
+        "Shadow Word: Death",
+        "Ultimate Penitence"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Power Word: Radiance",
+                "spellId": 194509
+            },
+            {
+                "name": "Evangelism",
+                "spellId": 472433
+            },
+            {
+                "name": "Power Word: Radiance",
+                "spellId": 194509
+            },
+            {
+                "name": "Penance",
+                "spellId": 47540
+            }
+        ],
+        "count": 20,
+        "pct": 2.1
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Penance",
+                "spellId": 47540
+            },
+            {
+                "name": "Penance",
+                "spellId": 47540
+            },
+            {
+                "name": "Shadow Word: Pain",
+                "spellId": 589
+            },
+            {
+                "name": "Void Shield",
+                "spellId": 1253593
+            }
+        ],
+        "count": 4,
+        "pct": 4.1
+    }
+}

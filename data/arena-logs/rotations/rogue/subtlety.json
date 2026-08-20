@@ -1,0 +1,60 @@
+{
+    "class": "rogue",
+    "spec": "subtlety",
+    "windows": 378,
+    "killWindows": 38,
+    "matches": 51,
+    "anchors": [
+        "Goremaw's Bite",
+        "Secret Technique",
+        "Shadow Blades",
+        "Shadow Dance",
+        "Shiv"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Shadow Dance",
+                "spellId": 185313
+            },
+            {
+                "name": "Cheap Shot",
+                "spellId": 1833
+            },
+            {
+                "name": "Eviscerate",
+                "spellId": 196819
+            },
+            {
+                "name": "Shadowstrike",
+                "spellId": 185438
+            }
+        ],
+        "count": 31,
+        "pct": 8.2
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Shadow Dance",
+                "spellId": 185313
+            },
+            {
+                "name": "Shadowstrike",
+                "spellId": 185438
+            },
+            {
+                "name": "Secret Technique",
+                "spellId": 280719
+            },
+            {
+                "name": "Shadowstrike",
+                "spellId": 185438
+            }
+        ],
+        "count": 6,
+        "pct": 15.8
+    }
+}

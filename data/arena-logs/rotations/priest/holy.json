@@ -1,0 +1,58 @@
+{
+    "class": "priest",
+    "spec": "holy",
+    "windows": 873,
+    "killWindows": 124,
+    "matches": 164,
+    "anchors": [
+        "Holy Fire",
+        "Power Infusion",
+        "Shadow Word: Death"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Holy Fire",
+                "spellId": 14914
+            },
+            {
+                "name": "Smite",
+                "spellId": 585
+            },
+            {
+                "name": "Smite",
+                "spellId": 585
+            },
+            {
+                "name": "Prayer of Mending",
+                "spellId": 33076
+            }
+        ],
+        "count": 21,
+        "pct": 2.4
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Holy Fire",
+                "spellId": 14914
+            },
+            {
+                "name": "Smite",
+                "spellId": 585
+            },
+            {
+                "name": "Prayer of Mending",
+                "spellId": 33076
+            },
+            {
+                "name": "Holy Word: Serenity",
+                "spellId": 2050
+            }
+        ],
+        "count": 6,
+        "pct": 4.8
+    }
+}

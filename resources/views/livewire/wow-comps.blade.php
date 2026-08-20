@@ -18,6 +18,15 @@
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
     $cooldownDisplay = fn (array $entry) => $entry['cooldown']['seconds'] !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
 
+    // Splits a formatted "30s"/"4.5s" label into [number, unit] so a CD/Duration stat block can
+    // render the trailing "s" smaller and in a plain color than the number itself, instead of
+    // one uniformly-styled string. Moved up here (was originally only defined inside the
+    // Synergies section further down) 2026-08-20 so the Offensive/Defensive cooldown tabs' own
+    // single-box card layout (see below) can reuse it too.
+    $splitUnit = fn (string $label) => str_ends_with($label, 's')
+        ? [substr($label, 0, -1), 's']
+        : [$label, ''];
+
     $drBadge = [
         'Stun' => 'badge-red',
         'Disorient' => 'badge-blue',
@@ -189,9 +198,9 @@
                     <x-mc-icon name="icon-leaf" class="w-3.5 h-3.5"/>
                     Buffs &amp; Passives
                 </button>
-                <button type="button" @click="tab = 'killsequence'" class="tab-btn flex items-center gap-1.5" :class="tab === 'killsequence' ? 'tab-active' : 'tab-inactive'">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    Kill Sequence
+                <button type="button" @click="tab = 'rotation'" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    Offensive Rotation
                     <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
                 </button>
                 <button type="button" @click="tab = 'ratingtiers'" class="tab-btn flex items-center gap-1.5" :class="tab === 'ratingtiers' ? 'tab-active' : 'tab-inactive'">
@@ -216,63 +225,78 @@
                  classified Mixed (real signals for both) appears in BOTH tabs, matching that
                  bucket's own honest "don't force one bucket" definition — same shared
                  $offDefFilter builder below, only the direction ('offensive'/'defensive') and
-                 tab key differ. Same category-grouped card-grid markup and the same
-                 click-to-open spell-detail modal as every other tab on this page. --}}
+                 tab key differ.
+
+                 Collapsed from 5 per-category boxes (one grid-of-3-member-columns per category)
+                 down to ONE merged box per tab, 2026-08-20 direct follow-up — same card style the
+                 Synergies tab's CC cards already use (icon/name/badge row/stat block/owner label,
+                 see that section below), not the plain icon+name+cooldown list row the other
+                 tabs on this page still use. Deliberately CD only, no Duration block — this data
+                 has no curated PvP-duration equivalent (that's Synergies/dr_category-specific),
+                 so showing a Dur stat here would just always read blank. Entries from all 3
+                 members are merged into one flex-wrap grid, sorted by name, each card carrying
+                 its own owner (class/spec) label — same "don't group by column, let each card
+                 say who it belongs to" pattern as the Synergies boxes. --}}
             @php
                 $offDefFilter = fn (string $direction) => fn ($e) => ($e['isPriority'] ?? false) && ($e['offensiveDefensive'][$direction] ?? false);
             @endphp
             @foreach (['offensive' => 'Offensive', 'defensive' => 'Defensive'] as $direction => $directionLabel)
                 @php
                     $odFilter = $offDefFilter($direction);
-                    $anyForDirection = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains($odFilter));
+                    $odEntries = collect($comp)->flatMap(fn ($member, $mi) => collect($member['entries'])
+                        ->filter($odFilter)
+                        ->map(fn ($entry) => ['mi' => $mi, 'member' => $member, 'entry' => $entry]))
+                        ->sortBy(fn ($row) => $row['entry']['spell']->display_name)
+                        ->values();
                 @endphp
                 <div x-show="tab === '{{ $direction }}'" x-cloak>
-                    @if (!$anyForDirection)
+                    @if ($odEntries->isEmpty())
                         <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
                             No arena-log-verified {{ strtolower($directionLabel) }} cooldowns for any selected spec yet — try Active Abilities for the full kit.
                         </p>
                     @else
-                        @foreach ($categoryOrder as $category)
-                            @php
-                                $categoryHasAny = $selectedMembers->contains(fn ($m) => collect($m['entries'])->contains(fn ($e) => $odFilter($e) && $e['category'] === $category));
-                            @endphp
-                            @continue(!$categoryHasAny)
-
-                            <div class="mb-4">
-                                <p class="text-[10px] uppercase tracking-wide {{ $categoryAccent[$category] }} font-semibold mb-1.5 pl-1">{{ $category }}</p>
-                                <div class="grid grid-cols-3 gap-3">
-                                    @foreach ($comp as $mi => $member)
-                                        <div class="linear-card p-1.5 space-y-0.5">
-                                            @php
-                                                $odEntries = collect($member['entries'])->filter(
-                                                    fn ($e) => $odFilter($e) && $e['category'] === $category
-                                                );
-                                            @endphp
-                                            @forelse ($odEntries as $entry)
-                                                @php $modalKey = "m{$mi}-s{$entry['spell']->id}"; @endphp
-                                                <button type="button"
-                                                        @click="openSpellId = '{{ $modalKey }}'"
-                                                        class="w-full flex items-center gap-2 text-left px-1.5 py-1 rounded hover:bg-surface-2 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
-                                                    <x-spell-icon :spell="$entry['spell']" size="w-6 h-6"/>
-                                                    <span class="flex-1 min-w-0 text-[12px] text-ink truncate">{{ $entry['spell']->display_name }}</span>
-                                                    @if (($entry['offensiveDefensive']['label'] ?? null) === 'Mixed')
-                                                        <span class="badge-amber shrink-0" title="Real signals for both offense and defense">Mixed</span>
-                                                    @endif
-                                                    @if (($entry['source'] ?? null) === 'talent')
-                                                        <span class="badge-blue shrink-0" title="Talent">T</span>
-                                                    @elseif (($entry['source'] ?? null) === 'pvp_talent')
-                                                        <span class="badge-gold shrink-0" title="PvP Talent">PvP</span>
-                                                    @endif
-                                                    <span class="text-[10px] text-ink-subtle whitespace-nowrap">{{ $cooldownDisplay($entry) ?? '—' }}</span>
-                                                </button>
-                                            @empty
-                                                <p class="text-[11px] text-ink-subtle px-1.5 py-1">—</p>
-                                            @endforelse
+                        <div class="linear-card p-4">
+                            <div class="flex flex-wrap gap-2.5">
+                                @foreach ($odEntries as $row)
+                                    @php
+                                        $entry = $row['entry'];
+                                        $spell = $entry['spell'];
+                                        $member = $row['member'];
+                                        $modalKey = "m{$row['mi']}-s{$spell->id}";
+                                        $ownerColor = $member['class'] ? (config('wow_classes.colors')[$member['class']->slug] ?? null) : null;
+                                        [$cdValue, $cdUnit] = $splitUnit($cooldownDisplay($entry) ?? '—');
+                                    @endphp
+                                    <button type="button"
+                                            @click="openSpellId = '{{ $modalKey }}'"
+                                            class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <x-spell-icon :spell="$spell" size="w-8 h-8"/>
+                                            <span class="text-[12px] text-ink font-semibold truncate">{{ $spell->display_name }}</span>
                                         </div>
-                                    @endforeach
-                                </div>
+                                        <div class="flex flex-wrap items-center gap-1">
+                                            <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} !text-[9px]">{{ $entry['category'] }}</span>
+                                            @if (($entry['offensiveDefensive']['label'] ?? null) === 'Mixed')
+                                                <span class="badge-amber !text-[9px]" title="Real signals for both offense and defense">Mixed</span>
+                                            @endif
+                                            @if (($entry['source'] ?? null) === 'talent')
+                                                <span class="badge-blue !text-[9px]" title="Talent">T</span>
+                                            @elseif (($entry['source'] ?? null) === 'pvp_talent')
+                                                <span class="badge-gold !text-[9px]" title="PvP Talent">PvP</span>
+                                            @endif
+                                        </div>
+                                        <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
+                                            <div class="flex flex-col leading-none">
+                                                <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">CD</span>
+                                                <span class="text-[15px] font-bold text-ink tabular-nums">{{ $cdValue }}<span class="text-[10px] font-bold text-ink">{{ $cdUnit }}</span></span>
+                                            </div>
+                                        </div>
+                                        @if ($member['spec'])
+                                            <p class="text-[10px] font-semibold truncate mt-2.5" style="{{ $ownerColor ? 'color: '.$ownerColor : '' }}">{{ $member['class']->name }} ({{ $member['spec']->name }})</p>
+                                        @endif
+                                    </button>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>
                     @endif
                 </div>
             @endforeach
@@ -346,13 +370,6 @@
                     $cdLabel = fn ($spell) => isset($synergies['cooldown_by_id'][$spell->id]) && $synergies['cooldown_by_id'][$spell->id] !== null
                         ? $fmtSeconds($synergies['cooldown_by_id'][$spell->id])
                         : '—';
-
-                    // Splits a formatted "30s"/"4.5s" label into [number, unit] so the CD/Duration
-                    // stat blocks below can render the trailing "s" smaller and in a plain color
-                    // than the number itself, instead of one uniformly-styled string.
-                    $splitUnit = fn (string $label) => str_ends_with($label, 's')
-                        ? [substr($label, 0, -1), 's']
-                        : [$label, ''];
                 @endphp
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
@@ -502,82 +519,113 @@
                 @endif
             </div>
 
-            {{-- Kill Sequence tab — DEV/preview. Shows, per member and now per RATING BAND, what
-                 actually gets cast in the real seconds before a kill — sourced from
-                 data/arena-logs/rating-tiers/{class}/{spec}.json's own killWindow stat on each
-                 band (RatingTierAnalysisService::killWindowStats(), same computation the Rating
-                 Tiers tab uses, filtered to that band's matchIds against the same
-                 kill-sequences/*.jsonl file ArenaLogService::recordKillSequence() builds — no
-                 duplicate computation, this tab just renders data already produced for the
-                 Rating Tiers tab). Added 2026-08-15 on direct request ("I would imagine there
-                 might be a difference between the 3 tiers") — the flat, all-ratings-combined
-                 single ranked list this tab used to show couldn't answer that question at all.
-                 killWindow.n is shown per band since it's a real SUBSET of that band's total
-                 sample (only winning kills produce a recorded sequence at all, so it's usually
-                 smaller than the band's overall performance count from the Rating Tiers tab). --}}
-            <div x-show="tab === 'killsequence'" x-cloak class="space-y-4">
+            {{-- Offensive Rotation tab — replaced the Kill Sequence tab 2026-08-20 (direct
+                 request). That tab showed a per-rating-band ranked FREQUENCY LIST of individual
+                 abilities cast before a kill; this shows each spec's single most common real cast
+                 COMBO as an ordered sequence, which is what actually reads as a rotation and
+                 mirrors how the Crowd Control tab presents its groupings.
+
+                 Data comes from ArenaLogService::rotationForSpec() — promoted, pre-computed
+                 per-spec summaries built by wow-arena-archive's offensive-rotations.php (anchored
+                 on each spec's own real offensive cooldowns, target identified from where damage
+                 actually went in the window). Each combo is the top cast run that both contains
+                 one of the spec's own offensive cooldowns and uses >= 3 distinct abilities —
+                 without those rules the raw winner was routinely filler spam ("Mortal Strike x4")
+                 or a dual-wield logging artifact rather than a rotation.
+
+                 One grouping box per spec (per the request), each step rendered with the same
+                 card styling the Crowd Control / Offensive Cooldowns tabs use, chained with
+                 arrows. Sample sizes are shown deliberately — some specs' combos rest on very few
+                 observations and shouldn't read with the same authority as one backed by 100. --}}
+            <div x-show="tab === 'rotation'" x-cloak class="space-y-4">
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
                         <span class="text-amber-400 font-semibold">Preview / in development.</span>
-                        What each spec actually cast in the ~20 seconds before a real kill, broken down by rating band. Sample sizes vary a lot by spec and band right now — a low count means "not much data yet," not a confident answer.
+                        The most common cast sequence each spec actually performs around its own offensive cooldowns, taken from real matches. The target is identified by where that player's damage actually went inside the window, so a go that didn't kill still counts. <span class="text-ink font-semibold">Kill combo</span> is the same thing restricted to windows where the target actually died. Sample sizes vary a lot by spec — a low count means "not much data yet," not a confident answer.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-3 gap-3">
-                    @foreach ($comp as $mi => $member)
-                        <div class="linear-card p-3 space-y-3">
-                            @if (!$member['spec'])
-                                <p class="text-[11px] text-ink-subtle">—</p>
+                @foreach ($comp as $mi => $member)
+                    @php
+                        $rot = $offensiveRotations[$mi] ?? null;
+                        $memberColor = ($member['class']) ? (config('wow_classes.colors')[$member['class']->slug] ?? null) : null;
+                    @endphp
+                    <div class="linear-card p-4">
+                        @if (!$member['spec'])
+                            <p class="text-[11px] uppercase tracking-wide text-ink-subtle font-semibold">{{ $member['label'] }} — no spec selected</p>
+                        @else
+                            <div class="flex items-baseline justify-between gap-3 mb-3">
+                                <p class="text-[11px] uppercase tracking-wide font-semibold" style="{{ $memberColor ? 'color: '.$memberColor : '' }}">
+                                    {{ $member['spec']->name }} {{ $member['class']->name }}
+                                </p>
+                                @if ($rot)
+                                    <p class="text-[10px] text-ink-subtle">
+                                        {{ number_format($rot['windows']) }} cooldown windows across {{ $rot['matches'] }} matches
+                                    </p>
+                                @endif
+                            </div>
+
+                            @if (!$rot || empty($rot['topCombo']))
+                                <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a rotation on this spec yet.</p>
                             @else
-                                @php $rt = $ratingTiers[$mi]; @endphp
-                                <p class="text-[11px] font-semibold text-ink truncate">{{ $member['spec']->name }} {{ $member['class']->name }}</p>
+                                @foreach ([['key' => 'topCombo', 'label' => 'Most common combo', 'sample' => $rot['windows']], ['key' => 'topKillCombo', 'label' => 'Most common kill combo', 'sample' => $rot['killWindows']]] as $block)
+                                    @php $combo = $rot[$block['key']] ?? null; @endphp
+                                    @continue(!$combo)
 
-                                @if (empty($rt['bands']))
-                                    <p class="text-[11px] text-ink-subtle italic">No rating-tier data for this spec yet.</p>
-                                @else
-                                    @foreach ($rt['bands'] as $band)
-                                        @php $kw = $band['killWindow'] ?? ['n' => 0, 'spellPct' => []]; @endphp
-                                        <div class="pt-2 first:pt-0 border-t border-line first:border-t-0">
-                                            <div class="flex items-center justify-between">
-                                                <span class="text-[11px] font-semibold text-ink">{{ $band['label'] }}</span>
-                                                <span class="badge-gray !text-[9px] whitespace-nowrap">{{ $kw['n'] }} kill{{ $kw['n'] === 1 ? '' : 's' }}</span>
-                                            </div>
-
-                                            @if ($kw['n'] === 0)
-                                                <p class="text-[10px] text-ink-subtle italic mt-0.5">No recorded kills in this band yet.</p>
-                                            @else
-                                                <div class="space-y-0.5 mt-1">
-                                                    @foreach ($kw['spellPct'] as $spellName => $pct)
-                                                        <div class="flex items-center gap-2">
-                                                            <div class="flex-1 h-4 bg-surface-2 rounded overflow-hidden relative">
-                                                                <div class="h-full bg-gold/30" style="width: {{ $pct }}%"></div>
-                                                                <span class="absolute inset-0 flex items-center px-1.5 text-[10px] text-ink truncate">{{ $spellName }}</span>
-                                                            </div>
-                                                            <span class="text-[10px] text-ink-subtle font-mono w-8 text-right">{{ $pct }}%</span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            @endif
+                                    <div class="{{ !$loop->first ? 'mt-4 pt-4 border-t border-line' : '' }}">
+                                        <div class="flex items-baseline gap-2 mb-2.5">
+                                            <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">{{ $block['label'] }}</p>
+                                            <span class="text-[10px] text-ink-subtle">
+                                                seen in {{ $combo['count'] }} of {{ number_format($block['sample']) }} ({{ $combo['pct'] }}%)
+                                            </span>
                                         </div>
-                                    @endforeach
-                                @endif
 
-                                @php $ks = $killSequences[$mi]; @endphp
-                                @if ($ks['examples']->isNotEmpty())
-                                    <div class="pt-2 mt-2 border-t border-line space-y-2">
-                                        <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold">Real examples (all ratings combined)</p>
-                                        @foreach ($ks['examples'] as $ex)
-                                            <div class="text-[10px] text-ink-muted leading-relaxed">
-                                                <p class="text-ink-subtle">vs {{ $ex['losingComp']->implode(' / ') }} — killed {{ $ex['killedSpecName'] }}</p>
-                                                <p class="mt-0.5">{{ $ex['sequence']->implode(' → ') }}</p>
-                                            </div>
-                                        @endforeach
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            @foreach ($combo['steps'] as $si => $step)
+                                                @if ($si > 0)
+                                                    <svg class="w-3.5 h-3.5 text-ink-subtle flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                                    </svg>
+                                                @endif
+                                                @php
+                                                    $stepSpell = $step['spell'] ?? null;
+                                                    $isAnchor = in_array($step['name'], $rot['anchors'] ?? [], true);
+                                                @endphp
+                                                @if ($stepSpell)
+                                                    {{-- Clickable into the same spell-detail modal every other tab uses, but
+                                                         ONLY when this spell is actually one of this member's own rendered
+                                                         entries — a rotation step can be a filler/proc ability that isn't in
+                                                         the tab's entry list, and keying the modal to a spell with no matching
+                                                         content block would open an empty overlay. --}}
+                                                    @php
+                                                        $hasModal = collect($member['entries'])->contains(fn ($e) => $e['spell']->id === $stepSpell->id);
+                                                    @endphp
+                                                    <button type="button"
+                                                            @if ($hasModal) @click="openSpellId = 'm{{ $mi }}-s{{ $stepSpell->id }}'" @else disabled @endif
+                                                            class="linear-card !p-2.5 w-36 flex-shrink-0 text-left {{ $hasModal ? 'hover:border-gold/40 transition-colors' : 'cursor-default' }} {{ $isAnchor ? '!border-gold/50' : '' }}">
+                                                        <div class="flex items-center gap-2">
+                                                            <x-spell-icon :spell="$stepSpell" size="w-8 h-8"/>
+                                                            <span class="min-w-0">
+                                                                <span class="block text-[11px] text-ink font-semibold truncate">{{ $stepSpell->display_name }}</span>
+                                                                @if ($isAnchor)
+                                                                    <span class="badge-gold !text-[8px] !px-1 !py-0 mt-0.5">CD</span>
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                @else
+                                                    <div class="linear-card !p-2.5 w-36 flex-shrink-0">
+                                                        <span class="block text-[11px] text-ink font-semibold truncate">{{ $step['name'] }}</span>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
-                                @endif
+                                @endforeach
                             @endif
-                        </div>
-                    @endforeach
-                </div>
+                        @endif
+                    </div>
+                @endforeach
             </div>
 
             {{-- Rating Tiers tab — DEV/preview, reads data/arena-logs/rating-tiers/{class}/{spec}.json

@@ -1,0 +1,57 @@
+{
+    "class": "evoker",
+    "spec": "preservation",
+    "windows": 525,
+    "killWindows": 50,
+    "matches": 83,
+    "anchors": [
+        "Deep Breath",
+        "Fire Breath"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Fire Breath",
+                "spellId": 357208
+            },
+            {
+                "name": "Chrono Flames",
+                "spellId": 431443
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995
+            }
+        ],
+        "count": 11,
+        "pct": 2.1
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Fire Breath",
+                "spellId": 357208
+            },
+            {
+                "name": "Chrono Flames",
+                "spellId": 431443
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995
+            }
+        ],
+        "count": 3,
+        "pct": 6
+    }
+}

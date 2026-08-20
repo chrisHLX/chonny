@@ -1,0 +1,40 @@
+{
+    "class": "rogue",
+    "spec": "outlaw",
+    "windows": 74,
+    "killWindows": 1,
+    "matches": 7,
+    "anchors": [
+        "Adrenaline Rush",
+        "Between the Eyes",
+        "Blade Flurry",
+        "Blade Rush",
+        "Killing Spree",
+        "Shiv",
+        "Thistle Tea"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Adrenaline Rush",
+                "spellId": 13750
+            },
+            {
+                "name": "Dispatch",
+                "spellId": 2098
+            },
+            {
+                "name": "Sinister Strike",
+                "spellId": 193315
+            },
+            {
+                "name": "Sinister Strike",
+                "spellId": 193315
+            }
+        ],
+        "count": 3,
+        "pct": 4.1
+    },
+    "topKillCombo": null
+}

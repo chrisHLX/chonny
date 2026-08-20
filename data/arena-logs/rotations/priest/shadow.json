@@ -1,0 +1,62 @@
+{
+    "class": "priest",
+    "spec": "shadow",
+    "windows": 353,
+    "killWindows": 33,
+    "matches": 30,
+    "anchors": [
+        "Halo",
+        "Mind Blast",
+        "Power Infusion",
+        "Shadow Word: Death",
+        "Tentacle Slam",
+        "Void Blast",
+        "Void Torrent"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Tentacle Slam",
+                "spellId": 1227280
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263
+            },
+            {
+                "name": "Shadow Word: Pain",
+                "spellId": 589
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263
+            }
+        ],
+        "count": 76,
+        "pct": 21.5
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Tentacle Slam",
+                "spellId": 1227280
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263
+            },
+            {
+                "name": "Shadow Word: Madness",
+                "spellId": 335467
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263
+            }
+        ],
+        "count": 7,
+        "pct": 21.2
+    }
+}

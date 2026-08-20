@@ -1,0 +1,56 @@
+{
+    "class": "druid",
+    "spec": "restoration",
+    "windows": 479,
+    "killWindows": 63,
+    "matches": 111,
+    "anchors": [
+        "Starsurge"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Starsurge",
+                "spellId": 197626
+            },
+            {
+                "name": "Rejuvenation (Germination)",
+                "spellId": 155777
+            },
+            {
+                "name": "Rejuvenation",
+                "spellId": 774
+            },
+            {
+                "name": "Swiftmend",
+                "spellId": 18562
+            }
+        ],
+        "count": 11,
+        "pct": 2.3
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Starsurge",
+                "spellId": 197626
+            },
+            {
+                "name": "Rejuvenation (Germination)",
+                "spellId": 155777
+            },
+            {
+                "name": "Rejuvenation",
+                "spellId": 774
+            },
+            {
+                "name": "Lifebloom",
+                "spellId": 33763
+            }
+        ],
+        "count": 3,
+        "pct": 4.8
+    }
+}

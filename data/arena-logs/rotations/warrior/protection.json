@@ -1,0 +1,61 @@
+{
+    "class": "warrior",
+    "spec": "protection",
+    "windows": 40,
+    "killWindows": 3,
+    "matches": 5,
+    "anchors": [
+        "Avatar",
+        "Champion's Spear",
+        "Demolish",
+        "Impending Victory",
+        "Shield Charge",
+        "Shield Slam"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Shield Block",
+                "spellId": 2565
+            },
+            {
+                "name": "Shield Slam",
+                "spellId": 23922
+            },
+            {
+                "name": "Thunder Clap",
+                "spellId": 6343
+            },
+            {
+                "name": "Revenge",
+                "spellId": 6572
+            }
+        ],
+        "count": 8,
+        "pct": 20
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Shield Slam",
+                "spellId": 23922
+            },
+            {
+                "name": "Thunder Clap",
+                "spellId": 6343
+            },
+            {
+                "name": "Revenge",
+                "spellId": 6572
+            },
+            {
+                "name": "Shield Block",
+                "spellId": 2565
+            }
+        ],
+        "count": 3,
+        "pct": 100
+    }
+}

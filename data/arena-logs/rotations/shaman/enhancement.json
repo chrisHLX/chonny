@@ -1,0 +1,61 @@
+{
+    "class": "shaman",
+    "spec": "enhancement",
+    "windows": 242,
+    "killWindows": 33,
+    "matches": 23,
+    "anchors": [
+        "Ascendance",
+        "Crash Lightning",
+        "Doom Winds",
+        "Feral Lunge",
+        "Lava Lash",
+        "Voltaic Blaze"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Doom Winds",
+                "spellId": 469270
+            },
+            {
+                "name": "Tempest",
+                "spellId": 452201
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270
+            }
+        ],
+        "count": 75,
+        "pct": 31
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Doom Winds",
+                "spellId": 469270
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270
+            }
+        ],
+        "count": 25,
+        "pct": 75.8
+    }
+}

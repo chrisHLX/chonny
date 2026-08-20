@@ -1,0 +1,59 @@
+{
+    "class": "rogue",
+    "spec": "assassination",
+    "windows": 459,
+    "killWindows": 111,
+    "matches": 105,
+    "anchors": [
+        "Deathmark",
+        "Kingsbane",
+        "Shiv",
+        "Thistle Tea"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Kingsbane",
+                "spellId": 385627
+            },
+            {
+                "name": "Envenom",
+                "spellId": 32645
+            },
+            {
+                "name": "Fatebound Coin (Tails)",
+                "spellId": 452538
+            },
+            {
+                "name": "Mutilate",
+                "spellId": 27576
+            }
+        ],
+        "count": 38,
+        "pct": 8.3
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Kingsbane",
+                "spellId": 385627
+            },
+            {
+                "name": "Envenom",
+                "spellId": 32645
+            },
+            {
+                "name": "Fatebound Coin (Tails)",
+                "spellId": 452538
+            },
+            {
+                "name": "Mutilate",
+                "spellId": 27576
+            }
+        ],
+        "count": 7,
+        "pct": 6.3
+    }
+}

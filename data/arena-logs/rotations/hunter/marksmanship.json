@@ -1,0 +1,61 @@
+{
+    "class": "hunter",
+    "spec": "marksmanship",
+    "windows": 768,
+    "killWindows": 87,
+    "matches": 63,
+    "anchors": [
+        "Black Arrow",
+        "Explosive Shot",
+        "Rapid Fire",
+        "Roar of Sacrifice",
+        "Trueshot",
+        "Volley"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Rapid Fire",
+                "spellId": 257044
+            },
+            {
+                "name": "Arcane Shot",
+                "spellId": 185358
+            },
+            {
+                "name": "Aimed Shot",
+                "spellId": 19434
+            },
+            {
+                "name": "Arcane Shot",
+                "spellId": 185358
+            }
+        ],
+        "count": 42,
+        "pct": 5.5
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Arcane Shot",
+                "spellId": 185358
+            },
+            {
+                "name": "Explosive Shot",
+                "spellId": 212431
+            },
+            {
+                "name": "Aimed Shot",
+                "spellId": 19434
+            },
+            {
+                "name": "Arcane Shot",
+                "spellId": 185358
+            }
+        ],
+        "count": 7,
+        "pct": 8
+    }
+}

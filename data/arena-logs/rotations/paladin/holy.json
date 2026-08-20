@@ -1,0 +1,61 @@
+{
+    "class": "paladin",
+    "spec": "holy",
+    "windows": 630,
+    "killWindows": 84,
+    "matches": 49,
+    "anchors": [
+        "Avenging Crusader",
+        "Avenging Wrath",
+        "Hammer of Wrath",
+        "Holy Bulwark",
+        "Judgment",
+        "Sacred Weapon"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Hammer of Wrath",
+                "spellId": 1241413
+            },
+            {
+                "name": "Crusader Strike",
+                "spellId": 1279187
+            },
+            {
+                "name": "Reclamation",
+                "spellId": 415388
+            },
+            {
+                "name": "Crusader Strike",
+                "spellId": 1279187
+            }
+        ],
+        "count": 34,
+        "pct": 5.4
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Judgment",
+                "spellId": 275773
+            },
+            {
+                "name": "Flash of Light",
+                "spellId": 19750
+            },
+            {
+                "name": "Holy Shock",
+                "spellId": 20473
+            },
+            {
+                "name": "Reclamation",
+                "spellId": 415388
+            }
+        ],
+        "count": 8,
+        "pct": 9.5
+    }
+}

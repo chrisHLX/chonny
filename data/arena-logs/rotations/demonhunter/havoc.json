@@ -1,0 +1,66 @@
+{
+    "class": "demonhunter",
+    "spec": "havoc",
+    "windows": 403,
+    "killWindows": 65,
+    "matches": 52,
+    "anchors": [
+        "Blade Dance",
+        "Chaos Nova",
+        "Death Sweep",
+        "Essence Break",
+        "Eye Beam",
+        "Fel Rush",
+        "Felblade",
+        "Immolation Aura",
+        "The Hunt",
+        "Throw Glaive",
+        "Vengeful Retreat"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Throw Glaive",
+                "spellId": 185123
+            },
+            {
+                "name": "Blade Dance",
+                "spellId": 188499
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 185123
+            },
+            {
+                "name": "Shattered Souls",
+                "spellId": 228537
+            }
+        ],
+        "count": 219,
+        "pct": 54.3
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Throw Glaive",
+                "spellId": 185123
+            },
+            {
+                "name": "Blade Dance",
+                "spellId": 188499
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 185123
+            },
+            {
+                "name": "Shattered Souls",
+                "spellId": 228537
+            }
+        ],
+        "count": 52,
+        "pct": 80
+    }
+}

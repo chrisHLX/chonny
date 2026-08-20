@@ -8,6 +8,7 @@ use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
 use App\Models\ModuleGameBuild;
 use App\Models\PageViewEvent;
+use App\Models\Patch;
 use App\Models\Specialization;
 use App\Models\Spell;
 use App\Models\TalentBuild;
@@ -492,119 +493,73 @@ class WowComps extends Component
     }
 
     /**
-     * Kill Sequence tab data — reads data/arena-logs/kill-sequences/{classSlug}/{specSlug}.jsonl
-     * (built by ArenaLogService::recordKillSequence(), see that method's docblock) directly off
-     * disk per request. Deliberately NOT gated on a minimum sample size (per direct user
-     * instruction 2026-08-14 — "this is in development I want to see how the data looks and
-     * feels on screen") — a spec with 1 recorded instance shows 100% for everything it did,
-     * which is honestly noisy, not a bug; sampleSize is exposed to the view specifically so the
-     * UI can (and eventually should) flag low-confidence data rather than presenting every spec
-     * with equal authority. A spec with zero recorded matches shows an explicit empty state.
+     * Offensive Rotation tab data — replaced the Kill Sequence tab 2026-08-20 (direct request).
+     * The old tab showed a ranked FREQUENCY LIST of individual abilities appearing before a kill;
+     * this shows the spec's single most common real cast COMBO — an ordered sequence, which is
+     * what actually reads as a rotation and matches how the Crowd Control tab already presents
+     * CC chains.
      *
-     * Ranked by DISTINCT-instance frequency (matches wow:common-prekill-spells's own logic) —
-     * how many of this spec's recorded pre-kill windows an ability appears in at all, not raw
-     * cast count, so one spammy filler cast within a single window can't outrank something that
-     * reliably shows up across many different real kills.
+     * Reads the promoted per-spec summary via ArenaLogService::rotationForSpec() (see that
+     * method's docblock, and offensive-rotations.php in wow-arena-archive for the derivation).
+     * Each spec's combo is anchored on its own real offensive cooldowns, with the target
+     * identified from where damage actually went — see that script for the two real bugs found
+     * while building it (multi-locale spell names fragmenting patterns, and clone/proc casts
+     * counted as player presses).
      *
-     * @return array<int, array{sampleSize: int, ranked: Collection, examples: Collection}|null>
+     * Sample sizes are exposed and rendered, deliberately — several specs have few windows or
+     * few kill-windows, and a combo backed by 6 observations should not read with the same
+     * authority as one backed by 100.
+     *
+     * @return array<int, array|null>
      */
-    public function getKillSequencesProperty(): array
+    public function getOffensiveRotationsProperty(): array
     {
-        return collect($this->comp)->map(function ($member) {
+        $service = app(ArenaLogService::class);
+
+        return collect($this->comp)->map(function ($member) use ($service) {
             if (!$member['spec']) {
                 return null;
             }
 
-            return $this->killSequenceDataFor($member['class'], $member['spec']);
+            $rotation = $service->rotationForSpec($member['class']->slug, $member['spec']->slug);
+
+            if ($rotation === null) {
+                return null;
+            }
+
+            // Resolve each step's icon in one query per spec rather than per step.
+            $stepIds = collect([$rotation['topCombo'] ?? null, $rotation['topKillCombo'] ?? null])
+                ->filter()
+                ->flatMap(fn ($c) => array_column($c['steps'], 'spellId'))
+                ->filter()
+                ->unique();
+
+            $spellsById = $stepIds->isEmpty()
+                ? collect()
+                : Spell::whereIn('spell_id', $stepIds)
+                    ->where('patch_id', Patch::where('is_current', true)->value('id'))
+                    ->get()
+                    ->keyBy('spell_id');
+
+            foreach (['topCombo', 'topKillCombo'] as $key) {
+                if (!isset($rotation[$key]) || $rotation[$key] === null) {
+                    continue;
+                }
+                $rotation[$key]['steps'] = array_map(function ($step) use ($spellsById) {
+                    $step['spell'] = $spellsById[$step['spellId']] ?? null;
+                    return $step;
+                }, $rotation[$key]['steps']);
+            }
+
+            return $rotation;
         })->all();
     }
 
-    /**
-     * Deliberately reads this project's own tree, NOT config('arena_logs.archive_path') —
-     * recordKillSequence() writes fresh pulls to the archive as a staging/review area (direct
-     * user instruction 2026-08-20); this live tab must only reflect what's been manually
-     * promoted, same reasoning as ArenaLogService::spellUsageIds(). See config/arena_logs.php.
-     *
-     * @return array{sampleSize: int, ranked: Collection, examples: Collection}
-     */
-    private function killSequenceDataFor(GameClass $class, Specialization $spec): array
-    {
-        $path = base_path("data/arena-logs/kill-sequences/{$class->slug}/{$spec->slug}.jsonl");
-
-        if (!File::exists($path)) {
-            return ['sampleSize' => 0, 'ranked' => collect(), 'examples' => collect()];
-        }
-
-        $records = collect(File::lines($path))
-            ->map(fn ($line) => json_decode($line, true))
-            ->filter();
-
-        $sampleSize = $records->count();
-
-        if ($sampleSize === 0) {
-            return ['sampleSize' => 0, 'ranked' => collect(), 'examples' => collect()];
-        }
-
-        $matchCountBySpell = [];
-        $nameBySpell = [];
-
-        foreach ($records as $record) {
-            $seenThisRecord = [];
-            foreach ($record['sequence'] as $cast) {
-                $id = $cast['spellId'];
-
-                // Prefer an ASCII (English) name across matches, not last-write-wins. A spell
-                // not yet in our `spells` table falls back to each individual match's own raw
-                // combat log name (ArenaLogService::recordKillSequence()'s hybrid resolver) —
-                // and different matches can be recorded by different-locale clients, so the same
-                // spell_id can carry an English name in one match and e.g. a Chinese name in
-                // another. Without this guard, whichever match happened to be processed last
-                // silently decided the aggregated display name — confirmed live 2026-08-14
-                // (Snowdrift showed as Chinese characters in the ranked list despite most
-                // recorded instances being English). A spell already in our `spells` table never
-                // hits this ambiguity at all (recordKillSequence() always resolves those to the
-                // same canonical DB name regardless of which match recorded them).
-                if (!isset($nameBySpell[$id]) || (preg_match('/[^\x00-\x7F]/', $nameBySpell[$id]) && !preg_match('/[^\x00-\x7F]/', $cast['name']))) {
-                    $nameBySpell[$id] = $cast['name'];
-                }
-
-                if (!isset($seenThisRecord[$id])) {
-                    $seenThisRecord[$id] = true;
-                    $matchCountBySpell[$id] = ($matchCountBySpell[$id] ?? 0) + 1;
-                }
-            }
-        }
-
-        $ranked = collect($matchCountBySpell)
-            ->map(fn ($count, $id) => [
-                'name' => $nameBySpell[$id],
-                'spellId' => $id,
-                'count' => $count,
-                'pct' => (int) round($count / $sampleSize * 100),
-            ])
-            ->sortByDesc('count')
-            ->take(12)
-            ->values();
-
-        $specNames = Specialization::whereIn('external_spec_id', $records->flatMap(fn ($r) => array_merge($r['winningComp'], $r['losingComp'], [$r['killedSpec']]))->unique())
-            ->get()
-            ->keyBy('external_spec_id')
-            ->map(fn ($s) => $s->name);
-
-        $examples = $records->take(3)->map(fn ($r) => [
-            'sequence' => collect($r['sequence'])->pluck('name'),
-            'winningComp' => collect($r['winningComp'])->map(fn ($id) => $specNames[$id] ?? "spec {$id}"),
-            'losingComp' => collect($r['losingComp'])->map(fn ($id) => $specNames[$id] ?? "spec {$id}"),
-            'killedSpecName' => $specNames[$r['killedSpec']] ?? "spec {$r['killedSpec']}",
-        ]);
-
-        return ['sampleSize' => $sampleSize, 'ranked' => $ranked, 'examples' => $examples];
-    }
 
     /**
      * Rating Tiers tab data — reads data/arena-logs/rating-tiers/{classSlug}/{specSlug}.json
      * directly (built by RatingTierAnalysisService::analyzeSpec() / wow:analyze-rating-tiers),
-     * same "no DB, no caching, read straight off disk" posture as getKillSequencesProperty()
+     * same "no DB, no caching, read straight off disk" posture as getOffensiveRotationsProperty()
      * above. The file is a full JSON blob (not a per-line log), so this is a plain decode-and-
      * pass-through — no aggregation happens at render time, unlike the kill-sequence tab, since
      * wow:analyze-rating-tiers already computed every number (including the hero-tree
@@ -645,7 +600,7 @@ class WowComps extends Component
             'classSpecs' => $this->classSpecs,
             'comp' => $this->comp,
             'synergies' => $this->synergies,
-            'killSequences' => $this->killSequences,
+            'offensiveRotations' => $this->offensiveRotations,
             'ratingTiers' => $this->ratingTiers,
         ])->layout('layouts.app');
     }

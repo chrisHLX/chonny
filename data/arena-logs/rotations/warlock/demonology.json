@@ -1,0 +1,30 @@
+{
+    "class": "warlock",
+    "spec": "demonology",
+    "windows": 38,
+    "killWindows": 2,
+    "matches": 10,
+    "anchors": [
+        "Implosion"
+    ],
+    "topCombo": {
+        "length": 3,
+        "steps": [
+            {
+                "name": "Implosion",
+                "spellId": 196277
+            },
+            {
+                "name": "Curse of Exhaustion",
+                "spellId": 334275
+            },
+            {
+                "name": "Demonbolt",
+                "spellId": 264178
+            }
+        ],
+        "count": 3,
+        "pct": 7.9
+    },
+    "topKillCombo": null
+}

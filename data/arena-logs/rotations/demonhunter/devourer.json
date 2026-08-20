@@ -1,0 +1,62 @@
+{
+    "class": "demonhunter",
+    "spec": "devourer",
+    "windows": 483,
+    "killWindows": 52,
+    "matches": 42,
+    "anchors": [
+        "Cull",
+        "Reap",
+        "The Hunt",
+        "Throw Glaive",
+        "Vengeful Retreat",
+        "Void Nova",
+        "Voidblade"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412
+            },
+            {
+                "name": "Reap",
+                "spellId": 1226019
+            },
+            {
+                "name": "Consume",
+                "spellId": 473662
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412
+            }
+        ],
+        "count": 210,
+        "pct": 43.5
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412
+            },
+            {
+                "name": "Reap",
+                "spellId": 1226019
+            },
+            {
+                "name": "Consume",
+                "spellId": 473662
+            },
+            {
+                "name": "Soul Fragment",
+                "spellId": 1223412
+            }
+        ],
+        "count": 21,
+        "pct": 40.4
+    }
+}

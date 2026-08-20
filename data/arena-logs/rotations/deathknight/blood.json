@@ -1,0 +1,36 @@
+{
+    "class": "deathknight",
+    "spec": "blood",
+    "windows": 68,
+    "killWindows": 0,
+    "matches": 4,
+    "anchors": [
+        "Consumption",
+        "Death and Decay",
+        "Reaper's Mark"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Reaper's Mark",
+                "spellId": 439843
+            },
+            {
+                "name": "Marrowrend",
+                "spellId": 195182
+            },
+            {
+                "name": "Exterminate",
+                "spellId": 441424
+            },
+            {
+                "name": "Blood Boil",
+                "spellId": 50842
+            }
+        ],
+        "count": 6,
+        "pct": 8.8
+    },
+    "topKillCombo": null
+}

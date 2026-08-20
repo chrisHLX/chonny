@@ -1,0 +1,61 @@
+{
+    "class": "deathknight",
+    "spec": "frost",
+    "windows": 290,
+    "killWindows": 33,
+    "matches": 46,
+    "anchors": [
+        "Breath of Sindragosa",
+        "Death and Decay",
+        "Empower Rune Weapon",
+        "Frostwyrm's Fury",
+        "Pillar of Frost",
+        "Reaper's Mark"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Obliterate",
+                "spellId": 49020
+            },
+            {
+                "name": "Empower Rune Weapon",
+                "spellId": 47568
+            },
+            {
+                "name": "Exterminate",
+                "spellId": 441424
+            },
+            {
+                "name": "Obliterate",
+                "spellId": 49020
+            }
+        ],
+        "count": 44,
+        "pct": 15.2
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Obliterate",
+                "spellId": 49020
+            },
+            {
+                "name": "Empower Rune Weapon",
+                "spellId": 47568
+            },
+            {
+                "name": "Exterminate",
+                "spellId": 441424
+            },
+            {
+                "name": "Obliterate",
+                "spellId": 49020
+            }
+        ],
+        "count": 5,
+        "pct": 15.2
+    }
+}

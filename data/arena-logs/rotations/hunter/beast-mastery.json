@@ -1,0 +1,59 @@
+{
+    "class": "hunter",
+    "spec": "beast-mastery",
+    "windows": 848,
+    "killWindows": 110,
+    "matches": 78,
+    "anchors": [
+        "Barbed Shot",
+        "Bestial Wrath",
+        "Roar of Sacrifice",
+        "Wild Thrash"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Kill Command",
+                "spellId": 34026
+            },
+            {
+                "name": "Barbed Shot",
+                "spellId": 217200
+            },
+            {
+                "name": "Kill Command",
+                "spellId": 34026
+            },
+            {
+                "name": "Cobra Shot",
+                "spellId": 193455
+            }
+        ],
+        "count": 41,
+        "pct": 4.8
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Kill Command",
+                "spellId": 34026
+            },
+            {
+                "name": "Barbed Shot",
+                "spellId": 217200
+            },
+            {
+                "name": "Kill Command",
+                "spellId": 34026
+            },
+            {
+                "name": "Cobra Shot",
+                "spellId": 193455
+            }
+        ],
+        "count": 8,
+        "pct": 7.3
+    }
+}

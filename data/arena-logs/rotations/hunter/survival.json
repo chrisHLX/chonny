@@ -1,0 +1,59 @@
+{
+    "class": "hunter",
+    "spec": "survival",
+    "windows": 133,
+    "killWindows": 11,
+    "matches": 9,
+    "anchors": [
+        "Boomstick",
+        "Roar of Sacrifice",
+        "Takedown",
+        "Wildfire Bomb"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Wildfire Bomb",
+                "spellId": 259495
+            },
+            {
+                "name": "Kill Command",
+                "spellId": 259489
+            },
+            {
+                "name": "Raptor Swipe",
+                "spellId": 1262293
+            },
+            {
+                "name": "Raptor Strike",
+                "spellId": 186270
+            }
+        ],
+        "count": 7,
+        "pct": 5.3
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Takedown",
+                "spellId": 1253859
+            },
+            {
+                "name": "Moonlight Chakram",
+                "spellId": 1264949
+            },
+            {
+                "name": "Intimidation",
+                "spellId": 19577
+            },
+            {
+                "name": "Freezing Trap",
+                "spellId": 187650
+            }
+        ],
+        "count": 4,
+        "pct": 36.4
+    }
+}

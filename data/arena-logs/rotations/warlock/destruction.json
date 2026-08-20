@@ -1,0 +1,58 @@
+{
+    "class": "warlock",
+    "spec": "destruction",
+    "windows": 516,
+    "killWindows": 46,
+    "matches": 37,
+    "anchors": [
+        "Conflagrate",
+        "Malevolence",
+        "Soul Fire"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Chaos Bolt",
+                "spellId": 116858
+            },
+            {
+                "name": "Chaos Bolt",
+                "spellId": 116858
+            },
+            {
+                "name": "Conflagrate",
+                "spellId": 17962
+            },
+            {
+                "name": "Incinerate",
+                "spellId": 29722
+            }
+        ],
+        "count": 14,
+        "pct": 2.7
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Chaos Bolt",
+                "spellId": 116858
+            },
+            {
+                "name": "Conflagrate",
+                "spellId": 17962
+            },
+            {
+                "name": "Chaos Bolt",
+                "spellId": 116858
+            },
+            {
+                "name": "Incinerate",
+                "spellId": 29722
+            }
+        ],
+        "count": 4,
+        "pct": 8.7
+    }
+}

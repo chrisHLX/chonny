@@ -1,0 +1,33 @@
+{
+    "class": "evoker",
+    "spec": "augmentation",
+    "windows": 30,
+    "killWindows": 0,
+    "matches": 5,
+    "anchors": [
+        "Blistering Scales",
+        "Emerald Blossom",
+        "Fire Breath",
+        "Upheaval"
+    ],
+    "topCombo": {
+        "length": 3,
+        "steps": [
+            {
+                "name": "Upheaval",
+                "spellId": 396286
+            },
+            {
+                "name": "Tip the Scales",
+                "spellId": 370553
+            },
+            {
+                "name": "Fire Breath",
+                "spellId": 357208
+            }
+        ],
+        "count": 6,
+        "pct": 20
+    },
+    "topKillCombo": null
+}

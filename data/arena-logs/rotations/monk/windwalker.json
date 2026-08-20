@@ -1,0 +1,63 @@
+{
+    "class": "monk",
+    "spec": "windwalker",
+    "windows": 828,
+    "killWindows": 101,
+    "matches": 83,
+    "anchors": [
+        "Fists of Fury",
+        "Rising Sun Kick",
+        "Rushing Wind Kick",
+        "Strike of the Windlord",
+        "Touch of Death",
+        "Touch of Karma",
+        "Whirling Dragon Punch",
+        "Zenith"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Rising Sun Kick",
+                "spellId": 107428
+            },
+            {
+                "name": "Tiger Palm",
+                "spellId": 100780
+            },
+            {
+                "name": "Blackout Kick",
+                "spellId": 100784
+            },
+            {
+                "name": "Tiger Palm",
+                "spellId": 100780
+            }
+        ],
+        "count": 63,
+        "pct": 7.6
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Rising Sun Kick",
+                "spellId": 107428
+            },
+            {
+                "name": "Tiger Palm",
+                "spellId": 100780
+            },
+            {
+                "name": "Blackout Kick",
+                "spellId": 100784
+            },
+            {
+                "name": "Tiger Palm",
+                "spellId": 100780
+            }
+        ],
+        "count": 16,
+        "pct": 15.8
+    }
+}

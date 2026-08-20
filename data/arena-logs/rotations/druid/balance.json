@@ -1,0 +1,59 @@
+{
+    "class": "druid",
+    "spec": "balance",
+    "windows": 172,
+    "killWindows": 18,
+    "matches": 27,
+    "anchors": [
+        "Force of Nature",
+        "Fury of Elune",
+        "Incarnation: Chosen of Elune",
+        "Wild Mushroom"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Force of Nature",
+                "spellId": 205636
+            },
+            {
+                "name": "Incarnation: Chosen of Elune",
+                "spellId": 102560
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674
+            }
+        ],
+        "count": 19,
+        "pct": 11
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Force of Nature",
+                "spellId": 205636
+            },
+            {
+                "name": "Incarnation: Chosen of Elune",
+                "spellId": 102560
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674
+            }
+        ],
+        "count": 6,
+        "pct": 33.3
+    }
+}

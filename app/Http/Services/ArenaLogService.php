@@ -844,6 +844,34 @@ class ArenaLogService
     }
 
     /**
+     * The promoted offensive-rotation summary for one spec, from
+     * data/arena-logs/rotations/{classSlug}/{specSlug}.json — produced by wow-arena-archive's
+     * offensive-rotations.php (see that script's docblock for the full derivation) and manually
+     * promoted here once reviewed, same flow as the offensive/defensive classification above.
+     *
+     * Each file holds the spec's single headline combo (the most common cast run that both
+     * contains one of its own offensive cooldowns and uses at least 3 distinct abilities — the
+     * qualifying rules exist because the raw top n-gram was otherwise routinely filler spam like
+     * "Mortal Strike x4"), plus the same for kill-producing windows only, plus the sample sizes
+     * behind both. Steps carry a representative spell_id so the UI can render real icons.
+     *
+     * Returns null when a spec has no promoted file — a legitimate "not enough evidence yet"
+     * state the caller renders as such, not an error.
+     *
+     * @return array{windows:int, killWindows:int, matches:int, anchors:array, topCombo:?array, topKillCombo:?array}|null
+     */
+    public function rotationForSpec(string $classSlug, string $specSlug): ?array
+    {
+        $path = base_path("data/arena-logs/rotations/{$classSlug}/{$specSlug}.json");
+
+        if (!File::exists($path)) {
+            return null;
+        }
+
+        return json_decode(File::get($path), true) ?: null;
+    }
+
+    /**
      * Whether $spell should be treated as arena-log-confirmed ("priority"), checking not just
      * its own spell_id against $priorityExternalIds but also any same-named sibling in the same
      * patch — the same "one real ability, split across multiple internal spell_id records"

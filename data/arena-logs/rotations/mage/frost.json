@@ -1,0 +1,60 @@
+{
+    "class": "mage",
+    "spec": "frost",
+    "windows": 925,
+    "killWindows": 101,
+    "matches": 87,
+    "anchors": [
+        "Blizzard",
+        "Cone of Cold",
+        "Flurry",
+        "Frozen Orb",
+        "Ray of Frost"
+    ],
+    "topCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Frostbolt",
+                "spellId": 116
+            },
+            {
+                "name": "Flurry",
+                "spellId": 44614
+            },
+            {
+                "name": "Ice Lance",
+                "spellId": 30455
+            },
+            {
+                "name": "Ice Lance",
+                "spellId": 30455
+            }
+        ],
+        "count": 33,
+        "pct": 3.6
+    },
+    "topKillCombo": {
+        "length": 4,
+        "steps": [
+            {
+                "name": "Blizzard",
+                "spellId": 190356
+            },
+            {
+                "name": "Flurry",
+                "spellId": 44614
+            },
+            {
+                "name": "Ice Lance",
+                "spellId": 30455
+            },
+            {
+                "name": "Ice Lance",
+                "spellId": 30455
+            }
+        ],
+        "count": 10,
+        "pct": 9.9
+    }
+}
