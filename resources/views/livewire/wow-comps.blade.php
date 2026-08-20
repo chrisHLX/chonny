@@ -243,59 +243,73 @@
             @foreach (['offensive' => 'Offensive', 'defensive' => 'Defensive'] as $direction => $directionLabel)
                 @php
                     $odFilter = $offDefFilter($direction);
-                    $odEntries = collect($comp)->flatMap(fn ($member, $mi) => collect($member['entries'])
-                        ->filter($odFilter)
-                        ->map(fn ($entry) => ['mi' => $mi, 'member' => $member, 'entry' => $entry]))
-                        ->sortBy(fn ($row) => $row['entry']['spell']->display_name)
-                        ->values();
+                    // Grouped by comp member (2026-08-20, reverted the same-day flat-merge above
+                    // this comment after direct follow-up feedback — a 20+ card grid mixing all
+                    // 3 members with only a small owner label at the bottom of each card read as
+                    // one undifferentiated wall of cards. Each member now gets its own labeled
+                    // section, same "scan one class at a time" structure the Cooldowns/Active
+                    // Abilities tabs already used before this tab existed — while keeping the
+                    // richer single-box card style (icon/name/badges/CD stat) from the flat-merge
+                    // version, not reverting all the way back to the old plain icon+name+cooldown
+                    // row style those other tabs still use.
+                    $odByMember = collect($comp)->map(fn ($member, $mi) => [
+                        'mi' => $mi,
+                        'member' => $member,
+                        'entries' => collect($member['entries'])->filter($odFilter)->sortBy(fn ($e) => $e['spell']->display_name)->values(),
+                    ])->filter(fn ($row) => $row['entries']->isNotEmpty())->values();
                 @endphp
                 <div x-show="tab === '{{ $direction }}'" x-cloak>
-                    @if ($odEntries->isEmpty())
+                    @if ($odByMember->isEmpty())
                         <p class="text-[12px] text-ink-subtle px-1 py-4 text-center">
                             No arena-log-verified {{ strtolower($directionLabel) }} cooldowns for any selected spec yet — try Active Abilities for the full kit.
                         </p>
                     @else
-                        <div class="linear-card p-4">
-                            <div class="flex flex-wrap gap-2.5">
-                                @foreach ($odEntries as $row)
-                                    @php
-                                        $entry = $row['entry'];
-                                        $spell = $entry['spell'];
-                                        $member = $row['member'];
-                                        $modalKey = "m{$row['mi']}-s{$spell->id}";
-                                        $ownerColor = $member['class'] ? (config('wow_classes.colors')[$member['class']->slug] ?? null) : null;
-                                        [$cdValue, $cdUnit] = $splitUnit($cooldownDisplay($entry) ?? '—');
-                                    @endphp
-                                    <button type="button"
-                                            @click="openSpellId = '{{ $modalKey }}'"
-                                            class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
-                                        <div class="flex items-center gap-2 mb-2">
-                                            <x-spell-icon :spell="$spell" size="w-8 h-8"/>
-                                            <span class="text-[12px] text-ink font-semibold truncate">{{ $spell->display_name }}</span>
-                                        </div>
-                                        <div class="flex flex-wrap items-center gap-1">
-                                            <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} !text-[9px]">{{ $entry['category'] }}</span>
-                                            @if (($entry['offensiveDefensive']['label'] ?? null) === 'Mixed')
-                                                <span class="badge-amber !text-[9px]" title="Real signals for both offense and defense">Mixed</span>
-                                            @endif
-                                            @if (($entry['source'] ?? null) === 'talent')
-                                                <span class="badge-blue !text-[9px]" title="Talent">T</span>
-                                            @elseif (($entry['source'] ?? null) === 'pvp_talent')
-                                                <span class="badge-gold !text-[9px]" title="PvP Talent">PvP</span>
-                                            @endif
-                                        </div>
-                                        <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
-                                            <div class="flex flex-col leading-none">
-                                                <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">CD</span>
-                                                <span class="text-[15px] font-bold text-ink tabular-nums">{{ $cdValue }}<span class="text-[10px] font-bold text-ink">{{ $cdUnit }}</span></span>
-                                            </div>
-                                        </div>
-                                        @if ($member['spec'])
-                                            <p class="text-[10px] font-semibold truncate mt-2.5" style="{{ $ownerColor ? 'color: '.$ownerColor : '' }}">{{ $member['class']->name }} ({{ $member['spec']->name }})</p>
-                                        @endif
-                                    </button>
-                                @endforeach
-                            </div>
+                        <div class="space-y-4">
+                            @foreach ($odByMember as $row)
+                                @php
+                                    $member = $row['member'];
+                                    $ownerColor = $member['class'] ? (config('wow_classes.colors')[$member['class']->slug] ?? null) : null;
+                                @endphp
+                                <div class="linear-card p-4">
+                                    @if ($member['spec'])
+                                        <p class="text-[11px] font-semibold uppercase tracking-wide mb-3" style="{{ $ownerColor ? 'color: '.$ownerColor : '' }}">{{ $member['class']->name }} ({{ $member['spec']->name }})</p>
+                                    @endif
+                                    <div class="flex flex-wrap gap-2.5">
+                                        @foreach ($row['entries'] as $entry)
+                                            @php
+                                                $spell = $entry['spell'];
+                                                $modalKey = "m{$row['mi']}-s{$spell->id}";
+                                                [$cdValue, $cdUnit] = $splitUnit($cooldownDisplay($entry) ?? '—');
+                                            @endphp
+                                            <button type="button"
+                                                    @click="openSpellId = '{{ $modalKey }}'"
+                                                    class="linear-card !p-3 w-44 flex-shrink-0 text-left hover:border-gold/40 transition-colors {{ ($entry['isSelected'] ?? true) ? '' : 'opacity-50' }}">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <x-spell-icon :spell="$spell" size="w-8 h-8"/>
+                                                    <span class="text-[12px] text-ink font-semibold truncate">{{ $spell->display_name }}</span>
+                                                </div>
+                                                <div class="flex flex-wrap items-center gap-1">
+                                                    <span class="{{ $categoryBadge[$entry['category']] ?? 'badge-gray' }} !text-[9px]">{{ $entry['category'] }}</span>
+                                                    @if (($entry['offensiveDefensive']['label'] ?? null) === 'Mixed')
+                                                        <span class="badge-amber !text-[9px]" title="Real signals for both offense and defense">Mixed</span>
+                                                    @endif
+                                                    @if (($entry['source'] ?? null) === 'talent')
+                                                        <span class="badge-blue !text-[9px]" title="Talent">T</span>
+                                                    @elseif (($entry['source'] ?? null) === 'pvp_talent')
+                                                        <span class="badge-gold !text-[9px]" title="PvP Talent">PvP</span>
+                                                    @endif
+                                                </div>
+                                                <div class="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
+                                                    <div class="flex flex-col leading-none">
+                                                        <span class="text-[9px] uppercase tracking-wider text-ink-subtle font-semibold mb-1">CD</span>
+                                                        <span class="text-[15px] font-bold text-ink tabular-nums">{{ $cdValue }}<span class="text-[10px] font-bold text-ink">{{ $cdUnit }}</span></span>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     @endif
                 </div>
