@@ -1027,3 +1027,12 @@
 372245 | evoker | devastation | Terror of the Skies (desc=Black)
 372245 | evoker | preservation | Terror of the Skies (desc=Black)
 372245 | evoker | augmentation | Terror of the Skies (desc=Black)
+# Penance (47540): Discipline's own signature ability (baseline, spec_id=Discipline already
+# explicit in spell_class_availability — never shared with Holy or Shadow). Confirmed via direct
+# user report 2026-08-21: showed in the Offensive Rotation combo (built from real match-cast
+# evidence, spell-usage/priest/discipline.txt) but wasn't clickable, because it's completely
+# absent from WowComps' own "Active Abilities" kit — not a talent (no talent_node_entries row)
+# and its 9s cooldown falls 1s short of explicitBaselineCooldownAbilityIds()'s >=10s bar, so it
+# cleared none of the four display-inclusion checks. See CLAUDE.md's "Offensive Rotation combo
+# click-through" note for the full trace.
+47540 | priest | discipline | Penance
