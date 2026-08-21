@@ -17,9 +17,47 @@
         "Champion's Spear",
         "Shield Charge"
     ],
-    "topCombo": {
-        "length": 6,
+    "topDpsWindow": {
+        "damage": 464101,
+        "durationSeconds": 12,
+        "killed": true,
         "steps": [
+            {
+                "name": "Shield Slam",
+                "spellId": 23922,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shield Slam",
+                "spellId": 23922,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Execute",
+                "spellId": 281000,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Demoralizing Shout",
+                "spellId": 1160,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shield Slam",
+                "spellId": 23922,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Thunder Clap",
+                "spellId": 6343,
+                "isCc": false,
+                "isRepeat": false
+            },
             {
                 "name": "Storm Bolt",
                 "spellId": 107570,
@@ -29,6 +67,12 @@
             {
                 "name": "Shield Charge",
                 "spellId": 385952,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Battle Stance",
+                "spellId": 386164,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -45,20 +89,576 @@
                 "isRepeat": false
             },
             {
-                "name": "Shield Slam",
-                "spellId": 23922,
+                "name": "Intervene",
+                "spellId": 147833,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Shockwave",
-                "spellId": 46968,
-                "isCc": true,
+                "name": "Shield Block",
+                "spellId": 2565,
+                "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Shield Slam",
+                "spellId": 23922,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 3,
-        "pct": 17.6,
-        "distinct": 6
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 279919,
+            "durationSeconds": 6,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Storm Bolt",
+                    "spellId": 107570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Charge",
+                    "spellId": 385952,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Battle Stance",
+                    "spellId": 386164,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Avatar",
+                    "spellId": 107574,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demolish",
+                    "spellId": 436358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Intervene",
+                    "spellId": 147833,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Block",
+                    "spellId": 2565,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 403115,
+            "durationSeconds": 10,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demoralizing Shout",
+                    "spellId": 1160,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Storm Bolt",
+                    "spellId": 107570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Charge",
+                    "spellId": 385952,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Battle Stance",
+                    "spellId": 386164,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Avatar",
+                    "spellId": 107574,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demolish",
+                    "spellId": 436358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Intervene",
+                    "spellId": 147833,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Block",
+                    "spellId": 2565,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 464101,
+            "durationSeconds": 12,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Execute",
+                    "spellId": 281000,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demoralizing Shout",
+                    "spellId": 1160,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Storm Bolt",
+                    "spellId": 107570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Charge",
+                    "spellId": 385952,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Battle Stance",
+                    "spellId": 386164,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Avatar",
+                    "spellId": 107574,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demolish",
+                    "spellId": 436358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Intervene",
+                    "spellId": 147833,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Block",
+                    "spellId": 2565,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 576506,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "玉珑之精",
+                    "spellId": 440836,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rallying Cry",
+                    "spellId": 97462,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Spell Reflection",
+                    "spellId": 23920,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield Block",
+                    "spellId": 2565,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Storm Bolt",
+                    "spellId": 107570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Charge",
+                    "spellId": 385952,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demolish",
+                    "spellId": 436358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Wall",
+                    "spellId": 871,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Intervene",
+                    "spellId": 147833,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 871760,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Shield Block",
+                    "spellId": 2565,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "玉珑之精",
+                    "spellId": 440836,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Bodyguard",
+                    "spellId": 213871,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Escape Artist",
+                    "spellId": 20589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield Block",
+                    "spellId": 2565,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hamstring",
+                    "spellId": 1715,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Impending Victory",
+                    "spellId": 202168,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "玉珑之精",
+                    "spellId": 440836,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rallying Cry",
+                    "spellId": 97462,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spell Reflection",
+                    "spellId": 23920,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thunder Clap",
+                    "spellId": 6343,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Revenge",
+                    "spellId": 6572,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield Block",
+                    "spellId": 2565,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shield Slam",
+                    "spellId": 23922,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Storm Bolt",
+                    "spellId": 107570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Charge",
+                    "spellId": 385952,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demolish",
+                    "spellId": 436358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shield Wall",
+                    "spellId": 871,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        }
     }
 }

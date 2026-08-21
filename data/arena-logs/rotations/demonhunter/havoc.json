@@ -1,9 +1,9 @@
 {
     "class": "demonhunter",
     "spec": "havoc",
-    "windows": 314,
-    "killWindows": 56,
-    "matches": 52,
+    "windows": 455,
+    "killWindows": 103,
+    "matches": 77,
     "anchors": [
         "Blade Dance",
         "Chaos Nova",
@@ -21,33 +21,11 @@
         "Chaos Nova",
         "The Hunt"
     ],
-    "topCombo": {
-        "length": 6,
+    "topDpsWindow": {
+        "damage": 1399009,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
-            {
-                "name": "Immolation Aura",
-                "spellId": 258920,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Vengeful Retreat",
-                "spellId": 198793,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "The Hunt",
-                "spellId": 370965,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Eye Beam",
-                "spellId": 198013,
-                "isCc": false,
-                "isRepeat": false
-            },
             {
                 "name": "Throw Glaive",
                 "spellId": 185123,
@@ -59,10 +37,1046 @@
                 "spellId": 210152,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 393035,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Death Sweep",
+                "spellId": 210152,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shattered Souls",
+                "spellId": 228537,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 337819,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Disrupt",
+                "spellId": 183752,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 393035,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Reaver's Glaive",
+                "spellId": 442294,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Annihilation",
+                "spellId": 201427,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shattered Souls",
+                "spellId": 228537,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Eye Beam",
+                "spellId": 198013,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Consume Magic",
+                "spellId": 278326,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shattered Souls",
+                "spellId": 228537,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Reverse Magic",
+                "spellId": 205604,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Felblade",
+                "spellId": 213243,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 185123,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Death Sweep",
+                "spellId": 210152,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 393035,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Death Sweep",
+                "spellId": 210152,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shattered Souls",
+                "spellId": 228537,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Throw Glaive",
+                "spellId": 337819,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Annihilation",
+                "spellId": 201427,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 4,
-        "pct": 1.3,
-        "distinct": 6
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 963847,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Glide",
+                    "spellId": 131347,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eye Beam",
+                    "spellId": 198013,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Essence Break",
+                    "spellId": 258860,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 444686,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 337819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1267445,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Essence Break",
+                    "spellId": 258860,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 444686,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 337819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Metamorphosis",
+                    "spellId": 200166,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eye Beam",
+                    "spellId": 198013,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 1399009,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 337819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disrupt",
+                    "spellId": 183752,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eye Beam",
+                    "spellId": 198013,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Consume Magic",
+                    "spellId": 278326,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reverse Magic",
+                    "spellId": 205604,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Felblade",
+                    "spellId": 213243,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 337819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 2158479,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Eye Beam",
+                    "spellId": 198013,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Essence Break",
+                    "spellId": 258860,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 444686,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 337819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Metamorphosis",
+                    "spellId": 200166,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eye Beam",
+                    "spellId": 198013,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Consume Magic",
+                    "spellId": 278326,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Vengeful Retreat",
+                    "spellId": 198793,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Felblade",
+                    "spellId": 213243,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sigil of Misery",
+                    "spellId": 207684,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 2630640,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Glide",
+                    "spellId": 131347,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fel Rush",
+                    "spellId": 195072,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Felblade",
+                    "spellId": 213243,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Strike",
+                    "spellId": 162794,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "The Hunt",
+                    "spellId": 370965,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chaos Strike",
+                    "spellId": 162794,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Consume Magic",
+                    "spellId": 278326,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Glide",
+                    "spellId": 131347,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eye Beam",
+                    "spellId": 198013,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Essence Break",
+                    "spellId": 258860,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 444686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 337819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Metamorphosis",
+                    "spellId": 200166,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eye Beam",
+                    "spellId": 198013,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Consume Magic",
+                    "spellId": 278326,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Vengeful Retreat",
+                    "spellId": 198793,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Felblade",
+                    "spellId": 213243,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reaver's Glaive",
+                    "spellId": 442294,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sigil of Misery",
+                    "spellId": 207684,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 185123,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Sweep",
+                    "spellId": 210152,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Throw Glaive",
+                    "spellId": 393035,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Annihilation",
+                    "spellId": 201427,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shattered Souls",
+                    "spellId": 228537,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

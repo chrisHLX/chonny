@@ -1,9 +1,9 @@
 {
     "class": "evoker",
     "spec": "devastation",
-    "windows": 28,
-    "killWindows": 0,
-    "matches": 6,
+    "windows": 45,
+    "killWindows": 1,
+    "matches": 12,
     "anchors": [
         "Deep Breath",
         "Emerald Blossom",
@@ -13,12 +13,26 @@
     "majorAnchors": [
         "Deep Breath"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 1153430,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
-                "name": "Deep Breath",
-                "spellId": 433874,
+                "name": "Hover",
+                "spellId": 358267,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Dragonrage",
+                "spellId": 375087,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Tip the Scales",
+                "spellId": 370553,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -35,14 +49,396 @@
                 "isRepeat": false
             },
             {
+                "name": "Hover",
+                "spellId": 358267,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
                 "name": "Sleep Walk",
                 "spellId": 360806,
                 "isCc": true,
                 "isRepeat": false
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Azure Strike",
+                "spellId": 362969,
+                "isCc": false,
+                "isRepeat": false
             }
-        ],
-        "count": 3,
-        "pct": 10.7,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 728845,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Eternity Surge",
+                    "spellId": 359073,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1073120,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Tip the Scales",
+                    "spellId": 370553,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eternity Surge",
+                    "spellId": 359073,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Azure Strike",
+                    "spellId": 362969,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 1153430,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dragonrage",
+                    "spellId": 375087,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tip the Scales",
+                    "spellId": 370553,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eternity Surge",
+                    "spellId": 359073,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Azure Strike",
+                    "spellId": 362969,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 1514389,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Glide",
+                    "spellId": 358733,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Unbound Flame",
+                    "spellId": 1292321,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Unbound Flame",
+                    "spellId": 1292321,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Deep Breath",
+                    "spellId": 433874,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eternity Surge",
+                    "spellId": 359073,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 2045200,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tail Swipe",
+                    "spellId": 368970,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Living Flame",
+                    "spellId": 361469,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eternity Surge",
+                    "spellId": 359073,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Azure Strike",
+                    "spellId": 362969,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Time Spiral",
+                    "spellId": 374968,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

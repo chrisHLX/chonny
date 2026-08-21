@@ -1,9 +1,9 @@
 {
     "class": "shaman",
     "spec": "enhancement",
-    "windows": 42,
-    "killWindows": 10,
-    "matches": 23,
+    "windows": 56,
+    "killWindows": 12,
+    "matches": 34,
     "anchors": [
         "Ascendance",
         "Crash Lightning",
@@ -16,20 +16,94 @@
         "Ascendance",
         "Doom Winds"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 1909012,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
-                "name": "Earthgrab Totem",
-                "spellId": 51485,
-                "isCc": true,
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Voltaic Blaze",
-                "spellId": 470057,
+                "name": "Tempest",
+                "spellId": 452201,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Tempest",
+                "spellId": 452201,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": true
             },
             {
                 "name": "Crash Lightning",
@@ -38,14 +112,1236 @@
                 "isRepeat": false
             },
             {
-                "name": "Ascendance",
-                "spellId": 114051,
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Tempest",
+                "spellId": 452201,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Crash Lightning",
+                "spellId": 187874,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Wind Shear",
+                "spellId": 57994,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Doom Winds",
+                "spellId": 469270,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chain Lightning",
+                "spellId": 188443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Windstrike",
+                "spellId": 115356,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 5,
-        "pct": 11.9,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 1153176,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1768498,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wind Shear",
+                    "spellId": 57994,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 1909012,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wind Shear",
+                    "spellId": 57994,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 2520300,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wind Shear",
+                    "spellId": 57994,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Voltaic Blaze",
+                    "spellId": 470057,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Astral Shift",
+                    "spellId": 108271,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 3018540,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Voltaic Blaze",
+                    "spellId": 470057,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Bloodlust",
+                    "spellId": 204361,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Fury",
+                    "spellId": 33697,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ascendance",
+                    "spellId": 114051,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wind Shear",
+                    "spellId": 57994,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chain Lightning",
+                    "spellId": 188443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Windstrike",
+                    "spellId": 115356,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Voltaic Blaze",
+                    "spellId": 470057,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tempest",
+                    "spellId": 452201,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crash Lightning",
+                    "spellId": 187874,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Astral Shift",
+                    "spellId": 108271,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Doom Winds",
+                    "spellId": 469270,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Stormstrike",
+                    "spellId": 17364,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lightning Bolt",
+                    "spellId": 188196,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

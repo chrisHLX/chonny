@@ -305,6 +305,52 @@ class TalentSelectionService
     }
 
     /**
+     * Given a Spell resolved by raw spell_id from a source with no awareness of which internal
+     * spell_id copy is "canonical" for a given ability — e.g. wow-arena-archive's
+     * representativeSpellIds() picks whichever spell_id was cast most often in sampled matches,
+     * with zero knowledge of Chonny's own talent-tree structure — prefer a same-named sibling
+     * that IS linked to a real talent/PvP-talent entry for this spec, when the resolved spell
+     * itself isn't one.
+     *
+     * Built 2026-08-21 for the confirmed Doom Winds case (Enhancement Shaman): 3 distinct
+     * spell_id rows share the exact raw name "Doom Winds" with different cooldowns
+     * (45s/60s/null), and none of the usual disambiguation signals (a "(desc=...)" suffix,
+     * not_in_spellbook) tell them apart — the only reliable signal left is which one is
+     * actually a real talent pick. WowComps::getOffensiveRotationsProperty() is the one
+     * confirmed structural seam that resolves a rotation step's spell purely by the archive's
+     * raw spell_id with no talent-linkage check at all; this closes that gap on the Chonny side
+     * without touching wow-arena-archive at all.
+     *
+     * Deliberately conservative, matching the decision made when this was scoped: only swaps
+     * when EXACTLY ONE same-named sibling is talent-linked. Zero matches (nothing to prefer) or
+     * 2+ matches (still ambiguous — can't safely guess which is "the real one") both leave
+     * $spell untouched, i.e. "still show both" rather than force a pick between equally
+     * plausible candidates.
+     */
+    public function preferTalentLinkedCopy(Spell $spell, int $specId): Spell
+    {
+        $allTalentIds = $this->allTalentSpellIds($specId);
+        $allPvpIds = $this->allPvpTalentSpellIds($specId);
+
+        if ($allTalentIds->contains($spell->id) || $allPvpIds->contains($spell->id)) {
+            return $spell;
+        }
+
+        $baseName = $spell->display_name;
+
+        $siblings = Spell::where('patch_id', $spell->patch_id)
+            ->where('id', '!=', $spell->id)
+            ->where(function ($q) use ($baseName) {
+                $q->where('name', $baseName)
+                    ->orWhere('name', 'LIKE', $baseName.' (desc=%');
+            })
+            ->get()
+            ->filter(fn (Spell $s) => $allTalentIds->contains($s->id) || $allPvpIds->contains($s->id));
+
+        return $siblings->count() === 1 ? $siblings->first() : $spell;
+    }
+
+    /**
      * ⚠️ DO NOT WIRE THIS METHOD INTO ANY DISPLAY PAGE. ⚠️ Reverted 2026-08-06, the same day it
      * shipped, after it put Mind Sear (a Shadow-only spell) on Discipline Priest's kit — and a
      * dozen other cross-spec leaks alongside it. It is kept here, unused, purely as documented

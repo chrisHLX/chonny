@@ -1,9 +1,9 @@
 {
     "class": "priest",
     "spec": "holy",
-    "windows": 220,
-    "killWindows": 23,
-    "matches": 164,
+    "windows": 382,
+    "killWindows": 37,
+    "matches": 247,
     "anchors": [
         "Holy Fire",
         "Power Infusion",
@@ -12,25 +12,15 @@
     "majorAnchors": [
         "Power Infusion"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 558714,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
-                "name": "Power Infusion",
-                "spellId": 10060,
+                "name": "Prayer of Mending",
+                "spellId": 33076,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Holy Word: Chastise",
-                "spellId": 88625,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Psychic Scream",
-                "spellId": 8122,
-                "isCc": true,
                 "isRepeat": false
             },
             {
@@ -38,10 +28,350 @@
                 "spellId": 14914,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Smite",
+                "spellId": 585,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Smite",
+                "spellId": 585,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Smite",
+                "spellId": 585,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Smite",
+                "spellId": 585,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Smite",
+                "spellId": 585,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 11,
-        "pct": 5,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 314686,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 545284,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 558714,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Prayer of Mending",
+                    "spellId": 33076,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 679456,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Power Infusion",
+                    "spellId": 10060,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dispel Magic",
+                    "spellId": 528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Prayer of Mending",
+                    "spellId": 33076,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Prayer of Mending",
+                    "spellId": 33076,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 811810,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dispel Magic",
+                    "spellId": 528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dispel Magic",
+                    "spellId": 528,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Power Infusion",
+                    "spellId": 10060,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dispel Magic",
+                    "spellId": 528,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Prayer of Mending",
+                    "spellId": 33076,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Prayer of Mending",
+                    "spellId": 33076,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Angelic Feather",
+                    "spellId": 121536,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fade",
+                    "spellId": 586,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Word: Chastise",
+                    "spellId": 88625,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        }
     }
 }

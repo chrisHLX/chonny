@@ -16,8 +16,10 @@
         "Fire Breath",
         "Upheaval"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 372448,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
                 "name": "Sleep Walk",
@@ -32,20 +34,444 @@
                 "isRepeat": false
             },
             {
+                "name": "Tip the Scales",
+                "spellId": 370553,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Fire Breath",
                 "spellId": 357208,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Blistering Scales",
-                "spellId": 360827,
+                "name": "Ebon Might",
+                "spellId": 395152,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Living Flame",
+                "spellId": 361469,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Hover",
+                "spellId": 358267,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Eruption",
+                "spellId": 395160,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Eruption",
+                "spellId": 395160,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Eruption",
+                "spellId": 395160,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Eruption",
+                "spellId": 395160,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Eruption",
+                "spellId": 395160,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 8,
-        "pct": 25,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 204235,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 324163,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Tip the Scales",
+                    "spellId": 370553,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ebon Might",
+                    "spellId": 395152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Living Flame",
+                    "spellId": 361469,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 372448,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Upheaval",
+                    "spellId": 396286,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tip the Scales",
+                    "spellId": 370553,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ebon Might",
+                    "spellId": 395152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Living Flame",
+                    "spellId": 361469,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 492704,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Prescience",
+                    "spellId": 409311,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Breath of Eons",
+                    "spellId": 442204,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obsidian Scales",
+                    "spellId": 363916,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blistering Scales",
+                    "spellId": 360827,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Prescience",
+                    "spellId": 409311,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 711143,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Prescience",
+                    "spellId": 409311,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Breath of Eons",
+                    "spellId": 442204,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Obsidian Scales",
+                    "spellId": 363916,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blistering Scales",
+                    "spellId": 360827,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Prescience",
+                    "spellId": 409311,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Quell",
+                    "spellId": 351338,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Living Flame",
+                    "spellId": 361469,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ebon Might",
+                    "spellId": 395152,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eruption",
+                    "spellId": 395160,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

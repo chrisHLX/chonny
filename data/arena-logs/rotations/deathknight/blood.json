@@ -13,18 +13,32 @@
         "Consumption",
         "Reaper's Mark"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 523977,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
-            {
-                "name": "Chains of Ice",
-                "spellId": 45524,
-                "isCc": true,
-                "isRepeat": false
-            },
             {
                 "name": "Reaper's Mark",
                 "spellId": 439843,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Marrowrend",
+                "spellId": 195182,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Exterminate",
+                "spellId": 441424,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Death Grip",
+                "spellId": 49576,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -35,14 +49,636 @@
                 "isRepeat": false
             },
             {
-                "name": "Consumption",
-                "spellId": 1263824,
+                "name": "Chains of Ice",
+                "spellId": 45524,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Death Strike",
+                "spellId": 49998,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Death Strike",
+                "spellId": 49998,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Marrowrend",
+                "spellId": 195182,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Exterminate",
+                "spellId": 441424,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Mind Freeze",
+                "spellId": 47528,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Exterminate",
+                "spellId": 441426,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 4,
-        "pct": 33.3,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 322614,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reaper's Mark",
+                    "spellId": 439843,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 417769,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Boil",
+                    "spellId": 50842,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441426,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Grip",
+                    "spellId": 49576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strangulate",
+                    "spellId": 47476,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Consumption",
+                    "spellId": 1263824,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441426,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Consumption",
+                    "spellId": 1263872,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blood Boil",
+                    "spellId": 50842,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chains of Ice",
+                    "spellId": 45524,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 523977,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Reaper's Mark",
+                    "spellId": 439843,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Grip",
+                    "spellId": 49576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strangulate",
+                    "spellId": 47476,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chains of Ice",
+                    "spellId": 45524,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441426,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 658844,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Boil",
+                    "spellId": 50842,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441426,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strangulate",
+                    "spellId": 47476,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Grip",
+                    "spellId": 49576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chains of Ice",
+                    "spellId": 45524,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death and Decay",
+                    "spellId": 43265,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lichborne",
+                    "spellId": 49039,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Boil",
+                    "spellId": 50842,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Vampiric Blood",
+                    "spellId": 55233,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441426,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 741049,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Boil",
+                    "spellId": 50842,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441426,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strangulate",
+                    "spellId": 47476,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Freeze",
+                    "spellId": 47528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Grip",
+                    "spellId": 49576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chains of Ice",
+                    "spellId": 45524,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death and Decay",
+                    "spellId": 43265,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lichborne",
+                    "spellId": 49039,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Boil",
+                    "spellId": 50842,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441424,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Vampiric Blood",
+                    "spellId": 55233,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Exterminate",
+                    "spellId": 441426,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Grip",
+                    "spellId": 49576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chains of Ice",
+                    "spellId": 45524,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chains of Ice",
+                    "spellId": 45524,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Marrowrend",
+                    "spellId": 195182,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Heart Strike",
+                    "spellId": 206930,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blood Boil",
+                    "spellId": 50842,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Death Strike",
+                    "spellId": 49998,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

@@ -1,14 +1,495 @@
 {
     "class": "warlock",
     "spec": "demonology",
-    "windows": 38,
-    "killWindows": 3,
-    "matches": 10,
+    "windows": 50,
+    "killWindows": 2,
+    "matches": 11,
     "anchors": [
         "Implosion"
     ],
     "majorAnchors": [
         "Implosion"
     ],
-    "topCombo": null
+    "topDpsWindow": {
+        "damage": 820011,
+        "durationSeconds": 12,
+        "killed": false,
+        "steps": [
+            {
+                "name": "Implosion",
+                "spellId": 196277,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Gladiator's Medallion",
+                "spellId": 336126,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadow Bolt",
+                "spellId": 686,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadow Bolt",
+                "spellId": 686,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Hand of Gul'dan",
+                "spellId": 105174,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadow Bolt",
+                "spellId": 686,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shadow Bolt",
+                "spellId": 686,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shadow Bolt",
+                "spellId": 686,
+                "isCc": false,
+                "isRepeat": true
+            }
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 509468,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Implosion",
+                    "spellId": 196277,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Axe Toss",
+                    "spellId": 119914,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Call Fel Lord",
+                    "spellId": 212459,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Call Dreadstalkers",
+                    "spellId": 104316,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 726705,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Implosion",
+                    "spellId": 196277,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Nether Ward",
+                    "spellId": 212295,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 820011,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Implosion",
+                    "spellId": 196277,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 1242416,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Implosion",
+                    "spellId": 196277,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Nether Ward",
+                    "spellId": 212295,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Axe Toss",
+                    "spellId": 119914,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Call Dreadstalkers",
+                    "spellId": 104316,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 1493601,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Call Fel Lord",
+                    "spellId": 212459,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Summon Demonic Tyrant",
+                    "spellId": 265187,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Implosion",
+                    "spellId": 196277,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Nether Ward",
+                    "spellId": 212295,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hand of Gul'dan",
+                    "spellId": 105174,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Axe Toss",
+                    "spellId": 119914,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Call Dreadstalkers",
+                    "spellId": 104316,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Bolt",
+                    "spellId": 686,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Demonbolt",
+                    "spellId": 264178,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
+    }
 }

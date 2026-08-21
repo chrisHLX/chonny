@@ -264,6 +264,14 @@ class SpellExplorer extends Component
             ->orderBy('name')
             ->get();
 
+        // Collapses same-name duplicate spell_id copies down to one entry (e.g. Secret
+        // Technique's real press + its shadow-clone spell_id, both structurally reachable via
+        // the display-id union above) — see preferSelectedPerName()'s own docblock. Added
+        // 2026-08-21 after a real report of duplicate cards on this page; this method already
+        // existed for exactly this problem but was never wired into the 2026-08-16
+        // "always show every talent" rework, which is what reintroduced the duplicates.
+        $spells = $talentService->preferSelectedPerName($spells, $selected);
+
         // Bulk-resolves what would otherwise be one query per spell for both of these — see
         // each method's own docblock (ModuleSpellReferenceService::preloadBaseCooldownCharges()/
         // ArenaLogService::preloadPrioritySpells()) for the profiling that found this. Must run

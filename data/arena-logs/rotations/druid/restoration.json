@@ -1,34 +1,54 @@
 {
     "class": "druid",
     "spec": "restoration",
-    "windows": 430,
-    "killWindows": 83,
-    "matches": 111,
+    "windows": 661,
+    "killWindows": 103,
+    "matches": 144,
     "anchors": [
         "Starsurge"
     ],
     "majorAnchors": [
         "Starsurge"
     ],
-    "topCombo": {
-        "length": 5,
+    "topDpsWindow": {
+        "damage": 725990,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
-                "name": "Wild Charge",
-                "spellId": 102401,
+                "name": "Wrath",
+                "spellId": 5176,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Cat Form",
+                "spellId": 768,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Gladiator's Medallion",
+                "spellId": 336126,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Maim",
+                "spellId": 22570,
                 "isCc": true,
                 "isRepeat": false
             },
             {
-                "name": "Ursol's Vortex",
-                "spellId": 102793,
-                "isCc": true,
+                "name": "Moonkin Form",
+                "spellId": 24858,
+                "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Cyclone",
-                "spellId": 33786,
-                "isCc": true,
+                "name": "Convoke the Spirits",
+                "spellId": 391528,
+                "isCc": false,
                 "isRepeat": false
             },
             {
@@ -36,16 +56,272 @@
                 "spellId": 197626,
                 "isCc": false,
                 "isRepeat": false
-            },
-            {
-                "name": "Incapacitating Roar",
-                "spellId": 99,
-                "isCc": true,
-                "isRepeat": false
             }
-        ],
-        "count": 4,
-        "pct": 0.9,
-        "distinct": 5
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 575269,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Maim",
+                    "spellId": 22570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonkin Form",
+                    "spellId": 24858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Convoke the Spirits",
+                    "spellId": 391528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 197626,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 652225,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Wrath",
+                    "spellId": 5176,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cat Form",
+                    "spellId": 768,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Maim",
+                    "spellId": 22570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonkin Form",
+                    "spellId": 24858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Convoke the Spirits",
+                    "spellId": 391528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 197626,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 725990,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Wrath",
+                    "spellId": 5176,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cat Form",
+                    "spellId": 768,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Maim",
+                    "spellId": 22570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonkin Form",
+                    "spellId": 24858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Convoke the Spirits",
+                    "spellId": 391528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 197626,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 726323,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Swiftmend",
+                    "spellId": 18562,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Regrowth",
+                    "spellId": 8936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 5176,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 5176,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cat Form",
+                    "spellId": 768,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Maim",
+                    "spellId": 22570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonkin Form",
+                    "spellId": 24858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Convoke the Spirits",
+                    "spellId": 391528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 197626,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "30": {
+            "damage": 737128,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Swiftmend",
+                    "spellId": 18562,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Regrowth",
+                    "spellId": 8936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 5176,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 5176,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cat Form",
+                    "spellId": 768,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Maim",
+                    "spellId": 22570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonkin Form",
+                    "spellId": 24858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Convoke the Spirits",
+                    "spellId": 391528,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 197626,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        }
     }
 }

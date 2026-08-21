@@ -1,9 +1,9 @@
 {
     "class": "monk",
     "spec": "windwalker",
-    "windows": 391,
-    "killWindows": 73,
-    "matches": 83,
+    "windows": 501,
+    "killWindows": 120,
+    "matches": 111,
     "anchors": [
         "Fists of Fury",
         "Rising Sun Kick",
@@ -19,9 +19,35 @@
         "Touch of Karma",
         "Zenith"
     ],
-    "topCombo": {
-        "length": 6,
+    "topDpsWindow": {
+        "damage": 1425913,
+        "durationSeconds": 12,
+        "killed": true,
         "steps": [
+            {
+                "name": "Rising Sun Kick",
+                "spellId": 107428,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Tiger Palm",
+                "spellId": 100780,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Blackout Kick",
+                "spellId": 100784,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Tiger Palm",
+                "spellId": 100780,
+                "isCc": false,
+                "isRepeat": true
+            },
             {
                 "name": "Fists of Fury",
                 "spellId": 113656,
@@ -29,9 +55,15 @@
                 "isRepeat": false
             },
             {
-                "name": "Leg Sweep",
-                "spellId": 119381,
+                "name": "Paralysis",
+                "spellId": 115078,
                 "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Gladiator's Badge",
+                "spellId": 345228,
+                "isCc": false,
                 "isRepeat": false
             },
             {
@@ -44,23 +76,549 @@
                 "name": "Rising Sun Kick",
                 "spellId": 107428,
                 "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Paralysis",
-                "spellId": 115078,
-                "isCc": true,
-                "isRepeat": false
+                "isRepeat": true
             },
             {
                 "name": "Strike of the Windlord",
                 "spellId": 392983,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Blackout Kick",
+                "spellId": 100784,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Rising Sun Kick",
+                "spellId": 107428,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Touch of Death",
+                "spellId": 322109,
+                "isCc": false,
+                "isRepeat": false
             }
-        ],
-        "count": 6,
-        "pct": 1.5,
-        "distinct": 6
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 1367793,
+            "durationSeconds": 6,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Paralysis",
+                    "spellId": 115078,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Zenith",
+                    "spellId": 1249625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Touch of Death",
+                    "spellId": 322109,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 1407328,
+            "durationSeconds": 10,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fists of Fury",
+                    "spellId": 113656,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Paralysis",
+                    "spellId": 115078,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Zenith",
+                    "spellId": 1249625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Touch of Death",
+                    "spellId": 322109,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 1425913,
+            "durationSeconds": 12,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fists of Fury",
+                    "spellId": 113656,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Paralysis",
+                    "spellId": 115078,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Zenith",
+                    "spellId": 1249625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Touch of Death",
+                    "spellId": 322109,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 2065220,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Zenith",
+                    "spellId": 1249625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Paralysis",
+                    "spellId": 115078,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Leg Sweep",
+                    "spellId": 119381,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Touch of Karma",
+                    "spellId": 122470,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fists of Fury",
+                    "spellId": 113656,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Grapple Weapon",
+                    "spellId": 233759,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Roll",
+                    "spellId": 109132,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disable",
+                    "spellId": 116095,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "30": {
+            "damage": 2387469,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fists of Fury",
+                    "spellId": 113656,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disable",
+                    "spellId": 116095,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger's Lust",
+                    "spellId": 116841,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Zenith",
+                    "spellId": 1249625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Strike of the Windlord",
+                    "spellId": 392983,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Paralysis",
+                    "spellId": 115078,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Leg Sweep",
+                    "spellId": 119381,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rushing Wind Kick",
+                    "spellId": 467307,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Touch of Karma",
+                    "spellId": 122470,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fists of Fury",
+                    "spellId": 113656,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Grapple Weapon",
+                    "spellId": 233759,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rising Sun Kick",
+                    "spellId": 107428,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tiger Palm",
+                    "spellId": 100780,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blackout Kick",
+                    "spellId": 100784,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Roll",
+                    "spellId": 109132,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        }
     }
 }

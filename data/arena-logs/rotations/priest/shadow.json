@@ -1,9 +1,9 @@
 {
     "class": "priest",
     "spec": "shadow",
-    "windows": 61,
-    "killWindows": 8,
-    "matches": 30,
+    "windows": 85,
+    "killWindows": 12,
+    "matches": 43,
     "anchors": [
         "Halo",
         "Mind Blast",
@@ -17,20 +17,22 @@
         "Halo",
         "Power Infusion"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 848990,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
-                "name": "Power Infusion",
-                "spellId": 10060,
+                "name": "Void Volley",
+                "spellId": 1242173,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Tentacle Slam",
-                "spellId": 1227280,
+                "name": "Void Volley",
+                "spellId": 1242173,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": true
             },
             {
                 "name": "Silence",
@@ -39,14 +41,792 @@
                 "isRepeat": false
             },
             {
+                "name": "Shadow Word: Madness",
+                "spellId": 335467,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadow Word: Madness",
+                "spellId": 335467,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
                 "name": "Psychic Scream",
                 "spellId": 8122,
                 "isCc": true,
                 "isRepeat": false
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Mind Flay: Insanity",
+                "spellId": 391403,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadowy Apparition",
+                "spellId": 341263,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Mind Flay: Insanity",
+                "spellId": 391403,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Void Volley",
+                "spellId": 1242173,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Mind Blast",
+                "spellId": 8092,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Void Volley",
+                "spellId": 1242173,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 5,
-        "pct": 8.2,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 630825,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 751867,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 848990,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Silence",
+                    "spellId": 15487,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Psychic Scream",
+                    "spellId": 8122,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 1180611,
+            "durationSeconds": 20,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Vampiric Embrace",
+                    "spellId": 15286,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay",
+                    "spellId": 15407,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 1481265,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Silence",
+                    "spellId": 15487,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Death",
+                    "spellId": 32379,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mind Flay: Insanity",
+                    "spellId": 391403,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tentacle Slam",
+                    "spellId": 1227280,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Voidform",
+                    "spellId": 228260,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Volley",
+                    "spellId": 1242173,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Madness",
+                    "spellId": 335467,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowy Apparition",
+                    "spellId": 341263,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Death",
+                    "spellId": 32379,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

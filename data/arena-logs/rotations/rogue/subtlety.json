@@ -1,9 +1,9 @@
 {
     "class": "rogue",
     "spec": "subtlety",
-    "windows": 114,
-    "killWindows": 10,
-    "matches": 51,
+    "windows": 624,
+    "killWindows": 90,
+    "matches": 189,
     "anchors": [
         "Goremaw's Bite",
         "Secret Technique",
@@ -15,21 +15,11 @@
         "Goremaw's Bite",
         "Shadow Blades"
     ],
-    "topCombo": {
-        "length": 5,
+    "topDpsWindow": {
+        "damage": 1405334,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
-            {
-                "name": "Kidney Shot",
-                "spellId": 408,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Shadow Dance",
-                "spellId": 185313,
-                "isCc": false,
-                "isRepeat": false
-            },
             {
                 "name": "Cheap Shot",
                 "spellId": 1833,
@@ -37,8 +27,20 @@
                 "isRepeat": false
             },
             {
-                "name": "Shadow Blades",
-                "spellId": 121471,
+                "name": "Tricks of the Trade",
+                "spellId": 57934,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Blood Fury",
+                "spellId": 20572,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Gladiator's Badge",
+                "spellId": 345228,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -47,10 +49,614 @@
                 "spellId": 280719,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Eviscerate",
+                "spellId": 196819,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadowstrike",
+                "spellId": 185438,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Cheap Shot",
+                "spellId": 1833,
+                "isCc": true,
+                "isRepeat": true
+            },
+            {
+                "name": "Eviscerate",
+                "spellId": 196819,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Eviscerate",
+                "spellId": 196819,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Backstab",
+                "spellId": 53,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Coup de Grace",
+                "spellId": 441776,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Backstab",
+                "spellId": 53,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Eviscerate",
+                "spellId": 196819,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Shuriken Storm",
+                "spellId": 212743,
+                "isCc": false,
+                "isRepeat": false
             }
-        ],
-        "count": 6,
-        "pct": 5.3,
-        "distinct": 5
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 1060124,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Secret Technique",
+                    "spellId": 280719,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1361750,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Secret Technique",
+                    "spellId": 280719,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Coup de Grace",
+                    "spellId": 441776,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 1405334,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tricks of the Trade",
+                    "spellId": 57934,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blood Fury",
+                    "spellId": 20572,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Badge",
+                    "spellId": 345228,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 280719,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Coup de Grace",
+                    "spellId": 441776,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shuriken Storm",
+                    "spellId": 212743,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 1638851,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Blades",
+                    "spellId": 121471,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 280719,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Coup de Grace",
+                    "spellId": 441776,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 282449,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crimson Vial",
+                    "spellId": 185311,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstep",
+                    "spellId": 36554,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kick",
+                    "spellId": 1766,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Coup de Grace",
+                    "spellId": 441776,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tricks of the Trade",
+                    "spellId": 57934,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Goremaw's Bite",
+                    "spellId": 426591,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 1797348,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Blades",
+                    "spellId": 121471,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cheap Shot",
+                    "spellId": 1833,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Secret Technique",
+                    "spellId": 280719,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kidney Shot",
+                    "spellId": 408,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Coup de Grace",
+                    "spellId": 441776,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shuriken Storm",
+                    "spellId": 212743,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadowstep",
+                    "spellId": 36554,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Dance",
+                    "spellId": 185313,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blood Fury",
+                    "spellId": 20572,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstrike",
+                    "spellId": 185438,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Backstab",
+                    "spellId": 53,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Eviscerate",
+                    "spellId": 196819,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Feint",
+                    "spellId": 1966,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

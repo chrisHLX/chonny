@@ -1,9 +1,9 @@
 {
     "class": "paladin",
     "spec": "holy",
-    "windows": 301,
-    "killWindows": 54,
-    "matches": 49,
+    "windows": 415,
+    "killWindows": 60,
+    "matches": 66,
     "anchors": [
         "Avenging Crusader",
         "Avenging Wrath",
@@ -18,25 +18,45 @@
         "Holy Bulwark",
         "Sacred Weapon"
     ],
-    "topCombo": {
-        "length": 5,
+    "topDpsWindow": {
+        "damage": 602852,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
+            {
+                "name": "Crusader Strike",
+                "spellId": 1279187,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Reclamation",
+                "spellId": 415388,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Crusader Strike",
+                "spellId": 1279187,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Reclamation",
+                "spellId": 415388,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Divine Steed",
+                "spellId": 190784,
+                "isCc": false,
+                "isRepeat": false
+            },
             {
                 "name": "Hammer of Justice",
                 "spellId": 853,
                 "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Judgment",
-                "spellId": 275773,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Avenging Crusader",
-                "spellId": 216331,
-                "isCc": false,
                 "isRepeat": false
             },
             {
@@ -46,14 +66,582 @@
                 "isRepeat": false
             },
             {
-                "name": "Sacred Weapon",
-                "spellId": 432472,
+                "name": "Denounce",
+                "spellId": 2812,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Holy Shock",
+                "spellId": 20473,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Reclamation",
+                "spellId": 415388,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Hammer of Wrath",
+                "spellId": 1241413,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Crusader Strike",
+                "spellId": 1279187,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Reclamation",
+                "spellId": 415388,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Hammer of Wrath",
+                "spellId": 1241413,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 3,
-        "pct": 1,
-        "distinct": 5
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 394967,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 532063,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Steed",
+                    "spellId": 190784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Justice",
+                    "spellId": 853,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Denounce",
+                    "spellId": 2812,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Shock",
+                    "spellId": 20473,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 602852,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Steed",
+                    "spellId": 190784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Justice",
+                    "spellId": 853,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Denounce",
+                    "spellId": 2812,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Shock",
+                    "spellId": 20473,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 884199,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Avenging Crusader",
+                    "spellId": 216331,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Steed",
+                    "spellId": 190784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Shock",
+                    "spellId": 20473,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Holy Shock",
+                    "spellId": 20473,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blessing of Sacrifice",
+                    "spellId": 6940,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Light",
+                    "spellId": 82326,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 900301,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Avenging Crusader",
+                    "spellId": 216331,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Steed",
+                    "spellId": 190784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Shock",
+                    "spellId": 20473,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Holy Shock",
+                    "spellId": 20473,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blessing of Sacrifice",
+                    "spellId": 6940,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Light",
+                    "spellId": 82326,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusader Strike",
+                    "spellId": 1279187,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Reclamation",
+                    "spellId": 415388,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 1241413,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Justice",
+                    "spellId": 853,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Judgment",
+                    "spellId": 275773,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Flash of Light",
+                    "spellId": 19750,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Protection",
+                    "spellId": 498,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        }
     }
 }

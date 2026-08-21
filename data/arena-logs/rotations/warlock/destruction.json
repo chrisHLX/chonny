@@ -1,9 +1,9 @@
 {
     "class": "warlock",
     "spec": "destruction",
-    "windows": 217,
-    "killWindows": 21,
-    "matches": 37,
+    "windows": 345,
+    "killWindows": 28,
+    "matches": 58,
     "anchors": [
         "Conflagrate",
         "Malevolence",
@@ -13,8 +13,10 @@
         "Malevolence",
         "Soul Fire"
     ],
-    "topCombo": {
-        "length": 5,
+    "topDpsWindow": {
+        "damage": 1450811,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
                 "name": "Malevolence",
@@ -23,32 +25,426 @@
                 "isRepeat": false
             },
             {
-                "name": "Mortal Coil",
-                "spellId": 6789,
+                "name": "Fear",
+                "spellId": 5782,
                 "isCc": true,
                 "isRepeat": false
             },
             {
-                "name": "Howl of Terror",
-                "spellId": 5484,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Soul Fire",
-                "spellId": 6353,
+                "name": "Chaos Bolt",
+                "spellId": 116858,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Chaos Bolt",
+                "spellId": 116858,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Incinerate",
+                "spellId": 29722,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Fear",
+                "spellId": 5782,
+                "isCc": true,
+                "isRepeat": true
             },
             {
                 "name": "Conflagrate",
                 "spellId": 17962,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Chaos Bolt",
+                "spellId": 116858,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Incinerate",
+                "spellId": 29722,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 3,
-        "pct": 1.4,
-        "distinct": 5
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 873572,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1199944,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 1450811,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Malevolence",
+                    "spellId": 442726,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 1943682,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Soul Fire",
+                    "spellId": 6353,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Malevolence",
+                    "spellId": 442726,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Howl of Terror",
+                    "spellId": 5484,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 2425399,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Malevolence",
+                    "spellId": 442726,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fear",
+                    "spellId": 5782,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Howl of Terror",
+                    "spellId": 5484,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chaos Bolt",
+                    "spellId": 116858,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wither",
+                    "spellId": 445468,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spell Lock",
+                    "spellId": 119910,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

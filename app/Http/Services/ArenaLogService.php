@@ -849,16 +849,23 @@ class ArenaLogService
      * offensive-rotations.php (see that script's docblock for the full derivation) and manually
      * promoted here once reviewed, same flow as the offensive/defensive classification above.
      *
-     * Each file holds the spec's single headline combo (the most common cast run that both
-     * contains one of its own offensive cooldowns and uses at least 3 distinct abilities — the
-     * qualifying rules exist because the raw top n-gram was otherwise routinely filler spam like
-     * "Mortal Strike x4"), plus the same for kill-producing windows only, plus the sample sizes
-     * behind both. Steps carry a representative spell_id so the UI can render real icons.
+     * Each file holds `topDpsWindow` — the spec's single highest-damage real 12-second burst,
+     * found by scanning each real match's ENTIRE timeline (not boxed inside any one cooldown's
+     * usage window — see the script's findBestUnrestrictedBursts() docblock for a real, confirmed
+     * case this correction caught: a denser burst outside every pre-built 30s anchor box, using
+     * Blood Fury + a trinket, that the earlier nested-search design could never have found) for
+     * the densest real 12s stretch of damage against one real target that also contains one of
+     * the spec's own real offensive cooldowns. Replaced the earlier "most common exact combo"
+     * approach entirely 2026-08-21, then the 10s nested-search approach 2026-08-22 (direct
+     * instruction: "Yes switch it over"). `topDpsWindowsByLength` carries the same result at
+     * 6/10/12/20/30s for a future leaderboard — only the 12s entry is read by the app today.
+     * Steps carry each cast's own real spell_id from that exact real window so the UI can render
+     * real icons.
      *
      * Returns null when a spec has no promoted file — a legitimate "not enough evidence yet"
      * state the caller renders as such, not an error.
      *
-     * @return array{windows:int, killWindows:int, matches:int, anchors:array, topCombo:?array, topKillCombo:?array}|null
+     * @return array{windows:int, killWindows:int, matches:int, anchors:array, majorAnchors:array, topDpsWindow:?array, topDpsWindowsByLength:array}|null
      */
     public function rotationForSpec(string $classSlug, string $specSlug): ?array
     {
@@ -869,6 +876,40 @@ class ArenaLogService
         }
 
         return json_decode(File::get($path), true) ?: null;
+    }
+
+    /**
+     * Resolves each step's real spell_id (already on the step, from that exact real cast) into
+     * an actual Spell model, preferring the talent-linked copy over whichever internal spell_id
+     * the archive's "most-cast in sampled matches" heuristic happened to pick (see
+     * TalentSelectionService::preferTalentLinkedCopy()'s docblock for the confirmed Doom Winds
+     * case this closes). Extracted 2026-08-22 from WowComps::getOffensiveRotationsProperty() so
+     * TopDamageRotations (a second consumer of the same rotationForSpec() export, reading
+     * whichever length the viewer picks from `topDpsWindowsByLength` instead of always the one
+     * length WowComps has wired in) doesn't duplicate this resolution logic.
+     *
+     * @param  array<int, array{name: string, spellId: int, isCc: bool, isRepeat: bool}>  $steps
+     * @return array<int, array{name: string, spellId: int, isCc: bool, isRepeat: bool, spell: ?Spell}>
+     */
+    public function resolveWindowSteps(array $steps, int $specId, \App\Http\Services\TalentSelectionService $talentService): array
+    {
+        $stepIds = collect($steps)->pluck('spellId')->filter()->unique();
+
+        $spellsById = $stepIds->isEmpty()
+            ? collect()
+            : \App\Models\Spell::whereIn('spell_id', $stepIds)
+                ->where('patch_id', \App\Models\Patch::where('is_current', true)->value('id'))
+                ->get()
+                ->keyBy('spell_id');
+
+        return array_map(function ($step) use ($spellsById, $talentService, $specId) {
+            $spell = $spellsById[$step['spellId']] ?? null;
+            if ($spell) {
+                $spell = $talentService->preferTalentLinkedCopy($spell, $specId);
+            }
+            $step['spell'] = $spell;
+            return $step;
+        }, $steps);
     }
 
     /**

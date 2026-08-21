@@ -1,9 +1,9 @@
 {
     "class": "paladin",
     "spec": "retribution",
-    "windows": 64,
-    "killWindows": 10,
-    "matches": 81,
+    "windows": 100,
+    "killWindows": 13,
+    "matches": 100,
     "anchors": [
         "Avenging Wrath",
         "Blade of Justice",
@@ -15,14 +15,100 @@
         "Avenging Wrath",
         "Execution Sentence"
     ],
-    "topCombo": {
-        "length": 6,
+    "topDpsWindow": {
+        "damage": 1491476,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
-                "name": "Judgment",
-                "spellId": 20271,
+                "name": "Final Verdict",
+                "spellId": 383328,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Divine Hammer",
+                "spellId": 1236942,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Final Verdict",
+                "spellId": 383328,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Crusading Strikes",
+                "spellId": 408385,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Divine Hammer",
+                "spellId": 198137,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Wake of Ashes",
+                "spellId": 255937,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Divine Hammer",
+                "spellId": 1236942,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Hammer of Light",
+                "spellId": 427453,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Empyrean Hammer",
+                "spellId": 431398,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Crusading Strikes",
+                "spellId": 408385,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Empyrean Hammer",
+                "spellId": 431398,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Hammer of Wrath",
+                "spellId": 24275,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Divine Hammer",
+                "spellId": 1236942,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Final Verdict",
+                "spellId": 383328,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Crusading Strikes",
+                "spellId": 408385,
+                "isCc": false,
+                "isRepeat": true
             },
             {
                 "name": "Blade of Justice",
@@ -31,32 +117,858 @@
                 "isRepeat": false
             },
             {
-                "name": "Hammer of Justice",
-                "spellId": 853,
-                "isCc": true,
-                "isRepeat": false
+                "name": "Final Verdict",
+                "spellId": 383328,
+                "isCc": false,
+                "isRepeat": true
             },
             {
-                "name": "Avenging Wrath",
-                "spellId": 31884,
+                "name": "Crusading Strikes",
+                "spellId": 408385,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": true
             },
             {
-                "name": "Execution Sentence",
-                "spellId": 343527,
+                "name": "Blade of Justice",
+                "spellId": 184575,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": true
             },
             {
-                "name": "Wake of Ashes",
-                "spellId": 255937,
+                "name": "Hammer of Wrath",
+                "spellId": 24275,
                 "isCc": false,
-                "isRepeat": false
+                "isRepeat": true
+            },
+            {
+                "name": "Final Verdict",
+                "spellId": 383328,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Crusading Strikes",
+                "spellId": 408385,
+                "isCc": false,
+                "isRepeat": true
             }
-        ],
-        "count": 4,
-        "pct": 6.3,
-        "distinct": 6
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 809628,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rebuke",
+                    "spellId": 96231,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1197172,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 198137,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wake of Ashes",
+                    "spellId": 255937,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Light",
+                    "spellId": 427453,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 1491476,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 198137,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wake of Ashes",
+                    "spellId": 255937,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Light",
+                    "spellId": 427453,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 2063488,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Toll",
+                    "spellId": 375576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 198137,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blessing of Sanctuary",
+                    "spellId": 210256,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 198137,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wake of Ashes",
+                    "spellId": 255937,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Light",
+                    "spellId": 427453,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Steed",
+                    "spellId": 190784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Justice",
+                    "spellId": 853,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 2438314,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Judgment",
+                    "spellId": 20271,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Execution Sentence",
+                    "spellId": 343527,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Avenging Wrath",
+                    "spellId": 31884,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Protection",
+                    "spellId": 403876,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Toll",
+                    "spellId": 375576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 198137,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blessing of Sanctuary",
+                    "spellId": 210256,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 198137,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wake of Ashes",
+                    "spellId": 255937,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Light",
+                    "spellId": 427453,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Empyrean Hammer",
+                    "spellId": 431398,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Hammer",
+                    "spellId": 1236942,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blade of Justice",
+                    "spellId": 184575,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hammer of Wrath",
+                    "spellId": 24275,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Divine Steed",
+                    "spellId": 190784,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hammer of Justice",
+                    "spellId": 853,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Judgment",
+                    "spellId": 20271,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

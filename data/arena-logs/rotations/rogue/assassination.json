@@ -1,9 +1,9 @@
 {
     "class": "rogue",
     "spec": "assassination",
-    "windows": 331,
-    "killWindows": 114,
-    "matches": 105,
+    "windows": 364,
+    "killWindows": 123,
+    "matches": 121,
     "anchors": [
         "Deathmark",
         "Kingsbane",
@@ -15,33 +15,11 @@
         "Kingsbane",
         "Thistle Tea"
     ],
-    "topCombo": {
-        "length": 6,
+    "topDpsWindow": {
+        "damage": 1652123,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
-            {
-                "name": "Garrote",
-                "spellId": 703,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Deathmark",
-                "spellId": 360194,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Shiv",
-                "spellId": 5938,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Kidney Shot",
-                "spellId": 408,
-                "isCc": true,
-                "isRepeat": false
-            },
             {
                 "name": "Kingsbane",
                 "spellId": 385627,
@@ -49,14 +27,534 @@
                 "isRepeat": false
             },
             {
-                "name": "Blind",
-                "spellId": 2094,
-                "isCc": true,
+                "name": "Envenom",
+                "spellId": 32645,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Crimson Tempest",
+                "spellId": 1247227,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Mutilate",
+                "spellId": 27576,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Kick",
+                "spellId": 1766,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Envenom",
+                "spellId": 32645,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Mutilate",
+                "spellId": 27576,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Mutilate",
+                "spellId": 27576,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Envenom",
+                "spellId": 32645,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Fatebound Coin (Tails)",
+                "spellId": 452538,
+                "isCc": false,
                 "isRepeat": false
             }
-        ],
-        "count": 3,
-        "pct": 0.9,
-        "distinct": 6
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 938604,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Deathmark",
+                    "spellId": 360194,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Kingsbane",
+                    "spellId": 385627,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Blind",
+                    "spellId": 2094,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1294380,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Kingsbane",
+                    "spellId": 385627,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 1652123,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Kingsbane",
+                    "spellId": 385627,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Crimson Tempest",
+                    "spellId": 1247227,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kick",
+                    "spellId": 1766,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 2363032,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Deathmark",
+                    "spellId": 360194,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kingsbane",
+                    "spellId": 385627,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fan of Knives",
+                    "spellId": 51723,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blind",
+                    "spellId": 2094,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Garrote",
+                    "spellId": 703,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "30": {
+            "damage": 2649583,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Kidney Shot",
+                    "spellId": 408,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Deathmark",
+                    "spellId": 360194,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Kingsbane",
+                    "spellId": 385627,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fan of Knives",
+                    "spellId": 51723,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blind",
+                    "spellId": 2094,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mutilate",
+                    "spellId": 27576,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Garrote",
+                    "spellId": 703,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Garrote",
+                    "spellId": 703,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadowstep",
+                    "spellId": 36554,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Garrote",
+                    "spellId": 703,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Garrote",
+                    "spellId": 703,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fatebound Coin (Tails)",
+                    "spellId": 452538,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

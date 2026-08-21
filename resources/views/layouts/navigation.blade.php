@@ -58,6 +58,11 @@
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
                 WoW Comps
             </a>
+            <a href="{{ route('top-damage-rotations') }}"
+               class="sidebar-item text-[12px] {{ request()->routeIs('top-damage-rotations') ? 'active !text-accent' : '' }}">
+                <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>
+                Top Damage Rotations
+            </a>
             <a href="{{ route('spells.explore') }}"
                class="sidebar-item text-[12px] {{ request()->routeIs('spells.explore') ? 'active !text-accent' : '' }}">
                 <span class="w-1 h-1 rounded-full bg-current shrink-0"></span>

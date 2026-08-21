@@ -285,6 +285,14 @@ class WowComps extends Component
             ->orderBy('name')
             ->get();
 
+        // Collapses same-name duplicate spell_id copies down to one entry (e.g. Secret
+        // Technique's real press + its shadow-clone spell_id, both structurally reachable via
+        // the display-id union above) — see preferSelectedPerName()'s own docblock. Added
+        // 2026-08-21 after a real report of duplicate cards on this page; this method already
+        // existed for exactly this problem but was never wired into the 2026-08-16
+        // "always show every talent" rework, which is what reintroduced the duplicates.
+        $spells = $talentService->preferSelectedPerName($spells, $selected);
+
         // Bulk-resolves what would otherwise be one query per spell for both of these — see
         // each method's own docblock for the profiling that found this (a cold render of one
         // spec's ~175 entries cost ~1800 queries/3.2s before this, ~700 of which were these two
@@ -499,63 +507,50 @@ class WowComps extends Component
     }
 
     /**
-     * Offensive Rotation tab data — replaced the Kill Sequence tab 2026-08-20 (direct request).
-     * The old tab showed a ranked FREQUENCY LIST of individual abilities appearing before a kill;
-     * this shows the spec's single most common real cast COMBO — an ordered sequence, which is
-     * what actually reads as a rotation and matches how the Crowd Control tab already presents
-     * CC chains.
+     * Top DPS Rotation tab data — replaced 2026-08-21 (direct instruction, after a full
+     * investigative session on Sub Rogue). The tab used to show the spec's single most COMMON
+     * real cast combo (topCombo — an exact, fully-unique n-gram required to recur across many
+     * windows), which produced near-meaningless confidence numbers like "seen in 1 of 330
+     * windows" and read as a false claim of typicality. It's replaced entirely with the single
+     * highest-damage REAL window's own real sequence, shown as what it is — a real example that
+     * really happened, not a statistical claim. See offensive-rotations.php's topDpsWindow() in
+     * wow-arena-archive for the full rationale and the session's own conclusion: don't
+     * statistically average/match across many real examples when trying to show peak execution —
+     * pick the real highest-output example directly, since it's guaranteed mechanically legal.
      *
      * Reads the promoted per-spec summary via ArenaLogService::rotationForSpec() (see that
      * method's docblock, and offensive-rotations.php in wow-arena-archive for the derivation).
-     * Each spec's combo is anchored on its own real offensive cooldowns, with the target
+     * The window is anchored on the spec's own real offensive cooldowns, with the target
      * identified from where damage actually went — see that script for the two real bugs found
-     * while building it (multi-locale spell names fragmenting patterns, and clone/proc casts
-     * counted as player presses).
-     *
-     * Sample sizes are exposed and rendered, deliberately — several specs have few windows or
-     * few kill-windows, and a combo backed by 6 observations should not read with the same
-     * authority as one backed by 100.
+     * while building this pipeline (multi-locale spell names fragmenting patterns, and clone/proc
+     * casts counted as player presses — both already handled before this window is recorded).
      *
      * @return array<int, array|null>
      */
     public function getOffensiveRotationsProperty(): array
     {
         $service = app(ArenaLogService::class);
+        $talentService = app(TalentSelectionService::class);
 
-        return collect($this->comp)->map(function ($member) use ($service) {
+        return collect($this->comp)->map(function ($member) use ($service, $talentService) {
             if (!$member['spec']) {
                 return null;
             }
 
             $rotation = $service->rotationForSpec($member['class']->slug, $member['spec']->slug);
 
-            if ($rotation === null) {
+            if ($rotation === null || !isset($rotation['topDpsWindow'])) {
                 return null;
             }
 
-            // Resolve each step's icon in one query per spec rather than per step.
-            $stepIds = collect([$rotation['topCombo'] ?? null, $rotation['topKillCombo'] ?? null])
-                ->filter()
-                ->flatMap(fn ($c) => array_column($c['steps'], 'spellId'))
-                ->filter()
-                ->unique();
-
-            $spellsById = $stepIds->isEmpty()
-                ? collect()
-                : Spell::whereIn('spell_id', $stepIds)
-                    ->where('patch_id', Patch::where('is_current', true)->value('id'))
-                    ->get()
-                    ->keyBy('spell_id');
-
-            foreach (['topCombo', 'topKillCombo'] as $key) {
-                if (!isset($rotation[$key]) || $rotation[$key] === null) {
-                    continue;
-                }
-                $rotation[$key]['steps'] = array_map(function ($step) use ($spellsById) {
-                    $step['spell'] = $spellsById[$step['spellId']] ?? null;
-                    return $step;
-                }, $rotation[$key]['steps']);
-            }
+            // Spell resolution (spell_id -> real Spell, preferring the talent-linked copy) is
+            // shared with TopDamageRotations via ArenaLogService::resolveWindowSteps() — see
+            // that method's docblock.
+            $rotation['topDpsWindow']['steps'] = $service->resolveWindowSteps(
+                $rotation['topDpsWindow']['steps'],
+                $member['spec']->id,
+                $talentService
+            );
 
             return $rotation;
         })->all();

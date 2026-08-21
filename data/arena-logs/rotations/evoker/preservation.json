@@ -1,9 +1,9 @@
 {
     "class": "evoker",
     "spec": "preservation",
-    "windows": 109,
-    "killWindows": 15,
-    "matches": 83,
+    "windows": 135,
+    "killWindows": 24,
+    "matches": 108,
     "anchors": [
         "Deep Breath",
         "Fire Breath"
@@ -11,5 +11,408 @@
     "majorAnchors": [
         "Deep Breath"
     ],
-    "topCombo": null
+    "topDpsWindow": {
+        "damage": 519795,
+        "durationSeconds": 12,
+        "killed": false,
+        "steps": [
+            {
+                "name": "Oppressing Roar",
+                "spellId": 406971,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Chrono Flames",
+                "spellId": 431443,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Tip the Scales",
+                "spellId": 370553,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Fire Breath",
+                "spellId": 357208,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Chrono Flames",
+                "spellId": 431443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Chrono Flames",
+                "spellId": 431443,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Disintegrate",
+                "spellId": 356995,
+                "isCc": false,
+                "isRepeat": true
+            }
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 429318,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tip the Scales",
+                    "spellId": 370553,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 519795,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tip the Scales",
+                    "spellId": 370553,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 519795,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Oppressing Roar",
+                    "spellId": 406971,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tip the Scales",
+                    "spellId": 370553,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 620568,
+            "durationSeconds": 20,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Stasis",
+                    "spellId": 370537,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Verdant Embrace",
+                    "spellId": 360995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Echo",
+                    "spellId": 364343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dream Breath",
+                    "spellId": 355936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Hover",
+                    "spellId": 358267,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 723272,
+            "durationSeconds": 30,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Echo",
+                    "spellId": 364343,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dream Breath",
+                    "spellId": 355936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Verdant Embrace",
+                    "spellId": 360995,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disintegrate",
+                    "spellId": 356995,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sleep Walk",
+                    "spellId": 360806,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chrono Flames",
+                    "spellId": 431443,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Fire Breath",
+                    "spellId": 357208,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        }
+    }
 }

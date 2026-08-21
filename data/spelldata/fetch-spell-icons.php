@@ -431,11 +431,45 @@ $stmt = $pdo->query(
 );
 $explicitBaselineCooldownSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
+// Every spell_id referenced by a promoted rotation file's steps (WowComps' Top DPS Rotation
+// tab / TopDamageRotations page — data/arena-logs/rotations/{class}/{spec}.json's
+// topDpsWindow(sByLength).steps). Added 2026-08-23 after a real report of missing icons across
+// this data — this display path didn't exist when this script's target-set query was last
+// extended, so it was never wired in (same shape as every other gap documented in this
+// docblock's history). These are Blizzard's EXTERNAL spell_id (unlike the sources above, which
+// already query internal spells.id directly) — resolved to spells.id here via a lookup, since
+// every other part of this script works in terms of spells.id.
+$rotationExternalIds = [];
+foreach (glob($projectRoot . '/data/arena-logs/rotations/*/*.json') as $rotFile) {
+    $decoded = json_decode(file_get_contents($rotFile), true);
+    if (!$decoded) {
+        continue;
+    }
+    foreach (($decoded['topDpsWindowsByLength'] ?? []) as $window) {
+        if (!$window) {
+            continue;
+        }
+        foreach (($window['steps'] ?? []) as $step) {
+            if (!empty($step['spellId'])) {
+                $rotationExternalIds[(int) $step['spellId']] = true;
+            }
+        }
+    }
+}
+$rotationSpellDbIds = [];
+if ($rotationExternalIds !== []) {
+    $placeholders = implode(',', array_fill(0, count($rotationExternalIds), '?'));
+    $stmt = $pdo->prepare("SELECT id FROM spells WHERE spell_id IN ({$placeholders})");
+    $stmt->execute(array_keys($rotationExternalIds));
+    $rotationSpellDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+}
+
 $targetSpellDbIds = array_values(array_unique(array_merge(
     $talentSpellDbIds,
     $pvpTalentSpellDbIds,
     $verifiedOverrideSpellDbIds,
-    $explicitBaselineCooldownSpellDbIds
+    $explicitBaselineCooldownSpellDbIds,
+    $rotationSpellDbIds
 )));
 
 if ($limitSpellIds !== null) {

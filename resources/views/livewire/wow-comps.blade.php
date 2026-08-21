@@ -200,7 +200,7 @@
                 </button>
                 <button type="button" @click="tab = 'rotation'" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                    Offensive Rotation
+                    Top DPS Rotation
                     <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
                 </button>
                 <button type="button" @click="tab = 'ratingtiers'" class="tab-btn flex items-center gap-1.5" :class="tab === 'ratingtiers' ? 'tab-active' : 'tab-inactive'">
@@ -546,29 +546,36 @@
                 @endif
             </div>
 
-            {{-- Offensive Rotation tab — replaced the Kill Sequence tab 2026-08-20 (direct
-                 request). That tab showed a per-rating-band ranked FREQUENCY LIST of individual
-                 abilities cast before a kill; this shows each spec's single most common real cast
-                 COMBO as an ordered sequence, which is what actually reads as a rotation and
-                 mirrors how the Crowd Control tab presents its groupings.
+            {{-- Top DPS Rotation tab — replaced 2026-08-21 (direct instruction), superseding the
+                 exact-n-gram "Most Common Combo" approach entirely. That approach required a
+                 fully-unique ordered sequence to recur across many independent real go-windows,
+                 which produced confidence numbers like "seen in 1 of 330 windows" — a false claim
+                 of typicality the data couldn't back. A full investigative session on Sub Rogue
+                 (statistical convergence across 7 independent matches, then anchoring to Shadow
+                 Dance's own real 6s duration) concluded the right answer isn't a statistical
+                 technique at all: show the single REAL highest-damage window directly, as a real
+                 example that really happened — not a claim about what's typical or common.
 
                  Data comes from ArenaLogService::rotationForSpec() — promoted, pre-computed
-                 per-spec summaries built by wow-arena-archive's offensive-rotations.php (anchored
-                 on each spec's own real offensive cooldowns, target identified from where damage
-                 actually went in the window). Each combo is the top cast run that both contains
-                 one of the spec's own offensive cooldowns and uses >= 3 distinct abilities —
-                 without those rules the raw winner was routinely filler spam ("Mortal Strike x4")
-                 or a dual-wield logging artifact rather than a rotation.
+                 per-spec summaries built by wow-arena-archive's offensive-rotations.php. Each
+                 window is anchored on the spec's own real offensive cooldowns, with the target
+                 identified from where damage actually went — see that script's topDpsWindow()
+                 for the full derivation.
 
-                 One grouping box per spec (per the request), each step rendered with the same
-                 card styling the Crowd Control / Offensive Cooldowns tabs use, chained with
-                 arrows. Sample sizes are shown deliberately — some specs' combos rest on very few
-                 observations and shouldn't read with the same authority as one backed by 100. --}}
+                 One box per spec, each step rendered with the same card styling the Crowd
+                 Control / Offensive Cooldowns tabs use, chained with arrows. No per-step damage
+                 numbers are shown — a real, deep-dive investigation this session confirmed that
+                 breaking a window's total damage down by press is contaminated by passive procs
+                 (e.g. Shadow Blades' damage-add riding on nearly every attack) and background
+                 sources (poison ticks, melee swings) that have nothing to do with the press they
+                 happen to land nearest — showing per-step numbers would look precise while being
+                 quietly wrong. The window's own real total damage/duration is shown instead, as
+                 the one honest, checkable number. --}}
             <div x-show="tab === 'rotation'" x-cloak class="space-y-4">
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
                         <span class="text-amber-400 font-semibold">Preview / in development.</span>
-                        The most common cast sequence each spec actually performs around its own <span class="text-ink font-semibold">major</span> offensive cooldowns, taken from real matches — a 30s window (15s either side) around the cooldown, matched on cooldowns and crowd control only so filler doesn't crowd them out. Gold-bordered steps are the cooldown the window is built around. Each combo is up to 6 <span class="text-ink font-semibold">different</span> abilities in the order they were actually cast. These are <span class="text-ink font-semibold">exact</span> sequences, so the match rate is low by nature — real play varies, and no single ordering dominates. Treat it as "this specific sequence recurs more than any other," not "this is what they always do."
+                        The single highest-damage real 12-second burst window found for this spec, shown as a real example — not a "most common" claim. Scans each real match's <span class="text-ink font-semibold">entire</span> timeline (not boxed inside any one cooldown's usage) for the densest 12s stretch of real damage against one real target that also contains one of this spec's own offensive cooldowns, then shows only that window's real cast sequence. Gold-bordered steps are a real offensive cooldown. This is one real thing that really happened, in the order it was actually pressed — make of it what you will.
                     </p>
                 </div>
 
@@ -592,24 +599,20 @@
                                 @endif
                             </div>
 
-                            @if (!$rot || empty($rot['topCombo']))
+                            @if (!$rot || empty($rot['topDpsWindow']))
                                 <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a rotation on this spec yet.</p>
                             @else
-                                {{-- One combo only (2026-08-20, direct instruction) — the separate
-                                     "kill combo" block was dropped because it was near-identical to
-                                     this one for most specs: "kill combo is basically the combo
-                                     working but they are all pretty much the same". --}}
-                                @php $combo = $rot['topCombo']; @endphp
+                                @php $topDps = $rot['topDpsWindow']; @endphp
                                     <div>
                                         <div class="flex items-baseline gap-2 mb-2.5">
-                                            <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Most common combo</p>
+                                            <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Peak Burst Example</p>
                                             <span class="text-[10px] text-ink-subtle">
-                                                seen in {{ $combo['count'] }} of {{ number_format($rot['windows']) }} go windows ({{ $combo['pct'] }}%)
+                                                {{ number_format($topDps['damage']) }} damage in {{ $fmtSeconds($topDps['durationSeconds']) }}{{ $topDps['killed'] ? ' — killed the target' : '' }}
                                             </span>
                                         </div>
 
                                         <div class="flex flex-wrap items-center gap-2">
-                                            @foreach ($combo['steps'] as $si => $step)
+                                            @foreach ($topDps['steps'] as $si => $step)
                                                 @if ($si > 0)
                                                     <svg class="w-3.5 h-3.5 text-ink-subtle flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>

@@ -1,9 +1,9 @@
 {
     "class": "druid",
     "spec": "balance",
-    "windows": 124,
-    "killWindows": 13,
-    "matches": 27,
+    "windows": 218,
+    "killWindows": 24,
+    "matches": 46,
     "anchors": [
         "Force of Nature",
         "Fury of Elune",
@@ -15,21 +15,11 @@
         "Fury of Elune",
         "Incarnation: Chosen of Elune"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 1155858,
+        "durationSeconds": 12,
+        "killed": true,
         "steps": [
-            {
-                "name": "Wild Mushroom",
-                "spellId": 88747,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Cyclone",
-                "spellId": 33786,
-                "isCc": true,
-                "isRepeat": false
-            },
             {
                 "name": "Force of Nature",
                 "spellId": 205636,
@@ -41,10 +31,554 @@
                 "spellId": 102560,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Berserking",
+                "spellId": 26297,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Gladiator's Medallion",
+                "spellId": 336126,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Wild Mushroom",
+                "spellId": 88747,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Starsurge",
+                "spellId": 78674,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Solar Beam",
+                "spellId": 78675,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Mass Entanglement",
+                "spellId": 102359,
+                "isCc": true,
+                "isRepeat": false
             }
-        ],
-        "count": 5,
-        "pct": 4,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 782427,
+            "durationSeconds": 6,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Cyclone",
+                    "spellId": 33786,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Force of Nature",
+                    "spellId": 205636,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incarnation: Chosen of Elune",
+                    "spellId": 102560,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wild Charge",
+                    "spellId": 102383,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1094717,
+            "durationSeconds": 10,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Incarnation: Chosen of Elune",
+                    "spellId": 102560,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Berserking",
+                    "spellId": 26297,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wild Mushroom",
+                    "spellId": 88747,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Solar Beam",
+                    "spellId": 78675,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mass Entanglement",
+                    "spellId": 102359,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 1155858,
+            "durationSeconds": 12,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Force of Nature",
+                    "spellId": 205636,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incarnation: Chosen of Elune",
+                    "spellId": 102560,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Berserking",
+                    "spellId": 26297,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wild Mushroom",
+                    "spellId": 88747,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Solar Beam",
+                    "spellId": 78675,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mass Entanglement",
+                    "spellId": 102359,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 1373586,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Incarnation: Chosen of Elune",
+                    "spellId": 102560,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cyclone",
+                    "spellId": 33786,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cyclone",
+                    "spellId": 33786,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sunfire",
+                    "spellId": 93402,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starfire",
+                    "spellId": 194153,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incapacitating Roar",
+                    "spellId": 99,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonkin Form",
+                    "spellId": 24858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incarnation: Chosen of Elune",
+                    "spellId": 102560,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 190984,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 190984,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 190984,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mass Entanglement",
+                    "spellId": 102359,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Solar Beam",
+                    "spellId": 78675,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "30": {
+            "damage": 1794051,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Sunfire",
+                    "spellId": 93402,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Typhoon",
+                    "spellId": 61391,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incarnation: Chosen of Elune",
+                    "spellId": 102560,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cyclone",
+                    "spellId": 33786,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cyclone",
+                    "spellId": 33786,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Sunfire",
+                    "spellId": 93402,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starfire",
+                    "spellId": 194153,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incapacitating Roar",
+                    "spellId": 99,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Moonkin Form",
+                    "spellId": 24858,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incarnation: Chosen of Elune",
+                    "spellId": 102560,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 190984,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 190984,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 190984,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mass Entanglement",
+                    "spellId": 102359,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Solar Beam",
+                    "spellId": 78675,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Starsurge",
+                    "spellId": 78674,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wrath",
+                    "spellId": 190984,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
     }
 }

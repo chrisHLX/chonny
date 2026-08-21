@@ -16,5 +16,702 @@
         "Lunar Beam",
         "Sundering Roar"
     ],
-    "topCombo": null
+    "topDpsWindow": {
+        "damage": 301819,
+        "durationSeconds": 12,
+        "killed": false,
+        "steps": [
+            {
+                "name": "Incarnation: Guardian of Ursoc",
+                "spellId": 102558,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Ursol's Vortex",
+                "spellId": 102793,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Growl",
+                "spellId": 6795,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Ironfur",
+                "spellId": 192081,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Thrash",
+                "spellId": 77758,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Wild Guardian",
+                "spellId": 1269658,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Lunar Beam",
+                "spellId": 1270292,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Skull Bash",
+                "spellId": 93985,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Incapacitating Roar",
+                "spellId": 99,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Growl",
+                "spellId": 6795,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Regrowth",
+                "spellId": 8936,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Thrash",
+                "spellId": 77758,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Growl",
+                "spellId": 6795,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Mangle",
+                "spellId": 33917,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Ironfur",
+                "spellId": 192081,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Thrash",
+                "spellId": 77758,
+                "isCc": false,
+                "isRepeat": true
+            }
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 225152,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Rip",
+                    "spellId": 1079,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incarnation: Guardian of Ursoc",
+                    "spellId": 102558,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wild Guardian",
+                    "spellId": 1269658,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Raze",
+                    "spellId": 400254,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 301223,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wild Guardian",
+                    "spellId": 1269658,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lunar Beam",
+                    "spellId": 1270292,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Skull Bash",
+                    "spellId": 93985,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incapacitating Roar",
+                    "spellId": 99,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Regrowth",
+                    "spellId": 8936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mangle",
+                    "spellId": 33917,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "12": {
+            "damage": 301819,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Incarnation: Guardian of Ursoc",
+                    "spellId": 102558,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ursol's Vortex",
+                    "spellId": 102793,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wild Guardian",
+                    "spellId": 1269658,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lunar Beam",
+                    "spellId": 1270292,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Skull Bash",
+                    "spellId": 93985,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incapacitating Roar",
+                    "spellId": 99,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Regrowth",
+                    "spellId": 8936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mangle",
+                    "spellId": 33917,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "20": {
+            "damage": 471623,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Wild Guardian",
+                    "spellId": 1269658,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Lunar Beam",
+                    "spellId": 1270292,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Skull Bash",
+                    "spellId": 93985,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incapacitating Roar",
+                    "spellId": 99,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Regrowth",
+                    "spellId": 8936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mangle",
+                    "spellId": 33917,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mangle",
+                    "spellId": 33917,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wild Charge",
+                    "spellId": 16979,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Raze",
+                    "spellId": 400254,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Overrun",
+                    "spellId": 202246,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 664722,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Regrowth",
+                    "spellId": 8936,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mangle",
+                    "spellId": 33917,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mangle",
+                    "spellId": 33917,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Wild Charge",
+                    "spellId": 16979,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Raze",
+                    "spellId": 400254,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Overrun",
+                    "spellId": 202246,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 8921,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Raze",
+                    "spellId": 400254,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mangle",
+                    "spellId": 33917,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Lunar Beam",
+                    "spellId": 1270292,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Growl",
+                    "spellId": 6795,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Dash",
+                    "spellId": 1850,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Bear Form",
+                    "spellId": 5487,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Wild Charge",
+                    "spellId": 16979,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ironfur",
+                    "spellId": 192081,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Thrash",
+                    "spellId": 77758,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        }
+    }
 }

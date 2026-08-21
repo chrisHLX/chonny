@@ -1,9 +1,9 @@
 {
     "class": "priest",
     "spec": "discipline",
-    "windows": 185,
-    "killWindows": 19,
-    "matches": 79,
+    "windows": 237,
+    "killWindows": 23,
+    "matches": 100,
     "anchors": [
         "Mind Blast",
         "Penance",
@@ -15,13 +15,21 @@
         "Power Infusion",
         "Ultimate Penitence"
     ],
-    "topCombo": {
-        "length": 4,
+    "topDpsWindow": {
+        "damage": 743921,
+        "durationSeconds": 12,
+        "killed": false,
         "steps": [
             {
-                "name": "Psychic Scream",
-                "spellId": 8122,
-                "isCc": true,
+                "name": "Penance",
+                "spellId": 47540,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Shadow Mend",
+                "spellId": 186263,
+                "isCc": false,
                 "isRepeat": false
             },
             {
@@ -31,20 +39,360 @@
                 "isRepeat": false
             },
             {
-                "name": "Penance",
-                "spellId": 47540,
+                "name": "Void Shield",
+                "spellId": 1253593,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Mind Blast",
-                "spellId": 8092,
+                "name": "Penance",
+                "spellId": 47540,
                 "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "isCc": true,
                 "isRepeat": false
             }
-        ],
-        "count": 5,
-        "pct": 2.7,
-        "distinct": 4
+        ]
+    },
+    "topDpsWindowsByLength": {
+        "6": {
+            "damage": 616180,
+            "durationSeconds": 6,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Psychic Scream",
+                    "spellId": 8122,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 722217,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Mend",
+                    "spellId": 186263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ultimate Penitence",
+                    "spellId": 421453,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Shield",
+                    "spellId": 1253593,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Psychic Scream",
+                    "spellId": 8122,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 743921,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Mend",
+                    "spellId": 186263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ultimate Penitence",
+                    "spellId": 421453,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Shield",
+                    "spellId": 1253593,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Psychic Scream",
+                    "spellId": 8122,
+                    "isCc": true,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "20": {
+            "damage": 877002,
+            "durationSeconds": 20,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Shield",
+                    "spellId": 1253593,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Death",
+                    "spellId": 32379,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Mend",
+                    "spellId": 186263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Shield",
+                    "spellId": 1253593,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pain Suppression",
+                    "spellId": 33206,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Death",
+                    "spellId": 32379,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 1198980,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Mind Blast",
+                    "spellId": 8092,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Shield",
+                    "spellId": 1253593,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Death",
+                    "spellId": 32379,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Void Blast",
+                    "spellId": 450215,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Smite",
+                    "spellId": 585,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Mend",
+                    "spellId": 186263,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Void Shield",
+                    "spellId": 1253593,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Pain Suppression",
+                    "spellId": 33206,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shadow Word: Pain",
+                    "spellId": 589,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shadow Word: Death",
+                    "spellId": 32379,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Penance",
+                    "spellId": 47540,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ultimate Penitence",
+                    "spellId": 421453,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        }
     }
 }
