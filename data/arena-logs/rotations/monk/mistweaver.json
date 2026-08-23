@@ -1,9 +1,9 @@
 {
     "class": "monk",
     "spec": "mistweaver",
-    "windows": 28,
-    "killWindows": 12,
-    "matches": 86,
+    "windows": 29,
+    "killWindows": 13,
+    "matches": 97,
     "anchors": [
         "Celestial Conduit",
         "Rushing Wind Kick",
@@ -70,25 +70,13 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 525426,
+            "damage": 576528,
             "durationSeconds": 6,
             "killed": true,
             "steps": [
                 {
-                    "name": "Paralysis",
-                    "spellId": 115078,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
                     "name": "Rushing Wind Kick",
                     "spellId": 467307,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Thunder Focus Tea",
-                    "spellId": 116680,
                     "isCc": false,
                     "isRepeat": false
                 },

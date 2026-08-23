@@ -21,12 +21,15 @@ class Spell extends Model
         'not_in_spellbook',
         'icon_name',
         'mechanic',
+        'spell_type',
+        'range_yards',
         'is_passive',
         'dr_category',
         'cast_type',
         'chain_target',
         'is_peel',
         'is_interrupt',
+        'pairs_with_category',
     ];
 
     // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL

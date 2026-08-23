@@ -450,6 +450,8 @@ class ImportSpellData extends Command
                 'not_in_spellbook' => $record['not_in_spellbook'],
                 'variables' => $record['variables'],
                 'mechanic' => $record['mechanic'],
+                'spell_type' => $record['spell_type'],
+                'range_yards' => $record['range_yards'],
                 'is_passive' => $record['is_passive'],
                 'cast_type' => $record['cast_type'],
             ];
@@ -1269,6 +1271,8 @@ class ImportSpellData extends Command
                 'duration_seconds' => ($block['duration_seconds'] ?? '') !== '' ? (float) $block['duration_seconds'] : null,
                 'charges' => ($block['charges'] ?? '') !== '' ? (int) $block['charges'] : null,
                 'mechanic' => $block['mechanic'] ?? null,
+                'spell_type' => $block['spell_type'] ?? null,
+                'range_yards' => $block['range_yards'] ?? null,
                 'is_passive' => false,
                 'not_in_spellbook' => false,
             ], 'spells');
@@ -1452,7 +1456,7 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            $parts = array_map('trim', explode('|', $line, 7));
+            $parts = array_map('trim', explode('|', $line, 8));
 
             if (count($parts) < 6 || !ctype_digit($parts[0])) {
                 $this->ccSynergyOverrideSkips++;
@@ -1462,6 +1466,10 @@ class ImportSpellData extends Command
             }
 
             [$externalSpellId, $drCategory, $chainTarget, $isPeel, $isInterrupt, $pvpDuration] = $parts;
+            // pairs_with_category — added 2026-08-23, 7th data field. Optional/backward-compatible:
+            // an older line with only 6 fields (plus a name comment, or nothing after) simply has
+            // no requirement recorded, same as every other blank field in this file.
+            $pairsWithCategory = $parts[6] ?? '';
 
             $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
 
@@ -1482,6 +1490,13 @@ class ImportSpellData extends Command
             if ($chainTarget !== '' && !in_array($chainTarget, $validChainTargets, true)) {
                 $this->ccSynergyOverrideSkips++;
                 $this->warn("  Skipping cc-synergies-overrides.txt line with unknown chain_target '{$chainTarget}': {$line}");
+
+                continue;
+            }
+
+            if ($pairsWithCategory !== '' && !in_array($pairsWithCategory, $validDrCategories, true)) {
+                $this->ccSynergyOverrideSkips++;
+                $this->warn("  Skipping cc-synergies-overrides.txt line with unknown pairs_with_category '{$pairsWithCategory}': {$line}");
 
                 continue;
             }
@@ -1511,6 +1526,7 @@ class ImportSpellData extends Command
                 'is_peel' => $isPeel === '1',
                 'is_interrupt' => $isInterrupt === '1',
                 'pvp_duration_seconds' => $pvpDuration !== '' ? (float) $pvpDuration : null,
+                'pairs_with_category' => $pairsWithCategory !== '' ? $pairsWithCategory : null,
             ], 'spells');
 
             $this->ccSynergyOverridesApplied++;
@@ -1536,7 +1552,8 @@ class ImportSpellData extends Command
             return;
         }
 
-        $validFields = ['cooldown_seconds', 'duration_seconds', 'mechanic'];
+        $validFields = ['cooldown_seconds', 'duration_seconds', 'mechanic', 'spell_type', 'range_yards'];
+        $stringFields = ['mechanic', 'spell_type', 'range_yards'];
 
         foreach (File::lines($path) as $line) {
             $line = trim($line);
@@ -1584,7 +1601,7 @@ class ImportSpellData extends Command
                     continue;
                 }
 
-                $values[$field] = $field === 'mechanic' ? $value : (float) $value;
+                $values[$field] = in_array($field, $stringFields, true) ? $value : (float) $value;
             }
 
             if ($malformed || $values === []) {

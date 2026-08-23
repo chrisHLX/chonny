@@ -1,9 +1,9 @@
 {
     "class": "warlock",
     "spec": "destruction",
-    "windows": 345,
+    "windows": 366,
     "killWindows": 28,
-    "matches": 58,
+    "matches": 63,
     "anchors": [
         "Conflagrate",
         "Malevolence",
@@ -76,22 +76,10 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 873572,
+            "damage": 890048,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
-                {
-                    "name": "Incinerate",
-                    "spellId": 29722,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Fear",
-                    "spellId": 5782,
-                    "isCc": true,
-                    "isRepeat": false
-                },
                 {
                     "name": "Conflagrate",
                     "spellId": 17962,
@@ -108,7 +96,31 @@
                     "name": "Incinerate",
                     "spellId": 29722,
                     "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Nether Ward",
+                    "spellId": 212295,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Incinerate",
+                    "spellId": 29722,
+                    "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Conflagrate",
+                    "spellId": 17962,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Mortal Coil",
+                    "spellId": 6789,
+                    "isCc": true,
+                    "isRepeat": false
                 }
             ]
         },

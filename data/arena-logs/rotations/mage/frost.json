@@ -1,9 +1,9 @@
 {
     "class": "mage",
     "spec": "frost",
-    "windows": 788,
-    "killWindows": 95,
-    "matches": 118,
+    "windows": 851,
+    "killWindows": 97,
+    "matches": 124,
     "anchors": [
         "Blizzard",
         "Cone of Cold",
@@ -16,31 +16,37 @@
         "Ray of Frost"
     ],
     "topDpsWindow": {
-        "damage": 1245820,
+        "damage": 1293104,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
             {
-                "name": "Flurry",
-                "spellId": 44614,
+                "name": "Gladiator's Medallion",
+                "spellId": 336126,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Blizzard",
-                "spellId": 190356,
+                "name": "Polymorph",
+                "spellId": 118,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Ice Block",
+                "spellId": 45438,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Flurry",
-                "spellId": 44614,
-                "isCc": false,
+                "name": "Polymorph",
+                "spellId": 118,
+                "isCc": true,
                 "isRepeat": true
             },
             {
-                "name": "Ice Lance",
-                "spellId": 30455,
+                "name": "Flurry",
+                "spellId": 44614,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -60,7 +66,7 @@
                 "name": "Ice Lance",
                 "spellId": 30455,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": false
             },
             {
                 "name": "Ice Lance",
@@ -75,8 +81,8 @@
                 "isRepeat": true
             },
             {
-                "name": "Blizzard",
-                "spellId": 190356,
+                "name": "Flurry",
+                "spellId": 44614,
                 "isCc": false,
                 "isRepeat": true
             }
@@ -164,31 +170,37 @@
             ]
         },
         "12": {
-            "damage": 1245820,
+            "damage": 1293104,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
                 {
-                    "name": "Flurry",
-                    "spellId": 44614,
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Blizzard",
-                    "spellId": 190356,
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ice Block",
+                    "spellId": 45438,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Flurry",
-                    "spellId": 44614,
-                    "isCc": false,
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
                     "isRepeat": true
                 },
                 {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
+                    "name": "Flurry",
+                    "spellId": 44614,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -208,7 +220,7 @@
                     "name": "Ice Lance",
                     "spellId": 30455,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Ice Lance",
@@ -223,8 +235,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Blizzard",
-                    "spellId": 190356,
+                    "name": "Flurry",
+                    "spellId": 44614,
                     "isCc": false,
                     "isRepeat": true
                 }
@@ -322,34 +334,10 @@
             ]
         },
         "30": {
-            "damage": 2145999,
+            "damage": 2307077,
             "durationSeconds": 30,
             "killed": false,
             "steps": [
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Polymorph",
-                    "spellId": 28271,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Glacial Spike",
-                    "spellId": 199786,
-                    "isCc": true,
-                    "isRepeat": false
-                },
                 {
                     "name": "Flurry",
                     "spellId": 44614,
@@ -359,60 +347,6 @@
                 {
                     "name": "Ice Lance",
                     "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Polymorph",
-                    "spellId": 28271,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ray of Frost",
-                    "spellId": 205021,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Blink",
-                    "spellId": 1953,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -423,46 +357,28 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Frozen Orb",
-                    "spellId": 84714,
+                    "name": "Ice Lance",
+                    "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Lance",
+                    "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Lance",
+                    "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shimmer",
+                    "spellId": 212653,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Counterspell",
-                    "spellId": 2139,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Flurry",
-                    "spellId": 44614,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ice Lance",
-                    "spellId": 30455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Glacial Spike",
-                    "spellId": 199786,
-                    "isCc": true,
-                    "isRepeat": true
                 },
                 {
                     "name": "Frostbolt",
@@ -471,6 +387,66 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Ice Lance",
+                    "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Lance",
+                    "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Blizzard",
+                    "spellId": 190356,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Alter Time",
+                    "spellId": 342247,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Barrier",
+                    "spellId": 11426,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ice Lance",
+                    "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Barrier",
+                    "spellId": 11426,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spellsteal",
+                    "spellId": 30449,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Polymorph",
+                    "spellId": 118,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Glacial Spike",
+                    "spellId": 199786,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
                     "name": "Flurry",
                     "spellId": 44614,
                     "isCc": false,
@@ -483,8 +459,32 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Ray of Frost",
+                    "spellId": 205021,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shimmer",
+                    "spellId": 212653,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Ice Lance",
                     "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ice Lance",
+                    "spellId": 30455,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Spellsteal",
+                    "spellId": 30449,
                     "isCc": false,
                     "isRepeat": true
                 }

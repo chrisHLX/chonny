@@ -170,6 +170,21 @@
         ]
     },
     {
+        "spellId": 375901,
+        "name": "Mindgames",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "offensiveBuffSignals": [
+            "Energize/resource gen (+1000)"
+        ],
+        "offensiveSpellSignals": [
+            "Own record: School Damage (2): shadow (SP-scaled, sp_coefficient=3)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 323701: Absorb (Absorb Damage)"
+        ]
+    },
+    {
         "spellId": 1263824,
         "name": "Consumption",
         "cooldownSeconds": 45,

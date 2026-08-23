@@ -1,9 +1,9 @@
 {
     "class": "druid",
     "spec": "feral",
-    "windows": 339,
-    "killWindows": 30,
-    "matches": 46,
+    "windows": 381,
+    "killWindows": 34,
+    "matches": 50,
     "anchors": [
         "Feral Frenzy",
         "Incarnation: Avatar of Ashamane",
@@ -106,20 +106,20 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 741896,
+            "damage": 750212,
             "durationSeconds": 6,
-            "killed": true,
+            "killed": false,
             "steps": [
                 {
-                    "name": "Feral Frenzy",
-                    "spellId": 274837,
+                    "name": "Incarnation: Avatar of Ashamane",
+                    "spellId": 102543,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Maim",
-                    "spellId": 22570,
-                    "isCc": true,
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
                     "isRepeat": false
                 },
                 {
@@ -129,8 +129,20 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 155625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rake",
+                    "spellId": 1822,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -138,7 +150,7 @@
                     "name": "Ferocious Bite",
                     "spellId": 22568,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 }
             ]
         },
@@ -295,79 +307,19 @@
             ]
         },
         "20": {
-            "damage": 1603620,
+            "damage": 1682163,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Incarnation: Avatar of Ashamane",
-                    "spellId": 102543,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tiger's Fury",
-                    "spellId": 5217,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Feral Frenzy",
-                    "spellId": 274837,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rip",
-                    "spellId": 1079,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rake",
-                    "spellId": 1822,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ferocious Bite",
-                    "spellId": 22568,
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
                     "name": "Moonfire",
                     "spellId": 155625,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ferocious Bite",
-                    "spellId": 22568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Skull Bash",
-                    "spellId": 93985,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shred",
-                    "spellId": 5221,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ferocious Bite",
-                    "spellId": 22568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cat Form",
-                    "spellId": 768,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -378,189 +330,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Rake",
-                    "spellId": 1822,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rip",
-                    "spellId": 1079,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Moonfire",
-                    "spellId": 155625,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Ferocious Bite",
                     "spellId": 22568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rip",
-                    "spellId": 1079,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rake",
-                    "spellId": 1822,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Entangling Roots",
-                    "spellId": 339,
-                    "isCc": true,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "30": {
-            "damage": 1787975,
-            "durationSeconds": 30,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Incarnation: Avatar of Ashamane",
-                    "spellId": 102543,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tiger's Fury",
-                    "spellId": 5217,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
                     "name": "Feral Frenzy",
                     "spellId": 274837,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rip",
-                    "spellId": 1079,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rake",
-                    "spellId": 1822,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ferocious Bite",
-                    "spellId": 22568,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Moonfire",
-                    "spellId": 155625,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ferocious Bite",
-                    "spellId": 22568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Skull Bash",
-                    "spellId": 93985,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shred",
-                    "spellId": 5221,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Ferocious Bite",
-                    "spellId": 22568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cat Form",
-                    "spellId": 768,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Prowl",
-                    "spellId": 102547,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Rake",
-                    "spellId": 1822,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rip",
-                    "spellId": 1079,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Moonfire",
-                    "spellId": 155625,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ferocious Bite",
-                    "spellId": 22568,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rip",
-                    "spellId": 1079,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rake",
-                    "spellId": 1822,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Entangling Roots",
-                    "spellId": 339,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Shred",
-                    "spellId": 5221,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Ursol's Vortex",
-                    "spellId": 102793,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Wild Charge",
-                    "spellId": 49376,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -569,6 +346,313 @@
                     "spellId": 22570,
                     "isCc": true,
                     "isRepeat": false
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Typhoon",
+                    "spellId": 61391,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Entangling Roots",
+                    "spellId": 339,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rake",
+                    "spellId": 1822,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rip",
+                    "spellId": 1079,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 2014135,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Rip",
+                    "spellId": 1079,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rake",
+                    "spellId": 1822,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mighty Bash",
+                    "spellId": 5211,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cyclone",
+                    "spellId": 33786,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Cyclone",
+                    "spellId": 33786,
+                    "isCc": true,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Incarnation: Avatar of Ashamane",
+                    "spellId": 102543,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Moonfire",
+                    "spellId": 155625,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Prowl",
+                    "spellId": 102547,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Feral Frenzy",
+                    "spellId": 274837,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Maim",
+                    "spellId": 22570,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Typhoon",
+                    "spellId": 61391,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Entangling Roots",
+                    "spellId": 339,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rake",
+                    "spellId": 1822,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rip",
+                    "spellId": 1079,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Track Humanoids",
+                    "spellId": 5225,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Ferocious Bite",
+                    "spellId": 22568,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Shred",
+                    "spellId": 5221,
+                    "isCc": false,
+                    "isRepeat": true
                 }
             ]
         }

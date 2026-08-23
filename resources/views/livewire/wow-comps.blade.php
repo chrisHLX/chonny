@@ -49,7 +49,19 @@
     $compSubtitle = $selectedMembers->map(fn ($m) => "{$m['label']}: {$m['class']->name} ({$m['spec']->name})")->implode(' • ');
 @endphp
 
-<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{ openSpellId: null, tab: 'offensive', classPickerSlot: null, pendingSlot: null }">
+<div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{
+        openSpellId: null,
+        tab: 'offensive',
+        classPickerSlot: null,
+        pendingSlot: null,
+        slotLabels: @js(array_column($slots, 'label')),
+        specAllowed(role) {
+            return this.slotLabels[this.classPickerSlot] === 'Healer' ? role === 'healer' : role !== 'healer';
+        },
+        anyRoleAllowed(rolesString) {
+            return rolesString.split(' ').some(role => this.specAllowed(role));
+        },
+    }">
     <div class="linear-card px-6 py-5">
         <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">WoW Comps</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $compTitle }}</h1>
@@ -132,15 +144,23 @@
                    class="form-input !text-[12px] !py-1.5 mb-4 w-full">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
                 @foreach ($classSpecs as $class)
-                    @php $classColor = config('wow_classes.colors')[$class->slug] ?? '#8A8A9A'; @endphp
+                    @php
+                        $classColor = config('wow_classes.colors')[$class->slug] ?? '#8A8A9A';
+                        $classRoles = $class->specializations->map(fn ($s) => $specRoleMap[$s->id] ?? 'dps')->unique()->implode(' ');
+                    @endphp
+                    {{-- Role-restricted 2026-08-22, direct instruction: the Healer slot's picker
+                         only shows Healer specs; both DPS slots show DPS + Tank specs. A class
+                         with no spec matching the current slot's role (e.g. Rogue for a Healer
+                         slot) hides its whole group rather than showing an empty header. --}}
                     <div data-search-group="{{ Str::lower($class->name.' '.$class->specializations->pluck('name')->implode(' ')) }}"
-                         x-show="search === '' || $el.dataset.searchGroup.includes(search.toLowerCase())">
+                         x-show="(search === '' || $el.dataset.searchGroup.includes(search.toLowerCase())) && anyRoleAllowed('{{ $classRoles }}')">
                         <p class="text-[11px] uppercase tracking-wide font-bold mb-2" style="color: {{ $classColor }}">{{ $class->name }}</p>
                         <div class="flex flex-wrap gap-2.5">
                             @foreach ($class->specializations as $spec)
                                 <button type="button"
                                         data-search="{{ Str::lower($class->name.' '.$spec->name) }}"
-                                        x-show="search === '' || $el.dataset.search.includes(search.toLowerCase())"
+                                        data-role="{{ $specRoleMap[$spec->id] ?? 'dps' }}"
+                                        x-show="(search === '' || $el.dataset.search.includes(search.toLowerCase())) && specAllowed($el.dataset.role)"
                                         @click="
                                             pendingSlot = classPickerSlot;
                                             classPickerSlot = null;
@@ -200,7 +220,7 @@
                 </button>
                 <button type="button" @click="tab = 'rotation'" class="tab-btn flex items-center gap-1.5" :class="tab === 'rotation' ? 'tab-active' : 'tab-inactive'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                    Top DPS Rotation
+                    Burst Window
                     <span class="badge-amber !text-[8px] !px-1 !py-0">DEV</span>
                 </button>
                 <button type="button" @click="tab = 'ratingtiers'" class="tab-btn flex items-center gap-1.5" :class="tab === 'ratingtiers' ? 'tab-active' : 'tab-inactive'">
@@ -387,8 +407,24 @@
                 @endphp
                 <div class="linear-card p-4">
                     <p class="text-[12px] text-ink-muted leading-relaxed">
-                        CC is grouped into Diminishing Returns Groups (Stun, Silence, Incapacitate, Disorient — the categories that actually diminish each other) and Utility (Knockback, Disarm, Slow, Root — none of which diminish anything). Each spell's own category shows as a badge on its card — chain them yourself in-game. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value, and DR resets after 20s of no reapplication. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet. "Duration" only shows once a spell's real PvP CC duration has been hand-verified — a blank duration means it hasn't been curated yet, not that the CC is instant.
+                        CC is grouped into Diminishing Returns Groups (Stun, Silence, Incapacitate, Disorient — the categories that actually diminish each other) and Utility (Knockback, Disarm, Slow, Root — none of which diminish anything). Each spell's own category shows as a badge on its card — chain them yourself in-game. The first use of a DR category lands at full duration; a second use within <span class="text-ink font-semibold">20s</span> of the first drops to 50%; a third makes the target immune until the DR resets. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet. "Duration" only shows once a spell's real PvP CC duration has been hand-verified — a blank duration means it hasn't been curated yet, not that the CC is instant.
                     </p>
+                    {{-- DR-category icon key — 2026-08-22, direct request off a Reddit comment
+                         asking for "the fear icon for Disorient, the sheep icon for
+                         Incapacitate," i.e. the community-standard representative icon per DR
+                         category, independent of which specific spell was actually cast. Lives
+                         here as a one-time legend, not a second icon added to every spell card
+                         below — see WowComps::DR_CATEGORY_ICON_SPELL_IDS's docblock. --}}
+                    <div class="flex flex-wrap gap-x-4 gap-y-2 mt-3 pt-3 border-t border-line">
+                        @foreach ($drCategoryLegend as $legend)
+                            @if ($legend['spell'])
+                                <div class="flex items-center gap-1.5">
+                                    <x-spell-icon :spell="$legend['spell']" size="w-5 h-5"/>
+                                    <span class="text-[11px] text-ink-muted">{{ $legend['category'] }}</span>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
 
                 {{-- Both boxes are plain groupings by real dr_category, NOT sequenced through
@@ -546,7 +582,9 @@
                 @endif
             </div>
 
-            {{-- Top DPS Rotation tab — replaced 2026-08-21 (direct instruction), superseding the
+            {{-- Burst Window tab (renamed from "Top DPS Rotation" 2026-08-22, direct instruction
+                 — "Rotation is confusing people," since this shows one real burst window, not a
+                 repeating rotation) — replaced 2026-08-21 (direct instruction), superseding the
                  exact-n-gram "Most Common Combo" approach entirely. That approach required a
                  fully-unique ordered sequence to recur across many independent real go-windows,
                  which produced confidence numbers like "seen in 1 of 330 windows" — a false claim
@@ -600,7 +638,7 @@
                             </div>
 
                             @if (!$rot || empty($rot['topDpsWindow']))
-                                <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a rotation on this spec yet.</p>
+                                <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a burst window on this spec yet.</p>
                             @else
                                 @php $topDps = $rot['topDpsWindow']; @endphp
                                     <div>

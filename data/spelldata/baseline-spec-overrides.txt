@@ -283,6 +283,13 @@
 # which specs it should cover. This one line fixes that visibility gap for the one spec Garrote
 # actually belongs to.
 703 | rogue | assassination | Garrote
+# Same gap, found 2026-08-23 building wow:cc-formula ("does it chain garrote kidney" surfaced
+# that Garrote never appeared in Assassination's pool at all): 703 above is the base bleed DoT,
+# not the real Silence effect — that's a SEPARATE spell_id, 1330 "Garrote - Silence" (see
+# CLAUDE.md's Garrote dr_category fix, 2026-08-22 — 703's own dr_category was cleared that day
+# specifically because it measures the bleed's lifetime, not the silence). Fixing 703's
+# visibility here never touched 1330's — this line closes that second, independent gap.
+1330 | rogue | assassination | Garrote - Silence
 
 # Rogue, added 2026-08-11. Cheap Shot is a core, all-3-spec baseline stealth-opener stun
 # (Assassination/Outlaw/Subtlety), same confidence tier and same class as Kidney Shot above

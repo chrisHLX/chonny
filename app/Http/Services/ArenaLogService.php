@@ -1518,6 +1518,26 @@ class ArenaLogService
     }
 
     /**
+     * Whether (classSlug, specSlug) is one of WoW's 7 healer specs — see HEALER_SPEC_SLUGS's own
+     * docblock for why this is hardcoded rather than DB-driven. Exposed publicly 2026-08-22 for
+     * wow:find-cc-chains, which needs the exact same classification analyzeKillCausally() already
+     * uses privately above — avoids a third copy of this list existing in the codebase.
+     * (WowComps::SPEC_ROLES, built the same day for a different page's role-restricted picker, is
+     * a separate, more granular healer/dps/tank map with its own consumer — not merged with this
+     * one, since neither page needs what the other tracks.)
+     */
+    public function isHealerSpec(string $classSlug, string $specSlug): bool
+    {
+        foreach (self::HEALER_SPEC_SLUGS as [$c, $s]) {
+            if ($c === $classSlug && $s === $specSlug) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Whether any real player in $matchId's roster is playing $specializationId — a lightweight
      * roster-composition check, reusing the same metadata JSON + external_spec_id lookup pattern
      * as analyzeKillCausally()'s own roster build, but without needing the raw log or a kill

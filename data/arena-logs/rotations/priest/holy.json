@@ -1,9 +1,9 @@
 {
     "class": "priest",
     "spec": "holy",
-    "windows": 382,
-    "killWindows": 37,
-    "matches": 247,
+    "windows": 413,
+    "killWindows": 39,
+    "matches": 270,
     "anchors": [
         "Holy Fire",
         "Power Infusion",
@@ -63,7 +63,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 314686,
+            "damage": 354213,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -80,14 +80,20 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Holy Fire",
-                    "spellId": 14914,
+                    "name": "Smite",
+                    "spellId": 585,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Smite",
-                    "spellId": 585,
+                    "name": "Holy Word: Chastise",
+                    "spellId": 88625,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Holy Fire",
+                    "spellId": 14914,
                     "isCc": false,
                     "isRepeat": true
                 }

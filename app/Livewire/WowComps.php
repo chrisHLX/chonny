@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\File;
 use Livewire\Component;
 
 /**
- * Phase-1 shape-check page: pick 3 specs (Healer / DPS / DPS slots — labels only, nothing
- * enforces role) and see each one's spell kit side by side for comparison, grouped
+ * Phase-1 shape-check page: pick 3 specs (Healer / DPS / DPS slots — the class/spec picker
+ * restricts each slot to real matching specs, see SPEC_ROLES below, added 2026-08-22) and see
+ * each one's spell kit side by side for comparison, grouped
  * Offensive/Defensive/Utility/Crowd Control/Other same as Spell Explorer (categorize()'s
  * heuristic — every spell in the kit, filler included), plus separate Offensive Cooldowns /
  * Defensive Cooldowns tabs backed by wow-arena-archive's real, arena-log-verified cooldown
@@ -47,6 +48,32 @@ class WowComps extends Component
         ['label' => 'Healer', 'classId' => null, 'specId' => null],
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
         ['label' => 'DPS', 'classId' => null, 'specId' => null],
+    ];
+
+    /**
+     * Static, unambiguous Blizzard-defined role per spec — stable reference data, same
+     * confidence tier as config('wow_classes.colors') (hardcoded, no verification-against-
+     * real-data needed, unlike e.g. spec-attribution for individual abilities elsewhere in this
+     * project). Keyed by class slug then spec slug. 'tank' exists as its own value (not folded
+     * into 'dps') so getSpecRoleMapProperty() can tell the two apart if a future feature needs
+     * to — the picker itself only ever checks "healer vs. not healer" (see
+     * getClassSpecsProperty()'s docblock), per direct instruction: the Healer slot allows only
+     * Healer specs, both DPS slots allow DPS AND Tank specs.
+     */
+    private const SPEC_ROLES = [
+        'warrior' => ['arms' => 'dps', 'fury' => 'dps', 'protection' => 'tank'],
+        'paladin' => ['holy' => 'healer', 'protection' => 'tank', 'retribution' => 'dps'],
+        'hunter' => ['beast-mastery' => 'dps', 'marksmanship' => 'dps', 'survival' => 'dps'],
+        'rogue' => ['assassination' => 'dps', 'outlaw' => 'dps', 'subtlety' => 'dps'],
+        'priest' => ['discipline' => 'healer', 'holy' => 'healer', 'shadow' => 'dps'],
+        'deathknight' => ['blood' => 'tank', 'frost' => 'dps', 'unholy' => 'dps'],
+        'shaman' => ['elemental' => 'dps', 'enhancement' => 'dps', 'restoration' => 'healer'],
+        'mage' => ['arcane' => 'dps', 'fire' => 'dps', 'frost' => 'dps'],
+        'warlock' => ['affliction' => 'dps', 'demonology' => 'dps', 'destruction' => 'dps'],
+        'monk' => ['brewmaster' => 'tank', 'mistweaver' => 'healer', 'windwalker' => 'dps'],
+        'druid' => ['balance' => 'dps', 'feral' => 'dps', 'guardian' => 'tank', 'restoration' => 'healer'],
+        'demonhunter' => ['havoc' => 'dps', 'vengeance' => 'tank', 'devourer' => 'dps'],
+        'evoker' => ['devastation' => 'dps', 'preservation' => 'healer', 'augmentation' => 'dps'],
     ];
 
     /**
@@ -106,6 +133,27 @@ class WowComps extends Component
     public function getClassSpecsProperty(): Collection
     {
         return $this->classes->load(['specializations' => fn ($q) => $q->orderBy('name')]);
+    }
+
+    /**
+     * SPEC_ROLES resolved against real spec ids, for the picker's role filter. Falls back to
+     * 'dps' for any (class, spec) slug pair not in the map — should never actually happen once
+     * SPEC_ROLES is complete, but a spec silently defaulting to a DPS-slot-visible role is a far
+     * safer failure than one silently disappearing from every slot.
+     *
+     * @return array<int, string> spec id => 'healer'|'dps'|'tank'
+     */
+    public function getSpecRoleMapProperty(): array
+    {
+        $map = [];
+
+        foreach ($this->classSpecs as $class) {
+            foreach ($class->specializations as $spec) {
+                $map[$spec->id] = self::SPEC_ROLES[$class->slug][$spec->slug] ?? 'dps';
+            }
+        }
+
+        return $map;
     }
 
     /**
@@ -405,6 +453,33 @@ class WowComps extends Component
     ];
 
     /**
+     * Community-standard "representative icon" per DR category, for the Crowd Control tab's
+     * legend — e.g. Fear's icon universally reads as "Disorient" and Polymorph's icon as
+     * "Incapacitate" across WoW arena addons (BigDebuffs, GladiusEx, etc.), independent of
+     * which specific spell actually caused it. Requested 2026-08-22 via a Reddit comment
+     * ("add the official icons for the different DRs, like the fear icon for Disorient, the
+     * sheep icon for Incapacitate") — direct instruction was to put this as a one-time legend
+     * in the tab's top info box, NOT a second icon on every spell card, so a card's own icon
+     * always shows the exact spell that was actually cast.
+     *
+     * Each spell_id here is one this codebase already has curated with that exact dr_category
+     * (verified 2026-08-22, not assumed) — see getDrCategoryLegendProperty(). Disarm/Slow have
+     * no single "obviously correct" classic ability in the current patch's data shape, so the
+     * pick there is whichever already-curated, real-icon-bearing spell is most recognizable
+     * (plain "Disarm" for Disarm, Chains of Ice for Slow).
+     */
+    private const DR_CATEGORY_ICON_SPELL_IDS = [
+        'Stun' => 1833,          // Cheap Shot
+        'Incapacitate' => 118,   // Polymorph
+        'Disorient' => 5782,     // Fear
+        'Root' => 339,           // Entangling Roots
+        'Silence' => 15487,      // Silence
+        'Knockback' => 132469,   // Typhoon
+        'Disarm' => 236077,      // Disarm
+        'Slow' => 45524,         // Chains of Ice
+    ];
+
+    /**
      * The Synergies tab's data. `groups` is a plain grouping keyed by the display labels in
      * GROUP_CATEGORIES above — no CcChainBuilder involvement anymore for either box, no
      * sequencing, no DR%/immune computation (direct instruction, 2026-08-16: the player builds
@@ -507,6 +582,26 @@ class WowComps extends Component
     }
 
     /**
+     * See DR_CATEGORY_ICON_SPELL_IDS's docblock. Static (doesn't depend on $this->comp at all —
+     * these 8 representative spells are the same regardless of which specs are picked), so this
+     * is cheap enough to compute on every render with no caching.
+     *
+     * @return array<int, array{category: string, spell: ?Spell}>
+     */
+    public function getDrCategoryLegendProperty(): array
+    {
+        $patchId = Patch::where('is_current', true)->value('id');
+
+        return collect(self::DR_CATEGORY_ICON_SPELL_IDS)
+            ->map(fn ($spellId, $category) => [
+                'category' => $category,
+                'spell' => Spell::where('patch_id', $patchId)->where('spell_id', $spellId)->first(),
+            ])
+            ->values()
+            ->all();
+    }
+
+    /**
      * Top DPS Rotation tab data — replaced 2026-08-21 (direct instruction, after a full
      * investigative session on Sub Rogue). The tab used to show the spec's single most COMMON
      * real cast combo (topCombo — an exact, fully-unique n-gram required to recur across many
@@ -599,8 +694,10 @@ class WowComps extends Component
     {
         return view('livewire.wow-comps', [
             'classSpecs' => $this->classSpecs,
+            'specRoleMap' => $this->specRoleMap,
             'comp' => $this->comp,
             'synergies' => $this->synergies,
+            'drCategoryLegend' => $this->drCategoryLegend,
             'offensiveRotations' => $this->offensiveRotations,
             'ratingTiers' => $this->ratingTiers,
         ])->layout('layouts.app');

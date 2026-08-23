@@ -37,7 +37,12 @@
 # (comma-separated spec slugs, or the literal word "all" for every spec of that class).
 # Optional: school, description (write real numbers directly — no $d/$sN template tokens, since
 # nothing re-resolves this text), cooldown_seconds, duration_seconds, charges, mechanic (must
-# match a key in ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP to categorize correctly).
+# match a key in ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP to categorize correctly),
+# spell_type (Melee | Magic | Ranged | None — added 2026-08-23, same field SimC's own dumps
+# carry for every other spell; a manual entry has no raw dump to read it from, so state it from
+# real game knowledge the same way duration_seconds/cooldown_seconds already are), range_yards
+# (free-text, e.g. "5 yards" — optional, spell_type alone is what wow:cc-formula's melee/ranged
+# rule actually uses).
 
 BEGIN
 spell_id: 118
@@ -121,4 +126,51 @@ school: Physical
 cooldown_seconds: 30
 duration_seconds: 3
 description: Step through the shadows to appear behind your target and gain 70% increased movement speed for 3 sec. If you already know Shadowstep, instead gain 1 additional charge of Shadowstep.
+END
+
+# Maim's real stun aura (203123), added 2026-08-22 while investigating why wow:find-cc-chains
+# found zero real CC evidence for Maim (22570) despite 293 real casts across the archive. 22570
+# is only ever a SPELL_CAST_SUCCESS spell_id — the actual applied stun aura in every real match
+# log is 203123, confirmed via a direct grep for every spell_id logged under the literal name
+# "Maim" (not a same-name DB sibling search, since 203123 doesn't exist in our spells table at
+# all — same "absent from SimC entirely" shape as every other spell in this file). Duration is
+# combo-point-scaled per 22570's own description (1-5 sec for 1-5 combo points) — 5 (max) is used
+# here since real observed data independently confirms it: 112/277 real instances (40%, the
+# dominant cluster) measured at exactly 5.0s. Confirmed Feral-only (matches 22570's own existing
+# spec_class_availability rows — restoration/guardian tagging on 22570 is itself a
+# separate, unrelated oddity not touched here). spell_type added 2026-08-23 (wow:cc-formula's
+# melee/ranged rule): Maim is a Cat Form combo-point finisher, the same mechanical family as a
+# Rogue finisher (real melee range, no ambiguity here).
+BEGIN
+spell_id: 203123
+name: Maim
+class: druid
+specs: feral
+school: Physical
+mechanic: Stun
+spell_type: Melee
+duration_seconds: 5
+description: Finishing move that stuns the target. Duration increases with combo points spent, up to 5 sec at 5 combo points.
+END
+
+# Blinding Light's real disorient aura (105421), added 2026-08-22, same investigation as Maim
+# above. 115750 is cast/display only; its own description explicitly names 105421 as the
+# duration token ("causing them to wander disoriented for $105421d"), and wow:find-cc-duration
+# confirms real aura instances exist under 105421 specifically. Confirmed all-spec (matches
+# 115750's own existing spec_class_availability — protection/holy/retribution). spell_type added
+# 2026-08-23: a real judgment call, not a clean fact like Maim's above — Blinding Light is a
+# self-centered point-blank AOE (no single target, own description says "in all directions"),
+# not a classic single-target melee attack, but it does require the Paladin to be physically
+# close to hit anyone with it (a real in-game radius, historically ~8 yards), which is the
+# property this rule actually cares about — tagged Melee for that reason, flagged here in case a
+# future pass wants a genuine third "PBAoE" bucket instead of forcing this binary choice.
+BEGIN
+spell_id: 105421
+name: Blinding Light
+class: paladin
+specs: all
+school: Holy
+mechanic: Flee
+spell_type: Melee
+description: Emits dazzling light in all directions, disorienting nearby enemies. Damage may cancel the effect.
 END

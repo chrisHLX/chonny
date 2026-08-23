@@ -1,9 +1,9 @@
 {
     "class": "deathknight",
     "spec": "unholy",
-    "windows": 355,
-    "killWindows": 61,
-    "matches": 90,
+    "windows": 372,
+    "killWindows": 62,
+    "matches": 94,
     "anchors": [
         "Army of the Dead",
         "Dark Transformation",
@@ -17,57 +17,15 @@
         "Dark Transformation"
     ],
     "topDpsWindow": {
-        "damage": 1257993,
+        "damage": 1359981,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
             {
-                "name": "Death Charge",
-                "spellId": 444347,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
                 "name": "Putrefy",
                 "spellId": 1247378,
                 "isCc": false,
                 "isRepeat": false
-            },
-            {
-                "name": "Putrefy",
-                "spellId": 1247378,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Strangulate",
-                "spellId": 47476,
-                "isCc": true,
-                "isRepeat": false
-            },
-            {
-                "name": "Death Charge",
-                "spellId": 444347,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Necrotic Coil",
-                "spellId": 1242174,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Death and Decay",
-                "spellId": 43265,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Necrotic Coil",
-                "spellId": 1242174,
-                "isCc": false,
-                "isRepeat": true
             },
             {
                 "name": "Soul Reaper",
@@ -76,8 +34,26 @@
                 "isRepeat": false
             },
             {
-                "name": "Lichborne",
-                "spellId": 49039,
+                "name": "Necrotic Coil",
+                "spellId": 1242174,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Strangulate",
+                "spellId": 47476,
+                "isCc": true,
+                "isRepeat": false
+            },
+            {
+                "name": "Putrefy",
+                "spellId": 1247378,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Scourge Strike",
+                "spellId": 55090,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -88,10 +64,34 @@
                 "isRepeat": true
             },
             {
+                "name": "Scourge Strike",
+                "spellId": 55090,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Scourge Strike",
+                "spellId": 55090,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Scourge Strike",
+                "spellId": 55090,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
                 "name": "Necrotic Coil",
                 "spellId": 1242174,
                 "isCc": false,
                 "isRepeat": true
+            },
+            {
+                "name": "Outbreak",
+                "spellId": 77575,
+                "isCc": false,
+                "isRepeat": false
             }
         ]
     },
@@ -128,21 +128,21 @@
             ]
         },
         "10": {
-            "damage": 1240580,
+            "damage": 1294167,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
                 {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
+                    "name": "Soul Reaper",
+                    "spellId": 343294,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Strangulate",
@@ -151,20 +151,14 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Death Charge",
-                    "spellId": 444347,
+                    "name": "Putrefy",
+                    "spellId": 1247378,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Death and Decay",
-                    "spellId": 43265,
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -175,20 +169,20 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Soul Reaper",
-                    "spellId": 343294,
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Lichborne",
-                    "spellId": 49039,
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -201,57 +195,15 @@
             ]
         },
         "12": {
-            "damage": 1257993,
+            "damage": 1359981,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
                 {
-                    "name": "Death Charge",
-                    "spellId": 444347,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Putrefy",
                     "spellId": 1247378,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Putrefy",
-                    "spellId": 1247378,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Strangulate",
-                    "spellId": 47476,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Death Charge",
-                    "spellId": 444347,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Death and Decay",
-                    "spellId": 43265,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Necrotic Coil",
-                    "spellId": 1242174,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Soul Reaper",
@@ -260,8 +212,26 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Lichborne",
-                    "spellId": 49039,
+                    "name": "Necrotic Coil",
+                    "spellId": 1242174,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Strangulate",
+                    "spellId": 47476,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Putrefy",
+                    "spellId": 1247378,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -272,10 +242,34 @@
                     "isRepeat": true
                 },
                 {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Scourge Strike",
+                    "spellId": 55090,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Necrotic Coil",
                     "spellId": 1242174,
                     "isCc": false,
                     "isRepeat": true
+                },
+                {
+                    "name": "Outbreak",
+                    "spellId": 77575,
+                    "isCc": false,
+                    "isRepeat": false
                 }
             ]
         },

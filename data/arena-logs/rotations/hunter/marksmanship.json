@@ -1,12 +1,13 @@
 {
     "class": "hunter",
     "spec": "marksmanship",
-    "windows": 420,
-    "killWindows": 61,
-    "matches": 77,
+    "windows": 458,
+    "killWindows": 64,
+    "matches": 84,
     "anchors": [
         "Black Arrow",
         "Explosive Shot",
+        "Kill Shot",
         "Rapid Fire",
         "Roar of Sacrifice",
         "Trueshot",
@@ -18,49 +19,25 @@
         "Volley"
     ],
     "topDpsWindow": {
-        "damage": 1295851,
+        "damage": 1422483,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
             {
-                "name": "Arcane Shot",
-                "spellId": 185358,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
                 "name": "Aimed Shot",
                 "spellId": 19434,
                 "isCc": false,
                 "isRepeat": false
             },
             {
-                "name": "Arcane Shot",
-                "spellId": 185358,
+                "name": "Rapid Fire",
+                "spellId": 257044,
                 "isCc": false,
-                "isRepeat": true
+                "isRepeat": false
             },
             {
                 "name": "Aimed Shot",
                 "spellId": 19434,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Arcane Shot",
-                "spellId": 185358,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Aimed Shot",
-                "spellId": 19434,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Arcane Shot",
-                "spellId": 185358,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -68,16 +45,138 @@
                 "name": "Rapid Fire",
                 "spellId": 257044,
                 "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Counter Shot",
+                "spellId": 147362,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Aimed Shot",
+                "spellId": 19434,
+                "isCc": false,
+                "isRepeat": true
+            },
+            {
+                "name": "Arcane Shot",
+                "spellId": 185358,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
+                "name": "Hunter's Mark",
+                "spellId": 257284,
+                "isCc": false,
                 "isRepeat": false
             }
         ]
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 887927,
+            "damage": 891451,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
+                {
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "10": {
+            "damage": 1104950,
+            "durationSeconds": 10,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Shot",
+                    "spellId": 185358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Shot",
+                    "spellId": 185358,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Disengage",
+                    "spellId": 781,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "12": {
+            "damage": 1422483,
+            "durationSeconds": 12,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
+                    "isCc": false,
+                    "isRepeat": true
+                },
                 {
                     "name": "Counter Shot",
                     "spellId": 147362,
@@ -85,39 +184,33 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Rapid Fire",
-                    "spellId": 257044,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Aimed Shot",
                     "spellId": 19434,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
+                },
+                {
+                    "name": "Hunter's Mark",
+                    "spellId": 257284,
+                    "isCc": false,
+                    "isRepeat": false
                 }
             ]
         },
-        "10": {
-            "damage": 1041686,
-            "durationSeconds": 10,
+        "20": {
+            "damage": 1821716,
+            "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -128,22 +221,70 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
+                    "name": "Shadowmeld",
+                    "spellId": 58984,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tranquilizing Shot",
+                    "spellId": 19801,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disengage",
+                    "spellId": 781,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kill Shot",
+                    "spellId": 53351,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Explosive Shot",
+                    "spellId": 212431,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Rapid Fire",
-                    "spellId": 257044,
+                    "name": "Survival of the Fittest",
+                    "spellId": 264735,
                     "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Intimidation",
+                    "spellId": 474421,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Freezing Trap",
+                    "spellId": 187650,
+                    "isCc": true,
                     "isRepeat": false
                 },
                 {
                     "name": "Arcane Shot",
                     "spellId": 185358,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
+                },
+                {
+                    "name": "Aspect of the Cheetah",
+                    "spellId": 186257,
+                    "isCc": false,
+                    "isRepeat": false
                 },
                 {
                     "name": "Trueshot",
@@ -158,148 +299,111 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 2422656,
+            "durationSeconds": 30,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Survival of the Fittest",
+                    "spellId": 264735,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Roar of Sacrifice",
+                    "spellId": 53480,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Tranquilizing Shot",
+                    "spellId": 19801,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Concussive Shot",
+                    "spellId": 5116,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Arcane Shot",
+                    "spellId": 185358,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Rapid Fire",
+                    "spellId": 257044,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Shot",
+                    "spellId": 185358,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Aimed Shot",
+                    "spellId": 19434,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Arcane Shot",
+                    "spellId": 185358,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
                     "name": "Disengage",
                     "spellId": 781,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Master's Call",
-                    "spellId": 1241871,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "12": {
-            "damage": 1295851,
-            "durationSeconds": 12,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rapid Fire",
-                    "spellId": 257044,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "20": {
-            "damage": 1547456,
-            "durationSeconds": 20,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Binding Shot",
-                    "spellId": 109248,
+                    "name": "Freezing Trap",
+                    "spellId": 187650,
                     "isCc": true,
                     "isRepeat": false
                 },
                 {
-                    "name": "Master's Call",
-                    "spellId": 1241871,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Volley",
-                    "spellId": 260243,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
+                    "name": "Tranquilizing Shot",
+                    "spellId": 19801,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
                     "name": "Rapid Fire",
                     "spellId": 257044,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rapid Fire",
-                    "spellId": 257044,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -322,153 +426,14 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Tranquilizing Shot",
-                    "spellId": 19801,
-                    "isCc": false,
-                    "isRepeat": false
-                }
-            ]
-        },
-        "30": {
-            "damage": 2085774,
-            "durationSeconds": 30,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Rapid Fire",
-                    "spellId": 257044,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
+                    "name": "Counter Shot",
+                    "spellId": 147362,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
                     "name": "Aimed Shot",
                     "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Hunter's Mark",
-                    "spellId": 257284,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Tranquilizing Shot",
-                    "spellId": 19801,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Binding Shot",
-                    "spellId": 109248,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Master's Call",
-                    "spellId": 1241871,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Volley",
-                    "spellId": 260243,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rapid Fire",
-                    "spellId": 257044,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Rapid Fire",
-                    "spellId": 257044,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Explosive Shot",
-                    "spellId": 212431,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Aimed Shot",
-                    "spellId": 19434,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Arcane Shot",
-                    "spellId": 185358,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Tranquilizing Shot",
-                    "spellId": 19801,
                     "isCc": false,
                     "isRepeat": true
                 }

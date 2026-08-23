@@ -17,8 +17,10 @@
 #
 # Format: spell_id | field=value, field=value, ... | note (comment only, not parsed)
 # Valid fields: cooldown_seconds, duration_seconds, mechanic (must match a key in
-# ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP). Omit a field entirely to leave it alone —
-# this is a field-level patch, not a full record replace.
+# ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP), spell_type (Melee|Magic|Ranged|None —
+# added 2026-08-23 for wow:cc-formula's melee-vs-ranged rule), range_yards (free text, e.g.
+# "5 yards" — same addition). Omit a field entirely to leave it alone — this is a field-level
+# patch, not a full record replace.
 #
 # Verify each line the same way as everywhere else in this folder before adding: in-game, a real
 # spellbook snapshot's resolved_description, or equally solid evidence — never guessed.
@@ -61,3 +63,44 @@
 # confirmed 2026-08-18 via a real WoWHead tooltip screenshot supplied by the user: "45 sec
 # cooldown" — same confidence tier as Scatter Shot's user-supplied research above.
 47476 | cooldown_seconds=45 | Strangulate
+
+# Shockwave (Warrior, spell_id 46968 — the cast/display copy wow:cc-formula's kit-enumeration
+# actually shows for Fury Warrior, per CLAUDE.md's Shockwave sibling-fix note) — the raw dump
+# has no "Range :" line for this spell_id at all (confirmed 2026-08-23 via direct grep), so
+# spell_type/range_yards were both null. Real ability is a frontal cone attack, ~5 yards,
+# confirmed directly by the user (2026-08-23): "shockwave a cone shape in front of them maybe
+# 5 yards."
+46968 | spell_type=Melee, range_yards=5 yards | Shockwave
+
+# Axe Toss (Warlock/Demonology pet command, spell_id 119914 — the cast/display copy
+# wow:cc-formula actually shows) — raw dump shows "Range : 50000 yards" on this exact spell_id,
+# an obvious placeholder rather than a real distance (confirmed 2026-08-23). Corrected to the
+# same real ability's other spell_id copy's own genuine parsed value (89766, "30 yards" — real
+# SimC data, not a placeholder), preferred over the user's own recollection ("must be 40 off the
+# pet, I'm not sure") since 30 yards comes from actual source data rather than memory, though
+# the two aren't far apart and either would tell the same story for wow:cc-formula's purposes.
+119914 | range_yards=30 yards | Axe Toss
+
+# "50000 yards" placeholder pattern, found systemically 2026-08-23 while testing wow:cc-formula
+# against real comps — a third real hard-CC ability (beyond Shockwave/Axe Toss above) turned up
+# with the identical bogus value. All three are genuine melee/close-range abilities in real
+# gameplay; the pattern looks like SimC using 50000 as a "not really range-gated the normal way"
+# placeholder for certain melee-weapon-range-gated effects rather than a real distance. Audited
+# every currently hard-CC-tagged spell for this exact shape (range_yards >= 1000) — these two
+# plus Axe Toss above were the only three found.
+#
+# Garrote - Silence (Rogue/Assassination, spell_id 1330, the real aura spell_id — see CLAUDE.md's
+# Garrote fix history) — a stealth backstab opener, corrected to 5 yards matching Cheap Shot's
+# own real value (same "must be right on top of the target" mechanic).
+1330 | range_yards=5 yards | Garrote - Silence
+
+# Shockwave's OTHER copy (Warrior, spell_id 132168 — the real aura spell_id per CLAUDE.md's
+# sibling-fix note; not currently visible to wow:cc-formula's kit-enumeration since only 46968
+# above is, but corrected here too for DB consistency in case that ever changes). Same real
+# ability, same real ~5 yard cone as 46968 above.
+132168 | spell_type=Melee, range_yards=5 yards | Shockwave (real aura copy)
+
+# Rake (Druid/Feral, spell_id 163505 — the confirmed real stealth-opener Stun, see CLAUDE.md's
+# Rake dr_category fix history) — a melee bleed/combo-point generator, corrected to 5 yards
+# matching every other real stealth-opener's value (Cheap Shot, Garrote above).
+163505 | range_yards=5 yards | Rake

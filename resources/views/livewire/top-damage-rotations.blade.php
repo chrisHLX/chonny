@@ -3,17 +3,17 @@
     $selectedClass = $classes->firstWhere('id', $classId);
     $selectedColor = $selectedClass ? (config('wow_classes.colors')[$selectedClass->slug] ?? '#8A8A9A') : null;
     $pageTitle = $selectedSpec && $selectedClass
-        ? "{$selectedSpec->name} {$selectedClass->name} — Top Damage Rotations"
-        : 'Top Damage Rotations';
+        ? "{$selectedSpec->name} {$selectedClass->name} — Burst Windows"
+        : 'Burst Windows';
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
 @endphp
 
 <div class="max-w-5xl mx-auto px-4 py-8 space-y-5" x-data="{ classPickerOpen: false, pendingSpec: false }">
     <div class="linear-card px-6 py-5">
-        <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Top Damage Rotations</p>
+        <p class="text-[11px] font-semibold tracking-widest text-gold uppercase">Burst Windows</p>
         <h1 class="font-display text-[26px] font-bold text-ink leading-tight mt-0.5">{{ $pageTitle }}</h1>
         <p class="text-[12px] text-ink-muted mt-1">
-            The single highest-damage real burst window found for a spec at a chosen length — a real example, not a "most common" claim. Same data and method as WoW Comps' Top DPS Rotation tab, just pick your own class/spec and time window here.
+            The single highest-damage real burst window found for a spec at a chosen length — a real example, not a "most common" claim. Same data and method as WoW Comps' Burst Window tab, just pick your own class/spec and time window here.
         </p>
     </div>
 

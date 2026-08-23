@@ -1,9 +1,9 @@
 {
     "class": "hunter",
     "spec": "beast-mastery",
-    "windows": 552,
-    "killWindows": 101,
-    "matches": 107,
+    "windows": 606,
+    "killWindows": 105,
+    "matches": 116,
     "anchors": [
         "Barbed Shot",
         "Bestial Wrath",
@@ -15,7 +15,7 @@
         "Roar of Sacrifice"
     ],
     "topDpsWindow": {
-        "damage": 1161688,
+        "damage": 1259839,
         "durationSeconds": 12,
         "killed": false,
         "steps": [
@@ -32,8 +32,8 @@
                 "isRepeat": false
             },
             {
-                "name": "Dire Beast",
-                "spellId": 304051,
+                "name": "Barbed Shot",
+                "spellId": 217200,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -44,28 +44,22 @@
                 "isRepeat": true
             },
             {
-                "name": "Counter Shot",
-                "spellId": 147362,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Barbed Shot",
-                "spellId": 217200,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
                 "name": "Barbed Shot",
                 "spellId": 217200,
                 "isCc": false,
                 "isRepeat": true
             },
             {
-                "name": "Exhilaration",
-                "spellId": 109304,
+                "name": "Dire Beast",
+                "spellId": 132764,
                 "isCc": false,
                 "isRepeat": false
+            },
+            {
+                "name": "Kill Command",
+                "spellId": 34026,
+                "isCc": false,
+                "isRepeat": true
             },
             {
                 "name": "Cobra Shot",
@@ -74,6 +68,12 @@
                 "isRepeat": false
             },
             {
+                "name": "Counter Shot",
+                "spellId": 147362,
+                "isCc": false,
+                "isRepeat": false
+            },
+            {
                 "name": "Kill Command",
                 "spellId": 34026,
                 "isCc": false,
@@ -81,7 +81,7 @@
             },
             {
                 "name": "Dire Beast",
-                "spellId": 304051,
+                "spellId": 132764,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -95,7 +95,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 776617,
+            "damage": 840527,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -118,21 +118,21 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Dire Beast",
-                    "spellId": 132764,
-                    "isCc": false,
+                    "name": "Concussive Shot",
+                    "spellId": 5116,
+                    "isCc": true,
                     "isRepeat": false
                 },
                 {
-                    "name": "Intimidation",
-                    "spellId": 19577,
-                    "isCc": true,
-                    "isRepeat": false
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
                 }
             ]
         },
         "10": {
-            "damage": 1050299,
+            "damage": 1101655,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
@@ -143,8 +143,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Dire Beast",
-                    "spellId": 304051,
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -155,28 +155,22 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Counter Shot",
-                    "spellId": 147362,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Barbed Shot",
-                    "spellId": 217200,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Exhilaration",
-                    "spellId": 109304,
+                    "name": "Dire Beast",
+                    "spellId": 132764,
                     "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Cobra Shot",
@@ -185,6 +179,12 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Counter Shot",
+                    "spellId": 147362,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
@@ -192,14 +192,14 @@
                 },
                 {
                     "name": "Dire Beast",
-                    "spellId": 304051,
+                    "spellId": 132764,
                     "isCc": false,
                     "isRepeat": true
                 }
             ]
         },
         "12": {
-            "damage": 1161688,
+            "damage": 1259839,
             "durationSeconds": 12,
             "killed": false,
             "steps": [
@@ -216,8 +216,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Dire Beast",
-                    "spellId": 304051,
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -228,28 +228,22 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Counter Shot",
-                    "spellId": 147362,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Barbed Shot",
-                    "spellId": 217200,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Exhilaration",
-                    "spellId": 109304,
+                    "name": "Dire Beast",
+                    "spellId": 132764,
                     "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Cobra Shot",
@@ -258,6 +252,12 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Counter Shot",
+                    "spellId": 147362,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
@@ -265,7 +265,7 @@
                 },
                 {
                     "name": "Dire Beast",
-                    "spellId": 304051,
+                    "spellId": 132764,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -278,13 +278,31 @@
             ]
         },
         "20": {
-            "damage": 1535377,
+            "damage": 1635031,
             "durationSeconds": 20,
             "killed": false,
             "steps": [
                 {
-                    "name": "Tranquilizing Shot",
-                    "spellId": 19801,
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Mend Pet",
+                    "spellId": 136,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Chimaeral Sting",
+                    "spellId": 356719,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -295,8 +313,32 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Gladiator's Medallion",
-                    "spellId": 336126,
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Dire Beast",
+                    "spellId": 132764,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -304,6 +346,73 @@
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cobra Shot",
+                    "spellId": 193455,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Counter Shot",
+                    "spellId": 147362,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Dire Beast",
+                    "spellId": 132764,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Tranquilizing Shot",
+                    "spellId": 19801,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
+                }
+            ]
+        },
+        "30": {
+            "damage": 1886721,
+            "durationSeconds": 30,
+            "killed": false,
+            "steps": [
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Dire Beast",
+                    "spellId": 132764,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Binding Shot",
+                    "spellId": 109248,
+                    "isCc": true,
                     "isRepeat": false
                 },
                 {
@@ -313,8 +422,26 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Cobra Shot",
-                    "spellId": 193455,
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Freezing Trap",
+                    "spellId": 187650,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Disengage",
+                    "spellId": 781,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -331,48 +458,11 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Kill Command",
-                    "spellId": 34026,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cobra Shot",
-                    "spellId": 193455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 34026,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Barbed Shot",
-                    "spellId": 217200,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 34026,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Dire Beast",
-                    "spellId": 212396,
+                    "name": "Chimaeral Sting",
+                    "spellId": 356719,
                     "isCc": false,
                     "isRepeat": false
-                }
-            ]
-        },
-        "30": {
-            "damage": 1836951,
-            "durationSeconds": 30,
-            "killed": false,
-            "steps": [
+                },
                 {
                     "name": "Bestial Wrath",
                     "spellId": 19574,
@@ -383,17 +473,41 @@
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
-                    "name": "Dire Beast",
-                    "spellId": 304051,
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Barbed Shot",
+                    "spellId": 217200,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Dire Beast",
+                    "spellId": 132764,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 34026,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Cobra Shot",
+                    "spellId": 193455,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -404,30 +518,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Barbed Shot",
-                    "spellId": 217200,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Barbed Shot",
-                    "spellId": 217200,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Exhilaration",
-                    "spellId": 109304,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Cobra Shot",
-                    "spellId": 193455,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Kill Command",
                     "spellId": 34026,
                     "isCc": false,
@@ -435,7 +525,7 @@
                 },
                 {
                     "name": "Dire Beast",
-                    "spellId": 304051,
+                    "spellId": 132764,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -446,24 +536,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Kill Command",
-                    "spellId": 34026,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cobra Shot",
-                    "spellId": 193455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Binding Shot",
-                    "spellId": 109248,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
                     "name": "Barbed Shot",
                     "spellId": 217200,
                     "isCc": false,
@@ -472,72 +544,6 @@
                 {
                     "name": "Kill Command",
                     "spellId": 34026,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cobra Shot",
-                    "spellId": 193455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Concussive Shot",
-                    "spellId": 5116,
-                    "isCc": true,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Dire Beast",
-                    "spellId": 304051,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Disengage",
-                    "spellId": 781,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 34026,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Dire Beast",
-                    "spellId": 304051,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Cobra Shot",
-                    "spellId": 193455,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 34026,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Tranquilizing Shot",
-                    "spellId": 19801,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Barbed Shot",
-                    "spellId": 217200,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Dire Beast",
-                    "spellId": 304051,
                     "isCc": false,
                     "isRepeat": true
                 }

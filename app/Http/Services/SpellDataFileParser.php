@@ -65,6 +65,12 @@ namespace App\Http\Services;
  * `instant`/`cast` (see the 2026-08-11 migration), and nothing downstream needs the exact cast
  * time. Defaults to 'instant' in the record initializer, same "don't leave a boolean-shaped
  * field ambiguous" precedent as `is_passive`/`not_in_spellbook`.
+ *
+ * `spell_type` / `range_yards` (added 2026-08-23 for wow:cc-formula's melee-vs-ranged rule) —
+ * plain single-line fields, "Spell Type : Melee|Magic|Ranged|None" and "Range : N yards" (or
+ * occasionally a min-max range like "6 - 25 yards" — stored as the raw string, never parsed to
+ * a number, since `spell_type` alone is the field this was actually added for). Both left null
+ * when absent — unlike cast_type, there's no safe default value to assume here.
  */
 class SpellDataFileParser
 {
@@ -78,7 +84,7 @@ class SpellDataFileParser
      *     spell_id: int, name: string, school: ?string, description: ?string, description_ref: ?int,
      *     variables: ?string,
      *     class_field: ?string,
-     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, cast_type: string,
+     *     charges: ?int, cooldown_seconds: ?float, duration_seconds: ?float, mechanic: ?string, spell_type: ?string, range_yards: ?string, cast_type: string,
      *     affecting_spells: array<int, array{name: string, effect_index: ?int}>,
      *     category_refs: array<int, array{name: string, effect_index: ?int}>,
      *     replaces_refs: array<int, string>,
@@ -134,6 +140,8 @@ class SpellDataFileParser
                     'cooldown_seconds' => null,
                     'duration_seconds' => null,
                     'mechanic' => null,
+                    'spell_type' => null,
+                    'range_yards' => null,
                     'cast_type' => 'instant',
                     'affecting_spells' => [],
                     'category_refs' => [],
@@ -242,6 +250,24 @@ class SpellDataFileParser
             // spells (plain damage/heal, most passives) have no Mechanic line at all, left null.
             if (preg_match('/^Mechanic\s*:\s*(.+)$/', $line, $m)) {
                 $current['mechanic'] = trim($m[1]);
+                $inEffects = false;
+
+                continue;
+            }
+
+            // "Spell Type : Melee|Magic|Ranged|None" — see this class's own docblock for why
+            // this is captured verbatim rather than pre-classified into a boolean here.
+            if (preg_match('/^Spell Type\s*:\s*(.+)$/', $line, $m)) {
+                $current['spell_type'] = trim($m[1]);
+                $inEffects = false;
+
+                continue;
+            }
+
+            // "Range : 30 yards" (occasionally a min-max like "6 - 25 yards") — stored as the
+            // raw string, see this class's own docblock for why it's never parsed to a number.
+            if (preg_match('/^Range\s*:\s*(.+)$/', $line, $m)) {
+                $current['range_yards'] = trim($m[1]);
                 $inEffects = false;
 
                 continue;

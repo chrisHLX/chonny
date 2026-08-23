@@ -1,9 +1,9 @@
 {
     "class": "hunter",
     "spec": "survival",
-    "windows": 70,
+    "windows": 79,
     "killWindows": 9,
-    "matches": 9,
+    "matches": 11,
     "anchors": [
         "Boomstick",
         "Roar of Sacrifice",
@@ -133,16 +133,10 @@
             ]
         },
         "10": {
-            "damage": 1089712,
+            "damage": 1132899,
             "durationSeconds": 10,
             "killed": false,
             "steps": [
-                {
-                    "name": "Takedown",
-                    "spellId": 1250646,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Gladiator's Badge",
                     "spellId": 345228,
@@ -151,13 +145,25 @@
                 },
                 {
                     "name": "Takedown",
-                    "spellId": 1253859,
+                    "spellId": 1250646,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 },
                 {
                     "name": "Moonlight Chakram",
                     "spellId": 1264949,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Kill Command",
+                    "spellId": 259489,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Gladiator's Medallion",
+                    "spellId": 336126,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -168,40 +174,16 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Kill Command",
-                    "spellId": 259489,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Survival of the Fittest",
-                    "spellId": 264735,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Raptor Swipe",
-                    "spellId": 1262293,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Raptor Strike",
-                    "spellId": 186270,
+                    "name": "Wildfire Bomb",
+                    "spellId": 259495,
                     "isCc": false,
                     "isRepeat": true
                 },
                 {
-                    "name": "Kill Command",
-                    "spellId": 259489,
+                    "name": "Boomstick",
+                    "spellId": 1261193,
                     "isCc": false,
-                    "isRepeat": true
+                    "isRepeat": false
                 }
             ]
         },
