@@ -97,7 +97,7 @@ class TopDamageRotations extends Component
     }
 
     /**
-     * @return array{windows: int, matches: int, anchors: array, window: ?array}|null
+     * @return array{windows: int, matches: int, anchors: array, window: ?array, generatedAt: ?string}|null
      */
     public function getRotationProperty(): ?array
     {
@@ -132,6 +132,7 @@ class TopDamageRotations extends Component
             'matches' => $rotation['matches'],
             'anchors' => $rotation['anchors'],
             'window' => $window,
+            'generatedAt' => $rotation['generated_at'] ?? null,
         ];
     }
 

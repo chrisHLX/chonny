@@ -29,6 +29,14 @@
  * JSON files in data/talenttrees/ or data/pvptalents/, ensuring consistency with whatever
  * was actually imported.
  *
+ * After the API-driven pass above, a separate step applies
+ * data/spelldata/icon-name-overrides.txt — hand-curated icon filenames for spells that are
+ * completely real and player-visible but that Blizzard's public API doesn't index under ANY
+ * spell_id at all (confirmed 2026-08-24: both /data/wow/spell/{id} and the name-search endpoint
+ * return nothing for these — a deeper gap than the sibling-recovery above, which only helps when
+ * some OTHER copy of the same name IS indexed). See that file's own header for the full
+ * rationale, source (Wowhead), and verification requirement per entry.
+ *
  * Idempotent: spells that already have icon_name set are skipped, and icon files already
  * present on disk are not re-downloaded. A second run processes only new spells. The dedup
  * is by filename — many spell_ids resolve to the same icon file (rank/tier variants), so
@@ -67,6 +75,11 @@ const ICON_STORAGE_SUBDIR = 'spell-icons';
 // section of the file, always regenerated from the DB's current icon_name values rather
 // than tracked incrementally during the run — see refreshIconManifest() below).
 const ICON_MANIFEST_PATH = __DIR__ . '/icon-manifest.json';
+
+// Hand-curated icon filenames for spells Blizzard's public API doesn't index under ANY spell_id
+// (confirmed 2026-08-24 — see that file's own header for the full rationale and verification
+// steps required before adding a new line here).
+const ICON_NAME_OVERRIDES_PATH = __DIR__ . '/icon-name-overrides.txt';
 
 // Courtesy delay between requests (microseconds) — keeps us well under Blizzard's
 // per-second limit without needing to track a request counter/window ourselves.
@@ -309,6 +322,84 @@ function findSiblingSpellIds(PDO $pdo, int $patchId, int $excludeDbId, string $n
     return array_map(fn ($row) => (int) $row['spell_id'], $stmt->fetchAll());
 }
 
+/**
+ * Applies data/spelldata/icon-name-overrides.txt — spells that are 100% real and player-visible
+ * but that Blizzard's public API doesn't index under ANY spell_id (confirmed via a direct check
+ * of both /data/wow/spell/{id} and the name-search endpoint before this file's first entry was
+ * added — see that file's header). Downloads straight from Blizzard's static icon CDN using the
+ * already-known filename (sourced from Wowhead, verified live before being committed) — no media
+ * API call needed since sibling recovery already found nothing.
+ *
+ * Applied to every same-named sibling spell_id in the current patch that still has icon_name
+ * NULL, not just the one anchor spell_id listed in the override line — same "one visible ability,
+ * several internal spell_id copies" reasoning as findSiblingSpellIds(), so whichever copy a
+ * display path happens to surface (rotation logs, talent picks, etc.) still gets a real icon.
+ */
+function applyIconNameOverrides(PDO $pdo, string $iconDir, bool $skipDownload, array &$stats): void
+{
+    if (!is_file(ICON_NAME_OVERRIDES_PATH)) {
+        return;
+    }
+
+    foreach (file(ICON_NAME_OVERRIDES_PATH, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#')) {
+            continue;
+        }
+
+        $parts = array_map('trim', explode('|', $line));
+        if (count($parts) < 2 || !ctype_digit($parts[0])) {
+            fwrite(STDERR, "  [icon-override] malformed line, skipping: {$line}\n");
+            continue;
+        }
+
+        $anchorSpellId = (int) $parts[0];
+        $iconBase      = $parts[1];
+        $label         = $parts[2] ?? "spell_id {$anchorSpellId}";
+
+        $stmt = $pdo->prepare('SELECT id, patch_id, name FROM spells WHERE spell_id = ? ORDER BY id LIMIT 1');
+        $stmt->execute([$anchorSpellId]);
+        $anchor = $stmt->fetch();
+        if (!$anchor) {
+            fwrite(STDERR, "  [icon-override] anchor spell_id {$anchorSpellId} not found in DB, skipping ({$label})\n");
+            continue;
+        }
+
+        $base = baseSpellName($anchor['name']);
+        $stmt = $pdo->prepare(
+            'SELECT id FROM spells
+             WHERE patch_id = ? AND (name = ? OR name LIKE ?) AND icon_name IS NULL'
+        );
+        $stmt->execute([$anchor['patch_id'], $base, $base . ' (desc=%']);
+        $targetDbIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+        if (empty($targetDbIds)) {
+            fwrite(STDOUT, "  [icon-override] {$label} — every same-named copy already has an icon, nothing to do\n");
+            continue;
+        }
+
+        $iconFilename = $iconBase . '.jpg';
+
+        if (!$skipDownload) {
+            $iconUrl    = "https://render.worldofwarcraft.com/us/icons/56/{$iconFilename}";
+            $targetPath = $iconDir . '/' . $iconFilename;
+            if (!downloadFile($iconUrl, $targetPath)) {
+                fwrite(STDERR, "  [icon-override] failed to download {$iconUrl} for {$label}\n");
+                continue;
+            }
+        }
+
+        $updateStmt = $pdo->prepare('UPDATE spells SET icon_name = ? WHERE id = ?');
+        foreach ($targetDbIds as $dbId) {
+            $updateStmt->execute([$iconFilename, $dbId]);
+            $stats['processed']++;
+            $stats['unique_files'][$iconFilename] = true;
+        }
+
+        fwrite(STDOUT, "  [icon-override] {$label} — applied {$iconFilename} to " . count($targetDbIds) . " same-named spell_id(s)\n");
+    }
+}
+
 function apiGet(string $token, string $path, array $extraParams = []): array
 {
     global $requestCount;
@@ -492,11 +583,6 @@ $skippedCount = $totalSpellIds - count($needsIcon);
 fwrite(STDOUT, "Processing " . count($needsIcon) . " spell_ids without icon_name already set.\n");
 fwrite(STDOUT, "Skipping {$skippedCount} spell_ids that already have icon_name.\n\n");
 
-if (empty($needsIcon)) {
-    fwrite(STDOUT, "All spells already have icon_name set. Nothing to do.\n");
-    exit(0);
-}
-
 // Fetch icon metadata and download files
 $stats = [
     'processed'      => 0,
@@ -506,6 +592,10 @@ $stats = [
     'via_sibling'    => 0,
     'unique_files'   => [],
 ];
+
+if (empty($needsIcon)) {
+    fwrite(STDOUT, "All spells already have icon_name set via the API-driven pass.\n");
+}
 
 $processed = 0;
 foreach ($needsIcon as $spellDbId => $target) {
@@ -574,6 +664,16 @@ foreach ($needsIcon as $spellDbId => $target) {
         $stats['failed']++;
     }
 }
+
+// ---------------------------------------------------------------------------------------
+// Hand-curated overrides — spells Blizzard's API doesn't index under any spell_id at all.
+// Runs after the main API-driven pass so it only ever fills gaps that pass genuinely couldn't
+// (any spell resolved above already has icon_name set, so applyIconNameOverrides()'s own
+// "icon_name IS NULL" filter naturally skips it).
+// ---------------------------------------------------------------------------------------
+
+fwrite(STDOUT, "\nApplying hand-curated icon-name overrides...\n");
+applyIconNameOverrides($pdo, $iconDir, $skipDownload, $stats);
 
 // ---------------------------------------------------------------------------------------
 // Summary

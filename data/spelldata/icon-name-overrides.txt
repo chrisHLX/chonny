@@ -1,0 +1,70 @@
+# Hand-curated icon-filename overrides for spells that are 100% real, player-visible abilities
+# but are NOT queryable through Blizzard's public Game Data API at all — confirmed 2026-08-24 by
+# directly checking both /data/wow/spell/{id} (404) and /data/wow/search/spell?name.en_US=...
+# (zero exact-name matches anywhere in the index) for a sample of these. This is a different,
+# deeper gap than the sibling-recovery fetch-spell-icons.php already does for spells whose
+# *specific copy* lacks an icon while a same-named sibling has one — here, NO copy of the spell
+# is indexed by Blizzard's public API under any spell_id, so there's no sibling to fall back to.
+#
+# These spells come from SimC's community datamine, which reads Blizzard's raw internal game
+# files directly — a deeper source than the public REST API exposes. The spells are completely
+# real and have real in-game icons; the icons just aren't reachable via spell-ID lookup.
+#
+# Each entry here was found by looking the spell up on Wowhead (a well-known, stable community
+# database) and reading its "Icon:" quick-fact filename directly off the page — never guessed or
+# derived. The actual FILE is still fetched from Blizzard's own official static icon CDN
+# (https://render.worldofwarcraft.com/us/icons/56/{filename}.jpg — the exact same host Blizzard's
+# own API returns URLs from, confirmed live 200 OK for every entry before being added here), so
+# this doesn't introduce a new, un-vetted image source — it only changes how we learn the
+# filename when Blizzard's own API can't tell us.
+#
+# Format: spell_id | icon_filename (no extension, no size prefix) | name (comment only)
+#
+# Applied to every same-named sibling spell_id in the current patch, not just the one listed
+# here (see the "same visible ability split across several spell_id records" pattern documented
+# throughout CLAUDE.md) — any of those copies could be the one a display path actually surfaces.
+# Verify each entry the same way before adding: confirm on Wowhead, confirm the CDN URL resolves
+# with a real 200, never bulk-guess a filename from a spell's name.
+
+199786 | ability_mage_glacialspike | Glacial Spike
+
+5019 | ability_shootwand | Shoot (resolved via wow:resolve-wowhead-icons)
+63619 | spell_shadow_chilltouch | Shadowcrawl (resolved via wow:resolve-wowhead-icons)
+122121 | spell_priest_divinestar_shadow2 | Divine Star (resolved via wow:resolve-wowhead-icons)
+341263 | ability_priest_shadowyapparition | Shadowy Apparition (resolved via wow:resolve-wowhead-icons)
+391403 | spell_fire_twilightflamebreath | Mind Flay: Insanity (resolved via wow:resolve-wowhead-icons)
+394976 | spell_shadow_mindshear | Mind Sear (resolved via wow:resolve-wowhead-icons)
+400169 | inv_artifact_powerofthedarkside | Dark Reprimand (resolved via wow:resolve-wowhead-icons)
+1242173 | inv12_ability_priest_voidvolley | Void Volley (resolved via wow:resolve-wowhead-icons)
+1253593 | inv12_apextalent_priest_voidshield | Void Shield (resolved via wow:resolve-wowhead-icons)
+1242174 | spell_animamaldraxxus_missile | Necrotic Coil (resolved via wow:resolve-wowhead-icons)
+201427 | inv_glaive_1h_npc_d_02 | Annihilation (resolved via wow:resolve-wowhead-icons)
+204255 | spell_shadow_soulgem | Soul Fragment (resolved via wow:resolve-wowhead-icons)
+210152 | inv_glaive_1h_artifactaldrochi_d_02dual | Death Sweep (resolved via wow:resolve-wowhead-icons)
+247938 | inv_glaive_1h_artifactaldrochi_d_03dual | Chaos Blades (resolved via wow:resolve-wowhead-icons)
+442294 | inv_ability_aldrachireaverdemonhunter_reaversglaive | Reaver's Glaive (resolved via wow:resolve-wowhead-icons)
+452487 | spell_fire_felfire | Consuming Fire (resolved via wow:resolve-wowhead-icons)
+452497 | spell_shadow_demonicfortitude | Abyssal Gaze (resolved via wow:resolve-wowhead-icons)
+1217610 | inv_12_dh_void_ability_feast | Devour (resolved via wow:resolve-wowhead-icons)
+1245453 | inv_12_dh_void_ability_empoweredreap | Cull (resolved via wow:resolve-wowhead-icons)
+1245470 | inv_glaive_1h_artifactazgalor_d_05dual | Reaper's Toll (resolved via wow:resolve-wowhead-icons)
+1245483 | ability_demonhunter_soulcleave4 | Pierce the Veil (resolved via wow:resolve-wowhead-icons)
+1259431 | ability_ardenweald_demonhunter | Predator's Wake (resolved via wow:resolve-wowhead-icons)
+155777 | spell_druid_germination | Rejuvenation (Germination) (resolved via wow:resolve-wowhead-icons)
+1233272 | ability_druid_eclipse | Lunar Eclipse (resolved via wow:resolve-wowhead-icons)
+1233346 | ability_druid_eclipseorange | Solar Eclipse (resolved via wow:resolve-wowhead-icons)
+431443 | inv_ability_chronowardenevoker_chronoflame | Chrono Flames (resolved via wow:resolve-wowhead-icons)
+75 | ability_whirlwind | Auto Shot (resolved via wow:resolve-wowhead-icons)
+317920 | spell_holy_mindsooth | Concentration Aura (resolved via wow:resolve-wowhead-icons)
+427453 | inv_mace_1h_gryphonrider_d_02_silver | Hammer of Light (resolved via wow:resolve-wowhead-icons)
+431398 | ability_paladin_judgementofthepure | Empyrean Hammer (resolved via wow:resolve-wowhead-icons)
+432472 | inv_ability_lightsmithpaladin_sacredweapon | Sacred Weapon (resolved via wow:resolve-wowhead-icons)
+1330 | ability_rogue_garrote | Garrote - Silence (resolved via wow:resolve-wowhead-icons)
+457481 | inv_shield_1h_artifactstormfist_d_04 | Tidecaller's Guard (resolved via wow:resolve-wowhead-icons)
+89808 | spell_fire_elementaldevastation | Singe Magic (resolved via wow:resolve-wowhead-icons)
+119910 | spell_shadow_mindrot | Spell Lock (resolved via wow:resolve-wowhead-icons)
+119914 | ability_warrior_titansgrip | Axe Toss (resolved via wow:resolve-wowhead-icons)
+335097 | ability_hunter_swiftstrike | Crushing Blow (resolved via wow:resolve-wowhead-icons)
+1269383 | ability_rogue_ambush | Heroic Strike (resolved via wow:resolve-wowhead-icons)
+1271985 | ability_heroicleap | Champion's Leap (resolved via wow:resolve-wowhead-icons)
+1292321 | inv_ability_flameshaperevoker_engulf | Unbound Flame (resolved via wow:resolve-wowhead-icons)

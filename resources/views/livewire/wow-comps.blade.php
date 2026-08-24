@@ -17,6 +17,19 @@
     $groupOrder = ['active' => 'Active Abilities', 'passive' => 'Buffs & Passives'];
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
     $cooldownDisplay = fn (array $entry) => $entry['cooldown']['seconds'] !== null ? $fmtSeconds($entry['cooldown']['seconds']) : null;
+    // "Last updated" label for arena-log-derived data (Peak Burst) — reads the generated_at
+    // stamp offensive-rotations.php now writes into each rotations/{class}/{spec}.json export,
+    // so viewers can tell how current the underlying match analysis is (2026-08-24, direct
+    // request). Older files never regenerated since that field was added carry a backfilled
+    // estimate (their last git-commit date) instead of a real generation timestamp.
+    $fmtRotationDate = function (?string $iso) {
+        if (!$iso) return null;
+        try {
+            return \Carbon\Carbon::parse($iso)->diffForHumans();
+        } catch (\Throwable) {
+            return null;
+        }
+    };
 
     // Splits a formatted "30s"/"4.5s" label into [number, unit] so a CD/Duration stat block can
     // render the trailing "s" smaller and in a plain color than the number itself, instead of
@@ -798,13 +811,16 @@
                             @if (!$rot || empty($rot['topDpsWindow']))
                                 <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a burst window on this spec yet.</p>
                             @else
-                                @php $topDps = $rot['topDpsWindow']; @endphp
+                                @php $topDps = $rot['topDpsWindow']; $rotUpdated = $fmtRotationDate($rot['generated_at'] ?? null); @endphp
                                     <div>
-                                        <div class="flex items-baseline gap-2 mb-2.5">
+                                        <div class="flex items-baseline gap-2 mb-2.5 flex-wrap">
                                             <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Peak Burst Example</p>
                                             <span class="text-[10px] text-ink-subtle">
                                                 {{ number_format($topDps['damage']) }} damage in {{ $fmtSeconds($topDps['durationSeconds']) }}{{ $topDps['killed'] ? ' — killed the target' : '' }}
                                             </span>
+                                            @if ($rotUpdated)
+                                                <span class="text-[10px] text-ink-subtle/70 ml-auto" title="When this spec's match analysis was last run">Updated {{ $rotUpdated }}</span>
+                                            @endif
                                         </div>
 
                                         <div class="flex flex-wrap items-center gap-2">

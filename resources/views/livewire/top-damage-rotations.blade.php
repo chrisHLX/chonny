@@ -6,6 +6,16 @@
         ? "{$selectedSpec->name} {$selectedClass->name} — Burst Windows"
         : 'Burst Windows';
     $fmtSeconds = fn (float $s) => rtrim(rtrim(number_format($s, 2), '0'), '.').'s';
+    // See wow-comps.blade.php's identical helper for the full rationale — same generated_at
+    // field, same "Updated ..." label, kept consistent across both consumers of this data.
+    $fmtRotationDate = function (?string $iso) {
+        if (!$iso) return null;
+        try {
+            return \Carbon\Carbon::parse($iso)->diffForHumans();
+        } catch (\Throwable) {
+            return null;
+        }
+    };
 @endphp
 
 <div class="max-w-5xl mx-auto px-4 py-8 space-y-5" x-data="{ classPickerOpen: false, pendingSpec: false }">
@@ -123,12 +133,15 @@
                 @if (!$rotation['window'])
                     <p class="text-[12px] text-ink-subtle italic">Not enough match evidence for a {{ $length }}s rotation on this spec yet.</p>
                 @else
-                    @php $window = $rotation['window']; @endphp
-                    <div class="flex items-baseline gap-2 mb-3">
+                    @php $window = $rotation['window']; $rotUpdated = $fmtRotationDate($rotation['generatedAt'] ?? null); @endphp
+                    <div class="flex items-baseline gap-2 mb-3 flex-wrap">
                         <p class="text-[10px] uppercase tracking-wider text-gold font-semibold">Peak Burst Example</p>
                         <span class="text-[10px] text-ink-subtle">
                             {{ number_format($window['damage']) }} damage in {{ $fmtSeconds($window['durationSeconds']) }}{{ $window['killed'] ? ' — killed the target' : '' }}
                         </span>
+                        @if ($rotUpdated)
+                            <span class="text-[10px] text-ink-subtle/70 ml-auto" title="When this spec's match analysis was last run">Updated {{ $rotUpdated }}</span>
+                        @endif
                     </div>
 
                     <div class="flex flex-wrap items-center gap-2">

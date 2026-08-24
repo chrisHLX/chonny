@@ -1,9 +1,9 @@
 {
     "class": "paladin",
     "spec": "protection",
-    "windows": 83,
+    "windows": 87,
     "killWindows": 8,
-    "matches": 14,
+    "matches": 15,
     "anchors": [
         "Avenging Wrath",
         "Consecration",
@@ -49,12 +49,6 @@
                 "isRepeat": false
             },
             {
-                "name": "Divine Hammer",
-                "spellId": 198137,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
                 "name": "Hammer of Light",
                 "spellId": 427453,
                 "isCc": false,
@@ -67,36 +61,6 @@
                 "isRepeat": false
             },
             {
-                "name": "Divine Hammer",
-                "spellId": 1236942,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Empyrean Hammer",
-                "spellId": 431398,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Divine Hammer",
-                "spellId": 1236942,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Empyrean Hammer",
-                "spellId": 431398,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Divine Hammer",
-                "spellId": 1236942,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Empyrean Hammer",
                 "spellId": 431398,
                 "isCc": false,
@@ -107,12 +71,6 @@
                 "spellId": 1241413,
                 "isCc": false,
                 "isRepeat": false
-            },
-            {
-                "name": "Divine Hammer",
-                "spellId": 198137,
-                "isCc": false,
-                "isRepeat": true
             },
             {
                 "name": "Avenger's Shield",
@@ -127,32 +85,8 @@
                 "isRepeat": false
             },
             {
-                "name": "Divine Hammer",
-                "spellId": 198137,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Shield of the Righteous",
-                "spellId": 53600,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Divine Hammer",
-                "spellId": 1236942,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Divine Hammer",
-                "spellId": 1236942,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -161,12 +95,6 @@
                 "spellId": 204019,
                 "isCc": false,
                 "isRepeat": false
-            },
-            {
-                "name": "Divine Hammer",
-                "spellId": 198137,
-                "isCc": false,
-                "isRepeat": true
             },
             {
                 "name": "Avenger's Shield",
@@ -195,12 +123,6 @@
             "killed": false,
             "steps": [
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Hammer of Light",
                     "spellId": 427453,
                     "isCc": false,
@@ -211,36 +133,6 @@
                     "spellId": 431398,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Empyrean Hammer",
@@ -255,12 +147,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Avenger's Shield",
                     "spellId": 31935,
                     "isCc": true,
@@ -271,24 +157,6 @@
                     "spellId": 53600,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
                 }
             ]
         },
@@ -298,12 +166,6 @@
             "killed": false,
             "steps": [
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Hammer of Light",
                     "spellId": 427453,
                     "isCc": false,
@@ -316,36 +178,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Empyrean Hammer",
                     "spellId": 431398,
                     "isCc": false,
@@ -356,12 +188,6 @@
                     "spellId": 1241413,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Avenger's Shield",
@@ -376,32 +202,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -410,12 +212,6 @@
                     "spellId": 204019,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Avenger's Shield",
@@ -461,12 +257,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Hammer of Light",
                     "spellId": 427453,
                     "isCc": false,
@@ -479,36 +269,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Empyrean Hammer",
-                    "spellId": 431398,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Empyrean Hammer",
                     "spellId": 431398,
                     "isCc": false,
@@ -519,12 +279,6 @@
                     "spellId": 1241413,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Avenger's Shield",
@@ -539,32 +293,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Shield of the Righteous",
-                    "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 1236942,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -573,12 +303,6 @@
                     "spellId": 204019,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Avenger's Shield",
@@ -618,12 +342,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Hammer of Light",
                     "spellId": 427453,
                     "isCc": false,
@@ -634,12 +352,6 @@
                     "spellId": 431398,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Empyrean Hammer",
@@ -660,12 +372,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
                     "isCc": false,
@@ -684,12 +390,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Blessed Hammer",
                     "spellId": 204019,
                     "isCc": false,
@@ -698,12 +398,6 @@
                 {
                     "name": "Shield of the Righteous",
                     "spellId": 53600,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Divine Hammer",
-                    "spellId": 198137,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -974,5 +668,6 @@
                 }
             ]
         }
-    }
+    },
+    "generated_at": "2026-08-24T01:54:38+00:00"
 }
