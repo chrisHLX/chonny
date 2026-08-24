@@ -194,7 +194,23 @@
       "Bash(grep -n '$this->importCcSynergyOverrides\\\\|$this->importBaselineSpecOverrides\\\\|$this->importManualSpells' C:/Users/chris/Herd/chonny/app/Console/Commands/ImportSpellData.php)",
       "PowerShell(php \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\ddeac992-b130-43e8-b9c8-a726189ef579\\\\scratchpad\\\\insert_pairs_field.php\")",
       "PowerShell(php \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\ddeac992-b130-43e8-b9c8-a726189ef579\\\\scratchpad\\\\verify_parse.php\")",
-      "Bash(git fsck *)"
+      "Bash(git fsck *)",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no root@45.76.116.44 \"cd /var/www/mindcollector && php artisan tinker --execute=\\\\\"echo app\\(\\\\\\\\App\\\\\\\\Http\\\\\\\\Services\\\\\\\\TalentSelectionService::class\\)->spellCacheVersion\\(\\);\\\\\"\")",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no root@45.76.116.44 \"cd /var/www/mindcollector && echo '--- reflog ---' && git reflog -20 && echo '--- log -5 ---' && git log -5 --format='%h %ad %s' --date=iso && echo '--- status ---' && git status && echo '--- hooks dir ---' && ls -la .git/hooks/ | grep -v sample && echo '--- crontab ---' && crontab -l 2>&1 && echo '--- webhook procs ---' && ps aux | grep -i -E 'webhook|deploy' | grep -v grep\")",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no root@45.76.116.44 \"cd /var/www/mindcollector && git log -g --date=iso --format='%gd %h %gs %ad' -8 && echo '--- mtimes ---' && stat -c '%y %n' composer.lock vendor/autoload.php public/build/manifest.json storage/framework/views/ca2a4edc33374604604d739d9d3bea91.php resources/views/livewire/wow-comps.blade.php 2>&1\")",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no root@45.76.116.44 \"echo '--- php-fpm processes ---' && ps -eo pid,lstart,cmd | grep -i php-fpm | grep -v grep && echo '--- opcache ini settings ---' && php -i | grep -i 'opcache.enable\\\\|opcache.validate_timestamps\\\\|opcache.revalidate_freq' && echo '--- supervisor status ---' && supervisorctl status 2>&1 && echo '--- nginx/php-fpm service status ---' && systemctl status php*fpm* --no-pager 2>&1 | head -20\")",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no root@45.76.116.44 \"redis-cli --scan --pattern 'mindcollector*wow_spell_references*' | head -5 && echo '---count---' && redis-cli --scan --pattern '*wow_spell_references*' | wc -l && echo '---sample key raw---' && redis-cli --scan --pattern '*wow_spell_references*' | head -1\")",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no root@45.76.116.44 \"rm -f /tmp/check_events.php /tmp/repro_test.php\")",
+      "Bash(rm -f /c/Users/chris/AppData/Local/Temp/claude/c--Users-chris-Herd-chonny/f76d8dd3-0c50-4b89-86a1-07743041f09b/scratchpad/askpass.sh)",
+      "Bash(SCRATCH=\"/c/Users/chris/AppData/Local/Temp/claude/c--Users-chris-Herd-chonny/f76d8dd3-0c50-4b89-86a1-07743041f09b/scratchpad\" *)",
+      "Bash(grep -n 'protected $signature\\\\|protected $description' app/Console/Commands/PullScarceSpecs.php app/Console/Commands/PullLowRatedSpec.php)",
+      "PowerShell(php \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\ddeac992-b130-43e8-b9c8-a726189ef579\\\\scratchpad\\\\insert_stealth_fields.php\")",
+      "PowerShell(php \"C:\\\\Users\\\\chris\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-chris-Herd-chonny\\\\ddeac992-b130-43e8-b9c8-a726189ef579\\\\scratchpad\\\\verify_parse2.php\")",
+      "Bash(grep -v '^$')",
+      "Bash(awk -F'|' '{print NF-1}')",
+      "Bash(awk -F'|' '{print \"spell=\"$1, \"stealth=\"$8, \"ooc=\"$9}')",
+      "Bash(grep -B2 -A28 \"spell_id.*=.*118\\\\b\\\\|Name.*Polymorph$\")",
+      "Bash(grep -rn \"^Name.*: Polymorph$\" c:/Users/chris/Herd/chonny/data/spelldata/filtered/mage/)"
     ],
     "additionalDirectories": [
       "C:\\Users\\chris\\AppData\\Local\\Temp\\claude\\c--Users-chris-Herd-chonny\\ddeac992-b130-43e8-b9c8-a726189ef579\\scratchpad"

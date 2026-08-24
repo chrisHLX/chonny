@@ -19,8 +19,12 @@
 # Valid fields: cooldown_seconds, duration_seconds, mechanic (must match a key in
 # ModuleSpellReferenceService::MECHANIC_CATEGORY_MAP), spell_type (Melee|Magic|Ranged|None —
 # added 2026-08-23 for wow:cc-formula's melee-vs-ranged rule), range_yards (free text, e.g.
-# "5 yards" — same addition). Omit a field entirely to leave it alone — this is a field-level
-# patch, not a full record replace.
+# "5 yards" — same addition), cast_type (instant|cast — added 2026-08-23 for spells whose
+# cast_type went stale the same way as the "224 spells" gap documented in CLAUDE.md's "cast_type
+# parser" section: the spell_id has been repurposed by a later patch's SimC dump for a totally
+# different spell, so the main import path can never revisit our own, still-correct row for it).
+# Omit a field entirely to leave it alone — this is a field-level patch, not a full record
+# replace.
 #
 # Verify each line the same way as everywhere else in this folder before adding: in-game, a real
 # spellbook snapshot's resolved_description, or equally solid evidence — never guessed.
@@ -104,3 +108,17 @@
 # Rake dr_category fix history) — a melee bleed/combo-point generator, corrected to 5 yards
 # matching every other real stealth-opener's value (Cheap Shot, Garrote above).
 163505 | range_yards=5 yards | Rake
+
+# Polymorph (Mage, spell_id 118) — confirmed 2026-08-23 that this spell_id has been repurposed
+# in the current SimC dump for an unrelated Warlock/Destruction spell (grepped raw/mage.txt and
+# filtered/mage/*.txt directly: no "Name : Polymorph" record exists anywhere under this patch,
+# only "Mass Polymorph" and description mentions) — same "went stale, main import path can't
+# revisit it" gap CLAUDE.md's cast_type-parser section already flagged for ~224 spells
+# dataset-wide, spotted here specifically while investigating why wow:cc-formula's --no-real-data
+# fallback scoring treated Polymorph as worse than even a cast-time ability (missing cast_type
+# defaults to the worst tier). Our own row 118 is still the correct, live, currently-displayed
+# Polymorph (already has verified_override rows for all 3 Mage specs, confirmed rendering
+# correctly on the real site) — only its scalar fields went stale. cast_type=cast is real-world
+# knowledge (Polymorph has always had a real cast bar, ~1.5s, a stable fact across the game's
+# history), not derived from any file.
+118 | cast_type=cast | Polymorph

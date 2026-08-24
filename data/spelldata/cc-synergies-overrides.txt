@@ -1,7 +1,7 @@
 # Synergies tab curation — dr_category / chain_target / is_peel / is_interrupt /
-# pvp_duration_seconds / pairs_with_category.
+# pvp_duration_seconds / pairs_with_category / requires_stealth / requires_target_out_of_combat.
 #
-# WHY THIS FILE EXISTS: every one of these six columns is manual_knowledge-tier, hand-curated
+# WHY THIS FILE EXISTS: every one of these eight columns is manual_knowledge-tier, hand-curated
 # by the domain expert (or bulk-applied from dr-categories-reference.md and individually
 # verified) — none of it is derivable from the raw SimC/Game-Data-API dumps, and this project
 # has repeatedly proven that trying to derive it is exactly the "AI invents a fact and presents
@@ -33,7 +33,7 @@
 # uncommitted diff — and `git checkout`/`git reset` on it should never be reached for without
 # first diffing against HEAD to see what's actually at stake.
 #
-# Format: spell_id | dr_category | chain_target | is_peel | is_interrupt | pvp_duration_seconds | pairs_with_category | name (comment only, not parsed)
+# Format: spell_id | dr_category | chain_target | is_peel | is_interrupt | pvp_duration_seconds | pairs_with_category | requires_stealth | requires_target_out_of_combat | name (comment only, not parsed)
 #   - dr_category: Stun | Disorient | Incapacitate | Root | Silence | Knockback | Disarm | Slow, or blank
 #   - chain_target: healer | kill_target | both, or blank. STANDING RULE (see
 #     CcChainBuilder's class docblock): kill_target/both may ONLY ever be used with
@@ -55,6 +55,15 @@
 #     used near each other in logs doesn't distinguish "structurally required" from "often chosen
 #     together for unrelated reasons" (the same caution that sank spell_relationships as a
 #     spec-attribution signal elsewhere in this project).
+#   - requires_stealth: "1" or blank. The caster must be stealthed to use this ability at all
+#     (e.g. Sap, Rake's stealth-stun component). Added 2026-08-23 for wow:cc-formula, so it can
+#     eventually distinguish a "stealth opener" chain from abilities usable mid-fight.
+#   - requires_target_out_of_combat: "1" or blank. The TARGET must not have dealt damage or
+#     received healing for the preceding ~5 seconds (WoW's real in-combat gate) — distinct from
+#     requires_stealth, since it's a condition on the target, not the caster. Sap needs both;
+#     Rake's stealth-stun needs only requires_stealth, since it has no target-combat-state gate.
+#     Direct domain-expert correction, 2026-08-23 — verify against real player knowledge, not
+#     assumed from "loses stealth" reasoning alone.
 #
 # Matched by spell_id only (not class/spec) — these are properties of the spell/ability itself,
 # not of who has it. Applied via a plain UPDATE against an existing spells row for the current
@@ -65,87 +74,87 @@
 # verify it (in-game, real player experience, or a source cross-checked with the domain expert)
 # before adding, same discipline as baseline-spec-overrides.txt.
 
-99 | Incapacitate | | | | 3  | |  Incapacitating Roar
-100 | Root | | 1 | |  | |  Charge
-118 | Incapacitate | healer | | | 6.0  | |  Polymorph
-122 | Root | | 1 | | 8  | |  Frost Nova
-339 | Root | | 1 | | 6  | |  Entangling Roots
-408 | Stun | both | | | 5  | |  Kidney Shot
-605 | Disorient | | | | 6  | |  Mind Control
-703 | Silence | | | | 3  | |  Garrote
-710 | Incapacitate | | | |  | |  Banish
-853 | Stun | both | | | 5  | |  Hammer of Justice
-1513 | Disorient | | | |  | |  Scare Beast
-1766 | | | | 1 |  | |  Kick
-1776 | Incapacitate | | | | 3.0  | |  Gouge
-1833 | Stun | both | | | 4  | |  Cheap Shot
-2094 | Disorient | | | | 5  | |  Blind
-2139 | | | | 1 |  | |  Counterspell
-2637 | Incapacitate | | | |  | |  Hibernate
-3409 | Slow | | | | 9.2  | |  Crippling Poison
-3600 | Slow | | | |  | |  Earthbind
-5116 | Slow | | | | 6  | |  Concussive Shot
-5211 | Stun | | | | 4  | |  Mighty Bash
-5246 | Disorient | | | | 6  | |  Intimidating Shout
-5484 | Disorient | | | | 6  | |  Howl of Terror
-5782 | Disorient | healer | | | 6.0  | |  Fear
-118699 | Disorient | | | | 6 | |  Fear (the REAL aura spell_id — 649 real instances confirmed; value copied from 5782's already-curated 6.0s rather than that spell's own histogram, since Disorient breaks on damage and its raw mode reflects "usually broken early," not the true uncapped duration — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched and is the source for this recovery.)
-6552 | | | | 1 |  | |  Pummel
-6770 | Incapacitate | | | | 6  | |  Sap
-6789 | Incapacitate | | | | 3  | |  Mortal Coil
-8122 | Disorient | | | | 6  | |  Psychic Scream
-9484 | Incapacitate | | | |  | |  Shackle Horror
-10326 | | | | |  | |  Turn Evil (removed from DR group 2026-08-17, direct user request — see note below)
-12323 | Slow | | | |  | |  Piercing Howl
-15487 | Silence | | | | 4  | |  Silence
-19577 | Stun | both | | | 3  | |  Intimidation
-24394 | Stun | | | | 3 | |  Intimidation (the REAL aura spell_id shared by both Hunter Intimidation cast copies — 371 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-19647 | | | | 1 |  | |  Spell Lock (desc=Command Demon Ability)
-22570 | Stun | both | | | 5.0  | |  Maim
-203123 | Stun | both | | | 5.0 | |  Maim (the REAL aura spell_id — 277 real instances confirmed, 112/277 (40%) clustered at exactly 5.0s, independently matching the already-curated value on 22570 — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-30283 | Stun | | | | 3  | |  Shadowfury
-31661 | Disorient | healer | | | 3  | |  Dragon's Breath
-31935 | Silence | | | 1 | 1.4  | |  Avenger's Shield
-33395 | Root | | 1 | | 8  | |  Freeze
-33786 | Disorient | healer | | | 5.0  | |  Cyclone
-45524 | Slow | | | | 8  | |  Chains of Ice
-46968 | Stun | | | | 3  | |  Shockwave
-132168 | Stun | | | | 3 | |  Shockwave (the REAL aura spell_id — 535 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-47476 | Silence | healer | | | 4  | |  Strangulate
-47528 | | | | 1 |  | |  Mind Freeze
-50245 | Slow | | | |  | |  Pin (desc=Special Ability)
-50285 | Slow | | | |  | |  Dust Cloud (desc=Special Ability)
-50433 | Slow | | | |  | |  Ankle Crack (desc=Special Ability)
-51485 | Root | | 1 | | 6  | |  Earthgrab Totem
-51490 | Knockback | | | | 6.5  | |  Thunderstorm
-54644 | Slow | | | |  | |  Frost Breath (desc=Special Ability)
-57994 | | | | 1 |  | |  Wind Shear
-78675 | Silence | | | | 5 | Root |  Solar Beam (a stationary ground-zone effect, per its own description — "Summons a beam of solar light over an enemy target's location... silencing all enemies within the beam" — not a personal debuff a target can't escape by moving. Confirmed 2026-08-23: 71/109 real casts across the arena-log archive had a Root landing on some enemy within +-15s. Ring of Frost, same shape, tagged above.)
-88625 | Incapacitate | healer | | | 3  | |  Holy Word: Chastise
-200196 | Incapacitate | healer | | | 3 | |  Holy Word: Chastise, no-Censure variant — the REAL aura spell_id for the default (Incapacitate) case, 357 real instances confirmed; value copied from 88625's already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.
-200200 | Stun | healer | | | 3 | |  Holy Word: Chastise, Censure-known variant — the REAL aura spell_id for the Stun case, 574 real instances confirmed (369/574 clustered at 3.0s, one small unexplained 10.0s outlier) — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.
-96231 | | | | 1 |  | |  Rebuke
-97547 | | | | 1 |  | |  Solar Beam
-102359 | Root | | 1 | | 6  | |  Mass Entanglement
-102401 | Root | | 1 | | 0.5  | |  Wild Charge
-102793 | Knockback | | 1 | |  | |  Ursol's Vortex
-107570 | Stun | | | | 3  | |  Storm Bolt
-132169 | Stun | | | | 3 | |  Storm Bolt (the REAL aura spell_id — 643 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-108199 | Knockback | | | |  | |  Gorefiend's Grasp
-109248 | Stun | both | | | 3  | |  Binding Shot
-117526 | Stun | both | | | 3 | |  Binding Shot (the REAL stun aura spell_id — 678 real instances confirmed; value copied from 109248's already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-115078 | Incapacitate | | | | 3  | |  Paralysis
-115196 | Slow | | | | 5  | |  Crippling Poison
-115750 | Disorient | | | | 4  | |  Blinding Light
-105421 | Disorient | | | | 4 | |  Blinding Light (the REAL aura spell_id — real instances confirmed via wow:find-cc-duration; value copied from 115750's already-curated 4.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-116705 | | | | 1 |  | |  Spear Hand Strike
-116706 | Root | | 1 | | 3  | |  Disable
-116844 | Knockback | | | |  | |  Ring of Peace
-116947 | Slow | | | | 5.1  | |  Earthbind
-119381 | Stun | | | | 4  | |  Leg Sweep
-132469 | Knockback | | | 1 |  | |  Typhoon
-136511 | | | | |  | |  Ring of Frost (wrong-copy fix 2026-08-17, see note below — real tag moved to 113724)
-147362 | | | | 1 |  | |  Counter Shot
+99 | Incapacitate | | | | 3  | |||  Incapacitating Roar
+100 | Root | | 1 | |  | |||  Charge
+118 | Incapacitate | healer | | | 6.0  | |||  Polymorph
+122 | Root | | 1 | | 8  | |||  Frost Nova
+339 | Root | | 1 | | 6  | |||  Entangling Roots
+408 | Stun | both | | | 5  | |||  Kidney Shot
+605 | Disorient | | | | 6  | |||  Mind Control
+703 | Silence | | | | 3  | |||  Garrote
+710 | Incapacitate | | | |  | |||  Banish
+853 | Stun | both | | | 5  | |||  Hammer of Justice
+1513 | Disorient | | | |  | |||  Scare Beast
+1766 | | | | 1 |  | |||  Kick
+1776 | Incapacitate | | | | 3.0  | |||  Gouge
+1833 | Stun | both | | | 4  | |||  Cheap Shot (requires_stealth deliberately NOT set, 2026-08-23 — it does require stealth as a base mechanic, same as Sap/Garrote, but Shadow Dance lets Sub Rogue re-enter stealth mid-combat on demand, making it practically repeatable during a go in a way Sap isn't: Sap's real blocker is the TARGET's combat state, which Shadow Dance can't fix. Tagging it requires_stealth would wrongly restrict it to opener-only for wow:cc-formula. Direct domain-expert correction.)
+2094 | Disorient | | | | 5  | |||  Blind
+2139 | | | | 1 |  | |||  Counterspell
+2637 | Incapacitate | | | |  | |||  Hibernate
+3409 | Slow | | | | 9.2  | |||  Crippling Poison
+3600 | Slow | | | |  | |||  Earthbind
+5116 | Slow | | | | 6  | |||  Concussive Shot
+5211 | Stun | | | | 4  | |||  Mighty Bash
+5246 | Disorient | | | | 6  | |||  Intimidating Shout
+5484 | Disorient | | | | 6  | |||  Howl of Terror
+5782 | Disorient | healer | | | 6.0  | |||  Fear
+118699 | Disorient | | | | 6 | |||  Fear (the REAL aura spell_id — 649 real instances confirmed; value copied from 5782's already-curated 6.0s rather than that spell's own histogram, since Disorient breaks on damage and its raw mode reflects "usually broken early," not the true uncapped duration — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched and is the source for this recovery.)
+6552 | | | | 1 |  | |||  Pummel
+6770 | Incapacitate | | | | 6 | | 1 | 1 |  Sap (requires_stealth + requires_target_out_of_combat added 2026-08-23, direct domain-expert correction: the target must not have dealt damage or received healing for ~5 seconds — a real, separate target-side gate, not just "the caster loses stealth in combat." This is why Sap shows up almost exclusively as a real opener or after a chain that's fully removed the target from combat.)
+6789 | Incapacitate | | | | 3  | |||  Mortal Coil
+8122 | Disorient | | | | 6  | |||  Psychic Scream
+9484 | Incapacitate | | | |  | |||  Shackle Horror
+10326 | | | | |  | |||  Turn Evil (removed from DR group 2026-08-17, direct user request — see note below)
+12323 | Slow | | | |  | |||  Piercing Howl
+15487 | Silence | | | | 4  | |||  Silence
+19577 | Stun | both | | | 3  | |||  Intimidation
+24394 | Stun | | | | 3 | |||  Intimidation (the REAL aura spell_id shared by both Hunter Intimidation cast copies — 371 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+19647 | | | | 1 |  | |||  Spell Lock (desc=Command Demon Ability)
+22570 | Stun | both | | | 5.0  | |||  Maim
+203123 | Stun | both | | | 5.0 | |||  Maim (the REAL aura spell_id — 277 real instances confirmed, 112/277 (40%) clustered at exactly 5.0s, independently matching the already-curated value on 22570 — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+30283 | Stun | | | | 3  | |||  Shadowfury
+31661 | Disorient | healer | | | 3  | |||  Dragon's Breath
+31935 | Silence | | | 1 | 1.4  | |||  Avenger's Shield
+33395 | Root | | 1 | | 8  | |||  Freeze
+33786 | Disorient | healer | | | 5.0  | |||  Cyclone
+45524 | Slow | | | | 8  | |||  Chains of Ice
+46968 | Stun | | | | 3  | |||  Shockwave
+132168 | Stun | | | | 3 | |||  Shockwave (the REAL aura spell_id — 535 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+47476 | Silence | healer | | | 4  | |||  Strangulate
+47528 | | | | 1 |  | |||  Mind Freeze
+50245 | Slow | | | |  | |||  Pin (desc=Special Ability)
+50285 | Slow | | | |  | |||  Dust Cloud (desc=Special Ability)
+50433 | Slow | | | |  | |||  Ankle Crack (desc=Special Ability)
+51485 | Root | | 1 | | 6  | |||  Earthgrab Totem
+51490 | Knockback | | | | 6.5  | |||  Thunderstorm
+54644 | Slow | | | |  | |||  Frost Breath (desc=Special Ability)
+57994 | | | | 1 |  | |||  Wind Shear
+78675 | Silence | healer | | | 5 | Root |||  Solar Beam (a stationary ground-zone effect, per its own description — "Summons a beam of solar light over an enemy target's location... silencing all enemies within the beam" — not a personal debuff a target can't escape by moving. Confirmed 2026-08-23: 71/109 real casts across the arena-log archive had a Root landing on some enemy within +-15s. chain_target=healer added 2026-08-23, direct user correction: real play uses this on the healer, not the kill target — a repositioning kill target escapes a fixed zone far more easily than a healer typically anchored near the group. Ring of Frost, same physical shape, not yet given the same tag — flag before assuming it should be too.)
+88625 | Incapacitate | healer | | | 3  | |||  Holy Word: Chastise
+200196 | Incapacitate | healer | | | 3 | |||  Holy Word: Chastise, no-Censure variant — the REAL aura spell_id for the default (Incapacitate) case, 357 real instances confirmed; value copied from 88625's already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.
+200200 | Stun | healer | | | 3 | |||  Holy Word: Chastise, Censure-known variant — the REAL aura spell_id for the Stun case, 574 real instances confirmed (369/574 clustered at 3.0s, one small unexplained 10.0s outlier) — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.
+96231 | | | | 1 |  | |||  Rebuke
+97547 | | | | 1 |  | |||  Solar Beam
+102359 | Root | | 1 | | 6  | |||  Mass Entanglement
+102401 | Root | | 1 | | 0.5  | |||  Wild Charge
+102793 | Knockback | | 1 | |  | |||  Ursol's Vortex
+107570 | Stun | | | | 3  | |||  Storm Bolt
+132169 | Stun | | | | 3 | |||  Storm Bolt (the REAL aura spell_id — 643 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+108199 | Knockback | | | |  | |||  Gorefiend's Grasp
+109248 | Stun | both | | | 3  | |||  Binding Shot
+117526 | Stun | both | | | 3 | |||  Binding Shot (the REAL stun aura spell_id — 678 real instances confirmed; value copied from 109248's already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+115078 | Incapacitate | | | | 3  | |||  Paralysis
+115196 | Slow | | | | 5  | |||  Crippling Poison
+115750 | Disorient | | | | 4  | |||  Blinding Light
+105421 | Disorient | | | | 4 | |||  Blinding Light (the REAL aura spell_id — real instances confirmed via wow:find-cc-duration; value copied from 115750's already-curated 4.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+116705 | | | | 1 |  | |||  Spear Hand Strike
+116706 | Root | | 1 | | 3  | |||  Disable
+116844 | Knockback | | | |  | |||  Ring of Peace
+116947 | Slow | | | | 5.1  | |||  Earthbind
+119381 | Stun | | | | 4  | |||  Leg Sweep
+132469 | Knockback | | | 1 |  | |||  Typhoon
+136511 | | | | |  | |||  Ring of Frost (wrong-copy fix 2026-08-17, see note below — real tag moved to 113724)
+147362 | | | | 1 |  | |||  Counter Shot
 # Rake's Stun tag was misapplied to spell_id 155722 (the base Bleed ability, mechanic=Bleed) in
 # the original dr-categories-reference.md bulk-apply pass — confirmed 2026-08-17 via direct user
 # correction ("Rake from stealth stuns the target for 3s... no CD") plus the spell's own
@@ -159,91 +168,91 @@
 # 155722 earlier the same day — that number was correct, just for the wrong effect (the Bleed
 # DoT's real duration, not a CC duration at all). is_peel/is_interrupt were never set on this
 # line, nothing else to preserve.
-155722 | | | | |  | |  Rake
+155722 | | | | |  | |||  Rake
 
 # The real stun component. cooldown_seconds/duration_seconds are both blank on its own record
 # (163505's stored duration=4.00 is the PvE tooltip value — user directly confirmed 3s is the
 # real PvP duration, not derived from the raw column, same discipline as every other
 # pvp_duration_seconds entry in this file) — "no CD" per the user, consistent with Rake itself
 # being a spammable combo-point builder with no cooldown of its own.
-163505 | Stun | | | | 3.0  | |  Rake (While Stealthed)
-157981 | Knockback | | | |  | |  Blast Wave
-157997 | Root | | 1 | | 2  | |  Ice Nova
-160065 | Slow | | | |  | |  Tendon Rip (desc=Special Ability)
-160067 | Slow | | | |  | |  Web Spray (desc=Special Ability)
-162488 | Root | | 1 | |  | |  Steel Trap
-170995 | Slow | | | |  | |  Cripple
-171138 | | | | 1 |  | |  Shadow Lock (desc=Special Ability)
-183752 | | | | 1 |  | |  Disrupt
-187650 | Incapacitate | healer | | | 6  | |  Freezing Trap
-3355 | Incapacitate | | | | 6 | |  Freezing Trap (the REAL aura spell_id — real instances confirmed via wow:find-cc-duration; value copied from 187650's already-curated 6.0s rather than a fresh histogram, same "Incapacitate breaks on damage, mode is misleading" reasoning as Fear/118699 above — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-187707 | | | | 1 |  | |  Muzzle
-190925 | Root | | 1 | | 3  | |  Harpoon
-192058 | Stun | | | | 3  | |  Capacitor Totem
-118905 | Stun | | | | 3 | |  Capacitor Totem (the REAL aura spell_id — 328 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-197214 | Incapacitate | | | |  | |  Sundering
-198898 | Disorient | | | | 6  | |  Song of Chi-Ji
-198909 | Disorient | | | | 6 | |  Song of Chi-Ji (the REAL aura spell_id — 234 real instances confirmed; value copied from the already-curated 6.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-199786 | Slow | | | |  | |  Glacial Spike
-200199 | | | | |  | |  Censure (desc=passive that makes Holy Word: Chastise stun instead of incapacitate — not itself a CC ability, see CLAUDE.md 2026-08-17)
-202137 | Silence | | | |  | |  Sigil of Silence
-202246 | Knockback | | | |  | |  Overrun
-202335 | Stun | | | |  | |  Double Barrel
-202370 | Knockback | | | |  | |  Mighty Ox Kick
-204242 | Slow | | | | 12  | |  Consecration
-204843 | Slow | | | |  | |  Sigil of Chains
-205596 | Incapacitate | | | |  | |  Detainment
-205630 | Stun | | | | 1.9  | |  Illidan's Grasp
-205708 | Slow | | | |  | |  Chilled
-206572 | Knockback | | | |  | |  Dragon Charge
-207167 | Disorient | | | | 4  | |  Blinding Sleet
-207684 | Disorient | | | |  | |  Sigil of Misery
-207685 | Disorient | | | | 3 | |  Sigil of Misery (the REAL aura spell_id — 247 real instances, clean histogram: 138/244 clustered at 3.0s, the one above-mode outlier explained by Preservation Evoker's Oppressing Roar — high confidence — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-207777 | Disarm | | | | 5  | |  Dismantle
-209749 | Disarm | | | | 5  | |  Faerie Swarm
-211056 | Slow | | | |  | |  Mark of Aluneth
-212638 | Root | | 1 | | 6  | |  Tracker's Net
-213405 | Slow | | | | 6.2  | |  Master of the Glaive
-215652 | Silence | | | | 1.9  | |  Shield of Virtue
-217383 | Root | | 1 | |  | |  Thunderstruck
-217832 | Incapacitate | | | | 3  | |  Imprison
-221562 | Stun | | | | 4  | |  Asphyxiate
-232559 | Slow | | | |  | |  Thorns (desc=PvP Talent)
-233759 | Disarm | | | | 5.0  | |  Grapple Weapon
-236027 | Root | | 1 | |  | |  Charge
-236077 | Disarm | | | | 5  | |  Disarm
-236776 | Knockback | | | |  | |  High Explosive Trap
-255937 | | | | |  | |  Wake of Ashes (removed from DR group 2026-08-17, direct user request — see note below)
-263423 | Slow | | | |  | |  Lock Jaw (desc=Special Ability)
-263446 | Slow | | | |  | |  Acid Spit (desc=Special Ability)
-263715 | | | | 1 |  | |  Silence
-263840 | Slow | | | |  | |  Furious Bite (desc=Special Ability)
-263852 | Slow | | | |  | |  Talon Rend (desc=Special Ability)
-273977 | Slow | | | |  | |  Grip of the Dead
-290497 | Slow | | | |  | |  Consecration
-305483 | Stun | | | |  | |  Lightning Lasso
-305485 | Stun | | | | 5 | |  Lightning Lasso (the REAL aura spell_id — 66 real instances, but a messier spread than most (mode 1.0s/14, likely frequent real DR from repeated use) — used the largest real cluster (5.0s/9) as the plausible undiminished base, LOWER CONFIDENCE than the rest of this batch, worth a second look — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-317898 | Slow | | | | 6  | |  Blinding Sleet
-334275 | Slow | | | | 12.0  | |  Curse of Exhaustion
-344867 | Stun | | | |  | |  Chaos Nova
-347008 | | | | 1 |  | |  Axe Toss (desc=Special Ability)
-351338 | | | | 1 |  | |  Quell
-356084 | Slow | | | | 2  | |  Blaze of Light
-370898 | Slow | | | | 9.4  | |  Permeating Chill
-386071 | | | | 1 |  | |  Disrupting Shout
-408383 | Slow | | | | 8  | |  Judgment of Justice
-420378 | Slow | | | |  | |  Consecration
-450342 | Slow | | | | 5  | |  Crashing Momentum
-450596 | Slow | | | | 4.0  | |  Spirit's Essence
-451210 | Slow | | | |  | |  No Escape
-453263 | Slow | | | | 5  | |  Wave of Debilitation
-462765 | Slow | | | |  | |  Arctic Snowstorm
-1248825 | | | | |  | |  Frostbite (desc=not a CC ability — passive proc that adds damage-dealing Freezing stacks on Frost crit, no rooting anywhere in its own description; dr-categories-reference.md's Root listing is stale/pre-rework, caught by the is_passive+dr_category import guard, see CLAUDE.md 2026-08-17)
-1268673 | Slow | | | |  | |  Cold Feet
+163505 | Stun | | | | 3.0 | | 1 |  |  Rake (While Stealthed) (requires_stealth added 2026-08-23 — only stuns while the caster is stealthed, no target-combat-state gate like Sap's, so requires_target_out_of_combat is left blank here.)
+157981 | Knockback | | | |  | |||  Blast Wave
+157997 | Root | | 1 | | 2  | |||  Ice Nova
+160065 | Slow | | | |  | |||  Tendon Rip (desc=Special Ability)
+160067 | Slow | | | |  | |||  Web Spray (desc=Special Ability)
+162488 | Root | | 1 | |  | |||  Steel Trap
+170995 | Slow | | | |  | |||  Cripple
+171138 | | | | 1 |  | |||  Shadow Lock (desc=Special Ability)
+183752 | | | | 1 |  | |||  Disrupt
+187650 | Incapacitate | healer | | | 6 | Stun | |  |  Freezing Trap (pairs_with_category=Stun added 2026-08-23, direct domain-expert confirmation: the trap has a real travel/arm delay after being thrown, creating a window where the target can dodge/fade or simply get saved by lag/latency — a preceding Stun closes that window by holding the target still. Confirmed as a real reliability dependency, not inferred from the Intimidation->Freezing Trap transition statistic alone.)
+3355 | Incapacitate | | | | 6 | Stun | |  |  Freezing Trap (the REAL aura spell_id — real instances confirmed via wow:find-cc-duration; value copied from 187650's already-curated 6.0s rather than a fresh histogram, same "Incapacitate breaks on damage, mode is misleading" reasoning as Fear/118699 above — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched. pairs_with_category=Stun added 2026-08-23, same reasoning as 187650 above.)
+187707 | | | | 1 |  | |||  Muzzle
+190925 | Root | | 1 | | 3  | |||  Harpoon
+192058 | Stun | | | | 3  | |||  Capacitor Totem
+118905 | Stun | | | | 3 | |||  Capacitor Totem (the REAL aura spell_id — 328 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+197214 | Incapacitate | | | |  | |||  Sundering
+198898 | Disorient | | | | 6  | |||  Song of Chi-Ji
+198909 | Disorient | | | | 6 | |||  Song of Chi-Ji (the REAL aura spell_id — 234 real instances confirmed; value copied from the already-curated 6.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+199786 | Slow | | | |  | |||  Glacial Spike
+200199 | | | | |  | |||  Censure (desc=passive that makes Holy Word: Chastise stun instead of incapacitate — not itself a CC ability, see CLAUDE.md 2026-08-17)
+202137 | Silence | | | |  | |||  Sigil of Silence
+202246 | Knockback | | | |  | |||  Overrun
+202335 | Stun | | | |  | |||  Double Barrel
+202370 | Knockback | | | |  | |||  Mighty Ox Kick
+204242 | Slow | | | | 12  | |||  Consecration
+204843 | Slow | | | |  | |||  Sigil of Chains
+205596 | Incapacitate | | | |  | |||  Detainment
+205630 | Stun | | | | 1.9  | |||  Illidan's Grasp
+205708 | Slow | | | |  | |||  Chilled
+206572 | Knockback | | | |  | |||  Dragon Charge
+207167 | Disorient | | | | 4  | |||  Blinding Sleet
+207684 | Disorient | | | | 3 | |||  Sigil of Misery (cast/display spell_id — confirmed 2026-08-23 via wow:diff-arena-spells that real casts across all 3 DH specs are logged under THIS spell_id, not 207685; duration copied from 207685's already-curated 3.0s since this is the copy CcFormula's pool actually resolves. Same "cast/display copy has no data, real aura copy does" pattern as Freezing Trap/Solar Beam.)
+207685 | Disorient | | | | 3 | |||  Sigil of Misery (the REAL aura spell_id — 247 real instances, clean histogram: 138/244 clustered at 3.0s, the one above-mode outlier explained by Preservation Evoker's Oppressing Roar — high confidence — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+207777 | Disarm | | | | 5  | |||  Dismantle
+209749 | Disarm | | | | 5  | |||  Faerie Swarm
+211056 | Slow | | | |  | |||  Mark of Aluneth
+212638 | Root | | 1 | | 6  | |||  Tracker's Net
+213405 | Slow | | | | 6.2  | |||  Master of the Glaive
+215652 | Silence | | | | 1.9  | |||  Shield of Virtue
+217383 | Root | | 1 | |  | |||  Thunderstruck
+217832 | Incapacitate | | | | 3  | |||  Imprison
+221562 | Stun | | | | 4  | |||  Asphyxiate
+232559 | Slow | | | |  | |||  Thorns (desc=PvP Talent)
+233759 | Disarm | | | | 5.0  | |||  Grapple Weapon
+236027 | Root | | 1 | |  | |||  Charge
+236077 | Disarm | | | | 5  | |||  Disarm
+236776 | Knockback | | | |  | |||  High Explosive Trap
+255937 | | | | |  | |||  Wake of Ashes (removed from DR group 2026-08-17, direct user request — see note below)
+263423 | Slow | | | |  | |||  Lock Jaw (desc=Special Ability)
+263446 | Slow | | | |  | |||  Acid Spit (desc=Special Ability)
+263715 | | | | 1 |  | |||  Silence
+263840 | Slow | | | |  | |||  Furious Bite (desc=Special Ability)
+263852 | Slow | | | |  | |||  Talon Rend (desc=Special Ability)
+273977 | Slow | | | |  | |||  Grip of the Dead
+290497 | Slow | | | |  | |||  Consecration
+305483 | Stun | | | |  | |||  Lightning Lasso
+305485 | Stun | | | | 5 | |||  Lightning Lasso (the REAL aura spell_id — 66 real instances, but a messier spread than most (mode 1.0s/14, likely frequent real DR from repeated use) — used the largest real cluster (5.0s/9) as the plausible undiminished base, LOWER CONFIDENCE than the rest of this batch, worth a second look — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+317898 | Slow | | | | 6  | |||  Blinding Sleet
+334275 | Slow | | | | 12.0  | |||  Curse of Exhaustion
+344867 | Stun | | | |  | |||  Chaos Nova
+347008 | | | | 1 |  | |||  Axe Toss (desc=Special Ability)
+351338 | | | | 1 |  | |||  Quell
+356084 | Slow | | | | 2  | |||  Blaze of Light
+370898 | Slow | | | | 9.4  | |||  Permeating Chill
+386071 | | | | 1 |  | |||  Disrupting Shout
+408383 | Slow | | | | 8  | |||  Judgment of Justice
+420378 | Slow | | | |  | |||  Consecration
+450342 | Slow | | | | 5  | |||  Crashing Momentum
+450596 | Slow | | | | 4.0  | |||  Spirit's Essence
+451210 | Slow | | | |  | |||  No Escape
+453263 | Slow | | | | 5  | |||  Wave of Debilitation
+462765 | Slow | | | |  | |||  Arctic Snowstorm
+1248825 | | | | |  | |||  Frostbite (desc=not a CC ability — passive proc that adds damage-dealing Freezing stacks on Frost crit, no rooting anywhere in its own description; dr-categories-reference.md's Root listing is stale/pre-rework, caught by the is_passive+dr_category import guard, see CLAUDE.md 2026-08-17)
+1268673 | Slow | | | |  | |||  Cold Feet
 
 # Added 2026-08-14 from the user's hand-eyeballed "CC Durations Off Arena logs.txt" list.
-213691 | Incapacitate | | | | 3  | |  Scatter Shot
-51514 | Incapacitate | healer | | | 6  | |  Hex
+213691 | Incapacitate | | | | 3  | |||  Scatter Shot
+51514 | Incapacitate | healer | | | 6  | |||  Hex
 
 # Hunter Intimidation has two real, distinct spell_ids sharing the display name — confirmed by
 # description text, not guessed. 19577 ("Commands your pet to intimidate the target") is the
@@ -253,7 +262,7 @@
 # token ($24394d) in their own description text, confirming they share the same real 3s stun
 # regardless of which spec/flavor is showing. User confirmed 2026-08-14 this pairing (BM/Survival
 # pet-cast vs. MM Spotting Eagle) is correct, not a data bug — both added for completeness.
-474421 | Stun | both | | | 3  | |  Intimidation
+474421 | Stun | both | | | 3  | |||  Intimidation
 
 # User guidance, 2026-08-14: Knockback-category spells are pure positional disruptors, not a
 # duration-bearing debuff — pvp_duration_seconds is not a meaningful concept for this category
@@ -299,11 +308,11 @@
 # project's established flat PvP CC duration cap, same as Kidney Shot/Fear/Polymorph/Blind). The
 # VALUE is measured from the sibling but WRITTEN to the displayed spell_id (119914/119909), since
 # that's the row the Spells/Synergies pages actually render.
-119914 | Stun | | | 1 | 3.0  | |  Axe Toss (Command Demon)
-89766 | Stun | | | 1 | 3.0 | |  Axe Toss (the REAL aura spell_id — 68 real instances confirmed; value + is_interrupt copied from 119914's already-curated line, same real dual-purpose stun+interrupt effect — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-119910 | | | | 1 |  | |  Spell Lock (Command Demon)
-119909 | Disorient | | | | 6.0  | |  Seduction (Command Demon)
-6358 | Disorient | | | | 6.0 | |  Seduction (the REAL aura spell_id — 105 real instances confirmed; value copied from the already-curated 6.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+119914 | Stun | | | 1 | 3.0  | |||  Axe Toss (Command Demon)
+89766 | Stun | | | 1 | 3.0 | |||  Axe Toss (the REAL aura spell_id — 68 real instances confirmed; value + is_interrupt copied from 119914's already-curated line, same real dual-purpose stun+interrupt effect — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+119910 | | | | 1 |  | |||  Spell Lock (Command Demon)
+119909 | Disorient | | | | 6.0  | |||  Seduction (Command Demon)
+6358 | Disorient | | | | 6.0 | |||  Seduction (the REAL aura spell_id — 105 real instances confirmed; value copied from the already-curated 6.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
 
 # Added via wow:discover-cc-spells --apply, 2026-08-17 — real arena-log cast evidence + unambiguous mechanic->dr_category mapping (see spell-acquisition-model.md).
 # pvp_duration_seconds resolved 2026-08-17 via wow:find-cc-duration (histogram/mode across real
@@ -311,23 +320,23 @@
 # winners (~25-27% of a large sample, not a true majority) than the rest (all >=42%, several
 # matching the spell's own stored duration_seconds too) — applied anyway since no other value
 # tied or came close, but flagged here as the lower-confidence pair in this batch.
-1330 | Silence | | | | 3.0  | |  Garrote - Silence
-64695 | Root | | | | 6.0  | |  Earthgrab
-114404 | Root | | | | 4.0  | |  Void Tendrils
-355689 | Root | | | | 6.0  | |  Landslide (desc=Black)
-370970 | Root | | | | 1.5  | |  The Hunt
-372245 | Stun | | | | 3.0  | |  Terror of the Skies (desc=Black)
-374776 | Silence | | | | 3.0  | |  Tightening Grasp
-377048 | Stun | | | | 3.0  | |  Absolute Zero
-454787 | Root | | | | 4.0  | |  Ice Prison
-1258862 | Root | | | | 4.0  | |  Encasing Cold
+1330 | Silence | | | | 3.0  | |||  Garrote - Silence
+64695 | Root | | | | 6.0  | |||  Earthgrab
+114404 | Root | | | | 4.0  | |||  Void Tendrils
+355689 | Root | | | | 6.0  | |||  Landslide (desc=Black)
+370970 | Root | | | | 1.5  | |||  The Hunt
+372245 | Stun | | | | 3.0  | |||  Terror of the Skies (desc=Black)
+374776 | Silence | | | | 3.0  | |||  Tightening Grasp
+377048 | Stun | | | | 3.0  | |||  Absolute Zero
+454787 | Root | | | | 4.0  | |||  Ice Prison
+1258862 | Root | | | | 4.0  | |||  Encasing Cold
 
 # Sleep Walk (360806, Preservation/Devastation/Augmentation Evoker) — found 2026-08-18 via direct
 # user report (Preservation Evoker's Crowd Control tab showing no CC at all). Already correctly
 # available for all 3 specs (verified_override existed already), just never had a dr_category.
 # Own description settles it outright, no ambiguity: "Disorient an enemy for [x], causing them to
 # sleep walk towards you." pvp_duration_seconds left blank — not yet verified via wow:find-cc-duration.
-360806 | Disorient | | | |  | |  Sleep Walk (desc=Green)
+360806 | Disorient | | | |  | |||  Sleep Walk (desc=Green)
 
 # The following 2 landed in wow:discover-cc-spells' NEEDS REVIEW bucket (mechanic=Snare,
 # Slow-keyword filter didn't recognize them on that run — likely a stale opcache serving the
@@ -341,9 +350,9 @@
 # across baseline-spec-overrides.txt the same day. Note: neither copy has explicit per-spec
 # availability yet (both sit in the ambiguous spec_id=NULL baseline bucket) — this only fixes
 # which spell_id the CC tag lives on, not display availability, which is a separate open gap.
-187699 | Slow | | | |  | |  Tar Trap
-135299 | Slow | | | | | |  Tar Trap (a second spell_id copy — recovered 2026-08-23 from live DB state after an accidental git checkout wiped this line from the file before it had ever been committed; no original commentary survives, only the dr_category value itself. Worth a fresh look at why this is a separate copy from 187699 above next time this file is touched.)
-442396 | Slow | | | |  | |  Dark Chains
+187699 | Slow | | | |  | |||  Tar Trap
+135299 | Slow | | | | | |||  Tar Trap (a second spell_id copy — recovered 2026-08-23 from live DB state after an accidental git checkout wiped this line from the file before it had ever been committed; no original commentary survives, only the dr_category value itself. Worth a fresh look at why this is a separate copy from 187699 above next time this file is touched.)
+442396 | Slow | | | |  | |||  Dark Chains
 
 # pvp_duration_seconds deliberately left blank for both of these, checked via wow:find-cc-duration
 # 2026-08-17, not silently resolved either way:
@@ -365,5 +374,5 @@
 # git history was checked) — plausibly the DR bulk-apply pass picked 136511 by coincidence of
 # name-matching order before 113724's own verified_override rows existed, and nobody re-verified
 # after. Fixed by moving the tag to the correct spell_id; 136511 blanked above, not deleted.
-113724 | Incapacitate | | | | 6 | Root |  Ring of Frost (cast/display spell_id only — confirmed 2026-08-22 zero real aura events across 420 matches. Own description confirms two real components: 82691 is the real incapacitate-on-entering effect (matches own mechanic='Freeze'), 321329 is a separate slow-on-expiry follow-up — out of scope, Slow isn't a hard-CC category. pairs_with_category=Root added 2026-08-23: same "enemies entering the ring are incapacitated" stationary-zone shape as Solar Beam above, verified via its own description text.)
-82691 | Incapacitate | | | | 6 | Root |  Ring of Frost (the REAL aura spell_id — 489 real instances confirmed; value copied from 113724's already-curated 6.0s. pairs_with_category=Root added 2026-08-23, same reasoning as 113724 above — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
+113724 | Incapacitate | | | | 6 | Stun |||  Ring of Frost (cast/display spell_id only — confirmed 2026-08-22 zero real aura events across 420 matches. Own description confirms two real components: 82691 is the real incapacitate-on-entering effect (matches own mechanic='Freeze'), 321329 is a separate slow-on-expiry follow-up — out of scope, Slow isn't a hard-CC category. pairs_with_category CORRECTED 2026-08-23 from Root to Stun — direct domain-expert correction: unlike Solar Beam (which real play pairs with a Root), Ring of Frost is normally set up with any Stun, or commonly the same caster's own Dragon's Breath (a Disorient — not captured by this single-value field, flagged as a known gap rather than silently ignored).)
+82691 | Incapacitate | | | | 6 | Stun |||  Ring of Frost (the REAL aura spell_id — 489 real instances confirmed; value copied from 113724's already-curated 6.0s. pairs_with_category CORRECTED 2026-08-23 from Root to Stun, same reasoning as 113724 above — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)

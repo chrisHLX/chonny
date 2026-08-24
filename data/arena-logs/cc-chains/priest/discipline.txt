@@ -1,9 +1,44 @@
 # CC chains landing on real priest/discipline healers (opposing side only)
-# Total qualifying chains found: 507 | shown here: 507
+# Total qualifying chains found: 502 | shown here: 502
 # Gap tolerance: 2s | Min abilities per chain: 1 | Categories: Stun/Silence/Incapacitate/Disorient only (--include-utility widens this)
 # "(DR'd)" marks a step whose dr_category already appeared earlier in the same chain — real in-game DR is already baked into its own timing, this is just a readability flag.
 
-=== #1 — 18.48s total time-in-CC — 3 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
+=== #1 — 42.48s total time-in-CC — 2 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Messengers-Tichondrius-US ===
+  [+  0.00s] Cyclone                  (Disorient    )   4.99s  by Balance Druid
+  [+  5.56s] Garrote - Silence        (Silence      )   2.99s  by Assassination Rogue
+  [+  6.63s] Cheap Shot               (Stun         )   4.00s  by Assassination Rogue
+  [+ 12.51s] Garrote                  (Silence      ) (DR'd)   8.30s  by Assassination Rogue
+  [+ 12.53s] Garrote - Silence        (Silence      ) (DR'd)   1.50s  by Assassination Rogue
+  [+ 20.82s] Garrote                  (Silence      ) (DR'd)  16.82s  by Assassination Rogue
+  [+ 37.63s] Garrote                  (Silence      ) (DR'd)   4.85s  by Assassination Rogue
+  [+ 37.65s] Garrote - Silence        (Silence      ) (DR'd)   3.01s  by Assassination Rogue
+  [+ 41.89s] Cheap Shot               (Stun         ) (DR'd)   0.59s  by Assassination Rogue
+
+=== #2 — 39.84s total time-in-CC — 3 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Messengers-Tichondrius-US ===
+  [+  0.00s] Garrote                  (Silence      )  20.56s  by Assassination Rogue
+  [+  0.02s] Garrote - Silence        (Silence      ) (DR'd)   2.99s  by Assassination Rogue
+  [+  2.97s] Hammer of Justice        (Stun         )   4.82s  by Holy Paladin
+  [+ 12.35s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
+  [+ 20.99s] Garrote                  (Silence      ) (DR'd)  18.85s  by Assassination Rogue
+  [+ 21.01s] Garrote - Silence        (Silence      ) (DR'd)   1.50s  by Assassination Rogue
+
+=== #3 — 24.56s total time-in-CC — 2 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
+  [+  0.00s] Garrote                  (Silence      )  24.00s  by Assassination Rogue
+  [+  0.01s] Garrote - Silence        (Silence      ) (DR'd)   3.00s  by Assassination Rogue
+  [+ 21.57s] Holy Word: Chastise      (Stun         )   2.99s  by Holy Priest
+
+=== #4 — 24s total time-in-CC — 2 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
+  [+  0.00s] Garrote                  (Silence      )  24.00s  by Assassination Rogue
+  [+  0.01s] Garrote - Silence        (Silence      ) (DR'd)   3.01s  by Assassination Rogue
+  [+  1.10s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
+  [+  1.34s] Kidney Shot              (Stun         ) (DR'd)   2.01s  by Assassination Rogue
+  [+  4.71s] Psychic Scream           (Disorient    )   0.67s  by Holy Priest
+
+=== #5 — 23.97s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+  [+  0.00s] Garrote - Silence        (Silence      )   2.99s  by Assassination Rogue
+  [+  0.00s] Garrote                  (Silence      ) (DR'd)  23.97s  by Assassination Rogue
+
+=== #6 — 18.48s total time-in-CC — 3 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.86s  by Preservation Evoker
   [+  1.86s] Sleep Walk               (Disorient    ) (DR'd)   0.73s  by Preservation Evoker
   [+  4.02s] Polymorph                (Incapacitate )   6.01s  by Arcane Mage
@@ -11,1162 +46,1143 @@
   [+ 13.89s] Dragon's Breath          (Disorient    ) (DR'd)   1.51s  by Arcane Mage
   [+ 14.48s] Silence                  (Silence      )   4.00s  by Shadow Priest
 
-=== #2 — 15.65s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #7 — 18.21s total time-in-CC — 2 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
+  [+  0.00s] Garrote                  (Silence      )   9.28s  by Assassination Rogue
+  [+  9.28s] Blind                    (Disorient    )   5.01s  by Assassination Rogue
+  [+ 15.21s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
+
+=== #8 — 15.65s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.00s  by Shadow Priest
   [+  5.52s] Hammer of Justice        (Stun         )   2.62s  by Holy Paladin
   [+  9.35s] Blinding Light           (Disorient    ) (DR'd)   2.00s  by Holy Paladin
   [+ 11.64s] Silence                  (Silence      )   4.02s  by Shadow Priest
 
-=== #3 — 15.59s total time-in-CC — 2 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
+=== #9 — 15.59s total time-in-CC — 2 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
   [+  0.00s] Hex                      (Incapacitate )   3.01s  by Elemental Shaman
   [+  4.01s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
   [+ 10.58s] Maim                     (Stun         )   5.01s  by Restoration Druid
 
-=== #4 — 14.03s total time-in-CC — 2 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Messengers-Tichondrius-US ===
-  [+  0.00s] Cyclone                  (Disorient    )   4.99s  by Balance Druid
-  [+  5.56s] Garrote - Silence        (Silence      )   2.99s  by Assassination Rogue
-  [+  6.63s] Cheap Shot               (Stun         )   4.00s  by Assassination Rogue
-  [+ 12.53s] Garrote - Silence        (Silence      ) (DR'd)   1.50s  by Assassination Rogue
-
-=== #5 — 13.82s total time-in-CC — 3 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
+=== #10 — 13.82s total time-in-CC — 3 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.03s  by Subtlety Rogue
   [+  3.77s] Strangulate              (Silence      )   4.02s  by Unholy Death Knight
   [+  7.80s] Psychic Scream           (Disorient    )   6.03s  by Discipline Priest
 
-=== #6 — 13.13s total time-in-CC — 3 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
+=== #11 — 13.13s total time-in-CC — 3 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
   [+  3.68s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
   [+  6.19s] Leg Sweep                (Stun         )   4.01s  by Windwalker Monk
   [+ 11.67s] Incapacitating Roar      (Incapacitate ) (DR'd)   1.46s  by Restoration Druid
 
-=== #7 — 12.91s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Broochli-Shadowmoon-US ===
+=== #12 — 12.91s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Broochli-Shadowmoon-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.97s  by Outlaw Rogue
   [+  7.92s] Blind                    (Disorient    )   4.99s  by Outlaw Rogue
 
-=== #8 — 12.39s total time-in-CC — 3 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #13 — 12.39s total time-in-CC — 3 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Protection Paladin
   [+  6.69s] Silence                  (Silence      )   2.01s  by Shadow Priest
   [+  9.88s] Hammer of Justice        (Stun         ) (DR'd)   2.51s  by Holy Paladin
 
-=== #9 — 11.92s total time-in-CC — 2 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #14 — 11.92s total time-in-CC — 2 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Fear                     (Disorient    )   6.01s  by Affliction Warlock
   [+  5.92s] Sap                      (Incapacitate )   6.00s  by Outlaw Rogue
 
-=== #10 — 11.82s total time-in-CC — 2 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+=== #15 — 11.82s total time-in-CC — 2 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Frost Mage
   [+  4.02s] Psychic Scream           (Disorient    )   6.00s  by Discipline Priest
   [+  8.81s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Frost Mage
 
-=== #11 — 11.62s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #16 — 11.62s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   4.28s  by Shadow Priest
   [+  5.63s] Hammer of Justice        (Stun         )   5.00s  by Holy Paladin
   [+ 10.09s] Blinding Light           (Disorient    ) (DR'd)   0.61s  by Holy Paladin
   [+ 10.20s] Silence                  (Silence      )   1.42s  by Shadow Priest
 
-=== #12 — 11.56s total time-in-CC — 2 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
+=== #17 — 11.56s total time-in-CC — 2 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.30s  by Windwalker Monk
   [+  3.26s] Leg Sweep                (Stun         )   4.02s  by Windwalker Monk
   [+  6.57s] Cyclone                  (Disorient    )   4.99s  by Restoration Druid
 
-=== #13 — 11.54s total time-in-CC — 2 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
+=== #18 — 11.54s total time-in-CC — 2 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.30s  by Windwalker Monk
   [+  3.25s] Leg Sweep                (Stun         )   4.00s  by Windwalker Monk
   [+  6.54s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
 
-=== #14 — 11.32s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
+=== #19 — 11.32s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
   [+  2.31s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
   [+  7.24s] Sap                      (Incapacitate ) (DR'd)   3.01s  by Subtlety Rogue
   [+  9.73s] Blind                    (Disorient    )   1.59s  by Subtlety Rogue
 
-=== #15 — 11.3s total time-in-CC — 3 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #20 — 11.3s total time-in-CC — 3 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.02s  by Protection Paladin
   [+  4.85s] Hammer of Justice        (Stun         ) (DR'd)   2.50s  by Holy Paladin
   [+  7.31s] Silence                  (Silence      )   4.00s  by Shadow Priest
   [+  9.24s] Blinding Light           (Disorient    )   1.15s  by Holy Paladin
 
-=== #16 — 10.92s total time-in-CC — 2 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
+=== #21 — 10.92s total time-in-CC — 2 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   3.00s  by Restoration Druid
   [+  2.76s] Cyclone                  (Disorient    )   4.99s  by Restoration Druid
   [+  9.41s] Paralysis                (Incapacitate ) (DR'd)   1.51s  by Windwalker Monk
 
-=== #17 — 10.68s total time-in-CC — 3 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #22 — 10.68s total time-in-CC — 3 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.87s  by Preservation Evoker
   [+  0.87s] Sleep Walk               (Disorient    ) (DR'd)   4.11s  by Preservation Evoker
   [+  6.49s] Shockwave                (Stun         )   2.00s  by Arms Warrior
   [+  6.68s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
 
-=== #18 — 10.62s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #23 — 10.62s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   6.01s  by Demonology Warlock
   [+  7.62s] Mortal Coil              (Incapacitate )   3.00s  by Demonology Warlock
 
-=== #19 — 10.61s total time-in-CC — 3 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
+=== #24 — 10.61s total time-in-CC — 3 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Maim                     (Stun         )   5.00s  by Feral Druid
   [+  4.55s] Ring of Frost            (Incapacitate )   6.01s  by Frost Mage
   [+  9.21s] Psychic Scream           (Disorient    )   1.40s  by Holy Priest
   [+  9.96s] Polymorph                (Incapacitate ) (DR'd)   0.65s  by Frost Mage
 
-=== #20 — 10.38s total time-in-CC — 2 caster(s) — match 9c2105892809c7f3ed314184164c7c41 — target: Challengerz-Suramar-US ===
+=== #25 — 10.38s total time-in-CC — 2 caster(s) — match 9c2105892809c7f3ed314184164c7c41 — target: Challengerz-Suramar-US ===
   [+  0.00s] Blind                    (Disorient    )   5.00s  by Subtlety Rogue
   [+  4.38s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
 
-=== #21 — 10.36s total time-in-CC — 2 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #26 — 10.36s total time-in-CC — 2 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   5.80s  by Preservation Evoker
   [+  2.60s] Blinding Sleet           (Disorient    ) (DR'd)   2.01s  by Unholy Death Knight
   [+  5.15s] Strangulate              (Silence      )   5.21s  by Unholy Death Knight
   [+  5.79s] Terror of the Skies      (Stun         )   1.96s  by Preservation Evoker
 
-=== #22 — 10.25s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #27 — 10.25s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Blinding Sleet           (Disorient    )   4.03s  by Frost Death Knight
   [+  3.77s] Absolute Zero            (Stun         )   3.00s  by Frost Death Knight
   [+  6.24s] Strangulate              (Silence      )   4.01s  by Frost Death Knight
 
-=== #23 — 10.2s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #28 — 10.2s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Protection Paladin
   [+  6.19s] Silence                  (Silence      )   4.01s  by Shadow Priest
 
-=== #24 — 9.99s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Maryprichan-Blackrock-US ===
+=== #29 — 9.99s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+  [+  0.00s] Garrote                  (Silence      )   8.49s  by Assassination Rogue
+  [+  0.03s] Garrote - Silence        (Silence      ) (DR'd)   1.49s  by Assassination Rogue
+  [+  8.49s] Blind                    (Disorient    )   1.50s  by Assassination Rogue
+
+=== #30 — 9.99s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.27s  by Subtlety Rogue
   [+  4.97s] Kidney Shot              (Stun         )   5.02s  by Subtlety Rogue
 
-=== #25 — 9.97s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Maryprichan-Blackrock-US ===
+=== #31 — 9.97s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.27s  by Subtlety Rogue
   [+  4.97s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
 
-=== #26 — 9.97s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Maryprichan-Blackrock-US ===
+=== #32 — 9.97s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.26s  by Subtlety Rogue
   [+  4.97s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
 
-=== #27 — 9.94s total time-in-CC — 2 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #33 — 9.94s total time-in-CC — 2 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   3.01s  by Restoration Druid
   [+  2.83s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
   [+  8.44s] Paralysis                (Incapacitate ) (DR'd)   1.50s  by Windwalker Monk
 
-=== #28 — 9.79s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #34 — 9.79s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Frost Mage
   [+  6.79s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Frost Mage
 
-=== #29 — 9.56s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
+=== #35 — 9.56s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
   [+  0.00s] Hex                      (Incapacitate )   6.01s  by Restoration Shaman
   [+  7.07s] Lightning Lasso          (Stun         )   2.50s  by Restoration Shaman
 
-=== #30 — 9.44s total time-in-CC — 2 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
+=== #36 — 9.44s total time-in-CC — 2 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   6.02s  by Affliction Warlock
   [+  7.27s] Mind Control             (Disorient    ) (DR'd)   2.17s  by Discipline Priest
 
-=== #31 — 9.43s total time-in-CC — 2 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
+=== #37 — 9.43s total time-in-CC — 2 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   6.01s  by Affliction Warlock
   [+  7.25s] Mind Control             (Disorient    ) (DR'd)   2.17s  by Discipline Priest
 
-=== #32 — 9.43s total time-in-CC — 2 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
+=== #38 — 9.43s total time-in-CC — 2 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   6.01s  by Affliction Warlock
   [+  7.26s] Mind Control             (Disorient    ) (DR'd)   2.17s  by Discipline Priest
 
-=== #33 — 9.08s total time-in-CC — 2 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
+=== #39 — 9.08s total time-in-CC — 2 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.01s  by Retribution Paladin
   [+  4.07s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
 
-=== #34 — 9s total time-in-CC — 2 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #40 — 9s total time-in-CC — 2 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   5.99s  by Devastation Evoker
   [+  7.96s] Psychic Scream           (Disorient    ) (DR'd)   1.04s  by Discipline Priest
 
-=== #35 — 8.93s total time-in-CC — 2 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
-  [+  0.00s] Blind                    (Disorient    )   5.01s  by Assassination Rogue
-  [+  5.93s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
-
-=== #36 — 8.83s total time-in-CC — 1 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
+=== #41 — 8.83s total time-in-CC — 1 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
   [+  2.83s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #37 — 8.8s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #42 — 8.8s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Binding Shot             (Stun         )   3.00s  by Marksmanship Hunter
   [+  2.80s] Freezing Trap            (Incapacitate )   6.00s  by Marksmanship Hunter
 
-=== #38 — 8.72s total time-in-CC — 3 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
+=== #43 — 8.72s total time-in-CC — 3 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
   [+  0.00s] Strangulate              (Silence      )   4.00s  by Unholy Death Knight
   [+  2.62s] Kidney Shot              (Stun         )   5.04s  by Subtlety Rogue
   [+  7.81s] Psychic Scream           (Disorient    )   0.90s  by Discipline Priest
 
-=== #39 — 8.68s total time-in-CC — 3 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #44 — 8.68s total time-in-CC — 3 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   3.27s  by Shadow Priest
   [+  3.68s] Hammer of Justice        (Stun         )   5.01s  by Protection Paladin
   [+  4.10s] Hammer of Justice        (Stun         ) (DR'd)   2.50s  by Holy Paladin
 
-=== #40 — 8.65s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
+=== #45 — 8.65s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.00s  by Fire Mage
   [+  0.04s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
   [+  2.65s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
 
-=== #41 — 8.56s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #46 — 8.56s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.02s  by Affliction Warlock
   [+  2.85s] Fear                     (Disorient    )   5.71s  by Affliction Warlock
 
-=== #42 — 8.54s total time-in-CC — 1 caster(s) — match 2262abd62fc2f87647e42722915f3c22 — target: Messengers-Tichondrius-US ===
+=== #47 — 8.54s total time-in-CC — 1 caster(s) — match 2262abd62fc2f87647e42722915f3c22 — target: Messengers-Tichondrius-US ===
   [+  0.00s] Intimidation             (Stun         )   3.00s  by Marksmanship Hunter
   [+  2.55s] Freezing Trap            (Incapacitate )   5.99s  by Marksmanship Hunter
 
-=== #43 — 8.46s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+=== #48 — 8.46s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.01s  by Frost Mage
   [+  2.46s] Polymorph                (Incapacitate )   6.01s  by Frost Mage
 
-=== #44 — 8.39s total time-in-CC — 2 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
+=== #49 — 8.39s total time-in-CC — 2 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.01s  by Fire Mage
   [+  2.25s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
   [+  7.46s] Psychic Scream           (Disorient    ) (DR'd)   0.94s  by Holy Priest
 
-=== #45 — 8.39s total time-in-CC — 2 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
+=== #50 — 8.39s total time-in-CC — 2 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.02s  by Fire Mage
   [+  2.25s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
   [+  7.45s] Psychic Scream           (Disorient    ) (DR'd)   0.94s  by Holy Priest
 
-=== #46 — 8.38s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #51 — 8.38s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Intimidation             (Stun         )   3.00s  by Marksmanship Hunter
   [+  2.38s] Freezing Trap            (Incapacitate )   6.00s  by Marksmanship Hunter
 
-=== #47 — 8.33s total time-in-CC — 2 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
+=== #52 — 8.33s total time-in-CC — 2 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
   [+  0.00s] Hex                      (Incapacitate )   6.00s  by Restoration Shaman
   [+  4.71s] Intimidating Shout       (Disorient    )   2.65s  by Fury Warrior
   [+  5.83s] Lightning Lasso          (Stun         )   2.50s  by Restoration Shaman
 
-=== #48 — 8.29s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
+=== #53 — 8.29s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
   [+  5.67s] Blind                    (Disorient    )   2.62s  by Subtlety Rogue
 
-=== #49 — 8.27s total time-in-CC — 2 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #54 — 8.27s total time-in-CC — 2 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
   [+  0.30s] Incapacitating Roar      (Incapacitate ) (DR'd)   1.50s  by Restoration Druid
   [+  3.28s] Cyclone                  (Disorient    )   4.72s  by Restoration Druid
   [+  8.00s] Cyclone                  (Disorient    ) (DR'd)   0.28s  by Restoration Druid
 
-=== #50 — 8.23s total time-in-CC — 2 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
+=== #55 — 8.23s total time-in-CC — 2 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
   [+  0.00s] Blinding Sleet           (Disorient    )   4.01s  by Unholy Death Knight
   [+  3.81s] Intimidation             (Stun         )   3.02s  by Marksmanship Hunter
   [+  4.22s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
 
-=== #51 — 8.2s total time-in-CC — 2 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
+=== #56 — 8.2s total time-in-CC — 2 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   5.81s  by Devastation Evoker
   [+  4.70s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
   [+  5.81s] Terror of the Skies      (Stun         ) (DR'd)   1.51s  by Devastation Evoker
   [+  7.20s] Psychic Scream           (Disorient    ) (DR'd)   1.00s  by Holy Priest
 
-=== #52 — 8.15s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #57 — 8.15s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Silence                  (Silence      )   4.01s  by Shadow Priest
   [+  3.14s] Hammer of Justice        (Stun         )   5.01s  by Holy Paladin
 
-=== #53 — 8.14s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
+=== #58 — 8.14s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
   [+  2.13s] Freezing Trap            (Incapacitate )   6.01s  by Marksmanship Hunter
 
-=== #54 — 8.14s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
+=== #59 — 8.14s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Intimidation             (Stun         )   3.00s  by Marksmanship Hunter
   [+  2.13s] Freezing Trap            (Incapacitate )   6.01s  by Marksmanship Hunter
 
-=== #55 — 8.13s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
+=== #60 — 8.13s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
   [+  2.13s] Freezing Trap            (Incapacitate )   6.00s  by Marksmanship Hunter
 
-=== #56 — 8.09s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
+=== #61 — 8.09s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
   [+  0.24s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
   [+  5.08s] Psychic Scream           (Disorient    ) (DR'd)   3.01s  by Holy Priest
 
-=== #57 — 8.06s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #62 — 8.06s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
   [+  2.04s] Psychic Scream           (Disorient    )   6.02s  by Holy Priest
 
-=== #58 — 8.03s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #63 — 8.03s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.03s  by Holy Priest
   [+  2.03s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #59 — 8s total time-in-CC — 2 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
+=== #64 — 8s total time-in-CC — 2 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.02s  by Windwalker Monk
   [+  2.99s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
 
-=== #60 — 7.91s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #65 — 7.91s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Binding Shot             (Stun         )   3.00s  by Marksmanship Hunter
   [+  1.91s] Freezing Trap            (Incapacitate )   6.00s  by Marksmanship Hunter
 
-=== #61 — 7.77s total time-in-CC — 2 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Messengers-Tichondrius-US ===
-  [+  0.00s] Garrote - Silence        (Silence      )   2.99s  by Assassination Rogue
-  [+  2.95s] Hammer of Justice        (Stun         )   4.82s  by Holy Paladin
-
-=== #62 — 7.73s total time-in-CC — 3 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #66 — 7.73s total time-in-CC — 3 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Blinding Sleet           (Disorient    )   3.99s  by Unholy Death Knight
   [+  0.85s] Sigil of Misery          (Disorient    ) (DR'd)   1.51s  by Havoc Demon Hunter
   [+  3.82s] Terror of the Skies      (Stun         )   3.91s  by Preservation Evoker
 
-=== #63 — 7.7s total time-in-CC — 2 caster(s) — match 2262abd62fc2f87647e42722915f3c22 — target: Messengers-Tichondrius-US ===
+=== #67 — 7.7s total time-in-CC — 2 caster(s) — match 2262abd62fc2f87647e42722915f3c22 — target: Messengers-Tichondrius-US ===
   [+  0.00s] Rake                     (Stun         )   4.00s  by Restoration Druid
   [+  4.71s] Mortal Coil              (Incapacitate )   3.00s  by Affliction Warlock
 
-=== #64 — 7.63s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #68 — 7.63s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
   [+  2.76s] Mind Control             (Disorient    )   4.86s  by Holy Priest
 
-=== #65 — 7.63s total time-in-CC — 2 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
+=== #69 — 7.63s total time-in-CC — 2 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   2.08s  by Beast Mastery Hunter
   [+  3.63s] Blinding Light           (Disorient    )   4.00s  by Retribution Paladin
 
-=== #66 — 7.62s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #70 — 7.62s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
   [+  2.76s] Mind Control             (Disorient    )   4.86s  by Holy Priest
 
-=== #67 — 7.51s total time-in-CC — 2 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #71 — 7.51s total time-in-CC — 2 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Cyclone                  (Disorient    )   4.02s  by Restoration Druid
   [+  4.02s] Cyclone                  (Disorient    ) (DR'd)   1.00s  by Restoration Druid
   [+  5.99s] Paralysis                (Incapacitate )   1.51s  by Windwalker Monk
 
-=== #68 — 7.47s total time-in-CC — 1 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
+=== #72 — 7.47s total time-in-CC — 1 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
   [+  0.00s] Maim                     (Stun         )   3.00s  by Restoration Druid
   [+  2.47s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
 
-=== #69 — 7.45s total time-in-CC — 2 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #73 — 7.45s total time-in-CC — 2 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Hex                      (Incapacitate )   6.02s  by Restoration Shaman
   [+  5.94s] Mortal Coil              (Incapacitate ) (DR'd)   1.51s  by Demonology Warlock
 
-=== #70 — 7.43s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
+=== #74 — 7.43s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.00s  by Arcane Mage
   [+  2.57s] Polymorph                (Incapacitate )   4.86s  by Arcane Mage
 
-=== #71 — 7.43s total time-in-CC — 2 caster(s) — match cf409d4f03d62c5cea04ca989b516d5e — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #75 — 7.43s total time-in-CC — 2 caster(s) — match cf409d4f03d62c5cea04ca989b516d5e — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Strangulate              (Silence      )   3.99s  by Frost Death Knight
   [+  3.43s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
 
-=== #72 — 7.4s total time-in-CC — 2 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
+=== #76 — 7.4s total time-in-CC — 2 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
   [+  0.00s] Blinding Sleet           (Disorient    )   0.64s  by Unholy Death Knight
   [+  0.68s] Leg Sweep                (Stun         )   1.56s  by Windwalker Monk
   [+  3.40s] Strangulate              (Silence      )   4.00s  by Unholy Death Knight
 
-=== #73 — 7.33s total time-in-CC — 2 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
+=== #77 — 7.33s total time-in-CC — 2 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Cyclone                  (Disorient    )   1.29s  by Restoration Druid
   [+  1.97s] Freezing Trap            (Incapacitate )   5.36s  by Beast Mastery Hunter
 
-=== #74 — 7.23s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #78 — 7.23s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   3.00s  by Devastation Evoker
   [+  2.54s] Sleep Walk               (Disorient    )   4.69s  by Devastation Evoker
 
-=== #75 — 7.21s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
+=== #79 — 7.21s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   7.21s  by Fury Warrior
 
-=== #76 — 7.2s total time-in-CC — 2 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
+=== #80 — 7.2s total time-in-CC — 2 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Blinding Sleet           (Disorient    )   3.93s  by Unholy Death Knight
   [+  2.90s] Leg Sweep                (Stun         )   1.09s  by Windwalker Monk
   [+  3.19s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
 
-=== #77 — 7.13s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
+=== #81 — 7.13s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.05s  by Subtlety Rogue
   [+  5.13s] Cheap Shot               (Stun         ) (DR'd)   2.00s  by Subtlety Rogue
 
-=== #78 — 7.13s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
+=== #82 — 7.13s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
   [+  5.12s] Cheap Shot               (Stun         ) (DR'd)   2.01s  by Subtlety Rogue
 
-=== #79 — 7.07s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #83 — 7.07s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Binding Shot             (Stun         )   3.00s  by Marksmanship Hunter
   [+  1.07s] Freezing Trap            (Incapacitate )   6.00s  by Marksmanship Hunter
 
-=== #80 — 7.03s total time-in-CC — 2 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
+=== #84 — 7.03s total time-in-CC — 2 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
   [+  0.00s] Blind                    (Disorient    )   1.12s  by Subtlety Rogue
   [+  3.03s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
   [+  3.98s] Fear                     (Disorient    ) (DR'd)   3.00s  by Destruction Warlock
 
-=== #81 — 7.03s total time-in-CC — 1 caster(s) — match 2a49e130889b4a0c403a66dc0bdde173 — target: Voices-Sargeras-US ===
+=== #85 — 7.03s total time-in-CC — 1 caster(s) — match 2a49e130889b4a0c403a66dc0bdde173 — target: Voices-Sargeras-US ===
   [+  0.00s] Blinding Sleet           (Disorient    )   2.68s  by Frost Death Knight
   [+  2.66s] Absolute Zero            (Stun         )   3.01s  by Frost Death Knight
   [+  6.65s] Strangulate              (Silence      )   0.38s  by Frost Death Knight
 
-=== #82 — 6.95s total time-in-CC — 2 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
+=== #86 — 6.95s total time-in-CC — 2 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.99s  by Retribution Paladin
   [+  5.46s] Storm Bolt               (Stun         ) (DR'd)   1.49s  by Fury Warrior
 
-=== #83 — 6.93s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
+=== #87 — 6.93s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
   [+  0.00s] Gouge                    (Incapacitate )   1.94s  by Subtlety Rogue
   [+  1.94s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
 
-=== #84 — 6.89s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
+=== #88 — 6.89s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
   [+  0.00s] Gouge                    (Incapacitate )   1.54s  by Subtlety Rogue
   [+  1.88s] Blind                    (Disorient    )   2.51s  by Subtlety Rogue
   [+  4.82s] Cheap Shot               (Stun         )   2.06s  by Subtlety Rogue
 
-=== #85 — 6.78s total time-in-CC — 2 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
+=== #89 — 6.78s total time-in-CC — 2 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
   [+  0.00s] Leg Sweep                (Stun         )   1.07s  by Windwalker Monk
   [+  2.80s] Strangulate              (Silence      )   3.99s  by Unholy Death Knight
 
-=== #86 — 6.52s total time-in-CC — 2 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #90 — 6.52s total time-in-CC — 2 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   3.01s  by Preservation Evoker
   [+  2.51s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
 
-=== #87 — 6.52s total time-in-CC — 2 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
+=== #91 — 6.52s total time-in-CC — 2 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
   [+  0.00s] Strangulate              (Silence      )   4.02s  by Unholy Death Knight
   [+  0.73s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
   [+  2.52s] Leg Sweep                (Stun         )   4.00s  by Windwalker Monk
 
-=== #88 — 6.49s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #92 — 6.49s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Strangulate              (Silence      )   3.99s  by Unholy Death Knight
   [+  0.50s] Sleep Walk               (Disorient    )   0.61s  by Preservation Evoker
   [+  4.50s] Blinding Sleet           (Disorient    ) (DR'd)   1.98s  by Unholy Death Knight
 
-=== #89 — 6.39s total time-in-CC — 2 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
+=== #93 — 6.39s total time-in-CC — 2 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
   [+  0.00s] Mighty Bash              (Stun         )   3.99s  by Restoration Druid
   [+  0.40s] Hex                      (Incapacitate )   5.99s  by Elemental Shaman
 
-=== #90 — 6.34s total time-in-CC — 2 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #94 — 6.34s total time-in-CC — 2 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   5.99s  by Arms Warrior
   [+  5.68s] Hex                      (Incapacitate )   0.66s  by Restoration Shaman
 
-=== #91 — 6.3s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #95 — 6.3s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   3.00s  by Shadow Priest
   [+  1.30s] Hammer of Justice        (Stun         )   4.99s  by Holy Paladin
 
-=== #92 — 6.14s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
+=== #96 — 6.14s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
   [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
   [+  2.21s] Freezing Trap            (Incapacitate )   3.93s  by Marksmanship Hunter
 
-=== #93 — 6.13s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
+=== #97 — 6.13s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
   [+  2.42s] Freezing Trap            (Incapacitate )   3.71s  by Marksmanship Hunter
 
-=== #94 — 6.13s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
+=== #98 — 6.13s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Intimidation             (Stun         )   3.02s  by Marksmanship Hunter
   [+  2.42s] Freezing Trap            (Incapacitate )   3.71s  by Marksmanship Hunter
 
-=== #95 — 6.12s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
+=== #99 — 6.12s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Intimidation             (Stun         )   3.00s  by Marksmanship Hunter
   [+  2.41s] Freezing Trap            (Incapacitate )   3.71s  by Marksmanship Hunter
 
-=== #96 — 6.12s total time-in-CC — 2 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
+=== #100 — 6.12s total time-in-CC — 2 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
   [+  4.91s] Cyclone                  (Disorient    )   1.21s  by Restoration Druid
 
-=== #97 — 6.12s total time-in-CC — 2 caster(s) — match a312165499da958594f6604dfb6678f0 — target: Hahahahaha-Blackrock-US ===
+=== #101 — 6.12s total time-in-CC — 2 caster(s) — match a312165499da958594f6604dfb6678f0 — target: Hahahahaha-Blackrock-US ===
   [+  0.00s] Blinding Sleet           (Disorient    )   1.56s  by Frost Death Knight
   [+  1.52s] Absolute Zero            (Stun         )   1.51s  by Frost Death Knight
   [+  4.10s] Leg Sweep                (Stun         ) (DR'd)   0.51s  by Windwalker Monk
   [+  5.03s] Strangulate              (Silence      )   1.09s  by Frost Death Knight
 
-=== #98 — 6.09s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
+=== #102 — 6.09s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Poppyp-Stormrage-US ===
   [+  0.00s] Sap                      (Incapacitate )   6.09s  by Subtlety Rogue
 
-=== #99 — 6.03s total time-in-CC — 2 caster(s) — match 307f83fe0a461120cb71f5bcfd013c48 — target: Kizmy-Archimonde-EU ===
+=== #103 — 6.03s total time-in-CC — 2 caster(s) — match 307f83fe0a461120cb71f5bcfd013c48 — target: Kizmy-Archimonde-EU ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
   [+  4.03s] Leg Sweep                (Stun         ) (DR'd)   2.00s  by Windwalker Monk
 
-=== #100 — 6.03s total time-in-CC — 2 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #104 — 6.03s total time-in-CC — 2 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   2.99s  by Havoc Demon Hunter
   [+  3.91s] Sleep Walk               (Disorient    )   2.12s  by Preservation Evoker
 
-=== #101 — 6.02s total time-in-CC — 1 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
+=== #105 — 6.02s total time-in-CC — 1 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
   [+  0.00s] Freezing Trap            (Incapacitate )   6.02s  by Marksmanship Hunter
 
-=== #102 — 6.02s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #106 — 6.02s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   6.02s  by Demonology Warlock
 
-=== #103 — 6.02s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #107 — 6.02s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   6.02s  by Preservation Evoker
 
-=== #104 — 6.01s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
+=== #108 — 6.01s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   6.01s  by Destruction Warlock
 
-=== #105 — 6.01s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #109 — 6.01s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Hex                      (Incapacitate )   6.01s  by Elemental Shaman
 
-=== #106 — 6.01s total time-in-CC — 1 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
+=== #110 — 6.01s total time-in-CC — 1 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
   [+  0.00s] Freezing Trap            (Incapacitate )   6.01s  by Marksmanship Hunter
 
-=== #107 — 6.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #111 — 6.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Fear                     (Disorient    )   6.01s  by Affliction Warlock
 
-=== #108 — 6.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #112 — 6.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Fear                     (Disorient    )   6.01s  by Affliction Warlock
 
-=== #109 — 6.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #113 — 6.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Fear                     (Disorient    )   6.01s  by Affliction Warlock
 
-=== #110 — 6.01s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
+=== #114 — 6.01s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
 
-=== #111 — 6.01s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
+=== #115 — 6.01s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
 
-=== #112 — 6.01s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #116 — 6.01s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Frost Mage
 
-=== #113 — 6.01s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #117 — 6.01s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
 
-=== #114 — 6.01s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
+=== #118 — 6.01s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   6.01s  by Beast Mastery Hunter
 
-=== #115 — 6.01s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #119 — 6.01s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   6.01s  by Preservation Evoker
 
-=== #116 — 6s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+=== #120 — 6s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
   [+  0.00s] Sap                      (Incapacitate )   6.00s  by Assassination Rogue
 
-=== #117 — 6s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
+=== #121 — 6s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Arcane Mage
 
-=== #118 — 6s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
+=== #122 — 6s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
   [+  0.00s] Hex                      (Incapacitate )   6.00s  by Restoration Shaman
 
-=== #119 — 6s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
+=== #123 — 6s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
   [+  0.00s] Sap                      (Incapacitate )   6.00s  by Outlaw Rogue
 
-=== #120 — 6s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #124 — 6s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Hex                      (Incapacitate )   6.00s  by Elemental Shaman
 
-=== #121 — 6s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Jesisapollo-Blackrock-US ===
+=== #125 — 6s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   6.00s  by Beast Mastery Hunter
 
-=== #122 — 6s total time-in-CC — 1 caster(s) — match d7eadde4fcdfb3622f7516ee4d2c14b6 — target: Wick-诺莫瑞根-CN ===
+=== #126 — 6s total time-in-CC — 1 caster(s) — match d7eadde4fcdfb3622f7516ee4d2c14b6 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Fear                     (Disorient    )   6.00s  by Demonology Warlock
 
-=== #123 — 6s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
+=== #127 — 6s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   6.00s  by Beast Mastery Hunter
 
-=== #124 — 5.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #128 — 5.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   5.99s  by Devastation Evoker
 
-=== #125 — 5.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #129 — 5.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   5.99s  by Devastation Evoker
 
-=== #126 — 5.99s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #130 — 5.99s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   5.99s  by Holy Priest
 
-=== #127 — 5.99s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
+=== #131 — 5.99s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.99s  by Outlaw Rogue
 
-=== #128 — 5.99s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Messengers-Tichondrius-US ===
+=== #132 — 5.99s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Messengers-Tichondrius-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.99s  by Assassination Rogue
 
-=== #129 — 5.99s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #133 — 5.99s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   5.99s  by Preservation Evoker
 
-=== #130 — 5.96s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
+=== #134 — 5.96s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
   [+  0.00s] Polymorph                (Incapacitate )   5.96s  by Arcane Mage
 
-=== #131 — 5.96s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
+=== #135 — 5.96s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
   [+  0.00s] Polymorph                (Incapacitate )   5.96s  by Arcane Mage
 
-=== #132 — 5.86s total time-in-CC — 2 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #136 — 5.86s total time-in-CC — 2 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   1.00s  by Marksmanship Hunter
   [+  0.99s] Absolute Zero            (Stun         )   3.01s  by Frost Death Knight
   [+  4.36s] Binding Shot             (Stun         ) (DR'd)   1.50s  by Marksmanship Hunter
 
-=== #133 — 5.75s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #137 — 5.75s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Sigil of Misery          (Disorient    )   3.00s  by Havoc Demon Hunter
   [+  2.75s] Sleep Walk               (Disorient    ) (DR'd)   3.00s  by Preservation Evoker
 
-=== #134 — 5.71s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #138 — 5.71s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
   [+  4.93s] Blinding Sleet           (Disorient    )   0.78s  by Unholy Death Knight
 
-=== #135 — 5.7s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #139 — 5.7s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Howl of Terror           (Disorient    )   5.70s  by Affliction Warlock
 
-=== #136 — 5.37s total time-in-CC — 2 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
-  [+  0.00s] Garrote - Silence        (Silence      )   3.01s  by Assassination Rogue
-  [+  1.08s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
-  [+  1.33s] Kidney Shot              (Stun         ) (DR'd)   2.01s  by Assassination Rogue
-  [+  4.70s] Psychic Scream           (Disorient    )   0.67s  by Holy Priest
-
-=== #137 — 5.2s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #140 — 5.2s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Holy Paladin
   [+  4.18s] Blinding Light           (Disorient    )   1.02s  by Holy Paladin
   [+  4.36s] Silence                  (Silence      )   0.84s  by Shadow Priest
 
-=== #138 — 5.19s total time-in-CC — 2 caster(s) — match 09dbfcde5f90297059752d2a04e13805 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #141 — 5.19s total time-in-CC — 2 caster(s) — match 09dbfcde5f90297059752d2a04e13805 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Blind                    (Disorient    )   5.00s  by Subtlety Rogue
   [+  4.08s] Psychic Scream           (Disorient    ) (DR'd)   1.10s  by Holy Priest
 
-=== #139 — 5.17s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #142 — 5.17s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.99s  by Outlaw Rogue
   [+  4.23s] Blind                    (Disorient    )   0.94s  by Outlaw Rogue
 
-=== #140 — 5.13s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #143 — 5.13s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Mind Control             (Disorient    )   5.13s  by Shadow Priest
 
-=== #141 — 5.08s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #144 — 5.08s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   5.08s  by Frost Mage
 
-=== #142 — 5.07s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #145 — 5.07s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Strangulate              (Silence      )   4.01s  by Frost Death Knight
   [+  3.74s] Blinding Sleet           (Disorient    )   1.33s  by Frost Death Knight
 
-=== #143 — 5.06s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #146 — 5.06s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Silence                  (Silence      )   4.01s  by Shadow Priest
   [+  0.07s] Hammer of Justice        (Stun         )   5.00s  by Protection Paladin
 
-=== #144 — 5.06s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
+=== #147 — 5.06s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.06s  by Restoration Druid
 
-=== #145 — 5.04s total time-in-CC — 2 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
+=== #148 — 5.04s total time-in-CC — 2 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
   [+  4.08s] Polymorph                (Incapacitate )   0.96s  by Frost Mage
 
-=== #146 — 5.04s total time-in-CC — 2 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
+=== #149 — 5.04s total time-in-CC — 2 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.99s  by Subtlety Rogue
   [+  4.07s] Polymorph                (Incapacitate )   0.97s  by Frost Mage
 
-=== #147 — 5.03s total time-in-CC — 2 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
+=== #150 — 5.03s total time-in-CC — 2 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
   [+  4.08s] Polymorph                (Incapacitate )   0.95s  by Frost Mage
 
-=== #148 — 5.02s total time-in-CC — 1 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
+=== #151 — 5.02s total time-in-CC — 1 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
   [+  0.00s] Blind                    (Disorient    )   5.02s  by Subtlety Rogue
 
-=== #149 — 5.02s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #152 — 5.02s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Cyclone                  (Disorient    )   0.64s  by Restoration Druid
   [+  0.64s] Cyclone                  (Disorient    ) (DR'd)   4.38s  by Restoration Druid
 
-=== #150 — 5.02s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Maryprichan-Blackrock-US ===
+=== #153 — 5.02s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.02s  by Holy Paladin
 
-=== #151 — 5.02s total time-in-CC — 1 caster(s) — match 9c2105892809c7f3ed314184164c7c41 — target: Challengerz-Suramar-US ===
+=== #154 — 5.02s total time-in-CC — 1 caster(s) — match 9c2105892809c7f3ed314184164c7c41 — target: Challengerz-Suramar-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.02s  by Subtlety Rogue
 
-=== #152 — 5.02s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
+=== #155 — 5.02s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.02s  by Retribution Paladin
 
-=== #153 — 5.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #156 — 5.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.01s  by Holy Paladin
 
-=== #154 — 5.01s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #157 — 5.01s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
 
-=== #155 — 5.01s total time-in-CC — 1 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
+=== #158 — 5.01s total time-in-CC — 1 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
 
-=== #156 — 5.01s total time-in-CC — 1 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
+=== #159 — 5.01s total time-in-CC — 1 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.01s  by Retribution Paladin
 
-=== #157 — 5.01s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Maryprichan-Blackrock-US ===
+=== #160 — 5.01s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.01s  by Holy Paladin
 
-=== #158 — 5.01s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
+=== #161 — 5.01s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
   [+  0.00s] Kidney Shot              (Stun         )   5.01s  by Outlaw Rogue
 
-=== #159 — 5.01s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #162 — 5.01s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Guardian Druid
 
-=== #160 — 5.01s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
+=== #163 — 5.01s total time-in-CC — 2 caster(s) — match cf0ccb7bad2602a38f40ab775a565a6d — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
   [+  2.55s] Polymorph                (Incapacitate )   1.72s  by Fire Mage
 
-=== #161 — 5.01s total time-in-CC — 1 caster(s) — match cf409d4f03d62c5cea04ca989b516d5e — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #164 — 5.01s total time-in-CC — 1 caster(s) — match cf409d4f03d62c5cea04ca989b516d5e — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
 
-=== #162 — 5s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #165 — 5s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Holy Paladin
 
-=== #163 — 5s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Maryprichan-Blackrock-US ===
+=== #166 — 5s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Holy Paladin
 
-=== #164 — 5s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #167 — 5s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.00s  by Outlaw Rogue
 
-=== #165 — 5s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #168 — 5s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.00s  by Outlaw Rogue
 
-=== #166 — 5s total time-in-CC — 1 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
+=== #169 — 5s total time-in-CC — 1 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
 
-=== #167 — 5s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
+=== #170 — 5s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
 
-=== #168 — 5s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
+=== #171 — 5s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
 
-=== #169 — 5s total time-in-CC — 1 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
+=== #172 — 5s total time-in-CC — 1 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Feral Druid
 
-=== #170 — 5s total time-in-CC — 1 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Messengers-Tichondrius-US ===
-  [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
-
-=== #171 — 5s total time-in-CC — 1 caster(s) — match c229f9df64332ea8f8148d9e19cbb5ba — target: Hp-Arygos-US ===
+=== #173 — 5s total time-in-CC — 1 caster(s) — match c229f9df64332ea8f8148d9e19cbb5ba — target: Hp-Arygos-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
 
-=== #172 — 5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #174 — 5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
 
-=== #173 — 5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #175 — 5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
 
-=== #174 — 4.99s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #176 — 4.99s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.99s  by Outlaw Rogue
 
-=== #175 — 4.99s total time-in-CC — 2 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
+=== #177 — 4.99s total time-in-CC — 2 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
   [+  0.00s] Kidney Shot              (Stun         )   4.99s  by Outlaw Rogue
   [+  0.59s] Sigil of Misery          (Disorient    )   1.51s  by Devourer Demon Hunter
 
-=== #176 — 4.95s total time-in-CC — 2 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #178 — 4.95s total time-in-CC — 2 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Shockwave                (Stun         )   2.01s  by Arms Warrior
   [+  0.70s] Fear                     (Disorient    )   4.25s  by Destruction Warlock
 
-=== #177 — 4.83s total time-in-CC — 1 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
+=== #179 — 4.83s total time-in-CC — 1 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
   [+  0.00s] Rake                     (Stun         )   3.98s  by Restoration Druid
   [+  3.41s] Cyclone                  (Disorient    )   1.42s  by Restoration Druid
 
-=== #178 — 4.83s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Messengers-Tichondrius-US ===
-  [+  0.00s] Garrote - Silence        (Silence      )   3.01s  by Assassination Rogue
-  [+  4.24s] Cheap Shot               (Stun         )   0.59s  by Assassination Rogue
-
-=== #179 — 4.72s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #180 — 4.72s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Silence                  (Silence      )   4.01s  by Shadow Priest
   [+  3.56s] Blinding Light           (Disorient    )   1.16s  by Protection Paladin
 
-=== #180 — 4.68s total time-in-CC — 2 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #181 — 4.68s total time-in-CC — 2 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Shockwave                (Stun         )   2.00s  by Arms Warrior
   [+  3.17s] Terror of the Skies      (Stun         ) (DR'd)   1.51s  by Preservation Evoker
 
-=== #181 — 4.58s total time-in-CC — 2 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #182 — 4.58s total time-in-CC — 2 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   1.46s  by Affliction Warlock
   [+  1.58s] Terror of the Skies      (Stun         )   3.00s  by Devastation Evoker
 
-=== #182 — 4.35s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
+=== #183 — 4.35s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   4.35s  by Holy Priest
 
-=== #183 — 4.35s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
+=== #184 — 4.35s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   4.35s  by Holy Priest
 
-=== #184 — 4.24s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
+=== #185 — 4.24s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
   [+  0.00s] Polymorph                (Incapacitate )   4.24s  by Arcane Mage
 
-=== #185 — 4.22s total time-in-CC — 2 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
+=== #186 — 4.22s total time-in-CC — 2 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.02s  by Subtlety Rogue
   [+  1.92s] Freezing Trap            (Incapacitate )   2.30s  by Marksmanship Hunter
 
-=== #186 — 4.21s total time-in-CC — 2 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
+=== #187 — 4.21s total time-in-CC — 2 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.02s  by Subtlety Rogue
   [+  1.92s] Freezing Trap            (Incapacitate )   2.29s  by Marksmanship Hunter
 
-=== #187 — 4.21s total time-in-CC — 2 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
+=== #188 — 4.21s total time-in-CC — 2 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
   [+  1.92s] Freezing Trap            (Incapacitate )   2.29s  by Marksmanship Hunter
 
-=== #188 — 4.2s total time-in-CC — 2 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
+=== #189 — 4.2s total time-in-CC — 2 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
   [+  0.00s] Intimidation             (Stun         )   3.00s  by Marksmanship Hunter
   [+  2.73s] Sleep Walk               (Disorient    )   1.47s  by Devastation Evoker
 
-=== #189 — 4.07s total time-in-CC — 2 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #190 — 4.07s total time-in-CC — 2 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.55s  by Preservation Evoker
   [+  0.06s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
   [+  1.55s] Sleep Walk               (Disorient    ) (DR'd)   1.45s  by Preservation Evoker
 
-=== #190 — 4.02s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #191 — 4.02s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Strangulate              (Silence      )   4.02s  by Unholy Death Knight
-
-=== #191 — 4.01s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
-  [+  0.00s] Leg Sweep                (Stun         )   4.01s  by Windwalker Monk
 
 === #192 — 4.01s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Leg Sweep                (Stun         )   4.01s  by Windwalker Monk
 
-=== #193 — 4.01s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #193 — 4.01s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Leg Sweep                (Stun         )   4.01s  by Windwalker Monk
 
-=== #194 — 4.01s total time-in-CC — 2 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #194 — 4.01s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+  [+  0.00s] Leg Sweep                (Stun         )   4.01s  by Windwalker Monk
+
+=== #195 — 4.01s total time-in-CC — 2 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Imprison                 (Incapacitate )   0.79s  by Devourer Demon Hunter
   [+  2.49s] Paralysis                (Incapacitate ) (DR'd)   1.52s  by Windwalker Monk
 
-=== #195 — 4.01s total time-in-CC — 1 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
+=== #196 — 4.01s total time-in-CC — 1 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
 
-=== #196 — 4.01s total time-in-CC — 1 caster(s) — match 5e3a1681e2db26a27333251b73e65d93 — target: Darkxdpvp-BleedingHollow-US ===
+=== #197 — 4.01s total time-in-CC — 1 caster(s) — match 5e3a1681e2db26a27333251b73e65d93 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Mighty Bash              (Stun         )   4.01s  by Balance Druid
 
-=== #197 — 4.01s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #198 — 4.01s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Rake                     (Stun         )   4.01s  by Guardian Druid
 
-=== #198 — 4.01s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #199 — 4.01s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Strangulate              (Silence      )   4.01s  by Unholy Death Knight
 
-=== #199 — 4.01s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
+=== #200 — 4.01s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Leg Sweep                (Stun         )   4.01s  by Windwalker Monk
 
-=== #200 — 4.01s total time-in-CC — 2 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #201 — 4.01s total time-in-CC — 2 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Maim                     (Stun         )   4.01s  by Restoration Druid
   [+  1.03s] Leg Sweep                (Stun         ) (DR'd)   2.01s  by Windwalker Monk
 
-=== #201 — 4s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
+=== #202 — 4s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
 
-=== #202 — 4s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
+=== #203 — 4s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
 
-=== #203 — 4s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
+=== #204 — 4s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
 
-=== #204 — 4s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+=== #205 — 4s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Assassination Rogue
 
-=== #205 — 4s total time-in-CC — 1 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
+=== #206 — 4s total time-in-CC — 1 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
   [+  0.00s] Mighty Bash              (Stun         )   4.00s  by Restoration Druid
 
-=== #206 — 4s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
+=== #207 — 4s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Silence                  (Silence      )   4.00s  by Shadow Priest
 
-=== #207 — 4s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #208 — 4s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Rake                     (Stun         )   4.00s  by Guardian Druid
 
-=== #208 — 4s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
+=== #209 — 4s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
 
-=== #209 — 4s total time-in-CC — 2 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #210 — 4s total time-in-CC — 2 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Strangulate              (Silence      )   4.00s  by Unholy Death Knight
   [+  3.21s] Sleep Walk               (Disorient    )   0.43s  by Preservation Evoker
 
-=== #210 — 4s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
+=== #211 — 4s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Leg Sweep                (Stun         )   4.00s  by Windwalker Monk
 
-=== #211 — 4s total time-in-CC — 2 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #212 — 4s total time-in-CC — 2 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Blinding Sleet           (Disorient    )   4.00s  by Frost Death Knight
   [+  1.63s] Freezing Trap            (Incapacitate )   1.56s  by Marksmanship Hunter
 
-=== #212 — 4s total time-in-CC — 1 caster(s) — match d7eadde4fcdfb3622f7516ee4d2c14b6 — target: Wick-诺莫瑞根-CN ===
+=== #213 — 4s total time-in-CC — 1 caster(s) — match d7eadde4fcdfb3622f7516ee4d2c14b6 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Strangulate              (Silence      )   4.00s  by Unholy Death Knight
 
-=== #213 — 4s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #214 — 4s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Strangulate              (Silence      )   4.00s  by Unholy Death Knight
 
-=== #214 — 3.99s total time-in-CC — 1 caster(s) — match 6d3bc7518b4dec827dd0909eb2e65475 — target: Angele-MoonGuard-US ===
+=== #215 — 3.99s total time-in-CC — 1 caster(s) — match 6d3bc7518b4dec827dd0909eb2e65475 — target: Angele-MoonGuard-US ===
   [+  0.00s] Leg Sweep                (Stun         )   3.99s  by Windwalker Monk
 
-=== #215 — 3.94s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #216 — 3.94s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   3.94s  by Holy Priest
 
-=== #216 — 3.91s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #217 — 3.91s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   3.91s  by Havoc Demon Hunter
 
-=== #217 — 3.87s total time-in-CC — 1 caster(s) — match d7eadde4fcdfb3622f7516ee4d2c14b6 — target: Wick-诺莫瑞根-CN ===
+=== #218 — 3.87s total time-in-CC — 1 caster(s) — match d7eadde4fcdfb3622f7516ee4d2c14b6 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Fear                     (Disorient    )   3.87s  by Demonology Warlock
 
-=== #218 — 3.85s total time-in-CC — 2 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
+=== #219 — 3.85s total time-in-CC — 2 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
   [+  0.84s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Frost Mage
 
-=== #219 — 3.85s total time-in-CC — 2 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
+=== #220 — 3.85s total time-in-CC — 2 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
   [+  0.84s] Polymorph                (Incapacitate ) (DR'd)   3.02s  by Frost Mage
 
-=== #220 — 3.85s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #221 — 3.85s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   3.02s  by Havoc Demon Hunter
   [+  2.93s] Sleep Walk               (Disorient    )   0.92s  by Preservation Evoker
 
-=== #221 — 3.84s total time-in-CC — 2 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
+=== #222 — 3.84s total time-in-CC — 2 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
   [+  0.83s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Frost Mage
 
-=== #222 — 3.82s total time-in-CC — 1 caster(s) — match 09b230ed3bea51f98f94c651c68fe27d — target: Booger-Thrall-US ===
+=== #223 — 3.84s total time-in-CC — 1 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Messengers-Tichondrius-US ===
+  [+  0.00s] Garrote                  (Silence      )   3.84s  by Assassination Rogue
+  [+  2.25s] Cheap Shot               (Stun         )   1.60s  by Assassination Rogue
+
+=== #224 — 3.82s total time-in-CC — 1 caster(s) — match 09b230ed3bea51f98f94c651c68fe27d — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
   [+  3.03s] Psychic Scream           (Disorient    )   0.79s  by Holy Priest
 
-=== #223 — 3.82s total time-in-CC — 1 caster(s) — match 0e5a62d5f6c5bf8a7f0c202a1978f0f6 — target: Booger-Thrall-US ===
+=== #225 — 3.82s total time-in-CC — 1 caster(s) — match 0e5a62d5f6c5bf8a7f0c202a1978f0f6 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
   [+  3.04s] Psychic Scream           (Disorient    )   0.79s  by Holy Priest
 
-=== #224 — 3.82s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #226 — 3.82s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
   [+  2.16s] Freezing Trap            (Incapacitate )   1.66s  by Marksmanship Hunter
 
-=== #225 — 3.82s total time-in-CC — 2 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #227 — 3.82s total time-in-CC — 2 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   2.23s  by Arms Warrior
   [+  2.25s] Holy Word: Chastise      (Incapacitate )   1.57s  by Holy Priest
 
-=== #226 — 3.8s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #228 — 3.8s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
   [+  2.18s] Psychic Scream           (Disorient    )   1.61s  by Holy Priest
 
-=== #227 — 3.8s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #229 — 3.8s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
   [+  2.21s] Psychic Scream           (Disorient    )   1.58s  by Holy Priest
 
-=== #228 — 3.6s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
+=== #230 — 3.6s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   3.60s  by Affliction Warlock
 
-=== #229 — 3.6s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
+=== #231 — 3.6s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   3.60s  by Affliction Warlock
 
-=== #230 — 3.6s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
+=== #232 — 3.6s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   3.60s  by Affliction Warlock
 
-=== #231 — 3.58s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #233 — 3.58s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   3.58s  by Arms Warrior
 
-=== #232 — 3.55s total time-in-CC — 2 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #234 — 3.55s total time-in-CC — 2 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Freezing Trap            (Incapacitate )   1.09s  by Marksmanship Hunter
   [+  2.35s] Intimidating Shout       (Disorient    )   1.20s  by Arms Warrior
 
-=== #233 — 3.51s total time-in-CC — 2 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
+=== #235 — 3.51s total time-in-CC — 2 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.00s  by Holy Priest
   [+  0.09s] Polymorph                (Incapacitate ) (DR'd)   2.99s  by Fire Mage
   [+  2.90s] Psychic Scream           (Disorient    )   0.61s  by Holy Priest
 
-=== #234 — 3.51s total time-in-CC — 2 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
+=== #236 — 3.51s total time-in-CC — 2 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.02s  by Holy Priest
   [+  0.09s] Polymorph                (Incapacitate ) (DR'd)   3.03s  by Fire Mage
   [+  2.91s] Psychic Scream           (Disorient    )   0.60s  by Holy Priest
 
-=== #235 — 3.5s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #237 — 3.5s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Binding Shot             (Stun         )   3.00s  by Marksmanship Hunter
   [+  1.87s] Freezing Trap            (Incapacitate )   1.63s  by Marksmanship Hunter
 
-=== #236 — 3.29s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #238 — 3.29s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   3.03s  by Devastation Evoker
   [+  2.39s] Sleep Walk               (Disorient    )   0.89s  by Devastation Evoker
 
-=== #237 — 3.19s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #239 — 3.19s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
   [+  2.00s] Freezing Trap            (Incapacitate )   1.19s  by Marksmanship Hunter
 
-=== #238 — 3.15s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #240 — 3.15s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
   [+  2.30s] Psychic Scream           (Disorient    )   0.85s  by Holy Priest
 
-=== #239 — 3.14s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #241 — 3.14s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
   [+  2.30s] Psychic Scream           (Disorient    )   0.84s  by Holy Priest
 
-=== #240 — 3.12s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #242 — 3.12s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   3.01s  by Havoc Demon Hunter
   [+  2.60s] Sleep Walk               (Disorient    )   0.51s  by Preservation Evoker
 
-=== #241 — 3.07s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
+=== #243 — 3.07s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.08s  by Arms Warrior
   [+  2.07s] Shockwave                (Stun         )   1.00s  by Arms Warrior
 
-=== #242 — 3.06s total time-in-CC — 1 caster(s) — match 0e5a62d5f6c5bf8a7f0c202a1978f0f6 — target: Booger-Thrall-US ===
+=== #244 — 3.06s total time-in-CC — 1 caster(s) — match 0e5a62d5f6c5bf8a7f0c202a1978f0f6 — target: Booger-Thrall-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   0.77s  by Holy Priest
   [+  1.99s] Holy Word: Chastise      (Stun         )   1.07s  by Holy Priest
 
-=== #243 — 3.05s total time-in-CC — 1 caster(s) — match 09b230ed3bea51f98f94c651c68fe27d — target: Booger-Thrall-US ===
+=== #245 — 3.05s total time-in-CC — 1 caster(s) — match 09b230ed3bea51f98f94c651c68fe27d — target: Booger-Thrall-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   0.77s  by Holy Priest
   [+  1.97s] Holy Word: Chastise      (Stun         )   1.09s  by Holy Priest
 
-=== #244 — 3.04s total time-in-CC — 2 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #246 — 3.04s total time-in-CC — 2 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.83s  by Windwalker Monk
   [+  2.09s] Blinding Sleet           (Disorient    )   0.95s  by Frost Death Knight
 
-=== #245 — 3.03s total time-in-CC — 2 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+=== #247 — 3.03s total time-in-CC — 2 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   3.01s  by Frost Mage
   [+  0.06s] Psychic Scream           (Disorient    )   2.97s  by Discipline Priest
 
-=== #246 — 3.03s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #248 — 3.03s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.03s  by Windwalker Monk
 
-=== #247 — 3.02s total time-in-CC — 1 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
+=== #249 — 3.02s total time-in-CC — 1 caster(s) — match 046b411a6ad65ed104eae09aa313cbb6 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.02s  by Holy Priest
 
-=== #248 — 3.02s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
+=== #250 — 3.02s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   3.02s  by Affliction Warlock
 
-=== #249 — 3.02s total time-in-CC — 1 caster(s) — match 307f83fe0a461120cb71f5bcfd013c48 — target: Kizmy-Archimonde-EU ===
+=== #251 — 3.02s total time-in-CC — 1 caster(s) — match 307f83fe0a461120cb71f5bcfd013c48 — target: Kizmy-Archimonde-EU ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.02s  by Holy Priest
 
-=== #250 — 3.02s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #252 — 3.02s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Howl of Terror           (Disorient    )   3.02s  by Affliction Warlock
 
-=== #251 — 3.02s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
+=== #253 — 3.02s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   3.02s  by Arcane Mage
 
-=== #252 — 3.02s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
+=== #254 — 3.02s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
   [+  0.00s] Binding Shot             (Stun         )   3.02s  by Marksmanship Hunter
 
-=== #253 — 3.02s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
+=== #255 — 3.02s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   3.02s  by Affliction Warlock
 
-=== #254 — 3.02s total time-in-CC — 2 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #256 — 3.02s total time-in-CC — 2 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.02s  by Arms Warrior
   [+  0.14s] Holy Word: Chastise      (Incapacitate )   0.57s  by Holy Priest
 
-=== #255 — 3.01s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #257 — 3.01s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   3.01s  by Preservation Evoker
 
-=== #256 — 3.01s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
+=== #258 — 3.01s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   3.01s  by Affliction Warlock
 
-=== #257 — 3.01s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #259 — 3.01s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.01s  by Devourer Demon Hunter
 
-=== #258 — 3.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #260 — 3.01s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Gouge                    (Incapacitate )   3.01s  by Outlaw Rogue
 
-=== #259 — 3.01s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
+=== #261 — 3.01s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.01s  by Arms Warrior
 
-=== #260 — 3.01s total time-in-CC — 1 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
+=== #262 — 3.01s total time-in-CC — 1 caster(s) — match 4b5647083476828b6fb14a318b73e435 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
 
-=== #261 — 3.01s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
+=== #263 — 3.01s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.01s  by Arms Warrior
 
-=== #262 — 3.01s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
+=== #264 — 3.01s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.01s  by Arms Warrior
 
-=== #263 — 3.01s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
+=== #265 — 3.01s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
   [+  0.00s] Binding Shot             (Stun         )   3.01s  by Marksmanship Hunter
 
-=== #264 — 3.01s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
+=== #266 — 3.01s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Ring of Frost            (Incapacitate )   3.01s  by Arcane Mage
 
-=== #265 — 3.01s total time-in-CC — 2 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
+=== #267 — 3.01s total time-in-CC — 2 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
   [+  0.52s] Dragon's Breath          (Disorient    )   1.50s  by Frost Mage
 
-=== #266 — 3.01s total time-in-CC — 1 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
+=== #268 — 3.01s total time-in-CC — 1 caster(s) — match 7b5e125022e75013237eed3df30b2636 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.01s  by Frost Mage
 
-=== #267 — 3.01s total time-in-CC — 1 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
+=== #269 — 3.01s total time-in-CC — 1 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
 
-=== #268 — 3.01s total time-in-CC — 1 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
+=== #270 — 3.01s total time-in-CC — 1 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Gouge                    (Incapacitate )   3.01s  by Subtlety Rogue
 
-=== #269 — 3.01s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
+=== #271 — 3.01s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
 
-=== #270 — 3.01s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #272 — 3.01s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   3.01s  by Arms Warrior
 
-=== #271 — 3.01s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #273 — 3.01s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   3.01s  by Demonology Warlock
 
-=== #272 — 3.01s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #274 — 3.01s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.01s  by Frost Mage
 
-=== #273 — 3.01s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #275 — 3.01s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   3.01s  by Frost Mage
 
-=== #274 — 3.01s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #276 — 3.01s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.01s  by Devourer Demon Hunter
 
-=== #275 — 3.01s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #277 — 3.01s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Intimidation             (Stun         )   3.01s  by Marksmanship Hunter
 
-=== #276 — 3.01s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #278 — 3.01s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
 
-=== #277 — 3.01s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #279 — 3.01s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   3.01s  by Arms Warrior
 
-=== #278 — 3.01s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #280 — 3.01s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
 
-=== #279 — 3.01s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #281 — 3.01s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   3.01s  by Arms Warrior
 
-=== #280 — 3.01s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #282 — 3.01s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   3.01s  by Havoc Demon Hunter
 
-=== #281 — 3.01s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #283 — 3.01s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   3.01s  by Havoc Demon Hunter
 
-=== #282 — 3s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #284 — 3s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   3.00s  by Shadow Priest
 
-=== #283 — 3s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #285 — 3s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   3.00s  by Shadow Priest
 
-=== #284 — 3s total time-in-CC — 1 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
+=== #286 — 3s total time-in-CC — 1 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Gouge                    (Incapacitate )   3.00s  by Subtlety Rogue
 
-=== #285 — 3s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
+=== #287 — 3s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
 
-=== #286 — 3s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
+=== #288 — 3s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
 
-=== #287 — 3s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
+=== #289 — 3s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
 
-=== #288 — 3s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
+=== #290 — 3s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
 
-=== #289 — 3s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #291 — 3s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
 
-=== #290 — 3s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #292 — 3s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
 
-=== #291 — 3s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #293 — 3s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   3.00s  by Devastation Evoker
 
-=== #292 — 3s total time-in-CC — 2 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #294 — 3s total time-in-CC — 2 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   3.00s  by Devastation Evoker
   [+  0.48s] Howl of Terror           (Disorient    )   1.33s  by Affliction Warlock
 
-=== #293 — 3s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+=== #295 — 3s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   3.00s  by Frost Mage
 
-=== #294 — 3s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #296 — 3s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   3.00s  by Devastation Evoker
 
-=== #295 — 3s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #297 — 3s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.00s  by Devourer Demon Hunter
 
-=== #296 — 3s total time-in-CC — 1 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
+=== #298 — 3s total time-in-CC — 1 caster(s) — match 3ae9e85531ee94b679d3f6380841bb8c — target: Celz-Kazzak-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.34s  by Devastation Evoker
   [+  0.34s] Sleep Walk               (Disorient    ) (DR'd)   2.66s  by Devastation Evoker
 
-=== #297 — 3s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
+=== #299 — 3s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.00s  by Arms Warrior
 
-=== #298 — 3s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
+=== #300 — 3s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.00s  by Arms Warrior
 
-=== #299 — 3s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
+=== #301 — 3s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.00s  by Arms Warrior
 
-=== #300 — 3s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #302 — 3s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Imprison                 (Incapacitate )   3.00s  by Havoc Demon Hunter
 
-=== #301 — 3s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
+=== #303 — 3s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
 
-=== #302 — 3s total time-in-CC — 1 caster(s) — match a312165499da958594f6604dfb6678f0 — target: Hahahahaha-Blackrock-US ===
+=== #304 — 3s total time-in-CC — 1 caster(s) — match a312165499da958594f6604dfb6678f0 — target: Hahahahaha-Blackrock-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
 
-=== #303 — 3s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #305 — 3s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   3.00s  by Arms Warrior
 
-=== #304 — 3s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #306 — 3s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   3.00s  by Arms Warrior
 
-=== #305 — 3s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #307 — 3s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.00s  by Devourer Demon Hunter
 
-=== #306 — 3s total time-in-CC — 1 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
+=== #308 — 3s total time-in-CC — 1 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Gouge                    (Incapacitate )   3.00s  by Subtlety Rogue
 
-=== #307 — 3s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #309 — 3s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   3.00s  by Havoc Demon Hunter
 
-=== #308 — 3s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #310 — 3s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   3.00s  by Preservation Evoker
 
-=== #309 — 3s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
+=== #311 — 3s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
 
-=== #310 — 3s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
+=== #312 — 3s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
 
-=== #311 — 3s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #313 — 3s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Binding Shot             (Stun         )   3.00s  by Beast Mastery Hunter
 
-=== #312 — 3s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #314 — 3s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Storm Bolt               (Stun         )   3.00s  by Arms Warrior
 
-=== #313 — 3s total time-in-CC — 1 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
-  [+  0.00s] Garrote - Silence        (Silence      )   3.00s  by Assassination Rogue
-
-=== #314 — 3s total time-in-CC — 1 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
+=== #315 — 3s total time-in-CC — 1 caster(s) — match fdad1be55547d91c467bbefe0f655d90 — target: Hahahahaha-Blackrock-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
 
-=== #315 — 2.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #316 — 2.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   2.99s  by Devastation Evoker
-
-=== #316 — 2.99s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
-  [+  0.00s] Garrote - Silence        (Silence      )   2.99s  by Assassination Rogue
 
 === #317 — 2.99s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   2.99s  by Devastation Evoker
@@ -1177,571 +1193,556 @@
 === #319 — 2.99s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   2.99s  by Demonology Warlock
 
-=== #320 — 2.99s total time-in-CC — 1 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
-  [+  0.00s] Holy Word: Chastise      (Stun         )   2.99s  by Holy Priest
-
-=== #321 — 2.96s total time-in-CC — 1 caster(s) — match 23d5096e0dd8c9c52ccbbaebd2f0d047 — target: Angele-MoonGuard-US ===
+=== #320 — 2.96s total time-in-CC — 1 caster(s) — match 23d5096e0dd8c9c52ccbbaebd2f0d047 — target: Angele-MoonGuard-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   2.96s  by Restoration Druid
 
-=== #322 — 2.95s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
+=== #321 — 2.95s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   2.95s  by Shadow Priest
 
-=== #323 — 2.95s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #322 — 2.95s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   2.95s  by Beast Mastery Hunter
 
-=== #324 — 2.86s total time-in-CC — 2 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #323 — 2.86s total time-in-CC — 2 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.01s  by Arms Warrior
   [+  0.85s] Lightning Lasso          (Stun         )   2.00s  by Restoration Shaman
 
-=== #325 — 2.78s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #324 — 2.78s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   2.78s  by Demonology Warlock
 
-=== #326 — 2.78s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #325 — 2.78s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   2.78s  by Restoration Druid
 
-=== #327 — 2.76s total time-in-CC — 2 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #326 — 2.76s total time-in-CC — 2 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   2.76s  by Beast Mastery Hunter
   [+  2.70s] Blinding Light           (Disorient    )   0.06s  by Retribution Paladin
 
-=== #328 — 2.7s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
+=== #327 — 2.7s total time-in-CC — 1 caster(s) — match 5439d1b81cb1e1737f07bc5fdbc5de34 — target: 泡鲁达-斯克提斯-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   2.70s  by Fury Warrior
 
-=== #329 — 2.69s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #328 — 2.69s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   2.69s  by Demonology Warlock
 
-=== #330 — 2.64s total time-in-CC — 1 caster(s) — match 5e3a1681e2db26a27333251b73e65d93 — target: Darkxdpvp-BleedingHollow-US ===
+=== #329 — 2.64s total time-in-CC — 1 caster(s) — match 5e3a1681e2db26a27333251b73e65d93 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Cyclone                  (Disorient    )   2.64s  by Balance Druid
 
-=== #331 — 2.52s total time-in-CC — 1 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
+=== #330 — 2.52s total time-in-CC — 1 caster(s) — match 2c577aa04b1d8836966f23847f43b488 — target: Árchangels-Area52-US ===
   [+  0.00s] Cyclone                  (Disorient    )   2.52s  by Restoration Druid
 
-=== #332 — 2.52s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Broochli-Shadowmoon-US ===
+=== #331 — 2.52s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Broochli-Shadowmoon-US ===
   [+  0.00s] Kidney Shot              (Stun         )   2.52s  by Outlaw Rogue
 
-=== #333 — 2.52s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #332 — 2.52s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Lightning Lasso          (Stun         )   2.52s  by Restoration Shaman
 
-=== #334 — 2.51s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #333 — 2.51s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Maim                     (Stun         )   2.51s  by Restoration Druid
 
-=== #335 — 2.51s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
+=== #334 — 2.51s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   2.51s  by Retribution Paladin
 
-=== #336 — 2.51s total time-in-CC — 1 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
+=== #335 — 2.51s total time-in-CC — 1 caster(s) — match ef0bf80aa7efb5c3fea928dd6fad63da — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Mind Control             (Disorient    )   2.51s  by Holy Priest
 
-=== #337 — 2.5s total time-in-CC — 2 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
+=== #336 — 2.5s total time-in-CC — 2 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   2.50s  by Retribution Paladin
   [+  0.54s] Incapacitating Roar      (Incapacitate )   1.51s  by Restoration Druid
 
-=== #338 — 2.5s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
+=== #337 — 2.5s total time-in-CC — 1 caster(s) — match e909eb6f97422cad0098a962d6772853 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   2.50s  by Retribution Paladin
 
-=== #339 — 2.46s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
+=== #338 — 2.46s total time-in-CC — 1 caster(s) — match 11bfb8407bf2fb0aa8b1540fd30e4439 — target: Püsh-Aegwynn-US ===
   [+  0.00s] Fear                     (Disorient    )   2.46s  by Destruction Warlock
 
-=== #340 — 2.46s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
+=== #339 — 2.46s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
   [+  0.00s] Cyclone                  (Disorient    )   2.46s  by Restoration Druid
 
-=== #341 — 2.39s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #340 — 2.39s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Imprison                 (Incapacitate )   2.39s  by Havoc Demon Hunter
 
-=== #342 — 2.39s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
+=== #341 — 2.39s total time-in-CC — 1 caster(s) — match c969ccbdcb43d877874b3414c579030d — target: 番茄来了-萨尔-CN ===
   [+  0.00s] Lightning Lasso          (Stun         )   2.39s  by Restoration Shaman
 
-=== #343 — 2.33s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
+=== #342 — 2.33s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.33s  by Arms Warrior
 
-=== #344 — 2.31s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
+=== #343 — 2.31s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.31s  by Arms Warrior
 
-=== #345 — 2.31s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #344 — 2.31s total time-in-CC — 2 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   2.09s  by Havoc Demon Hunter
   [+  1.74s] Sleep Walk               (Disorient    )   0.57s  by Preservation Evoker
 
-=== #346 — 2.29s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
+=== #345 — 2.29s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
   [+  0.00s] Blind                    (Disorient    )   2.29s  by Subtlety Rogue
 
-=== #347 — 2.28s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
+=== #346 — 2.28s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
   [+  0.00s] Blind                    (Disorient    )   2.28s  by Subtlety Rogue
 
-=== #348 — 2.23s total time-in-CC — 1 caster(s) — match 23d5096e0dd8c9c52ccbbaebd2f0d047 — target: Angele-MoonGuard-US ===
+=== #347 — 2.23s total time-in-CC — 1 caster(s) — match 23d5096e0dd8c9c52ccbbaebd2f0d047 — target: Angele-MoonGuard-US ===
   [+  0.00s] Leg Sweep                (Stun         )   2.23s  by Windwalker Monk
 
-=== #349 — 2.12s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #348 — 2.12s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   2.12s  by Restoration Druid
 
-=== #350 — 2.11s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #349 — 2.11s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   2.11s  by Frost Mage
 
-=== #351 — 2.1s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #350 — 2.1s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   2.10s  by Arms Warrior
 
-=== #352 — 2.07s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #351 — 2.07s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Leg Sweep                (Stun         )   2.07s  by Windwalker Monk
 
-=== #353 — 2.06s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #352 — 2.06s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   2.06s  by Holy Priest
 
-=== #354 — 2.05s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #353 — 2.05s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Strangulate              (Silence      )   2.05s  by Unholy Death Knight
 
-=== #355 — 2.03s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #354 — 2.03s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Blinding Sleet           (Disorient    )   2.03s  by Frost Death Knight
 
-=== #356 — 2.02s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #355 — 2.02s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Leg Sweep                (Stun         )   2.02s  by Windwalker Monk
 
-=== #357 — 2.02s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #356 — 2.02s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   2.02s  by Devastation Evoker
 
-=== #358 — 2.02s total time-in-CC — 1 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
+=== #357 — 2.02s total time-in-CC — 1 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   2.02s  by Subtlety Rogue
 
-=== #359 — 2s total time-in-CC — 1 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
+=== #358 — 2s total time-in-CC — 1 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   2.00s  by Subtlety Rogue
 
-=== #360 — 2s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #359 — 2s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Shockwave                (Stun         )   2.00s  by Arms Warrior
 
-=== #361 — 2s total time-in-CC — 1 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
+=== #360 — 2s total time-in-CC — 1 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Cheap Shot               (Stun         )   2.00s  by Subtlety Rogue
+
+=== #361 — 2s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+  [+  0.00s] Shockwave                (Stun         )   2.00s  by Arms Warrior
 
 === #362 — 2s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Shockwave                (Stun         )   2.00s  by Arms Warrior
 
-=== #363 — 2s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
-  [+  0.00s] Shockwave                (Stun         )   2.00s  by Arms Warrior
-
-=== #364 — 1.87s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #363 — 1.87s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.87s  by Devastation Evoker
 
-=== #365 — 1.83s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
+=== #364 — 1.83s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
   [+  0.00s] Strangulate              (Silence      )   1.83s  by Unholy Death Knight
 
-=== #366 — 1.77s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #365 — 1.77s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Hex                      (Incapacitate )   1.77s  by Elemental Shaman
 
-=== #367 — 1.76s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #366 — 1.76s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Hex                      (Incapacitate )   1.76s  by Elemental Shaman
 
-=== #368 — 1.67s total time-in-CC — 1 caster(s) — match c229f9df64332ea8f8148d9e19cbb5ba — target: Hp-Arygos-US ===
+=== #367 — 1.67s total time-in-CC — 1 caster(s) — match c229f9df64332ea8f8148d9e19cbb5ba — target: Hp-Arygos-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   1.67s  by Beast Mastery Hunter
 
-=== #369 — 1.64s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #368 — 1.64s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Strangulate              (Silence      )   1.64s  by Unholy Death Knight
 
-=== #370 — 1.6s total time-in-CC — 1 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Messengers-Tichondrius-US ===
-  [+  0.00s] Cheap Shot               (Stun         )   1.60s  by Assassination Rogue
-
-=== #371 — 1.6s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
+=== #369 — 1.6s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   1.60s  by Discipline Priest
 
-=== #372 — 1.6s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #370 — 1.6s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Strangulate              (Silence      )   1.60s  by Frost Death Knight
 
-=== #373 — 1.59s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
+=== #371 — 1.59s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   1.59s  by Discipline Priest
 
-=== #374 — 1.59s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
+=== #372 — 1.59s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   1.59s  by Discipline Priest
 
-=== #375 — 1.56s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #373 — 1.56s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Silence                  (Silence      )   1.56s  by Shadow Priest
 
-=== #376 — 1.55s total time-in-CC — 1 caster(s) — match 5e67dd34428c9ec8cceb58a3231efdc4 — target: Healandpeel-Tichondrius-US ===
+=== #374 — 1.55s total time-in-CC — 1 caster(s) — match 5e67dd34428c9ec8cceb58a3231efdc4 — target: Healandpeel-Tichondrius-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   1.55s  by Beast Mastery Hunter
 
-=== #377 — 1.52s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #375 — 1.52s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Paralysis                (Incapacitate )   1.52s  by Mistweaver Monk
 
-=== #378 — 1.52s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #376 — 1.52s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Binding Shot             (Stun         )   1.52s  by Beast Mastery Hunter
 
-=== #379 — 1.51s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #377 — 1.51s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.51s  by Devourer Demon Hunter
 
-=== #380 — 1.51s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #378 — 1.51s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.51s  by Devourer Demon Hunter
 
-=== #381 — 1.51s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #379 — 1.51s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.51s  by Devourer Demon Hunter
 
-=== #382 — 1.51s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #380 — 1.51s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   1.51s  by Devastation Evoker
 
-=== #383 — 1.51s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #381 — 1.51s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.51s  by Holy Priest
 
-=== #384 — 1.51s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Broochli-Shadowmoon-US ===
+=== #382 — 1.51s total time-in-CC — 1 caster(s) — match 7c8a52a5893394fd13a7b6bd8f170f4e — target: Broochli-Shadowmoon-US ===
   [+  0.00s] Gouge                    (Incapacitate )   1.51s  by Outlaw Rogue
 
-=== #385 — 1.51s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #383 — 1.51s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.51s  by Devourer Demon Hunter
 
-=== #386 — 1.51s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #384 — 1.51s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.51s  by Holy Priest
 
-=== #387 — 1.51s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #385 — 1.51s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Storm Bolt               (Stun         )   1.51s  by Arms Warrior
 
-=== #388 — 1.5s total time-in-CC — 1 caster(s) — match 23d5096e0dd8c9c52ccbbaebd2f0d047 — target: Angele-MoonGuard-US ===
+=== #386 — 1.5s total time-in-CC — 1 caster(s) — match 23d5096e0dd8c9c52ccbbaebd2f0d047 — target: Angele-MoonGuard-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.50s  by Devourer Demon Hunter
 
-=== #389 — 1.5s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #387 — 1.5s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   1.50s  by Devastation Evoker
 
-=== #390 — 1.5s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
-  [+  0.00s] Blind                    (Disorient    )   1.50s  by Assassination Rogue
-
-=== #391 — 1.5s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #388 — 1.5s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.50s  by Devourer Demon Hunter
 
-=== #392 — 1.5s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #389 — 1.5s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Sigil of Misery          (Disorient    )   1.50s  by Devourer Demon Hunter
 
-=== #393 — 1.5s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #390 — 1.5s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Paralysis                (Incapacitate )   1.50s  by Mistweaver Monk
 
-=== #394 — 1.5s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #391 — 1.5s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   1.50s  by Guardian Druid
 
-=== #395 — 1.5s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #392 — 1.5s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Imprison                 (Incapacitate )   1.50s  by Havoc Demon Hunter
 
-=== #396 — 1.5s total time-in-CC — 1 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Messengers-Tichondrius-US ===
-  [+  0.00s] Garrote - Silence        (Silence      )   1.50s  by Assassination Rogue
-
-=== #397 — 1.5s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #393 — 1.5s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Sigil of Misery          (Disorient    )   1.50s  by Devourer Demon Hunter
 
-=== #398 — 1.5s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
+=== #394 — 1.5s total time-in-CC — 1 caster(s) — match c700a57f2a0d2fac619cde324944a87e — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.50s  by Holy Priest
 
-=== #399 — 1.5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #395 — 1.5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   1.50s  by Restoration Druid
 
-=== #400 — 1.5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
+=== #396 — 1.5s total time-in-CC — 1 caster(s) — match cd6f056f98438366ac7ec52ff93e6da7 — target: Priestyeco-Ragnaros-US ===
   [+  0.00s] Binding Shot             (Stun         )   1.50s  by Beast Mastery Hunter
 
-=== #401 — 1.5s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #397 — 1.5s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Absolute Zero            (Stun         )   1.50s  by Frost Death Knight
 
-=== #402 — 1.5s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #398 — 1.5s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Leg Sweep                (Stun         )   1.50s  by Windwalker Monk
 
-=== #403 — 1.5s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #399 — 1.5s total time-in-CC — 1 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Paralysis                (Incapacitate )   1.50s  by Windwalker Monk
 
-=== #404 — 1.49s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
+=== #400 — 1.49s total time-in-CC — 1 caster(s) — match 143dcc8ccf84dbb8fb157c69718e02fa — target: Raelyen-Zul'jin-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.49s  by Holy Priest
 
-=== #405 — 1.49s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
-  [+  0.00s] Garrote - Silence        (Silence      )   1.49s  by Assassination Rogue
-
-=== #406 — 1.48s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #401 — 1.48s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Terror of the Skies      (Stun         )   1.48s  by Devastation Evoker
 
-=== #407 — 1.48s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
+=== #402 — 1.48s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
   [+  0.00s] Blinding Sleet           (Disorient    )   1.48s  by Unholy Death Knight
 
-=== #408 — 1.42s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #403 — 1.42s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.42s  by Devastation Evoker
 
-=== #409 — 1.41s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
+=== #404 — 1.41s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Strangulate              (Silence      )   1.41s  by Unholy Death Knight
 
-=== #410 — 1.4s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
+=== #405 — 1.4s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Strangulate              (Silence      )   1.40s  by Unholy Death Knight
 
-=== #411 — 1.4s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #406 — 1.4s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.40s  by Devourer Demon Hunter
 
-=== #412 — 1.39s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #407 — 1.39s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Imprison                 (Incapacitate )   1.39s  by Devourer Demon Hunter
 
-=== #413 — 1.38s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #408 — 1.38s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Blinding Light           (Disorient    )   1.38s  by Protection Paladin
 
-=== #414 — 1.36s total time-in-CC — 2 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
+=== #409 — 1.36s total time-in-CC — 2 caster(s) — match cf9040ce26e26d198a02590866d23120 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Strangulate              (Silence      )   1.36s  by Frost Death Knight
   [+  1.27s] Leg Sweep                (Stun         )   0.08s  by Windwalker Monk
 
-=== #415 — 1.36s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #410 — 1.36s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Strangulate              (Silence      )   1.36s  by Unholy Death Knight
 
-=== #416 — 1.32s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #411 — 1.32s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.32s  by Preservation Evoker
 
-=== #417 — 1.3s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #412 — 1.3s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   1.30s  by Demonology Warlock
 
-=== #418 — 1.25s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #413 — 1.25s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Kidney Shot              (Stun         )   1.25s  by Outlaw Rogue
 
-=== #419 — 1.22s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
+=== #414 — 1.22s total time-in-CC — 1 caster(s) — match 9becaea9b556ac0d017e8bb03c61608c — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Strangulate              (Silence      )   1.22s  by Unholy Death Knight
 
-=== #420 — 1.22s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #415 — 1.22s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   1.22s  by Holy Priest
 
-=== #421 — 1.21s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
+=== #416 — 1.21s total time-in-CC — 1 caster(s) — match 1a1fe14951caf479ad7f74e5eeaff748 — target: Parishealton-Anub'arak-US ===
   [+  0.00s] Strangulate              (Silence      )   1.21s  by Unholy Death Knight
 
-=== #422 — 1.21s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #417 — 1.21s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   1.21s  by Holy Priest
 
-=== #423 — 1.19s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #418 — 1.19s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   1.19s  by Holy Priest
 
-=== #424 — 1.18s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
+=== #419 — 1.18s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 卡酷拉-金色平原-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   1.18s  by Frost Mage
 
-=== #425 — 1.18s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #420 — 1.18s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   1.18s  by Holy Priest
 
-=== #426 — 1.18s total time-in-CC — 1 caster(s) — match 9de2da592c063659d62a083c01aedf50 — target: Luker-Tichondrius-US ===
+=== #421 — 1.18s total time-in-CC — 1 caster(s) — match 9de2da592c063659d62a083c01aedf50 — target: Luker-Tichondrius-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.18s  by Preservation Evoker
 
-=== #427 — 1.17s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
+=== #422 — 1.17s total time-in-CC — 1 caster(s) — match 6ef117ffb56866e880e365d8f0360b0e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Silence                  (Silence      )   1.17s  by Shadow Priest
 
-=== #428 — 1.12s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #423 — 1.12s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Cyclone                  (Disorient    )   1.12s  by Guardian Druid
 
-=== #429 — 1.11s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
+=== #424 — 1.11s total time-in-CC — 1 caster(s) — match cf56e49df32f739f38b34347dabeb15e — target: Uncle-Suramar-US ===
   [+  0.00s] Strangulate              (Silence      )   1.11s  by Frost Death Knight
 
-=== #430 — 1.1s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #425 — 1.1s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.10s  by Preservation Evoker
 
-=== #431 — 1.08s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #426 — 1.08s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.08s  by Preservation Evoker
 
-=== #432 — 1.08s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
+=== #427 — 1.08s total time-in-CC — 1 caster(s) — match b26149a356adb9a8ce91a413f31139f4 — target: Флаб-СтражСмерти-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.08s  by Preservation Evoker
 
-=== #433 — 1.07s total time-in-CC — 1 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
+=== #428 — 1.07s total time-in-CC — 1 caster(s) — match 56adca9587fe25db18ba9641b3ade695 — target: Artems-Frostwolf-EU ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.07s  by Arms Warrior
 
-=== #434 — 1.05s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #429 — 1.05s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   1.05s  by Holy Priest
 
-=== #435 — 1.04s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #430 — 1.04s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Leg Sweep                (Stun         )   1.04s  by Windwalker Monk
 
-=== #436 — 1.03s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #431 — 1.03s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   1.03s  by Holy Priest
 
-=== #437 — 1.01s total time-in-CC — 1 caster(s) — match 0e5a62d5f6c5bf8a7f0c202a1978f0f6 — target: Booger-Thrall-US ===
+=== #432 — 1.01s total time-in-CC — 1 caster(s) — match 0e5a62d5f6c5bf8a7f0c202a1978f0f6 — target: Booger-Thrall-US ===
   [+  0.00s] Shockwave                (Stun         )   1.01s  by Arms Warrior
 
-=== #438 — 1.01s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #433 — 1.01s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Howl of Terror           (Disorient    )   1.01s  by Affliction Warlock
 
-=== #439 — 1.01s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
+=== #434 — 1.01s total time-in-CC — 1 caster(s) — match 68c3af7987be6255c27490161b87cedb — target: Messengers-Tichondrius-US ===
   [+  0.00s] Shockwave                (Stun         )   1.01s  by Arms Warrior
 
-=== #440 — 1.01s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #435 — 1.01s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   1.01s  by Guardian Druid
 
-=== #441 — 1s total time-in-CC — 1 caster(s) — match 09b230ed3bea51f98f94c651c68fe27d — target: Booger-Thrall-US ===
+=== #436 — 1s total time-in-CC — 1 caster(s) — match 09b230ed3bea51f98f94c651c68fe27d — target: Booger-Thrall-US ===
   [+  0.00s] Shockwave                (Stun         )   1.00s  by Arms Warrior
 
-=== #442 — 0.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #437 — 0.99s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.99s  by Devastation Evoker
 
-=== #443 — 0.98s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #438 — 0.98s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.98s  by Devastation Evoker
 
-=== #444 — 0.97s total time-in-CC — 1 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
+=== #439 — 0.97s total time-in-CC — 1 caster(s) — match 7f3b8c23cf9ec7bde6059c97748597f9 — target: Hahahahaha ===
   [+  0.00s] Paralysis                (Incapacitate )   0.97s  by Windwalker Monk
 
-=== #445 — 0.96s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #440 — 0.96s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   0.96s  by Frost Mage
 
-=== #446 — 0.94s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #441 — 0.94s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Blind                    (Disorient    )   0.94s  by Outlaw Rogue
 
-=== #447 — 0.93s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Jesisapollo-Blackrock-US ===
+=== #442 — 0.93s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.93s  by Beast Mastery Hunter
 
-=== #448 — 0.9s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
+=== #443 — 0.9s total time-in-CC — 1 caster(s) — match 31f5bf50569b6480412fb3d86d58197a — target: Filterz-Korgath-US ===
   [+  0.00s] Paralysis                (Incapacitate )   0.90s  by Windwalker Monk
 
-=== #449 — 0.9s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #444 — 0.9s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.90s  by Preservation Evoker
 
-=== #450 — 0.88s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #445 — 0.88s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.88s  by Devastation Evoker
 
-=== #451 — 0.84s total time-in-CC — 1 caster(s) — match 5e3a1681e2db26a27333251b73e65d93 — target: Darkxdpvp-BleedingHollow-US ===
+=== #446 — 0.84s total time-in-CC — 1 caster(s) — match 5e3a1681e2db26a27333251b73e65d93 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Cyclone                  (Disorient    )   0.84s  by Balance Druid
 
-=== #452 — 0.83s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #447 — 0.83s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Leg Sweep                (Stun         )   0.83s  by Windwalker Monk
 
-=== #453 — 0.82s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #448 — 0.82s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Hex                      (Incapacitate )   0.82s  by Enhancement Shaman
 
-=== #454 — 0.82s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
+=== #449 — 0.82s total time-in-CC — 1 caster(s) — match 286166133cb829a1da5f7c3b01e1b80e — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   0.82s  by Restoration Druid
 
-=== #455 — 0.82s total time-in-CC — 1 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
+=== #450 — 0.82s total time-in-CC — 1 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   0.82s  by Retribution Paladin
 
-=== #456 — 0.82s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
+=== #451 — 0.82s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
   [+  0.00s] Blinding Light           (Disorient    )   0.82s  by Retribution Paladin
 
-=== #457 — 0.82s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #452 — 0.82s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   0.82s  by Demonology Warlock
 
-=== #458 — 0.8s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #453 — 0.8s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   0.80s  by Demonology Warlock
 
-=== #459 — 0.8s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
+=== #454 — 0.8s total time-in-CC — 1 caster(s) — match ec5fa5fd0a1870f48caafb7acbd18170 — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Blinding Sleet           (Disorient    )   0.80s  by Unholy Death Knight
 
-=== #460 — 0.79s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #455 — 0.79s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   0.79s  by Guardian Druid
 
-=== #461 — 0.79s total time-in-CC — 1 caster(s) — match 9c2105892809c7f3ed314184164c7c41 — target: Challengerz-Suramar-US ===
+=== #456 — 0.79s total time-in-CC — 1 caster(s) — match 9c2105892809c7f3ed314184164c7c41 — target: Challengerz-Suramar-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   0.79s  by Holy Priest
 
-=== #462 — 0.78s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
+=== #457 — 0.78s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   0.78s  by Frost Mage
 
-=== #463 — 0.78s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #458 — 0.78s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Lightning Lasso          (Stun         )   0.78s  by Restoration Shaman
 
-=== #464 — 0.77s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
+=== #459 — 0.77s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   0.77s  by Frost Mage
 
-=== #465 — 0.76s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #460 — 0.76s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Hex                      (Incapacitate )   0.76s  by Enhancement Shaman
 
-=== #466 — 0.75s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #461 — 0.75s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.75s  by Devastation Evoker
 
-=== #467 — 0.75s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #462 — 0.75s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   0.75s  by Holy Priest
 
-=== #468 — 0.73s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
+=== #463 — 0.73s total time-in-CC — 1 caster(s) — match 4485b3f620132c2ef2da8daef2f5b887 — target: Booger-Thrall-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   0.73s  by Arms Warrior
 
-=== #469 — 0.73s total time-in-CC — 1 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
+=== #464 — 0.73s total time-in-CC — 1 caster(s) — match 64d7d3140edd162ccc6d4464250474f3 — target: Darkxdpvp-BleedingHollow-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   0.73s  by Retribution Paladin
 
-=== #470 — 0.72s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
+=== #465 — 0.72s total time-in-CC — 1 caster(s) — match 6993bc9ef42c83474c0dbdf4109edadf — target: Booger-Thrall-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   0.72s  by Arms Warrior
 
-=== #471 — 0.72s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Jesisapollo-Blackrock-US ===
+=== #466 — 0.72s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Jesisapollo-Blackrock-US ===
   [+  0.00s] Fear                     (Disorient    )   0.72s  by Affliction Warlock
 
-=== #472 — 0.71s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
+=== #467 — 0.71s total time-in-CC — 1 caster(s) — match ac8bdcc993cf935d225d88e74f4b673a — target: 我怎这么厉害-凤凰之神-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   0.71s  by Arms Warrior
 
-=== #473 — 0.7s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #468 — 0.7s total time-in-CC — 1 caster(s) — match adc09e92654b77c2ccbe7be15e217ec5 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Howl of Terror           (Disorient    )   0.70s  by Demonology Warlock
 
-=== #474 — 0.69s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #469 — 0.69s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.69s  by Preservation Evoker
 
-=== #475 — 0.68s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #470 — 0.68s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Howl of Terror           (Disorient    )   0.68s  by Affliction Warlock
 
-=== #476 — 0.68s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
+=== #471 — 0.68s total time-in-CC — 1 caster(s) — match 78eb366c37b37b738305c55c889b27a5 — target: Luxah-Bloodhoof-US ===
   [+  0.00s] Blind                    (Disorient    )   0.68s  by Outlaw Rogue
 
-=== #477 — 0.67s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #472 — 0.67s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Fear                     (Disorient    )   0.67s  by Affliction Warlock
 
-=== #478 — 0.66s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #473 — 0.66s total time-in-CC — 1 caster(s) — match 39e79222b99d0d73235872ed0cb19ffd — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.66s  by Devastation Evoker
 
-=== #479 — 0.64s total time-in-CC — 1 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
+=== #474 — 0.64s total time-in-CC — 1 caster(s) — match 4a976e55db765e3c18b4060b19f51072 — target: Dangerboy-Stormrage-US ===
   [+  0.00s] Blinding Sleet           (Disorient    )   0.64s  by Unholy Death Knight
 
-=== #480 — 0.63s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
+=== #475 — 0.63s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Lunayla-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   0.63s  by Shadow Priest
 
-=== #481 — 0.63s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
+=== #476 — 0.63s total time-in-CC — 1 caster(s) — match 7f4643f4af959d9e37fce8a652ec2455 — target: Wick-诺莫瑞根-CN ===
   [+  0.00s] Paralysis                (Incapacitate )   0.63s  by Mistweaver Monk
 
-=== #482 — 0.62s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
+=== #477 — 0.62s total time-in-CC — 1 caster(s) — match 6dc045711ce71e7511fa111f3767bf80 — target: Necrovarus-BleedingHollow-US ===
   [+  0.00s] Binding Shot             (Stun         )   0.62s  by Marksmanship Hunter
 
-=== #483 — 0.62s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
+=== #478 — 0.62s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Blind                    (Disorient    )   0.62s  by Subtlety Rogue
 
-=== #484 — 0.61s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
+=== #479 — 0.61s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Blind                    (Disorient    )   0.61s  by Subtlety Rogue
 
-=== #485 — 0.59s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
+=== #480 — 0.59s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Blind                    (Disorient    )   0.59s  by Subtlety Rogue
 
-=== #486 — 0.59s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #481 — 0.59s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.59s  by Devastation Evoker
 
-=== #487 — 0.58s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
+=== #482 — 0.58s total time-in-CC — 1 caster(s) — match add47dcacac1995dac6d0f157b9fdd5e — target: 糸糸-迦玛兰-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   0.58s  by Frost Mage
 
-=== #488 — 0.58s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
+=== #483 — 0.58s total time-in-CC — 1 caster(s) — match ff7683c42656cc83ee8866782b8449ef — target: Tjak-Stormscale-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.58s  by Preservation Evoker
 
-=== #489 — 0.57s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
+=== #484 — 0.57s total time-in-CC — 1 caster(s) — match 7bdf923f34ffaef7fb7fee16ded3ab2b — target: 蘭斯灬洛特-红龙军团-CN ===
   [+  0.00s] Blind                    (Disorient    )   0.57s  by Outlaw Rogue
 
-=== #490 — 0.56s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #485 — 0.56s total time-in-CC — 1 caster(s) — match 3835580e70e496ebafed75eea7cc0293 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.56s  by Devastation Evoker
 
-=== #491 — 0.55s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
+=== #486 — 0.55s total time-in-CC — 1 caster(s) — match 0b0a584f4dcd01a4492f352674befba7 — target: 淼焱一无邪-阿纳克洛斯-CN ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.55s  by Preservation Evoker
 
-=== #492 — 0.55s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
+=== #487 — 0.55s total time-in-CC — 1 caster(s) — match 3af61bf23bc823df1b85906422b8abf6 — target: Booger-Thrall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   0.55s  by Frost Mage
 
-=== #493 — 0.55s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #488 — 0.55s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.55s  by Preservation Evoker
 
-=== #494 — 0.54s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
+=== #489 — 0.54s total time-in-CC — 1 caster(s) — match 39f28a087ddaed04e27748fbbe8975da — target: Booger-Thrall-US ===
   [+  0.00s] Hex                      (Incapacitate )   0.54s  by Elemental Shaman
 
-=== #495 — 0.54s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
+=== #490 — 0.54s total time-in-CC — 1 caster(s) — match 9425f454623d73e0021ddf142aa67ca6 — target: Booger-Thrall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   0.54s  by Frost Mage
 
-=== #496 — 0.54s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
+=== #491 — 0.54s total time-in-CC — 1 caster(s) — match b43f2c7d589da3d606fbabb08a106ef2 — target: Booger-Thrall-US ===
   [+  0.00s] Hex                      (Incapacitate )   0.54s  by Elemental Shaman
 
-=== #497 — 0.52s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #492 — 0.52s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Fear                     (Disorient    )   0.52s  by Affliction Warlock
 
-=== #498 — 0.51s total time-in-CC — 1 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
+=== #493 — 0.51s total time-in-CC — 1 caster(s) — match 0629d9dca4c34a9059385274521cbc3b — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   0.51s  by Frost Mage
 
-=== #499 — 0.51s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
+=== #494 — 0.51s total time-in-CC — 1 caster(s) — match 1449d6f88a3f718af616d660254731a1 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.51s  by Beast Mastery Hunter
 
-=== #500 — 0.51s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
+=== #495 — 0.51s total time-in-CC — 1 caster(s) — match 3641c7b1eedc15c2ad0c0bc280c00ce4 — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.51s  by Beast Mastery Hunter
 
-=== #501 — 0.51s total time-in-CC — 1 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
+=== #496 — 0.51s total time-in-CC — 1 caster(s) — match 8ff0b6051260f2f6bc4b443f060aa386 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   0.51s  by Frost Mage
 
-=== #502 — 0.51s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
+=== #497 — 0.51s total time-in-CC — 1 caster(s) — match c2cdc05a2c3a1f73e1a554e60fcc842f — target: Tjak-Stormscale-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.51s  by Preservation Evoker
 
-=== #503 — 0.5s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
+=== #498 — 0.5s total time-in-CC — 1 caster(s) — match bdff3ee99168dbdd6a6221b4e5192b9e — target: Yukjeon-Tichondrius-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.50s  by Beast Mastery Hunter
 
-=== #504 — 0.49s total time-in-CC — 1 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
+=== #499 — 0.49s total time-in-CC — 1 caster(s) — match c2ac793860e99e85b30f37f573635f09 — target: Maryprichan-Blackrock-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   0.49s  by Frost Mage
 
-=== #505 — 0.29s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
+=== #500 — 0.29s total time-in-CC — 1 caster(s) — match 447f6954c42eef4bb09c8936cc2748f7 — target: Hypnotik-Zul'jin-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   0.29s  by Holy Priest
 
-=== #506 — 0.27s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #501 — 0.27s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Fear                     (Disorient    )   0.27s  by Destruction Warlock
 
-=== #507 — 0.15s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
+=== #502 — 0.15s total time-in-CC — 1 caster(s) — match e13c51f9d88719bd0da9f8f176c1a766 — target: Urgentcare-Firetree-US ===
   [+  0.00s] Storm Bolt               (Stun         )   0.15s  by Arms Warrior

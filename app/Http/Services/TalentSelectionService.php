@@ -17,7 +17,7 @@ use App\Models\TalentNodeEntry;
 use App\Models\TalentTree;
 use App\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -38,7 +38,8 @@ use Illuminate\Support\Str;
  */
 class TalentSelectionService
 {
-    private const SPELL_CACHE_VERSION_KEY = 'wow_spell_cache_version';
+    private const SPELL_CACHE_VERSION_TABLE = 'wow_spell_cache_state';
+    private const SPELL_CACHE_VERSION_ROW_ID = 1;
 
     /**
      * A coarse-grained version counter, not a per-key invalidation list — bumped whenever
@@ -52,15 +53,45 @@ class TalentSelectionService
      * driving an explicit per-spec Cache::forget() — a re-import can touch any/all specs at
      * once, so one global counter is simpler and correct without having to enumerate affected
      * specs.
+     *
+     * Backed by its own DB table (`wow_spell_cache_state`, one row, id=1), NOT the Cache facade
+     * — moved 2026-08-23 after a real production incident (see CLAUDE.md's "Spell cache version
+     * counter moved off the flushable cache store" section). The counter used to live at
+     * Cache::forever('wow_spell_cache_version', ...), inside the exact same Redis store that a
+     * plain `cache:clear` flushes wholesale — so any bump, automatic (ImportSpellData etc.) or
+     * manual, was silently erased back to its default of 1 by the next ordinary cache:clear run
+     * for ANY reason, with no error or warning. A single-row DB table has no such shared-flush
+     * exposure; only an actual migration rollback or direct DB write resets it now.
      */
     public function spellCacheVersion(): int
     {
-        return (int) Cache::get(self::SPELL_CACHE_VERSION_KEY, 1);
+        return (int) (DB::table(self::SPELL_CACHE_VERSION_TABLE)
+            ->where('id', self::SPELL_CACHE_VERSION_ROW_ID)
+            ->value('version') ?? 1);
     }
 
+    /**
+     * Atomic `UPDATE ... SET version = version + 1` at the DB level — also fixes a latent race
+     * the old Cache-based version had (`Cache::forever(KEY, $this->spellCacheVersion() + 1)` was
+     * read-then-write, so two concurrent bumps could clobber each other and only net +1 total
+     * instead of +2). Defensively re-inserts the seed row if it's ever missing, rather than
+     * silently no-op-ing the bump — the migration always creates it, but this guards against the
+     * row having been deleted by hand at some point.
+     */
     public function bumpSpellCacheVersion(): void
     {
-        Cache::forever(self::SPELL_CACHE_VERSION_KEY, $this->spellCacheVersion() + 1);
+        $affected = DB::table(self::SPELL_CACHE_VERSION_TABLE)
+            ->where('id', self::SPELL_CACHE_VERSION_ROW_ID)
+            ->increment('version');
+
+        if ($affected === 0) {
+            DB::table(self::SPELL_CACHE_VERSION_TABLE)->insertOrIgnore([
+                'id' => self::SPELL_CACHE_VERSION_ROW_ID,
+                'version' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 
     /**

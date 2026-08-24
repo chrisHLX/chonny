@@ -2,6 +2,7 @@
 
 use App\Livewire\Admin\PageUsage;
 use App\Livewire\SpellExplorer;
+use App\Livewire\TopDamageRotations;
 use App\Livewire\WowComps;
 use App\Models\Game;
 use App\Models\GameClass;
@@ -108,4 +109,39 @@ test('admin page usage aggregates top classes and specs correctly', function () 
     $topClasses = $component->topClasses['spell_explorer'];
     expect($topClasses->first()->name)->toBe('Priest')
         ->and((int) $topClasses->first()->count)->toBe(2);
+});
+
+test('top damage rotations mount records a bare view and selectSpec attributes it', function () {
+    $fixture = makePageUsageFixture(); // Priest sorts before Warrior alphabetically — the default
+
+    Livewire::test(TopDamageRotations::class)
+        ->call('selectSpec', $fixture['warrior']->id, $fixture['arms']->id);
+
+    expect(PageViewEvent::where('page', 'top_damage_rotations')->whereNull('class_id')->count())->toBe(1);
+
+    $selection = PageViewEvent::where('page', 'top_damage_rotations')->whereNotNull('class_id')->first();
+    expect($selection)->not->toBeNull()
+        ->and($selection->class_id)->toBe($fixture['warrior']->id)
+        ->and($selection->spec_id)->toBe($fixture['arms']->id);
+});
+
+test('admin page usage includes Burst Windows alongside WoW Comps and Spell Explorer', function () {
+    // Regression test for the real gap found 2026-08-23: TopDamageRotations was already calling
+    // PageViewEvent::log('top_damage_rotations', ...) from day one, but Admin\PageUsage's PAGES
+    // list never learned about the new page, so those events had nowhere to be seen. Adding a
+    // new tracked route/page must always update BOTH — see CLAUDE.md.
+    $fixture = makePageUsageFixture();
+
+    PageViewEvent::log('top_damage_rotations');
+    PageViewEvent::log('top_damage_rotations', $fixture['warrior']->id, $fixture['arms']->id);
+
+    $component = Livewire::test(PageUsage::class)->instance();
+
+    expect($component->summary['top_damage_rotations']['views'])->toBe(1)
+        ->and($component->summary['top_damage_rotations']['selections'])->toBe(1);
+
+    $topClasses = $component->topClasses['top_damage_rotations'];
+    expect($topClasses->first()->name)->toBe('Warrior');
+
+    Livewire::test(PageUsage::class)->assertSee('Burst Windows');
 });

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Http\Services\ArenaLogService;
+use App\Http\Services\CcFormulaService;
 use App\Http\Services\ModuleSpellReferenceService;
 use App\Http\Services\TalentSelectionService;
 use App\Models\GameClass;
@@ -582,6 +583,51 @@ class WowComps extends Component
     }
 
     /**
+     * Suggested CC chain for the current 3 slots — added 2026-08-23, wiring wow:cc-formula's
+     * CLI tool onto the live page for the first time (see CcFormulaService's docblock: the
+     * algorithm itself lives there now, shared verbatim with the CLI command, so nothing here
+     * duplicates or risks drifting from the tool's already-verified behavior). Returns null
+     * until all 3 slots have a real spec picked — the algorithm needs exactly 3 specs, there's
+     * no partial/2-spec mode.
+     *
+     * PERFORMANCE, fixed 2026-08-24 (direct instruction — this page already had a documented
+     * heavy-render history before this feature existed at all; adding more uncached, duplicate
+     * work on top of that was the wrong direction). Two changes from the first wire-up:
+     * 1. Calls buildChainFromComp() instead of buildChain() — reuses $this->comp's entries
+     *    (already computed, already Redis-cached per spec by getCompProperty()) instead of
+     *    CcFormulaService independently re-deriving each spec's full kit via
+     *    TalentSelectionService + a fresh Spell query. Same result, zero extra spell queries.
+     * 2. The RESULT itself is now cached too, same Cache::remember(6h) pattern
+     *    spellReferencesFor() already uses, keyed by all 3 specs' resolved-build stamps + the
+     *    global spell cache version — a resolveActiveBuild() call per spec here is cheap (one
+     *    small model lookup each) compared to what it used to cost before fix #1, and means a
+     *    render that doesn't change any spec selection hits cache instead of recomputing.
+     */
+    public function getSuggestedChainProperty(): ?array
+    {
+        $selectedMembers = collect($this->comp)->filter(fn ($member) => $member['class'] && $member['spec']);
+
+        if ($selectedMembers->count() < 3) {
+            return null;
+        }
+
+        $talentService = app(TalentSelectionService::class);
+        $version = $talentService->spellCacheVersion();
+
+        $buildStamps = $selectedMembers->map(function ($member) use ($talentService) {
+            $build = $talentService->resolveActiveBuild(auth()->user(), $member['spec']->id);
+
+            return $build->exists ? "{$member['spec']->id}:{$build->id}:{$build->updated_at?->timestamp}" : "{$member['spec']->id}:none";
+        })->implode('|');
+
+        return Cache::remember(
+            "wow_cc_formula:{$buildStamps}:v{$version}",
+            now()->addHours(6),
+            fn () => app(CcFormulaService::class)->buildChainFromComp($selectedMembers->all())
+        );
+    }
+
+    /**
      * See DR_CATEGORY_ICON_SPELL_IDS's docblock. Static (doesn't depend on $this->comp at all —
      * these 8 representative spells are the same regardless of which specs are picked), so this
      * is cheap enough to compute on every render with no caching.
@@ -697,6 +743,7 @@ class WowComps extends Component
             'specRoleMap' => $this->specRoleMap,
             'comp' => $this->comp,
             'synergies' => $this->synergies,
+            'suggestedChain' => $this->suggestedChain,
             'drCategoryLegend' => $this->drCategoryLegend,
             'offensiveRotations' => $this->offensiveRotations,
             'ratingTiers' => $this->ratingTiers,

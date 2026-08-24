@@ -253,3 +253,40 @@ test('saveChoice, deleteChoice, syncPvpChoices, and pruneNodeChoices all touch t
 
     Carbon::setTestNow();
 });
+
+test('spellCacheVersion defaults to 1 and bumpSpellCacheVersion increments it', function () {
+    $service = new TalentSelectionService();
+
+    expect($service->spellCacheVersion())->toBe(1);
+
+    $service->bumpSpellCacheVersion();
+    expect($service->spellCacheVersion())->toBe(2);
+
+    $service->bumpSpellCacheVersion();
+    expect($service->spellCacheVersion())->toBe(3);
+});
+
+test('spellCacheVersion survives a full cache flush', function () {
+    // The whole point of moving this counter off the Cache facade (2026-08-23, see CLAUDE.md) —
+    // a plain `php artisan cache:clear` (Cache::flush() under the hood) used to silently reset
+    // this back to its default of 1, defeating every prior bump with no error or warning.
+    $service = new TalentSelectionService();
+
+    $service->bumpSpellCacheVersion();
+    $service->bumpSpellCacheVersion();
+    expect($service->spellCacheVersion())->toBe(3);
+
+    \Illuminate\Support\Facades\Cache::flush();
+
+    expect($service->spellCacheVersion())->toBe(3);
+});
+
+test('bumpSpellCacheVersion re-creates the seed row if it was deleted', function () {
+    $service = new TalentSelectionService();
+
+    \Illuminate\Support\Facades\DB::table('wow_spell_cache_state')->where('id', 1)->delete();
+    expect($service->spellCacheVersion())->toBe(1);
+
+    $service->bumpSpellCacheVersion();
+    expect($service->spellCacheVersion())->toBe(2);
+});

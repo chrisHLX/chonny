@@ -1456,7 +1456,7 @@ class ImportSpellData extends Command
                 continue;
             }
 
-            $parts = array_map('trim', explode('|', $line, 8));
+            $parts = array_map('trim', explode('|', $line, 10));
 
             if (count($parts) < 6 || !ctype_digit($parts[0])) {
                 $this->ccSynergyOverrideSkips++;
@@ -1466,10 +1466,13 @@ class ImportSpellData extends Command
             }
 
             [$externalSpellId, $drCategory, $chainTarget, $isPeel, $isInterrupt, $pvpDuration] = $parts;
-            // pairs_with_category — added 2026-08-23, 7th data field. Optional/backward-compatible:
-            // an older line with only 6 fields (plus a name comment, or nothing after) simply has
-            // no requirement recorded, same as every other blank field in this file.
+            // pairs_with_category — added 2026-08-23, 7th data field. requires_stealth /
+            // requires_target_out_of_combat — added 2026-08-23, 8th/9th data fields. All three
+            // optional/backward-compatible: an older line without them simply has no requirement
+            // recorded, same as every other blank field in this file.
             $pairsWithCategory = $parts[6] ?? '';
+            $requiresStealth = $parts[7] ?? '';
+            $requiresTargetOutOfCombat = $parts[8] ?? '';
 
             $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
 
@@ -1527,6 +1530,8 @@ class ImportSpellData extends Command
                 'is_interrupt' => $isInterrupt === '1',
                 'pvp_duration_seconds' => $pvpDuration !== '' ? (float) $pvpDuration : null,
                 'pairs_with_category' => $pairsWithCategory !== '' ? $pairsWithCategory : null,
+                'requires_stealth' => $requiresStealth === '1',
+                'requires_target_out_of_combat' => $requiresTargetOutOfCombat === '1',
             ], 'spells');
 
             $this->ccSynergyOverridesApplied++;
@@ -1552,8 +1557,9 @@ class ImportSpellData extends Command
             return;
         }
 
-        $validFields = ['cooldown_seconds', 'duration_seconds', 'mechanic', 'spell_type', 'range_yards'];
-        $stringFields = ['mechanic', 'spell_type', 'range_yards'];
+        $validFields = ['cooldown_seconds', 'duration_seconds', 'mechanic', 'spell_type', 'range_yards', 'cast_type'];
+        $stringFields = ['mechanic', 'spell_type', 'range_yards', 'cast_type'];
+        $validCastTypes = ['instant', 'cast'];
 
         foreach (File::lines($path) as $line) {
             $line = trim($line);
@@ -1596,6 +1602,13 @@ class ImportSpellData extends Command
 
                 if (!in_array($field, $validFields, true)) {
                     $this->warn("  Skipping unknown scalar-corrections.txt field '{$field}': {$line}");
+                    $malformed = true;
+
+                    continue;
+                }
+
+                if ($field === 'cast_type' && !in_array($value, $validCastTypes, true)) {
+                    $this->warn("  Skipping scalar-corrections.txt line with unknown cast_type '{$value}' (must be instant or cast): {$line}");
                     $malformed = true;
 
                     continue;

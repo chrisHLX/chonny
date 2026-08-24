@@ -1,5 +1,57 @@
 [
     {
+        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
+        "healerName": "Fatshame-Kel'Thuzad-US",
+        "durationSeconds": 32.26,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 73940.804,
+                "end": 73964.811,
+                "name": "Garrote",
+                "spellId": 703,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 73940.815,
+                "end": 73943.837,
+                "name": "Garrote - Silence",
+                "spellId": 1330,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 73964.29,
+                "end": 73967.248,
+                "name": "Dragon's Breath",
+                "spellId": 31661,
+                "drCategory": "Disorient",
+                "source": "Fire Mage",
+                "sourceClassSlug": "mage",
+                "sourceSpecSlug": "fire",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 73967.047,
+                "end": 73973.064,
+                "name": "Ring of Frost",
+                "spellId": 82691,
+                "drCategory": "Incapacitate",
+                "source": "Fire Mage",
+                "sourceClassSlug": "mage",
+                "sourceSpecSlug": "fire",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "210d66db7d8f93c8ebd8d5a3dd0103a9",
         "healerName": "\u5468\u4e94\u665a-\u71c3\u70e7\u4e4b\u5203-CN",
         "durationSeconds": 16.82,
@@ -59,6 +111,47 @@
                 "sourceClassSlug": "deathknight",
                 "sourceSpecSlug": "frost",
                 "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
+        "healerName": "Fatshame-Kel'Thuzad-US",
+        "durationSeconds": 16.8,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 73872.908,
+                "end": 73888.758,
+                "name": "Garrote",
+                "spellId": 703,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 73872.929,
+                "end": 73875.934,
+                "name": "Garrote - Silence",
+                "spellId": 1330,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 73885.198,
+                "end": 73889.712,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Holy Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
             }
         ]
     },
@@ -249,6 +342,58 @@
         ]
     },
     {
+        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
+        "healerName": "Fatshame-Kel'Thuzad-US",
+        "durationSeconds": 14.55,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 73984.177,
+                "end": 73988.683,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Holy Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            },
+            {
+                "start": 73988.369,
+                "end": 73998.727,
+                "name": "Garrote",
+                "spellId": 703,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 73988.384,
+                "end": 73991.384,
+                "name": "Garrote - Silence",
+                "spellId": 1330,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 73988.518,
+                "end": 73989.659,
+                "name": "Blinding Light",
+                "spellId": 105421,
+                "drCategory": "Disorient",
+                "source": "Holy Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
         "matchId": "035f589c94e3aaec0626f344c1a1ed91",
         "healerName": "Perfect-Crushridge-US",
         "durationSeconds": 13.98,
@@ -279,6 +424,47 @@
             {
                 "start": 155.809,
                 "end": 161.802,
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "drCategory": "Disorient",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 13.68,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 76516.212,
+                "end": 76522.188,
+                "name": "Polymorph",
+                "spellId": 118,
+                "drCategory": "Incapacitate",
+                "source": "Fire Mage",
+                "sourceClassSlug": "mage",
+                "sourceSpecSlug": "fire",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76522.417,
+                "end": 76525.406,
+                "name": "Polymorph",
+                "spellId": 118,
+                "drCategory": "Incapacitate",
+                "source": "Fire Mage",
+                "sourceClassSlug": "mage",
+                "sourceSpecSlug": "fire",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76524.193,
+                "end": 76529.887,
                 "name": "Psychic Scream",
                 "spellId": 8122,
                 "drCategory": "Disorient",
@@ -703,6 +889,47 @@
         ]
     },
     {
+        "matchId": "77ee088d0bc06d65c557562afb0ea81e",
+        "healerName": "Holyheck-Frostmourne-US",
+        "durationSeconds": 12.53,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 82292.694,
+                "end": 82295.711,
+                "name": "Polymorph",
+                "spellId": 118,
+                "drCategory": "Incapacitate",
+                "source": "Fire Mage",
+                "sourceClassSlug": "mage",
+                "sourceSpecSlug": "fire",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 82294.47,
+                "end": 82305.227,
+                "name": "Garrote",
+                "spellId": 703,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 82294.473,
+                "end": 82296.854,
+                "name": "Garrote - Silence",
+                "spellId": 1330,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "a3d9e5911575486b81f6dc0962bfa0ac",
         "healerName": "Gdeezy-Sargeras-US",
         "durationSeconds": 12.19,
@@ -770,6 +997,36 @@
                 "sourceClassSlug": "mage",
                 "sourceSpecSlug": "fire",
                 "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "c2b43707b1bf985c95619470479290f8",
+        "healerName": "Holyheck-Frostmourne-US",
+        "durationSeconds": 12.1,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 81030.026,
+                "end": 81042.129,
+                "name": "Garrote",
+                "spellId": 703,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 81040.857,
+                "end": 81042.059,
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "drCategory": "Disorient",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
             }
         ]
     },
@@ -1318,6 +1575,47 @@
         ]
     },
     {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 9.77,
+        "distinctCasters": 3,
+        "steps": [
+            {
+                "start": 76057.0512,
+                "end": 76060.0562,
+                "name": "Paralysis",
+                "spellId": 115078,
+                "drCategory": "Incapacitate",
+                "source": "Windwalker Monk",
+                "sourceClassSlug": "monk",
+                "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76059.7012,
+                "end": 76064.2002,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76063.9992,
+                "end": 76066.8202,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Restoration Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "restoration",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
         "matchId": "103b77904a08b23acc859b0a8c5f3f78",
         "healerName": "Garbagepally-Scilla-US",
         "durationSeconds": 9.73,
@@ -1602,6 +1900,36 @@
         ]
     },
     {
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 9.2,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 76598.941,
+                "end": 76603.295,
+                "name": "Blind",
+                "spellId": 2094,
+                "drCategory": "Disorient",
+                "source": "Subtlety Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "subtlety",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76602.142,
+                "end": 76608.145,
+                "name": "Polymorph",
+                "spellId": 118,
+                "drCategory": "Incapacitate",
+                "source": "Fire Mage",
+                "sourceClassSlug": "mage",
+                "sourceSpecSlug": "fire",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "b67e816f14340d535b9cc4329cd8bcd9",
         "healerName": "Rom\u00e9-Tichondrius-US",
         "durationSeconds": 9.07,
@@ -1729,36 +2057,6 @@
                 "sourceClassSlug": "priest",
                 "sourceSpecSlug": "holy",
                 "sourceIsHealer": true
-            }
-        ]
-    },
-    {
-        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
-        "healerName": "Fatshame-Kel'Thuzad-US",
-        "durationSeconds": 8.77,
-        "distinctCasters": 1,
-        "steps": [
-            {
-                "start": 73964.29,
-                "end": 73967.248,
-                "name": "Dragon's Breath",
-                "spellId": 31661,
-                "drCategory": "Disorient",
-                "source": "Fire Mage",
-                "sourceClassSlug": "mage",
-                "sourceSpecSlug": "fire",
-                "sourceIsHealer": false
-            },
-            {
-                "start": 73967.047,
-                "end": 73973.064,
-                "name": "Ring of Frost",
-                "spellId": 82691,
-                "drCategory": "Incapacitate",
-                "source": "Fire Mage",
-                "sourceClassSlug": "mage",
-                "sourceSpecSlug": "fire",
-                "sourceIsHealer": false
             }
         ]
     },
@@ -2369,6 +2667,36 @@
         ]
     },
     {
+        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
+        "healerName": "Fatshame-Kel'Thuzad-US",
+        "durationSeconds": 8.16,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 73848.479,
+                "end": 73852.988,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Holy Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            },
+            {
+                "start": 73850.839,
+                "end": 73856.638,
+                "name": "Garrote",
+                "spellId": 703,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "103b77904a08b23acc859b0a8c5f3f78",
         "healerName": "Garbagepally-Scilla-US",
         "durationSeconds": 8.14,
@@ -2478,6 +2806,36 @@
             {
                 "start": 59918.02,
                 "end": 59920.519,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 8.03,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83483.477,
+                "end": 83488.481,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 83488.988,
+                "end": 83491.505,
                 "name": "Cyclone",
                 "spellId": 33786,
                 "drCategory": "Disorient",
@@ -3327,47 +3685,6 @@
         ]
     },
     {
-        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
-        "healerName": "Fatshame-Kel'Thuzad-US",
-        "durationSeconds": 7.21,
-        "distinctCasters": 2,
-        "steps": [
-            {
-                "start": 73984.177,
-                "end": 73988.683,
-                "name": "Hammer of Justice",
-                "spellId": 853,
-                "drCategory": "Stun",
-                "source": "Holy Paladin",
-                "sourceClassSlug": "paladin",
-                "sourceSpecSlug": "holy",
-                "sourceIsHealer": true
-            },
-            {
-                "start": 73988.384,
-                "end": 73991.384,
-                "name": "Garrote - Silence",
-                "spellId": 1330,
-                "drCategory": "Silence",
-                "source": "Assassination Rogue",
-                "sourceClassSlug": "rogue",
-                "sourceSpecSlug": "assassination",
-                "sourceIsHealer": false
-            },
-            {
-                "start": 73988.518,
-                "end": 73989.659,
-                "name": "Blinding Light",
-                "spellId": 105421,
-                "drCategory": "Disorient",
-                "source": "Holy Paladin",
-                "sourceClassSlug": "paladin",
-                "sourceSpecSlug": "holy",
-                "sourceIsHealer": true
-            }
-        ]
-    },
-    {
         "matchId": "68eec9b74668d0b533f6c6ca0279a4b4",
         "healerName": "Fatshame-Kel'Thuzad-US",
         "durationSeconds": 7.2,
@@ -3382,6 +3699,36 @@
                 "source": "Fury Warrior",
                 "sourceClassSlug": "warrior",
                 "sourceSpecSlug": "fury",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 7.19,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76417.054,
+                "end": 76423.088,
+                "name": "Sap",
+                "spellId": 6770,
+                "drCategory": "Incapacitate",
+                "source": "Subtlety Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "subtlety",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76423.054,
+                "end": 76424.248,
+                "name": "Blind",
+                "spellId": 2094,
+                "drCategory": "Disorient",
+                "source": "Subtlety Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "subtlety",
                 "sourceIsHealer": false
             }
         ]
@@ -3413,6 +3760,66 @@
                 "sourceClassSlug": "rogue",
                 "sourceSpecSlug": "subtlety",
                 "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 7.04,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 76479.474,
+                "end": 76483.089,
+                "name": "Cheap Shot",
+                "spellId": 1833,
+                "drCategory": "Stun",
+                "source": "Subtlety Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "subtlety",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76480.512,
+                "end": 76486.511,
+                "name": "Polymorph",
+                "spellId": 118,
+                "drCategory": "Incapacitate",
+                "source": "Fire Mage",
+                "sourceClassSlug": "mage",
+                "sourceSpecSlug": "fire",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 7,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76701.675,
+                "end": 76704.666,
+                "name": "Holy Word: Chastise",
+                "spellId": 200196,
+                "drCategory": "Incapacitate",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            },
+            {
+                "start": 76702.972,
+                "end": 76708.674,
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "drCategory": "Disorient",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
             }
         ]
     },
@@ -3545,6 +3952,66 @@
         ]
     },
     {
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 6.83,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76451.09,
+                "end": 76454.1,
+                "name": "Holy Word: Chastise",
+                "spellId": 200196,
+                "drCategory": "Incapacitate",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            },
+            {
+                "start": 76452.816,
+                "end": 76457.919,
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "drCategory": "Disorient",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 6.79,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76270.3232,
+                "end": 76271.3992,
+                "name": "Blinding Light",
+                "spellId": 105421,
+                "drCategory": "Disorient",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76272.6122,
+                "end": 76277.1152,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "68eec9b74668d0b533f6c6ca0279a4b4",
         "healerName": "Fatshame-Kel'Thuzad-US",
         "durationSeconds": 6.61,
@@ -3605,6 +4072,36 @@
         ]
     },
     {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 6.47,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 76375.6702,
+                "end": 76380.1812,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76380.3292,
+                "end": 76382.1442,
+                "name": "Leg Sweep",
+                "spellId": 119381,
+                "drCategory": "Stun",
+                "source": "Windwalker Monk",
+                "sourceClassSlug": "monk",
+                "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "c2b43707b1bf985c95619470479290f8",
         "healerName": "Holyheck-Frostmourne-US",
         "durationSeconds": 6.45,
@@ -3631,6 +4128,36 @@
                 "sourceClassSlug": "priest",
                 "sourceSpecSlug": "holy",
                 "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 6.42,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 76301.1192,
+                "end": 76304.1152,
+                "name": "Paralysis",
+                "spellId": 115078,
+                "drCategory": "Incapacitate",
+                "source": "Windwalker Monk",
+                "sourceClassSlug": "monk",
+                "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76304.0082,
+                "end": 76307.5372,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
             }
         ]
     },
@@ -4571,6 +5098,36 @@
         ]
     },
     {
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 5.88,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76633.616,
+                "end": 76636.646,
+                "name": "Holy Word: Chastise",
+                "spellId": 200196,
+                "drCategory": "Incapacitate",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            },
+            {
+                "start": 76635.573,
+                "end": 76639.494,
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "drCategory": "Disorient",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
         "matchId": "f02a200d1f93e4892166d3002c6e198f",
         "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
         "durationSeconds": 5.86,
@@ -4807,6 +5364,36 @@
                 "sourceClassSlug": "priest",
                 "sourceSpecSlug": "holy",
                 "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 5.74,
+        "distinctCasters": 2,
+        "steps": [
+            {
+                "start": 76183.1582,
+                "end": 76186.7622,
+                "name": "Leg Sweep",
+                "spellId": 119381,
+                "drCategory": "Stun",
+                "source": "Windwalker Monk",
+                "sourceClassSlug": "monk",
+                "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76186.6412,
+                "end": 76188.8952,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
             }
         ]
     },
@@ -5764,6 +6351,44 @@
         ]
     },
     {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 5.01,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83326.046,
+                "end": 83331.051,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 5.01,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83637.211,
+                "end": 83642.223,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "78748a34b8f0dd7de7e515faf472bb17",
         "healerName": "Bahboonga-Frostmourne-US",
         "durationSeconds": 5.01,
@@ -5848,6 +6473,82 @@
             {
                 "start": 61899.258,
                 "end": 61904.26,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76128.4942,
+                "end": 76133.4962,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Restoration Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "restoration",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76339.0172,
+                "end": 76344.0172,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Restoration Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "restoration",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "c8558f37bb0ab9fde18765f30287b9bf",
+        "healerName": "Revenge",
+        "durationSeconds": 5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 84093.012,
+                "end": 84098.01,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "c8558f37bb0ab9fde18765f30287b9bf",
+        "healerName": "Revenge",
+        "durationSeconds": 5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 84138.118,
+                "end": 84143.121,
                 "name": "Cyclone",
                 "spellId": 33786,
                 "drCategory": "Disorient",
@@ -6197,44 +6898,6 @@
         "distinctCasters": 1,
         "steps": [
             {
-                "start": 73848.479,
-                "end": 73852.988,
-                "name": "Hammer of Justice",
-                "spellId": 853,
-                "drCategory": "Stun",
-                "source": "Holy Paladin",
-                "sourceClassSlug": "paladin",
-                "sourceSpecSlug": "holy",
-                "sourceIsHealer": true
-            }
-        ]
-    },
-    {
-        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
-        "healerName": "Fatshame-Kel'Thuzad-US",
-        "durationSeconds": 4.51,
-        "distinctCasters": 1,
-        "steps": [
-            {
-                "start": 73885.198,
-                "end": 73889.712,
-                "name": "Hammer of Justice",
-                "spellId": 853,
-                "drCategory": "Stun",
-                "source": "Holy Paladin",
-                "sourceClassSlug": "paladin",
-                "sourceSpecSlug": "holy",
-                "sourceIsHealer": true
-            }
-        ]
-    },
-    {
-        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
-        "healerName": "Fatshame-Kel'Thuzad-US",
-        "durationSeconds": 4.51,
-        "distinctCasters": 1,
-        "steps": [
-            {
                 "start": 74042.558,
                 "end": 74047.072,
                 "name": "Kidney Shot",
@@ -6351,6 +7014,63 @@
             {
                 "start": 75631.5252,
                 "end": 75636.0362,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 4.5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83689.879,
+                "end": 83694.375,
+                "name": "Maim",
+                "spellId": 203123,
+                "drCategory": "Stun",
+                "source": "Restoration Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "restoration",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 4.5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76089.9202,
+                "end": 76094.4232,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 4.5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76216.8172,
+                "end": 76221.3202,
                 "name": "Hammer of Justice",
                 "spellId": 853,
                 "drCategory": "Stun",
@@ -6487,6 +7207,36 @@
                 "name": "Hammer of Justice",
                 "spellId": 853,
                 "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 4.49,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76152.5022,
+                "end": 76156.9962,
+                "name": "Hammer of Justice",
+                "spellId": 853,
+                "drCategory": "Stun",
+                "source": "Protection Paladin",
+                "sourceClassSlug": "paladin",
+                "sourceSpecSlug": "protection",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 76155.4572,
+                "end": 76156.2372,
+                "name": "Blinding Light",
+                "spellId": 105421,
+                "drCategory": "Disorient",
                 "source": "Protection Paladin",
                 "sourceClassSlug": "paladin",
                 "sourceSpecSlug": "protection",
@@ -6664,31 +7414,20 @@
         ]
     },
     {
-        "matchId": "77ee088d0bc06d65c557562afb0ea81e",
-        "healerName": "Holyheck-Frostmourne-US",
-        "durationSeconds": 4.16,
-        "distinctCasters": 2,
+        "matchId": "c47b148109db16573de1a3407ad636f8",
+        "healerName": "Dirtyplunger-Area52-US",
+        "durationSeconds": 4.09,
+        "distinctCasters": 1,
         "steps": [
             {
-                "start": 82292.694,
-                "end": 82295.711,
+                "start": 76564.08,
+                "end": 76568.167,
                 "name": "Polymorph",
                 "spellId": 118,
                 "drCategory": "Incapacitate",
                 "source": "Fire Mage",
                 "sourceClassSlug": "mage",
                 "sourceSpecSlug": "fire",
-                "sourceIsHealer": false
-            },
-            {
-                "start": 82294.473,
-                "end": 82296.854,
-                "name": "Garrote - Silence",
-                "spellId": 1330,
-                "drCategory": "Silence",
-                "source": "Assassination Rogue",
-                "sourceClassSlug": "rogue",
-                "sourceSpecSlug": "assassination",
                 "sourceIsHealer": false
             }
         ]
@@ -7047,6 +7786,36 @@
         ]
     },
     {
+        "matchId": "280468309bb8cfecf8a116daca16757a",
+        "healerName": "Hacut\u00e9iken-DunModr-EU",
+        "durationSeconds": 3.69,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 69841.8332,
+                "end": 69844.5402,
+                "name": "Holy Word: Chastise",
+                "spellId": 200200,
+                "drCategory": "Stun",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            },
+            {
+                "start": 69845.0052,
+                "end": 69845.5232,
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "drCategory": "Disorient",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
         "matchId": "e4a032796d3a3c2781635c89684b670f",
         "healerName": "D\u00eb\u00f1\u00f8\u00fc\u00f1\u00e7\u00eag\u00f2\u00e2t-Ravencrest-EU",
         "durationSeconds": 3.68,
@@ -7186,6 +7955,44 @@
         ]
     },
     {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 3.61,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83436.93,
+                "end": 83440.542,
+                "name": "Mighty Bash",
+                "spellId": 5211,
+                "drCategory": "Stun",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 3.61,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83519.866,
+                "end": 83523.473,
+                "name": "Mighty Bash",
+                "spellId": 5211,
+                "drCategory": "Stun",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "551cbf089b6af897d960219e91bce281",
         "healerName": "Space-Crushridge-US",
         "durationSeconds": 3.61,
@@ -7201,6 +8008,25 @@
                 "sourceClassSlug": "monk",
                 "sourceSpecSlug": "mistweaver",
                 "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 3.61,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76121.3612,
+                "end": 76124.9682,
+                "name": "Leg Sweep",
+                "spellId": 119381,
+                "drCategory": "Stun",
+                "source": "Windwalker Monk",
+                "sourceClassSlug": "monk",
+                "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
             }
         ]
     },
@@ -7288,6 +8114,25 @@
                 "sourceClassSlug": "druid",
                 "sourceSpecSlug": "restoration",
                 "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 3.6,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76243.0412,
+                "end": 76246.6442,
+                "name": "Leg Sweep",
+                "spellId": 119381,
+                "drCategory": "Stun",
+                "source": "Windwalker Monk",
+                "sourceClassSlug": "monk",
+                "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
             }
         ]
     },
@@ -7515,6 +8360,25 @@
         ]
     },
     {
+        "matchId": "280468309bb8cfecf8a116daca16757a",
+        "healerName": "Hacut\u00e9iken-DunModr-EU",
+        "durationSeconds": 3.29,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 69906.7102,
+                "end": 69910.0042,
+                "name": "Psychic Scream",
+                "spellId": 8122,
+                "drCategory": "Disorient",
+                "source": "Holy Priest",
+                "sourceClassSlug": "priest",
+                "sourceSpecSlug": "holy",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
         "matchId": "f74a5b24f7d60d1e3ba44e358c45f4d3",
         "healerName": "Qipla-\u8d2b\u7620\u4e4b\u5730-CN",
         "durationSeconds": 3.28,
@@ -7639,25 +8503,6 @@
                 "sourceClassSlug": "evoker",
                 "sourceSpecSlug": "preservation",
                 "sourceIsHealer": true
-            }
-        ]
-    },
-    {
-        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
-        "healerName": "Fatshame-Kel'Thuzad-US",
-        "durationSeconds": 3.02,
-        "distinctCasters": 1,
-        "steps": [
-            {
-                "start": 73940.815,
-                "end": 73943.837,
-                "name": "Garrote - Silence",
-                "spellId": 1330,
-                "drCategory": "Silence",
-                "source": "Assassination Rogue",
-                "sourceClassSlug": "rogue",
-                "sourceSpecSlug": "assassination",
-                "sourceIsHealer": false
             }
         ]
     },
@@ -8029,25 +8874,6 @@
                 "source": "Havoc Demon Hunter",
                 "sourceClassSlug": "demonhunter",
                 "sourceSpecSlug": "havoc",
-                "sourceIsHealer": false
-            }
-        ]
-    },
-    {
-        "matchId": "0025dcbdff112b2a61e94fe7be428f75",
-        "healerName": "Fatshame-Kel'Thuzad-US",
-        "durationSeconds": 3,
-        "distinctCasters": 1,
-        "steps": [
-            {
-                "start": 73872.929,
-                "end": 73875.934,
-                "name": "Garrote - Silence",
-                "spellId": 1330,
-                "drCategory": "Silence",
-                "source": "Assassination Rogue",
-                "sourceClassSlug": "rogue",
-                "sourceSpecSlug": "assassination",
                 "sourceIsHealer": false
             }
         ]
@@ -8697,6 +9523,25 @@
         ]
     },
     {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 2.71,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83424.746,
+                "end": 83427.46,
+                "name": "Fear",
+                "spellId": 118699,
+                "drCategory": "Disorient",
+                "source": "Demonology Warlock",
+                "sourceClassSlug": "warlock",
+                "sourceSpecSlug": "demonology",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "68eec9b74668d0b533f6c6ca0279a4b4",
         "healerName": "Fatshame-Kel'Thuzad-US",
         "durationSeconds": 2.71,
@@ -8845,6 +9690,25 @@
                 "sourceClassSlug": "priest",
                 "sourceSpecSlug": "holy",
                 "sourceIsHealer": true
+            }
+        ]
+    },
+    {
+        "matchId": "15f92f504dbacfe20240f618fb269eb3",
+        "healerName": "Siberia-\u91d1\u8272\u5e73\u539f-CN",
+        "durationSeconds": 2.7,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 78984.3848,
+                "end": 78987.0868,
+                "name": "Terror of the Skies",
+                "spellId": 372245,
+                "drCategory": "Stun",
+                "source": "Devastation Evoker",
+                "sourceClassSlug": "evoker",
+                "sourceSpecSlug": "devastation",
+                "sourceIsHealer": false
             }
         ]
     },
@@ -9118,6 +9982,25 @@
         ]
     },
     {
+        "matchId": "c8558f37bb0ab9fde18765f30287b9bf",
+        "healerName": "Revenge",
+        "durationSeconds": 2.51,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 84108.83,
+                "end": 84111.337,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "103b77904a08b23acc859b0a8c5f3f78",
         "healerName": "Garbagepally-Scilla-US",
         "durationSeconds": 2.5,
@@ -9126,6 +10009,25 @@
             {
                 "start": 62024.595,
                 "end": 62027.098,
+                "name": "Cyclone",
+                "spellId": 33786,
+                "drCategory": "Disorient",
+                "source": "Balance Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "balance",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "c8558f37bb0ab9fde18765f30287b9bf",
+        "healerName": "Revenge",
+        "durationSeconds": 2.5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 84176.372,
+                "end": 84178.873,
                 "name": "Cyclone",
                 "spellId": 33786,
                 "drCategory": "Disorient",
@@ -9189,6 +10091,47 @@
                 "source": "Enhancement Shaman",
                 "sourceClassSlug": "shaman",
                 "sourceSpecSlug": "enhancement",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "15f92f504dbacfe20240f618fb269eb3",
+        "healerName": "Siberia-\u91d1\u8272\u5e73\u539f-CN",
+        "durationSeconds": 2.43,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 79012.0198,
+                "end": 79014.4528,
+                "name": "Garrote",
+                "spellId": 703,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 79012.0328,
+                "end": 79014.4528,
+                "name": "Garrote - Silence",
+                "spellId": 1330,
+                "drCategory": "Silence",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
+                "sourceIsHealer": false
+            },
+            {
+                "start": 79014.0148,
+                "end": 79014.4538,
+                "name": "Cheap Shot",
+                "spellId": 1833,
+                "drCategory": "Stun",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
                 "sourceIsHealer": false
             }
         ]
@@ -9547,6 +10490,36 @@
         ]
     },
     {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 1.81,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76097.4382,
+                "end": 76099.0462,
+                "name": "Mighty Bash",
+                "spellId": 5211,
+                "drCategory": "Stun",
+                "source": "Restoration Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "restoration",
+                "sourceIsHealer": true
+            },
+            {
+                "start": 76099.0462,
+                "end": 76099.2482,
+                "name": "Mighty Bash",
+                "spellId": 5211,
+                "drCategory": "Stun",
+                "source": "Restoration Druid",
+                "sourceClassSlug": "druid",
+                "sourceSpecSlug": "restoration",
+                "sourceIsHealer": true
+            }
+        ]
+    },
+    {
         "matchId": "73888d6d8b6104efb80c3dc693e80a76",
         "healerName": "S\u00eal\u00ean\u00e4g\u00f6m\u00ebz-Outland-EU",
         "durationSeconds": 1.81,
@@ -9713,6 +10686,44 @@
                 "source": "Subtlety Rogue",
                 "sourceClassSlug": "rogue",
                 "sourceSpecSlug": "subtlety",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "5d6979c982eb2f625550f92457a8c628",
+        "healerName": "\u0413\u0435\u0441\u0435\u0440\u0438\u044f-\u0413\u043e\u0440\u0434\u0443\u043d\u043d\u0438-EU",
+        "durationSeconds": 1.79,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 76327.5162,
+                "end": 76329.3032,
+                "name": "Leg Sweep",
+                "spellId": 119381,
+                "drCategory": "Stun",
+                "source": "Windwalker Monk",
+                "sourceClassSlug": "monk",
+                "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "c8558f37bb0ab9fde18765f30287b9bf",
+        "healerName": "Revenge",
+        "durationSeconds": 1.78,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 84169.255,
+                "end": 84171.039,
+                "name": "Fear",
+                "spellId": 118699,
+                "drCategory": "Disorient",
+                "source": "Demonology Warlock",
+                "sourceClassSlug": "warlock",
+                "sourceSpecSlug": "demonology",
                 "sourceIsHealer": false
             }
         ]
@@ -10090,6 +11101,25 @@
         ]
     },
     {
+        "matchId": "15f92f504dbacfe20240f618fb269eb3",
+        "healerName": "Siberia-\u91d1\u8272\u5e73\u539f-CN",
+        "durationSeconds": 1.35,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 79028.3388,
+                "end": 79029.6858,
+                "name": "Terror of the Skies",
+                "spellId": 372245,
+                "drCategory": "Stun",
+                "source": "Devastation Evoker",
+                "sourceClassSlug": "evoker",
+                "sourceSpecSlug": "devastation",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "68eec9b74668d0b533f6c6ca0279a4b4",
         "healerName": "Fatshame-Kel'Thuzad-US",
         "durationSeconds": 1.35,
@@ -10234,25 +11264,6 @@
         ]
     },
     {
-        "matchId": "c2b43707b1bf985c95619470479290f8",
-        "healerName": "Holyheck-Frostmourne-US",
-        "durationSeconds": 1.2,
-        "distinctCasters": 1,
-        "steps": [
-            {
-                "start": 81040.857,
-                "end": 81042.059,
-                "name": "Psychic Scream",
-                "spellId": 8122,
-                "drCategory": "Disorient",
-                "source": "Holy Priest",
-                "sourceClassSlug": "priest",
-                "sourceSpecSlug": "holy",
-                "sourceIsHealer": true
-            }
-        ]
-    },
-    {
         "matchId": "b30148505b6fad04b77ede70cb422fa5",
         "healerName": "Shufbrainrot-Tichondrius-US",
         "durationSeconds": 1.19,
@@ -10381,6 +11392,25 @@
                 "source": "Windwalker Monk",
                 "sourceClassSlug": "monk",
                 "sourceSpecSlug": "windwalker",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "15f92f504dbacfe20240f618fb269eb3",
+        "healerName": "Siberia-\u91d1\u8272\u5e73\u539f-CN",
+        "durationSeconds": 1.11,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 79006.9898,
+                "end": 79008.0948,
+                "name": "Blind",
+                "spellId": 2094,
+                "drCategory": "Disorient",
+                "source": "Assassination Rogue",
+                "sourceClassSlug": "rogue",
+                "sourceSpecSlug": "assassination",
                 "sourceIsHealer": false
             }
         ]
@@ -10766,6 +11796,25 @@
         ]
     },
     {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 0.76,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83574.545,
+                "end": 83575.302,
+                "name": "Fear",
+                "spellId": 118699,
+                "drCategory": "Disorient",
+                "source": "Demonology Warlock",
+                "sourceClassSlug": "warlock",
+                "sourceSpecSlug": "demonology",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "210d66db7d8f93c8ebd8d5a3dd0103a9",
         "healerName": "\u5468\u4e94\u665a-\u71c3\u70e7\u4e4b\u5203-CN",
         "durationSeconds": 0.69,
@@ -11032,6 +12081,25 @@
         ]
     },
     {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 0.5,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83681.895,
+                "end": 83682.395,
+                "name": "Fear",
+                "spellId": 118699,
+                "drCategory": "Disorient",
+                "source": "Demonology Warlock",
+                "sourceClassSlug": "warlock",
+                "sourceSpecSlug": "demonology",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
         "matchId": "4b7d75e8df4f2ae96de73ba6a7e4ab1a",
         "healerName": "Holybyte-MoonGuard-US",
         "durationSeconds": 0.44,
@@ -11076,6 +12144,25 @@
                 "source": "Destruction Warlock",
                 "sourceClassSlug": "warlock",
                 "sourceSpecSlug": "destruction",
+                "sourceIsHealer": false
+            }
+        ]
+    },
+    {
+        "matchId": "18bc53ff1c657bd72ab2852089b1f17f",
+        "healerName": "Onry\u00f4-Illidan-US",
+        "durationSeconds": 0.04,
+        "distinctCasters": 1,
+        "steps": [
+            {
+                "start": 83430.425,
+                "end": 83430.468,
+                "name": "Fear",
+                "spellId": 118699,
+                "drCategory": "Disorient",
+                "source": "Demonology Warlock",
+                "sourceClassSlug": "warlock",
+                "sourceSpecSlug": "demonology",
                 "sourceIsHealer": false
             }
         ]

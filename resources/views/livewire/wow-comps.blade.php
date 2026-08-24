@@ -427,6 +427,164 @@
                     </div>
                 </div>
 
+                {{-- Example CC Chains — added 2026-08-23, wiring wow:cc-formula onto the live
+                     page for the first time (see CcFormulaService's docblock: the algorithm is
+                     shared verbatim with that CLI tool, not reimplemented here). Deliberately
+                     placed above the plain DR/Utility groupings below — this card is an actual
+                     example sequence for the 3 picked specs; the groupings below it are just
+                     "what CC exists," unsequenced. Titled "Example" rather than "Suggested",
+                     2026-08-24, direct instruction — this project has real prior user feedback
+                     (Top Damage Rotations, née "DPS Rotations") that an overly confident label on
+                     a heuristic output reads as an unfounded AI claim rather than an illustration.
+
+                     "Next Go" added 2026-08-24 — a second chain showing what's realistically
+                     available ~20s later (the real, confirmed DR reset window), once the First
+                     Go's own picks have had time to go on cooldown. Both variants share the
+                     exact same rendering markup below (looped, not duplicated) so a future change
+                     can't accidentally apply to only one.
+
+                     Two-column layout (chain | leftover CC), added 2026-08-24, direct instruction
+                     — simpler than the original design's inline "(alt: ...)" line under every
+                     step: one consolidated "Leftover CC" column per go, instead of alternates
+                     repeated/nested per step. Deliberately just the hard-CC pool (Stun/Silence/
+                     Incapacitate/Disorient) not used in that go's sequence or kill-target pick —
+                     see CcFormulaService::computeChain()'s 'leftover' key. Peels/Utility are a
+                     different concept, shown in their own sections below, not folded in here.
+                     wow:cc-formula's own CLI output is untouched by this — it still prints
+                     per-step alternates inline, which is why 'alternates' stays on each sequence
+                     entry even though this page no longer renders it. --}}
+                @if ($suggestedChain)
+                    <div class="linear-card p-4">
+                        <p class="text-[11px] uppercase tracking-wide text-gold font-semibold mb-3">Example CC Chains</p>
+                        @foreach ([
+                            ['label' => 'First Go', 'chain' => $suggestedChain['primary']],
+                            ['label' => 'Next Go (~20s later — categories reset, anything still on cooldown from the First Go is excluded)', 'chain' => $suggestedChain['nextGo']],
+                        ] as $goIndex => $go)
+                            @php $chain = $go['chain']; @endphp
+                            <div class="{{ $goIndex > 0 ? 'mt-4 pt-4 border-t border-line' : '' }}">
+                                <p class="text-[10px] uppercase tracking-wide text-ink-subtle font-semibold mb-2">{{ $go['label'] }}</p>
+                                @if ($chain['poolEmpty'])
+                                    <p class="text-[12px] text-ink-subtle">No classified CC available for this comp yet.</p>
+                                @else
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <div class="space-y-2.5">
+                                                @foreach ($chain['sequence'] as $i => $step)
+                                                    @php $stepSpell = $step['spell']; @endphp
+                                                    @if ($step['requirementNote'])
+                                                        @php $note = $step['requirementNote']; @endphp
+                                                        <p class="text-[11px] text-ink-subtle italic pl-7">
+                                                            @if ($note['type'] === 'satisfied')
+                                                                requirement already satisfied by step {{ $note['satisfiedByStepNumber'] }}: {{ $note['satisfiedBySpellName'] }}
+                                                            @elseif ($note['type'] === 'setup')
+                                                                requires setup: {{ $note['setupSpell']->display_name }} ({{ $note['setupSpell']->dr_category }}) — {{ $note['setupLabel'] }}, to hold the target in place first
+                                                            @else
+                                                                ⚠ needs a {{ $note['neededCategory'] }} to land reliably — none available/unused in this comp
+                                                            @endif
+                                                        </p>
+                                                    @endif
+                                                    <div class="flex items-center gap-2 flex-wrap">
+                                                        <span class="text-[11px] text-ink-subtle w-4 text-right">{{ $i + 1 }}.</span>
+                                                        <x-spell-icon :spell="$stepSpell" size="w-6 h-6"/>
+                                                        <span class="text-[13px] text-ink font-medium">{{ $stepSpell->display_name }}</span>
+                                                        <span class="{{ $drBadge[$stepSpell->dr_category] ?? 'badge-gray' }}">{{ $stepSpell->dr_category }}</span>
+                                                        @if ($step['isHealer'])
+                                                            <span class="text-[10px] text-ink-subtle">[healer-cast]</span>
+                                                        @endif
+                                                        @if ($step['stealthNote'])
+                                                            <span class="text-[10px] text-violet">[{{ $step['stealthNote'] }}]</span>
+                                                        @endif
+                                                        <span class="text-[11px] text-ink-subtle">— {{ $step['label'] }}</span>
+                                                        <span class="text-[11px] text-ink-muted ml-auto">{{ $step['durationSeconds'] !== null ? rtrim(rtrim(number_format($step['durationSeconds'], 1), '0'), '.').'s' : 'no curated duration' }}</span>
+                                                    </div>
+                                                    <p class="text-[10px] text-ink-subtle pl-7">{{ $step['realRateLabel'] }}</p>
+                                                @endforeach
+                                            </div>
+
+                                            <p class="text-[12px] text-ink-muted mt-3 pt-3 border-t border-line">
+                                                Estimated total healer lockdown: <span class="text-ink font-semibold">{{ round($chain['totalDuration'], 1) }}s</span>
+                                                @if ($chain['missingDuration'])
+                                                    <span class="text-ink-subtle">(at least one step has no curated duration — real total is somewhat higher)</span>
+                                                @endif
+                                            </p>
+
+                                            <div class="mt-3 pt-3 border-t border-line">
+                                                @if ($chain['killTarget'])
+                                                    @php $kt = $chain['killTarget']; @endphp
+                                                    <p class="text-[11px] text-ink-muted mb-1.5">Also available to lock the kill target (left over after the sequence above; doesn't break on damage):</p>
+                                                    @if ($kt['requirementNote'])
+                                                        @php $ktNote = $kt['requirementNote']; @endphp
+                                                        <p class="text-[11px] text-ink-subtle italic mb-1.5">
+                                                            @if ($ktNote['type'] === 'setup')
+                                                                requires setup: {{ $ktNote['setupSpell']->display_name }} ({{ $ktNote['setupSpell']->dr_category }}) — {{ $ktNote['setupLabel'] }}, to hold the target in place first
+                                                            @else
+                                                                ⚠ needs a {{ $ktNote['neededCategory'] }} to land reliably — none available/unused in this comp
+                                                            @endif
+                                                        </p>
+                                                    @endif
+                                                    <div class="flex items-center gap-2 flex-wrap">
+                                                        <x-spell-icon :spell="$kt['spell']" size="w-6 h-6"/>
+                                                        <span class="text-[13px] text-ink font-medium">{{ $kt['spell']->display_name }}</span>
+                                                        <span class="{{ $drBadge[$kt['spell']->dr_category] ?? 'badge-gray' }}">{{ $kt['spell']->dr_category }}</span>
+                                                        <span class="text-[11px] text-ink-subtle">— {{ $kt['label'] }}</span>
+                                                    </div>
+                                                    <p class="text-[10px] text-ink-subtle pl-8">{{ $kt['realRateLabel'] }}</p>
+                                                @else
+                                                    <p class="text-[11px] text-ink-subtle">{{ $chain['noKillTargetMessage'] }}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="md:border-l md:border-line md:pl-4" x-data="{ expandedLeftoverCategory: null }">
+                                            <p class="text-[11px] text-ink-muted mb-2">Leftover CC (genuine chain candidates not used above):</p>
+                                            @if (empty($chain['leftover']))
+                                                <p class="text-[11px] text-ink-subtle">Nothing left over — every hard-CC option in this comp is already accounted for above.</p>
+                                            @else
+                                                @php
+                                                    $leftoverCategoryOrder = ['Stun', 'Silence', 'Incapacitate', 'Disorient'];
+                                                    $leftoverGrouped = collect($chain['leftover'])
+                                                        ->groupBy(fn ($l) => $l['spell']->dr_category)
+                                                        ->sortBy(fn ($items, $cat) => array_search($cat, $leftoverCategoryOrder) !== false
+                                                            ? array_search($cat, $leftoverCategoryOrder)
+                                                            : 99);
+                                                @endphp
+                                                <div class="space-y-1">
+                                                    @foreach ($leftoverGrouped as $cat => $items)
+                                                        <div>
+                                                            <button type="button"
+                                                                    @click="expandedLeftoverCategory = expandedLeftoverCategory === '{{ $cat }}' ? null : '{{ $cat }}'"
+                                                                    class="w-full flex items-center gap-1.5 text-left py-1 -mx-1 px-1 rounded hover:bg-surface-2 transition-colors">
+                                                                <svg class="w-3 h-3 text-ink-subtle flex-shrink-0 transition-transform" :class="expandedLeftoverCategory === '{{ $cat }}' && 'rotate-90'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                                                </svg>
+                                                                <span class="{{ $drBadge[$cat] ?? 'badge-gray' }}">{{ $cat }}</span>
+                                                                <span class="text-[11px] text-ink-subtle">({{ count($items) }})</span>
+                                                            </button>
+                                                            <div x-show="expandedLeftoverCategory === '{{ $cat }}'" x-cloak x-collapse
+                                                                 class="ml-[18px] pl-2.5 border-l border-line mt-1 mb-1.5 space-y-1.5">
+                                                                @foreach ($items as $left)
+                                                                    <div class="flex items-center gap-2 flex-wrap">
+                                                                        <x-spell-icon :spell="$left['spell']" size="w-5 h-5"/>
+                                                                        <span class="text-[12px] text-ink">{{ $left['spell']->display_name }}</span>
+                                                                        @if ($left['stealthNote'])
+                                                                            <span class="text-[10px] text-violet">[{{ $left['stealthNote'] }}]</span>
+                                                                        @endif
+                                                                        <span class="text-[11px] text-ink-subtle">— {{ $left['label'] }}</span>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+
                 {{-- Both boxes are plain groupings by real dr_category, NOT sequenced through
                      CcChainBuilder (2026-08-16, direct instruction) — no DR%/immune tracking,
                      the category badge lives on each spell's own card ("like we had originally")

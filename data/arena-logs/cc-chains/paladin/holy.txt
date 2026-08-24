@@ -1,1579 +1,1730 @@
 # CC chains landing on real paladin/holy healers (opposing side only)
-# Total qualifying chains found: 446 | shown here: 446
+# Total qualifying chains found: 487 | shown here: 487
 # Gap tolerance: 2s | Min abilities per chain: 1 | Categories: Stun/Silence/Incapacitate/Disorient only (--include-utility widens this)
 # "(DR'd)" marks a step whose dr_category already appeared earlier in the same chain — real in-game DR is already baked into its own timing, this is just a readability flag.
 
-=== #1 — 16.82s total time-in-CC — 3 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
+=== #1 — 32.26s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+  [+  0.00s] Garrote                  (Silence      )  24.01s  by Assassination Rogue
+  [+  0.01s] Garrote - Silence        (Silence      ) (DR'd)   3.02s  by Assassination Rogue
+  [+ 23.49s] Dragon's Breath          (Disorient    )   2.96s  by Fire Mage
+  [+ 26.24s] Ring of Frost            (Incapacitate )   6.02s  by Fire Mage
+
+=== #2 — 16.82s total time-in-CC — 3 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Protection Warrior
   [+  2.77s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
   [+  4.31s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
   [+ 10.82s] Strangulate              (Silence      )   4.01s  by Frost Death Knight
   [+ 15.48s] Absolute Zero            (Stun         ) (DR'd)   1.34s  by Frost Death Knight
 
-=== #2 — 16.49s total time-in-CC — 3 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
+=== #3 — 16.8s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+  [+  0.00s] Garrote                  (Silence      )  15.85s  by Assassination Rogue
+  [+  0.02s] Garrote - Silence        (Silence      ) (DR'd)   3.00s  by Assassination Rogue
+  [+ 12.29s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
+
+=== #4 — 16.49s total time-in-CC — 3 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   2.72s  by Protection Warrior
   [+  3.11s] Holy Word: Chastise      (Incapacitate )   3.00s  by Holy Priest
   [+  5.06s] Strangulate              (Silence      )   4.01s  by Frost Death Knight
   [+ 10.49s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #3 — 16.39s total time-in-CC — 3 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #5 — 16.39s total time-in-CC — 3 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.99s  by Mistweaver Monk
   [+  3.95s] Blind                    (Disorient    )   5.00s  by Subtlety Rogue
   [+  9.72s] Leg Sweep                (Stun         )   3.60s  by Mistweaver Monk
   [+ 13.39s] Polymorph                (Incapacitate ) (DR'd)   3.00s  by Fire Mage
 
-=== #4 — 16.26s total time-in-CC — 3 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #6 — 16.26s total time-in-CC — 3 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
   [+  6.01s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
   [+ 11.26s] Kidney Shot              (Stun         )   4.99s  by Subtlety Rogue
 
-=== #5 — 14.86s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
+=== #7 — 14.86s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.73s  by Holy Priest
   [+  2.55s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
   [+  8.87s] Polymorph                (Incapacitate )   5.99s  by Fire Mage
 
-=== #6 — 13.98s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #8 — 14.55s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
+  [+  4.19s] Garrote                  (Silence      )  10.36s  by Assassination Rogue
+  [+  4.21s] Garrote - Silence        (Silence      ) (DR'd)   3.00s  by Assassination Rogue
+  [+  4.34s] Blinding Light           (Disorient    )   1.14s  by Holy Paladin
+
+=== #9 — 13.98s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.99s  by Holy Priest
   [+  2.40s] Polymorph                (Incapacitate )   5.99s  by Fire Mage
   [+  7.99s] Psychic Scream           (Disorient    )   5.99s  by Holy Priest
 
-=== #7 — 13.31s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #10 — 13.68s total time-in-CC — 2 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Polymorph                (Incapacitate )   5.98s  by Fire Mage
+  [+  6.21s] Polymorph                (Incapacitate ) (DR'd)   2.99s  by Fire Mage
+  [+  7.98s] Psychic Scream           (Disorient    )   5.69s  by Holy Priest
+
+=== #11 — 13.31s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Blind                    (Disorient    )   5.00s  by Subtlety Rogue
   [+  6.66s] Cheap Shot               (Stun         )   3.61s  by Subtlety Rogue
   [+  7.30s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
 
-=== #8 — 13.3s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #12 — 13.3s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
   [+  5.13s] Leg Sweep                (Stun         )   3.59s  by Mistweaver Monk
   [+  7.39s] Song of Chi-Ji           (Disorient    ) (DR'd)   3.00s  by Mistweaver Monk
   [+ 10.29s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
 
-=== #9 — 13.25s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #13 — 13.25s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.49s  by Holy Priest
   [+  1.38s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
   [+  7.73s] Mind Control             (Disorient    ) (DR'd)   2.44s  by Holy Priest
   [+ 11.75s] Polymorph                (Incapacitate )   1.50s  by Fire Mage
 
-=== #10 — 13.08s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #14 — 13.08s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
   [+  3.74s] Song of Chi-Ji           (Disorient    )   6.00s  by Mistweaver Monk
   [+  8.99s] Sap                      (Incapacitate ) (DR'd)   2.52s  by Subtlety Rogue
   [+ 11.21s] Cheap Shot               (Stun         )   1.87s  by Subtlety Rogue
 
-=== #11 — 12.91s total time-in-CC — 1 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
+=== #15 — 12.91s total time-in-CC — 1 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   2.99s  by Holy Priest
   [+  2.90s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
   [+  9.89s] Mind Control             (Disorient    ) (DR'd)   3.02s  by Holy Priest
 
-=== #12 — 12.89s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #16 — 12.89s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.60s  by Subtlety Rogue
   [+  4.05s] Paralysis                (Incapacitate )   3.02s  by Mistweaver Monk
   [+  6.88s] Song of Chi-Ji           (Disorient    )   6.01s  by Mistweaver Monk
 
-=== #13 — 12.76s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #17 — 12.76s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Sap                      (Incapacitate )   6.02s  by Subtlety Rogue
   [+  4.69s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
   [+  9.76s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
 
-=== #14 — 12.69s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
+=== #18 — 12.69s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.70s  by Holy Priest
   [+  1.61s] Cheap Shot               (Stun         ) (DR'd)   1.83s  by Subtlety Rogue
   [+  2.51s] Psychic Scream           (Disorient    )   5.99s  by Holy Priest
   [+ 10.48s] Mind Control             (Disorient    ) (DR'd)   2.21s  by Holy Priest
 
-=== #15 — 12.66s total time-in-CC — 2 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #19 — 12.66s total time-in-CC — 2 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.99s  by Subtlety Rogue
   [+  3.95s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
   [+  6.65s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
 
-=== #16 — 12.19s total time-in-CC — 2 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
+=== #20 — 12.53s total time-in-CC — 2 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
+  [+  0.00s] Polymorph                (Incapacitate )   3.02s  by Fire Mage
+  [+  1.78s] Garrote                  (Silence      )  10.76s  by Assassination Rogue
+  [+  1.78s] Garrote - Silence        (Silence      ) (DR'd)   2.38s  by Assassination Rogue
+
+=== #21 — 12.19s total time-in-CC — 2 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
   [+  4.70s] Holy Word: Chastise      (Incapacitate )   3.00s  by Holy Priest
   [+  6.19s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #17 — 12.18s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #22 — 12.18s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
   [+  6.19s] Polymorph                (Incapacitate )   5.99s  by Fire Mage
 
-=== #18 — 12.09s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #23 — 12.1s total time-in-CC — 2 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
+  [+  0.00s] Garrote                  (Silence      )  12.10s  by Assassination Rogue
+  [+ 10.83s] Psychic Scream           (Disorient    )   1.20s  by Holy Priest
+
+=== #24 — 12.09s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Blind                    (Disorient    )   5.00s  by Subtlety Rogue
   [+  6.08s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
 
-=== #19 — 12.04s total time-in-CC — 2 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
+=== #25 — 12.04s total time-in-CC — 2 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
   [+  0.00s] Blinding Sleet           (Disorient    )   4.01s  by Frost Death Knight
   [+  1.74s] Absolute Zero            (Stun         )   3.00s  by Frost Death Knight
   [+  6.02s] Polymorph                (Incapacitate )   6.02s  by Arcane Mage
 
-=== #20 — 11.95s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #26 — 11.95s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
   [+  4.84s] Song of Chi-Ji           (Disorient    ) (DR'd)   0.96s  by Mistweaver Monk
   [+  5.51s] Cheap Shot               (Stun         )   3.60s  by Subtlety Rogue
   [+  8.94s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
 
-=== #21 — 11.29s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #27 — 11.29s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.62s  by Subtlety Rogue
   [+  2.99s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
   [+  5.28s] Song of Chi-Ji           (Disorient    )   6.01s  by Mistweaver Monk
 
-=== #22 — 11.19s total time-in-CC — 2 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #28 — 11.19s total time-in-CC — 2 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Cyclone                  (Disorient    )   1.49s  by Balance Druid
   [+  3.28s] Mighty Bash              (Stun         )   3.61s  by Balance Druid
   [+  5.89s] Sleep Walk               (Disorient    ) (DR'd)   3.01s  by Preservation Evoker
   [+  9.82s] Terror of the Skies      (Stun         ) (DR'd)   1.36s  by Preservation Evoker
 
-=== #23 — 10.98s total time-in-CC — 3 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
+=== #29 — 10.98s total time-in-CC — 3 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Protection Warrior
   [+  3.60s] Holy Word: Chastise      (Incapacitate )   1.93s  by Holy Priest
   [+  5.03s] Psychic Scream           (Disorient    )   0.50s  by Holy Priest
   [+  6.98s] Strangulate              (Silence      )   4.00s  by Frost Death Knight
 
-=== #24 — 10.96s total time-in-CC — 3 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #30 — 10.96s total time-in-CC — 3 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
   [+  6.31s] Storm Bolt               (Stun         )   2.71s  by Fury Warrior
   [+  6.46s] Hex                      (Incapacitate )   4.50s  by Enhancement Shaman
 
-=== #25 — 10.91s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #31 — 10.91s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Leg Sweep                (Stun         )   3.62s  by Mistweaver Monk
   [+  3.03s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
   [+  5.91s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
 
-=== #26 — 10.89s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
+=== #32 — 10.89s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.34s  by Holy Priest
   [+  1.40s] Psychic Scream           (Disorient    )   6.02s  by Holy Priest
   [+  7.90s] Sap                      (Incapacitate )   3.00s  by Subtlety Rogue
 
-=== #27 — 10.34s total time-in-CC — 1 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
+=== #33 — 10.34s total time-in-CC — 1 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
   [+  0.00s] Sap                      (Incapacitate )   6.01s  by Subtlety Rogue
   [+  6.39s] Sap                      (Incapacitate ) (DR'd)   3.00s  by Subtlety Rogue
   [+  9.18s] Blind                    (Disorient    )   1.16s  by Subtlety Rogue
 
-=== #28 — 10.19s total time-in-CC — 3 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #34 — 10.19s total time-in-CC — 3 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Fury Warrior
   [+  2.73s] Hex                      (Incapacitate )   6.01s  by Enhancement Shaman
   [+  8.69s] Incapacitating Roar      (Incapacitate ) (DR'd)   1.50s  by Restoration Druid
 
-=== #29 — 10.01s total time-in-CC — 2 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
+=== #35 — 10.01s total time-in-CC — 2 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   3.81s  by Beast Mastery Hunter
   [+  5.01s] Hammer of Justice        (Stun         )   5.00s  by Retribution Paladin
 
-=== #30 — 9.91s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #36 — 9.91s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
   [+  1.52s] Polymorph                (Incapacitate )   1.29s  by Fire Mage
   [+  6.90s] Polymorph                (Incapacitate ) (DR'd)   3.02s  by Fire Mage
 
-=== #31 — 9.73s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #37 — 9.77s total time-in-CC — 3 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
+  [+  2.65s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
+  [+  6.95s] Cyclone                  (Disorient    )   2.82s  by Restoration Druid
+
+=== #38 — 9.73s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   2.50s  by Balance Druid
   [+  2.70s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
   [+  6.13s] Leg Sweep                (Stun         )   3.60s  by Mistweaver Monk
 
-=== #32 — 9.68s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #39 — 9.68s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
   [+  6.67s] Polymorph                (Incapacitate ) (DR'd)   3.01s  by Fire Mage
 
-=== #33 — 9.67s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #40 — 9.67s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.02s  by Fire Mage
   [+  6.67s] Polymorph                (Incapacitate ) (DR'd)   3.00s  by Fire Mage
 
-=== #34 — 9.65s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #41 — 9.65s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Absolute Zero            (Stun         )   2.71s  by Frost Death Knight
   [+  2.90s] Strangulate              (Silence      )   4.02s  by Frost Death Knight
   [+  7.39s] Hammer of Justice        (Stun         ) (DR'd)   2.26s  by Holy Paladin
 
-=== #35 — 9.65s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #42 — 9.65s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.00s  by Holy Priest
   [+  3.65s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #36 — 9.51s total time-in-CC — 2 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
+=== #43 — 9.51s total time-in-CC — 2 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
   [+  0.00s] Blind                    (Disorient    )   4.98s  by Subtlety Rogue
   [+  3.54s] Polymorph                (Incapacitate )   5.97s  by Fire Mage
 
-=== #37 — 9.38s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #44 — 9.38s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
   [+  6.35s] Polymorph                (Incapacitate ) (DR'd)   3.03s  by Fire Mage
 
-=== #38 — 9.25s total time-in-CC — 3 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #45 — 9.25s total time-in-CC — 3 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   1.18s  by Protection Warrior
   [+  2.09s] Strangulate              (Silence      )   4.01s  by Frost Death Knight
   [+  5.41s] Holy Word: Chastise      (Incapacitate )   3.00s  by Holy Priest
   [+  8.49s] Psychic Scream           (Disorient    )   0.77s  by Holy Priest
 
-=== #39 — 9.07s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
+=== #46 — 9.2s total time-in-CC — 2 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Blind                    (Disorient    )   4.35s  by Subtlety Rogue
+  [+  3.20s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
+
+=== #47 — 9.07s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Arms Warrior
   [+  3.06s] Intimidating Shout       (Disorient    )   6.01s  by Arms Warrior
 
-=== #40 — 8.97s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #48 — 8.97s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.00s  by Holy Priest
   [+  2.95s] Psychic Scream           (Disorient    )   6.02s  by Holy Priest
 
-=== #41 — 8.96s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #49 — 8.96s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
   [+  3.13s] Leg Sweep                (Stun         )   3.63s  by Mistweaver Monk
   [+  7.45s] Imprison                 (Incapacitate ) (DR'd)   1.50s  by Havoc Demon Hunter
 
-=== #42 — 8.85s total time-in-CC — 2 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
+=== #50 — 8.85s total time-in-CC — 2 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.02s  by Fire Mage
   [+  2.84s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #43 — 8.77s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
-  [+  0.00s] Dragon's Breath          (Disorient    )   2.96s  by Fire Mage
-  [+  2.76s] Ring of Frost            (Incapacitate )   6.02s  by Fire Mage
-
-=== #44 — 8.62s total time-in-CC — 2 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
+=== #51 — 8.62s total time-in-CC — 2 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
   [+  5.62s] Dragon's Breath          (Disorient    )   3.00s  by Fire Mage
   [+  6.63s] Mind Control             (Disorient    ) (DR'd)   1.51s  by Holy Priest
 
-=== #45 — 8.59s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #52 — 8.59s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Blinding Light           (Disorient    )   4.01s  by Holy Paladin
   [+  4.58s] Silence                  (Silence      )   4.01s  by Shadow Priest
 
-=== #46 — 8.5s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
+=== #53 — 8.5s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.02s  by Mistweaver Monk
   [+  2.50s] Song of Chi-Ji           (Disorient    )   6.01s  by Mistweaver Monk
 
-=== #47 — 8.49s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #54 — 8.49s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Balance Druid
   [+  5.97s] Cyclone                  (Disorient    ) (DR'd)   2.51s  by Balance Druid
 
-=== #48 — 8.48s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #55 — 8.48s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.70s  by Holy Priest
   [+  2.48s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #49 — 8.47s total time-in-CC — 2 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #56 — 8.47s total time-in-CC — 2 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Protection Warrior
   [+  4.47s] Strangulate              (Silence      )   4.00s  by Frost Death Knight
 
-=== #50 — 8.46s total time-in-CC — 1 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #57 — 8.46s total time-in-CC — 1 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
   [+  2.45s] Song of Chi-Ji           (Disorient    )   6.01s  by Mistweaver Monk
 
-=== #51 — 8.45s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #58 — 8.45s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Intimidating Shout       (Disorient    )   6.01s  by Arms Warrior
   [+  5.75s] Storm Bolt               (Stun         )   2.69s  by Arms Warrior
 
-=== #52 — 8.42s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #59 — 8.42s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
   [+  4.76s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
   [+  5.42s] Song of Chi-Ji           (Disorient    ) (DR'd)   3.00s  by Mistweaver Monk
 
-=== #53 — 8.36s total time-in-CC — 2 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
+=== #60 — 8.36s total time-in-CC — 2 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   5.37s  by Destruction Warlock
   [+  5.36s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
 
-=== #54 — 8.26s total time-in-CC — 2 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #61 — 8.26s total time-in-CC — 2 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.60s  by Subtlety Rogue
   [+  4.26s] Psychic Scream           (Disorient    )   2.04s  by Holy Priest
   [+  6.00s] Kidney Shot              (Stun         ) (DR'd)   2.26s  by Subtlety Rogue
 
-=== #55 — 8.25s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #62 — 8.25s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Balance Druid
   [+  5.74s] Cyclone                  (Disorient    ) (DR'd)   2.50s  by Balance Druid
 
-=== #56 — 8.23s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #63 — 8.23s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
   [+  5.24s] Mind Control             (Disorient    ) (DR'd)   2.99s  by Holy Priest
 
-=== #57 — 8.21s total time-in-CC — 2 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #64 — 8.21s total time-in-CC — 2 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   1.51s  by Fire Mage
   [+  3.24s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
   [+  5.21s] Polymorph                (Incapacitate )   3.00s  by Fire Mage
 
-=== #58 — 8.21s total time-in-CC — 2 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #65 — 8.21s total time-in-CC — 2 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   1.50s  by Fire Mage
   [+  3.23s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
   [+  5.21s] Polymorph                (Incapacitate )   3.00s  by Fire Mage
 
-=== #59 — 8.2s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #66 — 8.2s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Mighty Bash              (Stun         )   0.91s  by Balance Druid
   [+  0.91s] Mighty Bash              (Stun         ) (DR'd)   2.69s  by Balance Druid
   [+  3.21s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
 
-=== #60 — 8.19s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #67 — 8.19s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
   [+  4.18s] Blinding Light           (Disorient    )   4.01s  by Holy Paladin
 
-=== #61 — 8.18s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #68 — 8.18s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
   [+  5.17s] Mind Control             (Disorient    )   3.00s  by Holy Priest
 
-=== #62 — 8.14s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #69 — 8.16s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
+  [+  2.36s] Garrote                  (Silence      )   5.80s  by Assassination Rogue
+
+=== #70 — 8.14s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   4.99s  by Balance Druid
   [+  5.63s] Cyclone                  (Disorient    ) (DR'd)   2.50s  by Balance Druid
 
-=== #63 — 8.07s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #71 — 8.07s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
   [+  4.47s] Cheap Shot               (Stun         )   3.60s  by Subtlety Rogue
 
-=== #64 — 8.06s total time-in-CC — 2 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #72 — 8.06s total time-in-CC — 2 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Fury Warrior
   [+  2.05s] Hex                      (Incapacitate )   6.01s  by Enhancement Shaman
 
-=== #65 — 8.04s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #73 — 8.04s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
   [+  5.55s] Cyclone                  (Disorient    ) (DR'd)   2.50s  by Balance Druid
 
-=== #66 — 8.01s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #74 — 8.03s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
+  [+  5.51s] Cyclone                  (Disorient    ) (DR'd)   2.52s  by Balance Druid
+
+=== #75 — 8.01s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   3.00s  by Discipline Priest
   [+  2.97s] Kidney Shot              (Stun         )   5.04s  by Subtlety Rogue
 
-=== #67 — 8.01s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #76 — 8.01s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Blind                    (Disorient    )   1.95s  by Subtlety Rogue
   [+  1.93s] Holy Word: Chastise      (Stun         )   3.03s  by Holy Priest
   [+  4.98s] Psychic Scream           (Disorient    ) (DR'd)   3.03s  by Holy Priest
 
-=== #68 — 7.95s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #77 — 7.95s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
   [+  4.95s] Psychic Scream           (Disorient    ) (DR'd)   3.00s  by Holy Priest
 
-=== #69 — 7.94s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
+=== #78 — 7.94s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
   [+  0.00s] Rake                     (Stun         )   3.61s  by Restoration Druid
   [+  2.93s] Cyclone                  (Disorient    )   1.22s  by Restoration Druid
   [+  4.15s] Cyclone                  (Disorient    ) (DR'd)   3.78s  by Restoration Druid
 
-=== #70 — 7.92s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #79 — 7.92s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   1.51s  by Restoration Druid
   [+  2.92s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
 
-=== #71 — 7.91s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #80 — 7.91s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   1.52s  by Restoration Druid
   [+  2.93s] Cyclone                  (Disorient    )   4.98s  by Restoration Druid
 
-=== #72 — 7.86s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #81 — 7.86s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
   [+  5.29s] Hammer of Justice        (Stun         )   2.57s  by Protection Paladin
 
-=== #73 — 7.85s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #82 — 7.85s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
   [+  5.61s] Cyclone                  (Disorient    )   2.24s  by Restoration Druid
 
-=== #74 — 7.83s total time-in-CC — 2 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
+=== #83 — 7.83s total time-in-CC — 2 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Protection Warrior
   [+  1.83s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #75 — 7.82s total time-in-CC — 2 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #84 — 7.82s total time-in-CC — 2 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.59s  by Subtlety Rogue
   [+  4.03s] Incapacitating Roar      (Incapacitate )   3.01s  by Balance Druid
   [+  6.32s] Cyclone                  (Disorient    )   1.50s  by Balance Druid
 
-=== #76 — 7.8s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #85 — 7.8s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Gouge                    (Incapacitate )   3.00s  by Subtlety Rogue
   [+  2.79s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
 
-=== #77 — 7.8s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #86 — 7.8s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Blinding Sleet           (Disorient    )   1.22s  by Frost Death Knight
   [+  1.43s] Absolute Zero            (Stun         )   2.71s  by Frost Death Knight
   [+  5.54s] Hammer of Justice        (Stun         ) (DR'd)   2.26s  by Holy Paladin
 
-=== #78 — 7.78s total time-in-CC — 2 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #87 — 7.78s total time-in-CC — 2 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
   [+  5.07s] Holy Word: Chastise      (Stun         )   2.70s  by Holy Priest
 
-=== #79 — 7.77s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
+=== #88 — 7.77s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
   [+  0.00s] Blind                    (Disorient    )   5.00s  by Subtlety Rogue
   [+  4.77s] Psychic Scream           (Disorient    ) (DR'd)   3.00s  by Holy Priest
 
-=== #80 — 7.76s total time-in-CC — 2 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #89 — 7.76s total time-in-CC — 2 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Blind                    (Disorient    )   5.00s  by Subtlety Rogue
   [+  5.08s] Holy Word: Chastise      (Stun         )   2.69s  by Holy Priest
 
-=== #81 — 7.67s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #90 — 7.67s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Polymorph                (Incapacitate )   1.65s  by Fire Mage
   [+  1.36s] Dragon's Breath          (Disorient    )   2.32s  by Fire Mage
   [+  5.54s] Blind                    (Disorient    ) (DR'd)   2.13s  by Subtlety Rogue
 
-=== #82 — 7.67s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #91 — 7.67s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
   [+  4.48s] Song of Chi-Ji           (Disorient    )   3.19s  by Mistweaver Monk
 
-=== #83 — 7.56s total time-in-CC — 2 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #92 — 7.56s total time-in-CC — 2 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Blind                    (Disorient    )   4.99s  by Subtlety Rogue
   [+  1.52s] Polymorph                (Incapacitate )   6.04s  by Fire Mage
 
-=== #84 — 7.55s total time-in-CC — 2 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #93 — 7.55s total time-in-CC — 2 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Blind                    (Disorient    )   5.01s  by Subtlety Rogue
   [+  1.55s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
 
-=== #85 — 7.46s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #94 — 7.46s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.52s  by Holy Priest
   [+  1.46s] Psychic Scream           (Disorient    )   6.00s  by Holy Priest
 
-=== #86 — 7.44s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #95 — 7.44s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
   [+  5.45s] Blinding Light           (Disorient    ) (DR'd)   1.99s  by Protection Paladin
 
-=== #87 — 7.38s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #96 — 7.38s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.42s  by Holy Paladin
   [+  4.37s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
 
-=== #88 — 7.35s total time-in-CC — 2 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
+=== #97 — 7.35s total time-in-CC — 2 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.79s  by Fury Warrior
   [+  1.05s] Terror of the Skies      (Stun         )   2.71s  by Preservation Evoker
   [+  4.26s] Sleep Walk               (Disorient    ) (DR'd)   3.00s  by Preservation Evoker
   [+  7.26s] Sleep Walk               (Disorient    ) (DR'd)   0.09s  by Preservation Evoker
 
-=== #89 — 7.33s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #98 — 7.33s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Leg Sweep                (Stun         )   3.62s  by Windwalker Monk
   [+  5.05s] Hammer of Justice        (Stun         ) (DR'd)   2.27s  by Holy Paladin
 
-=== #90 — 7.26s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #99 — 7.26s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Blinding Sleet           (Disorient    )   1.56s  by Frost Death Knight
   [+  2.37s] Strangulate              (Silence      )   3.99s  by Frost Death Knight
   [+  5.01s] Hammer of Justice        (Stun         )   2.25s  by Holy Paladin
 
-=== #91 — 7.21s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
-  [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
-  [+  4.21s] Garrote - Silence        (Silence      )   3.00s  by Assassination Rogue
-  [+  4.34s] Blinding Light           (Disorient    )   1.14s  by Holy Paladin
-
-=== #92 — 7.2s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #100 — 7.2s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   7.20s  by Fury Warrior
 
-=== #93 — 7.07s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #101 — 7.19s total time-in-CC — 1 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Sap                      (Incapacitate )   6.03s  by Subtlety Rogue
+  [+  6.00s] Blind                    (Disorient    )   1.19s  by Subtlety Rogue
+
+=== #102 — 7.07s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Gouge                    (Incapacitate )   2.36s  by Subtlety Rogue
   [+  2.07s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
 
-=== #94 — 6.91s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
+=== #103 — 7.04s total time-in-CC — 2 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Cheap Shot               (Stun         )   3.62s  by Subtlety Rogue
+  [+  1.04s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
+
+=== #104 — 7s total time-in-CC — 1 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Holy Word: Chastise      (Incapacitate )   2.99s  by Holy Priest
+  [+  1.30s] Psychic Scream           (Disorient    )   5.70s  by Holy Priest
+
+=== #105 — 6.91s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.60s  by Subtlety Rogue
   [+  5.11s] Cheap Shot               (Stun         ) (DR'd)   1.81s  by Subtlety Rogue
 
-=== #95 — 6.85s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #106 — 6.85s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   6.85s  by Fury Warrior
 
-=== #96 — 6.85s total time-in-CC — 1 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
+=== #107 — 6.85s total time-in-CC — 1 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   6.85s  by Fury Warrior
 
-=== #97 — 6.85s total time-in-CC — 2 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #108 — 6.85s total time-in-CC — 2 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   2.39s  by Holy Priest
   [+  3.84s] Storm Bolt               (Stun         )   3.01s  by Arms Warrior
 
-=== #98 — 6.84s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
+=== #109 — 6.84s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.52s  by Subtlety Rogue
   [+  5.02s] Cheap Shot               (Stun         ) (DR'd)   1.81s  by Subtlety Rogue
 
-=== #99 — 6.61s total time-in-CC — 2 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #110 — 6.83s total time-in-CC — 1 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
+  [+  1.73s] Psychic Scream           (Disorient    )   5.10s  by Holy Priest
+
+=== #111 — 6.79s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Blinding Light           (Disorient    )   1.08s  by Protection Paladin
+  [+  2.29s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
+
+=== #112 — 6.61s total time-in-CC — 2 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Fury Warrior
   [+  0.61s] Hex                      (Incapacitate )   6.00s  by Enhancement Shaman
 
-=== #100 — 6.6s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #113 — 6.6s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.01s  by Affliction Warlock
   [+  4.14s] Howl of Terror           (Disorient    )   2.46s  by Affliction Warlock
 
-=== #101 — 6.45s total time-in-CC — 2 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
+=== #114 — 6.47s total time-in-CC — 2 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Protection Paladin
+  [+  4.66s] Leg Sweep                (Stun         ) (DR'd)   1.82s  by Windwalker Monk
+
+=== #115 — 6.45s total time-in-CC — 2 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Blind                    (Disorient    )   5.00s  by Assassination Rogue
   [+  3.44s] Mind Control             (Disorient    ) (DR'd)   3.00s  by Holy Priest
 
-=== #102 — 6.36s total time-in-CC — 2 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
+=== #116 — 6.42s total time-in-CC — 2 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Windwalker Monk
+  [+  2.89s] Hammer of Justice        (Stun         )   3.53s  by Protection Paladin
+
+=== #117 — 6.36s total time-in-CC — 2 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
   [+  0.00s] Terror of the Skies      (Stun         )   3.51s  by Preservation Evoker
   [+  2.45s] Imprison                 (Incapacitate )   3.91s  by Havoc Demon Hunter
 
-=== #103 — 6.31s total time-in-CC — 2 caster(s) — match 0e98926e078e1dc24ffdcf1a997c4cbe — target: Fatshame-Kel'Thuzad-US ===
+=== #118 — 6.31s total time-in-CC — 2 caster(s) — match 0e98926e078e1dc24ffdcf1a997c4cbe — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.53s  by Retribution Paladin
   [+  3.30s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
 
-=== #104 — 6.3s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #119 — 6.3s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.29s  by Subtlety Rogue
   [+  4.29s] Cheap Shot               (Stun         ) (DR'd)   2.00s  by Subtlety Rogue
 
-=== #105 — 6.3s total time-in-CC — 1 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
+=== #120 — 6.3s total time-in-CC — 1 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
   [+  5.26s] Blind                    (Disorient    )   1.04s  by Subtlety Rogue
 
-=== #106 — 6.27s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #121 — 6.27s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Blinding Light           (Disorient    )   3.43s  by Protection Paladin
   [+  2.66s] Leg Sweep                (Stun         )   3.61s  by Windwalker Monk
   [+  2.87s] Hammer of Justice        (Stun         ) (DR'd)   2.26s  by Protection Paladin
 
-=== #107 — 6.2s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #122 — 6.2s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.61s  by Subtlety Rogue
   [+  3.33s] Paralysis                (Incapacitate )   2.88s  by Mistweaver Monk
 
-=== #108 — 6.18s total time-in-CC — 2 caster(s) — match 78748a34b8f0dd7de7e515faf472bb17 — target: Bahboonga-Frostmourne-US ===
+=== #123 — 6.18s total time-in-CC — 2 caster(s) — match 78748a34b8f0dd7de7e515faf472bb17 — target: Bahboonga-Frostmourne-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.02s  by Havoc Demon Hunter
   [+  5.01s] Cyclone                  (Disorient    )   1.17s  by Restoration Druid
 
-=== #109 — 6.16s total time-in-CC — 2 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
+=== #124 — 6.16s total time-in-CC — 2 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.01s  by Affliction Warlock
   [+  4.96s] Freezing Trap            (Incapacitate ) (DR'd)   1.20s  by Beast Mastery Hunter
 
-=== #110 — 6.14s total time-in-CC — 2 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
+=== #125 — 6.14s total time-in-CC — 2 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.00s  by Affliction Warlock
   [+  4.94s] Freezing Trap            (Incapacitate ) (DR'd)   1.20s  by Beast Mastery Hunter
 
-=== #111 — 6.14s total time-in-CC — 2 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
+=== #126 — 6.14s total time-in-CC — 2 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.01s  by Affliction Warlock
   [+  4.95s] Freezing Trap            (Incapacitate ) (DR'd)   1.19s  by Beast Mastery Hunter
 
-=== #112 — 6.05s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #127 — 6.05s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   6.05s  by Preservation Evoker
 
-=== #113 — 6.02s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #128 — 6.02s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.02s  by Discipline Priest
 
-=== #114 — 6.02s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #129 — 6.02s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.60s  by Mistweaver Monk
   [+  2.41s] Leg Sweep                (Stun         )   3.61s  by Mistweaver Monk
 
-=== #115 — 6.02s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #130 — 6.02s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.02s  by Fire Mage
 
-=== #116 — 6.02s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
+=== #131 — 6.02s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   6.02s  by Beast Mastery Hunter
 
-=== #117 — 6.02s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #132 — 6.02s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Sap                      (Incapacitate )   6.02s  by Subtlety Rogue
 
-=== #118 — 6.02s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #133 — 6.02s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.02s  by Holy Priest
 
-=== #119 — 6.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #134 — 6.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.01s  by Discipline Priest
 
-=== #120 — 6.01s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #135 — 6.01s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
 
-=== #121 — 6.01s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #136 — 6.01s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
 
-=== #122 — 6.01s total time-in-CC — 1 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
+=== #137 — 6.01s total time-in-CC — 1 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   6.01s  by Preservation Evoker
 
-=== #123 — 6.01s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #138 — 6.01s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
 
-=== #124 — 6.01s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
+=== #139 — 6.01s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   6.01s  by Beast Mastery Hunter
 
-=== #125 — 6.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #140 — 6.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Absolute Zero            (Stun         )   2.71s  by Frost Death Knight
   [+  3.50s] Strangulate              (Silence      )   2.51s  by Frost Death Knight
 
-=== #126 — 6.01s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
+=== #141 — 6.01s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.01s  by Fire Mage
 
-=== #127 — 6.01s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #142 — 6.01s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   6.01s  by Preservation Evoker
 
-=== #128 — 6.01s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #143 — 6.01s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   6.01s  by Holy Priest
 
-=== #129 — 6.01s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #144 — 6.01s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Mind Control             (Disorient    )   6.01s  by Holy Priest
 
-=== #130 — 6.01s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
+=== #145 — 6.01s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Sap                      (Incapacitate )   6.01s  by Subtlety Rogue
 
-=== #131 — 6s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #146 — 6s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
 
-=== #132 — 6s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #147 — 6s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Hex                      (Incapacitate )   6.00s  by Enhancement Shaman
 
-=== #133 — 6s total time-in-CC — 2 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #148 — 6s total time-in-CC — 2 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Hex                      (Incapacitate )   6.00s  by Restoration Shaman
   [+  0.20s] Cyclone                  (Disorient    )   2.51s  by Balance Druid
 
-=== #134 — 6s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Bigdamjudge-Blackrock-US ===
+=== #149 — 6s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Bigdamjudge-Blackrock-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
 
-=== #135 — 6s total time-in-CC — 1 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #150 — 6s total time-in-CC — 1 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Polymorph                (Incapacitate )   6.00s  by Fire Mage
 
-=== #136 — 6s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #151 — 6s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Hex                      (Incapacitate )   6.00s  by Enhancement Shaman
 
-=== #137 — 5.99s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #152 — 5.99s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Polymorph                (Incapacitate )   5.99s  by Fire Mage
 
-=== #138 — 5.99s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
+=== #153 — 5.99s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Sap                      (Incapacitate )   5.99s  by Assassination Rogue
 
-=== #139 — 5.98s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #154 — 5.98s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Polymorph                (Incapacitate )   5.98s  by Fire Mage
 
-=== #140 — 5.98s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #155 — 5.98s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Polymorph                (Incapacitate )   5.98s  by Fire Mage
 
-=== #141 — 5.88s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #156 — 5.88s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Polymorph                (Incapacitate )   2.90s  by Fire Mage
   [+  2.87s] Dragon's Breath          (Disorient    )   3.01s  by Fire Mage
   [+  2.87s] Psychic Scream           (Disorient    ) (DR'd)   3.01s  by Holy Priest
 
-=== #142 — 5.86s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #157 — 5.88s total time-in-CC — 1 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.03s  by Holy Priest
+  [+  1.96s] Psychic Scream           (Disorient    )   3.92s  by Holy Priest
+
+=== #158 — 5.86s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   3.59s  by Windwalker Monk
   [+  3.61s] Hammer of Justice        (Stun         ) (DR'd)   2.24s  by Protection Paladin
 
-=== #143 — 5.83s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #159 — 5.83s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Blinding Light           (Disorient    )   0.56s  by Protection Paladin
   [+  1.33s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
 
-=== #144 — 5.81s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #160 — 5.81s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.59s  by Subtlety Rogue
   [+  3.99s] Cheap Shot               (Stun         ) (DR'd)   1.81s  by Subtlety Rogue
 
-=== #145 — 5.81s total time-in-CC — 2 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #161 — 5.81s total time-in-CC — 2 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Blind                    (Disorient    )   5.02s  by Subtlety Rogue
   [+  3.30s] Polymorph                (Incapacitate )   2.51s  by Fire Mage
 
-=== #146 — 5.8s total time-in-CC — 2 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #162 — 5.8s total time-in-CC — 2 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   2.56s  by Destruction Warlock
   [+  2.79s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
 
-=== #147 — 5.78s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #163 — 5.78s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   3.59s  by Windwalker Monk
   [+  3.53s] Hammer of Justice        (Stun         ) (DR'd)   2.25s  by Protection Paladin
 
-=== #148 — 5.76s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
+=== #164 — 5.76s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.00s  by Fire Mage
   [+  2.74s] Polymorph                (Incapacitate )   3.02s  by Fire Mage
 
-=== #149 — 5.75s total time-in-CC — 2 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
+=== #165 — 5.75s total time-in-CC — 2 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.61s  by Assassination Rogue
   [+  4.42s] Holy Word: Chastise      (Stun         ) (DR'd)   1.33s  by Holy Priest
 
-=== #150 — 5.73s total time-in-CC — 2 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
+=== #166 — 5.74s total time-in-CC — 2 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Leg Sweep                (Stun         )   3.60s  by Windwalker Monk
+  [+  3.48s] Hammer of Justice        (Stun         ) (DR'd)   2.25s  by Protection Paladin
+
+=== #167 — 5.73s total time-in-CC — 2 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
   [+  2.92s] Paralysis                (Incapacitate )   0.65s  by Mistweaver Monk
   [+  5.21s] Song of Chi-Ji           (Disorient    )   0.52s  by Mistweaver Monk
 
-=== #151 — 5.72s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #168 — 5.72s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   5.72s  by Destruction Warlock
 
-=== #152 — 5.71s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #169 — 5.71s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   5.71s  by Holy Priest
 
-=== #153 — 5.71s total time-in-CC — 1 caster(s) — match ca238a3e69892b454f8a430cbe7eda6e — target: Scarlet-Skywall-US ===
+=== #170 — 5.71s total time-in-CC — 1 caster(s) — match ca238a3e69892b454f8a430cbe7eda6e — target: Scarlet-Skywall-US ===
   [+  0.00s] Fear                     (Disorient    )   5.71s  by Affliction Warlock
 
-=== #154 — 5.71s total time-in-CC — 2 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #171 — 5.71s total time-in-CC — 2 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.01s  by Havoc Demon Hunter
   [+  0.72s] Cyclone                  (Disorient    )   4.99s  by Balance Druid
 
-=== #155 — 5.7s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #172 — 5.7s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   5.70s  by Holy Priest
 
-=== #156 — 5.7s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #173 — 5.7s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   5.70s  by Destruction Warlock
 
-=== #157 — 5.69s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #174 — 5.69s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   5.69s  by Destruction Warlock
 
-=== #158 — 5.67s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #175 — 5.67s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   3.61s  by Windwalker Monk
   [+  3.41s] Hammer of Justice        (Stun         ) (DR'd)   2.27s  by Protection Paladin
 
-=== #159 — 5.67s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #176 — 5.67s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   3.60s  by Windwalker Monk
   [+  3.41s] Hammer of Justice        (Stun         ) (DR'd)   2.26s  by Protection Paladin
 
-=== #160 — 5.62s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #177 — 5.62s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   5.62s  by Preservation Evoker
 
-=== #161 — 5.61s total time-in-CC — 2 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #178 — 5.61s total time-in-CC — 2 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Psychic Scream           (Disorient    )   1.03s  by Holy Priest
   [+  1.64s] Strangulate              (Silence      )   3.97s  by Frost Death Knight
 
-=== #162 — 5.58s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #179 — 5.58s total time-in-CC — 2 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
   [+  4.63s] Psychic Scream           (Disorient    )   0.95s  by Holy Priest
 
-=== #163 — 5.57s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #180 — 5.57s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Psychic Scream           (Disorient    )   5.57s  by Shadow Priest
 
-=== #164 — 5.53s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #181 — 5.53s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.28s  by Subtlety Rogue
   [+  3.28s] Kidney Shot              (Stun         ) (DR'd)   2.25s  by Subtlety Rogue
 
-=== #165 — 5.52s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #182 — 5.52s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   1.03s  by Holy Paladin
   [+  1.51s] Blinding Light           (Disorient    )   4.01s  by Holy Paladin
 
-=== #166 — 5.5s total time-in-CC — 1 caster(s) — match 668b26dce2e3885d287fec931dedc394 — target: Goldeen-Stormreaver-US ===
+=== #183 — 5.5s total time-in-CC — 1 caster(s) — match 668b26dce2e3885d287fec931dedc394 — target: Goldeen-Stormreaver-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
   [+  2.33s] Song of Chi-Ji           (Disorient    )   3.17s  by Mistweaver Monk
 
-=== #167 — 5.48s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
+=== #184 — 5.48s total time-in-CC — 2 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
   [+  3.91s] Ring of Frost            (Incapacitate )   1.57s  by Fire Mage
 
-=== #168 — 5.38s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #185 — 5.38s total time-in-CC — 2 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Paralysis                (Incapacitate )   1.45s  by Mistweaver Monk
   [+  3.04s] Leg Sweep                (Stun         )   2.34s  by Mistweaver Monk
   [+  4.29s] Cyclone                  (Disorient    )   1.08s  by Balance Druid
 
-=== #169 — 5.37s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #186 — 5.37s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.01s  by Subtlety Rogue
   [+  3.76s] Blind                    (Disorient    )   1.61s  by Subtlety Rogue
 
-=== #170 — 5.35s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
+=== #187 — 5.35s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   5.35s  by Affliction Warlock
 
-=== #171 — 5.35s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #188 — 5.35s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   2.98s  by Preservation Evoker
   [+  2.98s] Sleep Walk               (Disorient    ) (DR'd)   0.48s  by Preservation Evoker
   [+  3.44s] Terror of the Skies      (Stun         )   1.91s  by Preservation Evoker
 
-=== #172 — 5.35s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
+=== #189 — 5.35s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   5.35s  by Affliction Warlock
 
-=== #173 — 5.34s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
+=== #190 — 5.34s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   5.34s  by Affliction Warlock
 
-=== #174 — 5.34s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #191 — 5.34s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
   [+  4.24s] Blinding Light           (Disorient    )   1.10s  by Holy Paladin
 
-=== #175 — 5.21s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #192 — 5.21s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   2.86s  by Restoration Druid
   [+  2.95s] Maim                     (Stun         )   2.27s  by Restoration Druid
 
-=== #176 — 5.2s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #193 — 5.2s total time-in-CC — 2 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   2.15s  by Windwalker Monk
   [+  2.94s] Hammer of Justice        (Stun         ) (DR'd)   2.25s  by Protection Paladin
 
-=== #177 — 5.15s total time-in-CC — 2 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
+=== #194 — 5.15s total time-in-CC — 2 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.01s  by Fire Mage
   [+  4.33s] Blind                    (Disorient    )   0.82s  by Outlaw Rogue
 
-=== #178 — 5.13s total time-in-CC — 2 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
+=== #195 — 5.13s total time-in-CC — 2 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   2.43s  by Preservation Evoker
   [+  2.43s] Storm Bolt               (Stun         )   2.70s  by Arms Warrior
 
-=== #179 — 5.11s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #196 — 5.11s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   5.11s  by Destruction Warlock
 
-=== #180 — 5.05s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+=== #197 — 5.05s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Blind                    (Disorient    )   5.05s  by Assassination Rogue
 
-=== #181 — 5.02s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #198 — 5.02s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.02s  by Subtlety Rogue
 
-=== #182 — 5.02s total time-in-CC — 1 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #199 — 5.02s total time-in-CC — 1 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Blind                    (Disorient    )   5.02s  by Subtlety Rogue
 
-=== #183 — 5.02s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #200 — 5.02s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Blind                    (Disorient    )   5.02s  by Subtlety Rogue
 
-=== #184 — 5.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #201 — 5.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
 
-=== #185 — 5.01s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #202 — 5.01s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.01s  by Subtlety Rogue
 
-=== #186 — 5.01s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #203 — 5.01s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Balance Druid
 
-=== #187 — 5.01s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #204 — 5.01s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Balance Druid
 
-=== #188 — 5.01s total time-in-CC — 1 caster(s) — match 78748a34b8f0dd7de7e515faf472bb17 — target: Bahboonga-Frostmourne-US ===
+=== #205 — 5.01s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Balance Druid
+
+=== #206 — 5.01s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Balance Druid
+
+=== #207 — 5.01s total time-in-CC — 1 caster(s) — match 78748a34b8f0dd7de7e515faf472bb17 — target: Bahboonga-Frostmourne-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.01s  by Restoration Druid
 
-=== #189 — 5.01s total time-in-CC — 1 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
+=== #208 — 5.01s total time-in-CC — 1 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   5.01s  by Retribution Paladin
 
-=== #190 — 5s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #209 — 5s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   5.00s  by Subtlety Rogue
 
-=== #191 — 5s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #210 — 5s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
 
-=== #192 — 5s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #211 — 5s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
 
-=== #193 — 5s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #212 — 5s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
 
-=== #194 — 4.99s total time-in-CC — 3 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+=== #213 — 5s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
+
+=== #214 — 5s total time-in-CC — 1 caster(s) — match c8558f37bb0ab9fde18765f30287b9bf — target: Revenge ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
+
+=== #215 — 5s total time-in-CC — 1 caster(s) — match c8558f37bb0ab9fde18765f30287b9bf — target: Revenge ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Balance Druid
+
+=== #216 — 5s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Cyclone                  (Disorient    )   5.00s  by Restoration Druid
+
+=== #217 — 4.99s total time-in-CC — 3 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   2.96s  by Fire Mage
   [+  0.55s] Blind                    (Disorient    ) (DR'd)   2.52s  by Assassination Rogue
   [+  2.68s] Hammer of Justice        (Stun         )   2.31s  by Holy Paladin
 
-=== #195 — 4.99s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #218 — 4.99s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.99s  by Subtlety Rogue
 
-=== #196 — 4.89s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
+=== #219 — 4.89s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   4.89s  by Beast Mastery Hunter
 
-=== #197 — 4.85s total time-in-CC — 1 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
+=== #220 — 4.85s total time-in-CC — 1 caster(s) — match 2b67a4a0755de99edf07cff6569734ac — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   4.85s  by Preservation Evoker
 
-=== #198 — 4.8s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #221 — 4.8s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   4.80s  by Fury Warrior
 
-=== #199 — 4.78s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
+=== #222 — 4.78s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Song of Chi-Ji           (Disorient    )   3.02s  by Mistweaver Monk
   [+  2.25s] Paralysis                (Incapacitate )   2.54s  by Mistweaver Monk
 
-=== #200 — 4.78s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #223 — 4.78s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   4.78s  by Fury Warrior
 
-=== #201 — 4.77s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #224 — 4.77s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   4.77s  by Preservation Evoker
 
-=== #202 — 4.72s total time-in-CC — 3 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #225 — 4.72s total time-in-CC — 3 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.52s  by Subtlety Rogue
   [+  0.13s] Paralysis                (Incapacitate )   3.01s  by Mistweaver Monk
   [+  1.72s] Ring of Frost            (Incapacitate ) (DR'd)   3.00s  by Fire Mage
 
-=== #203 — 4.67s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
+=== #226 — 4.67s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
   [+  0.00s] Polymorph                (Incapacitate )   1.27s  by Arcane Mage
   [+  1.67s] Polymorph                (Incapacitate ) (DR'd)   3.00s  by Arcane Mage
 
-=== #204 — 4.53s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Skillshanks-Tichondrius-US ===
+=== #227 — 4.53s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Skillshanks-Tichondrius-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.53s  by Holy Paladin
 
-=== #205 — 4.52s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Fatshame-Kel'Thuzad-US ===
+=== #228 — 4.52s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.52s  by Holy Paladin
 
-=== #206 — 4.52s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Scarlet-Skywall-US ===
+=== #229 — 4.52s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Scarlet-Skywall-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.52s  by Protection Paladin
 
-=== #207 — 4.51s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
-  [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
-
-=== #208 — 4.51s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
-  [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
-
-=== #209 — 4.51s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+=== #230 — 4.51s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.51s  by Assassination Rogue
 
-=== #210 — 4.51s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #231 — 4.51s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
 
-=== #211 — 4.51s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #232 — 4.51s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.51s  by Subtlety Rogue
 
-=== #212 — 4.51s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #233 — 4.51s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Holy Paladin
 
-=== #213 — 4.51s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #234 — 4.51s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Maim                     (Stun         )   4.51s  by Restoration Druid
 
-=== #214 — 4.51s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #235 — 4.51s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Protection Paladin
 
-=== #215 — 4.51s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #236 — 4.51s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.51s  by Protection Paladin
 
-=== #216 — 4.5s total time-in-CC — 1 caster(s) — match 67322755477863f8f4a9924ae374d443 — target: Гесерия-Гордунни-EU ===
-  [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
-
-=== #217 — 4.5s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
-  [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Holy Paladin
-
-=== #218 — 4.5s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #237 — 4.5s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
   [+  0.00s] Maim                     (Stun         )   4.50s  by Restoration Druid
 
-=== #219 — 4.5s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #238 — 4.5s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
 
-=== #220 — 4.5s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #239 — 4.5s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
 
-=== #221 — 4.5s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #240 — 4.5s total time-in-CC — 1 caster(s) — match 67322755477863f8f4a9924ae374d443 — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
 
-=== #222 — 4.5s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #241 — 4.5s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Holy Paladin
+
+=== #242 — 4.5s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+  [+  0.00s] Maim                     (Stun         )   4.50s  by Restoration Druid
+
+=== #243 — 4.5s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
 
-=== #223 — 4.48s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+=== #244 — 4.5s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
+
+=== #245 — 4.5s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
+
+=== #246 — 4.5s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.50s  by Protection Paladin
+
+=== #247 — 4.49s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Hammer of Justice        (Stun         )   4.49s  by Protection Paladin
+  [+  2.96s] Blinding Light           (Disorient    )   0.78s  by Protection Paladin
+
+=== #248 — 4.48s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Sap                      (Incapacitate )   4.48s  by Assassination Rogue
 
-=== #224 — 4.47s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #249 — 4.47s total time-in-CC — 2 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.69s  by Fury Warrior
   [+  2.21s] Hammer of Justice        (Stun         ) (DR'd)   2.26s  by Holy Paladin
 
-=== #225 — 4.43s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #250 — 4.43s total time-in-CC — 2 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.43s  by Subtlety Rogue
   [+  3.63s] Ring of Frost            (Incapacitate )   0.80s  by Fire Mage
 
-=== #226 — 4.29s total time-in-CC — 2 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
+=== #251 — 4.29s total time-in-CC — 2 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   3.00s  by Beast Mastery Hunter
   [+  1.80s] Hammer of Justice        (Stun         )   2.50s  by Retribution Paladin
 
-=== #227 — 4.21s total time-in-CC — 2 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
+=== #252 — 4.21s total time-in-CC — 2 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   2.72s  by Protection Warrior
   [+  3.30s] Strangulate              (Silence      )   0.91s  by Frost Death Knight
 
-=== #228 — 4.17s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #253 — 4.17s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   1.48s  by Holy Priest
   [+  1.62s] Psychic Scream           (Disorient    )   2.55s  by Holy Priest
 
-=== #229 — 4.16s total time-in-CC — 2 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
-  [+  0.00s] Polymorph                (Incapacitate )   3.02s  by Fire Mage
-  [+  1.78s] Garrote - Silence        (Silence      )   2.38s  by Assassination Rogue
+=== #254 — 4.09s total time-in-CC — 1 caster(s) — match c47b148109db16573de1a3407ad636f8 — target: Dirtyplunger-Area52-US ===
+  [+  0.00s] Polymorph                (Incapacitate )   4.09s  by Fire Mage
 
-=== #230 — 4.07s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #255 — 4.07s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   4.07s  by Subtlety Rogue
 
-=== #231 — 4.02s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Scarlet-Skywall-US ===
+=== #256 — 4.02s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Scarlet-Skywall-US ===
   [+  0.00s] Blinding Light           (Disorient    )   4.02s  by Protection Paladin
 
-=== #232 — 4.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #257 — 4.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Silence                  (Silence      )   4.01s  by Shadow Priest
 
-=== #233 — 4.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #258 — 4.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Silence                  (Silence      )   4.01s  by Shadow Priest
 
-=== #234 — 4.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #259 — 4.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Silence                  (Silence      )   4.01s  by Shadow Priest
 
-=== #235 — 4s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #260 — 4s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Silence                  (Silence      )   4.00s  by Shadow Priest
 
-=== #236 — 4s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #261 — 4s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Silence                  (Silence      )   4.00s  by Shadow Priest
 
-=== #237 — 4s total time-in-CC — 1 caster(s) — match 78748a34b8f0dd7de7e515faf472bb17 — target: Bahboonga-Frostmourne-US ===
+=== #262 — 4s total time-in-CC — 1 caster(s) — match 78748a34b8f0dd7de7e515faf472bb17 — target: Bahboonga-Frostmourne-US ===
   [+  0.00s] Strangulate              (Silence      )   4.00s  by Unholy Death Knight
 
-=== #238 — 4s total time-in-CC — 1 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
+=== #263 — 4s total time-in-CC — 1 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
   [+  0.00s] Leg Sweep                (Stun         )   4.00s  by Mistweaver Monk
 
-=== #239 — 4s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #264 — 4s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   4.00s  by Subtlety Rogue
 
-=== #240 — 4s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #265 — 4s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Strangulate              (Silence      )   4.00s  by Frost Death Knight
 
-=== #241 — 3.99s total time-in-CC — 1 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
+=== #266 — 3.99s total time-in-CC — 1 caster(s) — match d7c5dd4746c437301b14acb62808c836 — target: Ad-Cho'gall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.99s  by Subtlety Rogue
 
-=== #242 — 3.98s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #267 — 3.98s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Cyclone                  (Disorient    )   3.98s  by Restoration Druid
 
-=== #243 — 3.91s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #268 — 3.91s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Blind                    (Disorient    )   3.91s  by Subtlety Rogue
 
-=== #244 — 3.89s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #269 — 3.89s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   3.89s  by Fury Warrior
 
-=== #245 — 3.85s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #270 — 3.85s total time-in-CC — 2 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Gouge                    (Incapacitate )   0.80s  by Subtlety Rogue
   [+  2.67s] Psychic Scream           (Disorient    )   1.18s  by Discipline Priest
 
-=== #246 — 3.85s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #271 — 3.85s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   3.85s  by Fury Warrior
 
-=== #247 — 3.79s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #272 — 3.79s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.79s  by Fire Mage
 
-=== #248 — 3.68s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #273 — 3.69s total time-in-CC — 1 caster(s) — match 280468309bb8cfecf8a116daca16757a — target: Hacutéiken-DunModr-EU ===
+  [+  0.00s] Holy Word: Chastise      (Stun         )   2.71s  by Holy Priest
+  [+  3.17s] Psychic Scream           (Disorient    )   0.52s  by Holy Priest
+
+=== #274 — 3.68s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Howl of Terror           (Disorient    )   3.68s  by Affliction Warlock
 
-=== #249 — 3.63s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #275 — 3.63s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Arms Warrior
   [+  2.72s] Shockwave                (Stun         ) (DR'd)   0.91s  by Arms Warrior
 
-=== #250 — 3.62s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #276 — 3.62s total time-in-CC — 2 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   3.62s  by Windwalker Monk
   [+  1.90s] Blinding Light           (Disorient    )   0.61s  by Protection Paladin
 
-=== #251 — 3.62s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
+=== #277 — 3.62s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.62s  by Outlaw Rogue
 
-=== #252 — 3.61s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #278 — 3.61s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Mighty Bash              (Stun         )   1.01s  by Balance Druid
   [+  1.01s] Mighty Bash              (Stun         ) (DR'd)   1.48s  by Balance Druid
   [+  2.49s] Mighty Bash              (Stun         ) (DR'd)   1.12s  by Balance Druid
 
-=== #253 — 3.61s total time-in-CC — 1 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #279 — 3.61s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Mighty Bash              (Stun         )   3.61s  by Balance Druid
+
+=== #280 — 3.61s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Mighty Bash              (Stun         )   3.61s  by Balance Druid
+
+=== #281 — 3.61s total time-in-CC — 1 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Leg Sweep                (Stun         )   3.61s  by Mistweaver Monk
 
-=== #254 — 3.61s total time-in-CC — 1 caster(s) — match 668b26dce2e3885d287fec931dedc394 — target: Goldeen-Stormreaver-US ===
+=== #282 — 3.61s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Leg Sweep                (Stun         )   3.61s  by Windwalker Monk
+
+=== #283 — 3.61s total time-in-CC — 1 caster(s) — match 668b26dce2e3885d287fec931dedc394 — target: Goldeen-Stormreaver-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.61s  by Subtlety Rogue
 
-=== #255 — 3.61s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #284 — 3.61s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.61s  by Subtlety Rogue
 
-=== #256 — 3.61s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #285 — 3.61s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Mighty Bash              (Stun         )   3.61s  by Restoration Druid
 
-=== #257 — 3.61s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #286 — 3.61s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Mighty Bash              (Stun         )   1.69s  by Restoration Druid
   [+  1.69s] Mighty Bash              (Stun         ) (DR'd)   1.92s  by Restoration Druid
 
-=== #258 — 3.6s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #287 — 3.6s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Leg Sweep                (Stun         )   3.60s  by Windwalker Monk
+
+=== #288 — 3.6s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.60s  by Subtlety Rogue
 
-=== #259 — 3.6s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
+=== #289 — 3.6s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Leg Sweep                (Stun         )   3.60s  by Mistweaver Monk
 
-=== #260 — 3.59s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #290 — 3.59s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Cheap Shot               (Stun         )   3.59s  by Subtlety Rogue
 
-=== #261 — 3.51s total time-in-CC — 1 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Bigdamjudge-Blackrock-US ===
+=== #291 — 3.51s total time-in-CC — 1 caster(s) — match 87d0c1a41f16b6226cb4d546a4dd1d38 — target: Bigdamjudge-Blackrock-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.51s  by Frost Mage
 
-=== #262 — 3.37s total time-in-CC — 1 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
+=== #292 — 3.37s total time-in-CC — 1 caster(s) — match 903703374da443d784bea865669f690b — target: Curekid-Stormrage-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.37s  by Fire Mage
 
-=== #263 — 3.37s total time-in-CC — 2 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
+=== #293 — 3.37s total time-in-CC — 2 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   2.35s  by Windwalker Monk
   [+  2.51s] Sleep Walk               (Disorient    )   0.85s  by Preservation Evoker
 
-=== #264 — 3.36s total time-in-CC — 2 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
+=== #294 — 3.36s total time-in-CC — 2 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   2.35s  by Windwalker Monk
   [+  2.50s] Sleep Walk               (Disorient    )   0.86s  by Preservation Evoker
 
-=== #265 — 3.34s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #295 — 3.34s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   3.34s  by Destruction Warlock
 
-=== #266 — 3.32s total time-in-CC — 2 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
+=== #296 — 3.32s total time-in-CC — 2 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.04s  by Fire Mage
   [+  2.76s] Psychic Scream           (Disorient    )   0.56s  by Holy Priest
 
-=== #267 — 3.29s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #297 — 3.29s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Song of Chi-Ji           (Disorient    )   3.29s  by Mistweaver Monk
 
-=== #268 — 3.28s total time-in-CC — 2 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
+=== #298 — 3.29s total time-in-CC — 1 caster(s) — match 280468309bb8cfecf8a116daca16757a — target: Hacutéiken-DunModr-EU ===
+  [+  0.00s] Psychic Scream           (Disorient    )   3.29s  by Holy Priest
+
+=== #299 — 3.28s total time-in-CC — 2 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
   [+  0.00s] Blinding Sleet           (Disorient    )   3.28s  by Frost Death Knight
   [+  0.43s] Polymorph                (Incapacitate )   2.85s  by Arcane Mage
 
-=== #269 — 3.09s total time-in-CC — 2 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #300 — 3.09s total time-in-CC — 2 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Shockwave                (Stun         )   0.90s  by Fury Warrior
   [+  1.59s] Incapacitating Roar      (Incapacitate )   1.50s  by Restoration Druid
 
-=== #270 — 3.09s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #301 — 3.09s total time-in-CC — 2 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   1.11s  by Holy Paladin
   [+  1.65s] Ring of Frost            (Incapacitate )   1.43s  by Frost Mage
 
-=== #271 — 3.04s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #302 — 3.04s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   3.04s  by Fury Warrior
 
-=== #272 — 3.03s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #303 — 3.03s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   3.03s  by Preservation Evoker
 
-=== #273 — 3.02s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
-  [+  0.00s] Garrote - Silence        (Silence      )   3.02s  by Assassination Rogue
-
-=== #274 — 3.02s total time-in-CC — 1 caster(s) — match 0e98926e078e1dc24ffdcf1a997c4cbe — target: Fatshame-Kel'Thuzad-US ===
+=== #304 — 3.02s total time-in-CC — 1 caster(s) — match 0e98926e078e1dc24ffdcf1a997c4cbe — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.02s  by Mistweaver Monk
 
-=== #275 — 3.02s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Bigdamjudge-Blackrock-US ===
+=== #305 — 3.02s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Bigdamjudge-Blackrock-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.02s  by Fire Mage
 
-=== #276 — 3.02s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
+=== #306 — 3.02s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.23s  by Preservation Evoker
   [+  1.23s] Sleep Walk               (Disorient    ) (DR'd)   1.79s  by Preservation Evoker
 
-=== #277 — 3.02s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #307 — 3.02s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.02s  by Havoc Demon Hunter
 
-=== #278 — 3.02s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
+=== #308 — 3.02s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.02s  by Fire Mage
 
-=== #279 — 3.01s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #309 — 3.01s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
 
-=== #280 — 3.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #310 — 3.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.01s  by Windwalker Monk
 
-=== #281 — 3.01s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #311 — 3.01s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   3.01s  by Holy Priest
 
-=== #282 — 3.01s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #312 — 3.01s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.01s  by Fire Mage
 
-=== #283 — 3.01s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
+=== #313 — 3.01s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   3.01s  by Affliction Warlock
 
-=== #284 — 3.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #314 — 3.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Dragon's Breath          (Disorient    )   3.01s  by Frost Mage
 
-=== #285 — 3.01s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #315 — 3.01s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   3.01s  by Preservation Evoker
 
-=== #286 — 3.01s total time-in-CC — 1 caster(s) — match 8d65f558be6ab80a47334a4da9546ec7 — target: Duallkorejob-Goldrinn-US ===
+=== #316 — 3.01s total time-in-CC — 1 caster(s) — match 8d65f558be6ab80a47334a4da9546ec7 — target: Duallkorejob-Goldrinn-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   3.01s  by Restoration Druid
 
-=== #287 — 3.01s total time-in-CC — 1 caster(s) — match ad0ff1918f3d92b2f6128edda332ed32 — target: Mewtt-Jubei'Thos-US ===
+=== #317 — 3.01s total time-in-CC — 1 caster(s) — match ad0ff1918f3d92b2f6128edda332ed32 — target: Mewtt-Jubei'Thos-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   3.01s  by Holy Priest
 
-=== #288 — 3.01s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #318 — 3.01s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.01s  by Destruction Warlock
 
-=== #289 — 3.01s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #319 — 3.01s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.01s  by Destruction Warlock
 
-=== #290 — 3.01s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
+=== #320 — 3.01s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Sigil of Misery          (Disorient    )   3.01s  by Havoc Demon Hunter
 
-=== #291 — 3.01s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #321 — 3.01s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Imprison                 (Incapacitate )   3.01s  by Havoc Demon Hunter
 
-=== #292 — 3.01s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
+=== #322 — 3.01s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Sigil of Misery          (Disorient    )   3.01s  by Havoc Demon Hunter
 
-=== #293 — 3s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
-  [+  0.00s] Garrote - Silence        (Silence      )   3.00s  by Assassination Rogue
-
-=== #294 — 3s total time-in-CC — 1 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
+=== #323 — 3s total time-in-CC — 1 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
   [+  0.00s] Polymorph                (Incapacitate )   3.00s  by Fire Mage
 
-=== #295 — 3s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #324 — 3s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
 
-=== #296 — 3s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
+=== #325 — 3s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   3.00s  by Affliction Warlock
 
-=== #297 — 3s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
+=== #326 — 3s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Paralysis                (Incapacitate )   3.00s  by Mistweaver Monk
 
-=== #298 — 3s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
+=== #327 — 3s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   3.00s  by Affliction Warlock
 
-=== #299 — 3s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
+=== #328 — 3s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   3.00s  by Affliction Warlock
 
-=== #300 — 3s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
+=== #329 — 3s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   3.00s  by Affliction Warlock
 
-=== #301 — 3s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
+=== #330 — 3s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
   [+  0.00s] Fear                     (Disorient    )   3.00s  by Affliction Warlock
 
-=== #302 — 3s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #331 — 3s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Howl of Terror           (Disorient    )   3.00s  by Affliction Warlock
 
-=== #303 — 3s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #332 — 3s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Mortal Coil              (Incapacitate )   3.00s  by Affliction Warlock
 
-=== #304 — 3s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
+=== #333 — 3s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.22s  by Preservation Evoker
   [+  1.22s] Sleep Walk               (Disorient    ) (DR'd)   1.78s  by Preservation Evoker
 
-=== #305 — 2.99s total time-in-CC — 1 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
+=== #334 — 2.99s total time-in-CC — 1 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   2.99s  by Fury Warrior
 
-=== #306 — 2.99s total time-in-CC — 1 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
+=== #335 — 2.99s total time-in-CC — 1 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   2.99s  by Restoration Druid
 
-=== #307 — 2.99s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
+=== #336 — 2.99s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
   [+  0.00s] Absolute Zero            (Stun         )   2.99s  by Frost Death Knight
 
-=== #308 — 2.97s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #337 — 2.97s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.97s  by Windwalker Monk
 
-=== #309 — 2.94s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #338 — 2.94s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Strangulate              (Silence      )   2.94s  by Frost Death Knight
 
-=== #310 — 2.91s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #339 — 2.91s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   2.91s  by Subtlety Rogue
 
-=== #311 — 2.91s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #340 — 2.91s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   2.91s  by Protection Paladin
 
-=== #312 — 2.89s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #341 — 2.89s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Intimidating Shout       (Disorient    )   2.89s  by Arms Warrior
 
-=== #313 — 2.85s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #342 — 2.85s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   2.85s  by Destruction Warlock
 
-=== #314 — 2.84s total time-in-CC — 1 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
+=== #343 — 2.84s total time-in-CC — 1 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
   [+  0.00s] Gouge                    (Incapacitate )   2.84s  by Subtlety Rogue
 
-=== #315 — 2.84s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #344 — 2.84s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   2.84s  by Destruction Warlock
 
-=== #316 — 2.83s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #345 — 2.83s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Blinding Light           (Disorient    )   2.83s  by Holy Paladin
 
-=== #317 — 2.82s total time-in-CC — 1 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #346 — 2.82s total time-in-CC — 1 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.82s  by Mistweaver Monk
   [+  2.27s] Song of Chi-Ji           (Disorient    )   0.55s  by Mistweaver Monk
 
-=== #318 — 2.78s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #347 — 2.78s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.69s  by Holy Priest
   [+  1.23s] Psychic Scream           (Disorient    )   1.56s  by Holy Priest
 
-=== #319 — 2.76s total time-in-CC — 2 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
+=== #348 — 2.76s total time-in-CC — 2 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.71s  by Holy Priest
   [+  1.92s] Polymorph                (Incapacitate )   0.84s  by Fire Mage
   [+  2.45s] Psychic Scream           (Disorient    )   0.30s  by Holy Priest
 
-=== #320 — 2.75s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #349 — 2.75s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.75s  by Fury Warrior
 
-=== #321 — 2.74s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #350 — 2.74s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Blind                    (Disorient    )   2.74s  by Subtlety Rogue
 
-=== #322 — 2.72s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #351 — 2.72s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.72s  by Holy Priest
 
-=== #323 — 2.72s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
+=== #352 — 2.72s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.72s  by Holy Priest
 
-=== #324 — 2.71s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #353 — 2.71s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.71s  by Holy Priest
 
-=== #325 — 2.71s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #354 — 2.71s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Fear                     (Disorient    )   2.71s  by Demonology Warlock
+
+=== #355 — 2.71s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Fury Warrior
 
-=== #326 — 2.71s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #356 — 2.71s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Fury Warrior
 
-=== #327 — 2.71s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
+=== #357 — 2.71s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Arms Warrior
 
-=== #328 — 2.71s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #358 — 2.71s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.71s  by Fury Warrior
 
-=== #329 — 2.71s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
+=== #359 — 2.71s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.71s  by Holy Priest
 
-=== #330 — 2.71s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #360 — 2.71s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Absolute Zero            (Stun         )   2.71s  by Frost Death Knight
 
-=== #331 — 2.7s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #361 — 2.7s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Fury Warrior
 
-=== #332 — 2.7s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
+=== #362 — 2.7s total time-in-CC — 1 caster(s) — match 0668f27acafa9e36bedcda890bca8582 — target: Kev-Drenden-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.70s  by Holy Priest
 
-=== #333 — 2.7s total time-in-CC — 1 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
+=== #363 — 2.7s total time-in-CC — 1 caster(s) — match 15f92f504dbacfe20240f618fb269eb3 — target: Siberia-金色平原-CN ===
+  [+  0.00s] Terror of the Skies      (Stun         )   2.70s  by Devastation Evoker
+
+=== #364 — 2.7s total time-in-CC — 1 caster(s) — match 6a28d9e1f6008f7e007de9b14ac53e80 — target: Awakenx-TwistingNether-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.70s  by Holy Priest
 
-=== #334 — 2.7s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
+=== #365 — 2.7s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.70s  by Holy Priest
 
-=== #335 — 2.7s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #366 — 2.7s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Arms Warrior
 
-=== #336 — 2.7s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #367 — 2.7s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Arms Warrior
 
-=== #337 — 2.7s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #368 — 2.7s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Storm Bolt               (Stun         )   2.70s  by Protection Warrior
 
-=== #338 — 2.69s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
+=== #369 — 2.69s total time-in-CC — 1 caster(s) — match 3f2ac644c2944e1bc6b08b03eff74333 — target: Kev-Drenden-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.69s  by Holy Priest
 
-=== #339 — 2.69s total time-in-CC — 1 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
+=== #370 — 2.69s total time-in-CC — 1 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   2.69s  by Holy Priest
 
-=== #340 — 2.69s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #371 — 2.69s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.69s  by Fury Warrior
 
-=== #341 — 2.68s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #372 — 2.68s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Storm Bolt               (Stun         )   2.68s  by Fury Warrior
 
-=== #342 — 2.64s total time-in-CC — 2 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
+=== #373 — 2.64s total time-in-CC — 2 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.84s  by Beast Mastery Hunter
   [+  2.12s] Blinding Light           (Disorient    )   0.52s  by Retribution Paladin
 
-=== #343 — 2.61s total time-in-CC — 2 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #374 — 2.61s total time-in-CC — 2 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Strangulate              (Silence      )   1.43s  by Frost Death Knight
   [+  1.63s] Intimidating Shout       (Disorient    )   0.98s  by Protection Warrior
 
-=== #344 — 2.55s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #375 — 2.55s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   2.55s  by Holy Paladin
 
-=== #345 — 2.52s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #376 — 2.52s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Cyclone                  (Disorient    )   2.52s  by Balance Druid
 
-=== #346 — 2.5s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #377 — 2.51s total time-in-CC — 1 caster(s) — match c8558f37bb0ab9fde18765f30287b9bf — target: Revenge ===
+  [+  0.00s] Cyclone                  (Disorient    )   2.51s  by Balance Druid
+
+=== #378 — 2.5s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   2.50s  by Balance Druid
 
-=== #347 — 2.49s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #379 — 2.5s total time-in-CC — 1 caster(s) — match c8558f37bb0ab9fde18765f30287b9bf — target: Revenge ===
+  [+  0.00s] Cyclone                  (Disorient    )   2.50s  by Balance Druid
+
+=== #380 — 2.49s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Howl of Terror           (Disorient    )   2.49s  by Affliction Warlock
 
-=== #348 — 2.48s total time-in-CC — 1 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
+=== #381 — 2.48s total time-in-CC — 1 caster(s) — match a3d9e5911575486b81f6dc0962bfa0ac — target: Gdeezy-Sargeras-US ===
   [+  0.00s] Fear                     (Disorient    )   2.48s  by Destruction Warlock
 
-=== #349 — 2.46s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #382 — 2.46s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Hex                      (Incapacitate )   2.46s  by Enhancement Shaman
 
-=== #350 — 2.39s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #383 — 2.43s total time-in-CC — 1 caster(s) — match 15f92f504dbacfe20240f618fb269eb3 — target: Siberia-金色平原-CN ===
+  [+  0.00s] Garrote                  (Silence      )   2.43s  by Assassination Rogue
+  [+  0.01s] Garrote - Silence        (Silence      ) (DR'd)   2.42s  by Assassination Rogue
+  [+  2.00s] Cheap Shot               (Stun         )   0.44s  by Assassination Rogue
+
+=== #384 — 2.39s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   2.39s  by Holy Paladin
 
-=== #351 — 2.35s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
+=== #385 — 2.35s total time-in-CC — 1 caster(s) — match 768f6d8a64f43b352710cd701ba3e459 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   2.35s  by Restoration Druid
 
-=== #352 — 2.33s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
+=== #386 — 2.33s total time-in-CC — 1 caster(s) — match ee88e347b894fd372d1eedae6bdb0205 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Incapacitating Roar      (Incapacitate )   2.33s  by Restoration Druid
 
-=== #353 — 2.32s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #387 — 2.32s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Silence                  (Silence      )   2.32s  by Shadow Priest
 
-=== #354 — 2.27s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
+=== #388 — 2.27s total time-in-CC — 1 caster(s) — match eff623023abc432a47490810ae99a05d — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Kidney Shot              (Stun         )   2.27s  by Outlaw Rogue
 
-=== #355 — 2.25s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #389 — 2.25s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Kidney Shot              (Stun         )   2.25s  by Subtlety Rogue
 
-=== #356 — 2.25s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #390 — 2.25s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   2.25s  by Protection Paladin
 
-=== #357 — 2.03s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
+=== #391 — 2.03s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Hacutéiken-DunModr-EU ===
   [+  0.00s] Psychic Scream           (Disorient    )   2.03s  by Shadow Priest
 
-=== #358 — 2.03s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #392 — 2.03s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Dragon's Breath          (Disorient    )   2.03s  by Frost Mage
 
-=== #359 — 2.02s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #393 — 2.02s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   2.02s  by Subtlety Rogue
 
-=== #360 — 2.02s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #394 — 2.02s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Paralysis                (Incapacitate )   2.02s  by Mistweaver Monk
 
-=== #361 — 2.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #395 — 2.01s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Cheap Shot               (Stun         )   2.01s  by Subtlety Rogue
 
-=== #362 — 2.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #396 — 2.01s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Blinding Sleet           (Disorient    )   2.01s  by Frost Death Knight
 
-=== #363 — 2s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #397 — 2s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Leg Sweep                (Stun         )   2.00s  by Windwalker Monk
 
-=== #364 — 1.92s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
+=== #398 — 1.92s total time-in-CC — 2 caster(s) — match 551cbf089b6af897d960219e91bce281 — target: Space-Crushridge-US ===
   [+  0.00s] Cheap Shot               (Stun         )   1.80s  by Subtlety Rogue
   [+  0.07s] Paralysis                (Incapacitate )   1.85s  by Mistweaver Monk
 
-=== #365 — 1.91s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Bigdamjudge-Blackrock-US ===
+=== #399 — 1.91s total time-in-CC — 1 caster(s) — match ad3b12d217ae9024bb0db4224497fb1a — target: Bigdamjudge-Blackrock-US ===
   [+  0.00s] Polymorph                (Incapacitate )   1.91s  by Fire Mage
 
-=== #366 — 1.87s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+=== #400 — 1.87s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Blinding Light           (Disorient    )   1.87s  by Holy Paladin
 
-=== #367 — 1.86s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #401 — 1.86s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Leg Sweep                (Stun         )   1.86s  by Mistweaver Monk
 
-=== #368 — 1.81s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
+=== #402 — 1.81s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Mighty Bash              (Stun         )   1.61s  by Restoration Druid
+  [+  1.61s] Mighty Bash              (Stun         ) (DR'd)   0.20s  by Restoration Druid
+
+=== #403 — 1.81s total time-in-CC — 1 caster(s) — match 73888d6d8b6104efb80c3dc693e80a76 — target: Sêlênägömëz-Outland-EU ===
   [+  0.00s] Shockwave                (Stun         )   1.81s  by Arms Warrior
 
-=== #369 — 1.81s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Fatshame-Kel'Thuzad-US ===
+=== #404 — 1.81s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Leg Sweep                (Stun         )   1.81s  by Windwalker Monk
 
-=== #370 — 1.81s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #405 — 1.81s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Mighty Bash              (Stun         )   1.81s  by Restoration Druid
 
-=== #371 — 1.81s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #406 — 1.81s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   1.81s  by Windwalker Monk
 
-=== #372 — 1.8s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #407 — 1.8s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Mighty Bash              (Stun         )   1.80s  by Balance Druid
 
-=== #373 — 1.8s total time-in-CC — 1 caster(s) — match 67322755477863f8f4a9924ae374d443 — target: Гесерия-Гордунни-EU ===
+=== #408 — 1.8s total time-in-CC — 1 caster(s) — match 67322755477863f8f4a9924ae374d443 — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   1.80s  by Windwalker Monk
 
-=== #374 — 1.8s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #409 — 1.8s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Mighty Bash              (Stun         )   1.80s  by Restoration Druid
 
-=== #375 — 1.8s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
+=== #410 — 1.8s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
   [+  0.00s] Maim                     (Stun         )   1.80s  by Restoration Druid
 
-=== #376 — 1.79s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
+=== #411 — 1.79s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Cheap Shot               (Stun         )   1.79s  by Subtlety Rogue
 
-=== #377 — 1.75s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
+=== #412 — 1.79s total time-in-CC — 1 caster(s) — match 5d6979c982eb2f625550f92457a8c628 — target: Гесерия-Гордунни-EU ===
+  [+  0.00s] Leg Sweep                (Stun         )   1.79s  by Windwalker Monk
+
+=== #413 — 1.78s total time-in-CC — 1 caster(s) — match c8558f37bb0ab9fde18765f30287b9bf — target: Revenge ===
+  [+  0.00s] Fear                     (Disorient    )   1.78s  by Demonology Warlock
+
+=== #414 — 1.75s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Fear                     (Disorient    )   1.75s  by Destruction Warlock
 
-=== #378 — 1.74s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #415 — 1.74s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Paralysis                (Incapacitate )   1.74s  by Windwalker Monk
 
-=== #379 — 1.66s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #416 — 1.66s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Polymorph                (Incapacitate )   1.66s  by Fire Mage
 
-=== #380 — 1.65s total time-in-CC — 1 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
+=== #417 — 1.65s total time-in-CC — 1 caster(s) — match e1cceeeaa0b557fe814dfa854862288a — target: Khalidlwalid-Tichondrius-US ===
   [+  0.00s] Kidney Shot              (Stun         )   1.65s  by Subtlety Rogue
 
-=== #381 — 1.55s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #418 — 1.55s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   1.55s  by Subtlety Rogue
 
-=== #382 — 1.53s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
+=== #419 — 1.53s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Juicedaddy-Blackhand-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.53s  by Fury Warrior
 
-=== #383 — 1.52s total time-in-CC — 1 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
+=== #420 — 1.52s total time-in-CC — 1 caster(s) — match a34006d06a8f2a7162197d41d9060537 — target: Curekid-Stormrage-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   1.52s  by Retribution Paladin
 
-=== #384 — 1.51s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
+=== #421 — 1.51s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   1.51s  by Havoc Demon Hunter
 
-=== #385 — 1.5s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
+=== #422 — 1.5s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
   [+  0.00s] Binding Shot             (Stun         )   1.50s  by Beast Mastery Hunter
 
-=== #386 — 1.49s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
+=== #423 — 1.49s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Imprison                 (Incapacitate )   1.49s  by Havoc Demon Hunter
 
-=== #387 — 1.46s total time-in-CC — 2 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
+=== #424 — 1.46s total time-in-CC — 2 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
   [+  0.00s] Strangulate              (Silence      )   1.46s  by Frost Death Knight
   [+  0.13s] Intimidating Shout       (Disorient    )   1.33s  by Protection Warrior
 
-=== #388 — 1.45s total time-in-CC — 1 caster(s) — match 29afc04b90c3c0b5b36e17dbd59402d1 — target: Frosei-Illidan-US ===
+=== #425 — 1.45s total time-in-CC — 1 caster(s) — match 29afc04b90c3c0b5b36e17dbd59402d1 — target: Frosei-Illidan-US ===
   [+  0.00s] Hex                      (Incapacitate )   1.45s  by Restoration Shaman
 
-=== #389 — 1.44s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #426 — 1.44s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.44s  by Arms Warrior
 
-=== #390 — 1.44s total time-in-CC — 1 caster(s) — match b6a0c210355561ba06bd1d20f23ead42 — target: Frosei-Illidan-US ===
+=== #427 — 1.44s total time-in-CC — 1 caster(s) — match b6a0c210355561ba06bd1d20f23ead42 — target: Frosei-Illidan-US ===
   [+  0.00s] Hex                      (Incapacitate )   1.44s  by Restoration Shaman
 
-=== #391 — 1.41s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
+=== #428 — 1.41s total time-in-CC — 1 caster(s) — match 7a5e3cf6393d718ab641d734a54ad9cc — target: Scarlet-Skywall-US ===
   [+  0.00s] Hex                      (Incapacitate )   1.41s  by Restoration Shaman
 
-=== #392 — 1.37s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
+=== #429 — 1.37s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
   [+  0.00s] Binding Shot             (Stun         )   1.37s  by Beast Mastery Hunter
 
-=== #393 — 1.36s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
+=== #430 — 1.36s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
   [+  0.00s] Binding Shot             (Stun         )   1.36s  by Beast Mastery Hunter
 
-=== #394 — 1.36s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
+=== #431 — 1.36s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
   [+  0.00s] Binding Shot             (Stun         )   1.36s  by Beast Mastery Hunter
 
-=== #395 — 1.36s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #432 — 1.36s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Shockwave                (Stun         )   1.36s  by Protection Warrior
 
-=== #396 — 1.35s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #433 — 1.35s total time-in-CC — 1 caster(s) — match 15f92f504dbacfe20240f618fb269eb3 — target: Siberia-金色平原-CN ===
+  [+  0.00s] Terror of the Skies      (Stun         )   1.35s  by Devastation Evoker
+
+=== #434 — 1.35s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.35s  by Fury Warrior
 
-=== #397 — 1.34s total time-in-CC — 2 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
+=== #435 — 1.34s total time-in-CC — 2 caster(s) — match 0fe5b30dbf04e4fa653ad945e1567bfc — target: Bubbla-Tichondrius-US ===
   [+  0.00s] Holy Word: Chastise      (Stun         )   1.34s  by Holy Priest
   [+  0.52s] Polymorph                (Incapacitate )   0.82s  by Fire Mage
 
-=== #398 — 1.34s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
+=== #436 — 1.34s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
   [+  0.00s] Storm Bolt               (Stun         )   1.34s  by Arms Warrior
 
-=== #399 — 1.26s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #437 — 1.26s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   1.26s  by Windwalker Monk
 
-=== #400 — 1.26s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #438 — 1.26s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Holy Word: Chastise      (Incapacitate )   1.26s  by Holy Priest
 
-=== #401 — 1.23s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #439 — 1.23s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Psychic Scream           (Disorient    )   1.23s  by Discipline Priest
 
-=== #402 — 1.21s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
+=== #440 — 1.21s total time-in-CC — 1 caster(s) — match 4f94c505cd36e3e79c1ca07afb0a72ba — target: Sturfrylite-Area52-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   1.21s  by Retribution Paladin
 
-=== #403 — 1.2s total time-in-CC — 1 caster(s) — match c2b43707b1bf985c95619470479290f8 — target: Holyheck-Frostmourne-US ===
-  [+  0.00s] Psychic Scream           (Disorient    )   1.20s  by Holy Priest
-
-=== #404 — 1.19s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #441 — 1.19s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   1.19s  by Destruction Warlock
 
-=== #405 — 1.18s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #442 — 1.18s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Kidney Shot              (Stun         )   1.18s  by Subtlety Rogue
 
-=== #406 — 1.18s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #443 — 1.18s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   1.18s  by Arms Warrior
 
-=== #407 — 1.18s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #444 — 1.18s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   1.18s  by Preservation Evoker
 
-=== #408 — 1.16s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
+=== #445 — 1.16s total time-in-CC — 1 caster(s) — match c1c76a0f121175493cda09be4e316349 — target: Ad-Cho'gall-US ===
   [+  0.00s] Mind Control             (Disorient    )   1.16s  by Holy Priest
 
-=== #409 — 1.16s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Scarlet-Skywall-US ===
+=== #446 — 1.16s total time-in-CC — 1 caster(s) — match ce76b037e8a4936f057a7945d7d4b841 — target: Scarlet-Skywall-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   1.16s  by Protection Paladin
 
-=== #410 — 1.12s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #447 — 1.12s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Paralysis                (Incapacitate )   1.12s  by Windwalker Monk
 
-=== #411 — 1.11s total time-in-CC — 1 caster(s) — match 8d65f558be6ab80a47334a4da9546ec7 — target: Duallkorejob-Goldrinn-US ===
+=== #448 — 1.11s total time-in-CC — 1 caster(s) — match 15f92f504dbacfe20240f618fb269eb3 — target: Siberia-金色平原-CN ===
+  [+  0.00s] Blind                    (Disorient    )   1.11s  by Assassination Rogue
+
+=== #449 — 1.11s total time-in-CC — 1 caster(s) — match 8d65f558be6ab80a47334a4da9546ec7 — target: Duallkorejob-Goldrinn-US ===
   [+  0.00s] Cyclone                  (Disorient    )   1.11s  by Restoration Druid
 
-=== #412 — 1.1s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #450 — 1.1s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Cyclone                  (Disorient    )   1.10s  by Balance Druid
 
-=== #413 — 1.06s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #451 — 1.06s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Lightning Lasso          (Stun         )   1.06s  by Restoration Shaman
 
-=== #414 — 1.04s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
+=== #452 — 1.04s total time-in-CC — 1 caster(s) — match 0025dcbdff112b2a61e94fe7be428f75 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Hammer of Justice        (Stun         )   1.04s  by Holy Paladin
 
-=== #415 — 1.01s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
+=== #453 — 1.01s total time-in-CC — 1 caster(s) — match 977a3f789f594a82cce2f963de54f79d — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Hammer of Justice        (Stun         )   1.01s  by Protection Paladin
 
-=== #416 — 0.98s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #454 — 0.98s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Leg Sweep                (Stun         )   0.98s  by Windwalker Monk
 
-=== #417 — 0.96s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Skillshanks-Tichondrius-US ===
+=== #455 — 0.96s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Skillshanks-Tichondrius-US ===
   [+  0.00s] Storm Bolt               (Stun         )   0.96s  by Fury Warrior
 
-=== #418 — 0.95s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
+=== #456 — 0.95s total time-in-CC — 1 caster(s) — match 103b77904a08b23acc859b0a8c5f3f78 — target: Garbagepally-Scilla-US ===
   [+  0.00s] Cyclone                  (Disorient    )   0.95s  by Balance Druid
 
-=== #419 — 0.91s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
+=== #457 — 0.91s total time-in-CC — 1 caster(s) — match e4a032796d3a3c2781635c89684b670f — target: Dëñøüñçêgòât-Ravencrest-EU ===
   [+  0.00s] Dragon's Breath          (Disorient    )   0.91s  by Frost Mage
 
-=== #420 — 0.87s total time-in-CC — 1 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
+=== #458 — 0.87s total time-in-CC — 1 caster(s) — match 1b82fe5c6f3e6439e195d4c5f1525f1c — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   0.87s  by Protection Warrior
 
-=== #421 — 0.87s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
+=== #459 — 0.87s total time-in-CC — 1 caster(s) — match b30148505b6fad04b77ede70cb422fa5 — target: Shufbrainrot-Tichondrius-US ===
   [+  0.00s] Fear                     (Disorient    )   0.87s  by Destruction Warlock
 
-=== #422 — 0.85s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
+=== #460 — 0.85s total time-in-CC — 1 caster(s) — match 035f589c94e3aaec0626f344c1a1ed91 — target: Perfect-Crushridge-US ===
   [+  0.00s] Kidney Shot              (Stun         )   0.85s  by Subtlety Rogue
 
-=== #423 — 0.84s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
+=== #461 — 0.84s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
   [+  0.00s] Strangulate              (Silence      )   0.84s  by Frost Death Knight
 
-=== #424 — 0.82s total time-in-CC — 1 caster(s) — match 29afc04b90c3c0b5b36e17dbd59402d1 — target: Frosei-Illidan-US ===
+=== #462 — 0.82s total time-in-CC — 1 caster(s) — match 29afc04b90c3c0b5b36e17dbd59402d1 — target: Frosei-Illidan-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   0.82s  by Destruction Warlock
 
-=== #425 — 0.82s total time-in-CC — 1 caster(s) — match b6a0c210355561ba06bd1d20f23ead42 — target: Frosei-Illidan-US ===
+=== #463 — 0.82s total time-in-CC — 1 caster(s) — match b6a0c210355561ba06bd1d20f23ead42 — target: Frosei-Illidan-US ===
   [+  0.00s] Howl of Terror           (Disorient    )   0.82s  by Destruction Warlock
 
-=== #426 — 0.79s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
+=== #464 — 0.79s total time-in-CC — 1 caster(s) — match 01bcb46b0b3237d1c8fe3ff6e52cd475 — target: Kev-Drenden-US ===
   [+  0.00s] Blind                    (Disorient    )   0.79s  by Subtlety Rogue
 
-=== #427 — 0.79s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
+=== #465 — 0.79s total time-in-CC — 1 caster(s) — match 8487b6012fb68e44cbe4347169052be6 — target: Dirtyplunger-Area52-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.79s  by Preservation Evoker
 
-=== #428 — 0.79s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
+=== #466 — 0.79s total time-in-CC — 1 caster(s) — match f74a5b24f7d60d1e3ba44e358c45f4d3 — target: Qipla-贫瘠之地-CN ===
   [+  0.00s] Strangulate              (Silence      )   0.79s  by Frost Death Knight
 
-=== #429 — 0.77s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
+=== #467 — 0.77s total time-in-CC — 1 caster(s) — match dacb09cae29b79603a3e0c6db1665cd9 — target: Revenge-Ravenholdt-US ===
   [+  0.00s] Imprison                 (Incapacitate )   0.77s  by Havoc Demon Hunter
 
-=== #430 — 0.77s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
+=== #468 — 0.77s total time-in-CC — 1 caster(s) — match f2e2b120dfc7b235ba5a2a4d82a39990 — target: 圣神木子-燃烧之刃-CN ===
   [+  0.00s] Psychic Scream           (Disorient    )   0.77s  by Holy Priest
 
-=== #431 — 0.69s total time-in-CC — 1 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
+=== #469 — 0.76s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Fear                     (Disorient    )   0.76s  by Demonology Warlock
+
+=== #470 — 0.69s total time-in-CC — 1 caster(s) — match 210d66db7d8f93c8ebd8d5a3dd0103a9 — target: 周五晚-燃烧之刃-CN ===
   [+  0.00s] Intimidating Shout       (Disorient    )   0.69s  by Protection Warrior
 
-=== #432 — 0.66s total time-in-CC — 1 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
+=== #471 — 0.66s total time-in-CC — 1 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.66s  by Preservation Evoker
 
-=== #433 — 0.65s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
+=== #472 — 0.65s total time-in-CC — 1 caster(s) — match 3697b643556d704e784ff6897342bb57 — target: Athenelôl-Illidan-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.65s  by Beast Mastery Hunter
 
-=== #434 — 0.65s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
+=== #473 — 0.65s total time-in-CC — 1 caster(s) — match 6fe7277a3fff04b633097d8716d99fdf — target: Athenelôl-Illidan-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.65s  by Beast Mastery Hunter
 
-=== #435 — 0.65s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
+=== #474 — 0.65s total time-in-CC — 1 caster(s) — match 8f6d2900f9b2008643b13cca586694de — target: Athenelôl-Illidan-US ===
   [+  0.00s] Freezing Trap            (Incapacitate )   0.65s  by Beast Mastery Hunter
 
-=== #436 — 0.63s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
+=== #475 — 0.63s total time-in-CC — 1 caster(s) — match 56c1143a23005000c120e3216a125fd4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Paralysis                (Incapacitate )   0.63s  by Mistweaver Monk
 
-=== #437 — 0.61s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
+=== #476 — 0.61s total time-in-CC — 1 caster(s) — match 84dd343b12e0a3af95b8faf60f4038ca — target: Muapp-Kel'Thuzad-US ===
   [+  0.00s] Gouge                    (Incapacitate )   0.61s  by Subtlety Rogue
 
-=== #438 — 0.61s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
+=== #477 — 0.61s total time-in-CC — 1 caster(s) — match b9b95e729b40169e224a31f6c0a38958 — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Paralysis                (Incapacitate )   0.61s  by Windwalker Monk
 
-=== #439 — 0.61s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
+=== #478 — 0.61s total time-in-CC — 1 caster(s) — match ff600f58998aa0b185c6a27279dc299b — target: Tímby-Ravencrest-EU ===
   [+  0.00s] Paralysis                (Incapacitate )   0.61s  by Windwalker Monk
 
-=== #440 — 0.57s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
+=== #479 — 0.57s total time-in-CC — 1 caster(s) — match 77ee088d0bc06d65c557562afb0ea81e — target: Holyheck-Frostmourne-US ===
   [+  0.00s] Blind                    (Disorient    )   0.57s  by Assassination Rogue
 
-=== #441 — 0.53s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Skillshanks-Tichondrius-US ===
+=== #480 — 0.53s total time-in-CC — 1 caster(s) — match 933dd4e9f3a9bfbb81283e02d1417a48 — target: Skillshanks-Tichondrius-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   0.53s  by Fury Warrior
 
-=== #442 — 0.53s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
+=== #481 — 0.53s total time-in-CC — 1 caster(s) — match b67e816f14340d535b9cc4329cd8bcd9 — target: Romé-Tichondrius-US ===
   [+  0.00s] Intimidating Shout       (Disorient    )   0.53s  by Arms Warrior
 
-=== #443 — 0.52s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
+=== #482 — 0.52s total time-in-CC — 1 caster(s) — match 68eec9b74668d0b533f6c6ca0279a4b4 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Hex                      (Incapacitate )   0.52s  by Enhancement Shaman
 
-=== #444 — 0.51s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
+=== #483 — 0.51s total time-in-CC — 1 caster(s) — match f02a200d1f93e4892166d3002c6e198f — target: Гесерия-Гордунни-EU ===
   [+  0.00s] Blinding Light           (Disorient    )   0.51s  by Protection Paladin
 
-=== #445 — 0.44s total time-in-CC — 1 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
+=== #484 — 0.5s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Fear                     (Disorient    )   0.50s  by Demonology Warlock
+
+=== #485 — 0.44s total time-in-CC — 1 caster(s) — match 4b7d75e8df4f2ae96de73ba6a7e4ab1a — target: Holybyte-MoonGuard-US ===
   [+  0.00s] Sleep Walk               (Disorient    )   0.40s  by Preservation Evoker
   [+  0.40s] Sleep Walk               (Disorient    ) (DR'd)   0.04s  by Preservation Evoker
 
-=== #446 — 0.39s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
+=== #486 — 0.39s total time-in-CC — 1 caster(s) — match cb68402e5ed1530251fcaade774b0911 — target: Fatshame-Kel'Thuzad-US ===
   [+  0.00s] Fear                     (Disorient    )   0.39s  by Destruction Warlock
+
+=== #487 — 0.04s total time-in-CC — 1 caster(s) — match 18bc53ff1c657bd72ab2852089b1f17f — target: Onryô-Illidan-US ===
+  [+  0.00s] Fear                     (Disorient    )   0.04s  by Demonology Warlock

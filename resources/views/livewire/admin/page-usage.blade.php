@@ -4,12 +4,12 @@
         {{-- Header --}}
         <div>
             <h1 class="text-[17px] font-semibold text-ink">Page Usage</h1>
-            <p class="text-[13px] text-ink-muted mt-0.5">WoW Comps and Spell Explorer — page views and which classes/specs actually get looked at.</p>
+            <p class="text-[13px] text-ink-muted mt-0.5">WoW Comps, Spell Explorer, and Burst Windows — page views and which classes/specs actually get looked at.</p>
         </div>
 
         {{-- ── Summary row ── --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            @foreach(['spell_explorer' => 'Spell Explorer', 'wow_comps' => 'WoW Comps'] as $page => $label)
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            @foreach($pages as $page => $label)
                 <div class="linear-card p-5">
                     <p class="text-[11px] text-ink-subtle uppercase tracking-wider mb-2">{{ $label }}</p>
                     <p class="text-[22px] font-semibold text-ink leading-none">{{ number_format($summary[$page]['views']) }}</p>
@@ -20,8 +20,8 @@
         </div>
 
         {{-- ── Top classes ── --}}
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            @foreach(['spell_explorer' => 'Spell Explorer', 'wow_comps' => 'WoW Comps'] as $page => $label)
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            @foreach($pages as $page => $label)
                 <div class="linear-card overflow-hidden">
                     <div class="px-5 py-4 border-b border-line">
                         <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">Most-checked classes — {{ $label }}</p>
@@ -50,8 +50,8 @@
         </div>
 
         {{-- ── Top class+spec combos ── --}}
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            @foreach(['spell_explorer' => 'Spell Explorer', 'wow_comps' => 'WoW Comps'] as $page => $label)
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            @foreach($pages as $page => $label)
                 <div class="linear-card overflow-hidden">
                     <div class="px-5 py-4 border-b border-line">
                         <p class="text-[12px] font-medium text-ink-muted uppercase tracking-wider">Most-checked specs — {{ $label }}</p>

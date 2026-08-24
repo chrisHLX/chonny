@@ -7,8 +7,9 @@ use Illuminate\Support\Collection;
 use Livewire\Component;
 
 /**
- * Usage analytics for WoW Comps and Spell Explorer, sourced from PageViewEvent (see that model
- * and CLAUDE.md's "diagnostic quiz analytics" investigation — same session this was built in).
+ * Usage analytics for every page tracked in PAGES below (WoW Comps, Spell Explorer, Burst
+ * Windows / TopDamageRotations), sourced from PageViewEvent (see that model and CLAUDE.md's
+ * "diagnostic quiz analytics" investigation — same session this was built in).
  *
  * A row with class_id null is a bare page view; a row with class_id set is a real class/spec
  * selection. This split matters: SpellExplorer::mount() always lands on the alphabetically-first
@@ -16,15 +17,29 @@ use Livewire\Component;
  * popular regardless of real interest — same mistake Admin\DiagnosticStats::getSummaryProperty()
  * had before this session's fix, deliberately avoided here from the start rather than repeated.
  * Only an explicit pick (SpellExplorer::updatedClassId()/updatedSpecId(),
- * WowComps::logSlotSelection()) is counted toward "most viewed classes/specs".
+ * WowComps::logSlotSelection(), TopDamageRotations::selectSpec()) is counted toward "most viewed
+ * classes/specs".
  */
 class PageUsage extends Component
 {
-    private const PAGES = ['spell_explorer', 'wow_comps'];
+    /**
+     * Every page slug tracked here — keys are the exact `$page` string passed to
+     * `PageViewEvent::log()`, values are the display label used by the admin dashboard. Any new
+     * user-facing route/page must add an entry here (see CLAUDE.md's "any new route or page must
+     * be tracked as a page view" rule) — logging events that never appear in this list is
+     * equivalent to not tracking them at all, confirmed as a real gap: `top_damage_rotations`
+     * (the "Burst Window" page) was already calling PageViewEvent::log() from day one but was
+     * never added here, so its views were being recorded with nowhere to see them.
+     */
+    private const PAGES = [
+        'spell_explorer' => 'Spell Explorer',
+        'wow_comps' => 'WoW Comps',
+        'top_damage_rotations' => 'Burst Windows',
+    ];
 
     public function getSummaryProperty(): array
     {
-        return collect(self::PAGES)->mapWithKeys(function (string $page) {
+        return collect(array_keys(self::PAGES))->mapWithKeys(function (string $page) {
             return [$page => [
                 'views'      => PageViewEvent::where('page', $page)->whereNull('class_id')->count(),
                 'selections' => PageViewEvent::where('page', $page)->whereNotNull('class_id')->count(),
@@ -37,7 +52,7 @@ class PageUsage extends Component
      */
     public function getTopClassesProperty(): array
     {
-        return collect(self::PAGES)->mapWithKeys(fn (string $page) => [
+        return collect(array_keys(self::PAGES))->mapWithKeys(fn (string $page) => [
             $page => PageViewEvent::query()
                 ->selectRaw('classes.name as name, count(*) as count')
                 ->join('classes', 'classes.id', '=', 'page_view_events.class_id')
@@ -54,7 +69,7 @@ class PageUsage extends Component
      */
     public function getTopSpecsProperty(): array
     {
-        return collect(self::PAGES)->mapWithKeys(fn (string $page) => [
+        return collect(array_keys(self::PAGES))->mapWithKeys(fn (string $page) => [
             $page => PageViewEvent::query()
                 ->selectRaw('classes.name as class_name, specializations.name as spec_name, count(*) as count')
                 ->join('classes', 'classes.id', '=', 'page_view_events.class_id')
@@ -98,6 +113,7 @@ class PageUsage extends Component
     public function render()
     {
         return view('livewire.admin.page-usage', [
+            'pages'         => self::PAGES,
             'summary'       => $this->summary,
             'topClasses'    => $this->topClasses,
             'topSpecs'      => $this->topSpecs,

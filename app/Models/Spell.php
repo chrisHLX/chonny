@@ -30,6 +30,8 @@ class Spell extends Model
         'is_peel',
         'is_interrupt',
         'pairs_with_category',
+        'requires_stealth',
+        'requires_target_out_of_combat',
     ];
 
     // Without these, isDirty() falls back to strcmp() for uncast numeric attributes — MySQL
@@ -46,6 +48,8 @@ class Spell extends Model
         'is_passive' => 'boolean',
         'is_peel' => 'boolean',
         'is_interrupt' => 'boolean',
+        'requires_stealth' => 'boolean',
+        'requires_target_out_of_combat' => 'boolean',
     ];
 
     public function patch()
