@@ -1045,22 +1045,23 @@
 47540 | priest | discipline | Penance
 
 # Added via wow:diff-arena-spells --apply, 2026-08-23 — Demon Hunter/Havoc, real arena-log cast evidence (see arena-log-api.md).
+# Cleaned up 2026-08-24: this batch collided with several already-verified entries above (and,
+# for Consuming Fire, with itself) — same name, second spell_id, both overridden for the same
+# class/spec, producing two visible rows for one ability. Resolved per-pair against real DB data
+# (cooldown/charges/not_in_spellbook/icon), not guessed: Felblade/Throw Glaive/Immolation
+# Aura/Reaver's Glaive/Consuming Fire's kept ids all carry real cooldown+charges data and a
+# descriptive icon; every dropped id here has no cooldown data and either a raw-numeric
+# placeholder icon or (Reaver's Glaive's 444686, Shattered Souls' 228537/328951) is a hidden
+# not_in_spellbook proc-condition/tooltip duplicate, not the real castable ability.
 185245 | demonhunter | havoc | Torment
-213243 | demonhunter | havoc | Felblade
 217832 | demonhunter | havoc | Imprison
-228537 | demonhunter | havoc | Shattered Souls
-328951 | demonhunter | havoc | Shattered Souls
-337819 | demonhunter | havoc | Throw Glaive
-393035 | demonhunter | havoc | Throw Glaive
-427917 | demonhunter | havoc | Immolation Aura
-444686 | demonhunter | havoc | Reaver's Glaive
 452487 | demonhunter | havoc | Consuming Fire
 452497 | demonhunter | havoc | Abyssal Gaze
-456640 | demonhunter | havoc | Consuming Fire
 
 # Added via wow:diff-arena-spells --apply, 2026-08-23 — Demon Hunter/Vengeance, real arena-log cast evidence (see arena-log-api.md).
-213243 | demonhunter | vengeance | Felblade
-225921 | demonhunter | vengeance | Fracture
+# Felblade/Fracture both dropped here 2026-08-24 — same duplicate-override cleanup as the Havoc
+# block above; 232893 (Felblade) and 225919 (Fracture) already cover Vengeance via the original
+# 2026-08-06/2026-08-14 entries further up this file.
 
 # Added via wow:diff-arena-spells --apply, 2026-08-23 — Demon Hunter/Devourer, real arena-log cast evidence (see arena-log-api.md).
 131347 | demonhunter | devourer | Glide
