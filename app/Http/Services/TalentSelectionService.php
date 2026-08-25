@@ -132,6 +132,30 @@ class TalentSelectionService
         ]);
     }
 
+    /**
+     * A small number of PvP talents don't just ADD to a spec's kit — they functionally REPLACE
+     * an existing baseline/talented ability entirely (confirmed real game behavior, not
+     * derivable from any data source this project has: Strangulate doesn't even appear in
+     * SimC's spelldata dumps at all, and its PvP-talent description text says nothing about
+     * replacing anything — this is pure domain knowledge). Hand-curated, one verified pair at a
+     * time, same discipline as data/spelldata/baseline-spec-overrides.txt — never bulk-derived.
+     * Keys/values are Blizzard's real external spell_id (stable across re-imports), resolved to
+     * this patch's internal spells.id inside selectedSpellIds() itself.
+     *
+     * - Strangulate (47476, a PvP talent shared by all 3 Death Knight specs) replaces
+     *   Asphyxiate (221562, a PvE class-tree CHOICE-node pick — sibling option: Death's Reach)
+     *   — confirmed by the user directly, 2026-08-25: selecting Strangulate converts the DK's
+     *   stun into a silence, so the two are never both actually available in-game at once. Our
+     *   data models them as fully independent selections (one PvE choice-node pick, one of 4
+     *   PvP talent slots) with no structural link between them at all — before this fix, a
+     *   build with both selected showed both as "selected" everywhere (WoW Comps' Spells table,
+     *   the Synergies/DR-groups box, and the "Example CC Chains" feature), as if the player
+     *   genuinely had two separate stuns/CC abilities.
+     */
+    private const PVP_TALENT_REPLACES = [
+        47476 => 221562, // Strangulate replaces Asphyxiate
+    ];
+
     /** Flattens both PvE and PvP picks into one set of Spell ids — what gets fed into ModuleSpellReferenceService. */
     public function selectedSpellIds(TalentBuild $build): Collection
     {
@@ -147,7 +171,19 @@ class TalentSelectionService
             ->pluck('pvpTalent.spell_id')
             ->filter();
 
-        return $peSpellIds->merge($pvpSpellIds)->unique()->values();
+        $selected = $peSpellIds->merge($pvpSpellIds)->unique()->values();
+
+        $externalIds = collect(self::PVP_TALENT_REPLACES)->keys()->merge(array_values(self::PVP_TALENT_REPLACES));
+        $internalIdsByExternal = Spell::where('patch_id', $build->patch_id)
+            ->whereIn('spell_id', $externalIds)
+            ->pluck('id', 'spell_id');
+
+        $replacedInternalIds = collect(self::PVP_TALENT_REPLACES)
+            ->filter(fn ($replacedExternalId, $replacingExternalId) => $selected->contains($internalIdsByExternal[$replacingExternalId] ?? null))
+            ->map(fn ($replacedExternalId) => $internalIdsByExternal[$replacedExternalId] ?? null)
+            ->filter();
+
+        return $selected->diff($replacedInternalIds)->values();
     }
 
     /**

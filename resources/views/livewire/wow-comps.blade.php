@@ -64,7 +64,7 @@
 
 <div class="max-w-7xl mx-auto px-4 py-8 space-y-5" x-data="{
         openSpellId: null,
-        tab: 'offensive',
+        tab: 'synergies',
         classPickerSlot: null,
         pendingSlot: null,
         slotLabels: @js(array_column($slots, 'label')),
@@ -419,15 +419,41 @@
                         : '—';
                 @endphp
                 <div class="linear-card p-4">
-                    <p class="text-[12px] text-ink-muted leading-relaxed">
-                        CC is grouped into Diminishing Returns Groups (Stun, Silence, Incapacitate, Disorient — the categories that actually diminish each other) and Utility (Knockback, Disarm, Slow, Root — none of which diminish anything). Each spell's own category shows as a badge on its card — chain them yourself in-game. The first use of a DR category lands at full duration; a second use within <span class="text-ink font-semibold">20s</span> of the first drops to 50%; a third makes the target immune until the DR resets. In PvP, CC duration caps at <span class="text-ink font-semibold">{{ $pvpCapSeconds }}s</span> regardless of tooltip value. Only spells with a curated DR category are eligible — most of the game's CC isn't classified yet. "Duration" only shows once a spell's real PvP CC duration has been hand-verified — a blank duration means it hasn't been curated yet, not that the CC is instant.
-                    </p>
+                    <p class="text-[13px] font-display font-bold text-ink mb-0.5">Diminishing Returns (DR)</p>
+                    <p class="text-[11px] text-ink-subtle mb-3">Repeated CC of the same type on one target gets weaker each time it lands.</p>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        <div class="px-3 py-1.5 rounded-lg bg-surface-2 border border-line">
+                            <p class="text-[9px] uppercase tracking-wide text-ink-subtle font-semibold">1st hit</p>
+                            <p class="text-[14px] font-bold text-ink tabular-nums">100%</p>
+                        </div>
+                        <svg class="w-3.5 h-3.5 text-ink-subtle flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                        <div class="px-3 py-1.5 rounded-lg bg-surface-2 border border-line">
+                            <p class="text-[9px] uppercase tracking-wide text-ink-subtle font-semibold">2nd hit <span class="text-ink-muted">(within {{ 20 }}s)</span></p>
+                            <p class="text-[14px] font-bold text-ink tabular-nums">50%</p>
+                        </div>
+                        <svg class="w-3.5 h-3.5 text-ink-subtle flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                        <div class="px-3 py-1.5 rounded-lg bg-surface-2 border border-line">
+                            <p class="text-[9px] uppercase tracking-wide text-ink-subtle font-semibold">3rd hit</p>
+                            <p class="text-[14px] font-bold text-gold-light tabular-nums">Immune</p>
+                        </div>
+                    </div>
+
                     {{-- DR-category icon key — 2026-08-22, direct request off a Reddit comment
                          asking for "the fear icon for Disorient, the sheep icon for
                          Incapacitate," i.e. the community-standard representative icon per DR
                          category, independent of which specific spell was actually cast. Lives
                          here as a one-time legend, not a second icon added to every spell card
-                         below — see WowComps::DR_CATEGORY_ICON_SPELL_IDS's docblock. --}}
+                         below — see WowComps::DR_CATEGORY_ICON_SPELL_IDS's docblock. A legend
+                         entry is either spell-backed (existing $legend['spell'] path,
+                         <x-spell-icon>) or a raw self-hosted icon filename with no backing
+                         spell/item record at all ($legend['iconUrl'], added 2026-08-24 for
+                         Disorient's spell_holy_dizzy) — plain <img>, since <x-spell-icon>
+                         requires a real Spell model. --}}
                     <div class="flex flex-wrap gap-x-4 gap-y-2 mt-3 pt-3 border-t border-line">
                         @foreach ($drCategoryLegend as $legend)
                             @if ($legend['spell'])
@@ -435,10 +461,43 @@
                                     <x-spell-icon :spell="$legend['spell']" size="w-5 h-5"/>
                                     <span class="text-[11px] text-ink-muted">{{ $legend['category'] }}</span>
                                 </div>
+                            @elseif ($legend['iconUrl'])
+                                <div class="flex items-center gap-1.5">
+                                    <img src="{{ $legend['iconUrl'] }}" alt="{{ $legend['category'] }}" loading="lazy" class="w-5 h-5 rounded border border-line object-cover flex-shrink-0">
+                                    <span class="text-[11px] text-ink-muted">{{ $legend['category'] }}</span>
+                                </div>
                             @endif
                         @endforeach
                     </div>
                 </div>
+
+                {{-- Not Selected — added 2026-08-25, direct request. Every dr_category-tagged
+                     spell a comp member's spec CAN have but the build's actual talent/PvP-talent
+                     selections don't currently pick (an unchosen CHOICE-node sibling, an
+                     unpicked PvE talent, an unslotted PvP talent, or a spell
+                     TalentSelectionService::PVP_TALENT_REPLACES suppressed, e.g. Asphyxiate once
+                     Strangulate is selected) — see WowComps::getSynergiesProperty()'s own
+                     'excluded' computation. CD intentionally omitted here (unlike the selected
+                     groups above) — these spells were never resolved against the build's
+                     talents, so a real effective cooldown isn't available for them. --}}
+                @if ($synergies['excluded']->isNotEmpty())
+                    <div class="linear-card p-4">
+                        <p class="text-[11px] uppercase tracking-wide text-ink-subtle font-semibold mb-2">Not Selected</p>
+                        <p class="text-[11px] text-ink-subtle mb-3">Crowd control this comp could have, but the current talent/PvP-talent picks don't include.</p>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($synergies['excluded'] as $ex)
+                                <button type="button"
+                                        @click="openSpellId = 'm{{ $ex['mi'] }}-s{{ $ex['spell']->id }}'"
+                                        class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-2 border border-line hover:border-gold/40 transition-colors opacity-70">
+                                    <x-spell-icon :spell="$ex['spell']" size="w-5 h-5"/>
+                                    <span class="text-[11px] text-ink-muted">{{ $ex['spell']->display_name }}</span>
+                                    <span class="{{ $drBadge[$ex['spell']->dr_category] ?? 'badge-gray' }} !text-[9px]">{{ $ex['spell']->dr_category }}</span>
+                                    <span class="text-[10px] text-ink-subtle">— {{ $ex['label'] }}</span>
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
 
                 {{-- Example CC Chains — added 2026-08-23, wiring wow:cc-formula onto the live
                      page for the first time (see CcFormulaService's docblock: the algorithm is

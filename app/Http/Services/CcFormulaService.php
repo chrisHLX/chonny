@@ -113,6 +113,19 @@ class CcFormulaService
             foreach ($member['entries'] as $entry) {
                 $spell = $entry['spell'];
 
+                // Fixed 2026-08-25 — this loop used to include every real talent-tree/PvP-talent
+                // entry regardless of whether the build actually has it selected (unlike
+                // getSynergiesProperty(), which already checked isSelected). A real, reported
+                // symptom: a Death Knight comp's "Example CC Chains" showed both Asphyxiate and
+                // Strangulate as available even when the build's actual selections meant the
+                // player only ever has one (see TalentSelectionService::PVP_TALENT_REPLACES for
+                // that specific pair) — this filter is what makes that fix actually take effect
+                // here, since selectedSpellIds() (which computeSpellReferencesFor() reads
+                // isSelected from) already excludes a replaced ability from the selected set.
+                if (!($entry['isSelected'] ?? true)) {
+                    continue;
+                }
+
                 if ($spell->dr_category === null) {
                     continue;
                 }

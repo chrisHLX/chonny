@@ -290,3 +290,44 @@ test('bumpSpellCacheVersion re-creates the seed row if it was deleted', function
     $service->bumpSpellCacheVersion();
     expect($service->spellCacheVersion())->toBe(2);
 });
+
+test('selectedSpellIds excludes Asphyxiate when Strangulate is selected (PVP_TALENT_REPLACES)', function () {
+    // Regression test for the 2026-08-25 fix — a Death Knight build could have Asphyxiate
+    // (a PvE class-tree CHOICE-node pick) AND Strangulate (a PvP talent) both technically
+    // "selected" in our data at once, even though real gameplay means Strangulate replaces
+    // Asphyxiate entirely (confirmed directly by the user). Real Blizzard spell_ids used here
+    // (47476 / 221562) since PVP_TALENT_REPLACES is keyed by them, not internal spells.id.
+    $fixture = makeSpecFixture();
+
+    $tree = TalentTree::create([
+        'patch_id' => $fixture['patch']->id, 'class_id' => $fixture['class']->id,
+        'spec_id' => $fixture['spec']->id, 'type' => 'spec', 'name' => 'Test Tree', 'external_tree_id' => 1,
+    ]);
+    $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 1, 'type' => 'CHOICE', 'max_ranks' => 1]);
+    $asphyxiate = Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 221562, 'name' => 'Asphyxiate']);
+    $entry = TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $asphyxiate->id, 'rank' => 1, 'max_rank' => 1]);
+
+    $strangulate = Spell::create(['patch_id' => $fixture['patch']->id, 'spell_id' => 47476, 'name' => 'Strangulate']);
+    $pvpTalent = PvpTalent::create([
+        'spec_id' => $fixture['spec']->id, 'patch_id' => $fixture['patch']->id, 'spell_id' => $strangulate->id,
+        'unlock_level' => 45, 'external_pvp_talent_id' => 206,
+    ]);
+
+    $build = TalentBuild::create([
+        'spec_id' => $fixture['spec']->id, 'patch_id' => $fixture['patch']->id,
+        'name' => 'DK Build', 'share_slug' => 'dk-strangulate-1',
+    ]);
+
+    $service = new TalentSelectionService();
+    $service->saveChoice($build, $node, $entry);
+
+    // Asphyxiate chosen, Strangulate not yet selected — Asphyxiate is normally selected.
+    expect($service->selectedSpellIds($build->fresh())->all())->toBe([$asphyxiate->id]);
+
+    // Selecting Strangulate suppresses Asphyxiate from the selected set entirely, even though
+    // its own CHOICE-node pick was never undone.
+    $service->syncPvpChoices($build, [$pvpTalent->id]);
+    $ids = $service->selectedSpellIds($build->fresh());
+    expect($ids->contains($strangulate->id))->toBeTrue()
+        ->and($ids->contains($asphyxiate->id))->toBeFalse();
+});

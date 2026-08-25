@@ -463,21 +463,54 @@ class WowComps extends Component
      * in the tab's top info box, NOT a second icon on every spell card, so a card's own icon
      * always shows the exact spell that was actually cast.
      *
-     * Each spell_id here is one this codebase already has curated with that exact dr_category
-     * (verified 2026-08-22, not assumed) — see getDrCategoryLegendProperty(). Disarm/Slow have
-     * no single "obviously correct" classic ability in the current patch's data shape, so the
-     * pick there is whichever already-curated, real-icon-bearing spell is most recognizable
-     * (plain "Disarm" for Disarm, Chains of Ice for Slow).
+     * getDrCategoryLegendProperty() looks each spell_id up directly for the current patch —
+     * it does NOT require that spell's own dr_category to match the legend's key. This is
+     * deliberate: the legend is a pure visual reference to what Blizzard's own client actually
+     * displays, decoupled from this project's own dr_category curation (e.g. Concussive Shot
+     * below is curated dr_category=Slow in this project's own data, correctly — that's not a
+     * contradiction, it's just a different, unrelated fact from "which icon the game shows for
+     * the Stun DR category").
+     *
+     * **`Stun` corrected 2026-08-24** — the original 2026-08-22 picks were this project's own
+     * best-guess "most recognizable curated spell per category," not Blizzard's actual in-game
+     * convention, and Stun's guess (Cheap Shot) was wrong. Confirmed via an official Blizzard
+     * forums thread (us.forums.blizzard.com, screenshotted directly by the user) AND the user's
+     * own direct in-game verification: the real client-side Stun DR icon is Concussive Shot's,
+     * not any actual stun ability's — Blizzard just picked one fixed icon per DR category,
+     * seemingly arbitrarily, same as Incapacitate showing Detect Magic and Disorient showing
+     * "Spellthread" per that same thread. Only Stun was corrected here — the user explicitly
+     * confirmed that one themselves; Incapacitate/Disorient's forum-cited replacements
+     * (Detect Magic, Spellthread) don't even exist as spell records in this project's current
+     * patch data and were only cited secondhand from the forum post (which itself hedged with
+     * "who knows the rest") — left as this project's prior best-guess rather than importing an
+     * unverified name. Root's original pick (Entangling Roots) already happens to match the
+     * confirmed forum answer, so no change was needed there. Disarm/Slow remain this project's
+     * own best-guess pick (see the original note below) — no confirmed Blizzard answer exists
+     * for either yet.
+     *
+     * **`Disorient` corrected 2026-08-24** — Blizzard's real in-game Disorient DR icon is
+     * `spell_holy_dizzy`, confirmed by the user tapping through Wowhead's own icon-detail page
+     * for that asset (live-verified on Blizzard's icon CDN before use, same discipline as every
+     * other icon in this codebase). Unlike every other entry here, it has no real backing
+     * spell/item record in this project's data at all — Wowhead's icon page shows it's reused
+     * by a handful of unrelated items (e.g. "Runic Spellthread," a Classic tailoring
+     * consumable — which is also why the original forum thread's link text read "Spellthread"
+     * even though the actually-referenced thing was just this icon, not that item) and several
+     * unrelated spells, none thematically tied to Disorient — pure incidental icon-art reuse on
+     * Blizzard's side. A value here is either an `int` (a real spell_id, resolved to a `Spell`
+     * model the normal way) or a `string` (a raw, self-hosted icon filename under
+     * storage/app/public/spell-icons/, rendered directly with no `Spell` model at all) — see
+     * getDrCategoryLegendProperty().
      */
     private const DR_CATEGORY_ICON_SPELL_IDS = [
-        'Stun' => 1833,          // Cheap Shot
-        'Incapacitate' => 118,   // Polymorph
-        'Disorient' => 5782,     // Fear
-        'Root' => 339,           // Entangling Roots
-        'Silence' => 15487,      // Silence
-        'Knockback' => 132469,   // Typhoon
-        'Disarm' => 236077,      // Disarm
-        'Slow' => 45524,         // Chains of Ice
+        'Stun' => 5116,                          // Concussive Shot — Blizzard's actual in-game Stun DR icon
+        'Incapacitate' => 118,                   // Polymorph
+        'Disorient' => 'spell_holy_dizzy.jpg',   // raw icon filename — Blizzard's real Disorient DR icon, no backing spell exists
+        'Root' => 339,                           // Entangling Roots — confirmed matches Blizzard's real icon
+        'Silence' => 15487,                      // Silence
+        'Knockback' => 132469,                   // Typhoon
+        'Disarm' => 236077,                      // Disarm
+        'Slow' => 45524,                         // Chains of Ice
     ];
 
     /**
@@ -526,15 +559,28 @@ class WowComps extends Component
         $ccEntries = collect();
         $peels = collect();
         $interrupts = collect();
+        // Excluded-CC block, added 2026-08-25 (direct request) — dr_category-tagged spells the
+        // spec CAN have but the actual build's talent/PvP-talent selections don't currently
+        // pick (an unchosen CHOICE-node sibling, an unpicked PvE talent, an unslotted PvP
+        // talent, or — since 2026-08-25 — a spell TalentSelectionService::PVP_TALENT_REPLACES
+        // suppressed, like Asphyxiate once Strangulate is selected). Lets a viewer see at a
+        // glance which CC a comp is passing up, not just what it has.
+        $excludedCc = collect();
         foreach ($this->comp as $mi => $member) {
             if (!$member['spec']) {
                 continue;
             }
+            $label = "{$member['spec']->name} {$member['class']->name}";
             foreach ($member['entries'] as $entry) {
                 $spell = $entry['spell'];
+
                 if (!($entry['isSelected'] ?? true)) {
+                    if ($spell->dr_category !== null) {
+                        $excludedCc->push(['spell' => $spell, 'label' => $label, 'mi' => $mi]);
+                    }
                     continue;
                 }
+
                 if ($spell->dr_category !== null) {
                     $ccEntries->push($spell);
                     $ownerMap[$spell->id] = $mi;
@@ -556,6 +602,9 @@ class WowComps extends Component
         $ccEntries = $ccEntries->unique('id')->values();
         $peels = $peels->unique('id')->values();
         $interrupts = $interrupts->unique('id')->values();
+        $excludedCc = $excludedCc->unique(fn ($e) => $e['spell']->id)
+            ->sortBy(fn ($e) => $e['spell']->dr_category.$e['spell']->name)
+            ->values();
 
         $groups = [];
         $covered = [];
@@ -579,6 +628,7 @@ class WowComps extends Component
             'owner_map' => $ownerMap,
             'cooldown_by_id' => $cooldownById,
             'charges_by_id' => $chargesById,
+            'excluded' => $excludedCc,
         ];
     }
 
@@ -632,17 +682,16 @@ class WowComps extends Component
      * these 8 representative spells are the same regardless of which specs are picked), so this
      * is cheap enough to compute on every render with no caching.
      *
-     * @return array<int, array{category: string, spell: ?Spell}>
+     * @return array<int, array{category: string, spell: ?Spell, iconUrl: ?string}>
      */
     public function getDrCategoryLegendProperty(): array
     {
         $patchId = Patch::where('is_current', true)->value('id');
 
         return collect(self::DR_CATEGORY_ICON_SPELL_IDS)
-            ->map(fn ($spellId, $category) => [
-                'category' => $category,
-                'spell' => Spell::where('patch_id', $patchId)->where('spell_id', $spellId)->first(),
-            ])
+            ->map(fn ($iconRef, $category) => is_string($iconRef)
+                ? ['category' => $category, 'spell' => null, 'iconUrl' => '/storage/spell-icons/'.$iconRef]
+                : ['category' => $category, 'spell' => Spell::where('patch_id', $patchId)->where('spell_id', $iconRef)->first(), 'iconUrl' => null])
             ->values()
             ->all();
     }

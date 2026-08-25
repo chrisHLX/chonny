@@ -223,3 +223,74 @@ test('a Synergies-tab CC card and a peel/interrupt entry both wire up the same c
         // present — proves no separate modal markup was needed for the Synergies tab.
         ->assertSeeHtml("openSpellId === 'm0-s{$stun->id}'");
 });
+
+test('the DR-category icon legend shows Blizzard\'s real Stun icon (Concussive Shot), not Cheap Shot', function () {
+    // Regression test for the 2026-08-24 fix — the original 2026-08-22 legend picked "most
+    // recognizable curated spell per category" (Cheap Shot for Stun) rather than what Blizzard's
+    // own client actually displays. Confirmed via an official Blizzard forums thread and the
+    // user's own in-game check: the real Stun DR icon is Concussive Shot's (spell_id 5116).
+    $game = Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+    $patch = Patch::create(['game_id' => $game->id, 'build_version' => '12.0.0', 'is_current' => true]);
+    $concussiveShot = Spell::create([
+        'patch_id' => $patch->id, 'spell_id' => 5116, 'name' => 'Concussive Shot',
+        'icon_name' => 'spell_frost_stun.jpg', 'dr_category' => 'Slow',
+    ]);
+    // A same-name-but-wrong-id "Cheap Shot" row proves the legend isn't just matching by name.
+    Spell::create(['patch_id' => $patch->id, 'spell_id' => 1833, 'name' => 'Cheap Shot', 'icon_name' => 'ability_cheapshot.jpg', 'dr_category' => 'Stun']);
+
+    $component = new WowComps();
+    $legend = collect($component->getDrCategoryLegendProperty());
+
+    $stunEntry = $legend->firstWhere('category', 'Stun');
+    expect($stunEntry['spell'])->not->toBeNull()
+        ->and($stunEntry['spell']->id)->toBe($concussiveShot->id)
+        ->and($stunEntry['spell']->spell_id)->toBe(5116);
+
+    $rootEntry = $legend->firstWhere('category', 'Root');
+    expect($rootEntry['spell'])->toBeNull(); // Entangling Roots (339) not seeded in this fixture — legend degrades gracefully, not an error.
+
+    // Disorient (2026-08-24) — a raw self-hosted icon filename, no backing spell exists at all.
+    $disorientEntry = $legend->firstWhere('category', 'Disorient');
+    expect($disorientEntry['spell'])->toBeNull()
+        ->and($disorientEntry['iconUrl'])->toBe('/storage/spell-icons/spell_holy_dizzy.jpg');
+});
+
+test('getSynergiesProperty lists an unchosen CHOICE-node CC sibling under "excluded", not the chosen one', function () {
+    // Added 2026-08-25, direct request — a "Not Selected" block on the Crowd Control tab
+    // showing which CC a comp is passing up. Uses a real CHOICE node (two dr_category-tagged
+    // spells, one entry picked) so the excluded entry comes from the app's real "always show
+    // every talent, isSelected flags which one" pipeline, not a hand-built fixture shortcut.
+    $game = Game::create(['slug' => 'wow', 'name' => 'World of Warcraft']);
+    $patch = Patch::create(['game_id' => $game->id, 'build_version' => '12.0.0', 'is_current' => true]);
+    $class = GameClass::create(['game_id' => $game->id, 'name' => 'Test Class I', 'slug' => 'test-class-i']);
+    $spec = Specialization::create(['class_id' => $class->id, 'name' => 'Test Spec I', 'slug' => 'test-spec-i']);
+
+    $tree = TalentTree::create(['patch_id' => $patch->id, 'class_id' => $class->id, 'spec_id' => $spec->id, 'type' => 'spec', 'name' => 'Test Spec I', 'external_tree_id' => $spec->id]);
+    $node = TalentNode::create(['talent_tree_id' => $tree->id, 'external_node_id' => 900, 'type' => 'CHOICE', 'max_ranks' => 1]);
+
+    $chosen = Spell::create(['patch_id' => $patch->id, 'spell_id' => 9701, 'name' => 'Chosen Stun', 'dr_category' => 'Stun']);
+    $notChosen = Spell::create(['patch_id' => $patch->id, 'spell_id' => 9702, 'name' => 'Passed-Over Silence', 'dr_category' => 'Silence']);
+    $chosenEntry = TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $chosen->id, 'rank' => 1, 'max_rank' => 1]);
+    TalentNodeEntry::create(['talent_node_id' => $node->id, 'spell_id' => $notChosen->id, 'rank' => 1, 'max_rank' => 1]);
+
+    $service = new TalentSelectionService();
+    $build = $service->getOrCreateDefaultBuild($spec->id, $patch->id);
+    $service->saveChoice($build, $node, $chosenEntry);
+    $service->setDefault($build);
+
+    $component = Livewire::test(WowComps::class)->call('selectSpec', 0, $class->id, $spec->id);
+    $synergies = $component->get('synergies');
+
+    $excludedNames = $synergies['excluded']->pluck('spell.name');
+    expect($excludedNames->contains('Passed-Over Silence'))->toBeTrue()
+        ->and($excludedNames->contains('Chosen Stun'))->toBeFalse();
+
+    // The chosen spell is in the normal DR groups, not excluded.
+    expect($synergies['groups']['Diminishing Returns Groups']->pluck('name')->contains('Chosen Stun'))->toBeTrue();
+
+    $excludedRow = $synergies['excluded']->firstWhere('spell.name', 'Passed-Over Silence');
+    expect($excludedRow['label'])->toBe('Test Spec I Test Class I')
+        ->and($excludedRow['mi'])->toBe(0);
+
+    $component->assertSee('Not Selected')->assertSee('Passed-Over Silence');
+});

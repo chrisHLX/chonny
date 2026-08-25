@@ -190,7 +190,7 @@
 190925 | Root | | 1 | | 3  | |||  Harpoon
 192058 | Stun | | | | 3  | |||  Capacitor Totem
 118905 | Stun | | | | 3 | |||  Capacitor Totem (the REAL aura spell_id — 328 real instances confirmed; value copied from the already-curated 3.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
-197214 | Incapacitate | | | |  | |||  Sundering
+197214 |  | | | |  | |||  Sundering (2026-08-25: cleared — real ability is a pure damage ground-slam, description has no incapacitate/CC component at all; original tag was a bulk-apply mistake, confirmed by the user)
 198898 | Disorient | | | | 6  | |||  Song of Chi-Ji
 198909 | Disorient | | | | 6 | |||  Song of Chi-Ji (the REAL aura spell_id — 234 real instances confirmed; value copied from the already-curated 6.0s — recovered 2026-08-23 after an accidental git checkout wiped this line from the file; the DB value survived untouched.)
 199786 | Slow | | | |  | |||  Glacial Spike
