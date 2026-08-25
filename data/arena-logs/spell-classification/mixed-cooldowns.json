@@ -18,7 +18,9 @@
         "name": "Killing Spree",
         "cooldownSeconds": 180,
         "charges": null,
-        "offensiveBuffSignals": [],
+        "offensiveBuffSignals": [
+            "Via sibling spell_id 1235074: Energize/resource gen (+1)"
+        ],
         "offensiveSpellSignals": [
             "Via sibling spell_id 57841: School Damage (2): physical (SP-scaled, pvp_coefficient=0.62222)"
         ],
@@ -36,6 +38,21 @@
         ],
         "offensiveSpellSignals": [
             "Via sibling spell_id 200166: School Damage (2): chromatic (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 201453: Immunity (School Immunity)"
+        ]
+    },
+    {
+        "spellId": 200166,
+        "name": "Metamorphosis",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "offensiveBuffSignals": [
+            "Via sibling spell_id 162264: Modify All Haste% (+20)"
+        ],
+        "offensiveSpellSignals": [
+            "Own record: School Damage (2): chromatic (base=0)"
         ],
         "defensiveSignals": [
             "Via sibling spell_id 201453: Immunity (School Immunity)"
@@ -157,6 +174,19 @@
         ]
     },
     {
+        "spellId": 1241937,
+        "name": "Soul Immolation",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "offensiveBuffSignals": [
+            "Via sibling spell_id 1242475: Energize/resource gen (+5)"
+        ],
+        "offensiveSpellSignals": [],
+        "defensiveSignals": [
+            "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 375901,
         "name": "Mindgames",
         "cooldownSeconds": 45,
@@ -179,6 +209,19 @@
         "offensiveBuffSignals": [],
         "offensiveSpellSignals": [
             "Via sibling spell_id 1263825: School Damage (2): shadow (base=0)"
+        ],
+        "defensiveSignals": [
+            "Via sibling spell_id 1263861: Damage Taken%, self takes LESS (-5)"
+        ]
+    },
+    {
+        "spellId": 1263872,
+        "name": "Consumption",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "offensiveBuffSignals": [],
+        "offensiveSpellSignals": [
+            "Own record: Health Leech (9) (base=0)"
         ],
         "defensiveSignals": [
             "Via sibling spell_id 1263861: Damage Taken%, self takes LESS (-5)"
@@ -261,6 +304,20 @@
         ],
         "defensiveSignals": [
             "Parry% (0)"
+        ]
+    },
+    {
+        "spellId": 2565,
+        "name": "Shield Block",
+        "cooldownSeconds": 16,
+        "charges": 1,
+        "offensiveBuffSignals": [
+            "Via sibling spell_id 132404: Critical Chance (0)",
+            "Via sibling spell_id 132404: Spell Direct Amount, +30% (non-healer spec)"
+        ],
+        "offensiveSpellSignals": [],
+        "defensiveSignals": [
+            "Via sibling spell_id 132404: Block% (100)"
         ]
     },
     {

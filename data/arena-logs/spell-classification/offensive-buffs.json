@@ -54,6 +54,15 @@
         ]
     },
     {
+        "spellId": 322109,
+        "name": "Touch of Death",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 344361: Damage Done% (+15)"
+        ]
+    },
+    {
         "spellId": 10060,
         "name": "Power Infusion",
         "cooldownSeconds": 120,
@@ -85,6 +94,16 @@
         ]
     },
     {
+        "spellId": 228260,
+        "name": "Voidform",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 194249: Spell Direct Amount, +20% (non-healer spec)",
+            "Via sibling spell_id 194249: Spell Periodic Amount, +20% (non-healer spec)"
+        ]
+    },
+    {
         "spellId": 288613,
         "name": "Trueshot",
         "cooldownSeconds": 120,
@@ -92,6 +111,28 @@
         "signals": [
             "Critical Strike% (10)",
             "Critical Bonus (20)"
+        ]
+    },
+    {
+        "spellId": 360194,
+        "name": "Deathmark",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 470679: Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 454351,
+        "name": "Avenging Wrath",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Critical Strike% (20)",
+            "Critical Chance (20)",
+            "Modify All Haste% (+3)",
+            "Spell Direct Amount, +20% (non-healer spec)",
+            "Spell Periodic Amount, +20% (non-healer spec)"
         ]
     },
     {
@@ -114,12 +155,57 @@
         ]
     },
     {
+        "spellId": 227847,
+        "name": "Bladestorm",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 50622: Energize/resource gen (+50)"
+        ]
+    },
+    {
+        "spellId": 365350,
+        "name": "Arcane Surge",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 365265: Energize/resource gen (+15)"
+        ]
+    },
+    {
+        "spellId": 376079,
+        "name": "Champion's Spear",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 376080: Energize/resource gen (+100)"
+        ]
+    },
+    {
+        "spellId": 446035,
+        "name": "Bladestorm",
+        "cooldownSeconds": 90,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 50622: Energize/resource gen (+50)"
+        ]
+    },
+    {
         "spellId": 1249625,
         "name": "Zenith",
         "cooldownSeconds": 90,
         "charges": 2,
         "signals": [
             "Critical Strike% (0)"
+        ]
+    },
+    {
+        "spellId": 1249658,
+        "name": "Breath of Sindragosa",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1234304: Energize/resource gen (+2)"
         ]
     },
     {
@@ -131,6 +217,17 @@
             "Damage Done% (+20)",
             "Spell Direct Amount, +20% (non-healer spec)",
             "Spell Periodic Amount, +20% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 1253859,
+        "name": "Takedown",
+        "cooldownSeconds": 90,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1250646: Damage Done% (+20)",
+            "Via sibling spell_id 1250646: Spell Direct Amount, +20% (non-healer spec)",
+            "Via sibling spell_id 1250646: Spell Periodic Amount, +20% (non-healer spec)"
         ]
     },
     {
@@ -162,6 +259,15 @@
         ]
     },
     {
+        "spellId": 205021,
+        "name": "Ray of Frost",
+        "cooldownSeconds": 60,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 208141: Spell Periodic Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
         "spellId": 205636,
         "name": "Force of Nature",
         "cooldownSeconds": 60,
@@ -180,12 +286,39 @@
         ]
     },
     {
+        "spellId": 271877,
+        "name": "Blade Rush",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 271896: Energize/resource gen (+5)"
+        ]
+    },
+    {
+        "spellId": 375576,
+        "name": "Divine Toll",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 326011: Spell Direct Amount, +100% (non-healer spec)"
+        ]
+    },
+    {
         "spellId": 381623,
         "name": "Thistle Tea",
         "cooldownSeconds": 60,
         "charges": 3,
         "signals": [
             "Energize/resource gen (+100)"
+        ]
+    },
+    {
+        "spellId": 384352,
+        "name": "Doom Winds",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 335903: Spell Direct Amount, +25% (non-healer spec)"
         ]
     },
     {
@@ -216,6 +349,25 @@
         ]
     },
     {
+        "spellId": 469270,
+        "name": "Doom Winds",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 335903: Spell Direct Amount, +25% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 1270292,
+        "name": "Lunar Beam",
+        "cooldownSeconds": 60,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 204066: Spell Direct Amount, +10% (non-healer spec)",
+            "Via sibling spell_id 204066: Spell Periodic Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
         "spellId": 1298826,
         "name": "Thistle Tea",
         "cooldownSeconds": 60,
@@ -225,12 +377,39 @@
         ]
     },
     {
+        "spellId": 6353,
+        "name": "Soul Fire",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 281440: Critical Chance (10)"
+        ]
+    },
+    {
         "spellId": 51271,
         "name": "Pillar of Frost",
         "cooldownSeconds": 45,
         "charges": null,
         "signals": [
             "Spell Direct Amount, +400% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 167105,
+        "name": "Colossus Smash",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 208086: Damage Taken%, target takes MORE (+30)"
+        ]
+    },
+    {
+        "spellId": 274837,
+        "name": "Feral Frenzy",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 274838: Energize/resource gen (+1)"
         ]
     },
     {
@@ -255,6 +434,42 @@
     {
         "spellId": 385059,
         "name": "Odyn's Fury",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+200)"
+        ]
+    },
+    {
+        "spellId": 385060,
+        "name": "Odyn's Fury",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 385059: Energize/resource gen (+200)"
+        ]
+    },
+    {
+        "spellId": 385062,
+        "name": "Odyn's Fury",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 385059: Energize/resource gen (+200)"
+        ]
+    },
+    {
+        "spellId": 385952,
+        "name": "Shield Charge",
+        "cooldownSeconds": 45,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 385954: Energize/resource gen (+200)"
+        ]
+    },
+    {
+        "spellId": 385954,
+        "name": "Shield Charge",
         "cooldownSeconds": 45,
         "charges": null,
         "signals": [
@@ -301,6 +516,42 @@
         ]
     },
     {
+        "spellId": 47568,
+        "name": "Empower Rune Weapon",
+        "cooldownSeconds": 30,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 1230959: Energize/resource gen (+400)"
+        ]
+    },
+    {
+        "spellId": 57934,
+        "name": "Tricks of the Trade",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 221630: Damage Done% (+15)"
+        ]
+    },
+    {
+        "spellId": 204596,
+        "name": "Sigil of Flame",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 389787: Energize/resource gen (+25)"
+        ]
+    },
+    {
+        "spellId": 212431,
+        "name": "Explosive Shot",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 269850: Energize/resource gen (+10)"
+        ]
+    },
+    {
         "spellId": 255937,
         "name": "Wake of Ashes",
         "cooldownSeconds": 30,
@@ -319,12 +570,66 @@
         ]
     },
     {
+        "spellId": 263165,
+        "name": "Void Torrent",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 289577: Energize/resource gen (+600)"
+        ]
+    },
+    {
+        "spellId": 264130,
+        "name": "Power Siphon",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 334581: Spell Direct Amount, +30% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 395152,
+        "name": "Ebon Might",
+        "cooldownSeconds": 30,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 395296: Spell Direct Amount, +20% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 427917,
+        "name": "Immolation Aura",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 258920: Energize/resource gen (+20)"
+        ]
+    },
+    {
         "spellId": 443454,
         "name": "Ancestral Swiftness",
         "cooldownSeconds": 30,
         "charges": null,
         "signals": [
             "Spell Direct Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 444995,
+        "name": "Surging Totem",
+        "cooldownSeconds": 25,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 455630: Spell Direct Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 126664,
+        "name": "Charge",
+        "cooldownSeconds": 20,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 100: Energize/resource gen (+200)"
         ]
     },
     {
@@ -346,12 +651,66 @@
         ]
     },
     {
+        "spellId": 217200,
+        "name": "Barbed Shot",
+        "cooldownSeconds": 18,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 246152: Energize/resource gen (+5)"
+        ]
+    },
+    {
+        "spellId": 257044,
+        "name": "Rapid Fire",
+        "cooldownSeconds": 16,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 263585: Energize/resource gen (+3)"
+        ]
+    },
+    {
         "spellId": 48181,
         "name": "Haunt",
         "cooldownSeconds": 15,
         "charges": null,
         "signals": [
             "Damage Taken%, target takes MORE (+16)"
+        ]
+    },
+    {
+        "spellId": 183752,
+        "name": "Disrupt",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 218903: Energize/resource gen (+30)"
+        ]
+    },
+    {
+        "spellId": 187874,
+        "name": "Crash Lightning",
+        "cooldownSeconds": 15,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 333964: Spell Direct Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 196277,
+        "name": "Implosion",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 268583: Energize/resource gen (+10)"
+        ]
+    },
+    {
+        "spellId": 343294,
+        "name": "Soul Reaper",
+        "cooldownSeconds": 15,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1241521: Damage Taken%, target takes MORE (+20)"
         ]
     },
     {
@@ -364,6 +723,15 @@
         ]
     },
     {
+        "spellId": 17962,
+        "name": "Conflagrate",
+        "cooldownSeconds": 12.96,
+        "charges": 2,
+        "signals": [
+            "Via sibling spell_id 245330: Energize/resource gen (+5)"
+        ]
+    },
+    {
         "spellId": 184575,
         "name": "Blade of Justice",
         "cooldownSeconds": 12,
@@ -373,10 +741,82 @@
         ]
     },
     {
+        "spellId": 213243,
+        "name": "Felblade",
+        "cooldownSeconds": 12,
+        "charges": null,
+        "signals": [
+            "Energize/resource gen (+15)"
+        ]
+    },
+    {
+        "spellId": 232893,
+        "name": "Felblade",
+        "cooldownSeconds": 12,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 213243: Energize/resource gen (+15)"
+        ]
+    },
+    {
+        "spellId": 20271,
+        "name": "Judgment",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 197277: Damage Taken%, target takes MORE (+20)"
+        ]
+    },
+    {
+        "spellId": 275773,
+        "name": "Judgment",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 197277: Damage Taken%, target takes MORE (+20)"
+        ]
+    },
+    {
+        "spellId": 275779,
+        "name": "Judgment",
+        "cooldownSeconds": 11,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 197277: Damage Taken%, target takes MORE (+20)"
+        ]
+    },
+    {
         "spellId": 1241413,
         "name": "Hammer of Wrath",
         "cooldownSeconds": 11,
         "charges": 1,
+        "signals": [
+            "Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 219199,
+        "name": "Dire Beast",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 120694: Energize/resource gen (+10)"
+        ]
+    },
+    {
+        "spellId": 278326,
+        "name": "Consume Magic",
+        "cooldownSeconds": 10,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 1277738: Energize/resource gen (+20)"
+        ]
+    },
+    {
+        "spellId": 30451,
+        "name": "Arcane Blast",
+        "cooldownSeconds": 8,
+        "charges": null,
         "signals": [
             "Energize/resource gen (+1)"
         ]
@@ -397,6 +837,42 @@
         "charges": 1,
         "signals": [
             "Energize/resource gen (+120)"
+        ]
+    },
+    {
+        "spellId": 1226019,
+        "name": "Reap",
+        "cooldownSeconds": 8,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 1261679: Energize/resource gen (+10)"
+        ]
+    },
+    {
+        "spellId": 24275,
+        "name": "Hammer of Wrath",
+        "cooldownSeconds": 7.5,
+        "charges": 1,
+        "signals": [
+            "Energize/resource gen (+1)"
+        ]
+    },
+    {
+        "spellId": 1221348,
+        "name": "Surging Totem",
+        "cooldownSeconds": 6,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 455630: Spell Direct Amount, +10% (non-healer spec)"
+        ]
+    },
+    {
+        "spellId": 1271980,
+        "name": "Champion's Spear",
+        "cooldownSeconds": 6,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 376080: Energize/resource gen (+100)"
         ]
     }
 ]

@@ -153,6 +153,15 @@
         ]
     },
     {
+        "spellId": 64844,
+        "name": "Divine Hymn",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 98008,
         "name": "Spirit Link Totem",
         "cooldownSeconds": 180,
@@ -181,6 +190,15 @@
         ]
     },
     {
+        "spellId": 157982,
+        "name": "Tranquility",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Direct Heal (real magnitude)"
+        ]
+    },
+    {
         "spellId": 186265,
         "name": "Aspect of the Turtle",
         "cooldownSeconds": 180,
@@ -188,6 +206,24 @@
         "signals": [
             "Damage Taken%, self takes LESS (-30)",
             "Immunity"
+        ]
+    },
+    {
+        "spellId": 212182,
+        "name": "Smoke Bomb",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 88611: Damage Taken%, self takes LESS (-10)"
+        ]
+    },
+    {
+        "spellId": 359053,
+        "name": "Smoke Bomb",
+        "cooldownSeconds": 180,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 88611: Damage Taken%, self takes LESS (-10)"
         ]
     },
     {
@@ -304,6 +340,15 @@
     },
     {
         "spellId": 110959,
+        "name": "Greater Invisibility",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Via sibling spell_id 113862: Damage Taken%, self takes LESS (-60)"
+        ]
+    },
+    {
+        "spellId": 110960,
         "name": "Greater Invisibility",
         "cooldownSeconds": 120,
         "charges": null,
@@ -562,15 +607,6 @@
         ]
     },
     {
-        "spellId": 1241937,
-        "name": "Soul Immolation",
-        "cooldownSeconds": 60,
-        "charges": 1,
-        "signals": [
-            "Periodic Heal (real magnitude)"
-        ]
-    },
-    {
         "spellId": 22842,
         "name": "Frenzied Regeneration",
         "cooldownSeconds": 36,
@@ -725,15 +761,6 @@
         ]
     },
     {
-        "spellId": 2565,
-        "name": "Shield Block",
-        "cooldownSeconds": 16,
-        "charges": 1,
-        "signals": [
-            "Via sibling spell_id 132404: Block% (100)"
-        ]
-    },
-    {
         "spellId": 1966,
         "name": "Feint",
         "cooldownSeconds": 15,
@@ -804,6 +831,15 @@
         "signals": [
             "Absorb (shield)",
             "Periodic Heal (real magnitude)"
+        ]
+    },
+    {
+        "spellId": 190456,
+        "name": "Ignore Pain",
+        "cooldownSeconds": 1,
+        "charges": null,
+        "signals": [
+            "Absorb (shield)"
         ]
     }
 ]
