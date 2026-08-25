@@ -616,6 +616,15 @@
         ]
     },
     {
+        "spellId": 235313,
+        "name": "Blazing Barrier",
+        "cooldownSeconds": 30,
+        "charges": 1,
+        "signals": [
+            "Absorb (shield)"
+        ]
+    },
+    {
         "spellId": 235450,
         "name": "Prismatic Barrier",
         "cooldownSeconds": 30,
@@ -686,6 +695,15 @@
         "charges": 2,
         "signals": [
             "Immunity"
+        ]
+    },
+    {
+        "spellId": 203720,
+        "name": "Demon Spikes",
+        "cooldownSeconds": 20,
+        "charges": 1,
+        "signals": [
+            "Via sibling spell_id 203819: Parry% (8)"
         ]
     },
     {

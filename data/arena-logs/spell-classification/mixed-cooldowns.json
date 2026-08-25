@@ -211,19 +211,6 @@
         ]
     },
     {
-        "spellId": 235313,
-        "name": "Blazing Barrier",
-        "cooldownSeconds": 30,
-        "charges": 1,
-        "offensiveBuffSignals": [],
-        "offensiveSpellSignals": [
-            "Via sibling spell_id 235314: School Damage (2): fire (SP-scaled, sp_coefficient=0.14375)"
-        ],
-        "defensiveSignals": [
-            "Absorb (shield)"
-        ]
-    },
-    {
         "spellId": 355913,
         "name": "Emerald Blossom",
         "cooldownSeconds": 30,
@@ -274,19 +261,6 @@
         ],
         "defensiveSignals": [
             "Parry% (0)"
-        ]
-    },
-    {
-        "spellId": 203720,
-        "name": "Demon Spikes",
-        "cooldownSeconds": 20,
-        "charges": 1,
-        "offensiveBuffSignals": [],
-        "offensiveSpellSignals": [
-            "Via sibling spell_id 391159: School Damage (2): physical (base=0)"
-        ],
-        "defensiveSignals": [
-            "Via sibling spell_id 203819: Parry% (8)"
         ]
     },
     {
