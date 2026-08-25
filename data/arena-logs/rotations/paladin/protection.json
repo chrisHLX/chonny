@@ -1,12 +1,13 @@
 {
     "class": "paladin",
     "spec": "protection",
-    "windows": 87,
-    "killWindows": 8,
+    "windows": 110,
+    "killWindows": 10,
     "matches": 15,
     "anchors": [
         "Avenging Wrath",
         "Consecration",
+        "Divine Toll",
         "Hammer of Wrath",
         "Holy Bulwark",
         "Judgment",
@@ -15,6 +16,7 @@
     ],
     "majorAnchors": [
         "Avenging Wrath",
+        "Divine Toll",
         "Holy Bulwark",
         "Sacred Weapon",
         "Sentinel"
@@ -45,12 +47,6 @@
             {
                 "name": "Divine Toll",
                 "spellId": 375576,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
-                "name": "Hammer of Light",
-                "spellId": 427453,
                 "isCc": false,
                 "isRepeat": false
             },
@@ -123,12 +119,6 @@
             "killed": false,
             "steps": [
                 {
-                    "name": "Hammer of Light",
-                    "spellId": 427453,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Empyrean Hammer",
                     "spellId": 431398,
                     "isCc": false,
@@ -165,12 +155,6 @@
             "durationSeconds": 10,
             "killed": false,
             "steps": [
-                {
-                    "name": "Hammer of Light",
-                    "spellId": 427453,
-                    "isCc": false,
-                    "isRepeat": false
-                },
                 {
                     "name": "Empyrean Hammer",
                     "spellId": 431398,
@@ -257,12 +241,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Hammer of Light",
-                    "spellId": 427453,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Empyrean Hammer",
                     "spellId": 431398,
                     "isCc": false,
@@ -338,12 +316,6 @@
                 {
                     "name": "Divine Toll",
                     "spellId": 375576,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Hammer of Light",
-                    "spellId": 427453,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -669,5 +641,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-24T01:54:38+00:00"
+    "generated_at": "2026-08-25T05:28:42+00:00"
 }

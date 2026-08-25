@@ -1,9 +1,9 @@
 {
     "class": "rogue",
     "spec": "outlaw",
-    "windows": 112,
-    "killWindows": 5,
-    "matches": 12,
+    "windows": 129,
+    "killWindows": 7,
+    "matches": 15,
     "anchors": [
         "Adrenaline Rush",
         "Between the Eyes",
@@ -11,7 +11,8 @@
         "Blade Rush",
         "Killing Spree",
         "Shiv",
-        "Thistle Tea"
+        "Thistle Tea",
+        "Tricks of the Trade"
     ],
     "majorAnchors": [
         "Adrenaline Rush",
@@ -107,7 +108,7 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 446011,
+            "damage": 618002,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
@@ -118,22 +119,40 @@
                     "isRepeat": false
                 },
                 {
+                    "name": "Grappling Hook",
+                    "spellId": 195457,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Coup de Grace",
+                    "spellId": 441776,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Sinister Strike",
+                    "spellId": 193315,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
                     "name": "Dispatch",
                     "spellId": 2098,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Blade Rush",
-                    "spellId": 271877,
+                    "name": "Tricks of the Trade",
+                    "spellId": 57934,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Adrenaline Rush",
-                    "spellId": 13750,
+                    "name": "Pistol Shot",
+                    "spellId": 185763,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 },
                 {
                     "name": "Dispatch",
@@ -145,7 +164,7 @@
                     "name": "Sinister Strike",
                     "spellId": 193315,
                     "isCc": false,
-                    "isRepeat": false
+                    "isRepeat": true
                 }
             ]
         },
@@ -652,6 +671,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-25T05:29:50+00:00"
 }

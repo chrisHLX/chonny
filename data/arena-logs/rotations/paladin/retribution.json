@@ -1,18 +1,21 @@
 {
     "class": "paladin",
     "spec": "retribution",
-    "windows": 152,
-    "killWindows": 16,
+    "windows": 926,
+    "killWindows": 215,
     "matches": 113,
     "anchors": [
         "Avenging Wrath",
         "Blade of Justice",
+        "Divine Toll",
         "Execution Sentence",
+        "Hammer of Wrath",
         "Judgment",
         "Wake of Ashes"
     ],
     "majorAnchors": [
         "Avenging Wrath",
+        "Divine Toll",
         "Execution Sentence"
     ],
     "topDpsWindow": {
@@ -132,15 +135,33 @@
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 809628,
+            "damage": 980906,
             "durationSeconds": 6,
             "killed": false,
             "steps": [
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": false
+                },
                 {
                     "name": "Crusading Strikes",
                     "spellId": 408385,
                     "isCc": false,
                     "isRepeat": false
+                },
+                {
+                    "name": "Final Verdict",
+                    "spellId": 383328,
+                    "isCc": false,
+                    "isRepeat": true
+                },
+                {
+                    "name": "Crusading Strikes",
+                    "spellId": 408385,
+                    "isCc": false,
+                    "isRepeat": true
                 },
                 {
                     "name": "Hammer of Wrath",
@@ -149,24 +170,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Rebuke",
-                    "spellId": 96231,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Final Verdict",
-                    "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Crusading Strikes",
-                    "spellId": 408385,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Final Verdict",
                     "spellId": 383328,
                     "isCc": false,
@@ -179,16 +182,10 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Blade of Justice",
-                    "spellId": 184575,
+                    "name": "Divine Toll",
+                    "spellId": 375576,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Final Verdict",
-                    "spellId": 383328,
-                    "isCc": false,
-                    "isRepeat": true
                 }
             ]
         },
@@ -761,5 +758,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-24T01:56:37+00:00"
+    "generated_at": "2026-08-25T05:29:19+00:00"
 }

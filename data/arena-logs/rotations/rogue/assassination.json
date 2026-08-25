@@ -1,14 +1,15 @@
 {
     "class": "rogue",
     "spec": "assassination",
-    "windows": 381,
-    "killWindows": 125,
-    "matches": 131,
+    "windows": 427,
+    "killWindows": 130,
+    "matches": 140,
     "anchors": [
         "Deathmark",
         "Kingsbane",
         "Shiv",
-        "Thistle Tea"
+        "Thistle Tea",
+        "Tricks of the Trade"
     ],
     "majorAnchors": [
         "Deathmark",
@@ -73,24 +74,67 @@
                 "spellId": 32645,
                 "isCc": false,
                 "isRepeat": true
-            },
-            {
-                "name": "Fatebound Coin (Tails)",
-                "spellId": 452538,
-                "isCc": false,
-                "isRepeat": false
             }
         ]
     },
     "topDpsWindowsByLength": {
         "6": {
-            "damage": 938604,
+            "damage": 1099356,
             "durationSeconds": 6,
-            "killed": false,
+            "killed": true,
             "steps": [
                 {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
+                    "name": "Kingsbane",
+                    "spellId": 385627,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Garrote",
+                    "spellId": 703,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Ambush",
+                    "spellId": 8676,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Thistle Tea",
+                    "spellId": 381623,
+                    "isCc": false,
+                    "isRepeat": false
+                }
+            ]
+        },
+        "10": {
+            "damage": 1296984,
+            "durationSeconds": 10,
+            "killed": true,
+            "steps": [
+                {
+                    "name": "Kidney Shot",
+                    "spellId": 408,
+                    "isCc": true,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Shiv",
+                    "spellId": 5938,
                     "isCc": false,
                     "isRepeat": false
                 },
@@ -101,81 +145,44 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Kingsbane",
                     "spellId": 385627,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Blind",
-                    "spellId": 2094,
+                    "name": "Vanish",
+                    "spellId": 1856,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Envenom",
+                    "spellId": 32645,
+                    "isCc": false,
+                    "isRepeat": false
+                },
+                {
+                    "name": "Garrote",
+                    "spellId": 703,
                     "isCc": true,
                     "isRepeat": false
                 },
                 {
-                    "name": "Envenom",
-                    "spellId": 32645,
+                    "name": "Ambush",
+                    "spellId": 8676,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": true
-                }
-            ]
-        },
-        "10": {
-            "damage": 1294380,
-            "durationSeconds": 10,
-            "killed": false,
-            "steps": [
-                {
-                    "name": "Kingsbane",
-                    "spellId": 385627,
+                    "name": "Thistle Tea",
+                    "spellId": 381623,
                     "isCc": false,
                     "isRepeat": false
                 },
                 {
-                    "name": "Envenom",
-                    "spellId": 32645,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mutilate",
-                    "spellId": 27576,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
-                    "name": "Mutilate",
-                    "spellId": 27576,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Mutilate",
-                    "spellId": 27576,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Envenom",
-                    "spellId": 32645,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
+                    "name": "Crimson Tempest",
+                    "spellId": 1247227,
                     "isCc": false,
                     "isRepeat": false
                 }
@@ -239,12 +246,6 @@
                     "spellId": 32645,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": false
                 }
             ]
         },
@@ -260,12 +261,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Kingsbane",
                     "spellId": 385627,
                     "isCc": false,
@@ -276,12 +271,6 @@
                     "spellId": 32645,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Mutilate",
@@ -387,22 +376,10 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Deathmark",
                     "spellId": 360194,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Kingsbane",
@@ -415,12 +392,6 @@
                     "spellId": 32645,
                     "isCc": false,
                     "isRepeat": false
-                },
-                {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": true
                 },
                 {
                     "name": "Mutilate",
@@ -547,16 +518,9 @@
                     "spellId": 32645,
                     "isCc": false,
                     "isRepeat": true
-                },
-                {
-                    "name": "Fatebound Coin (Tails)",
-                    "spellId": 452538,
-                    "isCc": false,
-                    "isRepeat": true
                 }
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-25T05:29:49+00:00"
 }

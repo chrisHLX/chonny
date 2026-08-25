@@ -1,12 +1,13 @@
 {
     "class": "paladin",
     "spec": "holy",
-    "windows": 535,
-    "killWindows": 71,
-    "matches": 82,
+    "windows": 747,
+    "killWindows": 89,
+    "matches": 94,
     "anchors": [
         "Avenging Crusader",
         "Avenging Wrath",
+        "Divine Toll",
         "Hammer of Wrath",
         "Holy Bulwark",
         "Judgment",
@@ -15,6 +16,7 @@
     "majorAnchors": [
         "Avenging Crusader",
         "Avenging Wrath",
+        "Divine Toll",
         "Holy Bulwark",
         "Sacred Weapon"
     ],
@@ -30,20 +32,8 @@
                 "isRepeat": false
             },
             {
-                "name": "Reclamation",
-                "spellId": 415388,
-                "isCc": false,
-                "isRepeat": false
-            },
-            {
                 "name": "Crusader Strike",
                 "spellId": 1279187,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Reclamation",
-                "spellId": 415388,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -78,12 +68,6 @@
                 "isRepeat": false
             },
             {
-                "name": "Reclamation",
-                "spellId": 415388,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
                 "name": "Hammer of Wrath",
                 "spellId": 1241413,
                 "isCc": false,
@@ -92,12 +76,6 @@
             {
                 "name": "Crusader Strike",
                 "spellId": 1279187,
-                "isCc": false,
-                "isRepeat": true
-            },
-            {
-                "name": "Reclamation",
-                "spellId": 415388,
                 "isCc": false,
                 "isRepeat": true
             },
@@ -128,20 +106,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -165,20 +131,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -213,12 +167,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
@@ -227,12 +175,6 @@
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 }
@@ -250,20 +192,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -298,12 +228,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
@@ -312,12 +236,6 @@
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -353,20 +271,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -379,12 +285,6 @@
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -401,12 +301,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
@@ -415,12 +309,6 @@
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -449,20 +337,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -498,20 +374,8 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": false
-                },
-                {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -524,12 +388,6 @@
                 {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -546,12 +404,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Hammer of Wrath",
                     "spellId": 1241413,
                     "isCc": false,
@@ -560,12 +412,6 @@
                 {
                     "name": "Holy Shock",
                     "spellId": 20473,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -594,20 +440,8 @@
                     "isRepeat": true
                 },
                 {
-                    "name": "Reclamation",
-                    "spellId": 415388,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Crusader Strike",
                     "spellId": 1279187,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
-                    "name": "Reclamation",
-                    "spellId": 415388,
                     "isCc": false,
                     "isRepeat": true
                 },
@@ -644,6 +478,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-25T05:29:04+00:00"
 }

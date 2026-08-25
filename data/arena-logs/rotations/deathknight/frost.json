@@ -1,9 +1,9 @@
 {
     "class": "deathknight",
     "spec": "frost",
-    "windows": 164,
+    "windows": 170,
     "killWindows": 27,
-    "matches": 48,
+    "matches": 49,
     "anchors": [
         "Breath of Sindragosa",
         "Death and Decay",
@@ -479,12 +479,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Exterminate",
-                    "spellId": 441426,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
@@ -678,12 +672,6 @@
                     "isRepeat": false
                 },
                 {
-                    "name": "Exterminate",
-                    "spellId": 441426,
-                    "isCc": false,
-                    "isRepeat": true
-                },
-                {
                     "name": "Obliterate",
                     "spellId": 49020,
                     "isCc": false,
@@ -830,6 +818,5 @@
             ]
         }
     },
-    "generated_at": "2026-08-23T15:43:02+10:00",
-    "generated_at_is_backfill_estimate": true
+    "generated_at": "2026-08-25T05:29:28+00:00"
 }
