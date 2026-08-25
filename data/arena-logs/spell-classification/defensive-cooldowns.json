@@ -276,6 +276,15 @@
         ]
     },
     {
+        "spellId": 53480,
+        "name": "Roar of Sacrifice",
+        "cooldownSeconds": 120,
+        "charges": null,
+        "signals": [
+            "Damage Taken%, self takes LESS (-15)"
+        ]
+    },
+    {
         "spellId": 108271,
         "name": "Astral Shift",
         "cooldownSeconds": 120,
