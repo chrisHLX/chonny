@@ -1075,3 +1075,14 @@
 1245483 | demonhunter | devourer | Pierce the Veil
 1246169 | demonhunter | devourer | The Hunt
 1259431 | demonhunter | devourer | Predator's Wake
+
+# Enhancement Shaman's own signature ability, Stormstrike (17364), was already explicitly and
+# unambiguously tagged spec_id=Enhancement at the spell_class_availability level (source=baseline)
+# — no NULL-bucket ambiguity to resolve at all here, unlike every other entry in this file. Found
+# 2026-08-26 investigating why Enhancement's real burst window looks Tempest/Chain-Lightning-heavy:
+# TalentSelectionService::verifiedBaselineAbilityIds() only ever reads source='verified_override'
+# rows, so an already-correct explicit-spec_id row with source='baseline' still never reaches any
+# display path — the "Garrote" precedent above (further up this file) already documents this exact
+# shape. Windstrike (115356, Stormstrike's Ascendance-transformed copy) was already correctly
+# promoted this same way in an earlier session; Stormstrike itself was simply never done alongside it.
+17364 | shaman | enhancement | Stormstrike

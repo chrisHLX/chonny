@@ -16,6 +16,7 @@ class Spell extends Model
         'variables',
         'charges',
         'cooldown_seconds',
+        'cooldown_scaling_note',
         'duration_seconds',
         'pvp_duration_seconds',
         'not_in_spellbook',

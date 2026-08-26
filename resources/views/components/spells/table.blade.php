@@ -171,17 +171,24 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="pr-4 py-3 text-[12px] text-ink whitespace-nowrap">
-                                {{ $cooldownDisplay ?? '—' }}
-                                @if ($cooldownChanged)
-                                    <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $fmtSeconds($cooldown['base_seconds']) }}</span>
-                                @endif
-                                @if ($charges['charges'] !== null && $charges['charges'] > 1)
-                                    <span class="text-ink-subtle">
-                                        &middot; {{ $charges['charges'] }} charges
-                                        @if ($chargesChanged)
-                                            <span class="text-[10px] line-through">({{ $charges['base_charges'] }})</span>
-                                        @endif
+                            <td class="pr-4 py-3 text-[12px] text-ink max-w-[10rem]">
+                                <div class="whitespace-nowrap">
+                                    {{ $cooldownDisplay ?? '—' }}
+                                    @if ($cooldownChanged)
+                                        <span class="text-[10px] text-ink-subtle line-through ml-1">{{ $fmtSeconds($cooldown['base_seconds']) }}</span>
+                                    @endif
+                                    @if ($charges['charges'] !== null && $charges['charges'] > 1)
+                                        <span class="text-ink-subtle">
+                                            &middot; {{ $charges['charges'] }} charges
+                                            @if ($chargesChanged)
+                                                <span class="text-[10px] line-through">({{ $charges['base_charges'] }})</span>
+                                            @endif
+                                        </span>
+                                    @endif
+                                </div>
+                                @if ($spell->cooldown_scaling_note)
+                                    <span class="block text-[10px] text-ink-subtle italic mt-1 whitespace-normal" title="This is a known, unresolved gap — see the spell's own talents for the real modifiers.">
+                                        {{ $spell->cooldown_scaling_note }}
                                     </span>
                                 @endif
                             </td>

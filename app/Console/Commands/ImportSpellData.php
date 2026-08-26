@@ -133,6 +133,10 @@ class ImportSpellData extends Command
 
     private int $ccSynergyOverrideSkips = 0;
 
+    private int $cooldownScalingNoteSkips = 0;
+
+    private int $cooldownScalingNotesApplied = 0;
+
     private int $scalarCorrectionsApplied = 0;
 
     private int $scalarCorrectionSkips = 0;
@@ -194,6 +198,7 @@ class ImportSpellData extends Command
         $this->importManualSpells($patch);
         $this->importBaselineSpecOverrides($patch);
         $this->importCcSynergyOverrides($patch);
+        $this->importCooldownScalingNotes($patch);
         $this->importScalarCorrections($patch);
 
         // Retroactive cleanup for stale class-tree talent nodes that duplicate a spec-tree
@@ -1539,6 +1544,60 @@ class ImportSpellData extends Command
     }
 
     /**
+     * Reads data/spelldata/cooldown-scaling-notes.txt — see that file's own header for the full
+     * rationale (Windstrike/Stormstrike, 2026-08-26): a real cooldown-reduction mechanic exists
+     * but has no safe static magnitude (source data disagrees with its own prose, or the effect
+     * scales dynamically with a resource spent). Deliberately its own tiny file/method rather than
+     * folded into scalar-corrections.txt's generic field=value,field=value line format — that
+     * format splits multiple field assignments on a literal comma, which a free-text prose note
+     * could plausibly contain one day; a dedicated two-column `spell_id | note` format sidesteps
+     * that escaping problem entirely rather than risk it later.
+     *
+     * Same hand-curated, one-verified-line-at-a-time discipline as baseline-spec-overrides.txt/
+     * cc-synergies-overrides.txt — never auto-derived from modifiersFor()'s 'mentions' text-scan
+     * fallback, which is far too noisy to trust in bulk (see the txt file's own header for why).
+     */
+    private function importCooldownScalingNotes(Patch $patch): void
+    {
+        $path = base_path('data/spelldata/cooldown-scaling-notes.txt');
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        foreach (File::lines($path) as $line) {
+            $line = trim($line);
+
+            if ($line === '' || str_starts_with($line, '#')) {
+                continue;
+            }
+
+            $parts = array_map('trim', explode('|', $line, 2));
+
+            if (count($parts) < 2 || !ctype_digit($parts[0]) || $parts[1] === '') {
+                $this->cooldownScalingNoteSkips++;
+                $this->warn("  Skipping malformed cooldown-scaling-notes.txt line: {$line}");
+
+                continue;
+            }
+
+            [$externalSpellId, $note] = $parts;
+
+            $spell = Spell::where('patch_id', $patch->id)->where('spell_id', (int) $externalSpellId)->first();
+
+            if (!$spell) {
+                $this->cooldownScalingNoteSkips++;
+                $this->warn("  Skipping unresolved cooldown-scaling-notes.txt line (spell not found for this patch): {$line}");
+
+                continue;
+            }
+
+            $this->upsertTrack(Spell::class, ['id' => $spell->id], ['cooldown_scaling_note' => $note], 'spells');
+            $this->cooldownScalingNotesApplied++;
+        }
+    }
+
+    /**
      * Reads data/spelldata/scalar-corrections.txt — see that file's own header for the full
      * rationale. Field-level patch only: a spell must already exist for this patch (created via
      * the normal SimC import, PvP-talent import, or importManualSpells() above), and only the
@@ -1846,6 +1905,10 @@ class ImportSpellData extends Command
 
         if ($this->ccSynergyOverridesApplied > 0 || $this->ccSynergyOverrideSkips > 0) {
             $this->comment("CC synergy overrides (dr_category/chain_target/is_peel/is_interrupt/pvp_duration_seconds): {$this->ccSynergyOverridesApplied} applied, {$this->ccSynergyOverrideSkips} skipped (see warnings above).");
+        }
+
+        if ($this->cooldownScalingNotesApplied > 0 || $this->cooldownScalingNoteSkips > 0) {
+            $this->comment("Cooldown scaling notes: {$this->cooldownScalingNotesApplied} applied, {$this->cooldownScalingNoteSkips} skipped (see warnings above).");
         }
     }
 

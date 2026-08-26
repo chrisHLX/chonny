@@ -61,6 +61,9 @@
                     </div>
                 @endif
             </div>
+            @if ($entry['spell']->cooldown_scaling_note)
+                <p class="text-[10px] text-ink-subtle italic mt-1.5">{{ $entry['spell']->cooldown_scaling_note }}</p>
+            @endif
 
             @if ($entry['modifiers']['named']->isNotEmpty())
                 <div class="mt-3 pt-3 border-t border-line">

@@ -1,0 +1,28 @@
+# Hand-verified, per-spell notes for real cooldown/charge-reduction mechanics that have no safe
+# static magnitude to compute — either the source data's own numbers disagree with its prose, or
+# the effect scales dynamically with a resource spent rather than a fixed amount. See
+# ImportSpellData::importCooldownScalingNotes() and the migration
+# 2026_08_26_000001_add_cooldown_scaling_note_to_spells_table.php's docblock for why this is a
+# hand-curated file rather than an auto-derived heuristic — one verified line at a time, same
+# discipline as baseline-spec-overrides.txt / cc-synergies-overrides.txt.
+#
+# Format: spell_id | note
+#
+# Enhancement Shaman — Stormstrike (17364) / Windstrike (115356), 2026-08-26.
+# Reported live: a player pressing Windstrike during Ascendance felt it wasn't cooldown-gated at
+# all. Traced via raw spelldata + live modifiersFor()/effectiveCooldown() calls against the real
+# admin-default Enhancement build:
+#   - Ascendance has a real, structurally-linked spell_relationships row to both spells
+#     (modifies_cooldown/modifies_charges) — but Ascendance's own raw effect data says its
+#     recharge-time modifier is -60%, while its own tooltip prose says "-9%". The two disagree;
+#     neither is trustworthy enough to bake into effectiveCooldown() as a computed number.
+#   - Elemental Tempo (a real spec talent) reduces Stormstrike's cooldown by a flat amount for
+#     EVERY stack of Maelstrom Weapon consumed — described only in prose (no Affected-Spells
+#     structural link at all), and Maelstrom Weapon is spent constantly via Tempest/Chain
+#     Lightning, exactly the abilities that dominate a real burst window. This is the likely
+#     dominant real cause of "feels ungated."
+# Both spells share one cooldown/charge pool in-game (Ascendance transforms Stormstrike into
+# Windstrike, same underlying ability) even though Elemental Tempo's own text only names
+# "Stormstrike" literally — the note is applied to both spell_ids for that reason.
+17364 | Also reduced by Ascendance (a real but unverified percentage — its own tooltip and its own effect data disagree) and by every Maelstrom Weapon stack spent while Elemental Tempo is talented. The number above is a floor, not the real in-game value during a burst window.
+115356 | Also reduced by Ascendance (a real but unverified percentage — its own tooltip and its own effect data disagree) and by every Maelstrom Weapon stack spent while Elemental Tempo is talented. The number above is a floor, not the real in-game value during a burst window.
