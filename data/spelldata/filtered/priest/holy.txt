@@ -1,5 +1,5 @@
 # Priest — Holy Spec Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 49 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Prayer of Healing (id=596) [Spell Family (6)] 
@@ -50,7 +50,8 @@ Family Flags     : 10, 126
 Attributes       : Not Shapeshifted (16), Allow While Not Shapeshifted (caster form) (83), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=611)      : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | Value Multiplier: 1 | SP Coefficient: 21.4493 | PvP Coefficient: 1.512 | Target: Targeted Ally (21)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | Value Multiplier: 1 | SP Coefficient: 21.4493 | PvP Coefficient: 1.28 | Target: Targeted Ally (21)
+Hotfixed         : PvP Coefficient (1.512 -> 1.28)
 #2 (id=709474)   : Dummy (3)
                    Base Value: 6 | Scaled Value: 6
 Description      : Perform a miracle, healing an ally for $s1.
@@ -195,7 +196,8 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=283373)   : Apply Aura (6) | Modify Power Regen (110)
-                   Base Value: 10 | Scaled Value: 10 | Resource: mana | Target: Self (1)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 0.4 | Resource: mana | Target: Self (1)
+Hotfixed         : PvP Coefficient (1 -> 0.4)
 Description      : You regenerate mana $s1% faster.
 
 Name             : Light's Resurgence (id=193157) [Spell Family (6), Passive, Hidden] 

@@ -1,5 +1,5 @@
 # Paladin — Herald of the Sun Hero Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Eternal Flame (id=156322) [Spell Family (10)] 
@@ -41,7 +41,7 @@ Healing increased by $?c1[$s3][$s4]% when cast on self.
 Tooltip          : Healing $w1 health every $t1 sec.
 
 Name             : Dawnlight (id=431377) [Spell Family (10), Passive, Hidden] 
-Talent Entry     : Herald of the Sun (Holy, Retribution) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Herald of the Sun (Holy, Retribution) [free=(Holy, Retribution), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Paladin
 School           : Holyfire
 Spell Type       : None

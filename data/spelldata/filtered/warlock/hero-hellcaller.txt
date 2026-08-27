@@ -1,5 +1,5 @@
 # Warlock — Hellcaller Hero Talents
-# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from warlock.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Malevolence (id=430014) [Spell Family (5), Passive, Hidden] 
@@ -75,7 +75,7 @@ Labels           : 16: Class Spells
                  : 19: Warlock Spells
                  : 292
 Proc Chance      : 101%
-Proc Flags       : Cast Successful
+Proc Flags       : Generic Hostile Spell, Magic Hostile Spell
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Suppress Caster Procs (112)
 Effects          :
 #1 (id=1133702)  : Apply Aura (6) | Dummy (4)
@@ -315,7 +315,7 @@ Effects          :
 Description      : Sacrifice $s1% of your maximum health. Soul Leech now absorbs an additional $s2% of your maximum health.
 
 Name             : Wither (id=445465) [Spell Family (5), Passive, Hidden] 
-Talent Entry     : Hellcaller (Affliction, Destruction) [tree=hero, row=1, col=3, max_rank=1, req_points=0, override="Wither" (id=445468)]
+Talent Entry     : Hellcaller (Affliction, Destruction) [free=(Affliction, Destruction), tree=hero, row=1, col=3, max_rank=1, req_points=0, override="Wither" (id=445468)]
 Class            : Warlock
 School           : Physical
 Spell Type       : None

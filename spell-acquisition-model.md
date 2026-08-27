@@ -133,77 +133,22 @@ Not from an addon — pulled from wowarenalogs.com's public, unauthenticated Gra
 
 Verified end-to-end 2026-08-17: 12 real candidates applied (10 via `--apply`, 2 added by hand after independently confirming their description text), then run through `wow:find-cc-duration` to resolve `pvp_duration_seconds` for all 12 — 8 resolved cleanly, 2 as weaker-but-real plurality winners, 2 deliberately left unresolved (one too weak/likely measuring the wrong duration component, one genuinely tied between two values).
 
+## Refreshing raw SimC data — what actually happens, and how to verify it didn't break anything
 
+This section exists because it didn't, until a 2026-08-26 refresh (pulling a genuinely newer WoW build's SimC dumps — 12.1.0 Live — into the frozen `12.0.7.68453` patch row, see CLAUDE.md's "frozen patch version" note for why the version string never changes) surfaced a real bug that a purely aggregate reading of the importer's own console summary made look like normal churn. Two things are worth separating clearly: what a refresh actually *does*, and how to *know* it went well — the second didn't exist anywhere before this incident.
 
-LATEST COMMIT CHANGE
+**The mechanical steps**, in order, for pulling in updated spell content without a patch fork:
+1. Copy the 13 per-class dumps from a SimC checkout's `SpellDataDump/{class}.txt` into `data/spelldata/raw/{class}.txt` (or run `data/spelldata/fetch-simc-dumps.php` against a live branch — same destination either way).
+2. `php data/spelldata/regenerate-filtered.php` — re-splits every class into `filtered/{class}/*.txt`. Its own "No anomalies" output only means every `Talent Entry` line classified into a tree cleanly; it says nothing about whether the *content* of any given spell changed sensibly.
+3. `php artisan import:spelldata wow 12.0.7.68453` — **that exact frozen string, verified against `Patch::where('is_current', true)` first, every time, never inferred from what the source data itself claims.**
+4. Bump the spell cache version (`TalentSelectionService::bumpSpellCacheVersion()`) and run the full test suite.
 
-git fetch origin
-git checkout specificity
-git reset --hard origin/specificity
+**What the importer's console summary does and doesn't tell you.** Aggregate counts like "Skipped 360 spell_relationships reference(s)..." or "Pruned 11 stale verified_override row(s)..." describe *how many*, never *which ones* — which makes them worthless for distinguishing "real content changed, expected" from "something is silently breaking on every run." Concretely fixed 2026-08-26: `importRelationships()`'s and `importCategoryRelationships()`'s skip paths, and the stale-`verified_override` prune in `importBaselineSpecOverrides()`, all now call `Log::warning()` with the actual spell_id(s)/name(s) involved before incrementing a counter or deleting a row — check `storage/logs/laravel.log` for `ImportSpellData:` entries, not just the console output, whenever a count looks worth investigating. The PvP-talent-cooldown-modifier skip path already did this (added earlier); the other two didn't until this incident.
 
+**The real bug this found, as a general lesson, not just a one-off fix**: `importManualSpells()` and `importBaselineSpecOverrides()` both legitimately write `spell_class_availability` rows tagged `source='verified_override'`, for two independently valid reasons (a spell absent from SimC's dump entirely, vs. a spec-attribution correction to an ambiguous baseline record). But the stale-row prune in `importBaselineSpecOverrides()` only ever tracked pairs *it itself* had just written, then deleted every `verified_override` row not in that local set — including the ones `importManualSpells()` had legitimately written moments earlier in the same run. Every single `import:spelldata` invocation since the prune was added (2026-08-19) was writing, then immediately deleting, five real hand-curated spells (Aimed Shot, Mirror Image, Shadowstep, and — most consequentially — Maim's and Blinding Light's real aura-applying spell_ids, both load-bearing for CC duration data) — confirmed via `Log::warning()` output identical across three consecutive runs, and via `storage/logs/laravel.log` showing the exact same PvP-talent-style failure recurring back to 2026-07-30, weeks before this session touched anything. Fixed by moving the "what's been legitimately written" bookkeeping into a shared `$this->verifiedOverridePairsWritten` property both methods write into, so the prune only ever considers a row stale if *no* legitimate writer claims it. **The general lesson**: any time two independent passes share the same `source`/tag value for their own reasons, a "delete anything I didn't just write" cleanup pass needs to know about *every* legitimate writer, not just itself — a purely local "did my own loop touch this" check will eventually delete another pass's real output.
 
-What to run on live, in this order
-1. Schema — apply any migrations not yet run:
-
-
-php artisan migrate --force
---force skips the "you're in production, are you sure?" prompt. Safe/idempotent — it only runs migrations not already recorded in the migrations table, whatever that number turns out to be. Do not use migrate:fresh — that wipes the whole DB.
-
-2. Storage symlink (only needed once per server — safe to re-run, no-ops if it exists):
-
-
-php artisan storage:link
-Without this, every spell/class/spec icon 404s even though the files and DB columns are correct.
-
-3. The big one — re-import spell data:
-
-
-php artisan import:spelldata wow 12.0.7.68453
-⚠️ That exact version string, not the real current WoW patch. This project deliberately freezes the "current" patch at 12.0.7.68453 so re-imports update data in place instead of forking a new, disconnected patch row (see CLAUDE.md's "frozen patch version" note — this bit someone earlier this session). Before running it, it's worth double-checking the DB agrees:
-
-
-php artisan tinker --execute="echo App\Models\Patch::where('is_current', true)->first()->build_version;"
-It should print 12.0.7.68453. If it prints anything else, stop and tell me before running the import.
-
-This one command is what actually applies almost everything from this session: baseline-spec-overrides.txt (Turtle, Evoker CC fixes), cc-synergies-overrides.txt (dr_category tagging), scalar-corrections.txt (Strangulate's cooldown), the class-tree-bloat/duplicate-node/same-position-collision cleanup passes, and it automatically bumps the spell cache version — no separate cache-clear step needed. If it's slow/runs out of memory (it has before, after several consecutive re-imports), use:
-
-
-php -d memory_limit=512M artisan import:spelldata wow 12.0.7.68453
-4. Icons, if this server has no Blizzard API credentials (most production setups don't need them for this):
-
-
-php artisan wow:apply-icon-manifest
-Reads the committed data/spelldata/icon-manifest.json + the committed icon files under storage/app/public/, fills in icon_name — zero API calls, safe to always run.
-
-5. Assets, if your deploy doesn't already do this:
-
-
-composer install --no-dev --optimize-autoloader
-npm run build
-Not needed:
-
-talent-spec-exclusions.txt (the Hunter Intimidation fix) — read live at request time, not import time. Works the instant the code deploys, no command required.
-Arena-log spell-usage/kill-sequence/rating-tier data — already committed to git as plain files, arrives with the code pull. The raw/metadata folders are gitignored now and only matter if you're pulling new matches on that server, which isn't required for the site to work.
-Any db:seed — nothing new needs seeding for this session's work.
-Run 1→2→3→4 in that order (4 only matters after 1 has created the icon_name columns), then spot-check the live site.
-
-
-You're right, and I want to be straight about what happened: the reason this took multiple rounds wasn't that the process is inherently messy — it's that this specific server had accumulated three separate real bugs (a stray un-flagged second patch from an old accidental version bump, two query methods that weren't patch-scoped like their siblings were, and curation values that had only ever been written to someone's local DB and never committed). All three are now fixed in code/files, not patched around by hand.
-
-With everything just pushed, the actual answer to "wipe this server and deploy fresh" is now genuinely one command for data, plus the one-time-per-machine setup steps every Laravel app needs:
-
-
-git pull
-composer install --no-dev --optimize-autoloader
-npm run build
-php artisan migrate --force
-php artisan storage:link
-php artisan import:spelldata wow 12.0.7.68453
-php artisan wow:apply-icon-manifest
-php artisan optimize:clear
-sudo systemctl restart php8.2-fpm
-That's it — no manual patch-flipping, no hand-written diagnostic scripts, no per-spell fixes. import:spelldata is now the single source of truth for every fix from this whole session, because the fixes live in the committed override files and the query code, not in anyone's local DB.
-
-One thing left over from this specific server's history, not from the general process: it still has the old stray 12.0.7.68887 patch row sitting inert in the DB (harmless now that the query fix stops it from being read, but dead weight). Since you're already talking about wiping this server, that makes it moot — a fresh deploy never creates that row in the first place, since nothing will ever again run import:spelldata against anything but 12.0.7.68453. If you want to clean the current DB instead of wiping the server, say so and I'll give you the one delete command; otherwise this is a non-issue once you redeploy.
-
-Run the sequence above and check WoW Comps — should be duplicate-free with everything present now.
+**How to actually verify a refresh went well — do this, not just read the console summary:**
+1. **Ignore the spellbook-snapshot diff for this purpose.** It's a real, useful tool for a different job (finding new baseline-spec-override candidates), but its `MISSING_AVAILABILITY` numbers are dominated by real characters' spec-history contamination (a Feral Druid snapshot showing Balance/Restoration residue from past respecs) — high volume, mostly-known noise, not a refresh-safety signal.
+2. **Cross-check every `data/arena-logs/spell-usage/{class}/{spec}.txt` spell_id against the freshly-imported `spells` table for the current patch.** Since `upsertTrack()` never deletes a `spells` row anywhere in the main import path, anything missing *after* a refresh was either never in scope to begin with (racials, toys, PvP-season trinkets, consumables — none of these are in SimC's per-class dumps) or was *already* missing before the refresh — structurally, nothing today's import does can have removed a previously-existing spell. A "missing" hit is only worth chasing further if the ability sounds important and a `Spell::where('name', ...)` lookup under the exact same name comes back with zero rows at all (not just zero under the arena log's specific recorded spell_id) — most hits resolve to a real, correctly-tracked duplicate copy under a different internal id, which is cosmetic, not a gap.
+3. **Cross-check every hand-curated file** (`cc-synergies-overrides.txt`, `baseline-spec-overrides.txt`, `cooldown-scaling-notes.txt`, `scalar-corrections.txt`, `manual-spells.txt`) **by re-deriving each line's expected DB state and diffing against what's actually there** — not by trusting the importer's own "N applied, 0 skipped" line, which only proves every line *resolved*, not that the *values* it wrote match what the file says (a value could theoretically get clobbered by something running later in the same `handle()` sequence). Every one of these files is small enough to fully re-verify this way in a few seconds.
+4. **Re-run the import a second time with nothing else changed, and confirm the counts go to zero** (`0 created, 0 updated` for the tables the fix touches; no `Pruned`/`Skipped` line at all where none is expected). A healthy import is idempotent — if a second consecutive run against unchanged input produces non-trivial create/delete counts, something is actively cycling, not settling, and that's worth finding before trusting the data.

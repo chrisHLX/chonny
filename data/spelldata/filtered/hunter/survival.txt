@@ -1,5 +1,5 @@
 # Hunter — Survival Spec Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 43 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Raptor Strike (id=186270) [Spell Family (9)] 
@@ -20,7 +20,8 @@ Family Flags     : 1, 55, 80, 106
 Attributes       : Is Ability (4), Not Shapeshifted (16), Do Not Sheath (18), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Requires Main-Hand Weapon (106), Melee Chain Targeting (172), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=271205)   : School Damage (2): physical
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 3.9325 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 3.9325 | PvP Coefficient: 1.2 | Target: Targeted Enemy (6)
+Hotfixed         : PvP Coefficient (1 -> 1.2)
 Description      : A vicious slash dealing $s1 Physical damage.
 
 Name             : Kill Command (id=259489) [Spell Family (9)] 

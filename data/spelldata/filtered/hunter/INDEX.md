@@ -5,11 +5,14 @@ One line per spell record; each lists every file it appears in.
 - **[DNT] In Imbu (id=400750) [Hidden]** — `baseline.txt`
 - **A Murder of Crows (id=131900) [Spell Family (9)]** — `baseline.txt`
 - **Accuracy By Volume (id=471428) [Spell Family (9), Passive]** — `marksmanship.txt`
+- **Acid Bite (desc=Special Ability) (id=263863) [Spell Family (9)]** — `baseline.txt`
 - **Acid Spit (desc=Special Ability) (id=263446) [Spell Family (9)]** — `baseline.txt`
 - **Adaptation (id=152244) [Passive]** — `baseline.txt`
 - **Agile Reflexes (desc=Special Ability) (id=160011) [Spell Family (9)]** — `baseline.txt`
 - **Air Superiority (id=470937) [Spell Family (9), Passive]** — `baseline.txt`
 - **Alpha Predator (id=269737) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
+- **Ancient Hide (desc=Special Ability) (id=279399) [Spell Family (9), Passive]** — `baseline.txt`
+- **Ancient Hide (desc=Special Ability) (id=279400) [Spell Family (9)]** — `baseline.txt`
 - **Animal Companion (id=267116) [Spell Family (9), Passive]** — `beast-mastery.txt`
 - **Ankle Crack (desc=Special Ability) (id=50433) [Spell Family (9)]** — `baseline.txt`
 - **Arcane Infused (id=23721) [Spell Family (9)]** — `baseline.txt`
@@ -84,6 +87,7 @@ One line per spell record; each lists every file it appears in.
 - **Blessing of the Light (id=220058) [Spell Family (9)]** — `baseline.txt`
 - **Blighted Arrow (id=1264364) [Spell Family (9)]** — `baseline.txt`
 - **Blighted Quiver (id=1264291) [Spell Family (9), Passive, Hidden]** — `hero-dark-ranger.txt`
+- **Blood Bolt (desc=Special Ability) (id=288962) [Spell Family (9)]** — `baseline.txt`
 - **Blood of the Rhino (desc=Exotic Ability) (id=280069) [Passive]** — `baseline.txt`
 - **Bloodseeker (id=260248) [Spell Family (9), Passive]** — `survival.txt`
 - **Bloodseeker (id=260249) [Spell Family (9)]** — `baseline.txt`
@@ -119,6 +123,7 @@ One line per spell record; each lists every file it appears in.
 - **Bulletstorm (id=389020) [Spell Family (9)]** — `baseline.txt`
 - **Bullseye (id=204089) [Spell Family (9), Passive]** — `marksmanship.txt`
 - **Bullseye (id=204090) [Spell Family (9)]** — `baseline.txt`
+- **Bulwark (desc=Special Ability) (id=279410) [Spell Family (9)]** — `baseline.txt`
 - **Burrow Attack (desc=Exotic Ability) (id=93433) [Spell Family (9)]** — `baseline.txt`
 - **Burrow Attack (desc=Exotic Ability) (id=95714) [Spell Family (9)]** — `baseline.txt`
 - **Butcher's Bone Apron (id=236446) [Spell Family (9)]** — `baseline.txt`
@@ -127,6 +132,7 @@ One line per spell record; each lists every file it appears in.
 - **Butcher's Bone Fragments (id=336908) [Spell Family (9)]** — `baseline.txt`
 - **Butcher's Bone Fragments (id=347827) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Butchery (id=212436) [Spell Family (9)]** — `baseline.txt`
+- **Calcified Carapace (desc=Exotic Passive) (id=279254) [Passive]** — `baseline.txt`
 - **Call of the Wild (id=206332) [Spell Family (9), Passive]** — `baseline.txt`
 - **Call of the Wild (id=336742) [Spell Family (9), Passive]** — `baseline.txt`
 - **Call Pet 1 (id=883) [Spell Family (9)]** — `baseline.txt`
@@ -207,6 +213,7 @@ One line per spell record; each lists every file it appears in.
 - **Death Chakram (id=361756) [Spell Family (9)]** — `baseline.txt`
 - **Deathblow (id=343248) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Deathblow (id=378770) [Spell Family (9)]** — `baseline.txt`
+- **Defense Matrix (desc=Special Ability) (id=263868) [Spell Family (9)]** — `baseline.txt`
 - **Devilsaur Tranquilizer (id=459991) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **Dire Beast (id=120679) [Spell Family (9), Passive]** — `beast-mastery.txt`
 - **Dire Beast (id=120694) [Spell Family (9)]** — `baseline.txt`
@@ -246,6 +253,7 @@ One line per spell record; each lists every file it appears in.
 - **Empty Nest (id=1214849) [Spell Family (9)]** — `baseline.txt`
 - **Endurance Training (desc=Tenacity Passive) (id=264662) [Spell Family (9), Passive]** — `baseline.txt`
 - **Envenomed Fangs (id=472525) [Spell Family (9)]** — `baseline.txt`
+- **Eternal Guardian (desc=Exotic Ability) (id=267922) [Spell Family (9)]** — `baseline.txt`
 - **Exhilaration (id=109304) [Spell Family (9)]** — `baseline.txt`
 - **Exhilaration (id=128594) [Spell Family (9)]** — `baseline.txt`
 - **Exotic Beasts (id=53270) [Spell Family (9), Passive]** — `baseline.txt`
@@ -261,6 +269,7 @@ One line per spell record; each lists every file it appears in.
 - **Farstrider (id=199564) [Spell Family (9)]** — `baseline.txt`
 - **Feast (desc=Exotic Ability) (id=159953)** — `baseline.txt`
 - **Feast (id=159954)** — `baseline.txt`
+- **Feather Flurry (desc=Special Ability) (id=263916) [Spell Family (9)]** — `baseline.txt`
 - **Feathered Frenzy (id=470943) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Feed Pet (id=1539)** — `baseline.txt`
 - **Feed Pet (id=6991)** — `baseline.txt`
@@ -325,7 +334,9 @@ One line per spell record; each lists every file it appears in.
 - **Fury Strikes (id=425830) [Spell Family (9)]** — `baseline.txt`
 - **Glyph of Lesser Proportion (id=57870) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Glyph of the Strix (id=1234337) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Gnaw (desc=Special Ability) (id=263856) [Spell Family (9)]** — `baseline.txt`
 - **Go for the Throat (id=459550) [Spell Family (9), Passive]** — `beast-mastery.txt`
+- **Gore (desc=Special Ability) (id=263861) [Spell Family (9)]** — `baseline.txt`
 - **Greater Mrgrglhjorn (id=396965)** — `baseline.txt`
 - **Greater Mrgrglhjorn (id=396966) [Hidden]** — `baseline.txt`
 - **Greater Mrgrglhjorn (id=396968)** — `baseline.txt`
@@ -333,15 +344,18 @@ One line per spell record; each lists every file it appears in.
 - **Grenade Juggler (id=459843) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **Grenade Juggler (id=470488) [Spell Family (9)]** — `baseline.txt`
 - **Grenade Juggler (id=470492) [Spell Family (9)]** — `baseline.txt`
+- **Grievous Bite (desc=Special Ability) (id=279362) [Spell Family (9)]** — `baseline.txt`
 - **Grievous Injury (id=1217789)** — `baseline.txt`
 - **Grizzled Fur (id=1236564) [Spell Family (9)]** — `baseline.txt`
 - **Growl (desc=Basic Ability) (id=2649) [Spell Family (9)]** — `baseline.txt`
+- **Gruesome Bite (desc=Special Ability) (id=160018) [Spell Family (9)]** — `baseline.txt`
 - **Guardian's Hide (id=1272094) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **Guardian's Hide (id=1272097) [Spell Family (9)]** — `baseline.txt`
 - **Guerrilla Tactics (id=264332) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **Guttural Roar (id=1258509) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **Gyroscopic Stabilization (id=235712) [Spell Family (9)]** — `baseline.txt`
 - **Hand of the Prophet Standard (id=190639) [Spell Family (9)]** — `baseline.txt`
+- **Harden Carapace (desc=Special Ability) (id=90339) [Spell Family (9)]** — `baseline.txt`
 - **Harmonize (id=457072) [Spell Family (9)]** — `baseline.txt`
 - **Harpoon (id=186260) [Spell Family (9)]** — `baseline.txt`
 - **Harpoon (id=190925) [Spell Family (9)]** — `baseline.txt`
@@ -596,6 +610,7 @@ One line per spell record; each lists every file it appears in.
 - **Nature's Ally (id=1276720) [Spell Family (9)]** — `baseline.txt`
 - **Nature's Ally (id=1281527) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Nature's Ally (id=1282474) [Spell Family (9)]** — `baseline.txt`
+- **Nature's Grace (desc=Special Ability) (id=344352) [Spell Family (9)]** — `baseline.txt`
 - **Nature's Salve (id=287940) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Nesingwary's Trapping Apparatus (id=336743) [Spell Family (9), Passive]** — `baseline.txt`
 - **Nesingwary's Trapping Apparatus (id=336744) [Spell Family (9)]** — `baseline.txt`
@@ -604,12 +619,15 @@ One line per spell record; each lists every file it appears in.
 - **Nesingwary's Trapping Treads (id=212575) [Spell Family (9)]** — `baseline.txt`
 - **Nether Energy (desc=Special Ability) (id=344349) [Spell Family (9)]** — `baseline.txt`
 - **Niffen Stink Bomb (id=405762) [Hidden]** — `baseline.txt`
+- **Niuzao's Fortitude (desc=Special Ability) (id=264022) [Spell Family (9)]** — `baseline.txt`
+- **Niuzao's Fortitude (desc=Special Ability) (id=264023) [Spell Family (9), Passive]** — `baseline.txt`
 - **No Hard Feelings (id=459546) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **No Hard Feelings (id=459547) [Spell Family (9)]** — `baseline.txt`
 - **No Mercy (id=472660) [Spell Family (9), Passive]** — `hero-pack-leader.txt`
 - **No Scope (id=473385) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Obsidian Arrowhead (id=471350) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Obsidian Skin (desc=Special Ability) (id=263867) [Spell Family (9)]** — `baseline.txt`
+- **Oiled Feathers (desc=Special Ability) (id=344350) [Spell Family (9)]** — `baseline.txt`
 - **On Target (id=471348) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **On Target (id=474257) [Spell Family (9)]** — `baseline.txt`
 - **Open Fire (id=1253807) [Spell Family (9), Passive]** — `hero-sentinel.txt`
@@ -632,6 +650,7 @@ One line per spell record; each lists every file it appears in.
 - **Pet Damage (id=1284992) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Pet Damage (id=8875) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Pet Health (id=19581) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Petrifying Gaze (desc=Special Ability) (id=263841) [Spell Family (9)]** — `baseline.txt`
 - **Pheromone Bomb (id=270323) [Spell Family (9)]** — `baseline.txt`
 - **Pheromone Bomb (id=270327) [Spell Family (9)]** — `baseline.txt`
 - **Pheromone Bomb (id=270329) [Spell Family (9)]** — `baseline.txt`
@@ -659,6 +678,7 @@ One line per spell record; each lists every file it appears in.
 - **Precision Strikes (id=1267003) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **Predator (id=260257) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Predator's Thirst (desc=Ferocity Passive) (id=264663) [Spell Family (9), Passive]** — `baseline.txt`
+- **Primal Agility (desc=Special Ability) (id=160044) [Spell Family (9)]** — `baseline.txt`
 - **Primal Instincts (id=279807) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Primal Rage (desc=Command Pet Ability) (id=272678) [Spell Family (9)]** — `baseline.txt`
 - **Primal Rage (desc=Ferocity Ability) (id=264667) [Spell Family (9)]** — `baseline.txt`
@@ -710,6 +730,7 @@ One line per spell record; each lists every file it appears in.
 - **Resonating Arrow (desc=Kyrian) (id=308495) [Spell Family (9)]** — `baseline.txt`
 - **Resonating Arrow (desc=Kyrian) (id=308498) [Spell Family (9)]** — `baseline.txt`
 - **Resonating Arrow (desc=Kyrian) (id=312947) [Hidden]** — `baseline.txt`
+- **Rest (desc=Bonus Ability) (id=126364) [Spell Family (9)]** — `baseline.txt`
 - **Rest (desc=Bonus Ability) (id=94019) [Spell Family (9)]** — `baseline.txt`
 - **Revive Pet (id=982) [Spell Family (9)]** — `baseline.txt`
 - **Roar of Sacrifice (desc=PvP Talent) (id=278454) [Spell Family (9)]** — `baseline.txt`
@@ -728,6 +749,7 @@ One line per spell record; each lists every file it appears in.
 - **Savage Rend (desc=Special Ability) (id=263854) [Spell Family (9)]** — `baseline.txt`
 - **Savagery (id=1251790) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **Savagery (id=424557) [Spell Family (9), Passive]** — `beast-mastery.txt`
+- **Scale Shield (desc=Special Ability) (id=263865) [Spell Family (9)]** — `baseline.txt`
 - **Scare Beast (id=1513) [Spell Family (9)]** — `class-talents.txt`
 - **Scent of Blood (id=193532) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
 - **Scorching Wildfire (id=259587) [Spell Family (9)]** — `baseline.txt`
@@ -768,6 +790,7 @@ One line per spell record; each lists every file it appears in.
 - **Shell Wall (id=1267218) [Spell Family (9), Passive, Hidden]** — `class-talents.txt`
 - **Shellshock (id=1252931) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **Shellshock (id=274356) [Spell Family (9), Hidden]** — `baseline.txt`
+- **Shimmering Shale (desc=Exotic Passive) (id=279259) [Passive]** — `baseline.txt`
 - **Shoot (id=1264357) [Spell Family (9)]** — `baseline.txt`
 - **Shot Power (id=37508) [Spell Family (9)]** — `baseline.txt`
 - **Shrapnel Bomb (id=1253172) [Spell Family (9), Passive, Hidden]** — `survival.txt`
@@ -793,9 +816,11 @@ One line per spell record; each lists every file it appears in.
 - **Small Game Hunter (id=459802) [Spell Family (9), Passive]** — `marksmanship.txt`
 - **Smoke Screen (id=430709) [Spell Family (9), Passive]** — `hero-dark-ranger.txt`
 - **Snakeskin Quiver (id=468695) [Spell Family (9), Passive, Hidden]** — `beast-mastery.txt`
+- **Solid Shell (desc=Special Ability) (id=160063) [Spell Family (9)]** — `baseline.txt`
 - **Solitary Companion (id=474746) [Spell Family (9), Passive]** — `beast-mastery.txt`
 - **Solitary Companion (id=474751) [Spell Family (9)]** — `baseline.txt`
 - **Sonic Screech (desc=Special Ability) (id=344348) [Spell Family (9)]** — `baseline.txt`
+- **Soothing Waters (desc=Special Ability) (id=344346) [Spell Family (9)]** — `baseline.txt`
 - **Soul Drinker (id=469638) [Spell Family (9), Passive, Hidden]** — `hero-dark-ranger.txt`
 - **Soul of the Huntmaster (id=247529) [Spell Family (9), Passive]** — `baseline.txt`
 - **Soul of the Huntmaster (id=247530) [Spell Family (9), Passive]** — `baseline.txt`
@@ -847,6 +872,8 @@ One line per spell record; each lists every file it appears in.
 - **Stomp (id=199530) [Spell Family (9), Passive]** — `beast-mastery.txt`
 - **Stomp (id=201754) [Spell Family (9)]** — `baseline.txt`
 - **Stomp (id=202044) [Spell Family (11)]** — `baseline.txt`
+- **Stone Armor (desc=Special Ability) (id=160048) [Spell Family (9)]** — `baseline.txt`
+- **Stone Armor (desc=Special Ability) (id=160049) [Spell Family (9), Passive]** — `baseline.txt`
 - **Stopping Power (id=175686)** — `baseline.txt`
 - **Stormbound (id=197388) [Spell Family (9)]** — `baseline.txt`
 - **Stormbound (id=211145) [Spell Family (9)]** — `baseline.txt`
@@ -869,6 +896,7 @@ One line per spell record; each lists every file it appears in.
 - **Summon Hati (id=459738) [Spell Family (9)]** — `baseline.txt`
 - **Summon Hati (id=459739) [Spell Family (15)]** — `baseline.txt`
 - **Summon Lightspawn (id=220193) [Spell Family (9)]** — `baseline.txt`
+- **Surface Trot (desc=Exotic Ability) (id=126311) [Spell Family (9)]** — `baseline.txt`
 - **Surging Shots (id=287711) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Surging Shots (id=287715) [Spell Family (9), Hidden]** — `baseline.txt`
 - **Surging Shots (id=336867) [Spell Family (9), Passive]** — `baseline.txt`
@@ -877,6 +905,7 @@ One line per spell record; each lists every file it appears in.
 - **Survival Hunter (id=137017) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Survival Hunter (id=462082) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
 - **Survival of the Fittest (id=264735) [Spell Family (9)]** — `class-talents.txt`
+- **Swarm of Flies (desc=Special Ability) (id=279336) [Spell Family (9)]** — `baseline.txt`
 - **Sweeping Spear (id=378950) [Spell Family (9), Passive, Hidden]** — `survival.txt`
 - **Tactical Reload (id=1301406) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
 - **Take Aim (id=1273128) [Spell Family (9), Passive, Hidden]** — `marksmanship.txt`
@@ -949,6 +978,7 @@ One line per spell record; each lists every file it appears in.
 - **Tranquilizing Shot (id=19801) [Spell Family (9)]** — `class-talents.txt`
 - **Tranquilizing Shot (id=343246) [Spell Family (9)]** — `baseline.txt`
 - **Trap Cooldown Reduction (id=61255) [Spell Family (9), Passive, Hidden]** — `baseline.txt`
+- **Trick (desc=Bonus Ability) (id=126259) [Spell Family (9)]** — `baseline.txt`
 - **Trick (desc=Bonus Ability) (id=94022) [Spell Family (9)]** — `baseline.txt`
 - **Trick Shots (id=257621) [Spell Family (9), Passive]** — `marksmanship.txt`
 - **Trick Shots (id=257622) [Spell Family (9)]** — `baseline.txt`

@@ -1,5 +1,5 @@
 # Druid — Keeper of the Grove Hero Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Treants of the Moon (id=428544) [Spell Family (7), Passive] 
@@ -224,7 +224,7 @@ Effects          :
 Description      : Your Regrowth protects you, reducing damage you take by $s1% while your Regrowth is on you.
 
 Name             : Dream Surge (id=433831) [Spell Family (7), Passive] 
-Talent Entry     : Keeper of the Grove (Balance, Restoration) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Keeper of the Grove (Balance, Restoration) [free=(Balance, Restoration), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Druid
 School           : Physical
 Spell Type       : None

@@ -1,5 +1,5 @@
 # Warrior — Protection Spec Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 47 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Shield Wall (id=871) [Spell Family (4)] 
@@ -774,8 +774,9 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1153689)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
-                   Base Value: -6 | Scaled Value: -6 | Misc Value: 23 | Misc Value 2: 2796 (Label) | Target: Self (1)
+                   Base Value: -8 | Scaled Value: -8 | Misc Value: 23 | Misc Value 2: 2796 (Label) | Target: Self (1)
                    Affected Spells (Label): Defensive Stance (386208)
+Hotfixed         : Base Value (-6 -> -8)
 Description      : Defensive Stance additionally reduces magic damage you take by $s1%.
 
 Name             : Armor Specialization (id=1234769) [Spell Family (4), Passive, Hidden] 

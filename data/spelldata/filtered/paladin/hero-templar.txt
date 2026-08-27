@@ -1,5 +1,5 @@
 # Paladin — Templar Hero Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Light's Deliverance (id=425518) [Spell Family (10), Passive] 
@@ -29,7 +29,7 @@ Description      : You gain a stack of Light's Deliverance when you call down an
 While $?a137028[Divine Toll][Wake of Ashes] and Hammer of Light are unavailable, you consume $433674U stacks of Light's Deliverance, empowering yourself to cast Hammer of Light an additional time for free.
 
 Name             : Light's Guidance (id=427445) [Spell Family (10), Passive, Hidden] 
-Talent Entry     : Templar (Protection, Retribution) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Templar (Protection, Retribution) [free=(Protection, Retribution), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Paladin
 School           : Physical
 Spell Type       : None
@@ -309,9 +309,10 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355), Hide Passive From Tooltip (451)
 Effects          :
 #1 (id=1273793)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 25 | Scaled Value: 25 | Target: Self (1)
+                   Base Value: 25 | Scaled Value: 25 | PvP Coefficient: 1.4 | Target: Self (1)
                    Affected Spells: Templar's Verdict (224266), Final Verdict (336872), Final Verdict (383328)
                    Family Flags: 44
+Hotfixed         : PvP Coefficient (1 -> 1.4)
 #2 (id=1273806)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)
                    Affected Spells: Judgment (275779), Paladin Protection 10.2 Class Set 2pc (422895)

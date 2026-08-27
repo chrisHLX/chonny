@@ -1,5 +1,5 @@
 # Hunter — Dark Ranger Hero Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Smoke Screen (id=430709) [Spell Family (9), Passive] 
@@ -37,7 +37,7 @@ Effects          :
 Description      : While in combat, Disengage will chain the closest target to the ground, causing them to move $442396s1% slower until they move $s1 yards away.
 
 Name             : Black Arrow (id=466930) [Spell Family (9)] 
-Talent Entry     : Dark Ranger (Beast Mastery) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Dark Ranger (Beast Mastery) [free=(Beast Mastery), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Hunter
 School           : Shadow
 Spell Type       : Ranged
@@ -65,7 +65,7 @@ Effects          :
 Description      : You attempt to finish off a wounded target, dealing $s1 Shadow damage and $468572o1 Shadow damage over $468572d. Only usable on enemies above $s3% health or below $s2% health.
 
 Name             : Black Arrow (id=466932) [Spell Family (9), Passive, Hidden] 
-Talent Entry     : Dark Ranger (Marksmanship) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Dark Ranger (Marksmanship) [free=(Marksmanship), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Hunter
 School           : Physical
 Spell Type       : None

@@ -110,6 +110,26 @@ class ImportSpellData extends Command
     /** @var array<int, array{spell_id: int, description: string, class_id: int}> pvp talent spells pending description-parse, retained for the relationship pass */
     private array $pendingPvpTalentRecords = [];
 
+    /**
+     * Every (spell.id, spec.id) pair EITHER importManualSpells() OR importBaselineSpecOverrides()
+     * has legitimately written a source='verified_override' row for this run — a shared
+     * protection set consulted by the prune step in importBaselineSpecOverrides() before it
+     * deletes anything. Found necessary 2026-08-26: both methods write that same source tag for
+     * their own, independently valid reason (a spell absent from SimC's dump entirely, vs. a
+     * spec-attribution correction to an ambiguous baseline record) — the prune step used to only
+     * know about its own writes, so every manual-spells.txt entry got deleted moments after being
+     * written, on every single import run, since the day the prune pass was added. Confirmed via
+     * Log::warning() across 3 consecutive runs: the exact same 11 rows (Aimed Shot, Mirror Image,
+     * Shadowstep, Maim's real stun-aura id 203123, Blinding Light's real disorient-aura id 105421
+     * — all deliberately hand-curated manual-spells.txt entries, several load-bearing for CC
+     * duration/chain data) were recreated then pruned identically each time. importManualSpells()
+     * runs before importBaselineSpecOverrides() in handle()'s own ordering, so by the time the
+     * prune check runs, both passes' legitimate writes are already present here.
+     *
+     * @var array<string, true> "{spell.id}:{spec.id}" => true
+     */
+    private array $verifiedOverridePairsWritten = [];
+
     private int $pvpTalentRelationshipSkips = 0;
 
     private int $pvpTalentRelationshipMatches = 0;
@@ -740,6 +760,14 @@ class ImportSpellData extends Command
                 if (!$source || $source->id === $target->id) {
                     $this->relationshipSkips++;
 
+                    if (!$source) {
+                        Log::warning('ImportSpellData: relationship source spell not found in this patch', [
+                            'source_spell_id' => $sourceExternalId,
+                            'target_spell_id' => $record['spell_id'],
+                            'target_name' => $target->name,
+                        ]);
+                    }
+
                     continue;
                 }
 
@@ -904,6 +932,15 @@ class ImportSpellData extends Command
 
             if (!$source || !$target || $source->id === $target->id) {
                 $this->categoryRelationshipSkips++;
+
+                if (!$source || !$target) {
+                    Log::warning('ImportSpellData: category-effect relationship source or target spell not found in this patch', [
+                        'source_spell_id' => $sourceExternalId,
+                        'source_found' => (bool) $source,
+                        'target_spell_id' => $targetExternalId,
+                        'target_found' => (bool) $target,
+                    ]);
+                }
 
                 continue;
             }
@@ -1291,6 +1328,8 @@ class ImportSpellData extends Command
                     'spec_id' => $spec->id,
                     'source' => 'verified_override',
                 ], [], 'spell_class_availability');
+
+                $this->verifiedOverridePairsWritten["{$spell->id}:{$spec->id}"] = true;
             }
 
             $this->manualSpellsApplied++;
@@ -1361,9 +1400,10 @@ class ImportSpellData extends Command
         // duplicated even after the bad override line was deleted and re-imported, because the
         // stale row from the earlier import never got cleaned up. This closes that gap
         // permanently, the same "always run this defensive pass" precedent as
-        // cleanupSamePositionCollisions()/cleanupClassTreeBloat() elsewhere in this file.
-        $writtenPairs = [];
-
+        // cleanupSamePositionCollisions()/cleanupClassTreeBloat() elsewhere in this file. Writes
+        // land in the shared $this->verifiedOverridePairsWritten property (not a local variable)
+        // because importManualSpells() writes this same source tag too, for its own equally
+        // legitimate reason — see that property's own docblock for the real incident this fixed.
         foreach (File::lines($path) as $line) {
             $line = trim($line);
 
@@ -1401,17 +1441,33 @@ class ImportSpellData extends Command
             ], [], 'spell_class_availability');
 
             $this->baselineOverridesApplied++;
-            $writtenPairs["{$spell->id}:{$spec->id}"] = true;
+            $this->verifiedOverridePairsWritten["{$spell->id}:{$spec->id}"] = true;
 
             $seenPerSpec["{$class->id}:{$spec->id}:{$spell->name}"][] = (int) $externalSpellId;
         }
 
         $stalePruned = 0;
+        $protectedPairs = $this->verifiedOverridePairsWritten;
         SpellClassAvailability::where('source', 'verified_override')
             ->whereHas('spell', fn ($q) => $q->where('patch_id', $patch->id))
+            ->with('spell:id,spell_id,name')
             ->get(['id', 'spell_id', 'spec_id'])
-            ->each(function (SpellClassAvailability $row) use ($writtenPairs, &$stalePruned) {
-                if (!isset($writtenPairs["{$row->spell_id}:{$row->spec_id}"])) {
+            ->each(function (SpellClassAvailability $row) use ($protectedPairs, &$stalePruned) {
+                if (!isset($protectedPairs["{$row->spell_id}:{$row->spec_id}"])) {
+                    // Logged before delete — added 2026-08-26 after a full raw-data refresh made a
+                    // silent, unauditable prune (11 rows, no record of which) impossible to check
+                    // against baseline-spec-overrides.txt's own current content after the fact. A
+                    // prune firing here means EITHER a line was removed from the file (expected,
+                    // benign) OR that line's spell_id no longer resolves against the freshly
+                    // imported patch data (worth investigating — could be a real content removal,
+                    // or a parsing regression). This log is what lets that distinction be made.
+                    Log::warning('ImportSpellData: pruning stale verified_override row not reproduced by baseline-spec-overrides.txt this run', [
+                        'spell_class_availability_id' => $row->id,
+                        'spell_internal_id' => $row->spell_id,
+                        'spell_external_id' => $row->spell?->spell_id,
+                        'spell_name' => $row->spell?->name,
+                        'spec_id' => $row->spec_id,
+                    ]);
                     $row->delete();
                     $stalePruned++;
                 }

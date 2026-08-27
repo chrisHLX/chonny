@@ -1,5 +1,5 @@
 # Demon Hunter — Devourer Spec Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 43 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Void Metamorphosis (id=471306) [Spell Family (107), Passive, Hidden] 
@@ -11,7 +11,7 @@ Labels           : 16: Class Spells
                  : 66: Demon Hunter Spells
                  : 292
                  : 5408: Soul Glutton (1247534 effect#2)
-Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355)
+Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Ignore For Mod Time Rate (196), Do Not Log on Learn (355)
 Aura Interrupt   : Change Specialization (38)
 Effects          :
 #1 (id=1187543)  : Apply Aura (6) | Periodic Dummy (226): every 0.12 seconds

@@ -1,5 +1,5 @@
 # Shaman — Totemic Hero Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Whirling Elements (id=445024) [Spell Family (11), Passive, Hidden] 
@@ -255,7 +255,8 @@ Effects          :
                    Affected Spells: Healing Tide (114942)
                    Family Flags: 110
 #3 (id=1164018)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.5 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1 -> 0.5)
 Description      : $?a137041[While Hot Hand is active Lava Lash shatters the earth, causing a Sundering at $s1% effectiveness.][Your Healing Stream Totems heals an additional ally at $s3% effectiveness.
 
 Healing Tide Totem healing increased by $s2%.]
@@ -300,12 +301,13 @@ Effects          :
 #2 (id=1177979)  : Apply Aura (6) | Dummy (4)
                    Base Value: 40 | Scaled Value: 40 | Target: Self (1)
 #3 (id=1283981)  : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 2 (12)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value: 12 | Misc Value 2: 1677 (Label) | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.334 | Misc Value: 12 | Misc Value 2: 1677 (Label) | Target: Self (1)
                    Affected Spells (Label): Earthliving Weapon (382024)
+Hotfixed         : PvP Coefficient (1 -> 0.334)
 Description      : $?a137041[Casting Sundering within $s2 yards of your Surging Totem causes it to create a Tremor at $s1% effectiveness at the target area.][Allies affected by your Earthliving effect receive $s3% increased healing from you.]
 
 Name             : Surging Totem (id=455630) [Spell Family (11), Passive, Hidden] 
-Talent Entry     : Totemic (Enhancement, Restoration) [tree=hero, row=1, col=3, max_rank=1, req_points=1, override="Surging Totem" (id=444995)]
+Talent Entry     : Totemic (Enhancement, Restoration) [free=(Enhancement, Restoration), tree=hero, row=1, col=3, max_rank=1, req_points=1, override="Surging Totem" (id=444995)]
 Class            : Shaman
 School           : Nature
 Spell Type       : None

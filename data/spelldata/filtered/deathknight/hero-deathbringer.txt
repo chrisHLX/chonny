@@ -1,5 +1,5 @@
 # Death Knight — Deathbringer Hero Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Grim Reaper (id=434905) [Spell Family (15), Passive] 
@@ -83,7 +83,7 @@ Effects          :
 Description      : When Reaper's Mark explodes, it deals $?a137008[$s1][$s2]% of the damage dealt to nearby enemies.
 
 Name             : Reaper's Mark (id=439843) [Spell Family (15)] 
-Talent Entry     : Deathbringer (Blood, Frost) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Deathbringer (Blood, Frost) [free=(Blood, Frost), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Death Knight
 School           : Shadowfrost
 Spell Type       : Magic

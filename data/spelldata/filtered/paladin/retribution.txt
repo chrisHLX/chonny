@@ -1,5 +1,5 @@
 # Paladin — Retribution Spec Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 41 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Avenging Wrath (id=31884) [Spell Family (10)] 
@@ -270,7 +270,7 @@ Family Flags     : 27, 44, 65, 77
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Skill Increase (36), Initiates Combat (Enables Auto-Attack) (41), Discount Power On Miss (59), Aura Points On Client (268), Spellcast Override In Spellbook (310), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1015174)  : School Damage (2): holy
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 4.65069 | PvP Coefficient: 1.25 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | AP Coefficient: 4.65069 | PvP Coefficient: 1.4375 | Target: Targeted Enemy (6)
 #2 (id=1015175)  : Dummy (3)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
 Description      : Unleashes a powerful weapon strike that deals $s1 Holy damage to an enemy target,

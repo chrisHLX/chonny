@@ -1,5 +1,5 @@
 # Rogue — Assassination Spec Talents
-# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 45 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Deadly Poison (id=2823) [Spell Family (8)] 
@@ -471,7 +471,8 @@ Effects          :
 #1 (id=1019022)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 #2 (id=1019023)  : School Damage (2): nature
-                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 1.469 | PvP Coefficient: 0.8 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 | AP Coefficient: 1.469 | PvP Coefficient: 0.7 | Target: Targeted Enemy (6)
+Hotfixed         : PvP Coefficient (0.8 -> 0.7)
 #3 (id=1019024)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Targeted Enemy (6)
 #4 (id=1019025)  : Apply Aura (6) | Periodic Damage (3): nature every 2 seconds

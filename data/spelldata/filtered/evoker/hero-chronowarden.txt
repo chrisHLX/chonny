@@ -1,5 +1,5 @@
 # Evoker — Chronowarden Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 16 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Warp (desc=Bronze) (id=429483) [Spell Family (224), Passive] 
@@ -22,7 +22,7 @@ Variables        : $flight=$?a375517[${$375517s1/1000}][${0}]
 $dura=$?a406380[${6*(1+$406380s2/100)+$<flight>}.1][${6+$<flight>}]
 
 Name             : Chrono Flame (desc=Bronze) (id=431442) [Spell Family (224), Passive] 
-Talent Entry     : Chronowarden (Preservation) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Chronowarden (Preservation) [free=(Preservation), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Evoker
 School           : Arcane
 Spell Type       : None

@@ -1,5 +1,5 @@
 # Evoker — Preservation Spec Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Dream Breath (desc=Green) (id=355936) [Spell Family (224)] 
@@ -889,9 +889,10 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Do Not Sheath (18), Do Not Display Range (126), Not In Spellbook (143), Do Not Log on Learn (355), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=1240792)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 30 | Scaled Value: 30 | Target: Self (1)
+                   Base Value: 40 | Scaled Value: 40 | Target: Self (1)
                    Affected Spells: Verdant Embrace (361195)
                    Family Flags: 36
+Hotfixed         : Base Value (30 -> 40)
 #2 (id=1240793)  : Apply Aura (6) | Dummy (4)
                    Base Value: 100 | Scaled Value: 100 | Target: Self (1)
 Description      : Verdant Embrace healing is increased by $s1%. In addition, it no longer causes you to leap to your target, instead sending forth a Dream Simulacrum.

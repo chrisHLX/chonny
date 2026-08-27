@@ -1,5 +1,5 @@
 # Priest — Discipline Spec Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Pain Suppression (id=33206) [Spell Family (6)] 
@@ -115,7 +115,8 @@ Family Flags     : 35
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122), Do Not Log on Learn (355), Allow Class Ability Procs (416), Unknown (450)
 Effects          :
 #1 (id=135203)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 32 | Scaled Value: 32 | PvP Coefficient: 1.72 | Target: Self (1)
+                   Base Value: 46 | Scaled Value: 46 | PvP Coefficient: 1.26 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1.2 -> 1.26)
 #2 (id=178045)   : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
 Description      : Power Word: Shield, Flash Heal, Shadow Mend, Plea, and Power Word: Radiance apply Atonement to your target for $194384d.
@@ -867,7 +868,7 @@ Proc Flags       : Magic Hostile Spell
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
 Effects          :
 #1 (id=1259890)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 15 | Scaled Value: 15 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
 Description      : Casting Mind Blast upgrades your next Power Word: Shield to Void Shield.
 
 Void Shield now reflects $s1% of damage taken to enemies, causing Atonement healing.

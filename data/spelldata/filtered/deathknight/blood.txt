@@ -1,5 +1,5 @@
 # Death Knight — Blood Spec Talents
-# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from deathknight.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 44 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Dancing Rune Weapon (id=49028) [Spell Family (15)] 
@@ -765,7 +765,7 @@ Labels           : 16: Class Spells
                  : 292
 Family Flags     : 125
 Attributes       : Is Self Channelled (38), No Aura Icon (60), Name in Channel Bar (61), Do Not Display Range (126), Force Display Castbar (155), Allow Actions During Channel (160), Do Not Consume Resources (197), Not In Spellbook Until Learned (269), Haste Affects Duration (273), Do Not Display Power Cost (303), Reset cooldown upon ending an encounter (333), Allow Defense While Channeling (338)
-Channel Interrupt: Sheathing (10), Interacting (11), Attacking (13), Action (Delayed) (17)
+Channel Interrupt: Damage (2), Sheathing (10), Interacting (11), Attacking (13)
 Effects          :
 #1 (id=1274730)  : Apply Aura (6) | Decrease Movement Speed% (33)
                    Base Value: 30 | Scaled Value: 30 | Target: Self (1)

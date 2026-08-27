@@ -1,5 +1,5 @@
 # Warrior — Mountain Thane Hero Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Storm Surge (id=275336) [Spell Family (4), Passive] 
@@ -17,7 +17,7 @@ Effects          :
 Description      : Avatar increases the damage of Thunder Clap by $107574s9% and reduces its cooldown by $107574s10%.
 
 Name             : Lightning Strikes (id=434969) [Spell Family (4), Passive] 
-Talent Entry     : Mountain Thane (Fury, Protection) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Talent Entry     : Mountain Thane (Fury, Protection) [free=(Fury, Protection), tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Warrior
 School           : Physical
 Spell Type       : None

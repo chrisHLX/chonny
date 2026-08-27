@@ -1,5 +1,5 @@
 # Evoker — Scalecommander Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Maneuverability (desc=Black) (id=433871) [Spell Family (224), Passive] 
@@ -45,7 +45,7 @@ Variables        : $MotBD=$?s441705[${1+($441705s1/100)}][${1}]
 $dmg=${$INT*4.75*(1+$@versadmg)*$pctD*$<MotBD>}
 
 Name             : Mass Disintegrate (desc=Blue) (id=436335) [Spell Family (224), Passive] 
-Talent Entry     : Scalecommander (Devastation) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Talent Entry     : Scalecommander (Devastation) [free=(Devastation), tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Evoker
 School           : Arcane
 Spell Type       : None
@@ -64,7 +64,7 @@ Effects          :
 Description      : Empower spells cause your next Disintegrate to strike up to $s1 targets. When striking fewer than $s1 targets, Disintegrate damage is increased by $s2% for each missing target.
 
 Name             : Mass Eruption (desc=Black) (id=438587) [Spell Family (224), Passive] 
-Talent Entry     : Scalecommander (Augmentation) [tree=hero, row=1, col=1, max_rank=1, req_points=0]
+Talent Entry     : Scalecommander (Augmentation) [free=(Augmentation), tree=hero, row=1, col=1, max_rank=1, req_points=0]
 Class            : Evoker
 School           : Firestorm
 Spell Type       : None

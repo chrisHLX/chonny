@@ -1,5 +1,5 @@
 # Demon Hunter — Class Talents
-# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from demonhunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 48 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Chaos Nova (id=179057) [Spell Family (107)] 
@@ -78,15 +78,15 @@ Class            : Demon Hunter
 School           : Physical
 Spell Type       : None
 Duration         : 1 seconds
-Cooldown         : 0.5 seconds
+Cooldown         : 0.75 seconds
 Charges          : 1 (25 seconds cooldown)
-Category         : 1601 (Type 0x9): Tactical Retreat (389688 effect#1), Voidstep (1223157 effect#2), Voidstep (1223157 effect#3)
+Category         : 1601 (Type 0x9): Tactical Retreat (389688 effect#1), Evasive Action (444929 effect#1), Evasive Action (444929 effect#2), Voidstep (1223157 effect#2), Voidstep (1223157 effect#3)
 Labels           : 16: Class Spells
                  : 66: Demon Hunter Spells
                  : 186
                  : 219
                  : 292
-Affecting Spells : Prepared (203551 effect#2), Evasive Action (444929 effect#1), Demonsurge (1245496 effect#3)
+Affecting Spells : Prepared (203551 effect#2), Demonsurge (1245496 effect#3)
 Triggered By     : Vengeful Retreat (344866)
 Family Flags     : 3
 Attributes       : Is Ability (4), No Aura Cancel (31), Initiates Combat (Enables Auto-Attack) (41), No Threat (42), No Aura Icon (60), No Casting Bar Text (98), No Aura Log (202), Aura Points On Client (268), Allow Class Ability Procs (416)

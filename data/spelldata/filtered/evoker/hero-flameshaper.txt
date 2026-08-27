@@ -1,5 +1,5 @@
 # Evoker — Flameshaper Hero Talents
-# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from evoker.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Enkindle (desc=Red) (id=444016) [Spell Family (224), Passive, Hidden] 
@@ -213,7 +213,7 @@ Effects          :
 Description      : $?c1[Fire Breath deals its damage][Fire Breath and Dream Breath deal their damage and healing] $s1% more often.
 
 Name             : Legacy of the Lifebinder (desc=Red) (id=1264269) [Spell Family (224), Passive, Hidden] 
-Talent Entry     : Flameshaper (Devastation, Preservation) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Talent Entry     : Flameshaper (Devastation, Preservation) [free=(Devastation, Preservation), tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Evoker
 School           : Physical
 Spell Type       : None

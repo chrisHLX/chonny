@@ -1,9 +1,9 @@
 # Paladin — Lightsmith Hero Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 19 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Holy Bulwark (id=432459) [Spell Family (10)] 
-Talent Entry     : Lightsmith (Protection) [tree=hero, row=1, col=3, max_rank=1, req_points=0, name="Holy Armaments"]
+Talent Entry     : Lightsmith (Protection) [free=(Protection), tree=hero, row=1, col=3, max_rank=1, req_points=0, name="Holy Armaments"]
 Class            : Paladin
 School           : Holy
 Spell Type       : None
@@ -343,7 +343,7 @@ Effects          :
 Description      : $?c1[Holy Armaments activate][Divine Toll activates] Hammer and Anvil at $s1% effectiveness.
 
 Name             : Holy Armaments (id=1289728) [Spell Family (10), Passive, Hidden] 
-Talent Entry     : Lightsmith (Holy) [tree=hero, row=1, col=3, max_rank=1, req_points=0, override="Holy Bulwark" (id=432459)]
+Talent Entry     : Lightsmith (Holy) [free=(Holy), tree=hero, row=1, col=3, max_rank=1, req_points=0, override="Holy Bulwark" (id=432459)]
 Class            : Paladin
 School           : Physical
 Spell Type       : None

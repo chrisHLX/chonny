@@ -1,5 +1,5 @@
 # Warrior — Colossus Hero Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Colossal Might (id=429634) [Spell Family (4), Passive, Hidden] 
@@ -207,7 +207,7 @@ Effects          :
 Description      : $?c1[Mortal Strike][Shield Slam] critical strikes grant an additional stack of Colossal Might.
 
 Name             : Demolish (id=436358) [Spell Family (4)] 
-Talent Entry     : Colossus (Arms, Protection) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Talent Entry     : Colossus (Arms, Protection) [free=(Arms, Protection), tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Warrior
 School           : Physical
 Spell Type       : None

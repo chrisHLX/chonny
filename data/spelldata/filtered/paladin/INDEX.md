@@ -463,6 +463,7 @@ One line per spell record; each lists every file it appears in.
 - **Guardian of Ancient Kings (id=393108) [Spell Family (10)]** — `baseline.txt`
 - **Guardian of Ancient Kings (id=86659) [Spell Family (10)]** — `protection.txt`
 - **Guardian of the Forgotten Queen (desc=PvP Talent) (id=228049) [Spell Family (10)]** — `baseline.txt`
+- **Guardian of the Forgotten Queen (id=228048) [Spell Family (10)]** — `baseline.txt`
 - **Guided Prayer (id=404357) [Spell Family (10), Passive, Hidden]** — `class-talents.txt`
 - **Hallowed Discernment (id=340203) [Spell Family (10)]** — `baseline.txt`
 - **Hallowed Discernment (id=340214) [Spell Family (10)]** — `baseline.txt`

@@ -1,5 +1,5 @@
 # Shaman — Farseer Hero Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Elemental Reverb (id=443418) [Spell Family (11), Passive, Hidden] 
@@ -254,7 +254,7 @@ Effects          :
 Description      : Your Ancestors' spells are $s1% more powerful.
 
 Name             : Call of the Ancestors (id=443450) [Spell Family (11), Passive, Hidden] 
-Talent Entry     : Farseer (Elemental, Restoration) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Farseer (Elemental, Restoration) [free=(Elemental, Restoration), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Shaman
 School           : Physical
 Spell Type       : None

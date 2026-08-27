@@ -1,5 +1,5 @@
 # Shaman — Elemental Spec Talents
-# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from shaman.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 51 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Earth Shock (id=8042) [Spell Family (11)] 
@@ -19,7 +19,8 @@ Family Flags     : 20, 39, 126
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=3248)     : School Damage (2): nature
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 7.90005 | PvP Coefficient: 0.8326 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 7.90005 | PvP Coefficient: 0.916 | Target: Targeted Enemy (6)
+Hotfixed         : PvP Coefficient (0.8326 -> 0.916)
 Description      : Instantly shocks the target with concussive force, causing $s1 Nature damage.$?a190493[
 
 Earth Shock will consume all stacks of Fulmination to deal extra Nature damage to your target.][]

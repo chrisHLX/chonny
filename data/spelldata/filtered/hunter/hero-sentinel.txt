@@ -1,5 +1,5 @@
 # Hunter — Sentinel Hero Talents
-# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from hunter.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Don't Look Back (id=450373) [Spell Family (9), Passive, Hidden] 
@@ -48,7 +48,7 @@ Description      : $?c2[Steady Shot][Kill Command] grants an additional $s1 Focu
 Maximum Focus increased by $s2.
 
 Name             : Sentinel (id=1253599) [Spell Family (9), Passive] 
-Talent Entry     : Sentinel (Marksmanship, Survival) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Sentinel (Marksmanship, Survival) [free=(Marksmanship, Survival), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Hunter
 School           : Physical
 Spell Type       : None

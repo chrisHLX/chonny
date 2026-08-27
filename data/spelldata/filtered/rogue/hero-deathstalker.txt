@@ -1,5 +1,5 @@
 # Rogue — Deathstalker Hero Talents
-# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from rogue.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 18 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Ethereal Cloak (id=457022) [Spell Family (8), Passive] 
@@ -43,7 +43,7 @@ Description      : Evasion reduces magical damage taken by ${-$s1}%.
 Cloak of Shadows reduces physical damage taken by ${-$s2}%.
 
 Name             : Deathstalker's Mark (id=457052) [Spell Family (8), Passive] 
-Talent Entry     : Deathstalker (Assassination, Subtlety) [tree=hero, row=1, col=3, max_rank=1, req_points=1]
+Talent Entry     : Deathstalker (Assassination, Subtlety) [free=(Assassination, Subtlety), tree=hero, row=1, col=3, max_rank=1, req_points=1]
 Class            : Rogue
 School           : Physical
 Spell Type       : None

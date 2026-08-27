@@ -57,11 +57,13 @@ One line per spell record; each lists every file it appears in.
 - **Blackened Soul (id=441638) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Blackened Soul (id=445731) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Blackened Soul (id=445736) [Spell Family (5)]** — `baseline.txt`
+- **Bladedance (desc=Basic Attack) (id=115748) [Spell Family (57)]** — `baseline.txt`
 - **Blasphemous Existence (id=367819) [Spell Family (5)]** — `baseline.txt`
 - **Blasphemy (desc=Guardian) (id=367680) [Spell Family (5)]** — `baseline.txt`
 - **Blaze (id=1282533) [Spell Family (5)]** — `baseline.txt`
 - **Blaze (id=1282534) [Spell Family (5)]** — `baseline.txt`
 - **Blaze (id=1282748) [Spell Family (5), Hidden]** — `baseline.txt`
+- **Blaze Magic (desc=Special Ability) (id=171023) [Spell Family (57)]** — `baseline.txt`
 - **Blazing Meteor (id=394776) [Spell Family (5)]** — `baseline.txt`
 - **Bleakheart Tactics (id=440051) [Spell Family (5), Passive, Hidden]** — `hero-hellcaller.txt`
 - **Blight of Tongues (id=1271802) [Spell Family (5)]** — `class-talents.txt`
@@ -79,6 +81,7 @@ One line per spell record; each lists every file it appears in.
 - **Burning Ember (id=264365) [Spell Family (5)]** — `baseline.txt`
 - **Burning Ember (id=456312) [Spell Family (5)]** — `baseline.txt`
 - **Burning Presence (desc=Special Ability) (id=171011) [Spell Family (57)]** — `baseline.txt`
+- **Burning Presence (desc=Special Ability) (id=171012) [Spell Family (57)]** — `baseline.txt`
 - **Burning Rush (id=111400) [Spell Family (5)]** — `class-talents.txt`
 - **Bursting Flare (id=279911) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Calamitous Crescendo (id=363953) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
@@ -101,6 +104,7 @@ One line per spell record; each lists every file it appears in.
 - **Cascading Calamity (id=1261125)** — `baseline.txt`
 - **Cascading Calamity (id=275376) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Cataclysm (id=152108) [Spell Family (5)]** — `destruction.txt`
+- **Cauterize Master (desc=Special Ability) (id=119899) [Spell Family (57)]** — `baseline.txt`
 - **Channel Demonfire (id=1217771) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Channel Demonfire (id=1217786) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Channel Demonfire (id=1217787) [Spell Family (5)]** — `baseline.txt`
@@ -185,6 +189,7 @@ One line per spell record; each lists every file it appears in.
 - **Darkglare Presence (id=1280663) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Deadwind Harvester (id=216708) [Spell Family (5)]** — `baseline.txt`
 - **Death's Embrace (id=234876) [Spell Family (5), Passive, Hidden]** — `affliction.txt`
+- **Debilitate (id=170996) [Spell Family (5)]** — `baseline.txt`
 - **Decaying Soul Satchel (id=356362) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Decaying Soul Satchel (id=364935) [Spell Family (5), Passive, Hidden]** — `baseline.txt`
 - **Decimating Bolt (desc=Necrolord) (id=325289) [Spell Family (5)]** — `baseline.txt`
@@ -311,6 +316,7 @@ One line per spell record; each lists every file it appears in.
 - **Dreadbite (id=271971)** — `baseline.txt`
 - **Dreadful Calling (id=279650) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Dreadlash (id=264078) [Spell Family (5), Passive]** — `demonology.txt`
+- **Dual Wield (desc=Passive) (id=114355) [Passive]** — `baseline.txt`
 - **Echo of Sargeras (id=1265884) [Spell Family (5)]** — `baseline.txt`
 - **Echo of Sargeras (id=1277879) [Spell Family (5)]** — `baseline.txt`
 - **Echo of the Azj'Aqir (id=455674) [Spell Family (5)]** — `baseline.txt`
@@ -357,7 +363,10 @@ One line per spell record; each lists every file it appears in.
 - **Fel Resilience (id=386869) [Spell Family (5)]** — `baseline.txt`
 - **Fel Synergy (id=389367) [Spell Family (5), Passive]** — `class-talents.txt`
 - **Fel Synergy (id=389372) [Spell Family (5)]** — `baseline.txt`
+- **Felbolt (desc=Basic Attack) (id=115746) [Spell Family (5)]** — `baseline.txt`
 - **Felguard (id=56285)** — `baseline.txt`
+- **Fellash (desc=Special Ability) (id=115770) [Spell Family (57)]** — `baseline.txt`
+- **Fellash (desc=Special Ability) (id=119913) [Spell Family (5)]** — `baseline.txt`
 - **Felseeker (id=434404) [Spell Family (5)]** — `baseline.txt`
 - **Felseeker (id=438973) [Spell Family (5)]** — `baseline.txt`
 - **Felstorm (desc=Special Ability) (id=89751) [Spell Family (57)]** — `baseline.txt`
@@ -370,6 +379,7 @@ One line per spell record; each lists every file it appears in.
 - **Fiery Soul (id=205704) [Spell Family (5)]** — `baseline.txt`
 - **Fire and Brimstone (id=196408) [Spell Family (5), Passive]** — `destruction.txt`
 - **Firebolt (desc=Basic Attack) (id=3110) [Spell Family (5)]** — `baseline.txt`
+- **Firebolt (desc=Rank 2) (id=231795) [Spell Family (5), Passive]** — `baseline.txt`
 - **Flame Rift (id=423874) [Spell Family (5)]** — `baseline.txt`
 - **Flamelicked (id=184924) [Spell Family (5), Passive]** — `baseline.txt`
 - **Flamelicked (id=185229) [Spell Family (5)]** — `baseline.txt`
@@ -588,14 +598,18 @@ One line per spell record; each lists every file it appears in.
 - **Meaty Rampage (id=265391)** — `baseline.txt`
 - **Meaty Rampage (id=265392)** — `baseline.txt`
 - **Meaty Rampage (id=265393)** — `baseline.txt`
+- **Mesmerize (desc=Special Ability) (id=115268) [Spell Family (57)]** — `baseline.txt`
 - **Meteor Strike (desc=Command Demon Ability) (id=171156) [Spell Family (5)]** — `baseline.txt`
 - **Meteor Strike (desc=Special Ability) (id=171152) [Spell Family (5)]** — `baseline.txt`
+- **Meteor Strike (desc=Special Ability) (id=171154) [Spell Family (5)]** — `baseline.txt`
 - **Meteor Strike (id=171017) [Spell Family (5)]** — `baseline.txt`
+- **Meteor Strike (id=171018) [Spell Family (5)]** — `baseline.txt`
 - **Mind Sear (id=1280457) [Spell Family (5)]** — `baseline.txt`
 - **Mind Sear (id=1280460) [Spell Family (5)]** — `baseline.txt`
 - **Mind Sear (id=1280461) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Mind's Eyes (id=1268716) [Spell Family (5), Passive, Hidden]** — `hero-diabolist.txt`
 - **Mind's Eyes (id=1269879) [Spell Family (5)]** — `baseline.txt`
+- **Mortal Cleave (desc=Basic Attack) (id=115625) [Spell Family (57)]** — `baseline.txt`
 - **Mortal Coil (desc=Talent) (id=108396) [Spell Family (5)]** — `baseline.txt`
 - **Mortal Coil (id=6789) [Spell Family (5)]** — `class-talents.txt`
 - **Multi-Slash (id=272172)** — `baseline.txt`
@@ -619,6 +633,8 @@ One line per spell record; each lists every file it appears in.
 - **Odr, Shawl of the Ymirjar (id=337163) [Spell Family (5), Passive]** — `baseline.txt`
 - **Odr, Shawl of the Ymirjar (id=337164) [Spell Family (5)]** — `baseline.txt`
 - **Oppressive Darkness (id=1270255) [Spell Family (5), Passive, Hidden]** — `class-talents.txt`
+- **Optical Blast (desc=Special Ability) (id=115781) [Spell Family (57)]** — `baseline.txt`
+- **Optical Blast (desc=Special Ability) (id=119911) [Spell Family (5)]** — `baseline.txt`
 - **Overhead Assault (id=272432)** — `baseline.txt`
 - **Pact of Gluttony (id=386689) [Spell Family (5), Passive]** — `class-talents.txt`
 - **Pact of the Annihilan (id=1270693) [Spell Family (5), Passive, Hidden]** — `class-talents.txt`
@@ -699,6 +715,7 @@ One line per spell record; each lists every file it appears in.
 - **Scouring Tithe (desc=Kyrian) (id=312397) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Scouring Tithe (desc=Kyrian) (id=312420) [Spell Family (5), Hidden]** — `baseline.txt`
 - **Scouring Tithe (desc=Kyrian) (id=312956) [Hidden]** — `baseline.txt`
+- **Sear Magic (desc=Special Ability) (id=115276) [Spell Family (57)]** — `baseline.txt`
 - **Searing Bolt (id=243050) [Spell Family (5)]** — `baseline.txt`
 - **Searing Bolt (id=423886) [Spell Family (5)]** — `baseline.txt`
 - **Searing Bolts (id=1280879) [Spell Family (5), Hidden]** — `baseline.txt`
@@ -884,6 +901,7 @@ One line per spell record; each lists every file it appears in.
 - **Through the Felvine (id=1266799) [Spell Family (5), Passive, Hidden]** — `hero-hellcaller.txt`
 - **Time Spiral (id=375257) [Spell Family (5)]** — `baseline.txt`
 - **To Hell and Back (id=1281511) [Spell Family (5), Passive, Hidden]** — `demonology.txt`
+- **Tongue Lash (desc=Basic Attack) (id=115778) [Spell Family (57)]** — `baseline.txt`
 - **Torch Magic (desc=Special Ability) (id=171021) [Spell Family (57)]** — `baseline.txt`
 - **Tormented Crescendo (id=387075) [Spell Family (5), Passive]** — `baseline.txt`
 - **Tormented Crescendo (id=387077) [Spell Family (5), Hidden]** — `baseline.txt`
@@ -924,6 +942,8 @@ One line per spell record; each lists every file it appears in.
 - **Vile Taint (id=386931) [Spell Family (5)]** — `baseline.txt`
 - **Vision of Nihilam (id=1265939) [Spell Family (5)]** — `baseline.txt`
 - **Void Reflexes (id=117225) [Passive]** — `baseline.txt`
+- **Void Shield (desc=Special Ability) (id=115236)** — `baseline.txt`
+- **Void Shield (id=115240) [Spell Family (5)]** — `baseline.txt`
 - **Wakener's Loyalty (id=236199) [Spell Family (5), Passive]** — `baseline.txt`
 - **Wakener's Loyalty (id=236200) [Spell Family (5)]** — `baseline.txt`
 - **Wakener's Loyalty (id=281495) [Spell Family (5), Passive]** — `baseline.txt`
@@ -1002,6 +1022,9 @@ One line per spell record; each lists every file it appears in.
 - **Wrath of Consumption (id=337130) [Spell Family (5)]** — `baseline.txt`
 - **Wrath of Nathreza (id=1262028) [Spell Family (5)]** — `baseline.txt`
 - **Wrath of Nathreza (id=1278047) [Spell Family (5)]** — `baseline.txt`
+- **Wrathstorm (desc=Special Ability) (id=115831) [Spell Family (57)]** — `baseline.txt`
+- **Wrathstorm (desc=Special Ability) (id=119915) [Spell Family (5)]** — `baseline.txt`
+- **Wrathstorm (id=115832) [Spell Family (5)]** — `baseline.txt`
 - **Xalan's Cruelty (id=440040) [Spell Family (5), Passive, Hidden]** — `hero-hellcaller.txt`
 - **Xalan's Ferocity (id=440044) [Spell Family (5), Passive, Hidden]** — `hero-hellcaller.txt`
 - **Xavius' Gambit (id=416615) [Spell Family (5), Passive]** — `affliction.txt`

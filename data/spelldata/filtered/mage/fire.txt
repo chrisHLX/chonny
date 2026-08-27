@@ -1,5 +1,5 @@
 # Mage — Fire Spec Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 43 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Flamestrike (id=2120) [Spell Family (3)] 
@@ -80,7 +80,7 @@ Family Flags     : 3, 22, 67
 Attributes       : Not Shapeshifted (16), Aura Points On Client (268), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=4785)     : School Damage (2): fire
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 6.388 | PvP Coefficient: 1.35 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 6.388 | PvP Coefficient: 1.485 | Target: Targeted Enemy (6)
                    Modified By: Rollin' Hot (1219035 effect#2)
 Description      : Hurls an immense fiery boulder that causes $s1 Fire damage$?a321711[ and an additional $321712o2 Fire damage over $321712d][].
 
@@ -645,7 +645,8 @@ Effects          :
 #1 (id=1163297)  : Apply Aura (6) | Dummy (4)
                    Base Value: 35 | Scaled Value: 35 | Target: Self (1)
 #2 (id=1347638)  : Apply Aura (6) | Modify Damage Done Against Target With Aura (303)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value: 13 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.666667 | Misc Value: 13 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1 -> 0.666667)
 Description      : Damage dealt to targets below $s1% health is increased by $458910s1%.
 
 Name             : Kindling (id=1254194) [Spell Family (3), Passive] 
@@ -901,7 +902,8 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1283738)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 75 | Scaled Value: 75 | Target: Self (1)
+                   Base Value: 75 | Scaled Value: 75 | PvP Coefficient: 0.666667 | Target: Self (1)
+Hotfixed         : PvP Coefficient (1 -> 0.666667)
 #2 (id=1283756)  : Apply Aura (6) | Dummy (4)
                    Base Value: 8 | Scaled Value: 8 | Target: Self (1)
 Description      : When Combustion expires, all of your active Ignites explode, dealing $s1% of their remaining damage.

@@ -1,5 +1,5 @@
 # Warrior — Slayer Hero Talents
-# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from warrior.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Unhinged (id=386628) [Spell Family (4), Passive, Hidden] 
@@ -19,7 +19,7 @@ Effects          :
 Description      : Every $s1 strikes of Bladestorm, you automatically cast a $?c1[Mortal Strike][Bloodthirst] at your target or random nearby enemy, dealing $s2% of normal damage.
 
 Name             : Slayer's Dominance (id=444767) [Spell Family (4), Passive, Hidden] 
-Talent Entry     : Slayer (Arms, Fury) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Talent Entry     : Slayer (Arms, Fury) [free=(Arms, Fury), tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Warrior
 School           : Physical
 Spell Type       : None

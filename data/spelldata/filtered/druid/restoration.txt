@@ -1,5 +1,5 @@
 # Druid — Restoration Spec Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 53 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Tranquility (id=740) [Spell Family (7)] 
@@ -39,7 +39,7 @@ Effects          :
 #7 (id=1202407)  : Apply Aura (6) | Modify Time Rate (Label) (470)
                    Base Value: -100 | Scaled Value: -100 | Misc Value: 4339 (Label) | Target: Self (1)
                    Affected Spells (Label): Incarnation (117679)
-Description      : Heals all allies within $a2 yards for $<healing> over $d.$?s197721[ Extends the duration of all your heal over time effects by $s6 sec every $t1 sec.][] Healing decreased beyond $s3 targets.
+Description      : Heals all allies within $a2 yards for $<healing> over $d.$?s197721[ Extends the duration of all your heal over time effects by $197721s1 sec every $t1 sec.][] Healing decreased beyond $s3 targets.
 
 Roots form around you while channeling, absorbing up to $s6% of your health in damage and preventing knockbacks.
 Tooltip          : Absorbing $w5 damage and protected from knockbacks.
@@ -1046,9 +1046,11 @@ Effects          :
 #1 (id=1245025)  : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 #2 (id=1245026)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 20 | Scaled Value: 20 | PvP Coefficient: 1.25 | Target: Self (1)
+                   Base Value: 24 | Scaled Value: 24 | PvP Coefficient: 1.042 | Target: Self (1)
+Hotfixed         : Base Value (20 -> 24), PvP Coefficient (1.25 -> 1.042)
 #3 (id=1314559)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 6 | Scaled Value: 6 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | Target: Self (1)
+Hotfixed         : Base Value (6 -> 5)
 Description      : $s2% of Lifebloom's final bloom heals up to $s3 injured allies within $1244341a1 yds.
 
 Name             : Everbloom (id=1244470) [Spell Family (7), Passive] 
@@ -1078,7 +1080,8 @@ Proc Flags       : Magic Heal
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1274815)  : Apply Aura (6) | Dummy (4)
-                   Base Value: 20 | Scaled Value: 20 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Target: Self (1)
+Hotfixed         : Base Value (20 -> 10)
 Description      : Regrowth heals all other allies with Regrowth for $s1% of its healing.
 
 Name             : Intensity (id=1264649) [Spell Family (7), Passive] 

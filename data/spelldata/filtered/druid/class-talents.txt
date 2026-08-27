@@ -1,5 +1,5 @@
 # Druid — Class Talents
-# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from druid.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 64 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Incapacitating Roar (id=99) [Spell Family (7)] 
@@ -52,7 +52,8 @@ Attributes       : Not Shapeshifted (16), Include In Advanced Combat Log (72), D
 Aura Interrupt   : Leave World (19)
 Effects          :
 #1 (id=311)      : Apply Aura (6) | Periodic Heal (8): every 3 seconds
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.803 | Target: Targeted Ally (21)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.924 | PvP Coefficient: 0.87 | Target: Targeted Ally (21)
+Hotfixed         : SP Coefficient (0.803 -> 0.924), PvP Coefficient (1 -> 0.87)
 Description      : Heals the target for $o1 over $d.$?s155675[
 
 You can apply Rejuvenation twice to the same target.][]$?s33891[
@@ -498,7 +499,8 @@ Family Flags     : 58, 118
 Attributes       : Not Shapeshifted (16), DoT Stacking Rule (103), Aura Never Bounces (148), Spell Haste Affects Periodic (173), Vehicle Immunity Category (218), Periodic Can Crit (265), Aura Points On Client (268), Heal Prediction (280), Allow Class Ability Procs (416), Periodic Refresh Extends Duration (436)
 Effects          :
 #1 (id=40640)    : Apply Aura (6) | Periodic Heal (8): every 1 seconds
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.437 | Radius: 0 - 30 yards | Target: at Target (63) -> At Ally in Area (31)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.481 | Radius: 0 - 30 yards | Target: at Target (63) -> At Ally in Area (31)
+Hotfixed         : SP Coefficient (0.437 -> 0.481)
 #2 (id=40641)    : Dummy (3)
                    Base Value: 5 | Scaled Value: 5
                    Modified By: Improved Wild Growth (328025 effect#1)

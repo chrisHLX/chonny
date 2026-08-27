@@ -1,5 +1,5 @@
 # Paladin — Protection Spec Talents
-# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from paladin.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 49 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Ardent Defender (id=31850) [Spell Family (10)] 
@@ -917,7 +917,11 @@ Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355
 Effects          :
 #1 (id=1248039)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
                    Base Value: 1 | Scaled Value: 1 | Misc Value: 2424 (Category) | Target: Self (1)
-                   Affected Spells (Category): Guardian of Ancient Kings (86659), Guardian of the Forgotten Queen (228049)
+                   Affected Spells (Category): Guardian of Ancient Kings (86659)
+#2 (id=1351590)  : Apply Aura (6) | Modify Cooldown Charge (Category) (411)
+                   Base Value: 1 | Scaled Value: 1 | Misc Value: 2586 (Category) | Target: Self (1)
+                   Affected Spells (Category): Guardian of the Forgotten Queen (228049)
+Hotfixed         : NEW EFFECT
 Description      : Guardian of Ancient Kings has $s1 additional $Lcharge:charges;.
 
 Name             : Sweeping Verdict (id=1246488) [Spell Family (10), Passive] 

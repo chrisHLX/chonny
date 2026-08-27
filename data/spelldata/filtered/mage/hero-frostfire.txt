@@ -1,10 +1,10 @@
 # Mage — Frostfire Hero Talents
-# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from mage.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 17 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Frostfire Bolt (id=431044) [Spell Family (3)] 
-Talent Entry     : Frostfire (Frost) [tree=hero, row=1, col=3, max_rank=1, req_points=0, replace="Frostbolt" (id=116)]
-                 : Frostfire (Fire) [tree=hero, row=1, col=3, max_rank=1, req_points=0, replace="Fireball" (id=133)]
+Talent Entry     : Frostfire (Frost) [free=(Frost), tree=hero, row=1, col=3, max_rank=1, req_points=0, replace="Frostbolt" (id=116)]
+                 : Frostfire (Fire) [free=(Fire), tree=hero, row=1, col=3, max_rank=1, req_points=0, replace="Fireball" (id=133)]
 Class            : Mage
 School           : Frostfire
 Spell Type       : Magic

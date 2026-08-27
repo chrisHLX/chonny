@@ -1,5 +1,5 @@
 # Priest — Shadow Spec Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 51 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Shadowfiend (id=34433) [Spell Family (6), Passive] 
@@ -201,11 +201,13 @@ Family Flags     : 72, 87
 Attributes       : Not Shapeshifted (16), Discount Power On Miss (59), Spell Haste Affects Periodic (173), Periodic Can Crit (265), Aura Points On Client (268), Rolling Periodic (334), Allow Class Ability Procs (416), Nameplate Personal Buffs/Debuffs (423)
 Effects          :
 #1 (id=832086)   : Health Leech (9)
-                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 0.3 | SP Coefficient: 2.275 | PvP Coefficient: 0.875 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 0.3 | SP Coefficient: 2.275 | Target: Targeted Enemy (6)
+Hotfixed         : PvP Coefficient (0.875 -> 1)
 #2 (id=832087)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Value Multiplier: 1 | Target: Targeted Enemy (6)
 #3 (id=832088)   : Apply Aura (6) | Periodic Health Leech (53): every 2 seconds
-                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 0.3 | SP Coefficient: 2.275 | PvP Coefficient: 0.875 | Target: Targeted Enemy (6)
+                   Base Value: 0 | Scaled Value: 0 | Value Multiplier: 0.3 | SP Coefficient: 2.275 | Target: Targeted Enemy (6)
+Hotfixed         : PvP Coefficient (0.875 -> 1)
 Description      : A word of madness haunts the target's mind, dealing $s1 Shadow damage instantly plus an additional $o3 Shadow damage over $d. Heals you for ${$e1*100}% of damage dealt.
 
 When reapplied to a target, all remaining damage is added to the new effect.

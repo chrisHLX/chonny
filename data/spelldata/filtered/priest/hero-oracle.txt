@@ -1,5 +1,5 @@
 # Priest — Oracle Hero Talents
-# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69382 Live)
+# Extracted verbatim from priest.txt (SimulationCraft 1210-01 for World of Warcraft 12.1.0.69497 Live)
 # 16 spell record(s). Mechanical regroup only — no content altered.
 
 Name             : Prophet's Will (id=433905) [Spell Family (6), Passive, Hidden] 
@@ -27,12 +27,14 @@ Spell Type       : None
 Labels           : 16: Class Spells
                  : 18: Priest Spells
                  : 292
+                 : 7101: Holy Priest (137031 effect#20)
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
 Effects          :
 #1 (id=1134692)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Prayer of Mending (33110)
                    Family Flags: 117
+                   Modified By: Holy Priest (137031 effect#20)
 #2 (id=1134693)  : Apply Aura (6) | Add Percent Modifier (108): Spell Coefficient (24)
                    Base Value: 30 | Scaled Value: 30 | PvP Coefficient: 0.834 | Misc Value: 24 | Target: Self (1)
                    Affected Spells: Power Word: Shield (17), Power Word: Shield (1246768), Void Shield (1253593), Power Word: Shield (Unfolding Vision) (1300008), Void Shield (Unfolding Vision) (1300009)
@@ -263,7 +265,7 @@ Effects          :
 Description      : $s1% of overhealing done is redistributed to up to $s2 nearby injured allies.
 
 Name             : Guiding Light (id=1248423) [Spell Family (6), Passive] 
-Talent Entry     : Oracle (Discipline, Holy) [tree=hero, row=1, col=3, max_rank=1, req_points=0]
+Talent Entry     : Oracle (Discipline, Holy) [free=(Discipline, Holy), tree=hero, row=1, col=3, max_rank=1, req_points=0]
 Class            : Priest
 School           : Holy
 Spell Type       : None
@@ -289,12 +291,14 @@ Labels           : 16: Class Spells
                  : 18: Priest Spells
                  : 292
                  : 3022
+                 : 7099: Holy Priest (137031 effect#18)
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Can Proc From Procs (122)
 Effects          :
 #1 (id=1285549)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 10 | Scaled Value: 10 | Target: Self (1)
                    Affected Spells: Holy Word: Serenity (2050), Holy Word: Sanctify (34861), Ultimate Serenity (1250581)
                    Family Flags: 10, 28
+                   Modified By: Holy Priest (137031 effect#18)
 #2 (id=1285550)  : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Flash Heal (2061), Shadow Mend (186263), Power Word: Radiance (194509), Plea (200829), Benediction (1262763)
